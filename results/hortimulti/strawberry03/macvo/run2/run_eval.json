@@ -1,0 +1,161 @@
+{
+  "run": "2",
+  "algo": "macvo",
+  "dataset": "hortimulti",
+  "seq": "strawberry03",
+  "gt_source": "interpolated",
+  "n_pairs_ate": 2425,
+  "ate": {
+    "rmse": 0.514609,
+    "mean": 0.455773,
+    "median": 0.421424,
+    "std": 0.238943,
+    "max": 1.065576
+  },
+  "ate_se3": {
+    "rmse": 0.844786,
+    "mean": 0.777662,
+    "median": 0.712021,
+    "std": 0.330008,
+    "max": 1.504322
+  },
+  "rpe_trans_1m": {
+    "rmse": 0.023871,
+    "mean": 0.01709,
+    "std": 0.016666,
+    "max": 0.106398
+  },
+  "rpe_rot_1m_deg": {
+    "rmse": 24.787005,
+    "mean": 10.22913,
+    "std": 22.577877
+  },
+  "kitti_drift": {
+    "rpe_10m_trans_rmse": 0.057556,
+    "rpe_50m_trans_rmse": 0.21402,
+    "rpe_100m_trans_rmse": 0.049938
+  },
+  "scale_factor": 1.0369975565343492,
+  "final_drift_m": 0.481,
+  "robustness": {
+    "init_success": false,
+    "init_time_s": null,
+    "tracking_losses": 0,
+    "loop_closures": 0,
+    "map_resets": 0,
+    "output_valid": true,
+    "first_failure_s": null,
+    "frames_total": 2425,
+    "frames_tracked": 2425,
+    "track_pct": 100.0
+  },
+  "runtime": {
+    "vram_mean_mib": 5484.9,
+    "vram_peak_mib": 7544.0,
+    "gpu_mean_pct": 91.0,
+    "gpu_peak_pct": 100.0,
+    "cpu_mean_pct": 20.5,
+    "cpu_peak_pct": 44.8,
+    "ram_mean_mib": 23500.0,
+    "ram_peak_mib": 27256.0,
+    "wall_s": 1494.13,
+    "fps": 1.623,
+    "fps_raw": 1.623
+  },
+  "agri_segments": {
+    "row": {
+      "n_segments": 5,
+      "ate_rmse_mean": 0.164917,
+      "ate_rmse_std": 0.092677,
+      "segments": [
+        {
+          "t_start": 1770731344.5517194,
+          "t_end": 1770731382.0302074,
+          "ate_rmse": 0.168399,
+          "ate_mean": 0.145219,
+          "n_frames": 342,
+          "duration_s": 37.478
+        },
+        {
+          "t_start": 1770731397.9211802,
+          "t_end": 1770731431.3021765,
+          "ate_rmse": 0.144755,
+          "ate_mean": 0.127263,
+          "n_frames": 251,
+          "duration_s": 33.381
+        },
+        {
+          "t_start": 1770731431.402154,
+          "t_end": 1770731440.6969283,
+          "ate_rmse": 0.021262,
+          "ate_mean": 0.018673,
+          "n_frames": 70,
+          "duration_s": 9.295
+        },
+        {
+          "t_start": 1770731452.3903587,
+          "t_end": 1770731486.2709181,
+          "ate_rmse": 0.177869,
+          "ate_mean": 0.158881,
+          "n_frames": 243,
+          "duration_s": 33.881
+        },
+        {
+          "t_start": 1770731499.663275,
+          "t_end": 1770731558.9297507,
+          "ate_rmse": 0.3123,
+          "ate_mean": 0.27058,
+          "n_frames": 545,
+          "duration_s": 59.266
+        }
+      ]
+    },
+    "turn": {
+      "n_segments": 5,
+      "ate_rmse_mean": 0.030541,
+      "ate_rmse_std": 0.007985,
+      "segments": [
+        {
+          "t_start": 1770731382.2302186,
+          "t_end": 1770731397.721244,
+          "ate_rmse": 0.02872,
+          "ate_mean": 0.026768,
+          "n_frames": 131,
+          "duration_s": 15.491
+        },
+        {
+          "t_start": 1770731440.7968044,
+          "t_end": 1770731452.2902114,
+          "ate_rmse": 0.027605,
+          "ate_mean": 0.022341,
+          "n_frames": 89,
+          "duration_s": 11.493
+        },
+        {
+          "t_start": 1770731486.370798,
+          "t_end": 1770731499.563537,
+          "ate_rmse": 0.034863,
+          "ate_mean": 0.03256,
+          "n_frames": 111,
+          "duration_s": 13.193
+        },
+        {
+          "t_start": 1770731559.029539,
+          "t_end": 1770731562.527562,
+          "ate_rmse": 0.018757,
+          "ate_mean": 0.016821,
+          "n_frames": 34,
+          "duration_s": 3.498
+        },
+        {
+          "t_start": 1770731562.6276214,
+          "t_end": 1770731586.3140368,
+          "ate_rmse": 0.042761,
+          "ate_mean": 0.037348,
+          "n_frames": 223,
+          "duration_s": 23.686
+        }
+      ]
+    }
+  }
+}
