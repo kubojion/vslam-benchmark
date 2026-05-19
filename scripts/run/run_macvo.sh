@@ -34,7 +34,8 @@ python3 MACVO.py \
 END=$(date +%s.%N)
 
 # MAC-VO writes to Results/<project_name>/<timestr>/
-SBX=$(ls -dt "$WS/src/MAC-VO/Results"/*/*/ 2>/dev/null | head -n1)
+# Only consider sandbox dirs created/modified after this run started
+SBX=$(find "$WS/src/MAC-VO/Results" -mindepth 2 -maxdepth 2 -type d -newer "$DATA_CFG" 2>/dev/null | sort -t/ -k8 | tail -n1)
 [[ -d "$SBX" ]] || { echo "no Results space produced"; exit 1; }
 python3 "$WS/scripts/eval/_macvo_to_tum.py" "$SBX" "$OUT_DIR/trajectory.txt"
 
@@ -48,6 +49,7 @@ ts = [float(t)/1e9 for t in open(times_file).read().split()]
 lines = open(traj).readlines()
 with open(traj, "w") as f:
     for i, line in enumerate(lines):
+        if i >= len(ts): break  # trajectory longer than times.txt - stop here
         parts = line.split(); parts[0] = f"{ts[i]:.9f}"
         f.write(" ".join(parts) + "\n")
 PYEOF
