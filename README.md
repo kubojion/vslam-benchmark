@@ -1,7 +1,5 @@
 # vSLAM Benchmark
 
-BSc thesis framework for benchmarking three visual SLAM algorithms on
-agricultural stereo datasets.
 
 | Algorithm | Type | Source |
 |---|---|---|
@@ -11,9 +9,8 @@ agricultural stereo datasets.
 
 ## Datasets
 
-* **Rosario v2** — outdoor soybean field, stereo + IMU + GPS.
-* **HortiMulti** — indoor strawberry polytunnel, stereo + IMU.
-* **LFSD** — Light Field Stereo Dataset.
+* **Rosario v2** - outdoor soybean field, stereo + IMU + GPS.
+* **HortiMulti** - indoor strawberry polytunnel, stereo + IMU.
 
 Only Rosario v2 + HortiMulti are actively benchmarked at the moment.
 
@@ -49,10 +46,10 @@ bash scripts/run/run_benchmark.sh rosariov2 sequence1 orbslam3 3
 
 ## Documentation
 
-* [docs/setup.md](docs/setup.md) — system deps, building Pangolin + ORB-SLAM3, conda envs.
-* [docs/running_agorithms.md](docs/running_agorithms.md) — how to add a new sequence and run all three algorithms.
-* [docs/evaluation.md](docs/evaluation.md) — evaluation pipeline, metric definitions, plot conventions.
-* [PROGRESS.md](PROGRESS.md) — current results table, known issues, dataset-specific notes.
+* [docs/setup.md](docs/setup.md) - system deps, building Pangolin + ORB-SLAM3, conda envs.
+* [docs/running_agorithms.md](docs/running_agorithms.md) - how to add a new sequence and run all three algorithms.
+* [docs/evaluation.md](docs/evaluation.md) - evaluation pipeline, metric definitions, plot conventions.
+* [PROGRESS.md](PROGRESS.md) - current results table, known issues, dataset-specific notes.
 
 ## Results snapshot
 
@@ -68,6 +65,6 @@ See [PROGRESS.md](PROGRESS.md) for the full table; representative numbers:
 ## License
 
 This benchmarking framework (configs/, scripts/, docs/, results/) is released
-under the MIT License — see [LICENSE](LICENSE).  
+under the MIT License - see [LICENSE](LICENSE).  
 The three SLAM algorithms remain under their respective upstream licenses
 (ORB-SLAM3: GPLv3, DROID-SLAM: BSD-3-Clause, MAC-VO: Apache-2.0).

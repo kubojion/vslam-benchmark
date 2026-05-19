@@ -11,37 +11,30 @@ sudo apt update && sudo apt install -y \
   libgl1-mesa-dev libglew-dev libwayland-dev libxkbcommon-dev wayland-protocols
 ```
 
-## 2. Clone this workspace
+## 2. Clone this workspace (with submodules)
+
+The three SLAM source trees (`src/ORB_SLAM3`, `src/MAC-VO`, `src/DROID-SLAM`)
+and Pangolin (`third_party/Pangolin`) are tracked as git submodules. Always
+clone with `--recurse-submodules`, or run the explicit init line below:
 
 ```bash
-git clone https://github.com/kubojion/vslam-benchmark.git
+git clone --recurse-submodules https://github.com/kubojion/vslam-benchmark.git
 cd vslam-benchmark
+
+# If you forgot --recurse-submodules:
+git submodule update --init --recursive
 ```
 
-## 3. Third-party SLAM sources
+This pulls:
 
-These are kept outside this repo. Clone the patched forks (and stock DROID-SLAM)
-into the expected paths:
+| Path | Upstream | Branch / pin |
+|---|---|---|
+| `src/ORB_SLAM3`      | `kubojion/ORB_SLAM3` (fork)   | `vslam-benchmark-patches` |
+| `src/MAC-VO`         | `kubojion/MAC-VO` (fork)      | `vslam-benchmark-patches` |
+| `src/DROID-SLAM`     | `princeton-vl/DROID-SLAM`     | pinned commit             |
+| `third_party/Pangolin` | `stevenlovegrove/Pangolin`  | pinned commit             |
 
-```bash
-mkdir -p src third_party
-
-# Patched ORB-SLAM3 fork (build portability + Settings.cc null-ptr fix)
-git clone -b vslam-benchmark-patches \
-  https://github.com/kubojion/ORB_SLAM3.git src/ORB_SLAM3
-
-# Patched MAC-VO fork (GeneralStereo preprocess for 640x480 rectified)
-git clone -b vslam-benchmark-patches \
-  https://github.com/kubojion/MAC-VO.git src/MAC-VO
-
-# Stock DROID-SLAM
-git clone https://github.com/princeton-vl/DROID-SLAM.git src/DROID-SLAM
-
-# Pangolin (required by ORB-SLAM3)
-git clone https://github.com/stevenlovegrove/Pangolin.git third_party/Pangolin
-```
-
-## 4. Build Pangolin
+## 3. Build Pangolin
 
 ```bash
 cd third_party/Pangolin
@@ -50,7 +43,7 @@ sudo cmake --install build
 cd ../..
 ```
 
-## 5. Build ORB-SLAM3
+## 4. Build ORB-SLAM3
 
 ```bash
 cd src/ORB_SLAM3
@@ -60,7 +53,7 @@ cd ../..
 
 If the build dies on `ORBvoc.txt`, decompress it: `cd src/ORB_SLAM3/Vocabulary && tar -xf ORBvoc.txt.tar.gz`.
 
-## 6. Conda environments
+## 5. Conda environments
 
 ```bash
 # DROID-SLAM
@@ -81,7 +74,7 @@ cd src/MAC-VO/Model
 cd ../../..
 ```
 
-## 7. Smoke test
+## 6. Smoke test
 
 ```bash
 # Drop a dataset under datasets/<dataset>/<seq>/ (see docs/running_agorithms.md)

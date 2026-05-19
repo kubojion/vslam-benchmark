@@ -6,9 +6,18 @@ TODO.md
 patches/
 *.log
 
-# --- third-party SLAM source trees (see docs/setup.md for clone instructions) ---
-src/
-third_party/
+# --- compiled SLAM artefacts (submodule trees, never commit build output) ---
+src/ORB_SLAM3/build/
+src/ORB_SLAM3/lib/
+src/ORB_SLAM3/Vocabulary/ORBvoc.txt.tar.gz
+src/DROID-SLAM/**/__pycache__/
+src/DROID-SLAM/build/
+src/DROID-SLAM/*.egg-info/
+src/MAC-VO/Sandbox/
+src/MAC-VO/Results/
+src/MAC-VO/Model/*.pth
+src/MAC-VO/Model/*.pkl
+third_party/Pangolin/build/
 
 # --- editor / python ---
 *.pyc

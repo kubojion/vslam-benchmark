@@ -1,0 +1,14 @@
+[submodule "src/ORB_SLAM3"]
+	path = src/ORB_SLAM3
+	url = https://github.com/kubojion/ORB_SLAM3.git
+	branch = vslam-benchmark-patches
+[submodule "src/MAC-VO"]
+	path = src/MAC-VO
+	url = https://github.com/kubojion/MAC-VO.git
+	branch = vslam-benchmark-patches
+[submodule "src/DROID-SLAM"]
+	path = src/DROID-SLAM
+	url = https://github.com/princeton-vl/DROID-SLAM.git
+[submodule "third_party/Pangolin"]
+	path = third_party/Pangolin
+	url = https://github.com/stevenlovegrove/Pangolin.git
