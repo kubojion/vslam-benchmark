@@ -9,6 +9,7 @@ Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybr
 
 > All Rosario single-run results are from an earlier exploratory run (single run, old format).  
 > HortiMulti Strawberry-03, Rosario seq1, and Rosario seq5 ORB-SLAM3 results are from the new **3-run multi-run benchmark** (mean ± std).
+> HortiMulti Strawberry-02 MAC-VO and Strawberry-03 MAC-VO are also 3-run complete.
 > Both **Sim(3)** and **SE(3)** ATE reported - see "Sim3 vs SE3" section below.
 
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | Frames | Completion | Runs |
@@ -21,7 +22,7 @@ Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybr
 | MAC-VO | Rosario v2 | seq5 | 19.381 m | - | - | 11 640 | 100% | 1 |
 | ORB-SLAM3 | HortiMulti | Strawberry-02 | **0.893 ± 0.171 m** | **2.10 ± 0.12 m** | 1.040 | 4 186–4 980 / 9 530 | 44–52%† | **3** ✓ |
 | DROID-SLAM | HortiMulti | Strawberry-02 | 44.91 m | - | - | 4 765 | 100% (stride=2) | 1 |
-| MAC-VO | HortiMulti | Strawberry-02 | 10.007 m | - | - | 9 530 | 100% | 1 (run2+3 in progress) |
+| MAC-VO | HortiMulti | Strawberry-02 | **10.231 ± 0.502 m** | **10.940 ± 0.545 m** | 1.009 | 9 530 | 100% | **3** ✓ |
 | ORB-SLAM3 | HortiMulti | Strawberry-03 | **0.1039 ± 0.0013 m** | **0.78 m** | 1.043 | 2 425 | 100% | **3** ✓ |
 | MAC-VO | HortiMulti | Strawberry-03 | **0.505 ± 0.010 m** | **0.84 m** | 1.037 | 2 425 | 100% | **3** ✓ |
 
@@ -173,7 +174,7 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 ## Dataset 2 - HortiMulti - In progress
 
-### Strawberry-02 - All three algorithms complete
+ - ORB-SLAM3 × 3 + MAC-VO × 3 complete
 
 - **Sequence:** Feb2026, 9530 frames, 952 s, 41 GB bag
 - **Camera:** Basler acA1920-155uc, fisheye (equidistant) distortion, 2048×1536 native
@@ -209,7 +210,27 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 | ORB-SLAM3 (old) | 0.866 m | 4 105 / 9 530 | 43% of timeline | 1 |
 | **ORB-SLAM3 × 3** | **0.893 ± 0.171 m** (SE3 2.10 ± 0.12) | 4 186-4 980 | 44-52% timeline | **3** ✓ |
 | DROID-SLAM | 44.91 m | 4 765 | 100% (stride=2) | 1 |
-| MAC-VO | 10.007 m (run2+3 in progress) | 9 530 | 100% | 1 |
+| MAC-VO | **10.231 ± 0.502 m** | 9 530 | 100% | **3** ✓ |
+
+#### MAC-VO × 3 - Strawberry-02 complete
+
+> Full report: `results/hortimulti/strawberry02/macvo/report.md`
+
+| Metric | Value (3 runs, mean ± std) |
+|---|---|
+| ATE RMSE Sim3 | **10.231 ± 0.502 m** |
+| ATE RMSE SE3  | **10.940 ± 0.545 m** |
+| RPE (point\_distance, 1 m) | 0.0960 ± 0.0012 m/m |
+| Scale factor | 1.009 ± 0.003 (**0.9 % drift**) |
+| Frames tracked | 100% (9 530 / 9 530, all 3 runs) |
+| Mean FPS | 1.70 ± 0.04 (0.17x real-time @ 10 fps) |
+| Row ATE RMSE (16 segs) | 0.587 ± 0.008 m |
+| Turn ATE RMSE (9 segs) | 0.0845 ± 0.0001 m |
+
+> MAC-VO tracks 100% of frames (vs ORB-SLAM3 44-52%) at the cost of ~6x lower
+> speed. Global ATE (~10 m over 952 s) reflects scale drift on the much longer
+> sequence; scale factor is near 1.0 (only 0.9% drift) so Sim3 and SE3 ATEs
+> converge. Turn ATE (0.085 m) is tighter than row ATE (0.587 m) as expected.
 
 ### Strawberry-03 - ORB-SLAM3 × 3 + MAC-VO × 3 complete
 
@@ -284,14 +305,13 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 | Task | Priority |
 |---|---|
-| **MAC-VO × 3 on Strawberry-02** - run1 done, run2+3 in progress | High |
 | **MAC-VO × 3 on Rosario seq1** - run1 done, run2+3 pending | High |
 | **MAC-VO × 3 on Rosario seq5** - run1 done, run2+3 pending | High |
 | **DROID-SLAM × 3 on all 4 evaluated sequences** | High |
 | Add Rosario v2 sequences 2, 3, 4 (already downloaded - TODO: extract + run) | Medium |
 | LFSD dataset: download, extract, run, evaluate | Medium |
 | Additional HortiMulti sequences (Strawberry-01, -04 if available) | Low |
-| Detect & remove constant body↔camera rotation for proper RPE rotation evaluation on HortiMulti | Low |
+| Detect & remove constant body to camera rotation for proper RPE rotation evaluation on HortiMulti | Low |
 | Cross-sequence aggregation (`evo_res`) once we have ≥3 sequences × 3 algorithms × 3 runs | Medium |
 | Thesis comparison plots (LaTeX-ready PDFs) | High (before submission) |
 
@@ -303,7 +323,7 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 | Item | Count | Threshold for SLAM paper |
 |---|---|---|
-| Multi-run benchmarks (3+ runs, statistics) | 4 sequences × 1-2 algos = **7 cells** (ORB-SLAM3 ×4, MAC-VO str03) | ≥ 5 sequences × ≥ 3 algos × ≥ 3 runs = 45 cells |
+| Multi-run benchmarks (3+ runs, statistics) | 5 sequences × 1-2 algos = **9 cells** (ORB-SLAM3 ×4, MAC-VO str02+str03) | ≥ 5 sequences × ≥ 3 algos × ≥ 3 runs = 45 cells |
 | Single-run sanity points | 6 cells (DROID, MAC-VO across 3 seqs) | not publishable alone |
 | Datasets | 2 (Rosario v2, HortiMulti) | typically 3–4 |
 | Algorithms | 1 fully benched (ORB-SLAM3) + 2 single-run | 3+ |
