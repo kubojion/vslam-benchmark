@@ -1,0 +1,22 @@
+# MAC-VO sequence config for Rosario v2 (GeneralStereo loader).
+# Consumed by --data of MACVO.py.
+# Schema is enforced by DataLoader/Dataset/GeneralStereo.py:
+#   root   (str)  - directory containing left/ and right/ image folders
+#   bl     (float)- stereo baseline in METERS
+#   format (str)  - "png" or "jpg"
+#   camera.{fx,fy,cx,cy} (floats) - left-camera intrinsics POST rectification
+# The loader expects images sorted alphabetically inside left/ and right/.
+# Our converter (scripts/convert_rosario_to_tum.sh) creates exactly that layout
+# but under cam0/cam1; either rename or symlink:
+#   ln -s cam0 left ; ln -s cam1 right
+type: GeneralStereo
+name: rosario_v2_seq01
+args:
+  root: __WS__/datasets/rosariov2/sequence1
+  bl: 0.04973         # METERS – from ORB-SLAM3 calibration (Stereo.b)
+  format: png
+  camera:
+    fx: 648.862       # matches ORB-SLAM3 rectified (from stereo calibration P1[0,0])
+    fy: 648.862       # P1[1,1]
+    cx: 645.011       # P1[0,2]
+    cy: 348.243       # P1[1,2]

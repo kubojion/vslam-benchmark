@@ -1,0 +1,8 @@
+# Symlink-style: this file just points MAC-VO at the bundled Fast config.
+# After installing MAC-VO, run:
+#   ln -sf $PWD/src/MAC-VO/Config/Experiment/MACVO/MACVO_Fast.yaml \
+#          configs/macvo/odom_fast.yaml
+# OR copy the contents below from src/MAC-VO/Config/Experiment/MACVO/MACVO_Fast.yaml.
+#
+# We do NOT inline the upstream config here so that future MAC-VO updates
+# remain authoritative.

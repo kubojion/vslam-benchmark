@@ -1,0 +1,20 @@
+# --- bulky / generated / private ---
+datasets/
+logs/
+docs/private/
+TODO.md
+patches/
+*.log
+
+# --- third-party SLAM source trees (see docs/setup.md for clone instructions) ---
+src/
+third_party/
+
+# --- editor / python ---
+*.pyc
+*.so
+.venv/
+__pycache__/
+.vscode/
+.DS_Store
+*.swp

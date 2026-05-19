@@ -1,0 +1,137 @@
+%YAML:1.0
+# ORB-SLAM3 stereo configuration for HortiMulti dataset.
+#
+# Source cameras:  Basler acA1920-155uc, 2048×1536, equidistant (fisheye) lens.
+# Pre-processing:  fisheye stereo rectification during bag extraction
+#                  (scripts/data/convert_hortimulti.sh), output 640×480 grayscale PNG.
+#
+# Rectified intrinsics (cv2.fisheye.stereoRectify, scaled 2048×1536 → 640×480):
+#   fx = fy = 262.7149,  cx = 329.4310,  cy = 219.5617
+#   baseline = 0.139502 m
+
+File.version: "1.0"
+
+#-------------------------------------------------------------------------------
+# Camera parameters
+#-------------------------------------------------------------------------------
+
+Camera.type: "Rectified"
+
+Camera1.fx: 262.7149
+Camera1.fy: 262.7149
+Camera1.cx: 329.4310
+Camera1.cy: 219.5617
+
+# 0 = grayscale.  Extraction saves grayscale PNG.
+Camera.RGB: 0
+
+Camera.fps:    10
+Camera.width:  640
+Camera.height: 480
+
+#-------------------------------------------------------------------------------
+# Stereo parameters
+#-------------------------------------------------------------------------------
+
+# Baseline in metres.
+Stereo.b: 0.139502
+
+# Points farther than ThDepth × baseline treated as "far".
+# Polytunnel useful depth ≈ 5 m  →  5 / 0.1395 ≈ 36.  Use 40.
+Stereo.ThDepth: 40.0
+
+#-------------------------------------------------------------------------------
+# Stereo rectification matrices
+# Images are pre-rectified; D = 0, R = I.  P1[0,3]=0, P2[0,3]=-fx*b=-36.649.
+#-------------------------------------------------------------------------------
+
+LEFT.height: 480
+LEFT.width:  640
+LEFT.D: !!opencv-matrix
+  rows: 1
+  cols: 5
+  dt: d
+  data: [0.0, 0.0, 0.0, 0.0, 0.0]
+LEFT.K: !!opencv-matrix
+  rows: 3
+  cols: 3
+  dt: d
+  data: [262.7149, 0.0, 329.4310,
+         0.0, 262.7149, 219.5617,
+         0.0, 0.0, 1.0]
+LEFT.R: !!opencv-matrix
+  rows: 3
+  cols: 3
+  dt: d
+  data: [1.0, 0.0, 0.0,
+         0.0, 1.0, 0.0,
+         0.0, 0.0, 1.0]
+LEFT.P: !!opencv-matrix
+  rows: 3
+  cols: 4
+  dt: d
+  data: [262.7149, 0.0, 329.4310, 0.0,
+         0.0, 262.7149, 219.5617, 0.0,
+         0.0, 0.0, 1.0, 0.0]
+
+RIGHT.height: 480
+RIGHT.width:  640
+RIGHT.D: !!opencv-matrix
+  rows: 1
+  cols: 5
+  dt: d
+  data: [0.0, 0.0, 0.0, 0.0, 0.0]
+RIGHT.K: !!opencv-matrix
+  rows: 3
+  cols: 3
+  dt: d
+  data: [262.7149, 0.0, 329.4310,
+         0.0, 262.7149, 219.5617,
+         0.0, 0.0, 1.0]
+RIGHT.R: !!opencv-matrix
+  rows: 3
+  cols: 3
+  dt: d
+  data: [1.0, 0.0, 0.0,
+         0.0, 1.0, 0.0,
+         0.0, 0.0, 1.0]
+RIGHT.P: !!opencv-matrix
+  rows: 3
+  cols: 4
+  dt: d
+  data: [262.7149, 0.0, 329.4310, -36.6490,
+         0.0, 262.7149, 219.5617, 0.0,
+         0.0, 0.0, 1.0, 0.0]
+
+#-------------------------------------------------------------------------------
+# ORB Feature Extractor
+#-------------------------------------------------------------------------------
+
+ORBextractor.nFeatures:   1200
+ORBextractor.scaleFactor: 1.2
+ORBextractor.nLevels:     8
+ORBextractor.iniThFAST:   20
+ORBextractor.minThFAST:   7
+
+#-------------------------------------------------------------------------------
+# System
+#-------------------------------------------------------------------------------
+
+# Disable loop closing.  Repetitive polytunnel rows cause false loop closures.
+System.LoopClosing: 0
+
+#-------------------------------------------------------------------------------
+# Viewer
+#-------------------------------------------------------------------------------
+
+Viewer.KeyFrameSize:      0.05
+Viewer.KeyFrameLineWidth: 1.0
+Viewer.GraphLineWidth:    0.9
+Viewer.PointSize:         2.0
+Viewer.CameraSize:        0.08
+Viewer.CameraLineWidth:   3.0
+Viewer.ViewpointX:        0.0
+Viewer.ViewpointY:       -0.7
+Viewer.ViewpointZ:       -1.8
+Viewer.ViewpointF:        500.0
+Viewer.bUseViewer:        1

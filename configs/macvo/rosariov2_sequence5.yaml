@@ -1,0 +1,13 @@
+# MAC-VO sequence config for Rosario v2 sequence5 (GeneralStereo loader).
+# Same camera calibration as sequence1 — same RealSense stereo rig.
+type: GeneralStereo
+name: rosario_v2_seq05
+args:
+  root: __WS__/datasets/rosariov2/sequence5
+  bl: 0.04973         # METERS
+  format: png
+  camera:
+    fx: 648.862
+    fy: 648.862
+    cx: 645.011
+    cy: 348.243

@@ -1,0 +1,22 @@
+# MAC-VO sequence config for HortiMulti dataset.
+# Consumed by --data argument of MACVO.py.
+#
+# Camera: Basler acA1920-155uc, images pre-rectified to 640×480 grayscale PNG.
+# Intrinsics: from cv2.fisheye.stereoRectify on calibration.yaml (cam1+cam2),
+#             scaled from 2048×1536 → 640×480.
+#
+# The GeneralStereo loader expects:
+#   <root>/left/  ← forwardLeft  (symlink → mav0/cam0/data)
+#   <root>/right/ ← forwardRight (symlink → mav0/cam1/data)
+# Both symlinks are created by scripts/data/convert_hortimulti.sh.
+type: GeneralStereo
+name: hortimulti_strawberry02
+args:
+  root: __WS__/datasets/hortimulti/strawberry02
+  bl: 0.139502     # baseline in metres
+  format: png
+  camera:
+    fx: 262.7149   # post-rectification, at 640×480
+    fy: 262.7149
+    cx: 329.4310
+    cy: 219.5617
