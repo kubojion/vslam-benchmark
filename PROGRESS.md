@@ -9,14 +9,14 @@ Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybr
 
 > All Rosario single-run results are from an earlier exploratory run (single run, old format).  
 > HortiMulti Strawberry-03, Rosario seq1, and Rosario seq5 ORB-SLAM3 results are from the new **3-run multi-run benchmark** (mean ± std).
-> HortiMulti Strawberry-02 MAC-VO and Strawberry-03 MAC-VO are also 3-run complete.
+> HortiMulti Strawberry-02 MAC-VO, Strawberry-03 MAC-VO, and Rosario seq1 MAC-VO are also 3-run complete.
 > Both **Sim(3)** and **SE(3)** ATE reported - see "Sim3 vs SE3" section below.
 
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | Frames | Completion | Runs |
 |---|---|---|---|---|---|---|---|---|
 | ORB-SLAM3 | Rosario v2 | seq1 | **1.176 ± 0.317 m** | **1.59 m** | 1.022 | 13 821 | 100% | **3** ✓ |
 | DROID-SLAM | Rosario v2 | seq1 | 45.05 m | - | - | 6 911 | 100% (stride=2) | 1 |
-| MAC-VO | Rosario v2 | seq1 | 13.519 m | - | - | 13 821 | 100% | 1 |
+| MAC-VO | Rosario v2 | seq1 | **13.520 ± 0.007 m** | **13.552 ± 0.007 m** | 0.980 | 13 821 | 100% | **3** ✓ |
 | ORB-SLAM3 | Rosario v2 | seq5 | **20.207 ± 4.204 m** | **20.85 m** | 0.904 | 11 640 | 91% avg (0 loops) | **3** ✓ |
 | DROID-SLAM | Rosario v2 | seq5 | 44.94 m | - | - | 11 640 | 100% (external‡) | 1 |
 | MAC-VO | Rosario v2 | seq5 | 19.381 m | - | - | 11 640 | 100% | 1 |
@@ -116,19 +116,38 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 > causes different GBA corrections. Per-segment ATE is more stable (cv < 20%).
 > Run2 RPE outlier (0.261 vs 0.029–0.055) caused by trajectory discontinuity at reloc boundary.
 
-### Sequence 1 - All three algorithms complete (single run)
+### Sequence 1 - ORB-SLAM3 × 3 + MAC-VO × 3 complete
 
 - **Extracted to:** `datasets/rosariov2/sequence1/`
 - **GT:** 8983 poses (GPS/PGT), 13821 camera frames; `gt_interp_tum.txt` generated✔
 - **Segments:** 125 row segs (863 s), 20 turn segs (60 s) - `segments_auto.csv` generated✔
-- **Config files:** ORB-SLAM3: `configs/orbslam3/rosariov2_stereo.yaml` · DROID-SLAM: `configs/droidslam/rosariov2.txt` · MAC-VO: `configs/macvo/rosario_v2_sequence.yaml`
+- **Config files:** ORB-SLAM3: `configs/orbslam3/rosariov2_stereo.yaml` · DROID-SLAM: `configs/droidslam/rosariov2.txt` · MAC-VO: `configs/macvo/rosariov2_sequence1.yaml`
 
-| Algorithm | ATE RMSE | Frames | Completion | Runs |
+| Algorithm | ATE RMSE Sim3 | Frames | Completion | Runs |
 |---|---|---|---|---|
-| ORB-SLAM3 | 1.361 m (old single run) | 13 821 | 100% | 1 (old) |
 | ORB-SLAM3 | **1.176 ± 0.317 m** | 13 821 | 100% | **3** ✓ |
 | DROID-SLAM | 45.05 m | 6 911 | 100% (stride=2) | 1 |
-| MAC-VO | 13.519 m | 13 821 | 100% | 1 |
+| MAC-VO | **13.520 ± 0.007 m** | 13 821 | 100% | **3** ✓ |
+
+#### MAC-VO × 3 - Sequence 1 complete
+
+> Full report: `results/rosariov2/sequence1/macvo/report.md`
+
+| Metric | Value (3 runs, mean ± std) |
+|---|---|
+| ATE RMSE Sim3 | **13.520 ± 0.007 m** |
+| ATE RMSE SE3  | **13.552 ± 0.007 m** |
+| RPE (point\_distance, 1 m) | 0.0508 ± 0.0001 m/m |
+| Scale factor | 0.980 ± 0.000 (**2.0 % drift**) |
+| Frames tracked | 100% (13 821 / 13 821, all 3 runs) |
+| Mean FPS | 1.71 ± 0.08 (0.11x real-time @ 15 fps) |
+| Row ATE RMSE (73 segs) | 0.0200 ± 0.0000 m |
+| Turn ATE RMSE (34 segs) | 0.0174 ± 0.0000 m |
+
+> Exceptionally stable across runs: ATE std only 7 mm over 13821 frames.
+> Global ATE (~13.5 m) vs local row ATE (20 mm) - 675x ratio, driven by
+> accumulated scale drift. Compare ORB-SLAM3 on same sequence: 1.18 m global
+> ATE thanks to 5-6 loop closures correcting drift. MAC-VO has no loop closure.
 
 ### Sequence 5 - ORB-SLAM3 × 3 benchmark complete ✓
 
@@ -167,8 +186,9 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 - ORB-SLAM3 seq1: 1.176 m - 5-6 loop closures enable global correction → low drift
 - ORB-SLAM3 seq5: 20.207 m - 0 loop closures, long straight rows → uncorrected scale drift
 - DROID-SLAM consistently very poor (~45 m both seqs)
-- MAC-VO: seq1 13.3 m, seq5 15.8 m - intermediate, consistent scale drift
-- **Local accuracy is similar for all 3 ORB-SLAM3 sequences**: row ATE ≈ 0.016 m in seq1 AND seq5
+- MAC-VO seq1: 13.520 ± 0.007 m (3 runs) - no loop closure, scale drift 2%; local row ATE 0.020 m
+- MAC-VO seq5: 19.381 m (1 run, run2+3 pending)
+- **Local accuracy is similar for all algorithms**: row ATE 0.016-0.020 m for ORB-SLAM3 and MAC-VO on seq1
 
 ---
 
@@ -305,7 +325,6 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 | Task | Priority |
 |---|---|
-| **MAC-VO × 3 on Rosario seq1** - run1 done, run2+3 pending | High |
 | **MAC-VO × 3 on Rosario seq5** - run1 done, run2+3 pending | High |
 | **DROID-SLAM × 3 on all 4 evaluated sequences** | High |
 | Add Rosario v2 sequences 2, 3, 4 (already downloaded - TODO: extract + run) | Medium |
@@ -323,7 +342,7 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 | Item | Count | Threshold for SLAM paper |
 |---|---|---|
-| Multi-run benchmarks (3+ runs, statistics) | 5 sequences × 1-2 algos = **9 cells** (ORB-SLAM3 ×4, MAC-VO str02+str03) | ≥ 5 sequences × ≥ 3 algos × ≥ 3 runs = 45 cells |
+| Multi-run benchmarks (3+ runs, statistics) | 5 sequences × 1-2 algos = **10 cells** (ORB-SLAM3 ×4, MAC-VO ×3: str02, str03, rosario-seq1) | ≥ 5 sequences × ≥ 3 algos × ≥ 3 runs = 45 cells |
 | Single-run sanity points | 6 cells (DROID, MAC-VO across 3 seqs) | not publishable alone |
 | Datasets | 2 (Rosario v2, HortiMulti) | typically 3–4 |
 | Algorithms | 1 fully benched (ORB-SLAM3) + 2 single-run | 3+ |
