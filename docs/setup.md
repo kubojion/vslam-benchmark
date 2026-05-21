@@ -74,7 +74,21 @@ cd src/MAC-VO/Model
 cd ../../..
 ```
 
-## 6. Smoke test
+## 6. Install Basalt (stereo VO, binary)
+
+Basalt is distributed as a prebuilt binary for Ubuntu 22.04 (x86-64). No build step required.
+
+```bash
+curl -LsSf https://gitlab.com/VladyslavUsenko/basalt/-/raw/master/scripts/install.sh | sh
+```
+
+This installs `basalt_vio` to `~/.local/bin/` and default configs to `~/.local/etc/basalt/`.
+The installer also writes `~/.basalt/env`, which `run_basalt.sh` sources automatically to add
+`~/.local/bin` to `PATH` for the duration of the run.
+
+No conda environment is needed to run Basalt itself. Evaluation uses the existing `macvo` env.
+
+## 7. Smoke test
 
 ```bash
 # Drop a dataset under datasets/<dataset>/<seq>/ (see docs/running_agorithms.md)

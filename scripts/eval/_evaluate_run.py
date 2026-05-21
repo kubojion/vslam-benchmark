@@ -52,6 +52,14 @@ LOG_PATTERNS = {
         "loop_closure":    None,
         "map_reset":       None,
     },
+    "basalt": {
+        # Basalt prints frame count updates and marginalisation info.
+        # "Initialized!" signals the first successful stereo triangulation.
+        "init_success":    re.compile(r"Initialized!|initialized|Starting"),
+        "tracking_loss":   re.compile(r"Tracking lost|tracking lost|LOST"),
+        "loop_closure":    None,
+        "map_reset":       None,
+    },
 }
 
 

@@ -6,6 +6,7 @@
 | **ORB-SLAM3** | Classical feature-based | [kubojion/ORB_SLAM3 @ vslam-benchmark-patches](https://github.com/kubojion/ORB_SLAM3/tree/vslam-benchmark-patches) (build portability + Settings.cc fix) |
 | **DROID-SLAM** | Neural | [princeton-vl/DROID-SLAM](https://github.com/princeton-vl/DROID-SLAM) (unmodified) |
 | **MAC-VO** | Hybrid (learned uncertainty) | [kubojion/MAC-VO @ vslam-benchmark-patches](https://github.com/kubojion/MAC-VO/tree/vslam-benchmark-patches) (`GeneralStereo` resize preprocess) |
+| **Basalt** | Optimization-based stereo VO | [VladyslavUsenko/basalt](https://gitlab.com/VladyslavUsenko/basalt) (binary install v0.1.7, vision-only mode) |
 
 ## Datasets
 
@@ -34,14 +35,15 @@ git clone https://github.com/kubojion/vslam-benchmark.git
 cd vslam-benchmark
 
 # 1. install deps + clone the 3 SLAM source trees (see docs/setup.md)
+# 2. install Basalt binary (see docs/setup.md §6)
 
-# 2. drop a dataset under datasets/<dataset>/<seq>/ and convert it
+# 3. drop a dataset under datasets/<dataset>/<seq>/ and convert it
 bash scripts/data/convert_rosario_to_tum.sh datasets/rosariov2/sequence1
 
-# 3. run any algorithm 3x with full evaluation
+# 4. run any algorithm 3x with full evaluation
 bash scripts/run/run_benchmark.sh rosariov2 sequence1 orbslam3 3
 
-# 4. read results/rosariov2/sequence1/orbslam3/report.md
+# 5. read results/rosariov2/sequence1/orbslam3/report.md
 ```
 
 ## Documentation
@@ -61,6 +63,8 @@ See [PROGRESS.md](PROGRESS.md) for the full table; representative numbers:
 | ORB-SLAM3 | HortiMulti | strawberry03 | **0.104 ± 0.001 m** | 3 |
 | DROID-SLAM | Rosario v2 | seq1 | 45.05 m | 1 |
 | MAC-VO | Rosario v2 | seq1 | 13.28 m | 1 |
+| Basalt | Rosario v2 | seq1 | 14.70 m | 1 |
+| Basalt | HortiMulti | strawberry03 | **0.275 m** | 1 |
 
 ## License
 

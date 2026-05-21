@@ -17,6 +17,7 @@ Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybr
 | ORB-SLAM3 | Rosario v2 | seq1 | **1.176 ± 0.317 m** | **1.59 m** | 1.022 | 13 821 | 100% | **3** ✓ |
 | DROID-SLAM | Rosario v2 | seq1 | 45.05 m | - | - | 6 911 | 100% (stride=2) | 1 |
 | MAC-VO | Rosario v2 | seq1 | **13.520 ± 0.007 m** | **13.552 ± 0.007 m** | 0.980 | 13 821 | 100% | **3** ✓ |
+| Basalt | Rosario v2 | seq1 | **14.704 m** | **19.520 m** | 0.780 | 13 821 | 100% | 1 |
 | ORB-SLAM3 | Rosario v2 | seq5 | **20.207 ± 4.204 m** | **20.85 m** | 0.904 | 11 640 | 91% avg (0 loops) | **3** ✓ |
 | DROID-SLAM | Rosario v2 | seq5 | 44.94 m | - | - | 11 640 | 100% (external‡) | 1 |
 | MAC-VO | Rosario v2 | seq5 | 19.381 m | - | - | 11 640 | 100% | 1 |
@@ -25,6 +26,7 @@ Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybr
 | MAC-VO | HortiMulti | Strawberry-02 | **10.231 ± 0.502 m** | **10.940 ± 0.545 m** | 1.009 | 9 530 | 100% | **3** ✓ |
 | ORB-SLAM3 | HortiMulti | Strawberry-03 | **0.1039 ± 0.0013 m** | **0.78 m** | 1.043 | 2 425 | 100% | **3** ✓ |
 | MAC-VO | HortiMulti | Strawberry-03 | **0.505 ± 0.010 m** | **0.84 m** | 1.037 | 2 425 | 100% | **3** ✓ |
+| Basalt | HortiMulti | Strawberry-03 | **0.2753 m** | **0.7151 m** | 1.036 | 2 425 | 100% | 1 |
 
 † ORB-SLAM3 processed all 9 530 input frames but tracking only succeeded for frames
 spanning 91 s – 500 s of the 952 s sequence.  Tracking was permanently lost after 500 s
@@ -81,7 +83,8 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 - DROID-SLAM conda env `droidenv` with pretrained weights (`droid.pth`)
 - MAC-VO conda env `macvo` with FlowFormer weights
 - Evaluation toolkit `evo` installed in `macvo` env
-- Run scripts: `scripts/run/run_orbslam3.sh` (multi-run, resource monitor), `run_droidslam.sh` (multi-run ✓), `run_macvo.sh` (multi-run ✓)
+- Basalt binary v0.1.7 installed (`~/.local/bin/basalt_vio`, sourced via `~/.basalt/env`)
+- Run scripts: `scripts/run/run_orbslam3.sh` (multi-run, resource monitor), `run_droidslam.sh` (multi-run ✓), `run_macvo.sh` (multi-run ✓), `run_basalt.sh` (single-run ✓)
 - Resource monitoring: `scripts/run/_resource_monitor.py` (GPU+CPU+RAM every 1 s)
 - GT interpolation: `scripts/eval/_interpolate_gt.py` (Slerp + linear, to exact camera timestamps)
 - Auto-segmentation: `scripts/eval/_segment_trajectory.py` (**v2: 2 m sliding window of path length, 10° heading & 20 cm chord-deviation cap**)
@@ -127,11 +130,31 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 |---|---|---|---|---|
 | ORB-SLAM3 | **1.176 ± 0.317 m** | 13 821 | 100% | **3** ✓ |
 | DROID-SLAM | 45.05 m | 6 911 | 100% (stride=2) | 1 |
-| MAC-VO | **13.520 ± 0.007 m** | 13 821 | 100% | **3** ✓ |
-
+| MAC-VO | **13.520 ± 0.007 m** | 13 821 | 100% | **3** ✓ || Basalt | **14.704 m** | 13 821 | 100% | 1 |
 #### MAC-VO × 3 - Sequence 1 complete
 
 > Full report: `results/rosariov2/sequence1/macvo/report.md`
+
+#### Basalt × 1 - Sequence 1 complete
+
+> Full report: `results/rosariov2/sequence1/basalt/report.md`
+
+| Metric | Value (1 run) |
+|---|---|
+| ATE RMSE Sim3 | **14.704 m** |
+| ATE RMSE SE3 | **19.520 m** |
+| RPE (point\_distance, 1 m) | 1.7014 m/m |
+| Scale factor (Sim3) | 0.780 |
+| Frames tracked | 100% (13 821 / 13 821, 0 losses) |
+| Mean FPS | 57.1 (3.8x real-time @ 15 fps) |
+| Row ATE RMSE (73 segs) | 0.0140 m |
+| Turn ATE RMSE (34 segs) | 0.1608 m |
+
+> Global ATE 14.7 m vs local row ATE 14 mm - a 1050x ratio, driven by scale drift (scale=0.78).
+> Without scale correction (SE3 ATE = 19.5 m) the drift is even more pronounced.
+> Local accuracy (row ATE 14 mm) is comparable to ORB-SLAM3 (16 mm) and MAC-VO (20 mm),
+> confirming that Basalt tracks accurately per-frame but accumulates large global scale error
+> on this long outdoor sequence (~940 m trajectory) without loop closure.
 
 | Metric | Value (3 runs, mean ± std) |
 |---|---|
@@ -292,9 +315,30 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 > Turn ATE (0.031 m) is comparable to ORB-SLAM3 (0.012 m × 2.5).
 > Speed: 1.54 fps vs ORB-SLAM3 9.39 fps - ~6x slower.
 
+#### Basalt × 1 - Strawberry-03 complete
+
+> Full report: `results/hortimulti/strawberry03/basalt/report.md`
+
+| Metric | Value (1 run) |
+|---|---|
+| ATE RMSE Sim3 | **0.2753 m** |
+| ATE RMSE SE3 | **0.7151 m** |
+| RPE (point\_distance, 1 m) | 0.0223 m/m |
+| Scale factor (Sim3) | 1.036 |
+| Frames tracked | 100% (2 425 / 2 425, 0 losses) |
+| Mean FPS | 109.5 (10.9x real-time @ 10 fps) |
+| Row ATE RMSE (5 segs) | 0.0274 m |
+| Turn ATE RMSE (5 segs) | 0.0280 m |
+
+> Basalt sits between ORB-SLAM3 (0.10 m) and MAC-VO (0.505 m) on global ATE.
+> RPE 22 mm/m and row ATE 27 mm are close to ORB-SLAM3 (RPE 22.6 mm, row 30 mm),
+> confirming that Basalt's sliding-window optimizer matches ORB-SLAM3 local accuracy
+> without loop closure. Speed: 109 fps - the fastest algorithm on this sequence.
+
 | Algorithm | ATE RMSE Sim3 | ATE SE3 | Scale | FPS | Frames | Completion | Runs |
 |---|---|---|---|---|---|---|---|
 | ORB-SLAM3 | **0.1039 ± 0.0013 m** | 0.78 m | 1.043 | 9.39 | 2 425 | **100%** | **3** ✓ |
+| Basalt | **0.2753 m** | 0.72 m | 1.036 | 109.5 | 2 425 | **100%** | 1 |
 | MAC-VO | **0.505 ± 0.010 m** | 0.84 m | 1.037 | 1.54 | 2 425 | **100%** | **3** ✓ |
 | DROID-SLAM | TBD | - | - | - | - | - | - |
 
