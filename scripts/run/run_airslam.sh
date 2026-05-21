@@ -66,7 +66,12 @@ MONPID=$!
 trap "kill $MONPID 2>/dev/null || true" EXIT
 
 # ---- Run AirSLAM inside container -----------------------------------------
+# roslaunch (ROS1) does not auto-exit when processing finishes because the node
+# is not marked required="true". We run docker exec in the background, poll for
+# trajectory_v0.txt (written by visual_odometry.cpp after all frames), then send
+# SIGINT to roslaunch inside the container to shut it down cleanly.
 START=$(date +%s.%N)
+
 docker exec "$CONTAINER" bash -c "
     source /opt/ros/noetic/setup.bash &&
     source /root/catkin_ws/devel/setup.bash &&
@@ -78,22 +83,39 @@ docker exec "$CONTAINER" bash -c "
         model_dir:='$MODEL_DIR' \
         saving_dir:='$SAVING_DIR' \
         visualization:=false
-" 2>&1 | tee "$LOG"
+" 2>&1 | tee "$LOG" &
+EXEC_PID=$!
+
+# Wait for trajectory_v0.txt to appear (non-empty = fully written)
+TRAJ_HOST="$OUT_DIR/trajectory_v0.txt"
+echo "[airslam] waiting for trajectory_v0.txt ..."
+while [[ ! -s "$TRAJ_HOST" ]]; do
+    sleep 5
+    if ! kill -0 "$EXEC_PID" 2>/dev/null; then break; fi  # exited early (crash)
+done
+
+# Stop roslaunch (it won't exit on its own after processing)
+if kill -0 "$EXEC_PID" 2>/dev/null; then
+    echo "[airslam] trajectory saved, stopping roslaunch..."
+    docker exec "$CONTAINER" bash -c "pkill -SIGINT -f roslaunch 2>/dev/null || true"
+    sleep 3
+    wait "$EXEC_PID" 2>/dev/null || true
+fi
+
 END=$(date +%s.%N)
 
 # ---- Locate trajectory output from saving_dir -----------------------------
-# AirSLAM writes keyframe_trajectory.txt (TUM, timestamps already in SECONDS)
-# to saving_dir. Rename to trajectory.txt for consistency with other runners.
-RAW_TRAJ="$OUT_DIR/keyframe_trajectory.txt"
+# visual_odometry.cpp writes trajectory_v0.txt (TUM format, timestamps in SECONDS).
+# Rename to trajectory.txt for consistency with other runners.
+RAW_TRAJ="$OUT_DIR/trajectory_v0.txt"
 if [[ ! -f "$RAW_TRAJ" ]]; then
-    echo "ERROR: no keyframe_trajectory.txt found in $OUT_DIR after AirSLAM run" >&2
+    echo "ERROR: no trajectory_v0.txt found in $OUT_DIR after AirSLAM run" >&2
     echo "Files in output dir:" >&2
     ls "$OUT_DIR" >&2
     exit 1
 fi
 
 # Timestamps are already in seconds (AirSLAM parses ns filenames to double seconds).
-# Just rename to the standard trajectory.txt name.
 mv "$RAW_TRAJ" "$OUT_DIR/trajectory.txt"
 
 cp "$LOG" "$OUT_DIR/run_log.txt"
