@@ -4,7 +4,7 @@
 # Usage:
 #   bash scripts/run/run_benchmark.sh <dataset> <seq> <algo> [N=3]
 #
-# Currently supports: orbslam3
+# Currently supports: orbslam3, droidslam, macvo, basalt, airslam
 # For other algos: run_<algo>.sh must accept a third argument <run_id>.
 #
 # Pipeline:

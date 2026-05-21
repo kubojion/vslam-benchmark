@@ -1,0 +1,48 @@
+%YAML:1.0
+# AirSLAM camera calibration for the HortiMulti dataset.
+#
+# Source: Basler acA1920-155uc cameras with fisheye lenses.
+# Pre-processing: fisheye stereo rectification (scripts/data/convert_hortimulti.sh),
+#   output 640x480 grayscale PNG stored in mav0/cam0/data/ and mav0/cam1/data/.
+#
+# Because images are pre-rectified (zero distortion), distortion_type = 0.
+#
+# Rectified intrinsics (cv2.fisheye.stereoRectify, scaled 2048x1536 -> 640x480):
+#   fx = fy = 262.7149,  cx = 329.4310,  cy = 219.5617
+#   baseline = 0.139502 m
+#
+# T convention (T_type: 0 = EuRoC Tbc): transform from body frame (= cam0) to camera.
+#   cam0: identity (cam0 IS the body frame).
+#   cam1: right camera is displaced +baseline along body x-axis, so
+#         T_bc1 has translation -baseline in x.
+
+image_height: 480
+image_width: 640
+use_imu: 0
+
+depth_lower_thr: 0.1
+depth_upper_thr: 15.0
+max_y_diff: 1
+
+# Calibration
+distortion_type: 0   # 0 = undistorted / pre-rectified input
+
+cam0:
+  intrinsics: [262.7149, 262.7149, 329.4310, 219.5617]  # fx fy cx cy
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  T_type: 0           # EuRoC format, T is Tbc (body -> camera)
+  T:
+  - [1.0, 0.0, 0.0,  0.0]
+  - [0.0, 1.0, 0.0,  0.0]
+  - [0.0, 0.0, 1.0,  0.0]
+  - [0.0, 0.0, 0.0,  1.0]
+
+cam1:
+  intrinsics: [262.7149, 262.7149, 329.4310, 219.5617]  # fx fy cx cy
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  T_type: 0
+  T:
+  - [1.0, 0.0, 0.0, -0.139502]
+  - [0.0, 1.0, 0.0,  0.0]
+  - [0.0, 0.0, 1.0,  0.0]
+  - [0.0, 0.0, 0.0,  1.0]

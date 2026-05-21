@@ -7,6 +7,7 @@
 | **DROID-SLAM** | Neural | [princeton-vl/DROID-SLAM](https://github.com/princeton-vl/DROID-SLAM) (unmodified) |
 | **MAC-VO** | Hybrid (learned uncertainty) | [kubojion/MAC-VO @ vslam-benchmark-patches](https://github.com/kubojion/MAC-VO/tree/vslam-benchmark-patches) (`GeneralStereo` resize preprocess) |
 | **Basalt** | Optimization-based stereo VO | [VladyslavUsenko/basalt](https://gitlab.com/VladyslavUsenko/basalt) (binary install v0.1.7, vision-only mode) |
+| **AirSLAM** | Deep-feature point-line VO (TRO 2025) | [sair-lab/AirSLAM](https://github.com/sair-lab/AirSLAM) (Docker, ROS Noetic + TensorRT) |
 
 ## Datasets
 
@@ -34,8 +35,9 @@ PROGRESS.md        # running log of results and known issues
 git clone https://github.com/kubojion/vslam-benchmark.git
 cd vslam-benchmark
 
-# 1. install deps + clone the 3 SLAM source trees (see docs/setup.md)
-# 2. install Basalt binary (see docs/setup.md §6)
+# 2. install deps + clone the SLAM source trees (see docs/setup.md)
+# 2b. install Basalt binary (see docs/setup.md §6)
+# 2c. set up AirSLAM Docker container (see docs/setup.md §7)
 
 # 3. drop a dataset under datasets/<dataset>/<seq>/ and convert it
 bash scripts/data/convert_rosario_to_tum.sh datasets/rosariov2/sequence1
@@ -71,10 +73,11 @@ See [PROGRESS.md](PROGRESS.md) for the full table; representative numbers:
 | Basalt | Rosario v2 | seq5 | 15.04 ± 0.06 m | 3 |
 | Basalt | HortiMulti | strawberry02 | 2.098 ± 0.001 m | 3 |
 | Basalt | HortiMulti | strawberry03 | **0.275 ± 0.000 m** | 3 |
+| AirSLAM | - | - | pending | - |
 
 ## License
 
 This benchmarking framework (configs/, scripts/, docs/, results/) is released
 under the MIT License - see [LICENSE](LICENSE).  
-The three SLAM algorithms remain under their respective upstream licenses
-(ORB-SLAM3: GPLv3, DROID-SLAM: BSD-3-Clause, MAC-VO: Apache-2.0).
+The SLAM algorithms remain under their respective upstream licenses
+(ORB-SLAM3: GPLv3, DROID-SLAM: BSD-3-Clause, MAC-VO: Apache-2.0, AirSLAM: GPL-3.0).
