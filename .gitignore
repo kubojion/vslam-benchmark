@@ -6,6 +6,9 @@ TODO.md
 patches/
 *.log
 
+# --- large binary result artefacts (SLAM map files) ---
+results/**/*.bin
+
 # --- compiled SLAM artefacts (submodule trees, never commit build output) ---
 src/ORB_SLAM3/build/
 src/ORB_SLAM3/lib/

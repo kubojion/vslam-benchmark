@@ -1,0 +1,9 @@
+{
+  "algo": "airslam",
+  "dataset": "hortimulti",
+  "seq": "strawberry03",
+  "run_id": 1,
+  "duration_s": 309.6359784603119,
+  "frames": 2425,
+  "fps": 7.831777211609886
+}

@@ -1,7 +1,7 @@
 # vSLAM Benchmark - Progress
 
-BSc thesis benchmarking three SLAM algorithms on agricultural datasets.
-Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybrid).
+BSc thesis benchmarking five SLAM algorithms on agricultural datasets.
+Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybrid), **Basalt** (sliding-window VIO), **AirSLAM** (deep-feature VO, Docker).
 
 ---
 
@@ -11,25 +11,30 @@ Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybr
 > HortiMulti Strawberry-03, Rosario seq1, and Rosario seq5 ORB-SLAM3 results are from the new **3-run multi-run benchmark** (mean ± std).
 > HortiMulti Strawberry-02 MAC-VO, Strawberry-03 MAC-VO, and Rosario seq1 MAC-VO are also 3-run complete.
 > All 4 sequences are now **Basalt 3-run complete** (strawberry02, strawberry03, seq1, seq5).
+> **AirSLAM**: Strawberry-03 + Strawberry-02 3-run complete; Rosario seq1 **DONE** (9.888 ± 0.059 m, 100%); seq5 **DONE** (12.722 ± 0.991 m, 100%).
 > Both **Sim(3)** and **SE(3)** ATE reported - see "Sim3 vs SE3" section below.
 
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | Frames | Completion | Runs |
 |---|---|---|---|---|---|---|---|---|
 | ORB-SLAM3 | Rosario v2 | seq1 | **1.176 ± 0.317 m** | **1.59 m** | 1.022 | 13 821 | 100% | **3** ✓ |
-| DROID-SLAM | Rosario v2 | seq1 | 45.05 m | - | - | 6 911 | 100% (stride=2) | 1 |
+| DROID-SLAM | Rosario v2 | seq1 | 45.00 m | - | - | 6 911 | 100% (stride=2) | 1 |
 | MAC-VO | Rosario v2 | seq1 | **13.520 ± 0.007 m** | **13.552 ± 0.007 m** | 0.980 | 13 821 | 100% | **3** ✓ |
 | Basalt | Rosario v2 | seq1 | **14.279 ± 0.302 m** | **18.693 ± 0.586 m** | 0.791 | 13 821 | 100% | **3** ✓ |
+| AirSLAM | Rosario v2 | seq1 | **9.888 ± 0.059 m** | **9.891 ± 0.058 m** | 1.005 | 13 821 | 100% | **3** ✓ |
 | ORB-SLAM3 | Rosario v2 | seq5 | **20.207 ± 4.204 m** | **20.85 m** | 0.904 | 11 640 | 91% avg (0 loops) | **3** ✓ |
-| DROID-SLAM | Rosario v2 | seq5 | 44.94 m | - | - | 11 640 | 100% (external‡) | 1 |
+| DROID-SLAM | Rosario v2 | seq5 | 50.13 m | - | - | 11 640 | 100% (external‡) | 1 |
 | MAC-VO | Rosario v2 | seq5 | 19.381 m | - | - | 11 640 | 100% | 1 |
+| Basalt | Rosario v2 | seq5 | **15.035 ± 0.062 m** | **15.425 ± 0.068 m** | 0.934 | 11 640 | 100% | **3** ✓ |
+| AirSLAM | Rosario v2 | seq5 | **12.722 ± 0.991 m** | **12.777 ± 1.014 m** | 0.977 | 11 640 | 100% | **3** ✓ |
 | ORB-SLAM3 | HortiMulti | Strawberry-02 | **0.893 ± 0.171 m** | **2.10 ± 0.12 m** | 1.040 | 4 186–4 980 / 9 530 | 44–52%† | **3** ✓ |
 | DROID-SLAM | HortiMulti | Strawberry-02 | 44.91 m | - | - | 4 765 | 100% (stride=2) | 1 |
 | MAC-VO | HortiMulti | Strawberry-02 | **10.231 ± 0.502 m** | **10.940 ± 0.545 m** | 1.009 | 9 530 | 100% | **3** ✓ |
+| Basalt | HortiMulti | Strawberry-02 | **2.0978 ± 0.0008 m** | **2.664 ± 0.001 m** | 1.034 | 9 530 | 100% | **3** ✓ |
+| AirSLAM | HortiMulti | Strawberry-02 | **20.220 ± 0.824 m** | **20.483 ± 0.893 m** | 0.928 | 9 530 | 100% | **3** ✓ |
 | ORB-SLAM3 | HortiMulti | Strawberry-03 | **0.1039 ± 0.0013 m** | **0.78 m** | 1.043 | 2 425 | 100% | **3** ✓ |
 | MAC-VO | HortiMulti | Strawberry-03 | **0.505 ± 0.010 m** | **0.84 m** | 1.037 | 2 425 | 100% | **3** ✓ |
-| Basalt | Rosario v2 | seq5 | **15.035 ± 0.062 m** | **15.425 ± 0.068 m** | 0.934 | 11 640 | 100% | **3** ✓ |
-| Basalt | HortiMulti | Strawberry-02 | **2.0978 ± 0.0008 m** | **2.664 ± 0.001 m** | 1.034 | 9 530 | 100% | **3** ✓ |
 | Basalt | HortiMulti | Strawberry-03 | **0.2753 ± 0.0000 m** | **0.7151 m** | 1.036 | 2 425 | 100% | **3** ✓ |
+| AirSLAM | HortiMulti | Strawberry-03 | **3.631 ± 0.205 m** | **3.771 ± 0.191 m** | 1.064 | 2 425 | 100% | **3** ✓ |
 
 † ORB-SLAM3 processed all 9 530 input frames but tracking only succeeded for frames
 spanning 91 s – 500 s of the 952 s sequence.  Tracking was permanently lost after 500 s
@@ -87,7 +92,8 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 - MAC-VO conda env `macvo` with FlowFormer weights
 - Evaluation toolkit `evo` installed in `macvo` env
 - Basalt binary v0.1.7 installed (`~/.local/bin/basalt_vio`, sourced via `~/.basalt/env`)
-- Run scripts: `scripts/run/run_orbslam3.sh` (multi-run, resource monitor), `run_droidslam.sh` (multi-run ✓), `run_macvo.sh` (multi-run ✓), `run_basalt.sh` (single-run ✓)
+- **AirSLAM** Docker container (`air_slam`, image `xukuanhit/air_slam:v4`); catkin_make built inside container; TRT engine compiled for hortimulti (640×480); TRT engine for rosariov2 (1280×720) compiled on first seq1 run
+- Run scripts: `scripts/run/run_orbslam3.sh` (multi-run, resource monitor), `run_droidslam.sh` (multi-run ✓), `run_macvo.sh` (multi-run ✓), `run_basalt.sh` (single-run ✓), `run_airslam.sh` (multi-run ✓ — polls `trajectory_v0.txt`, pkill roslaunch, `mv -f`, FPS from input frames)
 - Resource monitoring: `scripts/run/_resource_monitor.py` (GPU+CPU+RAM every 1 s)
 - GT interpolation: `scripts/eval/_interpolate_gt.py` (Slerp + linear, to exact camera timestamps)
 - Auto-segmentation: `scripts/eval/_segment_trajectory.py` (**v2: 2 m sliding window of path length, 10° heading & 20 cm chord-deviation cap**)
@@ -132,8 +138,10 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 | Algorithm | ATE RMSE Sim3 | Frames | Completion | Runs |
 |---|---|---|---|---|
 | ORB-SLAM3 | **1.176 ± 0.317 m** | 13 821 | 100% | **3** ✓ |
-| DROID-SLAM | 45.05 m | 6 911 | 100% (stride=2) | 1 |
-| MAC-VO | **13.520 ± 0.007 m** | 13 821 | 100% | **3** ✓ || Basalt | **14.279 ± 0.302 m** | 13 821 | 100% | **3** ✓ |
+| DROID-SLAM | 45.00 m | 6 911 | 100% (stride=2) | 1 |
+| MAC-VO | **13.520 ± 0.007 m** | 13 821 | 100% | **3** ✓ |
+| Basalt | **14.279 ± 0.302 m** | 13 821 | 100% | **3** ✓ |
+| AirSLAM | **9.888 ± 0.059 m** | 13 821 | 100% | **3** ✓ |
 #### MAC-VO × 3 - Sequence 1 complete
 
 > Full report: `results/rosariov2/sequence1/macvo/report.md`
@@ -178,6 +186,51 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 > accumulated scale drift. Compare ORB-SLAM3 on same sequence: 1.18 m global
 > ATE thanks to 5-6 loop closures correcting drift. MAC-VO has no loop closure.
 
+#### AirSLAM × 3 - Sequence 1 complete ✓
+
+> Full report: `results/rosariov2/sequence1/airslam/report.md`
+
+| Metric | Value (3 runs, mean ± std) |
+|---|---|
+| ATE RMSE Sim3 | **9.888 ± 0.059 m** |
+| ATE RMSE SE3 | **9.891 ± 0.058 m** |
+| RPE (point\_distance, 1 m) | 0.0342 m |
+| Scale factor (Sim3) | 1.0052 ± 0.0003 (**0.52% drift**) |
+| Frames tracked | 100% (13 821 / 13 821, 0 losses, all 3 runs) |
+| Loop closures | 0 (all 3 runs) |
+| Mean FPS | 23.04 ± 3.61 (wall-clock) |
+| Row ATE RMSE | 0.0192 m |
+| Turn ATE RMSE | 0.0185 m |
+
+> Near-unity scale (1.005) confirms AirSLAM maintains correct metric scale on this sequence.
+> No loop closures needed — direct scale preservation. Global ATE ~9.9 m over ~940 m trajectory
+> (1.05% of path length). Comparable to MAC-VO (13.5 m) and Basalt (14.3 m).
+> Individual runs: run1=9.958 m (17.98 fps), run2=9.814 m (24.98 fps), run3=9.893 m (26.17 fps).
+> High wall-time variance (run1=769s vs run2+3≈540s) due to TRT engine compilation on run1.
+
+#### AirSLAM × 3 - Sequence 5 complete ✓
+
+> Full report: `results/rosariov2/sequence5/airslam/report.md`
+
+| Metric | Value (3 runs, mean ± std) |
+|---|---|
+| ATE RMSE Sim3 | **12.722 ± 0.991 m** |
+| ATE RMSE SE3 | **12.777 ± 1.014 m** |
+| RPE (point\_distance, 1 m) | 0.0552 ± 0.0063 m/m |
+| RPE rotation | 0.299 ± 0.001 °/m |
+| Scale factor (Sim3) | 0.9765 ± 0.0057 (**2.4% drift**) |
+| Frames tracked | 100% (11 640 / 11 640, 0 losses, all 3 runs) |
+| Loop closures | 0 (all 3 runs) |
+| Mean FPS | 23.74 ± 0.48 (wall-clock) |
+| Row ATE RMSE | 0.0470 ± 0.0022 m (34 segs) |
+| Turn ATE RMSE | 0.0106 ± 0.0001 m (18 segs) |
+
+> Scale factor 0.977 (2.4% drift) is slightly worse than seq1 (1.005, 0.5% drift).
+> Global ATE 12.7 m vs local row ATE 47 mm — 270× ratio showing long-range scale accumulation.
+> No loop closures detected on all 3 runs. Run3 significantly higher ATE (14.12 m) vs run1+2 (~12 m),
+> causing higher std (0.99 m) than other seqs.
+> Individual runs: run1=12.114 m (23.82 fps), run2=11.932 m (23.13 fps), run3=14.119 m (24.29 fps).
+
 ### Sequence 5 - ORB-SLAM3 × 3 benchmark complete ✓
 
 - **Sequence:** 11 640 frames, 1280×720, ~13 min, stereo + PGT GT
@@ -206,9 +259,10 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 | Algorithm | ATE RMSE | Frames | Completion | Runs |
 |---|---|---|---|---|
 | ORB-SLAM3 | **20.207 ± 4.204 m** | 11 640 | 91% avg | **3** ✓ |
-| DROID-SLAM | **44.94 m** | 11 640 | 100% (external‡) | 1 |
+| DROID-SLAM | **50.13 m** | 11 640 | 100% (external‡) | 1 |
 | MAC-VO | **19.381 m** | 11 640 | 100% | 1 |
 | Basalt | **15.035 ± 0.062 m** | 11 640 | 100% | **3** ✓ |
+| AirSLAM | **12.722 ± 0.991 m** | 11 640 | 100% | **3** ✓ |
 
 ‡ Timestamps were in nanoseconds - converted to seconds before evaluation.
 
@@ -241,13 +295,15 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 - MAC-VO seq5: 19.381 m (1 run, run2+3 pending)
 - Basalt seq1: 14.279 ± 0.302 m (3 runs) - scale drift 20.9%; local row ATE 14 mm (matches ORB-SLAM3)
 - Basalt seq5: 15.035 ± 0.062 m (3 runs) - scale drift 6.6%; better than seq1 due to route geometry
+- AirSLAM seq1: **DONE** (9.888 ± 0.059 m Sim3, 100% tracking, scale=1.005, 23.04 fps)
+- AirSLAM seq5: **DONE** (12.722 ± 0.991 m Sim3, 100% tracking, scale=0.977, 23.74 fps)
 - **Local accuracy is similar for all algorithms**: row ATE 0.016-0.021 m for ORB-SLAM3, MAC-VO, and Basalt on seq1/seq5
 
 ---
 
 ## Dataset 2 - HortiMulti - In progress
 
- - ORB-SLAM3 × 3 + MAC-VO × 3 + Basalt × 3 complete
+ - ORB-SLAM3 × 3 + MAC-VO × 3 + Basalt × 3 + AirSLAM × 3 complete on all sequences; Rosario seq1 + seq5 **done**
 
 - **Sequence:** Feb2026, 9530 frames, 952 s, 41 GB bag
 - **Camera:** Basler acA1920-155uc, fisheye (equidistant) distortion, 2048×1536 native
@@ -285,6 +341,7 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 | DROID-SLAM | 44.91 m | 4 765 | 100% (stride=2) | 1 |
 | MAC-VO | **10.231 ± 0.502 m** | 9 530 | 100% | **3** ✓ |
 | Basalt | **2.0978 ± 0.0008 m** | 9 530 | 100% | **3** ✓ |
+| AirSLAM | **20.220 ± 0.824 m** | 9 530 | **100%** | **3** ✓ |
 
 #### MAC-VO × 3 - Strawberry-02 complete
 
@@ -327,6 +384,31 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 > Scale drift only 3.4% (Sim3 ATE 2.10 m vs SE3 ATE 2.66 m - 1.27x ratio).
 > Local row ATE 137 mm is larger than str03 (27 mm) due to the longer, more repetitive sequence.
 > Perfectly deterministic across 3 runs: ATE std = 0.8 mm.
+
+#### AirSLAM × 3 - Strawberry-02 complete
+
+> Full report: `results/hortimulti/strawberry02/airslam/report.md`
+
+| Metric | Value (mean ± std, N=3) |
+|---|---|
+| ATE RMSE Sim(3) [m] | **20.220 ± 0.824** |
+| ATE RMSE SE(3) [m]  | **20.483 ± 0.893** |
+| RPE (point_distance, 1 m) [m] | 0.2662 ± 0.0152 |
+| RPE rotation (1 m) [°/m] | 13.94 ± 0.27 |
+| Scale factor (Sim3) | 0.9278 ± 0.0103 (**7.2 % under-scale**) |
+| Frames tracked | 9 530 / 9 530 → **100 %** (all 3 runs) |
+| Keyframes per run | 1 938 |
+| Tracking losses / loop closures | 0 / 0 |
+| Wall-clock [s] | 348 / 343 / 353 |
+| FPS (wall-clock) | **27.37 ± 0.32** |
+| VRAM mean / peak [MiB] | 2 994 / 3 061 |
+| Final drift [m] | 71.43 ± 6.39 |
+| Row ATE RMSE (15 segs) | 0.3977 ± 0.0060 m |
+| Turn ATE RMSE (7 segs) | 0.1163 ± 0.0004 m |
+
+> AirSLAM achieves 100% tracking on the full 952 s sequence (no loop closure needed for tracking),
+> but without global optimization drifts to 20.22 m global ATE (significantly worse than ORB-SLAM3's
+> 0.89 m on 44–52% coverage, or Basalt's 2.10 m on 100%). Under-scale 7.2% contributes to SE3 ≈ Sim3.
 
 ### Strawberry-03 - ORB-SLAM3 × 3 + MAC-VO × 3 + Basalt × 3 complete
 
@@ -395,7 +477,31 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 | ORB-SLAM3 | **0.1039 ± 0.0013 m** | 0.78 m | 1.043 | 9.39 | 2 425 | **100%** | **3** ✓ |
 | Basalt | **0.2753 ± 0.0000 m** | 0.72 m | 1.036 | 143.65 | 2 425 | **100%** | **3** ✓ |
 | MAC-VO | **0.505 ± 0.010 m** | 0.84 m | 1.037 | 1.54 | 2 425 | **100%** | **3** ✓ |
+| AirSLAM | **3.631 ± 0.205 m** | **3.771 ± 0.191 m** | 1.064 | 22.07 | 2 425 | **100%** | **3** ✓ |
 | DROID-SLAM | TBD | - | - | - | - | - | - |
+
+#### AirSLAM × 3 - Strawberry-03 complete
+
+> Full report: `results/hortimulti/strawberry03/airslam/report.md`
+
+| Metric | Value (3 runs, mean ± std) |
+|---|---|
+| ATE RMSE Sim3 | **3.6314 ± 0.2047 m** |
+| ATE RMSE SE3 | **3.7711 ± 0.1906 m** |
+| RPE (point\_distance, 1 m) | 0.1350 ± 0.0052 m/m |
+| RPE rotation | 19.514 ± 0.004 °/m (frame-mismatch artefact) |
+| Scale factor (Sim3) | 1.0639 ± 0.0029 (**6.4 % drift**) |
+| Frames tracked | 100% (2 425 / 2 425, 0 losses, all 3 runs) |
+| Mean FPS | 22.07 ± 10.06 (run1: 7.83 fps incl. TRT compile; run2+3: 29.18 fps) |
+| VRAM mean | 2841 MiB (3061 MiB peak) |
+| Row ATE RMSE (5 segs, avg 34.7 s) | 0.2025 ± 0.0124 m |
+| Turn ATE RMSE (4 segs, avg 16.0 s) | 0.0505 ± 0.0207 m |
+
+> AirSLAM global ATE (3.63 m) is significantly higher than ORB-SLAM3 (0.10 m), Basalt (0.28 m),
+> and MAC-VO (0.51 m) on this short sequence. 100% completion and 0 tracking losses, but large
+> accumulated drift without loop closure. Run1 was slow (7.83 fps) due to TRT engine compilation;
+> runs 2+3 run at 29.18 fps (~3x real-time at 10 fps input). Local turn ATE (50.5 mm) is
+> reasonable; row ATE (202.5 mm) is ~7x worse than ORB-SLAM3 (30 mm).
 
 ### Config files
 
@@ -410,6 +516,8 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 - DROID-SLAM: 44.91 m on str02 (fresh eval, previously reported as 41.91 m with old eval)
 - Basalt str03: 0.2753 ± 0.0000 m (3 runs, 143 fps, 100% tracking) - between ORB-SLAM3 and MAC-VO globally; local row ATE 27 mm matches ORB-SLAM3
 - Basalt str02: 2.0978 ± 0.0008 m (3 runs, 150 fps, 100% tracking) - completes full sequence vs ORB-SLAM3 44-52% coverage
+- AirSLAM str03: 3.6314 ± 0.2047 m (3 runs, 22 fps avg, 100% tracking) - highest global ATE on str03; 0 loop closures; local turn ATE 50 mm reasonable; run1 slow (TRT compile), run2+3 fast at 29 fps
+- AirSLAM str02: **complete** (3.run, 20.22 ± 0.82 m, 100% tracking)
 
 ---
 
@@ -423,29 +531,32 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 ## Pending work
 
-| Task | Priority |
-|---|---|
-| **MAC-VO × 3 on Rosario seq5** - run1 done, run2+3 pending | High |
-| **DROID-SLAM × 3 on all 4 evaluated sequences** | High |
-| Add Rosario v2 sequences 2, 3, 4 (already downloaded - TODO: extract + run) | Medium |
-| LFSD dataset: download, extract, run, evaluate | Medium |
-| Additional HortiMulti sequences (Strawberry-01, -04 if available) | Low |
-| Detect & remove constant body to camera rotation for proper RPE rotation evaluation on HortiMulti | Low |
-| Cross-sequence aggregation (`evo_res`) once we have ≥3 sequences × 3 algorithms × 3 runs | Medium |
-| Thesis comparison plots (LaTeX-ready PDFs) | High (before submission) |
+| Task | Priority | Status |
+|---|---|---|
+| **AirSLAM × 3 on rosariov2/sequence1** | High | **DONE** (9.888 ± 0.059 m) |
+| **AirSLAM × 3 on rosariov2/sequence5** | High | **DONE** (12.722 ± 0.991 m, 100% × 3) |
+| **MAC-VO × 3 on Rosario seq5** - run1 done, run2+3 pending | High | Blocked (low priority) |
+| **DROID-SLAM × 3 on all 4 evaluated sequences** | High | Not started |
+| Segment maps for all 4 sequences with 5 algos | High | After AirSLAM rosariov2 completes |
+| Rebuild benchmark.csv | High | After AirSLAM rosariov2 completes |
+| Add Rosario v2 sequences 2, 3, 4 (already downloaded - TODO: extract + run) | Medium | Not started |
+| LFSD dataset: download, extract, run, evaluate | Medium | Not started |
+| Cross-sequence aggregation (`evo_res`) once we have ≥3 sequences × 3 algorithms × 3 runs | Medium | Possible now (ORB-SLAM3, Basalt) |
+| Thesis comparison plots (LaTeX-ready PDFs) | High (before submission) | Not started |
 
 ---
 
 ## Research-paper readiness - honest assessment
 
-**Current data inventory** (post Phase B):
+**Current data inventory** (post AirSLAM HortiMulti + Rosario in progress):
 
 | Item | Count | Threshold for SLAM paper |
 |---|---|---|
-| Multi-run benchmarks (3+ runs, statistics) | 4 sequences × 2-3 algos = **14 cells** (ORB-SLAM3 ×4, MAC-VO ×3: str02, str03, seq1; Basalt ×4: str02, str03, seq1, seq5) | ≥ 5 sequences × ≥ 3 algos × ≥ 3 runs = 45 cells |
+| Multi-run benchmarks (3+ runs, statistics) | 4 seqs × 3-4 algos = **20 cells** (ORB-SLAM3 ×4, MAC-VO ×3: str02, str03, seq1; Basalt ×4; AirSLAM ×4: str02, str03, seq1, seq5) | ≥ 5 sequences × ≥ 3 algos × ≥ 3 runs = 45 cells |
+| AirSLAM rosariov2 | 2 cells complete (seq1 ✓, seq5 ✓) | — |
 | Single-run sanity points | 6 cells (DROID, MAC-VO across 3 seqs) | not publishable alone |
 | Datasets | 2 (Rosario v2, HortiMulti) | typically 3–4 |
-| Algorithms | 2 fully benched (ORB-SLAM3 ×4, Basalt ×4) + MAC-VO partially (×3 on 3 seqs) | 3+ |
+| Algorithms | 3 fully benched (ORB-SLAM3 ×4, Basalt ×4, AirSLAM ×4) + MAC-VO partially (×3 on 3 seqs) | 3+ |
 | Novel-contribution candidates | Row/turn segmentation, scale-drift quantification on agricultural rows | Strong |
 
 **Scientific findings worth reporting** (already in data):

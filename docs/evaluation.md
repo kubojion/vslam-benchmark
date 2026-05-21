@@ -60,7 +60,7 @@ Multi-run aggregations report **mean ± std** across `run1`…`runN`.
 `results/<ds>/<seq>/segment_map.png` overlays all algorithms vs ground truth.
 Individual runs are drawn faint red; the per-algorithm mean trajectory is
 drawn thick in the algorithm's colour (ORB-SLAM3 blue, DROID-SLAM brown,
-MAC-VO green). Gold star markers indicate where ORB-SLAM3 closed a loop.
+MAC-VO purple, Basalt red, AirSLAM teal). Gold star markers indicate where ORB-SLAM3 closed a loop.
 
 Per-algorithm plots (`results/<ds>/<seq>/<algo>/segment_map.png`) zoom in on
 one algorithm, again with individual runs + mean.

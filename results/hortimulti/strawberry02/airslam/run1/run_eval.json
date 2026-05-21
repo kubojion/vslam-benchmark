@@ -1,0 +1,257 @@
+{
+  "run": "1",
+  "algo": "airslam",
+  "dataset": "hortimulti",
+  "seq": "strawberry02",
+  "gt_source": "interpolated",
+  "n_pairs_ate": 1938,
+  "ate": {
+    "rmse": 21.375605,
+    "mean": 18.872538,
+    "median": 16.522122,
+    "std": 10.037122,
+    "max": 47.104287
+  },
+  "ate_se3": {
+    "rmse": 21.730827,
+    "mean": 18.730674,
+    "median": 15.648888,
+    "std": 11.017743,
+    "max": 48.798869
+  },
+  "rpe_trans_1m": {
+    "rmse": 0.287577,
+    "mean": 0.232994,
+    "std": 0.168565,
+    "max": 1.498302
+  },
+  "rpe_rot_1m_deg": {
+    "rmse": 14.324281,
+    "mean": 6.255523,
+    "std": 12.886173
+  },
+  "kitti_drift": {
+    "rpe_10m_trans_rmse": 2.114993,
+    "rpe_50m_trans_rmse": 8.571259,
+    "rpe_100m_trans_rmse": 14.00789
+  },
+  "scale_factor": 0.9131966896977718,
+  "final_drift_m": 79.9211,
+  "robustness": {
+    "init_success": true,
+    "init_time_s": null,
+    "tracking_losses": 0,
+    "loop_closures": 0,
+    "map_resets": 0,
+    "output_valid": true,
+    "first_failure_s": null,
+    "frames_total": 9530,
+    "frames_tracked": 9530,
+    "track_pct": 100.0
+  },
+  "runtime": {
+    "vram_mean_mib": 2986.2,
+    "vram_peak_mib": 3061.0,
+    "gpu_mean_pct": 33.1,
+    "gpu_peak_pct": 73.0,
+    "cpu_mean_pct": 25.7,
+    "cpu_peak_pct": 45.9,
+    "ram_mean_mib": 16861.7,
+    "ram_peak_mib": 18047.0,
+    "wall_s": 348.19,
+    "fps": 27.37,
+    "fps_raw": 27.37
+  },
+  "agri_segments": {
+    "row": {
+      "n_segments": 15,
+      "ate_rmse_mean": 0.396578,
+      "ate_rmse_std": 0.389387,
+      "segments": [
+        {
+          "t_start": 1770725410.0262,
+          "t_end": 1770725451.70168,
+          "ate_rmse": 0.090646,
+          "ate_mean": 0.059651,
+          "n_frames": 404,
+          "duration_s": 41.675
+        },
+        {
+          "t_start": 1770725451.80174,
+          "t_end": 1770725519.562,
+          "ate_rmse": 0.186691,
+          "ate_mean": 0.141945,
+          "n_frames": 616,
+          "duration_s": 67.76
+        },
+        {
+          "t_start": 1770725533.85395,
+          "t_end": 1770725545.44688,
+          "ate_rmse": 0.058004,
+          "ate_mean": 0.049287,
+          "n_frames": 91,
+          "duration_s": 11.593
+        },
+        {
+          "t_start": 1770725547.64575,
+          "t_end": 1770725617.90446,
+          "ate_rmse": 0.298087,
+          "ate_mean": 0.267012,
+          "n_frames": 475,
+          "duration_s": 70.259
+        },
+        {
+          "t_start": 1770725618.10433,
+          "t_end": 1770725695.25901,
+          "ate_rmse": 0.388511,
+          "ate_mean": 0.343651,
+          "n_frames": 587,
+          "duration_s": 77.155
+        },
+        {
+          "t_start": 1770725713.54827,
+          "t_end": 1770725796.49946,
+          "ate_rmse": 0.307703,
+          "ate_mean": 0.266174,
+          "n_frames": 509,
+          "duration_s": 82.951
+        },
+        {
+          "t_start": 1770725796.69958,
+          "t_end": 1770725805.19434,
+          "ate_rmse": 0.070901,
+          "ate_mean": 0.062626,
+          "n_frames": 41,
+          "duration_s": 8.495
+        },
+        {
+          "t_start": 1770725805.39441,
+          "t_end": 1770725817.88688,
+          "ate_rmse": 0.186645,
+          "ate_mean": 0.168598,
+          "n_frames": 59,
+          "duration_s": 12.492
+        },
+        {
+          "t_start": 1770725818.08691,
+          "t_end": 1770725879.55057,
+          "ate_rmse": 1.124184,
+          "ate_mean": 0.92198,
+          "n_frames": 328,
+          "duration_s": 61.464
+        },
+        {
+          "t_start": 1770725890.94385,
+          "t_end": 1770725995.58222,
+          "ate_rmse": 0.388302,
+          "ate_mean": 0.299078,
+          "n_frames": 459,
+          "duration_s": 104.638
+        },
+        {
+          "t_start": 1770726015.1706,
+          "t_end": 1770726051.44898,
+          "ate_rmse": 0.128827,
+          "ate_mean": 0.116789,
+          "n_frames": 184,
+          "duration_s": 36.278
+        },
+        {
+          "t_start": 1770726054.04763,
+          "t_end": 1770726056.64576,
+          "ate_rmse": 0.059185,
+          "ate_mean": 0.049282,
+          "n_frames": 9,
+          "duration_s": 2.598
+        },
+        {
+          "t_start": 1770726056.8458,
+          "t_end": 1770726098.42115,
+          "ate_rmse": 0.593418,
+          "ate_mean": 0.519997,
+          "n_frames": 88,
+          "duration_s": 41.575
+        },
+        {
+          "t_start": 1770726098.82093,
+          "t_end": 1770726154.98753,
+          "ate_rmse": 0.654027,
+          "ate_mean": 0.534768,
+          "n_frames": 233,
+          "duration_s": 56.167
+        },
+        {
+          "t_start": 1770726171.77774,
+          "t_end": 1770726316.49144,
+          "ate_rmse": 1.413545,
+          "ate_mean": 1.273937,
+          "n_frames": 591,
+          "duration_s": 144.714
+        }
+      ]
+    },
+    "turn": {
+      "n_segments": 7,
+      "ate_rmse_mean": 0.116716,
+      "ate_rmse_std": 0.029335,
+      "segments": [
+        {
+          "t_start": 1770725519.66203,
+          "t_end": 1770725533.75386,
+          "ate_rmse": 0.09038,
+          "ate_mean": 0.078559,
+          "n_frames": 81,
+          "duration_s": 14.092
+        },
+        {
+          "t_start": 1770725695.35895,
+          "t_end": 1770725705.65304,
+          "ate_rmse": 0.066793,
+          "ate_mean": 0.061646,
+          "n_frames": 71,
+          "duration_s": 10.294
+        },
+        {
+          "t_start": 1770725705.75284,
+          "t_end": 1770725713.44833,
+          "ate_rmse": 0.103761,
+          "ate_mean": 0.086139,
+          "n_frames": 51,
+          "duration_s": 7.695
+        },
+        {
+          "t_start": 1770725879.65054,
+          "t_end": 1770725890.84396,
+          "ate_rmse": 0.128917,
+          "ate_mean": 0.116361,
+          "n_frames": 59,
+          "duration_s": 11.193
+        },
+        {
+          "t_start": 1770725995.68203,
+          "t_end": 1770726014.97053,
+          "ate_rmse": 0.142084,
+          "ate_mean": 0.108925,
+          "n_frames": 71,
+          "duration_s": 19.289
+        },
+        {
+          "t_start": 1770726155.08777,
+          "t_end": 1770726171.47776,
+          "ate_rmse": 0.159034,
+          "ate_mean": 0.138902,
+          "n_frames": 57,
+          "duration_s": 16.39
+        },
+        {
+          "t_start": 1770726318.4901,
+          "t_end": 1770726348.17236,
+          "ate_rmse": 0.126045,
+          "ate_mean": 0.101043,
+          "n_frames": 78,
+          "duration_s": 29.682
+        }
+      ]
+    }
+  }
+}

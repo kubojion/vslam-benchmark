@@ -116,12 +116,14 @@ if [[ ! -f "$RAW_TRAJ" ]]; then
 fi
 
 # Timestamps are already in seconds (AirSLAM parses ns filenames to double seconds).
-mv "$RAW_TRAJ" "$OUT_DIR/trajectory.txt"
+mv -f "$RAW_TRAJ" "$OUT_DIR/trajectory.txt"
 
 cp "$LOG" "$OUT_DIR/run_log.txt"
 
 DUR=$(python3 -c "print($END-$START)")
-NFR=$(wc -l < "$OUT_DIR/trajectory.txt" 2>/dev/null || echo 0)
+# Use total input frames (count images in cam0/data) to compute processing FPS.
+# AirSLAM only outputs keyframe poses in trajectory.txt, which is a subset.
+NFR=$(ls "$SEQ_DIR/mav0/cam0/data/"*.png 2>/dev/null | wc -l || wc -l < "$OUT_DIR/trajectory.txt" 2>/dev/null || echo 0)
 python3 -c "
 import json
 print(json.dumps({'algo':'airslam','dataset':'$DATASET','seq':'$SEQ','run_id':$RUN_ID,

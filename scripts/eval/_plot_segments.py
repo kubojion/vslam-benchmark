@@ -48,12 +48,14 @@ ALGO_COLOUR = {
     "droidslam": "#8c564b",  # brown (was red, to keep individual-run red distinct)
     "macvo":     "#9467bd",  # purple
     "basalt":    "#d62728",  # red-orange
+    "airslam":   "#17becf",  # teal
 }
 ALGO_LABEL = {
     "orbslam3":  "ORB-SLAM3",
     "droidslam": "DROID-SLAM",
     "macvo":     "MAC-VO",
     "basalt":    "Basalt",
+    "airslam":   "AirSLAM",
 }
 INDIV_RUN_COLOUR   = "#e41a1c"   # crimson red — visible but distinct from algo means
 LOOP_MARKER_COLOUR = "#ffd700"   # gold star outlined in black

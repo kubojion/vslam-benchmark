@@ -60,6 +60,15 @@ LOG_PATTERNS = {
         "loop_closure":    None,
         "map_reset":       None,
     },
+    "airslam": {
+        # visual_odometry.cpp prints "dataset done" once all frames are loaded,
+        # then "i ====== 0" for the first frame processed.
+        # No tracking-loss or loop-closure output (stereo VO only).
+        "init_success":    re.compile(r"dataset done"),
+        "tracking_loss":   None,
+        "loop_closure":    None,
+        "map_reset":       None,
+    },
 }
 
 
