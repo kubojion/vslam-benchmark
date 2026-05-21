@@ -47,11 +47,13 @@ ALGO_COLOUR = {
     "orbslam3":  "#1f77b4",  # blue
     "droidslam": "#8c564b",  # brown (was red, to keep individual-run red distinct)
     "macvo":     "#9467bd",  # purple
+    "basalt":    "#d62728",  # red-orange
 }
 ALGO_LABEL = {
     "orbslam3":  "ORB-SLAM3",
     "droidslam": "DROID-SLAM",
     "macvo":     "MAC-VO",
+    "basalt":    "Basalt",
 }
 INDIV_RUN_COLOUR   = "#e41a1c"   # crimson red — visible but distinct from algo means
 LOOP_MARKER_COLOUR = "#ffd700"   # gold star outlined in black
@@ -445,7 +447,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("dataset")
     ap.add_argument("seq")
-    ap.add_argument("--algos", default="orbslam3,droidslam,macvo")
+    ap.add_argument("--algos", default="orbslam3,droidslam,macvo,basalt")
     ap.add_argument("--dpi", type=int, default=400)
     ap.add_argument("--figsize", type=float, default=20.0)
     args = ap.parse_args()

@@ -60,11 +60,17 @@ See [PROGRESS.md](PROGRESS.md) for the full table; representative numbers:
 | Algorithm | Dataset | Seq | ATE Sim(3) | Runs |
 |---|---|---|---|---|
 | ORB-SLAM3 | Rosario v2 | seq1 | **1.18 ± 0.32 m** | 3 |
+| ORB-SLAM3 | Rosario v2 | seq5 | 20.21 ± 4.20 m | 3 |
+| ORB-SLAM3 | HortiMulti | strawberry02 | 0.893 ± 0.171 m | 3 |
 | ORB-SLAM3 | HortiMulti | strawberry03 | **0.104 ± 0.001 m** | 3 |
 | DROID-SLAM | Rosario v2 | seq1 | 45.05 m | 1 |
-| MAC-VO | Rosario v2 | seq1 | 13.28 m | 1 |
-| Basalt | Rosario v2 | seq1 | 14.70 m | 1 |
-| Basalt | HortiMulti | strawberry03 | **0.275 m** | 1 |
+| MAC-VO | Rosario v2 | seq1 | 13.52 ± 0.01 m | 3 |
+| MAC-VO | HortiMulti | strawberry03 | 0.505 ± 0.010 m | 3 |
+| MAC-VO | HortiMulti | strawberry02 | 10.23 ± 0.50 m | 3 |
+| Basalt | Rosario v2 | seq1 | 14.28 ± 0.30 m | 3 |
+| Basalt | Rosario v2 | seq5 | 15.04 ± 0.06 m | 3 |
+| Basalt | HortiMulti | strawberry02 | 2.098 ± 0.001 m | 3 |
+| Basalt | HortiMulti | strawberry03 | **0.275 ± 0.000 m** | 3 |
 
 ## License
 
