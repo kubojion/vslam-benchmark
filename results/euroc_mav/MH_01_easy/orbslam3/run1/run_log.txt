@@ -1,0 +1,70 @@
+0.058 num_seq = 1
+0.058 file name: euroc_mav_MH_01_easy_orbslam3
+0.062 Loading images for sequence 0...LOADED!
+0.062 
+0.062 -------
+0.062 
+0.062 ORB-SLAM3 Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.062 ORB-SLAM2 Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.062 This program comes with ABSOLUTELY NO WARRANTY;
+0.062 This is free software, and you are welcome to redistribute it
+0.062 under certain conditions. See LICENSE.txt.
+0.062 
+0.062 Input sensor was set to: Stereo
+0.071 Loading settings from /home/jion_kubo/vslam_ws/configs/orbslam3/euroc_mav_stereo.yaml
+0.071 Camera1.k3 optional parameter does not exist...
+0.071 	-Loaded camera 1
+0.071 Camera2.k3 optional parameter does not exist...
+0.071 	-Loaded camera 2
+0.071 Camera.newHeight optional parameter does not exist...
+0.071 Camera.newWidth optional parameter does not exist...
+0.071 	-Loaded image info
+0.071 	-Loaded ORB settings
+0.071 	-Loaded viewer settings
+0.071 System.LoadAtlasFromFile optional parameter does not exist...
+0.071 System.SaveAtlasToFile optional parameter does not exist...
+0.071 	-Loaded Atlas settings
+0.072 System.thFarPoints optional parameter does not exist...
+0.072 	-Loaded misc parameters
+0.078 	-Computed rectification maps
+0.079 ----------------------------------
+0.079 SLAM settings: 
+0.079 	-Camera 1 parameters (Pinhole): [ 458.65399169921875 457.29598999023438 367.21499633789062 248.375 ]
+0.079 	-Camera 1 distortion parameters: [  -0.28340810537338257 0.073959067463874817 0.00019359000725671649 1.7618711353861727e-05 ]
+0.079 	-Camera 2 parameters (Pinhole: [ 457.58700561523438 456.13400268554688 379.99899291992188 255.23800659179688 ]
+0.079 	-Camera 1 distortion parameters: [  -0.2836836576461792 0.074512839317321777 -0.00010473000293131918 -3.555907096597366e-05 ]
+0.079 	-Original image size: [ 752 , 480 ]
+0.079 	-Current image size: [ 752 , 480 ]
+0.079 	-Camera 1 parameters after rectification: [  456.71499633789062 456.71499633789062 364.52615356445312 257.268798828125 ]
+0.079 	-Sequence FPS: 20
+0.079 	-Stereo baseline: 0.11007784307003021
+0.079 	-Stereo depth threshold : 60
+0.079 	-Features per image: 1200
+0.079 	-ORB scale factor: 1.2000000476837158
+0.079 	-ORB number of scales: 8
+0.079 	-Initial FAST threshold: 20
+0.079 	-Min FAST threshold: 7
+0.079 
+0.079 
+0.079 Loading ORB Vocabulary. This could take a while...
+3.757 Vocabulary loaded!
+3.757 
+3.767 Initialization of Atlas from scratch 
+3.768 Creation of new map with id: 0
+3.768 Creation of new map with last KF id: 0
+3.768 Seq. Name: 
+3.769 There are 1 cameras in the atlas
+3.769 Camera 0 is pinhole
+3.811 First KF:0; Map init KF:0
+3.811 New Map created with 529 points
+4.000 Starting the Viewer
+202.370 Shutdown
+202.370 
+202.370 Saving trajectory to f_euroc_mav_MH_01_easy_orbslam3.txt ...
+202.370 There are 1 maps in the atlas
+202.370   Map 0 has 146 KFs
+202.387 
+202.387 End of saving trajectory to f_euroc_mav_MH_01_easy_orbslam3.txt ...
+202.387 
+202.387 Saving keyframe trajectory to kf_euroc_mav_MH_01_easy_orbslam3.txt ...
+202.388 free(): corrupted unsorted chunks

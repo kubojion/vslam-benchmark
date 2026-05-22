@@ -13,8 +13,9 @@
 
 * **Rosario v2** - outdoor soybean field, stereo + IMU + GPS.
 * **HortiMulti** - indoor strawberry polytunnel, stereo + IMU.
+* **EuRoC-MAV** (MH_01_easy) - [NON-AGRICULTURAL REFERENCE] indoor MAV flight, stereo. Used as a sanity check only.
 
-Only Rosario v2 + HortiMulti are actively benchmarked at the moment.
+Rosario v2 and HortiMulti are the primary benchmarks. EuRoC-MAV is tracked as a [NON-AGRICULTURAL REFERENCE] and run once per algorithm to verify configs and the eval pipeline against a known reference dataset.
 
 ## Repository layout
 
@@ -80,6 +81,17 @@ See [PROGRESS.md](PROGRESS.md) for the full table; representative numbers:
 | AirSLAM | HortiMulti | strawberry02 | 20.220 ± 0.824 m | 3 |
 | AirSLAM | Rosario v2 | seq1 | 9.89 ± 0.06 m | 3 |
 | AirSLAM | Rosario v2 | seq5 | 12.72 ± 0.99 m | 3 |
+
+### [NON-AGRICULTURAL REFERENCE] EuRoC-MAV (MH_01_easy, N=1 per algorithm)
+
+> [NON-AGRICULTURAL REFERENCE] Not part of the agricultural benchmark. Single run each to verify that configs and the eval pipeline produce literature-consistent numbers.
+
+| Algorithm | ATE Sim3 [m] | ATE SE3 [m] | RPE [m/m] | Scale | FPS |
+|---|---|---|---|---|---|
+| ORB-SLAM3 | **0.034** | **0.035** | 0.016 | 1.002 | 18.2 |
+| Basalt | 0.057 | 0.087 | 0.009 | 1.016 | 176.8 |
+| AirSLAM | 0.111 | 0.116 | 0.020 | 1.007 | 15.3 |
+| MAC-VO | 0.198 | 0.199 | 0.030 | 1.005 | 1.3 |
 
 ## License
 

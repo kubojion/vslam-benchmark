@@ -529,6 +529,79 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 ---
 
+## Dataset 4 - [NON-AGRICULTURAL REFERENCE] EuRoC-MAV
+
+> **[NON-AGRICULTURAL REFERENCE]** EuRoC-MAV MH_01_easy was run once per
+> algorithm (N=1, no stats) as a sanity check to confirm configs and the eval
+> pipeline produce results consistent with the published literature.
+> DROID-SLAM was not run (stereo-only check).
+
+**Sequence:** MH_01_easy - 752x480, 20 fps, 3682 stereo frames, baseline 0.110 m, indoor MAV flight.
+
+| Algorithm | ATE Sim3 [m] | ATE SE3 [m] | RPE [m/m] | Scale | FPS | Frames | Runs |
+|---|---|---|---|---|---|---|---|
+| ORB-SLAM3 | **0.034** | **0.035** | 0.016 | 1.002 | 18.2 | 3682 / 3682 | 1 |
+| Basalt | 0.057 | 0.087 | 0.009 | 1.016 | 176.8 | 3682 / 3682 | 1 |
+| AirSLAM | 0.111 | 0.116 | 0.020 | 1.007 | 15.3 | 268 kf / 3682 input | 1 |
+| MAC-VO | 0.198 | 0.199 | 0.030 | 1.005 | 1.3 | 3682 / 3682 | 1 |
+
+> ORB-SLAM3 ATE 0.034 m matches published EuRoC results (~0.03-0.06 m on MH_01_easy).
+> Basalt achieves the highest throughput (177 fps, 17.7x real-time).
+> AirSLAM outputs keyframe-only poses (268 of 3682 input frames).
+
+### ORB-SLAM3 - MH_01_easy complete
+
+| Metric | Value |
+|---|---|
+| ATE RMSE Sim3 | **0.0340 m** |
+| ATE RMSE SE3 | **0.0352 m** |
+| RPE (point_distance, 1 m) | 0.0156 m/m |
+| Scale factor | 1.002 |
+| Frames tracked | 100% (3682 / 3682) |
+| Loop closures | 0 |
+| Wall time | 202.6 s |
+| FPS | 18.17 |
+
+### Basalt - MH_01_easy complete
+
+| Metric | Value |
+|---|---|
+| ATE RMSE Sim3 | **0.0567 m** |
+| ATE RMSE SE3 | **0.0873 m** |
+| RPE (point_distance, 1 m) | 0.0085 m/m |
+| Scale factor | 1.016 |
+| Frames tracked | 100% (3682 / 3682) |
+| Wall time | 20.8 s |
+| FPS | 176.8 |
+
+### AirSLAM - MH_01_easy complete
+
+| Metric | Value |
+|---|---|
+| ATE RMSE Sim3 | **0.1107 m** |
+| ATE RMSE SE3 | **0.1156 m** |
+| RPE (point_distance, 1 m) | 0.0195 m/m |
+| Scale factor | 1.007 |
+| Frames tracked | 268 keyframe poses from 3682 input frames |
+| Wall time | 240.2 s |
+| FPS | 15.3 (input frames) |
+
+### MAC-VO - MH_01_easy complete
+
+| Metric | Value |
+|---|---|
+| ATE RMSE Sim3 | **0.1981 m** |
+| ATE RMSE SE3 | **0.1993 m** |
+| RPE (point_distance, 1 m) | 0.0295 m/m |
+| Scale factor | 1.005 |
+| Frames tracked | 100% (3682 / 3682) |
+| Wall time | 2861.2 s |
+| FPS | 1.287 |
+
+> Segment maps generated at run-level, algo-level, and sequence-level under `results/euroc_mav/MH_01_easy/`.
+
+---
+
 ## Pending work
 
 | Task | Priority | Status |

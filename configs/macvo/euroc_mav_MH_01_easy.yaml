@@ -1,0 +1,18 @@
+# MAC-VO sequence config for EuRoC-MAV MH_01_easy (EuRoC_NoIMU loader).
+# Consumed by --data of MACVO.py.
+#
+# EuRoC_NoIMU reads from:
+#   root/cam0/data/*.png   (raw distorted grayscale; loader undistorts + rectifies internally)
+#   root/cam1/data/*.png
+#   root/cam0/sensor.yaml  (intrinsics and distortion; loader reads these directly)
+#   root/cam1/sensor.yaml
+#   root/state_groundtruth_estimate0/data.csv (GT; not used here since gt_pose: false)
+#
+# root must point to the mav0/ directory extracted from MH_01_easy.zip.
+# Calibration (hardcoded in EuRoC_StereoSequence): baseline=0.110 m, 752x480.
+
+type: EuRoC_NoIMU
+name: euroc_mav_mh_01_easy
+args:
+  root: __WS__/datasets/EuRoC-MAV/MH_01_easy/mav0
+  gt_pose: false

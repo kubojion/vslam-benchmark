@@ -1,0 +1,8 @@
+# MAC-VO sequence config for EuRoC-MAV MH_03_medium (EuRoC_NoIMU loader).
+# Consumed by --data of MACVO.py.
+
+type: EuRoC_NoIMU
+name: euroc_mav_mh_03_medium
+args:
+  root: __WS__/datasets/EuRoC-MAV/MH_03_medium/mav0
+  gt_pose: false
