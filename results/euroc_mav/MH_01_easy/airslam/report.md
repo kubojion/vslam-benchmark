@@ -74,7 +74,7 @@
 |---|---|
 | Wall-clock runtime [s] | 240.2 |
 | Mean FPS | 15.33 |
-| Real-time factor (input 10 fps) | 1.533 |
+| Real-time factor (input 20 fps) | 0.766 |
 | CPU mean [%] | 13.8 |
 | CPU peak [%] | 40.7 |
 | RAM mean [MiB] | 16622 |
@@ -88,22 +88,14 @@
 ## Agricultural Segment Metrics (Auto-segmented)
 
 > Segments are detected automatically by `_segment_trajectory.py` from
-> the GT using a sliding window of **2 m of path length**. A window is
-> labelled **row** when the cumulative heading change is < 10° *and* the
-> maximum perpendicular deviation from the straight chord is < 0.20 m;
-> otherwise it is a **turn**. Sub-1 m segments are absorbed into their
-> neighbour. ATE RMSE for each segment uses an independent Sim(3) alignment.
+> the GT using a sliding window of **2 m of path length**. For this dataset,
+> row/turn split is disabled and segment ATE is reported as a single
+> combined class. ATE RMSE for each segment uses an independent Sim(3)
+> alignment.
 
 | Segment type | Mean ATE RMSE [m] ± std (across runs) | N segments | Avg duration [s] | N runs with data |
 |---|---|---|---|---|
-| row | 0.0056 | 6 | 4.6 | 1/1 |
-| turn | 0.0182 | 9 | 16.5 | 1/1 |
-
-> **Segment ATE note (Row ATE ≤ Turn ATE):**  
-> Row segments average **4.6 s**; turn segments average **16.5 s**.  
-> Shorter segments accumulate less dead-reckoning drift and the per-segment
-> Sim3 alignment fits them more tightly → lower absolute error.
-> This is expected behaviour and does **not** imply turns are geometrically easier.
+| all | 0.0132 | 15 | 11.7 | 1/1 |
 
 ---
 

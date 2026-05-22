@@ -356,13 +356,27 @@ def main():
             "",
             "## Agricultural Segment Metrics (Auto-segmented)",
             "",
-            "> Segments are detected automatically by `_segment_trajectory.py` from",
-            "> the GT using a sliding window of **2 m of path length**. A window is",
-            "> labelled **row** when the cumulative heading change is < 10° *and* the",
-            "> maximum perpendicular deviation from the straight chord is < 0.20 m;",
-            "> otherwise it is a **turn**. Sub-1 m segments are absorbed into their",
-            "> neighbour. ATE RMSE for each segment uses an independent Sim(3) alignment.",
-            "",
+        ]
+        if "row" in agri_types or "turn" in agri_types:
+            lines += [
+                "> Segments are detected automatically by `_segment_trajectory.py` from",
+                "> the GT using a sliding window of **2 m of path length**. A window is",
+                "> labelled **row** when the cumulative heading change is < 10° *and* the",
+                "> maximum perpendicular deviation from the straight chord is < 0.20 m;",
+                "> otherwise it is a **turn**. Sub-1 m segments are absorbed into their",
+                "> neighbour. ATE RMSE for each segment uses an independent Sim(3) alignment.",
+                "",
+            ]
+        else:
+            lines += [
+                "> Segments are detected automatically by `_segment_trajectory.py` from",
+                "> the GT using a sliding window of **2 m of path length**. For this dataset,",
+                "> row/turn split is disabled and segment ATE is reported as a single",
+                "> combined class. ATE RMSE for each segment uses an independent Sim(3)",
+                "> alignment.",
+                "",
+            ]
+        lines += [
             "| Segment type | Mean ATE RMSE [m] ± std (across runs) | N segments | Avg duration [s] | N runs with data |",
             "|---|---|---|---|---|",
         ]

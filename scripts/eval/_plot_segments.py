@@ -26,6 +26,7 @@ Usage:
 """
 import argparse
 import csv
+import os
 import re
 from pathlib import Path
 
@@ -41,6 +42,7 @@ from matplotlib.lines import Line2D
 SEG_COLOUR = {
     "row":   "#2ca02c",      # green
     "turn":  "#ff6f00",      # vivid orange
+    "all":   "#4c78a8",      # single-class GT for non-agri reference
     "other": "#bbbbbb",
 }
 ALGO_COLOUR = {
@@ -60,6 +62,38 @@ ALGO_LABEL = {
 INDIV_RUN_COLOUR   = "#e41a1c"   # crimson red — visible but distinct from algo means
 LOOP_MARKER_COLOUR = "#ffd700"   # gold star outlined in black
 
+# Segment split policy
+# Default behavior is to keep row/turn distinction.
+# Dataset overrides can disable this (used for non-agricultural references).
+DISTINGUISH_ROW_TURN_DEFAULT = True
+DISTINGUISH_ROW_TURN_BY_DATASET = {
+    "euroc_mav": False,
+}
+
+
+def distinguish_row_turn_for_dataset(dataset: str) -> bool:
+    """Return whether row/turn split should be preserved for this dataset.
+
+    Configuration precedence:
+    1) Dataset-specific env var: VSLAM_DISTINGUISH_ROW_TURN_<DATASET>
+    2) Global env var: VSLAM_DISTINGUISH_ROW_TURN
+    3) Dataset override map
+    4) Global default (True)
+    """
+    ds_env_name = "VSLAM_DISTINGUISH_ROW_TURN_" + re.sub(r"[^A-Z0-9]", "_", dataset.upper())
+    for env_name in (ds_env_name, "VSLAM_DISTINGUISH_ROW_TURN"):
+        raw = os.getenv(env_name)
+        if raw is None:
+            continue
+        raw = raw.strip().lower()
+        if raw in {"1", "true", "yes", "on"}:
+            return True
+        if raw in {"0", "false", "no", "off"}:
+            return False
+    if dataset in DISTINGUISH_ROW_TURN_BY_DATASET:
+        return DISTINGUISH_ROW_TURN_BY_DATASET[dataset]
+    return DISTINGUISH_ROW_TURN_DEFAULT
+
 
 def load_tum(path: Path) -> np.ndarray:
     a = np.loadtxt(path)
@@ -78,7 +112,9 @@ def load_segments(path: Path):
     return segs
 
 
-def assign_types(t: np.ndarray, segs) -> list:
+def assign_types(t: np.ndarray, segs, keep_row_turn: bool) -> list:
+    if not keep_row_turn:
+        return ["all"] * len(t)
     types = ["other"] * len(t)
     for seg in segs:
         for idx in np.where((t >= seg["t_start"]) & (t <= seg["t_end"]))[0]:
@@ -239,12 +275,20 @@ def build_legend(segs, algos_drawn, show_runs=False, n_loops=None):
     n_turn = sum(1 for s in segs if s["type"] == "turn")
     d_row  = sum(s["t_end"] - s["t_start"] for s in segs if s["type"] == "row")
     d_turn = sum(s["t_end"] - s["t_start"] for s in segs if s["type"] == "turn")
-    handles = [
-        mpatches.Patch(color=SEG_COLOUR["row"],  alpha=0.6,
-                       label=f"GT row  ({n_row} segs, {d_row:.0f} s)"),
-        mpatches.Patch(color=SEG_COLOUR["turn"], alpha=0.6,
-                       label=f"GT turn ({n_turn} segs, {d_turn:.0f} s)"),
-    ]
+    d_all = sum(s["t_end"] - s["t_start"] for s in segs)
+    handles = []
+    if n_row > 0 or n_turn > 0:
+        handles += [
+            mpatches.Patch(color=SEG_COLOUR["row"],  alpha=0.6,
+                           label=f"GT row  ({n_row} segs, {d_row:.0f} s)"),
+            mpatches.Patch(color=SEG_COLOUR["turn"], alpha=0.6,
+                           label=f"GT turn ({n_turn} segs, {d_turn:.0f} s)"),
+        ]
+    else:
+        handles.append(
+            mpatches.Patch(color=SEG_COLOUR["all"], alpha=0.6,
+                           label=f"GT segments ({len(segs)} segs, {d_all:.0f} s)")
+        )
     for algo, label in algos_drawn:
         handles.append(Line2D([0], [0], color=ALGO_COLOUR.get(algo, "#888"),
                               lw=1.8, label=label))
@@ -449,7 +493,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("dataset")
     ap.add_argument("seq")
-    ap.add_argument("--algos", default="orbslam3,droidslam,macvo,basalt")
+    ap.add_argument("--algos", default="orbslam3,droidslam,macvo,basalt,airslam")
     ap.add_argument("--dpi", type=int, default=400)
     ap.add_argument("--figsize", type=float, default=20.0)
     args = ap.parse_args()
@@ -467,7 +511,11 @@ def main():
     t_gt  = gt[:, 0]
     xy_gt = gt[:, 1:3]
     segs  = load_segments(seg_path)
-    types = assign_types(t_gt, segs)
+    keep_row_turn = distinguish_row_turn_for_dataset(args.dataset)
+    segs_for_legend = segs if keep_row_turn else [
+        {"t_start": s["t_start"], "t_end": s["t_end"], "type": "all"} for s in segs
+    ]
+    types = assign_types(t_gt, segs, keep_row_turn)
 
     algos = [a.strip() for a in args.algos.split(",") if a.strip()]
 
@@ -479,14 +527,14 @@ def main():
         for rd in sorted(algo_dir.glob("run*")):
             run_id = rd.name.replace("run", "")
             plot_per_run(args.dataset, args.seq, algo, run_id,
-                         xy_gt, t_gt, types, segs, ws, args.dpi, args.figsize)
+                         xy_gt, t_gt, types, segs_for_legend, ws, args.dpi, args.figsize)
     # (2) per-algo
     for algo in algos:
         plot_per_algo(args.dataset, args.seq, algo,
-                      xy_gt, t_gt, types, segs, ws, args.dpi, args.figsize)
+                      xy_gt, t_gt, types, segs_for_legend, ws, args.dpi, args.figsize)
     # (3) cross-algorithm comparison
     plot_compare(args.dataset, args.seq, algos,
-                 xy_gt, t_gt, types, segs, ws, args.dpi, args.figsize)
+                 xy_gt, t_gt, types, segs_for_legend, ws, args.dpi, args.figsize)
 
 
 if __name__ == "__main__":

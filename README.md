@@ -82,16 +82,24 @@ See [PROGRESS.md](PROGRESS.md) for the full table; representative numbers:
 | AirSLAM | Rosario v2 | seq1 | 9.89 ± 0.06 m | 3 |
 | AirSLAM | Rosario v2 | seq5 | 12.72 ± 0.99 m | 3 |
 
-### [NON-AGRICULTURAL REFERENCE] EuRoC-MAV (MH_01_easy, N=1 per algorithm)
+### [NON-AGRICULTURAL REFERENCE] EuRoC-MAV (single-run reference)
 
-> [NON-AGRICULTURAL REFERENCE] Not part of the agricultural benchmark. Single run each to verify that configs and the eval pipeline produce literature-consistent numbers.
+> [NON-AGRICULTURAL REFERENCE] Not part of the agricultural benchmark. Single runs are used to verify that configs and the evaluation pipeline behave consistently on known indoor sequences.
 
-| Algorithm | ATE Sim3 [m] | ATE SE3 [m] | RPE [m/m] | Scale | FPS |
-|---|---|---|---|---|---|
-| ORB-SLAM3 | **0.034** | **0.035** | 0.016 | 1.002 | 18.2 |
-| Basalt | 0.057 | 0.087 | 0.009 | 1.016 | 176.8 |
-| AirSLAM | 0.111 | 0.116 | 0.020 | 1.007 | 15.3 |
-| MAC-VO | 0.198 | 0.199 | 0.030 | 1.005 | 1.3 |
+| Sequence | Algorithm | ATE Sim3 [m] | ATE SE3 [m] | RPE [m/m] | Scale | FPS |
+|---|---|---|---|---|---|---|
+| MH_01_easy | ORB-SLAM3 | **0.0340** | **0.0352** | 0.0156 | 1.0021 | 18.17 |
+| MH_01_easy | Basalt | 0.0567 | 0.0873 | 0.0085 | 1.0156 | 176.75 |
+| MH_01_easy | AirSLAM | 0.1107 | 0.1156 | 0.0195 | 1.0073 | 15.33 |
+| MH_01_easy | MAC-VO | 0.1981 | 0.1993 | 0.0295 | 1.0051 | 1.29 |
+| MH_03_medium | ORB-SLAM3 | 0.0437 | 0.0520 | 0.0179 | 0.9922 | 17.89 |
+| MH_03_medium | Basalt | 0.1372 | 0.1397 | 0.0159 | 1.0075 | 113.47 |
+| MH_03_medium | AirSLAM | 0.1431 | 0.1443 | 0.0188 | 0.9950 | 31.73 |
+| MH_03_medium | MAC-VO | 0.3403 | 0.3405 | 0.0187 | 0.9961 | 1.15 |
+| MH_05_difficult | ORB-SLAM3 | 0.0720 | 0.0781 | 0.2282 | 0.9956 | 17.97 |
+| MH_05_difficult | Basalt | 0.1816 | 0.1931 | 0.0870 | 1.0097 | 108.72 |
+| MH_05_difficult | AirSLAM | 0.2968 | 0.3066 | 0.0256 | 1.0116 | 34.92 |
+| MH_05_difficult | MAC-VO | 0.4697 | 0.4836 | 0.0276 | 1.0172 | 0.86 |
 
 ## License
 

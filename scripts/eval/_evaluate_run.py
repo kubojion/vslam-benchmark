@@ -29,6 +29,38 @@ from pathlib import Path
 
 import numpy as np
 
+# Segment split policy
+# Default behavior is to keep row/turn distinction.
+# Dataset overrides can disable this (used for non-agricultural references).
+DISTINGUISH_ROW_TURN_DEFAULT = True
+DISTINGUISH_ROW_TURN_BY_DATASET = {
+    "euroc_mav": False,
+}
+
+
+def distinguish_row_turn_for_dataset(dataset: str) -> bool:
+    """Return whether row/turn split should be preserved for this dataset.
+
+    Configuration precedence:
+    1) Dataset-specific env var: VSLAM_DISTINGUISH_ROW_TURN_<DATASET>
+    2) Global env var: VSLAM_DISTINGUISH_ROW_TURN
+    3) Dataset override map
+    4) Global default (True)
+    """
+    ds_env_name = "VSLAM_DISTINGUISH_ROW_TURN_" + re.sub(r"[^A-Z0-9]", "_", dataset.upper())
+    for env_name in (ds_env_name, "VSLAM_DISTINGUISH_ROW_TURN"):
+        raw = os.getenv(env_name)
+        if raw is None:
+            continue
+        raw = raw.strip().lower()
+        if raw in {"1", "true", "yes", "on"}:
+            return True
+        if raw in {"0", "false", "no", "off"}:
+            return False
+    if dataset in DISTINGUISH_ROW_TURN_BY_DATASET:
+        return DISTINGUISH_ROW_TURN_BY_DATASET[dataset]
+    return DISTINGUISH_ROW_TURN_DEFAULT
+
 # ──────────────────────────────────────────────────────────────────────────────
 # Per-algorithm patterns to extract robustness events from the run log.
 # Patterns are matched line-by-line against the timestamped log.
@@ -391,6 +423,7 @@ def main():
     if seg_path.exists():
         print("[eval] computing per-segment ATE ...", file=sys.stderr)
         import csv
+        keep_row_turn = distinguish_row_turn_for_dataset(dataset)
         with open(seg_path) as f:
             reader = csv.DictReader(f)
             rows = list(reader)
@@ -398,7 +431,7 @@ def main():
         # Accumulate per type
         type_errors = {}
         for row in rows:
-            seg_type = row["type"]
+            seg_type = row["type"] if keep_row_turn else "all"
             t0 = float(row["t_start"])
             t1 = float(row["t_end"])
             stats = ape_for_segment(gt_path, est_path, t0, t1, t_max_diff)
