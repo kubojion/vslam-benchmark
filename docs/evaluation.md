@@ -9,7 +9,8 @@ explains the individual steps and how to read the output.
 ```
 trajectory.txt  ──►  _evaluate_run.py    →  run_eval.json
 multiple runs   ──►  _aggregate_runs.py  →  metrics.csv + report.md
-all algos       ──►  _plot_segments.py   →  segment_map.png
+all algos       ──►  _plot_segments.py   →  segment_map.png + segment_map_3d.png
+benchmark.csv   ──►  plot_ate_vs_fps.py  →  ate_vs_fps.png
 ```
 
 Steps are sequenced inside `scripts/run/run_benchmark.sh`. Run them by hand
@@ -33,8 +34,11 @@ done
 # 4. aggregate runs into mean ± std
 python3 $EVAL/_aggregate_runs.py <ds> <seq> <algo>
 
-# 5. plot trajectories
+# 5. plot trajectories (2D + 3D)
 python3 $EVAL/_plot_segments.py <ds> <seq>
+
+# 6. ATE vs FPS comparison across all sequences (run once after all data is in)
+python3 $EVAL/plot_ate_vs_fps.py
 ```
 
 ## What `report.md` contains
@@ -58,12 +62,16 @@ Multi-run aggregations report **mean ± std** across `run1`…`runN`.
 ## What the plots show
 
 `results/<ds>/<seq>/segment_map.png` overlays all algorithms vs ground truth.
-Individual runs are drawn faint red; the per-algorithm mean trajectory is
-drawn thick in the algorithm's colour (ORB-SLAM3 blue, DROID-SLAM brown,
-MAC-VO purple, Basalt red, AirSLAM teal). Gold star markers indicate where ORB-SLAM3 closed a loop.
+`results/<ds>/<seq>/segment_map_3d.png` is the same view with an added Z axis.
+Individual runs are drawn in light grey; the per-algorithm mean trajectory is
+drawn thick in the algorithm's colour (ORB-SLAM3 green, DROID-SLAM brown,
+MAC-VO orange, Basalt red, AirSLAM light blue). Ground truth is a dashed black line.
 
-Per-algorithm plots (`results/<ds>/<seq>/<algo>/segment_map.png`) zoom in on
+Per-algorithm plots (`results/<ds>/<seq>/<algo>/segment_map.png` and `segment_map_3d.png`) zoom in on
 one algorithm, again with individual runs + mean.
+
+`results/ate_vs_fps.png` shows ATE SE(3) vs FPS for every algo/sequence combination
+(run `scripts/eval/plot_ate_vs_fps.py` to regenerate after adding new results).
 
 ## Sim(3) vs SE(3)
 

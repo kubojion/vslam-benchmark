@@ -3,54 +3,43 @@
 
 Generates three categories of figures per <dataset>/<seq>:
 
-  (1) PER-RUN MAPS  →  results/<dataset>/<seq>/<algo>/run<N>/segment_map.png
-      GT colour-coded by row/turn + single algorithm run aligned trajectory.
+  (1) PER-RUN MAPS       -> results/<dataset>/<seq>/<algo>/run<N>/segment_map.png
+      GT dashed black + single algorithm run aligned trajectory.
 
-  (2) PER-ALGORITHM MAPS  →  results/<dataset>/<seq>/<algo>/segment_map.png
-      GT colour-coded by row/turn + all of that algorithm's runs overlaid
-      (light) + the mean trajectory (bold).
+  (2) PER-ALGORITHM MAPS -> results/<dataset>/<seq>/<algo>/segment_map.png
+      GT dashed black + all of that algorithm's runs overlaid (grey) +
+      the mean trajectory (bold, algo-coloured).
 
-  (3) CROSS-ALGORITHM COMPARISON  →  results/<dataset>/<seq>/segment_map.png
-      GT colour-coded by row/turn + mean trajectory of each algorithm.
+  (3) CROSS-ALGORITHM    -> results/<dataset>/<seq>/segment_map.png
+      GT dashed black + mean trajectory of each algorithm.
 
-All figures are rendered at near-8K resolution (figsize 20×20 at dpi=400) so
-the user can zoom in to inspect detail. The legend is always placed outside
-the plot area to avoid overlapping the trajectory. GT row (green) and turn
-(orange) segments are drawn as a thick, semi-transparent ribbon with marker
-dots at row/turn boundaries to make them unambiguously visible while the
-narrower estimate lines sit on top.
+Alongside each segment_map.png a segment_map_3d.png is generated showing
+the same data with X/Y/Z axes.
 
 Usage:
     python3 _plot_segments.py <dataset> <seq>
-        [--algos orbslam3,droidslam,macvo] [--dpi 400] [--figsize 20]
+        [--algos orbslam3,droidslam,macvo,basalt,airslam] [--dpi 400] [--figsize 20]
 """
 import argparse
-import csv
-import os
-import re
+import warnings
 from pathlib import Path
 
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-from matplotlib.collections import LineCollection
 from matplotlib.lines import Line2D
+from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
 
-# ── Colours ──────────────────────────────────────────────────────────────────
-SEG_COLOUR = {
-    "row":   "#2ca02c",      # green
-    "turn":  "#ff6f00",      # vivid orange
-    "all":   "#4c78a8",      # single-class GT for non-agri reference
-    "other": "#bbbbbb",
-}
+# ---------------------------------------------------------------------------
+# Colour palette - consistent across all plots
+# ---------------------------------------------------------------------------
 ALGO_COLOUR = {
-    "orbslam3":  "#1f77b4",  # blue
-    "droidslam": "#8c564b",  # brown (was red, to keep individual-run red distinct)
-    "macvo":     "#9467bd",  # purple
-    "basalt":    "#d62728",  # red-orange
-    "airslam":   "#17becf",  # teal
+    "orbslam3":  "#2ca02c",   # green
+    "droidslam": "#8c564b",   # brown
+    "macvo":     "#ff7f0e",   # orange
+    "basalt":    "#d62728",   # red
+    "airslam":   "#17becf",   # light blue
 }
 ALGO_LABEL = {
     "orbslam3":  "ORB-SLAM3",
@@ -59,258 +48,118 @@ ALGO_LABEL = {
     "basalt":    "Basalt",
     "airslam":   "AirSLAM",
 }
-INDIV_RUN_COLOUR   = "#e41a1c"   # crimson red — visible but distinct from algo means
-LOOP_MARKER_COLOUR = "#ffd700"   # gold star outlined in black
 
-# Segment split policy
-# Default behavior is to keep row/turn distinction.
-# Dataset overrides can disable this (used for non-agricultural references).
-DISTINGUISH_ROW_TURN_DEFAULT = True
-DISTINGUISH_ROW_TURN_BY_DATASET = {
-    "euroc_mav": False,
-}
+GT_COLOUR    = "black"
+GT_LS        = "--"
+GT_LW        = 1.6     # slightly thicker so GT stays readable
+INDIV_LW     = 0.8     # individual run lines
+INDIV_ALPHA  = 0.45
+INDIV_COLOUR = "#aaaaaa"   # neutral grey keeps focus on the mean
+MEAN_LW      = 1.3     # algo mean / single-run line
 
 
-def distinguish_row_turn_for_dataset(dataset: str) -> bool:
-    """Return whether row/turn split should be preserved for this dataset.
-
-    Configuration precedence:
-    1) Dataset-specific env var: VSLAM_DISTINGUISH_ROW_TURN_<DATASET>
-    2) Global env var: VSLAM_DISTINGUISH_ROW_TURN
-    3) Dataset override map
-    4) Global default (True)
-    """
-    ds_env_name = "VSLAM_DISTINGUISH_ROW_TURN_" + re.sub(r"[^A-Z0-9]", "_", dataset.upper())
-    for env_name in (ds_env_name, "VSLAM_DISTINGUISH_ROW_TURN"):
-        raw = os.getenv(env_name)
-        if raw is None:
-            continue
-        raw = raw.strip().lower()
-        if raw in {"1", "true", "yes", "on"}:
-            return True
-        if raw in {"0", "false", "no", "off"}:
-            return False
-    if dataset in DISTINGUISH_ROW_TURN_BY_DATASET:
-        return DISTINGUISH_ROW_TURN_BY_DATASET[dataset]
-    return DISTINGUISH_ROW_TURN_DEFAULT
-
-
+# ---------------------------------------------------------------------------
+# I/O helpers
+# ---------------------------------------------------------------------------
 def load_tum(path: Path) -> np.ndarray:
     a = np.loadtxt(path)
     return a if a.ndim == 2 else a[np.newaxis, :]
 
 
-def load_segments(path: Path):
-    segs = []
-    with open(path) as f:
-        for row in csv.DictReader(f):
-            segs.append({
-                "t_start": float(row["t_start"]),
-                "t_end":   float(row["t_end"]),
-                "type":    row["type"].strip(),
-            })
-    return segs
-
-
-def assign_types(t: np.ndarray, segs, keep_row_turn: bool) -> list:
-    if not keep_row_turn:
-        return ["all"] * len(t)
-    types = ["other"] * len(t)
-    for seg in segs:
-        for idx in np.where((t >= seg["t_start"]) & (t <= seg["t_end"]))[0]:
-            types[idx] = seg["type"]
-    return types
-
-# ── Loop closure detection ──────────────────────────────────────────────────
-LOOP_RE = re.compile(r"^(\d+\.\d+)\s+\*?Loop detected", re.IGNORECASE)
-
-
-def find_loop_times(run_dir: Path) -> list:
-    """Parse run_log.txt for ORB-SLAM3 'Loop detected' events.
-
-    Returns a list of *sequence-relative* timestamps (seconds) — the same
-    timestamps ORB-SLAM3's logger emits. Other algorithms have no equivalent
-    log so the returned list is empty.
-    """
-    log = run_dir / "run_log.txt"
-    if not log.exists():
-        return []
-    out = []
-    try:
-        with open(log) as f:
-            for line in f:
-                m = LOOP_RE.match(line)
-                if m:
-                    out.append(float(m.group(1)))
-    except Exception:
-        return []
-    return out
-
-
-def loops_to_xy(loop_times, traj_t, traj_xy):
-    """Map each loop relative-time to the (x,y) on the aligned estimate."""
-    if not len(loop_times) or traj_t is None or traj_xy is None or not len(traj_t):
-        return np.empty((0, 2))
-    t_abs = np.asarray(loop_times) + traj_t[0]
-    idxs = np.argmin(np.abs(traj_t[:, None] - t_abs[None, :]), axis=0)
-    return traj_xy[idxs]
-
-# ── Loop closure detection ─────────────────────────────────────────────
-LOOP_RE = re.compile(r"^(\d+\.\d+)\s+\*?Loop detected", re.IGNORECASE)
-
-
-def find_loop_times(run_dir: Path) -> list:
-    """Parse run_log.txt for ORB-SLAM3 'Loop detected' events.
-
-    Returns a list of *sequence-relative* timestamps in seconds. These match the
-    timestamps used inside ORB-SLAM3's logger; the wrapper preserves them.
-    Other algorithms (DROID-SLAM, MAC-VO) have no log of this kind so the
-    returned list is empty.
-    """
-    log = run_dir / "run_log.txt"
-    if not log.exists():
-        return []
-    out = []
-    try:
-        with open(log) as f:
-            for line in f:
-                m = LOOP_RE.match(line)
-                if m:
-                    out.append(float(m.group(1)))
-    except Exception:
-        return []
-    return out
-
-
-def loops_to_xy(loop_times, traj_t, traj_xy):
-    """Map each loop relative-time to the (x,y) on the aligned estimate.
-
-    `traj_t` are the wrapper-rewritten absolute camera timestamps (seconds);
-    relative loop times are converted by adding traj_t[0]. Closest neighbour.
-    """
-    if not len(loop_times) or traj_t is None or traj_xy is None or not len(traj_t):
-        return np.empty((0, 2))
-    t_abs = np.asarray(loop_times) + traj_t[0]
-    idxs = np.argmin(np.abs(traj_t[:, None] - t_abs[None, :]), axis=0)
-    return traj_xy[idxs]
-
-
-# ── evo Sim3 / SE3 alignment ────────────────────────────────────────────────
-def align_to_gt(gt_path: Path, traj_path: Path, correct_scale: bool):
-    """Return aligned (N,3) positions, or None on failure."""
+# ---------------------------------------------------------------------------
+# evo Sim(3) alignment
+# ---------------------------------------------------------------------------
+def align_to_gt(gt_path: Path, traj_path: Path, correct_scale: bool = True):
+    """Return (positions_xyz (N,3), timestamps (N,)) via evo, or (None, None)."""
     try:
         from evo.core import sync
         from evo.tools import file_interface
         traj_ref = file_interface.read_tum_trajectory_file(str(gt_path))
         traj_est = file_interface.read_tum_trajectory_file(str(traj_path))
-        traj_ref, traj_est = sync.associate_trajectories(traj_ref, traj_est, max_diff=0.05)
-        traj_est.align(traj_ref, correct_scale=correct_scale, correct_only_scale=False)
+        traj_ref, traj_est = sync.associate_trajectories(
+            traj_ref, traj_est, max_diff=0.05)
+        traj_est.align(traj_ref, correct_scale=correct_scale,
+                       correct_only_scale=False)
         return traj_est.positions_xyz, traj_est.timestamps
-    except Exception as e:
-        print(f"[plot_segments] alignment failed for {traj_path}: {e}", flush=True)
+    except Exception as exc:
+        print(f"[plot_segments] alignment failed for {traj_path}: {exc}",
+              flush=True)
         return None, None
 
 
-def resample_to_grid(t: np.ndarray, xy: np.ndarray, t_grid: np.ndarray):
-    """Linear-interpolate xy to the common t_grid (skip out-of-range points)."""
-    if t is None or xy is None or len(t) < 2:
+def resample_to_grid(t: np.ndarray, xyz: np.ndarray,
+                     t_grid: np.ndarray):
+    """Linearly interpolate xyz (N-col) to t_grid; returns None if too few points."""
+    if t is None or xyz is None or len(t) < 2:
         return None
     order = np.argsort(t)
-    t_s = t[order]
-    xy_s = xy[order]
+    t_s, xyz_s = t[order], xyz[order]
+    ncols = xyz_s.shape[1]
     mask = (t_grid >= t_s[0]) & (t_grid <= t_s[-1])
     if mask.sum() < 5:
         return None
-    out = np.full((len(t_grid), 2), np.nan)
-    out[mask, 0] = np.interp(t_grid[mask], t_s, xy_s[:, 0])
-    out[mask, 1] = np.interp(t_grid[mask], t_s, xy_s[:, 1])
+    out = np.full((len(t_grid), ncols), np.nan)
+    for c in range(ncols):
+        out[mask, c] = np.interp(t_grid[mask], t_s, xyz_s[:, c])
     return out
 
 
-# ── Drawing primitives ──────────────────────────────────────────────────────
-def draw_gt_segments(ax, xy_gt, types):
-    """Draw GT as a thick, partially transparent ribbon coloured by segment."""
-    segments, colors = [], []
-    for i in range(len(xy_gt) - 1):
-        segments.append([xy_gt[i], xy_gt[i + 1]])
-        colors.append(SEG_COLOUR.get(types[i], SEG_COLOUR["other"]))
-    # Wide, lighter band first (ribbon)
-    ax.add_collection(LineCollection(
-        segments, colors=colors, linewidths=6.0, alpha=0.35, zorder=1,
-        capstyle="round"))
-    # Narrow, dark line on top
-    ax.add_collection(LineCollection(
-        segments, colors=colors, linewidths=1.4, alpha=0.95, zorder=2,
-        capstyle="round"))
+# ---------------------------------------------------------------------------
+# Drawing primitives
+# ---------------------------------------------------------------------------
+def draw_gt_2d(ax, xy_gt):
+    ax.plot(xy_gt[:, 0], xy_gt[:, 1],
+            color=GT_COLOUR, lw=GT_LW, ls=GT_LS, zorder=2, alpha=0.9)
 
 
-def draw_segment_boundaries(ax, t_gt, xy_gt, segs):
-    """Tiny black dots at each segment boundary along GT."""
-    for seg in segs:
-        for tb in (seg["t_start"], seg["t_end"]):
-            idx = int(np.argmin(np.abs(t_gt - tb)))
-            ax.plot(xy_gt[idx, 0], xy_gt[idx, 1],
-                    marker="o", markersize=2.5, color="black",
-                    zorder=4, alpha=0.7)
+def draw_gt_3d(ax, xyz_gt):
+    ax.plot(xyz_gt[:, 0], xyz_gt[:, 1], xyz_gt[:, 2],
+            color=GT_COLOUR, lw=GT_LW, ls=GT_LS, zorder=2, alpha=0.9)
 
 
-def draw_start_end(ax, xy_gt):
-    ax.scatter(*xy_gt[0],  marker="^", s=180, facecolor="white",
+def draw_start_end_2d(ax, xy):
+    ax.scatter(xy[0, 0],  xy[0, 1],
+               marker="^", s=180, facecolor="white",
                edgecolor="black", linewidths=1.5, zorder=6)
-    ax.scatter(*xy_gt[-1], marker="s", s=140, facecolor="white",
+    ax.scatter(xy[-1, 0], xy[-1, 1],
+               marker="s", s=140, facecolor="white",
                edgecolor="black", linewidths=1.5, zorder=6)
 
 
-def draw_loops(ax, loop_xy):
-    """Plot loop-closure detections as gold stars outlined in black."""
-    if loop_xy is None or len(loop_xy) == 0:
-        return
-    ax.scatter(loop_xy[:, 0], loop_xy[:, 1],
-               marker="*", s=380, facecolor=LOOP_MARKER_COLOUR,
-               edgecolor="black", linewidths=1.2, zorder=7, alpha=0.95)
+def draw_start_end_3d(ax, xyz):
+    ax.scatter(xyz[0, 0],  xyz[0, 1],  xyz[0, 2],
+               marker="^", s=180, facecolor="white",
+               edgecolor="black", linewidths=1.5, zorder=6)
+    ax.scatter(xyz[-1, 0], xyz[-1, 1], xyz[-1, 2],
+               marker="s", s=140, facecolor="white",
+               edgecolor="black", linewidths=1.5, zorder=6)
 
 
-def build_legend(segs, algos_drawn, show_runs=False, n_loops=None):
-    n_row  = sum(1 for s in segs if s["type"] == "row")
-    n_turn = sum(1 for s in segs if s["type"] == "turn")
-    d_row  = sum(s["t_end"] - s["t_start"] for s in segs if s["type"] == "row")
-    d_turn = sum(s["t_end"] - s["t_start"] for s in segs if s["type"] == "turn")
-    d_all = sum(s["t_end"] - s["t_start"] for s in segs)
-    handles = []
-    if n_row > 0 or n_turn > 0:
-        handles += [
-            mpatches.Patch(color=SEG_COLOUR["row"],  alpha=0.6,
-                           label=f"GT row  ({n_row} segs, {d_row:.0f} s)"),
-            mpatches.Patch(color=SEG_COLOUR["turn"], alpha=0.6,
-                           label=f"GT turn ({n_turn} segs, {d_turn:.0f} s)"),
-        ]
-    else:
-        handles.append(
-            mpatches.Patch(color=SEG_COLOUR["all"], alpha=0.6,
-                           label=f"GT segments ({len(segs)} segs, {d_all:.0f} s)")
-        )
+def build_legend(algos_drawn, show_runs=False):
+    handles = [
+        Line2D([0], [0], color=GT_COLOUR, lw=GT_LW, ls=GT_LS,
+               label="Ground Truth"),
+    ]
     for algo, label in algos_drawn:
-        handles.append(Line2D([0], [0], color=ALGO_COLOUR.get(algo, "#888"),
-                              lw=1.8, label=label))
+        handles.append(
+            Line2D([0], [0], color=ALGO_COLOUR.get(algo, "#888"),
+                   lw=MEAN_LW, label=label))
     if show_runs:
-        handles.append(Line2D([0], [0], color=INDIV_RUN_COLOUR, lw=1.0,
-                              alpha=0.55, label="individual runs"))
-    handles.append(Line2D([0], [0], marker="^", color="black",
-                          markerfacecolor="white", markersize=9, lw=0,
-                          label="Start"))
-    handles.append(Line2D([0], [0], marker="s", color="black",
-                          markerfacecolor="white", markersize=8, lw=0,
-                          label="End"))
-    handles.append(Line2D([0], [0], marker="o", color="black", markersize=4,
-                          lw=0, label="segment boundary"))
-    if n_loops is not None and n_loops > 0:
-        handles.append(Line2D([0], [0], marker="*", color="black",
-                              markerfacecolor=LOOP_MARKER_COLOUR,
-                              markersize=14, lw=0,
-                              label=f"loop closure ({n_loops})"))
+        handles.append(
+            Line2D([0], [0], color=INDIV_COLOUR, lw=INDIV_LW,
+                   alpha=0.8, label="individual runs"))
+    handles += [
+        Line2D([0], [0], marker="^", color="black",
+               markerfacecolor="white", markersize=9, lw=0, label="Start"),
+        Line2D([0], [0], marker="s", color="black",
+               markerfacecolor="white", markersize=8, lw=0, label="End"),
+    ]
     return handles
 
 
+# ---------------------------------------------------------------------------
+# Figure factories
+# ---------------------------------------------------------------------------
 def base_figure(dataset, seq, title_extra, figsize):
     fig, ax = plt.subplots(figsize=(figsize, figsize))
     ax.set_aspect("equal")
@@ -319,12 +168,26 @@ def base_figure(dataset, seq, title_extra, figsize):
     ax.set_ylabel("Y [m]", fontsize=14)
     ax.tick_params(labelsize=12)
     ax.grid(True, which="both", alpha=0.25, lw=0.4)
-    ax.set_title(f"{dataset} / {seq} — {title_extra}", fontsize=15, pad=14)
+    ax.set_title(f"{dataset} / {seq} - {title_extra}", fontsize=15, pad=14)
     return fig, ax
 
 
-def finalise(fig, ax, handles, out_path: Path, dpi):
-    # Place legend outside the plot to the right so it never overlaps.
+def base_figure_3d(dataset, seq, title_extra, figsize):
+    fig = plt.figure(figsize=(figsize, figsize))
+    ax = fig.add_subplot(111, projection="3d")
+    ax.set_xlabel("x (m)", fontsize=13, labelpad=8)
+    ax.set_ylabel("y (m)", fontsize=13, labelpad=8)
+    ax.set_zlabel("z (m)", fontsize=13, labelpad=8)
+    ax.tick_params(labelsize=11)
+    ax.set_title(f"{dataset} / {seq} - {title_extra}", fontsize=15, pad=14)
+    ax.view_init(elev=25, azim=-60)
+    return fig, ax
+
+
+# ---------------------------------------------------------------------------
+# Save helpers
+# ---------------------------------------------------------------------------
+def finalise_2d(fig, ax, handles, out_path, dpi):
     ax.legend(handles=handles, loc="center left", bbox_to_anchor=(1.02, 0.5),
               fontsize=11, framealpha=0.95, borderaxespad=0.,
               title="Legend", title_fontsize=12)
@@ -335,105 +198,144 @@ def finalise(fig, ax, handles, out_path: Path, dpi):
     print(f"[plot_segments] saved {out_path}", flush=True)
 
 
-# ── Map generators ──────────────────────────────────────────────────────────
-def plot_per_run(dataset, seq, algo, run_id, gt_xy, t_gt, types, segs,
-                 ws: Path, dpi, figsize):
+def finalise_3d(fig, ax, handles, out_path, dpi):
+    ax.legend(handles=handles, loc="upper right",
+              fontsize=11, framealpha=0.95, borderaxespad=0.8,
+              title="Legend", title_fontsize=12)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    print(f"[plot_segments] saved {out_path}", flush=True)
+
+
+# ---------------------------------------------------------------------------
+# Per-run
+# ---------------------------------------------------------------------------
+def plot_per_run(dataset, seq, algo, run_id, gt_xyz, t_gt,
+                 ws, dpi, figsize):
     res = ws / "results" / dataset / seq / algo / f"run{run_id}"
     traj = res / "trajectory.txt"
     if not traj.exists():
         return False
+
     gt_path = ws / "datasets" / dataset / seq / "gt_tum.txt"
-    pos, ts = align_to_gt(gt_path, traj, correct_scale=True)
-    loops = find_loop_times(res)
-    loop_xy = loops_to_xy(loops, ts, pos[:, :2]) if pos is not None else np.empty((0, 2))
-    fig, ax = base_figure(dataset, seq, f"{ALGO_LABEL.get(algo, algo)} run {run_id}",
-                          figsize)
-    draw_gt_segments(ax, gt_xy, types)
-    draw_segment_boundaries(ax, t_gt, gt_xy, segs)
+    pos, _ts = align_to_gt(gt_path, traj, correct_scale=True)
+
+    label = f"{ALGO_LABEL.get(algo, algo)} run {run_id}"
+    handles = build_legend([(algo, label)])
+
+    # -- 2D --
+    fig, ax = base_figure(dataset, seq, label, figsize)
+    draw_gt_2d(ax, gt_xyz[:, :2])
     if pos is not None:
-        ax.plot(pos[:, 0], pos[:, 1], color=ALGO_COLOUR.get(algo, "#444"),
-                lw=1.8, alpha=0.95, zorder=3,
-                label=f"{ALGO_LABEL.get(algo, algo)} run {run_id}")
-    draw_loops(ax, loop_xy)
-    draw_start_end(ax, gt_xy)
-    handles = build_legend(segs, [(algo, f"{ALGO_LABEL.get(algo, algo)} run {run_id}")],
-                           n_loops=len(loops))
-    finalise(fig, ax, handles, res / "segment_map.png", dpi)
+        ax.plot(pos[:, 0], pos[:, 1],
+                color=ALGO_COLOUR.get(algo, "#444"),
+                lw=MEAN_LW, alpha=0.95, zorder=3)
+    draw_start_end_2d(ax, gt_xyz[:, :2])
+    finalise_2d(fig, ax, handles, res / "segment_map.png", dpi)
+
+    # -- 3D --
+    fig3, ax3 = base_figure_3d(dataset, seq, label, figsize)
+    draw_gt_3d(ax3, gt_xyz)
+    if pos is not None:
+        ax3.plot(pos[:, 0], pos[:, 1], pos[:, 2],
+                 color=ALGO_COLOUR.get(algo, "#444"),
+                 lw=MEAN_LW, alpha=0.95, zorder=3)
+    draw_start_end_3d(ax3, gt_xyz)
+    finalise_3d(fig3, ax3, handles, res / "segment_map_3d.png", dpi)
+
     return True
 
 
-def plot_per_algo(dataset, seq, algo, gt_xy, t_gt, types, segs,
-                  ws: Path, dpi, figsize):
+# ---------------------------------------------------------------------------
+# Per-algo (all runs + mean)
+# ---------------------------------------------------------------------------
+def plot_per_algo(dataset, seq, algo, gt_xyz, t_gt, ws, dpi, figsize):
     algo_dir = ws / "results" / dataset / seq / algo
     if not algo_dir.exists():
         return False
     run_dirs = sorted(algo_dir.glob("run*"))
     if not run_dirs:
         return False
+
     gt_path = ws / "datasets" / dataset / seq / "gt_tum.txt"
     per_run = []
-    all_loop_xy = []
     for rd in run_dirs:
         traj = rd / "trajectory.txt"
         if not traj.exists():
             continue
         pos, ts = align_to_gt(gt_path, traj, correct_scale=True)
-        if pos is None:
-            continue
-        per_run.append((rd.name, ts, pos[:, :2]))
-        lt = find_loop_times(rd)
-        if lt:
-            all_loop_xy.append(loops_to_xy(lt, ts, pos[:, :2]))
+        if pos is not None:
+            per_run.append((rd.name, ts, pos))
+
     if not per_run:
         return False
-    # Common time grid = GT timestamps (drop NaN later)
-    grid = t_gt
-    resampled = []
-    for name, ts, xy in per_run:
-        rs = resample_to_grid(ts, xy, grid)
-        if rs is not None:
-            resampled.append(rs)
-    fig, ax = base_figure(dataset, seq,
-                          f"{ALGO_LABEL.get(algo, algo)} — {len(per_run)} runs + mean",
-                          figsize)
-    draw_gt_segments(ax, gt_xy, types)
-    draw_segment_boundaries(ax, t_gt, gt_xy, segs)
-    # Individual runs (semi-transparent red)
-    for name, ts, xy in per_run:
-        ax.plot(xy[:, 0], xy[:, 1], color=INDIV_RUN_COLOUR,
-                lw=1.0, alpha=0.55, zorder=3)
-    # Mean (bold)
-    if resampled:
-        stack = np.stack(resampled, axis=0)
-        mean_xy = np.nanmean(stack, axis=0)
+
+    resampled_2d, resampled_3d = [], []
+    for _name, ts, pos in per_run:
+        rs2 = resample_to_grid(ts, pos[:, :2], t_gt)
+        rs3 = resample_to_grid(ts, pos[:, :3], t_gt)
+        if rs2 is not None:
+            resampled_2d.append(rs2)
+        if rs3 is not None:
+            resampled_3d.append(rs3)
+
+    algo_label = ALGO_LABEL.get(algo, algo)
+    n = len(per_run)
+    title_extra = f"{algo_label} - {n} run{'s' if n > 1 else ''} + mean"
+    handles = build_legend([(algo, f"{algo_label} mean")], show_runs=(n > 1))
+
+    # -- 2D --
+    fig, ax = base_figure(dataset, seq, title_extra, figsize)
+    draw_gt_2d(ax, gt_xyz[:, :2])
+    for _name, _ts, pos in per_run:
+        ax.plot(pos[:, 0], pos[:, 1],
+                color=INDIV_COLOUR, lw=INDIV_LW, alpha=INDIV_ALPHA, zorder=3)
+    if resampled_2d:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", RuntimeWarning)
+            mean_xy = np.nanmean(np.stack(resampled_2d, axis=0), axis=0)
         valid = ~np.isnan(mean_xy[:, 0])
         ax.plot(mean_xy[valid, 0], mean_xy[valid, 1],
                 color=ALGO_COLOUR.get(algo, "#444"),
-                lw=2.2, alpha=0.98, zorder=4,
-                label=f"{ALGO_LABEL.get(algo, algo)} mean ({len(resampled)})")
-    n_loops = 0
-    if all_loop_xy:
-        draw_loops(ax, np.vstack(all_loop_xy))
-        n_loops = sum(len(x) for x in all_loop_xy)
-    draw_start_end(ax, gt_xy)
-    handles = build_legend(segs,
-                           [(algo, f"{ALGO_LABEL.get(algo, algo)} mean")],
-                           show_runs=True, n_loops=n_loops)
-    finalise(fig, ax, handles, algo_dir / "segment_map.png", dpi)
+                lw=MEAN_LW, alpha=0.98, zorder=4)
+    draw_start_end_2d(ax, gt_xyz[:, :2])
+    finalise_2d(fig, ax, handles, algo_dir / "segment_map.png", dpi)
+
+    # -- 3D --
+    fig3, ax3 = base_figure_3d(dataset, seq, title_extra, figsize)
+    draw_gt_3d(ax3, gt_xyz)
+    for _name, _ts, pos in per_run:
+        ax3.plot(pos[:, 0], pos[:, 1], pos[:, 2],
+                 color=INDIV_COLOUR, lw=INDIV_LW, alpha=INDIV_ALPHA, zorder=3)
+    if resampled_3d:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", RuntimeWarning)
+            mean_xyz = np.nanmean(np.stack(resampled_3d, axis=0), axis=0)
+        valid = ~np.isnan(mean_xyz[:, 0])
+        ax3.plot(mean_xyz[valid, 0], mean_xyz[valid, 1], mean_xyz[valid, 2],
+                 color=ALGO_COLOUR.get(algo, "#444"),
+                 lw=MEAN_LW, alpha=0.98, zorder=4)
+    draw_start_end_3d(ax3, gt_xyz)
+    finalise_3d(fig3, ax3, handles, algo_dir / "segment_map_3d.png", dpi)
+
     return True
 
 
-def plot_compare(dataset, seq, algos, gt_xy, t_gt, types, segs,
-                 ws: Path, dpi, figsize):
+# ---------------------------------------------------------------------------
+# Cross-algorithm comparison
+# ---------------------------------------------------------------------------
+def plot_compare(dataset, seq, algos, gt_xyz, t_gt, ws, dpi, figsize):
     gt_path = ws / "datasets" / dataset / seq / "gt_tum.txt"
-    means = {}
-    loops_all = {}
+
+    means_2d = {}
+    means_3d = {}
+
     for algo in algos:
         algo_dir = ws / "results" / dataset / seq / algo
         if not algo_dir.exists():
             continue
-        per_run = []
-        loop_xy_list = []
+        runs_2d, runs_3d = [], []
         for rd in sorted(algo_dir.glob("run*")):
             traj = rd / "trajectory.txt"
             if not traj.exists():
@@ -441,81 +343,101 @@ def plot_compare(dataset, seq, algos, gt_xy, t_gt, types, segs,
             pos, ts = align_to_gt(gt_path, traj, correct_scale=True)
             if pos is None:
                 continue
-            rs = resample_to_grid(ts, pos[:, :2], t_gt)
-            if rs is not None:
-                per_run.append(rs)
-            lt = find_loop_times(rd)
-            if lt:
-                loop_xy_list.append(loops_to_xy(lt, ts, pos[:, :2]))
-        # Fallback: flat layout (no run*) — old single-run results
-        if not per_run:
+            rs2 = resample_to_grid(ts, pos[:, :2], t_gt)
+            rs3 = resample_to_grid(ts, pos[:, :3], t_gt)
+            if rs2 is not None:
+                runs_2d.append(rs2)
+            if rs3 is not None:
+                runs_3d.append(rs3)
+        # Fallback: flat layout (no run*/) - legacy single-run results
+        if not runs_2d:
             traj = algo_dir / "trajectory.txt"
             if traj.exists():
                 pos, ts = align_to_gt(gt_path, traj, correct_scale=True)
                 if pos is not None:
-                    rs = resample_to_grid(ts, pos[:, :2], t_gt)
-                    if rs is not None:
-                        per_run.append(rs)
-        if per_run:
-            stack = np.stack(per_run, axis=0)
-            means[algo] = (np.nanmean(stack, axis=0), len(per_run))
-        if loop_xy_list:
-            loops_all[algo] = np.vstack(loop_xy_list)
-    fig, ax = base_figure(dataset, seq, "cross-algorithm comparison (run mean)",
-                          figsize)
-    draw_gt_segments(ax, gt_xy, types)
-    draw_segment_boundaries(ax, t_gt, gt_xy, segs)
+                    rs2 = resample_to_grid(ts, pos[:, :2], t_gt)
+                    rs3 = resample_to_grid(ts, pos[:, :3], t_gt)
+                    if rs2 is not None:
+                        runs_2d.append(rs2)
+                    if rs3 is not None:
+                        runs_3d.append(rs3)
+        if runs_2d:
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore", RuntimeWarning)
+                means_2d[algo] = (
+                    np.nanmean(np.stack(runs_2d, axis=0), axis=0), len(runs_2d))
+        if runs_3d:
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore", RuntimeWarning)
+                means_3d[algo] = (
+                    np.nanmean(np.stack(runs_3d, axis=0), axis=0), len(runs_3d))
+
     drawn = []
     for algo in algos:
-        if algo not in means:
+        if algo in means_2d:
+            n = means_2d[algo][1]
+            drawn.append(
+                (algo, f"{ALGO_LABEL.get(algo, algo)} mean"
+                        f" ({n} run{'s' if n > 1 else ''})"))
+
+    title_extra = "cross-algorithm comparison (run mean)"
+    handles = build_legend(drawn)
+
+    # -- 2D --
+    fig, ax = base_figure(dataset, seq, title_extra, figsize)
+    draw_gt_2d(ax, gt_xyz[:, :2])
+    for algo in algos:
+        if algo not in means_2d:
             continue
-        mxy, n = means[algo]
+        mxy, _n = means_2d[algo]
         valid = ~np.isnan(mxy[:, 0])
-        label = f"{ALGO_LABEL.get(algo, algo)} mean ({n} run{'s' if n > 1 else ''})"
         ax.plot(mxy[valid, 0], mxy[valid, 1],
                 color=ALGO_COLOUR.get(algo, "#444"),
-                lw=2.2, alpha=0.95, zorder=3, label=label)
-        drawn.append((algo, label))
-    # Combined loop closures (any algorithm)
-    n_loops_total = 0
-    if loops_all:
-        combined = np.vstack(list(loops_all.values()))
-        draw_loops(ax, combined)
-        n_loops_total = sum(len(x) for x in loops_all.values())
-    draw_start_end(ax, gt_xy)
-    handles = build_legend(segs, drawn, n_loops=n_loops_total)
-    finalise(fig, ax,
-             handles, ws / "results" / dataset / seq / "segment_map.png", dpi)
+                lw=MEAN_LW, alpha=0.95, zorder=3)
+    draw_start_end_2d(ax, gt_xyz[:, :2])
+    finalise_2d(fig, ax, handles,
+                ws / "results" / dataset / seq / "segment_map.png", dpi)
+
+    # -- 3D --
+    fig3, ax3 = base_figure_3d(dataset, seq, title_extra, figsize)
+    draw_gt_3d(ax3, gt_xyz)
+    for algo in algos:
+        if algo not in means_3d:
+            continue
+        mxyz, _n = means_3d[algo]
+        valid = ~np.isnan(mxyz[:, 0])
+        ax3.plot(mxyz[valid, 0], mxyz[valid, 1], mxyz[valid, 2],
+                 color=ALGO_COLOUR.get(algo, "#444"),
+                 lw=MEAN_LW, alpha=0.95, zorder=3)
+    draw_start_end_3d(ax3, gt_xyz)
+    finalise_3d(fig3, ax3, handles,
+                ws / "results" / dataset / seq / "segment_map_3d.png", dpi)
+
     return True
 
 
+# ---------------------------------------------------------------------------
+# Entry point
+# ---------------------------------------------------------------------------
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("dataset")
     ap.add_argument("seq")
-    ap.add_argument("--algos", default="orbslam3,droidslam,macvo,basalt,airslam")
-    ap.add_argument("--dpi", type=int, default=400)
+    ap.add_argument("--algos",
+                    default="orbslam3,droidslam,macvo,basalt,airslam")
+    ap.add_argument("--dpi",     type=int,   default=400)
     ap.add_argument("--figsize", type=float, default=20.0)
     args = ap.parse_args()
 
     ws = Path(__file__).resolve().parents[2]
-    ds_dir = ws / "datasets" / args.dataset / args.seq
-    gt_path  = ds_dir / "gt_tum.txt"
-    seg_path = ds_dir / "segments_auto.csv"
+
+    gt_path = ws / "datasets" / args.dataset / args.seq / "gt_tum.txt"
     if not gt_path.exists():
         raise SystemExit(f"GT missing: {gt_path}")
-    if not seg_path.exists():
-        raise SystemExit(f"segments missing: {seg_path}")
 
-    gt = load_tum(gt_path)
-    t_gt  = gt[:, 0]
-    xy_gt = gt[:, 1:3]
-    segs  = load_segments(seg_path)
-    keep_row_turn = distinguish_row_turn_for_dataset(args.dataset)
-    segs_for_legend = segs if keep_row_turn else [
-        {"t_start": s["t_start"], "t_end": s["t_end"], "type": "all"} for s in segs
-    ]
-    types = assign_types(t_gt, segs, keep_row_turn)
+    gt     = load_tum(gt_path)
+    t_gt   = gt[:, 0]
+    gt_xyz = gt[:, 1:4]   # x, y, z
 
     algos = [a.strip() for a in args.algos.split(",") if a.strip()]
 
@@ -527,14 +449,16 @@ def main():
         for rd in sorted(algo_dir.glob("run*")):
             run_id = rd.name.replace("run", "")
             plot_per_run(args.dataset, args.seq, algo, run_id,
-                         xy_gt, t_gt, types, segs_for_legend, ws, args.dpi, args.figsize)
+                         gt_xyz, t_gt, ws, args.dpi, args.figsize)
+
     # (2) per-algo
     for algo in algos:
         plot_per_algo(args.dataset, args.seq, algo,
-                      xy_gt, t_gt, types, segs_for_legend, ws, args.dpi, args.figsize)
+                      gt_xyz, t_gt, ws, args.dpi, args.figsize)
+
     # (3) cross-algorithm comparison
     plot_compare(args.dataset, args.seq, algos,
-                 xy_gt, t_gt, types, segs_for_legend, ws, args.dpi, args.figsize)
+                 gt_xyz, t_gt, ws, args.dpi, args.figsize)
 
 
 if __name__ == "__main__":

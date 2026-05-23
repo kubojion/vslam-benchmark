@@ -13,7 +13,7 @@
 
 * **Rosario v2** - outdoor soybean field, stereo + IMU + GPS.
 * **HortiMulti** - indoor strawberry polytunnel, stereo + IMU.
-* **EuRoC-MAV** (MH_01_easy) - [NON-AGRICULTURAL REFERENCE] indoor MAV flight, stereo. Used as a sanity check only.
+* **EuRoC-MAV** (MH_01_easy, MH_03_medium, MH_05_difficult) - [NON-AGRICULTURAL REFERENCE] indoor MAV flight, stereo. Used as a sanity check only.
 
 Rosario v2 and HortiMulti are the primary benchmarks. EuRoC-MAV is tracked as a [NON-AGRICULTURAL REFERENCE] and run once per algorithm to verify configs and the eval pipeline against a known reference dataset.
 
@@ -64,7 +64,7 @@ See [PROGRESS.md](PROGRESS.md) for the full table; representative numbers:
 |---|---|---|---|---|
 | ORB-SLAM3 | Rosario v2 | seq1 | **1.18 ± 0.32 m** | 3 |
 | ORB-SLAM3 | Rosario v2 | seq5 | 20.21 ± 4.20 m | 3 |
-| ORB-SLAM3 | HortiMulti | strawberry02 | 0.893 ± 0.171 m | 3 |
+| ORB-SLAM3 | HortiMulti | strawberry02 | 0.893 ± 0.139 m | 3 |
 | ORB-SLAM3 | HortiMulti | strawberry03 | **0.104 ± 0.001 m** | 3 |
 | DROID-SLAM | Rosario v2 | seq1 | 45.00 m | 1 |
 | DROID-SLAM | Rosario v2 | seq5 | 50.13 m | 1 |

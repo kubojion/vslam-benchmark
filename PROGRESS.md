@@ -1,34 +1,25 @@
 # vSLAM Benchmark - Progress
 
-BSc thesis benchmarking five SLAM algorithms on agricultural datasets.
 Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybrid), **Basalt** (sliding-window VIO), **AirSLAM** (deep-feature VO, Docker).
 
 ---
 
-## Results Summary
-
-> All Rosario single-run results are from an earlier exploratory run (single run, old format).  
-> HortiMulti Strawberry-03, Rosario seq1, and Rosario seq5 ORB-SLAM3 results are from the new **3-run multi-run benchmark** (mean ± std).
-> HortiMulti Strawberry-02 MAC-VO, Strawberry-03 MAC-VO, and Rosario seq1 MAC-VO are also 3-run complete.
-> All 4 sequences are now **Basalt 3-run complete** (strawberry02, strawberry03, seq1, seq5).
-> **AirSLAM**: Strawberry-03 + Strawberry-02 3-run complete; Rosario seq1 **DONE** (9.888 ± 0.059 m, 100%); seq5 **DONE** (12.722 ± 0.991 m, 100%).
-> Both **Sim(3)** and **SE(3)** ATE reported - see "Sim3 vs SE3" section below.
 
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | Frames | Completion | Runs |
 |---|---|---|---|---|---|---|---|---|
 | ORB-SLAM3 | Rosario v2 | seq1 | **1.176 ± 0.317 m** | **1.59 m** | 1.022 | 13 821 | 100% | **3** ✓ |
-| DROID-SLAM | Rosario v2 | seq1 | 45.00 m | - | - | 6 911 | 100% (stride=2) | 1 |
+| DROID-SLAM | Rosario v2 | seq1 | 45.00 m | 45.09 m | 1.221 | 6 911 | 100% (stride=2) | 1 |
 | MAC-VO | Rosario v2 | seq1 | **13.520 ± 0.007 m** | **13.552 ± 0.007 m** | 0.980 | 13 821 | 100% | **3** ✓ |
 | Basalt | Rosario v2 | seq1 | **14.279 ± 0.302 m** | **18.693 ± 0.586 m** | 0.791 | 13 821 | 100% | **3** ✓ |
 | AirSLAM | Rosario v2 | seq1 | **9.888 ± 0.059 m** | **9.891 ± 0.058 m** | 1.005 | 13 821 | 100% | **3** ✓ |
 | ORB-SLAM3 | Rosario v2 | seq5 | **20.207 ± 4.204 m** | **20.85 m** | 0.904 | 11 640 | 91% avg (0 loops) | **3** ✓ |
-| DROID-SLAM | Rosario v2 | seq5 | 50.13 m | - | - | 11 640 | 100% (external‡) | 1 |
-| MAC-VO | Rosario v2 | seq5 | 19.381 m | - | - | 11 640 | 100% | 1 |
+| DROID-SLAM | Rosario v2 | seq5 | 50.13 m | 197.84 m | 0.046 | 11 640 | 100% | 1 |
+| MAC-VO | Rosario v2 | seq5 | 19.381 m | 19.671 m | 0.933 | 11 640 | 100% | 1 |
 | Basalt | Rosario v2 | seq5 | **15.035 ± 0.062 m** | **15.425 ± 0.068 m** | 0.934 | 11 640 | 100% | **3** ✓ |
 | AirSLAM | Rosario v2 | seq5 | **12.722 ± 0.991 m** | **12.777 ± 1.014 m** | 0.977 | 11 640 | 100% | **3** ✓ |
-| ORB-SLAM3 | HortiMulti | Strawberry-02 | **0.893 ± 0.171 m** | **2.10 ± 0.12 m** | 1.040 | 4 186–4 980 / 9 530 | 44–52%† | **3** ✓ |
-| DROID-SLAM | HortiMulti | Strawberry-02 | 44.91 m | - | - | 4 765 | 100% (stride=2) | 1 |
-| MAC-VO | HortiMulti | Strawberry-02 | **10.231 ± 0.502 m** | **10.940 ± 0.545 m** | 1.009 | 9 530 | 100% | **3** ✓ |
+| ORB-SLAM3 | HortiMulti | Strawberry-02 | **0.893 ± 0.139 m** | **2.10 ± 0.10 m** | 1.040 | 4 186–4 980 / 9 530 | 44–52%† | **3** ✓ |
+| DROID-SLAM | HortiMulti | Strawberry-02 | 44.91 m | 44.96 m | 1.103 | 4 765 | 100% (stride=2) | 1 |
+| MAC-VO | HortiMulti | Strawberry-02 | **10.231 ± 0.502 m** | **10.245 ± 0.496 m** | 1.009 | 9 530 | 100% | **3** ✓ |
 | Basalt | HortiMulti | Strawberry-02 | **2.0978 ± 0.0008 m** | **2.664 ± 0.001 m** | 1.034 | 9 530 | 100% | **3** ✓ |
 | AirSLAM | HortiMulti | Strawberry-02 | **20.220 ± 0.824 m** | **20.483 ± 0.893 m** | 0.928 | 9 530 | 100% | **3** ✓ |
 | ORB-SLAM3 | HortiMulti | Strawberry-03 | **0.1039 ± 0.0013 m** | **0.78 m** | 1.043 | 2 425 | 100% | **3** ✓ |
@@ -36,7 +27,7 @@ Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybr
 | Basalt | HortiMulti | Strawberry-03 | **0.2753 ± 0.0000 m** | **0.7151 m** | 1.036 | 2 425 | 100% | **3** ✓ |
 | AirSLAM | HortiMulti | Strawberry-03 | **3.631 ± 0.205 m** | **3.771 ± 0.191 m** | 1.064 | 2 425 | 100% | **3** ✓ |
 
-### [NON-AGRICULTURAL REFERENCE] EuRoC-MAV (single-run comparison)
+### [NON-AGRICULTURAL REFERENCE] EuRoC-MAV 
 
 | Sequence | Algorithm | ATE Sim3 [m] | ATE SE3 [m] | RPE [m/m] | Scale | FPS | Frames |
 |---|---|---|---|---|---|---|---|
@@ -56,18 +47,17 @@ Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybr
 † ORB-SLAM3 processed all 9 530 input frames but tracking only succeeded for frames
 spanning 91 s – 500 s of the 952 s sequence.  Tracking was permanently lost after 500 s
 due to the repetitive polytunnel environment.  This is **not** a stride/sampling issue.  
-‡ DROID-SLAM sequence5 trajectory provided by collaborator; original ns timestamps converted to seconds for evaluation.
 
 All multi-run metrics use **both Sim(3) and SE(3)** alignment (`evo_ape --align [--correct_scale]`) and
 **`point_distance` RPE** (not `trans_part` - avoids body-frame quaternion mismatch).
 
 ---
 
-## Sim(3) vs SE(3) alignment for stereo - critical finding
+## Sim(3) vs SE(3) alignment for stereo 
 
 Stereo SLAM has **metric scale** (from the baseline), so SE(3) ATE is the
-honest accuracy metric. Sim(3) absorbs residual scale drift into a 7th DoF
-alignment scale factor, hiding error. We now report **both**:
+accuracy metric. Sim(3) absorbs residual scale drift into a 7th DoF
+alignment scale factor, hiding error:
 
 | Sequence | Sim3 ATE | SE3 ATE | Scale | Scale drift |
 |---|---|---|---|---|
@@ -76,9 +66,6 @@ alignment scale factor, hiding error. We now report **both**:
 | Strawberry-02 | 0.89 m | 2.10 m | 1.040 | 4.0 % |
 | **Strawberry-03** | **0.10 m** | **0.78 m** | **1.043** | **4.3 %** |
 
-The Strawberry-03 case is instructive: the "0.10 m" headline number masks a
-~8× larger real metric error because Sim(3) absorbs the scale drift. We now
-report SE(3) ATE alongside Sim(3) in every `report.md`.
 
 ---
 
@@ -102,25 +89,7 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 ---
 
-## Infrastructure - Complete
 
-- ORB-SLAM3 built and patched (`src/ORB_SLAM3/`)
-- DROID-SLAM conda env `droidenv` with pretrained weights (`droid.pth`)
-- MAC-VO conda env `macvo` with FlowFormer weights
-- Evaluation toolkit `evo` installed in `macvo` env
-- Basalt binary v0.1.7 installed (`~/.local/bin/basalt_vio`, sourced via `~/.basalt/env`)
-- **AirSLAM** Docker container (`air_slam`, image `xukuanhit/air_slam:v4`); catkin_make built inside container; TRT engine compiled for hortimulti (640×480); TRT engine for rosariov2 (1280×720) compiled on first seq1 run
-- Run scripts: `scripts/run/run_orbslam3.sh` (multi-run, resource monitor), `run_droidslam.sh` (multi-run ✓), `run_macvo.sh` (multi-run ✓), `run_basalt.sh` (single-run ✓), `run_airslam.sh` (multi-run ✓ — polls `trajectory_v0.txt`, pkill roslaunch, `mv -f`, FPS from input frames)
-- Resource monitoring: `scripts/run/_resource_monitor.py` (GPU+CPU+RAM every 1 s)
-- GT interpolation: `scripts/eval/_interpolate_gt.py` (Slerp + linear, to exact camera timestamps)
-- Auto-segmentation: `scripts/eval/_segment_trajectory.py` (**v2: 2 m sliding window of path length, 10° heading & 20 cm chord-deviation cap**)
-- Per-run evaluation: `scripts/eval/_evaluate_run.py` → `run_eval.json` (ATE Sim3+SE3, RPE, KITTI, segments)
-- Aggregation: `scripts/eval/_aggregate_runs.py` → `metrics.csv` + `report.md` (Sim3 + SE3 columns, alignment notes)
-- Visualisation: `scripts/eval/_plot_segments.py` (**v2: 8 K resolution; 3 hierarchies - per-run, per-algo, per-sequence cross-algo; legend outside path**)
-- Deprecated scripts removed: `aggregate_results.py`, `evaluate_all.sh`, `_gpu_monitor.sh`, `_rosario_extract.py`, `run_all_on_sequence.sh`
-- Documentation updated: `10_evaluation_protocol.md` (RPE metric fix, multi-run workflow, segment ATE note), `11_running_experiments.md` (full multi-run recipe), `12_thesis_deliverables.md` (table format), `00_overview.md` (scripts tree), `dataset_rosario_v2.md` (benchmark workflow + results section), `dataset_hortimulti.md` (str03 3-run results)
-
----
 
 ## Dataset 1 - Rosario v2 - In progress
 
@@ -538,15 +507,7 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 ---
 
-## Dataset 3 - LFSD - Not started
-
-- Download and extract sequences
-- Configure and run all three algorithms
-- Evaluate ATE/RPE
-
----
-
-## Dataset 4 - [NON-AGRICULTURAL REFERENCE] EuRoC-MAV
+## Dataset 3 - [NON-AGRICULTURAL REFERENCE] EuRoC-MAV
 
 > **[NON-AGRICULTURAL REFERENCE]** EuRoC-MAV MH_01_easy was run once per
 > algorithm (N=1, no stats) as a sanity check to confirm configs and the eval
@@ -619,37 +580,10 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 ---
 
-## Pending work
+## Findings
 
-| Task | Priority | Status |
-|---|---|---|
-| **AirSLAM × 3 on rosariov2/sequence1** | High | **DONE** (9.888 ± 0.059 m) |
-| **AirSLAM × 3 on rosariov2/sequence5** | High | **DONE** (12.722 ± 0.991 m, 100% × 3) |
-| **MAC-VO × 3 on Rosario seq5** - run1 done, run2+3 pending | High | Blocked (low priority) |
-| **DROID-SLAM × 3 on all 4 evaluated sequences** | High | Not started |
-| Segment maps for all 4 sequences with 5 algos | High | After AirSLAM rosariov2 completes |
-| Rebuild benchmark.csv | High | After AirSLAM rosariov2 completes |
-| Add Rosario v2 sequences 2, 3, 4 (already downloaded - TODO: extract + run) | Medium | Not started |
-| LFSD dataset: download, extract, run, evaluate | Medium | Not started |
-| Cross-sequence aggregation (`evo_res`) once we have ≥3 sequences × 3 algorithms × 3 runs | Medium | Possible now (ORB-SLAM3, Basalt) |
-| Thesis comparison plots (LaTeX-ready PDFs) | High (before submission) | Not started |
 
----
-
-## Research-paper readiness - honest assessment
-
-**Current data inventory** (post AirSLAM HortiMulti + Rosario in progress):
-
-| Item | Count | Threshold for SLAM paper |
-|---|---|---|
-| Multi-run benchmarks (3+ runs, statistics) | 4 seqs × 3-4 algos = **20 cells** (ORB-SLAM3 ×4, MAC-VO ×3: str02, str03, seq1; Basalt ×4; AirSLAM ×4: str02, str03, seq1, seq5) | ≥ 5 sequences × ≥ 3 algos × ≥ 3 runs = 45 cells |
-| AirSLAM rosariov2 | 2 cells complete (seq1 ✓, seq5 ✓) | — |
-| Single-run sanity points | 6 cells (DROID, MAC-VO across 3 seqs) | not publishable alone |
-| Datasets | 2 (Rosario v2, HortiMulti) | typically 3–4 |
-| Algorithms | 3 fully benched (ORB-SLAM3 ×4, Basalt ×4, AirSLAM ×4) + MAC-VO partially (×3 on 3 seqs) | 3+ |
-| Novel-contribution candidates | Row/turn segmentation, scale-drift quantification on agricultural rows | Strong |
-
-**Scientific findings worth reporting** (already in data):
+** Should be mentioned:
 
 1. **Loop-closure dependence dominates global accuracy on long agricultural rows.**
    Rosario seq1 (5–6 loops, ATE 1.18 m) vs seq5 (0 loops, ATE 20.2 m) on
@@ -660,34 +594,6 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
    not localisation difficulty (documented in §9 of protocol).
 4. **Body↔camera frame conventions matter for RPE rotation** - uncorrected
    mount offset gives 17.6 °/m artefact (Strawberry-03).
-
-**Gaps preventing immediate publication:**
-
-- DROID-SLAM and MAC-VO have no multi-run statistics yet.
-- Only 2 datasets evaluated; LFSD remains untouched.
-- No real-time-factor (RTF) comparison across algorithms.
-
-**Recommended path to paper-grade dataset** (priority order):
-
-1. **(now)** Complete ORB-SLAM3 × 3 on Strawberry-02 (in progress).
-2. **(next)** DROID-SLAM × 3 on all 4 sequences (framework now consistent).
-3. **(next)** MAC-VO × 3 on all 4 sequences (framework now consistent).
-4. Extract & run Rosario seq2-4 (more loop-closure variation data).
-5. LFSD dataset for third domain.
-6. Cross-sequence aggregation + LaTeX tables.
-
----
-
-## Outstanding framework notes
-
-- **DROID-SLAM & MAC-VO multi-run support** - added in this phase
-  (`run_droidslam.sh`, `run_macvo.sh` now take `<run_id>` and write to
-  `results/<ds>/<seq>/<algo>/run<N>/`). Old single-run outputs at the flat
-  `results/<ds>/<seq>/<algo>/trajectory.txt` paths remain in place for
-  reference but are no longer the default write location.
-- Workspace audit (this phase): no orphaned `__pycache__`, no `TODO/FIXME`
-  in scripts. Only stale references are in `docs/00_overview.md` and
-  `TODO.md` mentioning the removed `run_benchmark.sh` - corrected.
 
 ---
 
@@ -724,27 +630,7 @@ conda run -n macvo python3 scripts/eval/_macvo_to_tum.py "$SBX" \
 
 ---
 
-*Last updated: 2026-05-19 - Phase B (segmentation v2, SE3 ATE, RPE rot diagnosis, framework consistency)*
+*Last updated: 2025-05-23 - corrected DROID-SLAM SE3/scale values, MAC-VO SE3 corrections; added 3D segment maps and ATE-vs-FPS plot*
 
 ---
 
-## 2025-05-19 - repository publication
-
-* Cleaned `configs/macvo/` duplicates. Each sequence now has its own file
-  (`hortimulti_strawberry02.yaml`, `hortimulti_strawberry03.yaml`,
-  `rosariov2_sequence1.yaml`, `rosariov2_sequence5.yaml`).
-* Paths in `configs/macvo/*.yaml` are now portable: they contain a
-  `__WS__` placeholder that `scripts/run/run_macvo.sh` expands to the
-  workspace root at launch.
-* **Bug fixed:** `run_macvo.sh` previously fell back to
-  `<dataset>_sequence.yaml` when a per-sequence file was missing, which
-  silently loaded the wrong sequence's images (HortiMulti strawberry-03
-  runs were actually running strawberry-02 data). The fallback is removed;
-  missing configs now error out immediately. **MAC-VO strawberry-03 must
-  be re-run** with the new `hortimulti_strawberry03.yaml` config.
-* SLAM source trees (`src/ORB_SLAM3`, `src/MAC-VO`, `src/DROID-SLAM`,
-  `third_party/Pangolin`) are now excluded from this repo; clone them
-  separately per `docs/setup.md`. The two patched forks live at
-  [kubojion/ORB_SLAM3](https://github.com/kubojion/ORB_SLAM3) and
-  [kubojion/MAC-VO](https://github.com/kubojion/MAC-VO) on branch
-  `vslam-benchmark-patches`.
