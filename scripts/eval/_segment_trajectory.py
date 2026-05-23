@@ -8,7 +8,7 @@ invariant. A sample belongs to a TURN if EITHER:
       window exceeds straight_tol_m.
 Otherwise it is a ROW.
 
-Defaults follow the user's intuition: 2 m window, 20 cm tolerance, 10° heading
+Defaults follow the user's intuition: 2 m window, 50 cm tolerance, 10° heading
 cap. After per-sample classification, contiguous samples are merged into
 segments and any segment shorter than min_seg_path_m metres is absorbed into
 its neighbour to remove noise spikes.
@@ -17,7 +17,7 @@ Output CSV: t_start, t_end, type, n_frames, duration_s, path_m
 
 Usage:
     python3 _segment_trajectory.py <gt_tum.txt> <out.csv>
-        [--win_path_m 2.0] [--yaw_thresh_deg 10] [--straight_tol_m 0.20]
+        [--win_path_m 2.0] [--yaw_thresh_deg 10] [--straight_tol_m 0.50]
         [--min_seg_path_m 1.0]
 """
 import sys
@@ -136,7 +136,7 @@ def main():
     ap.add_argument("out_csv")
     ap.add_argument("--win_path_m",     type=float, default=2.0)
     ap.add_argument("--yaw_thresh_deg", type=float, default=10.0)
-    ap.add_argument("--straight_tol_m", type=float, default=0.20)
+    ap.add_argument("--straight_tol_m", type=float, default=0.50)
     ap.add_argument("--min_seg_path_m", type=float, default=1.0)
     args = ap.parse_args()
 

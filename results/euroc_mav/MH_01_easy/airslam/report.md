@@ -19,19 +19,6 @@
 
 ## Accuracy Metrics
 
-> **Alignment.** Two ATE numbers are reported:
-> * **Sim(3)** — a 7-DoF similarity transform (rotation, translation, scale)
->   is fitted between estimated and GT trajectories. This is the standard
->   accuracy figure used in most SLAM papers and lets any residual scale
->   drift be reported separately as `scale_factor`. Required for monocular VO.
-> * **SE(3)** — 6-DoF alignment with **no scale correction**. For stereo/RGB-D
->   the scale is metric (recovered from the baseline) so this is the more
->   honest accuracy number; it does not hide scale drift in the alignment.
-> The `scale_factor` row below quantifies the Sim(3) correction: values
-> further from 1.0 indicate larger residual scale drift in the estimate.
-> RPE is computed in `point_distance` mode (world-frame Euclidean distance
-> between relative position vectors) at 1 m windows; this avoids body-frame
-> quaternion convention mismatches between SLAM systems.
 > Single run.
 
 | Metric | Value |
@@ -74,7 +61,7 @@
 |---|---|
 | Wall-clock runtime [s] | 240.2 |
 | Mean FPS | 15.33 |
-| Real-time factor (input 20 fps) | 0.766 |
+| Real-time factor (input 10 fps) | 1.533 |
 | CPU mean [%] | 13.8 |
 | CPU peak [%] | 40.7 |
 | RAM mean [MiB] | 16622 |
@@ -85,17 +72,11 @@
 
 ---
 
-## Agricultural Segment Metrics (Auto-segmented)
-
-> Segments are detected automatically by `_segment_trajectory.py` from
-> the GT using a sliding window of **2 m of path length**. For this dataset,
-> row/turn split is disabled and segment ATE is reported as a single
-> combined class. ATE RMSE for each segment uses an independent Sim(3)
-> alignment.
+## Agricultural Segment Metrics
 
 | Segment type | Mean ATE RMSE [m] ± std (across runs) | N segments | Avg duration [s] | N runs with data |
 |---|---|---|---|---|
-| all | 0.0132 | 15 | 11.7 | 1/1 |
+| all | 0.0122 | 17 | 10.3 | 1/1 |
 
 ---
 

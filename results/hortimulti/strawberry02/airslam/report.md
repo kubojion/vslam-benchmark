@@ -19,19 +19,6 @@
 
 ## Accuracy Metrics
 
-> **Alignment.** Two ATE numbers are reported:
-> * **Sim(3)** — a 7-DoF similarity transform (rotation, translation, scale)
->   is fitted between estimated and GT trajectories. This is the standard
->   accuracy figure used in most SLAM papers and lets any residual scale
->   drift be reported separately as `scale_factor`. Required for monocular VO.
-> * **SE(3)** — 6-DoF alignment with **no scale correction**. For stereo/RGB-D
->   the scale is metric (recovered from the baseline) so this is the more
->   honest accuracy number; it does not hide scale drift in the alignment.
-> The `scale_factor` row below quantifies the Sim(3) correction: values
-> further from 1.0 indicate larger residual scale drift in the estimate.
-> RPE is computed in `point_distance` mode (world-frame Euclidean distance
-> between relative position vectors) at 1 m windows; this avoids body-frame
-> quaternion convention mismatches between SLAM systems.
 > Mean ± std across 3 runs.
 
 | Metric | Value |
@@ -85,25 +72,12 @@
 
 ---
 
-## Agricultural Segment Metrics (Auto-segmented)
-
-> Segments are detected automatically by `_segment_trajectory.py` from
-> the GT using a sliding window of **2 m of path length**. A window is
-> labelled **row** when the cumulative heading change is < 10° *and* the
-> maximum perpendicular deviation from the straight chord is < 0.20 m;
-> otherwise it is a **turn**. Sub-1 m segments are absorbed into their
-> neighbour. ATE RMSE for each segment uses an independent Sim(3) alignment.
+## Agricultural Segment Metrics
 
 | Segment type | Mean ATE RMSE [m] ± std (across runs) | N segments | Avg duration [s] | N runs with data |
 |---|---|---|---|---|
-| row | 0.3977 ± 0.0060 | 15 | 54.7 | 3/3 |
-| turn | 0.1163 ± 0.0004 | 7 | 15.5 | 3/3 |
-
-> **Segment ATE note (Turn ATE < Row ATE):**  
-> Row segments average **54.7 s**; turn segments average **15.5 s**.  
-> Shorter segments accumulate less dead-reckoning drift and the per-segment
-> Sim3 alignment fits them more tightly → lower absolute error.
-> This is expected behaviour and does **not** imply turns are geometrically easier.
+| row | 0.3992 ± 0.0060 | 15 | 54.8 | 3/3 |
+| turn | 0.1205 ± 0.0004 | 7 | 17.2 | 3/3 |
 
 ---
 

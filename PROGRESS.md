@@ -5,29 +5,29 @@ Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybr
 ---
 
 
-| Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | Frames | Completion | Runs |
-|---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | Rosario v2 | seq1 | **1.176 ± 0.317 m** | **1.59 m** | 1.022 | 13 821 | 100% | **3** ✓ |
-| DROID-SLAM | Rosario v2 | seq1 | 45.00 m | 45.09 m | 1.221 | 6 911 | 100% (stride=2) | 1 |
-| MAC-VO | Rosario v2 | seq1 | **13.520 ± 0.007 m** | **13.552 ± 0.007 m** | 0.980 | 13 821 | 100% | **3** ✓ |
-| Basalt | Rosario v2 | seq1 | **14.279 ± 0.302 m** | **18.693 ± 0.586 m** | 0.791 | 13 821 | 100% | **3** ✓ |
-| AirSLAM | Rosario v2 | seq1 | **9.888 ± 0.059 m** | **9.891 ± 0.058 m** | 1.005 | 13 821 | 100% | **3** ✓ |
-| ORB-SLAM3 | Rosario v2 | seq5 | **20.207 ± 4.204 m** | **20.85 m** | 0.904 | 11 640 | 91% avg (0 loops) | **3** ✓ |
-| DROID-SLAM | Rosario v2 | seq5 | 50.13 m | 197.84 m | 0.046 | 11 640 | 100% | 1 |
-| MAC-VO | Rosario v2 | seq5 | 19.381 m | 19.671 m | 0.933 | 11 640 | 100% | 1 |
-| Basalt | Rosario v2 | seq5 | **15.035 ± 0.062 m** | **15.425 ± 0.068 m** | 0.934 | 11 640 | 100% | **3** ✓ |
-| AirSLAM | Rosario v2 | seq5 | **12.722 ± 0.991 m** | **12.777 ± 1.014 m** | 0.977 | 11 640 | 100% | **3** ✓ |
-| ORB-SLAM3 | HortiMulti | Strawberry-02 | **0.893 ± 0.139 m** | **2.10 ± 0.10 m** | 1.040 | 4 186–4 980 / 9 530 | 44–52%† | **3** ✓ |
-| DROID-SLAM | HortiMulti | Strawberry-02 | 44.91 m | 44.96 m | 1.103 | 4 765 | 100% (stride=2) | 1 |
-| MAC-VO | HortiMulti | Strawberry-02 | **10.231 ± 0.502 m** | **10.245 ± 0.496 m** | 1.009 | 9 530 | 100% | **3** ✓ |
-| Basalt | HortiMulti | Strawberry-02 | **2.0978 ± 0.0008 m** | **2.664 ± 0.001 m** | 1.034 | 9 530 | 100% | **3** ✓ |
-| AirSLAM | HortiMulti | Strawberry-02 | **20.220 ± 0.824 m** | **20.483 ± 0.893 m** | 0.928 | 9 530 | 100% | **3** ✓ |
-| ORB-SLAM3 | HortiMulti | Strawberry-03 | **0.1039 ± 0.0013 m** | **0.78 m** | 1.043 | 2 425 | 100% | **3** ✓ |
-| MAC-VO | HortiMulti | Strawberry-03 | **0.505 ± 0.010 m** | **0.84 m** | 1.037 | 2 425 | 100% | **3** ✓ |
-| Basalt | HortiMulti | Strawberry-03 | **0.2753 ± 0.0000 m** | **0.7151 m** | 1.036 | 2 425 | 100% | **3** ✓ |
-| AirSLAM | HortiMulti | Strawberry-03 | **3.631 ± 0.205 m** | **3.771 ± 0.191 m** | 1.064 | 2 425 | 100% | **3** ✓ |
+| Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale (Sim3) | RPE [m/m] | FPS | Frames | Completion | Runs |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ORB-SLAM3 | Rosario v2 | seq1 | **1.176 ± 0.317 m** | **1.59 m** | 1.022 | 0.115 ± 0.104 | 12.53 ± 0.14 | 13 821 | 100% | **3** ✓ |
+| DROID-SLAM | Rosario v2 | seq1 | 45.00 m | 45.09 m | 1.221 | 0.821 | 15.15 | 6 911 | 100% (stride=2) | 1 |
+| MAC-VO | Rosario v2 | seq1 | **13.520 ± 0.007 m** | **13.552 ± 0.007 m** | 0.980 | 0.051 | 1.71 ± 0.08 | 13 821 | 100% | **3** ✓ |
+| Basalt | Rosario v2 | seq1 | **14.279 ± 0.302 m** | **18.693 ± 0.586 m** | 0.791 | 1.645 ± 0.040 | 59.44 ± 3.61 | 13 821 | 100% | **3** ✓ |
+| AirSLAM | Rosario v2 | seq1 | **9.888 ± 0.059 m** | **9.891 ± 0.058 m** | 1.005 | 0.034 | 23.04 ± 3.61 | 13 821 | 100% | **3** ✓ |
+| ORB-SLAM3 | Rosario v2 | seq5 | **20.207 ± 4.204 m** | **20.85 m** | 0.904 | 0.140 ± 0.062 | 11.28 ± 1.56 | 11 640 | 91% avg (0 loops) | **3** ✓ |
+| DROID-SLAM | Rosario v2 | seq5 | 50.13 m | 197.84 m | 0.046 | 13.208 | - | 11 640 | 100% | 1 |
+| MAC-VO | Rosario v2 | seq5 | 19.381 m | 19.671 m | 0.933 | 0.096 | 1.43 | 11 640 | 100% | 1 |
+| Basalt | Rosario v2 | seq5 | **15.035 ± 0.062 m** | **15.425 ± 0.068 m** | 0.934 | 0.802 | 64.60 ± 2.30 | 11 640 | 100% | **3** ✓ |
+| AirSLAM | Rosario v2 | seq5 | **12.722 ± 0.991 m** | **12.777 ± 1.014 m** | 0.977 | 0.055 ± 0.006 | 23.74 ± 0.48 | 11 640 | 100% | **3** ✓ |
+| ORB-SLAM3 | HortiMulti | Strawberry-02 | **0.893 ± 0.139 m** | **2.10 ± 0.10 m** | 1.040 | 0.072 | 4.51 ± 0.33 | 4 186–4 980 / 9 530 | 44–52%† | **3** ✓ |
+| DROID-SLAM | HortiMulti | Strawberry-02 | 44.91 m | 44.96 m | 1.103 | 2.835 | 14.89 | 4 765 | 100% (stride=2) | 1 |
+| MAC-VO | HortiMulti | Strawberry-02 | **10.231 ± 0.502 m** | **10.245 ± 0.496 m** | 1.009 | 0.096 ± 0.001 | 1.70 ± 0.04 | 9 530 | 100% | **3** ✓ |
+| Basalt | HortiMulti | Strawberry-02 | **2.0978 ± 0.0008 m** | **2.664 ± 0.001 m** | 1.034 | 0.091 | 149.70 ± 4.01 | 9 530 | 100% | **3** ✓ |
+| AirSLAM | HortiMulti | Strawberry-02 | **20.220 ± 0.824 m** | **20.483 ± 0.893 m** | 0.928 | 0.266 ± 0.015 | 27.37 ± 0.32 | 9 530 | 100% | **3** ✓ |
+| ORB-SLAM3 | HortiMulti | Strawberry-03 | **0.1039 ± 0.0013 m** | **0.78 m** | 1.043 | 0.023 ± 0.001 | 9.39 ± 0.05 | 2 425 | 100% | **3** ✓ |
+| MAC-VO | HortiMulti | Strawberry-03 | **0.505 ± 0.010 m** | **0.84 m** | 1.037 | 0.024 ± 0.001 | 1.54 ± 0.07 | 2 425 | 100% | **3** ✓ |
+| Basalt | HortiMulti | Strawberry-03 | **0.2753 ± 0.0000 m** | **0.7151 m** | 1.036 | 0.022 | 143.65 ± 24.16 | 2 425 | 100% | **3** ✓ |
+| AirSLAM | HortiMulti | Strawberry-03 | **3.631 ± 0.205 m** | **3.771 ± 0.191 m** | 1.064 | 0.135 ± 0.005 | 22.07 ± 10.06 | 2 425 | 100% | **3** ✓ |
 
-### [NON-AGRICULTURAL REFERENCE] EuRoC-MAV 
+### [Non-agricultural] EuRoC-MAV 
 
 | Sequence | Algorithm | ATE Sim3 [m] | ATE SE3 [m] | RPE [m/m] | Scale | FPS | Frames |
 |---|---|---|---|---|---|---|---|

@@ -267,19 +267,6 @@ def main():
         "",
         "## Accuracy Metrics",
         "",
-        f"> **Alignment.** Two ATE numbers are reported:",
-        f"> * **Sim(3)** — a 7-DoF similarity transform (rotation, translation, scale)",
-        f">   is fitted between estimated and GT trajectories. This is the standard",
-        f">   accuracy figure used in most SLAM papers and lets any residual scale",
-        f">   drift be reported separately as `scale_factor`. Required for monocular VO.",
-        f"> * **SE(3)** — 6-DoF alignment with **no scale correction**. For stereo/RGB-D",
-        f">   the scale is metric (recovered from the baseline) so this is the more",
-        f">   honest accuracy number; it does not hide scale drift in the alignment.",
-        f"> The `scale_factor` row below quantifies the Sim(3) correction: values",
-        f"> further from 1.0 indicate larger residual scale drift in the estimate.",
-        f"> RPE is computed in `point_distance` mode (world-frame Euclidean distance",
-        f"> between relative position vectors) at 1 m windows; this avoids body-frame",
-        f"> quaternion convention mismatches between SLAM systems.",
         f"> {'Mean ± std across ' + str(n) + ' runs.' if n > 1 else 'Single run.'}",
         "",
         "| Metric | Value |",
@@ -354,28 +341,9 @@ def main():
             "",
             "---",
             "",
-            "## Agricultural Segment Metrics (Auto-segmented)",
+            "## Agricultural Segment Metrics",
             "",
         ]
-        if "row" in agri_types or "turn" in agri_types:
-            lines += [
-                "> Segments are detected automatically by `_segment_trajectory.py` from",
-                "> the GT using a sliding window of **2 m of path length**. A window is",
-                "> labelled **row** when the cumulative heading change is < 10° *and* the",
-                "> maximum perpendicular deviation from the straight chord is < 0.20 m;",
-                "> otherwise it is a **turn**. Sub-1 m segments are absorbed into their",
-                "> neighbour. ATE RMSE for each segment uses an independent Sim(3) alignment.",
-                "",
-            ]
-        else:
-            lines += [
-                "> Segments are detected automatically by `_segment_trajectory.py` from",
-                "> the GT using a sliding window of **2 m of path length**. For this dataset,",
-                "> row/turn split is disabled and segment ATE is reported as a single",
-                "> combined class. ATE RMSE for each segment uses an independent Sim(3)",
-                "> alignment.",
-                "",
-            ]
         lines += [
             "| Segment type | Mean ATE RMSE [m] ± std (across runs) | N segments | Avg duration [s] | N runs with data |",
             "|---|---|---|---|---|",
@@ -396,28 +364,6 @@ def main():
                 f"| {avg_dur_str} "
                 f"| {n_data}/{n} |"
             )
-
-        # Explanation of row vs turn ATE difference
-        if "row" in agri_types and "turn" in agri_types:
-            row_vals = [r["agri_segments"].get("row", {}).get("ate_rmse_mean")
-                        for r in runs if "row" in r.get("agri_segments", {})]
-            turn_vals = [r["agri_segments"].get("turn", {}).get("ate_rmse_mean")
-                         for r in runs if "turn" in r.get("agri_segments", {})]
-            row_ate = safe_mean(row_vals)
-            turn_ate = safe_mean(turn_vals)
-            row_dur = safe_mean(agri_avg_dur.get("row", []))
-            turn_dur = safe_mean(agri_avg_dur.get("turn", []))
-            if row_ate is not None and turn_ate is not None and row_dur and turn_dur:
-                direction = "Turn ATE < Row ATE" if turn_ate < row_ate else "Row ATE ≤ Turn ATE"
-                lines += [
-                    "",
-                    f"> **Segment ATE note ({direction}):**  ",
-                    f"> Row segments average **{fmt(row_dur, 1)} s**; "
-                    f"turn segments average **{fmt(turn_dur, 1)} s**.  ",
-                    "> Shorter segments accumulate less dead-reckoning drift and the per-segment",
-                    "> Sim3 alignment fits them more tightly → lower absolute error.",
-                    "> This is expected behaviour and does **not** imply turns are geometrically easier.",
-                ]
 
     lines += [
         "",
