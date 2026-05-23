@@ -68,9 +68,9 @@ def load_data(ws: Path):
     for (algo, ds, seq), rs in grouped.items():
         sims = [float(r["ate_sim3_rmse_m"]) for r in rs]
         se3s = [float(r["ate_se3_rmse_m"]) for r in rs]
-        fpss = [float(r["fps"]) for r in rs if float(r["fps"]) > 0]
+        fpss = [float(r["fps"]) for r in rs if float(r.get("fps") or 0) > 0]
         scales = [float(r["scale_factor"]) for r in rs]
-        tracks = [float(r["frames"]) / max(float(r["frames"]), 1) * 100 for r in rs]
+        tracks = [float(r.get("track_pct") or 100.0) for r in rs]
         # Use frames_tracked % from a rough measure: just use ate as proxy
         data[algo][ds][seq] = {
             "ate_sim3":  float(np.mean(sims)),
