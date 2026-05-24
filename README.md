@@ -66,7 +66,7 @@ See [PROGRESS.md](PROGRESS.md) for the full table; representative numbers:
 | ORB-SLAM3 | Rosario v2 | seq5 | 20.21 ± 4.20 m | 3 |
 | ORB-SLAM3 | HortiMulti | strawberry02 | 0.893 ± 0.139 m | 3 |
 | ORB-SLAM3 | HortiMulti | strawberry03 | **0.104 ± 0.001 m** | 3 |
-| DROID-SLAM | Rosario v2 | seq1 | 45.00 m | 1 |
+| DROID-SLAM | Rosario v2 | seq1 | 45.37 m | 3 |
 | DROID-SLAM | Rosario v2 | seq5 | 50.02 m | 3 |
 | DROID-SLAM | HortiMulti | strawberry02 | 38.92 m | 3 |
 | DROID-SLAM | HortiMulti | strawberry03 | 18.76 m | 3 |

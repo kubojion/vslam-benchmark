@@ -8,7 +8,7 @@ Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybr
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale (Sim3) | RPE [m/m] | FPS | Frames | Completion | Runs |
 |---|---|---|---|---|---|---|---|---|---|---|
 | ORB-SLAM3 | Rosario v2 | seq1 | **1.176 ± 0.317 m** | **1.59 m** | 1.022 | 0.115 ± 0.104 | 12.53 ± 0.14 | 13 821 | 100% | **3** ✓ |
-| DROID-SLAM | Rosario v2 | seq1 | 45.00 m | 45.09 m | 1.221 | 0.821 | 15.15 | 6 911 | 100% (stride=2) | 1 |
+| DROID-SLAM | Rosario v2 | seq1 | 45.37 m | 45.37 m | 0.970 | 0.724 | 17.44 ± 0.21 | 13 821 | 100% | **3** ✓ |
 | MAC-VO | Rosario v2 | seq1 | **13.520 ± 0.007 m** | **13.552 ± 0.007 m** | 0.980 | 0.051 | 1.71 ± 0.08 | 13 821 | 100% | **3** ✓ |
 | Basalt | Rosario v2 | seq1 | **14.279 ± 0.302 m** | **18.693 ± 0.586 m** | 0.791 | 1.645 ± 0.040 | 59.44 ± 3.61 | 13 821 | 100% | **3** ✓ |
 | AirSLAM | Rosario v2 | seq1 | **9.888 ± 0.059 m** | **9.891 ± 0.058 m** | 1.005 | 0.034 | 23.04 ± 3.61 | 13 821 | 100% | **3** ✓ |
@@ -127,7 +127,7 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 | Algorithm | ATE RMSE Sim3 | Frames | Completion | Runs |
 |---|---|---|---|---|
 | ORB-SLAM3 | **1.176 ± 0.317 m** | 13 821 | 100% | **3** ✓ |
-| DROID-SLAM | 45.00 m | 6 911 | 100% (stride=2) | 1 |
+| DROID-SLAM | **45.37 ± 0.000 m** | 13 821 | 100% | **3** ✓ |
 | MAC-VO | **13.520 ± 0.007 m** | 13 821 | 100% | **3** ✓ |
 | Basalt | **14.279 ± 0.302 m** | 13 821 | 100% | **3** ✓ |
 | AirSLAM | **9.888 ± 0.059 m** | 13 821 | 100% | **3** ✓ |
@@ -196,6 +196,34 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 > (1.05% of path length). Comparable to MAC-VO (13.5 m) and Basalt (14.3 m).
 > Individual runs: run1=9.958 m (17.98 fps), run2=9.814 m (24.98 fps), run3=9.893 m (26.17 fps).
 > High wall-time variance (run1=769s vs run2+3≈540s) due to TRT engine compilation on run1.
+
+#### DROID-SLAM × 3 - Sequence 1 complete
+
+> Full report: `results/rosariov2/sequence1/droidslam/report.md`
+
+| Metric | Value (3 runs, mean ± std) |
+|---|---|
+| ATE RMSE Sim3 | **45.369 ± 0.000 m** |
+| ATE RMSE SE3 | **45.371 ± 0.000 m** |
+| RPE (point\_distance, 1 m) | 0.724 ± 0.005 m/m |
+| Scale factor (Sim3) | 0.970 ± 0.000 (**3.0% under-scale**) |
+| Frames tracked | 100% (13 821 / 13 821, all 3 runs) |
+| Loop closures | 0 (all 3 runs) |
+| Mean FPS | 17.44 ± 0.21 (1.16x real-time @ 15 fps) |
+| VRAM peak | ~11.9 GiB |
+| Row ATE RMSE (18 segs) | 7.90 m |
+| Turn ATE RMSE (5 segs) | 0.44 m |
+
+> **Method:** run with `--filter_thresh 6.0` (the lowest value that fits in VRAM) and `--stride 1`
+> (all frames). `filter_thresh` controls the minimum optical-flow confidence required to retain a
+> frame in the DROID bundle adjustment window. A lower threshold keeps more frames but uses more VRAM;
+> 6.0 was the minimum feasible value on this hardware without OOM.
+>
+> Despite full-frame coverage (vs the earlier stride=2 test at 50% coverage) the global ATE barely
+> changed (45.37 m vs 45.00 m). Scale improved significantly (0.970 vs 1.221), but ATE remained
+> ~45 m because scale is only 3% off - the error is dominated by trajectory shape divergence, not
+> scale. This is a domain-mismatch failure: DROID-SLAM's optical flow network was never trained
+> on outdoor crop-row imagery and cannot track reliably across the long open-field sections.
 
 #### AirSLAM × 3 - Sequence 5 complete ✓
 
@@ -275,8 +303,10 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 ### Rosario v2 observations (updated with 3-run benchmarks)
 - ORB-SLAM3 seq1: 1.176 m - 5-6 loop closures enable global correction → low drift
+- DROID-SLAM seq1: 45.37 m (3 runs, scale=0.970, filter_thresh=6.0) - domain-mismatch failure, ~45 m both with stride=2 and stride=1
+- DROID-SLAM seq5: 50.02 m (3 runs, scale=1.904) - same failure mode, slightly worse
 - ORB-SLAM3 seq5: 20.207 m - 0 loop closures, long straight rows → uncorrected scale drift
-- DROID-SLAM consistently very poor (~50 m both seqs)
+- DROID-SLAM consistently very poor (~45-50 m both seqs); full-frame run (filter_thresh=6.0) confirms it is a domain-mismatch failure, not a sampling issue
 - MAC-VO seq1: 13.520 ± 0.007 m (3 runs) - no loop closure, scale drift 2%; local row ATE 0.020 m
 - MAC-VO seq5: 19.384 ± 0.006 m (3 runs) - no loop closure, scale drift 6.7%; local row ATE 0.045 m
 - Basalt seq1: 14.279 ± 0.302 m (3 runs) - scale drift 20.9%; local row ATE 14 mm (matches ORB-SLAM3)

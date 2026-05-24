@@ -22,6 +22,10 @@ unset NVCC_PREPEND_FLAGS
 # Reduce CUDA allocator fragmentation: lets PyTorch reuse reserved-but-unallocated
 # blocks instead of requesting new ones (fixes OOM when 1.7 GiB is reserved-idle).
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+# Key VRAM tuning parameter: --filter_thresh controls the minimum optical-flow
+# confidence to keep a frame in the bundle adjustment window. Lower = more frames
+# retained = higher VRAM. 6.0 is empirically the lowest value that fits without
+# OOM on long sequences (Rosario ~940 m / HortiMulti ~950 m). Reduce if OOM.
 
 cd "$WS/src/DROID-SLAM"
 python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &

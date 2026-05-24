@@ -1,5 +1,5 @@
 {
-  "run": "1",
+  "run": "2",
   "algo": "droidslam",
   "dataset": "rosariov2",
   "seq": "sequence1",
@@ -50,17 +50,17 @@
     "track_pct": 100.0
   },
   "runtime": {
-    "vram_mean_mib": 10720.8,
-    "vram_peak_mib": 11868.0,
-    "gpu_mean_pct": 39.1,
+    "vram_mean_mib": 10715.3,
+    "vram_peak_mib": 11870.0,
+    "gpu_mean_pct": 39.4,
     "gpu_peak_pct": 99.0,
     "cpu_mean_pct": 0.0,
     "cpu_peak_pct": 0.0,
-    "ram_mean_mib": 11842.3,
-    "ram_peak_mib": 12033.0,
-    "wall_s": 787.5,
-    "fps": 17.551,
-    "fps_raw": 17.551
+    "ram_mean_mib": 11719.5,
+    "ram_peak_mib": 12069.0,
+    "wall_s": 785.57,
+    "fps": 17.594,
+    "fps_raw": 17.594
   },
   "agri_segments": {
     "row": {
