@@ -14,7 +14,7 @@ Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybr
 | AirSLAM | Rosario v2 | seq1 | **9.888 ± 0.059 m** | **9.891 ± 0.058 m** | 1.005 | 0.034 | 23.04 ± 3.61 | 13 821 | 100% | **3** ✓ |
 | ORB-SLAM3 | Rosario v2 | seq5 | **20.207 ± 4.204 m** | **20.85 m** | 0.904 | 0.140 ± 0.062 | 11.28 ± 1.56 | 11 640 | 91% avg (0 loops) | **3** ✓ |
 | DROID-SLAM | Rosario v2 | seq5 | 50.02 m | 50.24 m | 1.904 | 1.076 | 23.36 ± 0.25 | 11 640 | 100% | **3** ✓ |
-| MAC-VO | Rosario v2 | seq5 | 19.381 m | 19.671 m | 0.933 | 0.096 | 1.43 | 11 640 | 100% | 1 |
+| MAC-VO | Rosario v2 | seq5 | **19.384 ± 0.006 m** | **19.674 m** | 0.933 | 0.096 ± 0.000 | 1.40 ± 0.21 | 11 640 | 100% | **3** ✓ |
 | Basalt | Rosario v2 | seq5 | **15.035 ± 0.062 m** | **15.425 ± 0.068 m** | 0.934 | 0.802 | 64.60 ± 2.30 | 11 640 | 100% | **3** ✓ |
 | AirSLAM | Rosario v2 | seq5 | **12.722 ± 0.991 m** | **12.777 ± 1.014 m** | 0.977 | 0.055 ± 0.006 | 23.74 ± 0.48 | 11 640 | 100% | **3** ✓ |
 | ORB-SLAM3 | HortiMulti | Strawberry-02 | **0.893 ± 0.139 m** | **2.10 ± 0.10 m** | 1.040 | 0.072 | 4.51 ± 0.33 | 4 186–4 980 / 9 530 | 44–52%† | **3** ✓ |
@@ -36,14 +36,17 @@ Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybr
 | MH_01_easy | Basalt | 0.0567 | 0.0873 | 0.0085 | 1.0156 | 176.75 | 3682 |
 | MH_01_easy | AirSLAM | 0.1107 | 0.1156 | 0.0195 | 1.0073 | 15.33 | 3682 |
 | MH_01_easy | MAC-VO | 0.1981 | 0.1993 | 0.0295 | 1.0051 | 1.29 | 3682 |
+| MH_01_easy | DROID-SLAM | 4.083 | 7.891 | 0.500 | 0.173 | 13.17 | 3682 |
 | MH_03_medium | ORB-SLAM3 | 0.0437 | 0.0520 | 0.0179 | 0.9922 | 17.89 | 2700 |
 | MH_03_medium | Basalt | 0.1372 | 0.1397 | 0.0159 | 1.0075 | 113.47 | 2700 |
 | MH_03_medium | AirSLAM | 0.1431 | 0.1443 | 0.0188 | 0.9950 | 31.73 | 2700 |
 | MH_03_medium | MAC-VO | 0.3403 | 0.3405 | 0.0187 | 0.9961 | 1.15 | 2700 |
+| MH_03_medium | DROID-SLAM | 3.523 | 7.105 | 2.274 | 0.082 | 10.94 | 2700 |
 | MH_05_difficult | ORB-SLAM3 | 0.0720 | 0.0781 | 0.2282 | 0.9956 | 17.97 | 2273 |
 | MH_05_difficult | Basalt | 0.1816 | 0.1931 | 0.0870 | 1.0097 | 108.72 | 2273 |
 | MH_05_difficult | AirSLAM | 0.2968 | 0.3066 | 0.0256 | 1.0116 | 34.92 | 2273 |
 | MH_05_difficult | MAC-VO | 0.4697 | 0.4836 | 0.0276 | 1.0172 | 0.86 | 2273 |
+| MH_05_difficult | DROID-SLAM | 6.594 | 8.514 | 0.786 | 0.248 | 13.85 | 2273 |
 
 † ORB-SLAM3 processed all 9 530 input frames but tracking only succeeded for frames
 spanning 91 s – 500 s of the 952 s sequence.  Tracking was permanently lost after 500 s
@@ -246,12 +249,10 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 | Algorithm | ATE RMSE | Frames | Completion | Runs |
 |---|---|---|---|---|
 | ORB-SLAM3 | **20.207 ± 4.204 m** | 11 640 | 91% avg | **3** ✓ |
-| DROID-SLAM | **50.13 m** | 11 640 | 100% (external‡) | 1 |
-| MAC-VO | **19.381 m** | 11 640 | 100% | 1 |
+| DROID-SLAM | **50.02 m** | 11 640 | 100% | **3** ✓ |
+| MAC-VO | **19.384 ± 0.006 m** | 11 640 | 100% | **3** ✓ |
 | Basalt | **15.035 ± 0.062 m** | 11 640 | 100% | **3** ✓ |
 | AirSLAM | **12.722 ± 0.991 m** | 11 640 | 100% | **3** ✓ |
-
-‡ Timestamps were in nanoseconds - converted to seconds before evaluation.
 
 #### Basalt × 3 - Sequence 5 complete
 
@@ -277,9 +278,9 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 ### Rosario v2 observations (updated with 3-run benchmarks)
 - ORB-SLAM3 seq1: 1.176 m - 5-6 loop closures enable global correction → low drift
 - ORB-SLAM3 seq5: 20.207 m - 0 loop closures, long straight rows → uncorrected scale drift
-- DROID-SLAM consistently very poor (~45 m both seqs)
+- DROID-SLAM consistently very poor (~50 m both seqs)
 - MAC-VO seq1: 13.520 ± 0.007 m (3 runs) - no loop closure, scale drift 2%; local row ATE 0.020 m
-- MAC-VO seq5: 19.381 m (1 run, run2+3 pending)
+- MAC-VO seq5: 19.384 ± 0.006 m (3 runs) - no loop closure, scale drift 6.7%; local row ATE 0.045 m
 - Basalt seq1: 14.279 ± 0.302 m (3 runs) - scale drift 20.9%; local row ATE 14 mm (matches ORB-SLAM3)
 - Basalt seq5: 15.035 ± 0.062 m (3 runs) - scale drift 6.6%; better than seq1 due to route geometry
 - AirSLAM seq1: **DONE** (9.888 ± 0.059 m Sim3, 100% tracking, scale=1.005, 23.04 fps)
@@ -325,7 +326,7 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 |---|---|---|---|---|
 | ORB-SLAM3 (old) | 0.866 m | 4 105 / 9 530 | 43% of timeline | 1 |
 | **ORB-SLAM3 × 3** | **0.893 ± 0.171 m** (SE3 2.10 ± 0.12) | 4 186-4 980 | 44-52% timeline | **3** ✓ |
-| DROID-SLAM | 44.91 m | 4 765 | 100% (stride=2) | 1 |
+| DROID-SLAM | **38.92 m** | 9 530 | 100% | **3** ✓ |
 | MAC-VO | **10.231 ± 0.502 m** | 9 530 | 100% | **3** ✓ |
 | Basalt | **2.0978 ± 0.0008 m** | 9 530 | 100% | **3** ✓ |
 | AirSLAM | **20.220 ± 0.824 m** | 9 530 | **100%** | **3** ✓ |
@@ -500,7 +501,7 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 - ORB-SLAM3 best global accuracy on str03 (0.10 m Sim3); tracking lost on str02 after 44-52% of timeline (repetitive polytunnel)
 - MAC-VO 100% completion on both sequences; ATE 10 m on str02 (long, ~953 s) vs 0.505 m on str03 (short, ~242 s) - drift scales with sequence length
-- DROID-SLAM: 44.91 m on str02 (fresh eval, previously reported as 41.91 m with old eval)
+- DROID-SLAM: **38.92 m** on str02 (3 runs, 9530 frames each; Sim3 ATE)
 - Basalt str03: 0.2753 ± 0.0000 m (3 runs, 143 fps, 100% tracking) - between ORB-SLAM3 and MAC-VO globally; local row ATE 27 mm matches ORB-SLAM3
 - Basalt str02: 2.0978 ± 0.0008 m (3 runs, 150 fps, 100% tracking) - completes full sequence vs ORB-SLAM3 44-52% coverage
 - AirSLAM str03: 3.6314 ± 0.2047 m (3 runs, 22 fps avg, 100% tracking) - highest global ATE on str03; 0 loop closures; local turn ATE 50 mm reasonable; run1 slow (TRT compile), run2+3 fast at 29 fps
@@ -510,23 +511,33 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 ## Dataset 3 - [NON-AGRICULTURAL REFERENCE] EuRoC-MAV
 
-> **[NON-AGRICULTURAL REFERENCE]** EuRoC-MAV MH_01_easy was run once per
-> algorithm (N=1, no stats) as a sanity check to confirm configs and the eval
-> pipeline produce results consistent with the published literature.
-> DROID-SLAM was not run (stereo-only check).
+> **[NON-AGRICULTURAL REFERENCE]** All 5 algorithms run on MH_01_easy,
+> MH_03_medium, and MH_05_difficult (N=1 per sequence, no repetition stats).
+> Used as a sanity check against published EuRoC literature values.
 
-**Sequence:** MH_01_easy - 752x480, 20 fps, 3682 stereo frames, baseline 0.110 m, indoor MAV flight.
+**Camera:** 752x480, 20 fps, baseline 0.110 m, indoor MAV flight.
 
-| Algorithm | ATE Sim3 [m] | ATE SE3 [m] | RPE [m/m] | Scale | FPS | Frames | Runs |
+| Sequence | Algorithm | ATE Sim3 [m] | ATE SE3 [m] | RPE [m/m] | Scale | FPS | Frames |
 |---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | **0.034** | **0.035** | 0.016 | 1.002 | 18.2 | 3682 / 3682 | 1 |
-| Basalt | 0.057 | 0.087 | 0.009 | 1.016 | 176.8 | 3682 / 3682 | 1 |
-| AirSLAM | 0.111 | 0.116 | 0.020 | 1.007 | 15.3 | 268 kf / 3682 input | 1 |
-| MAC-VO | 0.198 | 0.199 | 0.030 | 1.005 | 1.3 | 3682 / 3682 | 1 |
+| MH_01_easy | ORB-SLAM3 | **0.034** | **0.035** | 0.016 | 1.002 | 18.2 | 3682 |
+| MH_01_easy | Basalt | 0.057 | 0.087 | 0.009 | 1.016 | 176.8 | 3682 |
+| MH_01_easy | AirSLAM | 0.111 | 0.116 | 0.020 | 1.007 | 15.3 | 3682 |
+| MH_01_easy | MAC-VO | 0.198 | 0.199 | 0.030 | 1.005 | 1.3 | 3682 |
+| MH_01_easy | DROID-SLAM | 4.083 | 7.891 | 0.500 | 0.173 | 13.2 | 3682 |
+| MH_03_medium | ORB-SLAM3 | **0.044** | **0.052** | 0.018 | 0.992 | 17.9 | 2700 |
+| MH_03_medium | Basalt | 0.137 | 0.140 | 0.016 | 1.008 | 113.5 | 2700 |
+| MH_03_medium | AirSLAM | 0.143 | 0.144 | 0.019 | 0.995 | 31.7 | 2700 |
+| MH_03_medium | MAC-VO | 0.340 | 0.341 | 0.019 | 0.996 | 1.15 | 2700 |
+| MH_03_medium | DROID-SLAM | 3.523 | 7.105 | 2.274 | 0.082 | 10.9 | 2700 |
+| MH_05_difficult | ORB-SLAM3 | **0.072** | **0.078** | 0.228 | 0.996 | 18.0 | 2273 |
+| MH_05_difficult | Basalt | 0.182 | 0.193 | 0.087 | 1.010 | 108.7 | 2273 |
+| MH_05_difficult | AirSLAM | 0.297 | 0.307 | 0.026 | 1.012 | 34.9 | 2273 |
+| MH_05_difficult | MAC-VO | 0.470 | 0.484 | 0.028 | 1.017 | 0.86 | 2273 |
+| MH_05_difficult | DROID-SLAM | 6.594 | 8.514 | 0.786 | 0.248 | 13.8 | 2273 |
 
-> ORB-SLAM3 ATE 0.034 m matches published EuRoC results (~0.03-0.06 m on MH_01_easy).
-> Basalt achieves the highest throughput (177 fps, 17.7x real-time).
-> AirSLAM outputs keyframe-only poses (268 of 3682 input frames).
+> ORB-SLAM3 ATE 0.034-0.072 m matches published EuRoC results.
+> DROID-SLAM shows large scale error (scale 0.08-0.25) on all 3 sequences - mono-style drift on stereo input.
+> Basalt highest throughput (109-177 fps). AirSLAM outputs keyframe-only poses on MH_01_easy (268 of 3682).
 
 ### ORB-SLAM3 - MH_01_easy complete
 
@@ -578,6 +589,18 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 | FPS | 1.287 |
 
 > Segment maps generated at run-level, algo-level, and sequence-level under `results/euroc_mav/MH_01_easy/`.
+
+### DROID-SLAM - MH_01_easy, MH_03_medium, MH_05_difficult complete
+
+| Sequence | ATE Sim3 | ATE SE3 | RPE [m/m] | Scale | FPS | Frames |
+|---|---|---|---|---|---|---|
+| MH_01_easy | 4.083 m | 7.891 m | 0.500 | 0.173 | 13.17 | 3682 |
+| MH_03_medium | 3.523 m | 7.105 m | 2.274 | 0.082 | 10.94 | 2700 |
+| MH_05_difficult | 6.594 m | 8.514 m | 0.786 | 0.248 | 13.85 | 2273 |
+
+> Large scale error (scale 0.08-0.25) indicates DROID-SLAM produces monocular-style scale drift
+> even with stereo input on this dataset. SE3 ATE (7-9 m) is 15-20x worse than ORB-SLAM3.
+> Segment maps under `results/euroc_mav/MH_0*/droidslam/`.
 
 ---
 
@@ -631,7 +654,7 @@ conda run -n macvo python3 scripts/eval/_macvo_to_tum.py "$SBX" \
 
 ---
 
-*Last updated: 2025-05-23 - corrected DROID-SLAM SE3/scale values, MAC-VO SE3 corrections; added 3D segment maps and ATE-vs-FPS plot*
+*Last updated: 2026-05-24 - macvo seq5 3 runs complete; EuRoC DROID-SLAM added (all 3 sequences); all segment maps and plots regenerated*
 
 ---
 
