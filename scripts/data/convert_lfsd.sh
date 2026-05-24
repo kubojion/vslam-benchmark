@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# NOTE: DROPPED - LFSD was removed from scope. This script is kept for reference only.
 # Build associations.txt for ORB-SLAM3 RGB-D from an LFSD run.
 # Usage: scripts/convert_lfsd.sh datasets/lfsd/run_01
 set -euo pipefail

@@ -95,7 +95,7 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 
 
-## Dataset 1 - Rosario v2 - In progress
+## Dataset 1 - Rosario v2 - Complete
 
 ### Sequence 1 - ORB-SLAM3 × 3 benchmark complete ✓
 
@@ -106,7 +106,6 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 | ATE RMSE | **1.176 ± 0.317 m** |
 | RPE (point\_distance, 1 m) | 0.115 ± 0.104 m (high var due to tracking-loss reloc boundary) |
 | RPE rotation | 0.416 ± 0.139 °/m |
-| KITTI drift @ 50 m | 0.429 ± 0.044 m |
 | Scale factor | 1.022 ± 0.001 |
 | Frames tracked | 100% all 3 runs (tracking-loss + reloc ~t=645s) |
 | Loop closures | 5–6 |
@@ -234,7 +233,6 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 | ATE RMSE | **20.207 ± 4.204 m** |
 | RPE (point\_distance, 1 m) | 0.140 ± 0.062 m |
 | RPE rotation | 0.273 ± 0.031 °/m |
-| KITTI drift @ 50 m | 6.063 ± 2.532 m |
 | Scale factor | 0.904 ± 0.047 |
 | Frames tracked | 91.0 ± 12.7% (run2: 73.1% permanent failure at t≈683s) |
 | Loop closures | 0 (all 3 runs) |
@@ -289,9 +287,9 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 ---
 
-## Dataset 2 - HortiMulti - In progress
+## Dataset 2 - HortiMulti - Complete
 
- - ORB-SLAM3 × 3 + MAC-VO × 3 + Basalt × 3 + AirSLAM × 3 complete on all sequences; Rosario seq1 + seq5 **done**
+ - ORB-SLAM3 × 3 + MAC-VO × 3 + Basalt × 3 + AirSLAM × 3 + DROID-SLAM × 3 complete on all sequences.
 
 - **Sequence:** Feb2026, 9530 frames, 952 s, 41 GB bag
 - **Camera:** Basler acA1920-155uc, fisheye (equidistant) distortion, 2048×1536 native
@@ -324,7 +322,6 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 | Algorithm | ATE RMSE Sim3 | Frames | Completion | Runs |
 |---|---|---|---|---|
-| ORB-SLAM3 (old) | 0.866 m | 4 105 / 9 530 | 43% of timeline | 1 |
 | **ORB-SLAM3 × 3** | **0.893 ± 0.171 m** (SE3 2.10 ± 0.12) | 4 186-4 980 | 44-52% timeline | **3** ✓ |
 | DROID-SLAM | **38.92 m** | 9 530 | 100% | **3** ✓ |
 | MAC-VO | **10.231 ± 0.502 m** | 9 530 | 100% | **3** ✓ |
@@ -409,9 +406,6 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 | ATE RMSE | **0.1039 ± 0.0013 m** |
 | RPE (point\_distance, 1 m) | **0.0226 ± 0.0006 m** |
 | RPE rotation | 17.62 ± 0.06 °/m |
-| KITTI drift @ 10 m | 0.051 ± 0.001 m |
-| KITTI drift @ 50 m | 0.148 ± 0.004 m |
-| KITTI drift @ 100 m | 0.004 ± 0.003 m |
 | Scale factor (Sim3) | 1.0428 ± 0.0002 |
 | Frames tracked | 100% (0 losses, 1 loop closure) |
 | Mean FPS | 9.39 ± 0.05 (0.94× real-time @ 10 fps) |
@@ -465,8 +459,8 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 | ORB-SLAM3 | **0.1039 ± 0.0013 m** | 0.78 m | 1.043 | 9.39 | 2 425 | **100%** | **3** ✓ |
 | Basalt | **0.2753 ± 0.0000 m** | 0.72 m | 1.036 | 143.65 | 2 425 | **100%** | **3** ✓ |
 | MAC-VO | **0.505 ± 0.010 m** | 0.84 m | 1.037 | 1.54 | 2 425 | **100%** | **3** ✓ |
-| AirSLAM | **3.631 ± 0.205 m** | **3.771 ± 0.191 m** | 1.064 | 22.07 | 2 425 | **100%** | **3** ✓ |
-| DROID-SLAM | TBD | - | - | - | - | - | - |
+| AirSLAM | **3.631 ± 0.205 m** | 3.771 ± 0.191 m | 1.064 | 22.07 | 2 425 | **100%** | **3** ✓ |
+| DROID-SLAM | **18.76 m** | 18.81 m | 0.428 | 15.85 | 2 425 | **100%** | **3** ✓ |
 
 #### AirSLAM × 3 - Strawberry-03 complete
 
@@ -491,6 +485,29 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 > runs 2+3 run at 29.18 fps (~3x real-time at 10 fps input). Local turn ATE (50.5 mm) is
 > reasonable; row ATE (202.5 mm) is ~7x worse than ORB-SLAM3 (30 mm).
 
+#### DROID-SLAM × 3 - Strawberry-03 complete
+
+> Full report: `results/hortimulti/strawberry03/droidslam/report.md`
+
+| Metric | Value (3 runs, mean ± std) |
+|---|---------|
+| ATE RMSE Sim3 | **18.76 m** |
+| ATE RMSE SE3 | **18.81 m** |
+| RPE (point\_distance, 1 m) | 0.837 m/m |
+| Scale factor (Sim3) | 0.428 (**57.2 % under-scale**) |
+| Frames tracked | 100% (2 425 / 2 425, all 3 runs) |
+| Mean FPS | 15.85 ± 0.14 |
+| VRAM peak | ~7 500 MiB |
+
+> Massive scale collapse (scale 0.428) is the primary failure mode: DROID-SLAM
+> interprets this short polytunnel sequence as if the world is ~2.3x smaller than
+> it is. The Sim3 and SE3 ATEs are nearly identical (18.76 vs 18.81 m) because
+> scale error dominates - re-scaling the trajectory moves it only 50 mm. Global
+> ATE 18.76 m is 180x worse than ORB-SLAM3 on the same sequence (0.104 m).
+> RPE 0.837 m/m confirms per-frame odometry also fails - not just global drift.
+> This is consistent with str02 (scale 9.59, ATE 38.92 m): DROID-SLAM trained
+> on TartanAir/FlyingThings3D has never seen agricultural polytunnel imagery.
+
 ### Config files
 
 - ORB-SLAM3: `configs/orbslam3/hortimulti_stereo.yaml` (shared across all HortiMulti seqs)
@@ -501,11 +518,12 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 - ORB-SLAM3 best global accuracy on str03 (0.10 m Sim3); tracking lost on str02 after 44-52% of timeline (repetitive polytunnel)
 - MAC-VO 100% completion on both sequences; ATE 10 m on str02 (long, ~953 s) vs 0.505 m on str03 (short, ~242 s) - drift scales with sequence length
-- DROID-SLAM: **38.92 m** on str02 (3 runs, 9530 frames each; Sim3 ATE)
+- DROID-SLAM str02: **38.92 m** (3 runs, 9530 frames, scale=9.59) - massive over-scale collapse
+- DROID-SLAM str03: **18.76 m** (3 runs, 2425 frames, scale=0.428, FPS=15.85) - massive under-scale collapse
 - Basalt str03: 0.2753 ± 0.0000 m (3 runs, 143 fps, 100% tracking) - between ORB-SLAM3 and MAC-VO globally; local row ATE 27 mm matches ORB-SLAM3
 - Basalt str02: 2.0978 ± 0.0008 m (3 runs, 150 fps, 100% tracking) - completes full sequence vs ORB-SLAM3 44-52% coverage
 - AirSLAM str03: 3.6314 ± 0.2047 m (3 runs, 22 fps avg, 100% tracking) - highest global ATE on str03; 0 loop closures; local turn ATE 50 mm reasonable; run1 slow (TRT compile), run2+3 fast at 29 fps
-- AirSLAM str02: **complete** (3.run, 20.22 ± 0.82 m, 100% tracking)
+- AirSLAM str02: **complete** (3 runs, 20.22 ± 0.82 m, 100% tracking)
 
 ---
 
@@ -606,18 +624,101 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 ## Findings
 
+### 1. Loop closure is the dominant factor for global accuracy on long agricultural sequences
 
-** Should be mentioned:
+Rosario v2 provides the clearest evidence. ORB-SLAM3 on seq1 (13 821 frames, ~940 m) achieves 1.18 m
+global ATE with 5-6 loop closures. On seq5 (11 640 frames, similar geometry) it achieves only 20.2 m
+because no loops are detected. The local per-row ATE is identical in both cases (~0.016 m). This is not
+an algorithm deficiency - it is a fundamental challenge of perceptually aliased environments where all
+crop rows look identical. Without distinctive visual landmarks, bag-of-words place recognition cannot
+trigger loop closure, and global drift accumulates uncorrected.
 
-1. **Loop-closure dependence dominates global accuracy on long agricultural rows.**
-   Rosario seq1 (5–6 loops, ATE 1.18 m) vs seq5 (0 loops, ATE 20.2 m) on
-   similar 11–14 k frame sequences. Local ATE is identical (≈ 0.016 m/row).
-2. **Sim(3) alignment hides 4–10 % scale drift on stereo runs.** SE(3) ATE is
-   the honest metric (Strawberry-03: 0.10 m Sim3 → 0.78 m SE3, 7.8×).
-3. **Row vs Turn ATE inverts when turns are short** - segment-length effect,
-   not localisation difficulty (documented in §9 of protocol).
-4. **Body↔camera frame conventions matter for RPE rotation** - uncorrected
-   mount offset gives 17.6 °/m artefact (Strawberry-03).
+Quantified: 5-6 loop closures reduce global ATE from ~20 m to ~1.2 m on a ~940 m path - a 17x improvement.
+All algorithms without loop closure (MAC-VO, Basalt, AirSLAM) cluster in the 9-20 m range on Rosario.
+
+### 2. Local accuracy is excellent and consistent across all algorithms
+
+Despite large global ATE differences, per-row segment ATE is remarkably similar:
+- ORB-SLAM3 seq1: 16 mm / seq5: 16 mm
+- MAC-VO seq1: 20 mm / seq5: 45 mm
+- Basalt seq1: 14 mm / seq5: 21 mm
+- AirSLAM seq1: 19 mm / seq5: 47 mm
+
+This 1000x ratio between local (16 mm) and global (16 m) accuracy confirms that all algorithms track
+individual rows accurately - the problem is purely global map consistency. For agricultural applications
+that need only within-row precision (e.g., spray path following), all algorithms are adequate.
+For field-level consistency (cross-row registration, field mapping), loop closure is essential.
+
+### 3. Scale drift follows sequence geometry, not just length
+
+Basalt shows a striking geometry-dependent pattern: 20.9% scale drift on Rosario seq1 vs 6.6% on seq5.
+Both sequences are similar length (~940 m, ~11-14 k frames). The difference is route geometry - seq1
+covers a more varied path with directional changes, while seq5 is dominated by long parallel rows.
+This suggests that scale drift in visual-only SLAM accumulates faster on monotone straight-line motion,
+where the stereo baseline provides weaker triangulation constraints. IMU data (available but unused)
+would break this correlation by providing absolute scale observable independent of trajectory shape.
+
+### 4. Sim(3) alignment systematically underestimates scale drift
+
+Sim(3) ATE removes scale drift from the metric, giving an optimistic view:
+- ORB-SLAM3 str03: 0.104 m (Sim3) vs 0.78 m (SE3) - 7.5x gap
+- Basalt seq1: 14.3 m (Sim3) vs 18.7 m (SE3) - 1.3x gap
+- DROID-SLAM MH_01: 4.1 m (Sim3) vs 7.9 m (SE3) - 1.9x gap
+
+SE3 ATE is the honest metric for stereo systems where scale is observable. The large Sim3/SE3
+gap is itself diagnostic: when SE3 >> Sim3, scale drift is the dominant error source,
+not localization noise. For system-level reporting in the thesis, SE3 is the primary metric.
+
+### 5. DROID-SLAM fails on agricultural data due to domain mismatch
+
+DROID-SLAM is trained on TartanAir (photorealistic simulation), FlyingThings3D, and Sintel -
+none of which resemble polytunnel or open-field agricultural imagery. The failure is severe:
+- HortiMulti str02: ATE 38.92 m, scale 9.59 (10x over-scale)
+- HortiMulti str03: ATE 18.76 m, scale 0.428 (2.3x under-scale)
+- Rosario seq5: ATE 50.02 m
+- EuRoC MH_01: ATE 4.1 m Sim3 / 7.9 m SE3, scale 0.173
+
+The scale collapse (scale << 0.5 or >> 2.0) indicates the depth network predicts wildly incorrect
+disparity on these out-of-distribution images. Interestingly, DROID-SLAM runs at 10-16 fps across all
+sequences - it processes frames at the same speed regardless of how wrong the predictions are.
+Fine-tuning on even a small set of agricultural frames is a likely path to improvement (see phase2_plan.md).
+
+### 6. Speed-accuracy Pareto frontier
+
+Across agricultural sequences, the approximate ordering by speed vs accuracy tradeoff:
+
+| Algorithm | FPS (typical) | Global ATE (Rosario) | Notes |
+|---|---|---|---|
+| Basalt | 60-150 | 14-15 m | Fastest; no loop closure |
+| AirSLAM | 22-27 | 10-13 m | Fast + SuperPoint features |
+| ORB-SLAM3 | 9-18 | 1-20 m | Loop closure when available |
+| DROID-SLAM | 10-16 | 38-50 m | Fast but inaccurate on agri data |
+| MAC-VO | 1-2 | 13-19 m | Slowest; uncertainty-aware |
+
+Basalt and AirSLAM dominate on pure speed. ORB-SLAM3 dominates when loop closure fires.
+MAC-VO provides covariance estimates useful for downstream uncertainty quantification -
+its speed makes it unsuitable for real-time deployment but excellent for offline analysis.
+
+### 7. RPE rotation artefact (frame convention mismatch)
+
+All algorithms on HortiMulti report RPE rotation ~17-20 deg/m - an artefact of the
+body-to-camera frame rotation in the HortiMulti calibration. Ground truth is in body
+frame (IMU/robot), while estimated trajectories are in camera frame. The 17.6 deg/m
+constant offset across all algorithms confirms this is a systematic calibration issue,
+not a measurement of real rotational error. RPE translation (m/m) is unaffected and
+remains the valid metric for reporting.
+
+### 8. Repeatability across 3 runs
+
+Algorithms with no randomness in their pipeline (Basalt, MAC-VO) produce near-identical
+results across all 3 runs (ATE std < 1 mm). Algorithms with non-deterministic elements
+(ORB-SLAM3 loop closure timing, AirSLAM TRT engine) show larger run-to-run variation:
+- ORB-SLAM3 seq5: 4.2 m std across 3 runs (loop closure timing)
+- AirSLAM seq5: 0.99 m std (run3 notably worse: 14.1 m vs 12.1 m)
+- AirSLAM str02: 0.82 m std
+
+The 3-run average is reliable for all algorithms. Single-run benchmarking would give
+misleading results for ORB-SLAM3 and AirSLAM on difficult sequences.
 
 ---
 

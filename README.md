@@ -69,6 +69,7 @@ See [PROGRESS.md](PROGRESS.md) for the full table; representative numbers:
 | DROID-SLAM | Rosario v2 | seq1 | 45.00 m | 1 |
 | DROID-SLAM | Rosario v2 | seq5 | 50.02 m | 3 |
 | DROID-SLAM | HortiMulti | strawberry02 | 38.92 m | 3 |
+| DROID-SLAM | HortiMulti | strawberry03 | 18.76 m | 3 |
 | MAC-VO | Rosario v2 | seq1 | 13.52 ± 0.01 m | 3 |
 | MAC-VO | Rosario v2 | seq5 | 19.384 ± 0.006 m | 3 |
 | MAC-VO | HortiMulti | strawberry03 | 0.505 ± 0.010 m | 3 |
@@ -92,14 +93,17 @@ See [PROGRESS.md](PROGRESS.md) for the full table; representative numbers:
 | MH_01_easy | Basalt | 0.0567 | 0.0873 | 0.0085 | 1.0156 | 176.75 |
 | MH_01_easy | AirSLAM | 0.1107 | 0.1156 | 0.0195 | 1.0073 | 15.33 |
 | MH_01_easy | MAC-VO | 0.1981 | 0.1993 | 0.0295 | 1.0051 | 1.29 |
+| MH_01_easy | DROID-SLAM | 4.083 | 7.891 | 0.500 | 0.173 | 13.17 |
 | MH_03_medium | ORB-SLAM3 | 0.0437 | 0.0520 | 0.0179 | 0.9922 | 17.89 |
 | MH_03_medium | Basalt | 0.1372 | 0.1397 | 0.0159 | 1.0075 | 113.47 |
 | MH_03_medium | AirSLAM | 0.1431 | 0.1443 | 0.0188 | 0.9950 | 31.73 |
 | MH_03_medium | MAC-VO | 0.3403 | 0.3405 | 0.0187 | 0.9961 | 1.15 |
+| MH_03_medium | DROID-SLAM | 3.523 | 7.105 | 2.274 | 0.082 | 10.94 |
 | MH_05_difficult | ORB-SLAM3 | 0.0720 | 0.0781 | 0.2282 | 0.9956 | 17.97 |
 | MH_05_difficult | Basalt | 0.1816 | 0.1931 | 0.0870 | 1.0097 | 108.72 |
 | MH_05_difficult | AirSLAM | 0.2968 | 0.3066 | 0.0256 | 1.0116 | 34.92 |
 | MH_05_difficult | MAC-VO | 0.4697 | 0.4836 | 0.0276 | 1.0172 | 0.86 |
+| MH_05_difficult | DROID-SLAM | 6.594 | 8.514 | 0.786 | 0.248 | 13.85 |
 
 ## License
 

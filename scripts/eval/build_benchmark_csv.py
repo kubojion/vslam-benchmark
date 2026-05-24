@@ -36,31 +36,25 @@ ENV_TYPE: dict[str, str] = {
 
 COLUMNS = [
     # Identity
-    "dataset", "seq", "environment_type", "algo", "run", "run_status",
+    "dataset", "seq", "environment_type", "algo",
     # Sequence metadata
     "input_fps", "image_width", "image_height",
     "sequence_duration_s", "sequence_frames_total",
-    # Tracking coverage
-    "frames_output", "frames_tracked", "frames_total", "track_pct",
-    "n_pairs_ate", "ate_pair_coverage_pct",
+    # Tracking coverage (keep only the three most useful)
+    "frames_tracked", "track_pct",
     "trajectory_duration_s", "trajectory_time_coverage_pct",
-    # ATE SE(3) - primary metric for stereo/metric-scale
-    "ate_se3_rmse_m", "ate_se3_mean_m", "ate_se3_median_m",
-    "ate_se3_std_m", "ate_se3_max_m",
-    # ATE Sim(3) - scale-corrected
-    "ate_sim3_rmse_m", "ate_sim3_mean_m", "ate_sim3_median_m",
-    "ate_sim3_std_m", "ate_sim3_max_m",
+    # ATE SE(3) - RMSE and Max only
+    "ate_se3_rmse_m", "ate_se3_max_m",
+    # ATE Sim(3) - scale-corrected, RMSE and Max only
+    "ate_sim3_rmse_m", "ate_sim3_max_m",
     # Scale
     "scale_factor", "scale_error_pct",
     # RPE
     "rpe_trans_1m_rmse_m", "rpe_rot_1m_rmse_deg",
-    # KITTI-style drift
-    "kitti_10m_trans_rmse_m", "kitti_50m_trans_rmse_m", "kitti_100m_trans_rmse_m",
     # Path length and normalised error
     "path_length_gt_m", "path_length_est_m", "ate_se3_rmse_pct_path",
-    # Robustness
-    "loop_closures", "tracking_losses", "map_resets",
-    "init_success", "init_time_s", "first_failure_s",
+    # Robustness (loop closures only)
+    "loop_closures",
     # Timing
     "duration_s", "fps", "real_time_factor", "processing_ms_per_frame",
     # Resource usage
@@ -69,7 +63,7 @@ COLUMNS = [
     # Agricultural segments
     "ate_row_rmse_m", "ate_turn_rmse_m", "n_segments_row", "n_segments_turn",
     # Meta
-    "final_drift_m", "gt_source", "eval_mtime",
+    "final_drift_m", "gt_source",
 ]
 
 
@@ -302,7 +296,9 @@ def load_existing_keys() -> set[tuple]:
     keys = set()
     with CSV_PATH.open() as f:
         for r in csv.DictReader(f):
-            keys.add((r["dataset"], r["seq"], r["algo"], r["run"]))
+            # Use (dataset, seq, algo, duration_s) as proxy key since `run` is no longer a column.
+            # duration_s varies slightly per run (~1-3%), making it a reliable proxy.
+            keys.add((r["dataset"], r["seq"], r["algo"], r.get("duration_s", "")))
     return keys
 
 
@@ -340,7 +336,7 @@ def main() -> int:
         row = row_from_eval(ep, sm)
         if row is None:
             continue
-        key = (row["dataset"], row["seq"], row["algo"], row["run"])
+        key = (row["dataset"], row["seq"], row["algo"], str(row.get("duration_s", "")))
         if key in existing:
             continue
         new_rows.append(row)
@@ -351,7 +347,7 @@ def main() -> int:
         return 0
 
     with CSV_PATH.open("a", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=COLUMNS)
+        w = csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore")
         if write_header:
             w.writeheader()
         for r in new_rows:
@@ -359,7 +355,8 @@ def main() -> int:
 
     print(f"[ok] appended {len(new_rows)} row(s) to {CSV_PATH}")
     for r in new_rows:
-        print(f"      + {r['dataset']}/{r['seq']}/{r['algo']}/run{r['run']}  ATE Sim3={r['ate_sim3_rmse_m']}")
+        run_label = f"run{r.get('run', '?')}"
+        print(f"      + {r['dataset']}/{r['seq']}/{r['algo']}/{run_label}  ATE Sim3={r['ate_sim3_rmse_m']}")
     return 0
 
 

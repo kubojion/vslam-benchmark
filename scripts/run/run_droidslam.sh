@@ -38,7 +38,7 @@ python3 "$WS/scripts/run/_droid_demo_wrapper.py" \
     --trajectory_out "$OUT_DIR/trajectory.txt" \
     --timestamps "$SEQ_DIR/times.txt" \
     --disable_vis \
-    --stride 2 \
+    --stride 1 \
     --buffer 1024 \
     --filter_thresh 6.0 \
     --frontend_window 16 \
