@@ -1,6 +1,6 @@
 # vSLAM Benchmark - TODO
 
-> Created: 2026-05-20 | Fully revised: 2026-05-30
+> Created: 2026-05-20 | Fully revised: 2026-05-30 22:41 - Added Voxel-SVIO (RA-L 2025) Docker setup, configs, run script.
 > Scope: Phase 2 (VIO benchmarking + new algorithms). Phase 1 (VO-only) complete.
 
 ---
@@ -28,7 +28,7 @@ Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready (config+data exist) | 🔧 no-config | �
 | MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 |
 | AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 |
 | DROID-SLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 |
-| OKVIS2 | 🟡 N=1 | 🟡 N=1 | ⏳ imu-pending | ⏳ imu-pending | ⬜ ready | ⬜ ready | ⬜ ready |
+| OKVIS2 | 🟡 N=1 | 🟡 N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | MASt3R-SLAM | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | MegaSaM | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 
@@ -36,31 +36,33 @@ Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready (config+data exist) | 🔧 no-config | �
 
 ### VIO (stereo + IMU, no loop closure) - `results-vio/`
 
-Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ⏳ imu-pending (bags available, not yet extracted)
+Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ⬜ ready (bags available, not yet extracted)
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 |
 |---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ⬜ ready | 🟡 N=1 | ⏳ imu-pending | ⏳ imu-pending | ⬜ ready | ⬜ ready | ⬜ ready |
-| Basalt | ⬜ ready | 🟡 N=1 | ⏳ imu-pending | ⏳ imu-pending | ⬜ ready | ⬜ ready | ⬜ ready |
-| OKVIS2 | 🟡 N=1 | 🟡 N=1 | ⏳ imu-pending | ⏳ imu-pending | ⬜ ready | ⬜ ready | ⬜ ready |
-| OpenVINS | 🟡 N=1 | ⬜ ready | ⏳ imu-pending | ⏳ imu-pending | 🟡 N=1 | ⬜ ready | ⬜ ready |
-| AirSLAM | ⬜ ready | ⬜ ready | ⏳ imu-pending | ⏳ imu-pending | ⬜ ready | ⬜ ready | ⬜ ready |
+| ORB-SLAM3 | ⬜ ready | 🟡 N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| Basalt | ⬜ ready | 🟡 N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| OKVIS2 | 🟡 N=1 | 🟡 N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| OpenVINS | 🟡 N=1 | ⬜ ready | ⬜ ready | ⬜ ready | 🟡 N=1 | ⬜ ready | ⬜ ready |
+| AirSLAM | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| Voxel-SVIO | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 
-> HortiMulti IMU: bags available at `/media/jion_kubo/Buffalo\ SSD/datasets/`. Extraction running via `--imu-only` flag. All ⏳ cells become ⬜ once `imu0/data.csv` lands.
+> HortiMulti IMU: extracted - str02=190493 samples, str03=48448 samples. Path: `datasets/hortimulti/strawberry{02,03}/mav0/imu0/data.csv`
+> Voxel-SVIO: VIO-only (no VO, no LC). Configs in `configs/voxel_svio/`; runs via Docker (image `vslam_voxel_svio:noetic`).
 
 ### VIO-LC (stereo + IMU + loop closure) - `results-vio-lc/`
 
-Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ⏳ imu-pending
+Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ⬜ ready
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 |
 |---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ⬜ ready | 🟡 N=1 | ⏳ imu-pending | ⏳ imu-pending | ⬜ ready | ⬜ ready | ⬜ ready |
-| OKVIS2 | 🟡 N=1 | 🟡 N=1 | ⏳ imu-pending | ⏳ imu-pending | ⬜ ready | ⬜ ready | ⬜ ready |
-| AirSLAM (VI-SLAM) | ⬜ ready | ⬜ ready | ⏳ imu-pending | ⏳ imu-pending | ⬜ ready | ⬜ ready | ⬜ ready |
+| ORB-SLAM3 | ⬜ ready | 🟡 N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| OKVIS2 | 🟡 N=1 | 🟡 N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| AirSLAM (VI-SLAM) | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | MASt3R-SLAM (LC-on) | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 
 > MASt3R-SLAM in `vio-lc` = monocular + LC-on (no IMU; bucket reused for its only real mode).
-> HortiMulti ⏳ cells: IMU extraction running, configs created. Unblock once `imu0/data.csv` lands.
+> HortiMulti IMU: extracted. Path: `datasets/hortimulti/strawberry{02,03}/mav0/imu0/data.csv`
 
 ---
 
@@ -68,7 +70,7 @@ Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ⏳ imu-pending
 
 | # | Task | Status |
 |---|---|---|
-| 1 | Extract HortiMulti IMU (`/ms/imu/data` -> `mav0/imu0/data.csv`) | `[~]` |
+| 1 | Extract HortiMulti IMU (`/ms/imu/data` -> `mav0/imu0/data.csv`) | `[x]` |
 | 2 | Run ORB-SLAM3 VIO on rosariov2/seq1 N=3 | `[ ]` |
 | 3 | Run Basalt VIO on rosariov2/seq1 N=3 | `[ ]` |
 | 4 | Run OpenVINS VIO on rosariov2/seq5 N=1 -> N=3 | `[ ]` |
@@ -98,7 +100,7 @@ Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ⏳ imu-pending
 |---|---|
 | VIO rosariov2/seq1 N=3 | `[ ]` |
 | VIO EuRoC MH_01/03/05 N=1 | `[ ]` |
-| VIO hortimulti (after IMU extraction) | `[~]` |
+| VIO hortimulti (after IMU extraction) | `[x]` |
 
 ### OpenVINS
 
@@ -106,7 +108,7 @@ Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ⏳ imu-pending
 |---|---|
 | VIO rosariov2/seq5 N=3 | `[ ]` |
 | VIO EuRoC MH_03, MH_05 N=1 | `[ ]` |
-| VIO hortimulti (after IMU extraction) | `[~]` |
+| VIO hortimulti (after IMU extraction) | `[x]` |
 
 ### AirSLAM
 
@@ -114,7 +116,7 @@ Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ⏳ imu-pending
 |---|---|
 | VIO rosariov2/seq1+seq5 N=3 | `[ ]` |
 | VI-SLAM (VIO-LC) rosariov2 N=3 | `[ ]` |
-| VIO/VI-SLAM hortimulti (after IMU extraction) | `[~]` |
+| VIO/VI-SLAM hortimulti (after IMU extraction) | `[x]` |
 
 ### OKVIS2
 
@@ -135,6 +137,18 @@ Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ⏳ imu-pending
 ### DPVO / DPV-SLAM (replaces DROID-SLAM)
 
 Removed from active tracking - not set up in repo. See Dropped section below.
+
+### Voxel-SVIO
+
+| Task | Status |
+|---|---|
+| Docker image + container build (`scripts/setup/setup_voxel_svio_docker.sh`) | `[~]` |
+| Configs: euroc_mav (per-seq), rosariov2, hortimulti | `[x]` |
+| Run script (`scripts/run/run_voxel_svio.sh`) + ROS1 data player | `[x]` |
+| Smoke test EuRoC MH_01_easy N=1 | `[ ]` |
+| VIO rosariov2/seq1+seq5 N=3 | `[ ]` |
+| VIO hortimulti str02+str03 N=3 | `[ ]` |
+| VIO EuRoC MH_01/03/05 N=1 -> N=3 | `[ ]` |
 
 ---
 

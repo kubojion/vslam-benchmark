@@ -1,0 +1,123 @@
+common:
+    image_left_topic: "/cam0/image_raw"
+    image_right_topic: "/cam1/image_raw"
+    imu_topic: "/imu0"
+
+state_parameter:
+    use_fej: true
+    calib_cam_extrinsics: false
+    calib_cam_intrinsics: false
+    calib_cam_timeoffset: false
+    calib_imu_intrinsics: false
+    calib_imu_g_sensitivity: false
+    imu_intrinsics_model: "kalibr"
+    max_clones: 11
+    max_slam: 100
+    max_slam_in_update: 100
+    max_msckf_in_update: 100
+
+initializer_parameter:
+    # MH_01 needs the longer 10s init window per the upstream config comment.
+    init_window_time: 10.0
+    init_imu_thresh: 1.5
+    init_max_disparity: 10.0
+    init_max_features: 50
+    init_dyn_use: true
+    init_dyn_mle_opt_calib: false
+    init_dyn_mle_max_iter: 50
+    init_dyn_mle_max_time: 0.05
+    init_dyn_mle_max_threads: 6
+    init_dyn_num_pose: 6
+    init_dyn_min_deg: 10.0
+    init_dyn_inflation_ori: 10
+    init_dyn_inflation_vel: 100
+    init_dyn_inflation_bg: 10
+    init_dyn_inflation_ba: 100
+    init_dyn_min_rec_cond: 1e-12
+    init_dyn_bias_g: [ 0.0, 0.0, 0.0 ]
+    init_dyn_bias_a: [ 0.0, 0.0, 0.0 ]
+    gravity_mag: 9.81007
+    downsample_cameras: false
+
+# ADIS16448 (EuRoC). Values from the upstream voxel_svio euroc.yaml,
+# which match the official EuRoC IMU calibration.
+imu_parameter:
+    accelerometer_noise_density: 2.0000e-3
+    accelerometer_random_walk:   3.0000e-3
+    gyroscope_noise_density:     1.6968e-04
+    gyroscope_random_walk:       1.9393e-05
+    sigma_pix: 1.0
+    Tw: [ 1.0, 0.0, 0.0,
+          0.0, 1.0, 0.0,
+          0.0, 0.0, 1.0 ]
+    Ta: [ 1.0, 0.0, 0.0,
+          0.0, 1.0, 0.0,
+          0.0, 0.0, 1.0 ]
+    R_acc_imu: [ 1.0, 0.0, 0.0,
+                 0.0, 1.0, 0.0,
+                 0.0, 0.0, 1.0 ]
+    R_gyr_imu: [ 1.0, 0.0, 0.0,
+                 0.0, 1.0, 0.0,
+                 0.0, 0.0, 1.0 ]
+    Tg: [ 0.0, 0.0, 0.0,
+          0.0, 0.0, 0.0,
+          0.0, 0.0, 0.0 ]
+
+camera_parameter:
+    timeshift_cam_imu_left: 0.0
+    timeshift_cam_imu_right: 0.0
+    distortion_model_left: radtan
+    distortion_model_right: radtan
+    intrinsics_left:  [458.654, 457.296, 367.215, 248.375]
+    intrinsics_right: [457.587, 456.134, 379.999, 255.238]
+    distortion_coeffs_left:  [-0.28340811,  0.07395907,  0.00019359,  1.76187114e-05]
+    distortion_coeffs_right: [-0.28368365,  0.07451284, -0.00010473, -3.55590700e-05]
+    resolution_left:  [752, 480]
+    resolution_right: [752, 480]
+    T_imu_cam_left: [0.0148655429818, -0.999880929698,  0.00414029679422, -0.0216401454975,
+                     0.999557249008,   0.0149672133247, 0.025715529948,   -0.064676986768,
+                    -0.0257744366974,  0.00375618835797, 0.999660727178,   0.00981073058949,
+                     0.0,              0.0,              0.0,              1.0]
+    T_imu_cam_right: [0.0125552670891, -0.999755099723,  0.0182237714554,  -0.0198435579556,
+                      0.999598781151,   0.0130119051815, 0.0251588363115,   0.0453689425024,
+                     -0.0253898008918,  0.0179005838253, 0.999517347078,    0.00786212447038,
+                      0.0,              0.0,             0.0,               1.0]
+
+odometry_parameter:
+    use_mask: false
+    use_huber: false
+    use_keyframe: true
+    dt_slam_delay: 1
+    up_msckf_sigma_px: 1
+    up_msckf_chi2_multipler: 1
+    up_slam_sigma_px: 1
+    up_slam_chi2_multipler: 1
+    downsample_cameras: false
+    num_pts: 500
+    fast_threshold: 20
+    patch_size_x: 5
+    patch_size_y: 5
+    min_px_dist: 10
+    histogram_method: "histogram"
+    track_frequency: 20.0
+
+feature_parameter:
+    refine_features: true
+    max_runs: 5
+    init_lamda: 1e-3
+    max_lamda: 1e10
+    min_dx: 1e-6
+    min_dcost: 1e-6
+    lam_mult: 10.0
+    min_dist: 0.10
+    max_dist: 60.0
+    max_baseline: 40.0
+    max_cond_number: 10000.0
+    keyframe_parallax: 20
+
+voxel_parameter:
+    voxel_size: 0.3
+    use_all_points: false
+    max_num_points_in_voxel: 5
+    min_distance_points: 0.0
+    nb_voxels_visited: 2

@@ -1,6 +1,6 @@
 # Setup
 
-> Fully revised: 2026-05-30 - Added OpenVINS Docker section (§11); fixed doc link typo in §8.
+> Fully revised: 2026-05-30 22:41 - Added Voxel-SVIO Docker section (§12).
 
 Tested on Ubuntu 22.04 with an NVIDIA GPU + CUDA 11.8.
 
@@ -235,3 +235,51 @@ Each sequence must have `mav0/imu0/data.csv` in TUM-format
 (`timestamp_ns, wx, wy, wz, ax, ay, az`). RosarioV2 and EuRoC-MAV already
 have this. HortiMulti does NOT yet - VIO runs on HortiMulti are blocked until
 `scripts/data/_hortimulti_extract.py` is updated to export `/ms/imu/data`.
+
+## 12. Voxel-SVIO (Docker, ROS 1 Noetic)
+
+Voxel-SVIO is a stereo MSCKF VIO with a voxel-map landmark layer (RA-L 2025).
+It is CPU-only and runs in a ROS 1 Noetic container, fully isolated from the
+host ROS install.
+
+### 12a. Clone the source
+
+```bash
+git clone https://github.com/ZikangYuan/voxel_svio.git src/voxel_svio
+```
+
+### 12b. Build the image and container
+
+```bash
+bash scripts/setup/setup_voxel_svio_docker.sh
+```
+
+This script:
+
+1. Builds image `vslam_voxel_svio:noetic` from
+   `scripts/setup/voxel_svio.Dockerfile` (ROS Noetic + Ceres + glog/gflags).
+2. Creates container `voxel_svio` with bind mounts for
+   `src/voxel_svio`, `datasets/` (read-only), `results-vio/`,
+   `configs/voxel_svio/` and `scripts/`.
+3. Runs `catkin_make -DCMAKE_BUILD_TYPE=Release` inside the container.
+
+First build takes ~5-10 min. Subsequent setup re-runs reuse the image.
+
+### 12c. Verify
+
+```bash
+docker exec voxel_svio /bin/bash -c \
+    "source /opt/ros/noetic/setup.bash && \
+     source /root/catkin_ws/devel/setup.bash && \
+     rosrun voxel_svio --help 2>/dev/null; rospack find voxel_svio"
+```
+
+Expect `/root/catkin_ws/src/voxel_svio` in the output.
+
+### 12d. Required dataset layout
+
+EuRoC-style: `mav0/{cam0,cam1}/data/*.png`, `mav0/{cam0,cam1}/data.csv`,
+`mav0/imu0/data.csv`. All three benchmarks (rosariov2, hortimulti, EuRoC-MAV)
+are already in this layout. The bundled ROS 1 data player
+(`scripts/run/voxel_svio_data_player.py`) reads this directly and publishes
+on `/cam0/image_raw`, `/cam1/image_raw`, `/imu0`.

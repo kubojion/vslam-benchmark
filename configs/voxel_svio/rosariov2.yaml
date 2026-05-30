@@ -1,0 +1,127 @@
+common:
+    image_left_topic: "/cam0/image_raw"
+    image_right_topic: "/cam1/image_raw"
+    imu_topic: "/imu0"
+
+state_parameter:
+    use_fej: true
+    calib_cam_extrinsics: false
+    calib_cam_intrinsics: false
+    calib_cam_timeoffset: false
+    calib_imu_intrinsics: false
+    calib_imu_g_sensitivity: false
+    imu_intrinsics_model: "kalibr"
+    max_clones: 11
+    max_slam: 100
+    max_slam_in_update: 100
+    max_msckf_in_update: 100
+
+initializer_parameter:
+    init_window_time: 2.0
+    init_imu_thresh: 1.5
+    init_max_disparity: 10.0
+    init_max_features: 50
+    init_dyn_use: true
+    init_dyn_mle_opt_calib: false
+    init_dyn_mle_max_iter: 50
+    init_dyn_mle_max_time: 0.05
+    init_dyn_mle_max_threads: 6
+    init_dyn_num_pose: 6
+    init_dyn_min_deg: 10.0
+    init_dyn_inflation_ori: 10
+    init_dyn_inflation_vel: 100
+    init_dyn_inflation_bg: 10
+    init_dyn_inflation_ba: 100
+    init_dyn_min_rec_cond: 1e-12
+    init_dyn_bias_g: [ 0.0, 0.0, 0.0 ]
+    init_dyn_bias_a: [ 0.0, 0.0, 0.0 ]
+    gravity_mag: 9.7958          # Rosario, Argentina (~32.95 deg S)
+    downsample_cameras: false
+
+# ZED 2 IMU (Rosario v2). Noise values match configs/openvins/rosariov2/
+# kalibr_imu_chain.yaml and configs/basalt/rosariov2_calib.json (validated by
+# Basalt and OKVIS2 runs).
+imu_parameter:
+    accelerometer_noise_density: 1.6000e-02
+    accelerometer_random_walk:   1.0000e-03
+    gyroscope_noise_density:     2.8200e-04
+    gyroscope_random_walk:       1.0000e-04
+    sigma_pix: 1.0
+    Tw: [ 1.0, 0.0, 0.0,
+          0.0, 1.0, 0.0,
+          0.0, 0.0, 1.0 ]
+    Ta: [ 1.0, 0.0, 0.0,
+          0.0, 1.0, 0.0,
+          0.0, 0.0, 1.0 ]
+    R_acc_imu: [ 1.0, 0.0, 0.0,
+                 0.0, 1.0, 0.0,
+                 0.0, 0.0, 1.0 ]
+    R_gyr_imu: [ 1.0, 0.0, 0.0,
+                 0.0, 1.0, 0.0,
+                 0.0, 0.0, 1.0 ]
+    Tg: [ 0.0, 0.0, 0.0,
+          0.0, 0.0, 0.0,
+          0.0, 0.0, 0.0 ]
+
+# Rosario v2 cameras: ZED IR, pre-rectified to 1280x720 mono8. Distortion = 0.
+# IMU is treated as colocated with cam0 (matches the convention used by the
+# Rosario v2 paper, basalt and OKVIS2 configs); cam1 is offset by the stereo
+# baseline (~49.7 mm) along +x in the IMU frame.
+camera_parameter:
+    timeshift_cam_imu_left: 0.0
+    timeshift_cam_imu_right: 0.0
+    distortion_model_left: radtan
+    distortion_model_right: radtan
+    intrinsics_left:  [648.8624169653789, 648.8624169653789, 645.0113372802734, 348.24266815185547]
+    intrinsics_right: [648.8624169653789, 648.8624169653789, 645.0113372802734, 348.24266815185547]
+    distortion_coeffs_left:  [0.0, 0.0, 0.0, 0.0]
+    distortion_coeffs_right: [0.0, 0.0, 0.0, 0.0]
+    resolution_left:  [1280, 720]
+    resolution_right: [1280, 720]
+    T_imu_cam_left:  [1.0, 0.0, 0.0, 0.0,
+                      0.0, 1.0, 0.0, 0.0,
+                      0.0, 0.0, 1.0, 0.0,
+                      0.0, 0.0, 0.0, 1.0]
+    T_imu_cam_right: [1.0, 0.0, 0.0, 0.0497336941,
+                      0.0, 1.0, 0.0, 0.0,
+                      0.0, 0.0, 1.0, 0.0,
+                      0.0, 0.0, 0.0, 1.0]
+
+odometry_parameter:
+    use_mask: false
+    use_huber: false
+    use_keyframe: true
+    dt_slam_delay: 1
+    up_msckf_sigma_px: 1
+    up_msckf_chi2_multipler: 1
+    up_slam_sigma_px: 1
+    up_slam_chi2_multipler: 1
+    downsample_cameras: false
+    num_pts: 500
+    fast_threshold: 20
+    patch_size_x: 5
+    patch_size_y: 5
+    min_px_dist: 10
+    histogram_method: "histogram"
+    track_frequency: 20.0
+
+feature_parameter:
+    refine_features: true
+    max_runs: 5
+    init_lamda: 1e-3
+    max_lamda: 1e10
+    min_dx: 1e-6
+    min_dcost: 1e-6
+    lam_mult: 10.0
+    min_dist: 0.10
+    max_dist: 60.0
+    max_baseline: 40.0
+    max_cond_number: 10000.0
+    keyframe_parallax: 20
+
+voxel_parameter:
+    voxel_size: 0.3
+    use_all_points: false
+    max_num_points_in_voxel: 5
+    min_distance_points: 0.0
+    nb_voxels_visited: 2

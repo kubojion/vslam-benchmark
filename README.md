@@ -1,6 +1,6 @@
 # vSLAM Benchmark
 
-> Fully revised: 2026-05-30 - Added OpenVINS; restructured algorithm table; fixed doc link typo; updated results snapshot.
+> Fully revised: 2026-05-30 22:41 - Added Voxel-SVIO (RA-L 2025) Docker setup, configs, run script.
 
 | Algorithm | Type | Source |
 |---|---|---|
@@ -10,6 +10,7 @@
 | **Basalt** | Optimization-based stereo VO / VIO | [VladyslavUsenko/basalt](https://gitlab.com/VladyslavUsenko/basalt) (binary install v0.1.7) |
 | **AirSLAM** | Deep-feature point-line VO / VIO / V-SLAM (TRO 2025) | [sair-lab/AirSLAM](https://github.com/sair-lab/AirSLAM) (Docker, ROS Noetic + TensorRT) |
 | **OpenVINS** | MSCKF stereo-IMU filter (VIO only, no LC) | [rpng/open_vins](https://github.com/rpng/open_vins) (Docker, ROS 2 Humble) |
+| **Voxel-SVIO** | Voxel-map-augmented stereo MSCKF VIO (RA-L 2025) | [ZikangYuan/voxel_svio](https://github.com/ZikangYuan/voxel_svio) (Docker, ROS 1 Noetic) |
 | **DROID-SLAM** | Neural dense stereo VO (Phase 1 only; dropped per supervisor) | [princeton-vl/DROID-SLAM](https://github.com/princeton-vl/DROID-SLAM). Replaced by DPVO. |
 | **MASt3R-SLAM** | Monocular dense SLAM with retrieval-based LC (scaffolded) | [rmurai0610/MASt3R-SLAM](https://github.com/rmurai0610/MASt3R-SLAM) (arXiv:2412.12392) |
 | **MegaSaM** | Monocular structure-and-motion, learned (scaffolded) | [mega-sam/mega-sam](https://github.com/mega-sam/mega-sam) (arXiv:2412.04463) |
@@ -67,6 +68,7 @@ warn for unsupported combinations:
 | AirSLAM     | yes | yes | yes |
 | Basalt      | yes | yes | (no LC) |
 | OpenVINS    | (no VO mode) | yes | (no LC) |
+| Voxel-SVIO  | (no VO mode) | yes | (no LC) |
 | MAC-VO      | yes | (not supported) | (not supported) |
 | DROID-SLAM  | yes (dropped; results kept) | (not supported) | (not supported) |
 | MegaSaM     | yes | (not supported) | (not supported) |
