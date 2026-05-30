@@ -1,0 +1,14 @@
+# MegaSaM config for EuRoC-MAV MH_03_medium.
+camera:
+  model: pinhole
+  width: 752
+  height: 480
+  fx: 458.654
+  fy: 457.296
+  cx: 367.215
+  cy: 248.375
+input:
+  stride: 1
+  max_frames: 0
+output:
+  save_depth: false

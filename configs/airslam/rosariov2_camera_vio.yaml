@@ -1,0 +1,58 @@
+%YAML:1.0
+# AirSLAM camera calibration for the Rosario v2 dataset.
+#
+# Source: ZED stereo camera (infrared, IR images).
+# Pre-processing: stereo rectification (scripts/data/convert_rosario_to_tum.sh),
+#   output 1280x720 grayscale PNG stored in mav0/cam0/data/ and mav0/cam1/data/.
+#
+# Because images are pre-rectified (zero distortion), distortion_type = 0.
+#
+# Rectified intrinsics (from official Rosario v2 calibration):
+#   fx = fy = 648.8624169653789,  cx = 645.0113372802734,  cy = 348.24266815185547
+#   baseline = 0.0497336941 m
+#
+# T convention (T_type: 0 = EuRoC Tbc): transform from body frame (= cam0) to camera.
+#   cam0: identity (cam0 IS the body frame).
+#   cam1: right camera is displaced +baseline along body x-axis, so
+#         T_bc1 has translation -baseline in x.
+
+image_height: 720
+image_width: 1280
+use_imu: 1
+
+depth_lower_thr: 0.1
+depth_upper_thr: 50.0
+max_y_diff: 1
+
+# Calibration
+distortion_type: 0   # 0 = undistorted / pre-rectified input
+
+cam0:
+  intrinsics: [648.8624, 648.8624, 645.0113, 348.2427]  # fx fy cx cy
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  T_type: 0           # EuRoC format, T is Tbc (body -> camera)
+  T:
+  - [1.0, 0.0, 0.0,  0.0]
+  - [0.0, 1.0, 0.0,  0.0]
+  - [0.0, 0.0, 1.0,  0.0]
+  - [0.0, 0.0, 0.0,  1.0]
+
+cam1:
+  intrinsics: [648.8624, 648.8624, 645.0113, 348.2427]  # fx fy cx cy
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  T_type: 0
+  T:
+  - [1.0, 0.0, 0.0, -0.0497336941]
+  - [0.0, 1.0, 0.0,  0.0]
+  - [0.0, 0.0, 1.0,  0.0]
+  - [0.0, 0.0, 0.0,  1.0]
+
+# IMU (Rosario v2: ZED integrated IMU, 200 Hz)
+# Noise from configs/basalt/rosariov2_calib.json and OKVIS2 reference.
+# T_cam_imu for cam0 is identity (ZED IMU is co-located with cam0 body frame).
+rate_hz: 200
+gyroscope_noise_density:     2.8200e-04   # rad/s/sqrt(Hz)
+gyroscope_random_walk:       1.0000e-04   # rad/s^2/sqrt(Hz)
+accelerometer_noise_density: 1.6000e-02   # m/s^2/sqrt(Hz)
+accelerometer_random_walk:   1.0000e-03   # m/s^3/sqrt(Hz)
+g_value: 9.7958                           # Cordoba, Argentina (~31 deg S)

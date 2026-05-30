@@ -1,8 +1,25 @@
 # Evaluation
 
+> Fully revised: 2026-05-30 - Added run-type flag examples; clarified CSV rebuild step; added segment-map and ATE-vs-FPS plot commands.
+
 The pipeline turns raw trajectories into per-segment ATE numbers and plots.
 `scripts/run/run_benchmark.sh` runs the full chain automatically; this page
 explains the individual steps and how to read the output.
+
+## Run types and result layout
+
+Every run is classified by a `run_type`:
+
+| run_type | IMU | LC  | Results tree         | Aggregated CSV         |
+|----------|-----|-----|----------------------|------------------------|
+| `vo`     | off | off | `results-vo/`        | `benchmark-vo.csv`     |
+| `vio`    | on  | off | `results-vio/`       | `benchmark-vio.csv`    |
+| `vio-lc` | on  | on  | `results-vio-lc/`    | `benchmark-vio-lc.csv` |
+
+Paths are resolved by `scripts/_paths.sh` (bash, `resolve_run_type`) and
+`scripts/eval/_run_type.py` (python, `resolve(name)` / `all_types()`).
+Every eval and plotting script accepts a `--type` flag (Python) or a
+fourth/fifth positional argument (Bash) selecting the run type.
 
 ## Pipeline
 
@@ -19,26 +36,34 @@ when re-evaluating without re-running SLAM:
 ```bash
 WS=$(pwd)
 EVAL=$WS/scripts/eval
+TYPE=vo          # or: vio, vio-lc
+DS=rosariov2     # or: hortimulti, euroc_mav
+SEQ=sequence1    # or: sequence5, strawberry02, strawberry03, MH_01_easy ...
+ALGO=macvo       # or: orbslam3, basalt, airslam, openvins, okvis2, ...
 
-# 1. interpolate GT to the SLAM timestamps (once per sequence)
-python3 $EVAL/_interpolate_gt.py datasets/<ds>/<seq>
+# 1. Interpolate GT to SLAM timestamps (once per sequence, shared across run types)
+python3 $EVAL/_interpolate_gt.py datasets/$DS/$SEQ
 
-# 2. auto-segment GT into "row" / "turn" segments (once per sequence)
-python3 $EVAL/_segment_trajectory.py datasets/<ds>/<seq>
+# 2. Auto-segment GT into row / turn segments (once per sequence)
+python3 $EVAL/_segment_trajectory.py datasets/$DS/$SEQ
 
-# 3. evaluate every run for a given algo
-for r in results/<ds>/<seq>/<algo>/run*; do
-    python3 $EVAL/_evaluate_run.py <ds> <seq> <algo> "${r##*run}"
+# 3. Evaluate every run for a given algo
+for r in results-$TYPE/$DS/$SEQ/$ALGO/run*; do
+    RUN_ID="${r##*run}"
+    python3 $EVAL/_evaluate_run.py $DS $SEQ $ALGO "$RUN_ID" $TYPE
 done
 
-# 4. aggregate runs into mean ± std
-python3 $EVAL/_aggregate_runs.py <ds> <seq> <algo>
+# 4. Aggregate runs into mean +/- std
+python3 $EVAL/_aggregate_runs.py $DS $SEQ $ALGO 10 $TYPE
 
-# 5. plot trajectories (2D + 3D)
-python3 $EVAL/_plot_segments.py <ds> <seq>
+# 5. Plot trajectories (2D + 3D segment maps, all algos on this sequence)
+python3 $EVAL/_plot_segments.py --type $TYPE $DS $SEQ
 
-# 6. ATE vs FPS comparison across all sequences (run once after all data is in)
-python3 $EVAL/plot_ate_vs_fps.py
+# 6. ATE vs FPS comparison across all sequences (per run-type)
+python3 $EVAL/plot_ate_vs_fps.py --type $TYPE
+
+# 7. Rebuild the 3 aggregated CSVs from per-run JSONs
+python3 $EVAL/build_benchmark_csv.py all
 ```
 
 ## What `report.md` contains
@@ -61,28 +86,29 @@ Multi-run aggregations report **mean ± std** across `run1`…`runN`.
 
 ## What the plots show
 
-`results/<ds>/<seq>/segment_map.png` overlays all algorithms vs ground truth.
-`results/<ds>/<seq>/segment_map_3d.png` is the same view with an added Z axis.
+`results-<type>/<ds>/<seq>/segment_map.png` overlays all algorithms vs ground truth.
+`results-<type>/<ds>/<seq>/segment_map_3d.png` is the same view with an added Z axis.
 Individual runs are drawn in light grey; the per-algorithm mean trajectory is
-drawn thick in the algorithm's colour (ORB-SLAM3 green, DROID-SLAM brown,
-MAC-VO orange, Basalt red, AirSLAM light blue). Ground truth is a dashed black line.
+drawn thick in the algorithm's colour (ORB-SLAM3 green, MAC-VO orange, Basalt red,
+AirSLAM light blue, OpenVINS purple). Ground truth is a dashed black line.
 
-Per-algorithm plots (`results/<ds>/<seq>/<algo>/segment_map.png` and `segment_map_3d.png`) zoom in on
-one algorithm, again with individual runs + mean.
+Per-algorithm plots (`results-<type>/<ds>/<seq>/<algo>/segment_map.png`) zoom in on
+one algorithm with individual runs + mean.
 
-`results/ate_vs_fps.png` shows ATE SE(3) vs FPS for every algo/sequence combination
-(run `scripts/eval/plot_ate_vs_fps.py` to regenerate after adding new results).
+`results-<type>/ate_vs_fps.png` shows ATE SE(3) vs FPS for every algo/sequence combination
+(run `scripts/eval/plot_ate_vs_fps.py --type <type>` to regenerate).
 
 ## Sim(3) vs SE(3)
 
 ORB-SLAM3 with stereo input is metric, so Sim(3) and SE(3) ATE should be
-close. Large gaps (e.g. Rosario seq5: Sim3 ≈ 20 m, SE3 ≈ 21 m, scale 0.90)
-indicate scale drift over a long straight section without loop closures.
-DROID-SLAM and MAC-VO produce up-to-scale trajectories — always read Sim3
-ATE for them.
+close. Large gaps (e.g. Rosario seq5: Sim3 approx 20 m, SE3 approx 21 m, scale 0.90)
+indicate scale drift over long straight sections without loop closures.
+MAC-VO produces up-to-scale trajectories - always read Sim3 ATE for it.
+OpenVINS / OKVIS2 / Basalt are metric (stereo+IMU), so Sim3 and SE3 should
+agree; a scale far from 1.0 suggests IMU noise parameters are miscalibrated.
 
 ## Re-evaluating without re-running SLAM
 
-After tweaking `_evaluate_run.py` (e.g. a new metric), just re-run steps 3–5;
+After tweaking `_evaluate_run.py` (e.g. a new metric), just re-run steps 3-5;
 the SLAM trajectory files in `results/.../trajectory.txt` are the only input
 needed.

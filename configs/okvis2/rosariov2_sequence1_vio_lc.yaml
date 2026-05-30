@@ -1,0 +1,95 @@
+%YAML:1.0
+# OKVIS2 stereo-inertial + loop closure (VIO-LC) configuration for Rosario v2 sequence1.
+# Same calibration as sequence5 - recorded with the same robot and sensor box.
+
+cameras:
+     - {T_SC:
+        [ 0.999992, -0.003898, -0.000576, -0.004483,
+          0.003895,  0.999979, -0.005012,  0.019179,
+          0.000596,  0.005009,  0.999987,  0.027584,
+          0.0, 0.0, 0.0, 1.0],
+        image_dimension: [1280, 720],
+        distortion_coefficients: [0.0, 0.0, 0.0, 0.0],
+        distortion_type: radialtangential,
+        focal_length: [648.8624169653789, 648.8624169653789],
+        principal_point: [645.0113372802734, 348.24266815185547],
+        camera_type: gray,
+        slam_use: okvis}
+
+     - {T_SC:
+        [ 0.999992, -0.003898, -0.000576,  0.045250,
+          0.003895,  0.999979, -0.005012,  0.019373,
+          0.000596,  0.005009,  0.999987,  0.027614,
+          0.0, 0.0, 0.0, 1.0],
+        image_dimension: [1280, 720],
+        distortion_coefficients: [0.0, 0.0, 0.0, 0.0],
+        distortion_type: radialtangential,
+        focal_length: [648.8624169653789, 648.8624169653789],
+        principal_point: [645.0113372802734, 348.24266815185547],
+        camera_type: gray,
+        slam_use: okvis}
+
+camera_parameters:
+    timestamp_tolerance: 0.005
+    sync_cameras: [0, 1]
+    image_delay: 0.0
+    online_calibration:
+        do_extrinsics: false
+        do_extrinsics_final_ba: true
+        sigma_r: 0.01
+        sigma_alpha: 0.1
+        sigma_r_final_ba: 0.03
+        sigma_alpha_final_ba: 0.3
+
+# IMU noise model: RealSense D435i.
+# Using OKVIS2 author's own D435i reference values, NOT raw Allan-variance.
+# Ref: https://github.com/ethz-mrl/okvis2/blob/main/config/realsense_D435i.yaml
+imu_parameters:
+    use: true
+    a_max: 160.0
+    g_max: 10.0
+    sigma_g_c: 0.00278     # gyro noise density [rad/s/sqrt(Hz)]  (OKVIS2 D435i ref)
+    sigma_a_c: 0.0252      # accel noise density [m/s^2/sqrt(Hz)]  (OKVIS2 D435i ref)
+    sigma_bg: 0.03
+    sigma_ba: 0.1
+    sigma_gw_c: 0.0008     # gyro bias random walk                  (OKVIS2 D435i ref)
+    sigma_aw_c: 0.04       # accel bias random walk                 (OKVIS2 D435i ref)
+    g: 9.7958              # Argentina (Rosario lat -32.95)
+    g0: [ 0.0, 0.0, 0.0 ]
+    a0: [ 0.0, 0.0, 0.0 ]
+    T_BS:
+        [1.0, 0.0, 0.0, 0.0,
+         0.0, 1.0, 0.0, 0.0,
+         0.0, 0.0, 1.0, 0.0,
+         0.0, 0.0, 0.0, 1.0]
+
+frontend_parameters:
+    detection_threshold: 38.0
+    absolute_threshold: 150.0
+    matching_threshold: 60.0
+    octaves: 0
+    max_num_keypoints: 700
+    keyframe_overlap: 0.60
+    use_cnn: false
+    parallelise_detection: true
+    num_matching_threads: 4
+
+estimator_parameters:
+    num_keyframes: 5
+    num_loop_closure_frames: 5
+    num_imu_frames: 3
+    do_loop_closures: true
+    do_final_ba: true
+    enforce_realtime: false
+    realtime_min_iterations: 3
+    realtime_max_iterations: 10
+    realtime_time_limit: 0.035
+    realtime_num_threads: 3
+    full_graph_iterations: 15
+    full_graph_num_threads: 3
+    p_dbow: 0.4
+    drift_percentage_heuristic: 1.35
+
+output_parameters:
+    display_matches: false
+    display_overhead: false

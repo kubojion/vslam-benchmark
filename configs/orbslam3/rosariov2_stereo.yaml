@@ -130,6 +130,9 @@ ORBextractor.minThFAST:   7
 
 # Disable loop closing. Agricultural row environments have highly repetitive
 # texture; false loop closures cause the map to collapse. Matches official eval.
+# NOTE: ORB-SLAM3 reads the camelCase key `loopClosing` in System.cc; the older
+# `System.LoopClosing` key is ignored. Kept here for cross-reference only.
+loopClosing: 0
 System.LoopClosing: 0
 
 #--------------------------------------------------------------------------------------------
@@ -146,4 +149,4 @@ Viewer.ViewpointX:        0.0
 Viewer.ViewpointY:       -0.7
 Viewer.ViewpointZ:       -1.8
 Viewer.ViewpointF:        500.0
-Viewer.bUseViewer:        1
+Viewer.bUseViewer:        0

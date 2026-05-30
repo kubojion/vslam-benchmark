@@ -1,0 +1,14 @@
+# MegaSaM config for HortiMulti strawberry03 (rectified cam0).
+camera:
+  model: pinhole
+  width: 640
+  height: 480
+  fx: 262.7149
+  fy: 262.7149
+  cx: 329.4310
+  cy: 219.5617
+input:
+  stride: 1
+  max_frames: 0
+output:
+  save_depth: false

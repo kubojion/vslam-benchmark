@@ -2,33 +2,40 @@
 # Run an algorithm N times on a sequence, then run the full evaluation pipeline.
 #
 # Usage:
-#   bash scripts/run/run_benchmark.sh <dataset> <seq> <algo> [N=3]
+#   bash scripts/run/run_benchmark.sh <dataset> <seq> <algo> [N=3] [run_type=vo]
 #
-# Currently supports: orbslam3, droidslam, macvo, basalt, airslam
-# For other algos: run_<algo>.sh must accept a third argument <run_id>.
+# run_type ∈ {vo, vio, vio-lc} selects the results tree:
+#   vo      -> results-vo/
+#   vio     -> results-vio/
+#   vio-lc  -> results-vio-lc/
+#
+# Currently supports: orbslam3, droidslam, macvo, basalt, airslam, mast3r_slam, megasam
+# For other algos: run_<algo>.sh must accept arguments <dataset> <seq> <run_id> <run_type>.
 #
 # Pipeline:
-#   1. Run algorithm N times  →  results/<dataset>/<seq>/<algo>/run{1..N}/
-#   2. Build interpolated GT  →  datasets/<dataset>/<seq>/gt_interp_tum.txt
-#   3. Auto-segment GT        →  datasets/<dataset>/<seq>/segments_auto.csv
-#   4. Evaluate each run      →  run*/run_eval.json
-#   5. Aggregate              →  metrics.csv + report.md
+#   1. Run algorithm N times  ->  <RESULTS_ROOT>/<dataset>/<seq>/<algo>/run{1..N}/
+#   2. Build interpolated GT  ->  datasets/<dataset>/<seq>/gt_interp_tum.txt
+#   3. Auto-segment GT        ->  datasets/<dataset>/<seq>/segments_auto.csv
+#   4. Evaluate each run      ->  run*/run_eval.json
+#   5. Aggregate              ->  metrics.csv + report.md
 set -euo pipefail
 
-DATASET=$1; SEQ=$2; ALGO=$3; N=${4:-3}
+DATASET=$1; SEQ=$2; ALGO=$3; N=${4:-3}; RUN_TYPE=${5:-vo}
 WS=$(cd "$(dirname "$0")/../.." && pwd)
+source "$WS/scripts/_paths.sh"
+resolve_run_type "$RUN_TYPE"
 EVAL="$WS/scripts/eval"
 DS_DIR="$WS/datasets/$DATASET/$SEQ"
 
 echo "================================================================"
-echo " BENCHMARK: $ALGO on $DATASET/$SEQ  ($N runs)"
+echo " BENCHMARK: $ALGO on $DATASET/$SEQ  ($N runs, type=$RUN_TYPE)"
 echo "================================================================"
 
 # ── Step 1: Run algorithm N times ────────────────────────────────────────────
 for i in $(seq 1 "$N"); do
     echo ""
     echo "[benchmark] ─── Run $i / $N ───────────────────────────────────────"
-    bash "$WS/scripts/run/run_${ALGO}.sh" "$DATASET" "$SEQ" "$i"
+    bash "$WS/scripts/run/run_${ALGO}.sh" "$DATASET" "$SEQ" "$i" "$RUN_TYPE"
 done
 
 # ── Step 2: Interpolate GT to camera timestamps ───────────────────────────────
@@ -66,16 +73,16 @@ for i in $(seq 1 "$N"); do
     echo ""
     echo "[benchmark] ─── Evaluating run $i ────────────────────────────────"
     conda run -n macvo python3 \
-        "$EVAL/_evaluate_run.py" "$DATASET" "$SEQ" "$ALGO" "$i"
+        "$EVAL/_evaluate_run.py" "$DATASET" "$SEQ" "$ALGO" "$i" "$RUN_TYPE"
 done
 
 # ── Step 5: Aggregate ─────────────────────────────────────────────────────────
 echo ""
 echo "[benchmark] ─── Aggregating $N runs ──────────────────────────────────"
 conda run -n macvo python3 \
-    "$EVAL/_aggregate_runs.py" "$DATASET" "$SEQ" "$ALGO"
+    "$EVAL/_aggregate_runs.py" "$DATASET" "$SEQ" "$ALGO" 10 "$RUN_TYPE"
 
 echo ""
 echo "================================================================"
-echo " DONE — results/$DATASET/$SEQ/$ALGO/"
+echo " DONE -> $RESULTS_ROOT/$DATASET/$SEQ/$ALGO/"
 echo "================================================================"

@@ -1,10 +1,20 @@
 #!/usr/bin/env bash
-# Run MAC-VO on a sequence. Usage: scripts/run/run_macvo.sh <dataset> <seq> [run_id=1]
+# Run MAC-VO on a sequence.
+# Usage: scripts/run/run_macvo.sh <dataset> <seq> [run_id=1] [run_type=vo]
+#
+# MAC-VO is monocular VO without IMU or LC, so it only makes sense under
+# run_type=vo. The flag is accepted for uniformity but vio / vio-lc will
+# print a warning and still run vision-only.
 set -eo pipefail
-DATASET=$1; SEQ=$2; RUN_ID=${3:-1}
+DATASET=$1; SEQ=$2; RUN_ID=${3:-1}; RUN_TYPE=${4:-vo}
 WS=$(cd "$(dirname "$0")/../.." && pwd)
-OUT_DIR="$WS/results/$DATASET/$SEQ/macvo/run${RUN_ID}"
-LOG="$WS/logs/${DATASET}_${SEQ}_macvo_run${RUN_ID}.log"
+source "$WS/scripts/_paths.sh"
+resolve_run_type "$RUN_TYPE"
+if [[ "$RUN_TYPE" != "vo" ]]; then
+    echo "[macvo] WARNING: MAC-VO has no IMU / LC support; routing output to $RESULTS_ROOT anyway" >&2
+fi
+OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/macvo/run${RUN_ID}"
+LOG="$WS/logs/${DATASET}_${SEQ}_macvo_${RUN_TYPE}_run${RUN_ID}.log"
 # Use the upstream MACVO_Performant config directly
 ODOM_CFG="$WS/src/MAC-VO/Config/Experiment/MACVO/MACVO_Performant.yaml"
 DATA_CFG_SRC="$WS/configs/macvo/${DATASET}_${SEQ}.yaml"

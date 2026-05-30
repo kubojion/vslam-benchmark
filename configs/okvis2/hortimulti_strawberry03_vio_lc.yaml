@@ -1,0 +1,107 @@
+%YAML:1.0
+# OKVIS2 stereo-inertial (VIO-LC) configuration for HortiMulti strawberry03.
+# Same hardware calibration as strawberry03 - same robot and sensor suite.
+#
+# Camera: Basler acA1920-155uc, pre-rectified 640x480 grayscale.
+# IMU: MicroStrain 3DM-GX5-25 AHRS @ 200 Hz.
+# Calibration source: datasets/hortimulti/calibration.yaml (kalibr).
+#
+# T_SC = T_cam_imu (camera <- IMU/body frame).
+#   cam0: T_forwardLeft_cam_imu_link (directly from calibration.yaml)
+#   cam1: inverse of T_imu_link_forwardRight_cam (computed)
+#
+# Known cam-IMU timeshift: ~9.16 ms (camera leads IMU).
+# image_delay is left at 0.0; online calibration (calib_cam_timeoffset in
+# OpenVINS notation) will refine it. Adjust to -0.00916 if needed.
+
+cameras:
+     - {T_SC:
+        [ 0.0521232345, -0.9986040017,  0.0085566475,  0.0306819693,
+         -0.0073054379, -0.0089493527, -0.9999332676, -0.0550750963,
+          0.9986139389,  0.0520572461, -0.0077617087, -0.1240776643,
+          0.0, 0.0, 0.0, 1.0],
+        image_dimension: [640, 480],
+        distortion_coefficients: [0.0, 0.0, 0.0, 0.0],
+        distortion_type: radialtangential,
+        focal_length: [262.7149, 262.7149],
+        principal_point: [329.4310, 219.5617],
+        camera_type: gray,
+        slam_use: okvis}
+
+     - {T_SC:
+        [ 0.0280588344, -0.9995658920,  0.0089849508, -0.1058259019,
+         -0.0081160869, -0.0092160020, -0.9999245945, -0.0552409762,
+          0.9995733245,  0.0279837960, -0.0083711539, -0.1237505692,
+          0.0, 0.0, 0.0, 1.0],
+        image_dimension: [640, 480],
+        distortion_coefficients: [0.0, 0.0, 0.0, 0.0],
+        distortion_type: radialtangential,
+        focal_length: [262.7149, 262.7149],
+        principal_point: [329.4310, 219.5617],
+        camera_type: gray,
+        slam_use: okvis}
+
+camera_parameters:
+    timestamp_tolerance: 0.005
+    sync_cameras: [0, 1]
+    image_delay: 0.0
+    online_calibration:
+        do_extrinsics: false
+        do_extrinsics_final_ba: true
+        sigma_r: 0.01
+        sigma_alpha: 0.1
+        sigma_r_final_ba: 0.03
+        sigma_alpha_final_ba: 0.3
+
+# IMU: MicroStrain 3DM-GX5-25 AHRS.
+# sigma_g_c, sigma_a_c: Allan variance noise density from calibration.yaml.
+# sigma_gw_c, sigma_aw_c: Allan variance random walk x10 safety factor.
+imu_parameters:
+    use: true
+    a_max: 160.0
+    g_max: 10.0
+    sigma_g_c: 6.037e-04     # gyro noise density [rad/s/sqrt(Hz)]
+    sigma_a_c: 1.094e-03     # accel noise density [m/s^2/sqrt(Hz)]
+    sigma_bg: 0.03
+    sigma_ba: 0.1
+    sigma_gw_c: 3.221e-04    # gyro bias random walk (Allan x10)
+    sigma_aw_c: 4.584e-04    # accel bias random walk (Allan x10)
+    g: 9.812                 # Herefordshire, UK (~52 deg N)
+    g0: [ 0.0, 0.0, 0.0 ]
+    a0: [ 0.0, 0.0, 0.0 ]
+    T_BS:
+        [1.0, 0.0, 0.0, 0.0,
+         0.0, 1.0, 0.0, 0.0,
+         0.0, 0.0, 1.0, 0.0,
+         0.0, 0.0, 0.0, 1.0]
+
+frontend_parameters:
+    detection_threshold: 38.0
+    absolute_threshold: 150.0
+    matching_threshold: 60.0
+    octaves: 0
+    max_num_keypoints: 700
+    keyframe_overlap: 0.60
+    use_cnn: false
+    parallelise_detection: true
+    num_matching_threads: 4
+
+estimator_parameters:
+    num_keyframes: 5
+    num_loop_closure_frames: 3
+    num_imu_frames: 3
+    do_loop_closures: true
+    do_final_ba: false
+    enforce_realtime: false
+    realtime_min_iterations: 3
+    realtime_max_iterations: 10
+    realtime_time_limit: 0.035
+    realtime_num_threads: 3
+    full_graph_iterations: 15
+    full_graph_num_threads: 3
+    p_dbow: 0.4
+    drift_percentage_heuristic: 1.35
+
+output_parameters:
+    display_matches: false
+    display_overhead: false

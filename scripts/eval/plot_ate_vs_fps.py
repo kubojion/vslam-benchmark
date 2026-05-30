@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """ATE (SE3) vs FPS scatter plot across all algorithms and sequences.
 
-Reads benchmark.csv and writes results/ate_vs_fps.png.
+Reads benchmark-<type>.csv and writes <results_root>/ate_vs_fps.png.
 Each point = one (algo, dataset, seq) combination, mean across runs.
 Error bars show std over runs when more than one run exists.
 Color = algorithm. Marker shape = dataset.
 
 Usage:
-    python3 scripts/eval/plot_ate_vs_fps.py [--dpi 200] [--figsize 12 7]
+    python3 scripts/eval/plot_ate_vs_fps.py [--type vo|vio|vio-lc]
+                                            [--dpi 200] [--figsize 12 7]
 """
 import argparse
 import csv
+import sys
 from collections import defaultdict
 from pathlib import Path
 
@@ -21,23 +23,29 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 
 WS = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _run_type import resolve as resolve_run_type  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Shared palette - must stay in sync with _plot_segments.py
 # ---------------------------------------------------------------------------
 ALGO_COLOUR = {
-    "orbslam3":  "#2ca02c",
-    "droidslam": "#8c564b",
-    "macvo":     "#ff7f0e",
-    "basalt":    "#d62728",
-    "airslam":   "#17becf",
+    "orbslam3":    "#2ca02c",
+    "droidslam":   "#8c564b",
+    "macvo":       "#ff7f0e",
+    "basalt":      "#d62728",
+    "airslam":     "#17becf",
+    "mast3r_slam": "#9467bd",
+    "megasam":     "#e377c2",
 }
 ALGO_LABEL = {
-    "orbslam3":  "ORB-SLAM3",
-    "droidslam": "DROID-SLAM",
-    "macvo":     "MAC-VO",
-    "basalt":    "Basalt",
-    "airslam":   "AirSLAM",
+    "orbslam3":    "ORB-SLAM3",
+    "droidslam":   "DROID-SLAM",
+    "macvo":       "MAC-VO",
+    "basalt":      "Basalt",
+    "airslam":     "AirSLAM",
+    "mast3r_slam": "MASt3R-SLAM",
+    "megasam":     "MegaSaM",
 }
 DATASET_MARKER = {
     "euroc_mav":  "o",
@@ -63,13 +71,16 @@ SEQ_SHORTNAME = {
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--type", dest="run_type", default="vo",
+                    choices=["vo", "vio", "vio-lc"])
     ap.add_argument("--dpi",     type=int,   default=200)
     ap.add_argument("--figsize", nargs=2, type=float, default=[13, 8])
     args = ap.parse_args()
 
-    csv_path = WS / "benchmark.csv"
+    rt = resolve_run_type(args.run_type, WS)
+    csv_path = rt.csv_path
     if not csv_path.exists():
-        raise SystemExit(f"benchmark.csv not found: {csv_path}")
+        raise SystemExit(f"{csv_path.name} not found at {csv_path}")
 
     # Collect (ate_se3, fps) per (algo, dataset, seq)
     groups = defaultdict(list)
@@ -85,7 +96,7 @@ def main():
             groups[(row["algo"], row["dataset"], row["seq"])].append((ate, fps))
 
     if not groups:
-        raise SystemExit("No valid data in benchmark.csv")
+        raise SystemExit(f"No valid data in {csv_path.name}")
 
     # Compute per-group stats
     points = []
@@ -129,7 +140,7 @@ def main():
 
     ax.set_xlabel("ATE SE(3) RMSE [m]", fontsize=13)
     ax.set_ylabel("FPS", fontsize=13)
-    ax.set_title("ATE vs FPS - all algorithms and sequences", fontsize=14, pad=12)
+    ax.set_title(f"ATE vs FPS - {rt.name} run-type", fontsize=14, pad=12)
     ax.tick_params(labelsize=11)
 
     # Legend - two separate groups: algorithms (colour) and datasets (marker)
@@ -161,7 +172,7 @@ def main():
               fontsize=11, title="Dataset", title_fontsize=11,
               framealpha=0.95)
 
-    out = WS / "results" / "ate_vs_fps.png"
+    out = rt.results_root / "ate_vs_fps.png"
     out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out, dpi=args.dpi, bbox_inches="tight", facecolor="white")
     plt.close(fig)

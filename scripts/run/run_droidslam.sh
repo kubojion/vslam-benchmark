@@ -1,12 +1,19 @@
 #!/usr/bin/env bash
 # Run DROID-SLAM (stereo) on a converted sequence.
-# Usage: scripts/run/run_droidslam.sh <dataset> <seq> [run_id=1] [extra demo.py args]
+# Usage: scripts/run/run_droidslam.sh <dataset> <seq> [run_id=1] [run_type=vo] [extra demo.py args]
+#
+# DROID-SLAM has no IMU or LC support. Only run_type=vo is meaningful.
 set -eo pipefail
-DATASET=$1; SEQ=$2; RUN_ID=${3:-1}; shift 3 2>/dev/null || shift 2
+DATASET=$1; SEQ=$2; RUN_ID=${3:-1}; RUN_TYPE=${4:-vo}; shift 4 2>/dev/null || true
 WS=$(cd "$(dirname "$0")/../.." && pwd)
+source "$WS/scripts/_paths.sh"
+resolve_run_type "$RUN_TYPE"
+if [[ "$RUN_TYPE" != "vo" ]]; then
+    echo "[droidslam] WARNING: DROID-SLAM has no IMU / LC; routing output anyway" >&2
+fi
 SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
-OUT_DIR="$WS/results/$DATASET/$SEQ/droidslam/run${RUN_ID}"
-LOG="$WS/logs/${DATASET}_${SEQ}_droidslam_run${RUN_ID}.log"
+OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/droidslam/run${RUN_ID}"
+LOG="$WS/logs/${DATASET}_${SEQ}_droidslam_${RUN_TYPE}_run${RUN_ID}.log"
 CALIB="$WS/configs/droidslam/${DATASET}.txt"
 mkdir -p "$OUT_DIR" "$WS/logs"
 # Conda's activate/deactivate scripts reference variables (SYS_SYSROOT,

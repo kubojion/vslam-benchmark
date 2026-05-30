@@ -18,9 +18,11 @@ the same data with X/Y/Z axes.
 
 Usage:
     python3 _plot_segments.py <dataset> <seq>
-        [--algos orbslam3,droidslam,macvo,basalt,airslam] [--dpi 400] [--figsize 20]
+        [--algos orbslam3,droidslam,macvo,basalt,airslam,mast3r_slam,megasam]
+        [--type vo|vio|vio-lc] [--dpi 400] [--figsize 20]
 """
 import argparse
+import sys
 import warnings
 from pathlib import Path
 
@@ -31,22 +33,29 @@ import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _run_type import resolve as resolve_run_type  # noqa: E402
+
 # ---------------------------------------------------------------------------
 # Colour palette - consistent across all plots
 # ---------------------------------------------------------------------------
 ALGO_COLOUR = {
-    "orbslam3":  "#2ca02c",   # green
-    "droidslam": "#8c564b",   # brown
-    "macvo":     "#ff7f0e",   # orange
-    "basalt":    "#d62728",   # red
-    "airslam":   "#17becf",   # light blue
+    "orbslam3":    "#2ca02c",   # green
+    "droidslam":   "#8c564b",   # brown
+    "macvo":       "#ff7f0e",   # orange
+    "basalt":      "#d62728",   # red
+    "airslam":     "#17becf",   # light blue
+    "mast3r_slam": "#9467bd",   # purple
+    "megasam":     "#e377c2",   # pink
 }
 ALGO_LABEL = {
-    "orbslam3":  "ORB-SLAM3",
-    "droidslam": "DROID-SLAM",
-    "macvo":     "MAC-VO",
-    "basalt":    "Basalt",
-    "airslam":   "AirSLAM",
+    "orbslam3":    "ORB-SLAM3",
+    "droidslam":   "DROID-SLAM",
+    "macvo":       "MAC-VO",
+    "basalt":      "Basalt",
+    "airslam":     "AirSLAM",
+    "mast3r_slam": "MASt3R-SLAM",
+    "megasam":     "MegaSaM",
 }
 
 GT_COLOUR    = "black"
@@ -212,8 +221,8 @@ def finalise_3d(fig, ax, handles, out_path, dpi):
 # Per-run
 # ---------------------------------------------------------------------------
 def plot_per_run(dataset, seq, algo, run_id, gt_xyz, t_gt,
-                 ws, dpi, figsize):
-    res = ws / "results" / dataset / seq / algo / f"run{run_id}"
+                 ws, results_root, dpi, figsize):
+    res = results_root / dataset / seq / algo / f"run{run_id}"
     traj = res / "trajectory.txt"
     if not traj.exists():
         return False
@@ -250,8 +259,8 @@ def plot_per_run(dataset, seq, algo, run_id, gt_xyz, t_gt,
 # ---------------------------------------------------------------------------
 # Per-algo (all runs + mean)
 # ---------------------------------------------------------------------------
-def plot_per_algo(dataset, seq, algo, gt_xyz, t_gt, ws, dpi, figsize):
-    algo_dir = ws / "results" / dataset / seq / algo
+def plot_per_algo(dataset, seq, algo, gt_xyz, t_gt, ws, results_root, dpi, figsize):
+    algo_dir = results_root / dataset / seq / algo
     if not algo_dir.exists():
         return False
     run_dirs = sorted(algo_dir.glob("run*"))
@@ -325,14 +334,14 @@ def plot_per_algo(dataset, seq, algo, gt_xyz, t_gt, ws, dpi, figsize):
 # ---------------------------------------------------------------------------
 # Cross-algorithm comparison
 # ---------------------------------------------------------------------------
-def plot_compare(dataset, seq, algos, gt_xyz, t_gt, ws, dpi, figsize):
+def plot_compare(dataset, seq, algos, gt_xyz, t_gt, ws, results_root, dpi, figsize):
     gt_path = ws / "datasets" / dataset / seq / "gt_tum.txt"
 
     means_2d = {}
     means_3d = {}
 
     for algo in algos:
-        algo_dir = ws / "results" / dataset / seq / algo
+        algo_dir = results_root / dataset / seq / algo
         if not algo_dir.exists():
             continue
         runs_2d, runs_3d = [], []
@@ -396,7 +405,7 @@ def plot_compare(dataset, seq, algos, gt_xyz, t_gt, ws, dpi, figsize):
                 lw=MEAN_LW, alpha=0.95, zorder=3)
     draw_start_end_2d(ax, gt_xyz[:, :2])
     finalise_2d(fig, ax, handles,
-                ws / "results" / dataset / seq / "segment_map.png", dpi)
+                results_root / dataset / seq / "segment_map.png", dpi)
 
     # -- 3D --
     fig3, ax3 = base_figure_3d(dataset, seq, title_extra, figsize)
@@ -411,7 +420,7 @@ def plot_compare(dataset, seq, algos, gt_xyz, t_gt, ws, dpi, figsize):
                  lw=MEAN_LW, alpha=0.95, zorder=3)
     draw_start_end_3d(ax3, gt_xyz)
     finalise_3d(fig3, ax3, handles,
-                ws / "results" / dataset / seq / "segment_map_3d.png", dpi)
+                results_root / dataset / seq / "segment_map_3d.png", dpi)
 
     return True
 
@@ -424,12 +433,17 @@ def main():
     ap.add_argument("dataset")
     ap.add_argument("seq")
     ap.add_argument("--algos",
-                    default="orbslam3,droidslam,macvo,basalt,airslam")
+                    default="orbslam3,droidslam,macvo,basalt,airslam,mast3r_slam,megasam")
+    ap.add_argument("--type", dest="run_type", default="vo",
+                    choices=["vo", "vio", "vio-lc"],
+                    help="Which results tree to read (default: vo)")
     ap.add_argument("--dpi",     type=int,   default=400)
     ap.add_argument("--figsize", type=float, default=20.0)
     args = ap.parse_args()
 
     ws = Path(__file__).resolve().parents[2]
+    rt = resolve_run_type(args.run_type, ws)
+    results_root = rt.results_root
 
     gt_path = ws / "datasets" / args.dataset / args.seq / "gt_tum.txt"
     if not gt_path.exists():
@@ -443,22 +457,22 @@ def main():
 
     # (1) per-run
     for algo in algos:
-        algo_dir = ws / "results" / args.dataset / args.seq / algo
+        algo_dir = results_root / args.dataset / args.seq / algo
         if not algo_dir.exists():
             continue
         for rd in sorted(algo_dir.glob("run*")):
             run_id = rd.name.replace("run", "")
             plot_per_run(args.dataset, args.seq, algo, run_id,
-                         gt_xyz, t_gt, ws, args.dpi, args.figsize)
+                         gt_xyz, t_gt, ws, results_root, args.dpi, args.figsize)
 
     # (2) per-algo
     for algo in algos:
         plot_per_algo(args.dataset, args.seq, algo,
-                      gt_xyz, t_gt, ws, args.dpi, args.figsize)
+                      gt_xyz, t_gt, ws, results_root, args.dpi, args.figsize)
 
     # (3) cross-algorithm comparison
     plot_compare(args.dataset, args.seq, algos,
-                 gt_xyz, t_gt, ws, args.dpi, args.figsize)
+                 gt_xyz, t_gt, ws, results_root, args.dpi, args.figsize)
 
 
 if __name__ == "__main__":

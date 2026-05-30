@@ -1,13 +1,18 @@
 # vSLAM Benchmark
 
+> Fully revised: 2026-05-30 - Added OpenVINS; restructured algorithm table; fixed doc link typo; updated results snapshot.
 
 | Algorithm | Type | Source |
 |---|---|---|
-| **ORB-SLAM3** | Classical feature-based | [kubojion/ORB_SLAM3 @ vslam-benchmark-patches](https://github.com/kubojion/ORB_SLAM3/tree/vslam-benchmark-patches) (build portability + Settings.cc fix) |
-| **DROID-SLAM** | Neural | [princeton-vl/DROID-SLAM](https://github.com/princeton-vl/DROID-SLAM) (unmodified) |
-| **MAC-VO** | Hybrid (learned uncertainty) | [kubojion/MAC-VO @ vslam-benchmark-patches](https://github.com/kubojion/MAC-VO/tree/vslam-benchmark-patches) (`GeneralStereo` resize preprocess) |
-| **Basalt** | Optimization-based stereo VO | [VladyslavUsenko/basalt](https://gitlab.com/VladyslavUsenko/basalt) (binary install v0.1.7, vision-only mode) |
-| **AirSLAM** | Deep-feature point-line VO (TRO 2025) | [sair-lab/AirSLAM](https://github.com/sair-lab/AirSLAM) (Docker, ROS Noetic + TensorRT) |
+| **ORB-SLAM3** | Classical feature-based, stereo / stereo-inertial, optional LC | [kubojion/ORB_SLAM3 @ vslam-benchmark-patches](https://github.com/kubojion/ORB_SLAM3/tree/vslam-benchmark-patches). LC-on results quarantined in `obsolete/`; VO-clean re-run pending. |
+| **OKVIS2** | Sliding-window MAP stereo-inertial, optional DBoW + Sim3 LC | [ethz-mrl/okvis2](https://github.com/ethz-mrl/okvis2) (cmake build, system deps) |
+| **MAC-VO** | Hybrid (learned uncertainty), stereo VO | [kubojion/MAC-VO @ vslam-benchmark-patches](https://github.com/kubojion/MAC-VO/tree/vslam-benchmark-patches) |
+| **Basalt** | Optimization-based stereo VO / VIO | [VladyslavUsenko/basalt](https://gitlab.com/VladyslavUsenko/basalt) (binary install v0.1.7) |
+| **AirSLAM** | Deep-feature point-line VO / VIO / V-SLAM (TRO 2025) | [sair-lab/AirSLAM](https://github.com/sair-lab/AirSLAM) (Docker, ROS Noetic + TensorRT) |
+| **OpenVINS** | MSCKF stereo-IMU filter (VIO only, no LC) | [rpng/open_vins](https://github.com/rpng/open_vins) (Docker, ROS 2 Humble) |
+| **DROID-SLAM** | Neural dense stereo VO (Phase 1 only; dropped per supervisor) | [princeton-vl/DROID-SLAM](https://github.com/princeton-vl/DROID-SLAM). Replaced by DPVO. |
+| **MASt3R-SLAM** | Monocular dense SLAM with retrieval-based LC (scaffolded) | [rmurai0610/MASt3R-SLAM](https://github.com/rmurai0610/MASt3R-SLAM) (arXiv:2412.12392) |
+| **MegaSaM** | Monocular structure-and-motion, learned (scaffolded) | [mega-sam/mega-sam](https://github.com/mega-sam/mega-sam) (arXiv:2412.04463) |
 
 ## Datasets
 
@@ -20,15 +25,56 @@ Rosario v2 and HortiMulti are the primary benchmarks. EuRoC-MAV is tracked as a 
 ## Repository layout
 
 ```
-configs/           # per-(algo,dataset) configs (yaml/txt)
+configs/             # per-(algo,dataset) configs (yaml/txt)
 scripts/
-├── data/          # rosbag → TUM-format dataset converters
-├── run/           # per-algorithm runners + multi-run benchmark driver
-└── eval/          # ATE/RPE + per-segment evaluation + plots
-results/           # SLAM outputs, evaluation reports, segment-map plots
-docs/              # public documentation (this file + 3 below)
-PROGRESS.md        # running log of results and known issues
+├── _paths.sh        # bash helper: resolve_run_type <vo|vio|vio-lc>
+├── build/           # build / env-setup scripts (one per algo)
+├── data/            # rosbag / euroc converters
+├── run/             # per-algorithm runners + multi-run benchmark driver
+└── eval/            # ATE/RPE + per-segment evaluation + plots
+                     # (_run_type.py defines the python-side run-type table)
+results-vo/          # vo runs           (no IMU, no LC)
+results-vio/         # vio runs          (IMU on, LC off)
+results-vio-lc/      # vio-lc runs       (IMU on, LC on)
+benchmark-vo.csv     # aggregated metrics for vo runs
+benchmark-vio.csv    # aggregated metrics for vio runs
+benchmark-vio-lc.csv # aggregated metrics for vio-lc runs
+obsolete/            # quarantined data (e.g. ORB-SLAM3 stereo+LC runs that
+                     # don't fit the 3-bucket scheme)
+docs/                # public documentation (this file + 3 below)
+PROGRESS.md          # running log of results and known issues
 ```
+
+## Run-type abstraction
+
+Every run is tagged with one of three `run_type`s. The tag controls
+*both* the SLAM configuration that is launched *and* the on-disk
+location of its output:
+
+| run_type | IMU | Loop closure | Results folder        | Aggregated CSV         |
+|----------|-----|--------------|-----------------------|------------------------|
+| `vo`     | off | off          | `results-vo/`         | `benchmark-vo.csv`     |
+| `vio`    | on  | off          | `results-vio/`        | `benchmark-vio.csv`    |
+| `vio-lc` | on  | on           | `results-vio-lc/`     | `benchmark-vio-lc.csv` |
+
+Not every algorithm supports every run type. The runners reject or
+warn for unsupported combinations:
+
+| Algorithm   | `vo` | `vio` | `vio-lc` |
+|-------------|------|-------|----------|
+| ORB-SLAM3   | yes (requires LC-off build) | yes | yes |
+| OKVIS2      | yes | yes | yes (IMU sigmas need 5-10x inflation, see PROGRESS.md) |
+| AirSLAM     | yes | yes | yes |
+| Basalt      | yes | yes | (no LC) |
+| OpenVINS    | (no VO mode) | yes | (no LC) |
+| MAC-VO      | yes | (not supported) | (not supported) |
+| DROID-SLAM  | yes (dropped; results kept) | (not supported) | (not supported) |
+| MegaSaM     | yes | (not supported) | (not supported) |
+| MASt3R-SLAM | yes (LC disabled) | (no IMU) | yes (LC enabled, IMU still off) |
+
+("MASt3R-SLAM" is monocular: the `vio-lc` bucket is re-used for the
+ monocular+LC configuration because that is the only combination it
+ offers.)
 
 ## Quickstart
 
@@ -39,26 +85,42 @@ cd vslam-benchmark
 # 2. install deps + clone the SLAM source trees (see docs/setup.md)
 # 2b. install Basalt binary (see docs/setup.md §6)
 # 2c. set up AirSLAM Docker container (see docs/setup.md §7)
+# 2d. (optional) MegaSaM + MASt3R-SLAM envs:
+#       bash scripts/build/setup_megasam_env.sh
+#       bash scripts/build/setup_mast3r_slam_env.sh
 
 # 3. drop a dataset under datasets/<dataset>/<seq>/ and convert it
 bash scripts/data/convert_rosario_to_tum.sh datasets/rosariov2/sequence1
 
-# 4. run any algorithm 3x with full evaluation
-bash scripts/run/run_benchmark.sh rosariov2 sequence1 orbslam3 3
+# 4. run any algorithm 3x with full evaluation (default run_type=vo)
+bash scripts/run/run_benchmark.sh rosariov2 sequence1 macvo 3
 
-# 5. read results/rosariov2/sequence1/orbslam3/report.md
+# 4b. same sequence as VIO (IMU on, LC off) - writes to results-vio/
+bash scripts/run/run_benchmark.sh rosariov2 sequence1 basalt 3 vio
+
+# 4c. AirSLAM full V-SLAM (IMU + LC) - writes to results-vio-lc/
+bash scripts/run/run_benchmark.sh rosariov2 sequence1 airslam 3 vio-lc
+
+# 5. rebuild aggregated CSVs from per-run JSONs
+conda run -n macvo python3 scripts/eval/build_benchmark_csv.py all
+
+# 6. read results-vo/rosariov2/sequence1/macvo/report.md (or the equivalent
+#    file under results-vio / results-vio-lc)
 ```
 
 ## Documentation
 
-* [docs/setup.md](docs/setup.md) - system deps, building Pangolin + ORB-SLAM3, conda envs.
-* [docs/running_agorithms.md](docs/running_agorithms.md) - how to add a new sequence and run all three algorithms.
+* [docs/setup.md](docs/setup.md) - system deps, building Pangolin + ORB-SLAM3, conda envs, Docker containers.
+* [docs/running_algorithms.md](docs/running_algorithms.md) - how to run any algorithm on any dataset / run-type combination.
 * [docs/evaluation.md](docs/evaluation.md) - evaluation pipeline, metric definitions, plot conventions.
-* [PROGRESS.md](PROGRESS.md) - current results table, known issues, dataset-specific notes.
+* [PROGRESS.md](PROGRESS.md) - current results tables (VO / VIO / VIO-LC), known issues, dataset-specific notes.
 
 ## Results snapshot
 
-See [PROGRESS.md](PROGRESS.md) for the full table; representative numbers:
+See [PROGRESS.md](PROGRESS.md) for full results (VO / VIO / VIO-LC tables).
+The aggregated CSVs (`benchmark-vo.csv`, `benchmark-vio.csv`, `benchmark-vio-lc.csv`) are the source of truth.
+
+Representative VO numbers (N=3 unless noted):
 
 | Algorithm | Dataset | Seq | ATE Sim(3) | Runs |
 |---|---|---|---|---|
@@ -82,6 +144,15 @@ See [PROGRESS.md](PROGRESS.md) for the full table; representative numbers:
 | AirSLAM | HortiMulti | strawberry02 | 20.220 ± 0.824 m | 3 |
 | AirSLAM | Rosario v2 | seq1 | 9.89 ± 0.06 m | 3 |
 | AirSLAM | Rosario v2 | seq5 | 12.72 ± 0.99 m | 3 |
+
+Representative VIO numbers (Phase 2, N=1 unless noted):
+
+| Algorithm | Dataset | Seq | ATE Sim3 | N |
+|---|---|---|---|---|
+| ORB-SLAM3 | Rosario v2 | seq5 | **2.29 m** | 1 |
+| Basalt | Rosario v2 | seq5 | **4.74 m** | 1 |
+| OpenVINS | Rosario v2 | seq1 | 2.32 m | 1 |
+| OpenVINS | EuRoC | MH_01_easy | 0.058 m | 1 |
 
 ### [NON-AGRICULTURAL REFERENCE] EuRoC-MAV (single-run reference)
 
@@ -108,6 +179,7 @@ See [PROGRESS.md](PROGRESS.md) for the full table; representative numbers:
 ## License
 
 This benchmarking framework (configs/, scripts/, docs/, results/) is released
-under the MIT License - see [LICENSE](LICENSE).  
+under the MIT License - see [LICENSE](LICENSE).
 The SLAM algorithms remain under their respective upstream licenses
-(ORB-SLAM3: GPLv3, DROID-SLAM: BSD-3-Clause, MAC-VO: Apache-2.0, AirSLAM: GPL-3.0).
+(ORB-SLAM3: GPLv3, MAC-VO: Apache-2.0, AirSLAM: GPL-3.0, OpenVINS: GPL-3.0,
+DROID-SLAM: BSD-3-Clause, MASt3R-SLAM: CC-BY-NC-SA-4.0).

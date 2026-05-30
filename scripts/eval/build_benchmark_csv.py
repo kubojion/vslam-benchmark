@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 """
-Scan results/ and append every per-run evaluation into a flat CSV.
+Scan every run-type results tree and write one CSV per run type.
 
-Layout assumed:
-    results/<dataset>/<seq>/<algo>/run<N>/run_eval.json
-    results/<dataset>/<seq>/<algo>/run<N>/run_meta.json   (optional)
-    datasets/<dataset>/<seq>/times.txt                    (sequence metadata)
-    datasets/<dataset>/<seq>/gt_interp_tum.txt            (GT path length)
-    datasets/<dataset>/<seq>/cam0/*.png                   (image dimensions)
+Usage:
+    python3 build_benchmark_csv.py [run_type]
 
-Output:
-    benchmark.csv at the repo root, one row per (dataset, seq, algo, run).
+    run_type \u2208 {vo, vio, vio-lc, all}  (default: all)
 
-Append-only: existing rows (matched by dataset/seq/algo/run) are kept.
-Rows are ordered by the mtime of run_eval.json.
+Layouts:
+    results/<dataset>/<seq>/<algo>/run<N>/run_eval.json    -> benchmark-vo.csv
+    results-vio/<dataset>/<seq>/<algo>/run<N>/run_eval.json -> benchmark-vio.csv
+    results-vio-lc/<dataset>/<seq>/<algo>/run<N>/run_eval.json -> benchmark-vio-lc.csv
+
+Each CSV is append-only: existing rows (matched by dataset/seq/algo/duration_s)
+are kept. Rows are ordered by the mtime of run_eval.json.
 """
 from __future__ import annotations
 import csv
@@ -23,10 +23,11 @@ from pathlib import Path
 
 import numpy as np
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _run_type import resolve as resolve_run_type, all_types, RUN_TYPES  # noqa: E402
+
 REPO = Path(__file__).resolve().parents[2]
-RESULTS = REPO / "results"
 DATASETS = REPO / "datasets"
-CSV_PATH = REPO / "benchmark.csv"
 
 ENV_TYPE: dict[str, str] = {
     "euroc_mav": "indoor",
@@ -37,6 +38,7 @@ ENV_TYPE: dict[str, str] = {
 COLUMNS = [
     # Identity
     "dataset", "seq", "environment_type", "algo",
+    "run_type", "use_imu", "use_lc",
     # Sequence metadata
     "input_fps", "image_width", "image_height",
     "sequence_duration_s", "sequence_frames_total",
@@ -150,7 +152,7 @@ def load_traj_info(traj_path: Path) -> dict:
         return {}
 
 
-def row_from_eval(eval_path: Path, seq_meta: dict) -> dict | None:
+def row_from_eval(eval_path: Path, seq_meta: dict, rt) -> dict | None:
     try:
         ev = json.loads(eval_path.read_text())
     except Exception as e:
@@ -176,7 +178,7 @@ def row_from_eval(eval_path: Path, seq_meta: dict) -> dict | None:
     row_seg = seg.get("row", {}) or {}
     turn_seg = seg.get("turn", {}) or {}
     rob = ev.get("robustness", {}) or {}
-    rt = ev.get("runtime", {}) or {}
+    runtime = ev.get("runtime", {}) or {}
 
     dataset = ds_dir.name
     seq = seq_dir.name
@@ -191,8 +193,8 @@ def row_from_eval(eval_path: Path, seq_meta: dict) -> dict | None:
     ate_pct_path = _round(ate_se3_rmse / path_gt * 100, 2) if (ate_se3_rmse and path_gt) else None
 
     # Derived: timing
-    wall_s = rt.get("wall_s") or _g(meta, "duration_s")
-    fps_val = rt.get("fps") or _g(meta, "fps")
+    wall_s = runtime.get("wall_s") or _g(meta, "duration_s")
+    fps_val = runtime.get("fps") or _g(meta, "fps")
     seq_dur = seq_meta.get("sequence_duration_s")
     rtf = _round(seq_dur / wall_s, 3) if (seq_dur and wall_s) else None
     frames_tracked = rob.get("frames_tracked") or _g(meta, "frames")
@@ -214,6 +216,9 @@ def row_from_eval(eval_path: Path, seq_meta: dict) -> dict | None:
         "seq": seq,
         "environment_type": ENV_TYPE.get(dataset, "unknown"),
         "algo": algo_dir.name,
+        "run_type": rt.name,
+        "use_imu": rt.use_imu,
+        "use_lc": rt.use_lc,
         "run": run_dir.name.replace("run", ""),
         "run_status": run_status,
         # Sequence
@@ -270,14 +275,14 @@ def row_from_eval(eval_path: Path, seq_meta: dict) -> dict | None:
         "real_time_factor": rtf,
         "processing_ms_per_frame": ms_per_frame,
         # Resources
-        "cpu_mean_pct": rt.get("cpu_mean_pct"),
-        "cpu_peak_pct": rt.get("cpu_peak_pct"),
-        "ram_mean_mib": rt.get("ram_mean_mib"),
-        "ram_peak_mib": rt.get("ram_peak_mib"),
-        "vram_mean_mib": rt.get("vram_mean_mib"),
-        "vram_peak_mib": rt.get("vram_peak_mib"),
-        "gpu_mean_pct": rt.get("gpu_mean_pct"),
-        "gpu_peak_pct": rt.get("gpu_peak_pct"),
+        "cpu_mean_pct": runtime.get("cpu_mean_pct"),
+        "cpu_peak_pct": runtime.get("cpu_peak_pct"),
+        "ram_mean_mib": runtime.get("ram_mean_mib"),
+        "ram_peak_mib": runtime.get("ram_peak_mib"),
+        "vram_mean_mib": runtime.get("vram_mean_mib"),
+        "vram_peak_mib": runtime.get("vram_peak_mib"),
+        "gpu_mean_pct": runtime.get("gpu_mean_pct"),
+        "gpu_peak_pct": runtime.get("gpu_peak_pct"),
         # Agricultural segments
         "ate_row_rmse_m": row_seg.get("ate_rmse_mean"),
         "ate_turn_rmse_m": turn_seg.get("ate_rmse_mean"),
@@ -290,50 +295,53 @@ def row_from_eval(eval_path: Path, seq_meta: dict) -> dict | None:
     }
 
 
-def load_existing_keys() -> set[tuple]:
-    if not CSV_PATH.exists():
+def load_existing_keys(csv_path: Path) -> set[tuple]:
+    if not csv_path.exists():
         return set()
     keys = set()
-    with CSV_PATH.open() as f:
+    with csv_path.open() as f:
         for r in csv.DictReader(f):
             # Use (dataset, seq, algo, duration_s) as proxy key since `run` is no longer a column.
-            # duration_s varies slightly per run (~1-3%), making it a reliable proxy.
             keys.add((r["dataset"], r["seq"], r["algo"], r.get("duration_s", "")))
     return keys
 
 
-def main() -> int:
-    if not RESULTS.is_dir():
-        print(f"[err] no results dir at {RESULTS}", file=sys.stderr)
-        return 1
+def build_one(rt) -> int:
+    """Scan one results tree and append new rows to its CSV. Returns row count added."""
+    results_root = rt.results_root
+    csv_path = rt.csv_path
+    if not results_root.is_dir():
+        print(f"[info] {rt.name}: results dir missing ({results_root}), skipping")
+        return 0
+
     eval_files = sorted(
-        RESULTS.glob("*/*/*/run*/run_eval.json"),
+        results_root.glob("*/*/*/run*/run_eval.json"),
         key=lambda p: p.stat().st_mtime,
     )
     if not eval_files:
-        print("[info] no run_eval.json files found")
+        print(f"[info] {rt.name}: no run_eval.json under {results_root}")
+        # Still ensure header exists if file missing
+        if not csv_path.exists():
+            with csv_path.open("w", newline="") as f:
+                csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore").writeheader()
         return 0
 
-    # Pre-load sequence metadata (once per dataset/seq pair)
+    # Pre-load sequence metadata
     seq_meta_cache: dict[tuple, dict] = {}
     for ep in eval_files:
-        run_dir = ep.parent
-        algo_dir = run_dir.parent
-        seq_dir = algo_dir.parent
+        seq_dir = ep.parent.parent.parent
         ds_dir = seq_dir.parent
         key = (ds_dir.name, seq_dir.name)
         if key not in seq_meta_cache:
             seq_meta_cache[key] = load_seq_meta(ds_dir.name, seq_dir.name)
 
-    existing = load_existing_keys()
+    existing = load_existing_keys(csv_path)
     new_rows = []
     for ep in eval_files:
-        run_dir = ep.parent
-        algo_dir = run_dir.parent
-        seq_dir = algo_dir.parent
+        seq_dir = ep.parent.parent.parent
         ds_dir = seq_dir.parent
         sm = seq_meta_cache.get((ds_dir.name, seq_dir.name), {})
-        row = row_from_eval(ep, sm)
+        row = row_from_eval(ep, sm, rt)
         if row is None:
             continue
         key = (row["dataset"], row["seq"], row["algo"], str(row.get("duration_s", "")))
@@ -341,22 +349,42 @@ def main() -> int:
             continue
         new_rows.append(row)
 
-    write_header = not CSV_PATH.exists()
+    write_header = not csv_path.exists()
     if not new_rows:
-        print(f"[info] no new rows (benchmark.csv has {len(existing)} entries)")
+        print(f"[info] {rt.name}: no new rows ({csv_path.name} has {len(existing)} entries)")
+        if write_header:
+            with csv_path.open("w", newline="") as f:
+                csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore").writeheader()
         return 0
 
-    with CSV_PATH.open("a", newline="") as f:
+    with csv_path.open("a", newline="") as f:
         w = csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore")
         if write_header:
             w.writeheader()
         for r in new_rows:
             w.writerow(r)
 
-    print(f"[ok] appended {len(new_rows)} row(s) to {CSV_PATH}")
+    print(f"[ok] {rt.name}: appended {len(new_rows)} row(s) to {csv_path.name}")
     for r in new_rows:
         run_label = f"run{r.get('run', '?')}"
         print(f"      + {r['dataset']}/{r['seq']}/{r['algo']}/{run_label}  ATE Sim3={r['ate_sim3_rmse_m']}")
+    return len(new_rows)
+
+
+def main() -> int:
+    target = sys.argv[1] if len(sys.argv) > 1 else "all"
+    if target == "all":
+        types = all_types(REPO)
+    elif target in RUN_TYPES:
+        types = [resolve_run_type(target, REPO)]
+    else:
+        print(f"Usage: {sys.argv[0]} [vo|vio|vio-lc|all]", file=sys.stderr)
+        return 1
+
+    total = 0
+    for rt in types:
+        total += build_one(rt)
+    print(f"[done] {total} new row(s) added across {len(types)} CSV(s)")
     return 0
 
 

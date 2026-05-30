@@ -1,0 +1,12 @@
+# MASt3R-SLAM config for Rosario v2 (rectified cam0).
+camera:
+  model: pinhole
+  width: 1280
+  height: 720
+  fx: 648.8624
+  fy: 648.8624
+  cx: 645.0113
+  cy: 348.2427
+slam:
+  retrieval_thresh: 0.6
+  max_keyframes: 0

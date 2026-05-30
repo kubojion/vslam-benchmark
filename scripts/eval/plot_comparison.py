@@ -2,10 +2,10 @@
 """
 Generate thesis comparison plots for a single sequence.
 Usage:
-    python3 scripts/eval/plot_comparison.py <dataset> <seq>
+    python3 scripts/eval/plot_comparison.py <dataset> <seq> [--type vo|vio|vio-lc]
     e.g.: python3 scripts/eval/plot_comparison.py rosariov2 sequence1
 """
-import sys, os, pathlib
+import sys, os, pathlib, argparse
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
@@ -13,6 +13,8 @@ import matplotlib.pyplot as plt
 from scipy.spatial.transform import Rotation
 
 WS = pathlib.Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from _run_type import resolve as resolve_run_type  # noqa: E402
 
 # ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -71,10 +73,17 @@ def align_and_trim(ref_tum, est_tum, max_diff=0.1, correct_scale=True):
 # ── main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    dataset = sys.argv[1] if len(sys.argv) > 1 else "rosariov2"
-    seq     = sys.argv[2] if len(sys.argv) > 2 else "sequence1"
+    ap = argparse.ArgumentParser()
+    ap.add_argument("dataset", nargs="?", default="rosariov2")
+    ap.add_argument("seq", nargs="?", default="sequence1")
+    ap.add_argument("--type", dest="run_type", default="vo",
+                    choices=["vo", "vio", "vio-lc"])
+    args = ap.parse_args()
+    dataset = args.dataset
+    seq = args.seq
+    rt = resolve_run_type(args.run_type, WS)
 
-    base    = WS / "results" / dataset / seq
+    base    = rt.results_root / dataset / seq
     gt_path = WS / "datasets" / dataset / seq / "gt_tum.txt"
     out_dir = base / "plots"
     out_dir.mkdir(exist_ok=True)

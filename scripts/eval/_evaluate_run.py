@@ -2,20 +2,25 @@
 """Evaluate a single algorithm run and write run_eval.json.
 
 Usage:
-    python3 _evaluate_run.py <dataset> <seq> <algo> <run_id>
+    python3 _evaluate_run.py <dataset> <seq> <algo> <run_id> [run_type=vo]
+
+run_type selects which results-tree this run lives in:
+  vo      -> results/<dataset>/<seq>/<algo>/run<N>/
+  vio     -> results-vio/<dataset>/<seq>/<algo>/run<N>/
+  vio-lc  -> results-vio-lc/<dataset>/<seq>/<algo>/run<N>/
 
 Looks for:
   datasets/<dataset>/<seq>/gt_interp_tum.txt   (preferred)
   datasets/<dataset>/<seq>/gt_tum.txt          (fallback, uses t_max_diff=0.1)
   datasets/<dataset>/<seq>/times.txt           (for GT interpolation trigger)
   datasets/<dataset>/<seq>/segments_auto.csv   (optional agri segments)
-  results/<dataset>/<seq>/<algo>/run<N>/trajectory.txt
-  results/<dataset>/<seq>/<algo>/run<N>/run_meta.json
-  results/<dataset>/<seq>/<algo>/run<N>/resources.csv
-  results/<dataset>/<seq>/<algo>/run<N>/run_log.txt
+  <results_root>/<dataset>/<seq>/<algo>/run<N>/trajectory.txt
+  <results_root>/<dataset>/<seq>/<algo>/run<N>/run_meta.json
+  <results_root>/<dataset>/<seq>/<algo>/run<N>/resources.csv
+  <results_root>/<dataset>/<seq>/<algo>/run<N>/run_log.txt
 
 Writes:
-  results/<dataset>/<seq>/<algo>/run<N>/run_eval.json
+  <results_root>/<dataset>/<seq>/<algo>/run<N>/run_eval.json
 
 Algorithm-specific log parsing is keyed on <algo>. Add new algos to
 LOG_PATTERNS to extend support.
@@ -28,6 +33,9 @@ import subprocess
 from pathlib import Path
 
 import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _run_type import resolve as resolve_run_type  # noqa: E402
 
 # Segment split policy
 # Default behavior is to keep row/turn distinction.
@@ -98,8 +106,42 @@ LOG_PATTERNS = {
         # No tracking-loss or loop-closure output (stereo VO only).
         "init_success":    re.compile(r"dataset done"),
         "tracking_loss":   None,
+        "loop_closure":    re.compile(r"Loop closure detected|loop detected"),
+        "map_reset":       None,
+    },
+    "megasam": {
+        # MegaSaM prints per-frame depth+pose progress and a final
+        # "Saved trajectory" banner.
+        "init_success":    re.compile(r"Loading model|Running MegaSaM"),
+        "tracking_loss":   None,
         "loop_closure":    None,
         "map_reset":       None,
+    },
+    "mast3r_slam": {
+        # MASt3R-SLAM uses the MASt3R retrieval head for loop closures; the
+        # demo prints "Loop closure" when one is accepted.
+        "init_success":    re.compile(r"MASt3R-SLAM|Initialised"),
+        "tracking_loss":   re.compile(r"Tracking lost"),
+        "loop_closure":    re.compile(r"Loop closure"),
+        "map_reset":       None,
+    },
+    "okvis2": {
+        # okvis_app_synchronous prints "Initialised!" after IMU init,
+        # "Marginalisation... SLAM frame" for ongoing tracking,
+        # and "Finishing..." before writing the trajectory.
+        "init_success":    re.compile(r"Initialised!|Initialized!|SLAM started"),
+        "tracking_loss":   re.compile(r"Tracking LOST|tracking lost"),
+        "loop_closure":    re.compile(r"Loop closure|loop closure"),
+        "map_reset":       None,
+    },
+    "openvins": {
+        # OpenVINS' MSCKF prints "[init]: successful initialization in ..."
+        # once the static-IMU/dynamic init succeeds. "Reset System" appears
+        # if the filter explicitly resets. No built-in loop closure.
+        "init_success":    re.compile(r"successful initialization|Initialized System"),
+        "tracking_loss":   re.compile(r"failed to track|Reset System|TRACKING LOST"),
+        "loop_closure":    None,
+        "map_reset":       re.compile(r"Reset System"),
     },
 }
 
@@ -326,16 +368,20 @@ def compute_final_drift(gt_path, est_path, t_max_diff=0.005):
 # Main
 # ──────────────────────────────────────────────────────────────────────────────
 def main():
-    if len(sys.argv) != 5:
-        print(f"Usage: {sys.argv[0]} <dataset> <seq> <algo> <run_id>",
+    if len(sys.argv) not in (5, 6):
+        print(f"Usage: {sys.argv[0]} <dataset> <seq> <algo> <run_id> [run_type=vo]",
               file=sys.stderr)
         sys.exit(1)
 
     dataset, seq, algo, run_id = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
+    run_type_name = sys.argv[5] if len(sys.argv) == 6 else "vo"
 
     ws = Path(__file__).resolve().parents[2]
+    rt = resolve_run_type(run_type_name, ws)
     ds_dir  = ws / "datasets" / dataset / seq
-    run_dir = ws / "results" / dataset / seq / algo / f"run{run_id}"
+    run_dir = rt.results_root / dataset / seq / algo / f"run{run_id}"
+
+    print(f"[eval] run_type={rt.name}  results_root={rt.results_root}", file=sys.stderr)
 
     traj_path = run_dir / "trajectory.txt"
     if not traj_path.exists():
@@ -462,6 +508,9 @@ def main():
         "algo":    algo,
         "dataset": dataset,
         "seq":     seq,
+        "run_type": rt.name,
+        "use_imu": rt.use_imu,
+        "use_lc":  rt.use_lc,
         "gt_source": gt_source,
         "n_pairs_ate": n_pairs,
         "ate": {

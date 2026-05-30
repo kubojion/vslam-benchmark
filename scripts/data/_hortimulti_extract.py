@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Extract stereo images and GT from a HortiMulti ROS1 bag.
+"""Extract stereo images, GT, and IMU data from a HortiMulti ROS1 bag.
 
 Topics consumed:
   /forwardLeft/image_raw/compressed   sensor_msgs/CompressedImage  ~10 Hz
   /forwardRight/image_raw/compressed  sensor_msgs/CompressedImage  ~10 Hz
+  /ms/imu/data                        sensor_msgs/Imu              ~200 Hz
 
 Processing pipeline per frame:
   1. Decode JPEG bytes → grayscale numpy array
@@ -22,6 +23,7 @@ Output layout:
   <out>/right →  mav0/cam1/data         (MAC-VO symlink)
   <out>/times.txt                       nanosecond stamps, one per line
   <out>/gt_tum.txt                      TUM format  (seconds tx ty tz qx qy qz qw)
+  <out>/mav0/imu0/data.csv              EuRoC format (ns, wx, wy, wz, ax, ay, az)  [unless --no-imu]
 
 Requires: pip install rosbags numpy opencv-python
 """
@@ -283,6 +285,48 @@ def print_rectified_intrinsics(P1, P2, out_size, src_size):
     print()
 
 
+def extract_imu(bag_path, imu_topic, out_dir, typestore):
+    """Extract imu_topic from bag -> mav0/imu0/data.csv in EuRoC format.
+
+    EuRoC IMU CSV header:
+      #timestamp [ns],w_RS_S_x [rad s^-1],w_RS_S_y [rad s^-1],w_RS_S_z [rad s^-1],\
+ a_RS_S_x [m s^-2],a_RS_S_y [m s^-2],a_RS_S_z [m s^-2]
+    """
+    imu0_dir = out_dir / "mav0" / "imu0"
+    imu0_dir.mkdir(parents=True, exist_ok=True)
+    csv_path = imu0_dir / "data.csv"
+    header = (
+        "#timestamp [ns],"
+        "w_RS_S_x [rad s^-1],w_RS_S_y [rad s^-1],w_RS_S_z [rad s^-1],"
+        "a_RS_S_x [m s^-2],a_RS_S_y [m s^-2],a_RS_S_z [m s^-2]"
+    )
+    rows = []
+    with Reader(bag_path) as reader:
+        topics_in_bag = {c.topic for c in reader.connections}
+        if imu_topic not in topics_in_bag:
+            raise RuntimeError(
+                f"IMU topic '{imu_topic}' not found in bag.  "
+                f"Available: {sorted(topics_in_bag)}"
+            )
+        conns = [c for c in reader.connections if c.topic == imu_topic]
+        for _conn, _timestamp, rawdata in reader.messages(connections=conns):
+            msg = typestore.deserialize_ros1(rawdata, _conn.msgtype)
+            ts_ns = header_stamp_ns(msg)
+            gx = msg.angular_velocity.x
+            gy = msg.angular_velocity.y
+            gz = msg.angular_velocity.z
+            ax = msg.linear_acceleration.x
+            ay = msg.linear_acceleration.y
+            az = msg.linear_acceleration.z
+            rows.append(f"{ts_ns},{gx},{gy},{gz},{ax},{ay},{az}")
+    with open(csv_path, "w") as f:
+        f.write(header + "\n")
+        f.write("\n".join(rows))
+        if rows:
+            f.write("\n")
+    return len(rows)
+
+
 def make_symlink(src: str, dst: Path) -> None:
     if not dst.exists() and not dst.is_symlink():
         dst.symlink_to(src)
@@ -304,11 +348,27 @@ def main():
                     help="Output image height (default 480)")
     ap.add_argument("--max_frames", type=int, default=0,
                     help="Extract only first N left frames (0=all)")
+    ap.add_argument("--imu",        default="/ms/imu/data",
+                    help="IMU topic name (default /ms/imu/data)")
+    ap.add_argument("--no-imu",     dest="no_imu", action="store_true",
+                    help="Skip IMU extraction")
+    ap.add_argument("--imu-only",   dest="imu_only", action="store_true",
+                    help="Extract only IMU (skip image extraction, GT, symlinks)")
     args = ap.parse_args()
 
     TYPESTORE = get_typestore(Stores.ROS1_NOETIC)
     out_size  = (args.width, args.height)
     out       = Path(args.out)
+
+    # ── IMU-only fast path
+    if args.imu_only:
+        imu_dir = out / "mav0" / "imu0"
+        imu_dir.mkdir(parents=True, exist_ok=True)
+        print(f"[extract] --imu-only: extracting IMU from '{args.imu}' ...", flush=True)
+        n_imu = extract_imu(Path(args.bag), args.imu, out, TYPESTORE)
+        print(f"[extract] imu0/data.csv -> {out / 'mav0' / 'imu0' / 'data.csv'}  ({n_imu} samples)")
+        print(f"[extract] done")
+        return
 
     # ── Output directories
     cam0_dir = out / "mav0" / "cam0" / "data"
@@ -364,6 +424,14 @@ def main():
         ("right", Path("mav0/cam1/data")),
     ]:
         make_symlink(str(target), out / name)
+
+    # ── Extract IMU
+    if not args.no_imu:
+        print(f"[extract] extracting IMU from '{args.imu}' ...", flush=True)
+        n_imu = extract_imu(Path(args.bag), args.imu, out, TYPESTORE)
+        print(f"[extract] imu0/data.csv → {out / 'mav0' / 'imu0' / 'data.csv'}  ({n_imu} samples)")
+    else:
+        print("[extract] --no-imu: skipping IMU extraction")
 
     total = len(matched_stamps)
     print(f"\n[extract] done — {total} stereo pairs → {out}")

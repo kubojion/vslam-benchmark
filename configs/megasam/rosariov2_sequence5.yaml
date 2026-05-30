@@ -1,0 +1,14 @@
+# MegaSaM config for Rosario v2 sequence5 (rectified cam0).
+camera:
+  model: pinhole
+  width: 1280
+  height: 720
+  fx: 648.8624
+  fy: 648.8624
+  cx: 645.0113
+  cy: 348.2427
+input:
+  stride: 1
+  max_frames: 0
+output:
+  save_depth: false

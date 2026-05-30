@@ -1,0 +1,38 @@
+%YAML:1.0
+# AirSLAM camera calibration for the HortiMulti dataset (VO mode only, no IMU).
+#
+# This is the vision-only version used by run_airslam.sh for run_type=vo.
+# For VIO / VIO-LC, hortimulti_camera.yaml (use_imu: 1) is used instead.
+#
+# Rectified intrinsics: fx = fy = 262.7149, cx = 329.4310, cy = 219.5617
+# For VO mode the body frame is defined as cam0 (identity T), cam1 at -baseline.
+
+image_height: 480
+image_width: 640
+use_imu: 0
+
+depth_lower_thr: 0.1
+depth_upper_thr: 15.0
+max_y_diff: 1
+
+distortion_type: 0
+
+cam0:
+  intrinsics: [262.7149, 262.7149, 329.4310, 219.5617]
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  T_type: 0
+  T:
+  - [1.0, 0.0, 0.0,  0.0]
+  - [0.0, 1.0, 0.0,  0.0]
+  - [0.0, 0.0, 1.0,  0.0]
+  - [0.0, 0.0, 0.0,  1.0]
+
+cam1:
+  intrinsics: [262.7149, 262.7149, 329.4310, 219.5617]
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  T_type: 0
+  T:
+  - [1.0, 0.0, 0.0, -0.139502]
+  - [0.0, 1.0, 0.0,  0.0]
+  - [0.0, 0.0, 1.0,  0.0]
+  - [0.0, 0.0, 0.0,  1.0]

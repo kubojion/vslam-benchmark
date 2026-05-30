@@ -1,0 +1,12 @@
+# MASt3R-SLAM config for EuRoC-MAV (cam0, rectified pinhole).
+camera:
+  model: pinhole
+  width: 752
+  height: 480
+  fx: 458.654
+  fy: 457.296
+  cx: 367.215
+  cy: 248.375
+slam:
+  retrieval_thresh: 0.6  # higher = stricter loop closures
+  max_keyframes: 0       # 0 = unbounded

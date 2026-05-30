@@ -27,7 +27,9 @@ else
         --runtime nvidia --gpus all \
         --volume "$WS/src/airslam:/root/catkin_ws/src/air_slam" \
         --volume "$WS/datasets:/datasets:ro" \
-        --volume "$WS/results:/results" \
+        --volume "$WS/results-vo:/results-vo" \
+        --volume "$WS/results-vio:/results-vio" \
+        --volume "$WS/results-vio-lc:/results-vio-lc" \
         --volume "$WS/configs:/benchmark_configs:ro" \
         --name "$CONTAINER" \
         "$IMAGE" /bin/bash -c "tail -f /dev/null"

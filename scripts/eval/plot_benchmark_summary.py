@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
-"""Generate benchmark summary plots from benchmark.csv.
+"""Generate benchmark summary plots from benchmark-<type>.csv.
 
-Writes to results/:
+Writes to <results_root>/ (e.g. results-vo/, results-vio/, results-vio-lc/):
   ate_bar.png           - grouped ATE bar chart per sequence
   scale_factor.png      - scale factor deviation from 1.0
   fps_bar.png           - FPS (speed) comparison
 
 Usage:
-    python3 scripts/eval/plot_benchmark_summary.py [--dpi 180]
+    python3 scripts/eval/plot_benchmark_summary.py [--type vo|vio|vio-lc] [--dpi 180]
 """
 import argparse
 import csv
+import sys
 from collections import defaultdict
 from pathlib import Path
 
@@ -21,27 +22,33 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 
 WS = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _run_type import resolve as resolve_run_type  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Shared palette - in sync with _plot_segments.py
 # ---------------------------------------------------------------------------
 ALGO_COLOUR = {
-    "orbslam3":  "#2ca02c",
-    "droidslam": "#8c564b",
-    "macvo":     "#ff7f0e",
-    "basalt":    "#d62728",
-    "airslam":   "#17becf",
+    "orbslam3":    "#2ca02c",
+    "droidslam":   "#8c564b",
+    "macvo":       "#ff7f0e",
+    "basalt":      "#d62728",
+    "airslam":     "#17becf",
+    "mast3r_slam": "#9467bd",
+    "megasam":     "#e377c2",
 }
 ALGO_LABEL = {
-    "orbslam3":  "ORB-SLAM3",
-    "droidslam": "DROID-SLAM",
-    "macvo":     "MAC-VO",
-    "basalt":    "Basalt",
-    "airslam":   "AirSLAM",
+    "orbslam3":    "ORB-SLAM3",
+    "droidslam":   "DROID-SLAM",
+    "macvo":       "MAC-VO",
+    "basalt":      "Basalt",
+    "airslam":     "AirSLAM",
+    "mast3r_slam": "MASt3R-SLAM",
+    "megasam":     "MegaSaM",
 }
 
 # Ordered algo list for consistent bar ordering
-ALGO_ORDER = ["orbslam3", "droidslam", "macvo", "basalt", "airslam"]
+ALGO_ORDER = ["orbslam3", "droidslam", "macvo", "basalt", "airslam", "mast3r_slam", "megasam"]
 
 # Display labels for sequences (grouped by dataset section)
 AGR_SEQS = [
@@ -57,9 +64,9 @@ REF_SEQS = [
 ]
 
 
-def load_data(ws: Path):
+def load_data(csv_path: Path):
     """Return nested dict: data[algo][dataset][seq] = {ate_sim3, ate_se3, fps, scale, track_pct, std_ate}"""
-    rows = list(csv.DictReader(open(ws / "benchmark.csv")))
+    rows = list(csv.DictReader(open(csv_path)))
     grouped = defaultdict(list)
     for r in rows:
         grouped[(r["algo"], r["dataset"], r["seq"])].append(r)
@@ -234,7 +241,8 @@ def plot_fps_bar(data, out_path, dpi):
     ax.grid(axis="y", alpha=0.3)
     ax.set_ylim(bottom=0)
 
-    handles = [Patch(color=ALGO_COLOUR[a], label=ALGO_LABEL[a]) for a in ALGO_ORDER]
+    handles = [Patch(color=ALGO_COLOUR[a], label=ALGO_LABEL[a])
+               for a in ALGO_ORDER if a in ALGO_COLOUR]
     ax.legend(handles=handles, loc="upper right", fontsize=11, framealpha=0.9)
     fig.tight_layout()
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -248,11 +256,17 @@ def plot_fps_bar(data, out_path, dpi):
 # ---------------------------------------------------------------------------
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--type", dest="run_type", default="vo",
+                    choices=["vo", "vio", "vio-lc"])
     ap.add_argument("--dpi", type=int, default=180)
     args = ap.parse_args()
 
-    data = load_data(WS)
-    results = WS / "results"
+    rt = resolve_run_type(args.run_type, WS)
+    if not rt.csv_path.exists():
+        raise SystemExit(f"{rt.csv_path.name} not found at {rt.csv_path}")
+
+    data = load_data(rt.csv_path)
+    results = rt.results_root
 
     plot_ate_bar(data, results / "ate_bar.png", args.dpi)
     plot_scale_factor(data, results / "scale_factor.png", args.dpi)

@@ -1,5 +1,7 @@
 # Setup
 
+> Fully revised: 2026-05-30 - Added OpenVINS Docker section (§11); fixed doc link typo in §8.
+
 Tested on Ubuntu 22.04 with an NVIDIA GPU + CUDA 11.8.
 
 ## 1. System packages
@@ -177,8 +179,59 @@ docker rm air_slam
 ## 8. Smoke test
 
 ```bash
-# Drop a dataset under datasets/<dataset>/<seq>/ (see docs/running_agorithms.md)
+# Drop a dataset under datasets/<dataset>/<seq>/ (see docs/running_algorithms.md)
 bash scripts/run/run_orbslam3.sh hortimulti strawberry02 1
 ```
 
-Output should appear under `results/hortimulti/strawberry02/orbslam3/run1/`.
+Output should appear under `results-vo/hortimulti/strawberry02/orbslam3/run1/`.
+
+## 9. MegaSaM (optional, monocular)
+
+```bash
+bash scripts/build/setup_megasam_env.sh
+```
+
+Creates conda env `megasam` (python 3.10, torch 2.0.1+cu118) and clones
+`https://github.com/mega-sam/mega-sam` into `src/mega-sam/`. Model weights
+must be downloaded manually per the upstream README before the runner will
+produce output.
+
+## 10. MASt3R-SLAM (optional, monocular + retrieval-based LC)
+
+```bash
+bash scripts/build/setup_mast3r_slam_env.sh
+```
+
+Creates conda env `mast3r_slam` (python 3.11, torch 2.5.1+cu121) and clones
+`https://github.com/rmurai0610/MASt3R-SLAM` (with submodules) into
+`src/MASt3R-SLAM/`. MASt3R checkpoints must be downloaded manually per the
+upstream README before the runner will produce output.
+
+## 11. OpenVINS (Docker, ROS 2 Humble)
+
+OpenVINS runs in a Docker container to avoid a host ROS 2 install.
+
+### 11a. Build the image (one-time)
+
+```bash
+docker build -t openvins:humble -f src/open_vins/Dockerfile.benchmark src/open_vins
+```
+
+Build takes ~10 min on first run (downloads ros2-humble base image + compiles
+all ov_* packages). Subsequent builds are cached.
+
+### 11b. Verify
+
+```bash
+docker run --rm openvins:humble /bin/bash -c \
+    "source /opt/ros/humble/setup.bash && ros2 pkg list | grep ov_msckf"
+```
+
+Expect `ov_msckf` in the output.
+
+### 11c. Required dataset layout
+
+Each sequence must have `mav0/imu0/data.csv` in TUM-format
+(`timestamp_ns, wx, wy, wz, ax, ay, az`). RosarioV2 and EuRoC-MAV already
+have this. HortiMulti does NOT yet - VIO runs on HortiMulti are blocked until
+`scripts/data/_hortimulti_extract.py` is updated to export `/ms/imu/data`.

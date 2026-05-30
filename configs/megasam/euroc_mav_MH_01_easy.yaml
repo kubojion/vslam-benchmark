@@ -1,0 +1,18 @@
+# MegaSaM config for EuRoC-MAV MH_01_easy.
+# Camera intrinsics are from datasets/EuRoC-MAV/MH_01_easy/mav0/cam0/sensor.yaml.
+# Resolution: 752x480, pinhole-radtan, but MegaSaM uses pinhole only -
+# images are assumed already rectified (or use the raw values and let MegaSaM
+# learn the residual distortion).
+camera:
+  model: pinhole
+  width: 752
+  height: 480
+  fx: 458.654
+  fy: 457.296
+  cx: 367.215
+  cy: 248.375
+input:
+  stride: 1          # frame skip; 1 = every frame
+  max_frames: 0      # 0 = use all frames
+output:
+  save_depth: false  # set true to also dump per-frame depth maps (slow)

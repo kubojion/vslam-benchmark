@@ -2,7 +2,7 @@
 # Snapshot environment for thesis reproducibility appendix.
 set -e
 WS=$(cd "$(dirname "$0")/../.." && pwd)
-OUT="$WS/results/env_snapshot"
+OUT="$WS/results-vo/env_snapshot"
 mkdir -p "$OUT"
 
 uname -a > "$OUT/uname.txt"

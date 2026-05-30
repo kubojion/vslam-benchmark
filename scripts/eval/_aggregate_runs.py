@@ -2,11 +2,16 @@
 """Aggregate N per-run run_eval.json files into metrics.csv and report.md.
 
 Usage:
-    python3 _aggregate_runs.py <dataset> <seq> <algo> [input_fps=10]
+    python3 _aggregate_runs.py <dataset> <seq> <algo> [input_fps=10] [run_type=vo]
 
-Reads:  results/<dataset>/<seq>/<algo>/run*/run_eval.json
-Writes: results/<dataset>/<seq>/<algo>/metrics.csv
-        results/<dataset>/<seq>/<algo>/report.md
+Reads:  <results_root>/<dataset>/<seq>/<algo>/run*/run_eval.json
+Writes: <results_root>/<dataset>/<seq>/<algo>/metrics.csv
+        <results_root>/<dataset>/<seq>/<algo>/report.md
+
+Where <results_root> is one of:
+    results/        (run_type=vo)
+    results-vio/    (run_type=vio)
+    results-vio-lc/ (run_type=vio-lc)
 
 metrics.csv format: one row per run + two summary rows (mean, std).
 report.md: thesis-ready table matching the supervisor's required format.
@@ -17,6 +22,9 @@ import math
 from pathlib import Path
 
 import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _run_type import resolve as resolve_run_type  # noqa: E402
 
 
 def load_runs(algo_dir: Path):
@@ -55,15 +63,17 @@ def fmt_pm(mean, std, dec=4):
 
 def main():
     if len(sys.argv) < 4:
-        print(f"Usage: {sys.argv[0]} <dataset> <seq> <algo> [input_fps=10]",
+        print(f"Usage: {sys.argv[0]} <dataset> <seq> <algo> [input_fps=10] [run_type=vo]",
               file=sys.stderr)
         sys.exit(1)
 
     dataset, seq, algo = sys.argv[1], sys.argv[2], sys.argv[3]
     input_fps = float(sys.argv[4]) if len(sys.argv) > 4 else 10.0
+    run_type_name = sys.argv[5] if len(sys.argv) > 5 else "vo"
 
     ws = Path(__file__).resolve().parents[2]
-    algo_dir = ws / "results" / dataset / seq / algo
+    rt = resolve_run_type(run_type_name, ws)
+    algo_dir = rt.results_root / dataset / seq / algo
     runs = load_runs(algo_dir)
 
     if not runs:
@@ -260,8 +270,9 @@ def main():
         f"| Sequence | {seq} |",
         f"| Algorithm | {algo} |",
         f"| Number of frames | {r0['robustness'].get('frames_total', 'N/A')} |",
-        f"| Camera setup | stereo |",
-        f"| IMU used | no |",
+        f"| Run type | {rt.name} |",
+        f"| IMU used | {'yes' if rt.use_imu else 'no'} |",
+        f"| Loop closure | {'enabled' if rt.use_lc else 'disabled'} |",
         "",
         "---",
         "",

@@ -1,0 +1,12 @@
+# MASt3R-SLAM config for HortiMulti (rectified cam0).
+camera:
+  model: pinhole
+  width: 640
+  height: 480
+  fx: 262.7149
+  fy: 262.7149
+  cx: 329.4310
+  cy: 219.5617
+slam:
+  retrieval_thresh: 0.55  # slightly looser - greenhouse rows look self-similar
+  max_keyframes: 0

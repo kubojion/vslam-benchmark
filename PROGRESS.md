@@ -1,9 +1,323 @@
 # vSLAM Benchmark - Progress
 
-Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybrid), **Basalt** (sliding-window VIO), **AirSLAM** (deep-feature VO, Docker).
+> Fully revised: 2026-05-30 - Phase 4.x section names replaced with descriptive headings; OpenVINS VIO results added to summary tables; Basalt footnote and ORB-SLAM3 VO notes cleaned up.
+
+Algorithms: **ORB-SLAM3** (classical), **MAC-VO** (hybrid), **Basalt** (sliding-window VIO), **AirSLAM** (deep-feature VO, Docker), **OKVIS2** (MAP VIO+LC), **OpenVINS** (MSCKF VIO, Docker). Scaffolded but not benchmarked: **MASt3R-SLAM**, **MegaSaM**. Dropped: **DROID-SLAM** (supervisor feedback).
 
 ---
 
+## Current results summary
+
+Three tables by run type. **N=3** entries use the 3-run mean; **N=1** entries are single-run VIO phase results.
+All ATE values are Sim3-aligned RMSE with a separate SE3 column for scale-aware comparison.
+
+### VO (no IMU, no loop closure)
+
+| Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | N |
+|---|---|---|---|---|---|---|---|---|
+| ORB-SLAM3 | rosariov2 | seq5 | **14.16 m** | 14.40 m | 0.949 | 0.0845 | 5.93 | 1 |
+| OKVIS2 | rosariov2 | seq5 | 17.48 m | 17.68 m | 0.947 | 0.0781 | 8.44 | 1 |
+| OKVIS2 | rosariov2 | seq1 | 20.03 m | 20.63 m | 0.897 | 0.1381 | 8.91 | 1 |
+| AirSLAM | rosariov2 | seq1 | **9.89 ± 0.06 m** | 9.89 m | 1.005 | 0.034 | 23.04 | 3 |
+| AirSLAM | rosariov2 | seq5 | 12.72 ± 0.99 m | 12.78 m | 0.977 | 0.055 | 23.74 | 3 |
+| AirSLAM | hortimulti | str02 | 20.22 ± 0.82 m | 20.48 m | 0.928 | 0.266 | 27.37 | 3 |
+| AirSLAM | hortimulti | str03 | 3.63 ± 0.21 m | 3.77 m | 1.064 | 0.135 | 22.07 | 3 |
+| AirSLAM | euroc_mav | MH_01 | 0.111 m | 0.116 m | 1.007 | 0.0195 | 15.33 | 1 |
+| AirSLAM | euroc_mav | MH_03 | 0.143 m | 0.144 m | 0.995 | 0.0188 | 31.73 | 1 |
+| AirSLAM | euroc_mav | MH_05 | 0.297 m | 0.307 m | 1.012 | 0.0256 | 34.92 | 1 |
+| Basalt† | rosariov2 | seq1 | 14.28 ± 0.30 m | 18.69 m | 0.791 | 1.645 | 59.44 | 3 |
+| Basalt† | rosariov2 | seq5 | 15.04 ± 0.06 m | 15.43 m | 0.934 | 0.802 | 64.60 | 3 |
+| Basalt† | hortimulti | str02 | **2.10 ± 0.00 m** | 2.66 m | 1.034 | 0.091 | 149.70 | 3 |
+| Basalt† | hortimulti | str03 | **0.275 m** | 0.715 m | 1.036 | 0.022 | 143.65 | 3 |
+| Basalt† | euroc_mav | MH_01 | **0.057 m** | 0.087 m | 1.016 | 0.0085 | 176.75 | 1 |
+| Basalt† | euroc_mav | MH_03 | 0.137 m | 0.140 m | 1.008 | 0.0159 | 113.47 | 1 |
+| Basalt† | euroc_mav | MH_05 | 0.182 m | 0.193 m | 1.010 | 0.0870 | 108.72 | 1 |
+| DROID-SLAM | rosariov2 | seq1 | 45.37 m | 45.37 m | 0.970 | 0.724 | 17.44 | 3 |
+| DROID-SLAM | rosariov2 | seq5 | 50.02 m | 50.24 m | 1.904 | 1.076 | 23.36 | 3 |
+| DROID-SLAM | hortimulti | str02 | 38.92 m | 47.90 m | 9.590 | 4.335 | 27.95 | 3 |
+| DROID-SLAM | hortimulti | str03 | 18.76 m | 18.81 m | 0.428 | 0.837 | 15.85 | 3 |
+| DROID-SLAM | euroc_mav | MH_01 | 4.08 m | 7.89 m | 0.173 | 0.500 | 13.17 | 1 |
+| DROID-SLAM | euroc_mav | MH_03 | 3.52 m | 7.10 m | 0.082 | 2.274 | 10.94 | 1 |
+| DROID-SLAM | euroc_mav | MH_05 | 6.59 m | 8.51 m | 0.248 | 0.786 | 13.85 | 1 |
+| MAC-VO | rosariov2 | seq1 | **13.52 ± 0.01 m** | 13.55 m | 0.980 | 0.051 | 1.71 | 3 |
+| MAC-VO | rosariov2 | seq5 | 19.38 ± 0.01 m | 19.67 m | 0.933 | 0.096 | 1.40 | 3 |
+| MAC-VO | hortimulti | str02 | 10.23 ± 0.50 m | 10.25 m | 1.009 | 0.096 | 1.70 | 3 |
+| MAC-VO | hortimulti | str03 | **0.505 ± 0.01 m** | 0.84 m | 1.037 | 0.024 | 1.54 | 3 |
+| MAC-VO | euroc_mav | MH_01 | 0.198 m | 0.199 m | 1.005 | 0.0295 | 1.29 | 1 |
+| MAC-VO | euroc_mav | MH_03 | 0.340 m | 0.341 m | 0.996 | 0.0187 | 1.15 | 1 |
+| MAC-VO | euroc_mav | MH_05 | 0.470 m | 0.484 m | 1.017 | 0.0276 | 0.86 | 1 |
+
+† Basalt pre-restructure (run_type=None): hortimulti entries ran without IMU (no imu0 in mav0/);
+rosariov2 entries likely VO mode given 21% scale drift on seq1 (scale=0.79).
+See VIO table for the Basalt VIO re-run (rosariov2/seq5: 4.74 m with IMU).
+
+ORB-SLAM3 VO-clean (LC-off) run exists for rosariov2/seq5 only. Old seq1/hortimulti/EuRoC
+ORB-SLAM3 results used the LC-enabled binary and are in `obsolete/` - not shown above.
+
+### VIO (stereo + IMU, no loop closure)
+
+| Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | N |
+|---|---|---|---|---|---|---|---|---|
+| ORB-SLAM3 | rosariov2 | seq5 | **2.29 m** | 2.62 m | 1.026 | 0.0293 | 11.94 | 1 |
+| Basalt | rosariov2 | seq5 | **4.74 m** | 4.77 m | 1.011 | 0.0157 | **46.5** | 1 |
+| OKVIS2 | rosariov2 | seq1 | 18.89 m | 19.39 m | 0.909 | 0.1236 | 9.93 | 1 |
+| OKVIS2 | rosariov2 | seq5 | 20.29 m | 20.68 m | 0.921 | 0.1082 | 8.46 | 1 |
+| OpenVINS | rosariov2 | seq1 | **2.316 m** | 2.542 m | 1.022 | 0.024 | - | 1 |
+| OpenVINS | euroc_mav | MH_01 | **0.058 m** | 0.058 m | 1.000 | 0.019 | - | 1 |
+
+All N=1 (VIO phase). OKVIS2 uses D435i reference IMU noise - raw Allan values cause scale
+collapse (see OKVIS2 corrected results section below). ORB-SLAM3 VIO and Basalt VIO not yet run on rosariov2/seq1.
+
+### VIO-LC (stereo + IMU + loop closure)
+
+| Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | N |
+|---|---|---|---|---|---|---|---|---|
+| ORB-SLAM3 | rosariov2 | seq5 | **2.45 m** | 2.71 m | 1.023 | 0.0292 | 12.00 | 1 |
+| OKVIS2 | rosariov2 | seq1 | 18.32 m | 18.77 m | 0.916 | 0.1152 | 4.72 | 1 |
+| OKVIS2 | rosariov2 | seq5 | 21.25 m | 21.71 m | 0.913 | 0.1179 | 4.40 | 1 |
+
+All N=1. ORB-SLAM3 seq5: 0 loop closures accepted (identical crop rows).
+OKVIS2 seq5: 0 closures. OKVIS2 seq1: marginal improvement over VIO (18.32 vs 18.89 m).
+Basalt has no loop closure mode.
+
+---
+
+## Algorithm/mode/dataset capability
+
+| Algorithm | VO | VIO | VIO-LC | rosariov2 | hortimulti | EuRoC |
+|---|---|---|---|---|---|---|
+| ORB-SLAM3 | yes | rosariov2 only | rosariov2 only | seq1+seq5 done (VO: seq5 only; VIO/VIO-LC: seq5 only) | config exists, not run clean | config exists, not run clean |
+| Basalt | yes (`--use-imu false`) | yes | no LC mode | VO: done (N=3); VIO: seq5 done | VO: done (no IMU in mav0) | VO/VIO: done (N=1, mode ambiguous) |
+| DROID-SLAM | yes | no IMU support | no IMU support | done (N=3) | done (N=3) | done (N=1) |
+| MAC-VO | yes | no IMU support | no IMU support | done (N=3) | done (N=3) | done (N=1) |
+| AirSLAM | yes | needs imu0 | needs imu0 | VO done (N=3); VIO/VIO-LC possible | VO done (N=3); VIO/VIO-LC impossible (no imu0) | VO done (N=1); VIO/VIO-LC possible |
+| OKVIS2 | yes | yes | yes | seq1+seq5 all done (N=1 each) | no config | no config |
+| OpenVINS | no (no VO mode) | yes | no (no LC) | seq1 done (N=1, ATE 2.316 m) | no imu0 | smoke test done (MH_01_easy, N=1) |
+
+**Gaps - possible but not yet done:**
+- ORB-SLAM3 VO clean run on rosariov2/seq1, hortimulti, EuRoC (configs exist)
+- ORB-SLAM3 VIO/VIO-LC on rosariov2/seq1 (config exists)
+- Basalt VIO on rosariov2/seq1, EuRoC (imu0 available, config exists)
+- AirSLAM VIO/VIO-LC on rosariov2/seq1+seq5, EuRoC (imu0 available, launch files exist)
+- OKVIS2 VO/VIO/VIO-LC on hortimulti, EuRoC (need new config YAML files)
+
+**Not possible without hardware/code changes:**
+- VIO/VIO-LC on hortimulti for Basalt/AirSLAM/OKVIS2/OpenVINS (no imu0 in hortimulti mav0/)
+- DROID-SLAM VIO, MAC-VO VIO (these algorithms do not use IMU)
+- Basalt VIO-LC, OpenVINS VIO-LC (neither has a built-in loop closure mode)
+- OpenVINS VO (MSCKF requires IMU; no vision-only mode)
+
+
+---
+
+## Phase 2 - VIO Benchmark Results
+
+## VIO Smoke Tests - rosariov2/sequence5
+
+New multi-mode benchmarks on `rosariov2/sequence5` (11 640 frames, 15 fps, ~776 s). OKVIS2 added
+as a new algorithm alongside ORB-SLAM3 and Basalt under the VO/VIO/VIO-LC structure.
+
+### ORB-SLAM3 - rosariov2/sequence5
+
+| Mode | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | Notes |
+|---|---|---|---|---|---|---|
+| VO (stereo-only) | **14.16 m** | 14.40 m | 0.949 | 0.0845 | 5.93 | No IMU; 5613 pairs |
+| VIO (stereo+IMU) | **2.29 m** | 2.62 m | 1.026 | 0.0293 | 11.94 | IMU corrects scale |
+| VIO-LC | **2.45 m** | 2.71 m | 1.023 | 0.0292 | 12.00 | LC on seq5 = 0 closures |
+
+IMU reduces global ATE from 14 m to 2.3 m. VIO-LC provides no additional benefit on seq5 (0 loop
+closures - long straight rows offer no revisit opportunities).
+
+### OKVIS2 - rosariov2/sequence5 *(initial run, bad IMU params - see corrected results below)*
+
+| Mode | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | Notes |
+|---|---|---|---|---|---|---|
+| VO (stereo-only) | 15.62 m | 15.74 m | 0.962 | 0.0618 | 7.29 | 11640 pairs |
+| VIO (stereo+IMU) | **50.33 m** | 6085577 m | ~0 | 17.34 | 5.10 | Scale collapse - tracking failure |
+| VIO-LC | **47.01 m** | 486820 m | ~0 | 4.97 | 1.71 | Scale collapse - tracking failure |
+
+OKVIS2 VO performs comparably to ORB-SLAM3 VO (15.6 m vs 14.2 m). Both VIO and VIO-LC suffer scale
+collapse (scale factor ~0): OKVIS2's IMU integration diverges on this long outdoor sequence.
+A known OKVIS2 issue on sequences with large appearance changes and repetitive structure.
+
+> **Root cause (investigated):** the CIFASIS IMU noise values are correct Allan-variance
+> measurements but are **12-840x smaller** than the OKVIS2 author's own `realsense_D435i.yaml`
+> defaults (`sigma_aw_c` 4.75e-05 vs 0.04 = 840x). OKVIS2's MAP estimator trusts sigmas
+> literally - with too-tight noise the accel-bias state diverges and global scale collapses.
+> ORB-SLAM3 and Basalt are more forgiving of tight IMU sigmas. Fix is to use OKVIS2's
+> reference noise values (or any 5-10x inflation of the Allan numbers). See
+> `docs/private/algorithm_comparison.md` for the full diagnostic.
+
+### Basalt - rosariov2/sequence5
+
+| Mode | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | Notes |
+|---|---|---|---|---|---|---|
+| VIO (stereo+IMU) | **4.74 m** | 4.77 m | 1.0108 | 0.0157 | **46.5** | Row ATE 18 mm, turn ATE 18 mm |
+
+Basalt VIO is the fastest at 46x real-time with low local error (RPE 15.7 mm/m).
+Global ATE 4.74 m reflects moderate scale drift without loop closure.
+
+### Summary - rosariov2/sequence5
+
+| Algorithm | Mode | ATE Sim3 | RPE [m/m] | FPS |
+|---|---|---|---|---|
+| ORB-SLAM3 | VIO | **2.29 m** | 0.0293 | 11.94 |
+| ORB-SLAM3 | VIO-LC | **2.45 m** | 0.0292 | 12.00 |
+| Basalt | VIO | **4.74 m** | 0.0157 | **46.5** |
+| ORB-SLAM3 | VO | 14.16 m | 0.0845 | 5.93 |
+| OKVIS2 | VO | 17.48 m | 0.0781 | 8.44 |
+| OKVIS2 | VIO | 20.29 m | 0.1082 | 8.46 |
+| OKVIS2 | VIO-LC | 21.25 m | 0.1179 | 4.40 |
+
+OKVIS2 values are from the corrected IMU-params re-run (old bad-param results in the initial OKVIS2 table above).
+
+ORB-SLAM3 VIO is the clear winner on seq5 (2.3 m ATE, near-real-time).
+Basalt suits high-speed applications (46 fps) with moderate accuracy (4.7 m).
+OKVIS2 VO (17.5 m) is comparable to ORB-SLAM3 VO (14.2 m); VIO/VIO-LC still lag ORB-SLAM3 VIO due to uncalibrated IMU noise for this specific sensor (see OKVIS2 corrected results below).
+
+---
+
+## OKVIS2 - corrected IMU noise re-run (rosariov2/sequence5 + sequence1)
+
+**Root cause fixed:** CIFASIS Allan-variance IMU sigmas were 12-840x too tight for OKVIS2's MAP
+estimator. Replaced with OKVIS2 D435i reference values in all 6 rosariov2 configs.
+See `docs/private/algorithm_comparison.md` for the full diagnostic.
+
+**Corrected params** (OKVIS2 D435i ref, applied to all seq1/seq5 VIO + VIO-LC configs):
+
+| Param | Old (CIFASIS Allan) | New (OKVIS2 D435i ref) | Ratio |
+|---|---|---|---|
+| sigma_g_c  | 2.324e-04 | 0.00278  | 12x |
+| sigma_a_c  | 9.943e-04 | 0.0252   | 25x |
+| sigma_gw_c | 1.823e-06 | 0.0008   | 440x |
+| sigma_aw_c | 4.750e-05 | 0.04     | 840x |
+
+### OKVIS2 - rosariov2/sequence5 (corrected re-run, N=1)
+
+| Mode | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | Turn ATE | Row ATE |
+|---|---|---|---|---|---|---|---|
+| VO (stereo-only) | **17.48 m** | 17.68 m | 0.9474 | 0.0781 | 8.44 | 0.0149 m | 0.0435 m |
+| VIO (stereo+IMU) | **20.29 m** | 20.68 m | 0.9211 | 0.1082 | 8.46 | 0.0150 m | 0.0451 m |
+| VIO-LC | **21.25 m** | 21.71 m | 0.9128 | 0.1179 | 4.40 | 0.0154 m | 0.0479 m |
+
+> VO result: 17.48 m vs 15.62 m (old, bad-params) - ~2 m run-to-run variance (IMU disabled for VO).
+> VIO: 20.29 m, scale 0.9211 - scale collapse is fixed (old: scale ~0, ATE 50 m), but IMU still
+> hurts vs VO. Local accuracy: turn ATE 15 mm, row ATE 45 mm. D435i reference values are better
+> than raw Allan but not calibrated for this specific sensor.
+> VIO-LC: 21.25 m - worse than VIO because 0 actual loop closures were accepted (identical to
+> ORB-SLAM3 VIO-LC on seq5). LC overhead halves throughput (8.5 fps -> 4.4 fps) with no benefit.
+> 0 RANSAC failures in all three modes - clean frontend throughout.
+
+### OKVIS2 - rosariov2/sequence1 (first run, N=1)
+
+| Mode | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | Notes |
+|---|---|---|---|---|---|---|
+| VO (stereo-only) | **20.03 m** | 20.63 m | 0.8974 | 0.1381 | 8.91 | 13821 pairs |
+| VIO (stereo+IMU) | **18.89 m** | 19.39 m | 0.9085 | 0.1236 | 9.93 | IMU helps on seq1 |
+| VIO-LC | **18.32 m** | 18.77 m | 0.9155 | 0.1152 | 4.72 | |
+
+> seq1 shows VIO-LC > VIO > VO (18.32 < 18.89 < 20.03 m): both IMU and loop closure help.
+> Contrast with seq5 where 0 closures fired and VIO-LC hurt vs VIO.
+> seq1 has more turns and revisits, giving loop closure some opportunities to fire.
+> 0 RANSAC failures across all three modes - clean frontend throughout.
+
+---
+
+
+## OpenVINS integration
+
+OpenVINS (rpng/open_vins, MSCKF stereo+IMU filter, GPL-3) added to the benchmark.
+Wired via Docker only (no host build) to keep the host environment clean.
+
+### Build & runtime
+
+- Image: `openvins:humble` (~1.5 GB), built from
+  [src/open_vins/Dockerfile.benchmark](../src/open_vins/Dockerfile.benchmark) on top of
+  `ros:humble-ros-base-jammy`. Builds packages `ov_core`, `ov_init`, `ov_msckf`, `ov_eval`
+  with `-DENABLE_ARUCO_TAGS=OFF`.
+- Wrapper: [scripts/run/run_openvins.sh](../scripts/run/run_openvins.sh) launches
+  `ros2 launch ov_msckf subscribe.launch.py` inside the image, then runs a Python
+  data player ([scripts/run/openvins_data_player.py](../scripts/run/openvins_data_player.py))
+  in the same container that streams `mav0/cam{0,1}/data/` and `mav0/imu0/data.csv`
+  over `/cam{0,1}/image_raw` and `/imu0`, and saves `/ov_msckf/odomimu` as TUM.
+- `OPENVINS_RATE` env var controls playback speed (default 1.0 = real-time).
+
+### Run-type support
+
+- `vio` only. OpenVINS' MSCKF requires IMU; there is no vision-only mode and no
+  built-in loop closure. `vo` and `vio-lc` are rejected by the wrapper.
+
+### Configs
+
+`configs/openvins/<dataset>/{estimator_config.yaml, kalibr_imu_chain.yaml, kalibr_imucam_chain.yaml}`.
+
+EuRoC-MAV: verbatim copy of the upstream `config/euroc_mav/` files.
+rosariov2: hand-written from the ZED IR rectified intrinsics (fx=fy=648.86, cx=645.01,
+cy=348.24, baseline=0.04973 m, gravity=9.7958) and Basalt's tuned IMU noise
+(accel=1.6e-2, gyro=2.82e-4). T_imu_body identity. Distortion zeros (pre-rectified).
+
+### Findings
+
+1. **Dockerfile ENTRYPOINT bug.** The first build had `ENTRYPOINT ["/bin/bash","-c"]`
+   which mangled the `bash -c "..."` arg vector and produced silent empty output.
+   Source is fixed; the existing image is worked around at runtime with
+   `--entrypoint /bin/bash`. A clean rebuild would remove the workaround.
+2. **QoS mismatch silently drops messages.** OpenVINS' ROS2Visualizer subscribes
+   to cameras with default `RELIABLE` QoS but to the IMU with
+   `rclcpp::SensorDataQoS()` (`BEST_EFFORT`). The data player must publish each
+   topic with matching QoS or `requesting incompatible QoS` warnings appear and
+   no data flows.
+3. **Publisher queue depth must be deep.** With `RELIABLE` QoS and the default
+   depth=10, a transient slowdown in the OV node back-pressures the player's
+   publish call, which (single-threaded) also stalls IMU pacing - the entire
+   pipeline freezes. Cam queue is now 2000 (~67 s buffer at 30 Hz), IMU 200.
+4. **Static initialization fails on moving start.** EuRoC MH_01_easy starts
+   already in motion (drone hand-held). `init_dyn_use: true` is required for
+   both EuRoC and rosariov2 - the static-jerk detector never trips.
+5. **`ros2 launch` does not exit on SIGINT.** The wrapper now sends SIGINT, waits
+   5 s, then SIGTERM, then SIGKILL on `run_subscribe_msckf` to guarantee the
+   container exits.
+6. **Subscriber callbacks starve under load.** The player originally interleaved
+   `rclpy.spin_once()` calls between events. Once playback got even slightly
+   behind real time the slack vanished, callbacks stopped firing, and pose
+   collection froze while OpenVINS happily kept publishing. Fixed by spinning
+   the executor in a dedicated daemon thread (`threading.Thread(rclpy.spin)`),
+   so subscription delivery is decoupled from the publish-pacing loop.
+
+### Smoke-test results (N=1)
+
+| Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | Notes |
+|---|---|---|---|---|---|---|
+| EuRoC-MAV | MH_01_easy | **0.058 m** | 0.058 m | 1.0001 | 0.019 | Matches published OpenVINS benchmark (~0.09 m). 36219 poses, 3622 ATE pairs. |
+| rosariov2 | sequence1 | **2.316 m** | 2.542 m | 1.0225 | 0.024 | 159863 poses, 13716 ATE pairs. RPE rot 0.227 deg/m. Per-segment ATE: turn 0.019 m, row 0.015 m. |
+
+> EuRoC result confirms the integration is correct end-to-end.
+> rosariov2 is N=1; full 3-run benchmark deferred.
+
+
+
+---
+
+## Phase 1 - VO-only Benchmark Results
+
+---
+
+## Run-type structure
+
+The repository tracks runs along three buckets:
+
+* `vo`     - no IMU, no LC      -> `results-vo/`, `benchmark-vo.csv`
+* `vio`    - IMU on, no LC      -> `results-vio/`, `benchmark-vio.csv`
+* `vio-lc` - IMU on, LC on      -> `results-vio-lc/`, `benchmark-vio-lc.csv`
+
+The ORB-SLAM3 results in the table below were produced by the stock
+`stereo_euroc` binary with loop closure enabled. Because that binary is a
+pure stereo-SLAM-with-LC (no IMU), it does not fit any of the three
+buckets above; the trajectories and the per-run CSV have been moved to
+`obsolete/` until a VO-only build is wired in. The table is preserved
+below as a reference snapshot.
+
+---
 
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale (Sim3) | RPE [m/m] | FPS | Frames | Completion | Runs |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -17,7 +331,7 @@ Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybr
 | MAC-VO | Rosario v2 | seq5 | **19.384 ± 0.006 m** | **19.674 m** | 0.933 | 0.096 ± 0.000 | 1.40 ± 0.21 | 11 640 | 100% | **3** ✓ |
 | Basalt | Rosario v2 | seq5 | **15.035 ± 0.062 m** | **15.425 ± 0.068 m** | 0.934 | 0.802 | 64.60 ± 2.30 | 11 640 | 100% | **3** ✓ |
 | AirSLAM | Rosario v2 | seq5 | **12.722 ± 0.991 m** | **12.777 ± 1.014 m** | 0.977 | 0.055 ± 0.006 | 23.74 ± 0.48 | 11 640 | 100% | **3** ✓ |
-| ORB-SLAM3 | HortiMulti | Strawberry-02 | **0.893 ± 0.139 m** | **2.10 ± 0.10 m** | 1.040 | 0.072 | 4.51 ± 0.33 | 4 186–4 980 / 9 530 | 44–52%† | **3** ✓ |
+| ORB-SLAM3 | HortiMulti | Strawberry-02 | **0.893 ± 0.139 m** | **2.10 ± 0.10 m** | 1.040 | 0.072 | 4.51 ± 0.33 | 4 186-4 980 / 9 530 | 44-52%† | **3** ✓ |
 | DROID-SLAM | HortiMulti | Strawberry-02 | 38.92 m | 47.90 m | 9.590 | 4.335 | 27.95 ± 0.21 | 9 530 | 100% | **3** ✓ |
 | MAC-VO | HortiMulti | Strawberry-02 | **10.231 ± 0.502 m** | **10.245 ± 0.496 m** | 1.009 | 0.096 ± 0.001 | 1.70 ± 0.04 | 9 530 | 100% | **3** ✓ |
 | Basalt | HortiMulti | Strawberry-02 | **2.0978 ± 0.0008 m** | **2.664 ± 0.001 m** | 1.034 | 0.091 | 149.70 ± 4.01 | 9 530 | 100% | **3** ✓ |
@@ -49,7 +363,7 @@ Algorithms: **ORB-SLAM3** (classical), **DROID-SLAM** (neural), **MAC-VO** (hybr
 | MH_05_difficult | DROID-SLAM | 6.594 | 8.514 | 0.786 | 0.248 | 13.85 | 2273 |
 
 † ORB-SLAM3 processed all 9 530 input frames but tracking only succeeded for frames
-spanning 91 s – 500 s of the 952 s sequence.  Tracking was permanently lost after 500 s
+spanning 91 s - 500 s of the 952 s sequence.  Tracking was permanently lost after 500 s
 due to the repetitive polytunnel environment.  This is **not** a stride/sampling issue.  
 
 All multi-run metrics use **both Sim(3) and SE(3)** alignment (`evo_ape --align [--correct_scale]`) and
@@ -82,7 +396,7 @@ mismatch makes `R_gt_rel · R_est_rel⁻¹` non-cancelling whenever the body
 rotation axis is not aligned with the mismatch axis.
 
 Diagnostic measurement on Strawberry-03 run1:
-- Per-frame abs orientation diff: **mean 119.46°, median 119.40°, range 116–120°** (constant)
+- Per-frame abs orientation diff: **mean 119.46°, median 119.40°, range 116-120°** (constant)
 - Manual RPE rot (1 m windows): mean 13.7°, **median only 3.45°**, RMSE 26.2°
 - Distribution is heavy-tailed because high errors occur only on certain body axes
 
@@ -108,14 +422,14 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 | RPE rotation | 0.416 ± 0.139 °/m |
 | Scale factor | 1.022 ± 0.001 |
 | Frames tracked | 100% all 3 runs (tracking-loss + reloc ~t=645s) |
-| Loop closures | 5–6 |
+| Loop closures | 5-6 |
 | Mean FPS | 12.53 ± 0.14 (0.84× real-time @ 15 fps) |
 | Row ATE RMSE (125 segs, avg 6.9 s) | 0.016 ± 0.003 m |
 | Turn ATE RMSE (20 segs, avg 3.0 s) | 0.022 ± 0.003 m |
 
-> High ATE variation (0.79–1.57 m across 3 runs) is expected: loop closure timing nondeterminism
+> High ATE variation (0.79-1.57 m across 3 runs) is expected: loop closure timing nondeterminism
 > causes different GBA corrections. Per-segment ATE is more stable (cv < 20%).
-> Run2 RPE outlier (0.261 vs 0.029–0.055) caused by trajectory discontinuity at reloc boundary.
+> Run2 RPE outlier (0.261 vs 0.029-0.055) caused by trajectory discontinuity at reloc boundary.
 
 ### Sequence 1 - ORB-SLAM3 × 3 + MAC-VO × 3 complete
 
@@ -192,7 +506,7 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 | Turn ATE RMSE | 0.0185 m |
 
 > Near-unity scale (1.005) confirms AirSLAM maintains correct metric scale on this sequence.
-> No loop closures needed — direct scale preservation. Global ATE ~9.9 m over ~940 m trajectory
+> No loop closures needed  -  direct scale preservation. Global ATE ~9.9 m over ~940 m trajectory
 > (1.05% of path length). Comparable to MAC-VO (13.5 m) and Basalt (14.3 m).
 > Individual runs: run1=9.958 m (17.98 fps), run2=9.814 m (24.98 fps), run3=9.893 m (26.17 fps).
 > High wall-time variance (run1=769s vs run2+3≈540s) due to TRT engine compilation on run1.
@@ -243,7 +557,7 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 | Turn ATE RMSE | 0.0106 ± 0.0001 m (18 segs) |
 
 > Scale factor 0.977 (2.4% drift) is slightly worse than seq1 (1.005, 0.5% drift).
-> Global ATE 12.7 m vs local row ATE 47 mm — 270× ratio showing long-range scale accumulation.
+> Global ATE 12.7 m vs local row ATE 47 mm  -  270× ratio showing long-range scale accumulation.
 > No loop closures detected on all 3 runs. Run3 significantly higher ATE (14.12 m) vs run1+2 (~12 m),
 > causing higher std (0.99 m) than other seqs.
 > Individual runs: run1=12.114 m (23.82 fps), run2=11.932 m (23.13 fps), run3=14.119 m (24.29 fps).
@@ -337,7 +651,7 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 | RPE (point_distance, 1 m) | 0.0716 ± 0.0008 m |
 | RPE rotation (1 m) | 10.56 ± 1.11 °/m (frame-mismatch artefact - see §RPE rotation) |
 | Scale factor (Sim3) | 1.040 ± 0.001 (**4 % drift**) |
-| Frames tracked | 4 186 / 4 441 / 4 980 of 9 530 → **44–52 % timeline coverage** |
+| Frames tracked | 4 186 / 4 441 / 4 980 of 9 530 → **44-52 % timeline coverage** |
 | Loop closures | 0 (all 3 runs) |
 | Tracking losses | 0 hard losses; Atlas Map 2 created at t≈541 s every run |
 | Wall-clock per run | ~1 005 s (≈ real-time at 10 Hz input) |
@@ -423,7 +737,7 @@ estimate by a learned constant $R_0$ before RPE rotation evaluation.
 
 > AirSLAM achieves 100% tracking on the full 952 s sequence (no loop closure needed for tracking),
 > but without global optimization drifts to 20.22 m global ATE (significantly worse than ORB-SLAM3's
-> 0.89 m on 44–52% coverage, or Basalt's 2.10 m on 100%). Under-scale 7.2% contributes to SE3 ≈ Sim3.
+> 0.89 m on 44-52% coverage, or Basalt's 2.10 m on 100%). Under-scale 7.2% contributes to SE3 ≈ Sim3.
 
 ### Strawberry-03 - ORB-SLAM3 × 3 + MAC-VO × 3 + Basalt × 3 complete
 
@@ -750,6 +1064,21 @@ results across all 3 runs (ATE std < 1 mm). Algorithms with non-deterministic el
 The 3-run average is reliable for all algorithms. Single-run benchmarking would give
 misleading results for ORB-SLAM3 and AirSLAM on difficult sequences.
 
+### 9. OKVIS2 IMU noise sensitivity differs from ORB-SLAM3 and Basalt
+
+OKVIS2's MAP estimator requires correctly scaled IMU noise parameters. Using raw Allan-variance
+measurements (which are 12-840x smaller than needed) causes scale collapse (scale ~0, ATE 50 m+).
+With corrected D435i reference values:
+- Scale collapse is eliminated (scale ~0.92 vs ~0 before)
+- Frontend errors drop to 0 (vs 206 RANSAC failures + 3375 reprojection errors with bad params)
+- But VIO still underperforms vs ORB-SLAM3 VIO (20.3 m vs 2.3 m on seq5)
+
+The remaining gap is because ORB-SLAM3 uses preintegration which is inherently more robust to
+IMU miscalibration, while OKVIS2 tightly couples raw IMU measurements. The D435i reference values
+are generic defaults, not a calibration for the specific Rosario v2 RealSense unit. Proper
+sensor-specific calibration (e.g., via Kalibr with the actual sensor) would be needed for OKVIS2 to
+approach ORB-SLAM3's VIO performance. For this benchmark, OKVIS2 VO is the usable configuration.
+
 ---
 
 ## Key commands
@@ -785,7 +1114,6 @@ conda run -n macvo python3 scripts/eval/_macvo_to_tum.py "$SBX" \
 
 ---
 
-*Last updated: 2026-05-24 - macvo seq5 3 runs complete; EuRoC DROID-SLAM added (all 3 sequences); all segment maps and plots regenerated*
+*Last updated: 2026-05-30 - OpenVINS VIO results added to summary tables; Phase 4.x section names replaced with descriptive headings.*
 
 ---
-
