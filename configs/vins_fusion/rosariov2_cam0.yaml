@@ -1,0 +1,17 @@
+%YAML:1.0
+# VINS-Fusion cam0 (left) calibration for Rosario v2.
+# Values from CIFASIS Rosario_3_0.yaml (rectified pinhole, no distortion).
+model_type: PINHOLE
+camera_name: camera
+image_width: 672
+image_height: 376
+distortion_parameters:
+   k1: 0.0
+   k2: 0.0
+   p1: 0.0
+   p2: 0.0
+projection_parameters:
+   fx: 347.6564367181238
+   fy: 347.6564367181238
+   cx: 339.375789642334
+   cy: 198.58967208862305

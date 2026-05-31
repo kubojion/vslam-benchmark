@@ -1,0 +1,18 @@
+%YAML:1.0
+# VINS-Fusion cam0 (forwardLeft) for HortiMulti GREENBOT.
+# Rectified pinhole intrinsics (after fisheye stereoRectify + 2048x1536 -> 640x480 resize).
+# Computed from datasets/hortimulti/calibration.yaml in scripts/data/_hortimulti_extract.py.
+model_type: PINHOLE
+camera_name: camera
+image_width: 640
+image_height: 480
+distortion_parameters:
+   k1: 0.0
+   k2: 0.0
+   p1: 0.0
+   p2: 0.0
+projection_parameters:
+   fx: 262.7148733534671
+   fy: 262.7148733534671
+   cx: 329.4309905440758
+   cy: 219.56167239700937

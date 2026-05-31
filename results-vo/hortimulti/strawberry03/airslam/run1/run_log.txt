@@ -1,0 +1,5367 @@
+config_file = /benchmark_configs/airslam/hortimulti_vo.yaml
+config done
+map_builder done
+dataset done
+i ====== 0
+One Frame Processinh Time: 0 ms.
+i ====== 1
+One Frame Processinh Time: 0 ms.
+i ====== 2
+One Frame Processinh Time: 0 ms.
+i ====== 3
+One Frame Processinh Time: 0 ms.
+i ====== 4
+One Frame Processinh Time: 0 ms.
+i ====== 5
+Initialization is done!
+One Frame Processinh Time: 701 ms.
+i ====== 6
+One Frame Processinh Time: 28 ms.
+i ====== 7
+One Frame Processinh Time: 6 ms.
+i ====== 8
+One Frame Processinh Time: 4 ms.
+i ====== 9
+One Frame Processinh Time: 6 ms.
+i ====== 10
+One Frame Processinh Time: 4 ms.
+i ====== 11
+One Frame Processinh Time: 6 ms.
+i ====== 12
+One Frame Processinh Time: 4 ms.
+i ====== 13
+One Frame Processinh Time: 4 ms.
+i ====== 14
+One Frame Processinh Time: 2 ms.
+i ====== 15
+One Frame Processinh Time: 4 ms.
+i ====== 16
+One Frame Processinh Time: 4 ms.
+i ====== 17
+One Frame Processinh Time: 4 ms.
+i ====== 18
+One Frame Processinh Time: 6 ms.
+i ====== 19
+One Frame Processinh Time: 6 ms.
+i ====== 20
+One Frame Processinh Time: 4 ms.
+i ====== 21
+One Frame Processinh Time: 6 ms.
+i ====== 22
+One Frame Processinh Time: 4 ms.
+i ====== 23
+One Frame Processinh Time: 4 ms.
+i ====== 24
+One Frame Processinh Time: 4 ms.
+i ====== 25
+One Frame Processinh Time: 6 ms.
+i ====== 26
+One Frame Processinh Time: 4 ms.
+i ====== 27
+One Frame Processinh Time: 61 ms.
+i ====== 28
+One Frame Processinh Time: 4 ms.
+i ====== 29
+insert keyframe, id = 22
+One Frame Processinh Time: 2 ms.
+i ====== 30
+One Frame Processinh Time: 4 ms.
+i ====== 31
+One Frame Processinh Time: 51 ms.
+i ====== 32
+One Frame Processinh Time: 6 ms.
+i ====== 33
+insert keyframe, id = 26
+One Frame Processinh Time: 2 ms.
+i ====== 34
+One Frame Processinh Time: 4 ms.
+i ====== 35
+One Frame Processinh Time: 53 ms.
+i ====== 36
+One Frame Processinh Time: 4 ms.
+i ====== 37
+insert keyframe, id = 30
+One Frame Processinh Time: 4 ms.
+i ====== 38
+One Frame Processinh Time: 49 ms.
+i ====== 39
+One Frame Processinh Time: 4 ms.
+i ====== 40
+One Frame Processinh Time: 4 ms.
+i ====== 41
+One Frame Processinh Time: 4 ms.
+i ====== 42
+One Frame Processinh Time: 4 ms.
+i ====== 43
+insert keyframe, id = 33
+One Frame Processinh Time: 49 ms.
+i ====== 44
+One Frame Processinh Time: 2 ms.
+i ====== 45
+One Frame Processinh Time: 26 ms.
+i ====== 46
+One Frame Processinh Time: 6 ms.
+i ====== 47
+insert keyframe, id = 38
+One Frame Processinh Time: 49 ms.
+i ====== 48
+One Frame Processinh Time: 4 ms.
+i ====== 49
+One Frame Processinh Time: 4 ms.
+i ====== 50
+One Frame Processinh Time: 63 ms.
+i ====== 51
+insert keyframe, id = 42
+One Frame Processinh Time: 51 ms.
+i ====== 52
+One Frame Processinh Time: 4 ms.
+i ====== 53
+One Frame Processinh Time: 4 ms.
+i ====== 54
+One Frame Processinh Time: 61 ms.
+i ====== 55
+One Frame Processinh Time: 4 ms.
+i ====== 56
+insert keyframe, id = 46
+One Frame Processinh Time: 49 ms.
+i ====== 57
+One Frame Processinh Time: 4 ms.
+i ====== 58
+One Frame Processinh Time: 62 ms.
+i ====== 59
+One Frame Processinh Time: 14 ms.
+i ====== 60
+insert keyframe, id = 51
+One Frame Processinh Time: 51 ms.
+i ====== 61
+One Frame Processinh Time: 4 ms.
+i ====== 62
+One Frame Processinh Time: 4 ms.
+i ====== 63
+One Frame Processinh Time: 71 ms.
+i ====== 64
+insert keyframe, id = 55
+One Frame Processinh Time: 49 ms.
+i ====== 65
+One Frame Processinh Time: 4 ms.
+i ====== 66
+One Frame Processinh Time: 4 ms.
+i ====== 67
+One Frame Processinh Time: 74 ms.
+i ====== 68
+insert keyframe, id = 59
+One Frame Processinh Time: 53 ms.
+i ====== 69
+One Frame Processinh Time: 4 ms.
+i ====== 70
+One Frame Processinh Time: 2 ms.
+i ====== 71
+One Frame Processinh Time: 71 ms.
+i ====== 72
+insert keyframe, id = 63
+One Frame Processinh Time: 47 ms.
+i ====== 73
+One Frame Processinh Time: 4 ms.
+i ====== 74
+One Frame Processinh Time: 4 ms.
+i ====== 75
+One Frame Processinh Time: 82 ms.
+i ====== 76
+insert keyframe, id = 67
+One Frame Processinh Time: 49 ms.
+i ====== 77
+One Frame Processinh Time: 4 ms.
+i ====== 78
+One Frame Processinh Time: 2 ms.
+i ====== 79
+One Frame Processinh Time: 76 ms.
+i ====== 80
+insert keyframe, id = 71
+One Frame Processinh Time: 47 ms.
+i ====== 81
+One Frame Processinh Time: 4 ms.
+i ====== 82
+One Frame Processinh Time: 2 ms.
+i ====== 83
+One Frame Processinh Time: 67 ms.
+i ====== 84
+insert keyframe, id = 75
+One Frame Processinh Time: 53 ms.
+i ====== 85
+One Frame Processinh Time: 2 ms.
+i ====== 86
+One Frame Processinh Time: 4 ms.
+i ====== 87
+One Frame Processinh Time: 73 ms.
+i ====== 88
+insert keyframe, id = 79
+One Frame Processinh Time: 50 ms.
+i ====== 89
+One Frame Processinh Time: 4 ms.
+i ====== 90
+One Frame Processinh Time: 4 ms.
+i ====== 91
+One Frame Processinh Time: 67 ms.
+i ====== 92
+insert keyframe, id = 83
+One Frame Processinh Time: 49 ms.
+i ====== 93
+One Frame Processinh Time: 4 ms.
+i ====== 94
+One Frame Processinh Time: 4 ms.
+i ====== 95
+One Frame Processinh Time: 69 ms.
+i ====== 96
+insert keyframe, id = 87
+One Frame Processinh Time: 49 ms.
+i ====== 97
+One Frame Processinh Time: 4 ms.
+i ====== 98
+One Frame Processinh Time: 4 ms.
+i ====== 99
+One Frame Processinh Time: 71 ms.
+i ====== 100
+One Frame Processinh Time: 12 ms.
+i ====== 101
+insert keyframe, id = 91
+One Frame Processinh Time: 47 ms.
+i ====== 102
+One Frame Processinh Time: 4 ms.
+i ====== 103
+One Frame Processinh Time: 65 ms.
+i ====== 104
+One Frame Processinh Time: 47 ms.
+i ====== 105
+One Frame Processinh Time: 4 ms.
+i ====== 106
+insert keyframe, id = 96
+One Frame Processinh Time: 4 ms.
+i ====== 107
+One Frame Processinh Time: 2 ms.
+i ====== 108
+One Frame Processinh Time: 84 ms.
+i ====== 109
+One Frame Processinh Time: 10 ms.
+i ====== 110
+One Frame Processinh Time: 6 ms.
+i ====== 111
+insert keyframe, id = 99
+One Frame Processinh Time: 105 ms.
+i ====== 112
+One Frame Processinh Time: 4 ms.
+i ====== 113
+One Frame Processinh Time: 8 ms.
+i ====== 114
+One Frame Processinh Time: 6 ms.
+i ====== 115
+insert keyframe, id = 103
+One Frame Processinh Time: 106 ms.
+i ====== 116
+insert keyframe, id = 106
+One Frame Processinh Time: 47 ms.
+i ====== 117
+One Frame Processinh Time: 4 ms.
+i ====== 118
+One Frame Processinh Time: 61 ms.
+i ====== 119
+One Frame Processinh Time: 8 ms.
+i ====== 120
+insert keyframe, id = 111
+One Frame Processinh Time: 49 ms.
+i ====== 121
+One Frame Processinh Time: 2 ms.
+i ====== 122
+One Frame Processinh Time: 4 ms.
+i ====== 123
+One Frame Processinh Time: 67 ms.
+i ====== 124
+insert keyframe, id = One Frame Processinh Time: 11547 ms.
+
+i ====== 125
+One Frame Processinh Time: 6 ms.
+i ====== 126
+One Frame Processinh Time: 2 ms.
+i ====== 127
+One Frame Processinh Time: 71 ms.
+i ====== 128
+One Frame Processinh Time: 6 ms.
+i ====== 129
+insert keyframe, id = 119
+One Frame Processinh Time: 49 ms.
+i ====== 130
+One Frame Processinh Time: 4 ms.
+i ====== 131
+One Frame Processinh Time: 63 ms.
+i ====== 132
+One Frame Processinh Time: 49 ms.
+i ====== 133
+insert keyframe, id = 124
+One Frame Processinh Time: 2 ms.
+i ====== 134
+One Frame Processinh Time: 4 ms.
+i ====== 135
+One Frame Processinh Time: 2 ms.
+i ====== 136
+One Frame Processinh Time: 74 ms.
+i ====== 137
+One Frame Processinh Time: 8 ms.
+i ====== 138
+One Frame Processinh Time: 6 ms.
+i ====== 139
+insert keyframe, id = 127
+One Frame Processinh Time: 104 ms.
+i ====== 140
+insert keyframe, id = 131
+One Frame Processinh Time: 49 ms.
+i ====== 141
+One Frame Processinh Time: 4 ms.
+i ====== 142
+One Frame Processinh Time: 2 ms.
+i ====== 143
+One Frame Processinh Time: 73 ms.
+i ====== 144
+insert keyframe, id = 135
+One Frame Processinh Time: 49 ms.
+i ====== 145
+One Frame Processinh Time: 4 ms.
+i ====== 146
+One Frame Processinh Time: 4 ms.
+i ====== 147
+One Frame Processinh Time: 74 ms.
+i ====== 148
+insert keyframe, id = 139
+One Frame Processinh Time: 49 ms.
+i ====== 149
+One Frame Processinh Time: 2 ms.
+i ====== 150
+One Frame Processinh Time: 4 ms.
+i ====== 151
+One Frame Processinh Time: 74 ms.
+i ====== 152
+One Frame Processinh Time: 6 ms.
+i ====== 153
+One Frame Processinh Time: 8 ms.
+i ====== 154
+One Frame Processinh Time: 10 ms.
+i ====== 155
+insert keyframe, id = 143
+One Frame Processinh Time: 102 ms.
+i ====== 156
+One Frame Processinh Time: 6 ms.
+i ====== 157
+One Frame Processinh Time: 4 ms.
+i ====== 158
+insert keyframe, id = 146
+One Frame Processinh Time: 96 ms.
+i ====== 159
+insert keyframe, id = 150
+One Frame Processinh Time: 49 ms.
+i ====== 160
+One Frame Processinh Time: 4 ms.
+i ====== 161
+One Frame Processinh Time: 4 ms.
+i ====== 162
+One Frame Processinh Time: 69 ms.
+i ====== 163
+insert keyframe, id = 154
+One Frame Processinh Time: 49 ms.
+i ====== 164
+One Frame Processinh Time: 4 ms.
+i ====== 165
+One Frame Processinh Time: 4 ms.
+i ====== 166
+One Frame Processinh Time: 74 ms.
+i ====== 167
+insert keyframe, id = 158
+One Frame Processinh Time: 53 ms.
+i ====== 168
+One Frame Processinh Time: 4 ms.
+i ====== 169
+One Frame Processinh Time: 4 ms.
+i ====== 170
+One Frame Processinh Time: 66 ms.
+i ====== 171
+insert keyframe, id = 162
+One Frame Processinh Time: 51 ms.
+i ====== 172
+One Frame Processinh Time: 4 ms.
+i ====== 173
+One Frame Processinh Time: 2 ms.
+i ====== 174
+One Frame Processinh Time: 76 ms.
+i ====== 175
+One Frame Processinh Time: 8 ms.
+i ====== 176
+One Frame Processinh Time: 12 ms.
+i ====== 177
+One Frame Processinh Time: 8 ms.
+i ====== 178
+insert keyframe, id = 166
+One Frame Processinh Time: 104 ms.
+i ====== 179
+One Frame Processinh Time: 4 ms.
+i ====== 180
+One Frame Processinh Time: 6 ms.
+i ====== 181
+insert keyframe, id = 169
+One Frame Processinh Time: 102 ms.
+i ====== 182
+insert keyframe, id = 173
+One Frame Processinh Time: 49 ms.
+i ====== 183
+One Frame Processinh Time: 4 ms.
+i ====== 184
+One Frame Processinh Time: 2 ms.
+i ====== 185
+One Frame Processinh Time: 78 ms.
+i ====== 186
+insert keyframe, id = 177
+One Frame Processinh Time: 49 ms.
+i ====== 187
+One Frame Processinh Time: 2 ms.
+i ====== 188
+One Frame Processinh Time: 4 ms.
+i ====== 189
+One Frame Processinh Time: 76 ms.
+i ====== 190
+One Frame Processinh Time: 10 ms.
+i ====== 191
+One Frame Processinh Time: 6 ms.
+i ====== 192
+One Frame Processinh Time: 8 ms.
+i ====== 193
+insert keyframe, id = 181
+One Frame Processinh Time: 104 ms.
+i ====== 194
+One Frame Processinh Time: 53 ms.
+i ====== 195
+One Frame Processinh Time: 4 ms.
+i ====== 196
+One Frame Processinh Time: 4 ms.
+i ====== 197
+One Frame Processinh Time: 2 ms.
+i ====== 198
+insert keyframe, id = 189
+One Frame Processinh Time: 51 ms.
+i ====== 199
+One Frame Processinh Time: 2 ms.
+i ====== 200
+One Frame Processinh Time: 4 ms.
+i ====== 201
+One Frame Processinh Time: 51 ms.
+i ====== 202
+One Frame Processinh Time: 8 ms.
+i ====== 203
+One Frame Processinh Time: 4 ms.
+i ====== 204
+One Frame Processinh Time: 8 ms.
+i ====== 205
+insert keyframe, id = 193
+One Frame Processinh Time: 106 ms.
+i ====== 206
+One Frame Processinh Time: 10 ms.
+i ====== 207
+One Frame Processinh Time: 10 ms.
+i ====== 208
+insert keyframe, id = 196
+One Frame Processinh Time: 104 ms.
+i ====== 209
+insert keyframe, id = 200
+One Frame Processinh Time: 49 ms.
+i ====== 210
+One Frame Processinh Time: 4 ms.
+i ====== 211
+One Frame Processinh Time: 4 ms.
+i ====== 212
+One Frame Processinh Time: 74 ms.
+i ====== 213
+One Frame Processinh Time: 8 ms.
+i ====== 214
+One Frame Processinh Time: 6 ms.
+i ====== 215
+One Frame Processinh Time: 4 ms.
+i ====== 216
+insert keyframe, id = 204
+One Frame Processinh Time: 107 ms.
+i ====== 217
+One Frame Processinh Time: 12 ms.
+i ====== 218
+One Frame Processinh Time: 4 ms.
+i ====== 219
+insert keyframe, id = 207
+One Frame Processinh Time: 109 ms.
+i ====== 220
+insert keyframe, id = 211
+One Frame Processinh Time: 53 ms.
+i ====== 221
+One Frame Processinh Time: 4 ms.
+i ====== 222
+One Frame Processinh Time: 2 ms.
+i ====== 223
+One Frame Processinh Time: 76 ms.
+i ====== 224
+One Frame Processinh Time: 4 ms.
+i ====== 225
+One Frame Processinh Time: 10 ms.
+i ====== 226
+One Frame Processinh Time: 4 ms.
+i ====== 227
+insert keyframe, id = 215
+One Frame Processinh Time: 104 ms.
+i ====== 228
+One Frame Processinh Time: 10 ms.
+i ====== 229
+One Frame Processinh Time: 8 ms.
+i ====== 230
+insert keyframe, id = 218
+One Frame Processinh Time: 102 ms.
+i ====== 231
+One Frame Processinh Time: 10 ms.
+i ====== 232
+insert keyframe, id = 222
+One Frame Processinh Time: 49 ms.
+i ====== 233
+One Frame Processinh Time: 4 ms.
+i ====== 234
+One Frame Processinh Time: 63 ms.
+i ====== 235
+One Frame Processinh Time: 10 ms.
+i ====== 236
+insert keyframe, id = 227
+One Frame Processinh Time: 49 ms.
+i ====== 237
+One Frame Processinh Time: 2 ms.
+i ====== 238
+One Frame Processinh Time: 4 ms.
+i ====== 239
+One Frame Processinh Time: 74 ms.
+i ====== 240
+insert keyframe, id = 231
+One Frame Processinh Time: 49 ms.
+i ====== 241
+One Frame Processinh Time: 4 ms.
+i ====== 242
+One Frame Processinh Time: 4 ms.
+i ====== 243
+One Frame Processinh Time: 74 ms.
+i ====== 244
+One Frame Processinh Time: 4 ms.
+i ====== 245
+One Frame Processinh Time: 8 ms.
+i ====== 246
+One Frame Processinh Time: 6 ms.
+i ====== 247
+insert keyframe, id = 235
+One Frame Processinh Time: 105 ms.
+i ====== 248
+One Frame Processinh Time: 6 ms.
+i ====== 249
+One Frame Processinh Time: 8 ms.
+i ====== 250
+insert keyframe, id = 238
+One Frame Processinh Time: 109 ms.
+i ====== 251
+insert keyframe, id = 242
+One Frame Processinh Time: 51 ms.
+i ====== 252
+One Frame Processinh Time: 6 ms.
+i ====== 253
+One Frame Processinh Time: 4 ms.
+i ====== 254
+One Frame Processinh Time: 76 ms.
+i ====== 255
+insert keyframe, id = 246
+One Frame Processinh Time: 50 ms.
+i ====== 256
+One Frame Processinh Time: 4 ms.
+i ====== 257
+One Frame Processinh Time: 4 ms.
+i ====== 258
+One Frame Processinh Time: 80 ms.
+i ====== 259
+insert keyframe, id = 250
+One Frame Processinh Time: 51 ms.
+i ====== 260
+One Frame Processinh Time: 4 ms.
+i ====== 261
+One Frame Processinh Time: 4 ms.
+i ====== 262
+One Frame Processinh Time: 82 ms.
+i ====== 263
+One Frame Processinh Time: 12 ms.
+i ====== 264
+One Frame Processinh Time: 6 ms.
+i ====== 265
+One Frame Processinh Time: 6 ms.
+i ====== 266
+insert keyframe, id = 254
+One Frame Processinh Time: 109 ms.
+i ====== 267
+One Frame Processinh Time: 6 ms.
+i ====== 268
+One Frame Processinh Time: 4 ms.
+i ====== 269
+insert keyframe, id = 257
+One Frame Processinh Time: 109 ms.
+i ====== 270
+insert keyframe, id = 261
+One Frame Processinh Time: 49 ms.
+i ====== 271
+One Frame Processinh Time: 4 ms.
+i ====== 272
+One Frame Processinh Time: 4 ms.
+i ====== 273
+One Frame Processinh Time: 74 ms.
+i ====== 274
+insert keyframe, id = 265
+One Frame Processinh Time: 51 ms.
+i ====== 275
+One Frame Processinh Time: 4 ms.
+i ====== 276
+One Frame Processinh Time: 4 ms.
+i ====== 277
+One Frame Processinh Time: 76 ms.
+i ====== 278
+insert keyframe, id = 269
+One Frame Processinh Time: 50 ms.
+i ====== 279
+One Frame Processinh Time: 4 ms.
+i ====== 280
+One Frame Processinh Time: 4 ms.
+i ====== 281
+One Frame Processinh Time: 74 ms.
+i ====== 282
+insert keyframe, id = 273
+One Frame Processinh Time: 51 ms.
+i ====== 283
+One Frame Processinh Time: 2 ms.
+i ====== 284
+One Frame Processinh Time: 4 ms.
+i ====== 285
+One Frame Processinh Time: 73 ms.
+i ====== 286
+insert keyframe, id = 277
+One Frame Processinh Time: 51 ms.
+i ====== 287
+One Frame Processinh Time: 4 ms.
+i ====== 288
+One Frame Processinh Time: 4 ms.
+i ====== 289
+One Frame Processinh Time: 67 ms.
+i ====== 290
+insert keyframe, id = 281
+One Frame Processinh Time: 51 ms.
+i ====== 291
+One Frame Processinh Time: 4 ms.
+i ====== 292
+One Frame Processinh Time: 4 ms.
+i ====== 293
+One Frame Processinh Time: 72 ms.
+i ====== 294
+insert keyframe, id = 285
+One Frame Processinh Time: 49 ms.
+i ====== 295
+One Frame Processinh Time: 4 ms.
+i ====== 296
+One Frame Processinh Time: 2 ms.
+i ====== 297
+One Frame Processinh Time: 76 ms.
+i ====== 298
+insert keyframe, id = 289
+One Frame Processinh Time: 49 ms.
+i ====== 299
+One Frame Processinh Time: 4 ms.
+i ====== 300
+One Frame Processinh Time: 4 ms.
+i ====== 301
+One Frame Processinh Time: 76 ms.
+i ====== 302
+insert keyframe, id = 293
+One Frame Processinh Time: 49 ms.
+i ====== 303
+One Frame Processinh Time: 4 ms.
+i ====== 304
+One Frame Processinh Time: 2 ms.
+i ====== 305
+One Frame Processinh Time: 74 ms.
+i ====== 306
+insert keyframe, id = 297
+One Frame Processinh Time: 49 ms.
+i ====== 307
+One Frame Processinh Time: 4 ms.
+i ====== 308
+One Frame Processinh Time: 4 ms.
+i ====== 309
+One Frame Processinh Time: 76 ms.
+i ====== 310
+insert keyframe, id = 301
+One Frame Processinh Time: 49 ms.
+i ====== 311
+One Frame Processinh Time: 4 ms.
+i ====== 312
+One Frame Processinh Time: 2 ms.
+i ====== 313
+One Frame Processinh Time: 76 ms.
+i ====== 314
+insert keyframe, id = 305
+One Frame Processinh Time: 49 ms.
+i ====== 315
+One Frame Processinh Time: 2 ms.
+i ====== 316
+One Frame Processinh Time: 4 ms.
+i ====== 317
+One Frame Processinh Time: 78 ms.
+i ====== 318
+One Frame Processinh Time: 8 ms.
+i ====== 319
+One Frame Processinh Time: 8 ms.
+i ====== 320
+One Frame Processinh Time: 8 ms.
+i ====== 321
+insert keyframe, id = 309
+One Frame Processinh Time: 117 ms.
+i ====== 322
+One Frame Processinh Time: 8 ms.
+i ====== 323
+One Frame Processinh Time: 6 ms.
+i ====== 324
+insert keyframe, id = 312
+One Frame Processinh Time: 107 ms.
+i ====== 325
+One Frame Processinh Time: 10 ms.
+i ====== 326
+One Frame Processinh Time: 6 ms.
+i ====== 327
+One Frame Processinh Time: 8 ms.
+i ====== 328
+insert keyframe, id = 316
+One Frame Processinh Time: 103 ms.
+i ====== 329
+One Frame Processinh Time: 4 ms.
+i ====== 330
+One Frame Processinh Time: 8 ms.
+i ====== 331
+insert keyframe, id = 319
+One Frame Processinh Time: 104 ms.
+i ====== 332
+insert keyframe, id = 323
+One Frame Processinh Time: 49 ms.
+i ====== 333
+One Frame Processinh Time: 4 ms.
+i ====== 334
+One Frame Processinh Time: 2 ms.
+i ====== 335
+One Frame Processinh Time: 76 ms.
+i ====== 336
+One Frame Processinh Time: 50 ms.
+i ====== 337
+insert keyframe, id = 327
+One Frame Processinh Time: 2 ms.
+i ====== 338
+One Frame Processinh Time: 4 ms.
+i ====== 339
+One Frame Processinh Time: 84 ms.
+i ====== 340
+insert keyframe, id = 331
+One Frame Processinh Time: 50 ms.
+i ====== 341
+One Frame Processinh Time: 4 ms.
+i ====== 342
+One Frame Processinh Time: 4 ms.
+i ====== 343
+One Frame Processinh Time: 74 ms.
+i ====== 344
+insert keyframe, id = 335
+One Frame Processinh Time: 51 ms.
+i ====== 345
+One Frame Processinh Time: 4 ms.
+i ====== 346
+One Frame Processinh Time: 2 ms.
+i ====== 347
+One Frame Processinh Time: 76 ms.
+i ====== 348
+insert keyframe, id = 339
+One Frame Processinh Time: 53 ms.
+i ====== 349
+One Frame Processinh Time: 4 ms.
+i ====== 350
+One Frame Processinh Time: 4 ms.
+i ====== 351
+One Frame Processinh Time: 69 ms.
+i ====== 352
+insert keyframe, id = 343
+One Frame Processinh Time: 47 ms.
+i ====== 353
+One Frame Processinh Time: 4 ms.
+i ====== 354
+One Frame Processinh Time: 4 ms.
+i ====== 355
+One Frame Processinh Time: 76 ms.
+i ====== 356
+One Frame Processinh Time: 8 ms.
+i ====== 357
+insert keyframe, id = 347
+One Frame Processinh Time: 49 ms.
+i ====== 358
+One Frame Processinh Time: 4 ms.
+i ====== 359
+One Frame Processinh Time: 78 ms.
+i ====== 360
+One Frame Processinh Time: 8 ms.
+i ====== 361
+insert keyframe, id = 352
+One Frame Processinh Time: 49 ms.
+i ====== 362
+One Frame Processinh Time: 4 ms.
+i ====== 363
+One Frame Processinh Time: 4 ms.
+i ====== 364
+One Frame Processinh Time: 78 ms.
+i ====== 365
+One Frame Processinh Time: 6 ms.
+i ====== 366
+insert keyframe, id = 356
+One Frame Processinh Time: 47 ms.
+i ====== 367
+One Frame Processinh Time: 4 ms.
+i ====== 368
+One Frame Processinh Time: 67 ms.
+i ====== 369
+One Frame Processinh Time: 8 ms.
+i ====== 370
+insert keyframe, id = 361
+One Frame Processinh Time: 51 ms.
+i ====== 371
+One Frame Processinh Time: 2 ms.
+i ====== 372
+One Frame Processinh Time: 4 ms.
+i ====== 373
+One Frame Processinh Time: 72 ms.
+i ====== 374
+One Frame Processinh Time: 8 ms.
+i ====== 375
+insert keyframe, id = 365
+One Frame Processinh Time: 51 ms.
+i ====== 376
+One Frame Processinh Time: 4 ms.
+i ====== 377
+One Frame Processinh Time: 74 ms.
+i ====== 378
+insert keyframe, id = 370
+One Frame Processinh Time: 53 ms.
+i ====== 379
+One Frame Processinh Time: 2 ms.
+i ====== 380
+One Frame Processinh Time: 4 ms.
+i ====== 381
+One Frame Processinh Time: 49 ms.
+i ====== 382
+One Frame Processinh Time: 32 ms.
+i ====== 383
+One Frame Processinh Time: 6 ms.
+i ====== 384
+insert keyframe, id = 373
+One Frame Processinh Time: 47 ms.
+i ====== 385
+One Frame Processinh Time: 67 ms.
+i ====== 386
+One Frame Processinh Time: 6 ms.
+i ====== 387
+One Frame Processinh Time: 6 ms.
+i ====== 388
+insert keyframe, id = 376
+One Frame Processinh Time: 100 ms.
+i ====== 389
+insert keyframe, id = 379
+One Frame Processinh Time: 49 ms.
+i ====== 390
+One Frame Processinh Time: 4 ms.
+i ====== 391
+One Frame Processinh Time: 67 ms.
+i ====== 392
+One Frame Processinh Time: 8 ms.
+i ====== 393
+One Frame Processinh Time: 10 ms.
+i ====== 394
+One Frame Processinh Time: 8 ms.
+i ====== 395
+One Frame Processinh Time: 6 ms.
+i ====== 396
+insert keyframe, id = 384
+One Frame Processinh Time: 100 ms.
+i ====== 397
+One Frame Processinh Time: 6 ms.
+i ====== 398
+One Frame Processinh Time: 10 ms.
+i ====== 399
+One Frame Processinh Time: 50 ms.
+i ====== 400
+One Frame Processinh Time: 4 ms.
+i ====== 401
+One Frame Processinh Time: 4 ms.
+i ====== 402
+One Frame Processinh Time: 4 ms.
+i ====== 403
+One Frame Processinh Time: 4 ms.
+i ====== 404
+insert keyframe, id = 394
+One Frame Processinh Time: 4 ms.
+i ====== 405
+One Frame Processinh Time: 2 ms.
+i ====== 406
+One Frame Processinh Time: 84 ms.
+i ====== 407
+One Frame Processinh Time: 6 ms.
+i ====== 408
+One Frame Processinh Time: 12 ms.
+i ====== 409
+One Frame Processinh Time: 6 ms.
+i ====== 410
+One Frame Processinh Time: 6 ms.
+i ====== 411
+One Frame Processinh Time: 6 ms.
+i ====== 412
+One Frame Processinh Time: 8 ms.
+i ====== 413
+insert keyframe, id = 401
+One Frame Processinh Time: 105 ms.
+i ====== 414
+One Frame Processinh Time: 12 ms.
+i ====== 415
+One Frame Processinh Time: 49 ms.
+i ====== 416
+One Frame Processinh Time: 4 ms.
+i ====== 417
+One Frame Processinh Time: 4 ms.
+i ====== 418
+One Frame Processinh Time: 4 ms.
+i ====== 419
+One Frame Processinh Time: 4 ms.
+i ====== 420
+One Frame Processinh Time: 2 ms.
+i ====== 421
+insert keyframe, id = 410
+One Frame Processinh Time: 49 ms.
+i ====== 422
+One Frame Processinh Time: 57 ms.
+i ====== 423
+One Frame Processinh Time: 12 ms.
+i ====== 424
+One Frame Processinh Time: 8 ms.
+i ====== 425
+One Frame Processinh Time: 6 ms.
+i ====== 426
+One Frame Processinh Time: 6 ms.
+i ====== 427
+insert keyframe, id = 416
+One Frame Processinh Time: 49 ms.
+i ====== 428
+One Frame Processinh Time: 65 ms.
+i ====== 429
+One Frame Processinh Time: 4 ms.
+i ====== 430
+One Frame Processinh Time: 8 ms.
+i ====== 431
+One Frame Processinh Time: 8 ms.
+i ====== 432
+One Frame Processinh Time: 8 ms.
+i ====== 433
+insert keyframe, id = 422
+One Frame Processinh Time: 51 ms.
+i ====== 434
+One Frame Processinh Time: 69 ms.
+i ====== 435
+One Frame Processinh Time: 6 ms.
+i ====== 436
+One Frame Processinh Time: 8 ms.
+i ====== 437
+One Frame Processinh Time: 8 ms.
+i ====== 438
+One Frame Processinh Time: 8 ms.
+i ====== 439
+insert keyframe, id = 428
+One Frame Processinh Time: 47 ms.
+i ====== 440
+One Frame Processinh Time: 72 ms.
+i ====== 441
+One Frame Processinh Time: 4 ms.
+i ====== 442
+One Frame Processinh Time: 10 ms.
+i ====== 443
+One Frame Processinh Time: 10 ms.
+i ====== 444
+One Frame Processinh Time: 8 ms.
+i ====== 445
+One Frame Processinh Time: 4 ms.
+i ====== 446
+insert keyframe, id = 434
+One Frame Processinh Time: 111 ms.
+i ====== 447
+One Frame Processinh Time: 49 ms.
+i ====== 448
+One Frame Processinh Time: 4 ms.
+i ====== 449
+One Frame Processinh Time: 6 ms.
+i ====== 450
+One Frame Processinh Time: 2 ms.
+i ====== 451
+One Frame Processinh Time: 6 ms.
+i ====== 452
+One Frame Processinh Time: 4 ms.
+i ====== 453
+insert keyframe, id = 442
+One Frame Processinh Time: 2 ms.
+i ====== 454
+One Frame Processinh Time: 96 ms.
+i ====== 455
+One Frame Processinh Time: 51 ms.
+i ====== 456
+One Frame Processinh Time: 4 ms.
+i ====== 457
+One Frame Processinh Time: 6 ms.
+i ====== 458
+One Frame Processinh Time: 2 ms.
+i ====== 459
+One Frame Processinh Time: 6 ms.
+i ====== 460
+One Frame Processinh Time: 4 ms.
+i ====== 461
+One Frame Processinh Time: 2 ms.
+i ====== 462
+insert keyframe, id = 450
+One Frame Processinh Time: 94 ms.
+i ====== 463
+One Frame Processinh Time: 51 ms.
+i ====== 464
+One Frame Processinh Time: 2 ms.
+i ====== 465
+One Frame Processinh Time: 4 ms.
+i ====== 466
+One Frame Processinh Time: 4 ms.
+i ====== 467
+One Frame Processinh Time: 4 ms.
+i ====== 468
+insert keyframe, id = 458
+One Frame Processinh Time: 4 ms.
+i ====== 469
+One Frame Processinh Time: 2 ms.
+i ====== 470
+One Frame Processinh Time: 82 ms.
+i ====== 471
+One Frame Processinh Time: 10 ms.
+i ====== 472
+One Frame Processinh Time: 6 ms.
+i ====== 473
+One Frame Processinh Time: 47 ms.
+i ====== 474
+One Frame Processinh Time: 4 ms.
+i ====== 475
+One Frame Processinh Time: 4 ms.
+i ====== 476
+One Frame Processinh Time: 4 ms.
+i ====== 477
+One Frame Processinh Time: 4 ms.
+i ====== 478
+One Frame Processinh Time: 2 ms.
+i ====== 479
+insert keyframe, id = 468
+One Frame Processinh Time: 45 ms.
+i ====== 480
+One Frame Processinh Time: 45 ms.
+i ====== 481
+One Frame Processinh Time: 6 ms.
+i ====== 482
+One Frame Processinh Time: 4 ms.
+i ====== 483
+One Frame Processinh Time: 2 ms.
+i ====== 484
+One Frame Processinh Time: 8 ms.
+i ====== 485
+One Frame Processinh Time: 10 ms.
+i ====== 486
+insert keyframe, id = 474
+One Frame Processinh Time: 96 ms.
+i ====== 487
+One Frame Processinh Time: 6 ms.
+i ====== 488
+One Frame Processinh Time: 10 ms.
+i ====== 489
+One Frame Processinh Time: 4 ms.
+i ====== 490
+One Frame Processinh Time: 4 ms.
+i ====== 491
+One Frame Processinh Time: 6 ms.
+i ====== 492
+One Frame Processinh Time: 8 ms.
+i ====== 493
+insert keyframe, id = 481
+One Frame Processinh Time: 101 ms.
+i ====== 494
+One Frame Processinh Time: 4 ms.
+i ====== 495
+One Frame Processinh Time: 6 ms.
+i ====== 496
+One Frame Processinh Time: 4 ms.
+i ====== 497
+One Frame Processinh Time: 2 ms.
+i ====== 498
+One Frame Processinh Time: 10 ms.
+i ====== 499
+One Frame Processinh Time: 8 ms.
+i ====== 500
+One Frame Processinh Time: 45 ms.
+i ====== 501
+One Frame Processinh Time: 4 ms.
+i ====== 502
+One Frame Processinh Time: 2 ms.
+i ====== 503
+One Frame Processinh Time: 4 ms.
+i ====== 504
+insert keyframe, id = 495
+One Frame Processinh Time: 2 ms.
+i ====== 505
+One Frame Processinh Time: 4 ms.
+i ====== 506
+One Frame Processinh Time: 2 ms.
+i ====== 507
+One Frame Processinh Time: 72 ms.
+i ====== 508
+One Frame Processinh Time: 4 ms.
+i ====== 509
+One Frame Processinh Time: 6 ms.
+i ====== 510
+One Frame Processinh Time: 4 ms.
+i ====== 511
+One Frame Processinh Time: 8 ms.
+i ====== 512
+One Frame Processinh Time: 2 ms.
+i ====== 513
+One Frame Processinh Time: 6 ms.
+i ====== 514
+insert keyframe, id = 502
+One Frame Processinh Time: 96 ms.
+i ====== 515
+One Frame Processinh Time: 51 ms.
+i ====== 516
+One Frame Processinh Time: 4 ms.
+i ====== 517
+One Frame Processinh Time: 4 ms.
+i ====== 518
+insert keyframe, id = 510
+One Frame Processinh Time: 4 ms.
+i ====== 519
+One Frame Processinh Time: 2 ms.
+i ====== 520
+One Frame Processinh Time: 4 ms.
+i ====== 521
+One Frame Processinh Time: 2 ms.
+i ====== 522
+One Frame Processinh Time: 69 ms.
+i ====== 523
+One Frame Processinh Time: 4 ms.
+i ====== 524
+virtual int g2o::SparseOptimizer::optimize(int, bool): 0 vertices to optimize, maybe forgot to call initializeOptimization()
+virtual int g2o::SparseOptimizer::optimize(int, bool): 0 vertices to optimize, maybe forgot to call initializeOptimization()
+One Frame Processinh Time: 47 ms.
+i ====== 525
+One Frame Processinh Time: 2 ms.
+i ====== 526
+One Frame Processinh Time: 4 ms.
+i ====== 527
+One Frame Processinh Time: 4 ms.
+i ====== 528
+insert keyframe, id = 519
+One Frame Processinh Time: 47 ms.
+i ====== 529
+One Frame Processinh Time: 4 ms.
+i ====== 530
+One Frame Processinh Time: 4 ms.
+i ====== 531
+One Frame Processinh Time: 22 ms.
+i ====== 532
+One Frame Processinh Time: 4 ms.
+i ====== 533
+One Frame Processinh Time: 4 ms.
+i ====== 534
+One Frame Processinh Time: 4 ms.
+i ====== 535
+insert keyframe, id = 523
+One Frame Processinh Time: 84 ms.
+i ====== 536
+One Frame Processinh Time: 51 ms.
+i ====== 537
+One Frame Processinh Time: 4 ms.
+i ====== 538
+One Frame Processinh Time: 4 ms.
+i ====== 539
+One Frame Processinh Time: 2 ms.
+i ====== 540
+insert keyframe, id = 531
+One Frame Processinh Time: 4 ms.
+i ====== 541
+One Frame Processinh Time: 4 ms.
+i ====== 542
+One Frame Processinh Time: 2 ms.
+i ====== 543
+One Frame Processinh Time: 67 ms.
+i ====== 544
+One Frame Processinh Time: 4 ms.
+i ====== 545
+One Frame Processinh Time: 8 ms.
+i ====== 546
+insert keyframe, id = 538
+One Frame Processinh Time: 51 ms.
+i ====== 547
+One Frame Processinh Time: 4 ms.
+i ====== 548
+One Frame Processinh Time: 4 ms.
+i ====== 549
+One Frame Processinh Time: 49 ms.
+i ====== 550
+One Frame Processinh Time: 12 ms.
+i ====== 551
+One Frame Processinh Time: 8 ms.
+i ====== 552
+insert keyframe, id = 541
+One Frame Processinh Time: 49 ms.
+i ====== 553
+One Frame Processinh Time: 49 ms.
+i ====== 554
+One Frame Processinh Time: 4 ms.
+i ====== 555
+insert keyframe, id = 544
+One Frame Processinh Time: 45 ms.
+i ====== 556
+One Frame Processinh Time: 53 ms.
+i ====== 557
+One Frame Processinh Time: 2 ms.
+i ====== 558
+One Frame Processinh Time: 4 ms.
+i ====== 559
+insert keyframe, id = 547
+One Frame Processinh Time: 90 ms.
+i ====== 560
+One Frame Processinh Time: 6 ms.
+i ====== 561
+insert keyframe, id = 550
+One Frame Processinh Time: 45 ms.
+i ====== 562
+One Frame Processinh Time: 49 ms.
+i ====== 563
+One Frame Processinh Time: 8 ms.
+i ====== 564
+One Frame Processinh Time: 8 ms.
+i ====== 565
+insert keyframe, id = 556
+One Frame Processinh Time: 47 ms.
+i ====== 566
+One Frame Processinh Time: 2 ms.
+i ====== 567
+One Frame Processinh Time: 4 ms.
+i ====== 568
+One Frame Processinh Time: 55 ms.
+i ====== 569
+One Frame Processinh Time: 8 ms.
+i ====== 570
+One Frame Processinh Time: 8 ms.
+i ====== 571
+One Frame Processinh Time: 2 ms.
+i ====== 572
+insert keyframe, id = 560
+One Frame Processinh Time: 88 ms.
+i ====== 573
+One Frame Processinh Time: 6 ms.
+i ====== 574
+One Frame Processinh Time: 6 ms.
+i ====== 575
+insert keyframe, id = 563
+One Frame Processinh Time: 90 ms.
+i ====== 576
+insert keyframe, id = 567
+One Frame Processinh Time: 49 ms.
+i ====== 577
+One Frame Processinh Time: 2 ms.
+i ====== 578
+One Frame Processinh Time: 4 ms.
+i ====== 579
+One Frame Processinh Time: 53 ms.
+i ====== 580
+insert keyframe, id = 571
+One Frame Processinh Time: 53 ms.
+i ====== 581
+One Frame Processinh Time: 4 ms.
+i ====== 582
+One Frame Processinh Time: 4 ms.
+i ====== 583
+One Frame Processinh Time: 53 ms.
+i ====== 584
+One Frame Processinh Time: 6 ms.
+i ====== 585
+insert keyframe, id = 575
+One Frame Processinh Time: 47 ms.
+i ====== 586
+One Frame Processinh Time: 4 ms.
+i ====== 587
+One Frame Processinh Time: 49 ms.
+i ====== 588
+insert keyframe, id = 580
+One Frame Processinh Time: 51 ms.
+i ====== 589
+One Frame Processinh Time: 2 ms.
+i ====== 590
+One Frame Processinh Time: 4 ms.
+i ====== 591
+One Frame Processinh Time: 4 ms.
+i ====== 592
+One Frame Processinh Time: 63 ms.
+i ====== 593
+One Frame Processinh Time: 10 ms.
+i ====== 594
+One Frame Processinh Time: 4 ms.
+i ====== 595
+insert keyframe, id = 583
+One Frame Processinh Time: 88 ms.
+i ====== 596
+insert keyframe, id = 587
+One Frame Processinh Time: 51 ms.
+i ====== 597
+One Frame Processinh Time: 4 ms.
+i ====== 598
+One Frame Processinh Time: 2 ms.
+i ====== 599
+One Frame Processinh Time: 57 ms.
+i ====== 600
+One Frame Processinh Time: 8 ms.
+i ====== 601
+One Frame Processinh Time: 8 ms.
+i ====== 602
+One Frame Processinh Time: 6 ms.
+i ====== 603
+insert keyframe, id = 591
+One Frame Processinh Time: 86 ms.
+i ====== 604
+insert keyframe, id = 594
+One Frame Processinh Time: 47 ms.
+i ====== 605
+One Frame Processinh Time: 2 ms.
+i ====== 606
+One Frame Processinh Time: 51 ms.
+i ====== 607
+One Frame Processinh Time: 8 ms.
+i ====== 608
+insert keyframe, id = 599
+One Frame Processinh Time: 47 ms.
+i ====== 609
+One Frame Processinh Time: 2 ms.
+i ====== 610
+One Frame Processinh Time: 4 ms.
+i ====== 611
+One Frame Processinh Time: 53 ms.
+i ====== 612
+insert keyframe, id = 603
+One Frame Processinh Time: 49 ms.
+i ====== 613
+One Frame Processinh Time: 2 ms.
+i ====== 614
+One Frame Processinh Time: 4 ms.
+i ====== 615
+One Frame Processinh Time: 51 ms.
+i ====== 616
+insert keyframe, id = 607
+One Frame Processinh Time: 47 ms.
+i ====== 617
+One Frame Processinh Time: 4 ms.
+i ====== 618
+One Frame Processinh Time: 4 ms.
+i ====== 619
+One Frame Processinh Time: 53 ms.
+i ====== 620
+One Frame Processinh Time: 4 ms.
+i ====== 621
+One Frame Processinh Time: 8 ms.
+i ====== 622
+One Frame Processinh Time: 4 ms.
+i ====== 623
+insert keyframe, id = 611
+One Frame Processinh Time: 90 ms.
+i ====== 624
+insert keyframe, id = 614
+One Frame Processinh Time: 49 ms.
+i ====== 625
+One Frame Processinh Time: 2 ms.
+i ====== 626
+One Frame Processinh Time: 58 ms.
+i ====== 627
+One Frame Processinh Time: 4 ms.
+i ====== 628
+insert keyframe, id = 619
+One Frame Processinh Time: 49 ms.
+i ====== 629
+One Frame Processinh Time: 6 ms.
+i ====== 630
+One Frame Processinh Time: 2 ms.
+i ====== 631
+One Frame Processinh Time: 61 ms.
+i ====== 632
+insert keyframe, id = 623
+One Frame Processinh Time: 49 ms.
+i ====== 633
+One Frame Processinh Time: 2 ms.
+i ====== 634
+One Frame Processinh Time: 4 ms.
+i ====== 635
+One Frame Processinh Time: 61 ms.
+i ====== 636
+insert keyframe, id = 627
+One Frame Processinh Time: 45 ms.
+i ====== 637
+One Frame Processinh Time: 4 ms.
+i ====== 638
+One Frame Processinh Time: 4 ms.
+i ====== 639
+One Frame Processinh Time: 61 ms.
+i ====== 640
+insert keyframe, id = 631
+One Frame Processinh Time: 47 ms.
+i ====== 641
+One Frame Processinh Time: 4 ms.
+i ====== 642
+One Frame Processinh Time: 2 ms.
+i ====== 643
+One Frame Processinh Time: 55 ms.
+i ====== 644
+One Frame Processinh Time: 8 ms.
+i ====== 645
+insert keyframe, id = 635
+One Frame Processinh Time: 47 ms.
+i ====== 646
+One Frame Processinh Time: 2 ms.
+i ====== 647
+One Frame Processinh Time: 41 ms.
+i ====== 648
+insert keyframe, id = 640
+One Frame Processinh Time: 47 ms.
+i ====== 649
+One Frame Processinh Time: 2 ms.
+i ====== 650
+One Frame Processinh Time: 4 ms.
+i ====== 651
+One Frame Processinh Time: 2 ms.
+i ====== 652
+One Frame Processinh Time: 55 ms.
+i ====== 653
+One Frame Processinh Time: 6 ms.
+i ====== 654
+One Frame Processinh Time: 6 ms.
+i ====== 655
+insert keyframe, id = 643
+One Frame Processinh Time: 88 ms.
+i ====== 656
+insert keyframe, id = 647
+One Frame Processinh Time: 49 ms.
+i ====== 657
+One Frame Processinh Time: 2 ms.
+i ====== 658
+One Frame Processinh Time: 4 ms.
+i ====== 659
+One Frame Processinh Time: 51 ms.
+i ====== 660
+insert keyframe, id = 651
+One Frame Processinh Time: 49 ms.
+i ====== 661
+One Frame Processinh Time: 4 ms.
+i ====== 662
+One Frame Processinh Time: 2 ms.
+i ====== 663
+One Frame Processinh Time: 55 ms.
+i ====== 664
+One Frame Processinh Time: 12 ms.
+i ====== 665
+One Frame Processinh Time: 6 ms.
+i ====== 666
+One Frame Processinh Time: 2 ms.
+i ====== 667
+insert keyframe, id = 655
+One Frame Processinh Time: 90 ms.
+i ====== 668
+One Frame Processinh Time: 6 ms.
+i ====== 669
+One Frame Processinh Time: 4 ms.
+i ====== 670
+insert keyframe, id = 658
+One Frame Processinh Time: 84 ms.
+i ====== 671
+insert keyframe, id = 662
+One Frame Processinh Time: 49 ms.
+i ====== 672
+One Frame Processinh Time: 2 ms.
+i ====== 673
+One Frame Processinh Time: 4 ms.
+i ====== 674
+One Frame Processinh Time: 59 ms.
+i ====== 675
+insert keyframe, id = 666
+One Frame Processinh Time: 51 ms.
+i ====== 676
+One Frame Processinh Time: 4 ms.
+i ====== 677
+One Frame Processinh Time: 2 ms.
+i ====== 678
+One Frame Processinh Time: 55 ms.
+i ====== 679
+insert keyframe, id = 670
+One Frame Processinh Time: 61 ms.
+i ====== 680
+One Frame Processinh Time: 2 ms.
+i ====== 681
+One Frame Processinh Time: 6 ms.
+i ====== 682
+One Frame Processinh Time: 57 ms.
+i ====== 683
+One Frame Processinh Time: 4 ms.
+i ====== 684
+insert keyframe, id = 674
+One Frame Processinh Time: 53 ms.
+i ====== 685
+One Frame Processinh Time: 4 ms.
+i ====== 686
+One Frame Processinh Time: 26 ms.
+i ====== 687
+One Frame Processinh Time: 8 ms.
+i ====== 688
+insert keyframe, id = 677
+One Frame Processinh Time: 51 ms.
+i ====== 689
+One Frame Processinh Time: 43 ms.
+i ====== 690
+One Frame Processinh Time: 6 ms.
+i ====== 691
+insert keyframe, id = 679
+One Frame Processinh Time: 88 ms.
+i ====== 692
+insert keyframe, id = 683
+One Frame Processinh Time: 59 ms.
+i ====== 693
+One Frame Processinh Time: 2 ms.
+i ====== 694
+One Frame Processinh Time: 4 ms.
+i ====== 695
+One Frame Processinh Time: 57 ms.
+i ====== 696
+insert keyframe, id = 687
+One Frame Processinh Time: 49 ms.
+i ====== 697
+One Frame Processinh Time: 4 ms.
+i ====== 698
+One Frame Processinh Time: 2 ms.
+i ====== 699
+One Frame Processinh Time: 63 ms.
+i ====== 700
+insert keyframe, id = 691
+One Frame Processinh Time: 47 ms.
+i ====== 701
+One Frame Processinh Time: 4 ms.
+i ====== 702
+One Frame Processinh Time: 2 ms.
+i ====== 703
+One Frame Processinh Time: 57 ms.
+i ====== 704
+insert keyframe, id = 695
+One Frame Processinh Time: 49 ms.
+i ====== 705
+One Frame Processinh Time: 2 ms.
+i ====== 706
+One Frame Processinh Time: 4 ms.
+i ====== 707
+One Frame Processinh Time: 59 ms.
+i ====== 708
+insert keyframe, id = 699
+One Frame Processinh Time: 51 ms.
+i ====== 709
+One Frame Processinh Time: 4 ms.
+i ====== 710
+One Frame Processinh Time: 2 ms.
+i ====== 711
+One Frame Processinh Time: 57 ms.
+i ====== 712
+One Frame Processinh Time: 6 ms.
+i ====== 713
+insert keyframe, id = 703
+One Frame Processinh Time: 45 ms.
+i ====== 714
+One Frame Processinh Time: 6 ms.
+i ====== 715
+One Frame Processinh Time: 55 ms.
+i ====== 716
+One Frame Processinh Time: 8 ms.
+i ====== 717
+insert keyframe, id = 708
+One Frame Processinh Time: 45 ms.
+i ====== 718
+One Frame Processinh Time: 2 ms.
+i ====== 719
+One Frame Processinh Time: 2 ms.
+i ====== 720
+One Frame Processinh Time: 65 ms.
+i ====== 721
+insert keyframe, id = 712
+One Frame Processinh Time: 51 ms.
+i ====== 722
+One Frame Processinh Time: 2 ms.
+i ====== 723
+One Frame Processinh Time: 4 ms.
+i ====== 724
+One Frame Processinh Time: 63 ms.
+i ====== 725
+One Frame Processinh Time: 6 ms.
+i ====== 726
+insert keyframe, id = 716
+One Frame Processinh Time: 47 ms.
+i ====== 727
+One Frame Processinh Time: 4 ms.
+i ====== 728
+One Frame Processinh Time: 53 ms.
+i ====== 729
+One Frame Processinh Time: 8 ms.
+i ====== 730
+One Frame Processinh Time: 6 ms.
+i ====== 731
+insert keyframe, id = 719
+One Frame Processinh Time: 92 ms.
+i ====== 732
+One Frame Processinh Time: 8 ms.
+i ====== 733
+insert keyframe, id = 721
+One Frame Processinh Time: 92 ms.
+i ====== 734
+One Frame Processinh Time: 8 ms.
+i ====== 735
+insert keyframe, id = 726
+One Frame Processinh Time: 47 ms.
+i ====== 736
+One Frame Processinh Time: 6 ms.
+i ====== 737
+One Frame Processinh Time: 2 ms.
+i ====== 738
+One Frame Processinh Time: 61 ms.
+i ====== 739
+insert keyframe, id = 730
+One Frame Processinh Time: 47 ms.
+i ====== 740
+One Frame Processinh Time: 4 ms.
+i ====== 741
+One Frame Processinh Time: 4 ms.
+i ====== 742
+One Frame Processinh Time: 70 ms.
+i ====== 743
+One Frame Processinh Time: 6 ms.
+i ====== 744
+insert keyframe, id = 734
+One Frame Processinh Time: 45 ms.
+i ====== 745
+One Frame Processinh Time: 4 ms.
+i ====== 746
+One Frame Processinh Time: 67 ms.
+i ====== 747
+insert keyframe, id = 739
+One Frame Processinh Time: 51 ms.
+i ====== 748
+One Frame Processinh Time: 4 ms.
+i ====== 749
+One Frame Processinh Time: 2 ms.
+i ====== 750
+One Frame Processinh Time: 47 ms.
+i ====== 751
+One Frame Processinh Time: 24 ms.
+i ====== 752
+One Frame Processinh Time: 4 ms.
+i ====== 753
+One Frame Processinh Time: 4 ms.
+i ====== 754
+insert keyframe, id = 742
+One Frame Processinh Time: 92 ms.
+i ====== 755
+One Frame Processinh Time: 6 ms.
+i ====== 756
+One Frame Processinh Time: 4 ms.
+i ====== 757
+insert keyframe, id = 745
+One Frame Processinh Time: 98 ms.
+i ====== 758
+One Frame Processinh Time: 10 ms.
+i ====== 759
+One Frame Processinh Time: 12 ms.
+i ====== 760
+One Frame Processinh Time: 6 ms.
+i ====== 761
+One Frame Processinh Time: 8 ms.
+i ====== 762
+One Frame Processinh Time: 6 ms.
+i ====== 763
+One Frame Processinh Time: 6 ms.
+i ====== 764
+One Frame Processinh Time: 10 ms.
+i ====== 765
+One Frame Processinh Time: 51 ms.
+i ====== 766
+One Frame Processinh Time: 2 ms.
+i ====== 767
+One Frame Processinh Time: 4 ms.
+i ====== 768
+One Frame Processinh Time: 2 ms.
+i ====== 769
+insert keyframe, id = 760
+One Frame Processinh Time: 49 ms.
+i ====== 770
+One Frame Processinh Time: 2 ms.
+i ====== 771
+One Frame Processinh Time: 4 ms.
+i ====== 772
+One Frame Processinh Time: 39 ms.
+i ====== 773
+One Frame Processinh Time: 6 ms.
+i ====== 774
+One Frame Processinh Time: 8 ms.
+i ====== 775
+insert keyframe, id = 764
+One Frame Processinh Time: 45 ms.
+i ====== 776
+One Frame Processinh Time: 57 ms.
+i ====== 777
+One Frame Processinh Time: 8 ms.
+i ====== 778
+One Frame Processinh Time: 8 ms.
+i ====== 779
+One Frame Processinh Time: 8 ms.
+i ====== 780
+One Frame Processinh Time: 8 ms.
+i ====== 781
+One Frame Processinh Time: 4 ms.
+i ====== 782
+insert keyframe, id = 770
+One Frame Processinh Time: 98 ms.
+i ====== 783
+One Frame Processinh Time: 4 ms.
+i ====== 784
+One Frame Processinh Time: 10 ms.
+i ====== 785
+One Frame Processinh Time: 8 ms.
+i ====== 786
+One Frame Processinh Time: 47 ms.
+i ====== 787
+One Frame Processinh Time: 4 ms.
+i ====== 788
+One Frame Processinh Time: 2 ms.
+i ====== 789
+insert keyframe, id = 781
+One Frame Processinh Time: 47 ms.
+i ====== 790
+One Frame Processinh Time: 2 ms.
+i ====== 791
+One Frame Processinh Time: 4 ms.
+i ====== 792
+One Frame Processinh Time: 2 ms.
+i ====== 793
+One Frame Processinh Time: 45 ms.
+i ====== 794
+insert keyframe, id = 784
+One Frame Processinh Time: 47 ms.
+i ====== 795
+One Frame Processinh Time: 2 ms.
+i ====== 796
+One Frame Processinh Time: 63 ms.
+i ====== 797
+One Frame Processinh Time: 12 ms.
+i ====== 798
+One Frame Processinh Time: 6 ms.
+i ====== 799
+insert keyframe, id = 789
+One Frame Processinh Time: 47 ms.
+i ====== 800
+One Frame Processinh Time: 4 ms.
+i ====== 801
+One Frame Processinh Time: 59 ms.
+i ====== 802
+One Frame Processinh Time: 12 ms.
+i ====== 803
+insert keyframe, id = 794
+One Frame Processinh Time: 51 ms.
+i ====== 804
+One Frame Processinh Time: 2 ms.
+i ====== 805
+One Frame Processinh Time: 4 ms.
+i ====== 806
+One Frame Processinh Time: 65 ms.
+i ====== 807
+One Frame Processinh Time: 12 ms.
+i ====== 808
+insert keyframe, id = 798
+One Frame Processinh Time: 47 ms.
+i ====== 809
+One Frame Processinh Time: 2 ms.
+i ====== 810
+One Frame Processinh Time: 69 ms.
+i ====== 811
+One Frame Processinh Time: 6 ms.
+i ====== 812
+One Frame Processinh Time: 6 ms.
+i ====== 813
+insert keyframe, id = 803
+One Frame Processinh Time: 47 ms.
+i ====== 814
+One Frame Processinh Time: 4 ms.
+i ====== 815
+One Frame Processinh Time: 63 ms.
+i ====== 816
+insert keyframe, id = 808
+One Frame Processinh Time: 49 ms.
+i ====== 817
+One Frame Processinh Time: 2 ms.
+i ====== 818
+One Frame Processinh Time: 4 ms.
+i ====== 819
+One Frame Processinh Time: 4 ms.
+i ====== 820
+One Frame Processinh Time: 65 ms.
+i ====== 821
+insert keyframe, id = 811
+One Frame Processinh Time: 45 ms.
+i ====== 822
+One Frame Processinh Time: 4 ms.
+i ====== 823
+One Frame Processinh Time: 63 ms.
+i ====== 824
+One Frame Processinh Time: 8 ms.
+i ====== 825
+One Frame Processinh Time: 12 ms.
+i ====== 826
+insert keyframe, id = 816
+One Frame Processinh Time: 45 ms.
+i ====== 827
+One Frame Processinh Time: 2 ms.
+i ====== 828
+One Frame Processinh Time: 65 ms.
+i ====== 829
+One Frame Processinh Time: 8 ms.
+i ====== 830
+One Frame Processinh Time: 10 ms.
+i ====== 831
+insert keyframe, id = 821
+One Frame Processinh Time: 45 ms.
+i ====== 832
+One Frame Processinh Time: 4 ms.
+i ====== 833
+One Frame Processinh Time: 70 ms.
+i ====== 834
+One Frame Processinh Time: 12 ms.
+i ====== 835
+insert keyframe, id = 826
+One Frame Processinh Time: 45 ms.
+i ====== 836
+One Frame Processinh Time: 4 ms.
+i ====== 837
+One Frame Processinh Time: 2 ms.
+i ====== 838
+One Frame Processinh Time: 78 ms.
+i ====== 839
+One Frame Processinh Time: 47 ms.
+i ====== 840
+insert keyframe, id = 830
+One Frame Processinh Time: 4 ms.
+i ====== 841
+One Frame Processinh Time: 2 ms.
+i ====== 842
+One Frame Processinh Time: 86 ms.
+i ====== 843
+One Frame Processinh Time: 10 ms.
+i ====== 844
+One Frame Processinh Time: 8 ms.
+i ====== 845
+One Frame Processinh Time: 4 ms.
+i ====== 846
+insert keyframe, id = 834
+One Frame Processinh Time: 96 ms.
+i ====== 847
+One Frame Processinh Time: 10 ms.
+i ====== 848
+insert keyframe, id = 837
+One Frame Processinh Time: 47 ms.
+i ====== 849
+One Frame Processinh Time: 61 ms.
+i ====== 850
+One Frame Processinh Time: 12 ms.
+i ====== 851
+One Frame Processinh Time: 7 ms.
+i ====== 852
+One Frame Processinh Time: 8 ms.
+i ====== 853
+insert keyframe, id = 843
+One Frame Processinh Time: 45 ms.
+i ====== 854
+One Frame Processinh Time: 4 ms.
+i ====== 855
+One Frame Processinh Time: 57 ms.
+i ====== 856
+One Frame Processinh Time: 6 ms.
+i ====== 857
+One Frame Processinh Time: 6 ms.
+i ====== 858
+One Frame Processinh Time: 10 ms.
+i ====== 859
+One Frame Processinh Time: 4 ms.
+i ====== 860
+insert keyframe, id = 848
+One Frame Processinh Time: 96 ms.
+i ====== 861
+One Frame Processinh Time: 8 ms.
+i ====== 862
+One Frame Processinh Time: 8 ms.
+i ====== 863
+One Frame Processinh Time: 8 ms.
+i ====== 864
+One Frame Processinh Time: 6 ms.
+i ====== 865
+One Frame Processinh Time: 6 ms.
+i ====== 866
+One Frame Processinh Time: 6 ms.
+i ====== 867
+One Frame Processinh Time: 4 ms.
+i ====== 868
+One Frame Processinh Time: 10 ms.
+i ====== 869
+One Frame Processinh Time: 10 ms.
+i ====== 870
+One Frame Processinh Time: 4 ms.
+i ====== 871
+One Frame Processinh Time: 45 ms.
+i ====== 872
+One Frame Processinh Time: 4 ms.
+i ====== 873
+One Frame Processinh Time: 4 ms.
+i ====== 874
+One Frame Processinh Time: 2 ms.
+i ====== 875
+One Frame Processinh Time: 4 ms.
+i ====== 876
+insert keyframe, id = 866
+One Frame Processinh Time: 4 ms.
+i ====== 877
+One Frame Processinh Time: 45 ms.
+i ====== 878
+One Frame Processinh Time: 37 ms.
+i ====== 879
+One Frame Processinh Time: 12 ms.
+i ====== 880
+One Frame Processinh Time: 6 ms.
+i ====== 881
+One Frame Processinh Time: 8 ms.
+i ====== 882
+insert keyframe, id = 872
+One Frame Processinh Time: 45 ms.
+i ====== 883
+One Frame Processinh Time: 4 ms.
+i ====== 884
+One Frame Processinh Time: 61 ms.
+i ====== 885
+One Frame Processinh Time: 6 ms.
+i ====== 886
+One Frame Processinh Time: 8 ms.
+i ====== 887
+One Frame Processinh Time: 6 ms.
+i ====== 888
+insert keyframe, id = 877
+One Frame Processinh Time: 45 ms.
+i ====== 889
+One Frame Processinh Time: 55 ms.
+i ====== 890
+One Frame Processinh Time: 6 ms.
+i ====== 891
+One Frame Processinh Time: 8 ms.
+i ====== 892
+One Frame Processinh Time: 6 ms.
+i ====== 893
+One Frame Processinh Time: 6 ms.
+i ====== 894
+One Frame Processinh Time: 4 ms.
+i ====== 895
+insert keyframe, id = 883
+One Frame Processinh Time: 94 ms.
+i ====== 896
+One Frame Processinh Time: 14 ms.
+i ====== 897
+One Frame Processinh Time: 6 ms.
+i ====== 898
+One Frame Processinh Time: 8 ms.
+i ====== 899
+One Frame Processinh Time: 8 ms.
+i ====== 900
+One Frame Processinh Time: 8 ms.
+i ====== 901
+One Frame Processinh Time: 4 ms.
+i ====== 902
+insert keyframe, id = 890
+One Frame Processinh Time: 104 ms.
+i ====== 903
+One Frame Processinh Time: 10 ms.
+i ====== 904
+One Frame Processinh Time: 12 ms.
+i ====== 905
+One Frame Processinh Time: 8 ms.
+i ====== 906
+One Frame Processinh Time: 8 ms.
+i ====== 907
+insert keyframe, id = 897
+One Frame Processinh Time: 45 ms.
+i ====== 908
+One Frame Processinh Time: 4 ms.
+i ====== 909
+One Frame Processinh Time: 65 ms.
+i ====== 910
+One Frame Processinh Time: 8 ms.
+i ====== 911
+insert keyframe, id = 902
+One Frame Processinh Time: 47 ms.
+i ====== 912
+One Frame Processinh Time: 2 ms.
+i ====== 913
+One Frame Processinh Time: 4 ms.
+i ====== 914
+One Frame Processinh Time: 77 ms.
+i ====== 915
+One Frame Processinh Time: 8 ms.
+i ====== 916
+One Frame Processinh Time: 6 ms.
+i ====== 917
+One Frame Processinh Time: 4 ms.
+i ====== 918
+insert keyframe, id = 906
+One Frame Processinh Time: 104 ms.
+i ====== 919
+One Frame Processinh Time: 8 ms.
+i ====== 920
+One Frame Processinh Time: 4 ms.
+i ====== 921
+insert keyframe, id = 909
+One Frame Processinh Time: 104 ms.
+i ====== 922
+One Frame Processinh Time: 10 ms.
+i ====== 923
+One Frame Processinh Time: 10 ms.
+i ====== 924
+One Frame Processinh Time: 8 ms.
+i ====== 925
+One Frame Processinh Time: 6 ms.
+i ====== 926
+insert keyframe, id = 916
+One Frame Processinh Time: 47 ms.
+i ====== 927
+One Frame Processinh Time: 4 ms.
+i ====== 928
+One Frame Processinh Time: 61 ms.
+i ====== 929
+One Frame Processinh Time: 10 ms.
+i ====== 930
+One Frame Processinh Time: 8 ms.
+i ====== 931
+One Frame Processinh Time: 8 ms.
+i ====== 932
+insert keyframe, id = 921
+One Frame Processinh Time: 51 ms.
+i ====== 933
+One Frame Processinh Time: 57 ms.
+i ====== 934
+One Frame Processinh Time: 12 ms.
+i ====== 935
+One Frame Processinh Time: 10 ms.
+i ====== 936
+One Frame Processinh Time: 8 ms.
+i ====== 937
+One Frame Processinh Time: 6 ms.
+i ====== 938
+insert keyframe, id = 927
+One Frame Processinh Time: 45 ms.
+i ====== 939
+One Frame Processinh Time: 65 ms.
+i ====== 940
+One Frame Processinh Time: 10 ms.
+i ====== 941
+One Frame Processinh Time: 8 ms.
+i ====== 942
+insert keyframe, id = 933
+One Frame Processinh Time: 47 ms.
+i ====== 943
+One Frame Processinh Time: 4 ms.
+i ====== 944
+One Frame Processinh Time: 4 ms.
+i ====== 945
+One Frame Processinh Time: 67 ms.
+i ====== 946
+One Frame Processinh Time: 6 ms.
+i ====== 947
+One Frame Processinh Time: 8 ms.
+i ====== 948
+insert keyframe, id = 937
+One Frame Processinh Time: 45 ms.
+i ====== 949
+One Frame Processinh Time: 59 ms.
+i ====== 950
+One Frame Processinh Time: 8 ms.
+i ====== 951
+One Frame Processinh Time: 8 ms.
+i ====== 952
+One Frame Processinh Time: 6 ms.
+i ====== 953
+One Frame Processinh Time: 4 ms.
+i ====== 954
+insert keyframe, id = 943
+One Frame Processinh Time: 45 ms.
+i ====== 955
+One Frame Processinh Time: 61 ms.
+i ====== 956
+One Frame Processinh Time: 10 ms.
+i ====== 957
+One Frame Processinh Time: 6 ms.
+i ====== 958
+insert keyframe, id = 949
+One Frame Processinh Time: 47 ms.
+i ====== 959
+One Frame Processinh Time: 4 ms.
+i ====== 960
+One Frame Processinh Time: 4 ms.
+i ====== 961
+One Frame Processinh Time: 80 ms.
+i ====== 962
+One Frame Processinh Time: 10 ms.
+i ====== 963
+One Frame Processinh Time: 8 ms.
+i ====== 964
+One Frame Processinh Time: 6 ms.
+i ====== 965
+insert keyframe, id = 953
+One Frame Processinh Time: 104 ms.
+i ====== 966
+One Frame Processinh Time: 6 ms.
+i ====== 967
+One Frame Processinh Time: 6 ms.
+i ====== 968
+insert keyframe, id = 956
+One Frame Processinh Time: 104 ms.
+i ====== 969
+One Frame Processinh Time: 10 ms.
+i ====== 970
+One Frame Processinh Time: 10 ms.
+i ====== 971
+One Frame Processinh Time: 8 ms.
+i ====== 972
+insert keyframe, id = 960
+One Frame Processinh Time: 102 ms.
+i ====== 973
+One Frame Processinh Time: 10 ms.
+i ====== 974
+One Frame Processinh Time: 12 ms.
+i ====== 975
+One Frame Processinh Time: 8 ms.
+i ====== 976
+One Frame Processinh Time: 8 ms.
+i ====== 977
+One Frame Processinh Time: 47 ms.
+i ====== 978
+One Frame Processinh Time: 6 ms.
+i ====== 979
+One Frame Processinh Time: 2 ms.
+i ====== 980
+One Frame Processinh Time: 6 ms.
+i ====== 981
+One Frame Processinh Time: 4 ms.
+i ====== 982
+One Frame Processinh Time: 2 ms.
+i ====== 983
+One Frame Processinh Time: 4 ms.
+i ====== 984
+insert keyframe, id = 972
+One Frame Processinh Time: 104 ms.
+i ====== 985
+One Frame Processinh Time: 51 ms.
+i ====== 986
+One Frame Processinh Time: 4 ms.
+i ====== 987
+One Frame Processinh Time: 4 ms.
+i ====== 988
+One Frame Processinh Time: 4 ms.
+i ====== 989
+One Frame Processinh Time: 4 ms.
+i ====== 990
+One Frame Processinh Time: 4 ms.
+i ====== 991
+One Frame Processinh Time: 4 ms.
+i ====== 992
+insert keyframe, id = 980
+One Frame Processinh Time: 100 ms.
+i ====== 993
+One Frame Processinh Time: 8 ms.
+i ====== 994
+One Frame Processinh Time: 12 ms.
+i ====== 995
+One Frame Processinh Time: 2 ms.
+i ====== 996
+One Frame Processinh Time: 9 ms.
+i ====== 997
+One Frame Processinh Time: 4 ms.
+i ====== 998
+One Frame Processinh Time: 4 ms.
+i ====== 999
+insert keyframe, id = 987
+One Frame Processinh Time: 100 ms.
+i ====== 1000
+One Frame Processinh Time: 4 ms.
+i ====== 1001
+One Frame Processinh Time: 14 ms.
+i ====== 1002
+One Frame Processinh Time: 12 ms.
+i ====== 1003
+One Frame Processinh Time: 10 ms.
+i ====== 1004
+One Frame Processinh Time: 4 ms.
+i ====== 1005
+One Frame Processinh Time: 8 ms.
+i ====== 1006
+insert keyframe, id = 994
+One Frame Processinh Time: 92 ms.
+i ====== 1007
+One Frame Processinh Time: 4 ms.
+i ====== 1008
+One Frame Processinh Time: 8 ms.
+i ====== 1009
+One Frame Processinh Time: 6 ms.
+i ====== 1010
+One Frame Processinh Time: 8 ms.
+i ====== 1011
+insert keyframe, id = 1001
+One Frame Processinh Time: 49 ms.
+i ====== 1012
+One Frame Processinh Time: 2 ms.
+i ====== 1013
+One Frame Processinh Time: 57 ms.
+i ====== 1014
+One Frame Processinh Time: 10 ms.
+i ====== 1015
+One Frame Processinh Time: 12 ms.
+i ====== 1016
+insert keyframe, id = 1006
+One Frame Processinh Time: 45 ms.
+i ====== 1017
+One Frame Processinh Time: 4 ms.
+i ====== 1018
+One Frame Processinh Time: 55 ms.
+i ====== 1019
+One Frame Processinh Time: 10 ms.
+i ====== 1020
+One Frame Processinh Time: 6 ms.
+i ====== 1021
+insert keyframe, id = 1011
+One Frame Processinh Time: 47 ms.
+i ====== 1022
+One Frame Processinh Time: 4 ms.
+i ====== 1023
+One Frame Processinh Time: 55 ms.
+i ====== 1024
+One Frame Processinh Time: 12 ms.
+i ====== 1025
+One Frame Processinh Time: 4 ms.
+i ====== 1026
+One Frame Processinh Time: 4 ms.
+i ====== 1027
+insert keyframe, id = 1016
+One Frame Processinh Time: 45 ms.
+i ====== 1028
+One Frame Processinh Time: 55 ms.
+i ====== 1029
+One Frame Processinh Time: 6 ms.
+i ====== 1030
+One Frame Processinh Time: 6 ms.
+i ====== 1031
+One Frame Processinh Time: 2 ms.
+i ====== 1032
+One Frame Processinh Time: 10 ms.
+i ====== 1033
+insert keyframe, id = 1022
+One Frame Processinh Time: 45 ms.
+i ====== 1034
+One Frame Processinh Time: 61 ms.
+i ====== 1035
+One Frame Processinh Time: 4 ms.
+i ====== 1036
+One Frame Processinh Time: 4 ms.
+i ====== 1037
+One Frame Processinh Time: 8 ms.
+i ====== 1038
+One Frame Processinh Time: 8 ms.
+i ====== 1039
+insert keyframe, id = 1028
+One Frame Processinh Time: 45 ms.
+i ====== 1040
+One Frame Processinh Time: 69 ms.
+i ====== 1041
+One Frame Processinh Time: 4 ms.
+i ====== 1042
+One Frame Processinh Time: 6 ms.
+i ====== 1043
+One Frame Processinh Time: 6 ms.
+i ====== 1044
+One Frame Processinh Time: 4 ms.
+i ====== 1045
+insert keyframe, id = 1034
+One Frame Processinh Time: 45 ms.
+i ====== 1046
+One Frame Processinh Time: 74 ms.
+i ====== 1047
+One Frame Processinh Time: 12 ms.
+i ====== 1048
+One Frame Processinh Time: 4 ms.
+i ====== 1049
+One Frame Processinh Time: 6 ms.
+i ====== 1050
+One Frame Processinh Time: 8 ms.
+i ====== 1051
+insert keyframe, id = 1040
+One Frame Processinh Time: 47 ms.
+i ====== 1052
+One Frame Processinh Time: 71 ms.
+i ====== 1053
+One Frame Processinh Time: 4 ms.
+i ====== 1054
+One Frame Processinh Time: 4 ms.
+i ====== 1055
+One Frame Processinh Time: 10 ms.
+i ====== 1056
+One Frame Processinh Time: 8 ms.
+i ====== 1057
+insert keyframe, id = 1046
+One Frame Processinh Time: 49 ms.
+i ====== 1058
+One Frame Processinh Time: 69 ms.
+i ====== 1059
+One Frame Processinh Time: 8 ms.
+i ====== 1060
+One Frame Processinh Time: 8 ms.
+i ====== 1061
+One Frame Processinh Time: 8 ms.
+i ====== 1062
+One Frame Processinh Time: 8 ms.
+i ====== 1063
+insert keyframe, id = 1052
+One Frame Processinh Time: 45 ms.
+i ====== 1064
+One Frame Processinh Time: 82 ms.
+i ====== 1065
+One Frame Processinh Time: 12 ms.
+i ====== 1066
+One Frame Processinh Time: 6 ms.
+i ====== 1067
+One Frame Processinh Time: 8 ms.
+i ====== 1068
+One Frame Processinh Time: 4 ms.
+i ====== 1069
+insert keyframe, id = 1058
+One Frame Processinh Time: 47 ms.
+i ====== 1070
+One Frame Processinh Time: 71 ms.
+i ====== 1071
+One Frame Processinh Time: 10 ms.
+i ====== 1072
+One Frame Processinh Time: 8 ms.
+i ====== 1073
+insert keyframe, id = 1064
+One Frame Processinh Time: 47 ms.
+i ====== 1074
+One Frame Processinh Time: 2 ms.
+i ====== 1075
+One Frame Processinh Time: 4 ms.
+i ====== 1076
+One Frame Processinh Time: 90 ms.
+i ====== 1077
+One Frame Processinh Time: 8 ms.
+i ====== 1078
+One Frame Processinh Time: 10 ms.
+i ====== 1079
+insert keyframe, id = 1068
+One Frame Processinh Time: 45 ms.
+i ====== 1080
+One Frame Processinh Time: 74 ms.
+i ====== 1081
+One Frame Processinh Time: 10 ms.
+i ====== 1082
+One Frame Processinh Time: 6 ms.
+i ====== 1083
+One Frame Processinh Time: 6 ms.
+i ====== 1084
+insert keyframe, id = 1074
+One Frame Processinh Time: 47 ms.
+i ====== 1085
+One Frame Processinh Time: 2 ms.
+i ====== 1086
+One Frame Processinh Time: 71 ms.
+i ====== 1087
+insert keyframe, id = 1079
+One Frame Processinh Time: 53 ms.
+i ====== 1088
+One Frame Processinh Time: 4 ms.
+i ====== 1089
+One Frame Processinh Time: 2 ms.
+i ====== 1090
+One Frame Processinh Time: 4 ms.
+i ====== 1091
+One Frame Processinh Time: 63 ms.
+i ====== 1092
+insert keyframe, id = 1082
+One Frame Processinh Time: 51 ms.
+i ====== 1093
+One Frame Processinh Time: 2 ms.
+i ====== 1094
+One Frame Processinh Time: 61 ms.
+i ====== 1095
+One Frame Processinh Time: 51 ms.
+i ====== 1096
+insert keyframe, id = 1087
+One Frame Processinh Time: 4 ms.
+i ====== 1097
+One Frame Processinh Time: 2 ms.
+i ====== 1098
+One Frame Processinh Time: 47 ms.
+i ====== 1099
+One Frame Processinh Time: 28 ms.
+i ====== 1100
+One Frame Processinh Time: 8 ms.
+i ====== 1101
+One Frame Processinh Time: 6 ms.
+i ====== 1102
+insert keyframe, id = 1090
+One Frame Processinh Time: 98 ms.
+i ====== 1103
+insert keyframe, id = 1093
+One Frame Processinh Time: 51 ms.
+i ====== 1104
+One Frame Processinh Time: 2 ms.
+i ====== 1105
+One Frame Processinh Time: 63 ms.
+i ====== 1106
+One Frame Processinh Time: 6 ms.
+i ====== 1107
+One Frame Processinh Time: 6 ms.
+i ====== 1108
+insert keyframe, id = 1098
+One Frame Processinh Time: 47 ms.
+i ====== 1109
+One Frame Processinh Time: 4 ms.
+i ====== 1110
+One Frame Processinh Time: 69 ms.
+i ====== 1111
+One Frame Processinh Time: 10 ms.
+i ====== 1112
+insert keyframe, id = 1103
+One Frame Processinh Time: 49 ms.
+i ====== 1113
+One Frame Processinh Time: 2 ms.
+i ====== 1114
+One Frame Processinh Time: 4 ms.
+i ====== 1115
+One Frame Processinh Time: 78 ms.
+i ====== 1116
+insert keyframe, id = 1107
+One Frame Processinh Time: 49 ms.
+i ====== 1117
+One Frame Processinh Time: 4 ms.
+i ====== 1118
+One Frame Processinh Time: 4 ms.
+i ====== 1119
+One Frame Processinh Time: 68 ms.
+i ====== 1120
+insert keyframe, id = 1111
+One Frame Processinh Time: 49 ms.
+i ====== 1121
+One Frame Processinh Time: 4 ms.
+i ====== 1122
+One Frame Processinh Time: 2 ms.
+i ====== 1123
+One Frame Processinh Time: 65 ms.
+i ====== 1124
+insert keyframe, id = 1115
+One Frame Processinh Time: 49 ms.
+i ====== 1125
+One Frame Processinh Time: 2 ms.
+i ====== 1126
+One Frame Processinh Time: 4 ms.
+i ====== 1127
+One Frame Processinh Time: 68 ms.
+i ====== 1128
+insert keyframe, id = 1119
+One Frame Processinh Time: 49 ms.
+i ====== 1129
+One Frame Processinh Time: 4 ms.
+i ====== 1130
+One Frame Processinh Time: 2 ms.
+i ====== 1131
+One Frame Processinh Time: 74 ms.
+i ====== 1132
+insert keyframe, id = 1123
+One Frame Processinh Time: 49 ms.
+i ====== 1133
+One Frame Processinh Time: 4 ms.
+i ====== 1134
+One Frame Processinh Time: 4 ms.
+i ====== 1135
+One Frame Processinh Time: 69 ms.
+i ====== 1136
+insert keyframe, id = 1127
+One Frame Processinh Time: 51 ms.
+i ====== 1137
+One Frame Processinh Time: 4 ms.
+i ====== 1138
+One Frame Processinh Time: 4 ms.
+i ====== 1139
+One Frame Processinh Time: 69 ms.
+i ====== 1140
+insert keyframe, id = 1131
+One Frame Processinh Time: 50 ms.
+i ====== 1141
+One Frame Processinh Time: 4 ms.
+i ====== 1142
+One Frame Processinh Time: 2 ms.
+i ====== 1143
+One Frame Processinh Time: 72 ms.
+i ====== 1144
+insert keyframe, id = 1135
+One Frame Processinh Time: 51 ms.
+i ====== 1145
+One Frame Processinh Time: 4 ms.
+i ====== 1146
+One Frame Processinh Time: 2 ms.
+i ====== 1147
+One Frame Processinh Time: 68 ms.
+i ====== 1148
+One Frame Processinh Time: 10 ms.
+i ====== 1149
+insert keyframe, id = 1139
+One Frame Processinh Time: 47 ms.
+i ====== 1150
+One Frame Processinh Time: 4 ms.
+i ====== 1151
+One Frame Processinh Time: 65 ms.
+i ====== 1152
+One Frame Processinh Time: 10 ms.
+i ====== 1153
+insert keyframe, id = 1144
+One Frame Processinh Time: 49 ms.
+i ====== 1154
+One Frame Processinh Time: 2 ms.
+i ====== 1155
+One Frame Processinh Time: 4 ms.
+i ====== 1156
+One Frame Processinh Time: 69 ms.
+i ====== 1157
+insert keyframe, id = 1148
+One Frame Processinh Time: 51 ms.
+i ====== 1158
+One Frame Processinh Time: 2 ms.
+i ====== 1159
+One Frame Processinh Time: 4 ms.
+i ====== 1160
+One Frame Processinh Time: 80 ms.
+i ====== 1161
+One Frame Processinh Time: 6 ms.
+i ====== 1162
+One Frame Processinh Time: 12 ms.
+i ====== 1163
+One Frame Processinh Time: 6 ms.
+i ====== 1164
+insert keyframe, id = 1152
+One Frame Processinh Time: 108 ms.
+i ====== 1165
+insert keyframe, id = 1155
+One Frame Processinh Time: 47 ms.
+i ====== 1166
+One Frame Processinh Time: 4 ms.
+i ====== 1167
+One Frame Processinh Time: 69 ms.
+i ====== 1168
+One Frame Processinh Time: 14 ms.
+i ====== 1169
+insert keyframe, id = 1160
+One Frame Processinh Time: 45 ms.
+i ====== 1170
+One Frame Processinh Time: 4 ms.
+i ====== 1171
+One Frame Processinh Time: 4 ms.
+i ====== 1172
+One Frame Processinh Time: 78 ms.
+i ====== 1173
+One Frame Processinh Time: 10 ms.
+i ====== 1174
+One Frame Processinh Time: 8 ms.
+i ====== 1175
+One Frame Processinh Time: 8 ms.
+i ====== 1176
+insert keyframe, id = 1164
+One Frame Processinh Time: 103 ms.
+i ====== 1177
+One Frame Processinh Time: 6 ms.
+i ====== 1178
+One Frame Processinh Time: 4 ms.
+i ====== 1179
+insert keyframe, id = 1167
+One Frame Processinh Time: 106 ms.
+i ====== 1180
+One Frame Processinh Time: 8 ms.
+i ====== 1181
+One Frame Processinh Time: 4 ms.
+i ====== 1182
+insert keyframe, id = 1171
+One Frame Processinh Time: 47 ms.
+i ====== 1183
+One Frame Processinh Time: 65 ms.
+i ====== 1184
+One Frame Processinh Time: 6 ms.
+i ====== 1185
+One Frame Processinh Time: 10 ms.
+i ====== 1186
+insert keyframe, id = 1174
+One Frame Processinh Time: 98 ms.
+i ====== 1187
+insert keyframe, id = 1177
+One Frame Processinh Time: 47 ms.
+i ====== 1188
+One Frame Processinh Time: 4 ms.
+i ====== 1189
+One Frame Processinh Time: 65 ms.
+i ====== 1190
+One Frame Processinh Time: 4 ms.
+i ====== 1191
+insert keyframe, id = 1182
+One Frame Processinh Time: 45 ms.
+i ====== 1192
+One Frame Processinh Time: 4 ms.
+i ====== 1193
+One Frame Processinh Time: 4 ms.
+i ====== 1194
+One Frame Processinh Time: 67 ms.
+i ====== 1195
+insert keyframe, id = 1186
+One Frame Processinh Time: 51 ms.
+i ====== 1196
+One Frame Processinh Time: 2 ms.
+i ====== 1197
+One Frame Processinh Time: 4 ms.
+i ====== 1198
+One Frame Processinh Time: 78 ms.
+i ====== 1199
+insert keyframe, id = 1190
+One Frame Processinh Time: 49 ms.
+i ====== 1200
+One Frame Processinh Time: 6 ms.
+i ====== 1201
+One Frame Processinh Time: 4 ms.
+i ====== 1202
+One Frame Processinh Time: 67 ms.
+i ====== 1203
+insert keyframe, id = 1194
+One Frame Processinh Time: 51 ms.
+i ====== 1204
+One Frame Processinh Time: 4 ms.
+i ====== 1205
+One Frame Processinh Time: 2 ms.
+i ====== 1206
+One Frame Processinh Time: 67 ms.
+i ====== 1207
+insert keyframe, id = 1198
+One Frame Processinh Time: 49 ms.
+i ====== 1208
+One Frame Processinh Time: 4 ms.
+i ====== 1209
+One Frame Processinh Time: 4 ms.
+i ====== 1210
+One Frame Processinh Time: 77 ms.
+i ====== 1211
+insert keyframe, id = 1202
+One Frame Processinh Time: 49 ms.
+i ====== 1212
+One Frame Processinh Time: 4 ms.
+i ====== 1213
+One Frame Processinh Time: 4 ms.
+i ====== 1214
+One Frame Processinh Time: 76 ms.
+i ====== 1215
+insert keyframe, id = 1206
+One Frame Processinh Time: 51 ms.
+i ====== 1216
+One Frame Processinh Time: 2 ms.
+i ====== 1217
+One Frame Processinh Time: 4 ms.
+i ====== 1218
+One Frame Processinh Time: 78 ms.
+i ====== 1219
+insert keyframe, id = 1210
+One Frame Processinh Time: 49 ms.
+i ====== 1220
+One Frame Processinh Time: 4 ms.
+i ====== 1221
+One Frame Processinh Time: 4 ms.
+i ====== 1222
+One Frame Processinh Time: 74 ms.
+i ====== 1223
+One Frame Processinh Time: 10 ms.
+i ====== 1224
+One Frame Processinh Time: 10 ms.
+i ====== 1225
+insert keyframe, id = 1214
+One Frame Processinh Time: 47 ms.
+i ====== 1226
+One Frame Processinh Time: 72 ms.
+i ====== 1227
+One Frame Processinh Time: 8 ms.
+i ====== 1228
+One Frame Processinh Time: 6 ms.
+i ====== 1229
+insert keyframe, id = 1217
+One Frame Processinh Time: 111 ms.
+i ====== 1230
+One Frame Processinh Time: 6 ms.
+i ====== 1231
+One Frame Processinh Time: 8 ms.
+i ====== 1232
+insert keyframe, id = 1220
+One Frame Processinh Time: 106 ms.
+i ====== 1233
+insert keyframe, id = 1224
+One Frame Processinh Time: 55 ms.
+i ====== 1234
+One Frame Processinh Time: 4 ms.
+i ====== 1235
+One Frame Processinh Time: 2 ms.
+i ====== 1236
+One Frame Processinh Time: 74 ms.
+i ====== 1237
+insert keyframe, id = 1228
+One Frame Processinh Time: 55 ms.
+i ====== 1238
+One Frame Processinh Time: 4 ms.
+i ====== 1239
+One Frame Processinh Time: 4 ms.
+i ====== 1240
+One Frame Processinh Time: 71 ms.
+i ====== 1241
+insert keyframe, id = 1232
+One Frame Processinh Time: 53 ms.
+i ====== 1242
+One Frame Processinh Time: 2 ms.
+i ====== 1243
+One Frame Processinh Time: 4 ms.
+i ====== 1244
+One Frame Processinh Time: 71 ms.
+i ====== 1245
+insert keyframe, id = 1236
+One Frame Processinh Time: 51 ms.
+i ====== 1246
+One Frame Processinh Time: 2 ms.
+i ====== 1247
+One Frame Processinh Time: 4 ms.
+i ====== 1248
+One Frame Processinh Time: 71 ms.
+i ====== 1249
+insert keyframe, id = 1240
+One Frame Processinh Time: 49 ms.
+i ====== 1250
+One Frame Processinh Time: 6 ms.
+i ====== 1251
+One Frame Processinh Time: 2 ms.
+i ====== 1252
+One Frame Processinh Time: 71 ms.
+i ====== 1253
+One Frame Processinh Time: 4 ms.
+i ====== 1254
+One Frame Processinh Time: 8 ms.
+i ====== 1255
+One Frame Processinh Time: 4 ms.
+i ====== 1256
+insert keyframe, id = 1244
+One Frame Processinh Time: 102 ms.
+i ====== 1257
+One Frame Processinh Time: 6 ms.
+i ====== 1258
+One Frame Processinh Time: 8 ms.
+i ====== 1259
+insert keyframe, id = 1247
+One Frame Processinh Time: 104 ms.
+i ====== 1260
+insert keyframe, id = 1251
+One Frame Processinh Time: 49 ms.
+i ====== 1261
+One Frame Processinh Time: 4 ms.
+i ====== 1262
+One Frame Processinh Time: 2 ms.
+i ====== 1263
+One Frame Processinh Time: 76 ms.
+i ====== 1264
+One Frame Processinh Time: 8 ms.
+i ====== 1265
+One Frame Processinh Time: 4 ms.
+i ====== 1266
+One Frame Processinh Time: 6 ms.
+i ====== 1267
+insert keyframe, id = 1255
+One Frame Processinh Time: 102 ms.
+i ====== 1268
+One Frame Processinh Time: 10 ms.
+i ====== 1269
+One Frame Processinh Time: 8 ms.
+i ====== 1270
+insert keyframe, id = 1258
+One Frame Processinh Time: 102 ms.
+i ====== 1271
+insert keyframe, id = 1262
+One Frame Processinh Time: 49 ms.
+i ====== 1272
+One Frame Processinh Time: 4 ms.
+i ====== 1273
+One Frame Processinh Time: 4 ms.
+i ====== 1274
+One Frame Processinh Time: 78 ms.
+i ====== 1275
+insert keyframe, id = 1266
+One Frame Processinh Time: 51 ms.
+i ====== 1276
+One Frame Processinh Time: 4 ms.
+i ====== 1277
+One Frame Processinh Time: 4 ms.
+i ====== 1278
+One Frame Processinh Time: 80 ms.
+i ====== 1279
+insert keyframe, id = 1270
+One Frame Processinh Time: 53 ms.
+i ====== 1280
+One Frame Processinh Time: 4 ms.
+i ====== 1281
+One Frame Processinh Time: 2 ms.
+i ====== 1282
+One Frame Processinh Time: 84 ms.
+i ====== 1283
+insert keyframe, id = 1274
+One Frame Processinh Time: 51 ms.
+i ====== 1284
+One Frame Processinh Time: 2 ms.
+i ====== 1285
+One Frame Processinh Time: 4 ms.
+i ====== 1286
+One Frame Processinh Time: 88 ms.
+i ====== 1287
+insert keyframe, id = 1278
+One Frame Processinh Time: 49 ms.
+i ====== 1288
+One Frame Processinh Time: 4 ms.
+i ====== 1289
+One Frame Processinh Time: 2 ms.
+i ====== 1290
+One Frame Processinh Time: 76 ms.
+i ====== 1291
+insert keyframe, id = 1282
+One Frame Processinh Time: 51 ms.
+i ====== 1292
+One Frame Processinh Time: 4 ms.
+i ====== 1293
+One Frame Processinh Time: 2 ms.
+i ====== 1294
+One Frame Processinh Time: 76 ms.
+i ====== 1295
+insert keyframe, id = 1286
+One Frame Processinh Time: 49 ms.
+i ====== 1296
+One Frame Processinh Time: 4 ms.
+i ====== 1297
+One Frame Processinh Time: 4 ms.
+i ====== 1298
+One Frame Processinh Time: 82 ms.
+i ====== 1299
+insert keyframe, id = 1290
+One Frame Processinh Time: 51 ms.
+i ====== 1300
+One Frame Processinh Time: 4 ms.
+i ====== 1301
+One Frame Processinh Time: 4 ms.
+i ====== 1302
+One Frame Processinh Time: 84 ms.
+i ====== 1303
+insert keyframe, id = 1294
+One Frame Processinh Time: 51 ms.
+i ====== 1304
+One Frame Processinh Time: 2 ms.
+i ====== 1305
+One Frame Processinh Time: 4 ms.
+i ====== 1306
+One Frame Processinh Time: 82 ms.
+i ====== 1307
+insert keyframe, id = 1298
+One Frame Processinh Time: 49 ms.
+i ====== 1308
+One Frame Processinh Time: 4 ms.
+i ====== 1309
+One Frame Processinh Time: 4 ms.
+i ====== 1310
+One Frame Processinh Time: 70 ms.
+i ====== 1311
+insert keyframe, id = 1302
+One Frame Processinh Time: 51 ms.
+i ====== 1312
+One Frame Processinh Time: 4 ms.
+i ====== 1313
+One Frame Processinh Time: 2 ms.
+i ====== 1314
+One Frame Processinh Time: 70 ms.
+i ====== 1315
+insert keyframe, id = 1306
+One Frame Processinh Time: 51 ms.
+i ====== 1316
+One Frame Processinh Time: 4 ms.
+i ====== 1317
+One Frame Processinh Time: 2 ms.
+i ====== 1318
+One Frame Processinh Time: 78 ms.
+i ====== 1319
+insert keyframe, id = 1310
+One Frame Processinh Time: 49 ms.
+i ====== 1320
+One Frame Processinh Time: 4 ms.
+i ====== 1321
+One Frame Processinh Time: 2 ms.
+i ====== 1322
+One Frame Processinh Time: 76 ms.
+i ====== 1323
+insert keyframe, id = 1314
+One Frame Processinh Time: 49 ms.
+i ====== 1324
+One Frame Processinh Time: 4 ms.
+i ====== 1325
+One Frame Processinh Time: 4 ms.
+i ====== 1326
+One Frame Processinh Time: 74 ms.
+i ====== 1327
+One Frame Processinh Time: 8 ms.
+i ====== 1328
+One Frame Processinh Time: 8 ms.
+i ====== 1329
+One Frame Processinh Time: 6 ms.
+i ====== 1330
+insert keyframe, id = 1318
+One Frame Processinh Time: 106 ms.
+i ====== 1331
+One Frame Processinh Time: 10 ms.
+i ====== 1332
+One Frame Processinh Time: 10 ms.
+i ====== 1333
+insert keyframe, id = 1321
+One Frame Processinh Time: 102 ms.
+i ====== 1334
+insert keyframe, id = 1325
+One Frame Processinh Time: 51 ms.
+i ====== 1335
+One Frame Processinh Time: 2 ms.
+i ====== 1336
+One Frame Processinh Time: 4 ms.
+i ====== 1337
+One Frame Processinh Time: 76 ms.
+i ====== 1338
+insert keyframe, id = 1329
+One Frame Processinh Time: 49 ms.
+i ====== 1339
+One Frame Processinh Time: 4 ms.
+i ====== 1340
+One Frame Processinh Time: 2 ms.
+i ====== 1341
+One Frame Processinh Time: 69 ms.
+i ====== 1342
+insert keyframe, id = 1333
+One Frame Processinh Time: 51 ms.
+i ====== 1343
+One Frame Processinh Time: 4 ms.
+i ====== 1344
+One Frame Processinh Time: 4 ms.
+i ====== 1345
+One Frame Processinh Time: 78 ms.
+i ====== 1346
+One Frame Processinh Time: 4 ms.
+i ====== 1347
+One Frame Processinh Time: 8 ms.
+i ====== 1348
+One Frame Processinh Time: 6 ms.
+i ====== 1349
+insert keyframe, id = 1337
+One Frame Processinh Time: 113 ms.
+i ====== 1350
+One Frame Processinh Time: 8 ms.
+i ====== 1351
+One Frame Processinh Time: 6 ms.
+i ====== 1352
+insert keyframe, id = 1340
+One Frame Processinh Time: 111 ms.
+i ====== 1353
+insert keyframe, id = 1344
+One Frame Processinh Time: 53 ms.
+i ====== 1354
+One Frame Processinh Time: 2 ms.
+i ====== 1355
+One Frame Processinh Time: 4 ms.
+i ====== 1356
+One Frame Processinh Time: 78 ms.
+i ====== 1357
+insert keyframe, id = 1348
+One Frame Processinh Time: 51 ms.
+i ====== 1358
+One Frame Processinh Time: 6 ms.
+i ====== 1359
+One Frame Processinh Time: 2 ms.
+i ====== 1360
+One Frame Processinh Time: 80 ms.
+i ====== 1361
+insert keyframe, id = 1352
+One Frame Processinh Time: 51 ms.
+i ====== 1362
+One Frame Processinh Time: 2 ms.
+i ====== 1363
+One Frame Processinh Time: 4 ms.
+i ====== 1364
+One Frame Processinh Time: 78 ms.
+i ====== 1365
+One Frame Processinh Time: 4 ms.
+i ====== 1366
+One Frame Processinh Time: 8 ms.
+i ====== 1367
+insert keyframe, id = 1356
+One Frame Processinh Time: 51 ms.
+i ====== 1368
+One Frame Processinh Time: 61 ms.
+i ====== 1369
+One Frame Processinh Time: 8 ms.
+i ====== 1370
+One Frame Processinh Time: 8 ms.
+i ====== 1371
+insert keyframe, id = 1359
+One Frame Processinh Time: 109 ms.
+i ====== 1372
+One Frame Processinh Time: 12 ms.
+i ====== 1373
+One Frame Processinh Time: 8 ms.
+i ====== 1374
+insert keyframe, id = 1362
+One Frame Processinh Time: 104 ms.
+i ====== 1375
+insert keyframe, id = 1366
+One Frame Processinh Time: 50 ms.
+i ====== 1376
+One Frame Processinh Time: 4 ms.
+i ====== 1377
+One Frame Processinh Time: 2 ms.
+i ====== 1378
+One Frame Processinh Time: 80 ms.
+i ====== 1379
+insert keyframe, id = 1370
+One Frame Processinh Time: 51 ms.
+i ====== 1380
+One Frame Processinh Time: 2 ms.
+i ====== 1381
+One Frame Processinh Time: 4 ms.
+i ====== 1382
+One Frame Processinh Time: 76 ms.
+i ====== 1383
+insert keyframe, id = 1374
+One Frame Processinh Time: 53 ms.
+i ====== 1384
+One Frame Processinh Time: 2 ms.
+i ====== 1385
+One Frame Processinh Time: 4 ms.
+i ====== 1386
+One Frame Processinh Time: 78 ms.
+i ====== 1387
+One Frame Processinh Time: 12 ms.
+i ====== 1388
+One Frame Processinh Time: 8 ms.
+i ====== 1389
+One Frame Processinh Time: 6 ms.
+i ====== 1390
+insert keyframe, id = 1378
+One Frame Processinh Time: 107 ms.
+i ====== 1391
+One Frame Processinh Time: 4 ms.
+i ====== 1392
+One Frame Processinh Time: 6 ms.
+i ====== 1393
+insert keyframe, id = 1381
+One Frame Processinh Time: 107 ms.
+i ====== 1394
+insert keyframe, id = 1385
+One Frame Processinh Time: 49 ms.
+i ====== 1395
+One Frame Processinh Time: 4 ms.
+i ====== 1396
+One Frame Processinh Time: 2 ms.
+i ====== 1397
+One Frame Processinh Time: 74 ms.
+i ====== 1398
+insert keyframe, id = 1389
+One Frame Processinh Time: 49 ms.
+i ====== 1399
+One Frame Processinh Time: 4 ms.
+i ====== 1400
+One Frame Processinh Time: 2 ms.
+i ====== 1401
+One Frame Processinh Time: 76 ms.
+i ====== 1402
+One Frame Processinh Time: 6 ms.
+i ====== 1403
+insert keyframe, id = 1393
+One Frame Processinh Time: 43 ms.
+i ====== 1404
+One Frame Processinh Time: 4 ms.
+i ====== 1405
+One Frame Processinh Time: 80 ms.
+i ====== 1406
+One Frame Processinh Time: 10 ms.
+i ====== 1407
+One Frame Processinh Time: 6 ms.
+i ====== 1408
+insert keyframe, id = 1398
+One Frame Processinh Time: 47 ms.
+i ====== 1409
+One Frame Processinh Time: 2 ms.
+i ====== 1410
+One Frame Processinh Time: 80 ms.
+i ====== 1411
+One Frame Processinh Time: 8 ms.
+i ====== 1412
+One Frame Processinh Time: 8 ms.
+i ====== 1413
+One Frame Processinh Time: 8 ms.
+i ====== 1414
+One Frame Processinh Time: 10 ms.
+i ====== 1415
+insert keyframe, id = 1403
+One Frame Processinh Time: 109 ms.
+i ====== 1416
+One Frame Processinh Time: 8 ms.
+i ====== 1417
+One Frame Processinh Time: 8 ms.
+i ====== 1418
+One Frame Processinh Time: 8 ms.
+i ====== 1419
+insert keyframe, id = 1410
+One Frame Processinh Time: 45 ms.
+i ====== 1420
+One Frame Processinh Time: 2 ms.
+i ====== 1421
+One Frame Processinh Time: 4 ms.
+i ====== 1422
+One Frame Processinh Time: 76 ms.
+i ====== 1423
+One Frame Processinh Time: 6 ms.
+i ====== 1424
+One Frame Processinh Time: 6 ms.
+i ====== 1425
+insert keyframe, id = 1414
+One Frame Processinh Time: 47 ms.
+i ====== 1426
+One Frame Processinh Time: 69 ms.
+i ====== 1427
+One Frame Processinh Time: 6 ms.
+i ====== 1428
+One Frame Processinh Time: 8 ms.
+i ====== 1429
+insert keyframe, id = 1417
+One Frame Processinh Time: 109 ms.
+i ====== 1430
+One Frame Processinh Time: 6 ms.
+i ====== 1431
+One Frame Processinh Time: 6 ms.
+i ====== 1432
+insert keyframe, id = 1420
+One Frame Processinh Time: 100 ms.
+i ====== 1433
+One Frame Processinh Time: 6 ms.
+i ====== 1434
+One Frame Processinh Time: 8 ms.
+i ====== 1435
+One Frame Processinh Time: 8 ms.
+i ====== 1436
+insert keyframe, id = 1424
+One Frame Processinh Time: 96 ms.
+i ====== 1437
+One Frame Processinh Time: 12 ms.
+i ====== 1438
+One Frame Processinh Time: 4 ms.
+i ====== 1439
+One Frame Processinh Time: 8 ms.
+i ====== 1440
+One Frame Processinh Time: 8 ms.
+i ====== 1441
+One Frame Processinh Time: 8 ms.
+i ====== 1442
+insert keyframe, id = 1431
+One Frame Processinh Time: 47 ms.
+i ====== 1443
+One Frame Processinh Time: 61 ms.
+i ====== 1444
+One Frame Processinh Time: 6 ms.
+i ====== 1445
+One Frame Processinh Time: 10 ms.
+i ====== 1446
+One Frame Processinh Time: 2 ms.
+i ====== 1447
+One Frame Processinh Time: 6 ms.
+i ====== 1448
+One Frame Processinh Time: 6 ms.
+i ====== 1449
+insert keyframe, id = 1437
+One Frame Processinh Time: 105 ms.
+i ====== 1450
+One Frame Processinh Time: 4 ms.
+i ====== 1451
+One Frame Processinh Time: 10 ms.
+i ====== 1452
+One Frame Processinh Time: 6 ms.
+i ====== 1453
+One Frame Processinh Time: 10 ms.
+i ====== 1454
+One Frame Processinh Time: 8 ms.
+i ====== 1455
+insert keyframe, id = 1444
+One Frame Processinh Time: 45 ms.
+i ====== 1456
+One Frame Processinh Time: 74 ms.
+i ====== 1457
+One Frame Processinh Time: 12 ms.
+i ====== 1458
+One Frame Processinh Time: 4 ms.
+i ====== 1459
+One Frame Processinh Time: 10 ms.
+i ====== 1460
+One Frame Processinh Time: 10 ms.
+i ====== 1461
+insert keyframe, id = 1450
+One Frame Processinh Time: 45 ms.
+i ====== 1462
+One Frame Processinh Time: 72 ms.
+i ====== 1463
+One Frame Processinh Time: 4 ms.
+i ====== 1464
+One Frame Processinh Time: 6 ms.
+i ====== 1465
+One Frame Processinh Time: 4 ms.
+i ====== 1466
+One Frame Processinh Time: 4 ms.
+i ====== 1467
+insert keyframe, id = 1456
+One Frame Processinh Time: 45 ms.
+i ====== 1468
+One Frame Processinh Time: 72 ms.
+i ====== 1469
+One Frame Processinh Time: 4 ms.
+i ====== 1470
+One Frame Processinh Time: 14 ms.
+i ====== 1471
+One Frame Processinh Time: 6 ms.
+i ====== 1472
+insert keyframe, id = 1462
+One Frame Processinh Time: 47 ms.
+i ====== 1473
+One Frame Processinh Time: 4 ms.
+i ====== 1474
+One Frame Processinh Time: 76 ms.
+i ====== 1475
+One Frame Processinh Time: 12 ms.
+i ====== 1476
+One Frame Processinh Time: 8 ms.
+i ====== 1477
+One Frame Processinh Time: 8 ms.
+i ====== 1478
+insert keyframe, id = 1467
+One Frame Processinh Time: 47 ms.
+i ====== 1479
+One Frame Processinh Time: 69 ms.
+i ====== 1480
+One Frame Processinh Time: 12 ms.
+i ====== 1481
+One Frame Processinh Time: 10 ms.
+i ====== 1482
+One Frame Processinh Time: 10 ms.
+i ====== 1483
+One Frame Processinh Time: 8 ms.
+i ====== 1484
+One Frame Processinh Time: 8 ms.
+i ====== 1485
+insert keyframe, id = 1473
+One Frame Processinh Time: 113 ms.
+i ====== 1486
+One Frame Processinh Time: 10 ms.
+i ====== 1487
+One Frame Processinh Time: 10 ms.
+i ====== 1488
+One Frame Processinh Time: 8 ms.
+i ====== 1489
+One Frame Processinh Time: 10 ms.
+i ====== 1490
+One Frame Processinh Time: 8 ms.
+i ====== 1491
+One Frame Processinh Time: 8 ms.
+i ====== 1492
+insert keyframe, id = 1480
+One Frame Processinh Time: 106 ms.
+i ====== 1493
+One Frame Processinh Time: 53 ms.
+i ====== 1494
+One Frame Processinh Time: 2 ms.
+i ====== 1495
+One Frame Processinh Time: 6 ms.
+i ====== 1496
+One Frame Processinh Time: 4 ms.
+i ====== 1497
+One Frame Processinh Time: 2 ms.
+i ====== 1498
+One Frame Processinh Time: 4 ms.
+i ====== 1499
+insert keyframe, id = 1488
+One Frame Processinh Time: 4 ms.
+i ====== 1500
+One Frame Processinh Time: 94 ms.
+i ====== 1501
+One Frame Processinh Time: 8 ms.
+i ====== 1502
+One Frame Processinh Time: 47 ms.
+i ====== 1503
+One Frame Processinh Time: 6 ms.
+i ====== 1504
+One Frame Processinh Time: 4 ms.
+i ====== 1505
+One Frame Processinh Time: 4 ms.
+i ====== 1506
+insert keyframe, id = 1497
+One Frame Processinh Time: 2 ms.
+i ====== 1507
+One Frame Processinh Time: 49 ms.
+i ====== 1508
+One Frame Processinh Time: 4 ms.
+i ====== 1509
+One Frame Processinh Time: 36 ms.
+i ====== 1510
+One Frame Processinh Time: 4 ms.
+i ====== 1511
+One Frame Processinh Time: 8 ms.
+i ====== 1512
+One Frame Processinh Time: 4 ms.
+i ====== 1513
+One Frame Processinh Time: 6 ms.
+i ====== 1514
+insert keyframe, id = 1502
+One Frame Processinh Time: 104 ms.
+i ====== 1515
+One Frame Processinh Time: 4 ms.
+i ====== 1516
+One Frame Processinh Time: 6 ms.
+i ====== 1517
+One Frame Processinh Time: 8 ms.
+i ====== 1518
+One Frame Processinh Time: 2 ms.
+i ====== 1519
+One Frame Processinh Time: 6 ms.
+i ====== 1520
+insert keyframe, id = 1509
+One Frame Processinh Time: 47 ms.
+i ====== 1521
+One Frame Processinh Time: 63 ms.
+i ====== 1522
+One Frame Processinh Time: 8 ms.
+i ====== 1523
+One Frame Processinh Time: 10 ms.
+i ====== 1524
+One Frame Processinh Time: 4 ms.
+i ====== 1525
+insert keyframe, id = 1515
+One Frame Processinh Time: 45 ms.
+i ====== 1526
+One Frame Processinh Time: 4 ms.
+i ====== 1527
+One Frame Processinh Time: 74 ms.
+i ====== 1528
+One Frame Processinh Time: 6 ms.
+i ====== 1529
+One Frame Processinh Time: 6 ms.
+i ====== 1530
+One Frame Processinh Time: 4 ms.
+i ====== 1531
+insert keyframe, id = 1520
+One Frame Processinh Time: 47 ms.
+i ====== 1532
+One Frame Processinh Time: 55 ms.
+i ====== 1533
+One Frame Processinh Time: 8 ms.
+i ====== 1534
+One Frame Processinh Time: 4 ms.
+i ====== 1535
+One Frame Processinh Time: 6 ms.
+i ====== 1536
+One Frame Processinh Time: 4 ms.
+i ====== 1537
+One Frame Processinh Time: 4 ms.
+i ====== 1538
+insert keyframe, id = 1526
+One Frame Processinh Time: 96 ms.
+i ====== 1539
+One Frame Processinh Time: 6 ms.
+i ====== 1540
+One Frame Processinh Time: 4 ms.
+i ====== 1541
+One Frame Processinh Time: 6 ms.
+i ====== 1542
+One Frame Processinh Time: 4 ms.
+i ====== 1543
+insert keyframe, id = 1533
+One Frame Processinh Time: 45 ms.
+i ====== 1544
+One Frame Processinh Time: 2 ms.
+i ====== 1545
+One Frame Processinh Time: 55 ms.
+i ====== 1546
+One Frame Processinh Time: 6 ms.
+i ====== 1547
+One Frame Processinh Time: 2 ms.
+i ====== 1548
+One Frame Processinh Time: 6 ms.
+i ====== 1549
+One Frame Processinh Time: 4 ms.
+i ====== 1550
+insert keyframe, id = 1538
+One Frame Processinh Time: 86 ms.
+i ====== 1551
+One Frame Processinh Time: 49 ms.
+i ====== 1552
+One Frame Processinh Time: 4 ms.
+i ====== 1553
+One Frame Processinh Time: 4 ms.
+i ====== 1554
+insert keyframe, id = 1546
+One Frame Processinh Time: 4 ms.
+i ====== 1555
+One Frame Processinh Time: 4 ms.
+i ====== 1556
+One Frame Processinh Time: 45 ms.
+i ====== 1557
+One Frame Processinh Time: 4 ms.
+i ====== 1558
+One Frame Processinh Time: 12 ms.
+i ====== 1559
+One Frame Processinh Time: 6 ms.
+i ====== 1560
+One Frame Processinh Time: 6 ms.
+i ====== 1561
+One Frame Processinh Time: 6 ms.
+i ====== 1562
+One Frame Processinh Time: 4 ms.
+i ====== 1563
+insert keyframe, id = 1551
+One Frame Processinh Time: 100 ms.
+i ====== 1564
+One Frame Processinh Time: 12 ms.
+i ====== 1565
+One Frame Processinh Time: 12 ms.
+i ====== 1566
+One Frame Processinh Time: 45 ms.
+i ====== 1567
+One Frame Processinh Time: 2 ms.
+i ====== 1568
+insert keyframe, id = 1558
+One Frame Processinh Time: 4 ms.
+i ====== 1569
+One Frame Processinh Time: 4 ms.
+i ====== 1570
+One Frame Processinh Time: 78 ms.
+i ====== 1571
+One Frame Processinh Time: 8 ms.
+i ====== 1572
+One Frame Processinh Time: 6 ms.
+i ====== 1573
+insert keyframe, id = 1561
+One Frame Processinh Time: 92 ms.
+i ====== 1574
+One Frame Processinh Time: 8 ms.
+i ====== 1575
+insert keyframe, id = 1565
+One Frame Processinh Time: 45 ms.
+i ====== 1576
+One Frame Processinh Time: 2 ms.
+i ====== 1577
+One Frame Processinh Time: 57 ms.
+i ====== 1578
+One Frame Processinh Time: 10 ms.
+i ====== 1579
+insert keyframe, id = 1570
+One Frame Processinh Time: 49 ms.
+i ====== 1580
+One Frame Processinh Time: 2 ms.
+i ====== 1581
+One Frame Processinh Time: 2 ms.
+i ====== 1582
+One Frame Processinh Time: 65 ms.
+i ====== 1583
+One Frame Processinh Time: 6 ms.
+i ====== 1584
+One Frame Processinh Time: 4 ms.
+i ====== 1585
+One Frame Processinh Time: 6 ms.
+i ====== 1586
+insert keyframe, id = 1574
+One Frame Processinh Time: 96 ms.
+i ====== 1587
+One Frame Processinh Time: 8 ms.
+i ====== 1588
+One Frame Processinh Time: 6 ms.
+i ====== 1589
+One Frame Processinh Time: 8 ms.
+i ====== 1590
+One Frame Processinh Time: 4 ms.
+i ====== 1591
+One Frame Processinh Time: 8 ms.
+i ====== 1592
+insert keyframe, id = 1581
+One Frame Processinh Time: 47 ms.
+i ====== 1593
+One Frame Processinh Time: 57 ms.
+i ====== 1594
+One Frame Processinh Time: 8 ms.
+i ====== 1595
+One Frame Processinh Time: 8 ms.
+i ====== 1596
+One Frame Processinh Time: 8 ms.
+i ====== 1597
+insert keyframe, id = 1587
+One Frame Processinh Time: 45 ms.
+i ====== 1598
+One Frame Processinh Time: 4 ms.
+i ====== 1599
+One Frame Processinh Time: 74 ms.
+i ====== 1600
+One Frame Processinh Time: 10 ms.
+i ====== 1601
+One Frame Processinh Time: 6 ms.
+i ====== 1602
+insert keyframe, id = 1592
+One Frame Processinh Time: 47 ms.
+i ====== 1603
+One Frame Processinh Time: 4 ms.
+i ====== 1604
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+One Frame Processinh Time: 74 ms.
+i ====== 1605
+One Frame Processinh Time: 10 ms.
+i ====== 1606
+One Frame Processinh Time: 8 ms.
+i ====== 1607
+One Frame Processinh Time: 10 ms.
+i ====== 1608
+insert keyframe, id = 1597
+One Frame Processinh Time: 45 ms.
+i ====== 1609
+One Frame Processinh Time: 63 ms.
+i ====== 1610
+One Frame Processinh Time: 10 ms.
+i ====== 1611
+One Frame Processinh Time: 6 ms.
+i ====== 1612
+One Frame Processinh Time: 4 ms.
+i ====== 1613
+One Frame Processinh Time: 6 ms.
+i ====== 1614
+insert keyframe, id = 1603
+One Frame Processinh Time: 47 ms.
+i ====== 1615
+One Frame Processinh Time: 59 ms.
+i ====== 1616
+One Frame Processinh Time: 8 ms.
+i ====== 1617
+One Frame Processinh Time: 12 ms.
+i ====== 1618
+One Frame Processinh Time: 4 ms.
+i ====== 1619
+insert keyframe, id = 1609
+One Frame Processinh Time: 47 ms.
+i ====== 1620
+One Frame Processinh Time: 4 ms.
+i ====== 1621
+One Frame Processinh Time: 67 ms.
+i ====== 1622
+One Frame Processinh Time: 6 ms.
+i ====== 1623
+insert keyframe, id = 1614
+One Frame Processinh Time: 47 ms.
+i ====== 1624
+One Frame Processinh Time: 4 ms.
+i ====== 1625
+One Frame Processinh Time: 4 ms.
+i ====== 1626
+One Frame Processinh Time: 61 ms.
+i ====== 1627
+One Frame Processinh Time: 4 ms.
+i ====== 1628
+One Frame Processinh Time: 6 ms.
+i ====== 1629
+One Frame Processinh Time: 6 ms.
+i ====== 1630
+insert keyframe, id = 1618
+One Frame Processinh Time: 102 ms.
+i ====== 1631
+One Frame Processinh Time: 10 ms.
+i ====== 1632
+One Frame Processinh Time: 12 ms.
+i ====== 1633
+One Frame Processinh Time: 45 ms.
+i ====== 1634
+One Frame Processinh Time: 4 ms.
+i ====== 1635
+One Frame Processinh Time: 4 ms.
+i ====== 1636
+One Frame Processinh Time: 2 ms.
+i ====== 1637
+One Frame Processinh Time: 4 ms.
+i ====== 1638
+One Frame Processinh Time: 4 ms.
+i ====== 1639
+insert keyframe, id = 1628
+One Frame Processinh Time: 47 ms.
+i ====== 1640
+One Frame Processinh Time: 43 ms.
+i ====== 1641
+One Frame Processinh Time: 8 ms.
+i ====== 1642
+One Frame Processinh Time: 8 ms.
+i ====== 1643
+One Frame Processinh Time: 8 ms.
+i ====== 1644
+insert keyframe, id = 1634
+One Frame Processinh Time: 45 ms.
+i ====== 1645
+One Frame Processinh Time: 4 ms.
+i ====== 1646
+One Frame Processinh Time: 61 ms.
+i ====== 1647
+One Frame Processinh Time: 8 ms.
+i ====== 1648
+One Frame Processinh Time: 8 ms.
+i ====== 1649
+One Frame Processinh Time: 4 ms.
+i ====== 1650
+insert keyframe, id = 1639
+One Frame Processinh Time: 47 ms.
+i ====== 1651
+One Frame Processinh Time: 57 ms.
+i ====== 1652
+One Frame Processinh Time: 10 ms.
+i ====== 1653
+One Frame Processinh Time: 6 ms.
+i ====== 1654
+One Frame Processinh Time: 4 ms.
+i ====== 1655
+insert keyframe, id = 1645
+One Frame Processinh Time: 45 ms.
+i ====== 1656
+One Frame Processinh Time: 4 ms.
+i ====== 1657
+One Frame Processinh Time: 67 ms.
+i ====== 1658
+One Frame Processinh Time: 8 ms.
+i ====== 1659
+One Frame Processinh Time: 6 ms.
+i ====== 1660
+insert keyframe, id = 1650
+One Frame Processinh Time: 49 ms.
+i ====== 1661
+One Frame Processinh Time: 2 ms.
+i ====== 1662
+One Frame Processinh Time: 57 ms.
+i ====== 1663
+One Frame Processinh Time: 8 ms.
+i ====== 1664
+One Frame Processinh Time: 4 ms.
+i ====== 1665
+One Frame Processinh Time: 4 ms.
+i ====== 1666
+One Frame Processinh Time: 6 ms.
+i ====== 1667
+insert keyframe, id = 1655
+One Frame Processinh Time: 96 ms.
+i ====== 1668
+One Frame Processinh Time: 8 ms.
+i ====== 1669
+One Frame Processinh Time: 10 ms.
+i ====== 1670
+One Frame Processinh Time: 6 ms.
+i ====== 1671
+One Frame Processinh Time: 6 ms.
+i ====== 1672
+One Frame Processinh Time: 4 ms.
+i ====== 1673
+One Frame Processinh Time: 6 ms.
+i ====== 1674
+insert keyframe, id = 1662
+One Frame Processinh Time: 96 ms.
+i ====== 1675
+One Frame Processinh Time: 10 ms.
+i ====== 1676
+One Frame Processinh Time: 8 ms.
+i ====== 1677
+One Frame Processinh Time: 8 ms.
+i ====== 1678
+One Frame Processinh Time: 10 ms.
+i ====== 1679
+insert keyframe, id = 1669
+One Frame Processinh Time: 45 ms.
+i ====== 1680
+One Frame Processinh Time: 4 ms.
+i ====== 1681
+One Frame Processinh Time: 59 ms.
+i ====== 1682
+One Frame Processinh Time: 6 ms.
+i ====== 1683
+One Frame Processinh Time: 4 ms.
+i ====== 1684
+One Frame Processinh Time: 8 ms.
+i ====== 1685
+One Frame Processinh Time: 6 ms.
+i ====== 1686
+insert keyframe, id = 1674
+One Frame Processinh Time: 98 ms.
+i ====== 1687
+One Frame Processinh Time: 8 ms.
+i ====== 1688
+One Frame Processinh Time: 8 ms.
+i ====== 1689
+One Frame Processinh Time: 8 ms.
+i ====== 1690
+One Frame Processinh Time: 4 ms.
+i ====== 1691
+One Frame Processinh Time: 6 ms.
+i ====== 1692
+insert keyframe, id = 1681
+One Frame Processinh Time: 45 ms.
+i ====== 1693
+One Frame Processinh Time: 61 ms.
+i ====== 1694
+One Frame Processinh Time: 8 ms.
+i ====== 1695
+One Frame Processinh Time: 8 ms.
+i ====== 1696
+One Frame Processinh Time: 4 ms.
+i ====== 1697
+insert keyframe, id = 1687
+One Frame Processinh Time: 47 ms.
+i ====== 1698
+One Frame Processinh Time: 2 ms.
+i ====== 1699
+One Frame Processinh Time: 63 ms.
+i ====== 1700
+One Frame Processinh Time: 10 ms.
+i ====== 1701
+One Frame Processinh Time: 8 ms.
+i ====== 1702
+One Frame Processinh Time: 4 ms.
+i ====== 1703
+One Frame Processinh Time: 8 ms.
+i ====== 1704
+insert keyframe, id = 1692
+One Frame Processinh Time: 98 ms.
+i ====== 1705
+One Frame Processinh Time: 10 ms.
+i ====== 1706
+One Frame Processinh Time: 8 ms.
+i ====== 1707
+One Frame Processinh Time: 4 ms.
+i ====== 1708
+One Frame Processinh Time: 6 ms.
+i ====== 1709
+One Frame Processinh Time: 6 ms.
+i ====== 1710
+insert keyframe, id = 1699
+One Frame Processinh Time: 47 ms.
+i ====== 1711
+One Frame Processinh Time: 55 ms.
+i ====== 1712
+One Frame Processinh Time: 10 ms.
+i ====== 1713
+One Frame Processinh Time: 8 ms.
+i ====== 1714
+One Frame Processinh Time: 6 ms.
+i ====== 1715
+insert keyframe, id = 1705
+One Frame Processinh Time: 55 ms.
+i ====== 1716
+One Frame Processinh Time: 4 ms.
+i ====== 1717
+One Frame Processinh Time: 55 ms.
+i ====== 1718
+One Frame Processinh Time: 6 ms.
+i ====== 1719
+insert keyframe, id = 1710
+One Frame Processinh Time: 55 ms.
+i ====== 1720
+One Frame Processinh Time: 4 ms.
+i ====== 1721
+One Frame Processinh Time: 4 ms.
+i ====== 1722
+One Frame Processinh Time: 61 ms.
+i ====== 1723
+One Frame Processinh Time: 8 ms.
+i ====== 1724
+insert keyframe, id = 1714
+One Frame Processinh Time: 55 ms.
+i ====== 1725
+One Frame Processinh Time: 4 ms.
+i ====== 1726
+One Frame Processinh Time: 49 ms.
+i ====== 1727
+One Frame Processinh Time: 6 ms.
+i ====== 1728
+One Frame Processinh Time: 4 ms.
+i ====== 1729
+insert keyframe, id = 1719
+One Frame Processinh Time: 57 ms.
+i ====== 1730
+One Frame Processinh Time: 4 ms.
+i ====== 1731
+One Frame Processinh Time: 51 ms.
+i ====== 1732
+insert keyframe, id = 1724
+One Frame Processinh Time: 59 ms.
+i ====== 1733
+One Frame Processinh Time: 4 ms.
+i ====== 1734
+One Frame Processinh Time: 2 ms.
+i ====== 1735
+One Frame Processinh Time: 4 ms.
+i ====== 1736
+One Frame Processinh Time: 55 ms.
+i ====== 1737
+One Frame Processinh Time: 4 ms.
+i ====== 1738
+One Frame Processinh Time: 4 ms.
+i ====== 1739
+insert keyframe, id = 1727
+One Frame Processinh Time: 99 ms.
+i ====== 1740
+One Frame Processinh Time: 61 ms.
+i ====== 1741
+One Frame Processinh Time: 4 ms.
+i ====== 1742
+insert keyframe, id = 1735
+One Frame Processinh Time: 4 ms.
+i ====== 1743
+One Frame Processinh Time: 2 ms.
+i ====== 1744
+One Frame Processinh Time: 55 ms.
+i ====== 1745
+One Frame Processinh Time: 4 ms.
+i ====== 1746
+One Frame Processinh Time: 4 ms.
+i ====== 1747
+One Frame Processinh Time: 10 ms.
+i ====== 1748
+insert keyframe, id = 1739
+One Frame Processinh Time: 57 ms.
+i ====== 1749
+One Frame Processinh Time: 2 ms.
+i ====== 1750
+One Frame Processinh Time: 2 ms.
+i ====== 1751
+One Frame Processinh Time: 67 ms.
+i ====== 1752
+One Frame Processinh Time: 6 ms.
+i ====== 1753
+insert keyframe, id = 1743
+One Frame Processinh Time: 53 ms.
+i ====== 1754
+One Frame Processinh Time: 2 ms.
+i ====== 1755
+One Frame Processinh Time: 61 ms.
+i ====== 1756
+One Frame Processinh Time: 6 ms.
+i ====== 1757
+One Frame Processinh Time: 8 ms.
+i ====== 1758
+One Frame Processinh Time: 4 ms.
+i ====== 1759
+insert keyframe, id = 1748
+One Frame Processinh Time: 55 ms.
+i ====== 1760
+One Frame Processinh Time: 57 ms.
+i ====== 1761
+One Frame Processinh Time: 6 ms.
+i ====== 1762
+insert keyframe, id = 1754
+One Frame Processinh Time: 57 ms.
+i ====== 1763
+One Frame Processinh Time: 2 ms.
+i ====== 1764
+One Frame Processinh Time: 4 ms.
+i ====== 1765
+One Frame Processinh Time: 2 ms.
+i ====== 1766
+One Frame Processinh Time: 61 ms.
+i ====== 1767
+One Frame Processinh Time: 4 ms.
+i ====== 1768
+insert keyframe, id = 1757
+One Frame Processinh Time: 57 ms.
+i ====== 1769
+One Frame Processinh Time: 51 ms.
+i ====== 1770
+One Frame Processinh Time: 8 ms.
+i ====== 1771
+One Frame Processinh Time: 6 ms.
+i ====== 1772
+One Frame Processinh Time: 8 ms.
+i ====== 1773
+insert keyframe, id = 1763
+One Frame Processinh Time: 55 ms.
+i ====== 1774
+One Frame Processinh Time: 2 ms.
+i ====== 1775
+One Frame Processinh Time: 71 ms.
+i ====== 1776
+One Frame Processinh Time: 8 ms.
+i ====== 1777
+insert keyframe, id = 1768
+One Frame Processinh Time: 61 ms.
+i ====== 1778
+One Frame Processinh Time: 4 ms.
+i ====== 1779
+One Frame Processinh Time: 4 ms.
+i ====== 1780
+One Frame Processinh Time: 63 ms.
+i ====== 1781
+One Frame Processinh Time: 4 ms.
+i ====== 1782
+One Frame Processinh Time: 6 ms.
+i ====== 1783
+insert keyframe, id = 1772
+One Frame Processinh Time: 57 ms.
+i ====== 1784
+One Frame Processinh Time: 49 ms.
+i ====== 1785
+One Frame Processinh Time: 6 ms.
+i ====== 1786
+One Frame Processinh Time: 6 ms.
+i ====== 1787
+One Frame Processinh Time: 6 ms.
+i ====== 1788
+insert keyframe, id = 1778
+One Frame Processinh Time: 59 ms.
+i ====== 1789
+One Frame Processinh Time: 4 ms.
+i ====== 1790
+One Frame Processinh Time: 49 ms.
+i ====== 1791
+One Frame Processinh Time: 4 ms.
+i ====== 1792
+insert keyframe, id = 1783
+One Frame Processinh Time: 59 ms.
+i ====== 1793
+One Frame Processinh Time: 4 ms.
+i ====== 1794
+One Frame Processinh Time: 2 ms.
+i ====== 1795
+One Frame Processinh Time: 57 ms.
+i ====== 1796
+One Frame Processinh Time: 4 ms.
+i ====== 1797
+One Frame Processinh Time: 4 ms.
+i ====== 1798
+One Frame Processinh Time: 6 ms.
+i ====== 1799
+insert keyframe, id = 1787
+One Frame Processinh Time: 90 ms.
+i ====== 1800
+One Frame Processinh Time: 10 ms.
+i ====== 1801
+insert keyframe, id = 1790
+One Frame Processinh Time: 47 ms.
+i ====== 1802
+One Frame Processinh Time: 55 ms.
+i ====== 1803
+One Frame Processinh Time: 10 ms.
+i ====== 1804
+One Frame Processinh Time: 10 ms.
+i ====== 1805
+One Frame Processinh Time: 8 ms.
+i ====== 1806
+One Frame Processinh Time: 8 ms.
+i ====== 1807
+One Frame Processinh Time: 4 ms.
+i ====== 1808
+insert keyframe, id = 1796
+One Frame Processinh Time: 98 ms.
+i ====== 1809
+One Frame Processinh Time: 8 ms.
+i ====== 1810
+One Frame Processinh Time: 6 ms.
+i ====== 1811
+One Frame Processinh Time: 6 ms.
+i ====== 1812
+One Frame Processinh Time: 8 ms.
+i ====== 1813
+One Frame Processinh Time: 8 ms.
+i ====== 1814
+insert keyframe, id = 1803
+One Frame Processinh Time: 45 ms.
+i ====== 1815
+One Frame Processinh Time: 51 ms.
+i ====== 1816
+One Frame Processinh Time: 8 ms.
+i ====== 1817
+One Frame Processinh Time: 4 ms.
+i ====== 1818
+One Frame Processinh Time: 2 ms.
+i ====== 1819
+One Frame Processinh Time: 6 ms.
+i ====== 1820
+insert keyframe, id = 1809
+One Frame Processinh Time: 43 ms.
+i ====== 1821
+One Frame Processinh Time: 57 ms.
+i ====== 1822
+One Frame Processinh Time: 6 ms.
+i ====== 1823
+One Frame Processinh Time: 6 ms.
+i ====== 1824
+insert keyframe, id = 1815
+One Frame Processinh Time: 45 ms.
+i ====== 1825
+One Frame Processinh Time: 2 ms.
+i ====== 1826
+One Frame Processinh Time: 4 ms.
+i ====== 1827
+One Frame Processinh Time: 67 ms.
+i ====== 1828
+One Frame Processinh Time: 6 ms.
+i ====== 1829
+insert keyframe, id = 1819
+One Frame Processinh Time: 45 ms.
+i ====== 1830
+One Frame Processinh Time: 2 ms.
+i ====== 1831
+One Frame Processinh Time: 63 ms.
+i ====== 1832
+One Frame Processinh Time: 8 ms.
+i ====== 1833
+One Frame Processinh Time: 8 ms.
+i ====== 1834
+insert keyframe, id = 1824
+One Frame Processinh Time: 49 ms.
+i ====== 1835
+One Frame Processinh Time: 2 ms.
+i ====== 1836
+One Frame Processinh Time: 57 ms.
+i ====== 1837
+One Frame Processinh Time: 6 ms.
+i ====== 1838
+One Frame Processinh Time: 6 ms.
+i ====== 1839
+insert keyframe, id = 1829
+One Frame Processinh Time: 47 ms.
+i ====== 1840
+One Frame Processinh Time: 4 ms.
+i ====== 1841
+One Frame Processinh Time: 59 ms.
+i ====== 1842
+One Frame Processinh Time: 8 ms.
+i ====== 1843
+One Frame Processinh Time: 12 ms.
+i ====== 1844
+One Frame Processinh Time: 8 ms.
+i ====== 1845
+insert keyframe, id = 1834
+One Frame Processinh Time: 47 ms.
+i ====== 1846
+One Frame Processinh Time: 59 ms.
+i ====== 1847
+One Frame Processinh Time: 10 ms.
+i ====== 1848
+One Frame Processinh Time: 10 ms.
+i ====== 1849
+One Frame Processinh Time: 8 ms.
+i ====== 1850
+insert keyframe, id = 1840
+One Frame Processinh Time: 47 ms.
+i ====== 1851
+One Frame Processinh Time: 2 ms.
+i ====== 1852
+One Frame Processinh Time: 69 ms.
+i ====== 1853
+One Frame Processinh Time: 8 ms.
+i ====== 1854
+One Frame Processinh Time: 10 ms.
+i ====== 1855
+One Frame Processinh Time: 8 ms.
+i ====== 1856
+insert keyframe, id = 1845
+One Frame Processinh Time: 45 ms.
+i ====== 1857
+One Frame Processinh Time: 61 ms.
+i ====== 1858
+One Frame Processinh Time: 8 ms.
+i ====== 1859
+One Frame Processinh Time: 6 ms.
+i ====== 1860
+One Frame Processinh Time: 8 ms.
+i ====== 1861
+insert keyframe, id = 1851
+One Frame Processinh Time: 47 ms.
+i ====== 1862
+One Frame Processinh Time: 4 ms.
+i ====== 1863
+One Frame Processinh Time: 65 ms.
+i ====== 1864
+One Frame Processinh Time: 6 ms.
+i ====== 1865
+insert keyframe, id = 1856
+One Frame Processinh Time: 51 ms.
+i ====== 1866
+One Frame Processinh Time: 4 ms.
+i ====== 1867
+One Frame Processinh Time: 2 ms.
+i ====== 1868
+One Frame Processinh Time: 65 ms.
+i ====== 1869
+One Frame Processinh Time: 8 ms.
+i ====== 1870
+One Frame Processinh Time: 6 ms.
+i ====== 1871
+insert keyframe, id = 1860
+One Frame Processinh Time: 47 ms.
+i ====== 1872
+One Frame Processinh Time: 62 ms.
+i ====== 1873
+One Frame Processinh Time: 8 ms.
+i ====== 1874
+One Frame Processinh Time: 10 ms.
+i ====== 1875
+One Frame Processinh Time: 4 ms.
+i ====== 1876
+One Frame Processinh Time: 6 ms.
+i ====== 1877
+One Frame Processinh Time: 8 ms.
+i ====== 1878
+insert keyframe, id = 1866
+One Frame Processinh Time: 103 ms.
+i ====== 1879
+One Frame Processinh Time: 8 ms.
+i ====== 1880
+One Frame Processinh Time: 8 ms.
+i ====== 1881
+One Frame Processinh Time: 10 ms.
+i ====== 1882
+One Frame Processinh Time: 8 ms.
+i ====== 1883
+One Frame Processinh Time: 8 ms.
+i ====== 1884
+One Frame Processinh Time: 6 ms.
+i ====== 1885
+insert keyframe, id = 1873
+One Frame Processinh Time: 107 ms.
+i ====== 1886
+One Frame Processinh Time: 51 ms.
+i ====== 1887
+One Frame Processinh Time: 4 ms.
+i ====== 1888
+One Frame Processinh Time: 4 ms.
+i ====== 1889
+One Frame Processinh Time: 2 ms.
+i ====== 1890
+One Frame Processinh Time: 4 ms.
+i ====== 1891
+One Frame Processinh Time: 4 ms.
+i ====== 1892
+insert keyframe, id = 1881
+One Frame Processinh Time: 45 ms.
+i ====== 1893
+One Frame Processinh Time: 45 ms.
+i ====== 1894
+One Frame Processinh Time: 8 ms.
+i ====== 1895
+One Frame Processinh Time: 6 ms.
+i ====== 1896
+One Frame Processinh Time: 8 ms.
+i ====== 1897
+One Frame Processinh Time: 6 ms.
+i ====== 1898
+insert keyframe, id = 1887
+One Frame Processinh Time: 47 ms.
+i ====== 1899
+One Frame Processinh Time: 65 ms.
+i ====== 1900
+One Frame Processinh Time: 8 ms.
+i ====== 1901
+One Frame Processinh Time: 12 ms.
+i ====== 1902
+insert keyframe, id = 1893
+One Frame Processinh Time: 51 ms.
+i ====== 1903
+One Frame Processinh Time: 2 ms.
+i ====== 1904
+One Frame Processinh Time: 4 ms.
+i ====== 1905
+One Frame Processinh Time: 78 ms.
+i ====== 1906
+One Frame Processinh Time: 8 ms.
+i ====== 1907
+One Frame Processinh Time: 4 ms.
+i ====== 1908
+One Frame Processinh Time: 6 ms.
+i ====== 1909
+insert keyframe, id = 1897
+One Frame Processinh Time: 102 ms.
+i ====== 1910
+One Frame Processinh Time: 53 ms.
+i ====== 1911
+One Frame Processinh Time: 4 ms.
+i ====== 1912
+One Frame Processinh Time: 4 ms.
+i ====== 1913
+insert keyframe, id = 1905
+One Frame Processinh Time: 4 ms.
+i ====== 1914
+One Frame Processinh Time: 2 ms.
+i ====== 1915
+One Frame Processinh Time: 4 ms.
+i ====== 1916
+One Frame Processinh Time: 2 ms.
+i ====== 1917
+One Frame Processinh Time: 70 ms.
+i ====== 1918
+One Frame Processinh Time: 12 ms.
+i ====== 1919
+One Frame Processinh Time: 8 ms.
+i ====== 1920
+One Frame Processinh Time: 6 ms.
+i ====== 1921
+One Frame Processinh Time: 6 ms.
+i ====== 1922
+One Frame Processinh Time: 6 ms.
+i ====== 1923
+insert keyframe, id = 1912
+One Frame Processinh Time: 47 ms.
+i ====== 1924
+One Frame Processinh Time: 57 ms.
+i ====== 1925
+One Frame Processinh Time: 6 ms.
+i ====== 1926
+One Frame Processinh Time: 10 ms.
+i ====== 1927
+One Frame Processinh Time: 4 ms.
+i ====== 1928
+One Frame Processinh Time: 6 ms.
+i ====== 1929
+insert keyframe, id = 1918
+One Frame Processinh Time: 47 ms.
+i ====== 1930
+One Frame Processinh Time: 69 ms.
+i ====== 1931
+One Frame Processinh Time: 8 ms.
+i ====== 1932
+One Frame Processinh Time: 8 ms.
+i ====== 1933
+One Frame Processinh Time: 10 ms.
+i ====== 1934
+One Frame Processinh Time: 8 ms.
+i ====== 1935
+One Frame Processinh Time: 6 ms.
+i ====== 1936
+insert keyframe, id = 1924
+One Frame Processinh Time: 104 ms.
+i ====== 1937
+One Frame Processinh Time: 52 ms.
+i ====== 1938
+One Frame Processinh Time: 4 ms.
+i ====== 1939
+One Frame Processinh Time: 4 ms.
+i ====== 1940
+insert keyframe, id = 1932
+One Frame Processinh Time: 43 ms.
+i ====== 1941
+One Frame Processinh Time: 4 ms.
+i ====== 1942
+One Frame Processinh Time: 2 ms.
+i ====== 1943
+One Frame Processinh Time: 4 ms.
+i ====== 1944
+One Frame Processinh Time: 34 ms.
+i ====== 1945
+insert keyframe, id = 1935
+One Frame Processinh Time: 47 ms.
+i ====== 1946
+One Frame Processinh Time: 4 ms.
+i ====== 1947
+One Frame Processinh Time: 55 ms.
+i ====== 1948
+One Frame Processinh Time: 6 ms.
+i ====== 1949
+One Frame Processinh Time: 8 ms.
+i ====== 1950
+One Frame Processinh Time: 6 ms.
+i ====== 1951
+One Frame Processinh Time: 6 ms.
+i ====== 1952
+insert keyframe, id = 1940
+One Frame Processinh Time: 105 ms.
+i ====== 1953
+One Frame Processinh Time: 8 ms.
+i ====== 1954
+One Frame Processinh Time: 12 ms.
+i ====== 1955
+One Frame Processinh Time: 6 ms.
+i ====== 1956
+One Frame Processinh Time: 8 ms.
+i ====== 1957
+insert keyframe, id = 1947
+One Frame Processinh Time: 47 ms.
+i ====== 1958
+One Frame Processinh Time: 2 ms.
+i ====== 1959
+One Frame Processinh Time: 69 ms.
+i ====== 1960
+One Frame Processinh Time: 4 ms.
+i ====== 1961
+One Frame Processinh Time: 8 ms.
+i ====== 1962
+One Frame Processinh Time: 6 ms.
+i ====== 1963
+insert keyframe, id = 1952
+One Frame Processinh Time: 45 ms.
+i ====== 1964
+One Frame Processinh Time: 66 ms.
+i ====== 1965
+One Frame Processinh Time: 10 ms.
+i ====== 1966
+One Frame Processinh Time: 3 ms.
+i ====== 1967
+One Frame Processinh Time: 6 ms.
+i ====== 1968
+insert keyframe, id = 1958
+One Frame Processinh Time: 45 ms.
+i ====== 1969
+One Frame Processinh Time: 4 ms.
+i ====== 1970
+One Frame Processinh Time: 71 ms.
+i ====== 1971
+One Frame Processinh Time: 10 ms.
+i ====== 1972
+One Frame Processinh Time: 6 ms.
+i ====== 1973
+insert keyframe, id = 1963
+One Frame Processinh Time: 47 ms.
+i ====== 1974
+One Frame Processinh Time: 4 ms.
+i ====== 1975
+One Frame Processinh Time: 74 ms.
+i ====== 1976
+insert keyframe, id = 1968
+One Frame Processinh Time: 51 ms.
+i ====== 1977
+One Frame Processinh Time: 4 ms.
+i ====== 1978
+One Frame Processinh Time: 2 ms.
+i ====== 1979
+One Frame Processinh Time: 4 ms.
+i ====== 1980
+One Frame Processinh Time: 71 ms.
+i ====== 1981
+One Frame Processinh Time: 4 ms.
+i ====== 1982
+insert keyframe, id = 1971
+One Frame Processinh Time: 45 ms.
+i ====== 1983
+One Frame Processinh Time: 63 ms.
+i ====== 1984
+One Frame Processinh Time: 8 ms.
+i ====== 1985
+One Frame Processinh Time: 8 ms.
+i ====== 1986
+One Frame Processinh Time: 8 ms.
+i ====== 1987
+insert keyframe, id = 1977
+One Frame Processinh Time: 47 ms.
+i ====== 1988
+One Frame Processinh Time: 4 ms.
+i ====== 1989
+One Frame Processinh Time: 73 ms.
+i ====== 1990
+One Frame Processinh Time: 14 ms.
+i ====== 1991
+One Frame Processinh Time: 10 ms.
+i ====== 1992
+insert keyframe, id = 1982
+One Frame Processinh Time: 43 ms.
+i ====== 1993
+One Frame Processinh Time: 4 ms.
+i ====== 1994
+One Frame Processinh Time: 71 ms.
+i ====== 1995
+One Frame Processinh Time: 8 ms.
+i ====== 1996
+One Frame Processinh Time: 8 ms.
+i ====== 1997
+One Frame Processinh Time: 12 ms.
+i ====== 1998
+insert keyframe, id = 1987
+One Frame Processinh Time: 47 ms.
+i ====== 1999
+One Frame Processinh Time: 65 ms.
+i ====== 2000
+One Frame Processinh Time: 10 ms.
+i ====== 2001
+One Frame Processinh Time: 12 ms.
+i ====== 2002
+One Frame Processinh Time: 8 ms.
+i ====== 2003
+insert keyframe, id = 1993
+One Frame Processinh Time: 47 ms.
+i ====== 2004
+One Frame Processinh Time: 2 ms.
+i ====== 2005
+One Frame Processinh Time: 82 ms.
+i ====== 2006
+One Frame Processinh Time: 8 ms.
+i ====== 2007
+insert keyframe, id = 1998
+One Frame Processinh Time: 45 ms.
+i ====== 2008
+One Frame Processinh Time: 6 ms.
+i ====== 2009
+One Frame Processinh Time: 2 ms.
+i ====== 2010
+One Frame Processinh Time: 82 ms.
+i ====== 2011
+insert keyframe, id = 2002
+One Frame Processinh Time: 51 ms.
+i ====== 2012
+One Frame Processinh Time: 2 ms.
+i ====== 2013
+One Frame Processinh Time: 4 ms.
+i ====== 2014
+One Frame Processinh Time: 80 ms.
+i ====== 2015
+One Frame Processinh Time: 8 ms.
+i ====== 2016
+One Frame Processinh Time: 6 ms.
+i ====== 2017
+One Frame Processinh Time: 8 ms.
+i ====== 2018
+insert keyframe, id = 2006
+One Frame Processinh Time: 111 ms.
+i ====== 2019
+One Frame Processinh Time: 12 ms.
+i ====== 2020
+One Frame Processinh Time: 51 ms.
+i ====== 2021
+One Frame Processinh Time: 4 ms.
+i ====== 2022
+One Frame Processinh Time: 6 ms.
+i ====== 2023
+One Frame Processinh Time: 2 ms.
+i ====== 2024
+One Frame Processinh Time: 2 ms.
+i ====== 2025
+insert keyframe, id = 2015
+One Frame Processinh Time: 47 ms.
+i ====== 2026
+One Frame Processinh Time: 2 ms.
+i ====== 2027
+One Frame Processinh Time: 55 ms.
+i ====== 2028
+One Frame Processinh Time: 8 ms.
+i ====== 2029
+One Frame Processinh Time: 8 ms.
+i ====== 2030
+One Frame Processinh Time: 10 ms.
+i ====== 2031
+One Frame Processinh Time: 6 ms.
+i ====== 2032
+insert keyframe, id = 2020
+One Frame Processinh Time: 111 ms.
+i ====== 2033
+One Frame Processinh Time: 51 ms.
+i ====== 2034
+One Frame Processinh Time: 6 ms.
+i ====== 2035
+One Frame Processinh Time: 2 ms.
+i ====== 2036
+One Frame Processinh Time: 4 ms.
+i ====== 2037
+One Frame Processinh Time: 4 ms.
+i ====== 2038
+insert keyframe, id = 2028
+One Frame Processinh Time: 47 ms.
+i ====== 2039
+One Frame Processinh Time: 2 ms.
+i ====== 2040
+One Frame Processinh Time: 61 ms.
+i ====== 2041
+One Frame Processinh Time: 10 ms.
+i ====== 2042
+One Frame Processinh Time: 10 ms.
+i ====== 2043
+insert keyframe, id = 2033
+One Frame Processinh Time: 47 ms.
+i ====== 2044
+One Frame Processinh Time: 4 ms.
+i ====== 2045
+One Frame Processinh Time: 80 ms.
+i ====== 2046
+One Frame Processinh Time: 10 ms.
+i ====== 2047
+insert keyframe, id = 2038
+One Frame Processinh Time: 47 ms.
+i ====== 2048
+One Frame Processinh Time: 4 ms.
+i ====== 2049
+One Frame Processinh Time: 2 ms.
+i ====== 2050
+One Frame Processinh Time: 68 ms.
+i ====== 2051
+One Frame Processinh Time: 10 ms.
+i ====== 2052
+One Frame Processinh Time: 6 ms.
+i ====== 2053
+One Frame Processinh Time: 6 ms.
+i ====== 2054
+insert keyframe, id = 2042
+One Frame Processinh Time: 109 ms.
+i ====== 2055
+One Frame Processinh Time: 14 ms.
+i ====== 2056
+One Frame Processinh Time: 12 ms.
+i ====== 2057
+One Frame Processinh Time: 8 ms.
+i ====== 2058
+One Frame Processinh Time: 6 ms.
+i ====== 2059
+One Frame Processinh Time: 6 ms.
+i ====== 2060
+insert keyframe, id = 2049
+One Frame Processinh Time: 45 ms.
+i ====== 2061
+One Frame Processinh Time: 67 ms.
+i ====== 2062
+One Frame Processinh Time: 10 ms.
+i ====== 2063
+One Frame Processinh Time: 10 ms.
+i ====== 2064
+One Frame Processinh Time: 10 ms.
+i ====== 2065
+One Frame Processinh Time: 10 ms.
+i ====== 2066
+One Frame Processinh Time: 4 ms.
+i ====== 2067
+insert keyframe, id = 2055
+One Frame Processinh Time: 113 ms.
+i ====== 2068
+One Frame Processinh Time: 6 ms.
+i ====== 2069
+One Frame Processinh Time: 10 ms.
+i ====== 2070
+One Frame Processinh Time: 12 ms.
+i ====== 2071
+One Frame Processinh Time: 8 ms.
+i ====== 2072
+One Frame Processinh Time: 6 ms.
+i ====== 2073
+One Frame Processinh Time: 8 ms.
+i ====== 2074
+insert keyframe, id = 2062
+One Frame Processinh Time: 115 ms.
+i ====== 2075
+One Frame Processinh Time: 12 ms.
+i ====== 2076
+One Frame Processinh Time: 10 ms.
+i ====== 2077
+One Frame Processinh Time: 8 ms.
+i ====== 2078
+insert keyframe, id = 2069
+One Frame Processinh Time: 49 ms.
+i ====== 2079
+One Frame Processinh Time: 2 ms.
+i ====== 2080
+One Frame Processinh Time: 4 ms.
+i ====== 2081
+One Frame Processinh Time: 80 ms.
+i ====== 2082
+One Frame Processinh Time: 8 ms.
+i ====== 2083
+One Frame Processinh Time: 6 ms.
+i ====== 2084
+One Frame Processinh Time: 6 ms.
+i ====== 2085
+insert keyframe, id = 2073
+One Frame Processinh Time: 108 ms.
+i ====== 2086
+One Frame Processinh Time: 8 ms.
+i ====== 2087
+One Frame Processinh Time: 8 ms.
+i ====== 2088
+One Frame Processinh Time: 6 ms.
+i ====== 2089
+One Frame Processinh Time: 8 ms.
+i ====== 2090
+One Frame Processinh Time: 8 ms.
+i ====== 2091
+insert keyframe, id = 2080
+One Frame Processinh Time: 45 ms.
+i ====== 2092
+One Frame Processinh Time: 67 ms.
+i ====== 2093
+One Frame Processinh Time: 8 ms.
+i ====== 2094
+One Frame Processinh Time: 14 ms.
+i ====== 2095
+One Frame Processinh Time: 8 ms.
+i ====== 2096
+One Frame Processinh Time: 8 ms.
+i ====== 2097
+One Frame Processinh Time: 6 ms.
+i ====== 2098
+insert keyframe, id = 2086
+One Frame Processinh Time: 109 ms.
+i ====== 2099
+One Frame Processinh Time: 16 ms.
+i ====== 2100
+One Frame Processinh Time: 49 ms.
+i ====== 2101
+One Frame Processinh Time: 4 ms.
+i ====== 2102
+One Frame Processinh Time: 4 ms.
+i ====== 2103
+One Frame Processinh Time: 4 ms.
+i ====== 2104
+One Frame Processinh Time: 4 ms.
+i ====== 2105
+One Frame Processinh Time: 4 ms.
+i ====== 2106
+insert keyframe, id = 2095
+One Frame Processinh Time: 53 ms.
+i ====== 2107
+One Frame Processinh Time: 49 ms.
+i ====== 2108
+One Frame Processinh Time: 10 ms.
+i ====== 2109
+One Frame Processinh Time: 8 ms.
+i ====== 2110
+One Frame Processinh Time: 8 ms.
+i ====== 2111
+One Frame Processinh Time: 6 ms.
+i ====== 2112
+insert keyframe, id = 2101
+One Frame Processinh Time: 47 ms.
+i ====== 2113
+One Frame Processinh Time: 59 ms.
+i ====== 2114
+One Frame Processinh Time: 10 ms.
+i ====== 2115
+One Frame Processinh Time: 6 ms.
+i ====== 2116
+One Frame Processinh Time: 6 ms.
+i ====== 2117
+One Frame Processinh Time: 6 ms.
+i ====== 2118
+One Frame Processinh Time: 4 ms.
+i ====== 2119
+insert keyframe, id = 2107
+One Frame Processinh Time: 102 ms.
+i ====== 2120
+One Frame Processinh Time: 12 ms.
+i ====== 2121
+One Frame Processinh Time: 8 ms.
+i ====== 2122
+One Frame Processinh Time: 8 ms.
+i ====== 2123
+One Frame Processinh Time: 6 ms.
+i ====== 2124
+One Frame Processinh Time: 2 ms.
+i ====== 2125
+insert keyframe, id = 2114
+One Frame Processinh Time: 47 ms.
+i ====== 2126
+One Frame Processinh Time: 55 ms.
+i ====== 2127
+One Frame Processinh Time: 8 ms.
+i ====== 2128
+One Frame Processinh Time: 8 ms.
+i ====== 2129
+insert keyframe, id = 2120
+One Frame Processinh Time: 47 ms.
+i ====== 2130
+One Frame Processinh Time: 2 ms.
+i ====== 2131
+One Frame Processinh Time: 4 ms.
+i ====== 2132
+One Frame Processinh Time: 63 ms.
+i ====== 2133
+One Frame Processinh Time: 6 ms.
+i ====== 2134
+One Frame Processinh Time: 4 ms.
+i ====== 2135
+One Frame Processinh Time: 6 ms.
+i ====== 2136
+insert keyframe, id = 2124
+One Frame Processinh Time: 102 ms.
+i ====== 2137
+One Frame Processinh Time: 10 ms.
+i ====== 2138
+One Frame Processinh Time: 4 ms.
+i ====== 2139
+insert keyframe, id = 2127
+One Frame Processinh Time: 107 ms.
+i ====== 2140
+One Frame Processinh Time: 8 ms.
+i ====== 2141
+One Frame Processinh Time: 6 ms.
+i ====== 2142
+insert keyframe, id = 2131
+One Frame Processinh Time: 47 ms.
+i ====== 2143
+One Frame Processinh Time: 65 ms.
+i ====== 2144
+One Frame Processinh Time: 10 ms.
+i ====== 2145
+One Frame Processinh Time: 8 ms.
+i ====== 2146
+One Frame Processinh Time: 6 ms.
+i ====== 2147
+One Frame Processinh Time: 8 ms.
+i ====== 2148
+One Frame Processinh Time: 6 ms.
+i ====== 2149
+insert keyframe, id = 2137
+One Frame Processinh Time: 115 ms.
+i ====== 2150
+One Frame Processinh Time: 6 ms.
+i ====== 2151
+One Frame Processinh Time: 12 ms.
+i ====== 2152
+One Frame Processinh Time: 6 ms.
+i ====== 2153
+One Frame Processinh Time: 12 ms.
+i ====== 2154
+One Frame Processinh Time: 2 ms.
+i ====== 2155
+One Frame Processinh Time: 10 ms.
+i ====== 2156
+One Frame Processinh Time: 10 ms.
+i ====== 2157
+One Frame Processinh Time: 47 ms.
+i ====== 2158
+One Frame Processinh Time: 2 ms.
+i ====== 2159
+One Frame Processinh Time: 4 ms.
+i ====== 2160
+One Frame Processinh Time: 4 ms.
+i ====== 2161
+One Frame Processinh Time: 4 ms.
+i ====== 2162
+One Frame Processinh Time: 2 ms.
+i ====== 2163
+One Frame Processinh Time: 4 ms.
+i ====== 2164
+insert keyframe, id = 2152
+One Frame Processinh Time: 111 ms.
+i ====== 2165
+One Frame Processinh Time: 10 ms.
+i ====== 2166
+One Frame Processinh Time: 12 ms.
+i ====== 2167
+One Frame Processinh Time: 47 ms.
+i ====== 2168
+One Frame Processinh Time: 6 ms.
+i ====== 2169
+One Frame Processinh Time: 4 ms.
+i ====== 2170
+One Frame Processinh Time: 4 ms.
+i ====== 2171
+One Frame Processinh Time: 4 ms.
+i ====== 2172
+One Frame Processinh Time: 6 ms.
+i ====== 2173
+One Frame Processinh Time: 4 ms.
+i ====== 2174
+insert keyframe, id = 2162
+One Frame Processinh Time: 108 ms.
+i ====== 2175
+One Frame Processinh Time: 4 ms.
+i ====== 2176
+One Frame Processinh Time: 47 ms.
+i ====== 2177
+One Frame Processinh Time: 4 ms.
+i ====== 2178
+One Frame Processinh Time: 4 ms.
+i ====== 2179
+One Frame Processinh Time: 4 ms.
+i ====== 2180
+One Frame Processinh Time: 4 ms.
+i ====== 2181
+One Frame Processinh Time: 6 ms.
+i ====== 2182
+One Frame Processinh Time: 4 ms.
+i ====== 2183
+insert keyframe, id = 2171
+One Frame Processinh Time: 100 ms.
+i ====== 2184
+One Frame Processinh Time: 4 ms.
+i ====== 2185
+One Frame Processinh Time: 4 ms.
+i ====== 2186
+One Frame Processinh Time: 8 ms.
+i ====== 2187
+One Frame Processinh Time: 6 ms.
+i ====== 2188
+One Frame Processinh Time: 6 ms.
+i ====== 2189
+One Frame Processinh Time: 10 ms.
+i ====== 2190
+One Frame Processinh Time: 10 ms.
+i ====== 2191
+One Frame Processinh Time: 48 ms.
+i ====== 2192
+One Frame Processinh Time: 6 ms.
+i ====== 2193
+One Frame Processinh Time: 4 ms.
+i ====== 2194
+One Frame Processinh Time: 2 ms.
+i ====== 2195
+One Frame Processinh Time: 4 ms.
+i ====== 2196
+One Frame Processinh Time: 2 ms.
+i ====== 2197
+One Frame Processinh Time: 6 ms.
+i ====== 2198
+insert keyframe, id = 2186
+One Frame Processinh Time: 113 ms.
+i ====== 2199
+One Frame Processinh Time: 12 ms.
+i ====== 2200
+One Frame Processinh Time: 12 ms.
+i ====== 2201
+One Frame Processinh Time: 47 ms.
+i ====== 2202
+One Frame Processinh Time: 4 ms.
+i ====== 2203
+One Frame Processinh Time: 4 ms.
+i ====== 2204
+One Frame Processinh Time: 4 ms.
+i ====== 2205
+One Frame Processinh Time: 4 ms.
+i ====== 2206
+One Frame Processinh Time: 4 ms.
+i ====== 2207
+One Frame Processinh Time: 6 ms.
+i ====== 2208
+insert keyframe, id = 2196
+One Frame Processinh Time: 125 ms.
+i ====== 2209
+One Frame Processinh Time: 6 ms.
+i ====== 2210
+One Frame Processinh Time: 12 ms.
+i ====== 2211
+One Frame Processinh Time: 10 ms.
+i ====== 2212
+One Frame Processinh Time: 10 ms.
+i ====== 2213
+One Frame Processinh Time: 8 ms.
+i ====== 2214
+insert keyframe, id = 2203
+One Frame Processinh Time: 49 ms.
+i ====== 2215
+One Frame Processinh Time: 90 ms.
+i ====== 2216
+One Frame Processinh Time: 10 ms.
+i ====== 2217
+One Frame Processinh Time: 12 ms.
+i ====== 2218
+One Frame Processinh Time: 4 ms.
+i ====== 2219
+insert keyframe, id = 2209
+One Frame Processinh Time: 47 ms.
+i ====== 2220
+One Frame Processinh Time: 4 ms.
+i ====== 2221
+One Frame Processinh Time: 90 ms.
+i ====== 2222
+One Frame Processinh Time: 6 ms.
+i ====== 2223
+One Frame Processinh Time: 6 ms.
+i ====== 2224
+One Frame Processinh Time: 6 ms.
+i ====== 2225
+insert keyframe, id = 2214
+One Frame Processinh Time: 47 ms.
+i ====== 2226
+One Frame Processinh Time: 82 ms.
+i ====== 2227
+One Frame Processinh Time: 12 ms.
+i ====== 2228
+One Frame Processinh Time: 6 ms.
+i ====== 2229
+One Frame Processinh Time: 6 ms.
+i ====== 2230
+One Frame Processinh Time: 6 ms.
+i ====== 2231
+One Frame Processinh Time: 2 ms.
+i ====== 2232
+insert keyframe, id = 2220
+One Frame Processinh Time: 127 ms.
+i ====== 2233
+One Frame Processinh Time: 6 ms.
+i ====== 2234
+One Frame Processinh Time: 6 ms.
+i ====== 2235
+One Frame Processinh Time: 4 ms.
+i ====== 2236
+One Frame Processinh Time: 6 ms.
+i ====== 2237
+One Frame Processinh Time: 12 ms.
+i ====== 2238
+One Frame Processinh Time: 8 ms.
+i ====== 2239
+insert keyframe, id = 2227
+One Frame Processinh Time: 121 ms.
+i ====== 2240
+One Frame Processinh Time: 6 ms.
+i ====== 2241
+One Frame Processinh Time: 8 ms.
+i ====== 2242
+One Frame Processinh Time: 6 ms.
+i ====== 2243
+One Frame Processinh Time: 8 ms.
+i ====== 2244
+One Frame Processinh Time: 6 ms.
+i ====== 2245
+One Frame Processinh Time: 4 ms.
+i ====== 2246
+insert keyframe, id = 2234
+One Frame Processinh Time: 119 ms.
+i ====== 2247
+One Frame Processinh Time: 51 ms.
+i ====== 2248
+One Frame Processinh Time: 6 ms.
+i ====== 2249
+One Frame Processinh Time: 4 ms.
+i ====== 2250
+One Frame Processinh Time: 4 ms.
+i ====== 2251
+One Frame Processinh Time: 4 ms.
+i ====== 2252
+insert keyframe, id = 2242
+One Frame Processinh Time: 4 ms.
+i ====== 2253
+One Frame Processinh Time: 4 ms.
+i ====== 2254
+One Frame Processinh Time: 102 ms.
+i ====== 2255
+One Frame Processinh Time: 58 ms.
+i ====== 2256
+One Frame Processinh Time: 4 ms.
+i ====== 2257
+One Frame Processinh Time: 4 ms.
+i ====== 2258
+One Frame Processinh Time: 4 ms.
+i ====== 2259
+One Frame Processinh Time: 4 ms.
+i ====== 2260
+insert keyframe, id = 2250
+One Frame Processinh Time: 47 ms.
+i ====== 2261
+One Frame Processinh Time: 4 ms.
+i ====== 2262
+One Frame Processinh Time: 49 ms.
+i ====== 2263
+One Frame Processinh Time: 4 ms.
+i ====== 2264
+One Frame Processinh Time: 4 ms.
+i ====== 2265
+insert keyframe, id = 2255
+One Frame Processinh Time: 47 ms.
+i ====== 2266
+One Frame Processinh Time: 4 ms.
+i ====== 2267
+One Frame Processinh Time: 76 ms.
+i ====== 2268
+One Frame Processinh Time: 6 ms.
+i ====== 2269
+One Frame Processinh Time: 6 ms.
+i ====== 2270
+One Frame Processinh Time: 6 ms.
+i ====== 2271
+One Frame Processinh Time: 6 ms.
+i ====== 2272
+insert keyframe, id = 2260
+One Frame Processinh Time: 115 ms.
+i ====== 2273
+One Frame Processinh Time: 53 ms.
+i ====== 2274
+One Frame Processinh Time: 4 ms.
+i ====== 2275
+insert keyframe, id = 2268
+One Frame Processinh Time: 4 ms.
+i ====== 2276
+One Frame Processinh Time: 2 ms.
+i ====== 2277
+One Frame Processinh Time: 4 ms.
+i ====== 2278
+One Frame Processinh Time: 2 ms.
+i ====== 2279
+One Frame Processinh Time: 4 ms.
+i ====== 2280
+One Frame Processinh Time: 80 ms.
+i ====== 2281
+One Frame Processinh Time: 4 ms.
+i ====== 2282
+One Frame Processinh Time: 4 ms.
+i ====== 2283
+One Frame Processinh Time: 4 ms.
+i ====== 2284
+One Frame Processinh Time: 8 ms.
+i ====== 2285
+One Frame Processinh Time: 8 ms.
+i ====== 2286
+One Frame Processinh Time: 10 ms.
+i ====== 2287
+One Frame Processinh Time: 6 ms.
+i ====== 2288
+One Frame Processinh Time: 12 ms.
+i ====== 2289
+One Frame Processinh Time: 4 ms.
+i ====== 2290
+One Frame Processinh Time: 8 ms.
+i ====== 2291
+One Frame Processinh Time: 8 ms.
+i ====== 2292
+One Frame Processinh Time: 47 ms.
+i ====== 2293
+One Frame Processinh Time: 4 ms.
+i ====== 2294
+One Frame Processinh Time: 2 ms.
+i ====== 2295
+One Frame Processinh Time: 2 ms.
+i ====== 2296
+One Frame Processinh Time: 4 ms.
+i ====== 2297
+One Frame Processinh Time: 2 ms.
+i ====== 2298
+insert keyframe, id = 2287
+One Frame Processinh Time: 4 ms.
+i ====== 2299
+One Frame Processinh Time: 113 ms.
+i ====== 2300
+One Frame Processinh Time: 8 ms.
+i ====== 2301
+One Frame Processinh Time: 4 ms.
+i ====== 2302
+One Frame Processinh Time: 4 ms.
+i ====== 2303
+One Frame Processinh Time: 2 ms.
+i ====== 2304
+One Frame Processinh Time: 8 ms.
+i ====== 2305
+One Frame Processinh Time: 10 ms.
+i ====== 2306
+One Frame Processinh Time: 8 ms.
+i ====== 2307
+One Frame Processinh Time: 6 ms.
+i ====== 2308
+One Frame Processinh Time: 47 ms.
+i ====== 2309
+One Frame Processinh Time: 4 ms.
+i ====== 2310
+One Frame Processinh Time: 4 ms.
+i ====== 2311
+One Frame Processinh Time: 2 ms.
+i ====== 2312
+One Frame Processinh Time: 4 ms.
+i ====== 2313
+One Frame Processinh Time: 4 ms.
+i ====== 2314
+insert keyframe, id = 2303
+One Frame Processinh Time: 4 ms.
+i ====== 2315
+One Frame Processinh Time: 104 ms.
+i ====== 2316
+One Frame Processinh Time: 8 ms.
+i ====== 2317
+One Frame Processinh Time: 6 ms.
+i ====== 2318
+One Frame Processinh Time: 6 ms.
+i ====== 2319
+One Frame Processinh Time: 45 ms.
+i ====== 2320
+One Frame Processinh Time: 4 ms.
+i ====== 2321
+One Frame Processinh Time: 2 ms.
+i ====== 2322
+One Frame Processinh Time: 4 ms.
+i ====== 2323
+One Frame Processinh Time: 4 ms.
+i ====== 2324
+One Frame Processinh Time: 4 ms.
+i ====== 2325
+One Frame Processinh Time: 4 ms.
+i ====== 2326
+insert keyframe, id = 2314
+One Frame Processinh Time: 113 ms.
+i ====== 2327
+One Frame Processinh Time: 8 ms.
+i ====== 2328
+One Frame Processinh Time: 6 ms.
+i ====== 2329
+One Frame Processinh Time: 10 ms.
+i ====== 2330
+One Frame Processinh Time: 10 ms.
+i ====== 2331
+One Frame Processinh Time: 47 ms.
+i ====== 2332
+One Frame Processinh Time: 4 ms.
+i ====== 2333
+One Frame Processinh Time: 4 ms.
+i ====== 2334
+One Frame Processinh Time: 2 ms.
+i ====== 2335
+One Frame Processinh Time: 4 ms.
+i ====== 2336
+One Frame Processinh Time: 2 ms.
+i ====== 2337
+insert keyframe, id = 2326
+One Frame Processinh Time: 4 ms.
+i ====== 2338
+One Frame Processinh Time: 111 ms.
+i ====== 2339
+One Frame Processinh Time: 10 ms.
+i ====== 2340
+One Frame Processinh Time: 10 ms.
+i ====== 2341
+One Frame Processinh Time: 6 ms.
+i ====== 2342
+One Frame Processinh Time: 8 ms.
+i ====== 2343
+One Frame Processinh Time: 4 ms.
+i ====== 2344
+One Frame Processinh Time: 8 ms.
+i ====== 2345
+One Frame Processinh Time: 16 ms.
+i ====== 2346
+One Frame Processinh Time: 8 ms.
+i ====== 2347
+One Frame Processinh Time: 4 ms.
+i ====== 2348
+One Frame Processinh Time: 10 ms.
+i ====== 2349
+One Frame Processinh Time: 45 ms.
+i ====== 2350
+One Frame Processinh Time: 2 ms.
+i ====== 2351
+One Frame Processinh Time: 4 ms.
+i ====== 2352
+One Frame Processinh Time: 4 ms.
+i ====== 2353
+One Frame Processinh Time: 4 ms.
+i ====== 2354
+One Frame Processinh Time: 4 ms.
+i ====== 2355
+One Frame Processinh Time: 4 ms.
+i ====== 2356
+insert keyframe, id = 2344
+One Frame Processinh Time: 127 ms.
+i ====== 2357
+One Frame Processinh Time: 12 ms.
+i ====== 2358
+One Frame Processinh Time: 10 ms.
+i ====== 2359
+One Frame Processinh Time: 14 ms.
+i ====== 2360
+One Frame Processinh Time: 12 ms.
+i ====== 2361
+One Frame Processinh Time: 12 ms.
+i ====== 2362
+One Frame Processinh Time: 8 ms.
+i ====== 2363
+One Frame Processinh Time: 12 ms.
+i ====== 2364
+One Frame Processinh Time: 8 ms.
+i ====== 2365
+One Frame Processinh Time: 12 ms.
+i ====== 2366
+One Frame Processinh Time: 6 ms.
+i ====== 2367
+One Frame Processinh Time: 16 ms.
+i ====== 2368
+One Frame Processinh Time: 10 ms.
+i ====== 2369
+One Frame Processinh Time: 8 ms.
+i ====== 2370
+One Frame Processinh Time: 14 ms.
+i ====== 2371
+One Frame Processinh Time: 10 ms.
+i ====== 2372
+One Frame Processinh Time: 45 ms.
+i ====== 2373
+One Frame Processinh Time: 4 ms.
+i ====== 2374
+One Frame Processinh Time: 2 ms.
+i ====== 2375
+One Frame Processinh Time: 4 ms.
+i ====== 2376
+One Frame Processinh Time: 2 ms.
+i ====== 2377
+One Frame Processinh Time: 4 ms.
+i ====== 2378
+One Frame Processinh Time: 10 ms.
+i ====== 2379
+insert keyframe, id = 2367
+One Frame Processinh Time: 127 ms.
+i ====== 2380
+One Frame Processinh Time: 12 ms.
+i ====== 2381
+One Frame Processinh Time: 4 ms.
+i ====== 2382
+One Frame Processinh Time: 12 ms.
+i ====== 2383
+One Frame Processinh Time: 22 ms.
+i ====== 2384
+One Frame Processinh Time: 4 ms.
+i ====== 2385
+One Frame Processinh Time: 8 ms.
+i ====== 2386
+One Frame Processinh Time: 8 ms.
+i ====== 2387
+One Frame Processinh Time: 4 ms.
+i ====== 2388
+One Frame Processinh Time: 6 ms.
+i ====== 2389
+One Frame Processinh Time: 6 ms.
+i ====== 2390
+One Frame Processinh Time: 8 ms.
+i ====== 2391
+One Frame Processinh Time: 12 ms.
+i ====== 2392
+One Frame Processinh Time: 8 ms.
+i ====== 2393
+One Frame Processinh Time: 4 ms.
+i ====== 2394
+One Frame Processinh Time: 6 ms.
+i ====== 2395
+One Frame Processinh Time: 10 ms.
+i ====== 2396
+One Frame Processinh Time: 14 ms.
+i ====== 2397
+One Frame Processinh Time: 14 ms.
+i ====== 2398
+One Frame Processinh Time: 10 ms.
+i ====== 2399
+One Frame Processinh Time: 10 ms.
+i ====== 2400
+One Frame Processinh Time: 16 ms.
+i ====== 2401
+One Frame Processinh Time: 10 ms.
+i ====== 2402
+One Frame Processinh Time: 8 ms.
+i ====== 2403
+One Frame Processinh Time: 12 ms.
+i ====== 2404
+One Frame Processinh Time: 12 ms.
+i ====== 2405
+One Frame Processinh Time: 14 ms.
+i ====== 2406
+One Frame Processinh Time: 12 ms.
+i ====== 2407
+One Frame Processinh Time: 14 ms.
+i ====== 2408
+One Frame Processinh Time: 8 ms.
+i ====== 2409
+One Frame Processinh Time: 16 ms.
+i ====== 2410
+One Frame Processinh Time: 12 ms.
+i ====== 2411
+One Frame Processinh Time: 10 ms.
+i ====== 2412
+One Frame Processinh Time: 12 ms.
+i ====== 2413
+One Frame Processinh Time: 10 ms.
+i ====== 2414
+One Frame Processinh Time: 14 ms.
+i ====== 2415
+One Frame Processinh Time: 14 ms.
+i ====== 2416
+One Frame Processinh Time: 8 ms.
+i ====== 2417
+One Frame Processinh Time: 8 ms.
+i ====== 2418
+One Frame Processinh Time: 10 ms.
+i ====== 2419
+One Frame Processinh Time: 10 ms.
+i ====== 2420
+One Frame Processinh Time: 10 ms.
+i ====== 2421
+One Frame Processinh Time: 14 ms.
+i ====== 2422
+One Frame Processinh Time: 8 ms.
+i ====== 2423
+One Frame Processinh Time: 14 ms.
+i ====== 2424
+One Frame Processinh Time: 12 ms.
+Average FPS = 38.6744
+Waiting to stop...
+Map building has been stopped
+Save file to /results/hortimulti/strawberry03/airslam/run1/trajectory_v0.txt
+trajectory.size = 460
+map_path = /results/hortimulti/strawberry03/airslam/run1/AirSLAM_mapv0.bin
+check map
+_mappoints = 96257
+_keyframes = 460
+Map saveing..... 
+Map saveing done! 
+[31mWARNING: disk usage in log directory [/root/.ros/log] is over 1GB.
+It's recommended that you use the 'rosclean' command.[0m
+... logging to /root/.ros/log/e9302132-554a-11f1-89c0-76f5feb03429/roslaunch-60eff527563b-879.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+]2;/root/catkin_ws/src/air_slam/launch/visual_odometry/vo_euroc.launch
+[1mstarted roslaunch server http://60eff527563b:37591/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /rosdistro: noetic
+ * /rosversion: 1.16.0
+ * /visual_odometry/camera_config_path: /benchmark_config...
+ * /visual_odometry/config_path: /benchmark_config...
+ * /visual_odometry/dataroot: /datasets/hortimu...
+ * /visual_odometry/model_dir: /root/catkin_ws/s...
+ * /visual_odometry/saving_dir: /results/hortimul...
+
+NODES
+  /
+    visual_odometry (air_slam/visual_odometry)
+
+auto-starting new master
+[1mprocess[master]: started with pid [961][0m
+[1mROS_MASTER_URI=http://localhost:11311[0m
+]2;/root/catkin_ws/src/air_slam/launch/visual_odometry/vo_euroc.launch http://localhost:11311
+[1msetting /run_id to e9302132-554a-11f1-89c0-76f5feb03429[0m
+[1mprocess[rosout-1]: started with pid [986][0m
+started core service [/rosout]
+[1mprocess[visual_odometry-2]: started with pid [993][0m
+[1m[visual_odometry-2] process has finished cleanly
+log file: /root/.ros/log/e9302132-554a-11f1-89c0-76f5feb03429/visual_odometry-2*.log[0m
+[rosout-1] killing on exit
+[master] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m

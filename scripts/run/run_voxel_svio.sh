@@ -92,6 +92,20 @@ PLAYER_HOST="/benchmark_scripts/run/voxel_svio_data_player.py"
 
 START=$(date +%s.%N)
 
+# ---- Start roscore inside the container ------------------------------------
+docker exec "$CONTAINER" bash -c "
+    source /opt/ros/noetic/setup.bash &&
+    roscore
+" 2>&1 >> "$LOG" &
+ROSCORE_PID=$!
+# Wait until rosmaster is reachable (up to 10 s).
+for i in $(seq 1 10); do
+    docker exec "$CONTAINER" bash -c "
+        source /opt/ros/noetic/setup.bash &&
+        rostopic list" &>/dev/null && break
+    sleep 1
+done
+
 # Use a local launch wrapper that loads our config (the upstream launch file
 # loads its bundled config/euroc.yaml). We pass the config path via rosparam
 # load on the command line instead.
@@ -114,11 +128,13 @@ docker exec "$CONTAINER" bash -c "
     python3 $PLAYER_HOST $DATAROOT_CONT --rate 1.0 --start-delay 1.0 --end-wait 3.0
 " 2>&1 | tee -a "$LOG"
 
-# ---- Stop vio_node --------------------------------------------------------
+# ---- Stop vio_node and roscore --------------------------------------------
 echo "[voxel_svio] data player done; stopping vio_node ..." | tee -a "$LOG"
 docker exec "$CONTAINER" bash -c "pkill -SIGINT -f vio_node 2>/dev/null || true"
 sleep 2
 wait "$NODE_PID" 2>/dev/null || true
+docker exec "$CONTAINER" bash -c "pkill -f roscore 2>/dev/null || true; pkill -f rosmaster 2>/dev/null || true"
+kill "$ROSCORE_PID" 2>/dev/null || true
 
 END=$(date +%s.%N)
 
@@ -132,6 +148,38 @@ cp "$POSE_HOST" "$OUT_DIR/trajectory.txt"
 [[ -f "$WS/src/voxel_svio/output/parameter_list.txt" ]] && \
     cp "$WS/src/voxel_svio/output/parameter_list.txt" "$OUT_DIR/parameter_list.txt"
 cp "$LOG" "$OUT_DIR/run_log.txt"
+
+# ---- Compensate cam-IMU timeshift in output timestamps --------------------
+# Voxel-SVIO writes pose timestamps on the IMU clock. The host-side GT and the
+# rest of the benchmark expect camera-clock timestamps. Subtract the configured
+# timeshift_cam_imu_left so trajectory.txt is on the camera clock and evo_ape
+# can match poses within --t_max_diff 0.005.
+python3 - "$CFG_HOST" "$OUT_DIR/trajectory.txt" <<'PYEOF'
+import re, sys
+cfg_path, traj_path = sys.argv[1], sys.argv[2]
+shift = 0.0
+with open(cfg_path) as fh:
+    for line in fh:
+        m = re.match(r'\s*timeshift_cam_imu_left\s*:\s*([-+0-9.eE]+)', line)
+        if m:
+            shift = float(m.group(1))
+            break
+if shift == 0.0:
+    sys.exit(0)
+with open(traj_path) as fh:
+    lines = fh.readlines()
+out = []
+for l in lines:
+    s = l.strip()
+    if not s or s.startswith('#'):
+        out.append(l); continue
+    parts = s.split()
+    parts[0] = f"{float(parts[0]) - shift:.9f}"
+    out.append(' '.join(parts) + '\n')
+with open(traj_path, 'w') as fh:
+    fh.writelines(out)
+print(f"[voxel_svio] shifted trajectory timestamps by -{shift}s (cam-IMU offset)")
+PYEOF
 
 DUR=$(python3 -c "print($END-$START)")
 NFR=$(wc -l < "$OUT_DIR/trajectory.txt")

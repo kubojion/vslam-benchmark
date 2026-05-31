@@ -1,0 +1,289 @@
+0.071 num_seq = 1
+0.071 file name: rosariov2_sequence1_orbslam3
+0.092 Loading images for sequence 0...LOADED!
+0.330 Loading IMU for sequence 0...LOADED!
+0.331 
+0.331 -------
+0.331 
+0.331 ORB-SLAM3 Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.331 ORB-SLAM2 Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.331 This program comes with ABSOLUTELY NO WARRANTY;
+0.333 This is free software, and you are welcome to redistribute it
+0.333 under certain conditions. See LICENSE.txt.
+0.333 
+0.333 Input sensor was set to: Stereo-Inertial
+0.333 Loading settings from /home/jion_kubo/vslam_ws/configs/orbslam3/rosariov2_stereo_inertial.yaml
+0.333 	-Loaded camera 1
+0.333 	-Loaded camera 2
+0.333 Camera.newHeight optional parameter does not exist...
+0.333 Camera.newWidth optional parameter does not exist...
+0.333 	-Loaded image info
+0.333 	-Loaded IMU calibration
+0.333 	-Loaded ORB settings
+0.333 	-Loaded viewer settings
+0.333 System.LoadAtlasFromFile optional parameter does not exist...
+0.333 System.SaveAtlasToFile optional parameter does not exist...
+0.334 	-Loaded Atlas settings
+0.334 System.thFarPoints optional parameter does not exist...
+0.334 	-Loaded misc parameters
+0.334 ----------------------------------
+0.334 SLAM settings: 
+0.334 	-Camera 1 parameters (Pinhole): [ 648.8624267578125 648.8624267578125 645.0113525390625 348.24267578125 ]
+0.334 	-Camera 2 parameters (Pinhole: [ 648.8624267578125 648.8624267578125 645.0113525390625 348.24267578125 ]
+0.334 	-Original image size: [ 1280 , 720 ]
+0.334 	-Current image size: [ 1280 , 720 ]
+0.334 	-Sequence FPS: 15
+0.334 	-Stereo baseline: 0.049733694642782211
+0.334 	-Stereo depth threshold : 80
+0.334 	-Gyro noise: 0.00023239999427460134
+0.334 	-Accelerometer noise: 0.0009943000040948391
+0.334 	-Gyro walk: 1.8230000478069996e-06
+0.334 	-Accelerometer walk: 4.7500001528533176e-05
+0.334 	-IMU frequency: 200
+0.334 	-Features per image: 1200
+0.334 	-ORB scale factor: 1.2000000476837158
+0.334 	-ORB number of scales: 8
+0.334 	-Initial FAST threshold: 20
+0.334 	-Min FAST threshold: 7
+0.334 
+0.334 
+0.334 Loading ORB Vocabulary. This could take a while...
+4.647 Vocabulary loaded!
+4.647 
+4.661 Initialization of Atlas from scratch 
+4.661 Creation of new map with id: 0
+4.661 Creation of new map with last KF id: 0
+4.662 Seq. Name: 
+4.662 There are 1 cameras in the atlas
+4.662 Camera 0 is pinhole
+4.714 not IMU meas
+4.792 not IMU meas
+4.870 not enough acceleration
+4.942 not enough acceleration
+5.027 not enough acceleration
+5.101 not enough acceleration
+5.194 not enough acceleration
+5.265 not enough acceleration
+5.332 not enough acceleration
+5.420 not enough acceleration
+5.520 not enough acceleration
+5.588 not enough acceleration
+5.678 not enough acceleration
+5.748 not enough acceleration
+5.826 not enough acceleration
+5.908 not enough acceleration
+5.985 not enough acceleration
+6.081 not enough acceleration
+6.147 not enough acceleration
+6.222 not enough acceleration
+6.369 not enough acceleration
+6.452 not enough acceleration
+6.539 not enough acceleration
+6.606 not enough acceleration
+6.690 not enough acceleration
+6.779 not enough acceleration
+6.845 not enough acceleration
+7.001 not enough acceleration
+7.072 not enough acceleration
+7.168 not enough acceleration
+7.232 not enough acceleration
+7.308 not enough acceleration
+7.401 not enough acceleration
+7.468 not enough acceleration
+7.556 not enough acceleration
+7.633 not enough acceleration
+7.785 not enough acceleration
+7.855 not enough acceleration
+7.944 not enough acceleration
+8.023 not enough acceleration
+8.095 not enough acceleration
+8.180 not enough acceleration
+8.338 not enough acceleration
+8.404 not enough acceleration
+8.500 not enough acceleration
+8.568 not enough acceleration
+8.678 not enough acceleration
+8.736 not enough acceleration
+8.825 not enough acceleration
+8.895 not enough acceleration
+8.985 not enough acceleration
+9.056 not enough acceleration
+9.143 not enough acceleration
+9.234 not enough acceleration
+9.291 not enough acceleration
+9.375 not enough acceleration
+9.458 not enough acceleration
+9.527 not enough acceleration
+9.626 not enough acceleration
+9.690 not enough acceleration
+9.786 not enough acceleration
+9.859 not enough acceleration
+9.930 not enough acceleration
+10.024 not enough acceleration
+10.093 not enough acceleration
+10.166 not enough acceleration
+10.260 not enough acceleration
+10.327 not enough acceleration
+10.418 not enough acceleration
+10.549 not enough acceleration
+10.642 not enough acceleration
+10.721 not enough acceleration
+10.792 not enough acceleration
+10.885 not enough acceleration
+11.019 not enough acceleration
+11.115 not enough acceleration
+11.179 First KF:0; Map init KF:0
+11.180 New Map created with 664 points
+17.333 start VIBA 1
+17.648 end VIBA 1
+29.712 start VIBA 2
+29.910 end VIBA 2
+0.092 num_seq = 1
+0.092 file name: rosariov2_sequence1_orbslam3
+0.112 Loading images for sequence 0...LOADED!
+0.295 Loading IMU for sequence 0...LOADED!
+0.295 
+0.295 -------
+0.295 
+0.295 ORB-SLAM3 Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.295 ORB-SLAM2 Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.295 This program comes with ABSOLUTELY NO WARRANTY;
+0.295 This is free software, and you are welcome to redistribute it
+0.295 under certain conditions. See LICENSE.txt.
+0.295 
+0.295 Input sensor was set to: Stereo-Inertial
+0.295 Loading settings from /home/jion_kubo/vslam_ws/configs/orbslam3/rosariov2_stereo_inertial.yaml
+0.295 	-Loaded camera 1
+0.295 	-Loaded camera 2
+0.295 Camera.newHeight optional parameter does not exist...
+0.295 Camera.newWidth optional parameter does not exist...
+0.295 	-Loaded image info
+0.295 	-Loaded IMU calibration
+0.295 	-Loaded ORB settings
+0.295 	-Loaded viewer settings
+0.295 System.LoadAtlasFromFile optional parameter does not exist...
+0.295 System.SaveAtlasToFile optional parameter does not exist...
+0.295 	-Loaded Atlas settings
+0.295 System.thFarPoints optional parameter does not exist...
+0.295 	-Loaded misc parameters
+0.295 ----------------------------------
+0.295 SLAM settings: 
+0.295 	-Camera 1 parameters (Pinhole): [ 648.8624267578125 648.8624267578125 645.0113525390625 348.24267578125 ]
+0.295 	-Camera 2 parameters (Pinhole: [ 648.8624267578125 648.8624267578125 645.0113525390625 348.24267578125 ]
+0.295 	-Original image size: [ 1280 , 720 ]
+0.295 	-Current image size: [ 1280 , 720 ]
+0.295 	-Sequence FPS: 15
+0.295 	-Stereo baseline: 0.049733694642782211
+0.295 	-Stereo depth threshold : 80
+0.295 	-Gyro noise: 0.00023239999427460134
+0.295 	-Accelerometer noise: 0.0009943000040948391
+0.295 	-Gyro walk: 1.8230000478069996e-06
+0.295 	-Accelerometer walk: 4.7500001528533176e-05
+0.295 	-IMU frequency: 200
+0.295 	-Features per image: 1200
+0.295 	-ORB scale factor: 1.2000000476837158
+0.295 	-ORB number of scales: 8
+0.295 	-Initial FAST threshold: 20
+0.295 	-Min FAST threshold: 7
+0.295 
+0.295 
+0.295 Loading ORB Vocabulary. This could take a while...
+3.818 Vocabulary loaded!
+3.818 
+3.829 Initialization of Atlas from scratch 
+3.829 Creation of new map with id: 0
+3.829 Creation of new map with last KF id: 0
+3.829 Seq. Name: 
+3.830 There are 1 cameras in the atlas
+3.830 Camera 0 is pinhole
+3.881 not IMU meas
+3.955 not IMU meas
+4.034 not enough acceleration
+4.109 not enough acceleration
+4.186 not enough acceleration
+4.264 not enough acceleration
+4.343 not enough acceleration
+4.418 not enough acceleration
+4.500 not enough acceleration
+4.578 not enough acceleration
+4.655 not enough acceleration
+4.732 not enough acceleration
+4.810 not enough acceleration
+4.887 not enough acceleration
+4.967 not enough acceleration
+5.044 not enough acceleration
+5.117 not enough acceleration
+5.198 not enough acceleration
+5.276 not enough acceleration
+5.356 not enough acceleration
+5.507 not enough acceleration
+5.585 not enough acceleration
+5.663 not enough acceleration
+5.745 not enough acceleration
+5.821 not enough acceleration
+5.895 not enough acceleration
+5.974 not enough acceleration
+6.126 not enough acceleration
+6.205 not enough acceleration
+6.282 not enough acceleration
+6.361 not enough acceleration
+6.438 not enough acceleration
+6.516 not enough acceleration
+6.592 not enough acceleration
+6.670 not enough acceleration
+6.749 not enough acceleration
+6.902 not enough acceleration
+6.978 not enough acceleration
+7.059 not enough acceleration
+7.134 not enough acceleration
+7.215 not enough acceleration
+7.293 not enough acceleration
+7.445 not enough acceleration
+7.523 not enough acceleration
+7.600 not enough acceleration
+7.679 not enough acceleration
+7.757 not enough acceleration
+7.834 not enough acceleration
+7.912 not enough acceleration
+7.990 not enough acceleration
+8.070 not enough acceleration
+8.149 not enough acceleration
+8.228 not enough acceleration
+8.305 not enough acceleration
+8.383 not enough acceleration
+8.461 not enough acceleration
+8.537 not enough acceleration
+8.615 not enough acceleration
+8.694 not enough acceleration
+8.772 not enough acceleration
+8.850 not enough acceleration
+8.928 not enough acceleration
+9.004 not enough acceleration
+9.083 not enough acceleration
+9.161 not enough acceleration
+9.239 not enough acceleration
+9.316 not enough acceleration
+9.394 not enough acceleration
+9.472 not enough acceleration
+9.625 not enough acceleration
+9.701 not enough acceleration
+9.779 not enough acceleration
+9.857 not enough acceleration
+9.936 not enough acceleration
+10.089 not enough acceleration
+10.166 not enough acceleration
+10.245 First KF:0; Map init KF:0
+10.245 New Map created with 664 points
+16.244 start VIBA 1
+16.409 end VIBA 1
+28.234 start VIBA 2
+28.375 end VIBA 2
+1115.391 Shutdown
+1115.391 
+1115.391 Saving trajectory to f_rosariov2_sequence1_orbslam3.txt ...
+1115.391 There are 1 maps in the atlas
+1115.392   Map 0 has 2978 KFs
+1115.464 
+1115.464 End of saving trajectory to f_rosariov2_sequence1_orbslam3.txt ...
+1115.464 
+1115.464 Saving keyframe trajectory to kf_rosariov2_sequence1_orbslam3.txt ...

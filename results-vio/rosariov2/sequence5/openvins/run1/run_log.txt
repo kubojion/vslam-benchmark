@@ -1,0 +1,43 @@
+4.738 [INFO] [1780180587.876463347] [openvins_data_player]: loaded imu=158462 cam0=11640 cam1=11640 from /ws/datasets/rosariov2/sequence5
+4.885 [INFO] [1780180588.023422210] [openvins_data_player]: start delay 1.0s for ROS graph...
+5.917 [INFO] [1780180589.055244557] [openvins_data_player]: played 0/181742 (0.0%), poses_received=0
+27.968 [INFO] [1780180611.105482238] [openvins_data_player]: played 5000/181742 (2.8%), poses_received=1683
+49.866 [INFO] [1780180633.004545919] [openvins_data_player]: played 10000/181742 (5.5%), poses_received=5720
+71.750 [INFO] [1780180654.888574467] [openvins_data_player]: played 15000/181742 (8.3%), poses_received=9753
+93.645 [INFO] [1780180676.783350062] [openvins_data_player]: played 20000/181742 (11.0%), poses_received=13767
+115.648 [INFO] [1780180698.787228665] [openvins_data_player]: played 25000/181742 (13.8%), poses_received=17711
+137.537 [INFO] [1780180720.675676664] [openvins_data_player]: played 30000/181742 (16.5%), poses_received=21432
+159.424 [INFO] [1780180742.562735916] [openvins_data_player]: played 35000/181742 (19.3%), poses_received=25109
+181.329 [INFO] [1780180764.467545989] [openvins_data_player]: played 40000/181742 (22.0%), poses_received=28767
+203.207 [INFO] [1780180786.344509853] [openvins_data_player]: played 45000/181742 (24.8%), poses_received=32433
+225.170 [INFO] [1780180808.308471815] [openvins_data_player]: played 50000/181742 (27.5%), poses_received=36123
+247.005 [INFO] [1780180830.143751642] [openvins_data_player]: played 55000/181742 (30.3%), poses_received=39775
+268.874 [INFO] [1780180852.011008411] [openvins_data_player]: played 60000/181742 (33.0%), poses_received=43419
+290.777 [INFO] [1780180873.915018966] [openvins_data_player]: played 65000/181742 (35.8%), poses_received=47226
+312.655 [INFO] [1780180895.792490150] [openvins_data_player]: played 70000/181742 (38.5%), poses_received=50882
+334.488 [INFO] [1780180917.622543868] [openvins_data_player]: played 75000/181742 (41.3%), poses_received=54476
+356.426 [INFO] [1780180939.565031275] [openvins_data_player]: played 80000/181742 (44.0%), poses_received=58163
+378.319 [INFO] [1780180961.457190320] [openvins_data_player]: played 85000/181742 (46.8%), poses_received=61826
+400.283 [INFO] [1780180983.421661289] [openvins_data_player]: played 90000/181742 (49.5%), poses_received=65508
+422.145 [INFO] [1780181005.283733358] [openvins_data_player]: played 95000/181742 (52.3%), poses_received=69156
+443.983 [INFO] [1780181027.119594662] [openvins_data_player]: played 100000/181742 (55.0%), poses_received=72785
+465.907 [INFO] [1780181049.045833482] [openvins_data_player]: played 105000/181742 (57.8%), poses_received=76421
+487.863 [INFO] [1780181071.000929593] [openvins_data_player]: played 110000/181742 (60.5%), poses_received=80120
+509.763 [INFO] [1780181092.901771102] [openvins_data_player]: played 115000/181742 (63.3%), poses_received=83775
+531.644 [INFO] [1780181114.780890474] [openvins_data_player]: played 120000/181742 (66.0%), poses_received=87449
+553.530 [INFO] [1780181136.659549595] [openvins_data_player]: played 125000/181742 (68.8%), poses_received=91129
+575.464 [INFO] [1780181158.602500083] [openvins_data_player]: played 130000/181742 (71.5%), poses_received=94780
+597.412 [INFO] [1780181180.550818973] [openvins_data_player]: played 135000/181742 (74.3%), poses_received=98471
+619.285 [INFO] [1780181202.423741380] [openvins_data_player]: played 140000/181742 (77.0%), poses_received=102122
+641.213 [INFO] [1780181224.350824737] [openvins_data_player]: played 145000/181742 (79.8%), poses_received=105860
+663.125 [INFO] [1780181246.263401735] [openvins_data_player]: played 150000/181742 (82.5%), poses_received=109522
+685.021 [INFO] [1780181268.160017184] [openvins_data_player]: played 155000/181742 (85.3%), poses_received=113141
+706.901 [INFO] [1780181290.035562252] [openvins_data_player]: played 160000/181742 (88.0%), poses_received=116997
+728.798 [INFO] [1780181311.934455537] [openvins_data_player]: played 165000/181742 (90.8%), poses_received=120763
+750.670 [INFO] [1780181333.808724782] [openvins_data_player]: played 170000/181742 (93.5%), poses_received=124596
+772.690 [INFO] [1780181355.828463394] [openvins_data_player]: played 175000/181742 (96.3%), poses_received=128359
+794.565 [INFO] [1780181377.703756632] [openvins_data_player]: played 180000/181742 (99.0%), poses_received=132156
+802.193 [INFO] [1780181385.331622446] [openvins_data_player]: all events published; waiting 3.0s for filter flush...
+805.521 [INFO] [1780181388.657310495] [openvins_data_player]: wrote 133451 poses to /ws/results-vio/rosariov2/sequence5/openvins/run1/trajectory.txt
+805.553 terminate called without an active exception
+871.271 /bin/bash: line 8:    58 Aborted                 (core dumped) python3 /ws/scripts/run/openvins_data_player.py /ws/datasets/rosariov2/sequence5 /ws/results-vio/rosariov2/sequence5/openvins/run1/trajectory.txt --rate 1.0 --start-delay 1.0 --end-wait 3.0

@@ -54,14 +54,16 @@ camera_parameters:
         sigma_alpha_final_ba: 0.3
 
 # IMU: MicroStrain 3DM-GX5-25 AHRS.
-# sigma_g_c, sigma_a_c: Allan variance noise density from calibration.yaml.
+# sigma_g_c, sigma_a_c: Allan variance x50 safety factor for high-vibration platform.
+# Allan raw: gyro=6.037e-04, accel=1.094e-03. Direct Allan causes scale collapse to ~0
+# on hortimulti due to robot vibration. 50x keeps IMU contributing without over-constraining.
 # sigma_gw_c, sigma_aw_c: Allan variance random walk x10 safety factor.
 imu_parameters:
     use: true
     a_max: 160.0
     g_max: 10.0
-    sigma_g_c: 6.037e-04     # gyro noise density [rad/s/sqrt(Hz)]
-    sigma_a_c: 1.094e-03     # accel noise density [m/s^2/sqrt(Hz)]
+    sigma_g_c: 0.0604        # gyro noise density [rad/s/sqrt(Hz)] (100x Allan)
+    sigma_a_c: 0.1094        # accel noise density [m/s^2/sqrt(Hz)] (100x Allan)
     sigma_bg: 0.03
     sigma_ba: 0.1
     sigma_gw_c: 3.221e-04    # gyro bias random walk (Allan x10)
@@ -76,12 +78,12 @@ imu_parameters:
          0.0, 0.0, 0.0, 1.0]
 
 frontend_parameters:
-    detection_threshold: 38.0
-    absolute_threshold: 150.0
+    detection_threshold: 20.0
+    absolute_threshold: 80.0
     matching_threshold: 60.0
-    octaves: 0
-    max_num_keypoints: 700
-    keyframe_overlap: 0.60
+    octaves: 2
+    max_num_keypoints: 1000
+    keyframe_overlap: 0.55
     use_cnn: false
     parallelise_detection: true
     num_matching_threads: 4

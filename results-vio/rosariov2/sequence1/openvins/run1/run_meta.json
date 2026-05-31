@@ -1,0 +1,1 @@
+{"algo": "openvins", "dataset": "rosariov2", "seq": "sequence1", "run_id": 1, "run_type": "vio", "duration_s": 978.3939318656921, "frames": 159863, "fps": 163.39328648038367}

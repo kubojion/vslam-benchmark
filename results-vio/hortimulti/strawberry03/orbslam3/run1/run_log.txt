@@ -1,0 +1,76 @@
+0.251 num_seq = 1
+0.251 file name: hortimulti_strawberry03_orbslam3
+0.255 Loading images for sequence 0...LOADED!
+0.339 Loading IMU for sequence 0...LOADED!
+0.340 
+0.340 -------
+0.340 
+0.340 ORB-SLAM3 Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.340 ORB-SLAM2 Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.340 This program comes with ABSOLUTELY NO WARRANTY;
+0.341 This is free software, and you are welcome to redistribute it
+0.341 under certain conditions. See LICENSE.txt.
+0.341 
+0.341 Input sensor was set to: Stereo-Inertial
+0.341 Loading settings from /home/jion_kubo/vslam_ws/configs/orbslam3/hortimulti_stereo_inertial.yaml
+0.341 	-Loaded camera 1
+0.341 	-Loaded camera 2
+0.342 Camera.newHeight optional parameter does not exist...
+0.342 Camera.newWidth optional parameter does not exist...
+0.342 	-Loaded image info
+0.342 	-Loaded IMU calibration
+0.342 	-Loaded ORB settings
+0.343 Viewer.imageViewScale optional parameter does not exist...
+0.343 	-Loaded viewer settings
+0.343 System.LoadAtlasFromFile optional parameter does not exist...
+0.343 System.SaveAtlasToFile optional parameter does not exist...
+0.343 	-Loaded Atlas settings
+0.343 System.thFarPoints optional parameter does not exist...
+0.343 	-Loaded misc parameters
+0.343 ----------------------------------
+0.343 SLAM settings: 
+0.343 	-Camera 1 parameters (Pinhole): [ 262.71490478515625 262.71490478515625 329.43099975585938 219.56170654296875 ]
+0.343 	-Camera 2 parameters (Pinhole: [ 262.71490478515625 262.71490478515625 329.43099975585938 219.56170654296875 ]
+0.343 	-Original image size: [ 640 , 480 ]
+0.343 	-Current image size: [ 640 , 480 ]
+0.343 	-Sequence FPS: 10
+0.343 	-Stereo baseline: 0.13950200378894806
+0.343 	-Stereo depth threshold : 40
+0.343 	-Gyro noise: 0.00060369999846443534
+0.343 	-Accelerometer noise: 0.0010939999483525753
+0.343 	-Gyro walk: 3.2209998607868329e-05
+0.343 	-Accelerometer walk: 4.5839999074814841e-05
+0.343 	-IMU frequency: 200
+0.343 	-Features per image: 1200
+0.343 	-ORB scale factor: 1.2000000476837158
+0.343 	-ORB number of scales: 8
+0.343 	-Initial FAST threshold: 20
+0.343 	-Min FAST threshold: 7
+0.343 
+0.343 
+0.343 Loading ORB Vocabulary. This could take a while...
+7.045 Vocabulary loaded!
+7.045 
+7.068 Initialization of Atlas from scratch 
+7.068 Creation of new map with id: 0
+7.068 Creation of new map with last KF id: 0
+7.071 Seq. Name: 
+7.071 There are 1 cameras in the atlas
+7.071 Camera 0 is pinhole
+7.136 not IMU meas
+7.191 not IMU meas
+7.302 First KF:0; Map init KF:0
+7.303 New Map created with 530 points
+13.195 start VIBA 1
+13.414 end VIBA 1
+24.185 start VIBA 2
+25.209 end VIBA 2
+272.347 Shutdown
+272.347 
+272.347 Saving trajectory to f_hortimulti_strawberry03_orbslam3.txt ...
+272.347 There are 1 maps in the atlas
+272.348   Map 0 has 718 KFs
+272.370 
+272.370 End of saving trajectory to f_hortimulti_strawberry03_orbslam3.txt ...
+272.370 
+272.370 Saving keyframe trajectory to kf_hortimulti_strawberry03_orbslam3.txt ...

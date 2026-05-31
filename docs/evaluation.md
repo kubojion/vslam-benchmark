@@ -1,6 +1,7 @@
 # Evaluation
 
 > Fully revised: 2026-05-30 - Added run-type flag examples; clarified CSV rebuild step; added segment-map and ATE-vs-FPS plot commands.
+> Updated: 05-31-10:42 - Added `gnss-vio` run type; documented eval pipeline for gnss-vio algorithms.
 
 The pipeline turns raw trajectories into per-segment ATE numbers and plots.
 `scripts/run/run_benchmark.sh` runs the full chain automatically; this page
@@ -10,11 +11,12 @@ explains the individual steps and how to read the output.
 
 Every run is classified by a `run_type`:
 
-| run_type | IMU | LC  | Results tree         | Aggregated CSV         |
-|----------|-----|-----|----------------------|------------------------|
-| `vo`     | off | off | `results-vo/`        | `benchmark-vo.csv`     |
-| `vio`    | on  | off | `results-vio/`       | `benchmark-vio.csv`    |
-| `vio-lc` | on  | on  | `results-vio-lc/`    | `benchmark-vio-lc.csv` |
+| run_type   | IMU | LC  | GNSS | Results tree           | Aggregated CSV            |
+|------------|-----|-----|------|------------------------|---------------------------|
+| `vo`       | off | off | off  | `results-vo/`          | `benchmark-vo.csv`        |
+| `vio`      | on  | off | off  | `results-vio/`         | `benchmark-vio.csv`       |
+| `vio-lc`   | on  | on  | off  | `results-vio-lc/`      | `benchmark-vio-lc.csv`    |
+| `gnss-vio` | on  | -   | on   | `results-gnss-vio/`    | `benchmark-gnss-vio.csv`  |
 
 Paths are resolved by `scripts/_paths.sh` (bash, `resolve_run_type`) and
 `scripts/eval/_run_type.py` (python, `resolve(name)` / `all_types()`).
@@ -36,10 +38,11 @@ when re-evaluating without re-running SLAM:
 ```bash
 WS=$(pwd)
 EVAL=$WS/scripts/eval
-TYPE=vo          # or: vio, vio-lc
+TYPE=vo          # or: vio, vio-lc, gnss-vio
 DS=rosariov2     # or: hortimulti, euroc_mav
 SEQ=sequence1    # or: sequence5, strawberry02, strawberry03, MH_01_easy ...
-ALGO=macvo       # or: orbslam3, basalt, airslam, openvins, okvis2, ...
+ALGO=macvo       # or: orbslam3, basalt, airslam, openvins, okvis2,
+                 #     cifasis_gnss_si, rtabmap_gps, vins_fusion_gps (gnss-vio only)
 
 # 1. Interpolate GT to SLAM timestamps (once per sequence, shared across run types)
 python3 $EVAL/_interpolate_gt.py datasets/$DS/$SEQ
@@ -62,7 +65,7 @@ python3 $EVAL/_plot_segments.py --type $TYPE $DS $SEQ
 # 6. ATE vs FPS comparison across all sequences (per run-type)
 python3 $EVAL/plot_ate_vs_fps.py --type $TYPE
 
-# 7. Rebuild the 3 aggregated CSVs from per-run JSONs
+# 7. Rebuild all aggregated CSVs from per-run JSONs (vo, vio, vio-lc, gnss-vio)
 python3 $EVAL/build_benchmark_csv.py all
 ```
 

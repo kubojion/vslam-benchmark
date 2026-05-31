@@ -327,6 +327,98 @@ def extract_imu(bag_path, imu_topic, out_dir, typestore):
     return len(rows)
 
 
+def extract_gps(bag_path, gps_topic, out_dir, typestore):
+    """Extract NavSatFix gps_topic from bag -> <out>/gps.csv.
+
+    Output columns (matches Rosario v2 gps.csv layout so the gnss data player
+    treats both datasets identically):
+        t,lat,lon,alt[,cov_xx,cov_yy,cov_zz,status]
+
+    Timestamps are seconds (float). HortiMulti's /antobot_gps publisher leaves
+    `header.stamp` constant (broken), so when all header stamps are identical
+    or zero we fall back to the bag arrival time.
+
+    HortiMulti also publishes altitude in millimetres (NavSatFix spec is
+    metres). We detect altitudes > 1000 m (no useful ground-vehicle altitude
+    is that high) and divide by 1000 to convert to metres.
+
+    Covariance + status columns are appended when present in the message.
+    """
+    csv_path = out_dir / "gps.csv"
+    n = 0
+    rows = []
+    have_cov = False
+    have_status = False
+    with Reader(bag_path) as reader:
+        topics_in_bag = {c.topic for c in reader.connections}
+        if gps_topic not in topics_in_bag:
+            raise RuntimeError(
+                f"GPS topic '{gps_topic}' not found in bag.  "
+                f"Available NavSatFix-like topics: "
+                f"{sorted(c.topic for c in reader.connections if 'NavSatFix' in c.msgtype)}"
+            )
+        conns = [c for c in reader.connections if c.topic == gps_topic]
+        for _conn, _bag_t_ns, rawdata in reader.messages(connections=conns):
+            msg = typestore.deserialize_ros1(rawdata, _conn.msgtype)
+            ts_hdr = header_stamp_ns(msg) / 1e9
+            ts_bag = _bag_t_ns / 1e9
+            lat = float(msg.latitude)
+            lon = float(msg.longitude)
+            alt = float(msg.altitude)
+            status = getattr(getattr(msg, "status", None), "status", None)
+            if status is not None:
+                have_status = True
+                if int(status) < 0:
+                    continue
+            cov = getattr(msg, "position_covariance", None)
+            if cov is not None and len(cov) >= 9 and any(c != 0.0 for c in cov):
+                have_cov = True
+                cov_xx = float(cov[0]); cov_yy = float(cov[4]); cov_zz = float(cov[8])
+            else:
+                cov_xx = cov_yy = cov_zz = 0.0
+            rows.append((ts_hdr, ts_bag, lat, lon, alt, cov_xx, cov_yy, cov_zz,
+                         int(status) if status is not None else 0))
+            n += 1
+
+    # Detect broken header.stamp (all identical or all zero) and fall back to
+    # bag arrival time. Also detect mm-encoded altitudes (>1000 m) and convert.
+    use_bag_time = False
+    if rows:
+        hdr_stamps = {r[0] for r in rows}
+        if len(hdr_stamps) <= 1:
+            use_bag_time = True
+            print(f"[extract_gps] WARNING: header.stamp constant in {gps_topic} "
+                  f"({len(hdr_stamps)} unique value(s)); using bag time.",
+                  flush=True)
+        max_alt = max(r[4] for r in rows)
+        if max_alt > 1000.0:
+            print(f"[extract_gps] WARNING: altitude max={max_alt:.1f} > 1000 m, "
+                  f"assuming mm encoding; dividing by 1000.", flush=True)
+            rows = [(h, b, la, lo, a / 1000.0, cx, cy, cz, st)
+                    for (h, b, la, lo, a, cx, cy, cz, st) in rows]
+            # NOTE: covariance is left in m^2 per NavSatFix spec. Even though
+            # altitude is mm-scaled, the diagonal cov values (~3.7 m^2 horiz,
+            # ~60 m^2 vert) are consistent with conventional non-RTK GPS in
+            # m^2 already - so we do NOT rescale cov_zz here.
+
+    rows = [(b if use_bag_time else h, la, lo, a, cx, cy, cz, st)
+            for (h, b, la, lo, a, cx, cy, cz, st) in rows]
+    rows.sort(key=lambda r: r[0])
+
+    if have_cov or have_status:
+        header = "t,lat,lon,alt,cov_xx,cov_yy,cov_zz,status"
+    else:
+        header = "t,lat,lon,alt"
+    with open(csv_path, "w") as f:
+        f.write(header + "\n")
+        for r in rows:
+            if have_cov or have_status:
+                f.write(f"{r[0]:.7f},{r[1]},{r[2]},{r[3]},{r[4]},{r[5]},{r[6]},{r[7]}\n")
+            else:
+                f.write(f"{r[0]:.7f},{r[1]},{r[2]},{r[3]}\n")
+    return n
+
+
 def make_symlink(src: str, dst: Path) -> None:
     if not dst.exists() and not dst.is_symlink():
         dst.symlink_to(src)
@@ -354,6 +446,12 @@ def main():
                     help="Skip IMU extraction")
     ap.add_argument("--imu-only",   dest="imu_only", action="store_true",
                     help="Extract only IMU (skip image extraction, GT, symlinks)")
+    ap.add_argument("--gps",        default="/antobot_gps",
+                    help="GPS NavSatFix topic name (default /antobot_gps)")
+    ap.add_argument("--no-gps",     dest="no_gps", action="store_true",
+                    help="Skip GPS extraction")
+    ap.add_argument("--gps-only",   dest="gps_only", action="store_true",
+                    help="Extract only GPS (skip image extraction, GT, IMU, symlinks)")
     args = ap.parse_args()
 
     TYPESTORE = get_typestore(Stores.ROS1_NOETIC)
@@ -367,6 +465,15 @@ def main():
         print(f"[extract] --imu-only: extracting IMU from '{args.imu}' ...", flush=True)
         n_imu = extract_imu(Path(args.bag), args.imu, out, TYPESTORE)
         print(f"[extract] imu0/data.csv -> {out / 'mav0' / 'imu0' / 'data.csv'}  ({n_imu} samples)")
+        print(f"[extract] done")
+        return
+
+    # ── GPS-only fast path
+    if args.gps_only:
+        out.mkdir(parents=True, exist_ok=True)
+        print(f"[extract] --gps-only: extracting GPS from '{args.gps}' ...", flush=True)
+        n_gps = extract_gps(Path(args.bag), args.gps, out, TYPESTORE)
+        print(f"[extract] gps.csv -> {out / 'gps.csv'}  ({n_gps} fixes)")
         print(f"[extract] done")
         return
 
@@ -432,6 +539,17 @@ def main():
         print(f"[extract] imu0/data.csv → {out / 'mav0' / 'imu0' / 'data.csv'}  ({n_imu} samples)")
     else:
         print("[extract] --no-imu: skipping IMU extraction")
+
+    # ── Extract GPS
+    if not args.no_gps:
+        print(f"[extract] extracting GPS from '{args.gps}' ...", flush=True)
+        try:
+            n_gps = extract_gps(Path(args.bag), args.gps, out, TYPESTORE)
+            print(f"[extract] gps.csv → {out / 'gps.csv'}  ({n_gps} fixes)")
+        except RuntimeError as e:
+            print(f"[extract] WARNING: GPS extraction skipped: {e}")
+    else:
+        print("[extract] --no-gps: skipping GPS extraction")
 
     total = len(matched_stamps)
     print(f"\n[extract] done — {total} stereo pairs → {out}")

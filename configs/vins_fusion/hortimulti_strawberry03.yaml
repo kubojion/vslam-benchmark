@@ -1,0 +1,73 @@
+%YAML:1.0
+
+# VINS-Fusion stereo+IMU+GPS config for HortiMulti GREENBOT strawberry03.
+# Rectified intrinsics + IMU-camera extrinsics computed from
+# datasets/hortimulti/calibration.yaml (rotation composed with R1 from
+# cv2.fisheye.stereoRectify in scripts/data/_hortimulti_extract.py).
+# Baseline = 0.13950 m. Topics published by gnss_data_player.
+
+#common parameters
+imu: 1
+num_of_cam: 2
+
+imu_topic: "/imu0"
+image0_topic: "/cam0/image_raw"
+image1_topic: "/cam1/image_raw"
+output_path: "/results-gnss-vio/hortimulti/strawberry03/vins_fusion_gps/"
+
+cam0_calib: "hortimulti_cam0.yaml"
+cam1_calib: "hortimulti_cam1.yaml"
+image_width: 640
+image_height: 480
+
+# Extrinsic IMU<->cam0 (rectified). T_imu_cam0_raw composed with R_rect_inv.
+estimate_extrinsic: 0
+body_T_cam0: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ 0.03092928639214744, -0.007775752454527907, 0.9994913290669729,  0.1219040939,
+          -0.9994971336830687, -0.007233663375774358, 0.030873190178604133, 0.0366053924,
+           0.006989921464812797, -0.9999436042994491, -0.0079955743025468, -0.0562970105,
+           0.0, 0.0, 0.0, 1.0 ]
+
+# body_T_cam1 = body_T_cam0 * [I | (baseline,0,0)] (rectified stereo).
+body_T_cam1: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ 0.03092928639214744, -0.007775752454527907, 0.9994913290669729,  0.12621877869629453,
+          -0.9994971336830687, -0.007233663375774358, 0.030873190178604133, -0.10282605234672343,
+           0.006989921464812797, -0.9999436042994491, -0.0079955743025468, -0.05532190530393646,
+           0.0, 0.0, 0.0, 1.0 ]
+
+multiple_thread: 1
+
+#feature tracker parameters
+max_cnt: 150
+min_dist: 30
+freq: 10
+F_threshold: 1.0
+show_track: 0
+flow_back: 1
+
+#optimization parameters
+max_solver_time: 0.04
+max_num_iterations: 8
+keyframe_parallax: 10.0
+
+# IMU parameters from datasets/hortimulti/calibration.yaml (Kalibr imu0 block).
+acc_n: 0.001093618
+gyr_n: 0.00060369579
+acc_w: 4.584471e-05
+gyr_w: 3.22094e-05
+g_norm: 9.81007
+
+#unsynchronization parameters
+estimate_td: 1
+td: 0.009160379134269684
+
+#loop closure parameters
+load_previous_pose_graph: 0
+pose_graph_save_path: "/results-gnss-vio/hortimulti/strawberry03/vins_fusion_gps/pose_graph/"
+save_image: 0

@@ -1,0 +1,76 @@
+%YAML:1.0
+
+# VINS-Fusion stereo+IMU+GPS config for Rosario v2 sequence 1.
+# Camera calibration values copied from the CIFASIS GNSS-SI Rosario_3_0.yaml
+# (these are the rectified pinhole intrinsics; baseline = bf/fx = 0.11872 m).
+# IMU noise values match the CIFASIS settings.
+#
+# Topics expected on /imu0, /cam0/image_raw, /cam1/image_raw, /gps (NavSatFix).
+
+#common parameters
+imu: 1
+num_of_cam: 2
+
+imu_topic: "/imu0"
+image0_topic: "/cam0/image_raw"
+image1_topic: "/cam1/image_raw"
+output_path: "/results-gnss-vio/rosariov2/sequence1/vins_fusion_gps/"
+
+cam0_calib: "rosariov2_cam0.yaml"
+cam1_calib: "rosariov2_cam1.yaml"
+image_width: 672
+image_height: 376
+
+# Extrinsic IMU<->cam0 (from CIFASIS Rosario_3_0.yaml, Tbc).
+estimate_extrinsic: 0
+body_T_cam0: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ 0.00947144, -0.99390817,  0.10980361, -0.03095006,
+           0.99845674,  0.00339092, -0.05543136, -0.07713643,
+           0.05472135,  0.11015916,  0.99240644,  0.02651249,
+           0.0, 0.0, 0.0, 1.0 ]
+
+# cam1 = cam0 shifted right by baseline (rectified stereo, identity rotation
+# w.r.t. cam0). Translation in body frame = R(body_T_cam0) * (baseline, 0, 0) + t(body_T_cam0).
+# baseline = 0.11872 m along the cam0 x-axis.
+body_T_cam1: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ 0.00947144, -0.99390817,  0.10980361, -0.02982561,
+           0.99845674,  0.00339092, -0.05543136,  0.04140035,
+           0.05472135,  0.11015916,  0.99240644,  0.03300901,
+           0.0, 0.0, 0.0, 1.0 ]
+
+multiple_thread: 1
+
+#feature tracker parameters
+max_cnt: 150
+min_dist: 30
+freq: 10
+F_threshold: 1.0
+show_track: 0
+flow_back: 1
+
+#optimization parameters
+max_solver_time: 0.04
+max_num_iterations: 8
+keyframe_parallax: 10.0
+
+#imu parameters (Rosario v2; values from CIFASIS Rosario_3_0.yaml).
+acc_n: 0.20
+gyr_n: 0.017
+acc_w: 0.30
+gyr_w: 0.0019393
+g_norm: 9.81007
+
+#unsynchronization parameters
+estimate_td: 0
+td: 0.0
+
+#loop closure parameters
+load_previous_pose_graph: 0
+pose_graph_save_path: "/results-gnss-vio/rosariov2/sequence1/vins_fusion_gps/pose_graph/"
+save_image: 0

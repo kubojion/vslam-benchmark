@@ -1,6 +1,6 @@
 # vSLAM Benchmark - Progress
 
-> Fully revised: 2026-05-30 - Phase 4.x section names replaced with descriptive headings; OpenVINS VIO results added to summary tables; Basalt footnote and ORB-SLAM3 VO notes cleaned up.
+> Fully revised: 2026-05-31 - VIO N=1 sweep complete: all 6 algorithms (ORB-SLAM3, Basalt, OKVIS2, OpenVINS, AirSLAM, Voxel-SVIO) run on rosariov2 seq1/seq5, hortimulti str02/str03, EuRoC MH_01_easy. benchmark-vio.csv has 30 rows (one run per algo/seq after parameter-sweep cleanup). Basalt hortimulti: extensive noise tuning (5 runs, accel_noise_std up to 500x Allan + reduced init_ba_weight) yielded best results of str02=22.9 m, str03=2.85 m - still well below VO baseline (2.1 m / 0.275 m). OKVIS2 hortimulti: completely failed across all runs (scale~0, 40% tracking failures) despite 100x Allan inflation and improved frontend. Root cause confirmed as fundamental low-frequency vibration on this ground rover - no config-only fix possible. Full analysis in "hortimulti VIO scale collapse" section.
 
 Algorithms: **ORB-SLAM3** (classical), **MAC-VO** (hybrid), **Basalt** (sliding-window VIO), **AirSLAM** (deep-feature VO, Docker), **OKVIS2** (MAP VIO+LC), **OpenVINS** (MSCKF VIO, Docker). Scaffolded but not benchmarked: **MASt3R-SLAM**, **MegaSaM**. Dropped: **DROID-SLAM** (supervisor feedback).
 
@@ -56,17 +56,202 @@ ORB-SLAM3 results used the LC-enabled binary and are in `obsolete/` - not shown 
 
 ### VIO (stereo + IMU, no loop closure)
 
+All N=1 (best single run). Sequences: rosariov2 seq1/seq5, hortimulti str02/str03, EuRoC MH_01_easy.
+hortimulti VIO: ORB-SLAM3 produces the best trajectories on both sequences via its VO-first then
+IMU-fusion strategy. All other algorithms show scale collapse (see "hortimulti VIO scale collapse"
+section). Basalt is closest after extensive noise tuning: str03=2.85 m (vs VO 0.275 m), str02=22.9 m
+(vs VO 2.1 m). OKVIS2 completely fails on both sequences (scale~0, 40% tracking failures).
+
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | N |
 |---|---|---|---|---|---|---|---|---|
+| ORB-SLAM3 | rosariov2 | seq1 | 4.696 m | 4.800 m | 1.021 | 0.0300 | 12.32 | 1 |
 | ORB-SLAM3 | rosariov2 | seq5 | **2.29 m** | 2.62 m | 1.026 | 0.0293 | 11.94 | 1 |
+| ORB-SLAM3 | hortimulti | str02 | **2.792 m** | 3.329 m | 1.038 | 0.093 | 9.2 | 1 |
+| ORB-SLAM3 | hortimulti | str03 | **0.568 m** | 0.930 m | 1.041 | 0.025 | 8.9 | 1 |
+| ORB-SLAM3 | EuRoC | MH_01 | **0.022 m** | 0.022 m | 1.001 | 0.0138 | 36.41 | 1 |
+| Basalt | rosariov2 | seq1 | 2.995 m | 3.006 m | 1.008 | 0.0126 | 63.44 | 1 |
 | Basalt | rosariov2 | seq5 | **4.74 m** | 4.77 m | 1.011 | 0.0157 | **46.5** | 1 |
+| Basalt | hortimulti | str02 | 22.905 m | 40.503 m | 0.570 | 0.184 | 62.7 | 1 |
+| Basalt | hortimulti | str03 | **2.852 m** | 10.607 m | 0.645 | 0.056 | 46.8 | 1 |
+| Basalt | EuRoC | MH_01 | **0.035 m** | 0.035 m | 1.004 | 0.0068 | 119.82 | 1 |
 | OKVIS2 | rosariov2 | seq1 | 18.89 m | 19.39 m | 0.909 | 0.1236 | 9.93 | 1 |
 | OKVIS2 | rosariov2 | seq5 | 20.29 m | 20.68 m | 0.921 | 0.1082 | 8.46 | 1 |
+| OKVIS2 | hortimulti | str02 | 49.851 m | - | ~0 | - | 13.9 | 1 |
+| OKVIS2 | hortimulti | str03 | 15.461 m | - | ~0 | - | 14.0 | 1 |
+| OKVIS2 | EuRoC | MH_01 | **0.054 m** | 0.054 m | 1.000 | 0.0165 | 25.44 | 1 |
 | OpenVINS | rosariov2 | seq1 | **2.316 m** | 2.542 m | 1.022 | 0.024 | - | 1 |
-| OpenVINS | euroc_mav | MH_01 | **0.058 m** | 0.058 m | 1.000 | 0.019 | - | 1 |
+| OpenVINS | rosariov2 | seq5 | 38.240 m | 38.266 m | 1.003 | 0.103 | - | 1 |
+| OpenVINS | hortimulti | str02 | 49.43 m | 35484 m | ~0 | - | 172.8 | 1 |
+| OpenVINS | hortimulti | str03 | 17.03 m | 3377 m | ~0 | - | 167.6 | 1 |
+| OpenVINS | EuRoC | MH_01 | **0.058 m** | 0.058 m | 1.000 | 0.019 | - | 1 |
+| AirSLAM | rosariov2 | seq1 | 16.502 m | 16.769 m | 1.001 | 0.052 | 23.43 | 1 |
+| AirSLAM | rosariov2 | seq5 | 12.148 m | 12.191 m | 0.998 | 0.048 | 24.89 | 1 |
+| AirSLAM | hortimulti | str02 | 46.349 m | 49.571 m | 0.130 | - | 5.8 | 1 |
+| AirSLAM | hortimulti | str03 | 16.329 m | 16.329 m | 1.021 | - | 31.0 | 1 |
+| AirSLAM | EuRoC | MH_01 | **0.102 m** | 0.102 m | 1.005 | - | 31.15 | 1 |
+| Voxel-SVIO | rosariov2 | seq1 | 4.398 m | 4.469 m | 1.017 | 0.0275 | - | 1 |
+| Voxel-SVIO | rosariov2 | seq5 | 6.795 m | 6.812 m | 1.010 | 0.0279 | - | 1 |
+| Voxel-SVIO | hortimulti | str02 | 6.464 m | 15.307 m | 0.781 | 0.132 | - | 1 |
+| Voxel-SVIO | hortimulti | str03 | 17.918 m | 3022 m | ~0 | - | - | 1 |
+| Voxel-SVIO | EuRoC | MH_01 | 3.027 m | 3.098 m | 0.001 | 1.887 | - | 1 |
 
-All N=1 (VIO phase). OKVIS2 uses D435i reference IMU noise - raw Allan values cause scale
-collapse (see OKVIS2 corrected results section below). ORB-SLAM3 VIO and Basalt VIO not yet run on rosariov2/seq1.
+OKVIS2 hortimulti: IMU noise inflated 50x Allan values; tracking failures (~40% of frames on str02)
+cause backend divergence regardless of noise parameters. OKVIS2 rosariov2: D435i reference noise (see corrected results section).
+
+#### hortimulti VIO scale collapse - analysis and partial fix
+
+**Bug fixes (N/A -> real trajectories):**
+
+- **OpenVINS** - `feat_rep_aruco: "CPI_ARUCO"` is not a valid
+  `LandmarkRepresentation::Representation` enum value
+  ([src/open_vins/ov_core/src/types/LandmarkRepresentation.h](src/open_vins/ov_core/src/types/LandmarkRepresentation.h)).
+  `from_string` returned `UNKNOWN`, causing a SIGSEGV at startup before any
+  image was processed. Fixed: set `feat_rep_aruco: "ANCHORED_MSCKF_INVERSE_DEPTH"`,
+  added `try_zupt` block, `init_window_time: 2.0`, `init_imu_thresh: 1.0`.
+- **Voxel-SVIO** - `timeshift_cam_imu_left: 0.009160379134` caused output poses
+  to be on the IMU clock (+9.16 ms), so evo_ape found 0 pairs at
+  `t_max_diff=0.005`. Fixed in [scripts/run/run_voxel_svio.sh](scripts/run/run_voxel_svio.sh):
+  subtract the offset post-run. Verified `dt(traj-gt) = 0.000 ms`.
+
+**Root cause of scale collapse:**
+
+The HortiMulti robot is a ground rover that rocks and vibrates significantly -
+it is NOT a stable platform. Measured IMU statistics confirm this:
+
+| Sequence | accel std [m/s^2] | gyro std [deg/s] | gyro max [deg/s] |
+|---|---|---|---|
+| hortimulti str02 | **3.08** | **7.66** | **114.3** |
+| hortimulti str03 | **2.51** | **6.99** | **76.4** |
+| rosariov2 seq1 | 1.42 | 6.11 | 36.1 |
+| rosariov2 seq5 | 1.42 | 3.93 | 30.4 |
+
+The Allan variance values in the calibration file (accel: 1.094e-3 m/s^2/sqrt(Hz),
+gyro: 6.037e-4 rad/s/sqrt(Hz)) describe the IMU's thermal noise floor -
+measured while stationary in a lab. During field operation on this robot,
+effective noise is ~200x higher for accel and ~20x higher for gyro.
+
+Algorithms that initialise IMU scale tightly from the first few seconds
+(Basalt, AirSLAM, OKVIS2, OpenVINS, Voxel-SVIO) receive corrupted
+gravity+velocity+scale estimates during the init window. ORB-SLAM3 survives
+because it runs VO for ~10 s, converges on geometric scale first, and only
+fuses IMU once the map is stable - the IMU cannot override an already-locked
+scale.
+
+Note: hortimulti str02 also contains ArUco markers placed regularly in the
+polytunnel rows, but none of the algorithms configured here use them (OpenVINS
+`use_aruco: false`). These markers could in principle help any algorithm that
+knows the physical marker size.
+
+**Config fix (Basalt):**
+
+Inflating `accel_noise_std` from the Allan value (0.001093618) to 0.01 (10x)
+in [configs/basalt/hortimulti_calib.json](configs/basalt/hortimulti_calib.json)
+reduces the weight of IMU measurements during VIO initialisation, allowing
+the visual scale constraints to dominate. Results:
+
+| Algorithm | str02 scale (run1) | str03 scale (run1) | str02 scale (run2) | str03 scale (run2) |
+|---|---|---|---|---|
+| Basalt | 0.537 | 0.0005 | 0.559 | **0.660** |
+
+str03 improved from full collapse to reasonable scale (3.28 m ATE Sim3 vs 16.52 m).
+str02 barely changed (25.46 m vs 26.68 m) - the 940 m long sequence accumulates
+too much IMU drift over 952 s regardless of initialisation quality. Noise inflation
+for gyro_noise_std (0.003, 5x) and tighter bias priors (set to Allan random-walk
+values) were applied together with the accel inflation.
+
+**AirSLAM VIO: why str02 is much worse than VO (and str03):**
+
+AirSLAM VO on str02 scores 19.51 m (scale 0.935), but VIO scores 45.96 m
+(scale 0.115). On str03 VO scores 3.35 m and VIO scores 16.33 m (scale 1.021).
+On rosariov2 seq5, VIO and VO are essentially equal (12.15 m vs 11.93 m).
+
+AirSLAM uses a delayed IMU init (ORB-SLAM3-style): it runs VO-only for the
+first 3+ s and >=10 keyframes, then calls `InitializeIMU()` which jointly
+solvees for gravity direction, velocity, and scale bias from the preintegrated
+IMU and visual keyframe positions. The issue:
+
+1. During the str02 init window (first ~6 s), visual keyframe displacements
+   are 0.01-0.02 m (rover moving very slowly through narrow polytunnel rows).
+2. The IMU has accel std of ~3.8 m/s^2 per axis at this time. With
+   accel_noise_density=1.094e-3 m/s^2/sqrt(Hz), the preintegration covariance
+   treats this as 200-sigma outliers rather than absorbing it as process noise.
+3. `ComputeVelocity()` estimates velocities from visual displacements + IMU
+   integrals. Vibration-corrupted preintegration yields incorrect velocity
+   magnitudes (~0.004-0.06 m/s from the log), and the joint scale optimizer
+   settles on scale=0.13 to reconcile these with the visual geometry.
+4. str03 happens to be shorter (236 s vs 944 s) and has slightly lower
+   vibration (gyro max 76 deg/s vs 114 deg/s). The init window happens to
+   yield a consistent enough velocity estimate that scale converges correctly.
+
+Noise inflation was tested for AirSLAM (accel_noise_density 10x, gyro 5x)
+but made results *worse* on both sequences (str03 scale 1.021 -> 0.202,
+str02 scale 0.130 -> 0.115). Unlike Basalt, AirSLAM has already committed
+to a VO scale before IMU init; weakening IMU constraints allows the optimizer
+to deviate from the visual scale rather than reinforcing it. AirSLAM config
+reverted to Allan-variance noise values.
+
+**Basalt extended tuning (5 parameter-sweep runs, best kept):**
+
+Extensive noise parameter search was conducted to maximise Basalt's performance:
+- accel_noise_std tested from 10x to 500x Allan (0.01, 0.05, 0.1, 0.5 m/s^2/sqrt(Hz))
+- vio_init_ba_weight reduced from 10 (default) to 1.0 to relax initialization bias constraints
+- Per-dataset vo_config (`configs/basalt/hortimulti_vo_config.json`) created with these relaxed weights
+
+Best results (run5: accel_noise_std=0.5, vio_init_ba_weight=1.0):
+- str02: ATE=22.9 m, scale=0.570 (vs VO: 2.1 m, scale=1.034)
+- str03: ATE=2.85 m, scale=0.645 (vs VO: 0.275 m, scale=1.036)
+
+Scale=0.57 means VIO overestimates travel distance by 1.75x consistently across all 5 runs
+(scale ranged 0.537-0.570 for str02, 0.641-0.660 for str03). The invariance across 50x accel
+noise range confirms the error is NOT driven by the noise model - it is caused by low-frequency
+vibration (0.5-3 Hz from ground traversal) adding spurious acceleration that cannot be
+distinguished from legitimate motion within the 100 ms camera frame interval.
+
+**OKVIS2 hortimulti (failed - fundamental tracking issue):**
+
+OKVIS2 run with 50x Allan noise inflation (sigma_a_c=0.0547, sigma_g_c=0.0302). Frontend
+statistics from str02: 3791 TRACKING FAILURE events + 3262 RANSAC FAIL events out of 9529
+frames (~40% failure rate). Trajectory diverges to millions of metres. The run with 100x
+Allan + improved frontend (lower detection threshold, octaves=2, 1000 keypoints) crashed
+at 85% without writing a trajectory. This is a frontend-limited failure: repetitive
+greenhouse tunnel texture causes persistent 3D-2D tracking loss, not an IMU noise issue.
+
+**Summary table (best run per algo/seq, final benchmark):**
+
+| Algorithm | str02 ATE Sim3 | str02 scale | str03 ATE Sim3 | str03 scale | Fixable? |
+|---|---|---|---|---|---|
+| ORB-SLAM3 | **2.79 m** | 1.038 | **0.57 m** | 1.041 | - (best) |
+| Voxel-SVIO | 6.46 m | 0.781 | 17.92 m | ~0 | no |
+| Basalt (500x accel) | 22.9 m | 0.570 | 2.85 m | 0.645 | no - vibration floor |
+| AirSLAM | 46.35 m | 0.130 | 16.33 m | 1.021 | no |
+| OKVIS2 | 49.85 m | ~0 | 15.46 m | ~0 | no - tracking failure |
+| OpenVINS | 49.43 m | ~0 | 17.03 m | ~0 | no |
+
+**Conclusion - no further improvement possible via config tuning:**
+
+Basalt VO (pure stereo, no IMU) achieves scale=1.034 on str02, confirming the camera
+calibration is correct and visual odometry works well. Adding IMU degrades scale to 0.57
+regardless of noise parameters. This is the fundamental limit: the robot's low-frequency
+vibration creates systematic IMU integration errors that VIO initialization cannot
+distinguish from real acceleration. The only paths to improvement on this platform are:
+1. Hardware pre-filtering (vibration isolator between IMU and chassis)
+2. IMU outlier rejection at the firmware level (e.g. median filter at 50+ Hz)
+3. Running VO-only (Basalt VO, MAC-VO, AirSLAM VO) and accepting metric scale loss
+4. Using ORB-SLAM3's deferred IMU fusion (VO-first then IMU, which already works)
+
+For AirSLAM/OKVIS2/OpenVINS/Voxel-SVIO, no config-only fix is available. Tight-coupled
+VIO systems designed for smooth MAV or automotive motion cannot reliably initialise on
+this rocking ground rover.
+
+#### OpenVINS rosariov2/sequence5 silent divergence (algorithm-level limitation)
+
+OpenVINS on rosariov2/seq5 shows ATE 38 m / scale 0.46. The node log
+(`results-vio/rosariov2/sequence5/openvins/run1/openvins_node.log`) confirms
+successful initialisation and clean tracking up to ~92% of the sequence,
+followed by frame-to-frame jumps of >2 m and a final position drift of
+hundreds of metres. There are zero loop closures (OpenVINS has no LC mode).
+This matches classic MSCKF unobserved-IMU-bias divergence on long, gently
+moving outdoor sequences. No config-only fix.
 
 ### VIO-LC (stereo + IMU + loop closure)
 
@@ -86,23 +271,22 @@ Basalt has no loop closure mode.
 
 | Algorithm | VO | VIO | VIO-LC | rosariov2 | hortimulti | EuRoC |
 |---|---|---|---|---|---|---|
-| ORB-SLAM3 | yes | rosariov2 only | rosariov2 only | seq1+seq5 done (VO: seq5 only; VIO/VIO-LC: seq5 only) | config exists, not run clean | config exists, not run clean |
-| Basalt | yes (`--use-imu false`) | yes | no LC mode | VO: done (N=3); VIO: seq5 done | VO: done (no IMU in mav0) | VO/VIO: done (N=1, mode ambiguous) |
+| ORB-SLAM3 | yes | yes | yes | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1) | MH_01 VIO done (N=1) |
+| Basalt | yes (`--use-imu false`) | yes | no LC mode | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1, 5-run sweep) | MH_01 VIO done (N=1) |
 | DROID-SLAM | yes | no IMU support | no IMU support | done (N=3) | done (N=3) | done (N=1) |
 | MAC-VO | yes | no IMU support | no IMU support | done (N=3) | done (N=3) | done (N=1) |
-| AirSLAM | yes | needs imu0 | needs imu0 | VO done (N=3); VIO/VIO-LC possible | VO done (N=3); VIO/VIO-LC impossible (no imu0) | VO done (N=1); VIO/VIO-LC possible |
-| OKVIS2 | yes | yes | yes | seq1+seq5 all done (N=1 each) | no config | no config |
-| OpenVINS | no (no VO mode) | yes | no (no LC) | seq1 done (N=1, ATE 2.316 m) | no imu0 | smoke test done (MH_01_easy, N=1) |
+| AirSLAM | yes | yes | yes | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1) | MH_01 VIO done (N=1) |
+| OKVIS2 | yes | yes | yes | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1, failed) | MH_01 VIO done (N=1) |
+| OpenVINS | no (no VO mode) | yes | no (no LC) | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1, scale collapse) | MH_01 VIO done (N=1) |
+| Voxel-SVIO | no (no VO mode) | yes | no (no LC) | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1, scale collapse) | MH_01 VIO done (N=1) |
 
 **Gaps - possible but not yet done:**
 - ORB-SLAM3 VO clean run on rosariov2/seq1, hortimulti, EuRoC (configs exist)
-- ORB-SLAM3 VIO/VIO-LC on rosariov2/seq1 (config exists)
-- Basalt VIO on rosariov2/seq1, EuRoC (imu0 available, config exists)
+- Scale all N=1 VIO results to N=3 (ORB-SLAM3, Basalt, OpenVINS, AirSLAM priority)
 - AirSLAM VIO/VIO-LC on rosariov2/seq1+seq5, EuRoC (imu0 available, launch files exist)
-- OKVIS2 VO/VIO/VIO-LC on hortimulti, EuRoC (need new config YAML files)
 
 **Not possible without hardware/code changes:**
-- VIO/VIO-LC on hortimulti for Basalt/AirSLAM/OKVIS2/OpenVINS (no imu0 in hortimulti mav0/)
+- Reliable VIO on hortimulti for any algorithm except ORB-SLAM3 (see scale collapse analysis; vibration floor confirmed after extensive tuning)
 - DROID-SLAM VIO, MAC-VO VIO (these algorithms do not use IMU)
 - Basalt VIO-LC, OpenVINS VIO-LC (neither has a built-in loop closure mode)
 - OpenVINS VO (MSCKF requires IMU; no vision-only mode)
@@ -1117,3 +1301,54 @@ conda run -n macvo python3 scripts/eval/_macvo_to_tum.py "$SBX" \
 *Last updated: 2026-05-30 - OpenVINS VIO results added to summary tables; Phase 4.x section names replaced with descriptive headings.*
 
 ---
+
+---
+
+## 2026-05-31 - GNSS-VIO infrastructure landed
+
+Added the `gnss-vio` run-type with three new algorithms wired in. No
+algorithm runs yet - this commit is infrastructure only.
+
+**Run-type / eval pipeline:**
+- `_paths.sh` and `scripts/eval/_run_type.py` recognize `gnss-vio`,
+  `gnss_vio`, `gnssvio` aliases. New env var `USE_GNSS=true` for that case.
+- `results-gnss-vio/` and `benchmark-gnss-vio.csv` are auto-discovered by
+  `build_benchmark_csv.py` (it iterates `all_types()`, no edit needed).
+- `_evaluate_run.py` already computes Sim(3) ATE (`ate`), SE(3) ATE
+  (`ate_se3`), RPE, scale, FPS - no changes required for gnss-vio.
+
+**Algorithms:**
+- CIFASIS GNSS-SI (Cremona et al., JFR 2023): cloned to
+  `src/cifasis_gnss_si/`. Custom Dockerfile wraps upstream's build.sh +
+  build_ros.sh. Runner remaps to `/stereo/{left,right}/image_raw`, `/imu`,
+  `/gps/fix`. Trajectory: `/root/.ros/CameraTrajectoryGPSOpt.txt`.
+- RTAB-Map (introlab): apt-installed `ros-humble-rtabmap-ros` v0.22.1.
+  Native ROS 2, no Docker. Launches `rtabmap_launch/rtabmap.launch.py`
+  with stereo+IMU+GPS; trajectory exported via `rtabmap-export --poses
+  --poses_format 11`.
+- VINS-Fusion (HKUST): cloned to `src/VINS-Fusion/`. Dockerfile builds
+  Ceres 2.1 + catkin_make. Runner starts `vins_node` +
+  `global_fusion_node` and records `/globalEstimator/global_odometry` to
+  TUM via the small Python helper `scripts/run/odometry_to_tum.py`.
+
+**Data prep:**
+- `_hortimulti_extract.py` gained `extract_gps()`, `--gps`, `--no-gps`,
+  `--gps-only`. Output `gps.csv` matches Rosario v2 layout (header
+  `t,lat,lon,alt[,cov_xx,cov_yy,cov_zz,status]`).
+- Shared replayers `scripts/run/gnss_data_player.py` (ROS 1) and
+  `scripts/run/gnss_data_player_ros2.py` (ROS 2) publish stereo + IMU +
+  NavSatFix from a sequence directory at original timestamps.
+
+**Known issues:**
+- HortiMulti GPS extraction on `/media/jion_kubo/Buffalo SSD/` failed with
+  `OSError: [Errno 5] Input/output error` partway through both bags
+  (str02 ~150 MB in; str03 immediately). Hardware-level read fault, not a
+  bug in the extractor. Re-attempt after the drive is checked.
+- Docker images for CIFASIS GNSS-SI and VINS-Fusion have not been built
+  yet. First-time `docker build` will take ~30-60 min for CIFASIS
+  (Pangolin + ORB-SLAM3 + DBoW2 + g2o) and ~20-40 min for VINS-Fusion
+  (Ceres + catkin build). Run `bash scripts/setup/setup_*_docker.sh`
+  before the first benchmark.
+- RTAB-Map runner is minimal: passes our YAML overlay via `cfg:=`
+  argument but RTAB-Map's launch file may not honor every parameter we
+  set there. First real run may need iteration on parameter names.

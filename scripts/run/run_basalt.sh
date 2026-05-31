@@ -28,7 +28,12 @@ SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/basalt/run${RUN_ID}"
 LOG_GLOBAL="$WS/logs/${DATASET}_${SEQ}_basalt_${RUN_TYPE}_run${RUN_ID}.log"
 CALIB="$WS/configs/basalt/${DATASET}_calib.json"
-VO_CFG="$WS/configs/basalt/vo_config.json"
+# Use dataset-specific vo_config if it exists, else fall back to default
+if [[ -f "$WS/configs/basalt/${DATASET}_vo_config.json" ]]; then
+    VO_CFG="$WS/configs/basalt/${DATASET}_vo_config.json"
+else
+    VO_CFG="$WS/configs/basalt/vo_config.json"
+fi
 
 if [[ "$RUN_TYPE" == "vio-lc" ]]; then
     echo "[basalt] WARNING: Basalt has no built-in loop closure; running plain VIO" >&2

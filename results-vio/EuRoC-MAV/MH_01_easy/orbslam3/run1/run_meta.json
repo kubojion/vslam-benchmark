@@ -1,0 +1,1 @@
+{"algo": "orbslam3", "dataset": "EuRoC-MAV", "seq": "MH_01_easy", "run_id": 1, "run_type": "vio", "duration_s": 226.58775806427002, "frames": 3678, "fps": 16.232121414771054}

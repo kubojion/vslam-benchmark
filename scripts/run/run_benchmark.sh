@@ -4,12 +4,15 @@
 # Usage:
 #   bash scripts/run/run_benchmark.sh <dataset> <seq> <algo> [N=3] [run_type=vo]
 #
-# run_type ∈ {vo, vio, vio-lc} selects the results tree:
-#   vo      -> results-vo/
-#   vio     -> results-vio/
-#   vio-lc  -> results-vio-lc/
+# run_type ∈ {vo, vio, vio-lc, gnss-vio} selects the results tree:
+#   vo       -> results-vo/
+#   vio      -> results-vio/
+#   vio-lc   -> results-vio-lc/
+#   gnss-vio -> results-gnss-vio/
 #
-# Currently supports: orbslam3, droidslam, macvo, basalt, airslam, mast3r_slam, megasam
+# Currently supports: orbslam3, droidslam, macvo, basalt, airslam, mast3r_slam,
+#                     megasam, voxel_svio, cifasis_gnss_si, rtabmap_gps,
+#                     vins_fusion_gps
 # For other algos: run_<algo>.sh must accept arguments <dataset> <seq> <run_id> <run_type>.
 #
 # Pipeline:

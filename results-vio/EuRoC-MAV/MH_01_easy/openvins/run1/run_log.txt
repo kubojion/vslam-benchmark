@@ -1,0 +1,13 @@
+3.188 [INFO] [1780143033.939167528] [openvins_data_player]: loaded imu=36820 cam0=3682 cam1=3682 from /ws/datasets/EuRoC-MAV/MH_01_easy
+3.218 [INFO] [1780143033.969468758] [openvins_data_player]: start delay 1.0s for ROS graph...
+4.226 [INFO] [1780143034.977298470] [openvins_data_player]: played 0/44184 (0.0%), poses_received=0
+25.056 [INFO] [1780143055.807384427] [openvins_data_player]: played 5000/44184 (11.3%), poses_received=3565
+45.887 [INFO] [1780143076.637930550] [openvins_data_player]: played 10000/44184 (22.6%), poses_received=7730
+66.726 [INFO] [1780143097.476938725] [openvins_data_player]: played 15000/44184 (33.9%), poses_received=11899
+87.556 [INFO] [1780143118.307241368] [openvins_data_player]: played 20000/44184 (45.3%), poses_received=16065
+108.387 [INFO] [1780143139.138380280] [openvins_data_player]: played 25000/44184 (56.6%), poses_received=20230
+129.226 [INFO] [1780143159.977519744] [openvins_data_player]: played 30000/44184 (67.9%), poses_received=24399
+150.056 [INFO] [1780143180.807453123] [openvins_data_player]: played 35000/44184 (79.2%), poses_received=28565
+170.888 [INFO] [1780143201.638905643] [openvins_data_player]: played 40000/44184 (90.5%), poses_received=32730
+188.321 [INFO] [1780143219.072496054] [openvins_data_player]: all events published; waiting 3.0s for filter flush...
+191.402 [INFO] [1780143222.153146043] [openvins_data_player]: wrote 36219 poses to /ws/results-vio/EuRoC-MAV/MH_01_easy/openvins/run1/trajectory.txt

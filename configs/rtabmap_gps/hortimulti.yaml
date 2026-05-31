@@ -1,0 +1,64 @@
+# RTAB-Map (ROS 2 Humble) parameters for HortiMulti strawberry sequences.
+#
+# HortiMulti uses /antobot_gps (NavSatFix, ~8 Hz, conventional GPS, ~2 m).
+# Parameters tuned for outdoor row-crop environment: less aggressive loop
+# closure (visual aliasing across rows), tighter GPS variance.
+#
+# See configs/rtabmap_gps/rosariov2.yaml for parameter explanations.
+
+rtabmap:
+  ros__parameters:
+    subscribe_stereo: true
+    subscribe_depth: false
+    subscribe_rgb: false
+    approx_sync: true
+    queue_size: 30
+
+    frame_id: "base_link"
+    odom_frame_id: "odom"
+    map_frame_id: "map"
+    publish_tf: true
+    wait_for_transform: 0.2
+
+    Reg/Force3DoF: "false"
+    Optimizer/Strategy: "1"
+    Optimizer/Robust: "true"
+    Optimizer/GravitySigma: "0.3"
+
+    RGBD/CreateOccupancyGrid: "false"
+    Mem/IncrementalMemory: "true"
+
+    Vis/EstimationType: "1"
+    Vis/MaxFeatures: "1500"        # rows of strawberries -> more features
+    Vis/MinInliers: "25"
+    Stereo/MaxDisparity: "128.0"
+    Stereo/MinDisparity: "0.5"
+    Odom/Strategy: "0"
+    Odom/ResetCountdown: "1"
+
+    # Loop-closure: visually-aliased rows -> require strong evidence.
+    Kp/MaxFeatures: "500"
+    Rtabmap/DetectionRate: "1"
+    RGBD/ProximityBySpace: "true"
+    RGBD/ProximityByTime: "false"
+    RGBD/AngularUpdate: "0.1"
+    RGBD/LinearUpdate: "0.1"
+
+    database_path: "/tmp/rtabmap_gnss_hortimulti.db"
+
+stereo_odometry:
+  ros__parameters:
+    frame_id: "base_link"
+    odom_frame_id: "odom"
+    publish_tf: true
+    publish_null_when_lost: false
+    approx_sync: true
+    queue_size: 30
+    wait_for_transform: 0.2
+
+    Vis/EstimationType: "1"
+    Vis/MaxFeatures: "1500"
+    Vis/MinInliers: "25"
+    Odom/Strategy: "0"
+    Odom/GuessMotion: "true"
+    Odom/ResetCountdown: "1"

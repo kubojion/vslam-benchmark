@@ -1,0 +1,17 @@
+%YAML:1.0
+# VINS-Fusion cam1 (right) calibration for Rosario v2.
+# Stereo-rectified, so intrinsics match cam0; only extrinsics differ.
+model_type: PINHOLE
+camera_name: camera
+image_width: 672
+image_height: 376
+distortion_parameters:
+   k1: 0.0
+   k2: 0.0
+   p1: 0.0
+   p2: 0.0
+projection_parameters:
+   fx: 347.6564367181238
+   fy: 347.6564367181238
+   cx: 339.375789642334
+   cy: 198.58967208862305

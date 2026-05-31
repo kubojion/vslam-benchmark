@@ -1,0 +1,18 @@
+%YAML:1.0
+# VINS-Fusion cam1 (forwardRight) for HortiMulti GREENBOT.
+# Rectified pinhole intrinsics (identical K to cam0 after stereo rectification).
+# Baseline ~0.13950 m (bf/fx = 36.6491/262.7149).
+model_type: PINHOLE
+camera_name: camera
+image_width: 640
+image_height: 480
+distortion_parameters:
+   k1: 0.0
+   k2: 0.0
+   p1: 0.0
+   p2: 0.0
+projection_parameters:
+   fx: 262.7148733534671
+   fy: 262.7148733534671
+   cx: 329.4309905440758
+   cy: 219.56167239700937

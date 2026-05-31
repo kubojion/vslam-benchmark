@@ -1,0 +1,237 @@
+0.097 num_seq = 1
+0.097 file name: rosariov2_sequence5_orbslam3
+0.113 Loading images for sequence 0...LOADED!
+0.272 Loading IMU for sequence 0...LOADED!
+0.272 
+0.272 -------
+0.272 
+0.272 ORB-SLAM3 Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.272 ORB-SLAM2 Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.272 This program comes with ABSOLUTELY NO WARRANTY;
+0.272 This is free software, and you are welcome to redistribute it
+0.272 under certain conditions. See LICENSE.txt.
+0.272 
+0.272 Input sensor was set to: Stereo-Inertial
+0.273 Loading settings from /home/jion_kubo/vslam_ws/configs/orbslam3/rosariov2_stereo_inertial.yaml
+0.273 	-Loaded camera 1
+0.273 	-Loaded camera 2
+0.273 Camera.newHeight optional parameter does not exist...
+0.273 Camera.newWidth optional parameter does not exist...
+0.273 	-Loaded image info
+0.273 	-Loaded IMU calibration
+0.273 	-Loaded ORB settings
+0.273 	-Loaded viewer settings
+0.273 System.LoadAtlasFromFile optional parameter does not exist...
+0.273 System.SaveAtlasToFile optional parameter does not exist...
+0.273 	-Loaded Atlas settings
+0.273 System.thFarPoints optional parameter does not exist...
+0.273 	-Loaded misc parameters
+0.273 ----------------------------------
+0.273 SLAM settings: 
+0.273 	-Camera 1 parameters (Pinhole): [ 648.8624267578125 648.8624267578125 645.0113525390625 348.24267578125 ]
+0.273 	-Camera 2 parameters (Pinhole: [ 648.8624267578125 648.8624267578125 645.0113525390625 348.24267578125 ]
+0.273 	-Original image size: [ 1280 , 720 ]
+0.273 	-Current image size: [ 1280 , 720 ]
+0.273 	-Sequence FPS: 15
+0.273 	-Stereo baseline: 0.049733694642782211
+0.273 	-Stereo depth threshold : 80
+0.273 	-Gyro noise: 0.00023239999427460134
+0.273 	-Accelerometer noise: 0.0009943000040948391
+0.273 	-Gyro walk: 1.8230000478069996e-06
+0.273 	-Accelerometer walk: 4.7500001528533176e-05
+0.273 	-IMU frequency: 200
+0.273 	-Features per image: 1200
+0.273 	-ORB scale factor: 1.2000000476837158
+0.273 	-ORB number of scales: 8
+0.273 	-Initial FAST threshold: 20
+0.273 	-Min FAST threshold: 7
+0.273 
+0.273 
+0.273 Loading ORB Vocabulary. This could take a while...
+4.107 Vocabulary loaded!
+4.107 
+4.120 Initialization of Atlas from scratch 
+4.120 Creation of new map with id: 0
+4.120 Creation of new map with last KF id: 0
+4.121 Seq. Name: 
+4.121 There are 1 cameras in the atlas
+4.121 Camera 0 is pinhole
+4.167 not IMU meas
+4.244 not IMU meas
+4.323 not enough acceleration
+4.399 not enough acceleration
+4.485 not enough acceleration
+4.562 not enough acceleration
+4.638 not enough acceleration
+4.717 not enough acceleration
+4.796 not enough acceleration
+4.878 not enough acceleration
+4.957 not enough acceleration
+5.042 not enough acceleration
+5.123 not enough acceleration
+5.197 not enough acceleration
+5.272 not enough acceleration
+5.350 not enough acceleration
+5.429 not enough acceleration
+5.516 not enough acceleration
+5.591 not enough acceleration
+5.733 not enough acceleration
+5.813 not enough acceleration
+5.889 not enough acceleration
+5.968 not enough acceleration
+6.053 not enough acceleration
+6.132 not enough acceleration
+6.209 not enough acceleration
+6.285 not enough acceleration
+6.366 not enough acceleration
+6.448 not enough acceleration
+6.522 not enough acceleration
+6.669 not enough acceleration
+6.748 not enough acceleration
+6.826 not enough acceleration
+6.910 not enough acceleration
+6.988 not enough acceleration
+7.070 not enough acceleration
+7.144 not enough acceleration
+7.221 not enough acceleration
+7.303 not enough acceleration
+7.451 not enough acceleration
+7.530 not enough acceleration
+7.612 not enough acceleration
+7.691 not enough acceleration
+7.770 not enough acceleration
+7.849 not enough acceleration
+7.928 not enough acceleration
+8.008 not enough acceleration
+8.086 not enough acceleration
+8.163 not enough acceleration
+8.244 not enough acceleration
+8.321 not enough acceleration
+8.400 not enough acceleration
+8.482 not enough acceleration
+8.563 not enough acceleration
+8.705 not enough acceleration
+8.786 not enough acceleration
+8.866 not enough acceleration
+8.947 not enough acceleration
+9.026 not enough acceleration
+9.105 not enough acceleration
+9.183 not enough acceleration
+9.262 not enough acceleration
+9.344 not enough acceleration
+9.423 not enough acceleration
+9.570 not enough acceleration
+9.649 not enough acceleration
+9.804 not enough acceleration
+9.890 not enough acceleration
+9.964 not enough acceleration
+10.040 not enough acceleration
+10.120 not enough acceleration
+10.199 not enough acceleration
+10.280 not enough acceleration
+10.359 not enough acceleration
+10.437 not enough acceleration
+10.516 not enough acceleration
+10.734 not enough acceleration
+10.812 not enough acceleration
+10.898 not enough acceleration
+10.973 not enough acceleration
+11.051 not enough acceleration
+11.130 not enough acceleration
+11.209 not enough acceleration
+11.286 not enough acceleration
+11.370 not enough acceleration
+11.448 not enough acceleration
+11.526 not enough acceleration
+11.672 not enough acceleration
+11.751 not enough acceleration
+11.836 not enough acceleration
+11.912 not enough acceleration
+11.989 not enough acceleration
+12.068 not enough acceleration
+12.153 not enough acceleration
+12.227 not enough acceleration
+12.306 not enough acceleration
+12.390 not enough acceleration
+12.464 not enough acceleration
+12.542 not enough acceleration
+12.625 not enough acceleration
+12.704 not enough acceleration
+12.786 not enough acceleration
+12.928 not enough acceleration
+13.011 not enough acceleration
+13.091 not enough acceleration
+13.166 not enough acceleration
+13.247 not enough acceleration
+13.326 not enough acceleration
+13.403 not enough acceleration
+13.486 not enough acceleration
+13.563 not enough acceleration
+13.645 not enough acceleration
+13.718 not enough acceleration
+13.802 not enough acceleration
+13.876 not enough acceleration
+14.027 not enough acceleration
+14.104 not enough acceleration
+14.182 not enough acceleration
+14.264 not enough acceleration
+14.341 not enough acceleration
+14.420 not enough acceleration
+14.500 not enough acceleration
+14.651 not enough acceleration
+14.727 not enough acceleration
+14.807 not enough acceleration
+14.883 not enough acceleration
+14.964 not enough acceleration
+15.039 not enough acceleration
+15.123 not enough acceleration
+15.202 not enough acceleration
+15.278 not enough acceleration
+15.358 not enough acceleration
+15.440 not enough acceleration
+15.519 not enough acceleration
+15.600 not enough acceleration
+15.680 not enough acceleration
+15.760 not enough acceleration
+15.838 not enough acceleration
+15.919 not enough acceleration
+15.998 not enough acceleration
+16.082 not enough acceleration
+16.156 not enough acceleration
+16.233 not enough acceleration
+16.315 not enough acceleration
+16.396 not enough acceleration
+16.473 not enough acceleration
+16.552 not enough acceleration
+16.632 not enough acceleration
+16.714 not enough acceleration
+16.793 not enough acceleration
+16.872 not enough acceleration
+16.950 not enough acceleration
+17.032 not enough acceleration
+17.110 not enough acceleration
+17.190 not enough acceleration
+17.269 not enough acceleration
+17.346 not enough acceleration
+17.426 not enough acceleration
+17.506 not enough acceleration
+17.593 not enough acceleration
+17.666 not enough acceleration
+17.745 not enough acceleration
+17.959 not enough acceleration
+18.049 not enough acceleration
+18.119 First KF:0; Map init KF:0
+18.120 New Map created with 660 points
+24.172 start VIBA 1
+24.392 end VIBA 1
+36.005 start VIBA 2
+36.815 end VIBA 2
+960.411 Shutdown
+960.411 
+960.411 Saving trajectory to f_rosariov2_sequence5_orbslam3.txt ...
+960.411 There are 1 maps in the atlas
+960.412   Map 0 has 2512 KFs
+960.471 
+960.471 End of saving trajectory to f_rosariov2_sequence5_orbslam3.txt ...
+960.471 
+960.471 Saving keyframe trajectory to kf_rosariov2_sequence5_orbslam3.txt ...

@@ -1,0 +1,154 @@
+%YAML:1.0
+
+# CIFASIS GNSS-SI (ORB-SLAM3 derivative) config for HortiMulti GREENBOT
+# strawberry03. Rectified pinhole intrinsics + IMU-camera extrinsic computed
+# from datasets/hortimulti/calibration.yaml in scripts/data/_hortimulti_extract.py.
+# Baseline = 0.13950 m, bf = 36.6491
+
+#--------------------------------------------------------------------------------------------
+# Camera Parameters
+#--------------------------------------------------------------------------------------------
+Camera.type: "PinHole"
+
+Camera.fx: 262.7148733534671
+Camera.fy: 262.7148733534671
+Camera.cx: 329.4309905440758
+Camera.cy: 219.56167239700937
+
+Camera.k1: 0.0
+Camera.k2: 0.0
+Camera.p1: 0.0
+Camera.p2: 0.0
+
+Camera.width: 640
+Camera.height: 480
+
+# HortiMulti images recorded at ~10 Hz (verify with header).
+Camera.fps: 10.0
+
+# stereo baseline times fx
+Camera.bf: 36.64914396817235
+
+Camera.RGB: 1
+
+loopClosing: 0
+
+ThDepth: 10000000.0
+
+# Transformation from camera 0 to body-frame (imu).
+# T_imu_cam0_rect (raw T_imu_cam0 composed with R_rect_inv).
+Tbc: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: f
+   data: [ 0.03092928639214744, -0.007775752454527907, 0.9994913290669729,  0.1219040939,
+          -0.9994971336830687, -0.007233663375774358, 0.030873190178604133, 0.0366053924,
+           0.006989921464812797, -0.9999436042994491, -0.0079955743025468, -0.0562970105,
+           0.0, 0.0, 0.0, 1.0]
+
+# Use raw NavSatFix as global measurement (no simulated noise, dataset cov is real).
+System.UseGlobalMeas: 1
+System.GPSSimulatedNoise: 0.0
+
+# t_b_g = base_link -> gps_frame translation (from calibration.yaml, in base_link).
+# We approximate IMU<->base_link as identity here (T_imu_link_os_sensor is small).
+System.t_b_g: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: f
+   data: [ 0.6200000000,
+          -0.1100000000,
+           0.4200000000 ]
+
+# IMU noise (Kalibr from calibration.yaml imu0 block).
+IMU.NoiseGyro:  6.0369579e-04
+IMU.NoiseAcc:   1.093618e-03
+IMU.GyroWalk:   3.22094e-05
+IMU.AccWalk:    4.584471e-05
+IMU.Frequency:  200
+
+#--------------------------------------------------------------------------------------------
+# Stereo Rectification - images are PRE-rectified by gnss_data_player (extractor),
+# so LEFT/RIGHT.P matches K above; LEFT.D = 0.
+#--------------------------------------------------------------------------------------------
+LEFT.height: 480
+LEFT.width: 640
+LEFT.D: !!opencv-matrix
+   rows: 1
+   cols: 5
+   dt: d
+   data: [0.0, 0.0, 0.0, 0.0, 0.0]
+LEFT.K: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [262.7148733534671, 0.0, 329.4309905440758,
+          0.0, 262.7148733534671, 219.56167239700937,
+          0.0, 0.0, 1.0]
+LEFT.R:  !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+LEFT.Rf: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: f
+   data: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+LEFT.P:  !!opencv-matrix
+   rows: 3
+   cols: 4
+   dt: d
+   data: [262.7148733534671, 0.0, 329.4309905440758, 0.0,
+          0.0, 262.7148733534671, 219.56167239700937, 0.0,
+          0.0, 0.0, 1.0, 0.0]
+
+RIGHT.height: 480
+RIGHT.width: 640
+RIGHT.D: !!opencv-matrix
+   rows: 1
+   cols: 5
+   dt: d
+   data: [0.0, 0.0, 0.0, 0.0, 0.0]
+RIGHT.K: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [262.7148733534671, 0.0, 329.4309905440758,
+          0.0, 262.7148733534671, 219.56167239700937,
+          0.0, 0.0, 1.0]
+RIGHT.R:  !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+RIGHT.P:  !!opencv-matrix
+   rows: 3
+   cols: 4
+   dt: d
+   data: [262.7148733534671, 0.0, 329.4309905440758, -36.64914396817235,
+          0.0, 262.7148733534671, 219.56167239700937, 0.0,
+          0.0, 0.0, 1.0, 0.0]
+
+#--------------------------------------------------------------------------------------------
+# ORB Parameters
+#--------------------------------------------------------------------------------------------
+ORBextractor.nFeatures: 1200
+ORBextractor.scaleFactor: 1.2
+ORBextractor.nLevels: 8
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7
+
+#--------------------------------------------------------------------------------------------
+# Viewer
+#--------------------------------------------------------------------------------------------
+Viewer.KeyFrameSize: 0.05
+Viewer.KeyFrameLineWidth: 1
+Viewer.GraphLineWidth: 0.9
+Viewer.PointSize: 2
+Viewer.CameraSize: 0.08
+Viewer.CameraLineWidth: 3
+Viewer.ViewpointX: 0
+Viewer.ViewpointY: -0.7
+Viewer.ViewpointZ: -1.8
+Viewer.ViewpointF: 500

@@ -1,0 +1,15 @@
+{
+  "algo": "macvo",
+  "dataset": "rosariov2",
+  "seq": "sequence1",
+  "duration_s": 8569,
+  "frames": 13821,
+  "fps": 1.61,
+  "model": "MACVO_Performant",
+  "image_size": "480x640",
+  "vram_peak_gb": 5.698,
+  "ate_rmse_m": 13.277,
+  "ate_mean_m": 10.58,
+  "rpe_trans_rmse_m": 2.15,
+  "sandbox": "src/MAC-VO/Results/MACVO-Performant@rosario_v2_seq01/05_15_105635"
+}

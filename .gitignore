@@ -7,9 +7,6 @@ patches/
 *.log
 
 # --- run-type result trees (regenerable) ---
-results-vo/
-results-vio/
-results-vio-lc/
 
 # --- large binary result artefacts (SLAM map files) ---
 results/**/*.bin

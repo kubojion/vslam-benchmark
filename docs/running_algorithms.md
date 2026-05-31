@@ -1,7 +1,7 @@
 # Running the algorithms
 
 > Fully revised: 2026-05-30 22:41 - Added Voxel-SVIO (RA-L 2025) Docker setup, configs, and per-algo notes.
-> Updated: 2026-06-01 - Added AirSLAM VIO/VIO-LC support (separate `_camera_vio.yaml` + two-step map_refinement); OKVIS2 configs added for HortiMulti and EuRoC; OpenVINS HortiMulti config added; DPVO removed.
+> Updated: 05-31-10:42 - Fixed stale hortimulti IMU note (IMU extracted); added GNSS-VIO run examples.
 
 The framework expects a sequence under
 
@@ -132,5 +132,90 @@ For HortiMulti add `configs/macvo/hortimulti_strawberry04.yaml`; ORB-SLAM3 / Bas
 
 **IMU availability:**
 - `rosariov2` has `mav0/imu0/data.csv` available - VIO modes work for all algorithms that support them.
-- `hortimulti` currently lacks extracted `mav0/imu0/data.csv` (the IMU topic `/ms/imu/data` exists in the raw bag but has not yet been extracted). VIO modes are blocked until `scripts/data/_hortimulti_extract.py` is updated.
+- `hortimulti` has `mav0/imu0/data.csv` extracted from the `/ms/imu/data` bag topic via `scripts/data/_hortimulti_extract.py` (str02=190493 samples, str03=48448 samples). VIO modes are available.
 - `EuRoC-MAV` has IMU in the standard mav0 layout; VIO modes work.
+
+## GNSS-VIO algorithms (run_type=gnss-vio)
+
+Three algorithms are wired into the `gnss-vio` track. All three require a
+`gps.csv` file in the sequence directory (header
+`t,lat,lon,alt[,cov_xx,cov_yy,cov_zz,status]`). They write to
+`results-gnss-vio/` and contribute to `benchmark-gnss-vio.csv`.
+
+* **CIFASIS GNSS-SI** runs inside the `vslam_cifasis_gnss_si:noetic` Docker
+  container (ROS 1 Noetic). Build it once with `bash scripts/setup/setup_cifasis_gnss_si_docker.sh`
+  (clone first: `git clone https://github.com/CIFASIS/gnss-stereo-inertial-fusion src/cifasis_gnss_si`).
+  Configs live in `configs/cifasis_gnss_si/<dataset>_<seq>.yaml`. The runner
+  `scripts/run/run_cifasis_gnss_si.sh` starts `roscore` + the
+  `GNSS_Stereo_Inertial` ROS node, then publishes data via
+  `scripts/run/gnss_data_player.py` on `/stereo/left/image_raw`,
+  `/stereo/right/image_raw`, `/imu`, `/gps/fix`. Trajectory is
+  `/root/.ros/CameraTrajectoryGPSOpt.txt` (TUM format). Only `gnss-vio` is
+  supported.
+
+* **RTAB-Map** runs natively on ROS 2 Humble (no Docker). Install once with
+  `sudo apt install ros-humble-rtabmap-ros`. Configs live in
+  `configs/rtabmap_gps/<dataset>.yaml`. The runner
+  `scripts/run/run_rtabmap_gps.sh` calls `ros2 launch rtabmap_launch rtabmap.launch.py`
+  with stereo + IMU + GPS topic remappings, then runs the ROS 2 player
+  `scripts/run/gnss_data_player_ros2.py`. Trajectory is exported from the
+  rtabmap database via `rtabmap-export --poses --poses_format 11`.
+
+* **VINS-Fusion** runs inside the `vslam_vins_fusion:noetic` Docker container
+  (ROS 1 Noetic). Build it once with `bash scripts/setup/setup_vins_fusion_docker.sh`
+  (clone first: `git clone https://github.com/HKUST-Aerial-Robotics/VINS-Fusion src/VINS-Fusion`).
+  Configs: `configs/vins_fusion/<dataset>_<seq>.yaml` plus
+  `<dataset>_cam{0,1}.yaml`. The runner
+  `scripts/run/run_vins_fusion_gps.sh` starts `vins_node`,
+  `global_fusion_node`, and a small Python recorder that subscribes to
+  `/globalEstimator/global_odometry` and writes a TUM file directly to
+  `results-gnss-vio/`. Only `gnss-vio` is supported by this runner.
+
+### GPS data player
+
+`scripts/run/gnss_data_player.py` (ROS 1) and
+`scripts/run/gnss_data_player_ros2.py` (ROS 2) replay an EuRoC-style
+sequence + `gps.csv` and publish all four sensor streams. Topics are
+configurable per algorithm (`--cam0-topic`, `--cam1-topic`, `--imu-topic`,
+`--gps-topic`). Default GPS covariance is `1.0 m^2` horizontal /
+`4.0 m^2` vertical (conventional GPS); use `--gps-cov-xy 0.04 --gps-cov-z 0.09`
+for PPK-quality fixes. When `gps.csv` already contains per-sample
+covariance columns, those are used directly.
+
+### Running GNSS-VIO algorithms
+
+Use `run_benchmark.sh` with `run_type=gnss-vio` for the full run+eval pipeline:
+
+```bash
+# N=3 runs + evaluate + aggregate + append to benchmark-gnss-vio.csv:
+bash scripts/run/run_benchmark.sh rosariov2 sequence1 cifasis_gnss_si 3 gnss-vio
+bash scripts/run/run_benchmark.sh rosariov2 sequence1 vins_fusion_gps 3 gnss-vio
+bash scripts/run/run_benchmark.sh rosariov2 sequence1 rtabmap_gps     3 gnss-vio
+
+bash scripts/run/run_benchmark.sh hortimulti strawberry02 cifasis_gnss_si 3 gnss-vio
+bash scripts/run/run_benchmark.sh hortimulti strawberry02 vins_fusion_gps 3 gnss-vio
+bash scripts/run/run_benchmark.sh hortimulti strawberry02 rtabmap_gps     3 gnss-vio
+```
+
+Or call the dedicated runners directly for a single run:
+
+```bash
+bash scripts/run/run_cifasis_gnss_si.sh  rosariov2 sequence1    1 gnss-vio
+bash scripts/run/run_vins_fusion_gps.sh  rosariov2 sequence1    1 gnss-vio
+bash scripts/run/run_rtabmap_gps.sh      rosariov2 sequence1    1 gnss-vio
+```
+
+Rebuild the gnss-vio CSV after runs complete:
+
+```bash
+python3 scripts/eval/build_benchmark_csv.py gnss-vio
+# or rebuild all four CSVs at once:
+python3 scripts/eval/build_benchmark_csv.py all
+```
+
+Generate plots (segment map + ATE-vs-FPS) for gnss-vio results:
+
+```bash
+python3 scripts/eval/_plot_segments.py --type gnss-vio rosariov2 sequence1
+python3 scripts/eval/plot_ate_vs_fps.py --type gnss-vio
+```

@@ -344,7 +344,7 @@ def build_one(rt) -> int:
         row = row_from_eval(ep, sm, rt)
         if row is None:
             continue
-        key = (row["dataset"], row["seq"], row["algo"], str(row.get("duration_s", "")))
+        key = (row["dataset"], row["seq"], row["algo"], str(row.get("duration_s") or ""))
         if key in existing:
             continue
         new_rows.append(row)

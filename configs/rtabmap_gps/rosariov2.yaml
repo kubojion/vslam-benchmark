@@ -1,0 +1,91 @@
+# RTAB-Map (ROS 2 Humble) parameters for stereo + IMU + GNSS odometry/SLAM.
+#
+# This is a YAML overlay loaded by scripts/run/run_rtabmap_gps.sh on top of the
+# stock rtabmap.launch.py. Parameters mirror the ones documented at
+# https://github.com/introlab/rtabmap_ros and the rtabmap.ini reference.
+#
+# Notes:
+#   - Stereo images expected on /cam0/image_raw + /cam1/image_raw (mono8).
+#   - IMU expected on /imu0 (sensor_msgs/Imu).
+#   - GPS (NavSatFix) expected on /fix; rtabmap converts to local cartesian.
+#   - We disable the GUI (rtabmapviz) for benchmarking; trajectory is written
+#     to ~/.ros/<db>.db via rtabmap database export, then converted to TUM.
+#
+# Reference parameters (RTAB-Map 0.22.x): https://github.com/introlab/rtabmap/blob/master/corelib/include/rtabmap/core/Parameters.h
+
+rtabmap:
+  ros__parameters:
+    # ---- Subscriptions ----------------------------------------------------
+    subscribe_stereo: true
+    subscribe_depth: false
+    subscribe_rgb: false
+    subscribe_scan: false
+    subscribe_scan_cloud: false
+    subscribe_user_data: false
+    approx_sync: true
+    queue_size: 30
+
+    frame_id: "base_link"
+    odom_frame_id: "odom"
+    map_frame_id: "map"
+    publish_tf: true
+
+    wait_for_transform: 0.2
+
+    # ---- Sensor fusion ----------------------------------------------------
+    # Use IMU for orientation + angular velocity priors.
+    Reg/Force3DoF: "false"
+    Optimizer/Strategy: "1"        # 1 = g2o (default); 2 = GTSAM
+    Optimizer/Robust: "true"
+    Optimizer/GravitySigma: "0.3"  # use IMU gravity prior on odometry
+
+    # ---- GPS (NavSatFix) --------------------------------------------------
+    # rtabmap interprets GPS as a global pose constraint. The launch file
+    # remaps /fix to ~gps/fix; we set non-zero gravity sigma + GPS factor
+    # to enable the constraint.
+    RGBD/CreateOccupancyGrid: "false"
+    RGBD/OptimizeFromGraphEnd: "false"
+    Mem/IncrementalMemory: "true"
+    Mem/InitWMWithAllNodes: "false"
+
+    # ---- Stereo VO (front-end before SLAM merges) -------------------------
+    # rtabmap_ros's stereo_odometry node uses these. We pass them through.
+    Vis/EstimationType: "1"        # 1 = PnP (preferred for stereo)
+    Vis/MaxFeatures: "1000"
+    Vis/MinInliers: "20"
+    Stereo/MaxDisparity: "128.0"
+    Stereo/MinDisparity: "0.5"
+    Odom/Strategy: "0"             # 0 = F2M (frame-to-map), good for stereo
+    Odom/ResetCountdown: "1"
+    Odom/GuessSmoothingDelay: "0"
+
+    # ---- Loop closure -----------------------------------------------------
+    # Loop closure is enabled by default; gnss-vio includes LC for now.
+    Kp/MaxFeatures: "500"
+    Rtabmap/DetectionRate: "1"     # Hz
+    RGBD/ProximityBySpace: "true"
+    RGBD/ProximityByTime: "false"
+    RGBD/AngularUpdate: "0.05"
+    RGBD/LinearUpdate: "0.05"
+
+    # ---- Output -----------------------------------------------------------
+    # Trajectory exported via rtabmap database.
+    database_path: "/tmp/rtabmap_gnss.db"
+
+# stereo_odometry node parameters (used by the launch file).
+stereo_odometry:
+  ros__parameters:
+    frame_id: "base_link"
+    odom_frame_id: "odom"
+    publish_tf: true
+    publish_null_when_lost: false
+    approx_sync: true
+    queue_size: 30
+    wait_for_transform: 0.2
+
+    Vis/EstimationType: "1"
+    Vis/MaxFeatures: "1500"
+    Vis/MinInliers: "20"
+    Odom/Strategy: "0"
+    Odom/GuessMotion: "true"
+    Odom/ResetCountdown: "1"

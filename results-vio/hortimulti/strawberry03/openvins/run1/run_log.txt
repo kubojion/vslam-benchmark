@@ -1,0 +1,17 @@
+3.508 [INFO] [1780211727.802579924] [openvins_data_player]: loaded imu=48448 cam0=2425 cam1=2425 from /ws/datasets/hortimulti/strawberry03
+3.544 [INFO] [1780211727.839455679] [openvins_data_player]: start delay 1.0s for ROS graph...
+4.551 [INFO] [1780211728.845919589] [openvins_data_player]: played 0/53298 (0.0%), poses_received=0
+27.358 [INFO] [1780211751.652529696] [openvins_data_player]: played 5000/53298 (9.4%), poses_received=3618
+50.084 [INFO] [1780211774.379206504] [openvins_data_player]: played 10000/53298 (18.8%), poses_received=7635
+72.807 [INFO] [1780211797.101675211] [openvins_data_player]: played 15000/53298 (28.1%), poses_received=11583
+95.536 [INFO] [1780211819.831341721] [openvins_data_player]: played 20000/53298 (37.5%), poses_received=15578
+118.257 [INFO] [1780211842.551625854] [openvins_data_player]: played 25000/53298 (46.9%), poses_received=19534
+140.986 [INFO] [1780211865.280977895] [openvins_data_player]: played 30000/53298 (56.3%), poses_received=23524
+163.716 [INFO] [1780211888.011320039] [openvins_data_player]: played 35000/53298 (65.7%), poses_received=27498
+186.436 [INFO] [1780211910.730702534] [openvins_data_player]: played 40000/53298 (75.0%), poses_received=31458
+209.165 [INFO] [1780211933.459981944] [openvins_data_player]: played 45000/53298 (84.4%), poses_received=35424
+231.885 [INFO] [1780211956.179978428] [openvins_data_player]: played 50000/53298 (93.8%), poses_received=39396
+246.880 [INFO] [1780211971.174518950] [openvins_data_player]: all events published; waiting 3.0s for filter flush...
+249.961 [INFO] [1780211974.255841112] [openvins_data_player]: wrote 42032 poses to /ws/results-vio/hortimulti/strawberry03/openvins/run1/trajectory.txt
+249.969 terminate called without an active exception
+250.425 /bin/bash: line 8:    58 Aborted                 (core dumped) python3 /ws/scripts/run/openvins_data_player.py /ws/datasets/hortimulti/strawberry03 /ws/results-vio/hortimulti/strawberry03/openvins/run1/trajectory.txt --rate 1.0 --start-delay 1.0 --end-wait 3.0
