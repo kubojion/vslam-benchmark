@@ -40,22 +40,31 @@ from _run_type import resolve as resolve_run_type  # noqa: E402
 # Colour palette - consistent across all plots
 # ---------------------------------------------------------------------------
 ALGO_COLOUR = {
-    "orbslam3":    "#2ca02c",   # green
-    "droidslam":   "#8c564b",   # brown
-    "macvo":       "#ff7f0e",   # orange
-    "basalt":      "#d62728",   # red
-    "airslam":     "#17becf",   # light blue
-    "mast3r_slam": "#9467bd",   # purple
-    "megasam":     "#e377c2",   # pink
+    "orbslam3":        "#2ca02c",   # green
+    "droidslam":       "#8c564b",   # brown
+    "macvo":           "#ff7f0e",   # orange
+    "basalt":          "#d62728",   # red
+    "airslam":         "#17becf",   # light blue
+    "mast3r_slam":     "#9467bd",   # purple
+    "megasam":         "#e377c2",   # pink
+    # GNSS-VIO algorithms
+    "cifasis_gnss_si": "#1f77b4",   # blue
+    "vins_fusion_gps": "#bcbd22",   # yellow-green
+    "rtabmap_gps":     "#7f7f7f",   # grey
 }
 ALGO_LABEL = {
-    "orbslam3":    "ORB-SLAM3",
-    "droidslam":   "DROID-SLAM",
-    "macvo":       "MAC-VO",
-    "basalt":      "Basalt",
-    "airslam":     "AirSLAM",
-    "mast3r_slam": "MASt3R-SLAM",
-    "megasam":     "MegaSaM",
+    "orbslam3":        "ORB-SLAM3",
+    "droidslam":       "DROID-SLAM",
+    "macvo":           "MAC-VO",
+    "basalt":          "Basalt",
+    "airslam":         "AirSLAM",
+    "mast3r_slam":     "MASt3R-SLAM",
+    "megasam":         "MegaSaM",
+    # GNSS-VIO algorithms
+    "cifasis_gnss_si": "CIFASIS GNSS-SI",
+    "vins_fusion_gps": "VINS-Fusion+GPS",
+    "rtabmap_gps":     "RTAB-Map+GPS",
+    "openvins_gps":    "OpenVINS+GPS",
 }
 
 GT_COLOUR    = "black"
@@ -435,7 +444,7 @@ def main():
     ap.add_argument("--algos",
                     default="orbslam3,droidslam,macvo,basalt,airslam,mast3r_slam,megasam")
     ap.add_argument("--type", dest="run_type", default="vo",
-                    choices=["vo", "vio", "vio-lc"],
+                    choices=["vo", "vio", "vio-lc", "gnss-vio"],
                     help="Which results tree to read (default: vo)")
     ap.add_argument("--dpi",     type=int,   default=400)
     ap.add_argument("--figsize", type=float, default=20.0)

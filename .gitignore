@@ -10,6 +10,7 @@ patches/
 
 # --- large binary result artefacts (SLAM map files) ---
 results/**/*.bin
+**/rtabmap.db
 
 # --- compiled SLAM artefacts (submodule trees, never commit build output) ---
 src/ORB_SLAM3/build/

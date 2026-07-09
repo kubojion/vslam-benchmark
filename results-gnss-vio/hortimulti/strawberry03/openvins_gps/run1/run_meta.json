@@ -1,0 +1,10 @@
+{
+  "algo": "openvins_gps",
+  "dataset": "hortimulti",
+  "seq": "strawberry03",
+  "run_id": 1,
+  "run_type": "gnss-vio",
+  "duration_s": 247.65723037719727,
+  "frames": 2400,
+  "fps": 9.691
+}

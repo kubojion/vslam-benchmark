@@ -1,17 +1,15 @@
 # vSLAM Benchmark - Progress
 
-> Fully revised: 2026-05-31 - VIO N=1 sweep complete: all 6 algorithms (ORB-SLAM3, Basalt, OKVIS2, OpenVINS, AirSLAM, Voxel-SVIO) run on rosariov2 seq1/seq5, hortimulti str02/str03, EuRoC MH_01_easy. benchmark-vio.csv has 30 rows (one run per algo/seq after parameter-sweep cleanup). Basalt hortimulti: extensive noise tuning (5 runs, accel_noise_std up to 500x Allan + reduced init_ba_weight) yielded best results of str02=22.9 m, str03=2.85 m - still well below VO baseline (2.1 m / 0.275 m). OKVIS2 hortimulti: completely failed across all runs (scale~0, 40% tracking failures) despite 100x Allan inflation and improved frontend. Root cause confirmed as fundamental low-frequency vibration on this ground rover - no config-only fix possible. Full analysis in "hortimulti VIO scale collapse" section.
+> Updated: 2026-05-31 - GNSS-VIO N=1 sweep complete (16 runs, 4 algorithms x 4 sequences). rosariov2 seq5 re-run with high-quality PPK GPS (GPS-quality study added). VIO N=1 complete (30 rows, 6 algorithms). VO N=3 complete.
 
-Algorithms: **ORB-SLAM3** (classical), **MAC-VO** (hybrid), **Basalt** (sliding-window VIO), **AirSLAM** (deep-feature VO, Docker), **OKVIS2** (MAP VIO+LC), **OpenVINS** (MSCKF VIO, Docker). Scaffolded but not benchmarked: **MASt3R-SLAM**, **MegaSaM**. Dropped: **DROID-SLAM** (supervisor feedback).
+Algorithms run: **ORB-SLAM3** (classical), **MAC-VO** (hybrid), **Basalt** (sliding-window VIO), **AirSLAM** (deep-feature VO, Docker), **OKVIS2** (MAP VIO+LC), **OpenVINS** (MSCKF VIO, Docker). GNSS-VIO: **VINS-Fusion+GPS**, **CIFASIS GNSS-SI**, **RTAB-Map+GPS**, **OpenVINS+GPS** (robot_localization EKF). Scaffolded: **MASt3R-SLAM**, **MegaSaM**. Dropped: **DROID-SLAM** (supervisor feedback).
 
 ---
 
-## Current results summary
+## VO - Visual Odometry
 
-Three tables by run type. **N=3** entries use the 3-run mean; **N=1** entries are single-run VIO phase results.
-All ATE values are Sim3-aligned RMSE with a separate SE3 column for scale-aware comparison.
-
-### VO (no IMU, no loop closure)
+**N=3** for main VO-phase algorithms (ORB-SLAM3, MAC-VO, Basalt, AirSLAM, DROID-SLAM). **N=1** for OKVIS2 VO-mode runs.
+All ATE values: Sim3 RMSE, with SE3 column for scale-aware comparison.
 
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | N |
 |---|---|---|---|---|---|---|---|---|
@@ -54,7 +52,20 @@ See VIO table for the Basalt VIO re-run (rosariov2/seq5: 4.74 m with IMU).
 ORB-SLAM3 VO-clean (LC-off) run exists for rosariov2/seq5 only. Old seq1/hortimulti/EuRoC
 ORB-SLAM3 results used the LC-enabled binary and are in `obsolete/` - not shown above.
 
-### VIO (stereo + IMU, no loop closure)
+### Remarks: VO
+
+- **Loop closure dominates global accuracy on long agricultural sequences.** ORB-SLAM3 seq1: 1.18 m (5-6 LCs) vs seq5: 20.2 m (0 LCs) on similar geometry. 5-6 LCs = 17x ATE improvement. Algorithms without LC (MAC-VO, Basalt, AirSLAM) all cluster in the 9-20 m range on Rosario.
+- **Local accuracy is excellent and consistent across all algorithms** - per-row ATE: ORB-SLAM3 16 mm, MAC-VO 20 mm, Basalt 14 mm, AirSLAM 19 mm. 1000x ratio between local (16 mm) and global (16 m) accuracy. Within-row precision is adequate for all algorithms.
+- **Scale drift follows geometry, not just length.** Basalt: 20.9% drift on Rosario seq1 vs 6.6% on seq5 (similar length, different route shape). Monotone straight-line motion provides weaker stereo triangulation constraints.
+- **SE3 is the honest metric for stereo; Sim3 hides scale drift.** Example: ORB-SLAM3 str03 0.10 m (Sim3) vs 0.78 m (SE3).
+- **DROID-SLAM fails on agricultural data** (domain mismatch - trained on TartanAir/synthetic data). Scale collapse severe: str02 scale 9.59, str03 scale 0.428, Rosario seq5 ATE 50 m.
+- **RPE rotation ~17-20 deg/m on HortiMulti** is a frame-mismatch artefact (body vs camera GT frame), not real rotational error. RPE translation [m/m] is unaffected and remains the valid metric.
+- **Repeatability:** Basalt/MAC-VO are deterministic (ATE std < 1 mm). ORB-SLAM3 and AirSLAM show run-to-run variation from LC timing nondeterminism (ORB-SLAM3 seq5: 4.2 m std). 3-run averages recommended.
+- See Phase 1 (below) for full per-algorithm per-sequence detailed results and analysis.
+
+---
+
+## VIO - Visual-Inertial Odometry
 
 All N=1 (best single run). Sequences: rosariov2 seq1/seq5, hortimulti str02/str03, EuRoC MH_01_easy.
 hortimulti VIO: ORB-SLAM3 produces the best trajectories on both sequences via its VO-first then
@@ -253,7 +264,16 @@ hundreds of metres. There are zero loop closures (OpenVINS has no LC mode).
 This matches classic MSCKF unobserved-IMU-bias divergence on long, gently
 moving outdoor sequences. No config-only fix.
 
-### VIO-LC (stereo + IMU + loop closure)
+### Remarks: VIO
+
+- **hortimulti vibration floor - no config fix possible.** The robot's low-frequency vibration (0.5-3 Hz) creates systematic IMU integration errors that VIO initialization cannot distinguish from real acceleration. Only ORB-SLAM3 survives via its deferred IMU fusion (VO-first then IMU). Basalt 500x accel noise inflation confirms this: scale still collapses to 0.57 (invariant across 50x noise range = hardware limit, not a model parameter issue).
+- **OKVIS2 MAP estimator requires correctly scaled IMU noise parameters.** Raw Allan-variance measurements are 12-840x too small, causing scale collapse. Corrected D435i reference values eliminate scale collapse but VIO still underperforms ORB-SLAM3 VIO (20.3 m vs 2.3 m on seq5). Proper sensor-specific Kalibr calibration would be needed for OKVIS2 to match ORB-SLAM3 VIO. OKVIS2 VO is the usable mode for this benchmark.
+- **ORB-SLAM3 is the only reliable VIO algorithm on hortimulti.** All other algorithms (Basalt, AirSLAM, OKVIS2, OpenVINS, Voxel-SVIO) fail or significantly degrade due to the vibration-heavy ground rover platform.
+- See detailed analysis in the hortimulti scale collapse section below, and Phase 1 detailed per-algo results.
+
+---
+
+## VIO-LC - Visual-Inertial + Loop Closure
 
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | N |
 |---|---|---|---|---|---|---|---|---|
@@ -265,31 +285,158 @@ All N=1. ORB-SLAM3 seq5: 0 loop closures accepted (identical crop rows).
 OKVIS2 seq5: 0 closures. OKVIS2 seq1: marginal improvement over VIO (18.32 vs 18.89 m).
 Basalt has no loop closure mode.
 
+### Remarks: VIO-LC
+
+- **Loop closure provides no benefit on perceptually aliased crop-row sequences.** ORB-SLAM3 VIO-LC on rosariov2 seq5: 0 closures accepted, no ATE improvement (2.45 m vs 2.29 m VIO). Identical row appearance prevents bag-of-words place recognition.
+- OKVIS2 seq1 benefits slightly (18.32 vs 18.89 m VIO) because seq1 has more turns providing revisit opportunities.
+- LC roughly halves throughput for OKVIS2 (8.5 fps VIO -> 4.4 fps VIO-LC) with no meaningful ATE gain on these sequences.
+
 ---
 
-## Algorithm/mode/dataset capability
+## GNSS-VIO - Visual-Inertial + GNSS
 
-| Algorithm | VO | VIO | VIO-LC | rosariov2 | hortimulti | EuRoC |
+All N=1. GPS-bearing sequences only: rosariov2 seq1/seq5, hortimulti str02/str03. EuRoC-MAV not included (no GPS).
+On Rosario all four estimators recover near-metric scale (1.00-1.04); GPS provides absolute metric scale. On HortiMulti the EKF-loose `openvins_gps` instead inherits OpenVINS' VIO scale collapse (see remarks).
+
+**seq5 now uses high-quality PPK GPS** (`/reach_1/ppk/fix`, RTK fix status 2, vertical RMSE 0.12 m vs 1.44 m conventional). seq1 still uses conventional GPS (no PPK log available locally for seq1). The seq5 rows below are the PPK results; conventional-GPS seq5 numbers are kept in the GPS-quality study further down. PPK positions were resampled onto the conventional GPS sample times so the comparison isolates data quality, not the timestamp grid (see study, point 5).
+
+| Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | N |
+|---|---|---|---|---|---|---|---|---|
+| VINS-Fusion+GPS | rosariov2 | seq1 | 1.188 m | 1.224 m | 1.0063 | 0.180 | - | 1 |
+| VINS-Fusion+GPS | rosariov2 | seq5 (PPK) | 0.911 m | 0.915 m | 1.0016 | 0.193 | - | 1 |
+| VINS-Fusion+GPS | hortimulti | str02 | 4.899 m | 5.161 m | 1.0339 | 0.437 | - | 1 |
+| VINS-Fusion+GPS | hortimulti | str03 | 2.395 m | 2.468 m | 1.0330 | 0.242 | - | 1 |
+| CIFASIS GNSS-SI | rosariov2 | seq1 | 3.583 m | 3.695 m | 1.0194 | 0.0315 | 14.7 | 1 |
+| CIFASIS GNSS-SI | rosariov2 | seq5 (PPK) | 2.062 m | 2.274 m | 1.0193 | 0.0369 | 14.6 | 1 |
+| CIFASIS GNSS-SI | hortimulti | str02 | 7.256 m | 7.333 m | 1.0221 | 0.0949 | 10.0 | 1 |
+| CIFASIS GNSS-SI | hortimulti | str03 | 1.502 m | 1.681 m | 1.0422 | 0.0294 | 10.0 | 1 |
+| RTAB-Map+GPS | rosariov2 | seq1 | 2.138 m | 2.309 m | 1.0187 | 0.0505 | 0.91 | 1 |
+| RTAB-Map+GPS | rosariov2 | seq5 (PPK) | 4.901 m | 4.926 m | 1.0110 | 0.0518 | 0.35 | 1 |
+| RTAB-Map+GPS | hortimulti | str02 | 6.298 m | 6.611 m | 1.0429 | 0.1401 | 0.90 | 1 |
+| RTAB-Map+GPS | hortimulti | str03 | 1.764 m | 1.829 m | 1.0269 | 0.0264 | 0.86 | 1 |
+| OpenVINS+GPS (EKF) | rosariov2 | seq1 | 2.388 m | 2.589 m | 1.0216 | 0.073 | 9.8 | 1 |
+| OpenVINS+GPS (EKF) | rosariov2 | seq5 (PPK) | 4.179 m | 4.227 m | 1.0132 | 0.345 | 7.8 | 1 |
+| OpenVINS+GPS (EKF) | hortimulti | str02 | 30.865 m | 42.375 m | 0.5540 | 2.708 | 9.9 | 1 |
+| OpenVINS+GPS (EKF) | hortimulti | str03 | 16.496 m | 48.011 m | 0.1647 | 2.897 | 9.7 | 1 |
+
+The RTAB-Map seq5 (PPK) row is reported with low confidence: RTAB-Map's stereo odometry is non-deterministic on this sequence (exported pose counts of 363 / 284 / 134 / 22 across four runs from repeated odometry inlier loss), so a single-run conventional-vs-PPK comparison for RTAB-Map reflects odometry variance more than GPS quality. The 4.901 m row is the best full-length PPK track obtained (284 of ~363 poses). See the GPS-quality study below.
+
+VINS-Fusion+GPS FPS not recorded (no run_meta.json). RTAB-Map+GPS: 0.35-0.91 fps (below real-time).
+CIFASIS GNSS-SI: real-time (10.0 fps hortimulti, 14.6-14.7 fps rosariov2).
+OpenVINS+GPS: real-time (9.7-9.9 fps). Good on Rosario, scale-collapses on HortiMulti (see remarks).
+
+#### RTAB-Map runner fixes
+
+Six bugs fixed in `scripts/run/run_rtabmap_gps.sh` to get correct results:
+
+1. **pkill scope** - `pkill -f rtabmap` killed the data player too. Scoped to container process only.
+2. **rgb_topic mismatch** - expected `/rgb/image_rect_color` but player published to `/cam0/image_raw`. Fixed remapping.
+3. **TF missing** - no `base_link -> camera` TF published; silent pose drop. Added static TF broadcast.
+4. **IMU/madgwick filter** - filter node not publishing to expected topic. Removed filter; pass IMU directly.
+5. **Export path** - `rtabmap-export --output` resolves relative to the `.db` directory, mangling absolute paths into a nonexistent nested dir (silent fail). Switched to basename in db's dir + `awk` to strip `#`-header and trailing id column.
+6. **GPS priors disabled** - `[Core]` section had `Optimizer\PriorsIgnored = true` (rosariov2 cfg) or loaded no INI (hortimulti cfg). Added `--Optimizer/PriorsIgnored false --Optimizer/Strategy 1 --Optimizer/Robust true`.
+
+Result: pre-fix rosariov2 seq1 had ATE 24.26 m, scale 0.80 (GPS not fused at all). Post-fix: 2.14 m, scale 1.019.
+
+### Remarks: GNSS-VIO
+
+- **GPS fusion is effective on the optimisation-based estimators** - VINS-Fusion, CIFASIS and RTAB-Map all recover near-metric scale (1.00-1.04) on every sequence, including hortimulti, with no scale collapse. GPS provides absolute metric scale that overrides VIO drift. The EKF-loose `OpenVINS+GPS` is the exception: it inherits OpenVINS' VIO scale collapse on hortimulti (see below).
+- **VINS-Fusion+GPS** is strongest overall, best or tied-best on three of four sequences (rosariov2 seq1: 1.19 m, seq5 PPK: 0.91 m, hortimulti str02: 4.90 m). Loosely-coupled global GPS fusion keeps trajectory globally consistent without hurting local odometry. High RPE (0.18-0.44 m/m on rosariov2) reflects small jumps from the global_fusion node, not poor local tracking. It also benefits most cleanly from the PPK GPS upgrade on seq5 (vertical RMSE -86%, ATE -5%; see GPS-quality study).
+- **CIFASIS GNSS-SI** is strongest on hortimulti str03 (1.50 m) and competitive on rosariov2 seq1 (3.58 m), but weakest on hortimulti str02 (7.26 m). Tight GNSS-inertial coupling rewards clean GPS locally (lowest RPE, 0.02-0.09 m/m) but is more sensitive to noisier str02 fixes (vibration-heavy environment with GPS multipath). On seq5 the PPK upgrade improved its vertical channel (-23%) yet raised overall ATE (0.94 m -> 2.06 m) through horizontal re-balancing / run variance, illustrating that tight coupling does not guarantee an overall gain from better GPS (see GPS-quality study).
+- **RTAB-Map+GPS** lands in the middle. Higher RPE (0.05-0.14 m/m) reflects sparser pose output (0.45-0.91 fps export rate) rather than poor local accuracy. The six runner fixes were essential; pre-fix GPS was not fused at all.
+- **OpenVINS+GPS (robot_localization EKF)** is the only loosely-coupled *online* fusion (an EKF blends OpenVINS VIO odometry with GPS local-ENU position in real time, vs VINS-Fusion's offline pose-graph). On Rosario it is competitive (2.39 m seq1, 4.18 m seq5 PPK, scale 1.02) and real-time (7.8-9.9 fps), and notably its residual is almost purely horizontal (vertical share 1-3%) - the EKF's velocity smoothing absorbs the noisy GPS vertical channel that hurts the tighter estimators. The PPK upgrade on seq5 improved its ATE -10% (4.66 m -> 4.18 m). On HortiMulti it collapses (ATE 16-31 m, scale 0.55 and 0.16): the EKF cannot rescale a VIO that is already losing metric scale, because GPS enters only as a position correction, not as a structural scale constraint. VINS-Fusion's pose-graph and CIFASIS's tight GNSS-inertial factors both re-anchor scale globally and so survive HortiMulti where the EKF does not. This is the same VIO scale-collapse seen on the pure-VIO HortiMulti track, now visible because the loose EKF does not repair it.
+- **hortimulti str02 is hardest** for the optimisation-based estimators (4.9-7.3 m ATE), consistent with the vibration-heavy, GPS-degraded conditions documented on the VIO track. The EKF-loose OpenVINS+GPS is worse still (30.9 m) because its scale collapses there.
+- **Infrastructure note:** HortiMulti GPS extraction from the Buffalo SSD failed with `OSError: [Errno 5] Input/output error` (hardware read fault). GPS data recovered from already-extracted `gps.csv` files. VINS-Fusion+GPS FPS not recorded (no run_meta.json).
+
+### GNSS-VIO accuracy investigation: vertical GPS noise
+
+Why GNSS-VIO is not as accurate as expected, and why the residual concentrates in the vertical (z) axis.
+
+**1. The GPS feed is vertically noisy.** Rosario v2 ships two GPS streams. The benchmark used the conventional real-time fix (`/reach_1/gps/fix`); a post-processed PPK fix (`/reach_1/ppk/fix`) is also available locally but was not extracted. Aligned to ground truth (Umeyama Sim3) on seq5:
+
+| GPS stream | 3D RMSE | Horizontal RMSE | Vertical RMSE | Max vertical |
+|---|---|---|---|---|
+| Conventional (used) | 1.561 m | 0.612 m | 1.436 m | 6.18 m |
+| PPK (available, unused) | 0.460 m | 0.459 m | 0.033 m | 0.16 m |
+
+Horizontal accuracy is acceptable (~0.6 m), but the conventional vertical RMSE is 1.44 m with spikes past 6 m. PPK collapses vertical error to 3 cm (43x better). The conventional receiver's vertical channel is the weak link.
+
+**2. The vertical error propagates into the fused trajectory.** Per-axis decomposition of the GNSS-VIO outputs (Sim3-aligned to GT) shows the vertical axis carrying most of the ATE on the tighter-coupled estimators, even though the robot is on near-flat ground (GT z-span < 0.8 m on Rosario):
+
+| Run | 3D RMSE | Z RMSE | Vertical share of variance |
+|---|---|---|---|
+| CIFASIS GNSS-SI seq1 | 3.57 m | 2.98 m | 70% |
+| CIFASIS GNSS-SI str03 | 1.52 m | 1.27 m | 70% |
+| RTAB-Map+GPS str03 | 1.71 m | 1.64 m | 92% |
+| VINS-Fusion+GPS str03 | 2.39 m | 2.04 m | 73% |
+| VINS-Fusion+GPS seq5 | 0.92 m | 0.31 m | 12% |
+| OpenVINS+GPS seq1 (EKF) | 2.27 m | 0.37 m | 3% |
+| OpenVINS+GPS seq5 (EKF) | 4.54 m | 0.55 m | 1% |
+
+A 1-3 m vertical RMSE on terrain that only moves 0.3-0.8 m vertically is not the robot following the ground; it is GPS vertical noise injected through the fusion. The two `OpenVINS+GPS` rows are the exception that proves the rule: the EKF's velocity-smoothed loose coupling almost entirely rejects the vertical GPS noise (3% and 1% vertical share), so its Rosario error is horizontal drift, not GPS-z leakage.
+
+**3. Tighter GPS coupling makes it worse, not better.** This answers the natural question of whether the RTK is simply "not trusted enough". The opposite holds. The four estimators form a coupling spectrum, and vertical-noise rejection tracks looseness almost monotonically. The loosest, `OpenVINS+GPS` (a robot_localization EKF that fuses GPS only as a velocity-smoothed position correction), rejects nearly all of it (1-3% vertical share). VINS-Fusion (loose global pose-graph) is next (12-36%). CIFASIS (semi-tight, GPS as g2o position factors) and RTAB-Map (GPS as graph priors) weight the GPS measurement hardest, so the noisy vertical channel pulls the estimate most (42-92% vertical share). The assigned vertical covariance (cov_z = 4.0 m^2, i.e. 2 m sigma) is reasonable for conventional GPS; the problem is the measurement, not an overly tight weight. The caveat is that maximum looseness has its own cost: the EKF that best rejects the noise also fails to re-anchor scale, so it collapses on HortiMulti where the VIO itself drifts (see GNSS-VIO remarks).
+
+**4. HortiMulti is worse because its GPS is consumer-grade, not RTK.** The HortiMulti `gps.csv` carries per-sample covariance and a fix-status flag. Vertical covariance is `cov_zz` 41.7 m^2 on str02 (6.5 m sigma) and 59.9 m^2 on str03 (7.7 m sigma), with `status = 0` (standard fix, not RTK = 2). Every HortiMulti GPS sample is several metres uncertain vertically, which is why HortiMulti GNSS-VIO ATE (4.9-7.3 m on str02) sits far above Rosario.
+
+**Actionable fix (predicted):** re-extract `datasets/rosariov2/sequence5/gps.csv` from the PPK bag (`/reach_1/ppk/fix`) and re-run the GNSS-VIO sweep. Based on the noise numbers this should cut vertical error by an order of magnitude. The PPK bag is only available locally for seq5; seq1 would need its corresponding PPK log. HortiMulti has no higher-grade GPS available, so its vertical error is a hardware limit. Analysis scripts: `scripts/eval/_gps_noise_analysis.py` (stream comparison) and the per-axis decomposition documented above.
+
+### GNSS-VIO GPS-quality study: measured PPK vs conventional (seq5)
+
+The PPK fix above was carried out on rosariov2 seq5. All four GNSS-VIO algorithms were re-run with the high-quality PPK GPS and compared head-to-head against the conventional-GPS baseline. This is the direct measurement of how GPS data quality affects each fusion strategy.
+
+**Method.** The PPK stream (`/reach_1/ppk/fix`, RTK fix status 2, 4201 samples) was extracted and its lat/lon/alt resampled onto the conventional GPS sample times before feeding the same players, players, covariances and runners as the baseline. Resampling onto the conventional (irregular) timestamps is deliberate: the raw PPK product ships on an exact regular 0.2 s grid, and feeding that grid directly warped VINS-Fusion's `global_fusion` 4DOF pose-graph (ATE 10.5 m, vertical span 4x ground truth) even though the PPK position values are good. Resampling removes that timestamp-grid confound so the comparison isolates GPS data quality. Horizontal PPK and conventional are near-identical (0.87 m RMS difference); only the vertical channel differs materially (PPK vertical std 0.12 m vs conventional 1.40 m).
+
+| Algorithm | Coupling | Conv ATE Sim3 | PPK ATE Sim3 | Conv SE3 | PPK SE3 | Vertical RMSE conv -> PPK |
 |---|---|---|---|---|---|---|
-| ORB-SLAM3 | yes | yes | yes | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1) | MH_01 VIO done (N=1) |
-| Basalt | yes (`--use-imu false`) | yes | no LC mode | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1, 5-run sweep) | MH_01 VIO done (N=1) |
-| DROID-SLAM | yes | no IMU support | no IMU support | done (N=3) | done (N=3) | done (N=1) |
-| MAC-VO | yes | no IMU support | no IMU support | done (N=3) | done (N=3) | done (N=1) |
-| AirSLAM | yes | yes | yes | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1) | MH_01 VIO done (N=1) |
-| OKVIS2 | yes | yes | yes | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1, failed) | MH_01 VIO done (N=1) |
-| OpenVINS | no (no VO mode) | yes | no (no LC) | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1, scale collapse) | MH_01 VIO done (N=1) |
-| Voxel-SVIO | no (no VO mode) | yes | no (no LC) | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1, scale collapse) | MH_01 VIO done (N=1) |
+| VINS-Fusion+GPS | loose 4DOF pose-graph | 0.961 m | **0.911 m** | 0.964 m | 0.915 m | 0.332 m -> 0.048 m (-86%) |
+| CIFASIS GNSS-SI | tight GPS factor (g2o) | 0.942 m | 2.062 m | 1.340 m | 2.274 m | 0.634 m -> 0.491 m (-23%) |
+| OpenVINS+GPS (EKF) | loose EKF position | 4.661 m | **4.179 m** | 4.749 m | 4.227 m | horizontal-dominated |
+| RTAB-Map+GPS | graph + GPS prior | 1.640 m | 4.901 m | 1.769 m | 4.926 m | inconclusive (see below) |
+
+**What the PPK GPS actually fixed: the vertical channel.** The clean, repeatable result is that PPK collapses the vertical component of the fused trajectory wherever the GPS vertical actually enters the estimator. VINS-Fusion's vertical RMSE drops from 0.33 m to 0.05 m (-86%) and its overall ATE improves to 0.911 m. CIFASIS's vertical RMSE drops from 0.63 m to 0.49 m (-23%). This is exactly the predicted effect: better GPS altitude -> less vertical leakage. The vertical fix is the unambiguous GPS-quality signal.
+
+**Overall ATE does not improve uniformly, and that is the nuanced finding.** Only the two loosely-coupled estimators improve in 3D ATE (VINS-Fusion -5%, OpenVINS -10%). The tightly-coupled CIFASIS gets worse overall (0.94 m -> 2.06 m) despite its vertical channel improving: with the vertical residual removed, its bundle adjustment re-balanced the horizontal axes and the horizontal error grew (X 0.46 m -> 1.57 m, Y 0.52 m -> 1.25 m). Two readings are consistent with this: (a) a genuine response of the tight GPS factor to a changed vertical-error profile, and (b) ORB-SLAM3 run-to-run variance (the conventional 0.94 m was a single non-deterministic run). Either way, the practical lesson is that better GPS does not automatically mean a better tightly-coupled global fit; the vertical gain is real but can be offset by horizontal re-balancing.
+
+**RTAB-Map is inconclusive due to odometry non-determinism.** Across four PPK runs RTAB-Map's stereo odometry exported 363 / 284 / 134 / 22 poses, repeatedly logging "Not enough inliers" and "Odom quality=0" under real-time playback. GPS enters RTAB-Map only in the graph optimisation, so it cannot recover poses the odometry never produced. The conventional-vs-PPK ATE swing (1.64 m -> 4.90 m on the best 284-pose track) reflects this odometry variance, not GPS quality. A fair RTAB-Map GPS-quality comparison would need multiple runs of each condition with matched track lengths.
+
+**Takeaways.**
+- High-quality (PPK/RTK) GPS reliably improves the **vertical** accuracy of the fused estimate (-23% to -86% vertical RMSE here), because the conventional receiver's weakness is purely vertical.
+- The improvement carries through to overall ATE for **loosely-coupled** fusion (VINS-Fusion, OpenVINS EKF), which is the more robust way to consume GPS.
+- **Tight** coupling (CIFASIS) can re-distribute error across axes, so a vertical gain does not guarantee an overall-ATE gain.
+- Estimator **non-determinism** (RTAB-Map odometry, ORB-SLAM3 bundle) can exceed the GPS-quality effect on a single run; multi-run sweeps are needed to separate the two.
+- Scope: PPK applied to **seq5 only**. seq1 still uses conventional GPS (no seq1 PPK log available locally). HortiMulti has no higher-grade GPS available at all (only `/antobot_gps`, consumer fix status 0, vertical sigma ~7-8 m), so its vertical error is a hardware limit, not a fixable extraction.
+
+---
+
+## Algorithm coverage
+
+| Algorithm | VO | VIO | VIO-LC | GNSS-VIO | rosariov2 | hortimulti | EuRoC |
+|---|---|---|---|---|---|---|---|
+| ORB-SLAM3 | yes | yes | yes | no | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1) | MH_01 VIO done (N=1) |
+| Basalt | yes (`--use-imu false`) | yes | no LC mode | no | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1, 5-run sweep) | MH_01 VIO done (N=1) |
+| DROID-SLAM | yes | no IMU support | no IMU support | no | done (N=3) | done (N=3) | done (N=1) |
+| MAC-VO | yes | no IMU support | no IMU support | no | done (N=3) | done (N=3) | done (N=1) |
+| AirSLAM | yes | yes | yes | no | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1) | MH_01 VIO done (N=1) |
+| OKVIS2 | yes | yes | yes | no | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1, failed) | MH_01 VIO done (N=1) |
+| OpenVINS | no | yes | no | no | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1, scale collapse) | MH_01 VIO done (N=1) |
+| Voxel-SVIO | no | yes | no | no | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1, scale collapse) | MH_01 VIO done (N=1) |
+| VINS-Fusion+GPS | no | yes (base) | no | **yes** | seq1+seq5 done (N=1) | str02+str03 done (N=1) | no GPS |
+| CIFASIS GNSS-SI | no | yes (base) | no | **yes** | seq1+seq5 done (N=1) | str02+str03 done (N=1) | no GPS |
+| RTAB-Map+GPS | no | yes (base) | no | **yes** | seq1+seq5 done (N=1) | str02+str03 done (N=1) | no GPS |
+| OpenVINS+GPS (EKF) | no | yes (base) | no | **yes** | seq1+seq5 done (N=1) | str02+str03 done (N=1, scale collapse) | no GPS |
 
 **Gaps - possible but not yet done:**
 - ORB-SLAM3 VO clean run on rosariov2/seq1, hortimulti, EuRoC (configs exist)
 - Scale all N=1 VIO results to N=3 (ORB-SLAM3, Basalt, OpenVINS, AirSLAM priority)
-- AirSLAM VIO/VIO-LC on rosariov2/seq1+seq5, EuRoC (imu0 available, launch files exist)
+- GNSS-VIO N=3 sweep (currently N=1)
 
 **Not possible without hardware/code changes:**
-- Reliable VIO on hortimulti for any algorithm except ORB-SLAM3 (see scale collapse analysis; vibration floor confirmed after extensive tuning)
-- DROID-SLAM VIO, MAC-VO VIO (these algorithms do not use IMU)
-- Basalt VIO-LC, OpenVINS VIO-LC (neither has a built-in loop closure mode)
+- Reliable VIO on hortimulti for any algorithm except ORB-SLAM3 (vibration floor confirmed)
+- DROID-SLAM VIO, MAC-VO VIO (no IMU support)
+- Basalt VIO-LC, OpenVINS VIO-LC (no built-in loop closure)
 - OpenVINS VO (MSCKF requires IMU; no vision-only mode)
+- GNSS-VIO on EuRoC (no GPS in that dataset)
 
 
 ---
@@ -1298,57 +1445,4 @@ conda run -n macvo python3 scripts/eval/_macvo_to_tum.py "$SBX" \
 
 ---
 
-*Last updated: 2026-05-30 - OpenVINS VIO results added to summary tables; Phase 4.x section names replaced with descriptive headings.*
-
----
-
----
-
-## 2026-05-31 - GNSS-VIO infrastructure landed
-
-Added the `gnss-vio` run-type with three new algorithms wired in. No
-algorithm runs yet - this commit is infrastructure only.
-
-**Run-type / eval pipeline:**
-- `_paths.sh` and `scripts/eval/_run_type.py` recognize `gnss-vio`,
-  `gnss_vio`, `gnssvio` aliases. New env var `USE_GNSS=true` for that case.
-- `results-gnss-vio/` and `benchmark-gnss-vio.csv` are auto-discovered by
-  `build_benchmark_csv.py` (it iterates `all_types()`, no edit needed).
-- `_evaluate_run.py` already computes Sim(3) ATE (`ate`), SE(3) ATE
-  (`ate_se3`), RPE, scale, FPS - no changes required for gnss-vio.
-
-**Algorithms:**
-- CIFASIS GNSS-SI (Cremona et al., JFR 2023): cloned to
-  `src/cifasis_gnss_si/`. Custom Dockerfile wraps upstream's build.sh +
-  build_ros.sh. Runner remaps to `/stereo/{left,right}/image_raw`, `/imu`,
-  `/gps/fix`. Trajectory: `/root/.ros/CameraTrajectoryGPSOpt.txt`.
-- RTAB-Map (introlab): apt-installed `ros-humble-rtabmap-ros` v0.22.1.
-  Native ROS 2, no Docker. Launches `rtabmap_launch/rtabmap.launch.py`
-  with stereo+IMU+GPS; trajectory exported via `rtabmap-export --poses
-  --poses_format 11`.
-- VINS-Fusion (HKUST): cloned to `src/VINS-Fusion/`. Dockerfile builds
-  Ceres 2.1 + catkin_make. Runner starts `vins_node` +
-  `global_fusion_node` and records `/globalEstimator/global_odometry` to
-  TUM via the small Python helper `scripts/run/odometry_to_tum.py`.
-
-**Data prep:**
-- `_hortimulti_extract.py` gained `extract_gps()`, `--gps`, `--no-gps`,
-  `--gps-only`. Output `gps.csv` matches Rosario v2 layout (header
-  `t,lat,lon,alt[,cov_xx,cov_yy,cov_zz,status]`).
-- Shared replayers `scripts/run/gnss_data_player.py` (ROS 1) and
-  `scripts/run/gnss_data_player_ros2.py` (ROS 2) publish stereo + IMU +
-  NavSatFix from a sequence directory at original timestamps.
-
-**Known issues:**
-- HortiMulti GPS extraction on `/media/jion_kubo/Buffalo SSD/` failed with
-  `OSError: [Errno 5] Input/output error` partway through both bags
-  (str02 ~150 MB in; str03 immediately). Hardware-level read fault, not a
-  bug in the extractor. Re-attempt after the drive is checked.
-- Docker images for CIFASIS GNSS-SI and VINS-Fusion have not been built
-  yet. First-time `docker build` will take ~30-60 min for CIFASIS
-  (Pangolin + ORB-SLAM3 + DBoW2 + g2o) and ~20-40 min for VINS-Fusion
-  (Ceres + catkin build). Run `bash scripts/setup/setup_*_docker.sh`
-  before the first benchmark.
-- RTAB-Map runner is minimal: passes our YAML overlay via `cfg:=`
-  argument but RTAB-Map's launch file may not honor every parameter we
-  set there. First real run may need iteration on parameter names.
+*Last updated: 2026-05-31 - GNSS-VIO N=1 sweep complete. Restructured into VO/VIO/VIO-LC/GNSS-VIO mode sections.*

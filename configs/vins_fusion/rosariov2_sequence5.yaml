@@ -18,30 +18,33 @@ output_path: "/results-gnss-vio/rosariov2/sequence5/vins_fusion_gps/"
 
 cam0_calib: "rosariov2_cam0.yaml"
 cam1_calib: "rosariov2_cam1.yaml"
-image_width: 672
-image_height: 376
+image_width: 1280
+image_height: 720
 
-# Extrinsic IMU<->cam0 (from CIFASIS Rosario_3_0.yaml, Tbc).
+# Extrinsic IMU<->cam0. The images are stereo-RECTIFIED, so the extrinsic must be
+# to the rectified left-camera frame, not the raw camera. Values = IMU.T_b_c1 from
+# the working ORB-SLAM3 stereo-inertial Rosario config (near-identity).
+# The earlier matrix was the CIFASIS raw Tbc (a ~90 deg rotation) and was wrong
+# for the rectified images.
 estimate_extrinsic: 0
 body_T_cam0: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [ 0.00947144, -0.99390817,  0.10980361, -0.03095006,
-           0.99845674,  0.00339092, -0.05543136, -0.07713643,
-           0.05472135,  0.11015916,  0.99240644,  0.02651249,
+   data: [ 0.999992, -0.003898, -0.000576, -0.004483,
+           0.003895,  0.999979, -0.005012,  0.019179,
+           0.000596,  0.005009,  0.999987,  0.027584,
            0.0, 0.0, 0.0, 1.0 ]
 
-# cam1 = cam0 shifted right by baseline (rectified stereo, identity rotation
-# w.r.t. cam0). Translation in body frame = R(body_T_cam0) * (baseline, 0, 0) + t(body_T_cam0).
-# baseline = 0.11872 m along the cam0 x-axis.
+# cam1 = cam0 translated right by the rectified baseline (0.0497336941 m) along
+# the cam0 x-axis. t_cam1 = t_cam0 + R_cam0 * (baseline, 0, 0).
 body_T_cam1: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [ 0.00947144, -0.99390817,  0.10980361, -0.02982561,
-           0.99845674,  0.00339092, -0.05543136,  0.04140035,
-           0.05472135,  0.11015916,  0.99240644,  0.03300901,
+   data: [ 0.999992, -0.003898, -0.000576,  0.045246,
+           0.003895,  0.999979, -0.005012,  0.019373,
+           0.000596,  0.005009,  0.999987,  0.027614,
            0.0, 0.0, 0.0, 1.0 ]
 
 multiple_thread: 1
@@ -59,15 +62,20 @@ max_solver_time: 0.04
 max_num_iterations: 8
 keyframe_parallax: 10.0
 
-#imu parameters (Rosario v2; values from CIFASIS Rosario_3_0.yaml).
-acc_n: 0.20
-gyr_n: 0.017
-acc_w: 0.30
-gyr_w: 0.0019393
+#imu parameters (Rosario v2).
+# Use VINS-Fusion-proven EuRoC-class noise. The CIFASIS Rosario_3_0.yaml values
+# (acc_n=0.20, acc_w=0.30, ...) are inflated 100x for ORB-SLAM3's IMU model and
+# cause the accelerometer bias to run away in VINS-Fusion on this ground-vehicle
+# trajectory (vertical position diverges). EuRoC defaults keep the bias bounded.
+acc_n: 0.1
+gyr_n: 0.01
+acc_w: 0.001
+gyr_w: 0.0001
 g_norm: 9.81007
 
 #unsynchronization parameters
-estimate_td: 0
+# Rosario stereo and IMU are not hardware-synced; estimate the time offset online.
+estimate_td: 1
 td: 0.0
 
 #loop closure parameters

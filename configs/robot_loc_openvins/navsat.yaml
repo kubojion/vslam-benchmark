@@ -1,0 +1,28 @@
+# navsat_transform_node config for OpenVINS + GPS fusion.
+#
+# Converts sensor_msgs/NavSatFix (GPS lat/lon/alt) to a local-ENU
+# nav_msgs/Odometry that the EKF can fuse alongside VIO odometry.
+#
+# Topic remappings applied by the runner:
+#   gps/fix            -> /fix           (from gnss_data_player_ros2)
+#   odometry/filtered  -> /odometry/filtered  (EKF feedback for heading)
+#   odometry/gps       -> /odometry/gps  (output consumed by EKF odom1)
+#
+# use_odometry_yaw: true - heading comes from the EKF's VIO odometry
+# feedback, so no separate magnetometer/IMU topic is needed. The EKF
+# derives heading from OpenVINS (odom0), which navsat_transform uses
+# to orient the local ENU frame consistently with the VIO frame.
+#
+# /** wildcard matches the node name regardless of how ros2 run names it.
+/**:
+  ros__parameters:
+    frequency: 10.0
+    delay: 0.0
+    magnetic_declination_radians: 0.0
+    yaw_offset: 0.0
+    zero_altitude: false
+    broadcast_utm_transform: false
+    broadcast_utm_transform_as_parent_frame: false
+    publish_filtered_gps: false
+    use_odometry_yaw: true
+    wait_for_datum: false

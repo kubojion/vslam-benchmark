@@ -131,7 +131,9 @@ def main() -> int:
     ap.add_argument("--gps-cov-z", type=float, default=4.0)
     ap.add_argument("--no-gps", action="store_true")
     ap.add_argument("--gps-csv", type=Path, default=None)
-    # Camera intrinsics for CameraInfo publishing (rectified pinhole stereo).
+    ap.add_argument("--imu-best-effort", action="store_true",
+                    help="Publish IMU with BEST_EFFORT QoS (required for "
+                         "OpenVINS SensorDataQoS; default RELIABLE for RTAB-Map).")
     # If any of fx/fy/cx/cy/baseline are <=0, CameraInfo is NOT published.
     ap.add_argument("--cam-width",    type=int,   default=0)
     ap.add_argument("--cam-height",   type=int,   default=0)
@@ -166,10 +168,22 @@ def main() -> int:
         history=HistoryPolicy.KEEP_LAST,
         depth=10,
     )
+    # OpenVINS subscribes to IMU with rclcpp::SensorDataQoS() == BEST_EFFORT.
+    # Cameras use RELIABLE (message_filters default). A RELIABLE publisher is
+    # compatible with a BEST_EFFORT subscriber, but to exactly mirror the
+    # known-good openvins_data_player.py (and avoid back-pressure stalls when
+    # the OV node is slow) we publish IMU BEST_EFFORT when --imu-best-effort
+    # is set. RTAB-Map (default) keeps RELIABLE IMU.
+    qos_imu = QoSProfile(
+        reliability=(ReliabilityPolicy.BEST_EFFORT if args.imu_best_effort
+                     else ReliabilityPolicy.RELIABLE),
+        history=HistoryPolicy.KEEP_LAST,
+        depth=10,
+    )
 
     pub_cam0 = node.create_publisher(Image, args.cam0_topic, qos_sensor)
     pub_cam1 = node.create_publisher(Image, args.cam1_topic, qos_sensor)
-    pub_imu  = node.create_publisher(Imu, args.imu_topic, qos_sensor)
+    pub_imu  = node.create_publisher(Imu, args.imu_topic, qos_imu)
     pub_gps  = node.create_publisher(NavSatFix, args.gps_topic, qos_sensor)
 
     # ---- CameraInfo (rectified pinhole stereo) ----------------------------

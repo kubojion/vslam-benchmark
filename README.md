@@ -1,6 +1,6 @@
 # vSLAM Benchmark
 
-> Fully revised: 2026-05-31 - Added GNSS-VIO benchmark track (CIFASIS GNSS-SI, RTAB-Map, VINS-Fusion).
+> Fully revised: 2026-05-31 - Added GNSS-VIO benchmark track (CIFASIS GNSS-SI, RTAB-Map, VINS-Fusion, OpenVINS+GPS). rosariov2 seq5 re-run with high-quality PPK GPS; see the GNSS-VIO GPS-quality study in [PROGRESS.md](PROGRESS.md).
 
 | Algorithm | Type | Source |
 |---|---|---|
@@ -72,7 +72,7 @@ warn for unsupported combinations:
 | OKVIS2      | yes | yes | yes (IMU sigmas need 5-10x inflation, see PROGRESS.md) |
 | AirSLAM     | yes | yes | yes |
 | Basalt      | yes | yes | (no LC) |
-| OpenVINS    | (no VO mode) | yes | (no LC) |
+| OpenVINS    | (no VO mode) | yes (+gnss-vio via robot_localization) | (no LC) |
 | Voxel-SVIO  | (no VO mode) | yes | (no LC) |
 | CIFASIS GNSS-SI | (no VO mode) | (gnss-vio only) | (gnss-vio only) |
 | RTAB-Map    | (gnss-vio only) | (gnss-vio only) | (gnss-vio only) |

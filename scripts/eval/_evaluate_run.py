@@ -456,8 +456,8 @@ def main():
     res_path = run_dir / "resources.csv"
     runtime = parse_resources(str(res_path)) or {}
     if meta:
-        runtime["wall_s"] = round(meta.get("duration_s", 0), 2)
-        fps = meta.get("fps", 0)
+        runtime["wall_s"] = round(meta.get("duration_s") or 0, 2)
+        fps = meta.get("fps") or 0
         runtime["fps"] = round(fps, 3)
         # Real-time factor: fps / input_fps (we don't know input fps here,
         # so leave it as fps and let aggregate compute RTF from sequence metadata)

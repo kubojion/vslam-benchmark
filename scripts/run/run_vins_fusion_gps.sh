@@ -62,6 +62,16 @@ if ! docker ps --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
     fi
 fi
 
+# ---- Kill any stale nodes from a previous (possibly orphaned) run ----------
+# A leftover player/estimator publishing to the same topics corrupts the IMU
+# stream of a fresh run ("numerical unstable in preintegration"). Always start
+# from a clean slate.
+docker exec "$CONTAINER" bash -c "
+    pgrep -f 'vins_node|global_fusion|gnss_data_player|odometry_to_tum|roscore|rosmaster|rosout' \
+        | xargs -r kill -9 2>/dev/null || true
+" 2>/dev/null || true
+sleep 2
+
 python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
 MONPID=$!
 trap "kill $MONPID 2>/dev/null || true" EXIT
@@ -74,17 +84,20 @@ TRAJ_CONT="/results-gnss-vio/$DATASET/$SEQ/vins_fusion_gps/run${RUN_ID}/trajecto
 START=$(date +%s.%N)
 
 # ---- Start roscore + vins + global_fusion ---------------------------------
+# IMPORTANT: each `&&` chain ending in `&` runs the whole chain in a subshell.
+# That means `source` commands inside that chain do NOT affect the parent
+# shell, so subsequent `rosrun` invocations get "command not found". Use
+# explicit ;-separated lines and source ROS once at the top.
 docker exec "$CONTAINER" bash -c "
-    set -e
-    source /opt/ros/noetic/setup.bash &&
-    source /root/catkin_ws/devel/setup.bash &&
-    rosparam set /use_sim_time false &&
+    source /opt/ros/noetic/setup.bash
+    source /root/catkin_ws/devel/setup.bash
     roscore &
-    sleep 2 &&
+    sleep 4
+    rosparam set /use_sim_time false
     rosrun vins vins_node $CFG_CONT &
-    sleep 2 &&
+    sleep 3
     rosrun global_fusion global_fusion_node &
-    sleep 2 &&
+    sleep 2
     python3 $RECORDER_CONT \
         --topic /globalEstimator/global_odometry \
         --out $TRAJ_CONT \
@@ -93,7 +106,7 @@ docker exec "$CONTAINER" bash -c "
 " 2>&1 | tee -a "$LOG" &
 NODE_PID=$!
 
-sleep 6
+sleep 10
 
 # ---- Run data player (publishes /imu0, /cam{0,1}/image_raw, /gps) ---------
 docker exec "$CONTAINER" bash -c "

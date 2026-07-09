@@ -1,0 +1,1 @@
+{"algo": "cifasis_gnss_si", "dataset": "rosariov2", "seq": "sequence5", "run_id": 1, "run_type": "gnss-vio", "duration_s": 784.44, "frames": 11476, "fps": 14.63, "note": "trajectory collected from container source-tree cwd; duration computed from trajectory timestamp span"}

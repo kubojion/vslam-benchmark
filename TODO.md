@@ -19,16 +19,16 @@ Legend per cell: **done-N3** = 3 runs evaluated and aggregated | **done-N1** = 1
 
 ### VO (no IMU, no loop closure) - `results-vo/`
 
-Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready (config+data exist) | 🔧 no-config | ➖ no-mode (unsupported)
+Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/divergence | ⬜ ready (config+data exist) | 🔧 no-config | ➖ no-mode (unsupported)
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 |
 |---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ⬜ ready | 🟡 N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
-| Basalt | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 |
-| MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 |
-| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 |
-| DROID-SLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 |
-| OKVIS2 | 🟡 N=1 | 🟡 N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| ORB-SLAM3 | ⬜ ready | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| Basalt | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| DROID-SLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| OKVIS2 | ✅ N=1 | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | MASt3R-SLAM | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | MegaSaM | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 
@@ -36,28 +36,28 @@ Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready (config+data exist) | 🔧 no-config | �
 
 ### VIO (stereo + IMU, no loop closure) - `results-vio/`
 
-Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ⬜ ready (bags available, not yet extracted)
+Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/divergence | ⬜ ready | 🔧 no-config
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 |
 |---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | ⬜ ready | ⬜ ready |
-| Basalt | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 (scale collapse) | 🟡 N=1 (partial) | 🟡 N=1 | ⬜ ready | ⬜ ready |
-| OKVIS2 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 (failed) | 🟡 N=1 (failed) | 🟡 N=1 | ⬜ ready | ⬜ ready |
-| OpenVINS | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 (scale collapse) | 🟡 N=1 (scale collapse) | 🟡 N=1 | ⬜ ready | ⬜ ready |
-| AirSLAM | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 (scale collapse) | 🟡 N=1 (scale collapse) | 🟡 N=1 | ⬜ ready | ⬜ ready |
-| Voxel-SVIO | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 (partial) | 🟡 N=1 (scale collapse) | 🟡 N=1 | ⬜ ready | ⬜ ready |
+| ORB-SLAM3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ ready | ⬜ ready |
+| Basalt | ✅ N=1 | ✅ N=1 | 🟡 N=1 (scale collapse) | 🟡 N=1 (scale collapse) | ✅ N=1 | ⬜ ready | ⬜ ready |
+| OKVIS2 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (tracking failure) | 🟡 N=1 (tracking failure) | ✅ N=1 | ⬜ ready | ⬜ ready |
+| OpenVINS | ✅ N=1 | 🟡 N=1 (diverged) | 🟡 N=1 (scale collapse) | 🟡 N=1 (scale collapse) | ✅ N=1 | ⬜ ready | ⬜ ready |
+| AirSLAM | ✅ N=1 | ✅ N=1 | 🟡 N=1 (scale collapse) | ✅ N=1 | ✅ N=1 | ⬜ ready | ⬜ ready |
+| Voxel-SVIO | ✅ N=1 | ✅ N=1 | 🟡 N=1 (partial scale) | 🟡 N=1 (scale collapse) | 🟡 N=1 (scale collapse) | ⬜ ready | ⬜ ready |
 
 > HortiMulti IMU: extracted - str02=190493 samples, str03=48448 samples. Path: `datasets/hortimulti/strawberry{02,03}/mav0/imu0/data.csv`
 > Voxel-SVIO: VIO-only (no VO, no LC). Configs in `configs/voxel_svio/`; runs via Docker (image `vslam_voxel_svio:noetic`).
 
 ### VIO-LC (stereo + IMU + loop closure) - `results-vio-lc/`
 
-Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ⬜ ready
+Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse | ⬜ ready | 🔧 no-config
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 |
 |---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ⬜ ready | 🟡 N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
-| OKVIS2 | 🟡 N=1 | 🟡 N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| ORB-SLAM3 | ⬜ ready | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| OKVIS2 | ✅ N=1 | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | AirSLAM (VI-SLAM) | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | MASt3R-SLAM (LC-on) | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 
@@ -66,17 +66,30 @@ Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ⬜ ready
 
 ### GNSS-VIO (stereo + IMU + GNSS) - `results-gnss-vio/`
 
-Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready
+Legend: ✅ successful run (N=x) | 🟡 completed with errors | ⬜ ready
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 |
 |---|---|---|---|---|
-| CIFASIS GNSS-SI | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
-| RTAB-Map | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
-| VINS-Fusion | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| CIFASIS GNSS-SI | ✅ N=1 | ✅ N=1 (PPK) | ✅ N=1 | ✅ N=1 |
+| RTAB-Map | ✅ N=1 | 🟡 N=1 (PPK) | ✅ N=1 | ✅ N=1 |
+| VINS-Fusion | ✅ N=1 | ✅ N=1 (PPK) | ✅ N=1 | ✅ N=1 |
+| OpenVINS+GPS (robot_localization) | ✅ N=1 | ✅ N=1 (PPK) | ✅ N=1 | ✅ N=1 |
 
 > EuRoC-MAV is **not** part of the gnss-vio track (no GPS in the dataset).
-> Runners: `run_cifasis_gnss_si.sh`, `run_rtabmap_gps.sh`, `run_vins_fusion_gps.sh` (all accept `<dataset> <seq> [run_id] gnss-vio`).
+> Runners: `run_cifasis_gnss_si.sh`, `run_rtabmap_gps.sh`, `run_vins_fusion_gps.sh`, `run_openvins_gps.sh` (all accept `<dataset> <seq> [run_id] gnss-vio`).
 > Use `run_benchmark.sh <dataset> <seq> <algo> <N> gnss-vio` to run + evaluate automatically.
+>
+> **GPS quality:** rosariov2 **seq5 now uses high-quality PPK GPS** (`/reach_1/ppk/fix`, vertical RMSE
+> ~0.12 m vs ~1.44 m conventional); the seq5 GNSS-VIO results above are PPK. **seq1 still uses
+> conventional GPS** - no seq1 PPK log is available locally, so seq1 has NOT been re-run on PPK (do not
+> confuse the two). PPK upgrade improved vertical RMSE -23% to -86% and overall ATE for the
+> loosely-coupled estimators (VINS-Fusion, OpenVINS); CIFASIS vertical improved but overall ATE rose
+> (horizontal re-balance); RTAB-Map inconclusive (odometry non-determinism), hence 🟡. HortiMulti has
+> **no** higher-grade GPS available (only consumer `/antobot_gps`, status=0, vertical sigma 6.5-7.7 m),
+> so its vertical error is a hardware limit. See `PROGRESS.md` GNSS-VIO GPS-quality study +
+> `scripts/eval/_gps_noise_analysis.py`.
+>
+> **Remaining:** re-run seq1 on PPK if/when the seq1 PPK log becomes available.
 
 ---
 
@@ -384,7 +397,7 @@ KITTI; Grupp 2017, evo) has the following stages:
 
 | Task | Status |
 |---|---|
-| All three algorithms run on sequence 1 (single run) | `[x]` |
+| All four algorithms run on sequence 1 (single run) | `[x]` |
 | ORB-SLAM3 + DROID-SLAM run on sequence 5 | `[x]` |
 | MAC-VO on sequence 5 × 3 | `[x]` | ATE Sim3 **19.384 ± 0.006 m** (3 runs; scale=0.933, 100% tracking) |
 | ORB-SLAM3 × 3 multi-run benchmark seq1 | `[x]` | ATE 1.176 ± 0.317 m, `report.md` + `segment_map.png` |

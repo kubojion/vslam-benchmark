@@ -1,0 +1,11 @@
+{
+  "algo": "cifasis_gnss_si",
+  "dataset": "hortimulti",
+  "seq": "strawberry03",
+  "run_id": 1,
+  "run_type": "gnss-vio",
+  "duration_s": 232.97,
+  "frames": 2332,
+  "fps": 10.01,
+  "note": "trajectory collected from container source-tree cwd; duration computed from trajectory timestamp span"
+}

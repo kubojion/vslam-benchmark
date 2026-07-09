@@ -1,7 +1,7 @@
 # Running the algorithms
 
 > Fully revised: 2026-05-30 22:41 - Added Voxel-SVIO (RA-L 2025) Docker setup, configs, and per-algo notes.
-> Updated: 05-31-10:42 - Fixed stale hortimulti IMU note (IMU extracted); added GNSS-VIO run examples.
+> Updated: 05-31 - rosariov2 seq5 re-run with high-quality PPK GPS (GPS-quality study in PROGRESS.md); seq5 gps.csv is now PPK (conventional preserved as gps_conventional.csv). Fixed stale hortimulti IMU note (IMU extracted); added GNSS-VIO run examples.
 
 The framework expects a sequence under
 
@@ -137,7 +137,7 @@ For HortiMulti add `configs/macvo/hortimulti_strawberry04.yaml`; ORB-SLAM3 / Bas
 
 ## GNSS-VIO algorithms (run_type=gnss-vio)
 
-Three algorithms are wired into the `gnss-vio` track. All three require a
+Four algorithms are wired into the `gnss-vio` track. All four require a
 `gps.csv` file in the sequence directory (header
 `t,lat,lon,alt[,cov_xx,cov_yy,cov_zz,status]`). They write to
 `results-gnss-vio/` and contribute to `benchmark-gnss-vio.csv`.
@@ -171,7 +171,18 @@ Three algorithms are wired into the `gnss-vio` track. All three require a
   `/globalEstimator/global_odometry` and writes a TUM file directly to
   `results-gnss-vio/`. Only `gnss-vio` is supported by this runner.
 
-### GPS data player
+* **OpenVINS+GPS** fuses OpenVINS VIO with GPS through a `robot_localization`
+  EKF (ROS 2 Humble, `sudo apt install ros-humble-robot-localization`).
+  OpenVINS runs in the `openvins:humble` Docker image and publishes
+  `/ov_msckf/odomimu`; on the host, `ekf_node` blends that VIO odometry with
+  GPS local-ENU odometry from `navsat_transform_node`. Configs live in
+  `configs/robot_loc_openvins/{ekf_gps,navsat}.yaml`. The runner
+  `scripts/run/run_openvins_gps.sh` starts the Docker VIO node, the two
+  robot_localization nodes, the ROS 2 player (with `--imu-best-effort`, which
+  is required - OpenVINS silently drops RELIABLE-QoS IMU), and a recorder on
+  `/odometry/filtered`. This is the only *online* loose-GPS estimator (the EKF
+  corrects in real time, vs VINS-Fusion's offline pose-graph). Only `gnss-vio`
+  is supported.
 
 `scripts/run/gnss_data_player.py` (ROS 1) and
 `scripts/run/gnss_data_player_ros2.py` (ROS 2) replay an EuRoC-style
@@ -182,6 +193,18 @@ configurable per algorithm (`--cam0-topic`, `--cam1-topic`, `--imu-topic`,
 for PPK-quality fixes. When `gps.csv` already contains per-sample
 covariance columns, those are used directly.
 
+**rosariov2 seq5 GPS is the high-quality PPK fix.**
+`datasets/rosariov2/sequence5/gps.csv` holds PPK positions
+(`/reach_1/ppk/fix`, RTK status 2, vertical RMSE ~0.12 m vs ~1.44 m
+conventional). The original conventional fix is preserved as
+`gps_conventional.csv` next to it. The PPK lat/lon/alt are resampled onto the
+conventional GPS sample times: the raw PPK product ships on an exact 0.2 s grid
+that warps VINS-Fusion's pose-graph, so resampling onto the irregular
+conventional timestamps isolates GPS data quality from the timestamp grid. To
+reproduce the conventional baseline, copy `gps_conventional.csv` over `gps.csv`
+and re-run. seq1 still ships the conventional fix (no seq1 PPK log available).
+See the GNSS-VIO GPS-quality study in `PROGRESS.md`.
+
 ### Running GNSS-VIO algorithms
 
 Use `run_benchmark.sh` with `run_type=gnss-vio` for the full run+eval pipeline:
@@ -191,10 +214,12 @@ Use `run_benchmark.sh` with `run_type=gnss-vio` for the full run+eval pipeline:
 bash scripts/run/run_benchmark.sh rosariov2 sequence1 cifasis_gnss_si 3 gnss-vio
 bash scripts/run/run_benchmark.sh rosariov2 sequence1 vins_fusion_gps 3 gnss-vio
 bash scripts/run/run_benchmark.sh rosariov2 sequence1 rtabmap_gps     3 gnss-vio
+bash scripts/run/run_benchmark.sh rosariov2 sequence1 openvins_gps    3 gnss-vio
 
 bash scripts/run/run_benchmark.sh hortimulti strawberry02 cifasis_gnss_si 3 gnss-vio
 bash scripts/run/run_benchmark.sh hortimulti strawberry02 vins_fusion_gps 3 gnss-vio
 bash scripts/run/run_benchmark.sh hortimulti strawberry02 rtabmap_gps     3 gnss-vio
+bash scripts/run/run_benchmark.sh hortimulti strawberry02 openvins_gps    3 gnss-vio
 ```
 
 Or call the dedicated runners directly for a single run:
@@ -203,6 +228,7 @@ Or call the dedicated runners directly for a single run:
 bash scripts/run/run_cifasis_gnss_si.sh  rosariov2 sequence1    1 gnss-vio
 bash scripts/run/run_vins_fusion_gps.sh  rosariov2 sequence1    1 gnss-vio
 bash scripts/run/run_rtabmap_gps.sh      rosariov2 sequence1    1 gnss-vio
+bash scripts/run/run_openvins_gps.sh     rosariov2 sequence1    1 gnss-vio
 ```
 
 Rebuild the gnss-vio CSV after runs complete:

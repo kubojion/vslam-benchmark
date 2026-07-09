@@ -1,17 +1,21 @@
 %YAML:1.0
 # VINS-Fusion cam0 (left) calibration for Rosario v2.
-# Values from CIFASIS Rosario_3_0.yaml (rectified pinhole, no distortion).
+# Rectified pinhole intrinsics for the 1280x720 images actually shipped in
+# mav0/cam0/data. Values verified against the working ORB-SLAM3 stereo config
+# (Camera1.fx/fy/cx/cy = post-rectification LEFT.P diagonal).
+# The earlier 672x376 / fx=347 values were wrong (no such image exists) and
+# caused a ~200x scale explosion in VINS-Fusion.
 model_type: PINHOLE
 camera_name: camera
-image_width: 672
-image_height: 376
+image_width: 1280
+image_height: 720
 distortion_parameters:
    k1: 0.0
    k2: 0.0
    p1: 0.0
    p2: 0.0
 projection_parameters:
-   fx: 347.6564367181238
-   fy: 347.6564367181238
-   cx: 339.375789642334
-   cy: 198.58967208862305
+   fx: 648.8624169653789
+   fy: 648.8624169653789
+   cx: 645.0113372802734
+   cy: 348.24266815185547

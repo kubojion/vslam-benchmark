@@ -1,0 +1,1 @@
+{"algo": "rtabmap_gps", "dataset": "rosariov2", "seq": "sequence1", "run_id": 1, "run_type": "gnss-vio", "duration_s": 954.377935886383, "frames": 873, "fps": 0.9147319601319126}

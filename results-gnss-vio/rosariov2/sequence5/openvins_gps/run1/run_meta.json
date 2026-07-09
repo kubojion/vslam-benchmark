@@ -1,0 +1,10 @@
+{
+  "algo": "openvins_gps",
+  "dataset": "rosariov2",
+  "seq": "sequence5",
+  "run_id": 1,
+  "run_type": "gnss-vio",
+  "duration_s": 802.4861238002777,
+  "frames": 6260,
+  "fps": 7.801
+}
