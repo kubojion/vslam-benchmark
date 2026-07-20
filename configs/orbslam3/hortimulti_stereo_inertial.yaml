@@ -114,13 +114,14 @@ RIGHT.P: !!opencv-matrix
 # IMU.T_b_c1 = T_imu_link_forwardLeft_cam (body/IMU <- cam0).
 # Source: datasets/hortimulti/calibration.yaml (imu0.T_imu_link_forwardLeft_cam).
 
+# RECTIFIED: official T_imu_link_forwardLeft_cam composed with stereoRectify R_rect (1.22 deg).
 IMU.T_b_c1: !!opencv-matrix
   rows: 4
   cols: 4
   dt: f
-  data: [ 0.0521232345, -0.0073054379,  0.9986139389,  0.1219040939,
-         -0.9986040017, -0.0089493528,  0.0520572461,  0.0366053924,
-          0.0085566474, -0.9999332676, -0.0077617087, -0.0562970105,
+  data: [ 0.0309292864, -0.0077757525,  0.9994913291,  0.1219040939,
+         -0.9994971337, -0.0072336634,  0.0308731902,  0.0366053924,
+          0.0069899215, -0.9999436043, -0.0079955743, -0.0562970105,
           0.0,           0.0,           0.0,           1.0          ]
 
 # Allan-variance measured noise (calibration.yaml imu0 block).

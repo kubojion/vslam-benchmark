@@ -5,15 +5,16 @@
 # rectification done in preprocessing; distortion is zero post-rectification).
 #
 # T_imu_cam: transform from camera frame to IMU (body) frame.
+# RECTIFIED: official T_imu_link_forward*_cam composed with stereoRectify R_rect.
 # Values taken directly from datasets/hortimulti/calibration.yaml:
 #   cam0: T_imu_link_forwardLeft_cam
 #   cam1: T_imu_link_forwardRight_cam
 
 cam0:
   T_imu_cam:
-    - [ 0.0521232345, -0.0073054379,  0.9986139389,  0.1219040939]
-    - [-0.9986040017, -0.0089493528,  0.0520572461,  0.0366053924]
-    - [ 0.0085566474, -0.9999332676, -0.0077617087, -0.0562970105]
+    - [ 0.0309292864, -0.0077757525,  0.9994913291,  0.1219040939]
+    - [-0.9994971337, -0.0072336634,  0.0308731902,  0.0366053924]
+    - [ 0.0069899215, -0.9999436043, -0.0079955743, -0.0562970105]
     - [ 0.0,           0.0,           0.0,           1.0          ]
   cam_overlaps: [1]
   camera_model: pinhole
@@ -25,9 +26,9 @@ cam0:
 
 cam1:
   T_imu_cam:
-    - [ 0.0280588344, -0.0081160869,  0.9995733244,  0.1262187787]
-    - [-0.9995658920, -0.0092160020,  0.0279837960, -0.1028260523]
-    - [ 0.0089849508, -0.9999245943, -0.0083711539, -0.0553219053]
+    - [ 0.0309292864, -0.0077757525,  0.9994913290,  0.1262187787]
+    - [-0.9994971337, -0.0072336634,  0.0308731902, -0.1028260523]
+    - [ 0.0069899215, -0.9999436042, -0.0079955743, -0.0553219052]
     - [ 0.0,           0.0,           0.0,           1.0          ]
   cam_overlaps: [0]
   camera_model: pinhole

@@ -61,6 +61,21 @@ trap "kill $MONPID 2>/dev/null || true" EXIT
 
 OUT_REL=$(realpath --relative-to="$WS" "$OUT_DIR")
 
+# The sequence dir may be a symlink whose real path is OUTSIDE $WS (e.g.
+# datasets/hortimulti/strawberry03 -> /home/.../data/horti/Strawberry-03). It
+# then appears as a dangling symlink inside the /ws mount and the data player
+# finds no frames. Detect that and bind-mount the real path at /seqdata.
+SEQ_REAL=$(realpath "$SEQ_DIR")
+SEQ_REL=$(realpath --relative-to="$WS" "$SEQ_DIR")
+SEQ_MOUNT=()
+if [[ "$SEQ_REL" != ../* ]]; then
+    SEQ_IN="/ws/datasets/$DATASET/$SEQ"
+else
+    SEQ_IN="/seqdata"
+    SEQ_MOUNT=(--volume "$SEQ_REAL:/seqdata:ro")
+    echo "[openvins] sequence resolves outside \$WS ($SEQ_REAL); bind-mounting at /seqdata"
+fi
+
 # We mount the workspace at /ws inside the container. host UID/GID is passed
 # through so the trajectory file is owned by the user (not root).
 START=$(date +%s.%N)
@@ -68,6 +83,7 @@ docker run --rm \
     --network host \
     --user "$(id -u):$(id -g)" \
     --volume "$WS:/ws" \
+    "${SEQ_MOUNT[@]}" \
     --workdir /ws \
     --env HOME=/tmp \
     --entrypoint /bin/bash \
@@ -83,7 +99,7 @@ docker run --rm \
         OV_PID=\$!
         sleep 2
         python3 /ws/scripts/run/openvins_data_player.py \
-            /ws/datasets/$DATASET/$SEQ \
+            $SEQ_IN \
             /ws/${OUT_REL}/trajectory.txt \
             --rate ${OPENVINS_RATE:-1.0} \
             --start-delay 1.0 --end-wait 3.0

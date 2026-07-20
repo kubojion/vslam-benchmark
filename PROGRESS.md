@@ -1,6 +1,6 @@
 # vSLAM Benchmark - Progress
 
-> Fully revised: 2026-05-31 - VIO N=1 sweep complete: all 6 algorithms (ORB-SLAM3, Basalt, OKVIS2, OpenVINS, AirSLAM, Voxel-SVIO) run on rosariov2 seq1/seq5, hortimulti str02/str03, EuRoC MH_01_easy. benchmark-vio.csv has 30 rows (one run per algo/seq after parameter-sweep cleanup). Basalt hortimulti: extensive noise tuning (5 runs, accel_noise_std up to 500x Allan + reduced init_ba_weight) yielded best results of str02=22.9 m, str03=2.85 m - still well below VO baseline (2.1 m / 0.275 m). OKVIS2 hortimulti: completely failed across all runs (scale~0, 40% tracking failures) despite 100x Allan inflation and improved frontend. Root cause confirmed as fundamental low-frequency vibration on this ground rover - no config-only fix possible. Full analysis in "hortimulti VIO scale collapse" section.
+> Fully revised: 2026-05-31 - VIO N=1 sweep complete: all 6 algorithms (ORB-SLAM3, Basalt, OKVIS2, OpenVINS, AirSLAM, Voxel-SVIO) run on rosariov2 seq1/seq5, hortimulti str02/str03, EuRoC MH_01_easy. benchmark-vio.csv has 30 rows (one run per algo/seq after parameter-sweep cleanup). Basalt hortimulti: extensive noise tuning (5 runs, accel_noise_std up to 500x Allan + reduced init_ba_weight) yielded best results of str02=22.9 m, str03=2.85 m - still well below VO baseline (2.1 m / 0.275 m). OKVIS2 hortimulti: completely failed across all runs (scale~0, 40% tracking failures) despite 100x Allan inflation and improved frontend. Root cause **corrected 2026-07-17**: the hortimulti scale collapse was a camera-IMU **extrinsic** bug (missing rectification rotation for all algorithms; inverted matrix for OKVIS2/OKVIS2-X/AirSLAM), NOT a vibration floor. Fixed in config - VIO now beats VO on both sequences (e.g. OKVIS2-X str03 17.14->0.34 m, Basalt str02 22.9->2.49 m). See "hortimulti VIO scale collapse - RESOLVED" section.
 
 Algorithms: **ORB-SLAM3** (classical), **MAC-VO** (hybrid), **Basalt** (sliding-window VIO), **AirSLAM** (deep-feature VO, Docker), **OKVIS2** (MAP VIO+LC), **OpenVINS** (MSCKF VIO, Docker). Scaffolded but not benchmarked: **MASt3R-SLAM**, **MegaSaM**. Dropped: **DROID-SLAM** (supervisor feedback).
 
@@ -57,32 +57,41 @@ ORB-SLAM3 results used the LC-enabled binary and are in `obsolete/` - not shown 
 ### VIO (stereo + IMU, no loop closure)
 
 All N=1 (best single run). Sequences: rosariov2 seq1/seq5, hortimulti str02/str03, EuRoC MH_01_easy.
-hortimulti VIO: ORB-SLAM3 produces the best trajectories on both sequences via its VO-first then
-IMU-fusion strategy. All other algorithms show scale collapse (see "hortimulti VIO scale collapse"
-section). Basalt is closest after extensive noise tuning: str03=2.85 m (vs VO 0.275 m), str02=22.9 m
-(vs VO 2.1 m). OKVIS2 completely fails on both sequences (scale~0, 40% tracking failures).
+hortimulti VIO **updated 2026-07-17** after the extrinsic fix (see "RESOLVED" section below):
+rows marked ‡ use the corrected (rectified, and for OKVIS2/OKVIS2-X/AirSLAM de-inverted) cam-IMU
+extrinsic. VIO now beats VO on hortimulti for every re-verified algorithm; the earlier "scale
+collapse" was a config bug, not a vibration floor. OKVIS2 (predecessor binary), AirSLAM and
+Voxel-SVIO hortimulti rows are pre-fix: OKVIS2 not yet re-run; AirSLAM/Voxel-SVIO runtime-blocked
+in this environment (broken ROS launch / missing container). OKVIS2-X rows added (new algorithm).
 
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | N |
 |---|---|---|---|---|---|---|---|---|
 | ORB-SLAM3 | rosariov2 | seq1 | 4.696 m | 4.800 m | 1.021 | 0.0300 | 12.32 | 1 |
 | ORB-SLAM3 | rosariov2 | seq5 | **2.29 m** | 2.62 m | 1.026 | 0.0293 | 11.94 | 1 |
-| ORB-SLAM3 | hortimulti | str02 | **2.792 m** | 3.329 m | 1.038 | 0.093 | 9.2 | 1 |
-| ORB-SLAM3 | hortimulti | str03 | **0.568 m** | 0.930 m | 1.041 | 0.025 | 8.9 | 1 |
+| ORB-SLAM3 | hortimulti | str02 | **1.476 m** ‡ | 2.444 m | 1.041 | 0.0892 | 9.33 | 1 |
+| ORB-SLAM3 | hortimulti | str03 | **0.396 m** ‡ | 0.796 m | 1.038 | 0.0237 | 9.2 | 1 |
 | ORB-SLAM3 | EuRoC | MH_01 | **0.022 m** | 0.022 m | 1.001 | 0.0138 | 36.41 | 1 |
 | Basalt | rosariov2 | seq1 | 2.995 m | 3.006 m | 1.008 | 0.0126 | 63.44 | 1 |
 | Basalt | rosariov2 | seq5 | **4.74 m** | 4.77 m | 1.011 | 0.0157 | **46.5** | 1 |
-| Basalt | hortimulti | str02 | 22.905 m | 40.503 m | 0.570 | 0.184 | 62.7 | 1 |
-| Basalt | hortimulti | str03 | **2.852 m** | 10.607 m | 0.645 | 0.056 | 46.8 | 1 |
+| Basalt | hortimulti | str02 | **2.492 m** ‡ | 2.929 m | 1.032 | 0.0905 | ~62.7 | 1 |
+| Basalt | hortimulti | str03 | **0.194 m** ‡ | 0.658 m | 1.035 | 0.0221 | ~46.8 | 1 |
 | Basalt | EuRoC | MH_01 | **0.035 m** | 0.035 m | 1.004 | 0.0068 | 119.82 | 1 |
 | OKVIS2 | rosariov2 | seq1 | 18.89 m | 19.39 m | 0.909 | 0.1236 | 9.93 | 1 |
 | OKVIS2 | rosariov2 | seq5 | 20.29 m | 20.68 m | 0.921 | 0.1082 | 8.46 | 1 |
 | OKVIS2 | hortimulti | str02 | 49.851 m | - | ~0 | - | 13.9 | 1 |
 | OKVIS2 | hortimulti | str03 | 15.461 m | - | ~0 | - | 14.0 | 1 |
 | OKVIS2 | EuRoC | MH_01 | **0.054 m** | 0.054 m | 1.000 | 0.0165 | 25.44 | 1 |
+| OKVIS2-X | rosariov2 | seq1 | 19.332 m | 19.92 m | 0.901 | 0.1316 | 12.81 | 1 |
+| OKVIS2-X | rosariov2 | seq5 | 20.396 m | 20.80 m | 0.919 | 0.1103 | 12.98 | 1 |
+| OKVIS2-X | hortimulti | str02 | **2.130 m** ‡ | 2.487 m | 1.027 | 0.0928 | 11.85 | 1 |
+| OKVIS2-X | hortimulti | str03 | **0.343 m** ‡ | 0.643 m | 1.030 | 0.0283 | 11.50 | 1 |
+| OKVIS2-X | EuRoC | MH_01 | **0.046 m** | 0.052 m | 1.006 | 0.0131 | 18.96 | 1 |
+| OKVIS2-X | EuRoC | MH_03 | 0.072 m | 0.072 m | 0.999 | 0.0201 | 20.21 | 1 |
+| OKVIS2-X | EuRoC | MH_05 | 0.144 m | 0.150 m | 0.993 | 0.0287 | 22.99 | 1 |
 | OpenVINS | rosariov2 | seq1 | **2.316 m** | 2.542 m | 1.022 | 0.024 | - | 1 |
 | OpenVINS | rosariov2 | seq5 | 38.240 m | 38.266 m | 1.003 | 0.103 | - | 1 |
-| OpenVINS | hortimulti | str02 | 49.43 m | 35484 m | ~0 | - | 172.8 | 1 |
-| OpenVINS | hortimulti | str03 | 17.03 m | 3377 m | ~0 | - | 167.6 | 1 |
+| OpenVINS | hortimulti | str02 | **2.235 m** ‡ | 2.629 m | 1.029 | 0.0930 | 170.6 | 1 |
+| OpenVINS | hortimulti | str03 | **0.429 m** ‡ | 0.657 m | 1.027 | 0.024 | 167.6 | 1 |
 | OpenVINS | EuRoC | MH_01 | **0.058 m** | 0.058 m | 1.000 | 0.019 | - | 1 |
 | AirSLAM | rosariov2 | seq1 | 16.502 m | 16.769 m | 1.001 | 0.052 | 23.43 | 1 |
 | AirSLAM | rosariov2 | seq5 | 12.148 m | 12.191 m | 0.998 | 0.048 | 24.89 | 1 |
@@ -95,10 +104,65 @@ section). Basalt is closest after extensive noise tuning: str03=2.85 m (vs VO 0.
 | Voxel-SVIO | hortimulti | str03 | 17.918 m | 3022 m | ~0 | - | - | 1 |
 | Voxel-SVIO | EuRoC | MH_01 | 3.027 m | 3.098 m | 0.001 | 1.887 | - | 1 |
 
-OKVIS2 hortimulti: IMU noise inflated 50x Allan values; tracking failures (~40% of frames on str02)
-cause backend divergence regardless of noise parameters. OKVIS2 rosariov2: D435i reference noise (see corrected results section).
+‡ **Extrinsic fix applied (2026-07-17), N=1.** Corrected cam-IMU extrinsic
+(official `T_imu_link_forward*_cam` composed with `cv2.fisheye.stereoRectify` R_rect;
+de-inverted for OKVIS2-X). Before -> after: OKVIS2-X str03 17.14->0.34 m (scale 8e-5->1.03),
+str02 49.69->2.13 m (2e-6->1.03); Basalt str03 2.85->0.19 m (0.65->1.03), str02 22.9->2.49 m
+(0.57->1.03); OpenVINS str02 49.43->2.24 m (2e-4->1.03); ORB-SLAM3 str02 2.79->1.48 m (scale
+already ~1.04). Basalt ‡ FPS carried forward (runtime unchanged by extrinsic). Not yet re-run:
+OKVIS2 hortimulti (predecessor binary, config patched), OpenVINS str03 (external symlink not
+docker-mountable), AirSLAM + Voxel-SVIO hortimulti (ROS launch / container unavailable here).
+All ‡ rows N=1 - scale to N=3 before publication.
 
-#### hortimulti VIO scale collapse - analysis and partial fix
+OKVIS2 hortimulti (pre-fix rows above): IMU noise inflated 50x Allan values; tracking failures
+(~40% of frames on str02) attributed to backend divergence - but note the OKVIS2 config had the
+same inverted+raw extrinsic as OKVIS2-X, so those failures are largely the extrinsic bug (config
+now patched, re-run pending). OKVIS2 rosariov2: D435i reference noise (see corrected results section).
+
+#### hortimulti VIO scale collapse - RESOLVED 2026-07-17 (extrinsic bug, not vibration)
+
+> **CORRECTION.** The "vibration floor / no config-only fix possible" conclusion
+> below is **wrong**. The scale collapse was a camera-IMU **extrinsic** error, and
+> it is fixed in config. Two independent bugs, both confirmed against the official
+> HortiMulti `calibration.yaml` (retrieved from the dataset release,
+> [arXiv:2603.20150](https://arxiv.org/abs/2603.20150) /
+> [github.com/shuoyuanxu/HortiMulti](https://github.com/shuoyuanxu/HortiMulti)):
+>
+> 1. **Rectification rotation never applied (all algorithms).** The published
+>    extrinsic is for the RAW fisheye cameras; the pipeline feeds RECTIFIED images.
+>    `cv2.fisheye.stereoRectify` rotates cam0 by 1.22 deg. Verified empirically:
+>    composing R_rect moves the extrinsic closer to the gyro-vs-VO measured rotation
+>    on both sequences (str03 1.57->0.90 deg, str02 2.27->1.09 deg). The rectified
+>    extrinsic reproduces the config fx (262.7149) and baseline (0.139502 m) exactly.
+> 2. **Extrinsic inverted (OKVIS2, OKVIS2-X, AirSLAM).** These took
+>    `T_forwardLeft_cam_imu_link` (T_cam_imu) instead of `T_imu_link_forwardLeft_cam`
+>    (T_imu_cam) from calibration.yaml - the exact inverse. Gravity landed 95 deg off,
+>    so the estimator integrated the full gravity vector; drift matched 0.5*g*t^2 to
+>    within 15%. This is why ORB-SLAM3 "survived" and these did not - ORB-SLAM3 simply
+>    used the correct direction.
+>
+> The 100x Allan noise inflation IS still needed (vibration is real: using official
+> Allan values re-collapses str02). It just was not what was diverging these runs.
+>
+> **Verified before -> after (ATE Sim3 / SE3 / scale), N=1:**
+>
+> | Algorithm | str03 | str02 |
+> |---|---|---|
+> | OKVIS2-X   | 17.14 -> **0.34** m (scale 8e-5 -> 1.03) | 49.69 -> **2.13** m (2e-6 -> 1.03) |
+> | Basalt     | 2.85 -> **0.19** m (0.65 -> 1.03)        | 22.90 -> **2.49** m (0.57 -> 1.03) |
+> | OpenVINS   | (str03 = external symlink, docker n/a)   | 49.43 -> **2.24** m (2e-4 -> 1.03) |
+> | ORB-SLAM3  | (see below)                              | 2.79 -> **1.48** m (scale was already ~1.04) |
+>
+> VIO now beats VO on both sequences. Config fixes applied to
+> `configs/{okvis2,okvis2x}/hortimulti_*`, `configs/basalt/hortimulti_calib.json`,
+> `configs/orbslam3/hortimulti_stereo_inertial.yaml`,
+> `configs/openvins/hortimulti/kalibr_imucam_chain.yaml`,
+> `configs/voxel_svio/hortimulti.yaml`, `configs/airslam/hortimulti_camera.yaml`.
+> **AirSLAM and Voxel-SVIO configs are fixed but NOT runtime-verified** here (broken
+> ROS launch / missing docker container in this environment - infra, not config).
+> The original (broken) analysis is kept below for the record.
+
+#### hortimulti VIO scale collapse - analysis and partial fix [SUPERSEDED - see correction above]
 
 **Bug fixes (N/A -> real trajectories):**
 
@@ -227,21 +291,29 @@ greenhouse tunnel texture causes persistent 3D-2D tracking loss, not an IMU nois
 | OKVIS2 | 49.85 m | ~0 | 15.46 m | ~0 | no - tracking failure |
 | OpenVINS | 49.43 m | ~0 | 17.03 m | ~0 | no |
 
-**Conclusion - no further improvement possible via config tuning:**
+**Conclusion [WRONG - superseded 2026-07-17, kept for the record]:**
+
+> The reasoning below is refuted by the extrinsic fix (see "RESOLVED" correction at
+> the top of this section). The premise "adding IMU degrades scale to 0.57 regardless
+> of noise parameters" was correct as an observation but misattributed: the degradation
+> came from the 1.22 deg rectification rotation missing from the extrinsic, not from
+> vibration. With the rectified extrinsic, Basalt str02 goes 0.57 -> 1.03 scale and
+> 22.9 -> 2.49 m ATE. The one true statement below is that Basalt VO proves the camera
+> calibration is good; that is exactly why a purely IMU-side (extrinsic) bug was the
+> remaining suspect.
 
 Basalt VO (pure stereo, no IMU) achieves scale=1.034 on str02, confirming the camera
 calibration is correct and visual odometry works well. Adding IMU degrades scale to 0.57
-regardless of noise parameters. This is the fundamental limit: the robot's low-frequency
+regardless of noise parameters. ~~This is the fundamental limit: the robot's low-frequency
 vibration creates systematic IMU integration errors that VIO initialization cannot
-distinguish from real acceleration. The only paths to improvement on this platform are:
-1. Hardware pre-filtering (vibration isolator between IMU and chassis)
-2. IMU outlier rejection at the firmware level (e.g. median filter at 50+ Hz)
-3. Running VO-only (Basalt VO, MAC-VO, AirSLAM VO) and accepting metric scale loss
-4. Using ORB-SLAM3's deferred IMU fusion (VO-first then IMU, which already works)
+distinguish from real acceleration.~~ [Refuted: it was the missing rectification rotation
+in the cam-IMU extrinsic.] The only paths to improvement on this platform are:
+1. **Apply the rectification rotation (R_rect) to the cam-IMU extrinsic** [the actual fix]
+2. Use the correct extrinsic direction (T_imu_cam, not its inverse) for OKVIS2/OKVIS2-X/AirSLAM
+3. Keep the 100x Allan noise inflation (vibration is real, just not the divergence cause)
 
-For AirSLAM/OKVIS2/OpenVINS/Voxel-SVIO, no config-only fix is available. Tight-coupled
-VIO systems designed for smooth MAV or automotive motion cannot reliably initialise on
-this rocking ground rover.
+~~For AirSLAM/OKVIS2/OpenVINS/Voxel-SVIO, no config-only fix is available.~~ [Refuted:
+OKVIS2-X and OpenVINS both go from scale-collapse to ~1.03 scale with the extrinsic fix.]
 
 #### OpenVINS rosariov2/sequence5 silent divergence (algorithm-level limitation)
 

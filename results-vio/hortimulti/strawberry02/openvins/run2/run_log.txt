@@ -1,0 +1,48 @@
+3.527 [INFO] [1784303987.752372280] [openvins_data_player]: loaded imu=190493 cam0=9530 cam1=9530 from /ws/datasets/hortimulti/strawberry02
+3.575 [INFO] [1784303987.800320778] [openvins_data_player]: start delay 1.0s for ROS graph...
+4.577 [INFO] [1784303988.802345802] [openvins_data_player]: played 0/209553 (0.0%), poses_received=0
+27.296 [INFO] [1784304011.521398306] [openvins_data_player]: played 5000/209553 (2.4%), poses_received=3409
+50.026 [INFO] [1784304034.251321314] [openvins_data_player]: played 10000/209553 (4.8%), poses_received=7392
+72.746 [INFO] [1784304056.971139470] [openvins_data_player]: played 15000/209553 (7.2%), poses_received=11352
+95.478 [INFO] [1784304079.702838523] [openvins_data_player]: played 20000/209553 (9.5%), poses_received=15334
+118.211 [INFO] [1784304102.436871542] [openvins_data_player]: played 25000/209553 (11.9%), poses_received=19303
+140.925 [INFO] [1784304125.150847482] [openvins_data_player]: played 30000/209553 (14.3%), poses_received=23272
+163.656 [INFO] [1784304147.881578104] [openvins_data_player]: played 35000/209553 (16.7%), poses_received=27258
+186.374 [INFO] [1784304170.599331514] [openvins_data_player]: played 40000/209553 (19.1%), poses_received=31250
+209.106 [INFO] [1784304193.331219237] [openvins_data_player]: played 45000/209553 (21.5%), poses_received=35236
+231.835 [INFO] [1784304216.060343326] [openvins_data_player]: played 50000/209553 (23.9%), poses_received=39206
+254.554 [INFO] [1784304238.779025251] [openvins_data_player]: played 55000/209553 (26.2%), poses_received=43190
+277.284 [INFO] [1784304261.509621963] [openvins_data_player]: played 60000/209553 (28.6%), poses_received=47172
+300.005 [INFO] [1784304284.230548517] [openvins_data_player]: played 65000/209553 (31.0%), poses_received=51170
+322.733 [INFO] [1784304306.958322789] [openvins_data_player]: played 70000/209553 (33.4%), poses_received=55151
+345.465 [INFO] [1784304329.689906755] [openvins_data_player]: played 75000/209553 (35.8%), poses_received=59120
+368.183 [INFO] [1784304352.408234760] [openvins_data_player]: played 80000/209553 (38.2%), poses_received=63084
+390.914 [INFO] [1784304375.139146376] [openvins_data_player]: played 85000/209553 (40.6%), poses_received=67054
+413.639 [INFO] [1784304397.864646110] [openvins_data_player]: played 90000/209553 (42.9%), poses_received=71037
+436.362 [INFO] [1784304420.587153867] [openvins_data_player]: played 95000/209553 (45.3%), poses_received=75019
+459.093 [INFO] [1784304443.318831891] [openvins_data_player]: played 100000/209553 (47.7%), poses_received=79006
+481.811 [INFO] [1784304466.036294677] [openvins_data_player]: played 105000/209553 (50.1%), poses_received=83010
+504.542 [INFO] [1784304488.767137827] [openvins_data_player]: played 110000/209553 (52.5%), poses_received=87004
+527.271 [INFO] [1784304511.496163139] [openvins_data_player]: played 115000/209553 (54.9%), poses_received=90984
+549.990 [INFO] [1784304534.215384091] [openvins_data_player]: played 120000/209553 (57.3%), poses_received=94974
+572.720 [INFO] [1784304556.944929296] [openvins_data_player]: played 125000/209553 (59.7%), poses_received=98944
+595.440 [INFO] [1784304579.665097077] [openvins_data_player]: played 130000/209553 (62.0%), poses_received=102928
+618.172 [INFO] [1784304602.396992699] [openvins_data_player]: played 135000/209553 (64.4%), poses_received=106886
+640.902 [INFO] [1784304625.128006946] [openvins_data_player]: played 140000/209553 (66.8%), poses_received=110863
+663.619 [INFO] [1784304647.844288193] [openvins_data_player]: played 145000/209553 (69.2%), poses_received=114804
+686.350 [INFO] [1784304670.575448173] [openvins_data_player]: played 150000/209553 (71.6%), poses_received=118790
+709.069 [INFO] [1784304693.294398912] [openvins_data_player]: played 155000/209553 (74.0%), poses_received=122754
+731.799 [INFO] [1784304716.024484027] [openvins_data_player]: played 160000/209553 (76.4%), poses_received=126717
+754.530 [INFO] [1784304738.755515389] [openvins_data_player]: played 165000/209553 (78.7%), poses_received=130694
+777.248 [INFO] [1784304761.473730419] [openvins_data_player]: played 170000/209553 (81.1%), poses_received=134670
+799.979 [INFO] [1784304784.204542946] [openvins_data_player]: played 175000/209553 (83.5%), poses_received=138640
+822.697 [INFO] [1784304806.922175367] [openvins_data_player]: played 180000/209553 (85.9%), poses_received=142620
+845.427 [INFO] [1784304829.652437015] [openvins_data_player]: played 185000/209553 (88.3%), poses_received=146583
+868.158 [INFO] [1784304852.383250560] [openvins_data_player]: played 190000/209553 (90.7%), poses_received=150556
+890.878 [INFO] [1784304875.103395201] [openvins_data_player]: played 195000/209553 (93.1%), poses_received=154532
+913.606 [INFO] [1784304897.831072738] [openvins_data_player]: played 200000/209553 (95.4%), poses_received=158498
+936.329 [INFO] [1784304920.554665409] [openvins_data_player]: played 205000/209553 (97.8%), poses_received=162464
+957.027 [INFO] [1784304941.252595077] [openvins_data_player]: all events published; waiting 3.0s for filter flush...
+960.222 [INFO] [1784304944.447494929] [openvins_data_player]: wrote 166112 poses to /ws/results-vio/hortimulti/strawberry02/openvins/run2/trajectory.txt
+960.233 terminate called without an active exception
+973.482 /bin/bash: line 8:    68 Aborted                 (core dumped) python3 /ws/scripts/run/openvins_data_player.py /ws/datasets/hortimulti/strawberry02 /ws/results-vio/hortimulti/strawberry02/openvins/run2/trajectory.txt --rate 1.0 --start-delay 1.0 --end-wait 3.0

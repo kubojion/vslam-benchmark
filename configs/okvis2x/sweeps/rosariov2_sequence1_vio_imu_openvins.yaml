@@ -1,0 +1,116 @@
+%YAML:1.0
+# SWEEP: OKVIS2-X VIO on Rosario v2 sequence1 with IMU noise taken from the
+# OpenVINS/Kalibr calibration of this same IMU, instead of the OKVIS2 D435i
+# reference values used by configs/okvis2x/rosariov2_sequence1_vio.yaml.
+#
+# Motivation: with the D435i values the IMU is so heavily down-weighted that VIO
+# reproduces VO -- ATE 18.82 m vs 18.02 m, and scale stays at the visual 0.906
+# instead of being pulled to ~1.0. Peers on this sequence (OpenVINS 2.32 m,
+# Basalt 3.00 m, ORB-SLAM3 4.70 m) all land at scale ~1.02.
+#
+# Only the four IMU noise densities differ from the baseline config.
+#   sigma_g_c   2.78e-3 -> 2.82e-4   (10x tighter)
+#   sigma_a_c   2.52e-2 -> 1.60e-2   (1.6x tighter)
+#   sigma_gw_c  8.0e-4  -> 1.0e-4    (8x tighter)
+#   sigma_aw_c  4.0e-2  -> 1.0e-3    (40x tighter)
+#
+# Run:
+#   OKVIS2X_CONFIG=configs/okvis2x/sweeps/rosariov2_sequence1_vio_imu_openvins.yaml \
+#     bash scripts/run/run_okvis2x.sh rosariov2 sequence1 9002 vio
+
+cameras:
+     - {T_SC:
+        [ 0.999992, -0.003898, -0.000576, -0.004483,
+          0.003895,  0.999979, -0.005012,  0.019179,
+          0.000596,  0.005009,  0.999987,  0.027584,
+          0.0, 0.0, 0.0, 1.0],
+        image_dimension: [1280, 720],
+        distortion_coefficients: [0.0, 0.0, 0.0, 0.0],
+        distortion_type: radialtangential,
+        focal_length: [648.8624169653789, 648.8624169653789],
+        principal_point: [645.0113372802734, 348.24266815185547],
+        cam_model: pinhole,
+        camera_type: gray,
+        slam_use: okvis}
+
+     - {T_SC:
+        [ 0.999992, -0.003898, -0.000576,  0.045250,
+          0.003895,  0.999979, -0.005012,  0.019373,
+          0.000596,  0.005009,  0.999987,  0.027614,
+          0.0, 0.0, 0.0, 1.0],
+        image_dimension: [1280, 720],
+        distortion_coefficients: [0.0, 0.0, 0.0, 0.0],
+        distortion_type: radialtangential,
+        focal_length: [648.8624169653789, 648.8624169653789],
+        principal_point: [645.0113372802734, 348.24266815185547],
+        cam_model: pinhole,
+        camera_type: gray,
+        slam_use: okvis}
+
+camera_parameters:
+    timestamp_tolerance: 0.005
+    sync_cameras: [0, 1]
+    image_delay: 0.0
+    online_calibration:
+        do_extrinsics: false
+        do_extrinsics_final_ba: true
+        sigma_r: 0.01
+        sigma_alpha: 0.1
+        sigma_r_final_ba: 0.03
+        sigma_alpha_final_ba: 0.3
+
+# IMU noise model: RealSense D435i.
+# Using OKVIS2 author's own D435i reference values, NOT raw Allan-variance.
+# Ref: https://github.com/ethz-mrl/okvis2/blob/main/config/realsense_D435i.yaml
+imu_parameters:
+    use: true
+    a_max: 160.0
+    g_max: 10.0
+    sigma_g_c: 2.82e-4     # gyro noise density [rad/s/sqrt(Hz)]   (OpenVINS/Kalibr, this IMU)
+    sigma_a_c: 1.60e-2     # accel noise density [m/s^2/sqrt(Hz)]  (OpenVINS/Kalibr, this IMU)
+    sigma_bg: 0.03
+    sigma_ba: 0.1
+    sigma_gw_c: 1.0e-4     # gyro bias random walk                 (OpenVINS/Kalibr, this IMU)
+    sigma_aw_c: 1.0e-3     # accel bias random walk                (OpenVINS/Kalibr, this IMU)
+    g: 9.7958              # Argentina (Rosario lat -32.95)
+    g0: [ 0.0, 0.0, 0.0 ]
+    a0: [ 0.0, 0.0, 0.0 ]
+    s_a: [ 1.0, 1.0, 1.0 ]
+    T_BS:
+        [1.0, 0.0, 0.0, 0.0,
+         0.0, 1.0, 0.0, 0.0,
+         0.0, 0.0, 1.0, 0.0,
+         0.0, 0.0, 0.0, 1.0]
+
+frontend_parameters:
+    detection_threshold: 38.0
+    absolute_threshold: 150.0
+    matching_threshold: 60.0
+    octaves: 0
+    max_num_keypoints: 700
+    keyframe_overlap: 0.60
+    use_cnn: false
+    parallelise_detection: true
+    num_matching_threads: 4
+
+estimator_parameters:
+    num_keyframes: 5
+    num_loop_closure_frames: 3
+    num_imu_frames: 3
+    do_loop_closures: false
+    do_final_ba: false
+    enforce_realtime: false
+    realtime_min_iterations: 3
+    realtime_max_iterations: 10
+    realtime_time_limit: 0.035
+    realtime_num_threads: 3
+    full_graph_iterations: 15
+    full_graph_num_threads: 3
+    p_dbow: 0.4
+    drift_percentage_heuristic: 1.35
+
+output_parameters:
+    display_topview: false
+    display_matches: false
+    display_overhead: false
+    enable_submapping: false
