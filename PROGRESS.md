@@ -89,7 +89,7 @@ in this environment (broken ROS launch / missing container). OKVIS2-X rows added
 | OKVIS2-X | EuRoC | MH_03 | 0.072 m | 0.072 m | 0.999 | 0.0201 | 20.21 | 1 |
 | OKVIS2-X | EuRoC | MH_05 | 0.144 m | 0.150 m | 0.993 | 0.0287 | 22.99 | 1 |
 | OpenVINS | rosariov2 | seq1 | **2.316 m** | 2.542 m | 1.022 | 0.024 | - | 1 |
-| OpenVINS | rosariov2 | seq5 | 38.240 m | 38.266 m | 1.003 | 0.103 | - | 1 |
+| OpenVINS | rosariov2 | seq5 | **10.761 m** † | 10.774 m | 0.990 | 0.0692 | 13.4 | 1 |
 | OpenVINS | hortimulti | str02 | **2.235 m** ‡ | 2.629 m | 1.029 | 0.0930 | 170.6 | 1 |
 | OpenVINS | hortimulti | str03 | **0.429 m** ‡ | 0.657 m | 1.027 | 0.024 | 167.6 | 1 |
 | OpenVINS | EuRoC | MH_01 | **0.058 m** | 0.058 m | 1.000 | 0.019 | - | 1 |
@@ -171,6 +171,14 @@ now patched, re-run pending). OKVIS2 rosariov2: D435i reference noise (see corre
 > are EuRoC's published ones. A clean re-run gives 0.083 m / scale 1.007. Lesson:
 > some pre-2026-07 rows may be individual bad runs rather than real algorithm
 > limits; re-run before drawing conclusions from an outlier.
+>
+> † **OpenVINS rosariov2 seq5 was also a stale bad run** (2026-07-20). Previously
+> 38.24 m at scale 0.458 and described as "silent divergence"; a clean re-run on an
+> idle machine gives 10.761 m at scale 0.990. Caveat: seq5's `mav0/imu0/data.csv`
+> was regenerated this session from the sequence's raw imu.csv (the EuRoC-layout
+> file was missing), so the old and new runs may not have used identical IMU input.
+> With this, the only remaining scale-collapsed VIO rows are standalone OKVIS2 on
+> hortimulti, which is not built in this environment.
 > Only standalone OKVIS2 (predecessor binary) is not re-run - it is not built in this
 > environment and OKVIS2-X embeds the same estimator core, so its row remains pre-fix.
 >
