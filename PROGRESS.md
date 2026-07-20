@@ -102,7 +102,7 @@ in this environment (broken ROS launch / missing container). OKVIS2-X rows added
 | Voxel-SVIO | rosariov2 | seq5 | 6.795 m | 6.812 m | 1.010 | 0.0279 | - | 1 |
 | Voxel-SVIO | hortimulti | str02 | **5.828 m** ‡ | 5.943 m | 1.024 | 0.0918 | 9.8 | 1 |
 | Voxel-SVIO | hortimulti | str03 | **0.437 m** ‡ | 0.720 m | 1.032 | 0.0262 | 9.5 | 1 |
-| Voxel-SVIO | EuRoC | MH_01 | 3.027 m | 3.098 m | 0.001 | 1.887 | - | 1 |
+| Voxel-SVIO | EuRoC | MH_01 | **0.083 m** † | 0.086 m | 1.007 | 0.0184 | 9.7 | 1 |
 
 ‡ **Extrinsic fix applied (2026-07-17), N=1.** Corrected cam-IMU extrinsic
 (official `T_imu_link_forward*_cam` composed with `cv2.fisheye.stereoRectify` R_rect;
@@ -164,6 +164,13 @@ now patched, re-run pending). OKVIS2 rosariov2: D435i reference noise (see corre
 > t+7.6 s, max 1.19 m apart, though path length matches to 0.3 m). Do not run these
 > two concurrently with other jobs, and treat their N=1 numbers as indicative only.
 > The file-driven algorithms (OKVIS2-X, Basalt, ORB-SLAM3) do not have this issue.
+>
+> † **Voxel-SVIO EuRoC MH_01 was a stale bad run.** The previously recorded
+> 3.027 m / scale 0.001 (SE3 2124 m) was a diverged run, not a config problem -
+> the config's T_imu_cam matches EuRoC's official cam0 T_BS and its noise values
+> are EuRoC's published ones. A clean re-run gives 0.083 m / scale 1.007. Lesson:
+> some pre-2026-07 rows may be individual bad runs rather than real algorithm
+> limits; re-run before drawing conclusions from an outlier.
 > Only standalone OKVIS2 (predecessor binary) is not re-run - it is not built in this
 > environment and OKVIS2-X embeds the same estimator core, so its row remains pre-fix.
 >
