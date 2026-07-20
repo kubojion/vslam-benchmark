@@ -130,10 +130,17 @@ docker exec "$CONTAINER" bash -c "
 
 # ---- Stop vio_node and roscore --------------------------------------------
 echo "[voxel_svio] data player done; stopping vio_node ..." | tee -a "$LOG"
-docker exec "$CONTAINER" bash -c "pkill -SIGINT -f vio_node 2>/dev/null || true"
+# NOTE: the bracket trick ('[v]io_node') is required. `pkill -f vio_node` also
+# matches the `bash -c "pkill -f vio_node"` process running the command itself,
+# so it signals its own parent shell; docker exec then returns 143/130 and
+# `set -eo pipefail` (top of file) aborts the script one line before the
+# trajectory is collected -- the run looks like "no trajectory" even though
+# pose.txt was written correctly. '[v]io_node' matches the node but not the
+# pkill command line. The trailing `|| true` guards set -e regardless.
+docker exec "$CONTAINER" bash -c "pkill -SIGINT -f '[v]io_node' 2>/dev/null || true" || true
 sleep 2
 wait "$NODE_PID" 2>/dev/null || true
-docker exec "$CONTAINER" bash -c "pkill -f roscore 2>/dev/null || true; pkill -f rosmaster 2>/dev/null || true"
+docker exec "$CONTAINER" bash -c "pkill -f '[r]oscore' 2>/dev/null || true; pkill -f '[r]osmaster' 2>/dev/null || true" || true
 kill "$ROSCORE_PID" 2>/dev/null || true
 
 END=$(date +%s.%N)

@@ -100,8 +100,8 @@ in this environment (broken ROS launch / missing container). OKVIS2-X rows added
 | AirSLAM | EuRoC | MH_01 | **0.102 m** | 0.102 m | 1.005 | - | 31.15 | 1 |
 | Voxel-SVIO | rosariov2 | seq1 | 4.398 m | 4.469 m | 1.017 | 0.0275 | - | 1 |
 | Voxel-SVIO | rosariov2 | seq5 | 6.795 m | 6.812 m | 1.010 | 0.0279 | - | 1 |
-| Voxel-SVIO | hortimulti | str02 | **5.479 m** ‡ | 5.607 m | 1.025 | 0.0909 | 9.8 | 1 |
-| Voxel-SVIO | hortimulti | str03 | **0.232 m** ‡ | 0.604 m | 1.031 | 0.0253 | 9.5 | 1 |
+| Voxel-SVIO | hortimulti | str02 | **5.828 m** ‡ | 5.943 m | 1.024 | 0.0918 | 9.8 | 1 |
+| Voxel-SVIO | hortimulti | str03 | **0.437 m** ‡ | 0.720 m | 1.032 | 0.0262 | 9.5 | 1 |
 | Voxel-SVIO | EuRoC | MH_01 | 3.027 m | 3.098 m | 0.001 | 1.887 | - | 1 |
 
 ‡ **Extrinsic fix applied (2026-07-17), N=1.** Corrected cam-IMU extrinsic
@@ -149,13 +149,21 @@ now patched, re-run pending). OKVIS2 rosariov2: D435i reference noise (see corre
 > | Algorithm | str03 | str02 |
 > |---|---|---|
 > | Basalt     | 2.85 -> **0.194** m (scale 0.65 -> 1.03) | 22.90 -> **2.49** m (0.57 -> 1.03) |
-> | Voxel-SVIO | 17.92 -> **0.232** m (4e-4 -> 1.03)      | 6.46 -> **5.48** m (0.78 -> 1.03) |
+> | Voxel-SVIO | 17.92 -> **0.437** m (4e-4 -> 1.03)      | 6.46 -> **5.83** m (0.78 -> 1.02) |
 > | OKVIS2-X   | 17.14 -> **0.343** m (8e-5 -> 1.03)      | 49.69 -> **2.13** m (2e-6 -> 1.03) |
 > | ORB-SLAM3  | 0.568 -> **0.396** m (~1.04, was already ok) | 2.79 -> **1.48** m (1.04) |
 > | OpenVINS   | 17.03 -> **0.429** m (2e-3 -> 1.03)      | 49.43 -> **2.24** m (2e-4 -> 1.03) |
 > | AirSLAM    | 16.33 -> **1.236** m (1.02 -> 1.05)      | 46.35 -> **5.30** m (0.13 -> 1.02) |
 >
 > **All 6 VIO algorithms fixed (2026-07-20).** Every scale factor is now ~1.0-1.05.
+>
+> **Caveat - Voxel-SVIO and OpenVINS are non-deterministic.** Both are driven by a
+> real-time data player (`--rate 1.0`), so the node processes whatever arrives while
+> competing for CPU; results depend on machine load. Two Voxel-SVIO runs of the
+> identical config on str03 gave 0.232 m and 0.437 m (trajectories diverge from
+> t+7.6 s, max 1.19 m apart, though path length matches to 0.3 m). Do not run these
+> two concurrently with other jobs, and treat their N=1 numbers as indicative only.
+> The file-driven algorithms (OKVIS2-X, Basalt, ORB-SLAM3) do not have this issue.
 > Only standalone OKVIS2 (predecessor binary) is not re-run - it is not built in this
 > environment and OKVIS2-X embeds the same estimator core, so its row remains pre-fix.
 >
