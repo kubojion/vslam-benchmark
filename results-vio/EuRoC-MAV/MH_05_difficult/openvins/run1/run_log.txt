@@ -1,0 +1,12 @@
+3.047 [INFO] [1784543127.015647644] [openvins_data_player]: loaded imu=22721 cam0=2273 cam1=2273 from /ws/datasets/EuRoC-MAV/MH_05_difficult
+3.052 [INFO] [1784543127.020619569] [openvins_data_player]: start delay 1.0s for ROS graph...
+4.056 [INFO] [1784543128.024714405] [openvins_data_player]: played 0/27267 (0.0%), poses_received=0
+24.903 [INFO] [1784543148.872087661] [openvins_data_player]: played 5000/27267 (18.3%), poses_received=2830
+45.734 [INFO] [1784543169.702262235] [openvins_data_player]: played 10000/27267 (36.7%), poses_received=6996
+66.564 [INFO] [1784543190.532284033] [openvins_data_player]: played 15000/27267 (55.0%), poses_received=11162
+87.404 [INFO] [1784543211.372124128] [openvins_data_player]: played 20000/27267 (73.3%), poses_received=15330
+108.234 [INFO] [1784543232.202117807] [openvins_data_player]: played 25000/27267 (91.7%), poses_received=19496
+117.674 [INFO] [1784543241.642058625] [openvins_data_player]: all events published; waiting 3.0s for filter flush...
+120.699 [INFO] [1784543244.667297444] [openvins_data_player]: wrote 21385 poses to /ws/results-vio/EuRoC-MAV/MH_05_difficult/openvins/run1/trajectory.txt
+120.705 terminate called without an active exception
+120.872 /bin/bash: line 8:    68 Aborted                 (core dumped) python3 /ws/scripts/run/openvins_data_player.py /ws/datasets/EuRoC-MAV/MH_05_difficult /ws/results-vio/EuRoC-MAV/MH_05_difficult/openvins/run1/trajectory.txt --rate 1.0 --start-delay 1.0 --end-wait 3.0

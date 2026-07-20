@@ -70,39 +70,49 @@ in this environment (broken ROS launch / missing container). OKVIS2-X rows added
 | ORB-SLAM3 | rosariov2 | seq5 | **2.29 m** | 2.62 m | 1.026 | 0.0293 | 11.94 | 1 |
 | ORB-SLAM3 | hortimulti | str02 | **1.476 m** ‡ | 2.444 m | 1.041 | 0.0892 | 9.33 | 1 |
 | ORB-SLAM3 | hortimulti | str03 | **0.396 m** ‡ | 0.796 m | 1.038 | 0.0237 | 9.2 | 1 |
-| ORB-SLAM3 | EuRoC | MH_01 | **0.022 m** | 0.022 m | 1.001 | 0.0138 | 36.41 | 1 |
+| ORB-SLAM3 | EuRoC | MH_01 | 0.0250 m | 0.0363 m | 1.0061 | 0.0091 | 18.39 | 1 |
+| ORB-SLAM3 | EuRoC | MH_03 | 0.0304 m | 0.0305 m | 1.0008 | 0.0136 | 18.50 | 1 |
+| ORB-SLAM3 | EuRoC | MH_05 | 0.0480 m | 0.0695 m | 0.9932 | 0.0165 | 14.74 | 1 |
+| Basalt | EuRoC | MH_01 | 0.0348 m | 0.0723 m | 1.0149 | 0.0074 | 77.41 | 1 |
+| Basalt | EuRoC | MH_03 | 0.0457 m | 0.0596 m | 1.0108 | 0.0132 | 174.98 | 1 |
+| Basalt | EuRoC | MH_05 | 0.1112 m | 0.1210 m | 1.0070 | 0.0155 | 175.11 | 1 |
+| OKVIS2 | EuRoC | MH_01 | 0.0542 m | 0.0585 m | 1.0051 | 0.0128 | 7.33 | 1 |
+| OKVIS2-X | EuRoC | MH_01 | 0.0459 m | 0.0516 m | 1.0055 | 0.0131 | 18.96 | 1 |
+| OKVIS2-X | EuRoC | MH_03 | 0.0721 m | 0.0722 m | 0.9991 | 0.0201 | 20.21 | 1 |
+| OKVIS2-X | EuRoC | MH_05 | 0.1445 m | 0.1533 m | 0.9926 | 0.0287 | 22.99 | 1 |
+| OpenVINS | EuRoC | MH_01 | 0.0582 m | 0.0582 m | 1.0001 | 0.0190 | - | 1 |
+| OpenVINS | EuRoC | MH_03 | 0.1264 m | 0.1322 m | 0.9893 | 0.0230 | 182.20 | 1 |
+| OpenVINS | EuRoC | MH_05 | 0.2049 m | 0.2224 m | 0.9878 | 0.0337 | 176.76 | 1 |
+| AirSLAM | EuRoC | MH_01 | 0.1021 m | 0.1043 m | 1.0047 | 0.0192 | 31.15 | 1 |
+| AirSLAM | EuRoC | MH_03 | 0.0881 m | 0.0910 m | 0.9940 | 0.0202 | 42.80 | 1 |
+| AirSLAM | EuRoC | MH_05 | 0.1360 m | 0.1424 m | 1.0063 | 0.0266 | 47.30 | 1 |
+| Voxel-SVIO | EuRoC | MH_01 | 0.0825 m | 0.0860 m | 1.0067 | 0.0184 | 12.68 | 1 |
+| Voxel-SVIO | EuRoC | MH_03 | 0.0813 m | 0.0815 m | 0.9983 | 0.0235 | 14.24 | 1 |
+| Voxel-SVIO | EuRoC | MH_05 | 0.1620 m | 0.1625 m | 0.9981 | 0.0384 | 13.79 | 1 |
 | Basalt | rosariov2 | seq1 | 2.995 m | 3.006 m | 1.008 | 0.0126 | 63.44 | 1 |
 | Basalt | rosariov2 | seq5 | **4.74 m** | 4.77 m | 1.011 | 0.0157 | **46.5** | 1 |
 | Basalt | hortimulti | str02 | **2.492 m** ‡ | 2.929 m | 1.032 | 0.0905 | ~62.7 | 1 |
 | Basalt | hortimulti | str03 | **0.194 m** ‡ | 0.658 m | 1.035 | 0.0221 | ~46.8 | 1 |
-| Basalt | EuRoC | MH_01 | **0.035 m** | 0.035 m | 1.004 | 0.0068 | 119.82 | 1 |
 | OKVIS2 | rosariov2 | seq1 | 18.89 m | 19.39 m | 0.909 | 0.1236 | 9.93 | 1 |
 | OKVIS2 | rosariov2 | seq5 | 20.29 m | 20.68 m | 0.921 | 0.1082 | 8.46 | 1 |
 | OKVIS2 | hortimulti | str02 | 49.851 m | - | ~0 | - | 13.9 | 1 |
 | OKVIS2 | hortimulti | str03 | 15.461 m | - | ~0 | - | 14.0 | 1 |
-| OKVIS2 | EuRoC | MH_01 | **0.054 m** | 0.054 m | 1.000 | 0.0165 | 25.44 | 1 |
 | OKVIS2-X | rosariov2 | seq1 | 19.332 m | 19.92 m | 0.901 | 0.1316 | 12.81 | 1 |
 | OKVIS2-X | rosariov2 | seq5 | 20.396 m | 20.80 m | 0.919 | 0.1103 | 12.98 | 1 |
 | OKVIS2-X | hortimulti | str02 | **2.130 m** ‡ | 2.487 m | 1.027 | 0.0928 | 11.85 | 1 |
 | OKVIS2-X | hortimulti | str03 | **0.343 m** ‡ | 0.643 m | 1.030 | 0.0283 | 11.50 | 1 |
-| OKVIS2-X | EuRoC | MH_01 | **0.046 m** | 0.052 m | 1.006 | 0.0131 | 18.96 | 1 |
-| OKVIS2-X | EuRoC | MH_03 | 0.072 m | 0.072 m | 0.999 | 0.0201 | 20.21 | 1 |
-| OKVIS2-X | EuRoC | MH_05 | 0.144 m | 0.150 m | 0.993 | 0.0287 | 22.99 | 1 |
 | OpenVINS | rosariov2 | seq1 | **2.316 m** | 2.542 m | 1.022 | 0.024 | - | 1 |
 | OpenVINS | rosariov2 | seq5 | **10.761 m** † | 10.774 m | 0.990 | 0.0692 | 13.4 | 1 |
 | OpenVINS | hortimulti | str02 | **2.235 m** ‡ | 2.629 m | 1.029 | 0.0930 | 170.6 | 1 |
 | OpenVINS | hortimulti | str03 | **0.429 m** ‡ | 0.657 m | 1.027 | 0.024 | 167.6 | 1 |
-| OpenVINS | EuRoC | MH_01 | **0.058 m** | 0.058 m | 1.000 | 0.019 | - | 1 |
 | AirSLAM | rosariov2 | seq1 | 16.502 m | 16.769 m | 1.001 | 0.052 | 23.43 | 1 |
 | AirSLAM | rosariov2 | seq5 | 12.148 m | 12.191 m | 0.998 | 0.048 | 24.89 | 1 |
 | AirSLAM | hortimulti | str02 | **5.297 m** ‡ | 5.339 m | 1.015 | 0.0806 | 5.8 | 1 |
 | AirSLAM | hortimulti | str03 | **1.236 m** ‡ | 1.472 m | 1.049 | 0.0355 | 31.0 | 1 |
-| AirSLAM | EuRoC | MH_01 | **0.102 m** | 0.102 m | 1.005 | - | 31.15 | 1 |
 | Voxel-SVIO | rosariov2 | seq1 | 4.398 m | 4.469 m | 1.017 | 0.0275 | - | 1 |
 | Voxel-SVIO | rosariov2 | seq5 | 6.795 m | 6.812 m | 1.010 | 0.0279 | - | 1 |
 | Voxel-SVIO | hortimulti | str02 | **5.828 m** ‡ | 5.943 m | 1.024 | 0.0918 | 9.8 | 1 |
 | Voxel-SVIO | hortimulti | str03 | **0.437 m** ‡ | 0.720 m | 1.032 | 0.0262 | 9.5 | 1 |
-| Voxel-SVIO | EuRoC | MH_01 | **0.083 m** † | 0.086 m | 1.007 | 0.0184 | 9.7 | 1 |
 
 ‡ **Extrinsic fix applied (2026-07-17), N=1.** Corrected cam-IMU extrinsic
 (official `T_imu_link_forward*_cam` composed with `cv2.fisheye.stereoRectify` R_rect;

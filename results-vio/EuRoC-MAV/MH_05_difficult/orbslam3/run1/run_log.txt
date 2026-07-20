@@ -1,0 +1,285 @@
+0.220 num_seq = 1
+0.220 file name: EuRoC-MAV_MH_05_difficult_orbslam3
+0.231 Loading images for sequence 0...LOADED!
+0.244 Loading IMU for sequence 0...LOADED!
+0.244 Camera1.k3 optional parameter does not exist...
+0.244 Camera2.k3 optional parameter does not exist...
+0.244 Camera.newHeight optional parameter does not exist...
+0.244 Camera.newWidth optional parameter does not exist...
+0.244 System.LoadAtlasFromFile optional parameter does not exist...
+0.244 System.SaveAtlasToFile optional parameter does not exist...
+0.244 System.thFarPoints optional parameter does not exist...
+0.244 
+0.244 -------
+0.244 
+0.244 ORB-SLAM3 Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.244 ORB-SLAM2 Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.244 This program comes with ABSOLUTELY NO WARRANTY;
+0.244 This is free software, and you are welcome to redistribute it
+0.244 under certain conditions. See LICENSE.txt.
+0.244 
+0.244 Input sensor was set to: Stereo-Inertial
+0.244 Loading settings from /bench/configs/orbslam3/EuRoC-MAV_stereo_inertial.yaml
+0.244 	-Loaded camera 1
+0.244 	-Loaded camera 2
+0.244 	-Loaded image info
+0.244 	-Loaded IMU calibration
+0.244 	-Loaded ORB settings
+0.244 	-Loaded viewer settings
+0.244 	-Loaded Atlas settings
+0.244 	-Loaded misc parameters
+0.246 	-Computed rectification maps
+0.248 ----------------------------------
+0.248 SLAM settings: 
+0.248 	-Camera 1 parameters (Pinhole): [ 458.65399169921875 457.29598999023438 367.21499633789062 248.375 ]
+0.248 	-Camera 1 distortion parameters: [  -0.28340810537338257 0.073959067463874817 0.00019359000725671649 1.7618711353861727e-05 ]
+0.248 	-Camera 2 parameters (Pinhole: [ 457.58700561523438 456.13400268554688 379.99899291992188 255.23800659179688 ]
+0.248 	-Camera 1 distortion parameters: [  -0.2836836576461792 0.074512839317321777 -0.00010473000293131918 -3.555907096597366e-05 ]
+0.248 	-Original image size: [ 752 , 480 ]
+0.248 	-Current image size: [ 752 , 480 ]
+0.248 	-Camera 1 parameters after rectification: [  456.71499633789062 456.71499633789062 364.52615356445312 257.268798828125 ]
+0.248 	-Sequence FPS: 20
+0.248 	-Stereo baseline: 0.11007785052061081
+0.248 	-Stereo depth threshold : 60
+0.248 	-Gyro noise: 0.00016999999934341758
+0.248 	-Accelerometer noise: 0.0020000000949949026
+0.248 	-Gyro walk: 1.9392999092815444e-05
+0.248 	-Accelerometer walk: 0.0030000000260770321
+0.248 	-IMU frequency: 200
+0.248 	-Features per image: 1200
+0.248 	-ORB scale factor: 1.2000000476837158
+0.248 	-ORB number of scales: 8
+0.248 	-Initial FAST threshold: 20
+0.248 	-Min FAST threshold: 7
+0.248 
+0.248 
+0.248 Loading ORB Vocabulary. This could take a while...
+2.638 Vocabulary loaded!
+2.638 
+2.643 Initialization of Atlas from scratch 
+2.643 Creation of new map with id: 0
+2.643 Creation of new map with last KF id: 0
+2.644 Seq. Name: 
+2.644 There are 1 cameras in the atlas
+2.644 Camera 0 is pinhole
+2.644 ****Enabled Loop Closing****
+2.644 INIT COMPLETE
+2.656 not IMU meas
+2.707 not IMU meas
+2.759 not enough acceleration
+2.813 not enough acceleration
+2.867 not enough acceleration
+2.919 not enough acceleration
+2.972 not enough acceleration
+3.024 not enough acceleration
+3.074 not enough acceleration
+3.127 not enough acceleration
+3.181 not enough acceleration
+3.233 not enough acceleration
+3.285 not enough acceleration
+3.338 not enough acceleration
+3.391 not enough acceleration
+3.445 not enough acceleration
+3.496 not enough acceleration
+3.550 not enough acceleration
+3.601 not enough acceleration
+3.655 not enough acceleration
+3.708 not enough acceleration
+3.761 not enough acceleration
+3.814 not enough acceleration
+3.867 not enough acceleration
+3.918 not enough acceleration
+3.972 not enough acceleration
+4.024 not enough acceleration
+4.077 not enough acceleration
+4.130 not enough acceleration
+4.183 not enough acceleration
+4.235 not enough acceleration
+4.289 not enough acceleration
+4.340 not enough acceleration
+4.394 not enough acceleration
+4.446 not enough acceleration
+4.498 not enough acceleration
+4.552 not enough acceleration
+4.605 not enough acceleration
+4.657 not enough acceleration
+4.709 not enough acceleration
+4.762 not enough acceleration
+4.816 not enough acceleration
+4.869 not enough acceleration
+4.921 not enough acceleration
+4.974 not enough acceleration
+5.025 not enough acceleration
+5.079 not enough acceleration
+5.131 not enough acceleration
+5.185 not enough acceleration
+5.238 not enough acceleration
+5.289 not enough acceleration
+5.345 not enough acceleration
+5.397 not enough acceleration
+5.449 not enough acceleration
+5.501 not enough acceleration
+5.555 not enough acceleration
+5.607 not enough acceleration
+5.661 not enough acceleration
+5.712 not enough acceleration
+5.764 not enough acceleration
+5.818 not enough acceleration
+5.870 not enough acceleration
+5.924 not enough acceleration
+5.976 not enough acceleration
+6.030 not enough acceleration
+6.081 not enough acceleration
+6.134 not enough acceleration
+6.187 not enough acceleration
+6.239 not enough acceleration
+6.292 not enough acceleration
+6.344 not enough acceleration
+6.398 not enough acceleration
+6.452 not enough acceleration
+6.503 not enough acceleration
+6.555 not enough acceleration
+6.608 not enough acceleration
+6.659 not enough acceleration
+6.711 not enough acceleration
+6.766 not enough acceleration
+6.818 not enough acceleration
+6.869 First KF:0; Map init KF:0
+6.869 New Map created with 120 points
+9.998 Not enough motion for initializing. Reseting...
+10.022 LM: Reseting current map in Local Mapping...
+10.022 LM: End reseting Local Mapping...
+10.022 LM: Reset free the mutex
+12.588 Not enough motion for initializing. Reseting...
+12.618 LM: Reseting current map in Local Mapping...
+12.618 LM: End reseting Local Mapping...
+12.618 LM: Reset free the mutex
+12.634 Not enough motion for initializing. Reseting...
+12.663 LM: Reseting current map in Local Mapping...
+12.663 LM: End reseting Local Mapping...
+12.663 LM: Reset free the mutex
+12.685 Not enough motion for initializing. Reseting...
+12.711 LM: Reseting current map in Local Mapping...
+12.711 LM: End reseting Local Mapping...
+12.711 LM: Reset free the mutex
+17.164 Not enough motion for initializing. Reseting...
+17.192 LM: Reseting current map in Local Mapping...
+17.192 LM: End reseting Local Mapping...
+17.192 LM: Reset free the mutex
+17.691 Not enough motion for initializing. Reseting...
+17.717 LM: Reseting current map in Local Mapping...
+17.717 LM: End reseting Local Mapping...
+17.717 LM: Reset free the mutex
+18.214 Not enough motion for initializing. Reseting...
+18.240 LM: Reseting current map in Local Mapping...
+18.240 LM: End reseting Local Mapping...
+18.240 LM: Reset free the mutex
+18.741 Not enough motion for initializing. Reseting...
+18.777 LM: Reseting current map in Local Mapping...
+18.777 LM: End reseting Local Mapping...
+18.777 LM: Reset free the mutex
+19.266 Not enough motion for initializing. Reseting...
+19.292 LM: Reseting current map in Local Mapping...
+19.292 LM: End reseting Local Mapping...
+19.292 LM: Reset free the mutex
+19.792 Not enough motion for initializing. Reseting...
+19.817 LM: Reseting current map in Local Mapping...
+19.817 LM: End reseting Local Mapping...
+19.817 LM: Reset free the mutex
+20.316 Not enough motion for initializing. Reseting...
+20.344 LM: Reseting current map in Local Mapping...
+20.344 LM: End reseting Local Mapping...
+20.344 LM: Reset free the mutex
+20.837 Not enough motion for initializing. Reseting...
+20.864 LM: Reseting current map in Local Mapping...
+20.864 LM: End reseting Local Mapping...
+20.864 LM: Reset free the mutex
+21.367 Not enough motion for initializing. Reseting...
+21.394 LM: Reseting current map in Local Mapping...
+21.394 LM: End reseting Local Mapping...
+21.394 LM: Reset free the mutex
+21.890 Not enough motion for initializing. Reseting...
+21.916 LM: Reseting current map in Local Mapping...
+21.916 LM: End reseting Local Mapping...
+21.916 LM: Reset free the mutex
+22.416 Not enough motion for initializing. Reseting...
+22.442 LM: Reseting current map in Local Mapping...
+22.442 LM: End reseting Local Mapping...
+22.442 LM: Reset free the mutex
+22.940 Not enough motion for initializing. Reseting...
+22.971 LM: Reseting current map in Local Mapping...
+22.971 LM: End reseting Local Mapping...
+22.971 LM: Reset free the mutex
+23.463 Not enough motion for initializing. Reseting...
+23.488 LM: Reseting current map in Local Mapping...
+23.488 LM: End reseting Local Mapping...
+23.488 LM: Reset free the mutex
+23.986 Not enough motion for initializing. Reseting...
+24.012 LM: Reseting current map in Local Mapping...
+24.012 LM: End reseting Local Mapping...
+24.012 LM: Reset free the mutex
+24.513 Not enough motion for initializing. Reseting...
+24.539 LM: Reseting current map in Local Mapping...
+24.539 LM: End reseting Local Mapping...
+24.539 LM: Reset free the mutex
+25.520 Not enough motion for initializing. Reseting...
+25.556 TRACK: Reset map because local mapper set the bad imu flag 
+25.561 LM: Reseting current map in Local Mapping...
+25.561 LM: End reseting Local Mapping...
+25.561 LM: Reset free the mutex
+25.599 LM: Active map reset recieved
+25.599 LM: Active map reset, waiting...
+25.602 LM: Reseting current map in Local Mapping...
+25.602 LM: End reseting Local Mapping...
+25.602 LM: Reset free the mutex
+25.602 LM: Active map reset, Done!!!
+25.607 mnFirstFrameId = 80
+25.607 mnInitialFrameId = 0
+25.607 355 Frames set to lost
+25.614 not IMU meas
+25.662 not enough acceleration
+25.713 not enough acceleration
+25.768 not enough acceleration
+25.818 not enough acceleration
+25.871 not enough acceleration
+25.924 not enough acceleration
+25.977 not enough acceleration
+26.031 not enough acceleration
+26.083 not enough acceleration
+26.136 not enough acceleration
+26.190 not enough acceleration
+26.242 not enough acceleration
+26.295 not enough acceleration
+26.348 not enough acceleration
+26.401 not enough acceleration
+26.454 not enough acceleration
+26.508 not enough acceleration
+26.558 not enough acceleration
+26.611 not enough acceleration
+26.665 not enough acceleration
+26.718 not enough acceleration
+26.769 not enough acceleration
+26.822 not enough acceleration
+26.874 not enough acceleration
+26.928 not enough acceleration
+26.981 not enough acceleration
+27.032 First KF:107; Map init KF:0
+27.032 New Map created with 807 points
+28.931 [Progress] sequence 0 frame 500/2273 imu_meas=10 tracking_s=0.0131
+32.418 start VIBA 1
+32.514 end VIBA 1
+42.969 start VIBA 2
+43.121 end VIBA 2
+55.368 [Progress] sequence 0 frame 1000/2273 imu_meas=10 tracking_s=0.0130
+81.553 [Progress] sequence 0 frame 1500/2273 imu_meas=10 tracking_s=0.0133
+107.920 [Progress] sequence 0 frame 2000/2273 imu_meas=10 tracking_s=0.0139
+122.318 [Progress] sequence 0 frame 2273/2273 imu_meas=10 tracking_s=0.0122
+122.356 Shutdown
+122.387 
+122.387 Saving trajectory to f_EuRoC-MAV_MH_05_difficult_orbslam3.txt ...
+122.387 There are 1 maps in the atlas
+122.387   Map 0 has 152 KFs
+122.391 
+122.391 End of saving trajectory to f_EuRoC-MAV_MH_05_difficult_orbslam3.txt ...
+122.391 
+122.391 Saving keyframe trajectory to kf_EuRoC-MAV_MH_05_difficult_orbslam3.txt ...

@@ -1,0 +1,69 @@
+{
+  "run": "1",
+  "algo": "voxel_svio",
+  "dataset": "EuRoC-MAV",
+  "seq": "MH_03_medium",
+  "run_type": "vio",
+  "use_imu": true,
+  "use_lc": false,
+  "gt_source": "interpolated",
+  "n_pairs_ate": 2076,
+  "ate": {
+    "rmse": 0.081281,
+    "mean": 0.073123,
+    "median": 0.069793,
+    "std": 0.035492,
+    "max": 0.209797
+  },
+  "ate_se3": {
+    "rmse": 0.081501,
+    "mean": 0.073285,
+    "median": 0.069133,
+    "std": 0.035661,
+    "max": 0.214295
+  },
+  "rpe_trans_1m": {
+    "rmse": 0.023478,
+    "mean": 0.01886,
+    "std": 0.013983,
+    "max": 0.070873
+  },
+  "rpe_rot_1m_deg": {
+    "rmse": 0.314934,
+    "mean": 0.134051,
+    "std": 0.28498
+  },
+  "kitti_drift": {
+    "rpe_10m_trans_rmse": 0.067321,
+    "rpe_50m_trans_rmse": 0.085848,
+    "rpe_100m_trans_rmse": null
+  },
+  "scale_factor": 0.9983327278930738,
+  "final_drift_m": 4.7674,
+  "robustness": {
+    "init_success": false,
+    "init_time_s": null,
+    "tracking_losses": 0,
+    "loop_closures": 0,
+    "map_resets": 0,
+    "output_valid": true,
+    "first_failure_s": null,
+    "frames_total": 26302,
+    "frames_tracked": 2093,
+    "track_pct": 8.0
+  },
+  "runtime": {
+    "vram_mean_mib": 466.2,
+    "vram_peak_mib": 472.0,
+    "gpu_mean_pct": 8.3,
+    "gpu_peak_pct": 73.0,
+    "cpu_mean_pct": 3.0,
+    "cpu_peak_pct": 9.1,
+    "ram_mean_mib": 8198.5,
+    "ram_peak_mib": 8330.0,
+    "wall_s": 146.94,
+    "fps": 14.244,
+    "fps_raw": 14.244
+  },
+  "agri_segments": {}
+}
