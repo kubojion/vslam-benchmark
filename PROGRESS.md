@@ -95,13 +95,13 @@ in this environment (broken ROS launch / missing container). OKVIS2-X rows added
 | OpenVINS | EuRoC | MH_01 | **0.058 m** | 0.058 m | 1.000 | 0.019 | - | 1 |
 | AirSLAM | rosariov2 | seq1 | 16.502 m | 16.769 m | 1.001 | 0.052 | 23.43 | 1 |
 | AirSLAM | rosariov2 | seq5 | 12.148 m | 12.191 m | 0.998 | 0.048 | 24.89 | 1 |
-| AirSLAM | hortimulti | str02 | 46.349 m | 49.571 m | 0.130 | - | 5.8 | 1 |
-| AirSLAM | hortimulti | str03 | 16.329 m | 16.329 m | 1.021 | - | 31.0 | 1 |
+| AirSLAM | hortimulti | str02 | **5.297 m** ‡ | 5.339 m | 1.015 | 0.0806 | 5.8 | 1 |
+| AirSLAM | hortimulti | str03 | **1.236 m** ‡ | 1.472 m | 1.049 | 0.0355 | 31.0 | 1 |
 | AirSLAM | EuRoC | MH_01 | **0.102 m** | 0.102 m | 1.005 | - | 31.15 | 1 |
 | Voxel-SVIO | rosariov2 | seq1 | 4.398 m | 4.469 m | 1.017 | 0.0275 | - | 1 |
 | Voxel-SVIO | rosariov2 | seq5 | 6.795 m | 6.812 m | 1.010 | 0.0279 | - | 1 |
-| Voxel-SVIO | hortimulti | str02 | 6.464 m | 15.307 m | 0.781 | 0.132 | - | 1 |
-| Voxel-SVIO | hortimulti | str03 | 17.918 m | 3022 m | ~0 | - | - | 1 |
+| Voxel-SVIO | hortimulti | str02 | **5.479 m** ‡ | 5.607 m | 1.025 | 0.0909 | 9.8 | 1 |
+| Voxel-SVIO | hortimulti | str03 | **0.232 m** ‡ | 0.604 m | 1.031 | 0.0253 | 9.5 | 1 |
 | Voxel-SVIO | EuRoC | MH_01 | 3.027 m | 3.098 m | 0.001 | 1.887 | - | 1 |
 
 ‡ **Extrinsic fix applied (2026-07-17), N=1.** Corrected cam-IMU extrinsic
@@ -148,10 +148,16 @@ now patched, re-run pending). OKVIS2 rosariov2: D435i reference noise (see corre
 >
 > | Algorithm | str03 | str02 |
 > |---|---|---|
-> | OKVIS2-X   | 17.14 -> **0.34** m (scale 8e-5 -> 1.03) | 49.69 -> **2.13** m (2e-6 -> 1.03) |
-> | Basalt     | 2.85 -> **0.19** m (0.65 -> 1.03)        | 22.90 -> **2.49** m (0.57 -> 1.03) |
-> | OpenVINS   | (str03 = external symlink, docker n/a)   | 49.43 -> **2.24** m (2e-4 -> 1.03) |
-> | ORB-SLAM3  | (see below)                              | 2.79 -> **1.48** m (scale was already ~1.04) |
+> | Basalt     | 2.85 -> **0.194** m (scale 0.65 -> 1.03) | 22.90 -> **2.49** m (0.57 -> 1.03) |
+> | Voxel-SVIO | 17.92 -> **0.232** m (4e-4 -> 1.03)      | 6.46 -> **5.48** m (0.78 -> 1.03) |
+> | OKVIS2-X   | 17.14 -> **0.343** m (8e-5 -> 1.03)      | 49.69 -> **2.13** m (2e-6 -> 1.03) |
+> | ORB-SLAM3  | 0.568 -> **0.396** m (~1.04, was already ok) | 2.79 -> **1.48** m (1.04) |
+> | OpenVINS   | 17.03 -> **0.429** m (2e-3 -> 1.03)      | 49.43 -> **2.24** m (2e-4 -> 1.03) |
+> | AirSLAM    | 16.33 -> **1.236** m (1.02 -> 1.05)      | 46.35 -> **5.30** m (0.13 -> 1.02) |
+>
+> **All 6 VIO algorithms fixed (2026-07-20).** Every scale factor is now ~1.0-1.05.
+> Only standalone OKVIS2 (predecessor binary) is not re-run - it is not built in this
+> environment and OKVIS2-X embeds the same estimator core, so its row remains pre-fix.
 >
 > VIO now beats VO on both sequences. Config fixes applied to
 > `configs/{okvis2,okvis2x}/hortimulti_*`, `configs/basalt/hortimulti_calib.json`,
