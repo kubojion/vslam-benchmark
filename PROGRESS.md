@@ -77,6 +77,8 @@ in this environment (broken ROS launch / missing container). OKVIS2-X rows added
 | Basalt | EuRoC | MH_03 | 0.0457 m | 0.0596 m | 1.0108 | 0.0132 | 174.98 | 1 |
 | Basalt | EuRoC | MH_05 | 0.1112 m | 0.1210 m | 1.0070 | 0.0155 | 175.11 | 1 |
 | OKVIS2 | EuRoC | MH_01 | 0.0542 m | 0.0585 m | 1.0051 | 0.0128 | 7.33 | 1 |
+| OKVIS2 | EuRoC | MH_03 | 0.0982 m | 0.0987 m | 0.9973 | 0.0170 | 21.69 | 1 |
+| OKVIS2 | EuRoC | MH_05 | 0.1513 m | 0.1646 m | 0.9907 | 0.0294 | 25.25 | 1 |
 | OKVIS2-X | EuRoC | MH_01 | 0.0459 m | 0.0516 m | 1.0055 | 0.0131 | 18.96 | 1 |
 | OKVIS2-X | EuRoC | MH_03 | 0.0721 m | 0.0722 m | 0.9991 | 0.0201 | 20.21 | 1 |
 | OKVIS2-X | EuRoC | MH_05 | 0.1445 m | 0.1533 m | 0.9926 | 0.0287 | 22.99 | 1 |
@@ -95,8 +97,8 @@ in this environment (broken ROS launch / missing container). OKVIS2-X rows added
 | Basalt | hortimulti | str03 | **0.194 m** ‡ | 0.658 m | 1.035 | 0.0221 | ~46.8 | 1 |
 | OKVIS2 | rosariov2 | seq1 | 18.89 m | 19.39 m | 0.909 | 0.1236 | 9.93 | 1 |
 | OKVIS2 | rosariov2 | seq5 | 20.29 m | 20.68 m | 0.921 | 0.1082 | 8.46 | 1 |
-| OKVIS2 | hortimulti | str02 | 49.851 m | - | ~0 | - | 13.9 | 1 |
-| OKVIS2 | hortimulti | str03 | 15.461 m | - | ~0 | - | 14.0 | 1 |
+| OKVIS2 | hortimulti | str02 | 2.1446 m | 2.4621 m | 1.0249 | 0.0918 | 12.22 | 1 |
+| OKVIS2 | hortimulti | str03 | 0.3977 m | 0.6546 m | 1.0285 | 0.0293 | 13.49 | 1 |
 | OKVIS2-X | rosariov2 | seq1 | 19.332 m | 19.92 m | 0.901 | 0.1316 | 12.81 | 1 |
 | OKVIS2-X | rosariov2 | seq5 | 20.396 m | 20.80 m | 0.919 | 0.1103 | 12.98 | 1 |
 | OKVIS2-X | hortimulti | str02 | **2.130 m** ‡ | 2.487 m | 1.027 | 0.0928 | 11.85 | 1 |
@@ -188,7 +190,12 @@ now patched, re-run pending). OKVIS2 rosariov2: D435i reference noise (see corre
 > was regenerated this session from the sequence's raw imu.csv (the EuRoC-layout
 > file was missing), so the old and new runs may not have used identical IMU input.
 > With this, the only remaining scale-collapsed VIO rows are standalone OKVIS2 on
-> hortimulti, which is not built in this environment.
+> hortimulti. **Update 2026-07-20: OKVIS2 was subsequently built** (see
+> scripts/build/build_okvis2.sh - needed -DHAVE_LIBREALSENSE=OFF and -DUSE_CUDA=OFF)
+> and re-run: str03 15.46 -> **0.398 m** (scale 0 -> 1.029), str02 49.85 -> **2.145 m**
+> (0 -> 1.025). This was an independent check of the extrinsic fix: freshly compiled
+> binary, config patched hours earlier and never exercised. **No scale-collapsed VIO
+> rows remain.**
 > Only standalone OKVIS2 (predecessor binary) is not re-run - it is not built in this
 > environment and OKVIS2-X embeds the same estimator core, so its row remains pre-fix.
 >
@@ -387,7 +394,7 @@ Basalt has no loop closure mode.
 | DROID-SLAM | yes | no IMU support | no IMU support | done (N=3) | done (N=3) | done (N=1) |
 | MAC-VO | yes | no IMU support | no IMU support | done (N=3) | done (N=3) | done (N=1) |
 | AirSLAM | yes | yes | yes | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1) | MH_01 VIO done (N=1) |
-| OKVIS2 | yes | yes | yes | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1, failed) | MH_01 VIO done (N=1) |
+| OKVIS2 | yes | yes | yes | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1, fixed extrinsic) | MH_01/03/05 VIO done (N=1) |
 | OpenVINS | no (no VO mode) | yes | no (no LC) | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1, scale collapse) | MH_01 VIO done (N=1) |
 | Voxel-SVIO | no (no VO mode) | yes | no (no LC) | seq1+seq5 VIO done (N=1) | str02+str03 VIO done (N=1, scale collapse) | MH_01 VIO done (N=1) |
 
