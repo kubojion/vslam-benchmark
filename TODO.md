@@ -48,20 +48,20 @@ Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready (config+data exist) | 🔧 no-config | �
 
 ### VIO (stereo + IMU, no loop closure) - `results-vio/`
 
-Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ⬜ ready (bags available, not yet extracted)
+Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ❌ not viable (tested, IMU under-excited)
 
-All cells N=1 as of 2026-07-21. **No scale collapses remain** - hortimulti fixed via the
-camera-IMU extrinsic correction. Next step for the whole table is N=1 -> N=3.
+All agri/EuRoC cells N=1 as of 2026-07-21. **No scale collapses remain** - hortimulti fixed via
+the camera-IMU extrinsic correction. Next step for the whole table is N=1 -> N=3.
 
-| Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 |
-|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 |
-| Basalt | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 |
-| OKVIS2 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 |
-| OKVIS2-X | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 |
-| OpenVINS | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 |
-| AirSLAM | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 |
-| Voxel-SVIO | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 |
+| Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
+|---|---|---|---|---|---|---|---|---|
+| ORB-SLAM3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | ❌ not viable |
+| Basalt | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | ❌ not viable |
+| OKVIS2 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
+| OKVIS2-X | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
+| OpenVINS | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
+| AirSLAM | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
+| Voxel-SVIO | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
 
 > HortiMulti IMU: extracted - str02=190493 samples, str03=48448 samples. Path: `datasets/hortimulti/strawberry{02,03}/mav0/imu0/data.csv`
 > **HortiMulti VIO fix (2026-07-20):** all algorithms were scale-collapsed due to a wrong
@@ -73,6 +73,12 @@ camera-IMU extrinsic correction. Next step for the whole table is N=1 -> N=3.
 > non-deterministic (real-time player) - ~2x run-to-run spread, so N=3 matters here especially.
 > OKVIS2 (standalone) was built 2026-07-20 (`build_okvis2.sh`, needed -DHAVE_LIBREALSENSE=OFF
 > -DUSE_CUDA=OFF).
+> **zed2i field1 VIO = ❌ not viable, tested not skipped.** Basalt VIO gives 9.14 m / scale 0.816
+> vs VO 0.45 m / scale 0.99. Ruled out extrinsic (A/B/C: identity is correct), IMU noise, and time
+> offset - root cause is insufficient rotational excitation (mean |gyro| 4.7 deg/s, gyro-vs-VO
+> correlation 0.005). Scale/accel-bias are weakly observable on straight-line motion and drift over
+> 77 min. The `🔧 no-config` cells were not tested but would hit the same limit. **Use VO on zed2i.**
+> Not scaling these to N=3. See PROGRESS.md "ZED2i field dataset" section.
 
 ### VIO-LC (stereo + IMU + loop closure) - `results-vio-lc/`
 
