@@ -12,8 +12,9 @@
 | Sequence | strawberry02 |
 | Algorithm | droidslam |
 | Number of frames | 9530 |
-| Camera setup | stereo |
+| Run type | vo |
 | IMU used | no |
+| Loop closure | disabled |
 
 ---
 

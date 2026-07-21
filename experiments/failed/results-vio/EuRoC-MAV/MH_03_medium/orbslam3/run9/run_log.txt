@@ -1,0 +1,68 @@
+0.371 num_seq = 1
+0.371 file name: EuRoC-MAV_MH_03_medium_orbslam3
+0.377 Loading images for sequence 0...LOADED!
+0.392 Loading IMU for sequence 0...LOADED!
+0.392 
+0.392 -------
+0.392 
+0.392 ORB-SLAM3 Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.392 ORB-SLAM2 Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.392 This program comes with ABSOLUTELY NO WARRANTY;
+0.392 This is free software, and you are welcome to redistribute it
+0.392 under certain conditions. See LICENSE.txt.
+0.392 
+0.392 Input sensor was set to: Stereo-Inertial
+0.392 Loading settings from /bench/configs/orbslam3/EuRoC-MAV_stereo_inertial.yaml
+0.392 	-Loaded camera 1
+0.392 	-Loaded camera 2
+0.392 	-Loaded image info
+0.392 	-Loaded IMU calibration
+0.392 	-Loaded ORB settings
+0.392 	-Loaded viewer settings
+0.392 	-Loaded Atlas settings
+0.392 	-Loaded misc parameters
+0.392 Camera1.k3 optional parameter does not exist...
+0.392 Camera2.k3 optional parameter does not exist...
+0.392 Camera.newHeight optional parameter does not exist...
+0.392 Camera.newWidth optional parameter does not exist...
+0.392 System.LoadAtlasFromFile optional parameter does not exist...
+0.392 System.SaveAtlasToFile optional parameter does not exist...
+0.392 System.thFarPoints optional parameter does not exist...
+0.395 	-Computed rectification maps
+0.395 ----------------------------------
+0.395 SLAM settings: 
+0.395 	-Camera 1 parameters (Pinhole): [ 458.65399169921875 457.29598999023438 367.21499633789062 248.375 ]
+0.395 	-Camera 1 distortion parameters: [  -0.28340810537338257 0.073959067463874817 0.00019359000725671649 1.7618711353861727e-05 ]
+0.395 	-Camera 2 parameters (Pinhole: [ 457.58700561523438 456.13400268554688 379.99899291992188 255.23800659179688 ]
+0.395 	-Camera 1 distortion parameters: [  -0.2836836576461792 0.074512839317321777 -0.00010473000293131918 -3.555907096597366e-05 ]
+0.395 	-Original image size: [ 752 , 480 ]
+0.395 	-Current image size: [ 752 , 480 ]
+0.395 	-Camera 1 parameters after rectification: [  456.71499633789062 456.71499633789062 364.52615356445312 257.268798828125 ]
+0.395 	-Sequence FPS: 20
+0.395 	-Stereo baseline: 0.11007785052061081
+0.395 	-Stereo depth threshold : 60
+0.395 	-Gyro noise: 0.00016999999934341758
+0.395 	-Accelerometer noise: 0.0020000000949949026
+0.395 	-Gyro walk: 1.9392999092815444e-05
+0.395 	-Accelerometer walk: 0.0030000000260770321
+0.395 	-IMU frequency: 200
+0.395 	-Features per image: 1200
+0.395 	-ORB scale factor: 1.2000000476837158
+0.395 	-ORB number of scales: 8
+0.395 	-Initial FAST threshold: 20
+0.395 	-Min FAST threshold: 7
+0.395 
+0.395 
+0.395 Loading ORB Vocabulary. This could take a while...
+2.966 Vocabulary loaded!
+2.966 
+2.970 Initialization of Atlas from scratch 
+2.970 Creation of new map with id: 0
+2.970 Creation of new map with last KF id: 0
+2.971 Seq. Name: 
+2.971 There are 1 cameras in the atlas
+2.971 Camera 0 is pinhole
+2.971 ****Enabled Loop Closing****
+2.971 INIT COMPLETE
+2.971 
+2.971 Failed to load image at: /bench/datasets/euroc/mh_03_medium/mav0/cam0/data/1403637130.538319111.png

@@ -18,6 +18,7 @@ set -euo pipefail
 DATASET=$1; SEQ=$2; RUN_ID=${3:-1}; RUN_TYPE=${4:-vo}
 WS=$(cd "$(dirname "$0")/../.." && pwd)
 source "$WS/scripts/_paths.sh"
+canonicalize_dataset "$DATASET"
 resolve_run_type "$RUN_TYPE"
 SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/orbslam3/run${RUN_ID}"
@@ -50,7 +51,7 @@ esac
 mkdir -p "$OUT_DIR" "$WS/logs"
 
 cd "$WS/src/ORB_SLAM3"
-echo "[orbslam3] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL"
+echo "[orbslam3] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL" "$OUT_DIR/run_log.txt"
 echo "[orbslam3] binary=$BIN  cfg=$CFG" | tee -a "$LOG_GLOBAL"
 
 # Resource monitor: GPU + CPU + RAM sampled every 1 s

@@ -1,0 +1,27 @@
+Loaded camera with 2 cameras
+marg_H (sqrt:1)
+10000     0     0     0     0     0
+    0 10000     0     0     0     0
+    0     0 10000     0     0     0
+    0     0     0 10000     0     0
+    0     0     0     0 10000     0
+    0     0     0     0     0 10000
+Started input_data thread 
+Finished input_data thread 
+Finished VIOFilter 
+Finished t4
+T_align
+   1    0    0 -nan
+   0    1    0 -nan
+   0    0    1 -nan
+   0    0    0    1
+error nan
+number of associations 0
+=== stats all ===
+=== stats sums ===
+Saved ExecutionStats to stats_all.ubjson.
+Saved ExecutionStats to stats_sums.ubjson.
+Total runtime: 0.001s
+Saved ExecutionStats to stats_vio.ubjson.
+Saving trajectory...
+Saved trajectory in TUM RGB-D Dataset format in trajectory.txt

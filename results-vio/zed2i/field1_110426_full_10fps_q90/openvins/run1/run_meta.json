@@ -1,0 +1,1 @@
+{"algo": "openvins", "dataset": "zed2i", "seq": "field1_110426_full_10fps_q90", "run_id": 1, "run_type": "vio", "duration_s": 4643.263777017593, "frames": 4029, "fps": 0.8677086190842812}

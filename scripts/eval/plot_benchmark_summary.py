@@ -36,6 +36,10 @@ ALGO_COLOUR = {
     "airslam":     "#17becf",
     "mast3r_slam": "#9467bd",
     "megasam":     "#e377c2",
+    "okvis2x":     "#1f77b4",
+    "okvis2":      "#bcbd22",
+    "openvins":    "#7f7f7f",
+    "voxel_svio":  "#c5b0d5",
 }
 ALGO_LABEL = {
     "orbslam3":    "ORB-SLAM3",
@@ -45,10 +49,33 @@ ALGO_LABEL = {
     "airslam":     "AirSLAM",
     "mast3r_slam": "MASt3R-SLAM",
     "megasam":     "MegaSaM",
+    "okvis2x":     "OKVIS2-X",
+    "okvis2":      "OKVIS2",
+    "openvins":    "OpenVINS",
+    "voxel_svio":  "Voxel-SVIO",
 }
 
-# Ordered algo list for consistent bar ordering
-ALGO_ORDER = ["orbslam3", "droidslam", "macvo", "basalt", "airslam", "mast3r_slam", "megasam"]
+# Preferred bar ordering. The actual per-plot list is filtered to algorithms
+# present in the data (see algos_present), so VO/VIO/VIO-LC each show only their
+# own algorithms and nothing is silently dropped or shown as an empty legend.
+ALGO_ORDER = ["orbslam3", "droidslam", "macvo", "basalt", "airslam",
+              "mast3r_slam", "megasam", "okvis2", "okvis2x", "openvins", "voxel_svio"]
+
+# EuRoC is stored under three interchangeable spellings in the CSVs
+# (euroc / euroc_mav / EuRoC-MAV are symlinks to the same data). Canonicalise
+# to one key so a plot lookup matches regardless of which spelling a run used.
+DATASET_ALIASES = {"euroc": "euroc_mav", "EuRoC-MAV": "euroc_mav"}
+
+
+def canon_dataset(name):
+    return DATASET_ALIASES.get(name, name)
+
+
+def algos_present(data):
+    """ALGO_ORDER filtered to algorithms that actually have >=1 entry in data."""
+    return [a for a in ALGO_ORDER
+            if a in data and any(data[a][ds] for ds in data[a])]
+
 
 # Display labels for sequences (grouped by dataset section)
 AGR_SEQS = [
@@ -69,7 +96,7 @@ def load_data(csv_path: Path):
     rows = list(csv.DictReader(open(csv_path)))
     grouped = defaultdict(list)
     for r in rows:
-        grouped[(r["algo"], r["dataset"], r["seq"])].append(r)
+        grouped[(r["algo"], canon_dataset(r["dataset"]), r["seq"])].append(r)
 
     data = defaultdict(lambda: defaultdict(dict))
     for (algo, ds, seq), rs in grouped.items():
@@ -98,16 +125,18 @@ def plot_ate_bar(data, out_path, dpi):
     fig, axes = plt.subplots(1, 2, figsize=(16, 6),
                              gridspec_kw={"width_ratios": [4, 3]})
 
+    algos = algos_present(data)
+    any_multi = any(e["n"] > 1 for a in algos for ds in data[a] for e in [data[a][ds].get(s) for s in data[a][ds]] if e)
     for ax, seqs, title in [
         (axes[0], AGR_SEQS, "Agricultural Sequences"),
         (axes[1], REF_SEQS, "[Non-agricultural] EuRoC-MAV"),
     ]:
         n_seqs = len(seqs)
-        n_algos = len(ALGO_ORDER)
+        n_algos = len(algos)
         width = 0.8 / n_algos
         x = np.arange(n_seqs)
 
-        for ai, algo in enumerate(ALGO_ORDER):
+        for ai, algo in enumerate(algos):
             vals = []
             errs = []
             for ds, seq, _ in seqs:
@@ -123,7 +152,7 @@ def plot_ate_bar(data, out_path, dpi):
             mask = ~np.isnan(vals)
             xpos = x[mask] + offset
             ypos = np.array(vals)[mask]
-            yerr = np.array(errs)[mask]
+            yerr = np.array(errs)[mask] if any_multi else None
 
             ax.bar(xpos, ypos, width * 0.9,
                    color=ALGO_COLOUR[algo], label=ALGO_LABEL[algo],
@@ -132,14 +161,19 @@ def plot_ate_bar(data, out_path, dpi):
 
         ax.set_xticks(x)
         ax.set_xticklabels([s[2] for s in seqs], fontsize=11)
-        ax.set_ylabel("ATE SE(3) RMSE [m]", fontsize=12)
+        ax.set_ylabel("ATE SE(3) RMSE [m]  (log scale)", fontsize=12)
         ax.set_title(title, fontsize=12)
-        ax.grid(axis="y", alpha=0.3)
-        ax.set_ylim(bottom=0)
+        ax.grid(axis="y", alpha=0.3, which="both")
+        # SE(3) ATE spans ~8 decades because scale-collapsed runs reach 1e5-1e7 m
+        # while good runs are ~0.2 m. A linear axis hides every good result, so use
+        # log. Bars start at 0.01 m; anything taller than ~50 m is a diverged run.
+        ax.set_yscale("log")
+        ax.set_ylim(bottom=0.01)
+        ax.axhspan(50, ax.get_ylim()[1], color="red", alpha=0.05)
 
     handles = [Patch(color=ALGO_COLOUR[a], label=ALGO_LABEL[a])
-               for a in ALGO_ORDER]
-    fig.legend(handles=handles, loc="lower center", ncol=len(ALGO_ORDER),
+               for a in algos]
+    fig.legend(handles=handles, loc="lower center", ncol=min(len(algos), 8),
                fontsize=11, bbox_to_anchor=(0.5, -0.08), framealpha=0.9)
     fig.suptitle("ATE SE(3) RMSE by Algorithm and Sequence", fontsize=14, y=1.01)
     fig.tight_layout()
@@ -156,16 +190,17 @@ def plot_scale_factor(data, out_path, dpi):
     fig, axes = plt.subplots(1, 2, figsize=(16, 5),
                              gridspec_kw={"width_ratios": [4, 3]})
 
+    algos = algos_present(data)
     for ax, seqs, title in [
         (axes[0], AGR_SEQS, "Agricultural Sequences"),
         (axes[1], REF_SEQS, "[Non-agricultural] EuRoC-MAV"),
     ]:
         n_seqs = len(seqs)
-        n_algos = len(ALGO_ORDER)
+        n_algos = len(algos)
         width = 0.8 / n_algos
         x = np.arange(n_seqs)
 
-        for ai, algo in enumerate(ALGO_ORDER):
+        for ai, algo in enumerate(algos):
             vals = []
             for ds, seq, _ in seqs:
                 entry = data[algo][ds].get(seq)
@@ -188,9 +223,9 @@ def plot_scale_factor(data, out_path, dpi):
         ax.grid(axis="y", alpha=0.3)
 
     handles = [Patch(color=ALGO_COLOUR[a], label=ALGO_LABEL[a])
-               for a in ALGO_ORDER]
+               for a in algos]
     handles.append(plt.Line2D([0], [0], color="black", linestyle="--", label="1.0"))
-    fig.legend(handles=handles, loc="lower center", ncol=len(ALGO_ORDER) + 1,
+    fig.legend(handles=handles, loc="lower center", ncol=min(len(algos) + 1, 8),
                fontsize=11, bbox_to_anchor=(0.5, -0.08), framealpha=0.9)
     fig.suptitle("Sim(3) Scale Factor", fontsize=14, y=1.01)
     fig.tight_layout()
@@ -208,12 +243,13 @@ def plot_fps_bar(data, out_path, dpi):
     all_seqs = AGR_SEQS + REF_SEQS
     fig, ax = plt.subplots(figsize=(16, 5))
 
+    algos = algos_present(data)
     n_seqs = len(all_seqs)
-    n_algos = len(ALGO_ORDER)
+    n_algos = len(algos)
     width = 0.8 / n_algos
     x = np.arange(n_seqs)
 
-    for ai, algo in enumerate(ALGO_ORDER):
+    for ai, algo in enumerate(algos):
         vals = []
         for ds, seq, _ in all_seqs:
             entry = data[algo][ds].get(seq)
@@ -242,7 +278,7 @@ def plot_fps_bar(data, out_path, dpi):
     ax.set_ylim(bottom=0)
 
     handles = [Patch(color=ALGO_COLOUR[a], label=ALGO_LABEL[a])
-               for a in ALGO_ORDER if a in ALGO_COLOUR]
+               for a in algos]
     ax.legend(handles=handles, loc="upper right", fontsize=11, framealpha=0.9)
     fig.tight_layout()
     out_path.parent.mkdir(parents=True, exist_ok=True)

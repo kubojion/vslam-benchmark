@@ -15,6 +15,20 @@
 #                      RUN_TYPE (normalised), USE_IMU (true|false), USE_LC (true|false),
 #                      USE_GNSS (true|false).
 
+# Canonical repository identifier for dataset aliases. Call this before deriving
+# config, dataset or result paths so one dataset cannot split across multiple trees.
+canonicalize_dataset() {
+    local ds="${1:?dataset name required}"
+    case "$ds" in
+        EuRoC-MAV|euroc|euroc_mav)
+            export DATASET="euroc_mav"
+            ;;
+        *)
+            export DATASET="$ds"
+            ;;
+    esac
+}
+
 resolve_run_type() {
     local rt="${1:-vo}"
     case "$rt" in

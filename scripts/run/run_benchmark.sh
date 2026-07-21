@@ -10,9 +10,11 @@
 #   vio-lc   -> results-vio-lc/
 #   gnss-vio -> results-gnss-vio/
 #
-# Currently supports: orbslam3, droidslam, macvo, basalt, airslam, mast3r_slam,
-#                     megasam, voxel_svio, cifasis_gnss_si, rtabmap_gps,
-#                     vins_fusion_gps
+# Currently supports: orbslam3, droidslam, macvo, basalt, airslam, okvis2,
+#                     openvins, mast3r_slam, megasam, voxel_svio,
+#                     cifasis_gnss_si, rtabmap_gps, vins_fusion_gps,
+#                     openvins_gps
+# OKVIS2-X is intentionally omitted until its top-level runner is committed.
 # For other algos: run_<algo>.sh must accept arguments <dataset> <seq> <run_id> <run_type>.
 #
 # Pipeline:
@@ -26,6 +28,7 @@ set -euo pipefail
 DATASET=$1; SEQ=$2; ALGO=$3; N=${4:-3}; RUN_TYPE=${5:-vo}
 WS=$(cd "$(dirname "$0")/../.." && pwd)
 source "$WS/scripts/_paths.sh"
+canonicalize_dataset "$DATASET"
 resolve_run_type "$RUN_TYPE"
 EVAL="$WS/scripts/eval"
 DS_DIR="$WS/datasets/$DATASET/$SEQ"

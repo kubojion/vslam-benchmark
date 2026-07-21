@@ -38,6 +38,17 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 
 RUN_TYPES = ("vo", "vio", "vio-lc", "gnss-vio")
 
+DATASET_ALIASES = {
+    "EuRoC-MAV": "euroc_mav",
+    "euroc": "euroc_mav",
+    "euroc_mav": "euroc_mav",
+}
+
+
+def canonicalize_dataset(name: str) -> str:
+    """Return the repository's canonical identifier for a dataset alias."""
+    return DATASET_ALIASES.get(name, name)
+
 
 @dataclass(frozen=True)
 class RunType:

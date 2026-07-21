@@ -1,0 +1,37 @@
+%YAML:1.0
+# OpenVINS imu-cam extrinsics for ZED2i field1_110426_full_10fps_q90.
+#
+# Images are pre-rectified ZED IR (1920x1080, mono8); distortion is zero.
+# IMU is treated as colocated with cam0 (this is the convention used by the
+# ZED2i field1_110426_full_10fps_q90 paper, basalt config, and OKVIS2 config). cam1 is offset by the
+# stereo baseline along +x in the IMU frame.
+#
+# T_imu_cam = (R_CtoI | p_CinI) per OpenVINS docs.
+
+cam0:
+  T_imu_cam:
+    - [1.0, 0.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0, 0.0]
+    - [0.0, 0.0, 1.0, 0.0]
+    - [0.0, 0.0, 0.0, 1.0]
+  cam_overlaps: [1]
+  camera_model: pinhole
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0]
+  distortion_model: radtan
+  intrinsics: [1118.6947021484375, 1118.6947021484375, 964.8566284179688, 559.3102416992188]
+  resolution: [1920, 1080]
+  rostopic: /cam0/image_raw
+
+cam1:
+  T_imu_cam:
+    - [1.0, 0.0, 0.0, 0.1198462504]
+    - [0.0, 1.0, 0.0, 0.0]
+    - [0.0, 0.0, 1.0, 0.0]
+    - [0.0, 0.0, 0.0, 1.0]
+  cam_overlaps: [0]
+  camera_model: pinhole
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0]
+  distortion_model: radtan
+  intrinsics: [1118.6947021484375, 1118.6947021484375, 964.8566284179688, 559.3102416992188]
+  resolution: [1920, 1080]
+  rostopic: /cam1/image_raw

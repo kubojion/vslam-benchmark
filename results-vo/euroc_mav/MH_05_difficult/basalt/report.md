@@ -12,8 +12,9 @@
 | Sequence | MH_05_difficult |
 | Algorithm | basalt |
 | Number of frames | 2273 |
-| Camera setup | stereo |
+| Run type | vo |
 | IMU used | no |
+| Loop closure | disabled |
 
 ---
 

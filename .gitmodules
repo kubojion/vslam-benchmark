@@ -12,3 +12,31 @@
 [submodule "third_party/Pangolin"]
 	path = third_party/Pangolin
 	url = https://github.com/stevenlovegrove/Pangolin.git
+[submodule "src/okvis2x"]
+	path = src/okvis2x
+	url = https://github.com/ethz-mrl/OKVIS2-X.git
+	branch = main
+[submodule "src/MASt3R-SLAM"]
+	path = src/MASt3R-SLAM
+	url = https://github.com/rmurai0610/MASt3R-SLAM.git
+[submodule "src/VINS-Fusion"]
+	path = src/VINS-Fusion
+	url = https://github.com/HKUST-Aerial-Robotics/VINS-Fusion.git
+[submodule "src/airslam"]
+	path = src/airslam
+	url = https://github.com/sair-lab/AirSLAM.git
+[submodule "src/cifasis_gnss_si"]
+	path = src/cifasis_gnss_si
+	url = https://github.com/CIFASIS/gnss-stereo-inertial-fusion.git
+[submodule "src/mega-sam"]
+	path = src/mega-sam
+	url = https://github.com/mega-sam/mega-sam.git
+[submodule "src/okvis2"]
+	path = src/okvis2
+	url = https://github.com/ethz-mrl/okvis2.git
+[submodule "src/open_vins"]
+	path = src/open_vins
+	url = https://github.com/rpng/open_vins.git
+[submodule "src/voxel_svio"]
+	path = src/voxel_svio
+	url = https://github.com/ZikangYuan/voxel_svio.git

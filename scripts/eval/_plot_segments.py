@@ -34,7 +34,7 @@ from matplotlib.lines import Line2D
 from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _run_type import resolve as resolve_run_type  # noqa: E402
+from _run_type import canonicalize_dataset, resolve as resolve_run_type  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Colour palette - consistent across all plots
@@ -449,6 +449,7 @@ def main():
     ap.add_argument("--dpi",     type=int,   default=400)
     ap.add_argument("--figsize", type=float, default=20.0)
     args = ap.parse_args()
+    args.dataset = canonicalize_dataset(args.dataset)
 
     ws = Path(__file__).resolve().parents[2]
     rt = resolve_run_type(args.run_type, ws)

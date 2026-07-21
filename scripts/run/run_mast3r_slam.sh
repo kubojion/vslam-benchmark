@@ -24,6 +24,7 @@ set -eo pipefail
 DATASET=$1; SEQ=$2; RUN_ID=${3:-1}; RUN_TYPE=${4:-vo}
 WS=$(cd "$(dirname "$0")/../.." && pwd)
 source "$WS/scripts/_paths.sh"
+canonicalize_dataset "$DATASET"
 resolve_run_type "$RUN_TYPE"
 
 case "$RUN_TYPE" in

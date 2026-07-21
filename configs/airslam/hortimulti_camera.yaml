@@ -20,6 +20,8 @@
 
 image_height: 480
 image_width: 640
+# FIXED: T was T_forwardLeft_cam_imu_link (the INVERSE of what T_type:0 wants) and raw;
+# now official T_imu_link_forward*_cam composed with stereoRectify R_rect.
 use_imu: 1
 
 depth_lower_thr: 0.1
@@ -32,23 +34,21 @@ distortion_type: 0   # 0 = undistorted / pre-rectified input
 cam0:
   intrinsics: [262.7149, 262.7149, 329.4310, 219.5617]  # fx fy cx cy
   distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
-  T_type: 0           # EuRoC format: T is T_cam_imu (body/IMU -> camera)
+  T_type: 0           # EuRoC format: T is T_imu_cam (camera -> IMU/body), = EuRoC T_BS
   T:
-  - [ 0.0521232345, -0.9986040017,  0.0085566475,  0.0306819693]
-  - [-0.0073054379, -0.0089493527, -0.9999332676, -0.0550750963]
-  - [ 0.9986139389,  0.0520572461, -0.0077617087, -0.1240776643]
+  - [ 0.0309292864, -0.0077757525,  0.9994913291,  0.1219040939]
+  - [-0.9994971337, -0.0072336634,  0.0308731902,  0.0366053924]
+  - [ 0.0069899215, -0.9999436043, -0.0079955743, -0.0562970105]
   - [ 0.0,           0.0,           0.0,           1.0          ]
-
 cam1:
   intrinsics: [262.7149, 262.7149, 329.4310, 219.5617]  # fx fy cx cy
   distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
   T_type: 0
   T:
-  - [ 0.0280588344, -0.9995658920,  0.0089849508, -0.1058259019]
-  - [-0.0081160869, -0.0092160020, -0.9999245945, -0.0552409762]
-  - [ 0.9995733245,  0.0279837960, -0.0083711539, -0.1237505692]
+  - [ 0.0309292864, -0.0077757525,  0.9994913290,  0.1262187787]
+  - [-0.9994971337, -0.0072336634,  0.0308731902, -0.1028260523]
+  - [ 0.0069899215, -0.9999436042, -0.0079955743, -0.0553219052]
   - [ 0.0,           0.0,           0.0,           1.0          ]
-
 # IMU
 rate_hz: 200
 gyroscope_noise_density:     6.037e-04   # rad/s/sqrt(Hz)  - Allan variance

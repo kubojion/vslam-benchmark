@@ -1,0 +1,65 @@
+0.467 num_seq = 1
+0.467 file name: zed2i_field1_110426_full_10fps_q90_orbslam3
+0.833 Loading images for sequence 0...LOADED!
+0.833 
+0.833 -------
+0.833 
+0.833 ORB-SLAM3 Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.833 ORB-SLAM2 Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.833 This program comes with ABSOLUTELY NO WARRANTY;
+0.833 This is free software, and you are welcome to redistribute it
+0.833 under certain conditions. See LICENSE.txt.
+0.833 
+0.833 Input sensor was set to: Stereo
+0.834 Camera.newHeight optional parameter does not exist...
+0.834 Camera.newWidth optional parameter does not exist...
+0.834 Viewer.imageViewScale optional parameter does not exist...
+0.834 System.LoadAtlasFromFile optional parameter does not exist...
+0.834 System.SaveAtlasToFile optional parameter does not exist...
+0.834 System.thFarPoints optional parameter does not exist...
+0.834 Loading settings from /bench/configs/orbslam3/zed2i_full_10fps_q90.yaml
+0.834 	-Loaded camera 1
+0.834 	-Loaded camera 2
+0.834 	-Loaded image info
+0.834 	-Loaded ORB settings
+0.834 	-Loaded viewer settings
+0.834 	-Loaded Atlas settings
+0.834 	-Loaded misc parameters
+0.834 ----------------------------------
+0.834 SLAM settings: 
+0.834 	-Camera 1 parameters (Pinhole): [ 1118.6947021484375 1118.6947021484375 964.85662841796875 559.31024169921875 ]
+0.834 	-Original image size: [ 1920 , 1080 ]
+0.834 	-Current image size: [ 1920 , 1080 ]
+0.834 	-Sequence FPS: 10
+0.834 	-Stereo baseline: 0.11984624713659286
+0.834 	-Stereo depth threshold : 80
+0.834 	-Features per image: 2000
+0.834 	-ORB scale factor: 1.2000000476837158
+0.834 	-ORB number of scales: 8
+0.834 	-Initial FAST threshold: 20
+0.834 	-Min FAST threshold: 7
+0.834 
+0.834 
+0.834 Loading ORB Vocabulary. This could take a while...
+3.275 Vocabulary loaded!
+3.275 
+3.280 Initialization of Atlas from scratch 
+3.280 Creation of new map with id: 0
+3.280 Creation of new map with last KF id: 0
+3.281 Seq. Name: 
+3.282 There are 1 cameras in the atlas
+3.282 Camera 0 is pinhole
+3.282 ****Enabled Loop Closing****
+3.282 INIT COMPLETE
+3.363 First KF:0; Map init KF:0
+3.363 New Map created with 630 points
+3651.301 Shutdown
+3651.409 Saved 125498 map points to map_points_zed2i_field1_110426_full_10fps_q90_orbslam3.ply
+3651.409 
+3651.409 Saving trajectory to f_zed2i_field1_110426_full_10fps_q90_orbslam3.txt ...
+3651.409 There are 1 maps in the atlas
+3651.409   Map 0 has 2970 KFs
+3651.499 
+3651.499 End of saving trajectory to f_zed2i_field1_110426_full_10fps_q90_orbslam3.txt ...
+3651.499 
+3651.499 Saving keyframe trajectory to kf_zed2i_field1_110426_full_10fps_q90_orbslam3.txt ...

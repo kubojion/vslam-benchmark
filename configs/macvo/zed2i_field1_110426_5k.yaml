@@ -1,0 +1,12 @@
+# MAC-VO sequence config for the ZED 2i field1 smoke-test export.
+type: GeneralStereo
+name: zed2i_field1_110426_5k
+args:
+  root: __WS__/datasets/zed2i/field1_110426_5k
+  bl: 0.1198462504
+  format: jpg
+  camera:
+    fx: 1118.6947021484375
+    fy: 1118.6947021484375
+    cx: 964.8566284179688
+    cy: 559.3102416992188

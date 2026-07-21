@@ -1,7 +1,12 @@
 # vSLAM Benchmark - TODO
 
-> Created: 2026-05-20 | Fully revised: 2026-05-31 - VIO N=1 sweep complete for all 6 algorithms x 5 sequences; benchmark-vio.csv updated (30 rows). Parameter sweep for Basalt/OKVIS2 hortimulti done and cleaned up (5 runs -> 1 best kept per algo/seq). Root cause confirmed: low-frequency vibration, no further improvement possible via config tuning.
-> Scope: Phase 2 (VIO benchmarking + new algorithms). Phase 1 (VO-only) complete.
+> Created: 2026-05-20 | Revised: 2026-07-21. VO has 67 evaluated rows. The core VIO N=1
+> matrix has 49 rows (7 algorithms x 7 standard sequences); corrected HortiMulti extrinsics and
+> EuRoC MH_03/MH_05 are included. ZED2i adds six usable VIO trajectories plus one failed
+> ORB-SLAM3 attempt, so `benchmark-vio.csv` has 55 rows. VIO-LC has 3 rows. GNSS-VIO N=1 is
+> complete: 16 headline runs (4 algorithms x 4 GPS-bearing sequences), including the retained
+> sequence5 PPK-versus-conventional study. Remaining priorities are N=3 validation, corrected-
+> extrinsic OpenVINS+GPS HortiMulti reruns, evaluator hardening and reproducible OKVIS2-X automation.
 
 ---
 
@@ -21,43 +26,77 @@ Legend per cell: **done-N3** = 3 runs evaluated and aggregated | **done-N1** = 1
 
 Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/divergence | ⬜ ready (config+data exist) | 🔧 no-config | ➖ no-mode (unsupported)
 
-| Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 |
-|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ⬜ ready | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
-| Basalt | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
-| MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
-| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
-| DROID-SLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
-| OKVIS2 | ✅ N=1 | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
-| MASt3R-SLAM | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
-| MegaSaM | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
+|---|---|---|---|---|---|---|---|---|
+| ORB-SLAM3 | ⬜ ready | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ✅ N=1 |
+| Basalt | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
+| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
+| DROID-SLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ config only |
+| OKVIS2 | ✅ N=1 | ✅ N=1 | 🔧 no-config | 🔧 no-config | 🔧 no-config | 🔧 no-config | 🔧 no-config | 🔧 no-config |
+| OKVIS2-X | 🟡 manual N=1 | 🟡 manual N=1 | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | 🔧 no-config |
+| MASt3R-SLAM | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | 🔧 no-config |
+| MegaSaM | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | 🔧 no-config |
 
 > ORB-SLAM3 VO = LC-off mode required (`LoopClosing: 0` or dedicated build). Old LC-on results are in `obsolete/`.
+> **zed2i field1** = local ZED2i field dataset (46283 pairs, 1080p, 77 min, RTK GT). Under the
+> tested N=1 configurations, ORB-SLAM3 VO (0.256 m) and Basalt VO (0.446 m) outperformed every
+> VIO attempt. The evidence is consistent with weak inertial excitation, but the exact factory
+> camera-IMU transform and timing still need controlled validation.
 
 ### VIO (stereo + IMU, no loop closure) - `results-vio/`
 
-Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/divergence | ⬜ ready | 🔧 no-config
+Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/divergence | ⬜ ready (config+data exist) | 🔧 no-config | ➖ no-mode (unsupported)
 
-| Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 |
-|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ ready | ⬜ ready |
-| Basalt | ✅ N=1 | ✅ N=1 | 🟡 N=1 (scale collapse) | 🟡 N=1 (scale collapse) | ✅ N=1 | ⬜ ready | ⬜ ready |
-| OKVIS2 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (tracking failure) | 🟡 N=1 (tracking failure) | ✅ N=1 | ⬜ ready | ⬜ ready |
-| OpenVINS | ✅ N=1 | 🟡 N=1 (diverged) | 🟡 N=1 (scale collapse) | 🟡 N=1 (scale collapse) | ✅ N=1 | ⬜ ready | ⬜ ready |
-| AirSLAM | ✅ N=1 | ✅ N=1 | 🟡 N=1 (scale collapse) | ✅ N=1 | ✅ N=1 | ⬜ ready | ⬜ ready |
-| Voxel-SVIO | ✅ N=1 | ✅ N=1 | 🟡 N=1 (partial scale) | 🟡 N=1 (scale collapse) | 🟡 N=1 (scale collapse) | ⬜ ready | ⬜ ready |
+All core agricultural/EuRoC cells have N=1 results as of 2026-07-21. HortiMulti was corrected via
+the camera-IMU extrinsic fix and no scale-collapsed core cells remain. ZED2i has six usable VIO
+trajectories plus one ORB-SLAM3 failed attempt; every tested VIO configuration underperformed the
+two VO baselines. Next step for the core table is N=1 -> N=3.
+
+| Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
+|---|---|---|---|---|---|---|---|---|
+| ORB-SLAM3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 failed attempt (no trajectory) |
+| Basalt | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (9.14 m, VIO<VO) |
+| OKVIS2 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (scale collapse, 17.7 m) |
+| OKVIS2-X | 🟡 manual N=1 | 🟡 manual N=1 | 🟡 manual N=1 | 🟡 manual N=1 | 🟡 manual N=1 | 🟡 manual N=1 | 🟡 manual N=1 | 🟡 manual N=1 (scale collapse, 18.3 m) |
+| OpenVINS | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (scale collapse, 5.33 m) |
+| AirSLAM | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (3.90 m, no collapse, VIO<VO) |
+| Voxel-SVIO | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (3.71 m, no collapse, VIO<VO; ~71 s init delay) |
 
 > HortiMulti IMU: extracted - str02=190493 samples, str03=48448 samples. Path: `datasets/hortimulti/strawberry{02,03}/mav0/imu0/data.csv`
-> Voxel-SVIO: VIO-only (no VO, no LC). Configs in `configs/voxel_svio/`; runs via Docker (image `vslam_voxel_svio:noetic`).
+> **HortiMulti VIO fix (2026-07-20):** the dominant cross-algorithm configuration error was a
+> wrong camera-IMU extrinsic (raw fisheye extrinsic used on rectified images = missing 1.22 deg rotation;
+> OKVIS2/OKVIS2-X/AirSLAM additionally had it inverted). Corrected in configs - scale now ~1.0
+> everywhere. See PROGRESS.md.
+> Voxel-SVIO: VIO-only (no VO, no LC). Runs via Docker (`vslam_voxel_svio:noetic`). Wrapper had a
+> `pkill` self-match bug (fixed) that reported "no trajectory" on successful runs; it is also
+> non-deterministic (real-time player) - ~2x run-to-run spread, so N=3 matters here especially.
+> OKVIS2 (standalone) was built 2026-07-20 (`build_okvis2.sh`, needed -DHAVE_LIBREALSENSE=OFF
+> -DUSE_CUDA=OFF).
+> **zed2i field1 VIO (all 7 algorithms attempted, 2026-07-21):** under the tested N=1
+> configurations, all usable VIO trajectories underperform the two VO baselines:
+> - **No collapse, but VIO≫VO:** Voxel-SVIO 3.71 m (scale 0.978, ~71 s static-init delay -
+>   its log spams "Failed static init: no accel jerk detected" until the first real motion),
+>   AirSLAM 3.90 m (scale 0.965), Basalt 9.14 m (scale 0.816). All track cleanly but land
+>   ~15-35× worse than VO (ORB-SLAM3 VO 0.256 m, Basalt VO 0.446 m).
+> - **Scale collapse (evo Sim3 scale ≈ 0, SE3 ATE explodes to 10^5-10^6 m):** OpenVINS 5.33 m
+>   (only 8.7 % tracked), OKVIS2 17.7 m, OKVIS2-X 18.3 m - the tightly-coupled filters.
+> - **ORB-SLAM3:** VIO tracking is chronically unstable (repeated "Fail to track local map!")
+>   and the committed attempt **segfaults in SaveTrajectoryEuRoC at export** -
+>   no usable trajectory. Config authored (`zed2i_field1_..._stereo_inertial.yaml`, identity T_b_c1).
+> The pattern is consistent with insufficient rotational excitation (mean |gyro| 4.7 deg/s), but
+> it is not yet a proven shared root cause: the runs are N=1 and share calibration/timing assumptions.
+> Apply the exact factory camera-IMU transform and validate timing before deciding whether N=3 is useful.
 
 ### VIO-LC (stereo + IMU + loop closure) - `results-vio-lc/`
 
-Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse | ⬜ ready | 🔧 no-config
+Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/divergence | ⬜ ready (config+data exist) | 🔧 no-config | ➖ no-mode (unsupported)
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 |
 |---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ⬜ ready | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| ORB-SLAM3 | ⬜ ready | ✅ N=1 | ⬜ ready | ⬜ ready | 🔧 no-config | 🔧 no-config | 🔧 no-config |
 | OKVIS2 | ✅ N=1 | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| OKVIS2-X | 🔧 automation missing | 🔧 automation missing | 🔧 automation missing | 🔧 automation missing | 🔧 automation missing | 🔧 automation missing | 🔧 automation missing |
 | AirSLAM (VI-SLAM) | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | MASt3R-SLAM (LC-on) | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 
@@ -66,17 +105,21 @@ Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse | �
 
 ### GNSS-VIO (stereo + IMU + GNSS) - `results-gnss-vio/`
 
-Legend: ✅ successful run (N=x) | 🟡 completed with errors | ⬜ ready
+Legend: ✅ successful run (N=x) | 🟡 completed but needs validation/rerun | ⬜ ready | 🔧 automation missing
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 |
 |---|---|---|---|---|
 | CIFASIS GNSS-SI | ✅ N=1 | ✅ N=1 (PPK) | ✅ N=1 | ✅ N=1 |
-| RTAB-Map | ✅ N=1 | 🟡 N=1 (PPK) | ✅ N=1 | ✅ N=1 |
+| RTAB-Map | ✅ N=1 | 🟡 N=1 (PPK; nondeterministic/partial) | ✅ N=1 | ✅ N=1 |
 | VINS-Fusion | ✅ N=1 | ✅ N=1 (PPK) | ✅ N=1 | ✅ N=1 |
-| OpenVINS+GPS (robot_localization) | ✅ N=1 | ✅ N=1 (PPK) | ✅ N=1 | ✅ N=1 |
+| OpenVINS+GPS (robot_localization) | 🟡 N=1 (validate) | 🟡 N=1 PPK (validate) | 🟡 N=1 (pre-extrinsic-fix) | 🟡 N=1 (pre-extrinsic-fix) |
 
 > EuRoC-MAV is **not** part of the gnss-vio track (no GPS in the dataset).
 > Runners: `run_cifasis_gnss_si.sh`, `run_rtabmap_gps.sh`, `run_vins_fusion_gps.sh`, `run_openvins_gps.sh` (all accept `<dataset> <seq> [run_id] gnss-vio`).
+>
+> OKVIS2-X is not one of these 16 runs. Its source gitlink and Rosario GNSS configs are present,
+> but the top-level build script, runner and GPS converter are not committed; HortiMulti GNSS
+> configs are also absent. It can be automated later without blocking this merge.
 > Use `run_benchmark.sh <dataset> <seq> <algo> <N> gnss-vio` to run + evaluate automatically.
 >
 > **GPS quality:** rosariov2 **seq5 now uses high-quality PPK GPS** (`/reach_1/ppk/fix`, vertical RMSE
@@ -98,14 +141,21 @@ Legend: ✅ successful run (N=x) | 🟡 completed with errors | ⬜ ready
 | # | Task | Status |
 |---|---|---|
 | 1 | Extract HortiMulti IMU (`/ms/imu/data` -> `mav0/imu0/data.csv`) | `[x]` |
-| 2 | Run all 6 VIO algorithms on all 5 sequences (N=1 sweep) | `[x]` |
-| 3 | Diagnose and fix hortimulti VIO scale collapse | `[x]` (5-run Basalt sweep + 3-run OKVIS2 sweep; root cause confirmed as vibration - no config-only fix; see PROGRESS.md) |
+| 2 | Run core VIO N=1 matrix | `[x]` 49 rows (7 algorithms x 7 standard sequences); ZED2i adds 6 usable rows + 1 failed attempt |
+| 3 | Diagnose and fix hortimulti VIO scale collapse | `[x]` **root cause was a camera-IMU EXTRINSIC bug, NOT vibration** (the earlier "vibration floor" conclusion was wrong). Fixed in config; all algos scale ~1.0. See PROGRESS.md "RESOLVED". |
+| 3b | Build OKVIS2 standalone (was never built) | `[x]` (`build_okvis2.sh`; -DHAVE_LIBREALSENSE=OFF -DUSE_CUDA=OFF) |
+| 3c | Re-run 2 stale bad VIO runs (Voxel EuRoC, OpenVINS seq5) | `[x]` (were bad runs, not algorithm limits) |
+| 3d | Add EuRoC MH_03/MH_05 VIO coverage + fix EuRoC times.txt (s->ns) | `[x]` |
 | 4 | Run ORB-SLAM3 VIO on rosariov2/seq1 N=3 | `[ ]` |
 | 5 | Run Basalt VIO on rosariov2/seq1 N=3 | `[ ]` |
-| 6 | Run OpenVINS VIO on rosariov2/seq5 N=1 -> N=3 | `[ ]` |
+| 6 | Run OpenVINS VIO on rosariov2/seq5 N=3 | `[~]` N=1 re-run done (10.76 m); needs N=3 |
 | 7 | Download MASt3R-SLAM weights; smoke test on EuRoC; then agri datasets N=3 | `[ ]` |
 | 8 | ORB-SLAM3 VO-clean: enable LC-off mode and re-run rosariov2/seq1+hortimulti/EuRoC | `[ ]` |
-| 9 | Scale all N=1 VIO results to N=3 | `[ ]` |
+| 9 | **Scale all N=1 VIO results to N=3** (biggest remaining item; OpenVINS + Voxel-SVIO are load-sensitive - run unloaded) | `[ ]` |
+| 10 | Complete GNSS-VIO N=1 sweep | `[x]` 16 headline runs (4 algorithms x 4 sequences); N=3 still pending |
+| 10b | Re-run OpenVINS+GPS HortiMulti with corrected extrinsics; validate all four rows | `[ ]` |
+| 11 | Normalize EuRoC dataset aliases and result/config paths to `euroc_mav` | `[x]` central shell/Python canonicalization; obsolete aliases removed |
+| 12 | Commit local-only runtime prerequisites in their owning submodules/forks | `[!]` AirSLAM VIO launch files, OpenVINS `Dockerfile.benchmark`, OKVIS2 DBoW2/opengv CMake patches |
 
 ---
 
@@ -120,23 +170,24 @@ Legend: ✅ successful run (N=x) | 🟡 completed with errors | ⬜ ready
 | VO-clean on EuRoC MH_01/03/05 N=1 | `[ ]` |
 | VIO rosariov2/seq1 N=3 | `[ ]` |
 | VIO-LC rosariov2/seq1 N=3 | `[ ]` |
-| VIO/VIO-LC EuRoC N=1 | `[ ]` |
+| VIO EuRoC MH_01/03/05 N=1 | `[x]`; N=3 pending |
+| VIO-LC EuRoC N=1 | `[ ]` |
 
 ### Basalt
 
 | Task | Status |
 |---|---|
 | VIO rosariov2/seq1 N=3 | `[ ]` |
-| VIO EuRoC MH_01/03/05 N=1 | `[ ]` |
+| VIO EuRoC MH_01/03/05 N=1 | `[x]`; N=3 pending |
 | VIO hortimulti (after IMU extraction) | `[x]` |
-| Noise inflation re-run hortimulti (accel_noise_std 10x) | `[x]` (5-run sweep done: best run5 500x accel + init_ba_weight=1.0; str02=22.9m, str03=2.85m; scale stuck ~0.57/0.64 - vibration floor) |
+| hortimulti VIO scale collapse | `[x]` **FIXED via extrinsic correction** (was misdiagnosed as vibration floor; the 5-run noise sweep searched the wrong parameter). With rectified T_imu_cam: str02 22.9->2.49 m, str03 2.85->0.19 m, scale 0.57->1.03. |
 
 ### OpenVINS
 
 | Task | Status |
 |---|---|
 | VIO rosariov2/seq5 N=3 | `[ ]` |
-| VIO EuRoC MH_03, MH_05 N=1 | `[ ]` |
+| VIO EuRoC MH_01/03/05 N=1 | `[x]`; N=3 pending |
 | VIO hortimulti (after IMU extraction) | `[x]` |
 
 ### AirSLAM
@@ -146,7 +197,8 @@ Legend: ✅ successful run (N=x) | 🟡 completed with errors | ⬜ ready
 | VIO rosariov2/seq1+seq5 N=3 | `[ ]` |
 | VI-SLAM (VIO-LC) rosariov2 N=3 | `[ ]` |
 | VIO/VI-SLAM hortimulti (after IMU extraction) | `[x]` |
-| Investigate hortimulti str02 scale collapse | `[x]` (algorithm limitation: IMU init corrupted by robot vibration; no config fix; see PROGRESS.md) |
+| VIO EuRoC MH_01/03/05 N=1 | `[x]`; N=3 pending |
+| hortimulti str02/str03 scale collapse | `[x]` **FIXED**: extrinsic was inverted AND missing rectification. str02 46.3->5.30 m, str03 16.3->1.24 m, scale ~1.0. (Also recovered lost `vio_euroc.launch`; TensorRT needed a host reboot after a driver update.) |
 
 ### OKVIS2
 
@@ -154,7 +206,28 @@ Legend: ✅ successful run (N=x) | 🟡 completed with errors | ⬜ ready
 |---|---|
 | Scale seq1+seq5 to N=3 | `[ ]` |
 | Add hortimulti + EuRoC configs | `[x]` |
-| Diagnose hortimulti failure (100x + improved frontend) | `[x]` (40% tracking failure rate from repetitive greenhouse texture; backend crash at 85% - not fixable via config) |
+| VIO EuRoC MH_01/03/05 N=1 | `[x]`; N=3 pending |
+| hortimulti failure | `[x]` **FIXED via extrinsic correction** (the tracking failures were largely self-inflicted by the wrong extrinsic, not greenhouse texture). str02 49.9->2.14 m, str03 15.5->0.40 m, scale 0->1.03. Independent check: freshly-built binary + config patched hours earlier. |
+
+### OKVIS2-X
+
+Source and result integration exists independently of OKVIS2, but the reproducible top-level build,
+run and GPS-conversion automation is not committed yet. Current result artifacts came from manual runs.
+
+| Task | Status |
+|---|---|
+| Source submodule/gitlink pinned (`src/okvis2x`) | `[x]` |
+| Reproducible top-level build script (`build_okvis2x.sh`) | `[ ]` not committed |
+| Top-level multi-mode runner (`run_okvis2x.sh`) | `[ ]` not committed |
+| Configs for rosariov2 / EuRoC / HortiMulti / ZED2i | `[x]` (27 committed files) |
+| gnss-vio configs (rosariov2 seq1+seq5) | `[x]` |
+| `gps.csv` -> `mav0/gps0/data_raw.csv` converter | `[ ]` not committed |
+| Register in eval pipeline (LOG_PATTERNS, plot dicts) | `[x]` |
+| Measure `r_SA` (GNSS antenna lever arm) on the robot | `[ ]` (configs currently assume `[0,0,0]`) |
+| Manual N=1 VIO results | `[x]` all 7 core sequences plus ZED2i (see VIO matrix); N=3 pending |
+| Recover HortiMulti IMU + GPS from hortimulti.zip | `[x]` (str02 190493/7620, str03 48448/1939 - counts match bag) |
+| HortiMulti gnss_vio configs | `[ ]` |
+| Head-to-head OKVIS2 vs OKVIS2-X on rosariov2 vio | `[x]` seq1: OKVIS2 18.89 / OKVIS2-X 18.89; seq5: 20.29 / 20.40 - near-identical (shared estimator core) |
 
 ### MASt3R-SLAM
 
@@ -173,10 +246,10 @@ Removed from active tracking - not set up in repo. See Dropped section below.
 
 | Task | Status |
 |---|---|
-| Docker image + container build (`scripts/setup/setup_voxel_svio_docker.sh`) | `[~]` |
+| Docker image + container build (`scripts/setup/setup_voxel_svio_docker.sh`) | `[x]` (NOTE: setup guard skips clone if `src/voxel_svio/` exists even when empty - source must actually be present) |
 | Configs: euroc_mav (per-seq), rosariov2, hortimulti | `[x]` |
 | Run script (`scripts/run/run_voxel_svio.sh`) + ROS1 data player | `[x]` |
-| Smoke test EuRoC MH_01_easy N=1 | `[ ]` |
+| Smoke test EuRoC MH_01_easy N=1 | `[x]` (0.083 m; earlier 3.03 m row was a stale bad run) |
 | VIO rosariov2/seq1+seq5 N=3 | `[ ]` |
 | VIO hortimulti str02+str03 N=3 | `[ ]` |
 | VIO EuRoC MH_01/03/05 N=1 -> N=3 | `[ ]` |
@@ -189,7 +262,7 @@ Removed from active tracking - not set up in repo. See Dropped section below.
 |---|---|
 | Rebuild `benchmark-vo.csv` after ORB-SLAM3 VO-clean results land | `[ ]` |
 | Rebuild `benchmark-vio.csv` after N=3 runs (Basalt/ORB-SLAM3/OpenVINS) | `[ ]` |
-| Add MASt3R-SLAM + DPVO to all CSVs | `[ ]` |
+| Add MASt3R-SLAM to applicable CSVs | `[ ]` |
 | Generate segment maps for all new Phase 2 sequences | `[ ]` |
 | Final cross-algo ATE plots (VO vs VIO per sequence) | `[ ]` |
 | Thesis-ready LaTeX table | `[ ]` |
@@ -454,8 +527,12 @@ Infrastructure status:
       sed-rewritten to `cv::*` after `COPY src/VINS-Fusion` in the Dockerfile.
       HortiMulti `body_T_cam0` is `T_imu_cam0_raw @ blkdiag(R1.T, 1)` where
       `R1` comes from `cv2.fisheye.stereoRectify` in `_hortimulti_extract.py`.
-- [x] HortiMulti GPS extraction completed for str02 and str03 (~1900 fixes each;
-      altitude ~105 m, cov_xx ~3.7 m^2, cov_zz ~60 m^2).
-- [ ] Run CIFASIS GNSS-SI on rosariov2 seq1 / seq5 + hortimulti str02 / str03 (N=3 each)
-- [ ] Run RTAB-Map on rosariov2 seq1 / seq5 + hortimulti str02 / str03 (N=3 each)
-- [ ] Run VINS-Fusion on rosariov2 seq1 / seq5 + hortimulti str02 / str03 (N=3 each)
+- [x] OpenVINS+GPS: OpenVINS odometry + `robot_localization` EKF runner and four N=1 artifacts.
+- [x] HortiMulti GPS extraction completed for str02/str03 (7620/1939 fixes;
+      consumer-grade fixes with large vertical covariance).
+- [x] CIFASIS GNSS-SI N=1 on rosariov2 seq1/seq5 + HortiMulti str02/str03; N=3 pending.
+- [x] RTAB-Map N=1 on all four sequences; seq5 PPK is partial/nondeterministic; N=3 pending.
+- [x] VINS-Fusion N=1 on all four sequences; N=3 pending.
+- [~] OpenVINS+GPS N=1 on all four sequences; validate all rows and rerun HortiMulti with the
+      corrected extrinsic before N=3.
+- [x] Rosario sequence5 PPK-versus-conventional four-algorithm study completed.

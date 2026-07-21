@@ -7,6 +7,7 @@ set -eo pipefail
 DATASET=$1; SEQ=$2; RUN_ID=${3:-1}; RUN_TYPE=${4:-vo}; shift 4 2>/dev/null || true
 WS=$(cd "$(dirname "$0")/../.." && pwd)
 source "$WS/scripts/_paths.sh"
+canonicalize_dataset "$DATASET"
 resolve_run_type "$RUN_TYPE"
 if [[ "$RUN_TYPE" != "vo" ]]; then
     echo "[droidslam] WARNING: DROID-SLAM has no IMU / LC; routing output anyway" >&2

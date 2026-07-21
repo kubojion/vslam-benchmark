@@ -21,6 +21,7 @@ set -euo pipefail
 DATASET=$1; SEQ=$2; RUN_ID=${3:-1}; RUN_TYPE=${4:-vio}
 WS=$(cd "$(dirname "$0")/../.." && pwd)
 source "$WS/scripts/_paths.sh"
+canonicalize_dataset "$DATASET"
 resolve_run_type "$RUN_TYPE"
 
 SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
@@ -45,7 +46,7 @@ APP="$WS/src/okvis2/build/okvis_app_synchronous"
 [[ -x "$APP" ]] || { echo "[okvis2] missing $APP — run scripts/build/build_okvis2.sh first" >&2; exit 2; }
 
 mkdir -p "$OUT_DIR" "$WS/logs"
-echo "[okvis2] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL"
+echo "[okvis2] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL" "$OUT_DIR/run_log.txt"
 
 # Resource monitor (matches the other run_*.sh wrappers)
 python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &

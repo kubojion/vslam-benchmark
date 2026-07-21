@@ -35,7 +35,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _run_type import resolve as resolve_run_type  # noqa: E402
+from _run_type import canonicalize_dataset, resolve as resolve_run_type  # noqa: E402
 
 # Segment split policy
 # Default behavior is to keep row/turn distinction.
@@ -75,6 +75,12 @@ def distinguish_row_turn_for_dataset(dataset: str) -> bool:
 # ──────────────────────────────────────────────────────────────────────────────
 LOG_PATTERNS = {
     "orbslam3": {
+        "init_success":    re.compile(r"New Map created with \d+ points"),
+        "tracking_loss":   re.compile(r"\bLOST\b"),
+        "loop_closure":    re.compile(r"\*Loop detected"),
+        "map_reset":       re.compile(r"Map id:\s*\d+"),
+    },
+    "fasttrack_partial_gpu": {
         "init_success":    re.compile(r"New Map created with \d+ points"),
         "tracking_loss":   re.compile(r"\bLOST\b"),
         "loop_closure":    re.compile(r"\*Loop detected"),
@@ -132,6 +138,21 @@ LOG_PATTERNS = {
         "init_success":    re.compile(r"Initialised!|Initialized!|SLAM started"),
         "tracking_loss":   re.compile(r"Tracking LOST|tracking lost"),
         "loop_closure":    re.compile(r"Loop closure|loop closure"),
+        "map_reset":       None,
+    },
+    "okvis2x": {
+        # Frontend.cpp logs "Initialized!" (INFO) once the IMU-aided front-end
+        # bootstraps, and "3d2d tracking lost. Number of 3d2d-matches: N"
+        # (WARNING) when it loses the map.
+        # loop_closure is deliberately None: OKVIS2-X never logs an *accepted*
+        # visual loop closure -- the only loop-closure log lines are GPS ones
+        # ("[GPS Loop Closure] ...") and warnings about rejected candidates.
+        # Matching those would report a wrong count for vio-lc runs. The vio-lc
+        # trajectory is still loop-closed; run_okvis2x.sh reads the post-BA
+        # "-final-ba_trajectory.csv" for that bucket.
+        "init_success":    re.compile(r"Initialized!"),
+        "tracking_loss":   re.compile(r"3d2d tracking lost"),
+        "loop_closure":    None,
         "map_reset":       None,
     },
     "openvins": {
@@ -373,7 +394,8 @@ def main():
               file=sys.stderr)
         sys.exit(1)
 
-    dataset, seq, algo, run_id = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
+    dataset = canonicalize_dataset(sys.argv[1])
+    seq, algo, run_id = sys.argv[2], sys.argv[3], sys.argv[4]
     run_type_name = sys.argv[5] if len(sys.argv) == 6 else "vo"
 
     ws = Path(__file__).resolve().parents[2]
@@ -388,10 +410,15 @@ def main():
         print(f"[eval] ERROR: trajectory not found: {traj_path}", file=sys.stderr)
         sys.exit(1)
 
-    # Choose GT: prefer interpolated GT (exact timestamps), fallback to raw GT.
+    # Choose GT: allow an explicit override, otherwise prefer interpolated GT.
+    gt_override = os.environ.get("GT_OVERRIDE")
     gt_interp = ds_dir / "gt_interp_tum.txt"
     gt_raw    = ds_dir / "gt_tum.txt"
-    if gt_interp.exists():
+    if gt_override:
+        gt_path    = str(Path(gt_override).expanduser())
+        t_max_diff = 0.005
+        gt_source  = f"override:{Path(gt_path).name}"
+    elif gt_interp.exists():
         gt_path    = str(gt_interp)
         t_max_diff = 0.005      # tight: timestamps should match exactly
         gt_source  = "interpolated"
@@ -462,6 +489,15 @@ def main():
         # Real-time factor: fps / input_fps (we don't know input fps here,
         # so leave it as fps and let aggregate compute RTF from sequence metadata)
         runtime["fps_raw"] = round(fps, 3)
+
+    # ── Machine specs (provenance for the runtime numbers above) ──────────────
+    # The runtime block (fps, cpu/gpu/ram) is hardware-dependent; record which
+    # machine produced it. Never let this fail the evaluation.
+    try:
+        from _system_info import collect as _collect_machine
+        machine_info = _collect_machine()
+    except Exception as _e:  # pragma: no cover - best-effort
+        machine_info = {"error": str(_e)}
 
     # ── Agricultural segment metrics ──────────────────────────────────────────
     seg_path = ds_dir / "segments_auto.csv"
@@ -543,6 +579,7 @@ def main():
         "final_drift_m": final_drift,
         "robustness":    robustness,
         "runtime":       runtime,
+        "machine":       machine_info,
         "agri_segments": agri,
     }
 

@@ -12,8 +12,9 @@
 | Sequence | sequence5 |
 | Algorithm | basalt |
 | Number of frames | 11640 |
-| Camera setup | stereo |
+| Run type | vo |
 | IMU used | no |
+| Loop closure | disabled |
 
 ---
 

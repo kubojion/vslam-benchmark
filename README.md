@@ -1,11 +1,16 @@
 # vSLAM Benchmark
 
-> Fully revised: 2026-05-31 - Added GNSS-VIO benchmark track (CIFASIS GNSS-SI, RTAB-Map, VINS-Fusion, OpenVINS+GPS). rosariov2 seq5 re-run with high-quality PPK GPS; see the GNSS-VIO GPS-quality study in [PROGRESS.md](PROGRESS.md).
+> Updated: 2026-07-21 - VO has 67 evaluated rows; VIO has 55 (49-row core matrix plus six
+> usable ZED2i trajectories); VIO-LC has 3; GNSS-VIO has 16 N=1 headline runs. HortiMulti VIO
+> uses corrected camera-IMU extrinsics, EuRoC MH_03/MH_05 and the local ZED2i field sequence are
+> included, and the Rosario sequence5 PPK-versus-conventional study is retained. See
+> [PROGRESS.md](PROGRESS.md) for limitations and current results.
 
 | Algorithm | Type | Source |
 |---|---|---|
 | **ORB-SLAM3** | Classical feature-based, stereo / stereo-inertial, optional LC | [kubojion/ORB_SLAM3 @ vslam-benchmark-patches](https://github.com/kubojion/ORB_SLAM3/tree/vslam-benchmark-patches). LC-on results quarantined in `obsolete/`; VO-clean re-run pending. |
 | **OKVIS2** | Sliding-window MAP stereo-inertial, optional DBoW + Sim3 LC | [ethz-mrl/okvis2](https://github.com/ethz-mrl/okvis2) (cmake build, system deps) |
+| **OKVIS2-X** | Multi-sensor OKVIS2 extension; VO/VIO/VIO-LC/GNSS capability | [ethz-mrl/OKVIS2-X](https://github.com/ethz-mrl/OKVIS2-X) (source/config/results committed; top-level build/run/GPS automation pending) |
 | **MAC-VO** | Hybrid (learned uncertainty), stereo VO | [kubojion/MAC-VO @ vslam-benchmark-patches](https://github.com/kubojion/MAC-VO/tree/vslam-benchmark-patches) |
 | **Basalt** | Optimization-based stereo VO / VIO | [VladyslavUsenko/basalt](https://gitlab.com/VladyslavUsenko/basalt) (binary install v0.1.7) |
 | **AirSLAM** | Deep-feature point-line VO / VIO / V-SLAM (TRO 2025) | [sair-lab/AirSLAM](https://github.com/sair-lab/AirSLAM) (Docker, ROS Noetic + TensorRT) |
@@ -14,7 +19,7 @@
 | **CIFASIS GNSS-SI** | Tightly-coupled GNSS+stereo+inertial SLAM, ORB-SLAM3-based (JFR 2023) | [CIFASIS/gnss-stereo-inertial-fusion](https://github.com/CIFASIS/gnss-stereo-inertial-fusion) (Docker, ROS 1 Noetic) |
 | **RTAB-Map** | Graph-based stereo SLAM with optional IMU + GNSS factors | [introlab/rtabmap_ros](https://github.com/introlab/rtabmap_ros) (apt, ROS 2 Humble) |
 | **VINS-Fusion** | Optimization-based stereo+IMU VIO with loose GPS fusion | [HKUST-Aerial-Robotics/VINS-Fusion](https://github.com/HKUST-Aerial-Robotics/VINS-Fusion) (Docker, ROS 1 Noetic) |
-| **DROID-SLAM** | Neural dense stereo VO (Phase 1 only; dropped per supervisor) | [princeton-vl/DROID-SLAM](https://github.com/princeton-vl/DROID-SLAM). Replaced by DPVO. |
+| **DROID-SLAM** | Neural dense stereo VO (Phase 1 only; dropped per supervisor) | [princeton-vl/DROID-SLAM](https://github.com/princeton-vl/DROID-SLAM). Historical results retained. |
 | **MASt3R-SLAM** | Monocular dense SLAM with retrieval-based LC (scaffolded) | [rmurai0610/MASt3R-SLAM](https://github.com/rmurai0610/MASt3R-SLAM) (arXiv:2412.12392) |
 | **MegaSaM** | Monocular structure-and-motion, learned (scaffolded) | [mega-sam/mega-sam](https://github.com/mega-sam/mega-sam) (arXiv:2412.04463) |
 
@@ -22,9 +27,14 @@
 
 * **Rosario v2** - outdoor soybean field, stereo + IMU + GPS.
 * **HortiMulti** - indoor strawberry polytunnel, stereo + IMU.
-* **EuRoC-MAV** (MH_01_easy, MH_03_medium, MH_05_difficult) - [NON-AGRICULTURAL REFERENCE] indoor MAV flight, stereo. Used as a sanity check only.
+* **ZED2i `field1_110426_full_10fps_q90`** - the project's own agricultural field sequence, stereo + IMU + RTK position reference.
+* **EuRoC-MAV** (MH_01_easy, MH_03_medium, MH_05_difficult) - [NON-AGRICULTURAL REFERENCE] indoor MAV flight, stereo + IMU. Used as a sanity check only.
 
-Rosario v2 and HortiMulti are the primary benchmarks. EuRoC-MAV is tracked as a [NON-AGRICULTURAL REFERENCE] and run once per algorithm to verify configs and the eval pipeline against a known reference dataset.
+Rosario v2, HortiMulti and the local ZED2i field sequence are the agricultural scope. A separate
+GREENBOT dataset is not part of the current benchmark. EuRoC-MAV is tracked as a
+[NON-AGRICULTURAL REFERENCE] and run once per algorithm to verify configs and the evaluation pipeline.
+Its canonical repository identifier/path is `euroc_mav`; CLI aliases `EuRoC-MAV` and `euroc` are
+normalized before result/config paths are constructed.
 
 ## Repository layout
 
@@ -46,22 +56,25 @@ benchmark-vio.csv    # aggregated metrics for vio runs
 benchmark-vio-lc.csv # aggregated metrics for vio-lc runs
 benchmark-gnss-vio.csv # aggregated metrics for gnss-vio runs
 obsolete/            # quarantined data (e.g. ORB-SLAM3 stereo+LC runs that
-                     # don't fit the 3-bucket scheme)
+                     # don't fit the current run-type scheme)
+experiments/          # smoke/failed artifacts excluded from benchmark discovery
 docs/                # public documentation (this file + 3 below)
 PROGRESS.md          # running log of results and known issues
+TODO.md              # authoritative open-work matrix
 ```
 
 ## Run-type abstraction
 
-Every run is tagged with one of three `run_type`s. The tag controls
+Every run is tagged with one of four `run_type`s. The tag controls
 *both* the SLAM configuration that is launched *and* the on-disk
 location of its output:
 
-| run_type | IMU | Loop closure | Results folder        | Aggregated CSV         |
-|----------|-----|--------------|-----------------------|------------------------|
-| `vo`     | off | off          | `results-vo/`         | `benchmark-vo.csv`     |
-| `vio`    | on  | off          | `results-vio/`        | `benchmark-vio.csv`    |
-| `vio-lc` | on  | on           | `results-vio-lc/`     | `benchmark-vio-lc.csv` |
+| run_type | IMU | Loop closure | GNSS | Results folder | Aggregated CSV |
+|---|---|---|---|---|---|
+| `vo` | off | off | off | `results-vo/` | `benchmark-vo.csv` |
+| `vio` | on | off | off | `results-vio/` | `benchmark-vio.csv` |
+| `vio-lc` | on | on | off | `results-vio-lc/` | `benchmark-vio-lc.csv` |
+| `gnss-vio` | on | off | on | `results-gnss-vio/` | `benchmark-gnss-vio.csv` |
 
 Not every algorithm supports every run type. The runners reject or
 warn for unsupported combinations:
@@ -70,6 +83,7 @@ warn for unsupported combinations:
 |-------------|------|-------|----------|
 | ORB-SLAM3   | yes (requires LC-off build) | yes | yes |
 | OKVIS2      | yes | yes | yes (IMU sigmas need 5-10x inflation, see PROGRESS.md) |
+| OKVIS2-X    | manual results; runner pending | manual results; runner pending | runner pending |
 | AirSLAM     | yes | yes | yes |
 | Basalt      | yes | yes | (no LC) |
 | OpenVINS    | (no VO mode) | yes (+gnss-vio via robot_localization) | (no LC) |
@@ -89,7 +103,7 @@ warn for unsupported combinations:
 ## Quickstart
 
 ```bash
-git clone https://github.com/kubojion/vslam-benchmark.git
+git clone --recurse-submodules https://github.com/kubojion/vslam-benchmark.git
 cd vslam-benchmark
 
 # 2. install deps + clone the SLAM source trees (see docs/setup.md)
@@ -98,6 +112,9 @@ cd vslam-benchmark
 # 2d. (optional) MegaSaM + MASt3R-SLAM envs:
 #       bash scripts/build/setup_megasam_env.sh
 #       bash scripts/build/setup_mast3r_slam_env.sh
+
+# Note: TODO.md lists small local-only AirSLAM/OpenVINS/OKVIS2 prerequisites
+# that still need commits in their owning submodules before every runner is reproducible.
 
 # 3. drop a dataset under datasets/<dataset>/<seq>/ and convert it
 bash scripts/data/convert_rosario_to_tum.sh datasets/rosariov2/sequence1
@@ -130,8 +147,8 @@ conda run -n macvo python3 scripts/eval/build_benchmark_csv.py all
 
 ## Results snapshot
 
-See [PROGRESS.md](PROGRESS.md) for full results (VO / VIO / VIO-LC tables).
-The aggregated CSVs (`benchmark-vo.csv`, `benchmark-vio.csv`, `benchmark-vio-lc.csv`) are the source of truth.
+See [PROGRESS.md](PROGRESS.md) for full VO, VIO, VIO-LC and GNSS-VIO tables. The four
+`benchmark-*.csv` files are the source of truth for headline aggregates.
 
 Representative VO numbers (N=3 unless noted):
 
@@ -163,21 +180,21 @@ Representative VIO numbers (Phase 2, N=1 unless noted):
 | Algorithm | Dataset | Seq | ATE Sim3 | N |
 |---|---|---|---|---|
 | ORB-SLAM3 | Rosario v2 | seq5 | **2.29 m** | 1 |
-| ORB-SLAM3 | HortiMulti | strawberry03 | **0.57 m** | 1 |
+| ORB-SLAM3 | HortiMulti | strawberry03 | **0.396 m** | 1 |
 | Basalt | Rosario v2 | seq5 | **4.74 m** | 1 |
-| Basalt | HortiMulti | strawberry03 | **3.28 m** | 2 |
+| Basalt | HortiMulti | strawberry02 | **2.492 m** | 1 |
+| Basalt | HortiMulti | strawberry03 | **0.194 m** | 1 |
+| OKVIS2 | HortiMulti | strawberry02 | **2.145 m** | 1 |
+| OKVIS2-X | HortiMulti | strawberry02 | **2.130 m** | 1 |
 | OpenVINS | Rosario v2 | seq1 | 2.32 m | 1 |
 | OpenVINS | EuRoC | MH_01_easy | 0.058 m | 1 |
 | Voxel-SVIO | Rosario v2 | seq1 | 4.40 m | 1 |
-| Voxel-SVIO | HortiMulti | strawberry02 | 6.46 m | 1 |
+| Voxel-SVIO | HortiMulti | strawberry02 | 5.83 m | 1 |
 
-On HortiMulti VIO, ORB-SLAM3 is the only algorithm producing a usable trajectory
-on both sequences. Basalt str03 improved significantly (16.52 m -> 3.28 m) after
-inflating accel_noise_std 10x in the calibration (robot vibration is ~200x the
-Allan thermal floor). The remaining scale collapses are algorithm-level limitations
-caused by the robot's unstable motion. See [PROGRESS.md](PROGRESS.md) for the
-full analysis including IMU dynamics measurements and the OpenVINS / Voxel-SVIO
-config fixes applied during the VIO sweep.
+All seven VIO algorithms now have corrected-extrinsic N=1 results on both HortiMulti sequences,
+with scale near 1. The older vibration-floor/algorithm-limit conclusion was invalidated by applying
+the rectification rotation and correcting transform direction. These are provisional validation
+runs; N=3 repeatability remains pending. See [PROGRESS.md](PROGRESS.md) for the controlled evidence.
 
 ### [NON-AGRICULTURAL REFERENCE] EuRoC-MAV (single-run reference)
 

@@ -24,7 +24,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _run_type import resolve as resolve_run_type  # noqa: E402
+from _run_type import canonicalize_dataset, resolve as resolve_run_type  # noqa: E402
 
 
 def load_runs(algo_dir: Path):
@@ -67,7 +67,8 @@ def main():
               file=sys.stderr)
         sys.exit(1)
 
-    dataset, seq, algo = sys.argv[1], sys.argv[2], sys.argv[3]
+    dataset = canonicalize_dataset(sys.argv[1])
+    seq, algo = sys.argv[2], sys.argv[3]
     input_fps = float(sys.argv[4]) if len(sys.argv) > 4 else 10.0
     run_type_name = sys.argv[5] if len(sys.argv) > 5 else "vo"
 

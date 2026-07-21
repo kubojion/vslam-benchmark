@@ -23,6 +23,7 @@ set -euo pipefail
 DATASET=$1; SEQ=$2; RUN_ID=${3:-1}; RUN_TYPE=${4:-vo}
 WS=$(cd "$(dirname "$0")/../.." && pwd)
 source "$WS/scripts/_paths.sh"
+canonicalize_dataset "$DATASET"
 resolve_run_type "$RUN_TYPE"
 SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/basalt/run${RUN_ID}"
@@ -65,16 +66,24 @@ for cam in ['cam0', 'cam1']:
         n = sum(1 for _ in open(csv_path)) - 1
         print(f'[basalt] {cam}/data.csv already has {n} entries', flush=True)
         continue
-    imgs = sorted(glob.glob(f'{data_dir}/*.png') + glob.glob(f'{data_dir}/*.jpg'))
-    if not imgs:
+    # Deduplicate by timestamp stem: the zed2i tree carries both <ts>.jpg and a
+    # <ts>.png symlink to the same image, so a naive png+jpg glob lists every
+    # frame TWICE. Duplicate timestamps make basalt abort with
+    #   Assertion (kpt_pos.host_kf_id.frame_id != state_t.getT_ns()) failed
+    # in BundleAdjustmentBase::optimize_single_frame_pose. png wins when both exist.
+    by_stem = {}
+    for ext in ('png', 'jpg'):
+        for img in glob.glob(f'{data_dir}/*.{ext}'):
+            by_stem.setdefault(os.path.splitext(os.path.basename(img))[0],
+                               os.path.basename(img))
+    if not by_stem:
         print(f'[basalt] ERROR: no images found in {data_dir}', file=sys.stderr)
         sys.exit(1)
     with open(csv_path, 'w') as f:
         f.write('#timestamp [ns],filename\n')
-        for img in imgs:
-            ts = os.path.splitext(os.path.basename(img))[0]
-            f.write(f'{ts},{ts}.png\n')
-    print(f'[basalt] wrote {cam}/data.csv ({len(imgs)} entries)', flush=True)
+        for ts in sorted(by_stem, key=int):
+            f.write(f'{ts},{by_stem[ts]}\n')
+    print(f'[basalt] wrote {cam}/data.csv ({len(by_stem)} entries)', flush=True)
 " 2>&1 | tee -a "$LOG_GLOBAL"
 
 # ── Resource monitor: CPU + RAM sampled every 1 s ────────────────────────────
@@ -108,7 +117,8 @@ if [[ ! -f "$OUT_DIR/trajectory.txt" ]]; then
     exit 1
 fi
 
-NFR=$(grep -vc '^#' "$OUT_DIR/trajectory.txt" 2>/dev/null || echo 0)
+NFR=$(grep -vc '^#' "$OUT_DIR/trajectory.txt" 2>/dev/null || true)
+NFR=${NFR:-0}
 DUR=$(python3 -c "print($END-$START)")
 python3 -c "
 import json

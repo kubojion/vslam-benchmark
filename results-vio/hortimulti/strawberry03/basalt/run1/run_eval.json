@@ -1,0 +1,169 @@
+{
+  "run": "1",
+  "original_run_id": 9301,
+  "run_purpose": "extrinsic_fix_validation",
+  "algo": "basalt",
+  "dataset": "hortimulti",
+  "seq": "strawberry03",
+  "run_type": "vio",
+  "use_imu": true,
+  "use_lc": false,
+  "gt_source": "interpolated",
+  "n_pairs_ate": 2425,
+  "ate": {
+    "rmse": 0.194231,
+    "mean": 0.171689,
+    "median": 0.170504,
+    "std": 0.090822,
+    "max": 0.461897
+  },
+  "ate_se3": {
+    "rmse": 0.657953,
+    "mean": 0.592521,
+    "median": 0.599902,
+    "std": 0.286043,
+    "max": 1.103868
+  },
+  "rpe_trans_1m": {
+    "rmse": 0.022123,
+    "mean": 0.015943,
+    "std": 0.015337,
+    "max": 0.101307
+  },
+  "rpe_rot_1m_deg": {
+    "rmse": 0.591038,
+    "mean": 0.504601,
+    "std": 0.307738
+  },
+  "kitti_drift": {
+    "rpe_10m_trans_rmse": 0.04059,
+    "rpe_50m_trans_rmse": 0.116658,
+    "rpe_100m_trans_rmse": 0.024361
+  },
+  "scale_factor": 1.0346248836187713,
+  "final_drift_m": 0.4583,
+  "robustness": {
+    "init_success": false,
+    "init_time_s": null,
+    "tracking_losses": 0,
+    "loop_closures": 0,
+    "map_resets": 0,
+    "output_valid": true,
+    "first_failure_s": null
+  },
+  "runtime": {},
+  "machine": {
+    "os": "Ubuntu 22.04.5 LTS",
+    "kernel": "6.8.0-124-generic",
+    "cpu": "Intel(R) Core(TM) i9-14900HX",
+    "cpu_cores": {
+      "physical": 24,
+      "logical": 32
+    },
+    "ram_total_gb": 31.1,
+    "gpus": [
+      {
+        "name": "NVIDIA GeForce RTX 4080 Laptop GPU",
+        "memory": "12282 MiB",
+        "driver": "580.159.03"
+      }
+    ],
+    "python": "3.9.25"
+  },
+  "agri_segments": {
+    "row": {
+      "n_segments": 5,
+      "ate_rmse_mean": 0.02755,
+      "ate_rmse_std": 0.009392,
+      "segments": [
+        {
+          "t_start": 1770731344.371207,
+          "t_end": 1770731382.1081827,
+          "ate_rmse": 0.028417,
+          "ate_mean": 0.02524,
+          "n_frames": 379,
+          "duration_s": 37.737
+        },
+        {
+          "t_start": 1770731397.9975832,
+          "t_end": 1770731431.4832652,
+          "ate_rmse": 0.026025,
+          "ate_mean": 0.023078,
+          "n_frames": 336,
+          "duration_s": 33.486
+        },
+        {
+          "t_start": 1770731431.580135,
+          "t_end": 1770731440.673167,
+          "ate_rmse": 0.015418,
+          "ate_mean": 0.013675,
+          "n_frames": 92,
+          "duration_s": 9.093
+        },
+        {
+          "t_start": 1770731452.467824,
+          "t_end": 1770731486.24814,
+          "ate_rmse": 0.023724,
+          "ate_mean": 0.021397,
+          "n_frames": 339,
+          "duration_s": 33.78
+        },
+        {
+          "t_start": 1770731499.6429293,
+          "t_end": 1770731558.9064503,
+          "ate_rmse": 0.044168,
+          "ate_mean": 0.038763,
+          "n_frames": 594,
+          "duration_s": 59.264
+        }
+      ]
+    },
+    "turn": {
+      "n_segments": 5,
+      "ate_rmse_mean": 0.021857,
+      "ate_rmse_std": 0.00435,
+      "segments": [
+        {
+          "t_start": 1770731382.2075768,
+          "t_end": 1770731397.8967366,
+          "ate_rmse": 0.017359,
+          "ate_mean": 0.015933,
+          "n_frames": 158,
+          "duration_s": 15.689
+        },
+        {
+          "t_start": 1770731440.773929,
+          "t_end": 1770731452.3686497,
+          "ate_rmse": 0.027193,
+          "ate_mean": 0.023628,
+          "n_frames": 117,
+          "duration_s": 11.595
+        },
+        {
+          "t_start": 1770731486.3495173,
+          "t_end": 1770731499.5415547,
+          "ate_rmse": 0.019397,
+          "ate_mean": 0.017283,
+          "n_frames": 133,
+          "duration_s": 13.192
+        },
+        {
+          "t_start": 1770731559.0065563,
+          "t_end": 1770731562.5060208,
+          "ate_rmse": 0.01828,
+          "ate_mean": 0.01654,
+          "n_frames": 36,
+          "duration_s": 3.499
+        },
+        {
+          "t_start": 1770731562.6166313,
+          "t_end": 1770731586.5908613,
+          "ate_rmse": 0.027057,
+          "ate_mean": 0.024329,
+          "n_frames": 241,
+          "duration_s": 23.974
+        }
+      ]
+    }
+  }
+}

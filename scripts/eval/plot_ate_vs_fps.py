@@ -37,6 +37,10 @@ ALGO_COLOUR = {
     "airslam":     "#17becf",
     "mast3r_slam": "#9467bd",
     "megasam":     "#e377c2",
+    "okvis2x":     "#1f77b4",
+    "okvis2":      "#bcbd22",
+    "openvins":    "#7f7f7f",
+    "voxel_svio":  "#c5b0d5",
 }
 ALGO_LABEL = {
     "orbslam3":    "ORB-SLAM3",
@@ -46,7 +50,14 @@ ALGO_LABEL = {
     "airslam":     "AirSLAM",
     "mast3r_slam": "MASt3R-SLAM",
     "megasam":     "MegaSaM",
+    "okvis2x":     "OKVIS2-X",
+    "okvis2":      "OKVIS2",
+    "openvins":    "OpenVINS",
+    "voxel_svio":  "Voxel-SVIO",
 }
+# EuRoC is stored under three interchangeable spellings (symlinks to one dataset);
+# canonicalise so markers/labels match regardless of which spelling a run used.
+DATASET_ALIASES = {"euroc": "euroc_mav", "EuRoC-MAV": "euroc_mav"}
 DATASET_MARKER = {
     "euroc_mav":  "o",
     "hortimulti": "s",
@@ -93,7 +104,8 @@ def main():
                 continue
             if fps <= 0 or ate <= 0:
                 continue
-            groups[(row["algo"], row["dataset"], row["seq"])].append((ate, fps))
+            ds = DATASET_ALIASES.get(row["dataset"], row["dataset"])
+            groups[(row["algo"], ds, row["seq"])].append((ate, fps))
 
     if not groups:
         raise SystemExit(f"No valid data in {csv_path.name}")
@@ -138,7 +150,11 @@ def main():
                     textcoords="offset points", xytext=(4, 4),
                     fontsize=7, color="#444444", zorder=5)
 
-    ax.set_xlabel("ATE SE(3) RMSE [m]", fontsize=13)
+    # ATE spans many decades (scale-collapsed runs reach 1e5-1e7 m); a linear
+    # x-axis crushes every good result against 0. Use log so all points separate.
+    ax.set_xscale("log")
+    ax.axvspan(50, ax.get_xlim()[1], color="red", alpha=0.05)
+    ax.set_xlabel("ATE SE(3) RMSE [m]  (log scale; >50 m = diverged)", fontsize=13)
     ax.set_ylabel("FPS", fontsize=13)
     ax.set_title(f"ATE vs FPS - {rt.name} run-type", fontsize=14, pad=12)
     ax.tick_params(labelsize=11)
