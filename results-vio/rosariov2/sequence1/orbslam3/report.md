@@ -62,7 +62,7 @@
 |---|---|
 | Wall-clock runtime [s] | 1115.9 |
 | Mean FPS | 12.32 |
-| Real-time factor (input 1 fps) | 12.317 |
+| Real-time factor (input 10 fps) | 1.232 |
 | CPU mean [%] | 33.9 |
 | CPU peak [%] | 59.6 |
 | RAM mean [MiB] | 15980 |

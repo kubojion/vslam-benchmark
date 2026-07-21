@@ -75,10 +75,30 @@ Local dataset recorded on a ground robot driving crop rows: ZED2i HD1080 rectifi
   publishes it live from firmware). Queried via pyzed `camera_imu_transform`: only **0.675 deg /
   23 mm from identity** - the IMU is effectively co-located with the left camera. Config uses
   identity `T_imu_cam`, confirmed by A/B/C test below.
-- Config: `configs/basalt/zed2i_calib.json`. ORB-SLAM3 uses `configs/orbslam3/zed2i_*` (stereo-only).
+- Config: `configs/basalt/zed2i_calib.json` (+ `zed2i.json` VIO). VIO configs authored for all
+  algos: `configs/{okvis2,okvis2x}/zed2i_field1_..._vio.yaml`, `configs/openvins/zed2i/`,
+  `configs/voxel_svio/zed2i.yaml`, `configs/airslam/zed2i_{camera_,}vio.yaml`,
+  `configs/orbslam3/zed2i_field1_..._stereo_inertial.yaml` (identity T_b_c1).
 
-**VIO fails because the IMU is under-excited, not because of a config bug.** Basalt VIO on the
-full sequence gives 9.14 m / scale 0.816 vs VO 0.45 m / scale 0.99. Ruled out systematically:
+**VIO fails because the IMU is under-excited, not because of a config bug.** All 7 algorithms
+were run on the full sequence (2026-07-21); none beat VO (ORB-SLAM3 VO 0.256 m, Basalt VO 0.446 m),
+and the tightly-coupled filters scale-collapse. Configs authored for every algo (identity T_imu_cam,
+ZED factory IMU noise, g=9.812); okvis2x/okvis2/basalt run native, the rest via Docker.
+
+| Algo (VIO) | ATE Sim3 | ATE SE3 | scale | tracked | outcome |
+|---|---|---|---|---|---|
+| Voxel-SVIO | 3.71 m | 3.73 m | 0.978 | 97.8 % | no collapse; ~71 s static-init delay ("no accel jerk") |
+| AirSLAM | 3.90 m | 3.97 m | 0.965 | (KFs) | no collapse; loosely-coupled |
+| OpenVINS | 5.33 m | 6.4e5 m | ~0 | 8.7 % | **scale collapse** (MSCKF) |
+| Basalt | 9.14 m | 9.98 m | 0.816 | 100 % | partial scale error, VIO<VO |
+| OKVIS2 | 17.7 m | 1.6e6 m | ~0 | 65 % | **scale collapse** |
+| OKVIS2-X | 18.3 m | 4.9e5 m | ~0 | 60 % | **scale collapse** + tracking failure |
+| ORB-SLAM3 | — | — | — | — | chronic "Fail to track local map!"; **segfaults in SaveTrajectoryEuRoC at export (2× deterministic)** - no usable trajectory |
+
+The split is by IMU-coupling tightness: loosely-coupled / delayed-init methods (Voxel, AirSLAM,
+Basalt) survive with large drift; tightly-coupled filters (OpenVINS, OKVIS2, OKVIS2-X) let the
+weakly-observable metric scale run away (evo Sim3 scale rounds to ~0, SE3 ATE explodes to 10^5-10^6 m).
+Root cause ruled out systematically:
 
 | Hypothesis | Test | Result |
 |---|---|---|

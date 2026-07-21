@@ -12,8 +12,9 @@
 | Sequence | MH_03_medium |
 | Algorithm | macvo |
 | Number of frames | 2700 |
-| Camera setup | stereo |
+| Run type | vo |
 | IMU used | no |
+| Loop closure | disabled |
 
 ---
 

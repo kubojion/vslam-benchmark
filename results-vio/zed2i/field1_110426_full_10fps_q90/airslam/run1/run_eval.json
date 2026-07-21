@@ -1,0 +1,87 @@
+{
+  "run": "1",
+  "algo": "airslam",
+  "dataset": "zed2i",
+  "seq": "field1_110426_full_10fps_q90",
+  "run_type": "vio",
+  "use_imu": true,
+  "use_lc": false,
+  "gt_source": "interpolated",
+  "n_pairs_ate": 2704,
+  "ate": {
+    "rmse": 3.89873,
+    "mean": 3.142862,
+    "median": 2.03731,
+    "std": 2.307058,
+    "max": 7.622788
+  },
+  "ate_se3": {
+    "rmse": 3.967471,
+    "mean": 3.149785,
+    "median": 1.961795,
+    "std": 2.412402,
+    "max": 7.779196
+  },
+  "rpe_trans_1m": {
+    "rmse": 0.041354,
+    "mean": 0.038215,
+    "std": 0.015804,
+    "max": 0.123262
+  },
+  "rpe_rot_1m_deg": {
+    "rmse": 7.776848,
+    "mean": 3.790162,
+    "std": 6.790731
+  },
+  "kitti_drift": {
+    "rpe_10m_trans_rmse": 0.325042,
+    "rpe_50m_trans_rmse": 1.13655,
+    "rpe_100m_trans_rmse": 2.912312
+  },
+  "scale_factor": 0.9648383732171919,
+  "final_drift_m": 8.2665,
+  "robustness": {
+    "init_success": true,
+    "init_time_s": null,
+    "tracking_losses": 0,
+    "loop_closures": 0,
+    "map_resets": 0,
+    "output_valid": true,
+    "first_failure_s": null,
+    "frames_total": 46283,
+    "frames_tracked": 2704,
+    "track_pct": 5.8
+  },
+  "runtime": {
+    "vram_mean_mib": 3815.7,
+    "vram_peak_mib": 4157.0,
+    "gpu_mean_pct": 21.7,
+    "gpu_peak_pct": 57.0,
+    "cpu_mean_pct": 37.0,
+    "cpu_peak_pct": 47.5,
+    "ram_mean_mib": 16511.9,
+    "ram_peak_mib": 19042.0,
+    "wall_s": 2098.87,
+    "fps": 1.288,
+    "fps_raw": 1.288
+  },
+  "machine": {
+    "os": "Ubuntu 22.04.5 LTS",
+    "kernel": "6.8.0-124-generic",
+    "cpu": "Intel(R) Core(TM) i9-14900HX",
+    "cpu_cores": {
+      "physical": 24,
+      "logical": 32
+    },
+    "ram_total_gb": 31.1,
+    "gpus": [
+      {
+        "name": "NVIDIA GeForce RTX 4080 Laptop GPU",
+        "memory": "12282 MiB",
+        "driver": "580.159.03"
+      }
+    ],
+    "python": "3.9.25"
+  },
+  "agri_segments": {}
+}

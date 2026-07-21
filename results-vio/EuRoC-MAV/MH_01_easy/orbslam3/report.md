@@ -11,7 +11,7 @@
 | Dataset | EuRoC-MAV |
 | Sequence | MH_01_easy |
 | Algorithm | orbslam3 |
-| Number of frames | 3682 |
+| Number of frames | 36382 |
 | Run type | vio |
 | IMU used | yes |
 | Loop closure | disabled |
@@ -24,19 +24,19 @@
 
 | Metric | Value |
 |---|---|
-| ATE RMSE [m] (Sim3) | 0.0224 |
-| ATE RMSE [m] (SE3, stereo metric)  | 0.0446 |
-| ATE mean [m] | 0.0194 |
-| ATE median [m] | 0.0163 |
-| ATE std [m] | 0.0112 |
-| ATE max [m] | 0.1369 |
-| RPE point_distance RMSE [m] (1 m windows) | 0.0103 |
-| RPE rotation RMSE [°/m] | 0.199 |
-| KITTI drift @ 10 m [m] | 0.0127 |
+| ATE RMSE [m] (Sim3) | 0.0250 |
+| ATE RMSE [m] (SE3, stereo metric)  | 0.0363 |
+| ATE mean [m] | 0.0223 |
+| ATE median [m] | 0.0192 |
+| ATE std [m] | 0.0114 |
+| ATE max [m] | 0.0595 |
+| RPE point_distance RMSE [m] (1 m windows) | 0.0091 |
+| RPE rotation RMSE [°/m] | 0.127 |
+| KITTI drift @ 10 m [m] | 0.0214 |
 | KITTI drift @ 50 m [m] | N/A |
 | KITTI drift @ 100 m [m] | N/A |
-| Scale factor (Sim3) | 1.0090 |
-| Final drift [m] (approx) | 5.2428 |
+| Scale factor (Sim3) | 1.0061 |
+| Final drift [m] (approx) | 5.2131 |
 
 ---
 
@@ -45,11 +45,11 @@
 | Metric | Value |
 |---|---|
 | Sequence completed | no |
-| Frames tracked [%] | 99.9 |
+| Frames tracked [%] | 10.1 |
 | Tracking losses | 0 |
 | First failure [s] | N/A |
 | Initialisation success | yes |
-| Initialisation time [s] | 6 |
+| Initialisation time [s] | 3 |
 | Loop closures detected | 0 |
 | Map resets | 0 |
 | Output trajectory valid | yes |
@@ -60,25 +60,16 @@
 
 | Metric | Value |
 |---|---|
-| Wall-clock runtime [s] | 226.6 |
-| Mean FPS | 16.23 |
-| Real-time factor (input 1 fps) | 16.232 |
-| CPU mean [%] | 82.9 |
-| CPU peak [%] | 90.8 |
-| RAM mean [MiB] | 17947 |
-| RAM peak [MiB] | 19515 |
-| VRAM mean [MiB] | 3036 |
-| VRAM peak [MiB] | 3055 |
-| GPU utilisation mean [%] | 18.1 |
-
----
-
-## Agricultural Segment Metrics
-
-| Segment type | Mean ATE RMSE [m] ± std (across runs) | N segments | Avg duration [s] | N runs with data |
-|---|---|---|---|---|
-| row | 0.0060 | 8 | 6.2 | 1/1 |
-| turn | 0.0101 | 11 | 12.1 | 1/1 |
+| Wall-clock runtime [s] | 200.0 |
+| Mean FPS | 18.39 |
+| Real-time factor (input 10 fps) | 1.839 |
+| CPU mean [%] | 11.5 |
+| CPU peak [%] | 20.5 |
+| RAM mean [MiB] | 7971 |
+| RAM peak [MiB] | 8614 |
+| VRAM mean [MiB] | 494 |
+| VRAM peak [MiB] | 563 |
+| GPU utilisation mean [%] | 4.6 |
 
 ---
 
@@ -86,4 +77,4 @@
 
 | Run | ATE RMSE Sim3 [m] | ATE RMSE SE3 [m] | RPE [m] | RPE rot [°/m] | KITTI 10 m | KITTI 50 m | KITTI 100 m | Scale | Final drift [m] | Wall-s | FPS | Track% | Loops |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| run1 | 0.0224 | 0.0446 | 0.0103 | 0.20 | 0.0127 | N/A | N/A | 1.0090 | 5.2428 | 226.6 | 16.23 | 99.9 | 0 |
+| run1 | 0.0250 | 0.0363 | 0.0091 | 0.13 | 0.0214 | N/A | N/A | 1.0061 | 5.2131 | 200.0 | 18.39 | 10.1 | 0 |

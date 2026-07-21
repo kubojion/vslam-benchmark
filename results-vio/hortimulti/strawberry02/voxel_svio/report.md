@@ -11,7 +11,7 @@
 | Dataset | hortimulti |
 | Sequence | strawberry02 |
 | Algorithm | voxel_svio |
-| Number of frames | N/A |
+| Number of frames | 9530 |
 | Run type | vio |
 | IMU used | yes |
 | Loop closure | disabled |
@@ -24,19 +24,19 @@
 
 | Metric | Value |
 |---|---|
-| ATE RMSE [m] (Sim3) | N/A |
-| ATE RMSE [m] (SE3, stereo metric)  | N/A |
-| ATE mean [m] | N/A |
-| ATE median [m] | N/A |
-| ATE std [m] | N/A |
-| ATE max [m] | N/A |
-| RPE point_distance RMSE [m] (1 m windows) | N/A |
-| RPE rotation RMSE [°/m] | N/A |
-| KITTI drift @ 10 m [m] | N/A |
-| KITTI drift @ 50 m [m] | N/A |
-| KITTI drift @ 100 m [m] | N/A |
-| Scale factor (Sim3) | N/A |
-| Final drift [m] (approx) | 17.1347 |
+| ATE RMSE [m] (Sim3) | 5.8277 |
+| ATE RMSE [m] (SE3, stereo metric)  | 5.9431 |
+| ATE mean [m] | 4.6478 |
+| ATE median [m] | 3.2653 |
+| ATE std [m] | 3.5157 |
+| ATE max [m] | 17.5061 |
+| RPE point_distance RMSE [m] (1 m windows) | 0.0902 |
+| RPE rotation RMSE [°/m] | 1.180 |
+| KITTI drift @ 10 m [m] | 0.3296 |
+| KITTI drift @ 50 m [m] | 0.9695 |
+| KITTI drift @ 100 m [m] | 2.0172 |
+| Scale factor (Sim3) | 1.0241 |
+| Final drift [m] (approx) | 12.8203 |
 
 ---
 
@@ -45,7 +45,7 @@
 | Metric | Value |
 |---|---|
 | Sequence completed | no |
-| Frames tracked [%] | N/A |
+| Frames tracked [%] | 99.7 |
 | Tracking losses | 0 |
 | First failure [s] | N/A |
 | Initialisation success | no |
@@ -60,16 +60,25 @@
 
 | Metric | Value |
 |---|---|
-| Wall-clock runtime [s] | N/A |
-| Mean FPS | N/A |
-| Real-time factor (input 1 fps) | N/A |
-| CPU mean [%] | 7.4 |
-| CPU peak [%] | 21.5 |
-| RAM mean [MiB] | 12359 |
-| RAM peak [MiB] | 12505 |
-| VRAM mean [MiB] | 15 |
-| VRAM peak [MiB] | 15 |
-| GPU utilisation mean [%] | 0.0 |
+| Wall-clock runtime [s] | 964.8 |
+| Mean FPS | 9.85 |
+| Real-time factor (input 10 fps) | 0.985 |
+| CPU mean [%] | 1.8 |
+| CPU peak [%] | 10.3 |
+| RAM mean [MiB] | 7597 |
+| RAM peak [MiB] | 7888 |
+| VRAM mean [MiB] | 757 |
+| VRAM peak [MiB] | 1072 |
+| GPU utilisation mean [%] | 2.3 |
+
+---
+
+## Agricultural Segment Metrics
+
+| Segment type | Mean ATE RMSE [m] ± std (across runs) | N segments | Avg duration [s] | N runs with data |
+|---|---|---|---|---|
+| row | 0.1762 | 16 | 51.4 | 1/1 |
+| turn | 0.0900 | 9 | 12.5 | 1/1 |
 
 ---
 
@@ -77,4 +86,4 @@
 
 | Run | ATE RMSE Sim3 [m] | ATE RMSE SE3 [m] | RPE [m] | RPE rot [°/m] | KITTI 10 m | KITTI 50 m | KITTI 100 m | Scale | Final drift [m] | Wall-s | FPS | Track% | Loops |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| run1 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | 17.1347 | N/A | N/A | N/A | 0 |
+| run2 | 5.8277 | 5.9431 | 0.0902 | 1.18 | 0.3296 | 0.9695 | 2.0172 | 1.0241 | 12.8203 | 964.8 | 9.85 | 99.7 | 0 |

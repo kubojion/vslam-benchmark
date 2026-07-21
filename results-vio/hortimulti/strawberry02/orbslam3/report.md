@@ -24,19 +24,19 @@
 
 | Metric | Value |
 |---|---|
-| ATE RMSE [m] (Sim3) | 2.7915 |
-| ATE RMSE [m] (SE3, stereo metric)  | 3.3293 |
-| ATE mean [m] | 2.6096 |
-| ATE median [m] | 2.4089 |
-| ATE std [m] | 0.9913 |
-| ATE max [m] | 5.8090 |
-| RPE point_distance RMSE [m] (1 m windows) | 0.0934 |
-| RPE rotation RMSE [°/m] | 0.873 |
-| KITTI drift @ 10 m [m] | 0.3191 |
-| KITTI drift @ 50 m [m] | 0.9478 |
-| KITTI drift @ 100 m [m] | 2.0187 |
-| Scale factor (Sim3) | 1.0379 |
-| Final drift [m] (approx) | 9.4231 |
+| ATE RMSE [m] (Sim3) | 1.4759 |
+| ATE RMSE [m] (SE3, stereo metric)  | 2.4447 |
+| ATE mean [m] | 1.2260 |
+| ATE median [m] | 1.0525 |
+| ATE std [m] | 0.8216 |
+| ATE max [m] | 3.4873 |
+| RPE point_distance RMSE [m] (1 m windows) | 0.0892 |
+| RPE rotation RMSE [°/m] | 0.811 |
+| KITTI drift @ 10 m [m] | 0.3224 |
+| KITTI drift @ 50 m [m] | 0.9919 |
+| KITTI drift @ 100 m [m] | 1.9948 |
+| Scale factor (Sim3) | 1.0408 |
+| Final drift [m] (approx) | 5.5836 |
 
 ---
 
@@ -49,7 +49,7 @@
 | Tracking losses | 0 |
 | First failure [s] | N/A |
 | Initialisation success | yes |
-| Initialisation time [s] | 7 |
+| Initialisation time [s] | 6 |
 | Loop closures detected | 0 |
 | Map resets | 0 |
 | Output trajectory valid | yes |
@@ -60,16 +60,16 @@
 
 | Metric | Value |
 |---|---|
-| Wall-clock runtime [s] | 1033.9 |
-| Mean FPS | 9.19 |
-| Real-time factor (input 1 fps) | 9.194 |
-| CPU mean [%] | 86.4 |
-| CPU peak [%] | 99.9 |
-| RAM mean [MiB] | 20218 |
-| RAM peak [MiB] | 25931 |
-| VRAM mean [MiB] | 984 |
-| VRAM peak [MiB] | 3057 |
-| GPU utilisation mean [%] | 7.9 |
+| Wall-clock runtime [s] | 1018.9 |
+| Mean FPS | 9.33 |
+| Real-time factor (input 10 fps) | 0.933 |
+| CPU mean [%] | 8.5 |
+| CPU peak [%] | 23.9 |
+| RAM mean [MiB] | 12767 |
+| RAM peak [MiB] | 14970 |
+| VRAM mean [MiB] | 573 |
+| VRAM peak [MiB] | 573 |
+| GPU utilisation mean [%] | 36.5 |
 
 ---
 
@@ -77,8 +77,8 @@
 
 | Segment type | Mean ATE RMSE [m] ± std (across runs) | N segments | Avg duration [s] | N runs with data |
 |---|---|---|---|---|
-| row | 0.1269 | 16 | 51.5 | 1/1 |
-| turn | 0.0774 | 10 | 12.7 | 1/1 |
+| row | 0.1340 | 16 | 51.4 | 1/1 |
+| turn | 0.0688 | 9 | 12.5 | 1/1 |
 
 ---
 
@@ -86,4 +86,4 @@
 
 | Run | ATE RMSE Sim3 [m] | ATE RMSE SE3 [m] | RPE [m] | RPE rot [°/m] | KITTI 10 m | KITTI 50 m | KITTI 100 m | Scale | Final drift [m] | Wall-s | FPS | Track% | Loops |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| run1 | 2.7915 | 3.3293 | 0.0934 | 0.87 | 0.3191 | 0.9478 | 2.0187 | 1.0379 | 9.4231 | 1033.9 | 9.19 | 99.7 | 0 |
+| run2 | 1.4759 | 2.4447 | 0.0892 | 0.81 | 0.3224 | 0.9919 | 1.9948 | 1.0408 | 5.5836 | 1018.9 | 9.33 | 99.7 | 0 |

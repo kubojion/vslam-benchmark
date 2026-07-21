@@ -12,8 +12,9 @@
 | Sequence | sequence1 |
 | Algorithm | macvo |
 | Number of frames | 13821 |
-| Camera setup | stereo |
+| Run type | vo |
 | IMU used | no |
+| Loop closure | disabled |
 
 ---
 

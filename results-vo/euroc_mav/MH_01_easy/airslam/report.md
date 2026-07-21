@@ -12,8 +12,9 @@
 | Sequence | MH_01_easy |
 | Algorithm | airslam |
 | Number of frames | 3682 |
-| Camera setup | stereo |
+| Run type | vo |
 | IMU used | no |
+| Loop closure | disabled |
 
 ---
 

@@ -12,8 +12,9 @@
 | Sequence | strawberry03 |
 | Algorithm | macvo |
 | Number of frames | 2425 |
-| Camera setup | stereo |
+| Run type | vo |
 | IMU used | no |
+| Loop closure | disabled |
 
 ---
 

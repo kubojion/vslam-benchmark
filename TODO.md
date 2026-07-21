@@ -6,7 +6,8 @@
 > bug** (missing rectification rotation; inverted matrix for OKVIS2/OKVIS2-X/AirSLAM), fixed in
 > config - see PROGRESS.md "RESOLVED" section. OKVIS2 built (was missing). EuRoC MH_03/MH_05
 > coverage added. Two "algorithm divergence" cells (Voxel EuRoC, OpenVINS seq5) were stale bad
-> runs, now re-run. ZED2i field dataset added (VO only; VIO not viable - IMU under-excited).
+> runs, now re-run. ZED2i field dataset added; VIO now tested for all 7 algos (underperforms VO /
+> collapses - IMU under-excited).
 > Scope: Phase 2 (VIO benchmarking + new algorithms). Phase 1 (VO-only) complete.
 > **Remaining: N=1 -> N=3 for all VIO; GNSS-VIO track (0 runs); MASt3R-SLAM/MegaSaM.**
 
@@ -41,27 +42,29 @@ Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/div
 | MegaSaM | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | 🔧 no-config |
 
 > ORB-SLAM3 VO = LC-off mode required (`LoopClosing: 0` or dedicated build). Old LC-on results are in `obsolete/`.
-> **zed2i field1** = local ZED2i field dataset (46283 pairs, 1080p, 77 min, RTK GT). VO only -
-> VIO is NOT viable (IMU under-excited on straight-line ground-vehicle motion; see PROGRESS.md).
-> ORB-SLAM3 0.256 m, Basalt 0.446 m against RTK. Other algos need a zed2i config authored
-> (calibration is settled: identity T_imu_cam, baseline 0.11985 m, fx 1118.69).
+> **zed2i field1** = local ZED2i field dataset (46283 pairs, 1080p, 77 min, RTK GT). Use VO -
+> VIO is NOT viable (IMU under-excited on straight-line ground-vehicle motion; all 7 algos tested,
+> see VIO table + PROGRESS.md). ORB-SLAM3 0.256 m, Basalt 0.446 m against RTK. Configs for every
+> algo now authored (calibration is settled: identity T_imu_cam, baseline 0.11985 m, fx 1118.69).
 
 ### VIO (stereo + IMU, no loop closure) - `results-vio/`
 
 Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/divergence | ⬜ ready (config+data exist) | 🔧 no-config | ➖ no-mode (unsupported)
 
-All agri/EuRoC cells N=1 as of 2026-07-21. **No scale collapses remain** - hortimulti fixed via
-the camera-IMU extrinsic correction. Next step for the whole table is N=1 -> N=3.
+All agri/EuRoC cells N=1 as of 2026-07-21. **No scale collapses remain on the agri/EuRoC sets**
+- hortimulti fixed via the camera-IMU extrinsic correction. The zed2i field1 column is now filled
+for all 7 algos (2026-07-21): VIO underperforms VO there and 3 of 7 scale-collapse - expected, the
+IMU is under-excited (see note below). Next step for the agri/EuRoC table is N=1 -> N=3.
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
-| Basalt | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (VIO<VO, completed with divergence) |
-| OKVIS2 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
-| OKVIS2-X | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
-| OpenVINS | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
-| AirSLAM | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
-| Voxel-SVIO | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
+| ORB-SLAM3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (no traj: tracking loss + export crash, 2×) |
+| Basalt | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (9.14 m, VIO<VO) |
+| OKVIS2 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (scale collapse, 17.7 m) |
+| OKVIS2-X | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (scale collapse, 18.3 m) |
+| OpenVINS | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (scale collapse, 5.33 m) |
+| AirSLAM | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (3.90 m, no collapse, VIO<VO) |
+| Voxel-SVIO | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (3.71 m, no collapse, VIO<VO; ~71 s init delay) |
 
 > HortiMulti IMU: extracted - str02=190493 samples, str03=48448 samples. Path: `datasets/hortimulti/strawberry{02,03}/mav0/imu0/data.csv`
 > **HortiMulti VIO fix (2026-07-20):** all algorithms were scale-collapsed due to a wrong
@@ -73,11 +76,20 @@ the camera-IMU extrinsic correction. Next step for the whole table is N=1 -> N=3
 > non-deterministic (real-time player) - ~2x run-to-run spread, so N=3 matters here especially.
 > OKVIS2 (standalone) was built 2026-07-20 (`build_okvis2.sh`, needed -DHAVE_LIBREALSENSE=OFF
 > -DUSE_CUDA=OFF).
-> **zed2i field1 VIO:** Basalt VIO was run - 9.14 m / scale 0.816, i.e. worse than VO (0.45 m /
-> scale 0.99), hence "VIO<VO". Ruled out extrinsic (A/B/C: identity correct), IMU noise, and time
-> offset; root cause is insufficient rotational excitation (mean |gyro| 4.7 deg/s, gyro-vs-VO
-> correlation 0.005) - scale/accel-bias weakly observable on straight-line motion, drift over 77 min.
-> The other algos are `🔧 no-config` (need a stereo-inertial zed2i config; ORB-SLAM3's is stereo-only).
+> **zed2i field1 VIO (all 7 algos now tested, 2026-07-21):** confirms the "use VO, not VIO"
+> verdict. Two distinct failure modes, split by how tightly the estimator couples the IMU:
+> - **No collapse, but VIO≫VO:** Voxel-SVIO 3.71 m (scale 0.978, ~71 s static-init delay -
+>   its log spams "Failed static init: no accel jerk detected" until the first real motion),
+>   AirSLAM 3.90 m (scale 0.965), Basalt 9.14 m (scale 0.816). All track cleanly but land
+>   ~15-35× worse than VO (ORB-SLAM3 VO 0.256 m, Basalt VO 0.446 m).
+> - **Scale collapse (evo Sim3 scale ≈ 0, SE3 ATE explodes to 10^5-10^6 m):** OpenVINS 5.33 m
+>   (only 8.7 % tracked), OKVIS2 17.7 m, OKVIS2-X 18.3 m - the tightly-coupled filters.
+> - **ORB-SLAM3:** VIO tracking is chronically unstable (repeated "Fail to track local map!")
+>   and the run **segfaults in SaveTrajectoryEuRoC at export**, deterministically, both attempts -
+>   no usable trajectory. Config authored (`zed2i_field1_..._stereo_inertial.yaml`, identity T_b_c1).
+> Root cause is the same for all: insufficient rotational excitation (mean |gyro| 4.7 deg/s,
+> gyro-vs-VO correlation 0.005) - scale/accel-bias weakly observable on straight-line motion,
+> drift over 77 min. Configs authored for every algo; okvis2x runs native, orbslam3 via docker.
 > **Recommendation: use VO on zed2i.** Not worth scaling to N=3. See PROGRESS.md "ZED2i field dataset".
 
 ### VIO-LC (stereo + IMU + loop closure) - `results-vio-lc/`
