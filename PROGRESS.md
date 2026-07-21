@@ -46,6 +46,13 @@ All ATE values are Sim3-aligned RMSE with a separate SE3 column for scale-aware 
 | MAC-VO | euroc_mav | MH_01 | 0.198 m | 0.199 m | 1.005 | 0.0295 | 1.29 | 1 |
 | MAC-VO | euroc_mav | MH_03 | 0.340 m | 0.341 m | 0.996 | 0.0187 | 1.15 | 1 |
 | MAC-VO | euroc_mav | MH_05 | 0.470 m | 0.484 m | 1.017 | 0.0276 | 0.86 | 1 |
+| ORB-SLAM3 | zed2i | field1 | **0.256 m** | 0.300 m | 0.992 | 0.0164 | 12.67 | 1 |
+| Basalt | zed2i | field1 | 0.446 m | 0.488 m | 0.990 | 0.0174 | 38.50 | 1 |
+
+zed2i/field1 = local ZED2i field dataset (field1_110426_full_10fps_q90): 46283 stereo pairs @
+1920x1080, 10 fps, 412 m path over 77 min, RTK-GPS ground truth (position only, orientation=identity).
+Sub-half-metre ATE against RTK over 77 min. See "ZED2i field dataset" section below - VIO is NOT
+viable on this sequence (IMU under-excited); use VO. Full 46k-frame runs take ~20-60 min each.
 
 † Basalt pre-restructure (run_type=None): hortimulti entries ran without IMU (no imu0 in mav0/);
 rosariov2 entries likely VO mode given 21% scale drift on seq1 (scale=0.79).
@@ -53,6 +60,49 @@ See VIO table for the Basalt VIO re-run (rosariov2/seq5: 4.74 m with IMU).
 
 ORB-SLAM3 VO-clean (LC-off) run exists for rosariov2/seq5 only. Old seq1/hortimulti/EuRoC
 ORB-SLAM3 results used the LC-enabled binary and are in `obsolete/` - not shown above.
+
+#### ZED2i field dataset (field1_110426_full_10fps_q90) - VO works, VIO does not (2026-07-20)
+
+Local dataset recorded on a ground robot driving crop rows: ZED2i HD1080 rectified stereo,
+46283 pairs @ 10 fps, ~100 Hz IMU, RTK-GPS GT. **Use VO, not VIO.**
+
+**Calibration (all resolved, no guesswork):**
+- Stereo intrinsics + baseline confirmed from THREE independent sources - dataset manifest.json,
+  ZED factory `/usr/local/zed/settings/SN30291010.conf`, and the ZED SDK (queried live from the
+  connected camera, S/N 30291010, the same unit that recorded the bag): fx=fy=1118.69,
+  baseline=0.11985 m. Images pre-rectified (distortion zero).
+- Camera-IMU extrinsic: the bag `/tf_static` and the factory `.conf` do NOT contain it (the ZED
+  publishes it live from firmware). Queried via pyzed `camera_imu_transform`: only **0.675 deg /
+  23 mm from identity** - the IMU is effectively co-located with the left camera. Config uses
+  identity `T_imu_cam`, confirmed by A/B/C test below.
+- Config: `configs/basalt/zed2i_calib.json`. ORB-SLAM3 uses `configs/orbslam3/zed2i_*` (stereo-only).
+
+**VIO fails because the IMU is under-excited, not because of a config bug.** Basalt VIO on the
+full sequence gives 9.14 m / scale 0.816 vs VO 0.45 m / scale 0.99. Ruled out systematically:
+
+| Hypothesis | Test | Result |
+|---|---|---|
+| Wrong extrinsic direction | A/B/C on 15k-frame subset: identity vs R_opt (120 deg) vs R_opt^T | identity best (scale 0.96 vs 1.32 vs 0.25) -> factory identity is correct |
+| Wrong IMU noise | factory 4.4e-4 vs data-measured 2.17e-2 accel noise_density | measured was WORSE (0.71 vs 0.82), reverted |
+| Cam-IMU time offset | gyro-vs-VO cross-correlation | unmeasurable (corr 0.005) |
+
+**Root cause = insufficient rotational excitation.** The robot drives mostly straight:
+mean |gyro| = 4.7 deg/s and only 26% of samples exceed 0.1 rad/s, vs 11-12 deg/s and 76% on
+EuRoC/HortiMulti where VIO helps. Gyro-vs-VO angular-velocity correlation is **0.005** here vs
+0.84-0.88 on HortiMulti. With near-constant-velocity straight-line motion, accelerometer bias
+and metric scale are weakly observable and drift over 77 min. Consistent with OKVIS2-X on
+rosariov2 (VIO 19.3 > VO 18.0) and the HortiMulti paper's finding that VI methods "struggle
+severely" on agricultural ground vehicles.
+
+**Bug fixed along the way:** `run_basalt.sh` globbed `*.png + *.jpg` when building the EuRoC
+manifest, but the ZED2i tree stores each frame as both `<ts>.jpg` and a `<ts>.png` symlink -> every
+frame listed twice -> basalt aborts on a BA assertion (duplicate timestamps). Ported the
+dedup-by-stem logic `run_okvis2x.sh` already had. Only surfaces on ZED2i (other datasets are 1 file/frame).
+
+Iteration aids: `datasets/zed2i/field1_sub3k` and `field1_sub15k` (symlinked-image subsets with
+matched IMU+GT). NOTE: the 3k/300s subset could NOT discriminate the extrinsic (VIO looked fine at
+scale 0.99); only the 15k/1500s subset exposed the scale drift. Short subsets miss slow-integration
+effects - use >=15k frames for IMU-related config work.
 
 ### VIO (stereo + IMU, no loop closure)
 
