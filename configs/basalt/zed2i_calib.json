@@ -79,14 +79,14 @@
         ],
         "imu_update_rate": 100.0,
         "accel_noise_std": [
-            0.0217,
-            0.0217,
-            0.0217
+            0.00044,
+            0.00044,
+            0.00044
         ],
         "gyro_noise_std": [
-            0.00308,
-            0.00308,
-            0.00308
+            0.004992,
+            0.004992,
+            0.004992
         ],
         "accel_bias_std": [
             0.0202,
@@ -100,6 +100,6 @@
         ],
         "cam_time_offset_ns": 0,
         "vignette": [],
-        "_comment_noise": "IMU noise measured from the data itself (quietest 5s window of mav0/imu0/data.csv), NOT the ZED factory bench spec. Factory accel noise_density is 4.4e-4 m/s^2/sqrtHz, but the vehicle driving over field terrain shows 2.17e-2 -- ~49x higher. Using the factory value makes basalt over-trust the accelerometer and corrupts scale (full-sequence VIO gave scale 0.816, ATE 9.14m vs VO 0.45m). Same class of issue as hortimulti vibration."
+        "_comment_noise": "IMU noise = ZED factory values (accel 4.4e-4, gyro 4.99e-3 rad|m/s^2 per sqrtHz, 400Hz native). NOTE: VIO underperforms VO on this dataset regardless of noise - tested factory vs data-measured (2.17e-2) accel noise; measured was WORSE (scale 0.71 vs 0.82). The problem is insufficient rotational excitation, not noise. Use VO. See PROGRESS.md."
     }
 }

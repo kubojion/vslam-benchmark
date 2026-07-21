@@ -48,15 +48,15 @@ Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready (config+data exist) | 🔧 no-config | �
 
 ### VIO (stereo + IMU, no loop closure) - `results-vio/`
 
-Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ❌ not viable (tested, IMU under-excited)
+Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config
 
 All agri/EuRoC cells N=1 as of 2026-07-21. **No scale collapses remain** - hortimulti fixed via
 the camera-IMU extrinsic correction. Next step for the whole table is N=1 -> N=3.
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | ❌ not viable |
-| Basalt | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | ❌ not viable |
+| ORB-SLAM3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
+| Basalt | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 (VIO<VO) |
 | OKVIS2 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
 | OKVIS2-X | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
 | OpenVINS | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
@@ -73,12 +73,12 @@ the camera-IMU extrinsic correction. Next step for the whole table is N=1 -> N=3
 > non-deterministic (real-time player) - ~2x run-to-run spread, so N=3 matters here especially.
 > OKVIS2 (standalone) was built 2026-07-20 (`build_okvis2.sh`, needed -DHAVE_LIBREALSENSE=OFF
 > -DUSE_CUDA=OFF).
-> **zed2i field1 VIO = ❌ not viable, tested not skipped.** Basalt VIO gives 9.14 m / scale 0.816
-> vs VO 0.45 m / scale 0.99. Ruled out extrinsic (A/B/C: identity is correct), IMU noise, and time
-> offset - root cause is insufficient rotational excitation (mean |gyro| 4.7 deg/s, gyro-vs-VO
-> correlation 0.005). Scale/accel-bias are weakly observable on straight-line motion and drift over
-> 77 min. The `🔧 no-config` cells were not tested but would hit the same limit. **Use VO on zed2i.**
-> Not scaling these to N=3. See PROGRESS.md "ZED2i field dataset" section.
+> **zed2i field1 VIO:** Basalt VIO was run - 9.14 m / scale 0.816, i.e. worse than VO (0.45 m /
+> scale 0.99), hence "VIO<VO". Ruled out extrinsic (A/B/C: identity correct), IMU noise, and time
+> offset; root cause is insufficient rotational excitation (mean |gyro| 4.7 deg/s, gyro-vs-VO
+> correlation 0.005) - scale/accel-bias weakly observable on straight-line motion, drift over 77 min.
+> The other algos are `🔧 no-config` (need a stereo-inertial zed2i config; ORB-SLAM3's is stereo-only).
+> **Recommendation: use VO on zed2i.** Not worth scaling to N=3. See PROGRESS.md "ZED2i field dataset".
 
 ### VIO-LC (stereo + IMU + loop closure) - `results-vio-lc/`
 
