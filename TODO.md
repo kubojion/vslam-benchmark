@@ -26,16 +26,16 @@ Legend per cell: **done-N3** = 3 runs evaluated and aggregated | **done-N1** = 1
 
 ### VO (no IMU, no loop closure) - `results-vo/`
 
-Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready (config+data exist) | 🔧 no-config | ➖ no-mode (unsupported)
+Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/divergence | ⬜ ready (config+data exist) | 🔧 no-config | ➖ no-mode (unsupported)
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ⬜ ready | 🟡 N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | 🟡 N=1 |
-| Basalt | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 |
-| MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
-| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
-| DROID-SLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
-| OKVIS2 | 🟡 N=1 | 🟡 N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | 🔧 no-config |
+| ORB-SLAM3 | ⬜ ready | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ✅ N=1 |
+| Basalt | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
+| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
+| DROID-SLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
+| OKVIS2 | ✅ N=1 | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | 🔧 no-config |
 | OKVIS2-X | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | 🔧 no-config |
 | MASt3R-SLAM | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | 🔧 no-config |
 | MegaSaM | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | 🔧 no-config |
@@ -48,20 +48,20 @@ Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready (config+data exist) | 🔧 no-config | �
 
 ### VIO (stereo + IMU, no loop closure) - `results-vio/`
 
-Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config
+Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/divergence | ⬜ ready (config+data exist) | 🔧 no-config | ➖ no-mode (unsupported)
 
 All agri/EuRoC cells N=1 as of 2026-07-21. **No scale collapses remain** - hortimulti fixed via
 the camera-IMU extrinsic correction. Next step for the whole table is N=1 -> N=3.
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
-| Basalt | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 (VIO<VO) |
-| OKVIS2 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
-| OKVIS2-X | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
-| OpenVINS | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
-| AirSLAM | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
-| Voxel-SVIO | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🟡 N=1 | 🔧 no-config |
+| ORB-SLAM3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
+| Basalt | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (VIO<VO, completed with divergence) |
+| OKVIS2 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
+| OKVIS2-X | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
+| OpenVINS | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
+| AirSLAM | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
+| Voxel-SVIO | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
 
 > HortiMulti IMU: extracted - str02=190493 samples, str03=48448 samples. Path: `datasets/hortimulti/strawberry{02,03}/mav0/imu0/data.csv`
 > **HortiMulti VIO fix (2026-07-20):** all algorithms were scale-collapsed due to a wrong
@@ -82,12 +82,12 @@ the camera-IMU extrinsic correction. Next step for the whole table is N=1 -> N=3
 
 ### VIO-LC (stereo + IMU + loop closure) - `results-vio-lc/`
 
-Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ⬜ ready
+Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/divergence | ⬜ ready (config+data exist) | 🔧 no-config | ➖ no-mode (unsupported)
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 |
 |---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ⬜ ready | 🟡 N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
-| OKVIS2 | 🟡 N=1 | 🟡 N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| ORB-SLAM3 | ⬜ ready | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| OKVIS2 | ✅ N=1 | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | OKVIS2-X | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | AirSLAM (VI-SLAM) | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | MASt3R-SLAM (LC-on) | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
@@ -97,7 +97,7 @@ Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready | 🔧 no-config | ⬜ ready
 
 ### GNSS-VIO (stereo + IMU + GNSS) - `results-gnss-vio/`
 
-Legend: ✅ N=3 | 🟡 N=1 | ⬜ ready
+Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/divergence | ⬜ ready (config+data exist) | 🔧 no-config | ➖ no-mode (unsupported)
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 |
 |---|---|---|---|---|
