@@ -1,0 +1,51 @@
+%YAML:1.0
+# AirSLAM camera calibration for the ZED2i field1_110426_full_10fps_q90 dataset.
+#
+# Source: ZED2i stereo (SN30291010), 1920x1080 rectified grayscale PNG in
+#   mav0/cam0/data and mav0/cam1/data. Pre-rectified => distortion_type = 0.
+#
+# Rectified intrinsics (ZED factory):
+#   fx = fy = 1118.6947021484375, cx = 964.8566284179688, cy = 559.3102416992188
+#   baseline = 0.1198462504 m
+#
+# T_type 0 (EuRoC Tbc): cam0 identity (= body frame); cam1 displaced +baseline
+# along body x, so T_bc1 translation is -baseline in x.
+# IMU co-located with cam0 (ZED2i factory ~0.675 deg), treated as identity.
+
+image_height: 1080
+image_width: 1920
+use_imu: 1
+
+depth_lower_thr: 0.1
+depth_upper_thr: 50.0
+max_y_diff: 1
+
+distortion_type: 0   # 0 = undistorted / pre-rectified input
+
+cam0:
+  intrinsics: [1118.6947, 1118.6947, 964.8566, 559.3102]  # fx fy cx cy
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  T_type: 0
+  T:
+  - [1.0, 0.0, 0.0,  0.0]
+  - [0.0, 1.0, 0.0,  0.0]
+  - [0.0, 0.0, 1.0,  0.0]
+  - [0.0, 0.0, 0.0,  1.0]
+
+cam1:
+  intrinsics: [1118.6947, 1118.6947, 964.8566, 559.3102]  # fx fy cx cy
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  T_type: 0
+  T:
+  - [1.0, 0.0, 0.0, -0.1198462504]
+  - [0.0, 1.0, 0.0,  0.0]
+  - [0.0, 0.0, 1.0,  0.0]
+  - [0.0, 0.0, 0.0,  1.0]
+
+# IMU (ZED2i factory noise, recorded ~100 Hz). T_cam_imu identity (co-located).
+rate_hz: 100
+gyroscope_noise_density:     4.9920e-03   # rad/s/sqrt(Hz)
+gyroscope_random_walk:       4.2400e-02   # rad/s^2/sqrt(Hz)
+accelerometer_noise_density: 4.4000e-04   # m/s^2/sqrt(Hz)
+accelerometer_random_walk:   2.0200e-02   # m/s^3/sqrt(Hz)
+g_value: 9.812                            # Poznan, Poland (~52.29 deg N)

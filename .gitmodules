@@ -12,3 +12,7 @@
 [submodule "third_party/Pangolin"]
 	path = third_party/Pangolin
 	url = https://github.com/stevenlovegrove/Pangolin.git
+[submodule "src/okvis2x"]
+	path = src/okvis2x
+	url = https://github.com/ethz-mrl/OKVIS2-X.git
+	branch = main
