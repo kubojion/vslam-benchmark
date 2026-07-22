@@ -1,0 +1,22 @@
+# MASt3R-SLAM algorithm config for rosariov2 -- loop closure ON.
+# Schema is upstream's (config/base.yaml); `inherit` is resolved relative to the
+# MASt3R-SLAM repo root, which run_mast3r_slam.sh cds into.
+#
+# Camera intrinsics are NOT here -- main.py reads them from --calib
+# (configs/mast3r_slam/rosariov2_calib.yaml), not from --config.
+#
+# main.py has no --no-retrieval flag; retrieval.k is the only lever, so
+# k: 0 yields no loop-closure candidates (vo) and k: 3 is upstream's default.
+inherit: "config/base.yaml"
+
+use_calib: True
+
+retrieval:
+  k: 3
+  min_thresh: 5e-3
+
+# NOTE: MASt3R-SLAM does not fit in 12 GB VRAM on this sequence. It keeps every
+# keyframe on-GPU and offers no way to bound that: local_opt.window_size is read
+# but never applied upstream, and dataset.img_downsample breaks the model (the
+# checkpoint has a fixed 512-wide input). dataset.subsample: 2 was tried and
+# still OOM'd, so no workaround is encoded here -- it needs a larger card.

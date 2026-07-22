@@ -1,0 +1,8 @@
+# MASt3R-SLAM camera intrinsics for euroc_mav (rectified cam0, no distortion).
+# Passed via main.py --calib; schema matches upstream config/intrinsics.yaml.
+# Derived from the camera block of euroc_mav.yaml, which main.py
+# does not read (that file is the --config algorithm config).
+width: 752
+height: 480
+# fx, fy, cx, cy  (rectified -> no distortion terms)
+calibration: [458.654, 457.296, 367.215, 248.375]

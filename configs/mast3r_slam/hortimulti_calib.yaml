@@ -1,0 +1,8 @@
+# MASt3R-SLAM camera intrinsics for hortimulti (rectified cam0, no distortion).
+# Passed via main.py --calib; schema matches upstream config/intrinsics.yaml.
+# Derived from the camera block of hortimulti.yaml, which main.py
+# does not read (that file is the --config algorithm config).
+width: 640
+height: 480
+# fx, fy, cx, cy  (rectified -> no distortion terms)
+calibration: [262.7149, 262.7149, 329.431, 219.5617]

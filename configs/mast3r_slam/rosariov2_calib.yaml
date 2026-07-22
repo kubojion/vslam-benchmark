@@ -1,0 +1,8 @@
+# MASt3R-SLAM camera intrinsics for rosariov2 (rectified cam0, no distortion).
+# Passed via main.py --calib; schema matches upstream config/intrinsics.yaml.
+# Derived from the camera block of rosariov2.yaml, which main.py
+# does not read (that file is the --config algorithm config).
+width: 1280
+height: 720
+# fx, fy, cx, cy  (rectified -> no distortion terms)
+calibration: [648.8624, 648.8624, 645.0113, 348.2427]

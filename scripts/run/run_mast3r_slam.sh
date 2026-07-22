@@ -27,19 +27,23 @@ source "$WS/scripts/_paths.sh"
 canonicalize_dataset "$DATASET"
 resolve_run_type "$RUN_TYPE"
 
+# main.py exposes no --no-retrieval flag; loop closure is governed by
+# retrieval.k in the config (0 = no candidates). Hence one config per mode.
 case "$RUN_TYPE" in
-    vo)      LC_FLAG="--no-retrieval" ;;
-    vio-lc)  LC_FLAG="" ;;  # LC is on by default
+    vo)      CFG_MODE="vo" ;;
+    vio-lc)  CFG_MODE="vio_lc" ;;
     *)       echo "[mast3r_slam] ERROR: run_type must be vo or vio-lc (got: $RUN_TYPE)" >&2; exit 2 ;;
 esac
 
 SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/mast3r_slam/run${RUN_ID}"
 LOG="$WS/logs/${DATASET}_${SEQ}_mast3r_slam_${RUN_TYPE}_run${RUN_ID}.log"
-CFG="$WS/configs/mast3r_slam/${DATASET}.yaml"
+CFG="$WS/configs/mast3r_slam/${DATASET}_${CFG_MODE}.yaml"
+CALIB="$WS/configs/mast3r_slam/${DATASET}_calib.yaml"
 REPO="$WS/src/MASt3R-SLAM"
 
 [[ -f "$CFG" ]] || { echo "ERROR: no MASt3R-SLAM config at $CFG"; exit 2; }
+[[ -f "$CALIB" ]] || { echo "ERROR: no MASt3R-SLAM calib at $CALIB"; exit 2; }
 [[ -d "$REPO" ]] || { echo "ERROR: MASt3R-SLAM repo missing at $REPO (run scripts/build/setup_mast3r_slam_env.sh)"; exit 2; }
 
 IMG_DIR=""
@@ -62,18 +66,34 @@ trap "kill $MONPID 2>/dev/null || true" EXIT
 cd "$REPO"
 START=$(date +%s.%N)
 
-# TODO: the upstream entrypoint name varies (main_vo.py / demo.py / scripts/...).
-# Adjust the command below to match your checkout. Trajectory should be saved
-# in TUM format directly to $OUT_DIR/trajectory.txt.
+# main.py takes --save-as as a LABEL, not a path: it writes
+#   logs/<save-as>/<basename of --dataset>.txt
+# relative to its own cwd (the repo). Use a run-unique label, then move the
+# result into $OUT_DIR ourselves.
+SAVE_AS="bench_${DATASET}_${SEQ}_${RUN_TYPE}_run${RUN_ID}"
+rm -rf "$REPO/logs/$SAVE_AS"
+
 python3 main.py \
     --dataset "$IMG_DIR" \
     --config  "$CFG" \
-    --save-trajectory "$OUT_DIR/trajectory.txt" \
+    --calib   "$CALIB" \
+    --save-as "$SAVE_AS" \
     --no-viz \
-    $LC_FLAG \
     2>&1 | tee "$LOG"
 
 END=$(date +%s.%N)
+
+SEQ_STEM=$(basename "$IMG_DIR")
+TRAJ_SRC="$REPO/logs/$SAVE_AS/${SEQ_STEM}.txt"
+if [[ ! -f "$TRAJ_SRC" ]]; then
+    TRAJ_SRC=$(find "$REPO/logs/$SAVE_AS" -maxdepth 1 -name '*.txt' 2>/dev/null | head -1)
+fi
+if [[ -z "$TRAJ_SRC" || ! -s "$TRAJ_SRC" ]]; then
+    echo "[mast3r_slam] ERROR: no trajectory produced under $REPO/logs/$SAVE_AS" | tee -a "$LOG"
+    exit 1
+fi
+cp "$TRAJ_SRC" "$OUT_DIR/trajectory.txt"
+echo "[mast3r_slam] trajectory: $TRAJ_SRC -> $OUT_DIR/trajectory.txt" | tee -a "$LOG"
 
 DUR=$(python3 -c "print($END-$START)")
 NFR=$(wc -l < "$OUT_DIR/trajectory.txt" 2>/dev/null || echo 0)

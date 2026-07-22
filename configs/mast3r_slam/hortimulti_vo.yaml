@@ -1,0 +1,16 @@
+# MASt3R-SLAM algorithm config for hortimulti -- loop closure OFF.
+# Schema is upstream's (config/base.yaml); `inherit` is resolved relative to the
+# MASt3R-SLAM repo root, which run_mast3r_slam.sh cds into.
+#
+# Camera intrinsics are NOT here -- main.py reads them from --calib
+# (configs/mast3r_slam/hortimulti_calib.yaml), not from --config.
+#
+# main.py has no --no-retrieval flag; retrieval.k is the only lever, so
+# k: 0 yields no loop-closure candidates (vo) and k: 3 is upstream's default.
+inherit: "config/base.yaml"
+
+use_calib: True
+
+retrieval:
+  k: 0
+  min_thresh: 5e-3
