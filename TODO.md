@@ -6,7 +6,8 @@
 > ORB-SLAM3 attempt, so `benchmark-vio.csv` has 55 rows. VIO-LC has 3 rows. GNSS-VIO N=1 is
 > complete: 16 headline runs (4 algorithms x 4 GPS-bearing sequences), including the retained
 > sequence5 PPK-versus-conventional study. Remaining priorities are N=3 validation, corrected-
-> extrinsic OpenVINS+GPS HortiMulti reruns, evaluator hardening and reproducible OKVIS2-X automation.
+> extrinsic OpenVINS+GPS HortiMulti reruns and evaluator hardening. OKVIS2-X automation is now
+> committed (build script, runner, GPS converter), so its remaining gaps are runs, not tooling.
 
 ---
 
@@ -34,7 +35,7 @@ Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/div
 | AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
 | DROID-SLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ config only |
 | OKVIS2 | ✅ N=1 | ✅ N=1 | 🔧 no-config | 🔧 no-config | 🔧 no-config | 🔧 no-config | 🔧 no-config | 🔧 no-config |
-| OKVIS2-X | 🟡 manual N=1 | 🟡 manual N=1 | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | 🔧 no-config |
+| OKVIS2-X | ✅ N=1 | ✅ N=1 | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | 🔧 no-config |
 | MASt3R-SLAM | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | 🔧 no-config |
 | MegaSaM | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | 🔧 no-config |
 
@@ -58,7 +59,7 @@ two VO baselines. Next step for the core table is N=1 -> N=3.
 | ORB-SLAM3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 failed attempt (no trajectory) |
 | Basalt | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (9.14 m, VIO<VO) |
 | OKVIS2 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (scale collapse, 17.7 m) |
-| OKVIS2-X | 🟡 manual N=1 | 🟡 manual N=1 | 🟡 manual N=1 | 🟡 manual N=1 | 🟡 manual N=1 | 🟡 manual N=1 | 🟡 manual N=1 | 🟡 manual N=1 (scale collapse, 18.3 m) |
+| OKVIS2-X | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (scale collapse, 18.3 m) |
 | OpenVINS | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (scale collapse, 5.33 m) |
 | AirSLAM | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (3.90 m, no collapse, VIO<VO) |
 | Voxel-SVIO | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 (3.71 m, no collapse, VIO<VO; ~71 s init delay) |
@@ -96,7 +97,7 @@ Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/div
 |---|---|---|---|---|---|---|---|
 | ORB-SLAM3 | ⬜ ready | ✅ N=1 | ⬜ ready | ⬜ ready | 🔧 no-config | 🔧 no-config | 🔧 no-config |
 | OKVIS2 | ✅ N=1 | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
-| OKVIS2-X | 🔧 automation missing | 🔧 automation missing | 🔧 automation missing | 🔧 automation missing | 🔧 automation missing | 🔧 automation missing | 🔧 automation missing |
+| OKVIS2-X | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | AirSLAM (VI-SLAM) | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | MASt3R-SLAM (LC-on) | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 
@@ -117,9 +118,9 @@ Legend: ✅ successful run (N=x) | 🟡 completed but needs validation/rerun | �
 > EuRoC-MAV is **not** part of the gnss-vio track (no GPS in the dataset).
 > Runners: `run_cifasis_gnss_si.sh`, `run_rtabmap_gps.sh`, `run_vins_fusion_gps.sh`, `run_openvins_gps.sh` (all accept `<dataset> <seq> [run_id] gnss-vio`).
 >
-> OKVIS2-X is not one of these 16 runs. Its source gitlink and Rosario GNSS configs are present,
-> but the top-level build script, runner and GPS converter are not committed; HortiMulti GNSS
-> configs are also absent. It can be automated later without blocking this merge.
+> OKVIS2-X is not one of these 16 runs. Build script, runner and GPS converter are now
+> committed and its Rosario GNSS configs exist, so seq1/seq5 are ready to run; HortiMulti
+> GNSS configs are still absent.
 > Use `run_benchmark.sh <dataset> <seq> <algo> <N> gnss-vio` to run + evaluate automatically.
 >
 > **GPS quality:** rosariov2 **seq5 now uses high-quality PPK GPS** (`/reach_1/ppk/fix`, vertical RMSE
@@ -211,22 +212,25 @@ Legend: ✅ successful run (N=x) | 🟡 completed but needs validation/rerun | �
 
 ### OKVIS2-X
 
-Source and result integration exists independently of OKVIS2, but the reproducible top-level build,
-run and GPS-conversion automation is not committed yet. Current result artifacts came from manual runs.
+Source and result integration exists independently of OKVIS2. The top-level build, run and
+GPS-conversion automation is now committed; the existing VO/VIO result artifacts predate it and
+came from manual runs, so they have not yet been reproduced through the runner.
 
 | Task | Status |
 |---|---|
 | Source submodule/gitlink pinned (`src/okvis2x`) | `[x]` |
-| Reproducible top-level build script (`build_okvis2x.sh`) | `[ ]` not committed |
-| Top-level multi-mode runner (`run_okvis2x.sh`) | `[ ]` not committed |
+| Reproducible top-level build script (`build_okvis2x.sh`) | `[x]` |
+| Top-level multi-mode runner (`run_okvis2x.sh`) | `[x]` (all four run types; `OKVIS2X_CONFIG` override for sweeps) |
 | Configs for rosariov2 / EuRoC / HortiMulti / ZED2i | `[x]` (27 committed files) |
 | gnss-vio configs (rosariov2 seq1+seq5) | `[x]` |
-| `gps.csv` -> `mav0/gps0/data_raw.csv` converter | `[ ]` not committed |
+| `gps.csv` -> `mav0/gps0/data_raw.csv` converter | `[x]` |
 | Register in eval pipeline (LOG_PATTERNS, plot dicts) | `[x]` |
 | Measure `r_SA` (GNSS antenna lever arm) on the robot | `[ ]` (configs currently assume `[0,0,0]`) |
+| First gnss-vio runs (rosariov2 seq1+seq5) | `[ ]` |
+| Reproduce VO/VIO results through `run_okvis2x.sh` | `[ ]` (current artifacts are manual) |
 | Manual N=1 VIO results | `[x]` all 7 core sequences plus ZED2i (see VIO matrix); N=3 pending |
 | Recover HortiMulti IMU + GPS from hortimulti.zip | `[x]` (str02 190493/7620, str03 48448/1939 - counts match bag) |
-| HortiMulti gnss_vio configs | `[ ]` |
+| HortiMulti gnss_vio configs | `[ ]` (GPS recovered for both sequences, so unblocked) |
 | Head-to-head OKVIS2 vs OKVIS2-X on rosariov2 vio | `[x]` seq1: OKVIS2 18.89 / OKVIS2-X 18.89; seq5: 20.29 / 20.40 - near-identical (shared estimator core) |
 
 ### MASt3R-SLAM
