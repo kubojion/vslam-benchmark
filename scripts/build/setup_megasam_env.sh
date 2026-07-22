@@ -41,6 +41,40 @@ cd "$REPO"
 # Common extras used by the MegaSaM demo
 pip install opencv-python imageio[ffmpeg] scipy matplotlib tqdm einops
 
+# ---------------------------------------------------------------------------
+# Pretrained checkpoints. MegaSaM is a multi-stage pipeline and needs three:
+#   checkpoints/megasam_final.pth                    ships in the repo (20 MB)
+#   Depth-Anything/checkpoints/depth_anything_vitl14.pth   HuggingFace (1.3 GB)
+#   cvd_opt/raft-things.pth                          RAFT release (21 MB)
+#
+# Upstream points at a Google Drive folder for the RAFT weight, but gdown fails
+# on it ("AttributeError: 'NoneType' object has no attribute 'groups'" -- Drive's
+# current HTML). raft-things.pth originates from princeton-vl/RAFT, whose own
+# download_models.sh pulls the same file from Dropbox, so fetch it there instead.
+# ---------------------------------------------------------------------------
+mkdir -p "$REPO/Depth-Anything/checkpoints" "$REPO/cvd_opt"
+
+DA="$REPO/Depth-Anything/checkpoints/depth_anything_vitl14.pth"
+if [[ ! -f "$DA" ]]; then
+    echo "[megasam] downloading DepthAnything checkpoint (1.3 GB)..."
+    wget -q --show-progress -O "$DA" \
+      "https://huggingface.co/spaces/LiheYoung/Depth-Anything/resolve/main/checkpoints/depth_anything_vitl14.pth"
+fi
+
+RAFT="$REPO/cvd_opt/raft-things.pth"
+if [[ ! -f "$RAFT" ]]; then
+    echo "[megasam] downloading RAFT checkpoints (79 MB zip)..."
+    TMPZ=$(mktemp -t raft_models_XXXXXX.zip)
+    wget -q --show-progress -O "$TMPZ" "https://dl.dropboxusercontent.com/s/4j4z58wuv8o0mfz/models.zip"
+    TMPD=$(mktemp -d)
+    unzip -o -q "$TMPZ" -d "$TMPD"
+    cp "$(find "$TMPD" -name raft-things.pth | head -1)" "$RAFT"
+    rm -rf "$TMPZ" "$TMPD"
+fi
+
+for f in "$REPO/checkpoints/megasam_final.pth" "$DA" "$RAFT"; do
+    [[ -f "$f" ]] || { echo "[megasam] ERROR: missing checkpoint $f" >&2; exit 1; }
+done
+
 echo "[megasam] env $ENV ready. Activate with: conda activate $ENV"
-echo "[megasam] NOTE: follow $REPO/README.md to download model weights"
-echo "          before running scripts/run/run_megasam.sh."
+echo "[megasam] checkpoints present: megasam_final, depth_anything_vitl14, raft-things"
