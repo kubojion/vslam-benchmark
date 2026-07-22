@@ -51,6 +51,17 @@ ALGO_COLOUR = {
     "cifasis_gnss_si": "#1f77b4",   # blue
     "vins_fusion_gps": "#bcbd22",   # yellow-green
     "rtabmap_gps":     "#7f7f7f",   # grey
+    # VIO algorithms.
+    # NOTE: the ten tab10 colours are all claimed above, so these use tab20b
+    # darks to stay mutually distinguishable. plot_ate_vs_fps.py and
+    # plot_benchmark_summary.py assign okvis2x=#1f77b4 / okvis2=#bcbd22, which
+    # collide with cifasis_gnss_si / vins_fusion_gps *here* -- those files plot
+    # one run-type at a time so they never draw both, but the "shared palette"
+    # comment in them is aspirational, not actual.
+    "okvis2x":         "#393b79",   # dark indigo
+    "okvis2":          "#8c6d31",   # dark olive
+    "openvins":        "#843c39",   # dark brick
+    "voxel_svio":      "#7b4173",   # dark magenta
 }
 ALGO_LABEL = {
     "orbslam3":        "ORB-SLAM3",
@@ -65,6 +76,11 @@ ALGO_LABEL = {
     "vins_fusion_gps": "VINS-Fusion+GPS",
     "rtabmap_gps":     "RTAB-Map+GPS",
     "openvins_gps":    "OpenVINS+GPS",
+    # VIO algorithms
+    "okvis2x":         "OKVIS2-X",
+    "okvis2":          "OKVIS2",
+    "openvins":        "OpenVINS",
+    "voxel_svio":      "Voxel-SVIO",
 }
 
 GT_COLOUR    = "black"
@@ -442,7 +458,8 @@ def main():
     ap.add_argument("dataset")
     ap.add_argument("seq")
     ap.add_argument("--algos",
-                    default="orbslam3,droidslam,macvo,basalt,airslam,mast3r_slam,megasam")
+                    default="orbslam3,droidslam,macvo,basalt,airslam,mast3r_slam,"
+                            "megasam,okvis2,okvis2x,openvins,voxel_svio")
     ap.add_argument("--type", dest="run_type", default="vo",
                     choices=["vo", "vio", "vio-lc", "gnss-vio"],
                     help="Which results tree to read (default: vo)")

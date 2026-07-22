@@ -284,9 +284,63 @@ are already in this layout. The bundled ROS 1 data player
 (`scripts/run/voxel_svio_data_player.py`) reads this directly and publishes
 on `/cam0/image_raw`, `/cam1/image_raw`, `/imu0`.
 
-## 13. GNSS-VIO algorithms
+## 13. OKVIS2-X (native, no ROS)
 
-The `gnss-vio` run-type adds three GPS-aware algorithms. Each writes to
+OKVIS2-X is the successor to OKVIS2 (tightly-coupled GNSS, LiDAR, dense depth
+submapping). Only the sparse estimator is built here. It is wired in completely
+independently of OKVIS2 - separate source tree, configs, runner and results -
+so the two can be compared head-to-head in the same CSV.
+
+`src/okvis2x` is a git submodule, so a `--recurse-submodules` clone already has
+the source. Then:
+
+```bash
+# 1. system packages (Ubuntu 22.04)
+sudo apt install cmake libgoogle-glog-dev libeigen3-dev libsuitesparse-dev \
+                 libboost-dev libboost-filesystem-dev libopencv-dev \
+                 libpcl-dev libgeographic-dev
+# Ubuntu 24.04: libgeographic-dev -> libgeographiclib-dev
+# Ceres needs BLAS/LAPACK; libopenblas-dev + liblapack-dev is enough
+# (upstream suggests libatlas-base-dev, but any implementation works).
+
+# 2. build (~15 min: bundled Ceres, OpenGV, BRISK, DBoW2)
+bash scripts/build/build_okvis2x.sh
+# -> src/okvis2x/build/okvis_app_synchronous
+```
+
+Four upstream quirks the build script handles for you, worth knowing if you
+ever build by hand:
+
+* OKVIS2-X's own `supereight2` submodule is declared with an **SSH** URL in its
+  `.gitmodules`, so a recursive clone fails without a GitHub SSH key even though
+  the repo is public. The script rewrites it to HTTPS.
+* If an earlier clone aborted partway, some nested submodules are left
+  registered-but-empty and a plain `git submodule update --init --recursive`
+  will **not** repair them (cmake then fails with "doesn't exist. Did you forget
+  to update the git submodules?"). The script passes `--force` and then verifies
+  each one.
+* The bundled Ceres defaults to `USE_CUDA=ON`. With a CUDA toolkit present it
+  tries to compile its CUDA kernels with nvcc against GCC 11 headers and fails
+  (`parameter packs not expanded with '...'`). The estimator is CPU-only, so the
+  script passes `-DUSE_CUDA=OFF`.
+* `okvis_app_synchronous` loads its DBoW2 vocabulary from its **own directory**
+  and exits if it is missing; nothing in upstream CMake puts it there. The script
+  copies `resources/small_voc.yml.gz` next to the binary.
+
+The build is estimator-only (`-DBUILD_ROS2=OFF -DHAVE_LIBREALSENSE=OFF
+-DUSE_NN=OFF -DUSE_CUDA=OFF`); the dense depth / LiDAR submapping apps
+(`okvis2x_app_*`) are not built, as the benchmark has no metrics for their
+submap meshes.
+
+Verify with the 200-frame smoke sequence (~15 s):
+
+```bash
+bash scripts/run/run_okvis2x.sh euroc smoke_mh_01_easy_200 9001 vio
+```
+
+## 14. GNSS-VIO algorithms
+
+The `gnss-vio` run-type adds four GPS-aware algorithms. Each writes to
 `results-gnss-vio/` and `benchmark-gnss-vio.csv`.
 
 | Algorithm | Setup | ROS |
@@ -294,8 +348,9 @@ The `gnss-vio` run-type adds three GPS-aware algorithms. Each writes to
 | CIFASIS GNSS-SI | Docker image, builds Pangolin + ORB-SLAM3 + GNSS-SI inside | ROS 1 Noetic |
 | RTAB-Map | `sudo apt install ros-humble-rtabmap-ros` | ROS 2 Humble |
 | VINS-Fusion | Docker image, builds Ceres + VINS-Fusion inside | ROS 1 Noetic |
+| OKVIS2-X | native cmake build, see §13 | none |
 
-All three consume the same EuRoC-format data layout plus a `gps.csv` file
+All four consume the same EuRoC-format data layout plus a `gps.csv` file
 (header `t,lat,lon,alt[,cov_xx,cov_yy,cov_zz,status]`, timestamps in seconds).
 
 ### 13a. CIFASIS GNSS-SI (Cremona et al., JFR 2023)

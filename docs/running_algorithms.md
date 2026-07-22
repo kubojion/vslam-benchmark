@@ -70,6 +70,7 @@ Direct single runs forward run_type as the 4th positional:
 ```bash
 bash scripts/run/run_orbslam3.sh    rosariov2 sequence2 1 vo
 bash scripts/run/run_okvis2.sh      rosariov2 sequence2 1 vio
+bash scripts/run/run_okvis2x.sh     rosariov2 sequence2 1 vio
 bash scripts/run/run_openvins.sh    rosariov2 sequence2 1 vio
 bash scripts/run/run_droidslam.sh   rosariov2 sequence2 1 vo
 bash scripts/run/run_macvo.sh       rosariov2 sequence2 1 vo
@@ -88,6 +89,7 @@ where `<RESULTS_ROOT>` is `results-vo/`, `results-vio/`, or `results-vio-lc/` de
 |-------------|------|-------|----------|-------|
 | ORB-SLAM3   | yes (needs LC-off build, see PROGRESS.md) | yes (stereo-inertial) | yes (stereo-inertial + LC) | |
 | OKVIS2      | yes | yes | yes | configs exist for rosariov2, EuRoC, and hortimulti; use OKVIS2-compatible IMU noise values (not raw Allan) - see PROGRESS.md Phase 4.6 |
+| OKVIS2-X    | yes (best-effort) | yes | yes | also supports `gnss-vio` (tightly-coupled GNSS). `mav0/imu0/data.csv` is required for **every** run type, including `vo` |
 | OpenVINS    | no (MSCKF requires IMU) | yes | no (no built-in LC) | Runs inside `openvins:humble` Docker image; datasets need `mav0/imu0/data.csv` |
 | Voxel-SVIO  | no (MSCKF requires IMU) | yes | no (no built-in LC) | Runs inside `vslam_voxel_svio:noetic` Docker image (ROS 1 Noetic, CPU-only); datasets need `mav0/imu0/data.csv` |
 | AirSLAM     | yes | yes | yes | VIO/VIO-LC require `_camera_vio.yaml` (use_imu: 1) + `mav0/imu0/data.csv`; VIO-LC runs two-step (visual_odometry + map_refinement) |
@@ -102,6 +104,19 @@ where `<RESULTS_ROOT>` is `results-vo/`, `results-vio/`, or `results-vio-lc/` de
 
 * **ORB-SLAM3** needs the executable `stereo_euroc` from `src/ORB_SLAM3/Examples/Stereo/`. Re-run `./build.sh` if it's missing.
 * **OKVIS2** uses the binary `src/okvis2/build/okvis_app_synchronous`. Config files: `configs/okvis2/<dataset>_<seq>_vio.yaml` (or `_vio_lc.yaml` / `_vo.yaml` - per-sequence, per-mode). Run type is controlled by the `--run-type` flag passed by `run_okvis2.sh`. Configs exist for rosariov2 (seq1, seq5), EuRoC (MH_01/03/05), and HortiMulti (strawberry02/03). **IMU noise params must use OKVIS2-compatible values** - raw Allan-variance numbers from sensor calibration are typically 12-840x too tight for OKVIS2's MAP estimator and cause scale collapse. Use the D435i reference values in the rosariov2 configs as a starting point. See PROGRESS.md Phase 4.6 for the full diagnosis and corrected params.
+* **OKVIS2-X** uses the binary `src/okvis2x/build/okvis_app_synchronous`, built by `bash scripts/build/build_okvis2x.sh` (see [setup.md](setup.md) §13). It is wired in **completely independently of OKVIS2** - separate source tree, configs, runner and results dir - so the two can be compared head-to-head in the same CSV. Config files: `configs/okvis2x/<dataset>_<seq>_<vo|vio|vio_lc|gnss_vio>.yaml`. Things worth knowing:
+  * The app signature is `okvis_app_synchronous <config.yaml> <dataset-folder> <output-dir>`. The dataset folder is `mav0/` (the directory holding `cam0/`, `imu0/`, `gps0/`) - **not** the sequence root. Unlike OKVIS2 it writes straight to the output dir, so nothing lands in `datasets/`. (The upstream README documents a 4-argument form with a second `se2-config`; that applies to the `okvis2x_app_*` mapping apps, not this one.)
+  * `mav0/imu0/data.csv` is opened unconditionally by the dataset reader, so it is required even for `vo` (where `imu_parameters.use: false`). Generate it with `python3 scripts/data/imu_to_euroc.py <seq_dir>`.
+  * The reader takes its image list from `mav0/cam{0,1}/data.csv` and aborts with `no images found for camera N` if absent - it does **not** fall back to listing `data/`. `run_okvis2x.sh` auto-generates both manifests on first use, as `run_basalt.sh` does.
+  * **IMU noise params must use OKVIS2-compatible values** - the shipped configs carry the corrected D435i-reference values; see PROGRESS.md Phase 4.6. `vo` is best-effort: the front-end is not designed for IMU-less stereo.
+  * For `vio-lc` the runner takes the post-BA loop-closed trajectory (`okvis2-slam-final-ba_trajectory.csv`); for the other run types it takes the causal estimate. All raw CSVs are kept in the run dir.
+  * OKVIS2-X does not log *accepted* visual loop closures, so `loop_closures` stays empty for `vio-lc` runs. That is a logging limitation, not a sign that LC is off.
+  * **Parameter sweeps**: set `OKVIS2X_CONFIG=<path>` to override the run-type -> config mapping, and give the run its own `run_id` so it lands in a separate `run<N>/`:
+    ```bash
+    OKVIS2X_CONFIG=configs/okvis2x/sweeps/my_variant.yaml \
+      bash scripts/run/run_okvis2x.sh rosariov2 sequence1 9002 vio
+    ```
+    The runner reads `do_loop_closures` / `do_extrinsics` back out of whichever config it used to derive the app's output filenames, so an overridden config cannot desync them.
 * **DROID-SLAM** runs in the `droidenv` conda env. The key VRAM-tuning parameter is `--filter_thresh`: the minimum optical-flow confidence required to keep a frame in the bundle adjustment window. Lower values process more frames but consume more VRAM. The default in `run_droidslam.sh` is `--filter_thresh 6.0`, which was empirically the lowest value that fits in VRAM on long sequences (Rosario, HortiMulti) without OOM. `--stride` defaults to 1 (all frames). The initial Rosario seq1 benchmark used `stride=2` (50% of frames); the final 3-run benchmark used `stride=1 --filter_thresh 6.0`. ATE barely changed between the two (45.37 vs 45.00 m), confirming the failure is domain-mismatch, not frame density.
 * **MAC-VO** runs in the `macvo` conda env. The config's `root:` field uses a `__WS__` placeholder that `run_macvo.sh` substitutes with the workspace root at launch - never hardcode a path.
 * **Basalt** runs the prebuilt binary `basalt_vio` (installed to `~/.local/bin/`) which `run_basalt.sh` sources via `~/.basalt/env`. Two config files are required: a per-dataset camera calibration (`configs/basalt/<dataset>_calib.json`) and a shared VO config (`configs/basalt/vo_config.json`). The calibration uses the EuRoC JSON format (pinhole camera model, flat vignette for rectified images). `run_basalt.sh` auto-generates `mav0/cam0/data.csv` and `mav0/cam1/data.csv` on first use - no manual data prep needed. Basalt outputs TUM-format timestamps already in SECONDS (no conversion needed, unlike ORB-SLAM3). The `vio_min_triangulation_dist` in `vo_config.json` must be set BELOW the stereo baseline of the smallest-baseline dataset (currently 0.03 m for Rosario v2 baseline of 4.97 cm).
@@ -137,10 +152,20 @@ For HortiMulti add `configs/macvo/hortimulti_strawberry04.yaml`; ORB-SLAM3 / Bas
 
 ## GNSS-VIO algorithms (run_type=gnss-vio)
 
-Four algorithms are wired into the `gnss-vio` track. All four require a
+Five algorithms are wired into the `gnss-vio` track. All five require a
 `gps.csv` file in the sequence directory (header
 `t,lat,lon,alt[,cov_xx,cov_yy,cov_zz,status]`). They write to
 `results-gnss-vio/` and contribute to `benchmark-gnss-vio.csv`.
+
+The four ROS-based runners below replay `gps.csv` over a ROS topic via a data
+player. **OKVIS2-X is the exception**: it is not a ROS node and reads GNSS from
+a file inside the dataset, so `run_okvis2x.sh` converts `gps.csv` into
+`mav0/gps0/data_raw.csv` on first use via `scripts/data/gps_to_okvis2x.py`. Run
+that by hand to override the assumed accuracy, e.g. for PPK fixes:
+
+```bash
+python3 scripts/data/gps_to_okvis2x.py datasets/rosariov2/sequence1 --h-err 0.2 --v-err 0.3
+```
 
 * **CIFASIS GNSS-SI** runs inside the `vslam_cifasis_gnss_si:noetic` Docker
   container (ROS 1 Noetic). Build it once with `bash scripts/setup/setup_cifasis_gnss_si_docker.sh`
@@ -183,6 +208,15 @@ Four algorithms are wired into the `gnss-vio` track. All four require a
   `/odometry/filtered`. This is the only *online* loose-GPS estimator (the EKF
   corrects in real time, vs VINS-Fusion's offline pose-graph). Only `gnss-vio`
   is supported.
+
+* **OKVIS2-X** runs natively (no Docker, no ROS) from
+  `src/okvis2x/build/okvis_app_synchronous` with
+  `configs/okvis2x/<dataset>_<seq>_gnss_vio.yaml`, which sets
+  `gps_parameters.data_type: geodetic`. GNSS is fused **tightly-coupled**, the
+  same class as CIFASIS GNSS-SI (VINS-Fusion and OpenVINS+GPS are loosely
+  coupled). Note `r_SA` - the GNSS antenna position in the IMU frame - is
+  currently `[0, 0, 0]` in the shipped configs; measure it on the robot before
+  trusting absolute accuracy.
 
 `scripts/run/gnss_data_player.py` (ROS 1) and
 `scripts/run/gnss_data_player_ros2.py` (ROS 2) replay an EuRoC-style

@@ -10,7 +10,7 @@
 |---|---|---|
 | **ORB-SLAM3** | Classical feature-based, stereo / stereo-inertial, optional LC | [kubojion/ORB_SLAM3 @ vslam-benchmark-patches](https://github.com/kubojion/ORB_SLAM3/tree/vslam-benchmark-patches). LC-on results quarantined in `obsolete/`; VO-clean re-run pending. |
 | **OKVIS2** | Sliding-window MAP stereo-inertial, optional DBoW + Sim3 LC | [ethz-mrl/okvis2](https://github.com/ethz-mrl/okvis2) (cmake build, system deps) |
-| **OKVIS2-X** | Multi-sensor OKVIS2 extension; VO/VIO/VIO-LC/GNSS capability | [ethz-mrl/OKVIS2-X](https://github.com/ethz-mrl/OKVIS2-X) (source/config/results committed; top-level build/run/GPS automation pending) |
+| **OKVIS2-X** | Multi-sensor OKVIS2 extension; VO/VIO/VIO-LC/GNSS capability | [ethz-mrl/OKVIS2-X](https://github.com/ethz-mrl/OKVIS2-X) (cmake build, system deps). Wired in independently of OKVIS2: own source tree, configs, runner and results. |
 | **MAC-VO** | Hybrid (learned uncertainty), stereo VO | [kubojion/MAC-VO @ vslam-benchmark-patches](https://github.com/kubojion/MAC-VO/tree/vslam-benchmark-patches) |
 | **Basalt** | Optimization-based stereo VO / VIO | [VladyslavUsenko/basalt](https://gitlab.com/VladyslavUsenko/basalt) (binary install v0.1.7) |
 | **AirSLAM** | Deep-feature point-line VO / VIO / V-SLAM (TRO 2025) | [sair-lab/AirSLAM](https://github.com/sair-lab/AirSLAM) (Docker, ROS Noetic + TensorRT) |
@@ -83,7 +83,7 @@ warn for unsupported combinations:
 |-------------|------|-------|----------|
 | ORB-SLAM3   | yes (requires LC-off build) | yes | yes |
 | OKVIS2      | yes | yes | yes (IMU sigmas need 5-10x inflation, see PROGRESS.md) |
-| OKVIS2-X    | manual results; runner pending | manual results; runner pending | runner pending |
+| OKVIS2-X    | yes (best-effort, no IMU) | yes | yes (also `gnss-vio`: tightly-coupled GNSS) |
 | AirSLAM     | yes | yes | yes |
 | Basalt      | yes | yes | (no LC) |
 | OpenVINS    | (no VO mode) | yes (+gnss-vio via robot_localization) | (no LC) |
@@ -191,6 +191,35 @@ Representative VIO numbers (Phase 2, N=1 unless noted):
 | Voxel-SVIO | Rosario v2 | seq1 | 4.40 m | 1 |
 | Voxel-SVIO | HortiMulti | strawberry02 | 5.83 m | 1 |
 
+Representative GNSS-VIO numbers (N=1, all 16 runs; source `benchmark-gnss-vio.csv`):
+
+| Algorithm | Dataset | Seq | ATE Sim3 | Scale | N |
+|---|---|---|---|---|---|
+| VINS-Fusion+GPS | Rosario v2 | seq1 | **1.188 m** | 1.006 | 1 |
+| RTAB-Map+GPS | Rosario v2 | seq1 | 2.138 m | 1.019 | 1 |
+| OpenVINS+GPS | Rosario v2 | seq1 | 2.388 m | 1.022 | 1 |
+| CIFASIS GNSS-SI | Rosario v2 | seq1 | 3.583 m | 1.019 | 1 |
+| VINS-Fusion+GPS | Rosario v2 | seq5 | **0.911 m** | 1.002 | 1 |
+| CIFASIS GNSS-SI | Rosario v2 | seq5 | 2.062 m | 1.019 | 1 |
+| OpenVINS+GPS | Rosario v2 | seq5 | 4.179 m | 1.013 | 1 |
+| RTAB-Map+GPS | Rosario v2 | seq5 | 4.901 m | 1.011 | 1 |
+| VINS-Fusion+GPS | HortiMulti | strawberry02 | **4.899 m** | 1.034 | 1 |
+| RTAB-Map+GPS | HortiMulti | strawberry02 | 6.298 m | 1.043 | 1 |
+| CIFASIS GNSS-SI | HortiMulti | strawberry02 | 7.256 m | 1.022 | 1 |
+| OpenVINS+GPS | HortiMulti | strawberry02 | 30.865 m | 0.554 | 1 |
+| CIFASIS GNSS-SI | HortiMulti | strawberry03 | **1.502 m** | 1.042 | 1 |
+| RTAB-Map+GPS | HortiMulti | strawberry03 | 1.764 m | 1.027 | 1 |
+| VINS-Fusion+GPS | HortiMulti | strawberry03 | 2.395 m | 1.033 | 1 |
+| OpenVINS+GPS | HortiMulti | strawberry03 | 16.496 m | 0.165 | 1 |
+
+GNSS fusion is the strongest track on the agricultural sequences: VINS-Fusion+GPS
+wins three of the four, and every method except OpenVINS+GPS holds scale within
+4% of metric. OpenVINS+GPS collapses on both HortiMulti sequences (scale 0.554
+and 0.165) - the `robot_localization` filter never converges there, so those two
+rows are failures rather than accuracy figures. Note the two Rosario sequences
+use PPK-quality GPS; see PROGRESS.md for the GPS-quality study (measured PPK vs
+conventional) and the vertical-noise investigation.
+
 All seven VIO algorithms now have corrected-extrinsic N=1 results on both HortiMulti sequences,
 with scale near 1. The older vibration-floor/algorithm-limit conclusion was invalidated by applying
 the rectification rotation and correcting transform direction. These are provisional validation
@@ -224,4 +253,4 @@ This benchmarking framework (configs/, scripts/, docs/, results/) is released
 under the MIT License - see [LICENSE](LICENSE).
 The SLAM algorithms remain under their respective upstream licenses
 (ORB-SLAM3: GPLv3, MAC-VO: Apache-2.0, AirSLAM: GPL-3.0, OpenVINS: GPL-3.0,
-DROID-SLAM: BSD-3-Clause, MASt3R-SLAM: CC-BY-NC-SA-4.0).
+DROID-SLAM: BSD-3-Clause, MASt3R-SLAM: CC-BY-NC-SA-4.0, OKVIS2-X: BSD-3-Clause).
