@@ -60,7 +60,7 @@ bash scripts/run/run_benchmark.sh rosariov2 sequence2 airslam 3 vio
 # Full V-SLAM (IMU + LC) with AirSLAM:
 bash scripts/run/run_benchmark.sh rosariov2 sequence2 airslam 3 vio-lc
 
-# Monocular scaffolded algorithms:
+# Monocular algorithms (MegaSaM: 3-stage pipeline; MASt3R-SLAM: needs >12 GB VRAM):
 bash scripts/run/run_benchmark.sh euroc_mav MH_01_easy megasam     1 vo
 bash scripts/run/run_benchmark.sh euroc_mav MH_01_easy mast3r_slam 1 vio-lc  # LC enabled
 ```
@@ -96,8 +96,8 @@ where `<RESULTS_ROOT>` is `results-vo/`, `results-vio/`, or `results-vio-lc/` de
 | Basalt      | yes (`--use-imu false`) | yes (`--use-imu true`) | no (Basalt has no LC) | |
 | MAC-VO      | yes | no (vision-only) | no (vision-only) | |
 | DROID-SLAM  | yes (dropped; results kept) | no | no | |
-| MegaSaM     | yes | no | no | monocular only |
-| MASt3R-SLAM | yes (LC disabled) | no | yes (LC enabled, IMU still off) | monocular only |
+| MegaSaM     | yes | no | no | monocular only; 3-stage pipeline, see note below |
+| MASt3R-SLAM | yes (retrieval.k=0) | no | yes (retrieval.k=3, IMU still off) | monocular only; **needs >12 GB VRAM**, see note below |
 
 
 ## Notes per algorithm
@@ -118,6 +118,19 @@ where `<RESULTS_ROOT>` is `results-vo/`, `results-vio/`, or `results-vio-lc/` de
     ```
     The runner reads `do_loop_closures` / `do_extrinsics` back out of whichever config it used to derive the app's output filenames, so an overridden config cannot desync them.
 * **DROID-SLAM** runs in the `droidenv` conda env. The key VRAM-tuning parameter is `--filter_thresh`: the minimum optical-flow confidence required to keep a frame in the bundle adjustment window. Lower values process more frames but consume more VRAM. The default in `run_droidslam.sh` is `--filter_thresh 6.0`, which was empirically the lowest value that fits in VRAM on long sequences (Rosario, HortiMulti) without OOM. `--stride` defaults to 1 (all frames). The initial Rosario seq1 benchmark used `stride=2` (50% of frames); the final 3-run benchmark used `stride=1 --filter_thresh 6.0`. ATE barely changed between the two (45.37 vs 45.00 m), confirming the failure is domain-mismatch, not frame density.
+* **MegaSaM** runs in the `megasam` conda env and is a **multi-stage pipeline**, not a single binary. `run_megasam.sh` drives three of upstream's four stages: Depth-Anything (relative mono-depth) -> UniDepth (metric depth prior) -> camera tracking. Upstream's 4th stage (`cvd_opt`) only refines depth and does not change the camera trajectory, so it is skipped. Things worth knowing:
+  * Upstream ships no single entrypoint - the documented workflow is three shell scripts with hard-coded paths (`tools/evaluate_demo.sh` etc.). The runner reproduces them with our dataset paths and a per-run scene name, so concurrent/repeat runs do not overwrite each other's intermediates.
+  * The trajectory comes from `reconstructions/<scene>/poses.npy`, which holds lietorch SE3 7-vectors for **world->camera**. The runner applies `SE3(...).inv()` to get camera->world before writing TUM.
+  * **Grayscale datasets need a workaround.** UniDepth loads frames as `np.array(Image.open(p))[..., :3]`; for a grayscale PNG (PIL mode `L`) that is a 2-D array, so the slice takes 3 *columns* rather than 3 channels and the next `.permute(2,0,1)` fails. Every dataset here is grayscale, so the runner materialises a temporary RGB copy for that stage only. Stages 1a/2 use `cv2.imread` and are unaffected.
+  * UniDepth pulls `unidepth-v2-vitl14` from HuggingFace on first use (several GB).
+  * Cost: three ViT-scale passes over every frame, so expect it to be one of the slowest algorithms here - budget hours per sequence, not minutes.
+
+* **MASt3R-SLAM** runs in the `mast3r_slam` conda env. Two config files per sequence, because upstream separates them: `configs/mast3r_slam/<dataset>_calib.yaml` (camera intrinsics, passed via `--calib`) and `configs/mast3r_slam/<dataset>_{vo,vio_lc}.yaml` (algorithm config inheriting upstream's `config/base.yaml`, passed via `--config`). Notes:
+  * `main.py` has no `--no-retrieval` flag; loop closure is governed by `retrieval.k` (0 = no candidates), hence one config per mode rather than a CLI switch.
+  * `--save-as` is a **label, not a path**: output lands at `logs/<label>/<sequence-stem>.txt` relative to the repo, and the runner copies it into the run dir afterwards.
+  * **Known limitation: it does not fit in 12 GB of VRAM** on sequences of this length. It keeps every keyframe on-GPU with no supported way to bound that - `local_opt.window_size` is read but never applied upstream, `dataset.img_downsample` breaks the model (fixed 512-wide checkpoint), and `dataset.subsample: 2` still OOM'd on rosariov2. Needs a larger card.
+  * The MASt3R checkpoints are **CC-BY-NC-SA-4.0 (non-commercial)** - this covers the weights, not just the code.
+
 * **MAC-VO** runs in the `macvo` conda env. The config's `root:` field uses a `__WS__` placeholder that `run_macvo.sh` substitutes with the workspace root at launch - never hardcode a path.
 * **Basalt** runs the prebuilt binary `basalt_vio` (installed to `~/.local/bin/`) which `run_basalt.sh` sources via `~/.basalt/env`. Two config files are required: a per-dataset camera calibration (`configs/basalt/<dataset>_calib.json`) and a shared VO config (`configs/basalt/vo_config.json`). The calibration uses the EuRoC JSON format (pinhole camera model, flat vignette for rectified images). `run_basalt.sh` auto-generates `mav0/cam0/data.csv` and `mav0/cam1/data.csv` on first use - no manual data prep needed. Basalt outputs TUM-format timestamps already in SECONDS (no conversion needed, unlike ORB-SLAM3). The `vio_min_triangulation_dist` in `vo_config.json` must be set BELOW the stereo baseline of the smallest-baseline dataset (currently 0.03 m for Rosario v2 baseline of 4.97 cm).
 * **AirSLAM** runs inside the `air_slam` Docker container (ROS Noetic + TensorRT). Requires Docker + nvidia-container-toolkit installed and the container created (see [setup.md](setup.md) sections 7a-7d). The container is started automatically by `run_airslam.sh` if it is stopped. On the **first run per dataset**, TensorRT compiles a resolution-specific engine (~5-10 min); subsequent runs reuse the cache. Config files: `configs/airslam/<dataset>_camera.yaml` (VO, use_imu: 0), `configs/airslam/<dataset>_camera_vio.yaml` (VIO/VIO-LC, use_imu: 1), and `configs/airslam/<dataset>_<vo|vio|vio_slam>.yaml` (VO-keyframe params). For hortimulti, `_camera.yaml` is the VIO config and `_camera_vo.yaml` is the VO override. VIO-LC is a two-step process: `run_airslam.sh` runs `visual_odometry` (produces `trajectory_v0.txt`), then automatically runs `map_refinement` (produces `trajectory_v1.txt`) using `configs/airslam/<dataset>_mr.yaml`. The dataset must have `mav0/cam0/data/` and `mav0/cam1/data/` in EuRoC ASL format (images named by nanosecond timestamp), plus `mav0/imu0/data.csv` for VIO/VIO-LC.

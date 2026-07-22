@@ -20,8 +20,8 @@
 | **RTAB-Map** | Graph-based stereo SLAM with optional IMU + GNSS factors | [introlab/rtabmap_ros](https://github.com/introlab/rtabmap_ros) (apt, ROS 2 Humble) |
 | **VINS-Fusion** | Optimization-based stereo+IMU VIO with loose GPS fusion | [HKUST-Aerial-Robotics/VINS-Fusion](https://github.com/HKUST-Aerial-Robotics/VINS-Fusion) (Docker, ROS 1 Noetic) |
 | **DROID-SLAM** | Neural dense stereo VO (Phase 1 only; dropped per supervisor) | [princeton-vl/DROID-SLAM](https://github.com/princeton-vl/DROID-SLAM). Historical results retained. |
-| **MASt3R-SLAM** | Monocular dense SLAM with retrieval-based LC (scaffolded) | [rmurai0610/MASt3R-SLAM](https://github.com/rmurai0610/MASt3R-SLAM) (arXiv:2412.12392) |
-| **MegaSaM** | Monocular structure-and-motion, learned (scaffolded) | [mega-sam/mega-sam](https://github.com/mega-sam/mega-sam) (arXiv:2412.04463) |
+| **MASt3R-SLAM** | Monocular dense SLAM with retrieval-based LC (needs >12 GB VRAM) | [rmurai0610/MASt3R-SLAM](https://github.com/rmurai0610/MASt3R-SLAM) (arXiv:2412.12392) |
+| **MegaSaM** | Monocular structure-and-motion, learned (3-stage pipeline) | [mega-sam/mega-sam](https://github.com/mega-sam/mega-sam) (arXiv:2412.04463) |
 
 ## Datasets
 
@@ -94,7 +94,7 @@ warn for unsupported combinations:
 | MAC-VO      | yes | (not supported) | (not supported) |
 | DROID-SLAM  | yes (dropped; results kept) | (not supported) | (not supported) |
 | MegaSaM     | yes | (not supported) | (not supported) |
-| MASt3R-SLAM | yes (LC disabled) | (no IMU) | yes (LC enabled, IMU still off) |
+| MASt3R-SLAM | yes (LC disabled) | (no IMU) | yes (LC enabled, IMU still off) - **needs >12 GB VRAM** |
 
 ("MASt3R-SLAM" is monocular: the `vio-lc` bucket is re-used for the
  monocular+LC configuration because that is the only combination it

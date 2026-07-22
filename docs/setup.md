@@ -188,24 +188,103 @@ Output should appear under `results-vo/hortimulti/strawberry02/orbslam3/run1/`.
 ## 9. MegaSaM (optional, monocular)
 
 ```bash
+git submodule update --init --recursive src/mega-sam
 bash scripts/build/setup_megasam_env.sh
 ```
 
-Creates conda env `megasam` (python 3.10, torch 2.0.1+cu118) and clones
-`https://github.com/mega-sam/mega-sam` into `src/mega-sam/`. Model weights
-must be downloaded manually per the upstream README before the runner will
-produce output.
+Creates conda env `megasam` (python 3.10, torch 2.0.1+cu118) and downloads all
+three checkpoints (`megasam_final.pth` ships in the repo; DepthAnything and RAFT
+are fetched). The script fails loudly if any is missing.
+
+MegaSaM is a **multi-stage pipeline**, not a single binary. `run_megasam.sh`
+drives three of upstream's four stages:
+
+| Stage | Script | Produces |
+|---|---|---|
+| 1a | `Depth-Anything/run_videos.py` | relative mono-depth |
+| 1b | `UniDepth/scripts/demo_mega-sam.py` | metric depth prior |
+| 2 | `camera_tracking_scripts/test_demo.py` | `reconstructions/<scene>/poses.npy` |
+
+Stage 3 (`cvd_opt`) refines depth only and does not change the camera
+trajectory, so it is skipped.
+
+Three extra install steps the upstream README does not mention, all of which the
+runner needs:
+
+```bash
+# a) vendored CUDA extensions (lietorch + droid_backends) are never built by
+#    upstream's setup. They need an nvcc matching torch's CUDA build -- the
+#    system nvcc is usually older, and PyTorch hard-refuses on a mismatch.
+conda install -y -n megasam -c nvidia cuda-nvcc=11.8 cuda-cudart-dev=11.8 cuda-cccl=11.8
+conda run -n megasam pip install "setuptools<81"   # base/setup.py needs pkg_resources
+cd src/mega-sam/base && conda run -n megasam bash -c \
+  'CUDA_HOME=$CONDA_PREFIX PATH=$CONDA_PREFIX/bin:$PATH TORCH_CUDA_ARCH_LIST=8.9 python setup.py install'
+# NB: `pip install -e .` does NOT work here -- base/setup.py has two setup()
+# calls (one per extension) and pip only processes the first.
+
+# b) runtime deps missing from the env
+conda run -n megasam pip install torch_scatter -f https://data.pyg.org/whl/torch-2.0.1+cu118.html
+conda run -n megasam pip install huggingface_hub timm wandb einops h5py xformers==0.0.22 opencv-python==4.10.0.84
+
+# c) torch 2.0.1 predates numpy 2 -- otherwise every stage dies with
+#    "RuntimeError: Numpy is not available"
+conda run -n megasam pip install "numpy<2"
+```
+
+UniDepth downloads `unidepth-v2-vitl14` from HuggingFace on first run (several GB).
+
+**Grayscale note:** UniDepth loads frames with `np.array(Image.open(p))[..., :3]`,
+which silently mis-slices grayscale images (PIL mode `L` gives a 2-D array, so
+the slice takes 3 *columns*, not 3 channels). Every dataset here is grayscale, so
+`run_megasam.sh` materialises a temporary RGB copy for stage 1b. Stages 1a and 2
+use `cv2.imread` and are unaffected.
 
 ## 10. MASt3R-SLAM (optional, monocular + retrieval-based LC)
 
 ```bash
+git submodule update --init --recursive src/MASt3R-SLAM
 bash scripts/build/setup_mast3r_slam_env.sh
 ```
 
-Creates conda env `mast3r_slam` (python 3.11, torch 2.5.1+cu121) and clones
-`https://github.com/rmurai0610/MASt3R-SLAM` (with submodules) into
-`src/MASt3R-SLAM/`. MASt3R checkpoints must be downloaded manually per the
-upstream README before the runner will produce output.
+Creates conda env `mast3r_slam` (python 3.11, torch 2.5.1+cu121). Checkpoints
+must still be fetched manually (~2.9 GB):
+
+```bash
+cd src/MASt3R-SLAM && mkdir -p checkpoints
+B=https://download.europe.naverlabs.com/ComputerVision/MASt3R
+wget -P checkpoints/ $B/MASt3R_ViTLarge_BaseDecoder_512_catmlpdpt_metric.pth
+wget -P checkpoints/ $B/MASt3R_ViTLarge_BaseDecoder_512_catmlpdpt_metric_retrieval_trainingfree.pth
+wget -P checkpoints/ $B/MASt3R_ViTLarge_BaseDecoder_512_catmlpdpt_metric_retrieval_codebook.pkl
+```
+
+The setup script ends with `pip install -e . || true`, which **swallows build
+failures** -- it prints "env ready" even when the package did not install. Verify
+with `conda run -n mast3r_slam python -c "import mast3r_slam"` before trusting it.
+If that fails, the usual causes are:
+
+```bash
+# CUDA mismatch (system nvcc vs torch's cu121) breaks the CUDA extensions
+conda install -y -n mast3r_slam -c nvidia cuda-nvcc=12.1 cuda-cudart-dev=12.1 cuda-cccl=12.1
+cd src/MASt3R-SLAM && conda run -n mast3r_slam bash -c \
+  'CUDA_HOME=$CONDA_PREFIX PATH=$CONDA_PREFIX/bin:$PATH pip install -e . --no-build-isolation'
+
+# undeclared runtime deps; opencv 5 forces numpy>=2 and breaks the pinned 1.26.4
+conda run -n mast3r_slam pip install tqdm "opencv-python==4.10.0.84" "numpy==1.26.4" \
+    moderngl moderngl-window PyGLM trimesh glfw imgui
+# vendored packages that are not pip-installable
+conda run -n mast3r_slam pip install -e src/MASt3R-SLAM/thirdparty/mast3r --no-build-isolation
+conda run -n mast3r_slam pip install -e src/MASt3R-SLAM/thirdparty/in3d --no-deps --no-build-isolation
+# dust3r is a plain package dir; expose it on the path
+echo "$PWD/src/MASt3R-SLAM/thirdparty/mast3r/dust3r" \
+  > "$(conda run -n mast3r_slam python -c 'import site;print(site.getsitepackages()[0])')/dust3r_vendored.pth"
+```
+
+> **Known limitation:** MASt3R-SLAM does not fit in 12 GB of VRAM on sequences of
+> this length. It keeps every keyframe on-GPU and offers no way to bound that:
+> `local_opt.window_size` is read but never applied upstream, and
+> `dataset.img_downsample` breaks the model (the checkpoint has a fixed 512-wide
+> input). `dataset.subsample: 2` was tried on rosariov2 and still OOM'd. It needs
+> a larger card.
 
 ## 11. OpenVINS (Docker, ROS 2 Humble)
 
