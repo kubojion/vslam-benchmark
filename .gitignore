@@ -10,6 +10,12 @@ patches/
 
 # --- large binary result artefacts (SLAM map files) ---
 results/**/*.bin
+# OKVIS2-X keeps the app's raw CSVs next to the derived trajectory.txt
+# (~6 MB each, 5 per run). trajectory.txt + run_eval.json are the record;
+# the raw CSVs are regenerable by re-running. Note the '-' after okvis2:
+# this deliberately does not match okvis2_raw_trajectory.csv, which is tracked.
+results-*/**/okvis2-*trajectory.csv
+results-*/**/okvis2-*-final_map.*
 **/rtabmap.db
 
 # --- compiled SLAM artefacts (submodule trees, never commit build output) ---

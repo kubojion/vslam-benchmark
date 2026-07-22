@@ -51,6 +51,8 @@ ALGO_COLOUR = {
     "cifasis_gnss_si": "#1f77b4",   # blue
     "vins_fusion_gps": "#bcbd22",   # yellow-green
     "rtabmap_gps":     "#7f7f7f",   # grey
+    "openvins_gps":    "#ff9896",   # salmon (was label-only: fell back to a
+                                    # default indistinguishable from rtabmap_gps)
     # VIO algorithms.
     # NOTE: the ten tab10 colours are all claimed above, so these use tab20b
     # darks to stay mutually distinguishable. plot_ate_vs_fps.py and
