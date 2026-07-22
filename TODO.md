@@ -32,12 +32,12 @@ Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/div
 | ORB-SLAM3 | ⬜ ready | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ✅ N=1 |
 | Basalt | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
 | MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
-| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
+| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ config only |
 | DROID-SLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ config only |
-| OKVIS2 | ✅ N=1 | ✅ N=1 | 🔧 no-config | 🔧 no-config | 🔧 no-config | 🔧 no-config | 🔧 no-config | 🔧 no-config |
-| OKVIS2-X | ✅ N=1 | ✅ N=1 | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | 🔧 no-config |
-| MASt3R-SLAM | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | 🔧 no-config |
-| MegaSaM | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | 🔧 no-config |
+| OKVIS2 | ✅ N=1 | ✅ N=1 | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
+| OKVIS2-X | ✅ N=1 | ✅ N=1 | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
+| MASt3R-SLAM | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | 🔧 no-config |
+| MegaSaM | ⬜ ready | ⬜ ready | 🟡 in progress | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | 🔧 no-config |
 
 > ORB-SLAM3 VO = LC-off mode required (`LoopClosing: 0` or dedicated build). Old LC-on results are in `obsolete/`.
 > **zed2i field1** = local ZED2i field dataset (46283 pairs, 1080p, 77 min, RTK GT). Under the
@@ -99,7 +99,7 @@ Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/div
 | OKVIS2 | ✅ N=1 | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | OKVIS2-X | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | AirSLAM (VI-SLAM) | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
-| MASt3R-SLAM (LC-on) | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
+| MASt3R-SLAM (LC-on) | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB |
 
 > MASt3R-SLAM in `vio-lc` = monocular + LC-on (no IMU; bucket reused for its only real mode).
 > HortiMulti IMU: extracted. Path: `datasets/hortimulti/strawberry{02,03}/mav0/imu0/data.csv`
@@ -237,10 +237,34 @@ came from manual runs, so they have not yet been reproduced through the runner.
 
 | Task | Status |
 |---|---|
-| Download checkpoints | `[ ]` |
-| Smoke test EuRoC MH_01 | `[ ]` |
-| VO mode rosariov2/seq1+seq5, hortimulti str02+03 N=3 | `[ ]` |
-| VIO-LC mode (LC-on) same sequences N=3 | `[ ]` |
+| Download checkpoints | `[x]` 2.9 GB, Naver Labs direct URLs (see setup.md §10) |
+| Build env (CUDA 12.1 nvcc, vendored dust3r/in3d, numpy/opencv pins) | `[x]` |
+| Port runner to upstream API (`--save-as`, `--calib`, retrieval.k) | `[x]` |
+| Smoke test | `[!]` **blocked: OOM on 12 GB VRAM** |
+| VO / VIO-LC runs on agri sequences | `[!]` blocked by the above - needs a larger card |
+
+> Not a wiring problem: the env and runner work and reach real execution. MASt3R-SLAM
+> keeps every keyframe on-GPU with no supported bound (`local_opt.window_size` is read
+> but never applied upstream; `dataset.img_downsample` breaks the fixed-512 checkpoint;
+> `dataset.subsample: 2` still OOM'd on rosariov2). Checkpoints are CC-BY-NC-SA-4.0.
+
+### MegaSaM
+
+| Task | Status |
+|---|---|
+| Checkpoints (megasam_final, DepthAnything, RAFT) | `[x]` automated in `setup_megasam_env.sh` |
+| Build vendored CUDA extensions (`lietorch`, `droid_backends`) | `[x]` needs cuda-nvcc 11.8 + `setuptools<81`; `python setup.py install` (not `pip -e`) |
+| Runtime deps (torch_scatter, xformers, huggingface_hub, `numpy<2`) | `[x]` |
+| Port runner to the real 3-stage pipeline | `[x]` was calling a non-existent `megasam.demo` module |
+| Grayscale workaround for UniDepth stage | `[x]` PIL mis-slices mode-`L` images; runner feeds it an RGB copy |
+| First end-to-end run (hortimulti str03) | `[~]` in progress - stages 1a/1b pass, stage 2 untested |
+| Runs on remaining sequences | `[ ]` |
+| zed2i config | `[ ]` |
+
+> Upstream has no single entrypoint: Depth-Anything -> UniDepth -> camera tracking, each a
+> separate script with hard-coded demo paths. Stage 3 (`cvd_opt`) refines depth only and is
+> skipped. Cost is three ViT-scale passes per frame, so budget hours per sequence.
+> Monocular: comparable under Sim(3) only.
 
 ### DPVO / DPV-SLAM (replaces DROID-SLAM)
 

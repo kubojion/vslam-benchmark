@@ -342,7 +342,7 @@ Basalt has no loop closure mode.
 ## GNSS-VIO - Visual-Inertial + GNSS
 
 All N=1. GPS-bearing sequences only: rosariov2 seq1/seq5, hortimulti str02/str03. EuRoC-MAV is
-not included because it has no GPS. These 16 rows are the completed first sweep. The OpenVINS+GPS
+not included because it has no GPS. These 20 rows (16 original + 4 OKVIS2-X) are the completed first sweep. The OpenVINS+GPS
 HortiMulti rows predate the corrected camera-IMU extrinsic and must be rerun before they are used for
 an algorithm-level conclusion; all OpenVINS+GPS rows should be treated as preliminary validation.
 
@@ -366,6 +366,31 @@ an algorithm-level conclusion; all OpenVINS+GPS rows should be treated as prelim
 | OpenVINS+GPS (EKF) | rosariov2 | seq5 (PPK) | 4.179 m | 4.227 m | 1.0132 | 0.345 | 7.8 | 1 |
 | OpenVINS+GPS (EKF) | hortimulti | str02 (pre-fix) | 30.865 m | 42.375 m | 0.5540 | 2.708 | 9.9 | 1 |
 | OpenVINS+GPS (EKF) | hortimulti | str03 (pre-fix) | 16.496 m | 48.011 m | 0.1647 | 2.897 | 9.7 | 1 |
+| OKVIS2-X (tight) | rosariov2 | seq1 | 8.790 m | 8.799 m | 0.9916 | 1.369 | 11.7 | 1 |
+| OKVIS2-X (tight) | rosariov2 | seq5 (PPK) | 8.149 m | 8.149 m | 1.0004 | 2.082 | 11.8 | 1 |
+| OKVIS2-X (tight) | hortimulti | str02 | 2.385 m | 2.716 m | 1.0268 | 0.094 | 10.7 | 1 |
+| OKVIS2-X (tight) | hortimulti | str03 | 0.283 m | 0.623 m | 1.0305 | 0.029 | 11.9 | 1 |
+
+**OKVIS2-X GNSS-VIO (added 2026-07-22)** — the fifth algorithm on this track and the second
+tightly-coupled one after CIFASIS. It splits sharply by dataset:
+
+* **Best on HortiMulti by a wide margin** — str03 0.283 m (next best CIFASIS 1.502 m) and
+  str02 2.385 m (next best VINS-Fusion 4.899 m), with good local accuracy (RPE 0.029 / 0.094).
+* **Worst on Rosario** — 8.790 m / 8.149 m, and the local accuracy is the tell: RPE
+  1.369 / 2.082 m/m against peers at 0.03-0.18. The trajectory is not drifting, it is being
+  yanked: the segment maps show hard discontinuities, and the logs show **10-11 GPS-triggered
+  full-graph re-optimisations on Rosario versus 1 on HortiMulti**.
+
+The one controlled difference is GPS uncertainty. HortiMulti's `gps.csv` carries per-fix
+covariances (~1.9 m horizontal / 7.5 m vertical), so `gps_to_okvis2x.py` passes real sigmas.
+Rosario's has no covariance columns, so the converter's fallback (1.0 m / 2.0 m) applies —
+2-5x more optimistic than what HortiMulti declares. Not yet proven causal: seq5 is PPK-quality,
+where 1.0 m should *under*-trust the GPS, yet it has the worst RPE of all. Untested next step:
+re-run Rosario with `--h-err/--v-err` matched to the actual GPS quality.
+
+> **Caveat on rosariov2 seq1 (affects all five algorithms):** its `gt_tum.txt` is its own
+> `gps.csv` reprojected into ENU — identical timestamps, identity quaternions. Every number in
+> that column is partly GPS scored against itself.
 
 The RTAB-Map seq5 (PPK) row is reported with low confidence: RTAB-Map's stereo odometry is non-deterministic on this sequence (exported pose counts of 363 / 284 / 134 / 22 across four runs from repeated odometry inlier loss), so a single-run conventional-vs-PPK comparison for RTAB-Map reflects odometry variance more than GPS quality. The 4.901 m row is the best full-length PPK track obtained (284 of ~363 poses). See the GPS-quality study below.
 
