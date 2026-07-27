@@ -1,6 +1,6 @@
 # vSLAM Benchmark - TODO
 
-> Created: 2026-05-20 | Revised: 2026-07-21. VO has 67 evaluated rows. The core VIO N=1
+> Created: 2026-05-20 | Revised: 2026-07-27. VO has 83 evaluated rows (6 working algorithms now cover all 7 non-zed2i sequences; zed2i VO pass in progress). The core VIO N=1
 > matrix has 49 rows (7 algorithms x 7 standard sequences); corrected HortiMulti extrinsics and
 > EuRoC MH_03/MH_05 are included. ZED2i adds six usable VIO trajectories plus one failed
 > ORB-SLAM3 attempt, so `benchmark-vio.csv` has 55 rows. VIO-LC has 3 rows. GNSS-VIO N=1 is
@@ -29,15 +29,15 @@ Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/div
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ⬜ ready | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ✅ N=1 |
+| ORB-SLAM3 | 🟡 N=1 (11.9m outlier) | ✅ N=1 | 🟡 N=1 (6.6m outlier) | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
 | Basalt | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
-| MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🔧 no-config |
-| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ config only |
+| MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 in progress |
+| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 in progress |
 | DROID-SLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ config only |
-| OKVIS2 | ✅ N=1 | ✅ N=1 | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
-| OKVIS2-X | ✅ N=1 | ✅ N=1 | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
+| OKVIS2 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 in progress |
+| OKVIS2-X | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 in progress |
 | MASt3R-SLAM | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | 🔧 no-config |
-| MegaSaM | ⬜ ready | ⬜ ready | 🟡 in progress | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | 🔧 no-config |
+| MegaSaM | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | 🔧 no-config |
 
 > ORB-SLAM3 VO = LC-off mode required (`LoopClosing: 0` or dedicated build). Old LC-on results are in `obsolete/`.
 > **zed2i field1** = local ZED2i field dataset (46283 pairs, 1080p, 77 min, RTK GT). Under the
@@ -159,6 +159,11 @@ Legend: ✅ successful run (N=x) | 🟡 completed but needs validation/rerun | �
 | 12 | Commit local-only runtime prerequisites in their owning submodules/forks | `[!]` AirSLAM VIO launch files, OpenVINS `Dockerfile.benchmark`, OKVIS2 DBoW2/opengv CMake patches |
 
 ---
+
+> **VO N=1 outliers to re-run at N=3 (2026-07-27 sweep):** ORB-SLAM3 rosariov2/seq1 = 11.9 m
+> (ref 1.18 m) and hortimulti/str02 = 6.6 m (ref 0.893 m). Both are single draws from ORB-SLAM3's
+> high-variance regime (27 %% CV on seq1), not failures. OKVIS2/OKVIS2-X VO on agri sequences are
+> best-effort (IMU off) and expectedly weaker than their VIO numbers.
 
 ## Phase 2 per-algorithm tasks
 
