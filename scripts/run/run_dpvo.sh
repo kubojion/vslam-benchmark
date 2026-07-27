@@ -55,6 +55,34 @@ done
 [[ -n "$IMG_DIR" ]] || { echo "[dpvo] ERROR: no cam0 image folder under $SEQ_DIR" >&2; exit 2; }
 [[ -f "$SEQ_DIR/times.txt" ]] || { echo "[dpvo] ERROR: missing $SEQ_DIR/times.txt" >&2; exit 2; }
 
+# DPVO globs *.png, *.jpeg, *.jpg together. Some datasets (zed2i) carry both a
+# .jpg and a .png symlink per frame, so the raw glob would list every frame
+# twice. If duplicate timestamp-stems exist, stage a temp dir with exactly one
+# symlink per stem (sorted) and point DPVO there.
+STAGE_DIR=""
+if python3 - "$IMG_DIR" <<'PY'
+import sys, pathlib
+d = pathlib.Path(sys.argv[1])
+imgs = [p for p in d.iterdir() if p.suffix.lower() in (".png", ".jpg", ".jpeg")]
+stems = [p.stem for p in imgs]
+sys.exit(0 if len(stems) != len(set(stems)) else 1)   # exit 0 = has duplicates
+PY
+then
+    STAGE_DIR="$(mktemp -d -t dpvo_imgs_XXXXXX)"
+    python3 - "$IMG_DIR" "$STAGE_DIR" <<'PY'
+import sys, pathlib, os
+src, dst = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
+best = {}
+for p in sorted(src.iterdir()):
+    if p.suffix.lower() in (".png", ".jpg", ".jpeg"):
+        best.setdefault(p.stem, p)      # first sorted ext per stem
+for stem, p in best.items():
+    os.symlink(p.resolve(), dst / (stem + p.suffix.lower()))
+print(f"[dpvo] staged {len(best)} deduplicated frames -> {dst}")
+PY
+    IMG_DIR="$STAGE_DIR"
+fi
+
 mkdir -p "$OUT_DIR" "$WS/logs"
 : > "$OUT_DIR/run_log.txt"
 NAME="bench_${DATASET}_${SEQ}_${RUN_TYPE}_run${RUN_ID}"
@@ -68,7 +96,7 @@ set -u
 
 python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
 MONPID=$!
-trap "kill $MONPID 2>/dev/null || true" EXIT
+trap 'kill $MONPID 2>/dev/null || true; [[ -n "${STAGE_DIR:-}" ]] && rm -rf "$STAGE_DIR"' EXIT
 
 cd "$REPO"
 rm -f "saved_trajectories/${NAME}.txt"
