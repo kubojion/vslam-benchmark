@@ -20,6 +20,7 @@
 | **RTAB-Map** | Graph-based stereo SLAM with optional IMU + GNSS factors | [introlab/rtabmap_ros](https://github.com/introlab/rtabmap_ros) (apt, ROS 2 Humble) |
 | **VINS-Fusion** | Optimization-based stereo+IMU VIO with loose GPS fusion | [HKUST-Aerial-Robotics/VINS-Fusion](https://github.com/HKUST-Aerial-Robotics/VINS-Fusion) (Docker, ROS 1 Noetic) |
 | **DROID-SLAM** | Neural dense stereo VO (Phase 1 only; dropped per supervisor) | [princeton-vl/DROID-SLAM](https://github.com/princeton-vl/DROID-SLAM). Historical results retained. |
+| **DPVO / DPV-SLAM** | Monocular deep patch VO (+ optional loop closure); DROID-SLAM successor | [princeton-vl/DPVO](https://github.com/princeton-vl/DPVO) (MIT). ~2-4 GB VRAM. |
 | **MASt3R-SLAM** | Monocular dense SLAM with retrieval-based LC (needs >12 GB VRAM) | [rmurai0610/MASt3R-SLAM](https://github.com/rmurai0610/MASt3R-SLAM) (arXiv:2412.12392) |
 | **MegaSaM** | Monocular structure-and-motion, learned (3-stage pipeline) | [mega-sam/mega-sam](https://github.com/mega-sam/mega-sam) (arXiv:2412.04463) |
 
@@ -196,6 +197,24 @@ ZED2i field VO (N=1; the project's own agricultural field sequence, 46 k frames 
 > hortimulti str02: 1.88 m native-ref 0.893 m, reproducibly 2.1x worse at 7 %% CV; rosariov2 seq1
 > 6.8 +/- 3.8 m vs 1.18 m), so it is **not** mixed into the table — only its ZED2i result (0.256 m)
 > is retained.
+
+DPVO (monocular learned VO; replaces the dropped DROID-SLAM, N=1, Sim(3) ATE):
+
+| Dataset | Seq | DPVO | DROID-SLAM | best stereo |
+|---|---|---|---|---|
+| Rosario v2 | seq5 | **3.92 m** | 50.02 m | 12.72 (AirSLAM) |
+| Rosario v2 | seq1 | 4.93 m | 45.37 m | 1.18 (ORB-SLAM3) |
+| ZED2i | field1 | 1.43 m | - | 0.256 (ORB-SLAM3) |
+| HortiMulti | str03 | 1.82 m | 18.76 m | 0.104 (ORB-SLAM3) |
+| HortiMulti | str02 | 14.59 m | 38.92 m | 0.893 (ORB-SLAM3) |
+| EuRoC | MH_01/03/05 | 0.12 / 0.13 / 0.12 m | 4.08 / 3.52 / 6.59 m | - |
+
+> DPVO is the standout on the **outdoor** agricultural data: on Rosario seq5 it beats every
+> stereo method (monocular!), and on both Rosario sequences it improves ~9-13x over DROID-SLAM,
+> the method it replaces. It is weaker on the long low-texture greenhouse traverse (str02) - the
+> opposite failure profile from feature-based methods. It is **light**: ~2-4 GB VRAM even on the
+> 46 k-frame ZED2i sequence, where MegaSaM and MASt3R-SLAM both OOM a 12 GB card. Monocular ->
+> up-to-scale, so only Sim(3) ATE is comparable.
 
 Representative VIO numbers (Phase 2, N=1 unless noted):
 

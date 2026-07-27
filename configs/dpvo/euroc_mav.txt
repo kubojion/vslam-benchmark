@@ -1,2 +1,4 @@
-# DPVO calib for euroc_mav (rectified cam0, monocular; no distortion).
-458.654 457.296 367.215 248.375
+# DPVO calib for EuRoC-MAV cam0 (RAW/distorted images -> radtan coeffs required).
+# DPVO's image_stream cv2.undistort()s when >4 values are present. Agricultural
+# datasets are pre-rectified and need only fx fy cx cy.
+458.654 457.296 367.215 248.375 -0.28340811 0.07395907 0.00019359 1.76187114e-05
