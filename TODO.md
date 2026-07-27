@@ -29,7 +29,7 @@ Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/div
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | 📥 native (ext.) | ✅ N=1 | 📥 native (ext.) | 📥 native (ext.) | 📥 native (ext.) | 📥 native (ext.) | 📥 native (ext.) | ✅ N=1 |
+| ORB-SLAM3 | ⬜ ready | ✅ N=1 | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ✅ N=1 |
 | Basalt | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
 | MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ ready (deferred: ~6h) |
 | AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 (3.87m) |
@@ -164,8 +164,7 @@ Legend: ✅ successful run (N=x) | 🟡 completed but needs validation/rerun | �
 > the agricultural/EuRoC VO cells, but it diverges from the original native build on hard sequences
 > (hortimulti str02: 1.88 +/- 0.13 m, reproducibly 2.1x the native 0.893 m ref at 7 %% CV; rosariov2
 > seq1: 6.8 +/- 3.8 m vs 1.18 m). Those shim rows were **discarded** (quarantined off-tree); the
-> native ORB-SLAM3 agricultural/EuRoC results (`📥 native (ext.)`) come from the original test
-> machine. Only ORB-SLAM3's ZED2i VO (0.256 m) and pre-existing seq5 are retained here.
+> native ORB-SLAM3 agricultural/EuRoC results (marked `⬜ ready` here) come from the original test machine. Only ORB-SLAM3's ZED2i VO (0.256 m) and pre-existing seq5 are retained here.
 > OKVIS2/OKVIS2-X VO on agri sequences are best-effort (IMU off) and expectedly weaker than their VIO.
 
 ## Phase 2 per-algorithm tasks
