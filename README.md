@@ -212,7 +212,9 @@ DPVO (monocular learned VO; replaces the dropped DROID-SLAM, N=1, Sim(3) ATE):
 > DPVO is the standout on the **outdoor** agricultural data: on Rosario seq5 it beats every
 > stereo method (monocular!), and on both Rosario sequences it improves ~9-13x over DROID-SLAM,
 > the method it replaces. It is weaker on the long low-texture greenhouse traverse (str02) - the
-> opposite failure profile from feature-based methods. It is **light**: ~2-4 GB VRAM even on the
+> opposite failure profile from feature-based methods. Its loop-closure variant DPV-SLAM helps
+> 2-3x on EuRoC but **hurts on every agricultural sequence** (false loops from repetitive crop
+> rows -- see PROGRESS.md finding 10). It is **light**: ~2-4 GB VRAM even on the
 > 46 k-frame ZED2i sequence, where MegaSaM and MASt3R-SLAM both OOM a 12 GB card. Monocular ->
 > up-to-scale, so only Sim(3) ATE is comparable.
 
