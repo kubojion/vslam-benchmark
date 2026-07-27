@@ -175,6 +175,28 @@ Representative VO numbers (N=3 unless noted):
 | AirSLAM | Rosario v2 | seq1 | 9.89 ± 0.06 m | 3 |
 | AirSLAM | Rosario v2 | seq5 | 12.72 ± 0.99 m | 3 |
 
+ZED2i field VO (N=1; the project's own agricultural field sequence, 46 k frames @ 1080p):
+
+| Algorithm | ATE Sim(3) | Scale |
+|---|---|---|
+| ORB-SLAM3 | **0.256 m** | 0.992 |
+| Basalt | 0.446 m | 0.990 |
+| OKVIS2-X | 1.436 m | 0.990 |
+| OKVIS2 | 3.372 m | 0.970 |
+| AirSLAM | 3.866 m | 0.965 |
+
+> ZED2i ground truth is derived from the RTK GNSS stream, so it is not independent of a GNSS
+> input; these VO numbers use no GNSS and are position-only. MAC-VO on ZED2i (~6 h) is pending.
+> OKVIS2/OKVIS2-X VO are best-effort (IMU disabled); they do far better here (weak-excitation
+> stereo) than in their scale-collapsed ZED2i *VIO* runs.
+
+> **ORB-SLAM3 agricultural/EuRoC VO** (rosariov2, hortimulti, EuRoC) is reported from the
+> original native build (the numbers above). A Docker-ROS2 ORB-SLAM3 build available on this
+> machine was found to diverge from the native build on hard agricultural sequences (e.g.
+> hortimulti str02: 1.88 m native-ref 0.893 m, reproducibly 2.1x worse at 7 %% CV; rosariov2 seq1
+> 6.8 +/- 3.8 m vs 1.18 m), so it is **not** mixed into the table — only its ZED2i result (0.256 m)
+> is retained.
+
 Representative VIO numbers (Phase 2, N=1 unless noted):
 
 | Algorithm | Dataset | Seq | ATE Sim3 | N |

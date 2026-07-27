@@ -29,13 +29,13 @@ Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/div
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | 🟡 N=1 (11.9m outlier) | ✅ N=1 | 🟡 N=1 (6.6m outlier) | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| ORB-SLAM3 | 📥 native (ext.) | ✅ N=1 | 📥 native (ext.) | 📥 native (ext.) | 📥 native (ext.) | 📥 native (ext.) | 📥 native (ext.) | ✅ N=1 |
 | Basalt | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
-| MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 in progress |
-| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 in progress |
+| MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ ready (deferred: ~6h) |
+| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 (3.87m) |
 | DROID-SLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ config only |
-| OKVIS2 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 in progress |
-| OKVIS2-X | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 in progress |
+| OKVIS2 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 (3.37m) |
+| OKVIS2-X | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 (1.44m) |
 | MASt3R-SLAM | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | 🔧 no-config |
 | MegaSaM | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | 🔧 no-config |
 
@@ -160,10 +160,13 @@ Legend: ✅ successful run (N=x) | 🟡 completed but needs validation/rerun | �
 
 ---
 
-> **VO N=1 outliers to re-run at N=3 (2026-07-27 sweep):** ORB-SLAM3 rosariov2/seq1 = 11.9 m
-> (ref 1.18 m) and hortimulti/str02 = 6.6 m (ref 0.893 m). Both are single draws from ORB-SLAM3's
-> high-variance regime (27 %% CV on seq1), not failures. OKVIS2/OKVIS2-X VO on agri sequences are
-> best-effort (IMU off) and expectedly weaker than their VIO numbers.
+> **ORB-SLAM3 VO on this machine (2026-07-27):** a Docker-ROS2 ORB-SLAM3 build was used to fill
+> the agricultural/EuRoC VO cells, but it diverges from the original native build on hard sequences
+> (hortimulti str02: 1.88 +/- 0.13 m, reproducibly 2.1x the native 0.893 m ref at 7 %% CV; rosariov2
+> seq1: 6.8 +/- 3.8 m vs 1.18 m). Those shim rows were **discarded** (quarantined off-tree); the
+> native ORB-SLAM3 agricultural/EuRoC results (`📥 native (ext.)`) come from the original test
+> machine. Only ORB-SLAM3's ZED2i VO (0.256 m) and pre-existing seq5 are retained here.
+> OKVIS2/OKVIS2-X VO on agri sequences are best-effort (IMU off) and expectedly weaker than their VIO.
 
 ## Phase 2 per-algorithm tasks
 
