@@ -48,3 +48,8 @@ __pycache__/
 .vscode/
 .DS_Store
 *.swp
+
+# DPVO build tree + local thirdparty (setup_dpvo_env.sh regenerates)
+src/DPVO/build/
+src/DPVO/thirdparty/eigen-3.4.0/
+src/DPVO/saved_trajectories/
