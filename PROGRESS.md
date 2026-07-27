@@ -1499,6 +1499,31 @@ approach ORB-SLAM3's VIO performance. For this benchmark, OKVIS2 VO is the usabl
 
 ---
 
+### 10. Loop closure is counterproductive on agricultural imagery (DPVO vs DPV-SLAM)
+
+Running DPVO (VO) against DPV-SLAM (identical, + proximity loop closure) on all sequences
+isolates the effect of loop closure, since everything else is held fixed:
+
+| Sequence | DPVO | DPV-SLAM (+LC) | effect |
+|---|---|---|---|
+| EuRoC MH_01 | 0.122 | 0.047 | 2.6x better |
+| EuRoC MH_03 | 0.134 | 0.042 | 3.2x better |
+| EuRoC MH_05 | 0.121 | 0.058 | 2.1x better |
+| HortiMulti str03 | 1.82 | 8.83 | **4.9x worse** |
+| HortiMulti str02 | 14.59 | 22.00 | **1.5x worse** |
+| Rosario seq5 | 3.92 | 6.48 | **1.7x worse** |
+| Rosario seq1 | 4.93 | 9.32 | **1.9x worse** |
+| ZED2i field1 | 1.43 | 2.36 | **1.7x worse** |
+
+The split is by environment, with no exceptions: loop closure **helps 2-3x on EuRoC** (distinctive
+indoor scenes) and **hurts on every agricultural sequence** - indoor greenhouse and outdoor field
+alike. The mechanism is perceptual aliasing: repetitive crop-row texture (strawberry plants,
+soybean rows) triggers **false loop closures** between visually-identical but physically-distinct
+locations, and the global BA then warps the trajectory to satisfy those wrong constraints. This is
+a general caution for the benchmark, not DPVO-specific: any appearance-based loop-closure module
+(DBoW, retrieval) is at risk on self-similar agricultural rows. It is also why the agricultural VO
+results are reported without loop closure.
+
 ## Key commands
 
 ```bash
