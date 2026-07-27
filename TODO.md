@@ -34,12 +34,18 @@ Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/div
 | MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ ready (deferred: ~6h) |
 | AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 (3.87m) |
 | DROID-SLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ config only |
+| DPVO (mono) | ✅ N=1 (4.9m) | ✅ N=1 (3.9m, best) | ✅ N=1 (14.6m) | ✅ N=1 (1.8m) | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 (1.4m) |
 | OKVIS2 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 (3.37m) |
 | OKVIS2-X | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 (1.44m) |
 | MASt3R-SLAM | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | 🔧 no-config |
 | MegaSaM | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | 🔧 no-config |
 
 > ORB-SLAM3 VO = LC-off mode required (`LoopClosing: 0` or dedicated build). Old LC-on results are in `obsolete/`.
+> **DPVO (2026-07-27):** monocular learned VO, replaces dropped DROID-SLAM. Best VO on Rosario
+> seq5 (3.9m, beats all stereo), 2nd on seq1; ~9-13x better than DROID-SLAM. Light (~2-4 GB VRAM,
+> runs on all sequences incl. 46k-frame zed2i where MegaSaM/MASt3R OOM). EuRoC calib needs radtan
+> distortion (raw images); agricultural configs are rectified. DPV-SLAM (vio-lc, loop closure) not yet run.
+
 > **zed2i field1** = local ZED2i field dataset (46283 pairs, 1080p, 77 min, RTK GT). Under the
 > tested N=1 configurations, ORB-SLAM3 VO (0.256 m) and Basalt VO (0.446 m) outperformed every
 > VIO attempt. The evidence is consistent with weak inertial excitation, but the exact factory
