@@ -191,7 +191,11 @@ cp "$LOG" "$OUT_DIR/run_log.txt"
 DUR=$(python3 -c "print($END-$START)")
 # Use total input frames (count images in cam0/data) to compute processing FPS.
 # AirSLAM only outputs keyframe poses in trajectory.txt, which is a subset.
-NFR=$(ls "$SEQ_DIR/mav0/cam0/data/"*.png 2>/dev/null | wc -l || wc -l < "$OUT_DIR/trajectory.txt" 2>/dev/null || echo 0)
+# Count poses in the produced trajectory (keyframes). The old approach counted
+# input mav0/cam0/data/*.png, which breaks on datasets that store images
+# elsewhere or as .jpg (e.g. zed2i, cam0/*.jpg, no mav0/) -- the empty glob
+# piped to wc gave frames=0 and corrupted run_meta.json.
+NFR=$(wc -l < "$OUT_DIR/trajectory.txt" 2>/dev/null || echo 0)
 python3 -c "
 import json
 print(json.dumps({'algo':'airslam','dataset':'$DATASET','seq':'$SEQ','run_id':$RUN_ID,
