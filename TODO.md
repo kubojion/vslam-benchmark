@@ -3,7 +3,7 @@
 > Created: 2026-05-20 | Revised: 2026-07-27. VO has 83 evaluated rows (6 working algorithms now cover all 7 non-zed2i sequences; zed2i VO pass in progress). The core VIO N=1
 > matrix has 49 rows (7 algorithms x 7 standard sequences); corrected HortiMulti extrinsics and
 > EuRoC MH_03/MH_05 are included. ZED2i adds six usable VIO trajectories plus one failed
-> ORB-SLAM3 attempt, so `benchmark-vio.csv` has 55 rows. VIO-LC has 3 rows. GNSS-VIO N=1 is
+> ORB-SLAM3 attempt, so `benchmark-vio.csv` has 55 rows. VIO-LC has 11 rows (incl. the 8-sequence DPV-SLAM loop-closure sweep). GNSS-VIO N=1 is
 > complete: 16 headline runs (4 algorithms x 4 GPS-bearing sequences), including the retained
 > sequence5 PPK-versus-conventional study. Remaining priorities are N=3 validation, corrected-
 > extrinsic OpenVINS+GPS HortiMulti reruns and evaluator hardening. OKVIS2-X automation is now
@@ -106,7 +106,10 @@ Legend: ✅ successful run (N=x) | 🟡 completed with errors/scale collapse/div
 | OKVIS2-X | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | AirSLAM (VI-SLAM) | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready | ⬜ ready |
 | MASt3R-SLAM (LC-on) | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB | ❌ OOM 12GB |
+| DPV-SLAM (mono, LC-on) | ✅ N=1 (9.3m) | ✅ N=1 (6.5m) | ✅ N=1 (22.0m) | ✅ N=1 (8.8m) | ✅ N=1 (0.05m) | ✅ N=1 (0.04m) | ✅ N=1 (0.06m) |
 
+> DPV-SLAM = DPVO + proximity loop closure (monocular, no IMU; zed2i also done, 2.36m). LC **helps 2-3x on EuRoC but hurts every agricultural sequence** (false loops on repetitive
+> crop rows) - see PROGRESS.md finding 10. All 8 sequences run; vio-lc bucket now has 11 rows.
 > MASt3R-SLAM in `vio-lc` = monocular + LC-on (no IMU; bucket reused for its only real mode).
 > HortiMulti IMU: extracted. Path: `datasets/hortimulti/strawberry{02,03}/mav0/imu0/data.csv`
 
