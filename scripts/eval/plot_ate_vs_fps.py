@@ -31,30 +31,40 @@ from _run_type import resolve as resolve_run_type  # noqa: E402
 # ---------------------------------------------------------------------------
 ALGO_COLOUR = {
     "orbslam3":    "#2ca02c",
-    "droidslam":   "#8c564b",
     "macvo":       "#ff7f0e",
     "basalt":      "#d62728",
     "airslam":     "#17becf",
     "mast3r_slam": "#9467bd",
     "megasam":     "#e377c2",
+    "dpvo":         "#ffbb78",
     "okvis2x":     "#1f77b4",
     "okvis2":      "#bcbd22",
     "openvins":    "#7f7f7f",
     "voxel_svio":  "#c5b0d5",
+    "cifasis_gnss_si": "#1f77b4",
+    "vins_fusion_gps": "#bcbd22",
+    "rtabmap_gps":     "#7f7f7f",
+    "openvins_gps":    "#ff9896",
 }
 ALGO_LABEL = {
     "orbslam3":    "ORB-SLAM3",
-    "droidslam":   "DROID-SLAM",
     "macvo":       "MAC-VO",
     "basalt":      "Basalt",
     "airslam":     "AirSLAM",
     "mast3r_slam": "MASt3R-SLAM",
     "megasam":     "MegaSaM",
+    "dpvo":         "DPV-SLAM",
     "okvis2x":     "OKVIS2-X",
     "okvis2":      "OKVIS2",
     "openvins":    "OpenVINS",
     "voxel_svio":  "Voxel-SVIO",
+    "cifasis_gnss_si": "CIFASIS GNSS-SI",
+    "vins_fusion_gps": "VINS-Fusion+GPS",
+    "rtabmap_gps":     "RTAB-Map+GPS",
+    "openvins_gps":    "OpenVINS+GPS",
 }
+EXCLUDED_ALGOS = {"droidslam"}
+
 # EuRoC is stored under three interchangeable spellings (symlinks to one dataset);
 # canonicalise so markers/labels match regardless of which spelling a run used.
 DATASET_ALIASES = {"euroc": "euroc_mav", "EuRoC-MAV": "euroc_mav"}
@@ -62,11 +72,13 @@ DATASET_MARKER = {
     "euroc_mav":  "o",
     "hortimulti": "s",
     "rosariov2":  "D",
+    "zed2i":       "^",
 }
 DATASET_LABEL = {
     "euroc_mav":  "EuRoC-MAV",
     "hortimulti": "HortiMulti",
     "rosariov2":  "RosarioV2",
+    "zed2i":       "ZED2i",
 }
 # Short sequence labels for annotation
 SEQ_SHORTNAME = {
@@ -77,6 +89,7 @@ SEQ_SHORTNAME = {
     "strawberry03":    "straw03",
     "sequence1":       "seq1",
     "sequence5":       "seq5",
+    "field1_110426_full_10fps_q90": "zed2i",
 }
 
 
@@ -97,6 +110,8 @@ def main():
     groups = defaultdict(list)
     with open(csv_path) as f:
         for row in csv.DictReader(f):
+            if row.get("algo") in EXCLUDED_ALGOS:
+                continue
             try:
                 ate = float(row["ate_se3_rmse_m"])
                 fps = float(row["fps"])

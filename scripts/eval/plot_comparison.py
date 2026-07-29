@@ -90,7 +90,6 @@ def main():
 
     ALGOS = {
         "ORB-SLAM3":   {"path": base / "orbslam3/trajectory.txt",  "color": "#2196F3"},
-        "DROID-SLAM":  {"path": base / "droidslam/trajectory.txt", "color": "#FF9800"},
         "MAC-VO":      {"path": base / "macvo/trajectory.txt",     "color": "#4CAF50"},
     }
 

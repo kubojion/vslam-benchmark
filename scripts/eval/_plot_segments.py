@@ -18,7 +18,7 @@ the same data with X/Y/Z axes.
 
 Usage:
     python3 _plot_segments.py <dataset> <seq>
-        [--algos orbslam3,droidslam,macvo,basalt,airslam,mast3r_slam,megasam]
+        [--algos orbslam3,macvo,basalt,airslam,mast3r_slam,megasam]
         [--type vo|vo-lc|vio|vio-lc|gnss-vio] [--dpi 400] [--figsize 20]
 """
 import argparse
@@ -41,12 +41,12 @@ from _run_type import canonicalize_dataset, resolve as resolve_run_type  # noqa:
 # ---------------------------------------------------------------------------
 ALGO_COLOUR = {
     "orbslam3":        "#2ca02c",   # green
-    "droidslam":       "#8c564b",   # brown
     "macvo":           "#ff7f0e",   # orange
     "basalt":          "#d62728",   # red
     "airslam":         "#17becf",   # light blue
     "mast3r_slam":     "#9467bd",   # purple
     "megasam":         "#e377c2",   # pink
+    "dpvo":            "#ffbb78",   # light orange
     # GNSS-VIO algorithms
     "cifasis_gnss_si": "#1f77b4",   # blue
     "vins_fusion_gps": "#bcbd22",   # yellow-green
@@ -67,12 +67,12 @@ ALGO_COLOUR = {
 }
 ALGO_LABEL = {
     "orbslam3":        "ORB-SLAM3",
-    "droidslam":       "DROID-SLAM",
     "macvo":           "MAC-VO",
     "basalt":          "Basalt",
     "airslam":         "AirSLAM",
     "mast3r_slam":     "MASt3R-SLAM",
     "megasam":         "MegaSaM",
+    "dpvo":            "DPV-SLAM",
     # GNSS-VIO algorithms
     "cifasis_gnss_si": "CIFASIS GNSS-SI",
     "vins_fusion_gps": "VINS-Fusion+GPS",
@@ -103,10 +103,52 @@ def load_tum(path: Path) -> np.ndarray:
 
 
 # ---------------------------------------------------------------------------
-# evo Sim(3) alignment
+# Sim(3) alignment
 # ---------------------------------------------------------------------------
+def associate_tum(ref: np.ndarray, est: np.ndarray, max_diff: float = 0.05):
+    """Nearest-timestamp association for TUM arrays."""
+    ref_t = ref[:, 0]
+    ref_xyz = []
+    est_xyz = []
+    est_ts = []
+    for row in est:
+        j = int(np.argmin(np.abs(ref_t - row[0])))
+        if abs(ref_t[j] - row[0]) <= max_diff:
+            ref_xyz.append(ref[j, 1:4])
+            est_xyz.append(row[1:4])
+            est_ts.append(row[0])
+    if len(ref_xyz) < 3:
+        return None, None, None
+    return np.asarray(ref_xyz), np.asarray(est_xyz), np.asarray(est_ts)
+
+
+def umeyama_align(src: np.ndarray, dst: np.ndarray, correct_scale: bool = True):
+    """Align src to dst with SE(3) or Sim(3), matching evo's plot use."""
+    src_mean = src.mean(axis=0)
+    dst_mean = dst.mean(axis=0)
+    src_c = src - src_mean
+    dst_c = dst - dst_mean
+
+    cov = (dst_c.T @ src_c) / len(src)
+    u, singular_values, vt = np.linalg.svd(cov)
+    sign = np.eye(3)
+    if np.linalg.det(u @ vt) < 0:
+        sign[-1, -1] = -1
+    rot = u @ sign @ vt
+
+    scale = 1.0
+    if correct_scale:
+        var_src = np.sum(src_c * src_c) / len(src)
+        if var_src <= 0:
+            return None
+        scale = float(np.sum(singular_values * np.diag(sign)) / var_src)
+
+    trans = dst_mean - scale * (rot @ src_mean)
+    return (scale * (rot @ src.T)).T + trans
+
+
 def align_to_gt(gt_path: Path, traj_path: Path, correct_scale: bool = True):
-    """Return (positions_xyz (N,3), timestamps (N,)) via evo, or (None, None)."""
+    """Return aligned positions_xyz (N,3) and timestamps, or (None, None)."""
     try:
         from evo.core import sync
         from evo.tools import file_interface
@@ -118,9 +160,20 @@ def align_to_gt(gt_path: Path, traj_path: Path, correct_scale: bool = True):
                        correct_only_scale=False)
         return traj_est.positions_xyz, traj_est.timestamps
     except Exception as exc:
-        print(f"[plot_segments] alignment failed for {traj_path}: {exc}",
-              flush=True)
-        return None, None
+        try:
+            ref = load_tum(gt_path)
+            est = load_tum(traj_path)
+            ref_xyz, est_xyz, est_ts = associate_tum(ref, est)
+            if ref_xyz is None:
+                raise RuntimeError("too few timestamp associations") from exc
+            aligned = umeyama_align(est_xyz, ref_xyz, correct_scale=correct_scale)
+            if aligned is None:
+                raise RuntimeError("degenerate trajectory") from exc
+            return aligned, est_ts
+        except Exception as fallback_exc:
+            print(f"[plot_segments] alignment failed for {traj_path}: "
+                  f"{exc}; fallback failed: {fallback_exc}", flush=True)
+            return None, None
 
 
 def resample_to_grid(t: np.ndarray, xyz: np.ndarray,
@@ -460,8 +513,10 @@ def main():
     ap.add_argument("dataset")
     ap.add_argument("seq")
     ap.add_argument("--algos",
-                    default="orbslam3,droidslam,macvo,basalt,airslam,mast3r_slam,"
-                            "megasam,okvis2,okvis2x,openvins,voxel_svio")
+                    default="orbslam3,macvo,basalt,airslam,mast3r_slam,"
+                            "megasam,dpvo,okvis2,okvis2x,openvins,voxel_svio,"
+                            "cifasis_gnss_si,vins_fusion_gps,rtabmap_gps,"
+                            "openvins_gps")
     ap.add_argument("--type", dest="run_type", default="vo",
                     choices=["vo", "vo-lc", "vio", "vio-lc", "gnss-vio"],
                     help="Which results tree to read (default: vo)")
