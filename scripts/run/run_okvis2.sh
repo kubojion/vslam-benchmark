@@ -31,13 +31,19 @@ OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/okvis2/run${RUN_ID}"
 LOG_GLOBAL="$WS/logs/${DATASET}_${SEQ}_okvis2_${RUN_TYPE}_run${RUN_ID}.log"
 
 case "$RUN_TYPE" in
-    vo)     CFG="$WS/configs/okvis2/${DATASET}_${SEQ}_vo.yaml"     ; OKMODE=vio  ;;
-    vo-lc)  CFG="$WS/configs/okvis2/${DATASET}_${SEQ}_vo_lc.yaml"  ; OKMODE=slam ;;
-    vio)    CFG="$WS/configs/okvis2/${DATASET}_${SEQ}_vio.yaml"    ; OKMODE=vio  ;;
-    vio-lc) CFG="$WS/configs/okvis2/${DATASET}_${SEQ}_vio_lc.yaml" ; OKMODE=slam ;;
+    vo)     CFG="$WS/configs/okvis2/${DATASET}_${SEQ}_vo.yaml"     ;;
+    vo-lc)  CFG="$WS/configs/okvis2/${DATASET}_${SEQ}_vo_lc.yaml"  ;;
+    vio)    CFG="$WS/configs/okvis2/${DATASET}_${SEQ}_vio.yaml"    ;;
+    vio-lc) CFG="$WS/configs/okvis2/${DATASET}_${SEQ}_vio_lc.yaml" ;;
     *)      echo "[okvis2] unknown run_type: $RUN_TYPE" >&2; exit 2 ;;
 esac
+if [[ -n "${OKVIS2_CONFIG:-}" ]]; then
+    CFG="$OKVIS2_CONFIG"
+    [[ "$CFG" = /* ]] || CFG="$WS/$CFG"
+    echo "[okvis2] config override: $CFG"
+fi
 [[ -f "$CFG" ]] || { echo "[okvis2] missing config: $CFG" >&2; exit 2; }
+if grep -qE '^\s*do_loop_closures:\s*true' "$CFG"; then OKMODE=slam; else OKMODE=vio; fi
 [[ -d "$SEQ_DIR/mav0/cam0/data" && -d "$SEQ_DIR/mav0/cam1/data" ]] \
     || { echo "[okvis2] missing $SEQ_DIR/mav0/cam{0,1}/data" >&2; exit 2; }
 [[ -f "$SEQ_DIR/mav0/imu0/data.csv" ]] \

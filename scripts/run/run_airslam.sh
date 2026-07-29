@@ -76,6 +76,7 @@ if [[ "$USE_IMU" == "true" && ! -f "$SEQ_DIR/mav0/imu0/data.csv" ]]; then
 fi
 
 mkdir -p "$OUT_DIR" "$WS/logs"
+rm -f "$OUT_DIR/trajectory.txt" "$OUT_DIR/trajectory_v0.txt" "$OUT_DIR/trajectory_v1.txt"
 
 # ---- Ensure Docker container is running -----------------------------------
 if ! docker ps --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
@@ -133,10 +134,11 @@ docker exec "$CONTAINER" bash -c "
 " 2>&1 | tee "$LOG" &
 EXEC_PID=$!
 
-# Wait for trajectory_v0.txt to appear (non-empty = fully written)
+# Wait for trajectory_v0.txt to appear. AirSLAM creates it after processing all
+# frames; it can be empty when the estimator fails to initialise.
 TRAJ_HOST="$OUT_DIR/trajectory_v0.txt"
 echo "[airslam] waiting for trajectory_v0.txt ..."
-while [[ ! -s "$TRAJ_HOST" ]]; do
+while [[ ! -e "$TRAJ_HOST" ]]; do
     sleep 5
     if ! kill -0 "$EXEC_PID" 2>/dev/null; then break; fi  # exited early (crash)
 done
@@ -190,8 +192,8 @@ if [[ "$USE_LC" == "true" && -s "$OUT_DIR/trajectory_v1.txt" ]]; then
 else
     RAW_TRAJ="$OUT_DIR/trajectory_v0.txt"
 fi
-if [[ ! -f "$RAW_TRAJ" ]]; then
-    echo "ERROR: no trajectory found in $OUT_DIR after AirSLAM run" >&2
+if [[ ! -s "$RAW_TRAJ" ]]; then
+    echo "ERROR: no non-empty trajectory found in $OUT_DIR after AirSLAM run" >&2
     echo "Files in output dir:" >&2
     ls "$OUT_DIR" >&2
     exit 1

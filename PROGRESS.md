@@ -340,14 +340,20 @@ is held fixed.
 DPV-SLAM is DPVO with proximity loop closure enabled. It is monocular and uses no IMU, so it lives
 in `results-vo-lc/` and `benchmark-vo-lc.csv` rather than the true VIO-LC bucket.
 
-Configured but not yet run in this bucket:
-ORB-SLAM3 stereo LC (`configs/orbslam3/<dataset>_stereo_lc.yaml`) and AirSLAM visual-only LC
-(`configs/airslam/<dataset>_vo_lc.yaml` + map refinement) are ready for rosariov2, hortimulti,
-EuRoC-MAV and zed2i. OKVIS2 and OKVIS2-X now have `*_vo_lc.yaml` configs with
-`imu_parameters.use: false` and `do_loop_closures: true`; treat them as experimental until
-a smoke run proves the LC backend is valid without inertial residuals. MASt3R-SLAM retrieval LC
-(`configs/mast3r_slam/<dataset>_vo_lc.yaml`) is configured for rosariov2, hortimulti and
-EuRoC-MAV, but prior attempts OOM on a 12 GB GPU.
+The candidate benchmark matrix is still config-only, but wrapper-level smoke validation completed
+on EuRoC MH01 prefixes on 2026-07-29:
+
+- ORB-SLAM3 processed 200/200 stereo frames with LC enabled and no IMU, then exported 200 poses.
+  Its known destructor segfault occurred after trajectory export and is handled by the wrapper.
+- AirSLAM processed 1,000 stereo frames, exported 75 refined keyframe poses, and map refinement
+  found 18 loop pairs before pose-graph and global-map optimisation.
+- OKVIS2 and OKVIS2-X each exported 199/200 poses with `imu_parameters.use: false`,
+  `do_loop_closures: true`, active LC queries, and final full BA.
+
+These tests prove that all four VO-LC wrappers and mode combinations execute. They are not benchmark
+runs. The short OKVIS prefixes contained no accepted loop-closure attempt, so a full sequence with a
+revisit is still needed to validate correction quality. MASt3R-SLAM retrieval LC is configured for
+rosariov2, hortimulti and EuRoC-MAV, but prior attempts OOM on a 12 GB GPU.
 
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | N |
 |---|---|---|---|---|---|---|---|---|

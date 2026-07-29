@@ -107,7 +107,8 @@ two VO baselines. Next step for the core table is N=1 -> N=3.
 | MASt3R-SLAM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🔧 config missing |
 
 > DPV-SLAM = DPVO + proximity loop closure (monocular, no IMU). LC **helps 2-3x on EuRoC but hurts every agricultural sequence** (false loops on repetitive crop rows) - see PROGRESS.md finding 10.
-> Additional VO-LC configs now exist for ORB-SLAM3 stereo (`configs/orbslam3/<dataset>_stereo_lc.yaml`), AirSLAM (`configs/airslam/<dataset>_vo_lc.yaml` + `<dataset>_mr.yaml`), OKVIS2/OKVIS2-X (`configs/okvis2{x}/<dataset>_<seq>_vo_lc.yaml`) and MASt3R-SLAM (`configs/mast3r_slam/<dataset>_vo_lc.yaml`). OKVIS2/OKVIS2-X need smoke runs to prove their LC backend behaves with `imu_parameters.use: false`; their dataset readers still require `mav0/imu0/data.csv`.
+> Additional VO-LC configs now exist for ORB-SLAM3 stereo (`configs/orbslam3/<dataset>_stereo_lc.yaml`), AirSLAM (`configs/airslam/<dataset>_vo_lc.yaml` + `<dataset>_mr.yaml`), OKVIS2/OKVIS2-X (`configs/okvis2{x}/<dataset>_<seq>_vo_lc.yaml`) and MASt3R-SLAM (`configs/mast3r_slam/<dataset>_vo_lc.yaml`). The OKVIS2/OKVIS2-X dataset readers still require `mav0/imu0/data.csv` even when IMU residuals are disabled.
+> ORB-SLAM3, AirSLAM, OKVIS2 and OKVIS2-X VO-LC smoke tests passed on EuRoC MH01 prefixes. These validate the wrappers and mode flags, not benchmark accuracy; full-sequence runs are still pending.
 
 ### VIO-LC (stereo + IMU + loop closure) - `results-vio-lc/`
 
@@ -303,11 +304,11 @@ came from manual runs, so they have not yet been reproduced through the runner.
 
 | Task | Status |
 |---|---|
-| ORB-SLAM3 runner + configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` configured (`run_orbslam3.sh ... vo-lc`) |
+| ORB-SLAM3 runner + configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` configured; 200-frame VO-LC smoke passed |
 | MASt3R-SLAM runner + configs for rosariov2/hortimulti/EuRoC | `[x]` configured, blocked on >12 GB VRAM for full sequences |
-| AirSLAM runner + configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` configured (`run_airslam.sh ... vo-lc`) |
-| OKVIS2 configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` experimental; smoke test first (`run_okvis2.sh ... vo-lc`) |
-| OKVIS2-X configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` experimental; smoke test first (`run_okvis2x.sh ... vo-lc`) |
+| AirSLAM runner + configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` configured; 1,000-frame VO-LC smoke passed with 18 loop pairs |
+| OKVIS2 configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` experimental; 200-frame IMU-off LC smoke passed |
+| OKVIS2-X configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` experimental; 200-frame IMU-off LC smoke passed |
 
 ### Voxel-SVIO
 

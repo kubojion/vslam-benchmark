@@ -28,6 +28,7 @@ else
         --volume "$WS/src/airslam:/root/catkin_ws/src/air_slam" \
         --volume "$WS/datasets:/datasets:ro" \
         --volume "$WS/results-vo:/results-vo" \
+        --volume "$WS/results-vo-lc:/results-vo-lc" \
         --volume "$WS/results-vio:/results-vio" \
         --volume "$WS/results-vio-lc:/results-vio-lc" \
         --volume "$WS/configs:/benchmark_configs:ro" \
