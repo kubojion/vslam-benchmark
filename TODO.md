@@ -1,6 +1,6 @@
 # vSLAM Benchmark - TODO
 
-> Created: 2026-05-20 | Revised: 2026-07-29. VO has 88 evaluated rows. VO-LC has 8 evaluated rows
+> Created: 2026-05-20 | Revised: 2026-07-29. VO has 92 evaluated rows. VO-LC has 8 evaluated rows
 > (DPV-SLAM only for now). The core VIO N=1
 > matrix has 49 rows (7 algorithms x 7 standard sequences); corrected HortiMulti extrinsics and
 > EuRoC MH_03/MH_05 are included. ZED2i adds six usable VIO trajectories plus one failed
@@ -37,7 +37,7 @@ Legend: ✅ run complete | 🟡 run complete with caveat | ⬜ config only | �
 | DPVO | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
 | OKVIS2 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
 | OKVIS2-X | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
-| OV2SLAM | ⬜ config only | ⬜ config only | ⬜ config only | ✅ N=1 | ⬜ config only | ⬜ config only | ✅ N=1 | ⬜ config only |
+| OV2SLAM | ✅ N=1 | ✅ N=1 | ⬜ config only | ✅ N=1 | ⬜ config only | ⬜ config only | ✅ N=1 | ⬜ config only |
 | MASt3R-SLAM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🔧 config missing |
 | MegaSaM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🔧 config missing |
 
@@ -318,8 +318,8 @@ came from manual runs, so they have not yet been reproduced through the runner.
 | Task | Status |
 |---|---|
 | Accuracy-first configs (`force_realtime: 0`, half-speed replay for measured runs) | `[x]` |
-| VO N=1 on EuRoC MH_05 and HortiMulti str03 | `[x]` 0.099 m / 0.351 m Sim3 ATE |
-| Complete VO N=1 sweep on the remaining six standard sequences | `[ ]` |
+| VO N=1 on Rosario seq1+seq5, EuRoC MH_05 and HortiMulti str03 | `[x]` 7.236 m / 8.045 m / 0.099 m / 0.351 m Sim3 ATE |
+| Complete VO N=1 sweep on the remaining four standard sequences | `[ ]` HortiMulti str02, EuRoC MH_01/MH_03, ZED2i field1 |
 
 ### Voxel-SVIO
 

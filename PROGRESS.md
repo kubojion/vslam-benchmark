@@ -1,6 +1,6 @@
 # vSLAM Benchmark - Progress
 
-> Updated: 2026-07-29 - VO: 90 evaluated rows. VO-LC: 8 DPV-SLAM rows; five additional wrappers are smoke-validated and MASt3R-SLAM retrieval LC is configured.
+> Updated: 2026-07-29 - VO: 92 evaluated rows. VO-LC: 8 DPV-SLAM rows; five additional wrappers are smoke-validated and MASt3R-SLAM retrieval LC is configured.
 > Core VIO N=1 sweep: 49 evaluated rows
 > (7 algorithms x 7 standard sequences), including corrected HortiMulti extrinsics and EuRoC
 > MH_03/MH_05. The ZED2i field dataset adds six usable VIO trajectories plus one ORB-SLAM3
@@ -22,7 +22,7 @@ extension; result integration currently manual), **OpenVINS** (MSCKF VIO, Docker
 ## VO - Visual Odometry
 
 **N=3** for main VO-phase algorithms (ORB-SLAM3, MAC-VO, Basalt, AirSLAM, DROID-SLAM).
-**N=1** for DPVO and OKVIS2 VO-mode runs, plus the first two OV2SLAM runs.
+**N=1** for DPVO and OKVIS2 VO-mode runs, plus the first four OV2SLAM runs.
 All ATE values: Sim3 RMSE, with SE3 column for scale-aware comparison.
 
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | N |
@@ -30,6 +30,8 @@ All ATE values: Sim3 RMSE, with SE3 column for scale-aware comparison.
 | ORB-SLAM3 | rosariov2 | seq5 | **14.16 m** | 14.40 m | 0.949 | 0.0845 | 5.93 | 1 |
 | OKVIS2 | rosariov2 | seq5 | 17.48 m | 17.68 m | 0.947 | 0.0781 | 8.44 | 1 |
 | OKVIS2 | rosariov2 | seq1 | 20.03 m | 20.63 m | 0.897 | 0.1381 | 8.91 | 1 |
+| OV2SLAM | rosariov2 | seq1 | **7.236 m** | 7.236 m | 1.001 | 0.0561 | 7.28 | 1 |
+| OV2SLAM | rosariov2 | seq5 | **8.045 m** | 8.047 m | 1.004 | 0.0208 | 7.23 | 1 |
 | AirSLAM | rosariov2 | seq1 | **9.89 ± 0.06 m** | 9.89 m | 1.005 | 0.034 | 23.04 | 3 |
 | AirSLAM | rosariov2 | seq5 | 12.72 ± 0.99 m | 12.78 m | 0.977 | 0.055 | 23.74 | 3 |
 | AirSLAM | hortimulti | str02 | 20.22 ± 0.82 m | 20.48 m | 0.928 | 0.266 | 27.37 | 3 |
@@ -77,8 +79,10 @@ observed metric scale. The correction ranges from 0.192 to 2.912 across these N=
 DPVO's low Sim3 ATE must not be interpreted as metric-scale accuracy or repeatability evidence.
 
 OV2SLAM uses its upstream accurate profile with `force_realtime: 0`; the measured runs were
-replayed at half speed to process every stereo pair. It exported 2273/2273 poses on MH_05 and
-2425/2425 on str03, with near-metric scale (0.997 and 1.031).
+replayed at half speed to process every stereo pair. It exported complete trajectories on all four
+runs: 13821/13821 poses on Rosario seq1, 11640/11640 on seq5, 2273/2273 on MH_05 and
+2425/2425 on str03. Scale remained near metric (1.001, 1.004, 0.997 and 1.031). The reported
+FPS includes the deliberate half-speed playback cap and is not unconstrained throughput.
 
 zed2i/field1 = local ZED2i field dataset (field1_110426_full_10fps_q90): 46283 stereo pairs @
 1920x1080, 10 fps, 412 m path over 77 min, RTK-GPS ground truth (position only, orientation=identity).
@@ -566,7 +570,7 @@ The PPK fix above was carried out on rosariov2 seq5. All four GNSS-VIO algorithm
 | DROID-SLAM | yes | no IMU support | no IMU support | no | VO N=3 | VO N=3 | VO N=1 | no config |
 | MAC-VO | yes | no IMU support | no IMU support | no | VO N=3 | VO N=3 | VO N=1 | no config |
 | AirSLAM | yes | yes | yes | no | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VIO N=1 |
-| OV2SLAM | yes | no IMU support | no; LC variant is VO-LC | no | VO+VO-LC configured | str03 VO N=1; all configured | MH_05 VO N=1; all configured | VO+VO-LC configured |
+| OV2SLAM | yes | no IMU support | no; LC variant is VO-LC | no | seq1+seq5 VO N=1; all configured | str03 VO N=1; all configured | MH_05 VO N=1; all configured | VO+VO-LC configured |
 | OKVIS2 | yes | yes | yes | no | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VIO N=1 |
 | OKVIS2-X | manual | manual | manual | planned | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VIO N=1 |
 | OpenVINS | no VO mode | yes | no LC | no | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VIO N=1 |
