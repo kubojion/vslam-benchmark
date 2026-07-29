@@ -1,10 +1,11 @@
 # vSLAM Benchmark - Progress
 
-> Updated: 2026-07-21 - VO: 67 evaluated rows. Core VIO N=1 sweep: 49 evaluated rows
+> Updated: 2026-07-29 - VO: 88 evaluated rows. VO-LC: 8 DPV-SLAM rows; ORB-SLAM3 stereo LC and MASt3R-SLAM retrieval LC are configured as VO-LC candidates.
+> Core VIO N=1 sweep: 49 evaluated rows
 > (7 algorithms x 7 standard sequences), including corrected HortiMulti extrinsics and EuRoC
 > MH_03/MH_05. The ZED2i field dataset adds six usable VIO trajectories plus one ORB-SLAM3
-> failed attempt, bringing `benchmark-vio.csv` to 55 rows. VIO-LC has 3 rows. GNSS-VIO N=1
-> is complete with 16 headline runs (4 algorithms x 4 GPS-bearing sequences); Rosario v2
+> failed attempt, bringing `benchmark-vio.csv` to 55 rows. VIO-LC has 3 true IMU+LC rows. GNSS-VIO N=1
+> is complete with 20 rows (5 algorithms x 4 GPS-bearing sequences); Rosario v2
 > sequence5 uses PPK and the PPK-versus-conventional study is retained. N=3 validation is pending.
 
 Algorithms run: **ORB-SLAM3** (classical), **MAC-VO** (hybrid), **Basalt** (sliding-window VIO),
@@ -316,6 +317,35 @@ is held fixed.
   scale 0.990; it is not evidence of an unavoidable algorithm-level divergence.
 - Machine provenance is captured for new runs through `run_meta.json`; not every legacy artifact has
   complete provenance, so missing FPS/hardware fields are left blank rather than inferred.
+
+---
+
+## VO-LC - Visual-Only + Loop Closure
+
+DPV-SLAM is DPVO with proximity loop closure enabled. It is monocular and uses no IMU, so it lives
+in `results-vo-lc/` and `benchmark-vo-lc.csv` rather than the true VIO-LC bucket.
+
+Configured but not yet run in this bucket:
+ORB-SLAM3 stereo LC (`configs/orbslam3/<dataset>_stereo_lc.yaml`) and AirSLAM visual-only LC
+(`configs/airslam/<dataset>_vo_lc.yaml` + map refinement) are ready for rosariov2, hortimulti,
+EuRoC-MAV and zed2i. OKVIS2 and OKVIS2-X now have `*_vo_lc.yaml` configs with
+`imu_parameters.use: false` and `do_loop_closures: true`; treat them as experimental until
+a smoke run proves the LC backend is valid without inertial residuals. MASt3R-SLAM retrieval LC
+(`configs/mast3r_slam/<dataset>_vo_lc.yaml`) is configured for rosariov2, hortimulti and
+EuRoC-MAV, but prior attempts OOM on a 12 GB GPU.
+
+| Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | N |
+|---|---|---|---|---|---|---|---|---|
+| DPV-SLAM | euroc_mav | MH_01 | 0.047 m | 0.354 m | 0.925 | 0.023 | 17.69 | 1 |
+| DPV-SLAM | euroc_mav | MH_03 | 0.042 m | 1.391 m | 1.635 | 0.018 | 17.64 | 1 |
+| DPV-SLAM | euroc_mav | MH_05 | 0.058 m | 3.306 m | 1.925 | 0.016 | 19.18 | 1 |
+| DPV-SLAM | hortimulti | str02 | 22.00 m | 26.74 m | 1.514 | 0.580 | 5.31 | 1 |
+| DPV-SLAM | hortimulti | str03 | 8.83 m | 11.08 m | 1.676 | 0.533 | 12.34 | 1 |
+| DPV-SLAM | rosariov2 | seq1 | 9.32 m | 34.42 m | 3.462 | 0.191 | 13.53 | 1 |
+| DPV-SLAM | rosariov2 | seq5 | 6.48 m | 37.11 m | 3.607 | 0.105 | 14.78 | 1 |
+| DPV-SLAM | zed2i | field1 | 2.36 m | 14.51 m | 3.579 | 0.114 | 11.95 | 1 |
+
+See finding 10 for the DPVO-vs-DPV-SLAM loop-closure comparison.
 
 ---
 
@@ -722,17 +752,18 @@ cy=348.24, baseline=0.04973 m, gravity=9.7958) and Basalt's tuned IMU noise
 
 ## Run-type structure
 
-The repository tracks runs along three buckets:
+The repository tracks runs along five buckets:
 
 * `vo`     - no IMU, no LC      -> `results-vo/`, `benchmark-vo.csv`
+* `vo-lc`  - no IMU, LC on      -> `results-vo-lc/`, `benchmark-vo-lc.csv`
 * `vio`    - IMU on, no LC      -> `results-vio/`, `benchmark-vio.csv`
 * `vio-lc` - IMU on, LC on      -> `results-vio-lc/`, `benchmark-vio-lc.csv`
+* `gnss-vio` - IMU on, GNSS on  -> `results-gnss-vio/`, `benchmark-gnss-vio.csv`
 
 The ORB-SLAM3 results in the table below were produced by the stock
-`stereo_euroc` binary with loop closure enabled. Because that binary is a
-pure stereo-SLAM-with-LC (no IMU), it does not fit any of the three
-buckets above; the trajectories and the per-run CSV have been moved to
-`obsolete/` until a VO-only build is wired in. The table is preserved
+`stereo_euroc` binary with loop closure enabled before `vo-lc` was split out.
+They remain in `obsolete/` because they predate the current runner/config
+contract; reruns should use `run_type=vo-lc`. The table is preserved
 below as a reference snapshot.
 
 ---
@@ -1501,7 +1532,7 @@ approach ORB-SLAM3's VIO performance. For this benchmark, OKVIS2 VO is the usabl
 
 ### 10. Loop closure is counterproductive on agricultural imagery (DPVO vs DPV-SLAM)
 
-Running DPVO (VO) against DPV-SLAM (identical, + proximity loop closure) on all sequences
+Running DPVO (VO) against DPV-SLAM (VO-LC: identical, + proximity loop closure) on all sequences
 isolates the effect of loop closure, since everything else is held fixed:
 
 | Sequence | DPVO | DPV-SLAM (+LC) | effect |

@@ -1,0 +1,111 @@
+{
+  "run": "1",
+  "algo": "dpvo",
+  "dataset": "zed2i",
+  "seq": "field1_110426_full_10fps_q90",
+  "run_type": "vo-lc",
+  "use_imu": false,
+  "use_lc": true,
+  "gt_source": "interpolated",
+  "n_pairs_ate": 46283,
+  "ate": {
+    "rmse": 2.36358,
+    "mean": 1.863179,
+    "median": 1.343357,
+    "std": 1.454329,
+    "max": 5.671245
+  },
+  "ate_se3": {
+    "rmse": 14.506934,
+    "mean": 12.793334,
+    "median": 12.793524,
+    "std": 6.839717,
+    "max": 28.785687
+  },
+  "rpe_trans_1m": {
+    "rmse": 0.114178,
+    "mean": 0.097519,
+    "std": 0.059386,
+    "max": 0.243094
+  },
+  "rpe_rot_1m_deg": {
+    "rmse": 7.194786,
+    "mean": 3.41042,
+    "std": 6.335138
+  },
+  "kitti_drift": {
+    "rpe_10m_trans_rmse": 1.042401,
+    "rpe_50m_trans_rmse": 3.364988,
+    "rpe_100m_trans_rmse": 2.602187
+  },
+  "scale_factor": 3.5785790030192524,
+  "final_drift_m": 13.2911,
+  "robustness": {
+    "init_success": false,
+    "init_time_s": null,
+    "tracking_losses": 0,
+    "loop_closures": 0,
+    "map_resets": 0,
+    "output_valid": true,
+    "first_failure_s": null,
+    "frames_total": 46283,
+    "frames_tracked": 46283,
+    "track_pct": 100.0
+  },
+  "runtime": {
+    "vram_mean_mib": 4387.8,
+    "vram_peak_mib": 4564.0,
+    "gpu_mean_pct": 91.4,
+    "gpu_peak_pct": 100.0,
+    "cpu_mean_pct": 0.0,
+    "cpu_peak_pct": 0.0,
+    "ram_mean_mib": 12234.1,
+    "ram_peak_mib": 12477.0,
+    "wall_s": 3874.49,
+    "fps": 11.946,
+    "fps_raw": 11.946
+  },
+  "machine": {
+    "os": "Ubuntu 22.04.5 LTS",
+    "kernel": "6.8.0-124-generic",
+    "cpu": "Intel(R) Core(TM) i9-14900HX",
+    "cpu_cores": {
+      "physical": 24,
+      "logical": 32
+    },
+    "ram_total_gb": 31.1,
+    "gpus": [
+      {
+        "name": "NVIDIA GeForce RTX 4080 Laptop GPU",
+        "memory": "12282 MiB",
+        "driver": "580.173.02"
+      }
+    ],
+    "python": "3.9.25"
+  },
+  "agri_segments": {
+    "row": {
+      "n_segments": 2,
+      "ate_rmse_mean": 1.332856,
+      "ate_rmse_std": 0.145309,
+      "segments": [
+        {
+          "t_start": 1783069468.1792278,
+          "t_end": 1783071643.3458047,
+          "ate_rmse": 1.187547,
+          "ate_mean": 1.010438,
+          "n_frames": 21747,
+          "duration_s": 2175.167
+        },
+        {
+          "t_start": 1783071643.4127607,
+          "t_end": 1783074097.3168857,
+          "ate_rmse": 1.478165,
+          "ate_mean": 1.305322,
+          "n_frames": 24536,
+          "duration_s": 2453.904
+        }
+      ]
+    }
+  }
+}

@@ -5,6 +5,8 @@
 # run_type -> config file + results tree:
 #   vo       -> configs/okvis2x/<dataset>_<seq>_vo.yaml
 #               -> results-vo/<dataset>/<seq>/okvis2x/run<N>/
+#   vo-lc    -> configs/okvis2x/<dataset>_<seq>_vo_lc.yaml
+#               -> results-vo-lc/<dataset>/<seq>/okvis2x/run<N>/
 #   vio      -> configs/okvis2x/<dataset>_<seq>_vio.yaml
 #               -> results-vio/<dataset>/<seq>/okvis2x/run<N>/
 #   vio-lc   -> configs/okvis2x/<dataset>_<seq>_vio_lc.yaml
@@ -17,7 +19,7 @@
 #
 # Notes:
 #  * OKVIS2-X is fundamentally a Visual-INERTIAL estimator. Running with
-#    `imu_parameters.use: false` (vo) is accepted by the parameter reader but
+#    `imu_parameters.use: false` (vo / vo-lc) is accepted by the parameter reader but
 #    the front-end is not designed for IMU-less stereo; results may be poor or
 #    the run may fail to initialise. Logged as best-effort.
 #  * mav0/imu0/data.csv is required for EVERY run type, including vo: the
@@ -28,6 +30,7 @@ set -euo pipefail
 DATASET=$1; SEQ=$2; RUN_ID=${3:-1}; RUN_TYPE=${4:-vio}
 WS=$(cd "$(dirname "$0")/../.." && pwd)
 source "$WS/scripts/_paths.sh"
+canonicalize_dataset "$DATASET"
 resolve_run_type "$RUN_TYPE"
 
 SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
@@ -36,6 +39,7 @@ LOG_GLOBAL="$WS/logs/${DATASET}_${SEQ}_okvis2x_${RUN_TYPE}_run${RUN_ID}.log"
 
 case "$RUN_TYPE" in
     vo)       CFG="$WS/configs/okvis2x/${DATASET}_${SEQ}_vo.yaml"       ;;
+    vo-lc)    CFG="$WS/configs/okvis2x/${DATASET}_${SEQ}_vo_lc.yaml"    ;;
     vio)      CFG="$WS/configs/okvis2x/${DATASET}_${SEQ}_vio.yaml"      ;;
     vio-lc)   CFG="$WS/configs/okvis2x/${DATASET}_${SEQ}_vio_lc.yaml"   ;;
     gnss-vio) CFG="$WS/configs/okvis2x/${DATASET}_${SEQ}_gnss_vio.yaml" ;;
@@ -155,7 +159,7 @@ END=$(date +%s.%N)
 
 # Which CSV is the run's answer?
 #   vo / vio / gnss-vio : the causal (real-time) estimate.
-#   vio-lc              : the loop-closed estimate after the final full BA,
+#   vo-lc / vio-lc      : the loop-closed estimate after the final full BA,
 #                         falling back to the pre-BA loop-closed one. This is
 #                         the SLAM result the vio-lc bucket is meant to measure,
 #                         and mirrors AirSLAM's vio-lc using its map_refinement
@@ -168,7 +172,7 @@ FINAL_BA="$OUT_DIR/okvis2-${OKMODE}-final-ba_trajectory.csv"
 # a crashed run leaves a header-only file that would otherwise look like success.
 has_poses() { [[ -f "$1" ]] && (( $(wc -l < "$1") > 1 )); }
 
-if [[ "$RUN_TYPE" == "vio-lc" ]]; then
+if [[ "$USE_LC" == "true" ]]; then
     for cand in "$FINAL_BA" "$FINAL" "$CAUSAL"; do
         has_poses "$cand" && { RAW="$cand"; break; }
     done
@@ -209,6 +213,8 @@ import json
 print(json.dumps({
     'algo':'okvis2x','dataset':'$DATASET','seq':'$SEQ','run_id':$RUN_ID,
     'run_type':'$RUN_TYPE',
+    'use_imu':$([[ "$USE_IMU" == "true" ]] && echo True || echo False),
+    'use_lc':$([[ "$USE_LC" == "true" ]] && echo True || echo False),
     'duration_s':$DUR,'frames':$NFR,
     'fps':$NFR/$DUR if $DUR>0 else 0
 }))

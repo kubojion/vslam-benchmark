@@ -1,4 +1,4 @@
-# MASt3R-SLAM algorithm config for rosariov2 -- loop closure ON.
+# MASt3R-SLAM algorithm config for rosariov2 -- visual-only loop closure ON.
 # Schema is upstream's (config/base.yaml); `inherit` is resolved relative to the
 # MASt3R-SLAM repo root, which run_mast3r_slam.sh cds into.
 #

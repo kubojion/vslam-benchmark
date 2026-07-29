@@ -14,6 +14,7 @@ Every run is classified by a `run_type`:
 | run_type   | IMU | LC  | GNSS | Results tree           | Aggregated CSV            |
 |------------|-----|-----|------|------------------------|---------------------------|
 | `vo`       | off | off | off  | `results-vo/`          | `benchmark-vo.csv`        |
+| `vo-lc`    | off | on  | off  | `results-vo-lc/`       | `benchmark-vo-lc.csv`     |
 | `vio`      | on  | off | off  | `results-vio/`         | `benchmark-vio.csv`       |
 | `vio-lc`   | on  | on  | off  | `results-vio-lc/`      | `benchmark-vio-lc.csv`    |
 | `gnss-vio` | on  | -   | on   | `results-gnss-vio/`    | `benchmark-gnss-vio.csv`  |
@@ -38,7 +39,7 @@ when re-evaluating without re-running SLAM:
 ```bash
 WS=$(pwd)
 EVAL=$WS/scripts/eval
-TYPE=vo          # or: vio, vio-lc, gnss-vio
+TYPE=vo          # or: vo-lc, vio, vio-lc, gnss-vio
 DS=rosariov2     # or: hortimulti, euroc_mav
 SEQ=sequence1    # or: sequence5, strawberry02, strawberry03, MH_01_easy ...
 ALGO=macvo       # or: orbslam3, basalt, airslam, openvins, okvis2,
@@ -65,7 +66,7 @@ python3 $EVAL/_plot_segments.py --type $TYPE $DS $SEQ
 # 6. ATE vs FPS comparison across all sequences (per run-type)
 python3 $EVAL/plot_ate_vs_fps.py --type $TYPE
 
-# 7. Rebuild all aggregated CSVs from per-run JSONs (vo, vio, vio-lc, gnss-vio)
+# 7. Rebuild all aggregated CSVs from per-run JSONs (vo, vo-lc, vio, vio-lc, gnss-vio)
 python3 $EVAL/build_benchmark_csv.py all
 ```
 

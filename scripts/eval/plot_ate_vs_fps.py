@@ -7,7 +7,7 @@ Error bars show std over runs when more than one run exists.
 Color = algorithm. Marker shape = dataset.
 
 Usage:
-    python3 scripts/eval/plot_ate_vs_fps.py [--type vo|vio|vio-lc]
+    python3 scripts/eval/plot_ate_vs_fps.py [--type vo|vo-lc|vio|vio-lc|gnss-vio]
                                             [--dpi 200] [--figsize 12 7]
 """
 import argparse
@@ -83,7 +83,7 @@ SEQ_SHORTNAME = {
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--type", dest="run_type", default="vo",
-                    choices=["vo", "vio", "vio-lc"])
+                    choices=["vo", "vo-lc", "vio", "vio-lc", "gnss-vio"])
     ap.add_argument("--dpi",     type=int,   default=200)
     ap.add_argument("--figsize", nargs=2, type=float, default=[13, 8])
     args = ap.parse_args()

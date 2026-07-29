@@ -5,9 +5,8 @@
 #
 # DPVO is monocular (cam0 only), no IMU. run_type:
 #   vo      -> DPVO (odometry only)                -> results-vo/
-#   vio-lc  -> DPV-SLAM (LOOP_CLOSURE True)         -> results-vio-lc/
-#             (the vio-lc bucket is reused for its monocular+LC mode, as with
-#              MASt3R-SLAM; there is no IMU.)
+#   vo-lc   -> DPV-SLAM (LOOP_CLOSURE True)         -> results-vo-lc/
+#             (monocular + LC; there is no IMU.)
 #
 # Monocular -> the trajectory is up-to-scale; only Sim(3)-aligned ATE is
 # meaningful against the metric ground truth.
@@ -30,8 +29,9 @@ resolve_run_type "$RUN_TYPE"
 
 case "$RUN_TYPE" in
     vo)     DPVO_OPTS=() ;;
-    vio-lc) DPVO_OPTS=(--opts LOOP_CLOSURE True) ;;   # DPV-SLAM
-    *)      echo "[dpvo] ERROR: run_type must be vo (DPVO) or vio-lc (DPV-SLAM)" >&2; exit 2 ;;
+    vo-lc)  DPVO_OPTS=(--opts LOOP_CLOSURE True) ;;   # DPV-SLAM
+    vio-lc) echo "[dpvo] ERROR: DPV-SLAM is visual-only LC; use run_type=vo-lc, not vio-lc" >&2; exit 2 ;;
+    *)      echo "[dpvo] ERROR: run_type must be vo (DPVO) or vo-lc (DPV-SLAM)" >&2; exit 2 ;;
 esac
 
 REPO="$WS/src/DPVO"
@@ -146,7 +146,7 @@ PY
 
 DUR=$(python3 -c "print($END-$START)")
 NFR=$(wc -l < "$OUT_DIR/trajectory.txt")
-USE_LC=$([[ "$RUN_TYPE" == "vio-lc" ]] && echo True || echo False)
+USE_LC=$([[ "$RUN_TYPE" == "vo-lc" ]] && echo True || echo False)
 python3 -c "
 import json
 print(json.dumps({'algo':'dpvo','dataset':'$DATASET','seq':'$SEQ','run_id':$RUN_ID,

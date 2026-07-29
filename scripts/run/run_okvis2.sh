@@ -5,13 +5,15 @@
 # run_type -> config file + results tree:
 #   vo      -> configs/okvis2/<dataset>_<seq>_vo.yaml
 #              -> results-vo/<dataset>/<seq>/okvis2/run<N>/
+#   vo-lc   -> configs/okvis2/<dataset>_<seq>_vo_lc.yaml
+#              -> results-vo-lc/<dataset>/<seq>/okvis2/run<N>/
 #   vio     -> configs/okvis2/<dataset>_<seq>_vio.yaml
 #              -> results-vio/<dataset>/<seq>/okvis2/run<N>/
 #   vio-lc  -> configs/okvis2/<dataset>_<seq>_vio_lc.yaml
 #              -> results-vio-lc/<dataset>/<seq>/okvis2/run<N>/
 #
 # Note: OKVIS2 is fundamentally a Visual-INERTIAL estimator. Running with
-# `imu_parameters.use: false` (vo) is supported by the parameter reader but
+# `imu_parameters.use: false` (vo / vo-lc) is supported by the parameter reader but
 # the front-end is not designed for IMU-less stereo; results may be poor or
 # the run may fail to initialise. Logged as best-effort.
 #
@@ -30,6 +32,7 @@ LOG_GLOBAL="$WS/logs/${DATASET}_${SEQ}_okvis2_${RUN_TYPE}_run${RUN_ID}.log"
 
 case "$RUN_TYPE" in
     vo)     CFG="$WS/configs/okvis2/${DATASET}_${SEQ}_vo.yaml"     ; OKMODE=vio  ;;
+    vo-lc)  CFG="$WS/configs/okvis2/${DATASET}_${SEQ}_vo_lc.yaml"  ; OKMODE=slam ;;
     vio)    CFG="$WS/configs/okvis2/${DATASET}_${SEQ}_vio.yaml"    ; OKMODE=vio  ;;
     vio-lc) CFG="$WS/configs/okvis2/${DATASET}_${SEQ}_vio_lc.yaml" ; OKMODE=slam ;;
     *)      echo "[okvis2] unknown run_type: $RUN_TYPE" >&2; exit 2 ;;
@@ -84,12 +87,17 @@ if [[ ! -f "$RAW" ]]; then
 fi
 cp "$RAW" "$OUT_DIR/okvis2_raw_trajectory.csv"
 [[ -f "$RAW_FINAL" ]] && cp "$RAW_FINAL" "$OUT_DIR/okvis2_final_trajectory.csv"
+TRAJ_FOR_TUM="$OUT_DIR/okvis2_raw_trajectory.csv"
+if [[ "$USE_LC" == "true" && -f "$OUT_DIR/okvis2_final_trajectory.csv" ]]; then
+    TRAJ_FOR_TUM="$OUT_DIR/okvis2_final_trajectory.csv"
+fi
+echo "[okvis2] trajectory source: $(basename "$TRAJ_FOR_TUM")" | tee -a "$LOG_GLOBAL"
 
 # Convert OKVIS2 CSV (ns-timestamp, comma-separated, 18 cols with bias+vel)
 # into TUM-style trajectory.txt:  timestamp_s tx ty tz qx qy qz qw
 python3 - <<PY
 import csv, sys
-src = "$OUT_DIR/okvis2_raw_trajectory.csv"
+src = "$TRAJ_FOR_TUM"
 dst = "$OUT_DIR/trajectory.txt"
 n = 0
 with open(src) as fin, open(dst, "w") as fout:
@@ -115,6 +123,8 @@ import json
 print(json.dumps({
     'algo':'okvis2','dataset':'$DATASET','seq':'$SEQ','run_id':$RUN_ID,
     'run_type':'$RUN_TYPE',
+    'use_imu':$([[ "$USE_IMU" == "true" ]] && echo True || echo False),
+    'use_lc':$([[ "$USE_LC" == "true" ]] && echo True || echo False),
     'duration_s':$DUR,'frames':$NFR,
     'fps':$NFR/$DUR if $DUR>0 else 0
 }))

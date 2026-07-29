@@ -4,6 +4,7 @@
 #
 # run_type selects results tree AND launch file:
 #   vo      -> results-vo/.../airslam/run<N>/       launch=vo_euroc.launch        cfg=<dataset>_vo.yaml
+#   vo-lc   -> results-vo-lc/.../airslam/run<N>/    launch=vo_euroc.launch        cfg=<dataset>_vo_lc.yaml + map_refinement
 #   vio     -> results-vio/.../airslam/run<N>/      launch=vio_euroc.launch       cfg=<dataset>_vio.yaml      (requires IMU)
 #   vio-lc  -> results-vio-lc/.../airslam/run<N>/   launch=vio_slam_euroc.launch  cfg=<dataset>_vio_slam.yaml (full V-SLAM with LC)
 #
@@ -14,8 +15,8 @@
 #   - configs/airslam/<dataset>_camera.yaml      (VO mode, use_imu: 0)
 #   - configs/airslam/<dataset>_camera_vio.yaml  (VIO/VIO-LC mode, use_imu: 1) - if it exists
 #   - configs/airslam/<dataset>_camera_vo.yaml   (VO override, use_imu: 0) - if it exists
-#   - configs/airslam/<dataset>_<vo|vio|vio_slam>.yaml
-#   - configs/airslam/<dataset>_mr.yaml          (VIO-LC only, map_refinement params)
+#   - configs/airslam/<dataset>_<vo|vo_lc|vio|vio_slam>.yaml
+#   - configs/airslam/<dataset>_mr.yaml          (VO-LC / VIO-LC map_refinement params)
 #
 # Dataset layout expected under datasets/<dataset>/<seq>/mav0/:
 #   cam0/data/*.png   (images named by nanosecond timestamp)
@@ -33,8 +34,10 @@ resolve_run_type "$RUN_TYPE"
 
 case "$RUN_TYPE" in
     vo)      LAUNCH_FILE="vo_euroc.launch";       CFG_TAG="vo" ;;
+    vo-lc)   LAUNCH_FILE="vo_euroc.launch";       CFG_TAG="vo_lc" ;;
     vio)     LAUNCH_FILE="vio_euroc.launch";      CFG_TAG="vio" ;;
     vio-lc)  LAUNCH_FILE="vio_slam_euroc.launch"; CFG_TAG="vio_slam" ;;
+    *)       echo "[airslam] unknown run_type: $RUN_TYPE (expected vo|vo-lc|vio|vio-lc)" >&2; exit 2 ;;
 esac
 
 SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
@@ -45,7 +48,7 @@ LOG="$WS/logs/${DATASET}_${SEQ}_airslam_${RUN_TYPE}_run${RUN_ID}.log"
 # For VIO/VIO-LC, use a separate camera config with use_imu: 1 if one exists.
 if [[ "$USE_IMU" == "true" && -f "$WS/configs/airslam/${DATASET}_camera_vio.yaml" ]]; then
     CAM_CFG="/benchmark_configs/airslam/${DATASET}_camera_vio.yaml"
-elif [[ "$RUN_TYPE" == "vo" && -f "$WS/configs/airslam/${DATASET}_camera_vo.yaml" ]]; then
+elif [[ "$USE_IMU" == "false" && -f "$WS/configs/airslam/${DATASET}_camera_vo.yaml" ]]; then
     CAM_CFG="/benchmark_configs/airslam/${DATASET}_camera_vo.yaml"
 else
     CAM_CFG="/benchmark_configs/airslam/${DATASET}_camera.yaml"
@@ -63,6 +66,9 @@ CAM_CFG_HOST="$WS/configs/airslam/$(basename "$CAM_CFG")"
     echo "ERROR: no AirSLAM camera config at $CAM_CFG_HOST"; exit 2; }
 [[ -f "$WS/configs/airslam/${DATASET}_${CFG_TAG}.yaml" ]] || {
     echo "ERROR: no AirSLAM ${CFG_TAG} config at configs/airslam/${DATASET}_${CFG_TAG}.yaml"; exit 2; }
+if [[ "$USE_LC" == "true" && ! -f "$WS/configs/airslam/${DATASET}_mr.yaml" ]]; then
+    echo "ERROR: no AirSLAM map-refinement config at configs/airslam/${DATASET}_mr.yaml"; exit 2;
+fi
 [[ -d "$SEQ_DIR/mav0/cam0/data" ]] || {
     echo "ERROR: missing EuRoC image folder $SEQ_DIR/mav0/cam0/data"; exit 2; }
 if [[ "$USE_IMU" == "true" && ! -f "$SEQ_DIR/mav0/imu0/data.csv" ]]; then
@@ -83,6 +89,7 @@ if ! docker ps --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
             --volume "$WS/src/airslam:/root/catkin_ws/src/air_slam" \
             --volume "$WS/datasets:/datasets:ro" \
             --volume "$WS/results-vo:/results-vo" \
+            --volume "$WS/results-vo-lc:/results-vo-lc" \
             --volume "$WS/results-vio:/results-vio" \
             --volume "$WS/results-vio-lc:/results-vio-lc" \
             --volume "$WS/configs:/benchmark_configs:ro" \
@@ -91,6 +98,13 @@ if ! docker ps --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
         echo "[airslam] waiting for container to initialise..."
         sleep 3
     fi
+fi
+
+MOUNT_DEST="/$(basename "$RESULTS_ROOT")"
+if ! docker inspect -f '{{range .Mounts}}{{println .Destination}}{{end}}' "$CONTAINER" | grep -qx "$MOUNT_DEST"; then
+    echo "[airslam] ERROR: container '$CONTAINER' is missing mount $MOUNT_DEST" >&2
+    echo "[airslam] recreate it so $RESULTS_ROOT is mounted before running $RUN_TYPE" >&2
+    exit 2
 fi
 
 # ---- Resource monitor (host-side) -----------------------------------------
@@ -135,16 +149,14 @@ if kill -0 "$EXEC_PID" 2>/dev/null; then
     wait "$EXEC_PID" 2>/dev/null || true
 fi
 
-END=$(date +%s.%N)
-
 # ---- Locate trajectory output from saving_dir -----------------------------
 # visual_odometry.cpp writes trajectory_v0.txt (TUM format, timestamps in SECONDS).
-# For VIO-LC: run map_refinement (step 2) which reads the saved map and
+# For LC run types: run map_refinement (step 2) which reads the saved map and
 # produces trajectory_v1.txt (globally consistent poses after LC).
-if [[ "$RUN_TYPE" == "vio-lc" && -s "$TRAJ_HOST" ]]; then
+if [[ "$USE_LC" == "true" && -s "$TRAJ_HOST" ]]; then
     MR_CFG="/benchmark_configs/airslam/${DATASET}_mr.yaml"
     VOC_PATH="/root/catkin_ws/src/air_slam/voc/point_voc_L4.bin"
-    echo "[airslam] running map_refinement (step 2 of VIO-LC)..."
+    echo "[airslam] running map_refinement (step 2 of ${RUN_TYPE})..."
     docker exec "$CONTAINER" bash -c "
         source /opt/ros/noetic/setup.bash &&
         source /root/catkin_ws/devel/setup.bash &&
@@ -169,9 +181,11 @@ if [[ "$RUN_TYPE" == "vio-lc" && -s "$TRAJ_HOST" ]]; then
     fi
 fi
 
+END=$(date +%s.%N)
+
 # Rename to trajectory.txt for consistency with other runners.
-# For VIO-LC use trajectory_v1.txt (post-LC) if available, else fall back to v0.
-if [[ "$RUN_TYPE" == "vio-lc" && -s "$OUT_DIR/trajectory_v1.txt" ]]; then
+# For LC run types use trajectory_v1.txt (post-LC) if available, else fall back to v0.
+if [[ "$USE_LC" == "true" && -s "$OUT_DIR/trajectory_v1.txt" ]]; then
     RAW_TRAJ="$OUT_DIR/trajectory_v1.txt"
 else
     RAW_TRAJ="$OUT_DIR/trajectory_v0.txt"
@@ -199,6 +213,9 @@ NFR=$(wc -l < "$OUT_DIR/trajectory.txt" 2>/dev/null || echo 0)
 python3 -c "
 import json
 print(json.dumps({'algo':'airslam','dataset':'$DATASET','seq':'$SEQ','run_id':$RUN_ID,
+                  'run_type':'$RUN_TYPE',
+                  'use_imu':$([[ "$USE_IMU" == "true" ]] && echo True || echo False),
+                  'use_lc':$([[ "$USE_LC" == "true" ]] && echo True || echo False),
                   'duration_s':$DUR,'frames':$NFR,'fps':$NFR/$DUR if $DUR>0 else 0}))
 " > "$OUT_DIR/run_meta.json"
 

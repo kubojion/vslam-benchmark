@@ -42,6 +42,7 @@ bash scripts/run/run_benchmark.sh <dataset> <seq> <algo> [N=3] [run_type=vo]
 ```
 
 * `vo`     - no IMU, no LC, output -> `results-vo/`        (`benchmark-vo.csv`)
+* `vo-lc`  - no IMU, LC on, output -> `results-vo-lc/`     (`benchmark-vo-lc.csv`)
 * `vio`    - IMU on, no LC, output -> `results-vio/`       (`benchmark-vio.csv`)
 * `vio-lc` - IMU on, LC on, output -> `results-vio-lc/`    (`benchmark-vio-lc.csv`)
 
@@ -60,9 +61,12 @@ bash scripts/run/run_benchmark.sh rosariov2 sequence2 airslam 3 vio
 # Full V-SLAM (IMU + LC) with AirSLAM:
 bash scripts/run/run_benchmark.sh rosariov2 sequence2 airslam 3 vio-lc
 
+# Monocular visual SLAM with loop closure:
+bash scripts/run/run_benchmark.sh rosariov2 sequence2 dpvo 1 vo-lc
+
 # Monocular algorithms (MegaSaM: 3-stage pipeline; MASt3R-SLAM: needs >12 GB VRAM):
 bash scripts/run/run_benchmark.sh euroc_mav MH_01_easy megasam     1 vo
-bash scripts/run/run_benchmark.sh euroc_mav MH_01_easy mast3r_slam 1 vio-lc  # LC enabled
+bash scripts/run/run_benchmark.sh euroc_mav MH_01_easy mast3r_slam 1 vo-lc  # LC enabled
 ```
 
 Direct single runs forward run_type as the 4th positional:
@@ -76,40 +80,42 @@ bash scripts/run/run_droidslam.sh   rosariov2 sequence2 1 vo
 bash scripts/run/run_macvo.sh       rosariov2 sequence2 1 vo
 bash scripts/run/run_basalt.sh      rosariov2 sequence2 1 vio
 bash scripts/run/run_airslam.sh     rosariov2 sequence2 1 vio-lc
+bash scripts/run/run_dpvo.sh        rosariov2 sequence2 1 vo-lc
 bash scripts/run/run_megasam.sh     rosariov2 sequence2 1 vo
-bash scripts/run/run_mast3r_slam.sh rosariov2 sequence2 1 vio-lc
+bash scripts/run/run_mast3r_slam.sh rosariov2 sequence2 1 vo-lc
 ```
 
 Per-run output: `<RESULTS_ROOT>/<dataset>/<seq>/<algo>/run<N>/{trajectory.txt, run_log.txt, resources.csv}`
-where `<RESULTS_ROOT>` is `results-vo/`, `results-vio/`, or `results-vio-lc/` depending on `run_type`.
+where `<RESULTS_ROOT>` is `results-vo/`, `results-vo-lc/`, `results-vio/`, or `results-vio-lc/` depending on `run_type`.
 
 ### Per-algorithm run-type support
 
-| Algorithm   | `vo` | `vio` | `vio-lc` | Notes |
-|-------------|------|-------|----------|-------|
-| ORB-SLAM3   | yes (needs LC-off build, see PROGRESS.md) | yes (stereo-inertial) | yes (stereo-inertial + LC) | |
-| OKVIS2      | yes | yes | yes | configs exist for rosariov2, EuRoC, and hortimulti; use OKVIS2-compatible IMU noise values (not raw Allan) - see PROGRESS.md Phase 4.6 |
-| OKVIS2-X    | yes (best-effort) | yes | yes | also supports `gnss-vio` (tightly-coupled GNSS). `mav0/imu0/data.csv` is required for **every** run type, including `vo` |
-| OpenVINS    | no (MSCKF requires IMU) | yes | no (no built-in LC) | Runs inside `openvins:humble` Docker image; datasets need `mav0/imu0/data.csv` |
-| Voxel-SVIO  | no (MSCKF requires IMU) | yes | no (no built-in LC) | Runs inside `vslam_voxel_svio:noetic` Docker image (ROS 1 Noetic, CPU-only); datasets need `mav0/imu0/data.csv` |
-| AirSLAM     | yes | yes | yes | VIO/VIO-LC require `_camera_vio.yaml` (use_imu: 1) + `mav0/imu0/data.csv`; VIO-LC runs two-step (visual_odometry + map_refinement) |
-| Basalt      | yes (`--use-imu false`) | yes (`--use-imu true`) | no (Basalt has no LC) | |
-| MAC-VO      | yes | no (vision-only) | no (vision-only) | |
-| DROID-SLAM  | yes (dropped; results kept) | no | no | |
-| MegaSaM     | yes | no | no | monocular only; 3-stage pipeline, see note below |
-| MASt3R-SLAM | yes (retrieval.k=0) | no | yes (retrieval.k=3, IMU still off) | monocular only; **needs >12 GB VRAM**, see note below |
+| Algorithm   | `vo` | `vo-lc` | `vio` | `vio-lc` | Notes |
+|-------------|------|---------|-------|----------|-------|
+| ORB-SLAM3   | yes (needs LC-off build, see PROGRESS.md) | yes (stereo + LC) | yes (stereo-inertial) | yes (stereo-inertial + LC) | `vo-lc` uses `configs/orbslam3/<dataset>_stereo_lc.yaml` |
+| OKVIS2      | yes | yes (experimental) | yes | yes | `vo-lc` sets `imu_parameters.use: false` + `do_loop_closures: true`; dataset reader still requires `mav0/imu0/data.csv` |
+| OKVIS2-X    | yes (best-effort) | yes (experimental) | yes | yes | also supports `gnss-vio`; `mav0/imu0/data.csv` is required for **every** run type, including `vo` / `vo-lc` |
+| DPVO / DPV-SLAM | yes | yes | no | no | monocular; `vo-lc` enables DPV-SLAM loop closure |
+| OpenVINS    | no (MSCKF requires IMU) | no | yes | no (no built-in LC) | Runs inside `openvins:humble` Docker image; datasets need `mav0/imu0/data.csv` |
+| Voxel-SVIO  | no (MSCKF requires IMU) | no | yes | no (no built-in LC) | Runs inside `vslam_voxel_svio:noetic` Docker image (ROS 1 Noetic, CPU-only); datasets need `mav0/imu0/data.csv` |
+| AirSLAM     | yes | yes | yes | yes | `vo-lc` runs visual odometry with `use_imu: 0`, then map_refinement; VIO/VIO-LC require `_camera_vio.yaml` + `mav0/imu0/data.csv` |
+| Basalt      | yes (`--use-imu false`) | no | yes (`--use-imu true`) | no (Basalt has no LC) | |
+| MAC-VO      | yes | no | no (vision-only) | no (vision-only) | |
+| DROID-SLAM  | yes (dropped; results kept) | no | no | no | |
+| MegaSaM     | yes | no | no | no | monocular only; 3-stage pipeline, see note below |
+| MASt3R-SLAM | yes (retrieval.k=0) | yes (retrieval.k=3) | no | no | monocular only; **needs >12 GB VRAM**, see note below |
 
 
 ## Notes per algorithm
 
 * **ORB-SLAM3** needs the executable `stereo_euroc` from `src/ORB_SLAM3/Examples/Stereo/`. Re-run `./build.sh` if it's missing.
-* **OKVIS2** uses the binary `src/okvis2/build/okvis_app_synchronous`. Config files: `configs/okvis2/<dataset>_<seq>_vio.yaml` (or `_vio_lc.yaml` / `_vo.yaml` - per-sequence, per-mode). Run type is controlled by the `--run-type` flag passed by `run_okvis2.sh`. Configs exist for rosariov2 (seq1, seq5), EuRoC (MH_01/03/05), and HortiMulti (strawberry02/03). **IMU noise params must use OKVIS2-compatible values** - raw Allan-variance numbers from sensor calibration are typically 12-840x too tight for OKVIS2's MAP estimator and cause scale collapse. Use the D435i reference values in the rosariov2 configs as a starting point. See PROGRESS.md Phase 4.6 for the full diagnosis and corrected params.
-* **OKVIS2-X** uses the binary `src/okvis2x/build/okvis_app_synchronous`, built by `bash scripts/build/build_okvis2x.sh` (see [setup.md](setup.md) §13). It is wired in **completely independently of OKVIS2** - separate source tree, configs, runner and results dir - so the two can be compared head-to-head in the same CSV. Config files: `configs/okvis2x/<dataset>_<seq>_<vo|vio|vio_lc|gnss_vio>.yaml`. Things worth knowing:
+* **OKVIS2** uses the binary `src/okvis2/build/okvis_app_synchronous`. Config files: `configs/okvis2/<dataset>_<seq>_<vo|vo_lc|vio|vio_lc>.yaml` (per-sequence, per-mode). Run type is controlled by the `--run-type` flag passed by `run_okvis2.sh`. Configs exist for rosariov2 (seq1, seq5), EuRoC (MH_01/03/05), HortiMulti (strawberry02/03), and zed2i. **IMU noise params must use OKVIS2-compatible values** - raw Allan-variance numbers from sensor calibration are typically 12-840x too tight for OKVIS2's MAP estimator and cause scale collapse. Use the D435i reference values in the rosariov2 configs as a starting point. See PROGRESS.md Phase 4.6 for the full diagnosis and corrected params.
+* **OKVIS2-X** uses the binary `src/okvis2x/build/okvis_app_synchronous`, built by `bash scripts/build/build_okvis2x.sh` (see [setup.md](setup.md) §13). It is wired in **completely independently of OKVIS2** - separate source tree, configs, runner and results dir - so the two can be compared head-to-head in the same CSV. Config files: `configs/okvis2x/<dataset>_<seq>_<vo|vo_lc|vio|vio_lc|gnss_vio>.yaml`. Things worth knowing:
   * The app signature is `okvis_app_synchronous <config.yaml> <dataset-folder> <output-dir>`. The dataset folder is `mav0/` (the directory holding `cam0/`, `imu0/`, `gps0/`) - **not** the sequence root. Unlike OKVIS2 it writes straight to the output dir, so nothing lands in `datasets/`. (The upstream README documents a 4-argument form with a second `se2-config`; that applies to the `okvis2x_app_*` mapping apps, not this one.)
-  * `mav0/imu0/data.csv` is opened unconditionally by the dataset reader, so it is required even for `vo` (where `imu_parameters.use: false`). Generate it with `python3 scripts/data/imu_to_euroc.py <seq_dir>`.
+  * `mav0/imu0/data.csv` is opened unconditionally by the dataset reader, so it is required even for `vo` / `vo-lc` (where `imu_parameters.use: false`). Generate it with `python3 scripts/data/imu_to_euroc.py <seq_dir>`.
   * The reader takes its image list from `mav0/cam{0,1}/data.csv` and aborts with `no images found for camera N` if absent - it does **not** fall back to listing `data/`. `run_okvis2x.sh` auto-generates both manifests on first use, as `run_basalt.sh` does.
-  * **IMU noise params must use OKVIS2-compatible values** - the shipped configs carry the corrected D435i-reference values; see PROGRESS.md Phase 4.6. `vo` is best-effort: the front-end is not designed for IMU-less stereo.
-  * For `vio-lc` the runner takes the post-BA loop-closed trajectory (`okvis2-slam-final-ba_trajectory.csv`); for the other run types it takes the causal estimate. All raw CSVs are kept in the run dir.
+  * **IMU noise params must use OKVIS2-compatible values** - the shipped configs carry the corrected D435i-reference values; see PROGRESS.md Phase 4.6. `vo` / `vo-lc` are best-effort: the front-end is not designed for IMU-less stereo.
+  * For `vo-lc` / `vio-lc` the runner takes the post-BA loop-closed trajectory (`okvis2-slam-final-ba_trajectory.csv`); for the other run types it takes the causal estimate. All raw CSVs are kept in the run dir.
   * OKVIS2-X does not log *accepted* visual loop closures, so `loop_closures` stays empty for `vio-lc` runs. That is a logging limitation, not a sign that LC is off.
   * **Parameter sweeps**: set `OKVIS2X_CONFIG=<path>` to override the run-type -> config mapping, and give the run its own `run_id` so it lands in a separate `run<N>/`:
     ```bash
@@ -125,7 +131,7 @@ where `<RESULTS_ROOT>` is `results-vo/`, `results-vio/`, or `results-vio-lc/` de
   * UniDepth pulls `unidepth-v2-vitl14` from HuggingFace on first use (several GB).
   * Cost: three ViT-scale passes over every frame, so expect it to be one of the slowest algorithms here - budget hours per sequence, not minutes.
 
-* **MASt3R-SLAM** runs in the `mast3r_slam` conda env. Two config files per sequence, because upstream separates them: `configs/mast3r_slam/<dataset>_calib.yaml` (camera intrinsics, passed via `--calib`) and `configs/mast3r_slam/<dataset>_{vo,vio_lc}.yaml` (algorithm config inheriting upstream's `config/base.yaml`, passed via `--config`). Notes:
+* **MASt3R-SLAM** runs in the `mast3r_slam` conda env. Two config files per sequence, because upstream separates them: `configs/mast3r_slam/<dataset>_calib.yaml` (camera intrinsics, passed via `--calib`) and `configs/mast3r_slam/<dataset>_{vo,vo_lc}.yaml` (algorithm config inheriting upstream's `config/base.yaml`, passed via `--config`). Notes:
   * `main.py` has no `--no-retrieval` flag; loop closure is governed by `retrieval.k` (0 = no candidates), hence one config per mode rather than a CLI switch.
   * `--save-as` is a **label, not a path**: output lands at `logs/<label>/<sequence-stem>.txt` relative to the repo, and the runner copies it into the run dir afterwards.
   * **Known limitation: it does not fit in 12 GB of VRAM** on sequences of this length. It keeps every keyframe on-GPU with no supported way to bound that - `local_opt.window_size` is read but never applied upstream, `dataset.img_downsample` breaks the model (fixed 512-wide checkpoint), and `dataset.subsample: 2` still OOM'd on rosariov2. Needs a larger card.
@@ -133,7 +139,7 @@ where `<RESULTS_ROOT>` is `results-vo/`, `results-vio/`, or `results-vio-lc/` de
 
 * **MAC-VO** runs in the `macvo` conda env. The config's `root:` field uses a `__WS__` placeholder that `run_macvo.sh` substitutes with the workspace root at launch - never hardcode a path.
 * **Basalt** runs the prebuilt binary `basalt_vio` (installed to `~/.local/bin/`) which `run_basalt.sh` sources via `~/.basalt/env`. Two config files are required: a per-dataset camera calibration (`configs/basalt/<dataset>_calib.json`) and a shared VO config (`configs/basalt/vo_config.json`). The calibration uses the EuRoC JSON format (pinhole camera model, flat vignette for rectified images). `run_basalt.sh` auto-generates `mav0/cam0/data.csv` and `mav0/cam1/data.csv` on first use - no manual data prep needed. Basalt outputs TUM-format timestamps already in SECONDS (no conversion needed, unlike ORB-SLAM3). The `vio_min_triangulation_dist` in `vo_config.json` must be set BELOW the stereo baseline of the smallest-baseline dataset (currently 0.03 m for Rosario v2 baseline of 4.97 cm).
-* **AirSLAM** runs inside the `air_slam` Docker container (ROS Noetic + TensorRT). Requires Docker + nvidia-container-toolkit installed and the container created (see [setup.md](setup.md) sections 7a-7d). The container is started automatically by `run_airslam.sh` if it is stopped. On the **first run per dataset**, TensorRT compiles a resolution-specific engine (~5-10 min); subsequent runs reuse the cache. Config files: `configs/airslam/<dataset>_camera.yaml` (VO, use_imu: 0), `configs/airslam/<dataset>_camera_vio.yaml` (VIO/VIO-LC, use_imu: 1), and `configs/airslam/<dataset>_<vo|vio|vio_slam>.yaml` (VO-keyframe params). For hortimulti, `_camera.yaml` is the VIO config and `_camera_vo.yaml` is the VO override. VIO-LC is a two-step process: `run_airslam.sh` runs `visual_odometry` (produces `trajectory_v0.txt`), then automatically runs `map_refinement` (produces `trajectory_v1.txt`) using `configs/airslam/<dataset>_mr.yaml`. The dataset must have `mav0/cam0/data/` and `mav0/cam1/data/` in EuRoC ASL format (images named by nanosecond timestamp), plus `mav0/imu0/data.csv` for VIO/VIO-LC.
+* **AirSLAM** runs inside the `air_slam` Docker container (ROS Noetic + TensorRT). Requires Docker + nvidia-container-toolkit installed and the container created (see [setup.md](setup.md) sections 7a-7d). The container is started automatically by `run_airslam.sh` if it is stopped. On the **first run per dataset**, TensorRT compiles a resolution-specific engine (~5-10 min); subsequent runs reuse the cache. Config files: `configs/airslam/<dataset>_camera.yaml` (VO, use_imu: 0), `configs/airslam/<dataset>_camera_vio.yaml` (VIO/VIO-LC, use_imu: 1), and `configs/airslam/<dataset>_<vo|vo_lc|vio|vio_slam>.yaml` (VO-keyframe params). For hortimulti, `_camera.yaml` is the VIO config and `_camera_vo.yaml` is the VO override. `vo-lc` and `vio-lc` are two-step processes: `run_airslam.sh` runs `visual_odometry` (produces `trajectory_v0.txt`), then automatically runs `map_refinement` (produces `trajectory_v1.txt`) using `configs/airslam/<dataset>_mr.yaml`. The dataset must have `mav0/cam0/data/` and `mav0/cam1/data/` in EuRoC ASL format (images named by nanosecond timestamp), plus `mav0/imu0/data.csv` for VIO/VIO-LC.
 * **OpenVINS** runs inside the `openvins:humble` Docker image (ROS 2 Humble + colcon build of `ov_core/ov_init/ov_msckf/ov_eval`). Build it once with `docker build -t openvins:humble -f src/open_vins/Dockerfile.benchmark src/open_vins`. Configs live in `configs/openvins/<dataset>/{estimator_config.yaml, kalibr_imu_chain.yaml, kalibr_imucam_chain.yaml}`. The wrapper launches `ros2 launch ov_msckf subscribe.launch.py` plus a Python data player (`scripts/run/openvins_data_player.py`) that replays `mav0/cam{0,1}/data/` and `mav0/imu0/data.csv` over `/cam{0,1}/image_raw` and `/imu0` and dumps the resulting TUM trajectory by subscribing to `/ov_msckf/odomimu`. Only `vio` is supported - OpenVINS has no VO mode and no built-in loop closure.
 * **Voxel-SVIO** runs inside the `vslam_voxel_svio:noetic` Docker container (ROS 1 Noetic, CPU-only). Build it once with `bash scripts/setup/setup_voxel_svio_docker.sh` (clones nothing - run `git clone https://github.com/ZikangYuan/voxel_svio.git src/voxel_svio` first). Configs live in `configs/voxel_svio/` as a single YAML per sequence (or per dataset for rosariov2/hortimulti). The runner `scripts/run/run_voxel_svio.sh` `rosparam load`s the config, starts `vio_node`, then launches a ROS 1 data player (`scripts/run/voxel_svio_data_player.py`) that replays `mav0/cam{0,1}/data/` and `mav0/imu0/data.csv` over `/cam{0,1}/image_raw` and `/imu0`. After the player finishes the runner SIGINTs `vio_node` and copies `src/voxel_svio/output/pose.txt` (TUM format) to `results-vio/<dataset>/<seq>/voxel_svio/run<N>/trajectory.txt`. Only `vio` is supported.
 
@@ -142,8 +148,8 @@ where `<RESULTS_ROOT>` is `results-vo/`, `results-vio/`, or `results-vio-lc/` de
 1. Prepare the dataset (must have `mav0/cam0/data/` and `mav0/cam1/data/` in EuRoC format, and `mav0/imu0/data.csv` for VIO/VIO-LC).
 2. Create `configs/airslam/<dataset>_camera_vo.yaml` (VO, use_imu: 0) - copy the closest existing one and update intrinsics and cam1 T baseline.
 3. Create `configs/airslam/<dataset>_camera_vio.yaml` (VIO, use_imu: 1) - add IMU noise params + correct T_cam_imu transforms.
-4. Create `configs/airslam/<dataset>_vo.yaml`, `<dataset>_vio.yaml`, `<dataset>_vio_slam.yaml` - copy the closest existing one and update `image_height`, `image_width`, and set a unique `engine_file` name.
-5. Create `configs/airslam/<dataset>_mr.yaml` - map_refinement config for VIO-LC (update `image_width/height` and `engine_file`).
+4. Create `configs/airslam/<dataset>_vo.yaml`, `<dataset>_vo_lc.yaml`, `<dataset>_vio.yaml`, `<dataset>_vio_slam.yaml` - copy the closest existing one and update `image_height`, `image_width`, and set a unique `engine_file` name.
+5. Create `configs/airslam/<dataset>_mr.yaml` - map_refinement config for VO-LC/VIO-LC (update `image_width/height` and `engine_file`).
 6. Run: `bash scripts/run/run_airslam.sh <dataset> <seq> 1 vo`
 
 ## Other datasets
@@ -282,7 +288,7 @@ Rebuild the gnss-vio CSV after runs complete:
 
 ```bash
 python3 scripts/eval/build_benchmark_csv.py gnss-vio
-# or rebuild all four CSVs at once:
+# or rebuild all benchmark CSVs at once:
 python3 scripts/eval/build_benchmark_csv.py all
 ```
 

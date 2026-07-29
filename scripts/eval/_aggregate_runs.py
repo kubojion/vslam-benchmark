@@ -9,9 +9,11 @@ Writes: <results_root>/<dataset>/<seq>/<algo>/metrics.csv
         <results_root>/<dataset>/<seq>/<algo>/report.md
 
 Where <results_root> is one of:
-    results/        (run_type=vo)
-    results-vio/    (run_type=vio)
-    results-vio-lc/ (run_type=vio-lc)
+    results-vo/       (run_type=vo)
+    results-vo-lc/    (run_type=vo-lc)
+    results-vio/      (run_type=vio)
+    results-vio-lc/   (run_type=vio-lc)
+    results-gnss-vio/ (run_type=gnss-vio)
 
 metrics.csv format: one row per run + two summary rows (mean, std).
 report.md: thesis-ready table matching the supervisor's required format.

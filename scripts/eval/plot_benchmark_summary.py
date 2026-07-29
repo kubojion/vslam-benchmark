@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Generate benchmark summary plots from benchmark-<type>.csv.
 
-Writes to <results_root>/ (e.g. results-vo/, results-vio/, results-vio-lc/):
+Writes to <results_root>/ (e.g. results-vo/, results-vo-lc/, results-vio/, results-vio-lc/):
   ate_bar.png           - grouped ATE bar chart per sequence
   scale_factor.png      - scale factor deviation from 1.0
   fps_bar.png           - FPS (speed) comparison
 
 Usage:
-    python3 scripts/eval/plot_benchmark_summary.py [--type vo|vio|vio-lc] [--dpi 180]
+    python3 scripts/eval/plot_benchmark_summary.py [--type vo|vo-lc|vio|vio-lc|gnss-vio] [--dpi 180]
 """
 import argparse
 import csv
@@ -293,7 +293,7 @@ def plot_fps_bar(data, out_path, dpi):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--type", dest="run_type", default="vo",
-                    choices=["vo", "vio", "vio-lc"])
+                    choices=["vo", "vo-lc", "vio", "vio-lc", "gnss-vio"])
     ap.add_argument("--dpi", type=int, default=180)
     args = ap.parse_args()
 

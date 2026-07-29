@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # Run MASt3R-SLAM (monocular SLAM with optional loop closure) on a sequence.
 #
-# Usage: scripts/run/run_mast3r_slam.sh <dataset> <seq> [run_id=1] [run_type=vo|vio-lc]
+# Usage: scripts/run/run_mast3r_slam.sh <dataset> <seq> [run_id=1] [run_type=vo|vo-lc]
 #
 # Supported run types:
-#   vo     -> LC disabled, output -> results-vo/<dataset>/<seq>/mast3r_slam/run<N>/
-#   vio-lc -> LC enabled,  output -> results-imu-lc/<dataset>/<seq>/mast3r_slam/run<N>/
+#   vo    -> LC disabled, output -> results-vo/<dataset>/<seq>/mast3r_slam/run<N>/
+#   vo-lc -> LC enabled,  output -> results-vo-lc/<dataset>/<seq>/mast3r_slam/run<N>/
 
 #
-# 'vio' (LC off, IMU on) is rejected: MASt3R-SLAM has no IMU support.
+# 'vio' / 'vio-lc' are rejected: MASt3R-SLAM has no IMU support.
 #
 # Reads:
 #   datasets/<dataset>/<seq>/cam0/*.png   (or mav0/cam0/data/*.png)
@@ -31,8 +31,10 @@ resolve_run_type "$RUN_TYPE"
 # retrieval.k in the config (0 = no candidates). Hence one config per mode.
 case "$RUN_TYPE" in
     vo)      CFG_MODE="vo" ;;
-    vio-lc)  CFG_MODE="vio_lc" ;;
-    *)       echo "[mast3r_slam] ERROR: run_type must be vo or vio-lc (got: $RUN_TYPE)" >&2; exit 2 ;;
+    vo-lc)   CFG_MODE="vo_lc" ;;
+    vio|vio-lc)
+             echo "[mast3r_slam] ERROR: MASt3R-SLAM is visual-only; use run_type=vo or vo-lc, not $RUN_TYPE" >&2; exit 2 ;;
+    *)       echo "[mast3r_slam] ERROR: run_type must be vo or vo-lc (got: $RUN_TYPE)" >&2; exit 2 ;;
 esac
 
 SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
@@ -97,7 +99,7 @@ echo "[mast3r_slam] trajectory: $TRAJ_SRC -> $OUT_DIR/trajectory.txt" | tee -a "
 
 DUR=$(python3 -c "print($END-$START)")
 NFR=$(wc -l < "$OUT_DIR/trajectory.txt" 2>/dev/null || echo 0)
-USE_LC_PY=$([[ "$RUN_TYPE" == "vio-lc" ]] && echo True || echo False)
+USE_LC_PY=$([[ "$RUN_TYPE" == "vo-lc" ]] && echo True || echo False)
 python3 -c "
 import json
 print(json.dumps({'algo':'mast3r_slam','dataset':'$DATASET','seq':'$SEQ','run_id':$RUN_ID,

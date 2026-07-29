@@ -40,7 +40,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _system_info import collect  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
-RESULT_ROOTS = ["results-vo", "results-vio", "results-vio-lc", "results-gnss-vio"]
+RESULT_ROOTS = ["results-vo", "results-vo-lc", "results-vio", "results-vio-lc", "results-gnss-vio"]
 
 
 def _mdate(run_dir: Path) -> str | None:

@@ -5,6 +5,8 @@
 # run_type selects binary + config + results tree:
 #   vo      -> stereo_euroc          + <dataset>_stereo.yaml          (LC off)
 #              -> results-vo/<dataset>/<seq>/orbslam3/run<N>/
+#   vo-lc   -> stereo_euroc          + <dataset>_stereo_lc.yaml       (LC on)
+#              -> results-vo-lc/<dataset>/<seq>/orbslam3/run<N>/
 #   vio     -> stereo_inertial_euroc + <dataset>_stereo_inertial.yaml (LC off)
 #              -> results-vio/<dataset>/<seq>/orbslam3/run<N>/
 #   vio-lc  -> stereo_inertial_euroc + <dataset>_stereo_inertial_lc.yaml (LC on)
@@ -29,6 +31,10 @@ case "$RUN_TYPE" in
         BIN=./Examples/Stereo/stereo_euroc
         CFG="$WS/configs/orbslam3/${DATASET}_stereo.yaml"
         ;;
+    vo-lc)
+        BIN=./Examples/Stereo/stereo_euroc
+        CFG="$WS/configs/orbslam3/${DATASET}_stereo_lc.yaml"
+        ;;
     vio)
         BIN=./Examples/Stereo-Inertial/stereo_inertial_euroc
         CFG="$WS/configs/orbslam3/${DATASET}_stereo_inertial.yaml"
@@ -38,7 +44,7 @@ case "$RUN_TYPE" in
         CFG="$WS/configs/orbslam3/${DATASET}_stereo_inertial_lc.yaml"
         ;;
     *)
-        echo "[orbslam3] unknown run_type: $RUN_TYPE (expected vo|vio|vio-lc)" >&2
+        echo "[orbslam3] unknown run_type: $RUN_TYPE (expected vo|vo-lc|vio|vio-lc)" >&2
         exit 2
         ;;
 esac
@@ -101,7 +107,10 @@ NFR=$(wc -l < "$OUT_DIR/trajectory.txt")
 python3 -c "
 import json
 print(json.dumps({
-    'algo':'orbslam3','dataset':'$DATASET','seq':'$SEQ','run_id':$RUN_ID,    'run_type':'$RUN_TYPE',    'duration_s':$DUR,'frames':$NFR,
+    'algo':'orbslam3','dataset':'$DATASET','seq':'$SEQ','run_id':$RUN_ID,
+    'run_type':'$RUN_TYPE','use_imu':$([[ "$USE_IMU" == "true" ]] && echo True || echo False),
+    'use_lc':$([[ "$USE_LC" == "true" ]] && echo True || echo False),
+    'duration_s':$DUR,'frames':$NFR,
     'fps':$NFR/$DUR if $DUR>0 else 0
 }))
 " > "$OUT_DIR/run_meta.json"

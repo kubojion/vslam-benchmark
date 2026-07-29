@@ -4,8 +4,9 @@
 # Usage:
 #   bash scripts/run/run_benchmark.sh <dataset> <seq> <algo> [N=3] [run_type=vo]
 #
-# run_type ∈ {vo, vio, vio-lc, gnss-vio} selects the results tree:
+# run_type ∈ {vo, vo-lc, vio, vio-lc, gnss-vio} selects the results tree:
 #   vo       -> results-vo/
+#   vo-lc    -> results-vo-lc/
 #   vio      -> results-vio/
 #   vio-lc   -> results-vio-lc/
 #   gnss-vio -> results-gnss-vio/

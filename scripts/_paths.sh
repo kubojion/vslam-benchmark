@@ -7,6 +7,7 @@
 #
 # Run types:
 #   vo       : visual-only / no IMU, no loop closure        -> results-vo/        benchmark-vo.csv
+#   vo-lc    : visual-only + loop closure                    -> results-vo-lc/     benchmark-vo-lc.csv
 #   vio      : visual-inertial, no loop closure              -> results-vio/       benchmark-vio.csv
 #   vio-lc   : visual-inertial + loop closure                -> results-vio-lc/    benchmark-vio-lc.csv
 #   gnss-vio : visual-inertial + loose/tight GPS fusion      -> results-gnss-vio/  benchmark-gnss-vio.csv
@@ -40,6 +41,14 @@ resolve_run_type() {
             export USE_LC="false"
             export USE_GNSS="false"
             ;;
+        vo-lc|vol-c|vo_lc)
+            export RUN_TYPE="vo-lc"
+            export RESULTS_ROOT="$WS/results-vo-lc"
+            export CSV_PATH="$WS/benchmark-vo-lc.csv"
+            export USE_IMU="false"
+            export USE_LC="true"
+            export USE_GNSS="false"
+            ;;
         vio)
             export RUN_TYPE="vio"
             export RESULTS_ROOT="$WS/results-vio"
@@ -65,7 +74,7 @@ resolve_run_type() {
             export USE_GNSS="true"
             ;;
         *)
-            echo "ERROR: unknown run-type '$rt'. Use one of: vo | vio | vio-lc | gnss-vio" >&2
+            echo "ERROR: unknown run-type '$rt'. Use one of: vo | vo-lc | vio | vio-lc | gnss-vio" >&2
             return 2
             ;;
     esac

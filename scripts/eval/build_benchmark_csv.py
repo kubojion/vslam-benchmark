@@ -5,10 +5,11 @@ Scan every run-type results tree and write one CSV per run type.
 Usage:
     python3 build_benchmark_csv.py [run_type]
 
-    run_type \u2208 {vo, vio, vio-lc, all}  (default: all)
+    run_type \u2208 {vo, vo-lc, vio, vio-lc, gnss-vio, all}  (default: all)
 
 Layouts:
     results/<dataset>/<seq>/<algo>/run<N>/run_eval.json    -> benchmark-vo.csv
+    results-vo-lc/<dataset>/<seq>/<algo>/run<N>/run_eval.json -> benchmark-vo-lc.csv
     results-vio/<dataset>/<seq>/<algo>/run<N>/run_eval.json -> benchmark-vio.csv
     results-vio-lc/<dataset>/<seq>/<algo>/run<N>/run_eval.json -> benchmark-vio-lc.csv
 
@@ -323,7 +324,7 @@ def build_one(rt) -> int:
         # Still ensure header exists if file missing
         if not csv_path.exists():
             with csv_path.open("w", newline="") as f:
-                csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore").writeheader()
+                csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore", lineterminator="\n").writeheader()
         return 0
 
     # Pre-load sequence metadata
@@ -354,11 +355,11 @@ def build_one(rt) -> int:
         print(f"[info] {rt.name}: no new rows ({csv_path.name} has {len(existing)} entries)")
         if write_header:
             with csv_path.open("w", newline="") as f:
-                csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore").writeheader()
+                csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore", lineterminator="\n").writeheader()
         return 0
 
     with csv_path.open("a", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore")
+        w = csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore", lineterminator="\n")
         if write_header:
             w.writeheader()
         for r in new_rows:
@@ -378,7 +379,7 @@ def main() -> int:
     elif target in RUN_TYPES:
         types = [resolve_run_type(target, REPO)]
     else:
-        print(f"Usage: {sys.argv[0]} [vo|vio|vio-lc|all]", file=sys.stderr)
+        print(f"Usage: {sys.argv[0]} [vo|vo-lc|vio|vio-lc|gnss-vio|all]", file=sys.stderr)
         return 1
 
     total = 0

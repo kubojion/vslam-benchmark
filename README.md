@@ -42,17 +42,19 @@ normalized before result/config paths are constructed.
 ```
 configs/             # per-(algo,dataset) configs (yaml/txt)
 scripts/
-├── _paths.sh        # bash helper: resolve_run_type <vo|vio|vio-lc|gnss-vio>
+├── _paths.sh        # bash helper: resolve_run_type <vo|vo-lc|vio|vio-lc|gnss-vio>
 ├── build/           # build / env-setup scripts (one per algo)
 ├── data/            # rosbag / euroc converters
 ├── run/             # per-algorithm runners + multi-run benchmark driver
 └── eval/            # ATE/RPE + per-segment evaluation + plots
                      # (_run_type.py defines the python-side run-type table)
 results-vo/          # vo runs           (no IMU, no LC, no GNSS)
+results-vo-lc/       # vo-lc runs        (no IMU, LC on, no GNSS)
 results-vio/         # vio runs          (IMU on, LC off, no GNSS)
 results-vio-lc/      # vio-lc runs       (IMU on, LC on, no GNSS)
 results-gnss-vio/    # gnss-vio runs     (IMU on, LC off, GNSS on)
 benchmark-vo.csv     # aggregated metrics for vo runs
+benchmark-vo-lc.csv  # aggregated metrics for vo-lc runs
 benchmark-vio.csv    # aggregated metrics for vio runs
 benchmark-vio-lc.csv # aggregated metrics for vio-lc runs
 benchmark-gnss-vio.csv # aggregated metrics for gnss-vio runs
@@ -66,13 +68,14 @@ TODO.md              # authoritative open-work matrix
 
 ## Run-type abstraction
 
-Every run is tagged with one of four `run_type`s. The tag controls
+Every run is tagged with one of five `run_type`s. The tag controls
 *both* the SLAM configuration that is launched *and* the on-disk
 location of its output:
 
 | run_type | IMU | Loop closure | GNSS | Results folder | Aggregated CSV |
 |---|---|---|---|---|---|
 | `vo` | off | off | off | `results-vo/` | `benchmark-vo.csv` |
+| `vo-lc` | off | on | off | `results-vo-lc/` | `benchmark-vo-lc.csv` |
 | `vio` | on | off | off | `results-vio/` | `benchmark-vio.csv` |
 | `vio-lc` | on | on | off | `results-vio-lc/` | `benchmark-vio-lc.csv` |
 | `gnss-vio` | on | off | on | `results-gnss-vio/` | `benchmark-gnss-vio.csv` |
@@ -80,26 +83,23 @@ location of its output:
 Not every algorithm supports every run type. The runners reject or
 warn for unsupported combinations:
 
-| Algorithm   | `vo` | `vio` | `vio-lc` |
-|-------------|------|-------|----------|
-| ORB-SLAM3   | yes (requires LC-off build) | yes | yes |
-| OKVIS2      | yes | yes | yes (IMU sigmas need 5-10x inflation, see PROGRESS.md) |
-| OKVIS2-X    | yes (best-effort, no IMU) | yes | yes (also `gnss-vio`: tightly-coupled GNSS) |
-| AirSLAM     | yes | yes | yes |
-| Basalt      | yes | yes | (no LC) |
-| OpenVINS    | (no VO mode) | yes (+gnss-vio via robot_localization) | (no LC) |
-| Voxel-SVIO  | (no VO mode) | yes | (no LC) |
-| CIFASIS GNSS-SI | (no VO mode) | (gnss-vio only) | (gnss-vio only) |
-| RTAB-Map    | (gnss-vio only) | (gnss-vio only) | (gnss-vio only) |
-| VINS-Fusion | (no VO mode) | (gnss-vio only) | (gnss-vio only) |
-| MAC-VO      | yes | (not supported) | (not supported) |
-| DROID-SLAM  | yes (dropped; results kept) | (not supported) | (not supported) |
-| MegaSaM     | yes | (not supported) | (not supported) |
-| MASt3R-SLAM | yes (LC disabled) | (no IMU) | yes (LC enabled, IMU still off) - **needs >12 GB VRAM** |
-
-("MASt3R-SLAM" is monocular: the `vio-lc` bucket is re-used for the
- monocular+LC configuration because that is the only combination it
- offers.)
+| Algorithm   | `vo` | `vo-lc` | `vio` | `vio-lc` |
+|-------------|------|---------|-------|----------|
+| ORB-SLAM3   | yes (requires LC-off build) | yes | yes | yes |
+| OKVIS2      | yes | yes (experimental) | yes | yes (IMU sigmas need 5-10x inflation, see PROGRESS.md) |
+| OKVIS2-X    | yes (best-effort, no IMU) | yes (experimental) | yes | yes (also `gnss-vio`: tightly-coupled GNSS) |
+| AirSLAM     | yes | yes | yes | yes |
+| Basalt      | yes | no | yes | (no LC) |
+| DPVO / DPV-SLAM | yes | yes (DPV-SLAM) | no | no |
+| MASt3R-SLAM | yes | yes (retrieval LC, needs >12 GB VRAM) | no | no |
+| OpenVINS    | (no VO mode) | no | yes (+gnss-vio via robot_localization) | (no LC) |
+| Voxel-SVIO  | (no VO mode) | no | yes | (no LC) |
+| CIFASIS GNSS-SI | (no VO mode) | no | (gnss-vio only) | (gnss-vio only) |
+| RTAB-Map    | (gnss-vio only) | no | (gnss-vio only) | (gnss-vio only) |
+| VINS-Fusion | (no VO mode) | no | (gnss-vio only) | (gnss-vio only) |
+| MAC-VO      | yes | no | (not supported) | (not supported) |
+| DROID-SLAM  | yes (dropped; results kept) | no | (not supported) | (not supported) |
+| MegaSaM     | yes | no | (not supported) | (not supported) |
 
 ## Quickstart
 
@@ -129,7 +129,10 @@ bash scripts/run/run_benchmark.sh rosariov2 sequence1 basalt 3 vio
 # 4c. AirSLAM full V-SLAM (IMU + LC) - writes to results-vio-lc/
 bash scripts/run/run_benchmark.sh rosariov2 sequence1 airslam 3 vio-lc
 
-# 4d. CIFASIS GNSS-SI (stereo + IMU + GNSS) - writes to results-gnss-vio/
+# 4d. DPV-SLAM visual-only loop closure - writes to results-vo-lc/
+bash scripts/run/run_benchmark.sh rosariov2 sequence1 dpvo 1 vo-lc
+
+# 4e. CIFASIS GNSS-SI (stereo + IMU + GNSS) - writes to results-gnss-vio/
 bash scripts/run/run_benchmark.sh rosariov2 sequence1 cifasis_gnss_si 3 gnss-vio
 
 # 5. rebuild aggregated CSVs from per-run JSONs
@@ -148,7 +151,7 @@ conda run -n macvo python3 scripts/eval/build_benchmark_csv.py all
 
 ## Results snapshot
 
-See [PROGRESS.md](PROGRESS.md) for full VO, VIO, VIO-LC and GNSS-VIO tables. The four
+See [PROGRESS.md](PROGRESS.md) for full VO, VO-LC, VIO, VIO-LC and GNSS-VIO tables. The
 `benchmark-*.csv` files are the source of truth for headline aggregates.
 
 Representative VO numbers (N=3 unless noted):

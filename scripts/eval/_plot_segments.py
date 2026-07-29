@@ -19,7 +19,7 @@ the same data with X/Y/Z axes.
 Usage:
     python3 _plot_segments.py <dataset> <seq>
         [--algos orbslam3,droidslam,macvo,basalt,airslam,mast3r_slam,megasam]
-        [--type vo|vio|vio-lc] [--dpi 400] [--figsize 20]
+        [--type vo|vo-lc|vio|vio-lc|gnss-vio] [--dpi 400] [--figsize 20]
 """
 import argparse
 import sys
@@ -463,7 +463,7 @@ def main():
                     default="orbslam3,droidslam,macvo,basalt,airslam,mast3r_slam,"
                             "megasam,okvis2,okvis2x,openvins,voxel_svio")
     ap.add_argument("--type", dest="run_type", default="vo",
-                    choices=["vo", "vio", "vio-lc", "gnss-vio"],
+                    choices=["vo", "vo-lc", "vio", "vio-lc", "gnss-vio"],
                     help="Which results tree to read (default: vo)")
     ap.add_argument("--dpi",     type=int,   default=400)
     ap.add_argument("--figsize", type=float, default=20.0)
