@@ -293,6 +293,14 @@ def finalise_3d(fig, ax, handles, out_path, dpi):
     ax.legend(handles=handles, loc="upper right",
               fontsize=11, framealpha=0.95, borderaxespad=0.8,
               title="Legend", title_fontsize=12)
+    # Equal data aspect: make one metre look the same length on every axis so
+    # the vertical (z) is not squashed relative to x/y. The autoscaled limits
+    # are final by now; scale the box to the actual data spans (guard against a
+    # degenerate/flat axis producing a zero-size box).
+    spans = [hi - lo for lo, hi in
+             (ax.get_xlim3d(), ax.get_ylim3d(), ax.get_zlim3d())]
+    spans = [s if s > 1e-9 else 1e-9 for s in spans]
+    ax.set_box_aspect(spans)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out_path, dpi=dpi, bbox_inches="tight", facecolor="white")
     plt.close(fig)
