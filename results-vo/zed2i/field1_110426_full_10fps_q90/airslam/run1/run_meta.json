@@ -1,0 +1,1 @@
+{"algo": "airslam", "dataset": "zed2i", "seq": "field1_110426_full_10fps_q90", "run_id": 1, "run_type": "vo", "use_imu": false, "use_lc": false, "duration_s": 1253.39, "frames": 2701, "fps": 2.154955759978937}
