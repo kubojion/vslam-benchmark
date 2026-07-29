@@ -5,11 +5,13 @@ logs/
 docs/private/
 patches/
 *.log
+*.bak
 
 # --- run-type result trees (regenerable) ---
+results/
 
 # --- large binary result artefacts (SLAM map files) ---
-results/**/*.bin
+results-*/**/*.bin
 # OKVIS2-X keeps the app's raw CSVs next to the derived trajectory.txt
 # (~6 MB each, 5 per run). trajectory.txt + run_eval.json are the record;
 # the raw CSVs are regenerable by re-running. Note the '-' after okvis2:
