@@ -9,7 +9,8 @@
 > sequence5 uses PPK and the PPK-versus-conventional study is retained. N=3 validation is pending.
 
 Algorithms run: **ORB-SLAM3** (classical), **MAC-VO** (hybrid), **Basalt** (sliding-window VIO),
-**AirSLAM** (deep-feature VO/VIO, Docker), **OKVIS2** (MAP VIO+LC), **OKVIS2-X** (multi-sensor
+**AirSLAM** (deep-feature VO/VIO, Docker), **DPVO** (monocular learned VO), **DPV-SLAM**
+(DPVO with visual-only loop closure), **OKVIS2** (MAP VIO+LC), **OKVIS2-X** (multi-sensor
 extension; result integration currently manual), **OpenVINS** (MSCKF VIO, Docker) and
 **Voxel-SVIO**. GNSS-VIO: **VINS-Fusion+GPS**, **CIFASIS GNSS-SI**, **RTAB-Map+GPS** and
 **OpenVINS+GPS** (robot_localization EKF). Scaffolded: **MASt3R-SLAM**, **MegaSaM**. Historical:
@@ -19,7 +20,8 @@ extension; result integration currently manual), **OpenVINS** (MSCKF VIO, Docker
 
 ## VO - Visual Odometry
 
-**N=3** for main VO-phase algorithms (ORB-SLAM3, MAC-VO, Basalt, AirSLAM, DROID-SLAM). **N=1** for OKVIS2 VO-mode runs.
+**N=3** for main VO-phase algorithms (ORB-SLAM3, MAC-VO, Basalt, AirSLAM, DROID-SLAM).
+**N=1** for DPVO and OKVIS2 VO-mode runs.
 All ATE values: Sim3 RMSE, with SE3 column for scale-aware comparison.
 
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | N |
@@ -41,6 +43,14 @@ All ATE values: Sim3 RMSE, with SE3 column for scale-aware comparison.
 | Basalt† | euroc_mav | MH_01 | **0.057 m** | 0.087 m | 1.016 | 0.0085 | 176.75 | 1 |
 | Basalt† | euroc_mav | MH_03 | 0.137 m | 0.140 m | 1.008 | 0.0159 | 113.47 | 1 |
 | Basalt† | euroc_mav | MH_05 | 0.182 m | 0.193 m | 1.010 | 0.0870 | 108.72 | 1 |
+| DPVO | rosariov2 | seq1 | **4.93 m** | 28.92 m | 2.519 | 0.0920 | 16.12 | 1 |
+| DPVO | rosariov2 | seq5 | **3.92 m** | 30.52 m | 2.473 | 0.0374 | 16.40 | 1 |
+| DPVO | hortimulti | str02 | 14.59 m | 33.24 m | 2.676 | 0.3332 | 18.39 | 1 |
+| DPVO | hortimulti | str03 | 1.816 m | 9.80 m | 2.063 | 0.0901 | 11.59 | 1 |
+| DPVO | euroc_mav | MH_01 | 0.122 m | 1.722 m | 1.663 | 0.0217 | 10.27 | 1 |
+| DPVO | euroc_mav | MH_03 | **0.134 m** | 11.70 m | 0.234 | 0.0220 | 8.79 | 1 |
+| DPVO | euroc_mav | MH_05 | **0.121 m** | 29.04 m | 0.192 | 0.0202 | 9.09 | 1 |
+| DPVO | zed2i | field1 | 1.431 m | 13.18 m | 2.912 | 0.0678 | 12.56 | 1 |
 | DROID-SLAM | rosariov2 | seq1 | 45.37 m | 45.37 m | 0.970 | 0.724 | 17.44 | 3 |
 | DROID-SLAM | rosariov2 | seq5 | 50.02 m | 50.24 m | 1.904 | 1.076 | 23.36 | 3 |
 | DROID-SLAM | hortimulti | str02 | 38.92 m | 47.90 m | 9.590 | 4.335 | 27.95 | 3 |
@@ -58,11 +68,16 @@ All ATE values: Sim3 RMSE, with SE3 column for scale-aware comparison.
 | ORB-SLAM3 | zed2i | field1 | **0.256 m** | 0.300 m | 0.992 | 0.0164 | 12.67 | 1 |
 | Basalt | zed2i | field1 | 0.446 m | 0.488 m | 0.990 | 0.0174 | 38.50 | 1 |
 
+DPVO is monocular and therefore up-to-scale. Its Sim3 ATE measures trajectory shape after one
+global scale correction; the scale column is the required evo multiplier, not an internally
+observed metric scale. The correction ranges from 0.192 to 2.912 across these N=1 sequences, so
+DPVO's low Sim3 ATE must not be interpreted as metric-scale accuracy or repeatability evidence.
+
 zed2i/field1 = local ZED2i field dataset (field1_110426_full_10fps_q90): 46283 stereo pairs @
 1920x1080, 10 fps, 412 m path over 77 min, RTK-GPS ground truth (position only, orientation=identity).
-Sub-half-metre ATE against RTK over 77 min. Under the tested N=1 configurations, both VO baselines
-outperformed all VIO attempts; the evidence is consistent with weak inertial excitation. Full
-46k-frame runs take ~20-60 min each.
+The two metric-scale stereo VO references have sub-half-metre ATE against RTK over 77 min and
+outperformed all VIO attempts under the tested N=1 configurations; the evidence is consistent with
+weak inertial excitation. Full 46k-frame runs take ~20-60 min each.
 
 † Basalt pre-restructure (run_type=None): hortimulti entries ran without IMU (no imu0 in mav0/);
 rosariov2 entries likely VO mode given 21% scale drift on seq1 (scale=0.79).
@@ -532,6 +547,7 @@ The PPK fix above was carried out on rosariov2 seq5. All four GNSS-VIO algorithm
 |---|---|---|---|---|---|---|---|---|
 | ORB-SLAM3 | yes | yes | yes | no | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VO N=1; VIO failed |
 | Basalt | yes | yes | no LC mode | no | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VO+VIO N=1 |
+| DPVO / DPV-SLAM | yes | no IMU support | no; LC variant is VO-LC | no | VO+VO-LC N=1 | VO+VO-LC N=1 | MH_01/03/05 VO+VO-LC N=1 | VO+VO-LC N=1 |
 | DROID-SLAM | yes | no IMU support | no IMU support | no | VO N=3 | VO N=3 | VO N=1 | no config |
 | MAC-VO | yes | no IMU support | no IMU support | no | VO N=3 | VO N=3 | VO N=1 | no config |
 | AirSLAM | yes | yes | yes | no | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VIO N=1 |
@@ -546,11 +562,12 @@ The PPK fix above was carried out on rosariov2 seq5. All four GNSS-VIO algorithm
 
 **Gaps - possible but not yet done:**
 - ORB-SLAM3 VO clean run on rosariov2/seq1, hortimulti, EuRoC (configs exist)
+- DPVO/DPV-SLAM N=3 repeatability and scale-variation sweep
 - Scale all N=1 VIO results to N=3 (ORB-SLAM3, Basalt, OpenVINS, AirSLAM priority)
 - GNSS-VIO N=3 sweep (currently N=1)
 
 **Not possible without hardware/code changes:**
-- DROID-SLAM VIO, MAC-VO VIO (no IMU support)
+- DPVO/DPV-SLAM VIO, DROID-SLAM VIO, MAC-VO VIO (no IMU support)
 - Basalt VIO-LC, OpenVINS VIO-LC (no built-in loop closure)
 - OpenVINS VO (MSCKF requires IMU; no vision-only mode)
 - GNSS-VIO on EuRoC (no GPS in that dataset)
