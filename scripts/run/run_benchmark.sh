@@ -11,8 +11,8 @@
 #   vio-lc   -> results-vio-lc/
 #   gnss-vio -> results-gnss-vio/
 #
-# Currently supports: orbslam3, droidslam, macvo, basalt, airslam, okvis2,
-#                     openvins, mast3r_slam, megasam, voxel_svio,
+# Currently supports: orbslam3, droidslam, macvo, basalt, airslam, ov2slam,
+#                     okvis2, openvins, mast3r_slam, megasam, voxel_svio,
 #                     cifasis_gnss_si, rtabmap_gps, vins_fusion_gps,
 #                     openvins_gps
 # OKVIS2-X is intentionally omitted until its top-level runner is committed.

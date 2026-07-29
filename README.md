@@ -14,6 +14,7 @@
 | **MAC-VO** | Hybrid (learned uncertainty), stereo VO | [kubojion/MAC-VO @ vslam-benchmark-patches](https://github.com/kubojion/MAC-VO/tree/vslam-benchmark-patches) |
 | **Basalt** | Optimization-based stereo VO / VIO | [VladyslavUsenko/basalt](https://gitlab.com/VladyslavUsenko/basalt) (binary install v0.1.7) |
 | **AirSLAM** | Deep-feature point-line VO / VIO / V-SLAM (TRO 2025) | [sair-lab/AirSLAM](https://github.com/sair-lab/AirSLAM) (Docker, ROS Noetic + TensorRT) |
+| **OV2SLAM** | Fully online feature/KLT stereo VO with BA and optional online-BoW LC | [ov2slam/ov2slam](https://github.com/ov2slam/ov2slam) (Docker, ROS 1 Noetic) |
 | **OpenVINS** | MSCKF stereo-IMU filter (VIO only, no LC) | [rpng/open_vins](https://github.com/rpng/open_vins) (Docker, ROS 2 Humble) |
 | **Voxel-SVIO** | Voxel-map-augmented stereo MSCKF VIO (RA-L 2025) | [ZikangYuan/voxel_svio](https://github.com/ZikangYuan/voxel_svio) (Docker, ROS 1 Noetic) |
 | **CIFASIS GNSS-SI** | Tightly-coupled GNSS+stereo+inertial SLAM, ORB-SLAM3-based (JFR 2023) | [CIFASIS/gnss-stereo-inertial-fusion](https://github.com/CIFASIS/gnss-stereo-inertial-fusion) (Docker, ROS 1 Noetic) |
@@ -89,6 +90,7 @@ warn for unsupported combinations:
 | OKVIS2      | yes | yes (experimental) | yes | yes (IMU sigmas need 5-10x inflation, see PROGRESS.md) |
 | OKVIS2-X    | yes (best-effort, no IMU) | yes (experimental) | yes | yes (also `gnss-vio`: tightly-coupled GNSS) |
 | AirSLAM     | yes | yes | yes | yes |
+| OV2SLAM     | yes | yes | no | no |
 | Basalt      | yes | no | yes | (no LC) |
 | DPVO / DPV-SLAM | yes | yes (DPV-SLAM) | no | no |
 | MASt3R-SLAM | yes | yes (retrieval LC, needs >12 GB VRAM) | no | no |

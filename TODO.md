@@ -37,6 +37,7 @@ Legend: ✅ run complete | 🟡 run complete with caveat | ⬜ config only | �
 | DPVO | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
 | OKVIS2 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
 | OKVIS2-X | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| OV2SLAM | ⬜ config only | ⬜ config only | ⬜ config only | ✅ N=1 | ⬜ config only | ⬜ config only | ✅ N=1 | ⬜ config only |
 | MASt3R-SLAM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🔧 config missing |
 | MegaSaM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🔧 config missing |
 
@@ -104,11 +105,12 @@ two VO baselines. Next step for the core table is N=1 -> N=3.
 | AirSLAM | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
 | OKVIS2 | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
 | OKVIS2-X | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
+| OV2SLAM | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
 | MASt3R-SLAM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🔧 config missing |
 
 > DPV-SLAM = DPVO + proximity loop closure (monocular, no IMU). LC **helps 2-3x on EuRoC but hurts every agricultural sequence** (false loops on repetitive crop rows) - see PROGRESS.md finding 10.
-> Additional VO-LC configs now exist for ORB-SLAM3 stereo (`configs/orbslam3/<dataset>_stereo_lc.yaml`), AirSLAM (`configs/airslam/<dataset>_vo_lc.yaml` + `<dataset>_mr.yaml`), OKVIS2/OKVIS2-X (`configs/okvis2{x}/<dataset>_<seq>_vo_lc.yaml`) and MASt3R-SLAM (`configs/mast3r_slam/<dataset>_vo_lc.yaml`). The OKVIS2/OKVIS2-X dataset readers still require `mav0/imu0/data.csv` even when IMU residuals are disabled.
-> ORB-SLAM3, AirSLAM, OKVIS2 and OKVIS2-X VO-LC smoke tests passed on EuRoC MH01 prefixes. These validate the wrappers and mode flags, not benchmark accuracy; full-sequence runs are still pending.
+> Additional VO-LC configs now exist for ORB-SLAM3 stereo (`configs/orbslam3/<dataset>_stereo_lc.yaml`), AirSLAM (`configs/airslam/<dataset>_vo_lc.yaml` + `<dataset>_mr.yaml`), OKVIS2/OKVIS2-X (`configs/okvis2{x}/<dataset>_<seq>_vo_lc.yaml`), OV2SLAM (`configs/ov2slam/<dataset>_vo_lc.yaml`) and MASt3R-SLAM (`configs/mast3r_slam/<dataset>_vo_lc.yaml`). The OKVIS2/OKVIS2-X dataset readers still require `mav0/imu0/data.csv` even when IMU residuals are disabled.
+> ORB-SLAM3, AirSLAM, OKVIS2, OKVIS2-X and OV2SLAM VO-LC smoke tests passed on EuRoC MH01 prefixes. These validate the wrappers and mode flags, not benchmark accuracy; full-sequence runs are still pending.
 
 ### VIO-LC (stereo + IMU + loop closure) - `results-vio-lc/`
 
@@ -309,6 +311,15 @@ came from manual runs, so they have not yet been reproduced through the runner.
 | AirSLAM runner + configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` configured; 1,000-frame VO-LC smoke passed with 18 loop pairs |
 | OKVIS2 configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` experimental; 200-frame IMU-off LC smoke passed |
 | OKVIS2-X configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` experimental; 200-frame IMU-off LC smoke passed |
+| OV2SLAM submodule, Docker build, runner and VO/VO-LC configs for all datasets | `[x]` configured; 200-frame VO and VO-LC smoke passed |
+
+### OV2SLAM
+
+| Task | Status |
+|---|---|
+| Accuracy-first configs (`force_realtime: 0`, half-speed replay for measured runs) | `[x]` |
+| VO N=1 on EuRoC MH_05 and HortiMulti str03 | `[x]` 0.099 m / 0.351 m Sim3 ATE |
+| Complete VO N=1 sweep on the remaining six standard sequences | `[ ]` |
 
 ### Voxel-SVIO
 

@@ -33,6 +33,7 @@ ALGO_COLOUR = {
     "macvo": "#ff7f0e",
     "basalt": "#d62728",
     "airslam": "#17becf",
+    "ov2slam": "#1b9e77",
     "mast3r_slam": "#9467bd",
     "megasam": "#e377c2",
     "dpvo": "#ffbb78",
@@ -50,6 +51,7 @@ ALGO_LABEL = {
     "macvo": "MAC-VO",
     "basalt": "Basalt",
     "airslam": "AirSLAM",
+    "ov2slam": "OV2SLAM",
     "mast3r_slam": "MASt3R-SLAM",
     "megasam": "MegaSaM",
     "dpvo": "DPV-SLAM",
@@ -63,7 +65,7 @@ ALGO_LABEL = {
     "openvins_gps": "OpenVINS+GPS",
 }
 ALGO_ORDER = [
-    "orbslam3", "macvo", "basalt", "airslam",
+    "orbslam3", "macvo", "basalt", "airslam", "ov2slam",
     "mast3r_slam", "megasam", "dpvo", "okvis2", "okvis2x",
     "openvins", "voxel_svio", "cifasis_gnss_si", "vins_fusion_gps",
     "rtabmap_gps", "openvins_gps",

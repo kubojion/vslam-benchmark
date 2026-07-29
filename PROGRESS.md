@@ -1,6 +1,6 @@
 # vSLAM Benchmark - Progress
 
-> Updated: 2026-07-29 - VO: 88 evaluated rows. VO-LC: 8 DPV-SLAM rows; ORB-SLAM3 stereo LC and MASt3R-SLAM retrieval LC are configured as VO-LC candidates.
+> Updated: 2026-07-29 - VO: 90 evaluated rows. VO-LC: 8 DPV-SLAM rows; five additional wrappers are smoke-validated and MASt3R-SLAM retrieval LC is configured.
 > Core VIO N=1 sweep: 49 evaluated rows
 > (7 algorithms x 7 standard sequences), including corrected HortiMulti extrinsics and EuRoC
 > MH_03/MH_05. The ZED2i field dataset adds six usable VIO trajectories plus one ORB-SLAM3
@@ -12,8 +12,9 @@ Algorithms run: **ORB-SLAM3** (classical), **MAC-VO** (hybrid), **Basalt** (slid
 **AirSLAM** (deep-feature VO/VIO, Docker), **DPVO** (monocular learned VO), **DPV-SLAM**
 (DPVO with visual-only loop closure), **OKVIS2** (MAP VIO+LC), **OKVIS2-X** (multi-sensor
 extension; result integration currently manual), **OpenVINS** (MSCKF VIO, Docker) and
-**Voxel-SVIO**. GNSS-VIO: **VINS-Fusion+GPS**, **CIFASIS GNSS-SI**, **RTAB-Map+GPS** and
-**OpenVINS+GPS** (robot_localization EKF). Scaffolded: **MASt3R-SLAM**, **MegaSaM**. Historical:
+**Voxel-SVIO**, and **OV2SLAM** (stereo VO/VO-LC, Docker). GNSS-VIO:
+**VINS-Fusion+GPS**, **CIFASIS GNSS-SI**, **RTAB-Map+GPS** and **OpenVINS+GPS**
+(robot_localization EKF). Scaffolded: **MASt3R-SLAM**, **MegaSaM**. Historical:
 **DROID-SLAM** (dropped after Phase 1).
 
 ---
@@ -21,7 +22,7 @@ extension; result integration currently manual), **OpenVINS** (MSCKF VIO, Docker
 ## VO - Visual Odometry
 
 **N=3** for main VO-phase algorithms (ORB-SLAM3, MAC-VO, Basalt, AirSLAM, DROID-SLAM).
-**N=1** for DPVO and OKVIS2 VO-mode runs.
+**N=1** for DPVO and OKVIS2 VO-mode runs, plus the first two OV2SLAM runs.
 All ATE values: Sim3 RMSE, with SE3 column for scale-aware comparison.
 
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | N |
@@ -36,6 +37,8 @@ All ATE values: Sim3 RMSE, with SE3 column for scale-aware comparison.
 | AirSLAM | euroc_mav | MH_01 | 0.111 m | 0.116 m | 1.007 | 0.0195 | 15.33 | 1 |
 | AirSLAM | euroc_mav | MH_03 | 0.143 m | 0.144 m | 0.995 | 0.0188 | 31.73 | 1 |
 | AirSLAM | euroc_mav | MH_05 | 0.297 m | 0.307 m | 1.012 | 0.0256 | 34.92 | 1 |
+| OV2SLAM | hortimulti | str03 | 0.351 m | 0.668 m | 1.031 | 0.0231 | 4.76 | 1 |
+| OV2SLAM | euroc_mav | MH_05 | **0.099 m** | 0.102 m | 0.997 | 0.0168 | 9.38 | 1 |
 | Basalt† | rosariov2 | seq1 | 14.28 ± 0.30 m | 18.69 m | 0.791 | 1.645 | 59.44 | 3 |
 | Basalt† | rosariov2 | seq5 | 15.04 ± 0.06 m | 15.43 m | 0.934 | 0.802 | 64.60 | 3 |
 | Basalt† | hortimulti | str02 | **2.10 ± 0.00 m** | 2.66 m | 1.034 | 0.091 | 149.70 | 3 |
@@ -72,6 +75,10 @@ DPVO is monocular and therefore up-to-scale. Its Sim3 ATE measures trajectory sh
 global scale correction; the scale column is the required evo multiplier, not an internally
 observed metric scale. The correction ranges from 0.192 to 2.912 across these N=1 sequences, so
 DPVO's low Sim3 ATE must not be interpreted as metric-scale accuracy or repeatability evidence.
+
+OV2SLAM uses its upstream accurate profile with `force_realtime: 0`; the measured runs were
+replayed at half speed to process every stereo pair. It exported 2273/2273 poses on MH_05 and
+2425/2425 on str03, with near-metric scale (0.997 and 1.031).
 
 zed2i/field1 = local ZED2i field dataset (field1_110426_full_10fps_q90): 46283 stereo pairs @
 1920x1080, 10 fps, 412 m path over 77 min, RTK-GPS ground truth (position only, orientation=identity).
@@ -349,8 +356,10 @@ on EuRoC MH01 prefixes on 2026-07-29:
   found 18 loop pairs before pose-graph and global-map optimisation.
 - OKVIS2 and OKVIS2-X each exported 199/200 poses with `imu_parameters.use: false`,
   `do_loop_closures: true`, active LC queries, and final full BA.
+- OV2SLAM exported 200/200 poses in both modes. The VO-LC run started its iBoW loop closer,
+  wrote the optimized pose graph, and restored camera timestamps to the standard trajectory.
 
-These tests prove that all four VO-LC wrappers and mode combinations execute. They are not benchmark
+These tests prove that all five VO-LC wrappers and mode combinations execute. They are not benchmark
 runs. The short OKVIS prefixes contained no accepted loop-closure attempt, so a full sequence with a
 revisit is still needed to validate correction quality. MASt3R-SLAM retrieval LC is configured for
 rosariov2, hortimulti and EuRoC-MAV, but prior attempts OOM on a 12 GB GPU.
@@ -557,6 +566,7 @@ The PPK fix above was carried out on rosariov2 seq5. All four GNSS-VIO algorithm
 | DROID-SLAM | yes | no IMU support | no IMU support | no | VO N=3 | VO N=3 | VO N=1 | no config |
 | MAC-VO | yes | no IMU support | no IMU support | no | VO N=3 | VO N=3 | VO N=1 | no config |
 | AirSLAM | yes | yes | yes | no | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VIO N=1 |
+| OV2SLAM | yes | no IMU support | no; LC variant is VO-LC | no | VO+VO-LC configured | str03 VO N=1; all configured | MH_05 VO N=1; all configured | VO+VO-LC configured |
 | OKVIS2 | yes | yes | yes | no | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VIO N=1 |
 | OKVIS2-X | manual | manual | manual | planned | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VIO N=1 |
 | OpenVINS | no VO mode | yes | no LC | no | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VIO N=1 |

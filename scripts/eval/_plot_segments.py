@@ -44,6 +44,7 @@ ALGO_COLOUR = {
     "macvo":           "#ff7f0e",   # orange
     "basalt":          "#d62728",   # red
     "airslam":         "#17becf",   # light blue
+    "ov2slam":         "#1b9e77",   # teal-green
     "mast3r_slam":     "#9467bd",   # purple
     "megasam":         "#e377c2",   # pink
     "dpvo":            "#ffbb78",   # light orange
@@ -70,6 +71,7 @@ ALGO_LABEL = {
     "macvo":           "MAC-VO",
     "basalt":          "Basalt",
     "airslam":         "AirSLAM",
+    "ov2slam":         "OV2SLAM",
     "mast3r_slam":     "MASt3R-SLAM",
     "megasam":         "MegaSaM",
     "dpvo":            "DPV-SLAM",
@@ -513,7 +515,7 @@ def main():
     ap.add_argument("dataset")
     ap.add_argument("seq")
     ap.add_argument("--algos",
-                    default="orbslam3,macvo,basalt,airslam,mast3r_slam,"
+                    default="orbslam3,macvo,basalt,airslam,ov2slam,mast3r_slam,"
                             "megasam,dpvo,okvis2,okvis2x,openvins,voxel_svio,"
                             "cifasis_gnss_si,vins_fusion_gps,rtabmap_gps,"
                             "openvins_gps")

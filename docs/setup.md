@@ -498,3 +498,35 @@ The shared data player (`scripts/run/gnss_data_player.py` for ROS 1,
 `sensor_msgs/NavSatFix` at original timestamps. Default covariance overrides
 are `0.04 m^2` horizontal for PPK-quality fixes and `1.0 m^2` for
 conventional GPS; see the `--gps-cov-xy` / `--gps-cov-z` flags.
+
+## 15. OV2SLAM (Docker, ROS 1 Noetic)
+
+OV2SLAM is pinned as `src/ov2slam`. Build its Noetic image and create the
+benchmark container with:
+
+```bash
+git submodule update --init src/ov2slam
+bash scripts/setup/setup_ov2slam_docker.sh
+```
+
+The image builds upstream's bundled OBIndex2, iBoW-LCD, Sophus and Ceres
+before building the catkin package. Ubuntu 20.04's OpenCV package omits the
+legacy xfeatures2d BRIEF header, so the supported ORB descriptor fallback is
+used. The iBoW online loop closer remains enabled.
+
+Run stereo VO or VO-LC with:
+
+```bash
+bash scripts/run/run_ov2slam.sh euroc_mav MH_01_easy 1 vo
+bash scripts/run/run_ov2slam.sh euroc_mav MH_01_easy 1 vo-lc
+```
+
+Configs live under `configs/ov2slam/`. The VO-LC runner selects
+`ov2slam_full_traj_wlc_opt.txt`, restores the original image timestamps, and
+writes the standard `trajectory.txt` used by the evaluation pipeline.
+The benchmark configs use `force_realtime: 0` so OV2SLAM processes every
+frame and allows a larger local-BA time budget. Use
+`OV2SLAM_PLAYBACK_RATE=0.5` when accuracy is preferred over wall-clock speed.
+Upstream's ROS node aborts a still-joinable worker thread after automatic
+end-of-sequence export. The runner waits for the completed output file and
+handles that post-save shutdown without losing the trajectory.

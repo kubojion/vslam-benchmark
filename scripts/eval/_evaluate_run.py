@@ -117,6 +117,12 @@ LOG_PATTERNS = {
         "loop_closure":    re.compile(r"Loop closure detected|loop detected"),
         "map_reset":       None,
     },
+    "ov2slam": {
+        "init_success":    re.compile(r"OV.*SLAM is ready to process incoming images"),
+        "tracking_loss":   re.compile(r"RESET REQUIRED"),
+        "loop_closure":    re.compile(r"\[PoseGraph\].*Closing a loop between"),
+        "map_reset":       re.compile(r"RESET APPLIED"),
+    },
     "megasam": {
         # MegaSaM prints per-frame depth+pose progress and a final
         # "Saved trajectory" banner.
@@ -468,8 +474,12 @@ def main():
     meta_path = run_dir / "run_meta.json"
     if meta_path.exists():
         meta = json.loads(meta_path.read_text())
-        # True total = number of GT frames (interpolated GT has one row per camera frame)
-        gt_total = sum(1 for _ in open(gt_path)) if gt_path else meta.get("frames", None)
+        # Modern runners record the input camera count explicitly. Some legacy
+        # "interpolated" GT files retain a higher-rate pose stream, so their
+        # line count is not a reliable camera-frame total.
+        gt_total = meta.get("frames_total")
+        if not gt_total:
+            gt_total = sum(1 for _ in open(gt_path)) if gt_path else meta.get("frames")
         tracked  = meta.get("frames", None)
         robustness["frames_total"]   = gt_total
         robustness["frames_tracked"] = tracked
