@@ -1,7 +1,9 @@
 # vSLAM Benchmark - TODO
 
-> Created: 2026-05-20 | Revised: 2026-07-31. VO has 95 evaluated rows (OV2SLAM VO filled on
-> str02/MH_01/MH_03; only OV2SLAM zed2i still pending). VO-LC has 24 rows: DPV-SLAM, OKVIS2 and
+> Created: 2026-05-20 | Revised: 2026-07-31. VO has 109 evaluated rows. OV2SLAM VO filled on
+> str02/MH_01/MH_03 (only OV2SLAM zed2i pending). ORB-SLAM3 rebuilt/run NATIVELY from the submodule
+> (no Docker): EuRoC N=1 (~0.05 m, deterministic), agricultural N=3 median+range (str02/seq1/seq5 are
+> severely non-deterministic; str03 is stable) - see the VO note and finding 11. VO-LC has 24 rows: DPV-SLAM, OKVIS2 and
 > OKVIS2-X now cover all 8 sequences (the two OKVIS zed2i cells are partial-coverage - see note).
 > The core VIO N=1
 > matrix has 49 rows (7 algorithms x 7 standard sequences); corrected HortiMulti extrinsics and
@@ -33,7 +35,7 @@ Legend: ✅ run complete | 🟡 run complete with caveat | ⬜ config only | �
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ⬜ config only | ✅ N=1 | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ✅ N=1 |
+| ORB-SLAM3 | 🟡 N=3 | 🟡 N=3 | 🟡 N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
 | Basalt | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
 | MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ config only |
 | AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
@@ -207,11 +209,16 @@ Legend: ✅ run complete | 🟡 run complete with caveat | ⬜ config only | �
 
 ---
 
-> **ORB-SLAM3 VO on this machine (2026-07-27):** a Docker-ROS2 ORB-SLAM3 build was used to fill
-> the agricultural/EuRoC VO cells, but it diverges from the original native build on hard sequences
-> (hortimulti str02: 1.88 +/- 0.13 m, reproducibly 2.1x the native 0.893 m ref at 7 %% CV; rosariov2
-> seq1: 6.8 +/- 3.8 m vs 1.18 m). Those shim rows were **discarded** (quarantined off-tree); the
-> native ORB-SLAM3 agricultural/EuRoC results (marked `⬜ config only` here) come from the original test machine. Only ORB-SLAM3's ZED2i VO (0.256 m) and pre-existing seq5 are retained here.
+> **ORB-SLAM3 VO NATIVE (2026-07-31, this machine):** the submodule builds and runs natively (no
+> Docker) - `src/ORB_SLAM3/Examples/Stereo/stereo_euroc` linked against a local Pangolin, driven by
+> `run_orbslam3.sh`. The agricultural/EuRoC VO cells were filled natively here. **The earlier
+> "shim-vs-native divergence" was NOT a Docker artefact - it is ORB-SLAM3's inherent non-determinism
+> on agricultural sequences.** Determinism check + 1200->2000 feature sweep (finding 11): EuRoC is
+> deterministic (~0.05 m every run); str02 varies {1.85, 4.3, 21.1} m (scale collapses to 0.89,
+> coverage 31-100%), seq1 {1.16, 3.0, 4.86} m, seq5 {4.0, 6.9, 14.8} m across N=3 - a config cannot
+> fix it. str03 alone is stable (0.11 m x3). So agri cells are recorded as **N=3 median (range)**;
+> the old 0.893 m / 1.18 m references were single lucky draws. EuRoC + ZED2i (0.256 m) stay N=1.
+> `ORBSLAM3_CONFIG` env override added to the runner for config sweeps.
 > OKVIS2/OKVIS2-X VO on agri sequences are best-effort (IMU off) and expectedly weaker than their VIO.
 
 ## Phase 2 per-algorithm tasks

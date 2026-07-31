@@ -1,0 +1,1 @@
+{"algo": "orbslam3", "dataset": "rosariov2", "seq": "sequence5", "run_id": 3, "run_type": "vo", "use_imu": false, "use_lc": false, "duration_s": 912.6236371994019, "frames": 6026, "fps": 6.602940965338334}

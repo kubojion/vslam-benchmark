@@ -1,0 +1,116 @@
+[orbslam3] rosariov2/sequence5 type=vo run=3 -> /home/iman/slam_tests/vslam-benchmark/results-vo/rosariov2/sequence5/orbslam3/run3
+0.047 num_seq = 1
+0.047 file name: rosariov2_sequence5_orbslam3
+0.064 Loading images for sequence 0...LOADED!
+0.064 
+0.064 -------
+0.064 
+0.064 ORB-SLAM3 Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.064 ORB-SLAM2 Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.064 This program comes with ABSOLUTELY NO WARRANTY;
+0.064 This is free software, and you are welcome to redistribute it
+0.064 under certain conditions. See LICENSE.txt.
+0.064 
+0.064 Input sensor was set to: Stereo
+0.064 Loading settings from /home/iman/slam_tests/vslam-benchmark/configs/orbslam3/rosariov2_stereo.yaml
+0.064 	-Loaded camera 1
+0.064 	-Loaded camera 2
+0.064 Camera.newHeight optional parameter does not exist...
+0.064 Camera.newWidth optional parameter does not exist...
+0.064 	-Loaded image info
+0.064 	-Loaded ORB settings
+0.064 Viewer.imageViewScale optional parameter does not exist...
+0.065 	-Loaded viewer settings
+0.065 System.LoadAtlasFromFile optional parameter does not exist...
+0.065 System.SaveAtlasToFile optional parameter does not exist...
+0.065 	-Loaded Atlas settings
+0.065 System.thFarPoints optional parameter does not exist...
+0.065 	-Loaded misc parameters
+0.065 ----------------------------------
+0.065 SLAM settings: 
+0.065 	-Camera 1 parameters (Pinhole): [ 648.8624267578125 648.8624267578125 645.0113525390625 348.24267578125 ]
+0.065 	-Camera 2 parameters (Pinhole: [ 648.8624267578125 648.8624267578125 645.0113525390625 348.24267578125 ]
+0.065 	-Original image size: [ 1280 , 720 ]
+0.065 	-Current image size: [ 1280 , 720 ]
+0.065 	-Sequence FPS: 15
+0.065 	-Stereo baseline: 0.049733694642782211
+0.065 	-Stereo depth threshold : 80
+0.065 	-Features per image: 1200
+0.065 	-ORB scale factor: 1.2000000476837158
+0.065 	-ORB number of scales: 8
+0.065 	-Initial FAST threshold: 20
+0.065 	-Min FAST threshold: 7
+0.065 
+0.065 
+0.065 Loading ORB Vocabulary. This could take a while...
+2.561 Vocabulary loaded!
+2.561 
+2.566 Initialization of Atlas from scratch 
+2.566 Creation of new map with id: 0
+2.566 Creation of new map with last KF id: 0
+2.567 Seq. Name: 
+2.567 There are 1 cameras in the atlas
+2.567 Camera 0 is pinhole
+2.610 First KF:0; Map init KF:0
+2.610 New Map created with 624 points
+2.755 Starting the Viewer
+439.376 Fail to track local map!
+439.450 Fail to track local map!
+439.526 Fail to track local map!
+439.600 Fail to track local map!
+439.679 Fail to track local map!
+439.751 Fail to track local map!
+439.825 Fail to track local map!
+439.901 Fail to track local map!
+439.974 Fail to track local map!
+440.048 Fail to track local map!
+440.126 Fail to track local map!
+440.202 Fail to track local map!
+440.276 Fail to track local map!
+440.352 Fail to track local map!
+440.426 Fail to track local map!
+440.505 Fail to track local map!
+440.579 Fail to track local map!
+440.652 Fail to track local map!
+440.738 Fail to track local map!
+440.805 Fail to track local map!
+440.883 Fail to track local map!
+440.955 Fail to track local map!
+441.031 Fail to track local map!
+441.170 Fail to track local map!
+441.245 Fail to track local map!
+441.321 Fail to track local map!
+441.397 Fail to track local map!
+441.472 Fail to track local map!
+441.548 Fail to track local map!
+441.626 Fail to track local map!
+441.701 Fail to track local map!
+441.778 Fail to track local map!
+441.852 Fail to track local map!
+441.928 Fail to track local map!
+442.004 Fail to track local map!
+442.085 Fail to track local map!
+442.159 Fail to track local map!
+442.231 Fail to track local map!
+442.312 Fail to track local map!
+442.383 Fail to track local map!
+442.464 Fail to track local map!
+442.538 Fail to track local map!
+442.611 Fail to track local map!
+442.687 Fail to track local map!
+442.764 Fail to track local map!
+442.765 Creation of new map with id: 1
+442.765 Stored map with ID: 0
+442.765 Creation of new map with last KF id: 1181
+442.837 First KF:1181; Map init KF:1181
+442.837 New Map created with 587 points
+912.433 Shutdown
+912.433 
+912.433 Saving trajectory to f_rosariov2_sequence5_orbslam3.txt ...
+912.433 There are 2 maps in the atlas
+912.433   Map 0 has 1181 KFs
+912.433   Map 1 has 1292 KFs
+912.449 
+912.449 End of saving trajectory to f_rosariov2_sequence5_orbslam3.txt ...
+912.449 
+912.449 Saving keyframe trajectory to kf_rosariov2_sequence5_orbslam3.txt ...

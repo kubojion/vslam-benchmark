@@ -48,6 +48,9 @@ case "$RUN_TYPE" in
         exit 2
         ;;
 esac
+# Optional override for config sweeps (e.g. feature-count tuning); mirrors
+# OKVIS2X_CONFIG. Falls back to the canonical per-dataset config.
+CFG="${ORBSLAM3_CONFIG:-$CFG}"
 [[ -f "$CFG" ]] || { echo "[orbslam3] missing config: $CFG" >&2; exit 2; }
 [[ "$RUN_TYPE" =~ vio ]] && [[ ! -f "$SEQ_DIR/mav0/imu0/data.csv" ]] && {
     echo "[orbslam3] missing IMU: $SEQ_DIR/mav0/imu0/data.csv" >&2

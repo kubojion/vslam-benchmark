@@ -1,6 +1,7 @@
 # vSLAM Benchmark
 
-> Updated: 2026-07-31 - VO has 95 evaluated rows; VO-LC has 24 (DPV-SLAM + OKVIS2 + OKVIS2-X across
+> Updated: 2026-07-31 - VO has 109 evaluated rows (incl. native ORB-SLAM3: EuRoC N=1, agri N=3
+> median/range - non-deterministic, see PROGRESS finding 11); VO-LC has 24 (DPV-SLAM + OKVIS2 + OKVIS2-X across
 > all 8 sequences); VIO has 55 (49-row core matrix plus six usable ZED2i trajectories); VIO-LC has 19
 > (OKVIS2 + OKVIS2-X core, AirSLAM agricultural, ORB-SLAM3 seq5); GNSS-VIO has 20 N=1 headline runs.
 > HortiMulti VIO uses corrected camera-IMU extrinsics, EuRoC MH_03/MH_05 and the local ZED2i field

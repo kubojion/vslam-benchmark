@@ -1,0 +1,70 @@
+[orbslam3] hortimulti/strawberry03 type=vo run=3 -> /home/iman/slam_tests/vslam-benchmark/results-vo/hortimulti/strawberry03/orbslam3/run3
+0.046 num_seq = 1
+0.046 file name: hortimulti_strawberry03_orbslam3
+0.047 Loading images for sequence 0...LOADED!
+0.047 
+0.047 -------
+0.047 
+0.047 ORB-SLAM3 Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.047 ORB-SLAM2 Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.047 This program comes with ABSOLUTELY NO WARRANTY;
+0.047 This is free software, and you are welcome to redistribute it
+0.047 under certain conditions. See LICENSE.txt.
+0.047 
+0.047 Input sensor was set to: Stereo
+0.047 Loading settings from /home/iman/slam_tests/vslam-benchmark/configs/orbslam3/hortimulti_stereo.yaml
+0.047 	-Loaded camera 1
+0.047 	-Loaded camera 2
+0.047 Camera.newHeight optional parameter does not exist...
+0.047 Camera.newWidth optional parameter does not exist...
+0.047 	-Loaded image info
+0.047 	-Loaded ORB settings
+0.047 Viewer.imageViewScale optional parameter does not exist...
+0.047 	-Loaded viewer settings
+0.047 System.LoadAtlasFromFile optional parameter does not exist...
+0.047 System.SaveAtlasToFile optional parameter does not exist...
+0.047 	-Loaded Atlas settings
+0.047 System.thFarPoints optional parameter does not exist...
+0.047 	-Loaded misc parameters
+0.047 ----------------------------------
+0.048 SLAM settings: 
+0.048 	-Camera 1 parameters (Pinhole): [ 262.71490478515625 262.71490478515625 329.43099975585938 219.56170654296875 ]
+0.048 	-Camera 2 parameters (Pinhole: [ 262.71490478515625 262.71490478515625 329.43099975585938 219.56170654296875 ]
+0.048 	-Original image size: [ 640 , 480 ]
+0.048 	-Current image size: [ 640 , 480 ]
+0.048 	-Sequence FPS: 10
+0.048 	-Stereo baseline: 0.13950200378894806
+0.048 	-Stereo depth threshold : 40
+0.048 	-Features per image: 1200
+0.048 	-ORB scale factor: 1.2000000476837158
+0.048 	-ORB number of scales: 8
+0.048 	-Initial FAST threshold: 20
+0.048 	-Min FAST threshold: 7
+0.048 
+0.048 
+0.048 Loading ORB Vocabulary. This could take a while...
+2.566 Vocabulary loaded!
+2.566 
+2.572 Initialization of Atlas from scratch 
+2.572 Creation of new map with id: 0
+2.572 Creation of new map with last KF id: 0
+2.572 Seq. Name: 
+2.572 There are 1 cameras in the atlas
+2.572 Camera 0 is pinhole
+2.597 First KF:0; Map init KF:0
+2.597 New Map created with 509 points
+2.729 Starting the Viewer
+113.252 *Loop detected
+113.255 Local Mapping STOP
+113.323 Local Mapping RELEASE
+117.050 Local Mapping STOP
+117.057 Local Mapping RELEASE
+253.860 Shutdown
+253.860 
+253.860 Saving trajectory to f_hortimulti_strawberry03_orbslam3.txt ...
+253.860 There are 1 maps in the atlas
+253.860   Map 0 has 701 KFs
+253.866 
+253.866 End of saving trajectory to f_hortimulti_strawberry03_orbslam3.txt ...
+253.866 
+253.866 Saving keyframe trajectory to kf_hortimulti_strawberry03_orbslam3.txt ...

@@ -1,6 +1,7 @@
 # vSLAM Benchmark - Progress
 
-> Updated: 2026-07-31 - VO: 95 evaluated rows (OV2SLAM VO filled on str02/MH_01/MH_03; only OV2SLAM
+> Updated: 2026-07-31 - VO: 109 evaluated rows (OV2SLAM VO filled; ORB-SLAM3 run natively - EuRoC N=1,
+> agri N=3 median+range, non-deterministic, finding 11). Only OV2SLAM
 > zed2i VO still pending). VO-LC: 24 rows - DPV-SLAM, OKVIS2 and OKVIS2-X across all 8 sequences (the
 > two OKVIS zed2i cells are partial-coverage kill-to-flush; OKVIS2-X reports 0 accepted closures - see
 > VO-LC section). Core VIO N=1 sweep: 49 evaluated rows
@@ -25,13 +26,23 @@ extension; result integration currently manual), **OpenVINS** (MSCKF VIO, Docker
 
 ## VO - Visual Odometry
 
-**N=3** for main VO-phase algorithms (ORB-SLAM3, MAC-VO, Basalt, AirSLAM, DROID-SLAM).
-**N=1** for DPVO and OKVIS2 VO-mode runs, plus the first four OV2SLAM runs.
+**N=3** for main VO-phase algorithms (MAC-VO, Basalt, AirSLAM, DROID-SLAM) and for ORB-SLAM3's
+non-deterministic agricultural cells (reported as median with (min–max) range).
+**N=1** for DPVO, OKVIS2 VO-mode, the first four OV2SLAM runs, and ORB-SLAM3 on EuRoC/ZED2i (stable).
 All ATE values: Sim3 RMSE, with SE3 column for scale-aware comparison.
+
+‡ = ORB-SLAM3 native VO, agricultural: **severely non-deterministic** (see finding 11). The value is
+the N=3 median; the (range) is min–max across runs. str03 alone is stable (0.11 m ×3).
 
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | N |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | rosariov2 | seq5 | **14.16 m** | 14.40 m | 0.949 | 0.0845 | 5.93 | 1 |
+| ORB-SLAM3 | rosariov2 | seq1 | 3.00 m (1.16–4.86) | 3.154 | 1.02 | 0.0600 | 7.4 | 3‡ |
+| ORB-SLAM3 | rosariov2 | seq5 | 6.93 m (4.00–14.78) | 6.929 | 0.96–1.02 | 0.0263 | 6.6 | 3‡ |
+| ORB-SLAM3 | hortimulti | str02 | 4.31 m (1.85–21.09) | 4.623 | 0.89–1.04 | 0.1252 | 9.2 | 3‡ |
+| ORB-SLAM3 | hortimulti | str03 | **0.110 m** | 0.787 | 1.04 | 0.0245 | 9.5 | 3 |
+| ORB-SLAM3 | EuRoC | MH_01 | **0.047 m** | 0.048 | 1.002 | 0.0237 | 18.3 | 1 |
+| ORB-SLAM3 | EuRoC | MH_03 | 0.048 m | 0.051 | 0.995 | 0.0194 | 18.3 | 1 |
+| ORB-SLAM3 | EuRoC | MH_05 | 0.055 m | 0.065 | 0.995 | 0.0184 | 18.2 | 1 |
 | OKVIS2 | rosariov2 | seq5 | 17.48 m | 17.68 m | 0.947 | 0.0781 | 8.44 | 1 |
 | OKVIS2 | rosariov2 | seq1 | 20.03 m | 20.63 m | 0.897 | 0.1381 | 8.91 | 1 |
 | OV2SLAM | rosariov2 | seq1 | **7.236 m** | 7.236 m | 1.001 | 0.0561 | 7.28 | 1 |
@@ -612,7 +623,7 @@ The PPK fix above was carried out on rosariov2 seq5. All four GNSS-VIO algorithm
 
 | Algorithm | VO | VIO | VIO-LC | GNSS-VIO | rosariov2 | HortiMulti | EuRoC | ZED2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | yes | yes | yes | no | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VO N=1; VIO failed |
+| ORB-SLAM3 | yes (native) | yes | yes | no | seq1+seq5 VIO N=1, VO N=3 (non-det) | str02+str03 VIO N=1 + VO N=3 (str03 stable), fixed extrinsic | MH_01/03/05 VIO N=1 + VO N=1 | VO N=1; VIO failed |
 | Basalt | yes | yes | no LC mode | no | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VO+VIO N=1 |
 | DPVO / DPV-SLAM | yes | no IMU support | no; LC variant is VO-LC | no | VO+VO-LC N=1 | VO+VO-LC N=1 | MH_01/03/05 VO+VO-LC N=1 | VO+VO-LC N=1 |
 | DROID-SLAM | yes | no IMU support | no IMU support | no | VO N=3 | VO N=3 | VO N=1 | no config |
@@ -1640,6 +1651,29 @@ a general caution for the benchmark, not DPVO-specific: any appearance-based loo
 (DBoW, retrieval) is at risk on self-similar agricultural rows. It is also why the agricultural VO
 results are reported without loop closure.
 
+### 11. ORB-SLAM3 is severely non-deterministic on agricultural sequences (and no config fixes it)
+
+ORB-SLAM3 was rebuilt and run **natively from the submodule** (no Docker) to fill its VO cells. On
+EuRoC it is essentially deterministic (~0.05 m every run, scale ≈1.0). On the agricultural sequences
+it is not - repeated runs of the identical binary + config land completely differently:
+
+| Cell | draws (Sim3 ATE, N=3) | coverage | scale |
+|---|---|---|---|
+| str03 | 0.11, 0.11, 0.11 | 100% | 1.04 (**stable**) |
+| seq1  | 1.16, 3.00, 4.86 | 42-58% | 1.02 |
+| seq5  | 4.00, 6.93, 14.78 | 48-73% | 0.96-1.02 |
+| str02 | 1.85, 4.31, 21.09 | 31-100% | 0.89-1.04 (**scale collapse on the 21 m run**) |
+
+str02 additionally **fails to track entirely on some runs** (no trajectory at all). A 1200→2000
+ORBextractor feature sweep improved *coverage* but not the ATE spread (str02 still {4.5, 26} m at
+2000 features), so this is not a tuning problem - it is inherent to running a multi-threaded,
+feature-based SLAM on perceptually-aliased, texture-poor crop rows (same root cause as finding 10).
+
+**Consequences:** (a) the earlier "Docker-shim vs native divergence" was a mirage - it was this
+run-to-run variance, not a build artefact; the old 0.893 m / 1.18 m native references were single
+lucky draws. (b) N=1 is meaningless for these cells; they are recorded as **N=3 median (range)**.
+(c) EuRoC (MH_01/03/05) and ZED2i stay N=1 - they are stable. str03 is the one stable agri cell.
+
 ## Key commands
 
 ```bash
@@ -1673,4 +1707,4 @@ conda run -n macvo python3 scripts/eval/_macvo_to_tum.py "$SBX" \
 
 ---
 
-*Last updated: 2026-07-21 - merged corrected HortiMulti/EuRoC/ZED2i/OKVIS2-X work with the completed GNSS-VIO N=1 and PPK studies.*
+*Last updated: 2026-07-31 - native ORB-SLAM3 VO fill (EuRoC N=1 + agri N=3 median/range, non-determinism finding 11); OKVIS2/OKVIS2-X/AirSLAM LC results; OV2SLAM VO fill.*
