@@ -1,0 +1,1 @@
+{"algo": "okvis2x", "dataset": "hortimulti", "seq": "strawberry03", "run_id": 1, "run_type": "vio-lc", "use_imu": true, "use_lc": true, "duration_s": 265.2361123561859, "frames": 2423, "fps": 9.135256803742283}

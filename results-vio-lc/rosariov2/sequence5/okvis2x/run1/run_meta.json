@@ -1,0 +1,1 @@
+{"algo": "okvis2x", "dataset": "rosariov2", "seq": "sequence5", "run_id": 1, "run_type": "vio-lc", "use_imu": true, "use_lc": true, "duration_s": 1663.2849490642548, "frames": 11639, "fps": 6.997598340890399}

@@ -1,0 +1,1 @@
+{"algo": "okvis2", "dataset": "euroc_mav", "seq": "MH_05_difficult", "run_id": 1, "run_type": "vio-lc", "use_imu": true, "use_lc": true, "duration_s": 100.34811282157898, "frames": 2271, "fps": 22.631217829057583}

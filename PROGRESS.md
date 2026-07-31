@@ -1,10 +1,14 @@
 # vSLAM Benchmark - Progress
 
-> Updated: 2026-07-29 - VO: 92 evaluated rows. VO-LC: 8 DPV-SLAM rows; five additional wrappers are smoke-validated and MASt3R-SLAM retrieval LC is configured.
-> Core VIO N=1 sweep: 49 evaluated rows
+> Updated: 2026-07-31 - VO: 95 evaluated rows (OV2SLAM VO filled on str02/MH_01/MH_03; only OV2SLAM
+> zed2i VO still pending). VO-LC: 24 rows - DPV-SLAM, OKVIS2 and OKVIS2-X across all 8 sequences (the
+> two OKVIS zed2i cells are partial-coverage kill-to-flush; OKVIS2-X reports 0 accepted closures - see
+> VO-LC section). Core VIO N=1 sweep: 49 evaluated rows
 > (7 algorithms x 7 standard sequences), including corrected HortiMulti extrinsics and EuRoC
 > MH_03/MH_05. The ZED2i field dataset adds six usable VIO trajectories plus one ORB-SLAM3
-> failed attempt, bringing `benchmark-vio.csv` to 55 rows. VIO-LC has 3 true IMU+LC rows. GNSS-VIO N=1
+> failed attempt, bringing `benchmark-vio.csv` to 55 rows. VIO-LC: 19 rows - OKVIS2 and OKVIS2-X (7
+> core sequences), AirSLAM (4 agricultural), plus the ORB-SLAM3 seq5 reference (no zed2i VIO-LC).
+> GNSS-VIO N=1
 > is complete with 20 rows (5 algorithms x 4 GPS-bearing sequences); Rosario v2
 > sequence5 uses PPK and the PPK-versus-conventional study is retained. N=3 validation is pending.
 
@@ -348,36 +352,56 @@ is held fixed.
 
 ## VO-LC - Visual-Only + Loop Closure
 
-DPV-SLAM is DPVO with proximity loop closure enabled. It is monocular and uses no IMU, so it lives
-in `results-vo-lc/` and `benchmark-vo-lc.csv` rather than the true VIO-LC bucket.
+Three algorithms now populate `benchmark-vo-lc.csv` (24 rows, all N=1): **DPV-SLAM** (DPVO +
+proximity LC, monocular), and **OKVIS2 / OKVIS2-X** run with `imu_parameters.use: false` +
+`do_loop_closures: true` (stereo, IMU residuals off, LC on). All are visual-only, so they live in
+`results-vo-lc/` rather than the true VIO-LC bucket. Full-sequence OKVIS2/OKVIS2-X VO-LC completed
+2026-07-30/31 (replacing the earlier MH01-prefix smoke tests).
 
-The candidate benchmark matrix is still config-only, but wrapper-level smoke validation completed
-on EuRoC MH01 prefixes on 2026-07-29:
+| Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | LC | N |
+|---|---|---|---|---|---|---|---|---|---|
+| DPV-SLAM | euroc_mav | MH_01 | 0.047 m | 0.354 m | 0.925 | 0.023 | 17.69 | 0 | 1 |
+| DPV-SLAM | euroc_mav | MH_03 | 0.042 m | 1.391 m | 1.635 | 0.018 | 17.64 | 0 | 1 |
+| DPV-SLAM | euroc_mav | MH_05 | 0.058 m | 3.306 m | 1.925 | 0.016 | 19.18 | 0 | 1 |
+| DPV-SLAM | hortimulti | str02 | 22.00 m | 26.74 m | 1.514 | 0.580 | 5.31 | 0 | 1 |
+| DPV-SLAM | hortimulti | str03 | 8.83 m | 11.08 m | 1.676 | 0.533 | 12.34 | 0 | 1 |
+| DPV-SLAM | rosariov2 | seq1 | 9.32 m | 34.42 m | 3.462 | 0.191 | 13.53 | 0 | 1 |
+| DPV-SLAM | rosariov2 | seq5 | 6.48 m | 37.11 m | 3.607 | 0.105 | 14.78 | 0 | 1 |
+| DPV-SLAM | zed2i | field1 | 2.36 m | 14.51 m | 3.579 | 0.114 | 11.95 | 0 | 1 |
+| OKVIS2 | euroc_mav | MH_01 | **0.021 m** | 0.103 m | 1.024 | 0.013 | 15.98 | 686 | 1 |
+| OKVIS2 | euroc_mav | MH_03 | 0.023 m | 0.024 m | 0.999 | 0.016 | 15.34 | 1014 | 1 |
+| OKVIS2 | euroc_mav | MH_05 | 0.057 m | 0.154 m | 1.021 | 0.033 | 18.84 | 710 | 1 |
+| OKVIS2 | hortimulti | str02 | 1.394 m | 1.978 m | 1.029 | 0.093 | 5.21 | 1159 | 1 |
+| OKVIS2 | hortimulti | str03 | 0.118 m | 0.575 m | 1.031 | 0.021 | 6.87 | 614 | 1 |
+| OKVIS2 | rosariov2 | seq1 | 18.87 m | 19.43 m | 0.904 | 0.131 | 5.93 | 5459 | 1 |
+| OKVIS2 | rosariov2 | seq5 | 16.26 m | 16.41 m | 0.956 | 0.069 | 5.76 | 364 | 1 |
+| OKVIS2 | zed2i | field1 🟡 | 0.752 m | 0.777 m | 0.990 | 0.283 | 0.97 | 7466 | 1 |
+| OKVIS2-X | euroc_mav | MH_01 | **0.018 m** | 0.081 m | 1.019 | 0.010 | 16.09 | 0 | 1 |
+| OKVIS2-X | euroc_mav | MH_03 | 0.030 m | 0.071 m | 1.018 | 0.018 | 15.85 | 0 | 1 |
+| OKVIS2-X | euroc_mav | MH_05 | 0.061 m | 0.203 m | 1.029 | 0.034 | 20.37 | 0 | 1 |
+| OKVIS2-X | hortimulti | str02 | 1.220 m | 1.928 m | 1.031 | 0.090 | 4.85 | 0 | 1 |
+| OKVIS2-X | hortimulti | str03 | 2.535 m | 2.695 m | 1.052 | 0.162 | 8.35 | 0 | 1 |
+| OKVIS2-X | rosariov2 | seq1 | 19.40 m | 20.03 m | 0.897 | 0.140 | 7.38 | 0 | 1 |
+| OKVIS2-X | rosariov2 | seq5 | 13.91 m | 13.98 m | 0.971 | 0.051 | 6.74 | 0 | 1 |
+| OKVIS2-X | zed2i | field1 🟡 | 0.294 m | 0.320 m | 0.993 | 0.092 | 3.90 | 0 | 1 |
 
-- ORB-SLAM3 processed 200/200 stereo frames with LC enabled and no IMU, then exported 200 poses.
-  Its known destructor segfault occurred after trajectory export and is handled by the wrapper.
-- AirSLAM processed 1,000 stereo frames, exported 75 refined keyframe poses, and map refinement
-  found 18 loop pairs before pose-graph and global-map optimisation.
-- OKVIS2 and OKVIS2-X each exported 199/200 poses with `imu_parameters.use: false`,
-  `do_loop_closures: true`, active LC queries, and final full BA.
-- OV2SLAM exported 200/200 poses in both modes. The VO-LC run started its iBoW loop closer,
-  wrote the optimized pose graph, and restored camera timestamps to the standard trajectory.
+🟡 = partial coverage (OKVIS2 ~93%, OKVIS2-X ~78% of frames): both wedge in end-of-sequence global
+BA on the 46k-frame zed2i sequence and never terminate; a SIGTERM flushes a usable trajectory that
+evaluates cleanly over the covered span. Budget zed2i OKVIS-family LC as kill-to-flush, or cap the
+sequence.
 
-These tests prove that all five VO-LC wrappers and mode combinations execute. They are not benchmark
-runs. The short OKVIS prefixes contained no accepted loop-closure attempt, so a full sequence with a
-revisit is still needed to validate correction quality. MASt3R-SLAM retrieval LC is configured for
-rosariov2, hortimulti and EuRoC-MAV, but prior attempts OOM on a 12 GB GPU.
+### Remarks: VO-LC
 
-| Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | N |
-|---|---|---|---|---|---|---|---|---|
-| DPV-SLAM | euroc_mav | MH_01 | 0.047 m | 0.354 m | 0.925 | 0.023 | 17.69 | 1 |
-| DPV-SLAM | euroc_mav | MH_03 | 0.042 m | 1.391 m | 1.635 | 0.018 | 17.64 | 1 |
-| DPV-SLAM | euroc_mav | MH_05 | 0.058 m | 3.306 m | 1.925 | 0.016 | 19.18 | 1 |
-| DPV-SLAM | hortimulti | str02 | 22.00 m | 26.74 m | 1.514 | 0.580 | 5.31 | 1 |
-| DPV-SLAM | hortimulti | str03 | 8.83 m | 11.08 m | 1.676 | 0.533 | 12.34 | 1 |
-| DPV-SLAM | rosariov2 | seq1 | 9.32 m | 34.42 m | 3.462 | 0.191 | 13.53 | 1 |
-| DPV-SLAM | rosariov2 | seq5 | 6.48 m | 37.11 m | 3.607 | 0.105 | 14.78 | 1 |
-| DPV-SLAM | zed2i | field1 | 2.36 m | 14.51 m | 3.579 | 0.114 | 11.95 | 1 |
+- **OKVIS2 with IMU off + LC is excellent on EuRoC** (MH_01 0.021 m, MH_03 0.023 m) and strong on
+  the easier HortiMulti (str03 0.118 m), but agricultural Rosario stays ~16-19 m - loop closure
+  cannot rescue drift when the crop rows are perceptually aliased (finding 10). This mirrors DPVO.
+- **OKVIS2-X reports 0 accepted loop closures on every VO-LC cell**, whereas OKVIS2 accepts
+  hundreds-to-thousands. Its geometry is otherwise close to OKVIS2 (MH_01 0.018 m), so its LC path
+  appears inactive - verify `do_loop_closures`/place-recognition is actually enabled in the OKVIS2-X
+  `_vo_lc.yaml` configs before drawing an LC conclusion from these rows. (TODO #14.)
+- MASt3R-SLAM retrieval LC is configured for rosariov2/hortimulti/EuRoC but OOMs on 12 GB; ORB-SLAM3
+  and OV2SLAM VO-LC configs exist but full-sequence runs are still pending; AirSLAM's LC is
+  inseparable from its inertial pipeline and is tracked under VIO-LC.
 
 See finding 10 for the DPVO-vs-DPV-SLAM loop-closure comparison.
 
@@ -385,20 +409,44 @@ See finding 10 for the DPVO-vs-DPV-SLAM loop-closure comparison.
 
 ## VIO-LC - Visual-Inertial + Loop Closure
 
-| Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | N |
-|---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | rosariov2 | seq5 | **2.45 m** | 2.71 m | 1.023 | 0.0292 | 12.00 | 1 |
-| OKVIS2 | rosariov2 | seq1 | 18.32 m | 18.77 m | 0.916 | 0.1152 | 4.72 | 1 |
-| OKVIS2 | rosariov2 | seq5 | 21.25 m | 21.71 m | 0.913 | 0.1179 | 4.40 | 1 |
+`benchmark-vio-lc.csv` has 19 rows (all N=1, stereo + IMU + LC): OKVIS2 and OKVIS2-X across all 7
+core sequences, AirSLAM on the 4 agricultural sequences, plus the ORB-SLAM3 seq5 reference. There is
+**no zed2i column** - OKVIS2 has no zed2i `_vio_lc` config, AirSLAM has no zed2i `_vio_slam` config,
+and OKVIS2-X zed2i VIO-LC was cut before running (the ~5-6 h long pole, same stall as its VO-LC cell).
+Basalt and OpenVINS have no loop-closure mode.
 
-All N=1. ORB-SLAM3 seq5: 0 loop closures accepted (identical crop rows).
-OKVIS2 seq5: 0 closures. OKVIS2 seq1: marginal improvement over VIO (18.32 vs 18.89 m).
-Basalt has no loop closure mode.
+| Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | LC | N |
+|---|---|---|---|---|---|---|---|---|---|
+| ORB-SLAM3 | rosariov2 | seq5 | **2.45 m** | 2.71 m | 1.023 | 0.0292 | 12.00 | 0 | 1 |
+| OKVIS2 | rosariov2 | seq1 | 18.32 m | 18.77 m | 0.915 | 0.115 | 4.72 | 6337 | 1 |
+| OKVIS2 | rosariov2 | seq5 | 21.25 m | 21.71 m | 0.913 | 0.118 | 4.40 | 979 | 1 |
+| OKVIS2 | hortimulti | str02 | 1.333 m | 1.976 m | 1.030 | 0.093 | 8.52 | 1313 | 1 |
+| OKVIS2 | hortimulti | str03 | 0.099 m | 0.596 m | 1.032 | 0.022 | 11.01 | 664 | 1 |
+| OKVIS2 | euroc_mav | MH_01 | 0.020 m | 0.029 m | 1.005 | 0.008 | 17.60 | 767 | 1 |
+| OKVIS2 | euroc_mav | MH_03 | 0.024 m | 0.034 m | 0.993 | 0.015 | 17.06 | 908 | 1 |
+| OKVIS2 | euroc_mav | MH_05 | 0.049 m | 0.086 m | 0.990 | 0.017 | 22.63 | 725 | 1 |
+| OKVIS2-X | rosariov2 | seq1 | 17.95 m | 18.30 m | 0.925 | 0.118 | 7.51 | 0 | 1 |
+| OKVIS2-X | rosariov2 | seq5 | 20.05 m | 20.41 m | 0.924 | 0.105 | 7.00 | 0 | 1 |
+| OKVIS2-X | hortimulti | str02 | 1.778 m | 2.121 m | 1.024 | 0.091 | 4.86 | 0 | 1 |
+| OKVIS2-X | hortimulti | str03 | 0.113 m | 0.757 m | 1.041 | 0.023 | 9.14 | 0 | 1 |
+| OKVIS2-X | euroc_mav | MH_01 | 0.014 m | 0.019 m | 1.003 | 0.007 | 17.22 | 0 | 1 |
+| OKVIS2-X | euroc_mav | MH_03 | 0.028 m | 0.032 m | 0.995 | 0.014 | 15.63 | 0 | 1 |
+| OKVIS2-X | euroc_mav | MH_05 | 0.045 m | 0.047 m | 1.002 | 0.018 | 20.72 | 0 | 1 |
+| AirSLAM | hortimulti | str02 | 5.363 m | 5.573 m | 1.034 | 0.388 | 3.62 | * | 1 |
+| AirSLAM | hortimulti | str03 | 0.616 m | 0.958 m | 1.044 | 0.030 | 2.96 | * | 1 |
+| AirSLAM | rosariov2 | seq1 | 15.87 m | 15.96 m | 0.964 | 0.081 | 1.47 | * | 1 |
+| AirSLAM | rosariov2 | seq5 | 24.26 m | 25.56 m | 0.847 | 0.226 | 1.40 | * | 1 |
+
+\* AirSLAM's loop closure runs inside the offline `map_refinement` step and is not surfaced in the
+CSV `loop_closures` field. Its `track_pct` (~20-27%) is keyframe-subsampled poses, not tracking
+failure - trajectory time-coverage is ~99%.
 
 ### Remarks: VIO-LC
 
-- **Loop closure provides no benefit on perceptually aliased crop-row sequences.** ORB-SLAM3 VIO-LC on rosariov2 seq5: 0 closures accepted, no ATE improvement (2.45 m vs 2.29 m VIO). Identical row appearance prevents bag-of-words place recognition.
-- OKVIS2 seq1 benefits slightly (18.32 vs 18.89 m VIO) because seq1 has more turns providing revisit opportunities.
+- **Loop closure provides no benefit on perceptually aliased crop-row sequences.** ORB-SLAM3 VIO-LC on rosariov2 seq5: 0 closures accepted, no ATE improvement (2.45 m vs 2.29 m VIO). Identical row appearance prevents bag-of-words place recognition. OKVIS2 accepts hundreds-to-thousands of closures on Rosario yet still lands ~18-21 m - the closures do not fix the drift.
+- **OKVIS2 VIO-LC ≈ VO-LC on Rosario** (seq1 18.32 vs 18.87 m; seq5 21.25 vs 16.26 m) - adding the IMU on top of LC changes little on these weak-excitation sequences, consistent with the VIO≫VO agricultural pattern.
+- **OKVIS2-X again reports 0 accepted closures** on every VIO-LC cell (same open question as VO-LC, TODO #14), yet tracks ~1.5-2x faster than OKVIS2 (e.g. seq1 7.5 vs 4.7 fps).
+- **AirSLAM is the slowest** (1.4-3.6 fps on agri) and weakest on Rosario (seq5 24.3 m), but competitive on the easier HortiMulti str03 (0.62 m). Launch-file fix (`vio_euroc.launch` + `map_refinement`, not the non-existent `vio_slam_euroc.launch`) landed in `run_airslam.sh` 2026-07-30.
 - LC roughly halves throughput for OKVIS2 (8.5 fps VIO -> 4.4 fps VIO-LC) with no meaningful ATE gain on these sequences.
 
 ---
@@ -569,10 +617,10 @@ The PPK fix above was carried out on rosariov2 seq5. All four GNSS-VIO algorithm
 | DPVO / DPV-SLAM | yes | no IMU support | no; LC variant is VO-LC | no | VO+VO-LC N=1 | VO+VO-LC N=1 | MH_01/03/05 VO+VO-LC N=1 | VO+VO-LC N=1 |
 | DROID-SLAM | yes | no IMU support | no IMU support | no | VO N=3 | VO N=3 | VO N=1 | no config |
 | MAC-VO | yes | no IMU support | no IMU support | no | VO N=3 | VO N=3 | VO N=1 | no config |
-| AirSLAM | yes | yes | yes | no | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VIO N=1 |
-| OV2SLAM | yes | no IMU support | no; LC variant is VO-LC | no | seq1+seq5 VO N=1; all configured | str03 VO N=1; all configured | MH_05 VO N=1; all configured | VO+VO-LC configured |
-| OKVIS2 | yes | yes | yes | no | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VIO N=1 |
-| OKVIS2-X | manual | manual | manual | planned | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VIO N=1 |
+| AirSLAM | yes | yes | yes | no | seq1+seq5 VIO+VIO-LC N=1 | str02+str03 VIO+VIO-LC N=1, fixed extrinsic | MH_01/03/05 VIO N=1 (VIO-LC pending) | VIO N=1 |
+| OV2SLAM | yes | no IMU support | no; LC variant is VO-LC | no | seq1+seq5 VO N=1 | str02+str03 VO N=1 | MH_01/03/05 VO N=1 | VO configured (pending); VO-LC configured |
+| OKVIS2 | yes | yes | yes | no | seq1+seq5 VIO+VIO-LC+VO-LC N=1 | str02+str03 VIO+VIO-LC+VO-LC N=1, fixed extrinsic | MH_01/03/05 VIO+VIO-LC+VO-LC N=1 | VIO N=1; VO-LC N=1 (partial) |
+| OKVIS2-X | manual | manual | manual | planned | seq1+seq5 VIO+VIO-LC+VO-LC N=1 | str02+str03 VIO+VIO-LC+VO-LC N=1, fixed extrinsic | MH_01/03/05 VIO+VIO-LC+VO-LC N=1 | VIO N=1; VO-LC N=1 (partial) |
 | OpenVINS | no VO mode | yes | no LC | no | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VIO N=1 |
 | Voxel-SVIO | no VO mode | yes | no LC | no | seq1+seq5 VIO N=1 | str02+str03 VIO N=1, fixed extrinsic | MH_01/03/05 VIO N=1 | VIO N=1 |
 | VINS-Fusion+GPS | no | base VIO | no | **yes** | seq1+seq5 GNSS N=1 | str02+str03 GNSS N=1 | no GPS | no runner |

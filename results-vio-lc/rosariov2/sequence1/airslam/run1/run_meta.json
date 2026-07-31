@@ -1,0 +1,1 @@
+{"algo": "airslam", "dataset": "rosariov2", "seq": "sequence1", "run_id": 1, "run_type": "vio-lc", "use_imu": true, "use_lc": true, "duration_s": 2181.6939239501953, "frames": 3209, "fps": 1.470875435262594}

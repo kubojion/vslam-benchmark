@@ -1,0 +1,1 @@
+{"algo": "okvis2x", "dataset": "euroc_mav", "seq": "MH_01_easy", "run_id": 1, "run_type": "vo-lc", "use_imu": false, "use_lc": true, "duration_s": 228.82281684875488, "frames": 3682, "fps": 16.091052678691973}

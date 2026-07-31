@@ -1,10 +1,14 @@
 # vSLAM Benchmark - TODO
 
-> Created: 2026-05-20 | Revised: 2026-07-29. VO has 92 evaluated rows. VO-LC has 8 evaluated rows
-> (DPV-SLAM only for now). The core VIO N=1
+> Created: 2026-05-20 | Revised: 2026-07-31. VO has 95 evaluated rows (OV2SLAM VO filled on
+> str02/MH_01/MH_03; only OV2SLAM zed2i still pending). VO-LC has 24 rows: DPV-SLAM, OKVIS2 and
+> OKVIS2-X now cover all 8 sequences (the two OKVIS zed2i cells are partial-coverage - see note).
+> The core VIO N=1
 > matrix has 49 rows (7 algorithms x 7 standard sequences); corrected HortiMulti extrinsics and
 > EuRoC MH_03/MH_05 are included. ZED2i adds six usable VIO trajectories plus one failed
-> ORB-SLAM3 attempt, so `benchmark-vio.csv` has 55 rows. VIO-LC has 3 rows (true IMU+LC only). GNSS-VIO N=1 is
+> ORB-SLAM3 attempt, so `benchmark-vio.csv` has 55 rows. VIO-LC has 19 rows: OKVIS2 and OKVIS2-X
+> across all 7 core sequences, AirSLAM on the 4 agricultural sequences, plus the ORB-SLAM3 seq5
+> reference (no zed2i VIO-LC cell - no configs). GNSS-VIO N=1 is
 > complete: 20 rows (5 algorithms x 4 GPS-bearing sequences), including the retained
 > sequence5 PPK-versus-conventional study. Remaining priorities are N=3 validation, corrected-
 > extrinsic OpenVINS+GPS HortiMulti reruns and evaluator hardening. OKVIS2-X automation is now
@@ -37,7 +41,7 @@ Legend: ✅ run complete | 🟡 run complete with caveat | ⬜ config only | �
 | DPVO | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
 | OKVIS2 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
 | OKVIS2-X | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
-| OV2SLAM | ✅ N=1 | ✅ N=1 | ⬜ config only | ✅ N=1 | ⬜ config only | ⬜ config only | ✅ N=1 | ⬜ config only |
+| OV2SLAM | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ config only |
 | MASt3R-SLAM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🔧 config missing |
 | MegaSaM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🔧 config missing |
 
@@ -101,16 +105,29 @@ two VO baselines. Next step for the core table is N=1 -> N=3.
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
 | DPV-SLAM | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| OKVIS2 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 partial |
+| OKVIS2-X | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 partial |
 | ORB-SLAM3 | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
-| AirSLAM | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
-| OKVIS2 | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
-| OKVIS2-X | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
+| AirSLAM | 🔧 run as VIO-LC | 🔧 run as VIO-LC | 🔧 run as VIO-LC | 🔧 run as VIO-LC | 🔧 run as VIO-LC | 🔧 run as VIO-LC | 🔧 run as VIO-LC | 🔧 run as VIO-LC |
 | OV2SLAM | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
 | MASt3R-SLAM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🔧 config missing |
 
 > DPV-SLAM = DPVO + proximity loop closure (monocular, no IMU). LC **helps 2-3x on EuRoC but hurts every agricultural sequence** (false loops on repetitive crop rows) - see PROGRESS.md finding 10.
-> Additional VO-LC configs now exist for ORB-SLAM3 stereo (`configs/orbslam3/<dataset>_stereo_lc.yaml`), AirSLAM (`configs/airslam/<dataset>_vo_lc.yaml` + `<dataset>_mr.yaml`), OKVIS2/OKVIS2-X (`configs/okvis2{x}/<dataset>_<seq>_vo_lc.yaml`), OV2SLAM (`configs/ov2slam/<dataset>_vo_lc.yaml`) and MASt3R-SLAM (`configs/mast3r_slam/<dataset>_vo_lc.yaml`). The OKVIS2/OKVIS2-X dataset readers still require `mav0/imu0/data.csv` even when IMU residuals are disabled.
-> ORB-SLAM3, AirSLAM, OKVIS2, OKVIS2-X and OV2SLAM VO-LC smoke tests passed on EuRoC MH01 prefixes. These validate the wrappers and mode flags, not benchmark accuracy; full-sequence runs are still pending.
+> **OKVIS2 / OKVIS2-X VO-LC full-sequence N=1 completed (2026-07-30/31).** IMU residuals off, LC on.
+> OKVIS2 accepts many closures on EuRoC (686-1014 pairs) and agri (up to 5459 on seq1); OKVIS2-X
+> reported **0 accepted closures on every cell** (worth checking whether its LC is effectively
+> enabled in the `_vo_lc.yaml` configs). EuRoC ATE is excellent (OKVIS2/OKVIS2-X MH_01 ~0.02 m).
+> **The two zed2i cells are partial-coverage (🟡):** OKVIS2 (0.752 m, ~93% of frames) and OKVIS2-X
+> (0.294 m, ~78%) both **wedge in end-of-sequence global BA on the 46k-frame zed2i sequence** and
+> never terminate; a SIGTERM flushes a usable trajectory that evaluates cleanly over the covered
+> span. Budget zed2i OKVIS-family LC as kill-to-flush, or cap the sequence.
+> AirSLAM's LC lives in its offline `map_refinement` step; no visual-only `_vo_lc` config exists, and
+> the LC that was run uses the inertial `_vio_slam` config, so AirSLAM's loop-closure results are
+> tracked in **VIO-LC**, not here (🔧 = no vo-lc config).
+> Configs exist for ORB-SLAM3 stereo (`configs/orbslam3/<dataset>_stereo_lc.yaml`), OV2SLAM
+> (`configs/ov2slam/<dataset>_vo_lc.yaml`) and MASt3R-SLAM (`configs/mast3r_slam/<dataset>_vo_lc.yaml`);
+> these VO-LC full-sequence runs are still pending. The OKVIS2/OKVIS2-X dataset readers still require
+> `mav0/imu0/data.csv` even when IMU residuals are disabled.
 
 ### VIO-LC (stereo + IMU + loop closure) - `results-vio-lc/`
 
@@ -119,10 +136,18 @@ Legend: ✅ run complete | 🟡 run complete with caveat | ⬜ config only | �
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 |
 |---|---|---|---|---|---|---|---|
 | ORB-SLAM3 | ⬜ config only | ✅ N=1 | ⬜ config only | ⬜ config only | 🔧 config missing | 🔧 config missing | 🔧 config missing |
-| OKVIS2 | ✅ N=1 | ✅ N=1 | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
-| OKVIS2-X | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
-| AirSLAM | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
+| OKVIS2 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| OKVIS2-X | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| AirSLAM | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ config only | ⬜ config only | ⬜ config only |
 > HortiMulti IMU: extracted. Path: `datasets/hortimulti/strawberry{02,03}/mav0/imu0/data.csv`
+> **VIO-LC full-sequence N=1 completed (2026-07-30/31)** for OKVIS2 and OKVIS2-X (all 7 core
+> sequences) and AirSLAM (4 agricultural sequences). AirSLAM = front-end (`vio_euroc.launch`) +
+> offline `map_refinement`; the runner previously referenced a non-existent `vio_slam_euroc.launch`
+> - fixed in `run_airslam.sh`. AirSLAM EuRoC MH_01/03/05 are re-queued but not yet run (~30 min).
+> There is **no zed2i VIO-LC column**: OKVIS2 has no zed2i `_vio_lc` config, AirSLAM has no
+> zed2i `_vio_slam` config, and OKVIS2-X zed2i VIO-LC was cut before running (the long pole, ~5-6 h,
+> same end-of-sequence stall as its VO-LC cell). Consistent with finding 10: LC yields no meaningful
+> ATE gain over VIO on the agricultural sequences (OKVIS2 seq1 18.3 m VIO-LC vs 18.9 m VO-LC).
 
 ### GNSS-VIO (stereo + IMU + GNSS) - `results-gnss-vio/`
 
@@ -177,6 +202,8 @@ Legend: ✅ run complete | 🟡 run complete with caveat | ⬜ config only | �
 | 10b | Re-run OpenVINS+GPS HortiMulti with corrected extrinsics; validate all four rows | `[ ]` |
 | 11 | Normalize EuRoC dataset aliases and result/config paths to `euroc_mav` | `[x]` central shell/Python canonicalization; obsolete aliases removed |
 | 12 | Commit local-only runtime prerequisites in their owning submodules/forks | `[!]` AirSLAM VIO launch files, OpenVINS `Dockerfile.benchmark`, OKVIS2 DBoW2/opengv CMake patches |
+| 13 | Finish remaining LC/VO cells (2026-07-31): OV2SLAM zed2i VO (~2 h), AirSLAM EuRoC MH_01/03/05 VIO-LC (~30 min, quick), OKVIS2-X zed2i VIO-LC (~5-6 h, kill-to-flush) | `[ ]` core LC matrices otherwise complete |
+| 14 | Investigate OKVIS2-X reporting 0 accepted loop closures on every VO-LC/VIO-LC cell (LC actually firing?) | `[ ]` |
 
 ---
 
@@ -306,12 +333,13 @@ came from manual runs, so they have not yet been reproduced through the runner.
 
 | Task | Status |
 |---|---|
-| ORB-SLAM3 runner + configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` configured; 200-frame VO-LC smoke passed |
+| OKVIS2 VO-LC full N=1 (all 8 sequences) | `[x]` done; zed2i partial-coverage (kill-to-flush, see VO-LC note) |
+| OKVIS2-X VO-LC full N=1 (all 8 sequences) | `[x]` done; zed2i partial; **0 accepted closures on every cell - verify LC is enabled** |
+| ORB-SLAM3 runner + configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` configured; 200-frame VO-LC smoke passed; full-sequence VO-LC still pending |
 | MASt3R-SLAM runner + configs for rosariov2/hortimulti/EuRoC | `[x]` configured, blocked on >12 GB VRAM for full sequences |
-| AirSLAM runner + configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` configured; 1,000-frame VO-LC smoke passed with 18 loop pairs |
-| OKVIS2 configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` experimental; 200-frame IMU-off LC smoke passed |
-| OKVIS2-X configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` experimental; 200-frame IMU-off LC smoke passed |
-| OV2SLAM submodule, Docker build, runner and VO/VO-LC configs for all datasets | `[x]` configured; 200-frame VO and VO-LC smoke passed |
+| AirSLAM VO-LC | `[x]` reclassified as VIO-LC (LC is inseparable from its inertial pipeline) |
+| OV2SLAM VO full N=1 (str02/MH_01/MH_03 filled) | `[x]` done; only zed2i VO still pending (~2 h) |
+| OV2SLAM VO-LC full-sequence runs | `[ ]` configs exist; not yet run |
 
 ### OV2SLAM
 

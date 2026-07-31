@@ -6,7 +6,7 @@
 #   vo      -> results-vo/.../airslam/run<N>/       launch=vo_euroc.launch        cfg=<dataset>_vo.yaml
 #   vo-lc   -> results-vo-lc/.../airslam/run<N>/    launch=vo_euroc.launch        cfg=<dataset>_vo_lc.yaml + map_refinement
 #   vio     -> results-vio/.../airslam/run<N>/      launch=vio_euroc.launch       cfg=<dataset>_vio.yaml      (requires IMU)
-#   vio-lc  -> results-vio-lc/.../airslam/run<N>/   launch=vio_slam_euroc.launch  cfg=<dataset>_vio_slam.yaml (full V-SLAM with LC)
+#   vio-lc  -> results-vio-lc/.../airslam/run<N>/   launch=vio_euroc.launch       cfg=<dataset>_vio_slam.yaml + map_refinement (full V-SLAM with LC)
 #
 # Requires:
 #   - Docker with nvidia-container-toolkit (see docs/setup.md)
@@ -36,7 +36,7 @@ case "$RUN_TYPE" in
     vo)      LAUNCH_FILE="vo_euroc.launch";       CFG_TAG="vo" ;;
     vo-lc)   LAUNCH_FILE="vo_euroc.launch";       CFG_TAG="vo_lc" ;;
     vio)     LAUNCH_FILE="vio_euroc.launch";      CFG_TAG="vio" ;;
-    vio-lc)  LAUNCH_FILE="vio_slam_euroc.launch"; CFG_TAG="vio_slam" ;;
+    vio-lc)  LAUNCH_FILE="vio_euroc.launch";      CFG_TAG="vio_slam" ;;
     *)       echo "[airslam] unknown run_type: $RUN_TYPE (expected vo|vo-lc|vio|vio-lc)" >&2; exit 2 ;;
 esac
 
