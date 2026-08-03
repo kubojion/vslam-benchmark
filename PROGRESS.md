@@ -1,6 +1,6 @@
 # vSLAM Benchmark - Progress
 
-> Updated: 2026-07-31 - VO: 109 evaluated rows (OV2SLAM VO filled; ORB-SLAM3 run natively - EuRoC N=1,
+> Updated: 2026-08-03 - VO: 109 evaluated rows (OV2SLAM VO filled; ORB-SLAM3 run natively - EuRoC N=1,
 > agri N=3 median+range, non-deterministic, finding 11). Only OV2SLAM
 > zed2i VO still pending). VO-LC: 24 rows - DPV-SLAM, OKVIS2 and OKVIS2-X across all 8 sequences (the
 > two OKVIS zed2i cells are partial-coverage kill-to-flush; OKVIS2-X reports 0 accepted closures - see

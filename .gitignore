@@ -55,3 +55,8 @@ __pycache__/
 src/DPVO/build/
 src/DPVO/thirdparty/eigen-3.4.0/
 src/DPVO/saved_trajectories/
+
+# okvis final-BA debug plots written to CWD / run dirs
+/fullBa.png
+/okvis2_final_ba.png
+results-*/**/fullBa.png

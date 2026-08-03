@@ -1,6 +1,6 @@
 # vSLAM Benchmark - TODO
 
-> Created: 2026-05-20 | Revised: 2026-07-31. VO has 109 evaluated rows. OV2SLAM VO filled on
+> Created: 2026-05-20 | Revised: 2026-08-03 (verified current). VO has 109 evaluated rows. OV2SLAM VO filled on
 > str02/MH_01/MH_03 (only OV2SLAM zed2i pending). ORB-SLAM3 rebuilt/run NATIVELY from the submodule
 > (no Docker): EuRoC N=1 (~0.05 m, deterministic), agricultural N=3 median+range (str02/seq1/seq5 are
 > severely non-deterministic; str03 is stable) - see the VO note and finding 11. VO-LC has 24 rows: DPV-SLAM, OKVIS2 and
