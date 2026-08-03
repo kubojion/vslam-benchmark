@@ -1,0 +1,143 @@
+[orbslam3] hortimulti/strawberry02 type=vo-lc run=1 -> /home/iman/slam_tests/vslam-benchmark/results-vo-lc/hortimulti/strawberry02/orbslam3/run1
+0.049 num_seq = 1
+0.049 file name: hortimulti_strawberry02_orbslam3
+0.061 Loading images for sequence 0...LOADED!
+0.061 
+0.061 -------
+0.061 
+0.061 ORB-SLAM3 Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.061 ORB-SLAM2 Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.061 This program comes with ABSOLUTELY NO WARRANTY;
+0.061 This is free software, and you are welcome to redistribute it
+0.061 under certain conditions. See LICENSE.txt.
+0.061 
+0.061 Input sensor was set to: Stereo
+0.061 Loading settings from /home/iman/slam_tests/vslam-benchmark/configs/orbslam3/hortimulti_stereo_lc.yaml
+0.061 	-Loaded camera 1
+0.061 	-Loaded camera 2
+0.061 Camera.newHeight optional parameter does not exist...
+0.061 Camera.newWidth optional parameter does not exist...
+0.061 	-Loaded image info
+0.061 	-Loaded ORB settings
+0.062 Viewer.imageViewScale optional parameter does not exist...
+0.062 	-Loaded viewer settings
+0.062 System.LoadAtlasFromFile optional parameter does not exist...
+0.062 System.SaveAtlasToFile optional parameter does not exist...
+0.062 	-Loaded Atlas settings
+0.062 System.thFarPoints optional parameter does not exist...
+0.062 	-Loaded misc parameters
+0.062 ----------------------------------
+0.062 SLAM settings: 
+0.062 	-Camera 1 parameters (Pinhole): [ 262.71490478515625 262.71490478515625 329.43099975585938 219.56170654296875 ]
+0.062 	-Camera 2 parameters (Pinhole: [ 262.71490478515625 262.71490478515625 329.43099975585938 219.56170654296875 ]
+0.062 	-Original image size: [ 640 , 480 ]
+0.062 	-Current image size: [ 640 , 480 ]
+0.062 	-Sequence FPS: 10
+0.062 	-Stereo baseline: 0.13950200378894806
+0.062 	-Stereo depth threshold : 40
+0.062 	-Features per image: 1200
+0.062 	-ORB scale factor: 1.2000000476837158
+0.062 	-ORB number of scales: 8
+0.062 	-Initial FAST threshold: 20
+0.062 	-Min FAST threshold: 7
+0.062 
+0.062 
+0.062 Loading ORB Vocabulary. This could take a while...
+2.567 Vocabulary loaded!
+2.567 
+2.572 Initialization of Atlas from scratch 
+2.572 Creation of new map with id: 0
+2.572 Creation of new map with last KF id: 0
+2.572 Seq. Name: 
+2.572 There are 1 cameras in the atlas
+2.572 Camera 0 is pinhole
+2.598 First KF:0; Map init KF:0
+2.598 New Map created with 509 points
+2.732 Starting the Viewer
+98.543 Fail to track local map!
+98.647 Fail to track local map!
+98.756 Relocalized!!
+551.175 Fail to track local map!
+551.285 Fail to track local map!
+551.411 Fail to track local map!
+551.504 Fail to track local map!
+551.621 Fail to track local map!
+551.740 Fail to track local map!
+551.832 Fail to track local map!
+551.943 Fail to track local map!
+552.055 Fail to track local map!
+552.158 Fail to track local map!
+552.275 Fail to track local map!
+552.377 Fail to track local map!
+552.496 Fail to track local map!
+552.596 Fail to track local map!
+552.703 Fail to track local map!
+552.803 Fail to track local map!
+552.920 Fail to track local map!
+553.037 Fail to track local map!
+553.138 Fail to track local map!
+553.252 Fail to track local map!
+553.356 Fail to track local map!
+553.464 Fail to track local map!
+553.568 Fail to track local map!
+553.673 Fail to track local map!
+553.798 Fail to track local map!
+553.891 Fail to track local map!
+554.007 Fail to track local map!
+554.111 Fail to track local map!
+554.218 Fail to track local map!
+554.315 Fail to track local map!
+554.451 Fail to track local map!
+554.547 Fail to track local map!
+554.547 Creation of new map with id: 1
+554.547 Stored map with ID: 0
+554.547 Creation of new map with last KF id: 2300
+554.646 First KF:2300; Map init KF:2300
+554.646 New Map created with 392 points
+727.585 Fail to track local map!
+727.700 Fail to track local map!
+727.823 Fail to track local map!
+727.923 Fail to track local map!
+728.037 Fail to track local map!
+728.144 Fail to track local map!
+728.249 Fail to track local map!
+728.369 Fail to track local map!
+728.473 Fail to track local map!
+728.580 Fail to track local map!
+728.681 Fail to track local map!
+728.789 Fail to track local map!
+728.902 Fail to track local map!
+729.012 Fail to track local map!
+729.121 Fail to track local map!
+729.229 Fail to track local map!
+729.332 Fail to track local map!
+729.447 Fail to track local map!
+729.556 Fail to track local map!
+729.662 Fail to track local map!
+729.765 Fail to track local map!
+729.880 Fail to track local map!
+729.982 Fail to track local map!
+730.086 Fail to track local map!
+730.206 Fail to track local map!
+730.321 Fail to track local map!
+730.432 Fail to track local map!
+730.543 Fail to track local map!
+730.651 Fail to track local map!
+730.754 Fail to track local map!
+730.870 Fail to track local map!
+730.870 Creation of new map with id: 2
+730.870 Stored map with ID: 1
+730.870 Creation of new map with last KF id: 2992
+730.967 First KF:2992; Map init KF:2992
+730.967 New Map created with 317 points
+1035.649 Shutdown
+1035.649 
+1035.649 Saving trajectory to f_hortimulti_strawberry02_orbslam3.txt ...
+1035.649 There are 3 maps in the atlas
+1035.649   Map 0 has 2300 KFs
+1035.649   Map 1 has 692 KFs
+1035.650   Map 2 has 1172 KFs
+1035.663 
+1035.663 End of saving trajectory to f_hortimulti_strawberry02_orbslam3.txt ...
+1035.663 
+1035.663 Saving keyframe trajectory to kf_hortimulti_strawberry02_orbslam3.txt ...

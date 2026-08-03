@@ -1,10 +1,11 @@
 # vSLAM Benchmark - Progress
 
-> Updated: 2026-08-03 - VO: 109 evaluated rows (OV2SLAM VO filled; ORB-SLAM3 run natively - EuRoC N=1,
-> agri N=3 median+range, non-deterministic, finding 11). Only OV2SLAM
-> zed2i VO still pending). VO-LC: 24 rows - DPV-SLAM, OKVIS2 and OKVIS2-X across all 8 sequences (the
-> two OKVIS zed2i cells are partial-coverage kill-to-flush; OKVIS2-X reports 0 accepted closures - see
-> VO-LC section). Core VIO N=1 sweep: 49 evaluated rows
+> Updated: 2026-08-03 - VO: 110 evaluated rows (OV2SLAM VO complete incl. zed2i 0.348 m; ORB-SLAM3 run
+> natively - EuRoC N=1, agri N=3 median+range, non-deterministic, finding 11). VO-LC: 32 rows (adds
+> ORB-SLAM3 ×8); VIO-LC: 22 rows (adds AirSLAM EuRoC). OKVIS2-X "0 loop closures" was a parser bug
+> (finding 12). Only OV2SLAM
+> zed2i VO still pending). VO-LC: 32 rows - DPV-SLAM, OKVIS2, OKVIS2-X and ORB-SLAM3 across all 8
+> sequences (the two OKVIS zed2i cells are partial-coverage kill-to-flush). Core VIO N=1 sweep: 49 evaluated rows
 > (7 algorithms x 7 standard sequences), including corrected HortiMulti extrinsics and EuRoC
 > MH_03/MH_05. The ZED2i field dataset adds six usable VIO trajectories plus one ORB-SLAM3
 > failed attempt, bringing `benchmark-vio.csv` to 55 rows. VIO-LC: 19 rows - OKVIS2 and OKVIS2-X (7
@@ -87,6 +88,7 @@ the N=3 median; the (range) is min–max across runs. str03 alone is stable (0.1
 | MAC-VO | euroc_mav | MH_05 | 0.470 m | 0.484 m | 1.017 | 0.0276 | 0.86 | 1 |
 | ORB-SLAM3 | zed2i | field1 | **0.256 m** | 0.300 m | 0.992 | 0.0164 | 12.67 | 1 |
 | Basalt | zed2i | field1 | 0.446 m | 0.488 m | 0.990 | 0.0174 | 38.50 | 1 |
+| OV2SLAM | zed2i | field1 | 0.348 m | 0.385 m | 0.992 | 0.0166 | 7.72 | 1 |
 
 DPVO is monocular and therefore up-to-scale. Its Sim3 ATE measures trajectory shape after one
 global scale correction; the scale column is the required evo multiplier, not an internally
@@ -379,22 +381,30 @@ proximity LC, monocular), and **OKVIS2 / OKVIS2-X** run with `imu_parameters.use
 | DPV-SLAM | rosariov2 | seq1 | 9.32 m | 34.42 m | 3.462 | 0.191 | 13.53 | 0 | 1 |
 | DPV-SLAM | rosariov2 | seq5 | 6.48 m | 37.11 m | 3.607 | 0.105 | 14.78 | 0 | 1 |
 | DPV-SLAM | zed2i | field1 | 2.36 m | 14.51 m | 3.579 | 0.114 | 11.95 | 0 | 1 |
-| OKVIS2 | euroc_mav | MH_01 | **0.021 m** | 0.103 m | 1.024 | 0.013 | 15.98 | 686 | 1 |
-| OKVIS2 | euroc_mav | MH_03 | 0.023 m | 0.024 m | 0.999 | 0.016 | 15.34 | 1014 | 1 |
-| OKVIS2 | euroc_mav | MH_05 | 0.057 m | 0.154 m | 1.021 | 0.033 | 18.84 | 710 | 1 |
-| OKVIS2 | hortimulti | str02 | 1.394 m | 1.978 m | 1.029 | 0.093 | 5.21 | 1159 | 1 |
-| OKVIS2 | hortimulti | str03 | 0.118 m | 0.575 m | 1.031 | 0.021 | 6.87 | 614 | 1 |
-| OKVIS2 | rosariov2 | seq1 | 18.87 m | 19.43 m | 0.904 | 0.131 | 5.93 | 5459 | 1 |
-| OKVIS2 | rosariov2 | seq5 | 16.26 m | 16.41 m | 0.956 | 0.069 | 5.76 | 364 | 1 |
-| OKVIS2 | zed2i | field1 🟡 | 0.752 m | 0.777 m | 0.990 | 0.283 | 0.97 | 7466 | 1 |
-| OKVIS2-X | euroc_mav | MH_01 | **0.018 m** | 0.081 m | 1.019 | 0.010 | 16.09 | 0 | 1 |
-| OKVIS2-X | euroc_mav | MH_03 | 0.030 m | 0.071 m | 1.018 | 0.018 | 15.85 | 0 | 1 |
-| OKVIS2-X | euroc_mav | MH_05 | 0.061 m | 0.203 m | 1.029 | 0.034 | 20.37 | 0 | 1 |
-| OKVIS2-X | hortimulti | str02 | 1.220 m | 1.928 m | 1.031 | 0.090 | 4.85 | 0 | 1 |
-| OKVIS2-X | hortimulti | str03 | 2.535 m | 2.695 m | 1.052 | 0.162 | 8.35 | 0 | 1 |
-| OKVIS2-X | rosariov2 | seq1 | 19.40 m | 20.03 m | 0.897 | 0.140 | 7.38 | 0 | 1 |
-| OKVIS2-X | rosariov2 | seq5 | 13.91 m | 13.98 m | 0.971 | 0.051 | 6.74 | 0 | 1 |
-| OKVIS2-X | zed2i | field1 🟡 | 0.294 m | 0.320 m | 0.993 | 0.092 | 3.90 | 0 | 1 |
+| OKVIS2 | euroc_mav | MH_01 | **0.021 m** | 0.103 m | 1.024 | 0.013 | 15.98 | 36 | 1 |
+| OKVIS2 | euroc_mav | MH_03 | 0.023 m | 0.024 m | 0.999 | 0.016 | 15.34 | 44 | 1 |
+| OKVIS2 | euroc_mav | MH_05 | 0.057 m | 0.154 m | 1.021 | 0.033 | 18.84 | 18 | 1 |
+| OKVIS2 | hortimulti | str02 | 1.394 m | 1.978 m | 1.029 | 0.093 | 5.21 | 7 | 1 |
+| OKVIS2 | hortimulti | str03 | 0.118 m | 0.575 m | 1.031 | 0.021 | 6.87 | 54 | 1 |
+| OKVIS2 | rosariov2 | seq1 | 18.87 m | 19.43 m | 0.904 | 0.131 | 5.93 | 76 | 1 |
+| OKVIS2 | rosariov2 | seq5 | 16.26 m | 16.41 m | 0.956 | 0.069 | 5.76 | 0 | 1 |
+| OKVIS2 | zed2i | field1 🟡 | 0.752 m | 0.777 m | 0.990 | 0.283 | 0.97 | 1261 | 1 |
+| OKVIS2-X | euroc_mav | MH_01 | **0.018 m** | 0.081 m | 1.019 | 0.010 | 16.09 | 37 | 1 |
+| OKVIS2-X | euroc_mav | MH_03 | 0.030 m | 0.071 m | 1.018 | 0.018 | 15.85 | 37 | 1 |
+| OKVIS2-X | euroc_mav | MH_05 | 0.061 m | 0.203 m | 1.029 | 0.034 | 20.37 | 20 | 1 |
+| OKVIS2-X | hortimulti | str02 | 1.220 m | 1.928 m | 1.031 | 0.090 | 4.85 | 7 | 1 |
+| OKVIS2-X | hortimulti | str03 | 2.535 m | 2.695 m | 1.052 | 0.162 | 8.35 | 7 | 1 |
+| OKVIS2-X | rosariov2 | seq1 | 19.40 m | 20.03 m | 0.897 | 0.140 | 7.38 | 30 | 1 |
+| OKVIS2-X | rosariov2 | seq5 | 13.91 m | 13.98 m | 0.971 | 0.051 | 6.74 | 1 | 1 |
+| OKVIS2-X | zed2i | field1 🟡 | 0.294 m | 0.320 m | 0.993 | 0.092 | 3.90 | 357 | 1 |
+| ORB-SLAM3 | euroc_mav | MH_01 | 0.048 m | 0.050 m | 1.004 | 0.013 | 18.3 | 0 | 1 |
+| ORB-SLAM3 | euroc_mav | MH_03 | 0.043 m | 0.045 m | 0.996 | 0.018 | 18.3 | 0 | 1 |
+| ORB-SLAM3 | euroc_mav | MH_05 | 0.044 m | 0.052 m | 0.996 | 0.016 | 18.3 | 1 | 1 |
+| ORB-SLAM3 | hortimulti | str02 | 0.717 m | 2.066 m | 1.041 | 0.068 | 4.9 | 0 | 1 |
+| ORB-SLAM3 | hortimulti | str03 | 0.104 m | 0.783 m | 1.043 | 0.024 | 9.1 | 1 | 1 |
+| ORB-SLAM3 | rosariov2 | seq1 | **1.520 m** | 1.776 m | 1.020 | 0.072 | 12.5 | 4 | 1 |
+| ORB-SLAM3 | rosariov2 | seq5 | 15.550 m | 15.763 m | 0.949 | 0.500 | 9.1 | 0 | 1 |
+| ORB-SLAM3 | zed2i | field1 | **0.202 m** | 0.255 m | 0.992 | 0.015 | 7.7 | 0 | 1 |
 
 🟡 = partial coverage (OKVIS2 ~93%, OKVIS2-X ~78% of frames): both wedge in end-of-sequence global
 BA on the 46k-frame zed2i sequence and never terminate; a SIGTERM flushes a usable trajectory that
@@ -406,15 +416,19 @@ sequence.
 - **OKVIS2 with IMU off + LC is excellent on EuRoC** (MH_01 0.021 m, MH_03 0.023 m) and strong on
   the easier HortiMulti (str03 0.118 m), but agricultural Rosario stays ~16-19 m - loop closure
   cannot rescue drift when the crop rows are perceptually aliased (finding 10). This mirrors DPVO.
-- **OKVIS2-X reports 0 accepted loop closures on every VO-LC cell**, whereas OKVIS2 accepts
-  hundreds-to-thousands. Its geometry is otherwise close to OKVIS2 (MH_01 0.018 m), so its LC path
-  appears inactive - verify `do_loop_closures`/place-recognition is actually enabled in the OKVIS2-X
-  `_vo_lc.yaml` configs before drawing an LC conclusion from these rows. (TODO #14.)
-- MASt3R-SLAM retrieval LC is configured for rosariov2/hortimulti/EuRoC but OOMs on 12 GB; ORB-SLAM3
-  and OV2SLAM VO-LC configs exist but full-sequence runs are still pending; AirSLAM's LC is
-  inseparable from its inertial pipeline and is tracked under VIO-LC.
+- **OKVIS2-X does loop-close** (the earlier "0 closures" was a parser bug - finding 12): real
+  accepted-closure counts are comparable to OKVIS2 (seq1 30 vs 76, MH_01 37 vs 36). Its geometry is
+  close to OKVIS2 (MH_01 0.018 m) but it under-performs on the harder agri (str03 2.54 m vs OKVIS2's
+  0.118 m).
+- **ORB-SLAM3 VO-LC (LC on) added.** EuRoC ~0.045 m, and zed2i **0.202 m** (0 loops fired - a clean
+  run, not LC). The controlled LC-on-vs-off test is only valid on Rosario (see finding 11 revision:
+  the HortiMulti/EuRoC/zed2i *VO* baseline had LC on by default); there **seq1 fires 4 loops -> 1.52 m
+  vs the LC-off VO median 3.00 m (LC helps), and seq5 fires 0 loops (LC inert)** - verified DBoW
+  closure helps where a true revisit exists, never hurts, unlike DPVO's proximity closure (finding 10).
+- MASt3R-SLAM retrieval LC OOMs on 12 GB; OV2SLAM VO-LC configs exist but runs are pending; AirSLAM's
+  LC is inseparable from its inertial pipeline and is tracked under VIO-LC.
 
-See finding 10 for the DPVO-vs-DPV-SLAM loop-closure comparison.
+See finding 10 for the DPVO-vs-DPV-SLAM loop-closure comparison, and finding 12 for the loop-closure metric fix.
 
 ---
 
@@ -429,34 +443,41 @@ Basalt and OpenVINS have no loop-closure mode.
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | LC | N |
 |---|---|---|---|---|---|---|---|---|---|
 | ORB-SLAM3 | rosariov2 | seq5 | **2.45 m** | 2.71 m | 1.023 | 0.0292 | 12.00 | 0 | 1 |
-| OKVIS2 | rosariov2 | seq1 | 18.32 m | 18.77 m | 0.915 | 0.115 | 4.72 | 6337 | 1 |
-| OKVIS2 | rosariov2 | seq5 | 21.25 m | 21.71 m | 0.913 | 0.118 | 4.40 | 979 | 1 |
-| OKVIS2 | hortimulti | str02 | 1.333 m | 1.976 m | 1.030 | 0.093 | 8.52 | 1313 | 1 |
-| OKVIS2 | hortimulti | str03 | 0.099 m | 0.596 m | 1.032 | 0.022 | 11.01 | 664 | 1 |
-| OKVIS2 | euroc_mav | MH_01 | 0.020 m | 0.029 m | 1.005 | 0.008 | 17.60 | 767 | 1 |
-| OKVIS2 | euroc_mav | MH_03 | 0.024 m | 0.034 m | 0.993 | 0.015 | 17.06 | 908 | 1 |
-| OKVIS2 | euroc_mav | MH_05 | 0.049 m | 0.086 m | 0.990 | 0.017 | 22.63 | 725 | 1 |
-| OKVIS2-X | rosariov2 | seq1 | 17.95 m | 18.30 m | 0.925 | 0.118 | 7.51 | 0 | 1 |
-| OKVIS2-X | rosariov2 | seq5 | 20.05 m | 20.41 m | 0.924 | 0.105 | 7.00 | 0 | 1 |
-| OKVIS2-X | hortimulti | str02 | 1.778 m | 2.121 m | 1.024 | 0.091 | 4.86 | 0 | 1 |
-| OKVIS2-X | hortimulti | str03 | 0.113 m | 0.757 m | 1.041 | 0.023 | 9.14 | 0 | 1 |
-| OKVIS2-X | euroc_mav | MH_01 | 0.014 m | 0.019 m | 1.003 | 0.007 | 17.22 | 0 | 1 |
-| OKVIS2-X | euroc_mav | MH_03 | 0.028 m | 0.032 m | 0.995 | 0.014 | 15.63 | 0 | 1 |
-| OKVIS2-X | euroc_mav | MH_05 | 0.045 m | 0.047 m | 1.002 | 0.018 | 20.72 | 0 | 1 |
+| OKVIS2 | rosariov2 | seq1 | 18.32 m | 18.77 m | 0.915 | 0.115 | 4.72 | 6337† | 1 |
+| OKVIS2 | rosariov2 | seq5 | 21.25 m | 21.71 m | 0.913 | 0.118 | 4.40 | 979† | 1 |
+| OKVIS2 | hortimulti | str02 | 1.333 m | 1.976 m | 1.030 | 0.093 | 8.52 | 4 | 1 |
+| OKVIS2 | hortimulti | str03 | 0.099 m | 0.596 m | 1.032 | 0.022 | 11.01 | 64 | 1 |
+| OKVIS2 | euroc_mav | MH_01 | 0.020 m | 0.029 m | 1.005 | 0.008 | 17.60 | 34 | 1 |
+| OKVIS2 | euroc_mav | MH_03 | 0.024 m | 0.034 m | 0.993 | 0.015 | 17.06 | 42 | 1 |
+| OKVIS2 | euroc_mav | MH_05 | 0.049 m | 0.086 m | 0.990 | 0.017 | 22.63 | 20 | 1 |
+| OKVIS2-X | rosariov2 | seq1 | 17.95 m | 18.30 m | 0.925 | 0.118 | 7.51 | 27 | 1 |
+| OKVIS2-X | rosariov2 | seq5 | 20.05 m | 20.41 m | 0.924 | 0.105 | 7.00 | 1 | 1 |
+| OKVIS2-X | hortimulti | str02 | 1.778 m | 2.121 m | 1.024 | 0.091 | 4.86 | 8 | 1 |
+| OKVIS2-X | hortimulti | str03 | 0.113 m | 0.757 m | 1.041 | 0.023 | 9.14 | 16 | 1 |
+| OKVIS2-X | euroc_mav | MH_01 | 0.014 m | 0.019 m | 1.003 | 0.007 | 17.22 | 29 | 1 |
+| OKVIS2-X | euroc_mav | MH_03 | 0.028 m | 0.032 m | 0.995 | 0.014 | 15.63 | 39 | 1 |
+| OKVIS2-X | euroc_mav | MH_05 | 0.045 m | 0.047 m | 1.002 | 0.018 | 20.72 | 14 | 1 |
 | AirSLAM | hortimulti | str02 | 5.363 m | 5.573 m | 1.034 | 0.388 | 3.62 | * | 1 |
 | AirSLAM | hortimulti | str03 | 0.616 m | 0.958 m | 1.044 | 0.030 | 2.96 | * | 1 |
 | AirSLAM | rosariov2 | seq1 | 15.87 m | 15.96 m | 0.964 | 0.081 | 1.47 | * | 1 |
 | AirSLAM | rosariov2 | seq5 | 24.26 m | 25.56 m | 0.847 | 0.226 | 1.40 | * | 1 |
+| AirSLAM | euroc_mav | MH_01 | 0.040 m | 0.045 m | 1.004 | 0.014 | 2.13 | * | 1 |
+| AirSLAM | euroc_mav | MH_03 | 0.041 m | 0.043 m | 0.997 | 0.016 | 2.38 | * | 1 |
+| AirSLAM | euroc_mav | MH_05 | 0.050 m | 0.060 m | 1.005 | 0.023 | 2.43 | * | 1 |
 
 \* AirSLAM's loop closure runs inside the offline `map_refinement` step and is not surfaced in the
 CSV `loop_closures` field. Its `track_pct` (~20-27%) is keyframe-subsampled poses, not tracking
 failure - trajectory time-coverage is ~99%.
+† OKVIS2 seq1/seq5 loop counts (6337/979) are the OLD over-counted values, preserved: these two runs
+were produced on the colleague's machine and re-evaluating would overwrite their provenance block.
+The real counts (~76/~0, cf. VO-LC) will be corrected when re-run on their origin machine (TODO #16).
+All other OKVIS loop counts here use the corrected metric (finding 12).
 
 ### Remarks: VIO-LC
 
 - **Loop closure provides no benefit on perceptually aliased crop-row sequences.** ORB-SLAM3 VIO-LC on rosariov2 seq5: 0 closures accepted, no ATE improvement (2.45 m vs 2.29 m VIO). Identical row appearance prevents bag-of-words place recognition. OKVIS2 accepts hundreds-to-thousands of closures on Rosario yet still lands ~18-21 m - the closures do not fix the drift.
 - **OKVIS2 VIO-LC ≈ VO-LC on Rosario** (seq1 18.32 vs 18.87 m; seq5 21.25 vs 16.26 m) - adding the IMU on top of LC changes little on these weak-excitation sequences, consistent with the VIO≫VO agricultural pattern.
-- **OKVIS2-X again reports 0 accepted closures** on every VIO-LC cell (same open question as VO-LC, TODO #14), yet tracks ~1.5-2x faster than OKVIS2 (e.g. seq1 7.5 vs 4.7 fps).
+- **OKVIS2-X does loop-close** (27 on seq1, corrected metric - finding 12; the earlier "0" was a parser bug), at counts comparable to OKVIS2, yet tracks ~1.5-2x faster (e.g. seq1 7.5 vs 4.7 fps).
 - **AirSLAM is the slowest** (1.4-3.6 fps on agri) and weakest on Rosario (seq5 24.3 m), but competitive on the easier HortiMulti str03 (0.62 m). Launch-file fix (`vio_euroc.launch` + `map_refinement`, not the non-existent `vio_slam_euroc.launch`) landed in `run_airslam.sh` 2026-07-30.
 - LC roughly halves throughput for OKVIS2 (8.5 fps VIO -> 4.4 fps VIO-LC) with no meaningful ATE gain on these sequences.
 
@@ -1674,6 +1695,34 @@ run-to-run variance, not a build artefact; the old 0.893 m / 1.18 m native refer
 lucky draws. (b) N=1 is meaningless for these cells; they are recorded as **N=3 median (range)**.
 (c) EuRoC (MH_01/03/05) and ZED2i stay N=1 - they are stable. str03 is the one stable agri cell.
 
+**Revision (2026-08-03):** str03's apparent stability is partly an artefact. The HortiMulti/EuRoC/
+zed2i `_stereo.yaml` (VO) configs lack `loopClosing: 0`, and ORB-SLAM3 defaults `activeLC = true`
+(`System.cc:102`), so **those "VO" runs actually had loop closure ON** - and it fired (str03: 1 loop
+in all 3 runs; str02: 1 in one run; MH_05: 1). So str03's tight 0.11 m x3 was LC firing and correcting
+it, not deterministic VO. Only **Rosario VO is a genuine LC-off baseline** (`loopClosing: 0` set).
+The controlled ORB-SLAM3 VO-vs-VO-LC test is therefore only valid on Rosario (see VO-LC section:
+seq1 LC helps, seq5 LC inert). TODO #15: add `loopClosing: 0` to the three configs and re-run for a
+clean baseline.
+
+### 12. "0 loop closures" for OKVIS2-X (and "thousands" for OKVIS2) were log-parsing artefacts
+
+The benchmark reported OKVIS2-X accepting **0** loop closures on every LC cell while OKVIS2 accepted
+**thousands** - suggesting OKVIS2-X's LC was disabled. Static investigation (no re-runs) showed this
+is entirely a **metric bug**, not the algorithms:
+
+- Both share `Frontend.cpp`, which logs one `LOOP CLOSURE: current frame N, matching to keyframe M, ...`
+  line per detected closure. **OKVIS2-X emits these too** (27 on Rosario seq1, 29 on EuRoC MH_01) -
+  the eval's comment that "OKVIS2-X only logs GPS loop closures" was simply wrong.
+- The `okvis2x` profile in `_evaluate_run.py` had `loop_closure: None` (hardcoded off).
+- The `okvis2` profile matched bare `loop closure`, which hits the per-frame **timing-profile** rows
+  ("loop closure query", "attempt loop closure") - 6337 timing rows vs 76 real closures on seq1.
+
+Both configs are identical on LC (`do_loop_closures: true`, `p_dbow: 0.4`). Fixed both profiles to
+count `LOOP CLOSURE: current frame` and re-evaluated the stored logs (no SLAM re-runs; ATE unchanged).
+Corrected real counts: OKVIS2 seq1 76, OKVIS2-X seq1 27-30 - comparable, both active. (Two colleague-
+machine OKVIS2 VIO-LC runs keep the old count to preserve provenance - TODO #16.) Lesson: per-algorithm
+log-scraped metrics need validation against the source's actual log strings.
+
 ## Key commands
 
 ```bash
@@ -1707,4 +1756,4 @@ conda run -n macvo python3 scripts/eval/_macvo_to_tum.py "$SBX" \
 
 ---
 
-*Last updated: 2026-07-31 - native ORB-SLAM3 VO fill (EuRoC N=1 + agri N=3 median/range, non-determinism finding 11); OKVIS2/OKVIS2-X/AirSLAM LC results; OV2SLAM VO fill.*
+*Last updated: 2026-08-03 - ORB-SLAM3 VO-LC ×8 (Rosario LC-helps test); OV2SLAM VO complete (zed2i 0.348 m); AirSLAM VIO-LC EuRoC; loop-closure metric fix (finding 12); VO-baseline LC-contamination (finding 11 revision).*

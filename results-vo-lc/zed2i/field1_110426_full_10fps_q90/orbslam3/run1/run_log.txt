@@ -1,0 +1,65 @@
+[orbslam3] zed2i/field1_110426_full_10fps_q90 type=vo-lc run=1 -> /home/iman/slam_tests/vslam-benchmark/results-vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1
+0.046 num_seq = 1
+0.046 file name: zed2i_field1_110426_full_10fps_q90_orbslam3
+0.130 Loading images for sequence 0...LOADED!
+0.130 
+0.130 -------
+0.130 
+0.130 ORB-SLAM3 Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.130 ORB-SLAM2 Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.130 This program comes with ABSOLUTELY NO WARRANTY;
+0.130 This is free software, and you are welcome to redistribute it
+0.130 under certain conditions. See LICENSE.txt.
+0.130 
+0.130 Input sensor was set to: Stereo
+0.130 Loading settings from /home/iman/slam_tests/vslam-benchmark/configs/orbslam3/zed2i_stereo_lc.yaml
+0.130 	-Loaded camera 1
+0.130 	-Loaded camera 2
+0.134 Camera.newHeight optional parameter does not exist...
+0.134 Camera.newWidth optional parameter does not exist...
+0.134 	-Loaded image info
+0.134 	-Loaded ORB settings
+0.134 Viewer.imageViewScale optional parameter does not exist...
+0.134 	-Loaded viewer settings
+0.134 System.LoadAtlasFromFile optional parameter does not exist...
+0.134 System.SaveAtlasToFile optional parameter does not exist...
+0.134 	-Loaded Atlas settings
+0.134 System.thFarPoints optional parameter does not exist...
+0.134 	-Loaded misc parameters
+0.134 ----------------------------------
+0.134 SLAM settings: 
+0.134 	-Camera 1 parameters (Pinhole): [ 1118.6947021484375 1118.6947021484375 964.85662841796875 559.31024169921875 ]
+0.134 	-Camera 2 parameters (Pinhole: [ 1118.6947021484375 1118.6947021484375 964.85662841796875 559.31024169921875 ]
+0.134 	-Original image size: [ 1920 , 1080 ]
+0.134 	-Current image size: [ 1920 , 1080 ]
+0.134 	-Sequence FPS: 15
+0.134 	-Stereo baseline: 0.11984624713659286
+0.134 	-Stereo depth threshold : 80
+0.134 	-Features per image: 2000
+0.134 	-ORB scale factor: 1.2000000476837158
+0.134 	-ORB number of scales: 8
+0.134 	-Initial FAST threshold: 20
+0.134 	-Min FAST threshold: 7
+0.134 
+0.134 
+0.134 Loading ORB Vocabulary. This could take a while...
+2.665 Vocabulary loaded!
+2.665 
+2.671 Initialization of Atlas from scratch 
+2.671 Creation of new map with id: 0
+2.671 Creation of new map with last KF id: 0
+2.672 Seq. Name: 
+2.672 There are 1 cameras in the atlas
+2.672 Camera 0 is pinhole
+2.759 First KF:0; Map init KF:0
+2.759 New Map created with 630 points
+2.834 Starting the Viewer
+5977.043 Shutdown
+5977.043 
+5977.043 Saving trajectory to f_zed2i_field1_110426_full_10fps_q90_orbslam3.txt ...
+5977.043 There are 1 maps in the atlas
+5977.043   Map 0 has 2940 KFs
+5977.159 
+5977.159 End of saving trajectory to f_zed2i_field1_110426_full_10fps_q90_orbslam3.txt ...
+5977.159 
+5977.159 Saving keyframe trajectory to kf_zed2i_field1_110426_full_10fps_q90_orbslam3.txt ...

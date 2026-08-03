@@ -44,7 +44,7 @@
     "init_success": true,
     "init_time_s": 0.744,
     "tracking_losses": 0,
-    "loop_closures": 710,
+    "loop_closures": 18,
     "map_resets": 0,
     "output_valid": true,
     "first_failure_s": null,

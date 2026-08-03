@@ -1,9 +1,11 @@
 # vSLAM Benchmark
 
-> Updated: 2026-08-03 - VO has 109 evaluated rows (incl. native ORB-SLAM3: EuRoC N=1, agri N=3
-> median/range - non-deterministic, see PROGRESS finding 11); VO-LC has 24 (DPV-SLAM + OKVIS2 + OKVIS2-X across
-> all 8 sequences); VIO has 55 (49-row core matrix plus six usable ZED2i trajectories); VIO-LC has 19
-> (OKVIS2 + OKVIS2-X core, AirSLAM agricultural, ORB-SLAM3 seq5); GNSS-VIO has 20 N=1 headline runs.
+> Updated: 2026-08-03 - VO has 110 evaluated rows (incl. native ORB-SLAM3: EuRoC N=1, agri N=3
+> median/range - non-deterministic, see PROGRESS finding 11; OV2SLAM complete incl. zed2i 0.348 m);
+> VO-LC has 32 (DPV-SLAM + OKVIS2 + OKVIS2-X + ORB-SLAM3 across all 8 sequences); VIO has 55 (49-row
+> core matrix plus six usable ZED2i trajectories); VIO-LC has 22 (OKVIS2 + OKVIS2-X + AirSLAM on 7
+> core sequences, ORB-SLAM3 seq5); GNSS-VIO has 20 N=1 headline runs. Loop-closure metric corrected
+> (finding 12: OKVIS2-X does loop-close - the "0" was a parser bug).
 > HortiMulti VIO uses corrected camera-IMU extrinsics, EuRoC MH_03/MH_05 and the local ZED2i field
 > sequence are included, and the Rosario sequence5 PPK-versus-conventional study is retained. See
 > [PROGRESS.md](PROGRESS.md) for limitations and current results.

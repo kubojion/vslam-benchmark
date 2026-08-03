@@ -143,24 +143,28 @@ LOG_PATTERNS = {
         # okvis_app_synchronous prints "Initialised!" after IMU init,
         # "Marginalisation... SLAM frame" for ongoing tracking,
         # and "Finishing..." before writing the trajectory.
+        # Loop closures: Frontend.cpp logs one "LOOP CLOSURE: current frame N,
+        # matching to keyframe M, ..." line per detected closure. NOTE: do NOT
+        # match bare "loop closure" -- that hits the per-frame timing-profile
+        # rows ("loop closure query", "attempt loop closure") and overcounts by
+        # ~100x (e.g. 6337 timing rows vs 76 real closures on Rosario seq1).
         "init_success":    re.compile(r"Initialised!|Initialized!|SLAM started"),
         "tracking_loss":   re.compile(r"Tracking LOST|tracking lost"),
-        "loop_closure":    re.compile(r"Loop closure|loop closure"),
+        "loop_closure":    re.compile(r"LOOP CLOSURE: current frame"),
         "map_reset":       None,
     },
     "okvis2x": {
         # Frontend.cpp logs "Initialized!" (INFO) once the IMU-aided front-end
         # bootstraps, and "3d2d tracking lost. Number of 3d2d-matches: N"
         # (WARNING) when it loses the map.
-        # loop_closure is deliberately None: OKVIS2-X never logs an *accepted*
-        # visual loop closure -- the only loop-closure log lines are GPS ones
-        # ("[GPS Loop Closure] ...") and warnings about rejected candidates.
-        # Matching those would report a wrong count for vio-lc runs. The vio-lc
-        # trajectory is still loop-closed; run_okvis2x.sh reads the post-BA
-        # "-final-ba_trajectory.csv" for that bucket.
+        # Loop closures: OKVIS2-X shares OKVIS2's Frontend.cpp and logs the same
+        # "LOOP CLOSURE: current frame N, matching to keyframe M, ..." events
+        # (the earlier "OKVIS2-X never logs an accepted closure" assumption was
+        # wrong -- it does, e.g. 27 on Rosario seq1, 29 on EuRoC MH_01; the only
+        # thing it never logs here is a GPS loop closure).
         "init_success":    re.compile(r"Initialized!"),
         "tracking_loss":   re.compile(r"3d2d tracking lost"),
-        "loop_closure":    None,
+        "loop_closure":    re.compile(r"LOOP CLOSURE: current frame"),
         "map_reset":       None,
     },
     "openvins": {
