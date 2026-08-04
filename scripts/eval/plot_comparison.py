@@ -88,10 +88,27 @@ def main():
     out_dir = base / "plots"
     out_dir.mkdir(exist_ok=True)
 
-    ALGOS = {
-        "ORB-SLAM3":   {"path": base / "orbslam3/trajectory.txt",  "color": "#2196F3"},
-        "MAC-VO":      {"path": base / "macvo/trajectory.txt",     "color": "#4CAF50"},
+    # Discover every algorithm present under this (dataset, seq, run_type) and use
+    # its run1 trajectory. (Was a hardcoded 2-algo stub pointing at the wrong
+    # path: <algo>/trajectory.txt instead of <algo>/run1/trajectory.txt.)
+    PALETTE = {
+        "orbslam3": "#2196F3", "macvo": "#4CAF50", "basalt": "#F44336",
+        "dpvo": "#9C27B0", "droidslam": "#795548", "airslam": "#00BCD4",
+        "okvis2": "#FF9800", "okvis2x": "#FFC107", "ov2slam": "#E91E63",
+        "openvins": "#3F51B5", "voxel_svio": "#8BC34A",
     }
+    LABEL = {"orbslam3": "ORB-SLAM3", "macvo": "MAC-VO", "basalt": "Basalt",
+             "dpvo": "DPVO", "droidslam": "DROID-SLAM", "airslam": "AirSLAM",
+             "okvis2": "OKVIS2", "okvis2x": "OKVIS2-X", "ov2slam": "OV2SLAM",
+             "openvins": "OpenVINS", "voxel_svio": "Voxel-SVIO"}
+    ALGOS = {}
+    for algo_dir in sorted(base.glob("*")):
+        if not algo_dir.is_dir() or algo_dir.name == "plots":
+            continue
+        traj = algo_dir / "run1" / "trajectory.txt"
+        if traj.exists():
+            a = algo_dir.name
+            ALGOS[LABEL.get(a, a)] = {"path": traj, "color": PALETTE.get(a, "#607D8B")}
 
     if not gt_path.exists():
         sys.exit(f"GT not found: {gt_path}")

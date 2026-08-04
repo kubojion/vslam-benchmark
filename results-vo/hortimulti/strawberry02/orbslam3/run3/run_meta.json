@@ -1,1 +1,1 @@
-{"algo": "orbslam3", "dataset": "hortimulti", "seq": "strawberry02", "run_id": 3, "run_type": "vo", "use_imu": false, "use_lc": false, "duration_s": 990.5979106426239, "frames": 9530, "fps": 9.62045235267826}
+{"algo": "orbslam3", "dataset": "hortimulti", "seq": "strawberry02", "run_id": 3, "run_type": "vo", "use_imu": false, "use_lc": false, "duration_s": 990.8602910041809, "frames": 4176, "fps": 4.2145194816192095}

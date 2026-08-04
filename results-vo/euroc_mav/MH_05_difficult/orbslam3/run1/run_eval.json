@@ -9,42 +9,42 @@
   "gt_source": "interpolated",
   "n_pairs_ate": 2221,
   "ate": {
-    "rmse": 0.05466,
-    "mean": 0.04918,
-    "median": 0.041964,
-    "std": 0.023854,
-    "max": 0.181604
+    "rmse": 0.0471,
+    "mean": 0.041943,
+    "median": 0.03817,
+    "std": 0.02143,
+    "max": 0.141885
   },
   "ate_se3": {
-    "rmse": 0.064582,
-    "mean": 0.053747,
-    "median": 0.043315,
-    "std": 0.035806,
-    "max": 0.187041
+    "rmse": 0.048531,
+    "mean": 0.042418,
+    "median": 0.036562,
+    "std": 0.023579,
+    "max": 0.141717
   },
   "rpe_trans_1m": {
-    "rmse": 0.018412,
-    "mean": 0.014715,
-    "std": 0.011066,
-    "max": 0.051366
+    "rmse": 0.019033,
+    "mean": 0.013937,
+    "std": 0.012963,
+    "max": 0.083307
   },
   "rpe_rot_1m_deg": {
-    "rmse": 13.063034,
-    "mean": 9.305925,
-    "std": 9.167476
+    "rmse": 13.087165,
+    "mean": 9.264668,
+    "std": 9.243366
   },
   "kitti_drift": {
-    "rpe_10m_trans_rmse": 0.039059,
+    "rpe_10m_trans_rmse": 0.035479,
     "rpe_50m_trans_rmse": null,
     "rpe_100m_trans_rmse": null
   },
-  "scale_factor": 0.9950245047435643,
-  "final_drift_m": 4.7927,
+  "scale_factor": 0.9983021119885997,
+  "final_drift_m": 4.7934,
   "robustness": {
     "init_success": true,
-    "init_time_s": 2.624,
+    "init_time_s": 2.71,
     "tracking_losses": 0,
-    "loop_closures": 1,
+    "loop_closures": 0,
     "map_resets": 0,
     "output_valid": true,
     "first_failure_s": null,
@@ -53,17 +53,17 @@
     "track_pct": 10.2
   },
   "runtime": {
-    "vram_mean_mib": 1185.6,
-    "vram_peak_mib": 1266.0,
-    "gpu_mean_pct": 28.5,
-    "gpu_peak_pct": 58.0,
-    "cpu_mean_pct": 5.6,
-    "cpu_peak_pct": 51.1,
-    "ram_mean_mib": 7948.6,
-    "ram_peak_mib": 8154.0,
-    "wall_s": 124.57,
-    "fps": 18.246,
-    "fps_raw": 18.246
+    "vram_mean_mib": 597.2,
+    "vram_peak_mib": 605.0,
+    "gpu_mean_pct": 7.1,
+    "gpu_peak_pct": 59.0,
+    "cpu_mean_pct": 5.1,
+    "cpu_peak_pct": 50.0,
+    "ram_mean_mib": 9834.8,
+    "ram_peak_mib": 9947.0,
+    "wall_s": 124.52,
+    "fps": 18.255,
+    "fps_raw": 18.255
   },
   "machine": {
     "os": "Ubuntu 22.04.5 LTS",

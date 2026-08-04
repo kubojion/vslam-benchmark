@@ -9,40 +9,40 @@
   "gt_source": "interpolated",
   "n_pairs_ate": 3638,
   "ate": {
-    "rmse": 0.047121,
-    "mean": 0.034567,
-    "median": 0.028334,
-    "std": 0.032023,
-    "max": 0.308178
+    "rmse": 0.035662,
+    "mean": 0.029415,
+    "median": 0.025899,
+    "std": 0.020163,
+    "max": 0.118249
   },
   "ate_se3": {
-    "rmse": 0.047611,
-    "mean": 0.035582,
-    "median": 0.03083,
-    "std": 0.031635,
-    "max": 0.303778
+    "rmse": 0.036346,
+    "mean": 0.03004,
+    "median": 0.027667,
+    "std": 0.02046,
+    "max": 0.115547
   },
   "rpe_trans_1m": {
-    "rmse": 0.02365,
-    "mean": 0.012767,
-    "std": 0.019908,
-    "max": 0.165757
+    "rmse": 0.014332,
+    "mean": 0.010648,
+    "std": 0.009594,
+    "max": 0.042262
   },
   "rpe_rot_1m_deg": {
-    "rmse": 18.735957,
-    "mean": 13.264855,
-    "std": 13.231769
+    "rmse": 18.625121,
+    "mean": 13.192697,
+    "std": 13.147163
   },
   "kitti_drift": {
-    "rpe_10m_trans_rmse": 0.047921,
+    "rpe_10m_trans_rmse": 0.040416,
     "rpe_50m_trans_rmse": null,
     "rpe_100m_trans_rmse": null
   },
-  "scale_factor": 1.0015855130618199,
-  "final_drift_m": 5.2876,
+  "scale_factor": 1.0016321707320819,
+  "final_drift_m": 5.2677,
   "robustness": {
     "init_success": true,
-    "init_time_s": 2.751,
+    "init_time_s": 2.684,
     "tracking_losses": 0,
     "loop_closures": 0,
     "map_resets": 0,
@@ -53,17 +53,17 @@
     "track_pct": 10.1
   },
   "runtime": {
-    "vram_mean_mib": 1232.6,
-    "vram_peak_mib": 1364.0,
-    "gpu_mean_pct": 14.6,
-    "gpu_peak_pct": 100.0,
-    "cpu_mean_pct": 5.4,
-    "cpu_peak_pct": 52.3,
-    "ram_mean_mib": 7895.4,
-    "ram_peak_mib": 8078.0,
-    "wall_s": 201.07,
-    "fps": 18.312,
-    "fps_raw": 18.312
+    "vram_mean_mib": 595.4,
+    "vram_peak_mib": 604.0,
+    "gpu_mean_pct": 30.9,
+    "gpu_peak_pct": 59.0,
+    "cpu_mean_pct": 5.0,
+    "cpu_peak_pct": 52.5,
+    "ram_mean_mib": 9854.5,
+    "ram_peak_mib": 10085.0,
+    "wall_s": 201.02,
+    "fps": 18.317,
+    "fps_raw": 18.317
   },
   "machine": {
     "os": "Ubuntu 22.04.5 LTS",

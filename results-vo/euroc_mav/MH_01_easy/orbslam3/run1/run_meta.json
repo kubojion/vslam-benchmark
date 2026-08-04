@@ -1,1 +1,1 @@
-{"algo": "orbslam3", "dataset": "euroc_mav", "seq": "MH_01_easy", "run_id": 1, "run_type": "vo", "use_imu": false, "use_lc": false, "duration_s": 201.07420539855957, "frames": 3682, "fps": 18.311647646209604}
+{"algo": "orbslam3", "dataset": "euroc_mav", "seq": "MH_01_easy", "run_id": 1, "run_type": "vo", "use_imu": false, "use_lc": false, "duration_s": 201.0183367729187, "frames": 3682, "fps": 18.316736965938528}

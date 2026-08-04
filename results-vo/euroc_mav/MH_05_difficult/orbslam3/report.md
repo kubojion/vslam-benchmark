@@ -24,19 +24,19 @@
 
 | Metric | Value |
 |---|---|
-| ATE RMSE [m] (Sim3) | 0.0547 |
-| ATE RMSE [m] (SE3, stereo metric)  | 0.0646 |
-| ATE mean [m] | 0.0492 |
-| ATE median [m] | 0.0420 |
-| ATE std [m] | 0.0239 |
-| ATE max [m] | 0.1816 |
-| RPE point_distance RMSE [m] (1 m windows) | 0.0184 |
-| RPE rotation RMSE [°/m] | 13.063 |
-| KITTI drift @ 10 m [m] | 0.0391 |
+| ATE RMSE [m] (Sim3) | 0.0471 |
+| ATE RMSE [m] (SE3, stereo metric)  | 0.0485 |
+| ATE mean [m] | 0.0419 |
+| ATE median [m] | 0.0382 |
+| ATE std [m] | 0.0214 |
+| ATE max [m] | 0.1419 |
+| RPE point_distance RMSE [m] (1 m windows) | 0.0190 |
+| RPE rotation RMSE [°/m] | 13.087 |
+| KITTI drift @ 10 m [m] | 0.0355 |
 | KITTI drift @ 50 m [m] | N/A |
 | KITTI drift @ 100 m [m] | N/A |
-| Scale factor (Sim3) | 0.9950 |
-| Final drift [m] (approx) | 4.7927 |
+| Scale factor (Sim3) | 0.9983 |
+| Final drift [m] (approx) | 4.7934 |
 
 ---
 
@@ -50,7 +50,7 @@
 | First failure [s] | N/A |
 | Initialisation success | yes |
 | Initialisation time [s] | 3 |
-| Loop closures detected | 1 |
+| Loop closures detected | 0 |
 | Map resets | 0 |
 | Output trajectory valid | yes |
 
@@ -60,16 +60,16 @@
 
 | Metric | Value |
 |---|---|
-| Wall-clock runtime [s] | 124.6 |
+| Wall-clock runtime [s] | 124.5 |
 | Mean FPS | 18.25 |
 | Real-time factor (input 10 fps) | 1.825 |
-| CPU mean [%] | 5.6 |
-| CPU peak [%] | 51.1 |
-| RAM mean [MiB] | 7949 |
-| RAM peak [MiB] | 8154 |
-| VRAM mean [MiB] | 1186 |
-| VRAM peak [MiB] | 1266 |
-| GPU utilisation mean [%] | 28.5 |
+| CPU mean [%] | 5.1 |
+| CPU peak [%] | 50.0 |
+| RAM mean [MiB] | 9835 |
+| RAM peak [MiB] | 9947 |
+| VRAM mean [MiB] | 597 |
+| VRAM peak [MiB] | 605 |
+| GPU utilisation mean [%] | 7.1 |
 
 ---
 
@@ -77,4 +77,4 @@
 
 | Run | ATE RMSE Sim3 [m] | ATE RMSE SE3 [m] | RPE [m] | RPE rot [°/m] | KITTI 10 m | KITTI 50 m | KITTI 100 m | Scale | Final drift [m] | Wall-s | FPS | Track% | Loops |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| run1 | 0.0547 | 0.0646 | 0.0184 | 13.06 | 0.0391 | N/A | N/A | 0.9950 | 4.7927 | 124.6 | 18.25 | 10.2 | 1 |
+| run1 | 0.0471 | 0.0485 | 0.0190 | 13.09 | 0.0355 | N/A | N/A | 0.9983 | 4.7934 | 124.5 | 18.25 | 10.2 | 0 |

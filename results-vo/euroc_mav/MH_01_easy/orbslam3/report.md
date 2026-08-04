@@ -24,19 +24,19 @@
 
 | Metric | Value |
 |---|---|
-| ATE RMSE [m] (Sim3) | 0.0471 |
-| ATE RMSE [m] (SE3, stereo metric)  | 0.0476 |
-| ATE mean [m] | 0.0346 |
-| ATE median [m] | 0.0283 |
-| ATE std [m] | 0.0320 |
-| ATE max [m] | 0.3082 |
-| RPE point_distance RMSE [m] (1 m windows) | 0.0237 |
-| RPE rotation RMSE [°/m] | 18.736 |
-| KITTI drift @ 10 m [m] | 0.0479 |
+| ATE RMSE [m] (Sim3) | 0.0357 |
+| ATE RMSE [m] (SE3, stereo metric)  | 0.0363 |
+| ATE mean [m] | 0.0294 |
+| ATE median [m] | 0.0259 |
+| ATE std [m] | 0.0202 |
+| ATE max [m] | 0.1182 |
+| RPE point_distance RMSE [m] (1 m windows) | 0.0143 |
+| RPE rotation RMSE [°/m] | 18.625 |
+| KITTI drift @ 10 m [m] | 0.0404 |
 | KITTI drift @ 50 m [m] | N/A |
 | KITTI drift @ 100 m [m] | N/A |
 | Scale factor (Sim3) | 1.0016 |
-| Final drift [m] (approx) | 5.2876 |
+| Final drift [m] (approx) | 5.2677 |
 
 ---
 
@@ -60,16 +60,16 @@
 
 | Metric | Value |
 |---|---|
-| Wall-clock runtime [s] | 201.1 |
-| Mean FPS | 18.31 |
-| Real-time factor (input 10 fps) | 1.831 |
-| CPU mean [%] | 5.4 |
-| CPU peak [%] | 52.3 |
-| RAM mean [MiB] | 7895 |
-| RAM peak [MiB] | 8078 |
-| VRAM mean [MiB] | 1233 |
-| VRAM peak [MiB] | 1364 |
-| GPU utilisation mean [%] | 14.6 |
+| Wall-clock runtime [s] | 201.0 |
+| Mean FPS | 18.32 |
+| Real-time factor (input 10 fps) | 1.832 |
+| CPU mean [%] | 5.0 |
+| CPU peak [%] | 52.5 |
+| RAM mean [MiB] | 9854 |
+| RAM peak [MiB] | 10085 |
+| VRAM mean [MiB] | 595 |
+| VRAM peak [MiB] | 604 |
+| GPU utilisation mean [%] | 30.9 |
 
 ---
 
@@ -77,4 +77,4 @@
 
 | Run | ATE RMSE Sim3 [m] | ATE RMSE SE3 [m] | RPE [m] | RPE rot [°/m] | KITTI 10 m | KITTI 50 m | KITTI 100 m | Scale | Final drift [m] | Wall-s | FPS | Track% | Loops |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| run1 | 0.0471 | 0.0476 | 0.0237 | 18.74 | 0.0479 | N/A | N/A | 1.0016 | 5.2876 | 201.1 | 18.31 | 10.1 | 0 |
+| run1 | 0.0357 | 0.0363 | 0.0143 | 18.63 | 0.0404 | N/A | N/A | 1.0016 | 5.2677 | 201.0 | 18.32 | 10.1 | 0 |

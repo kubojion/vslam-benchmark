@@ -91,3 +91,9 @@ Viewer.ViewpointY:       -0.7
 Viewer.ViewpointZ:       -1.8
 Viewer.ViewpointF:        500.0
 Viewer.imageViewScale:    1.0
+
+# Disable loop closing for VO mode. ORB-SLAM3 defaults activeLC=true when this
+# key is absent (System.cc:102), so it must be set explicitly - otherwise "VO"
+# runs silently run with LC on (see PROGRESS finding 11 revision).
+loopClosing: 0
+System.LoopClosing: 0

@@ -9,40 +9,40 @@
   "gt_source": "interpolated",
   "n_pairs_ate": 2631,
   "ate": {
-    "rmse": 0.048182,
-    "mean": 0.043624,
-    "median": 0.044092,
-    "std": 0.020456,
-    "max": 0.123282
+    "rmse": 0.045911,
+    "mean": 0.041526,
+    "median": 0.041395,
+    "std": 0.019582,
+    "max": 0.11442
   },
   "ate_se3": {
-    "rmse": 0.050881,
-    "mean": 0.046614,
-    "median": 0.049321,
-    "std": 0.020397,
-    "max": 0.108071
+    "rmse": 0.057357,
+    "mean": 0.053842,
+    "median": 0.056457,
+    "std": 0.01977,
+    "max": 0.119418
   },
   "rpe_trans_1m": {
-    "rmse": 0.019407,
-    "mean": 0.014195,
-    "std": 0.013233,
-    "max": 0.069295
+    "rmse": 0.019746,
+    "mean": 0.014061,
+    "std": 0.013863,
+    "max": 0.08879
   },
   "rpe_rot_1m_deg": {
-    "rmse": 18.249504,
-    "mean": 12.715208,
-    "std": 13.090755
+    "rmse": 18.274866,
+    "mean": 12.741333,
+    "std": 13.100731
   },
   "kitti_drift": {
-    "rpe_10m_trans_rmse": 0.047726,
-    "rpe_50m_trans_rmse": 0.032709,
+    "rpe_10m_trans_rmse": 0.04878,
+    "rpe_50m_trans_rmse": 0.040067,
     "rpe_100m_trans_rmse": null
   },
-  "scale_factor": 0.9954526174319702,
-  "final_drift_m": 5.0841,
+  "scale_factor": 0.9904868043006,
+  "final_drift_m": 5.0732,
   "robustness": {
     "init_success": true,
-    "init_time_s": 2.597,
+    "init_time_s": 2.619,
     "tracking_losses": 0,
     "loop_closures": 0,
     "map_resets": 0,
@@ -53,17 +53,17 @@
     "track_pct": 10.3
   },
   "runtime": {
-    "vram_mean_mib": 1281.9,
-    "vram_peak_mib": 1337.0,
-    "gpu_mean_pct": 23.6,
-    "gpu_peak_pct": 97.0,
-    "cpu_mean_pct": 5.8,
-    "cpu_peak_pct": 52.5,
-    "ram_mean_mib": 7909.8,
-    "ram_peak_mib": 8042.0,
-    "wall_s": 147.89,
-    "fps": 18.256,
-    "fps_raw": 18.256
+    "vram_mean_mib": 595.4,
+    "vram_peak_mib": 606.0,
+    "gpu_mean_pct": 25.0,
+    "gpu_peak_pct": 78.0,
+    "cpu_mean_pct": 5.1,
+    "cpu_peak_pct": 51.9,
+    "ram_mean_mib": 9793.8,
+    "ram_peak_mib": 9997.0,
+    "wall_s": 147.78,
+    "fps": 18.27,
+    "fps_raw": 18.27
   },
   "machine": {
     "os": "Ubuntu 22.04.5 LTS",

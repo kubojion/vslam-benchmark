@@ -1723,6 +1723,49 @@ Corrected real counts: OKVIS2 seq1 76, OKVIS2-X seq1 27-30 - comparable, both ac
 machine OKVIS2 VIO-LC runs keep the old count to preserve provenance - TODO #16.) Lesson: per-algorithm
 log-scraped metrics need validation against the source's actual log strings.
 
+### 13. The IMU's value is excitation-dependent (refines the "VIO ≯ VO on agri" claim)
+
+The blunt earlier statement "VIO underperforms VO on agriculture" is only half the story - it depends on
+inertial excitation:
+- **ZED2i (slow, smooth, straight rows - weak excitation):** scale and IMU biases are unobservable, so the
+  tightly-coupled filters collapse (Sim3 scale → 0, SE3 diverging to 10⁵-10⁶ m; OKVIS2 17.7 m, OKVIS2-X
+  18.3 m, OpenVINS 5.3 m at 15-65% coverage) while stereo **VO stays clean** (ORB-SLAM3 0.26 m, OV2SLAM
+  0.35 m, Basalt 0.45 m). Here the IMU is a liability.
+- **Rosario (turns, varied terrain - adequate excitation):** the IMU is an **asset**. It bridges the visual
+  tracking gaps that fragment ORB-SLAM3's VO (coverage 42% → 99%) and corrects front-end scale drift
+  (Basalt VO 14 m/scale 0.80 → VIO 3 m/scale 1.02). **ORB-SLAM3 VIO-LC is the single best configuration on
+  Rosario** (seq1 1.08 m, 127 loops, 99.5% coverage; str02 0.88 m) - full coverage and lowest ATE.
+
+**Takeaway:** an IMU on a field robot pays off only if the platform moves enough to excite it; on slow,
+smooth traversals it makes things worse. The ZED2i sequence is the weak-excitation extreme that exposes
+this, in direct contrast to Rosario where VIO wins.
+
+### 14. ORB-SLAM3's low agricultural VO ATE is a coverage artefact (a failure-mode result)
+
+On low-texture repetitive rows ORB-SLAM3's descriptor front-end suffers tracking loss (135 "tracking lost"
+events, 8 Atlas map resets on Rosario seq1) and exports only **42-58% of the trajectory**; because ATE is
+scored only over the produced sub-path, its low agri VO error is the *shorter tracked path*, not accuracy.
+Optical-flow (OV2SLAM), learned (DPVO, MAC-VO), and sliding-window (OKVIS2, Basalt) front-ends degrade
+**gracefully** at 100% coverage - they drift instead of quitting. **Consequence: ATE is uninterpretable
+without coverage; low-coverage cells must not be ranked against full-coverage ones.** Classical sparse-feature
+SLAM has a distinct, harsher failure mode on agricultural terrain - a robustness finding in its own right.
+
+### 15. Loop closure on crops is a spectrum by mechanism, and no mechanism is immune
+
+Comparing VO → VO-LC across three independent LC implementations on the agricultural sequences:
+- **Proximity (DPV-SLAM):** no appearance/geometric check - fires false loops on aliased rows and worsens
+  every agri sequence (seq1 4.9 → 9.3 m).
+- **Online iBoW (OV2SLAM):** helps on most (seq1 7.2 → 3.9 m, str03 0.35 → 0.10 m) but **blows up on str02
+  (5.8 → 23.5 m, 4×)** - a false loop corrupted the map.
+- **Verified DBoW (OKVIS2, OKVIS2-X, ORB-SLAM3):** helps reliably on distinctive scenes (EuRoC −60 to −86%)
+  and where a true revisit exists (Rosario seq1: 4 loops → 1.5 m); marginal (~6-7%) on aliased rows and
+  **occasionally regresses (OKVIS2-X str03 +271%)**.
+
+Better verification → fewer catastrophic false loops, but **every mechanism has at least one agricultural
+sequence where a false loop wrecks it.** Note also that raw loop-closure *counts* are a perceptual-aliasing
+signature, not a benefit measure: OKVIS2 logs 27 detections per 1000 frames on the repetitive ZED2i field
+vs 5.5 on Rosario, mostly short-baseline look-alike matches (28% within 50 frames), not true revisits.
+
 ## Key commands
 
 ```bash
@@ -1756,4 +1799,4 @@ conda run -n macvo python3 scripts/eval/_macvo_to_tum.py "$SBX" \
 
 ---
 
-*Last updated: 2026-08-03 - ORB-SLAM3 VO-LC ×8 (Rosario LC-helps test); OV2SLAM VO complete (zed2i 0.348 m); AirSLAM VIO-LC EuRoC; loop-closure metric fix (finding 12); VO-baseline LC-contamination (finding 11 revision).*
+*Last updated: 2026-08-04 - ORB VO LC-off baseline re-run (finding 11/14 coverage); ORB VIO-LC agri (best on Rosario); OV2SLAM VO-LC; excitation-dependent VIO (finding 13); LC-mechanism spectrum (finding 15); all CSVs+figures regenerated.*

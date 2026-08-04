@@ -24,19 +24,19 @@
 
 | Metric | Value |
 |---|---|
-| ATE RMSE [m] (Sim3) | 0.0482 |
-| ATE RMSE [m] (SE3, stereo metric)  | 0.0509 |
-| ATE mean [m] | 0.0436 |
-| ATE median [m] | 0.0441 |
-| ATE std [m] | 0.0205 |
-| ATE max [m] | 0.1233 |
-| RPE point_distance RMSE [m] (1 m windows) | 0.0194 |
-| RPE rotation RMSE [°/m] | 18.250 |
-| KITTI drift @ 10 m [m] | 0.0477 |
-| KITTI drift @ 50 m [m] | 0.0327 |
+| ATE RMSE [m] (Sim3) | 0.0459 |
+| ATE RMSE [m] (SE3, stereo metric)  | 0.0574 |
+| ATE mean [m] | 0.0415 |
+| ATE median [m] | 0.0414 |
+| ATE std [m] | 0.0196 |
+| ATE max [m] | 0.1144 |
+| RPE point_distance RMSE [m] (1 m windows) | 0.0197 |
+| RPE rotation RMSE [°/m] | 18.275 |
+| KITTI drift @ 10 m [m] | 0.0488 |
+| KITTI drift @ 50 m [m] | 0.0401 |
 | KITTI drift @ 100 m [m] | N/A |
-| Scale factor (Sim3) | 0.9955 |
-| Final drift [m] (approx) | 5.0841 |
+| Scale factor (Sim3) | 0.9905 |
+| Final drift [m] (approx) | 5.0732 |
 
 ---
 
@@ -60,16 +60,16 @@
 
 | Metric | Value |
 |---|---|
-| Wall-clock runtime [s] | 147.9 |
-| Mean FPS | 18.26 |
-| Real-time factor (input 10 fps) | 1.826 |
-| CPU mean [%] | 5.8 |
-| CPU peak [%] | 52.5 |
-| RAM mean [MiB] | 7910 |
-| RAM peak [MiB] | 8042 |
-| VRAM mean [MiB] | 1282 |
-| VRAM peak [MiB] | 1337 |
-| GPU utilisation mean [%] | 23.6 |
+| Wall-clock runtime [s] | 147.8 |
+| Mean FPS | 18.27 |
+| Real-time factor (input 10 fps) | 1.827 |
+| CPU mean [%] | 5.1 |
+| CPU peak [%] | 51.9 |
+| RAM mean [MiB] | 9794 |
+| RAM peak [MiB] | 9997 |
+| VRAM mean [MiB] | 595 |
+| VRAM peak [MiB] | 606 |
+| GPU utilisation mean [%] | 25.0 |
 
 ---
 
@@ -77,4 +77,4 @@
 
 | Run | ATE RMSE Sim3 [m] | ATE RMSE SE3 [m] | RPE [m] | RPE rot [°/m] | KITTI 10 m | KITTI 50 m | KITTI 100 m | Scale | Final drift [m] | Wall-s | FPS | Track% | Loops |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| run1 | 0.0482 | 0.0509 | 0.0194 | 18.25 | 0.0477 | 0.0327 | N/A | 0.9955 | 5.0841 | 147.9 | 18.26 | 10.3 | 0 |
+| run1 | 0.0459 | 0.0574 | 0.0197 | 18.27 | 0.0488 | 0.0401 | N/A | 0.9905 | 5.0732 | 147.8 | 18.27 | 10.3 | 0 |

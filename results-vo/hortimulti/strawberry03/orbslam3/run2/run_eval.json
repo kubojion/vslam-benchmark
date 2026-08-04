@@ -9,42 +9,42 @@
   "gt_source": "interpolated",
   "n_pairs_ate": 2425,
   "ate": {
-    "rmse": 0.10991,
-    "mean": 0.106615,
-    "median": 0.103865,
-    "std": 0.026711,
-    "max": 0.19075
+    "rmse": 0.235122,
+    "mean": 0.230308,
+    "median": 0.232273,
+    "std": 0.047336,
+    "max": 0.347448
   },
   "ate_se3": {
-    "rmse": 0.788726,
-    "mean": 0.704453,
-    "median": 0.722109,
-    "std": 0.354733,
-    "max": 1.229221
+    "rmse": 0.808495,
+    "mean": 0.728215,
+    "median": 0.737351,
+    "std": 0.351236,
+    "max": 1.247136
   },
   "rpe_trans_1m": {
-    "rmse": 0.024484,
-    "mean": 0.017466,
-    "std": 0.017157,
-    "max": 0.112271
+    "rmse": 0.023178,
+    "mean": 0.016737,
+    "std": 0.016034,
+    "max": 0.110223
   },
   "rpe_rot_1m_deg": {
-    "rmse": 17.705801,
-    "mean": 7.584192,
-    "std": 15.999232
+    "rmse": 17.552772,
+    "mean": 7.467839,
+    "std": 15.884936
   },
   "kitti_drift": {
-    "rpe_10m_trans_rmse": 0.052769,
-    "rpe_50m_trans_rmse": 0.159565,
-    "rpe_100m_trans_rmse": 0.007062
+    "rpe_10m_trans_rmse": 0.045899,
+    "rpe_50m_trans_rmse": 0.172918,
+    "rpe_100m_trans_rmse": 0.016154
   },
-  "scale_factor": 1.043381582831434,
-  "final_drift_m": 0.0452,
+  "scale_factor": 1.0429510366785755,
+  "final_drift_m": 0.5243,
   "robustness": {
     "init_success": true,
-    "init_time_s": 2.6,
+    "init_time_s": 2.662,
     "tracking_losses": 0,
-    "loop_closures": 1,
+    "loop_closures": 0,
     "map_resets": 0,
     "output_valid": true,
     "first_failure_s": null,
@@ -53,17 +53,17 @@
     "track_pct": 100.0
   },
   "runtime": {
-    "vram_mean_mib": 1026.6,
-    "vram_peak_mib": 1078.0,
-    "gpu_mean_pct": 0.2,
-    "gpu_peak_pct": 14.0,
-    "cpu_mean_pct": 2.8,
-    "cpu_peak_pct": 51.6,
-    "ram_mean_mib": 8708.6,
-    "ram_peak_mib": 9057.0,
-    "wall_s": 254.03,
-    "fps": 9.546,
-    "fps_raw": 9.546
+    "vram_mean_mib": 595.8,
+    "vram_peak_mib": 607.0,
+    "gpu_mean_pct": 21.8,
+    "gpu_peak_pct": 65.0,
+    "cpu_mean_pct": 3.3,
+    "cpu_peak_pct": 51.7,
+    "ram_mean_mib": 10067.3,
+    "ram_peak_mib": 10420.0,
+    "wall_s": 254.17,
+    "fps": 9.541,
+    "fps_raw": 9.541
   },
   "machine": {
     "os": "Ubuntu 22.04.5 LTS",
@@ -86,46 +86,46 @@
   "agri_segments": {
     "row": {
       "n_segments": 5,
-      "ate_rmse_mean": 0.028688,
-      "ate_rmse_std": 0.009384,
+      "ate_rmse_mean": 0.030451,
+      "ate_rmse_std": 0.007963,
       "segments": [
         {
           "t_start": 1770731344.371207,
           "t_end": 1770731382.1081827,
-          "ate_rmse": 0.040576,
-          "ate_mean": 0.037255,
+          "ate_rmse": 0.041078,
+          "ate_mean": 0.037914,
           "n_frames": 379,
           "duration_s": 37.737
         },
         {
           "t_start": 1770731397.9975832,
           "t_end": 1770731431.4832652,
-          "ate_rmse": 0.025657,
-          "ate_mean": 0.022356,
+          "ate_rmse": 0.026177,
+          "ate_mean": 0.023126,
           "n_frames": 336,
           "duration_s": 33.486
         },
         {
           "t_start": 1770731431.580135,
           "t_end": 1770731440.673167,
-          "ate_rmse": 0.01686,
-          "ate_mean": 0.015156,
+          "ate_rmse": 0.01775,
+          "ate_mean": 0.016063,
           "n_frames": 92,
           "duration_s": 9.093
         },
         {
           "t_start": 1770731452.467824,
           "t_end": 1770731486.24814,
-          "ate_rmse": 0.038704,
-          "ate_mean": 0.035501,
+          "ate_rmse": 0.0351,
+          "ate_mean": 0.031683,
           "n_frames": 339,
           "duration_s": 33.78
         },
         {
           "t_start": 1770731499.6429293,
           "t_end": 1770731558.9064503,
-          "ate_rmse": 0.021645,
-          "ate_mean": 0.019561,
+          "ate_rmse": 0.032151,
+          "ate_mean": 0.027152,
           "n_frames": 594,
           "duration_s": 59.264
         }
@@ -133,46 +133,46 @@
     },
     "turn": {
       "n_segments": 5,
-      "ate_rmse_mean": 0.031225,
-      "ate_rmse_std": 0.007742,
+      "ate_rmse_mean": 0.030611,
+      "ate_rmse_std": 0.007298,
       "segments": [
         {
           "t_start": 1770731382.2075768,
           "t_end": 1770731397.8967366,
-          "ate_rmse": 0.034282,
-          "ate_mean": 0.031246,
+          "ate_rmse": 0.033284,
+          "ate_mean": 0.030332,
           "n_frames": 158,
           "duration_s": 15.689
         },
         {
           "t_start": 1770731440.773929,
           "t_end": 1770731452.3686497,
-          "ate_rmse": 0.026463,
-          "ate_mean": 0.021469,
+          "ate_rmse": 0.026501,
+          "ate_mean": 0.022131,
           "n_frames": 117,
           "duration_s": 11.595
         },
         {
           "t_start": 1770731486.3495173,
           "t_end": 1770731499.5415547,
-          "ate_rmse": 0.039023,
-          "ate_mean": 0.036063,
+          "ate_rmse": 0.035344,
+          "ate_mean": 0.032757,
           "n_frames": 133,
           "duration_s": 13.192
         },
         {
           "t_start": 1770731559.0065563,
           "t_end": 1770731562.5060208,
-          "ate_rmse": 0.018476,
-          "ate_mean": 0.016553,
+          "ate_rmse": 0.018608,
+          "ate_mean": 0.016622,
           "n_frames": 36,
           "duration_s": 3.499
         },
         {
           "t_start": 1770731562.6166313,
           "t_end": 1770731586.5908613,
-          "ate_rmse": 0.037882,
-          "ate_mean": 0.032854,
+          "ate_rmse": 0.039316,
+          "ate_mean": 0.034577,
           "n_frames": 241,
           "duration_s": 23.974
         }

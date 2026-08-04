@@ -3,14 +3,14 @@
 > Created: 2026-05-20 | Revised: 2026-08-03 (verified current). VO has 109 evaluated rows. OV2SLAM VO filled on
 > str02/MH_01/MH_03 (only OV2SLAM zed2i pending). ORB-SLAM3 rebuilt/run NATIVELY from the submodule
 > (no Docker): EuRoC N=1 (~0.05 m, deterministic), agricultural N=3 median+range (str02/seq1/seq5 are
-> severely non-deterministic; str03 is stable) - see the VO note and finding 11. VO-LC has 32 rows:
+> severely non-deterministic; str03 is stable) - see the VO note and finding 11. VO-LC has 40 rows:
 > DPV-SLAM, OKVIS2, OKVIS2-X and ORB-SLAM3 now cover all 8 sequences (the two OKVIS zed2i cells are
 > partial-coverage - see note). ORB-SLAM3 VO-LC (LC on) vs VO (LC off) on Rosario shows LC helps
 > where a true loop exists (seq1: 4 loops, 1.52 m) and is inert where none does (seq5: 0 loops).
 > The core VIO N=1
 > matrix has 49 rows (7 algorithms x 7 standard sequences); corrected HortiMulti extrinsics and
 > EuRoC MH_03/MH_05 are included. ZED2i adds six usable VIO trajectories plus one failed
-> ORB-SLAM3 attempt, so `benchmark-vio.csv` has 55 rows. VIO-LC has 22 rows: OKVIS2 and OKVIS2-X
+> ORB-SLAM3 attempt, so `benchmark-vio.csv` has 55 rows. VIO-LC has 25 rows: OKVIS2 and OKVIS2-X
 > across all 7 core sequences, AirSLAM on all 7 (4 agricultural + 3 EuRoC), plus the ORB-SLAM3 seq5
 > reference (no zed2i VIO-LC cell - no configs). GNSS-VIO N=1 is
 > complete: 20 rows (5 algorithms x 4 GPS-bearing sequences), including the retained

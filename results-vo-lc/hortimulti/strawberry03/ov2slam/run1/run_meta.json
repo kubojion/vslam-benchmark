@@ -1,0 +1,13 @@
+{
+  "algo": "ov2slam",
+  "dataset": "hortimulti",
+  "seq": "strawberry03",
+  "run_id": 1,
+  "run_type": "vo-lc",
+  "use_imu": false,
+  "use_lc": true,
+  "duration_s": 257.27326798439026,
+  "frames": 2425,
+  "frames_total": 2425,
+  "fps": 9.42577524279411
+}

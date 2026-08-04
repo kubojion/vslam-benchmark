@@ -1,0 +1,13 @@
+{
+  "algo": "ov2slam",
+  "dataset": "euroc_mav",
+  "seq": "MH_05_difficult",
+  "run_id": 1,
+  "run_type": "vo-lc",
+  "use_imu": false,
+  "use_lc": true,
+  "duration_s": 123.69091725349426,
+  "frames": 2273,
+  "frames_total": 2273,
+  "fps": 18.37645035279086
+}
