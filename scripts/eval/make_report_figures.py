@@ -51,7 +51,7 @@ def fig_excitation():
     VO, VIO = load_csv("vo"), load_csv("vio")
     panels = [("zed2i", "field1_110426_full_10fps_q90", "ZED2i field  (weak excitation)"),
               ("rosariov2", "sequence5", "Rosario seq5  (adequate excitation)")]
-    algos = ["basalt", "okvis2", "okvis2x", "airslam", "voxel_svio", "orbslam3"]
+    algos = ["basalt", "okvis2", "okvis2x", "airslam", "orbslam3"]  # VO+VIO only (Voxel-SVIO has no VO)
     lbl = {"basalt": "Basalt", "okvis2": "OKVIS2", "okvis2x": "OKVIS2-X", "airslam": "AirSLAM",
            "voxel_svio": "Voxel-SVIO", "orbslam3": "ORB-SLAM3"}
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
@@ -76,7 +76,7 @@ def fig_lc_mechanism():
             ("rosariov2", "sequence5", "seq5"), ("hortimulti", "strawberry02", "str02"),
             ("hortimulti", "strawberry03", "str03")]
     rows = [("dpvo", "DPV-SLAM  (proximity)"), ("ov2slam", "OV2SLAM  (iBoW)"),
-            ("okvis2", "OKVIS2  (DBoW)"), ("okvis2x", "OKVIS2-X  (DBoW)")]
+            ("okvis2", "OKVIS2  (DBoW)")]
     M = np.full((len(rows), len(cols)), np.nan)
     for i, (a, _) in enumerate(rows):
         for j, (ds, sq, _) in enumerate(cols):
@@ -100,8 +100,8 @@ def fig_lc_mechanism():
     cb.set_label("ATE change  VO → VO-LC  (%)")
     cb.ax.text(1.3, 1.0, "LC hurts", transform=cb.ax.transAxes, va="top", fontsize=8, color="#B71C1C")
     cb.ax.text(1.3, 0.0, "LC helps", transform=cb.ax.transAxes, va="bottom", fontsize=8, color="#1B5E20")
-    ax.set_title("Loop closure helps on distinctive scenes, is unreliable on crops — and no mechanism is immune\n"
-                 "green = LC helps · red = LC hurts (values >±100% clipped in colour, true % shown)", fontweight="bold", fontsize=10.5)
+    ax.set_title("Loop closure helps on distinctive scenes, is unreliable on crops:\n"
+                 "proximity always hurts; even verified (iBoW/DBoW) LC can blow up (str02)  —  green = helps, red = hurts", fontweight="bold", fontsize=10.5)
     fig.tight_layout(); p = f"{OUT}/fig_lc_mechanism.png"; fig.savefig(p); print(p)
 
 # ── FIG C: coverage — ORB fails where others complete + IMU rescue ──────────
