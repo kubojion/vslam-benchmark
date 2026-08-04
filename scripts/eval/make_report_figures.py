@@ -68,39 +68,40 @@ def fig_excitation():
     fig.suptitle("The IMU's value is excitation-dependent:  it COLLAPSES on ZED2i, HELPS on Rosario", fontweight="bold")
     fig.tight_layout(); p = f"{OUT}/fig_imu_excitation.png"; fig.savefig(p); print(p)
 
-# ── FIG B: loop closure on crops — mechanism spectrum (VO -> VO-LC) ──────────
+# ── FIG B: loop closure — mechanism x sequence heatmap (VO -> VO-LC) ─────────
 def fig_lc_mechanism():
     VO, VOLC = load_csv("vo"), load_csv("vo-lc")
-    seqs = [("rosariov2", "sequence1", "seq1"), ("rosariov2", "sequence5", "seq5"),
-            ("hortimulti", "strawberry02", "str02"), ("hortimulti", "strawberry03", "str03")]
-    methods = [("dpvo", "DPV-SLAM\n(proximity)"), ("ov2slam", "OV2SLAM\n(iBoW)"),
-               ("okvis2", "OKVIS2\n(DBoW)"), ("okvis2x", "OKVIS2-X\n(DBoW)")]
-    from matplotlib.patches import Patch
-    CAP = 120  # clip bars above this; label true value at the cap
-    fig, ax = plt.subplots(figsize=(11, 5.5))
-    x = np.arange(len(methods)); w = 0.2
-    for i, (ds, sq, sl) in enumerate(seqs):
-        for j, (a, _) in enumerate(methods):
+    # columns: EuRoC (distinctive) then the 4 agricultural sequences
+    cols = [("euroc_mav", "MH_01_easy", "EuRoC\nMH01"), ("rosariov2", "sequence1", "seq1"),
+            ("rosariov2", "sequence5", "seq5"), ("hortimulti", "strawberry02", "str02"),
+            ("hortimulti", "strawberry03", "str03")]
+    rows = [("dpvo", "DPV-SLAM  (proximity)"), ("ov2slam", "OV2SLAM  (iBoW)"),
+            ("okvis2", "OKVIS2  (DBoW)"), ("okvis2x", "OKVIS2-X  (DBoW)")]
+    M = np.full((len(rows), len(cols)), np.nan)
+    for i, (a, _) in enumerate(rows):
+        for j, (ds, sq, _) in enumerate(cols):
             vo, vl = VO.get((a, ds, sq)), VOLC.get((a, ds, sq))
-            if not (vo and vl): continue
-            d = 100 * (vl - vo) / vo
-            xpos = x[j] + (i - 1.5) * w
-            col = "#2E7D32" if d < -3 else ("#C62828" if d > 3 else "#9E9E9E")
-            ax.bar(xpos, min(d, CAP), w, color=col)
-            if d > CAP:  # clipped blow-up: label true value
-                ax.text(xpos, CAP + 3, f"+{d:.0f}%", ha="center", va="bottom", fontsize=8, color="#C62828", fontweight="bold")
-            ax.text(xpos, -8 if d < 0 else 3, sl, ha="center", va="top" if d < 0 else "bottom", fontsize=6.5, rotation=90, color="#555")
-    ax.axhline(0, color="k", lw=0.8)
-    ax.set_xticks(x); ax.set_xticklabels([m[1] for m in methods], fontsize=10)
-    ax.set_ylabel("ATE change  VO → VO-LC  (%)")
-    ax.set_ylim(-100, CAP + 20)
-    ax.text(-0.09, -55, "↓ LC helps", rotation=90, va="center", color="#2E7D32", fontsize=10, transform=ax.get_yaxis_transform() if False else ax.transData)
-    ax.text(-0.55, 55, "↑ LC hurts", rotation=90, va="center", color="#C62828", fontsize=10)
-    ax.text(-0.55, -55, "↓ LC helps", rotation=90, va="center", color="#2E7D32", fontsize=10)
-    ax.set_title("Loop closure on crops is mechanism-dependent — and no mechanism is immune\n"
-                 "4 bars per method = seq1, seq5, str02, str03 (left→right); blow-ups clipped, true value labelled", fontweight="bold", fontsize=11)
-    ax.legend(handles=[Patch(color="#2E7D32", label="LC helps"), Patch(color="#C62828", label="LC hurts")], loc="upper left", fontsize=10)
-    ax.grid(axis="y", alpha=0.3)
+            if vo and vl: M[i, j] = 100 * (vl - vo) / vo
+    fig, ax = plt.subplots(figsize=(10, 4.6))
+    im = ax.imshow(np.clip(M, -100, 100), cmap="RdYlGn_r", vmin=-100, vmax=100, aspect="auto")
+    ax.set_xticks(range(len(cols))); ax.set_xticklabels([c[2] for c in cols], fontsize=11)
+    ax.set_yticks(range(len(rows))); ax.set_yticklabels([r[1] for r in rows], fontsize=11)
+    # vertical divider between EuRoC (distinctive reference) and agri
+    ax.axvline(0.5, color="k", lw=2)
+    for i in range(len(rows)):
+        for j in range(len(cols)):
+            v = M[i, j]
+            if np.isnan(v): continue
+            txt = f"{v:+.0f}%"
+            ax.text(j, i, txt, ha="center", va="center", fontsize=11,
+                    color="white" if abs(v) > 55 else "black",
+                    fontweight="bold" if v > 100 else "normal")
+    cb = fig.colorbar(im, ax=ax, fraction=0.03, pad=0.02)
+    cb.set_label("ATE change  VO → VO-LC  (%)")
+    cb.ax.text(1.3, 1.0, "LC hurts", transform=cb.ax.transAxes, va="top", fontsize=8, color="#B71C1C")
+    cb.ax.text(1.3, 0.0, "LC helps", transform=cb.ax.transAxes, va="bottom", fontsize=8, color="#1B5E20")
+    ax.set_title("Loop closure helps on distinctive scenes, is unreliable on crops — and no mechanism is immune\n"
+                 "green = LC helps · red = LC hurts (values >±100% clipped in colour, true % shown)", fontweight="bold", fontsize=10.5)
     fig.tight_layout(); p = f"{OUT}/fig_lc_mechanism.png"; fig.savefig(p); print(p)
 
 # ── FIG C: coverage — ORB fails where others complete + IMU rescue ──────────
@@ -143,20 +144,5 @@ def fig_coverage():
     axes[1].legend(); axes[1].grid(axis="y", alpha=0.3)
     fig.tight_layout(); p = f"{OUT}/fig_orb_coverage.png"; fig.savefig(p); print(p)
 
-# ── FIG D: single clean XY overlay (non-equal aspect so it's legible) ────────
-def fig_overlay():
-    gt_t, gt_xyz = load_tum(f"{WS}/datasets/rosariov2/sequence1/gt_interp_tum.txt")
-    fig, ax = plt.subplots(figsize=(11, 4.2))
-    ax.plot(gt_xyz[:, 0], gt_xyz[:, 1], "k--", lw=1.4, label="Ground truth", zorder=5)
-    for tree, col, lab in [("results-vo", "#2196F3", "ORB-SLAM3 VO — stops at 58%"),
-                           ("results-vio", "#FF5722", "ORB-SLAM3 VIO — completes (IMU bridges gaps)")]:
-        al, cov = aligned_xy(gt_t, gt_xyz, f"{WS}/{tree}/rosariov2/sequence1/orbslam3/run1/trajectory.txt")
-        if al is not None:
-            ax.plot(al[:, 0], al[:, 1], color=col, lw=1.0, label=lab, alpha=0.9)
-            ax.scatter(al[-1, 0], al[-1, 1], color=col, s=90, marker="X", zorder=6, edgecolor="k")
-    ax.set_xlabel("X (m)"); ax.set_ylabel("Y (m)"); ax.grid(alpha=0.3); ax.legend(loc="upper right", fontsize=9)
-    ax.set_title("Rosario seq1: ORB-SLAM3 VO (blue) stops mid-field; VIO (orange) reaches the far end (X = last pose)", fontweight="bold", fontsize=10)
-    fig.tight_layout(); p = f"{OUT}/fig_orb_overlay_seq1.png"; fig.savefig(p); print(p)
-
-fig_excitation(); fig_lc_mechanism(); fig_coverage(); fig_overlay()
+fig_excitation(); fig_lc_mechanism(); fig_coverage()
 print("done ->", OUT)
