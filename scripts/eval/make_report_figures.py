@@ -116,22 +116,29 @@ def load_cov(m):
     import statistics as st
     return {k: st.median(v) for k, v in d.items()}
 
-# ── FIG C: whole-benchmark ATE heatmap (VO) — the overview ──────────────────
-def fig_master():
+# ── FIG C: whole-benchmark ATE heatmaps (VO + VIO overview pair) ─────────────
+def load_scale(m):
+    d = {}
+    for r in csv.DictReader(open(f"{WS}/benchmark-{m}.csv")):
+        try: d.setdefault((r["algo"], r["dataset"], r["seq"]), []).append(float(r["scale_factor"]))
+        except: pass
+    import statistics as st
+    return {k: st.median(v) for k, v in d.items()}
+
+MASTER_COLS = [("rosariov2", "sequence1", "seq1"), ("rosariov2", "sequence5", "seq5"),
+               ("hortimulti", "strawberry02", "str02"), ("hortimulti", "strawberry03", "str03"),
+               ("euroc_mav", "MH_01_easy", "MH01"), ("euroc_mav", "MH_03_medium", "MH03"),
+               ("euroc_mav", "MH_05_difficult", "MH05"), ("zed2i", "field1_110426_full_10fps_q90", "zed2i")]
+
+def _master(mode, rows, title, fname):
     from matplotlib.colors import LogNorm
-    VO, COV = load_csv("vo"), load_cov("vo")
-    rows = [("orbslam3", "ORB-SLAM3"), ("ov2slam", "OV2SLAM"), ("dpvo", "DPVO (mono)"),
-            ("basalt", "Basalt"), ("okvis2", "OKVIS2"), ("okvis2x", "OKVIS2-X"),
-            ("macvo", "MAC-VO"), ("airslam", "AirSLAM"), ("droidslam", "DROID-SLAM")]
-    cols = [("rosariov2", "sequence1", "seq1"), ("rosariov2", "sequence5", "seq5"),
-            ("hortimulti", "strawberry02", "str02"), ("hortimulti", "strawberry03", "str03"),
-            ("euroc_mav", "MH_01_easy", "MH01"), ("euroc_mav", "MH_03_medium", "MH03"),
-            ("euroc_mav", "MH_05_difficult", "MH05"), ("zed2i", "field1_110426_full_10fps_q90", "zed2i")]
+    ATE, COV, SC = load_csv(mode), load_cov(mode), load_scale(mode)
+    cols = MASTER_COLS
     M = np.full((len(rows), len(cols)), np.nan)
     for i, (a, _) in enumerate(rows):
         for j, (ds, sq, _) in enumerate(cols):
-            if (a, ds, sq) in VO: M[i, j] = VO[(a, ds, sq)]
-    fig, ax = plt.subplots(figsize=(11, 6))
+            if (a, ds, sq) in ATE: M[i, j] = ATE[(a, ds, sq)]
+    fig, ax = plt.subplots(figsize=(11, 0.62 * len(rows) + 1.8))
     im = ax.imshow(M, cmap="RdYlGn_r", norm=LogNorm(vmin=0.03, vmax=50), aspect="auto")
     ax.set_xticks(range(len(cols))); ax.set_xticklabels([c[2] for c in cols], fontsize=11)
     ax.set_yticks(range(len(rows))); ax.set_yticklabels([r[1] for r in rows], fontsize=11)
@@ -142,14 +149,32 @@ def fig_master():
         for j, (ds, sq, _) in enumerate(cols):
             v = M[i, j]
             if np.isnan(v): ax.text(j, i, "—", ha="center", va="center", color="#999"); continue
-            partial = COV.get((a, ds, sq), 100) < 90
-            ax.text(j, i, f"{v:.2f}" + ("*" if partial else ""), ha="center", va="center", fontsize=8.5,
+            mark = ""
+            if COV.get((a, ds, sq), 100) < 90: mark += "*"
+            # scale collapse marker — not for monocular methods (up-to-scale by design)
+            if a not in ("dpvo", "droidslam") and SC.get((a, ds, sq), 1) < 0.5: mark += "✗"
+            ax.text(j, i, f"{v:.2f}{mark}", ha="center", va="center", fontsize=8.5,
                     color="white" if (v < 0.12 or v > 8) else "black")
     cb = fig.colorbar(im, ax=ax, fraction=0.03, pad=0.02); cb.set_label("ATE Sim3 RMSE (m, log)")
-    ax.set_title("Whole-benchmark VO accuracy: every method is fine on EuRoC, agriculture is where they diverge\n"
-                 "* = partial coverage (ATE not comparable — method lost tracking);  — = not run",
-                 fontweight="bold", fontsize=10.5, pad=30)
-    fig.tight_layout(); p = f"{OUT}/fig_master_vo_heatmap.png"; fig.savefig(p); print(p)
+    ax.set_title(title, fontweight="bold", fontsize=10.5, pad=30)
+    fig.tight_layout(); p = f"{OUT}/{fname}"; fig.savefig(p); print(p)
+
+def fig_master():
+    # DROID-SLAM excluded: dropped from the benchmark (replaced by DPVO)
+    _master("vo",
+            [("orbslam3", "ORB-SLAM3"), ("ov2slam", "OV2SLAM"), ("dpvo", "DPVO (mono)"),
+             ("basalt", "Basalt"), ("okvis2", "OKVIS2"), ("okvis2x", "OKVIS2-X"),
+             ("macvo", "MAC-VO"), ("airslam", "AirSLAM")],
+            "Whole-benchmark VO accuracy: every method is fine on EuRoC, agriculture is where they diverge\n"
+            "* = partial coverage (ATE not comparable — method lost tracking);  — = not run",
+            "fig_master_vo_heatmap.png")
+    _master("vio",
+            [("orbslam3", "ORB-SLAM3"), ("basalt", "Basalt"), ("okvis2", "OKVIS2"),
+             ("okvis2x", "OKVIS2-X"), ("openvins", "OpenVINS"), ("voxel_svio", "Voxel-SVIO"),
+             ("airslam", "AirSLAM")],
+            "Whole-benchmark VIO accuracy: the ZED2i column exposes the weak-excitation collapse\n"
+            "✗ = scale collapse (Sim3 scale ≈ 0);  * = partial coverage;  — = not run / failed",
+            "fig_master_vio_heatmap.png")
 
 # ── FIG D: ORB-SLAM3 mode progression — IMU rescues coverage, LC fixes ATE ───
 def fig_progression():
@@ -181,5 +206,38 @@ def fig_progression():
                  fontweight="bold", fontsize=11)
     fig.tight_layout(rect=[0, 0, 1, 0.94]); p = f"{OUT}/fig_orb_progression.png"; fig.savefig(p); print(p)
 
-fig_excitation(); fig_lc_mechanism(); fig_master(); fig_progression()
+# ── FIG E: run-to-run spread — finding 11 (non-determinism) ─────────────────
+def fig_determinism():
+    # all individual runs (not medians) for the N=3 agricultural VO cells
+    runs = {}
+    for r in csv.DictReader(open(f"{WS}/benchmark-vo.csv")):
+        try: runs.setdefault((r["algo"], r["dataset"], r["seq"]), []).append(float(r["ate_sim3_rmse_m"]))
+        except: pass
+    algos = [("basalt", "Basalt", "#F44336"), ("macvo", "MAC-VO", "#4CAF50"),
+             ("airslam", "AirSLAM", "#00BCD4"), ("orbslam3", "ORB-SLAM3", "#2196F3")]
+    seqs = [("rosariov2", "sequence1", "seq1"), ("rosariov2", "sequence5", "seq5"),
+            ("hortimulti", "strawberry02", "str02"), ("hortimulti", "strawberry03", "str03")]
+    fig, ax = plt.subplots(figsize=(11, 5.5))
+    for gi, (ds, sq, sl) in enumerate(seqs):
+        for ai, (a, lab, col) in enumerate(algos):
+            v = runs.get((a, ds, sq), [])
+            if len(v) < 2: continue
+            xp = gi * (len(algos) + 1) + ai
+            ax.plot([xp, xp], [min(v), max(v)], color=col, lw=2.5, alpha=0.55)
+            ax.scatter([xp] * len(v), v, color=col, s=45, zorder=5,
+                       label=lab if gi == 0 else None, edgecolor="k", linewidth=0.4)
+    ax.set_yscale("log")
+    ax.set_xticks([gi * (len(algos) + 1) + (len(algos) - 1) / 2 for gi in range(len(seqs))])
+    ax.set_xticklabels([s[2] for s in seqs], fontsize=12)
+    ax.set_ylabel("ATE Sim3 (m, log) — individual runs (N=3)")
+    ax.grid(axis="y", alpha=0.3); ax.legend(loc="upper right", fontsize=10)
+    # worst max/min ratio across ORB-SLAM3 agri cells, from the data actually plotted
+    orb_ratio = max(max(v) / min(v) for (a, ds, sq), v in runs.items()
+                    if a == "orbslam3" and len(v) >= 2 and ds in ("rosariov2", "hortimulti"))
+    ax.set_title("Run-to-run spread on agricultural sequences (identical binary + config, 3 runs):\n"
+                 f"Basalt / MAC-VO / AirSLAM reproduce (<8% CV) — ORB-SLAM3 varies up to {orb_ratio:.1f}× between runs",
+                 fontweight="bold", fontsize=11)
+    fig.tight_layout(); p = f"{OUT}/fig_determinism.png"; fig.savefig(p); print(p)
+
+fig_excitation(); fig_lc_mechanism(); fig_master(); fig_progression(); fig_determinism()
 print("done ->", OUT)
