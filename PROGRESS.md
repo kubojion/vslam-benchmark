@@ -1,18 +1,16 @@
 # vSLAM Benchmark - Progress
 
-> Updated: 2026-08-03 - VO: 110 evaluated rows (OV2SLAM VO complete incl. zed2i 0.348 m; ORB-SLAM3 run
-> natively - EuRoC N=1, agri N=3 median+range, non-deterministic, finding 11). VO-LC: 32 rows (adds
-> ORB-SLAM3 ×8); VIO-LC: 22 rows (adds AirSLAM EuRoC). OKVIS2-X "0 loop closures" was a parser bug
-> (finding 12). Only OV2SLAM
-> zed2i VO still pending). VO-LC: 32 rows - DPV-SLAM, OKVIS2, OKVIS2-X and ORB-SLAM3 across all 8
-> sequences (the two OKVIS zed2i cells are partial-coverage kill-to-flush). Core VIO N=1 sweep: 49 evaluated rows
-> (7 algorithms x 7 standard sequences), including corrected HortiMulti extrinsics and EuRoC
-> MH_03/MH_05. The ZED2i field dataset adds six usable VIO trajectories plus one ORB-SLAM3
-> failed attempt, bringing `benchmark-vio.csv` to 55 rows. VIO-LC: 19 rows - OKVIS2 and OKVIS2-X (7
-> core sequences), AirSLAM (4 agricultural), plus the ORB-SLAM3 seq5 reference (no zed2i VIO-LC).
-> GNSS-VIO N=1
-> is complete with 20 rows (5 algorithms x 4 GPS-bearing sequences); Rosario v2
-> sequence5 uses PPK and the PPK-versus-conventional study is retained. N=3 validation is pending.
+> Updated: 2026-08-04 - **VO: 110 rows** (ORB-SLAM3 native; its agri "VO" baseline re-run truly LC-off,
+> `loopClosing:0` - str03 0.104→0.217 confirms it was LC-assisted; agri VO is partial-coverage 42-58%,
+> finding 14). **VO-LC: 40 rows** (DPV-SLAM, OKVIS2, OKVIS2-X, ORB-SLAM3, OV2SLAM). **VIO: 55 rows**
+> (49-row core + 6 ZED2i). **VIO-LC: 25 rows** (OKVIS2, OKVIS2-X, AirSLAM on 7 core; ORB-SLAM3 seq5 +
+> agri - seq1 1.08 m is the best config on Rosario). **GNSS-VIO: 20 headline rows** (+2 PPK-study
+> variants; openvins_gps coverage metric is corrupted by bad timestamps - ATE valid, coverage unusable).
+> Key findings: 11 (agri ORB non-determinism), 12 (loop-closure metric was a parser bug),
+> **13 (the IMU helps only with excitation - collapses on ZED2i, wins on Rosario)**,
+> **14 (ORB's low agri VO ATE is a tracking-loss/coverage artefact)**,
+> **15 (loop closure on crops: proximity hurts, iBoW/DBoW help but each has an agri blow-up)**.
+> N=3 validation of the VIO matrix is the main remaining rigor item.
 
 Algorithms run: **ORB-SLAM3** (classical), **MAC-VO** (hybrid), **Basalt** (sliding-window VIO),
 **AirSLAM** (deep-feature VO/VIO, Docker), **DPVO** (monocular learned VO), **DPV-SLAM**
