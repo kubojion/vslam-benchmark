@@ -62,6 +62,9 @@ def fig_excitation():
         vio = [VIO.get((a, ds, sq), np.nan) for a in present]
         ax.bar(x - w/2, vo, w, label="VO (no IMU)", color="#4CAF50")
         ax.bar(x + w/2, vio, w, label="VIO (+IMU)", color="#F44336")
+        for i, a in enumerate(present):  # mark methods whose VIO failed (e.g. ORB-SLAM3 on ZED2i)
+            if np.isnan(vio[i]) and not np.isnan(vo[i]):
+                ax.text(x[i] + w/2, vo[i] * 1.15, "VIO\n✗ failed", ha="center", va="bottom", fontsize=7.5, color="#B71C1C", fontweight="bold")
         ax.set_yscale("log"); ax.set_title(title, fontsize=11)
         ax.set_xticks(x); ax.set_xticklabels([lbl[a] for a in present], rotation=30, ha="right")
         ax.set_ylabel("ATE Sim3 (m, log)"); ax.grid(axis="y", alpha=0.3); ax.legend()
@@ -113,36 +116,70 @@ def load_cov(m):
     import statistics as st
     return {k: st.median(v) for k, v in d.items()}
 
-def fig_coverage():
-    COV = load_cov("vo"); COVv = load_cov("vio")
-    lbl = {"orbslam3": "ORB-SLAM3", "basalt": "Basalt", "macvo": "MAC-VO", "dpvo": "DPVO",
-           "droidslam": "DROID-SLAM", "airslam": "AirSLAM", "okvis2": "OKVIS2", "okvis2x": "OKVIS2-X", "ov2slam": "OV2SLAM"}
-    fig, axes = plt.subplots(1, 2, figsize=(13, 5))
-    # LEFT: coverage per algo, Rosario seq1 VO — ORB is the lone outlier
-    ds, sq = "rosariov2", "sequence1"
-    algos = [a for a in lbl if (a, ds, sq) in COV]
-    covs = [COV[(a, ds, sq)] for a in algos]
-    order = np.argsort(covs)
-    algos = [algos[i] for i in order]; covs = [covs[i] for i in order]
-    cols = ["#F44336" if c < 90 else "#4CAF50" for c in covs]
-    axes[0].barh([lbl[a] for a in algos], covs, color=cols)
-    axes[0].axvline(90, color="gray", ls="--", lw=0.8)
-    axes[0].set_xlabel("Trajectory coverage (%)"); axes[0].set_xlim(0, 105)
-    axes[0].set_title("Only ORB-SLAM3 fails to complete the sequence\nRosario seq1, VO — others track 100%", fontweight="bold")
-    for i, c in enumerate(covs): axes[0].text(c + 1, i, f"{c:.0f}%", va="center", fontsize=9)
-    # RIGHT: ORB-SLAM3 VO vs VIO coverage across agri — the IMU rescue
-    seqs = [("rosariov2", "sequence1", "seq1"), ("rosariov2", "sequence5", "seq5"),
-            ("hortimulti", "strawberry02", "str02"), ("hortimulti", "strawberry03", "str03")]
-    x = np.arange(len(seqs)); w = 0.38
-    vo = [COV.get(("orbslam3", d, s), np.nan) for d, s, _ in seqs]
-    vio = [COVv.get(("orbslam3", d, s), np.nan) for d, s, _ in seqs]
-    axes[1].bar(x - w/2, vo, w, label="VO (no IMU)", color="#2196F3")
-    axes[1].bar(x + w/2, vio, w, label="VIO (+IMU)", color="#FF5722")
-    axes[1].set_xticks(x); axes[1].set_xticklabels([s[2] for s in seqs])
-    axes[1].set_ylabel("Trajectory coverage (%)"); axes[1].set_ylim(0, 105)
-    axes[1].set_title("The IMU rescues ORB-SLAM3's tracking\nsame algorithm: VO fragments, VIO completes", fontweight="bold")
-    axes[1].legend(); axes[1].grid(axis="y", alpha=0.3)
-    fig.tight_layout(); p = f"{OUT}/fig_orb_coverage.png"; fig.savefig(p); print(p)
+# ── FIG C: whole-benchmark ATE heatmap (VO) — the overview ──────────────────
+def fig_master():
+    from matplotlib.colors import LogNorm
+    VO, COV = load_csv("vo"), load_cov("vo")
+    rows = [("orbslam3", "ORB-SLAM3"), ("ov2slam", "OV2SLAM"), ("dpvo", "DPVO (mono)"),
+            ("basalt", "Basalt"), ("okvis2", "OKVIS2"), ("okvis2x", "OKVIS2-X"),
+            ("macvo", "MAC-VO"), ("airslam", "AirSLAM"), ("droidslam", "DROID-SLAM")]
+    cols = [("rosariov2", "sequence1", "seq1"), ("rosariov2", "sequence5", "seq5"),
+            ("hortimulti", "strawberry02", "str02"), ("hortimulti", "strawberry03", "str03"),
+            ("euroc_mav", "MH_01_easy", "MH01"), ("euroc_mav", "MH_03_medium", "MH03"),
+            ("euroc_mav", "MH_05_difficult", "MH05"), ("zed2i", "field1_110426_full_10fps_q90", "zed2i")]
+    M = np.full((len(rows), len(cols)), np.nan)
+    for i, (a, _) in enumerate(rows):
+        for j, (ds, sq, _) in enumerate(cols):
+            if (a, ds, sq) in VO: M[i, j] = VO[(a, ds, sq)]
+    fig, ax = plt.subplots(figsize=(11, 6))
+    im = ax.imshow(M, cmap="RdYlGn_r", norm=LogNorm(vmin=0.03, vmax=50), aspect="auto")
+    ax.set_xticks(range(len(cols))); ax.set_xticklabels([c[2] for c in cols], fontsize=11)
+    ax.set_yticks(range(len(rows))); ax.set_yticklabels([r[1] for r in rows], fontsize=11)
+    ax.axvline(3.5, color="k", lw=2); ax.axvline(6.5, color="k", lw=2)   # agri | euroc | zed2i
+    for xc, lab, col in [(1.5, "AGRICULTURAL", "#33691E"), (5, "EuRoC (reference)", "#555"), (7, "ZED2i", "#004D40")]:
+        ax.text(xc, -0.62, lab, ha="center", fontweight="bold", fontsize=9, color=col)
+    for i, (a, _) in enumerate(rows):
+        for j, (ds, sq, _) in enumerate(cols):
+            v = M[i, j]
+            if np.isnan(v): ax.text(j, i, "—", ha="center", va="center", color="#999"); continue
+            partial = COV.get((a, ds, sq), 100) < 90
+            ax.text(j, i, f"{v:.2f}" + ("*" if partial else ""), ha="center", va="center", fontsize=8.5,
+                    color="white" if (v < 0.12 or v > 8) else "black")
+    cb = fig.colorbar(im, ax=ax, fraction=0.03, pad=0.02); cb.set_label("ATE Sim3 RMSE (m, log)")
+    ax.set_title("Whole-benchmark VO accuracy: every method is fine on EuRoC, agriculture is where they diverge\n"
+                 "* = partial coverage (ATE not comparable — method lost tracking);  — = not run",
+                 fontweight="bold", fontsize=10.5, pad=30)
+    fig.tight_layout(); p = f"{OUT}/fig_master_vo_heatmap.png"; fig.savefig(p); print(p)
 
-fig_excitation(); fig_lc_mechanism(); fig_coverage()
+# ── FIG D: ORB-SLAM3 mode progression — IMU rescues coverage, LC fixes ATE ───
+def fig_progression():
+    VO, VIO, VIOLC = load_csv("vo"), load_csv("vio"), load_csv("vio-lc")
+    CV, CVi, CVl = load_cov("vo"), load_cov("vio"), load_cov("vio-lc")
+    cells = [("rosariov2", "sequence1", "Rosario seq1"), ("hortimulti", "strawberry02", "HortiMulti str02")]
+    fig, axes = plt.subplots(1, len(cells), figsize=(12, 5))
+    for ax, (ds, sq, title) in zip(axes, cells):
+        modes = ["VO", "VIO", "VIO-LC"]
+        ate = [VO.get(("orbslam3", ds, sq)), VIO.get(("orbslam3", ds, sq)), VIOLC.get(("orbslam3", ds, sq))]
+        cov = [CV.get(("orbslam3", ds, sq)), CVi.get(("orbslam3", ds, sq)), CVl.get(("orbslam3", ds, sq))]
+        x = np.arange(3)
+        bars = ax.bar(x, ate, 0.5, color=["#90A4AE", "#42A5F5", "#1B5E20"])
+        for b, a in zip(bars, ate):
+            if a is not None: ax.text(b.get_x() + b.get_width()/2, a + 0.05, f"{a:.2f} m", ha="center", fontsize=10, fontweight="bold")
+        # the VO bar's ATE covers only the tracked sub-path — flag it so the short
+        # grey bar is not read as "VO more accurate than VIO"
+        if cov[0] is not None and cov[0] < 90:
+            ax.text(0, ate[0] / 2, f"ATE over only\n{cov[0]:.0f}% of path", ha="center", va="center",
+                    fontsize=8.5, color="white", fontweight="bold")
+        ax.set_xticks(x); ax.set_xticklabels(["VO\n(no IMU)", "VIO\n(+IMU)", "VIO-LC\n(+IMU +LC)"])
+        ax.set_ylabel("ATE Sim3 (m)"); ax.set_title(f"ORB-SLAM3 on {title}", fontweight="bold")
+        ax2 = ax.twinx()
+        ax2.plot(x, cov, "o--", color="#D84315", lw=2, ms=9)
+        for xi, c in zip(x, cov):
+            if c is not None: ax2.text(xi, c - 6, f"{c:.0f}%", ha="center", color="#D84315", fontsize=9, fontweight="bold")
+        ax2.set_ylabel("Coverage (%)", color="#D84315"); ax2.set_ylim(0, 115); ax2.tick_params(axis="y", colors="#D84315")
+    fig.suptitle("How ORB-SLAM3 is fixed on agriculture:  the IMU restores coverage (orange), then loop closure cuts the error (bars)",
+                 fontweight="bold", fontsize=11)
+    fig.tight_layout(rect=[0, 0, 1, 0.94]); p = f"{OUT}/fig_orb_progression.png"; fig.savefig(p); print(p)
+
+fig_excitation(); fig_lc_mechanism(); fig_master(); fig_progression()
 print("done ->", OUT)
