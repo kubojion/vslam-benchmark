@@ -3,7 +3,9 @@
 > Updated: 2026-08-04 - **VO: 110 rows** (ORB-SLAM3 native; its agri "VO" baseline re-run truly LC-off,
 > `loopClosing:0` - str03 0.104→0.217 confirms it was LC-assisted; agri VO is partial-coverage 42-58%,
 > finding 14). **VO-LC: 40 rows** (DPV-SLAM, OKVIS2, OKVIS2-X, ORB-SLAM3, OV2SLAM). **VIO: 55 rows**
-> (49-row core + 6 ZED2i). **VIO-LC: 25 rows** (OKVIS2, OKVIS2-X, AirSLAM on 7 core; ORB-SLAM3 seq5 +
+> (49-row core + 6 ZED2i). **VIO-LC: 28 rows** (OKVIS2, OKVIS2-X, AirSLAM and ORB-SLAM3 on all 7 core;
+> ORB-SLAM3 VIO-LC is the best config on Rosario - seq1 1.08 m, 127 loops - and fires ZERO loops on
+> EuRoC, where the IMU makes LC redundant; seq5 +
 > agri - seq1 1.08 m is the best config on Rosario). **GNSS-VIO: 20 headline rows** (+2 PPK-study
 > variants; openvins_gps coverage metric is corrupted by bad timestamps - ATE valid, coverage unusable).
 > Key findings: 11 (agri ORB non-determinism), 12 (loop-closure metric was a parser bug),
@@ -432,15 +434,21 @@ See finding 10 for the DPVO-vs-DPV-SLAM loop-closure comparison, and finding 12 
 
 ## VIO-LC - Visual-Inertial + Loop Closure
 
-`benchmark-vio-lc.csv` has 19 rows (all N=1, stereo + IMU + LC): OKVIS2 and OKVIS2-X across all 7
-core sequences, AirSLAM on the 4 agricultural sequences, plus the ORB-SLAM3 seq5 reference. There is
+`benchmark-vio-lc.csv` has 28 rows (all N=1, stereo + IMU + LC): OKVIS2, OKVIS2-X, AirSLAM and
+ORB-SLAM3 across all 7 core sequences. There is
 **no zed2i column** - OKVIS2 has no zed2i `_vio_lc` config, AirSLAM has no zed2i `_vio_slam` config,
 and OKVIS2-X zed2i VIO-LC was cut before running (the ~5-6 h long pole, same stall as its VO-LC cell).
 Basalt and OpenVINS have no loop-closure mode.
 
 | Algorithm | Dataset | Seq | ATE Sim3 | ATE SE3 | Scale | RPE [m/m] | FPS | LC | N |
 |---|---|---|---|---|---|---|---|---|---|
+| ORB-SLAM3 | rosariov2 | seq1 | **1.08 m** | 1.10 m | 1.004 | 0.354 | 12.49 | 127 | 1 |
 | ORB-SLAM3 | rosariov2 | seq5 | **2.45 m** | 2.71 m | 1.023 | 0.0292 | 12.00 | 0 | 1 |
+| ORB-SLAM3 | hortimulti | str02 | **0.88 m** | 2.19 m | 1.042 | 0.090 | 9.59 | 1 | 1 |
+| ORB-SLAM3 | hortimulti | str03 | 0.19 m | 0.69 m | 1.037 | 0.026 | 9.11 | 6 | 1 |
+| ORB-SLAM3 | euroc_mav | MH_01 | 0.024 m | 0.036 m | 1.006 | 0.009 | 18.29 | 0 | 1 |
+| ORB-SLAM3 | euroc_mav | MH_03 | 0.028 m | 0.028 m | 1.000 | 0.013 | 18.24 | 0 | 1 |
+| ORB-SLAM3 | euroc_mav | MH_05 | 0.062 m | 0.068 m | 0.996 | 0.017 | 17.62 | 0 | 1 |
 | OKVIS2 | rosariov2 | seq1 | 18.32 m | 18.77 m | 0.915 | 0.115 | 4.72 | 6337† | 1 |
 | OKVIS2 | rosariov2 | seq5 | 21.25 m | 21.71 m | 0.913 | 0.118 | 4.40 | 979† | 1 |
 | OKVIS2 | hortimulti | str02 | 1.333 m | 1.976 m | 1.030 | 0.093 | 8.52 | 4 | 1 |
@@ -473,7 +481,16 @@ All other OKVIS loop counts here use the corrected metric (finding 12).
 
 ### Remarks: VIO-LC
 
-- **Loop closure provides no benefit on perceptually aliased crop-row sequences.** ORB-SLAM3 VIO-LC on rosariov2 seq5: 0 closures accepted, no ATE improvement (2.45 m vs 2.29 m VIO). Identical row appearance prevents bag-of-words place recognition. OKVIS2 accepts hundreds-to-thousands of closures on Rosario yet still lands ~18-21 m - the closures do not fix the drift.
+- **LC benefit on crops depends on a true revisit** (refines the earlier "no benefit" claim). ORB-SLAM3
+  VIO-LC on seq5: 0 closures, no gain (2.45 vs 2.29 m VIO) - identical rows defeat place recognition.
+  But on **seq1, which genuinely returns to start, it fires 127 closures and drops 4.70 -> 1.08 m -
+  the best result on the benchmark for that sequence** (str02: 1.48 -> 0.88 m). OKVIS2 accepts many
+  closures on Rosario yet stays ~18-21 m - its closures do not fix the drift.
+- **ORB-SLAM3 full mode progression (2026-08-04):** VO fragments (58% coverage) -> VIO completes (99%)
+  -> VIO-LC corrects (1.08 m). On **EuRoC its VIO-LC fires ZERO closures on all three sequences** -
+  with the IMU bounding drift, place recognition never triggers, so VIO-LC ≈ VIO (0.024/0.028/0.062 vs
+  0.025/0.030/0.048 m; run noise, LC redundant not harmful). Config `euroc_mav_stereo_inertial_lc.yaml`
+  added (VIO config + `loopClosing: 1` only).
 - **OKVIS2 VIO-LC ≈ VO-LC on Rosario** (seq1 18.32 vs 18.87 m; seq5 21.25 vs 16.26 m) - adding the IMU on top of LC changes little on these weak-excitation sequences, consistent with the VIO≫VO agricultural pattern.
 - **OKVIS2-X does loop-close** (27 on seq1, corrected metric - finding 12; the earlier "0" was a parser bug), at counts comparable to OKVIS2, yet tracks ~1.5-2x faster (e.g. seq1 7.5 vs 4.7 fps).
 - **AirSLAM is the slowest** (1.4-3.6 fps on agri) and weakest on Rosario (seq5 24.3 m), but competitive on the easier HortiMulti str03 (0.62 m). Launch-file fix (`vio_euroc.launch` + `map_refinement`, not the non-existent `vio_slam_euroc.launch`) landed in `run_airslam.sh` 2026-07-30.
