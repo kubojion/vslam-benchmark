@@ -1,7 +1,7 @@
 # vSLAM Benchmark - TODO
 
 > Created: 2026-05-20 | Revised: 2026-08-03 (verified current). VO has 109 evaluated rows. OV2SLAM VO filled on
-> str02/MH_01/MH_03 (only OV2SLAM zed2i pending). ORB-SLAM3 rebuilt/run NATIVELY from the submodule
+> str02/MH_01/MH_03 (OV2SLAM zed2i done — matrix row is authoritative). ORB-SLAM3 rebuilt/run NATIVELY from the submodule
 > (no Docker): EuRoC N=1 (~0.05 m, deterministic), agricultural N=3 median+range (str02/seq1/seq5 are
 > severely non-deterministic; str03 is stable) - see the VO note and finding 11. VO-LC has 40 rows:
 > DPV-SLAM, OKVIS2, OKVIS2-X and ORB-SLAM3 now cover all 8 sequences (the two OKVIS zed2i cells are
@@ -153,7 +153,8 @@ Legend: ✅ run complete | 🟡 run complete with caveat | ⬜ config only | �
 > **VIO-LC full-sequence N=1 completed (2026-07-30/31)** for OKVIS2 and OKVIS2-X (all 7 core
 > sequences) and AirSLAM (4 agricultural sequences). AirSLAM = front-end (`vio_euroc.launch`) +
 > offline `map_refinement`; the runner previously referenced a non-existent `vio_slam_euroc.launch`
-> - fixed in `run_airslam.sh`. AirSLAM EuRoC MH_01/03/05 are re-queued but not yet run (~30 min).
+> - fixed in `run_airslam.sh`. AirSLAM EuRoC MH_01/03/05 are done (see the matrix above; the
+> earlier "re-queued but not yet run" note was stale — consistency sweep 2026-08-05).
 > There is **no zed2i VIO-LC column**: OKVIS2 has no zed2i `_vio_lc` config, AirSLAM has no
 > zed2i `_vio_slam` config, and OKVIS2-X zed2i VIO-LC was cut before running (the long pole, ~5-6 h,
 > same end-of-sequence stall as its VO-LC cell). Consistent with finding 10: LC yields no meaningful
@@ -351,7 +352,7 @@ came from manual runs, so they have not yet been reproduced through the runner.
 | Task | Status |
 |---|---|
 | OKVIS2 VO-LC full N=1 (all 8 sequences) | `[x]` done; zed2i partial-coverage (kill-to-flush, see VO-LC note) |
-| OKVIS2-X VO-LC full N=1 (all 8 sequences) | `[x]` done; zed2i partial; **0 accepted closures on every cell - verify LC is enabled** |
+| OKVIS2-X VO-LC full N=1 (all 8 sequences) | `[x]` done; zed2i partial. ~~0 accepted closures - verify LC~~ resolved: that was the log-parser bug (task 14 / finding 12); corrected counts are comparable to OKVIS2 (e.g. 30 vs 76 on seq1) |
 | ORB-SLAM3 runner + configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` configured; 200-frame VO-LC smoke passed; full-sequence VO-LC still pending |
 | MASt3R-SLAM runner + configs for rosariov2/hortimulti/EuRoC | `[x]` configured, blocked on >12 GB VRAM for full sequences |
 | AirSLAM VO-LC | `[x]` reclassified as VIO-LC (LC is inseparable from its inertial pipeline) |

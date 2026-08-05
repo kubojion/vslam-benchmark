@@ -6,7 +6,12 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-WS = "/home/iman/slam_tests/vslam-benchmark"
+# Repo root resolved from this file's location (was hardcoded to one
+# machine's absolute path — figures were unreproducible elsewhere).
+# Override with VSLAM_WS if needed.
+WS = os.environ.get(
+    "VSLAM_WS",
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 OUT = os.path.join(WS, "figures"); os.makedirs(OUT, exist_ok=True)
 plt.rcParams.update({"font.size": 11, "figure.dpi": 150})
 
@@ -86,7 +91,7 @@ def fig_lc_mechanism():
             vo, vl = VO.get((a, ds, sq)), VOLC.get((a, ds, sq))
             if vo and vl: M[i, j] = 100 * (vl - vo) / vo
     fig, ax = plt.subplots(figsize=(10, 4.6))
-    im = ax.imshow(np.clip(M, -100, 100), cmap="RdYlGn_r", vmin=-100, vmax=100, aspect="auto")
+    im = ax.imshow(np.clip(M, -100, 100), cmap="viridis", vmin=-100, vmax=100, aspect="auto")
     ax.set_xticks(range(len(cols))); ax.set_xticklabels([c[2] for c in cols], fontsize=11)
     ax.set_yticks(range(len(rows))); ax.set_yticklabels([r[1] for r in rows], fontsize=11)
     # vertical divider between EuRoC (distinctive reference) and agri
@@ -104,7 +109,7 @@ def fig_lc_mechanism():
     cb.ax.text(1.3, 1.0, "LC hurts", transform=cb.ax.transAxes, va="top", fontsize=8, color="#B71C1C")
     cb.ax.text(1.3, 0.0, "LC helps", transform=cb.ax.transAxes, va="bottom", fontsize=8, color="#1B5E20")
     ax.set_title("Loop closure helps on distinctive scenes, is unreliable on crops:\n"
-                 "proximity always hurts; even verified (iBoW/DBoW) LC can blow up (str02)  —  green = helps, red = hurts", fontweight="bold", fontsize=10.5)
+                 "proximity always hurts; even verified (iBoW/DBoW) LC can blow up (str02)  —  dark = hurts, light = helps", fontweight="bold", fontsize=10.5)
     fig.tight_layout(); p = f"{OUT}/fig_lc_mechanism.png"; fig.savefig(p); print(p)
 
 # ── FIG C: coverage — ORB fails where others complete + IMU rescue ──────────
@@ -139,7 +144,7 @@ def _master(mode, rows, title, fname):
         for j, (ds, sq, _) in enumerate(cols):
             if (a, ds, sq) in ATE: M[i, j] = ATE[(a, ds, sq)]
     fig, ax = plt.subplots(figsize=(11, 0.62 * len(rows) + 1.8))
-    im = ax.imshow(M, cmap="RdYlGn_r", norm=LogNorm(vmin=0.03, vmax=50), aspect="auto")
+    im = ax.imshow(M, cmap="viridis", norm=LogNorm(vmin=0.03, vmax=50), aspect="auto")
     ax.set_xticks(range(len(cols))); ax.set_xticklabels([c[2] for c in cols], fontsize=11)
     ax.set_yticks(range(len(rows))); ax.set_yticklabels([r[1] for r in rows], fontsize=11)
     ax.axvline(3.5, color="k", lw=2); ax.axvline(6.5, color="k", lw=2)   # agri | euroc | zed2i
@@ -234,8 +239,15 @@ def fig_determinism():
     # worst max/min ratio across ORB-SLAM3 agri cells, from the data actually plotted
     orb_ratio = max(max(v) / min(v) for (a, ds, sq), v in runs.items()
                     if a == "orbslam3" and len(v) >= 2 and ds in ("rosariov2", "hortimulti"))
+    # deterministic-group CV computed from the data, not hardcoded (fix 2026-08-05)
+    det_cvs = [np.std(v, ddof=1) / np.mean(v) * 100
+               for (a, ds, sq), v in runs.items()
+               if a in ("basalt", "macvo", "airslam") and len(v) >= 2
+               and ds in ("rosariov2", "hortimulti") and np.mean(v) > 0]
+    det_cv_max = max(det_cvs) if det_cvs else float("nan")
     ax.set_title("Run-to-run spread on agricultural sequences (identical binary + config, 3 runs):\n"
-                 f"Basalt / MAC-VO / AirSLAM reproduce (<8% CV) — ORB-SLAM3 varies up to {orb_ratio:.1f}× between runs",
+                 f"Basalt / MAC-VO / AirSLAM reproduce (<{det_cv_max:.0f}% CV) — "
+                 f"ORB-SLAM3 varies up to {orb_ratio:.1f}× between runs",
                  fontweight="bold", fontsize=11)
     fig.tight_layout(); p = f"{OUT}/fig_determinism.png"; fig.savefig(p); print(p)
 

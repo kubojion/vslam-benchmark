@@ -45,8 +45,25 @@ def safe_mean(vals):
 
 
 def safe_std(vals):
+    # ddof=1 (sample std) — ddof=0 understated the spread by ~18% at N=3
+    # (fixed 2026-08-05). At N<=3 any std is fragile; prefer median + min-max.
     v = [x for x in vals if x is not None and not math.isnan(x)]
-    return float(np.std(v, ddof=0)) if len(v) > 1 else 0.0
+    return float(np.std(v, ddof=1)) if len(v) > 1 else 0.0
+
+
+def safe_median(vals):
+    v = [x for x in vals if x is not None and not math.isnan(x)]
+    return float(np.median(v)) if v else None
+
+
+def safe_min(vals):
+    v = [x for x in vals if x is not None and not math.isnan(x)]
+    return float(np.min(v)) if v else None
+
+
+def safe_max(vals):
+    v = [x for x in vals if x is not None and not math.isnan(x)]
+    return float(np.max(v)) if v else None
 
 
 def fmt(val, dec=4):
@@ -71,8 +88,25 @@ def main():
 
     dataset = canonicalize_dataset(sys.argv[1])
     seq, algo = sys.argv[2], sys.argv[3]
-    input_fps = float(sys.argv[4]) if len(sys.argv) > 4 else 10.0
+    # input_fps: a number, or "auto" to resolve from the per-sequence metadata
+    # cache (fixes the hardcoded 10 fps that made every EuRoC RTF 2x wrong).
+    raw_fps = sys.argv[4] if len(sys.argv) > 4 else "auto"
     run_type_name = sys.argv[5] if len(sys.argv) > 5 else "vo"
+
+    if str(raw_fps).lower() == "auto":
+        input_fps = None
+        try:
+            _cache_p = Path(__file__).resolve().parent / "_seq_meta_cache.json"
+            _cache = json.loads(_cache_p.read_text()).get("sequences", {})
+            input_fps = _cache.get(f"{dataset}/{seq}", {}).get("input_fps")
+        except Exception:
+            pass
+        if not input_fps:
+            input_fps = 10.0
+            print(f"[aggregate] WARNING: input_fps unknown for {dataset}/{seq}, "
+                  f"assuming 10.0 — RTF may be wrong", file=sys.stderr)
+    else:
+        input_fps = float(raw_fps)
 
     ws = Path(__file__).resolve().parents[2]
     rt = resolve_run_type(run_type_name, ws)
@@ -182,9 +216,9 @@ def main():
             fmt(cpu_mean[i], 1), fmt(cpu_peak[i], 1),
             fmt(ram_mean[i], 0), fmt(ram_peak[i], 0),
             fmt(vram_mean[i], 0), fmt(vram_peak[i], 0), fmt(gpu_mean[i], 1),
-        ] + [fmt(agri_mean.get(t, (None, None))[0])
-             for t in sorted(agri_types)]
-        rows.append(row)
+        ] + [fmt(r.get("agri_segments", {}).get(t, {}).get("ate_rmse_mean"))
+             for t in sorted(agri_types)]   # per-RUN value (was the across-run
+        rows.append(row)                    # mean for every row — fixed 2026-08-05)
 
     # Summary rows (only meaningful if n > 1)
     def smean(vals):
@@ -227,12 +261,35 @@ def main():
                            for r in runs] if v is not None])
          for t in sorted(agri_types)]
 
+    # median / min / max summary rows (added 2026-08-05 — the report tables use
+    # median + range, which the canonical artifacts could not previously supply)
+    def srow(label, fn):
+        return [label,
+            fmt(fn(ate_rmse)), fmt(fn(ate_mean)), fmt(fn(ate_median)),
+            fmt(fn(ate_std)),  fmt(fn(ate_max)),
+            fmt(fn(rpe_t_rmse)), fmt(fn(rpe_r_rmse)),
+            fmt(fn(kitti_10)), fmt(fn(kitti_50)), fmt(fn(kitti_100)),
+            fmt(fn(scale)), fmt(fn(final_dr)),
+            "N/A", "N/A", fmt(fn(track_pct), 1),
+            fmt(fn(t_losses), 1), fmt(fn(loop_cl), 1), fmt(fn(map_rst), 1),
+            "N/A", "N/A", "N/A",
+            fmt(fn(wall_s), 1), fmt(fn(fps_vals), 3), fmt(fn(rtf), 3),
+            fmt(fn(cpu_mean), 1), fmt(fn(cpu_peak), 1),
+            fmt(fn(ram_mean), 0), fmt(fn(ram_peak), 0),
+            fmt(fn(vram_mean), 0), fmt(fn(vram_peak), 0), fmt(fn(gpu_mean), 1),
+        ] + [fmt(fn([r.get("agri_segments", {}).get(t, {}).get("ate_rmse_mean")
+                     for r in runs]))
+             for t in sorted(agri_types)]
+
     with open(csv_path, "w") as f:
         f.write(",".join(header) + "\n")
         for row in rows:
             f.write(",".join(row) + "\n")
         f.write(",".join(mean_row) + "\n")
         f.write(",".join(std_row) + "\n")
+        f.write(",".join(srow("median", safe_median)) + "\n")
+        f.write(",".join(srow("min", safe_min)) + "\n")
+        f.write(",".join(srow("max", safe_max)) + "\n")
 
     print(f"[aggregate] wrote {csv_path}")
 

@@ -1,0 +1,69 @@
+{
+  "_provenance": "Generated 2026-08-05 from the existing benchmark CSVs (values recorded when datasets were locally present). Used as fallback by build_benchmark_csv.py when datasets/<ds>/<seq> is absent. Regenerate by rebuilding on a machine holding the datasets.",
+  "sequences": {
+    "euroc_mav/MH_01_easy": {
+      "image_height": 480,
+      "image_width": 752,
+      "input_fps": 20.01,
+      "path_length_gt_m": 80.63,
+      "sequence_duration_s": 184.05,
+      "sequence_frames_total": 3682
+    },
+    "euroc_mav/MH_03_medium": {
+      "image_height": 480,
+      "image_width": 752,
+      "input_fps": 20.01,
+      "path_length_gt_m": 130.93,
+      "sequence_duration_s": 134.95,
+      "sequence_frames_total": 2700
+    },
+    "euroc_mav/MH_05_difficult": {
+      "image_height": 480,
+      "image_width": 752,
+      "input_fps": 20.01,
+      "path_length_gt_m": 97.59,
+      "sequence_duration_s": 113.6,
+      "sequence_frames_total": 2273
+    },
+    "hortimulti/strawberry02": {
+      "image_height": 480,
+      "image_width": 640,
+      "input_fps": 10.01,
+      "path_length_gt_m": 940.26,
+      "sequence_duration_s": 952.31,
+      "sequence_frames_total": 9530
+    },
+    "hortimulti/strawberry03": {
+      "image_height": 480,
+      "image_width": 640,
+      "input_fps": 10.01,
+      "path_length_gt_m": 228.61,
+      "sequence_duration_s": 242.22,
+      "sequence_frames_total": 2425
+    },
+    "rosariov2/sequence1": {
+      "image_height": 720,
+      "image_width": 1280,
+      "input_fps": 14.7,
+      "path_length_gt_m": 775.64,
+      "sequence_duration_s": 940.42,
+      "sequence_frames_total": 13821
+    },
+    "rosariov2/sequence5": {
+      "image_height": 720,
+      "image_width": 1280,
+      "input_fps": 14.62,
+      "path_length_gt_m": 705.7,
+      "sequence_duration_s": 796.25,
+      "sequence_frames_total": 11640
+    },
+    "zed2i/field1_110426_full_10fps_q90": {
+      "image_height": 1080,
+      "image_width": 1920,
+      "input_fps": 10.0,
+      "path_length_gt_m": 424.84,
+      "sequence_duration_s": 4629.14,
+      "sequence_frames_total": 46283
+    }
+  }
+}

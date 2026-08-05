@@ -25,6 +25,68 @@ extension; result integration currently manual), **OpenVINS** (MSCKF VIO, Docker
 
 ---
 
+## 2026-08-05 — Evaluation-pipeline fixes (external audit + repairs)
+
+A full audit of the evaluation layer produced the following repairs. **All benchmark CSVs are now
+FULL REBUILDS** (`build_benchmark_csv.py` is no longer append-only — the old dedup-by-duration
+silently kept stale rows and dropped GNSS variant runs). Tables must come from
+`scripts/eval/make_report_tables.py` (never hand-typed); prose numbers from
+`scripts/eval/verify_claims.py`.
+
+**Metric fixes** (new fields alongside legacy ones; `eval_schema: 2` marks re-evaluated runs):
+- `coverage_gap_pct` — the ONE coverage metric (gap-aware, keyframe-safe; `_coverage.py`).
+  `track_pct` is output-rate, not coverage (keyframe exporters showed ~10% on complete runs);
+  `trajectory_time_coverage_pct` is endpoint-span only. Both retained but deprecated.
+- GNSS-VIO runs additionally get **origin-aligned ATE** (`ate_origin`) — Sim3/SE3 alignment
+  absorbs exactly the global anchoring GNSS provides.
+- RPE + drift windows also computed **without scale correction** (`rpe_trans_1m_se3`,
+  `drift_{10,50,100}m_pct` as % of window) — the scale-corrected variant deleted the studied
+  scale drift, and could even inflate local drift (okvis2 seq1: 0.138 scale-corrected vs
+  0.030 honest).
+- Row/turn segment ATE now computed under a **single global SE(3) alignment** (the old
+  independent per-segment Sim(3) fit was degenerate on near-collinear rows — old cm-level "row
+  ATE" was an artifact; `segment_alignment` column distinguishes semantics).
+- GT interpolation **drops** out-of-range frames (previously clamped: 164 frozen poses entered
+  seq5's ATE) and masks GT gaps > max(0.5 s, 3x median dt). Rosario GT regenerated; all
+  rosariov2 runs re-evaluated.
+- `final_drift_m` is now the SE(3)-aligned error at the last matched timestamp (old version
+  compared unaligned frames — meaningless).
+- Bug fixes: `map_resets` used ORB's regex for every algorithm (always 0 for OV2SLAM/OpenVINS);
+  per-run `metrics.csv` rows carried the across-run mean of segment ATE; robustness fields are
+  now None (not 0) for un-instrumented algorithms; `output_valid`/`run_status` actually computed
+  (ok / scale_collapse / eval_failed); EuRoC real-time factor was 2x wrong (`input_fps` hardcoded
+  10 → now auto-resolved); aggregation std now ddof=1 + median/min/max rows.
+- Machine identity is preserved from run time and never overwritten by the evaluation host;
+  runners now record provenance (config sha256, playback rate, env overrides, container image)
+  via `scripts/run/_enrich_run_meta.py`; GT file name+sha256 recorded per evaluation.
+- `openvins_gps` corrupt-tail root cause: after playback ends, `robot_localization` publishes
+  wall-clock predict-only states (jump ~7.7e7 s, positions to 1e15 m) which the TUM exporters
+  recorded verbatim — hence coverage "9,626,039%". ATE association provably excluded the corrupt
+  poses (independently reproduced to <0.01 m), so seq1 + seq5-conventional ATEs are trustworthy;
+  the seq5-PPK run is additionally truncated at ~69% coverage by mid-run contamination from a
+  live GNSS receiver on the lab network (datum jumped to Poznan — see navsat.log). Exporters now
+  drop >60 s timestamp jumps.
+
+**Provenance verifications (2026-08-05):**
+- **Rosario seq1 GT is genuine PGT** (8983 poses @ 9.61 Hz, real quaternions, `/mins/imu/pose`
+  from the official PGT bag; format signature matches the PGT code path; SE3-aligned residual vs
+  ENU-projected raw GPS is 0.92 m RMSE — a fused trajectory, not a GPS copy). An earlier report
+  that seq1 GT was raw-GPS via a stray `conv.py` described a divergent copy on another machine —
+  no such file exists here and published values reproduce exactly against the PGT-derived GT.
+  Caveat (dataset-inherent, applies to seq1 AND seq5): the PGT is MINS-fused from the same GNSS
+  stream the GNSS-VIO runs consume, and agrees with raw GPS at ~0.9 m — GNSS-VIO ATE near/below
+  ~1 m on rosariov2 is at the GT resolution floor.
+- **All published zed2i numbers used the correct 2.86 m antenna→camera lever arm** (verified by
+  rebuilding both GT variants from the raw robot bag and reproducing six published ATEs across
+  vo/vo-lc/vio to ≤2e-5 m). The "1.86 m" was an undocumented extractor default (4WS/CAR
+  base_link confusion), now changed to 2.86 in `_zed2i_ros2_extract.py`. Residual: the 1.86-based
+  `gt_tum.txt` still feeds segment maps/plots on the machine holding the dataset and must be
+  regenerated there. PPK is NOT possible from the local robot-bag copy (`ubx_rxm_rawx` topic has
+  0 messages); fix-status masking via `ubx_nav_pvt` is possible but is a no-op for this window
+  (all fixes RTK, sqrt(cov) ≤ 2.2 cm).
+
+---
+
 ## VO - Visual Odometry
 
 **N=3** for main VO-phase algorithms (MAC-VO, Basalt, AirSLAM, DROID-SLAM) and for ORB-SLAM3's

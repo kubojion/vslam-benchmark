@@ -220,5 +220,8 @@ print(json.dumps({'algo':'airslam','dataset':'$DATASET','seq':'$SEQ','run_id':$R
                   'use_lc':$([[ "$USE_LC" == "true" ]] && echo True || echo False),
                   'duration_s':$DUR,'frames':$NFR,'fps':$NFR/$DUR if $DUR>0 else 0}))
 " > "$OUT_DIR/run_meta.json"
+python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
+    --config "${CONFIG:-${CONFIG_FILE:-${CFG:-}}}" --container "${CONTAINER:-}" \
+    --playback-rate "${PLAYBACK_RATE:-${OV2SLAM_PLAYBACK_RATE:-${OPENVINS_RATE:-}}}" || true
 
 echo "[airslam] done (run ${RUN_ID})"

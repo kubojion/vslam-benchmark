@@ -158,17 +158,24 @@ conda run -n macvo python3 scripts/eval/build_benchmark_csv.py all
 
 ## Results snapshot
 
-See [PROGRESS.md](PROGRESS.md) for full VO, VO-LC, VIO, VIO-LC and GNSS-VIO tables. The
-`benchmark-*.csv` files are the source of truth for headline aggregates.
+**The `benchmark-*.csv` files are the source of truth**, and
+[docs/generated/tables.md](docs/generated/tables.md) (regenerate with
+`python3 scripts/eval/make_report_tables.py`) is the only sanctioned rendering of them —
+never hand-transcribe results numbers. See [PROGRESS.md](PROGRESS.md) for narrative and findings.
+
+> The legacy tables below predate the 2026-08-05 evaluation fixes and the finding-11
+> retraction (the bolded ORB-SLAM3 values were single lucky draws of a non-deterministic
+> system, superseded by the truly-LC-off re-runs). They are retained only as historical
+> context — quote the generated tables, not these.
 
 Representative VO numbers (N=3 unless noted):
 
 | Algorithm | Dataset | Seq | ATE Sim(3) | Runs |
 |---|---|---|---|---|
-| ORB-SLAM3 | Rosario v2 | seq1 | **1.18 ± 0.32 m** | 3 |
-| ORB-SLAM3 | Rosario v2 | seq5 | 20.21 ± 4.20 m | 3 |
-| ORB-SLAM3 | HortiMulti | strawberry02 | 0.893 ± 0.139 m | 3 |
-| ORB-SLAM3 | HortiMulti | strawberry03 | **0.104 ± 0.001 m** | 3 |
+| ORB-SLAM3 | Rosario v2 | seq1 | 1.18 ± 0.32 m (superseded — finding 11) | 3 |
+| ORB-SLAM3 | Rosario v2 | seq5 | 20.21 ± 4.20 m (superseded — finding 11) | 3 |
+| ORB-SLAM3 | HortiMulti | strawberry02 | 0.893 ± 0.139 m (superseded — finding 11) | 3 |
+| ORB-SLAM3 | HortiMulti | strawberry03 | 0.104 ± 0.001 m (superseded — finding 11) | 3 |
 | DROID-SLAM | Rosario v2 | seq1 | 45.37 m | 3 |
 | DROID-SLAM | Rosario v2 | seq5 | 50.02 m | 3 |
 | DROID-SLAM | HortiMulti | strawberry02 | 38.92 m | 3 |
@@ -201,12 +208,13 @@ ZED2i field VO (N=1; the project's own agricultural field sequence, 46 k frames 
 > OKVIS2/OKVIS2-X VO are best-effort (IMU disabled); they do far better here (weak-excitation
 > stereo) than in their scale-collapsed ZED2i *VIO* runs.
 
-> **ORB-SLAM3 agricultural/EuRoC VO** (rosariov2, hortimulti, EuRoC) is reported from the
-> original native build (the numbers above). A Docker-ROS2 ORB-SLAM3 build available on this
-> machine was found to diverge from the native build on hard agricultural sequences (e.g.
-> hortimulti str02: 1.88 m native-ref 0.893 m, reproducibly 2.1x worse at 7 %% CV; rosariov2 seq1
-> 6.8 +/- 3.8 m vs 1.18 m), so it is **not** mixed into the table — only its ZED2i result (0.256 m)
-> is retained.
+> **ORB-SLAM3 reproducibility note** (corrected 2026-08-05; see PROGRESS finding 11): an apparent
+> Docker-vs-native accuracy divergence on agricultural sequences was investigated and attributed
+> to ORB-SLAM3's own run-to-run non-determinism (N=3 spreads up to ~4x on crops), **not** to the
+> build environment — the earlier "2.1x worse in Docker" claim is retracted, and the old
+> single-run references (seq1 1.18 m, str02 0.893 m, str03 0.104 m) were single lucky draws.
+> Containerized results are not inherently suspect; container overhead matters only for the
+> real-time-ROS-fed algorithms (see the feeding-regime note in docs/evaluation.md).
 
 DPVO (monocular learned VO; replaces the dropped DROID-SLAM, N=1, Sim(3) ATE):
 

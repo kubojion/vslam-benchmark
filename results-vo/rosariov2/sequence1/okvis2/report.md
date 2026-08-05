@@ -36,7 +36,7 @@
 | KITTI drift @ 50 m [m] | 5.5429 |
 | KITTI drift @ 100 m [m] | 9.3232 |
 | Scale factor (Sim3) | 0.8974 |
-| Final drift [m] (approx) | 74.7369 |
+| Final drift [m] (approx) | 54.7316 |
 
 ---
 
@@ -51,7 +51,7 @@
 | Initialisation success | yes |
 | Initialisation time [s] | 1 |
 | Loop closures detected | 0 |
-| Map resets | 0 |
+| Map resets | N/A |
 | Output trajectory valid | yes |
 
 ---
@@ -62,7 +62,7 @@
 |---|---|
 | Wall-clock runtime [s] | 1551.7 |
 | Mean FPS | 8.91 |
-| Real-time factor (input 10 fps) | 0.891 |
+| Real-time factor (input 15 fps) | 0.606 |
 | CPU mean [%] | 16.6 |
 | CPU peak [%] | 31.7 |
 | RAM mean [MiB] | 14619 |
@@ -77,8 +77,8 @@
 
 | Segment type | Mean ATE RMSE [m] ± std (across runs) | N segments | Avg duration [s] | N runs with data |
 |---|---|---|---|---|
-| row | 0.0217 | 70 | 10.6 | 1/1 |
-| turn | 0.0188 | 37 | 5.1 | 1/1 |
+| row | 12.9839 | 70 | 10.6 | 1/1 |
+| turn | 19.6161 | 37 | 5.1 | 1/1 |
 
 ---
 
@@ -86,4 +86,4 @@
 
 | Run | ATE RMSE Sim3 [m] | ATE RMSE SE3 [m] | RPE [m] | RPE rot [°/m] | KITTI 10 m | KITTI 50 m | KITTI 100 m | Scale | Final drift [m] | Wall-s | FPS | Track% | Loops |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| run1 | 20.0275 | 20.6307 | 0.1381 | 0.34 | 1.1977 | 5.5429 | 9.3232 | 0.8974 | 74.7369 | 1551.7 | 8.91 | 100.0 | 0 |
+| run1 | 20.0275 | 20.6307 | 0.1381 | 0.34 | 1.1977 | 5.5429 | 9.3232 | 0.8974 | 54.7316 | 1551.7 | 8.91 | 100.0 | 0 |

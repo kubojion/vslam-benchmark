@@ -45,8 +45,11 @@ SEQ=sequence1    # or: sequence5, strawberry02, strawberry03, MH_01_easy ...
 ALGO=macvo       # or: orbslam3, basalt, airslam, openvins, okvis2,
                  #     cifasis_gnss_si, rtabmap_gps, vins_fusion_gps (gnss-vio only)
 
-# 1. Interpolate GT to SLAM timestamps (once per sequence, shared across run types)
-python3 $EVAL/_interpolate_gt.py datasets/$DS/$SEQ
+# 1. Interpolate GT to SLAM timestamps (once per sequence, shared across run types).
+#    Since 2026-08-05: out-of-range camera frames are DROPPED (no boundary clamping)
+#    and GT gaps > max(0.5 s, 3x median GT dt) are masked (no bridging of RTK outages).
+python3 $EVAL/_interpolate_gt.py datasets/$DS/$SEQ/gt_tum.txt \
+    datasets/$DS/$SEQ/times.txt datasets/$DS/$SEQ/gt_interp_tum.txt  # [--max-gap S]
 
 # 2. Auto-segment GT into row / turn segments (once per sequence)
 python3 $EVAL/_segment_trajectory.py datasets/$DS/$SEQ
@@ -57,8 +60,8 @@ for r in results-$TYPE/$DS/$SEQ/$ALGO/run*; do
     python3 $EVAL/_evaluate_run.py $DS $SEQ $ALGO "$RUN_ID" $TYPE
 done
 
-# 4. Aggregate runs into mean +/- std
-python3 $EVAL/_aggregate_runs.py $DS $SEQ $ALGO 10 $TYPE
+# 4. Aggregate runs (mean/std/median/min/max rows; input fps auto-resolved per dataset)
+python3 $EVAL/_aggregate_runs.py $DS $SEQ $ALGO auto $TYPE
 
 # 5. Plot trajectories (2D + 3D segment maps, all algos on this sequence)
 python3 $EVAL/_plot_segments.py --type $TYPE $DS $SEQ
@@ -76,17 +79,21 @@ For each algorithm, on each sequence:
 
 | Column | Meaning |
 |---|---|
-| `ATE Sim3` | RMSE of absolute pose error after Sim(3) alignment (scale + rotation + translation). Use this to compare monocular / scale-ambiguous methods fairly. |
-| `ATE SE3` | RMSE after rigid SE(3) alignment only (no scale). Reflects what a real robot would see. |
-| `Scale` | Sim(3) scale factor recovered by the alignment. Far from 1.0 → systematic drift. |
-| `RPE trans / rot` | Relative pose error on 1-metre windows. Local odometry quality. |
-| `ATE [row]` | Per-segment ATE over straight rows only (no turns). |
-| `ATE [turn]` | Per-segment ATE over turning segments only. |
-| `Frames` | Number of poses in `trajectory.txt`. |
-| `Loops` | Loop closures detected (ORB-SLAM3 only). |
-| `Duration` / `FPS` | Wall-clock and frames per second. |
+| `ATE SE3` | RMSE after rigid SE(3) alignment only (no scale). **Primary metric for stereo/VIO** (finding 4) — does not absorb scale drift. |
+| `ATE Sim3` | RMSE after Sim(3) alignment (scale + rotation + translation). Primary only for monocular methods; secondary/diagnostic for stereo. |
+| `ATE origin` | (GNSS-VIO runs, eval_schema 2) ATE after origin-translation only — the honest global-frame metric for GNSS-fused estimates; Sim3/SE3 alignment absorbs exactly what GNSS anchors. |
+| `Scale` | Sim(3) scale factor recovered by the alignment. Far from 1.0 → systematic scale drift. |
+| `RPE trans / rot` | Relative pose error on 1-metre windows. `*_se3` variants (eval_schema 2) are computed WITHOUT scale correction — use those for local drift; the legacy scale-corrected variant can distort local drift when scale varies along the trajectory. |
+| `drift_{10,50,100}m_pct` | Drift over 10/50/100 m windows as % of window length, no scale correction (KITTI convention). |
+| `coverage_gap_pct` | **The one coverage metric**: gap-aware fraction of the sequence with pose output (`_coverage.py`) — robust to keyframe-only exporters and interior tracking holes. `track_pct` (output rate) and `trajectory_time_coverage_pct` (endpoint span) are deprecated. |
+| `ATE [row]` / `ATE [turn]` | Per-segment RMSE of the **globally SE(3)-aligned** trajectory (`segment_alignment=global_se3`, 2026-08-05). Legacy rows used an independent per-segment Sim(3) fit, which is degenerate on straight rows — do not compare across the two semantics. |
+| `Frames` | Number of poses in `trajectory.txt` (keyframe-only for some algorithms). |
+| `Loops` | Log-reported loop-closure events, parsed per-algorithm (orbslam3/okvis2/okvis2x/ov2slam/airslam/mast3r_slam). NOT verified accepted loops; blank = not instrumented. |
+| `Duration` / `FPS` | Wall-clock and output-poses per second. NOT comparable across feeding regimes (offline file-fed vs real-time ROS playback) or machines. |
+| `run_status` | ok / scale_collapse (Sim3 scale <0.1 or >10) / eval_failed. |
 
-Multi-run aggregations report **mean ± std** across `run1`…`runN`.
+Multi-run aggregations report mean ± std (ddof=1) **plus median / min / max rows**; report tables
+use `median (min–max)`, generated exclusively by `scripts/eval/make_report_tables.py`.
 
 ## What the plots show
 

@@ -5,20 +5,34 @@ Scan every run-type results tree and write one CSV per run type.
 Usage:
     python3 build_benchmark_csv.py [run_type]
 
-    run_type \u2208 {vo, vo-lc, vio, vio-lc, gnss-vio, all}  (default: all)
+    run_type ∈ {vo, vo-lc, vio, vio-lc, gnss-vio, all}  (default: all)
 
 Layouts:
-    results/<dataset>/<seq>/<algo>/run<N>/run_eval.json    -> benchmark-vo.csv
-    results-vo-lc/<dataset>/<seq>/<algo>/run<N>/run_eval.json -> benchmark-vo-lc.csv
-    results-vio/<dataset>/<seq>/<algo>/run<N>/run_eval.json -> benchmark-vio.csv
-    results-vio-lc/<dataset>/<seq>/<algo>/run<N>/run_eval.json -> benchmark-vio-lc.csv
+    results-<type>/<dataset>/<seq>/<algo>/run<N>[_variant]/run_eval.json
+        -> benchmark-<type>.csv
 
-Each CSV is append-only: existing rows (matched by dataset/seq/algo/duration_s)
-are kept. Rows are ordered by the mtime of run_eval.json.
+Rebuilt 2026-08-05 (see PROGRESS "aggregation fixes"):
+  * FULL REBUILD every time. The old builder was append-only, deduped by
+    (dataset, seq, algo, duration_s) — re-evaluated runs were silently skipped
+    (stale rows survived every metric fix) and GNSS input-variant runs sharing
+    a duration were silently dropped. Now the CSV is always regenerated from
+    every run_eval.json on disk, deterministically sorted. results/ -> CSV is
+    the only path; never hand-edit a benchmark CSV.
+  * `run` and `gnss_variant` are columns: run1_conventional_gps -> run "1",
+    variant "conventional_gps"; plain run1 -> variant "default".
+  * `run_status` is computed for every row (also for legacy run_eval.json
+    files): ok / scale_collapse (Sim3 scale <0.1 or >10) / eval_failed.
+  * `coverage_gap_pct` — the single gap-aware coverage metric (_coverage.py) —
+    is computed here from trajectory.txt for every row.
+  * machine_cpu / machine_gpu recorded from run_eval.json's machine block.
+  * Sequence metadata falls back to scripts/eval/_seq_meta_cache.json when
+    datasets/<ds>/<seq> is not present on this machine.
+  * zed2i is classified agricultural (was "unknown").
 """
 from __future__ import annotations
 import csv
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -26,45 +40,66 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _run_type import resolve as resolve_run_type, all_types, RUN_TYPES  # noqa: E402
+from _coverage import coverage_from_traj_file  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
 DATASETS = REPO / "datasets"
+SEQ_META_CACHE = Path(__file__).resolve().parent / "_seq_meta_cache.json"
 
 ENV_TYPE: dict[str, str] = {
     "euroc_mav": "indoor",
     "hortimulti": "agricultural",
     "rosariov2": "agricultural",
+    "zed2i": "agricultural",
 }
+
+_RUN_DIR_RE = re.compile(r"^run(\d+)(?:_(.+))?$")
 
 COLUMNS = [
     # Identity
     "dataset", "seq", "environment_type", "algo",
     "run_type", "use_imu", "use_lc",
+    "run", "gnss_variant", "run_status", "eval_schema",
     # Sequence metadata
     "input_fps", "image_width", "image_height",
     "sequence_duration_s", "sequence_frames_total",
-    # Tracking coverage (keep only the three most useful)
+    # Coverage — coverage_gap_pct is THE coverage metric (gap-aware; see
+    # _coverage.py). track_pct / trajectory_time_coverage_pct are retained for
+    # continuity but are NOT reliable across algorithms (output-rate artifacts
+    # / endpoint-span blindness).
+    "coverage_gap_pct",
     "frames_tracked", "track_pct",
     "trajectory_duration_s", "trajectory_time_coverage_pct",
-    # ATE SE(3) - RMSE and Max only
+    "n_pairs_ate",
+    # ATE SE(3) — primary accuracy metric for stereo/VIO (finding 4)
     "ate_se3_rmse_m", "ate_se3_max_m",
-    # ATE Sim(3) - scale-corrected, RMSE and Max only
+    # ATE Sim(3) — scale-corrected (primary only for monocular)
     "ate_sim3_rmse_m", "ate_sim3_max_m",
+    # ATE origin-aligned — GNSS-fused runs only (global-frame error)
+    "ate_origin_rmse_m", "ate_origin_max_m",
     # Scale
     "scale_factor", "scale_error_pct",
-    # RPE
-    "rpe_trans_1m_rmse_m", "rpe_rot_1m_rmse_deg",
+    # RPE — *_se3 = no scale correction (honest local drift); unsuffixed =
+    # legacy Sim3-scale-corrected values
+    "rpe_trans_1m_rmse_m", "rpe_trans_1m_se3_rmse_m", "rpe_rot_1m_rmse_deg",
+    # Drift windows (% of window length, no scale correction)
+    "drift_10m_pct", "drift_50m_pct", "drift_100m_pct",
     # Path length and normalised error
-    "path_length_gt_m", "path_length_est_m", "ate_se3_rmse_pct_path",
-    # Robustness (loop closures only)
-    "loop_closures",
+    "path_length_gt_m", "path_length_est_m",
+    "ate_se3_rmse_pct_path", "ate_sim3_rmse_pct_path",
+    # Robustness (None/blank = not instrumented for this algorithm)
+    "loop_closures", "tracking_losses", "map_resets", "init_success",
     # Timing
     "duration_s", "fps", "real_time_factor", "processing_ms_per_frame",
     # Resource usage
     "cpu_mean_pct", "cpu_peak_pct", "ram_mean_mib", "ram_peak_mib",
     "vram_mean_mib", "vram_peak_mib", "gpu_mean_pct", "gpu_peak_pct",
-    # Agricultural segments
+    # Agricultural segments (+ which alignment semantics produced them:
+    # global_se3 = fixed metric; per_segment_sim3 = legacy biased metric)
     "ate_row_rmse_m", "ate_turn_rmse_m", "n_segments_row", "n_segments_turn",
+    "segment_alignment",
+    # Machine provenance
+    "machine_cpu", "machine_gpu",
     # Meta
     "final_drift_m", "gt_source",
 ]
@@ -83,8 +118,20 @@ def _round(v, n=4):
     return round(v, n) if v is not None else None
 
 
+def _load_seq_meta_cache() -> dict:
+    if SEQ_META_CACHE.exists():
+        try:
+            return json.loads(SEQ_META_CACHE.read_text()).get("sequences", {})
+        except Exception:
+            pass
+    return {}
+
+
+_CACHE = _load_seq_meta_cache()
+
+
 def load_seq_meta(dataset: str, seq: str) -> dict:
-    """Load per-sequence metadata once (shared across all runs of that seq)."""
+    """Per-sequence metadata: from datasets/ when present, else the cache."""
     seq_dir = DATASETS / dataset / seq
     meta: dict = {}
 
@@ -128,6 +175,11 @@ def load_seq_meta(dataset: str, seq: str) -> dict:
                 pass
             break
 
+    # --- fall back to the committed cache for anything still missing ---
+    cached = _CACHE.get(f"{dataset}/{seq}", {})
+    for k, v in cached.items():
+        meta.setdefault(k, v)
+
     return meta
 
 
@@ -153,6 +205,21 @@ def load_traj_info(traj_path: Path) -> dict:
         return {}
 
 
+def compute_run_status(ev: dict) -> str:
+    """Status for any run_eval.json, legacy or current."""
+    explicit = ev.get("run_status")
+    if explicit:
+        return explicit
+    ate = _g(ev, "ate", "rmse")
+    n_pairs = ev.get("n_pairs_ate") or 0
+    scale = ev.get("scale_factor")
+    if ate is None or n_pairs < 10:
+        return "eval_failed"
+    if scale is not None and (scale < 0.1 or scale > 10.0):
+        return "scale_collapse"
+    return "ok"
+
+
 def row_from_eval(eval_path: Path, seq_meta: dict, rt) -> dict | None:
     try:
         ev = json.loads(eval_path.read_text())
@@ -164,6 +231,10 @@ def row_from_eval(eval_path: Path, seq_meta: dict, rt) -> dict | None:
     algo_dir = run_dir.parent
     seq_dir = algo_dir.parent
     ds_dir = seq_dir.parent
+
+    m_run = _RUN_DIR_RE.match(run_dir.name)
+    run_no = m_run.group(1) if m_run else run_dir.name.replace("run", "")
+    variant = (m_run.group(2) if (m_run and m_run.group(2)) else "default")
 
     meta_path = run_dir / "run_meta.json"
     meta = {}
@@ -178,8 +249,14 @@ def row_from_eval(eval_path: Path, seq_meta: dict, rt) -> dict | None:
     seg = ev.get("agri_segments", {}) or {}
     row_seg = seg.get("row", {}) or {}
     turn_seg = seg.get("turn", {}) or {}
+    seg_alignment = None
+    for blk in (row_seg, turn_seg, seg.get("all", {}) or {}):
+        if blk:
+            seg_alignment = blk.get("alignment", "per_segment_sim3")
+            break
     rob = ev.get("robustness", {}) or {}
     runtime = ev.get("runtime", {}) or {}
+    machine = ev.get("machine", {}) or {}
 
     dataset = ds_dir.name
     seq = seq_dir.name
@@ -188,10 +265,12 @@ def row_from_eval(eval_path: Path, seq_meta: dict, rt) -> dict | None:
     scale = _g(ev, "scale_factor")
     scale_error_pct = _round(abs(scale - 1.0) * 100, 2) if scale is not None else None
 
-    # Derived: ATE as % of path
+    # Derived: ATE as % of path (SE3 and Sim3)
     ate_se3_rmse = _g(ev, "ate_se3", "rmse")
+    ate_sim3_rmse = _g(ev, "ate", "rmse")
     path_gt = seq_meta.get("path_length_gt_m")
     ate_pct_path = _round(ate_se3_rmse / path_gt * 100, 2) if (ate_se3_rmse and path_gt) else None
+    ate_sim3_pct_path = _round(ate_sim3_rmse / path_gt * 100, 2) if (ate_sim3_rmse and path_gt) else None
 
     # Derived: timing
     wall_s = runtime.get("wall_s") or _g(meta, "duration_s")
@@ -201,16 +280,16 @@ def row_from_eval(eval_path: Path, seq_meta: dict, rt) -> dict | None:
     frames_tracked = rob.get("frames_tracked") or _g(meta, "frames")
     ms_per_frame = _round(wall_s * 1000 / frames_tracked, 2) if (wall_s and frames_tracked) else None
 
-    # Derived: trajectory coverage
-    seq_frames_total = seq_meta.get("sequence_frames_total")
+    # Coverage: gap-aware (computed here for every row so legacy runs get it
+    # too; identical helper to what _evaluate_run.py records for new runs)
+    cov_gap = _g(ev, "coverage", "coverage_gap_pct")
+    if cov_gap is None:
+        cov_gap = coverage_from_traj_file(run_dir / "trajectory.txt", seq_dur).get("coverage_gap_pct")
+
+    # Legacy coverage variants (kept, unreliable — see COLUMNS comment)
     n_pairs = ev.get("n_pairs_ate")
-    ate_cov_pct = _round(n_pairs / seq_frames_total * 100, 1) if (n_pairs and seq_frames_total) else None
     traj_dur = traj_info.get("trajectory_duration_s")
     traj_time_cov = _round(traj_dur / seq_dur * 100, 1) if (traj_dur and seq_dur) else None
-
-    # run_status
-    output_valid = rob.get("output_valid", True)
-    run_status = "ok" if output_valid else "failed"
 
     return {
         "dataset": dataset,
@@ -220,56 +299,51 @@ def row_from_eval(eval_path: Path, seq_meta: dict, rt) -> dict | None:
         "run_type": rt.name,
         "use_imu": rt.use_imu,
         "use_lc": rt.use_lc,
-        "run": run_dir.name.replace("run", ""),
-        "run_status": run_status,
+        "run": run_no,
+        "gnss_variant": variant if rt.use_gnss else ("default" if variant == "default" else variant),
+        "run_status": compute_run_status(ev),
+        "eval_schema": ev.get("eval_schema", 1),
         # Sequence
         "input_fps": seq_meta.get("input_fps"),
         "image_width": seq_meta.get("image_width"),
         "image_height": seq_meta.get("image_height"),
         "sequence_duration_s": seq_meta.get("sequence_duration_s"),
-        "sequence_frames_total": seq_frames_total,
+        "sequence_frames_total": seq_meta.get("sequence_frames_total"),
         # Coverage
-        "frames_output": traj_info.get("frames_output"),
+        "coverage_gap_pct": cov_gap,
         "frames_tracked": frames_tracked,
-        "frames_total": rob.get("frames_total"),
         "track_pct": rob.get("track_pct"),
-        "n_pairs_ate": n_pairs,
-        "ate_pair_coverage_pct": ate_cov_pct,
         "trajectory_duration_s": traj_dur,
         "trajectory_time_coverage_pct": traj_time_cov,
-        # ATE SE(3)
-        "ate_se3_rmse_m": _g(ev, "ate_se3", "rmse"),
-        "ate_se3_mean_m": _g(ev, "ate_se3", "mean"),
-        "ate_se3_median_m": _g(ev, "ate_se3", "median"),
-        "ate_se3_std_m": _g(ev, "ate_se3", "std"),
+        "n_pairs_ate": n_pairs,
+        # ATE
+        "ate_se3_rmse_m": ate_se3_rmse,
         "ate_se3_max_m": _g(ev, "ate_se3", "max"),
-        # ATE Sim(3)
-        "ate_sim3_rmse_m": _g(ev, "ate", "rmse"),
-        "ate_sim3_mean_m": _g(ev, "ate", "mean"),
-        "ate_sim3_median_m": _g(ev, "ate", "median"),
-        "ate_sim3_std_m": _g(ev, "ate", "std"),
+        "ate_sim3_rmse_m": ate_sim3_rmse,
         "ate_sim3_max_m": _g(ev, "ate", "max"),
+        "ate_origin_rmse_m": _g(ev, "ate_origin", "rmse"),
+        "ate_origin_max_m": _g(ev, "ate_origin", "max"),
         # Scale
         "scale_factor": scale,
         "scale_error_pct": scale_error_pct,
         # RPE
         "rpe_trans_1m_rmse_m": _g(ev, "rpe_trans_1m", "rmse"),
+        "rpe_trans_1m_se3_rmse_m": _g(ev, "rpe_trans_1m_se3", "rmse"),
         "rpe_rot_1m_rmse_deg": _g(ev, "rpe_rot_1m_deg", "rmse"),
-        # KITTI
-        "kitti_10m_trans_rmse_m": _g(ev, "kitti_drift", "rpe_10m_trans_rmse"),
-        "kitti_50m_trans_rmse_m": _g(ev, "kitti_drift", "rpe_50m_trans_rmse"),
-        "kitti_100m_trans_rmse_m": _g(ev, "kitti_drift", "rpe_100m_trans_rmse"),
+        # Drift windows (% of length, no scale correction; new runs only)
+        "drift_10m_pct": _g(ev, "kitti_drift", "drift_10m_pct"),
+        "drift_50m_pct": _g(ev, "kitti_drift", "drift_50m_pct"),
+        "drift_100m_pct": _g(ev, "kitti_drift", "drift_100m_pct"),
         # Path
         "path_length_gt_m": path_gt,
         "path_length_est_m": traj_info.get("path_length_est_m"),
         "ate_se3_rmse_pct_path": ate_pct_path,
+        "ate_sim3_rmse_pct_path": ate_sim3_pct_path,
         # Robustness
         "loop_closures": rob.get("loop_closures"),
         "tracking_losses": rob.get("tracking_losses"),
         "map_resets": rob.get("map_resets"),
         "init_success": rob.get("init_success"),
-        "init_time_s": rob.get("init_time_s"),
-        "first_failure_s": rob.get("first_failure_s"),
         # Timing
         "duration_s": wall_s,
         "fps": fps_val,
@@ -289,87 +363,55 @@ def row_from_eval(eval_path: Path, seq_meta: dict, rt) -> dict | None:
         "ate_turn_rmse_m": turn_seg.get("ate_rmse_mean"),
         "n_segments_row": row_seg.get("n_segments"),
         "n_segments_turn": turn_seg.get("n_segments"),
+        "segment_alignment": seg_alignment,
+        # Machine (from _system_info.collect(): keys "cpu" and "gpus" list).
+        # Blocks explicitly tagged collected_at="evaluation" identify the
+        # evaluation host, not the run host — excluded from attribution.
+        "machine_cpu": machine.get("cpu")
+                       if machine.get("collected_at") != "evaluation" else None,
+        "machine_gpu": ((machine.get("gpus") or [{}])[0].get("name")
+                        if isinstance(machine.get("gpus"), list) else None)
+                       if machine.get("collected_at") != "evaluation" else None,
         # Meta
         "final_drift_m": _g(ev, "final_drift_m"),
         "gt_source": _g(ev, "gt_source"),
-        "eval_mtime": int(eval_path.stat().st_mtime),
     }
 
 
-def load_existing_keys(csv_path: Path) -> set[tuple]:
-    if not csv_path.exists():
-        return set()
-    keys = set()
-    with csv_path.open() as f:
-        for r in csv.DictReader(f):
-            # Use (dataset, seq, algo, duration_s) as proxy key since `run` is no longer a column.
-            keys.add((r["dataset"], r["seq"], r["algo"], r.get("duration_s", "")))
-    return keys
-
-
 def build_one(rt) -> int:
-    """Scan one results tree and append new rows to its CSV. Returns row count added."""
+    """Rebuild one run type's CSV from scratch. Returns row count."""
     results_root = rt.results_root
     csv_path = rt.csv_path
     if not results_root.is_dir():
         print(f"[info] {rt.name}: results dir missing ({results_root}), skipping")
         return 0
 
-    eval_files = sorted(
-        results_root.glob("*/*/*/run*/run_eval.json"),
-        key=lambda p: p.stat().st_mtime,
-    )
-    if not eval_files:
-        print(f"[info] {rt.name}: no run_eval.json under {results_root}")
-        # Still ensure header exists if file missing
-        if not csv_path.exists():
-            with csv_path.open("w", newline="") as f:
-                csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore", lineterminator="\n").writeheader()
-        return 0
-
+    eval_files = sorted(results_root.glob("*/*/*/run*/run_eval.json"))
     # Pre-load sequence metadata
     seq_meta_cache: dict[tuple, dict] = {}
+    rows = []
     for ep in eval_files:
         seq_dir = ep.parent.parent.parent
         ds_dir = seq_dir.parent
         key = (ds_dir.name, seq_dir.name)
         if key not in seq_meta_cache:
             seq_meta_cache[key] = load_seq_meta(ds_dir.name, seq_dir.name)
+        row = row_from_eval(ep, seq_meta_cache[key], rt)
+        if row is not None:
+            rows.append(row)
 
-    existing = load_existing_keys(csv_path)
-    new_rows = []
-    for ep in eval_files:
-        seq_dir = ep.parent.parent.parent
-        ds_dir = seq_dir.parent
-        sm = seq_meta_cache.get((ds_dir.name, seq_dir.name), {})
-        row = row_from_eval(ep, sm, rt)
-        if row is None:
-            continue
-        key = (row["dataset"], row["seq"], row["algo"], str(row.get("duration_s") or ""))
-        if key in existing:
-            continue
-        new_rows.append(row)
+    rows.sort(key=lambda r: (r["dataset"], r["seq"], r["algo"],
+                             r["gnss_variant"] or "", int(r["run"] or 0)))
 
-    write_header = not csv_path.exists()
-    if not new_rows:
-        print(f"[info] {rt.name}: no new rows ({csv_path.name} has {len(existing)} entries)")
-        if write_header:
-            with csv_path.open("w", newline="") as f:
-                csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore", lineterminator="\n").writeheader()
-        return 0
-
-    with csv_path.open("a", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore", lineterminator="\n")
-        if write_header:
-            w.writeheader()
-        for r in new_rows:
+    with csv_path.open("w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore",
+                           lineterminator="\n")
+        w.writeheader()
+        for r in rows:
             w.writerow(r)
 
-    print(f"[ok] {rt.name}: appended {len(new_rows)} row(s) to {csv_path.name}")
-    for r in new_rows:
-        run_label = f"run{r.get('run', '?')}"
-        print(f"      + {r['dataset']}/{r['seq']}/{r['algo']}/{run_label}  ATE Sim3={r['ate_sim3_rmse_m']}")
-    return len(new_rows)
+    print(f"[ok] {rt.name}: wrote {len(rows)} row(s) -> {csv_path.name}")
+    return len(rows)
 
 
 def main() -> int:
@@ -385,7 +427,7 @@ def main() -> int:
     total = 0
     for rt in types:
         total += build_one(rt)
-    print(f"[done] {total} new row(s) added across {len(types)} CSV(s)")
+    print(f"[done] {total} row(s) across {len(types)} CSV(s) (full rebuild)")
     return 0
 
 

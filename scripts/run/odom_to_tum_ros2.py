@@ -29,12 +29,30 @@ class TumRecorder(Node):
         self._n = 0
         self._last_t = time.monotonic()
         self._idle = idle_timeout
+        self._prev_stamp = None
+        self._max_jump = 60.0     # s; see timestamp-jump guard in _cb
+        self._jump_warned = False
         self.create_subscription(Odometry, topic, self._cb, 100)
         self.create_timer(1.0, self._check_idle)
         self.get_logger().info(f"recording {topic} -> {out}")
 
     def _cb(self, msg: Odometry) -> None:
         t = msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9
+        # Timestamp-jump guard (2026-08-05): when playback ends,
+        # robot_localization's ekf_node keeps publishing predict-only states
+        # stamped with wall-clock now(), i.e. a jump of ~1e7 s from bag time,
+        # with positions extrapolated to 1e11-1e15 m. Those poses poisoned
+        # every openvins_gps trajectory (coverage in millions of %). Drop any
+        # pose that jumps more than --max-stamp-jump (default 60 s) past the
+        # previous one instead of recording garbage.
+        if self._prev_stamp is not None and t - self._prev_stamp > self._max_jump:
+            if not self._jump_warned:
+                self.get_logger().warning(
+                    f"timestamp jump {t - self._prev_stamp:.0f}s > "
+                    f"{self._max_jump}s — dropping post-playback poses")
+                self._jump_warned = True
+            return
+        self._prev_stamp = t
         p = msg.pose.pose.position
         q = msg.pose.pose.orientation
         self._f.write(f"{t:.9f} {p.x} {p.y} {p.z} {q.x} {q.y} {q.z} {q.w}\n")

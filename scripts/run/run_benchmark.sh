@@ -87,7 +87,7 @@ done
 echo ""
 echo "[benchmark] ─── Aggregating $N runs ──────────────────────────────────"
 conda run -n macvo python3 \
-    "$EVAL/_aggregate_runs.py" "$DATASET" "$SEQ" "$ALGO" 10 "$RUN_TYPE"
+    "$EVAL/_aggregate_runs.py" "$DATASET" "$SEQ" "$ALGO" auto "$RUN_TYPE"
 
 echo ""
 echo "================================================================"

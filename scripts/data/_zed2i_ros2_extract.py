@@ -348,8 +348,15 @@ def main() -> int:
     ap.add_argument("--image_format", choices=["jpg", "png"], default="jpg")
     ap.add_argument("--jpeg_quality", type=int, default=95)
     ap.add_argument("--recompress_jpeg", action="store_true", help="decode and re-encode JPEG instead of copying original CompressedImage payload")
-    ap.add_argument("--gps_to_camera_x", type=float, default=1.86)
-    ap.add_argument("--gps_to_camera_z", type=float, default=0.0)
+    # 2.86 m = ZED optical centre 3.180 m minus position antenna (moving_base,
+    # REAR) 0.320 m from the rear axle (agrorob GPS/TF reference §1;
+    # cross-checked against the recorded 4WS tf_static: 1.680-(-1.180)=2.860).
+    # The old default 1.86 was an undocumented geometry-confusion estimate
+    # (4WS/CAR base_link mixup) — verified 2026-08-05 that all published zed2i
+    # results were scored against 2.86 m GT; 1.86 must not be used.
+    ap.add_argument("--gps_to_camera_x", type=float, default=2.86)
+    ap.add_argument("--gps_to_camera_z", type=float, default=0.0,
+                    help="modeling choice: antennas treated at camera height")
     ap.add_argument("--overwrite", action="store_true")
     args = ap.parse_args()
 

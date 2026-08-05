@@ -201,15 +201,26 @@ def _parse_scale(text):
     return float(m.group(1)) if m else None
 
 
-def run_evo_ape(gt, est, t_max_diff=0.005, correct_scale=True):
-    """Run evo_ape, return (stats_dict, scale_factor, n_pairs)."""
+def run_evo_ape(gt, est, t_max_diff=0.005, correct_scale=True, align_origin=False):
+    """Run evo_ape, return (stats_dict, scale_factor, n_pairs).
+
+    align_origin=True uses --align_origin (translate the estimate so its first
+    pose coincides with GT — no rotation, no scale). This is the honest metric
+    for GNSS-fused estimates, whose global orientation and scale are supposed
+    to be anchored by GNSS: a full Sim(3)/SE(3) fit would absorb exactly the
+    global-frame errors GNSS is meant to bound.
+    """
     cmd = [
         "evo_ape", "tum", gt, est,
-        "--align", "--t_max_diff", str(t_max_diff),
+        "--t_max_diff", str(t_max_diff),
         "--verbose", "--no_warnings",
     ]
-    if correct_scale:
-        cmd += ["--correct_scale", "-s"]
+    if align_origin:
+        cmd += ["--align_origin"]
+    else:
+        cmd += ["--align"]
+        if correct_scale:
+            cmd += ["--correct_scale"]
     result = subprocess.run(cmd, capture_output=True, text=True)
     out = result.stdout + result.stderr
     stats = _parse_evo_stats(out)
@@ -243,52 +254,152 @@ def run_evo_rpe(gt, est, delta, delta_unit="m",
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Segment-level ATE  (call evo_ape with --t_start / --t_end per segment)
+# Segment-level ATE under a SINGLE GLOBAL alignment.
+#
+# Changed 2026-08-05: the previous implementation ran evo_ape with
+# --align --correct_scale independently per ~2 m time window. Sim(3) on a
+# near-collinear point set is geometrically degenerate (rotation about the row
+# axis unconstrained, per-segment scale absorbs residual error), which
+# structurally flattered the "row" ATE vs the "turn" ATE. The metric is now:
+# align ONCE over the whole trajectory (SE3 Umeyama, no scale), then report the
+# RMSE of the globally-aligned error within each segment window. Old
+# run_eval.json files carry the biased per-segment values; the CSV builder
+# tags which semantics a row uses via `segment_alignment`.
 # ──────────────────────────────────────────────────────────────────────────────
-def ape_for_segment(gt, est, t_start, t_end, t_max_diff=0.005):
-    """ATE RMSE for a single time window. Returns None if too few pairs."""
-    cmd = [
-        "evo_ape", "tum", gt, est,
-        "--align", "--correct_scale", "-s",
-        "--t_max_diff", str(t_max_diff),
-        "--t_start", str(t_start),
-        "--t_end",   str(t_end),
-        "--verbose", "--no_warnings",
-    ]
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    out = result.stdout + result.stderr
-    stats = _parse_evo_stats(out)
-    m = re.search(r"Compared (\d+) absolute pose pairs", out)
-    n = int(m.group(1)) if m else (len(stats) > 0 and 99 or 0)
-    if n < 5:
+def _load_tum(path):
+    data = np.loadtxt(str(path))
+    if data.ndim == 1:
+        data = data[np.newaxis, :]
+    return data
+
+
+def _associate(gt, est, t_max_diff=0.005):
+    """Nearest-timestamp association. Returns (gt_xyz, est_xyz, t) matched."""
+    gt_t, est_t = gt[:, 0], est[:, 0]
+    idx = np.searchsorted(gt_t, est_t)
+    idx = np.clip(idx, 1, len(gt_t) - 1)
+    left = gt_t[idx - 1]
+    right = gt_t[idx]
+    use_left = (est_t - left) < (right - est_t)
+    nearest = np.where(use_left, idx - 1, idx)
+    dt = np.abs(gt_t[nearest] - est_t)
+    ok = dt <= t_max_diff
+    return gt[nearest[ok], 1:4], est[ok, 1:4], est_t[ok]
+
+
+def _umeyama_se3(src, dst):
+    """Rigid SE(3) Umeyama fit src->dst (no scale). Returns (R, t) or None."""
+    if len(src) < 3:
         return None
-    return stats
+    mu_s, mu_d = src.mean(0), dst.mean(0)
+    cov = (dst - mu_d).T @ (src - mu_s) / len(src)
+    U, _, Vt = np.linalg.svd(cov)
+    S = np.eye(3)
+    if np.linalg.det(U @ Vt) < 0:
+        S[2, 2] = -1
+    R = U @ S @ Vt
+    t = mu_d - R @ mu_s
+    return R, t
+
+
+def segment_ate_global(gt_path, est_path, seg_rows, keep_row_turn,
+                       t_max_diff=0.005, min_pairs=5):
+    """Per-segment ATE RMSE of the globally SE(3)-aligned trajectory.
+
+    seg_rows: list of dicts with type/t_start/t_end/n_frames/duration_s.
+    Returns {seg_type: {n_segments, ate_rmse_mean, ate_rmse_std, alignment,
+                        segments: [...]}} in the same shape as the legacy
+    agri_segments block, plus an "alignment" marker.
+    """
+    try:
+        gt = _load_tum(gt_path)
+        est = _load_tum(est_path)
+    except Exception:
+        return {}
+    gt_xyz, est_xyz, t = _associate(gt, est, t_max_diff)
+    if len(t) < 10:
+        return {}
+    fit = _umeyama_se3(est_xyz, gt_xyz)
+    if fit is None:
+        return {}
+    R, tr = fit
+    err = np.linalg.norm((est_xyz @ R.T + tr) - gt_xyz, axis=1)
+
+    type_errors = {}
+    for row in seg_rows:
+        seg_type = row["type"] if keep_row_turn else "all"
+        t0, t1 = float(row["t_start"]), float(row["t_end"])
+        m = (t >= t0) & (t <= t1)
+        n = int(m.sum())
+        if n < min_pairs:
+            continue
+        rmse = float(np.sqrt(np.mean(err[m] ** 2)))
+        type_errors.setdefault(seg_type, []).append({
+            "t_start":    t0,
+            "t_end":      t1,
+            "ate_rmse":   round(rmse, 6),
+            "ate_mean":   round(float(np.mean(err[m])), 6),
+            "n_pairs":    n,
+            "n_frames":   int(row["n_frames"]),
+            "duration_s": float(row["duration_s"]),
+        })
+
+    agri = {}
+    for stype, segs in type_errors.items():
+        rmse_vals = [s["ate_rmse"] for s in segs]
+        agri[stype] = {
+            "n_segments":     len(segs),
+            "ate_rmse_mean":  round(float(np.mean(rmse_vals)), 6),
+            "ate_rmse_std":   round(float(np.std(rmse_vals, ddof=1)), 6) if len(rmse_vals) > 1 else 0.0,
+            "alignment":      "global_se3",
+            "segments":       segs,
+        }
+    return agri
 
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Log parsing
 # ──────────────────────────────────────────────────────────────────────────────
+_MAP_ID_RE = re.compile(r"Map id:\s*(\d+)")
+
+
 def parse_log(log_path, algo):
-    """Parse a timestamped run log. Returns dict of robustness fields."""
+    """Parse a timestamped run log. Returns dict of robustness fields.
+
+    Semantics (fixed 2026-08-05):
+      * A field is None (not 0) when the algorithm has NO log pattern for it —
+        "not instrumented" must be distinguishable from "genuinely zero".
+        (Previously DPVO/Voxel-SVIO/all GNSS runners silently reported 0 loop
+        closures / 0 tracking losses.)
+      * map_resets now uses the algorithm's OWN configured pattern. The old
+        code fetched it and then re-grepped ORB's "Map id:" regex regardless,
+        so OV2SLAM's "RESET APPLIED" and OpenVINS' "Reset System" never
+        counted. For ORB-style "Map id: N" patterns the count is
+        (distinct ids - 1); for event-style patterns it is the match count.
+    """
+    patterns = LOG_PATTERNS.get(algo, {})
+
+    def _has(key):
+        return patterns.get(key) is not None
+
     result = {
-        "init_success":      False,
+        "init_success":      False if _has("init_success") else None,
         "init_time_s":       None,
-        "tracking_losses":   0,
-        "loop_closures":     0,
-        "map_resets":        0,
+        "tracking_losses":   0 if _has("tracking_loss") else None,
+        "loop_closures":     0 if _has("loop_closure") else None,
+        "map_resets":        0 if _has("map_reset") else None,
         "output_valid":      True,
         "first_failure_s":   None,
+        "log_instrumented":  bool(patterns),
     }
 
     if not os.path.isfile(log_path):
         return result
 
-    patterns = LOG_PATTERNS.get(algo, {})
-    # Log lines have format: "<rel_time_s> <original line>"
-    # or plain ORB-SLAM3 style without timestamps (backward compat).
-
     map_ids_seen = set()
-    run_start_t = None
+    map_event_count = 0
+    pat_map = patterns.get("map_reset")
+    map_is_id_style = bool(pat_map and "Map id" in pat_map.pattern)
 
     with open(log_path) as f:
         for raw_line in f:
@@ -298,8 +409,6 @@ def parse_log(log_path, algo):
             if m_ts:
                 rel_t = float(m_ts.group(1))
                 line = m_ts.group(2)
-                if run_start_t is None:
-                    run_start_t = 0.0
             else:
                 rel_t = None
                 line = raw_line
@@ -319,14 +428,19 @@ def parse_log(log_path, algo):
             if pat_loop and pat_loop.search(line):
                 result["loop_closures"] += 1
 
-            pat_map = patterns.get("map_reset")
             if pat_map:
-                mm = re.search(r"Map id:\s*(\d+)", line)
-                if mm:
-                    map_ids_seen.add(int(mm.group(1)))
+                if map_is_id_style:
+                    mm = _MAP_ID_RE.search(line)
+                    if mm:
+                        map_ids_seen.add(int(mm.group(1)))
+                elif pat_map.search(line):
+                    map_event_count += 1
 
-    if map_ids_seen:
-        result["map_resets"] = max(0, len(map_ids_seen) - 1)
+    if pat_map:
+        if map_is_id_style:
+            result["map_resets"] = max(0, len(map_ids_seen) - 1) if map_ids_seen else 0
+        else:
+            result["map_resets"] = map_event_count
 
     return result
 
@@ -377,22 +491,26 @@ def parse_resources(csv_path):
 # Final drift — Euclidean distance between last aligned pose and last GT pose
 # ──────────────────────────────────────────────────────────────────────────────
 def compute_final_drift(gt_path, est_path, t_max_diff=0.005):
-    """Final positional drift (m) after Sim3 alignment."""
+    """Final positional error (m) of the globally SE(3)-aligned trajectory.
+
+    Fixed 2026-08-05: the old implementation compared the UNALIGNED last
+    estimate pose against GT in a different coordinate frame ("we approximate
+    here"), which is not a drift measure. Now: associate timestamps, fit one
+    rigid SE(3) alignment over all matched pairs, and report the aligned error
+    at the last matched timestamp.
+    """
     try:
-        gt  = np.loadtxt(gt_path)
-        est = np.loadtxt(est_path)
-        if gt.ndim == 1:
-            gt = gt[np.newaxis]
-        if est.ndim == 1:
-            est = est[np.newaxis]
-        # Match last timestamps
-        t_last_est = est[-1, 0]
-        diffs = np.abs(gt[:, 0] - t_last_est)
-        nearest_gt_pos = gt[np.argmin(diffs), 1:4]
-        # Rough: directly compare unaligned last poses (scale ~1 after Sim3).
-        # True final drift requires the aligned trajectory — we approximate here.
-        last_est_pos = est[-1, 1:4]
-        return round(float(np.linalg.norm(last_est_pos - nearest_gt_pos)), 4)
+        gt = _load_tum(gt_path)
+        est = _load_tum(est_path)
+        gt_xyz, est_xyz, t = _associate(gt, est, t_max_diff)
+        if len(t) < 3:
+            return None
+        fit = _umeyama_se3(est_xyz, gt_xyz)
+        if fit is None:
+            return None
+        R, tr = fit
+        err = np.linalg.norm((est_xyz @ R.T + tr) - gt_xyz, axis=1)
+        return round(float(err[-1]), 4)
     except Exception:
         return None
 
@@ -440,6 +558,23 @@ def main():
         gt_source  = "raw_tmax0.1"
     print(f"[eval] GT source: {gt_source} ({gt_path})", file=sys.stderr)
 
+    # GT provenance (added 2026-08-05): record exactly WHICH ground-truth file
+    # scored this run — the bare gt_source string cannot distinguish e.g. two
+    # lever-arm variants manually copied over gt_interp_tum.txt (the zed2i
+    # forensics this closes out).
+    gt_provenance = {"file": str(Path(gt_path).name), "source": gt_source}
+    try:
+        import hashlib
+        _h = hashlib.sha256()
+        with open(gt_path, "rb") as _f:
+            for chunk in iter(lambda: _f.read(1 << 20), b""):
+                _h.update(chunk)
+        gt_provenance["sha256"] = _h.hexdigest()
+        gt_provenance["mtime"] = int(Path(gt_path).stat().st_mtime)
+        gt_provenance["n_rows"] = sum(1 for _ in open(gt_path))
+    except Exception as _e:
+        gt_provenance["error"] = str(_e)
+
     est_path = str(traj_path)
 
     # ── Accuracy metrics ──────────────────────────────────────────────────────
@@ -454,21 +589,45 @@ def main():
     print("[eval] running ATE (SE3, no scale correction) ...", file=sys.stderr)
     ate_se3_stats, _, _ = run_evo_ape(gt_path, est_path, t_max_diff, correct_scale=False)
 
+    # Origin-only alignment for GNSS-fused runs: their global orientation and
+    # scale are supposed to be anchored by GNSS, so free Sim3/SE3 alignment
+    # would absorb exactly the error GNSS is meant to bound (added 2026-08-05).
+    ate_origin_stats = {}
+    if rt.use_gnss:
+        print("[eval] running ATE (origin-aligned, GNSS run) ...", file=sys.stderr)
+        ate_origin_stats, _, _ = run_evo_ape(gt_path, est_path, t_max_diff,
+                                             align_origin=True)
+
     print("[eval] running RPE (point_distance, 1 m) ...", file=sys.stderr)
+    # Legacy field (Sim3 scale-corrected) kept for backward comparability with
+    # pre-2026-08-05 run_eval.json files ...
     rpe_t = run_evo_rpe(gt_path, est_path, delta=1.0, delta_unit="m",
                         pose_relation="point_distance", t_max_diff=t_max_diff)
+    # ... and the honest variant WITHOUT scale correction (scale drift is a
+    # studied failure mode; the drift metric must not remove it).
+    rpe_t_se3 = run_evo_rpe(gt_path, est_path, delta=1.0, delta_unit="m",
+                            pose_relation="point_distance", t_max_diff=t_max_diff,
+                            correct_scale=False)
 
     print("[eval] running RPE (rotation, 1 m) ...", file=sys.stderr)
     rpe_r = run_evo_rpe(gt_path, est_path, delta=1.0, delta_unit="m",
                         pose_relation="angle_deg", t_max_diff=t_max_diff)
 
-    # KITTI-style: RPE at 10 m, 50 m, 100 m windows
-    print("[eval] running KITTI-style drift (10/50/100 m) ...", file=sys.stderr)
+    # Drift over 10/50/100 m windows. Legacy: Sim3-scale-corrected raw metres.
+    # New (2026-08-05): un-scale-corrected, plus % of window length (the actual
+    # KITTI convention).
+    print("[eval] running drift windows (10/50/100 m) ...", file=sys.stderr)
     kitti = {}
     for d in [10, 50, 100]:
         st = run_evo_rpe(gt_path, est_path, delta=float(d), delta_unit="m",
                          pose_relation="point_distance", t_max_diff=t_max_diff)
         kitti[f"rpe_{d}m_trans_rmse"] = st.get("rmse")
+        st_se3 = run_evo_rpe(gt_path, est_path, delta=float(d), delta_unit="m",
+                             pose_relation="point_distance", t_max_diff=t_max_diff,
+                             correct_scale=False)
+        kitti[f"rpe_{d}m_trans_rmse_se3"] = st_se3.get("rmse")
+        if st_se3.get("rmse") is not None:
+            kitti[f"drift_{d}m_pct"] = round(st_se3["rmse"] / d * 100.0, 3)
 
     final_drift = compute_final_drift(gt_path, est_path, t_max_diff)
 
@@ -491,9 +650,34 @@ def main():
             robustness["track_pct"] = round(100.0 * tracked / gt_total, 1)
         elif meta.get("frames"):
             robustness["track_pct"] = 100.0
-        robustness["output_valid"] = True
     else:
         meta = {}
+
+    # Real output validation (2026-08-05; previously output_valid was
+    # unconditionally True whenever run_meta.json existed).
+    ate_ok = ate_stats.get("rmse") is not None and (n_pairs or 0) >= 10
+    scale_collapsed = scale is not None and (scale < 0.1 or scale > 10.0)
+    robustness["output_valid"] = bool(ate_ok and not scale_collapsed)
+    if not ate_ok:
+        run_status = "eval_failed"
+    elif scale_collapsed:
+        run_status = "scale_collapse"
+    else:
+        run_status = "ok"
+
+    # ── Coverage (gap-aware; the ONE coverage metric — see _coverage.py) ─────
+    try:
+        from _coverage import coverage_from_traj_file
+        seq_dur_meta = meta.get("sequence_duration_s")
+        if not seq_dur_meta:
+            # fall back to the dataset times file if present
+            times_f = ds_dir / "times.txt"
+            if times_f.exists():
+                _tt = np.loadtxt(str(times_f), dtype=np.float64) / 1e9
+                seq_dur_meta = float(_tt[-1] - _tt[0]) if len(_tt) > 1 else None
+        coverage = coverage_from_traj_file(traj_path, seq_dur_meta)
+    except Exception as _e:
+        coverage = {"coverage_gap_pct": None, "error": str(_e)}
 
     # ── Runtime ───────────────────────────────────────────────────────────────
     res_path = run_dir / "resources.csv"
@@ -507,52 +691,51 @@ def main():
         runtime["fps_raw"] = round(fps, 3)
 
     # ── Machine specs (provenance for the runtime numbers above) ──────────────
-    # The runtime block (fps, cpu/gpu/ram) is hardware-dependent; record which
-    # machine produced it. Never let this fail the evaluation.
-    try:
-        from _system_info import collect as _collect_machine
-        machine_info = _collect_machine()
-    except Exception as _e:  # pragma: no cover - best-effort
-        machine_info = {"error": str(_e)}
+    # Policy (fixed 2026-08-05): the machine block must identify the RUN host,
+    # not the evaluation host — re-evaluating on another laptop must never
+    # re-attribute the hardware. Priority:
+    #   1. run_meta.json "machine" (written at run time by provenance-aware
+    #      runners — the only fully trustworthy source);
+    #   2. the machine block already present in a previous run_eval.json
+    #      (recorded closer to run time; preserved, never overwritten);
+    #   3. fresh collection, explicitly tagged collected_at="evaluation" so it
+    #      can never be mistaken for verified run-host identity.
+    machine_info = None
+    if isinstance(meta.get("machine"), dict) and meta["machine"]:
+        machine_info = dict(meta["machine"])
+        machine_info["collected_at"] = "run"
+    else:
+        prev_eval = run_dir / "run_eval.json"
+        if prev_eval.exists():
+            try:
+                prev = json.loads(prev_eval.read_text())
+                pm = prev.get("machine")
+                if isinstance(pm, dict) and pm and "error" not in pm:
+                    machine_info = pm
+            except Exception:
+                pass
+    if machine_info is None:
+        try:
+            from _system_info import collect as _collect_machine
+            machine_info = _collect_machine()
+            machine_info["collected_at"] = "evaluation"
+            machine_info["note"] = ("machine of the EVALUATION host; run host "
+                                    "unverified (run predates run-time capture)")
+        except Exception as _e:  # pragma: no cover - best-effort
+            machine_info = {"error": str(_e)}
 
-    # ── Agricultural segment metrics ──────────────────────────────────────────
+    # ── Agricultural segment metrics (global SE3 alignment, 2026-08-05) ──────
     seg_path = ds_dir / "segments_auto.csv"
     agri = {}
     if seg_path.exists():
-        print("[eval] computing per-segment ATE ...", file=sys.stderr)
+        print("[eval] computing per-segment ATE (global SE3 alignment) ...",
+              file=sys.stderr)
         import csv
         keep_row_turn = distinguish_row_turn_for_dataset(dataset)
         with open(seg_path) as f:
-            reader = csv.DictReader(f)
-            rows = list(reader)
-
-        # Accumulate per type
-        type_errors = {}
-        for row in rows:
-            seg_type = row["type"] if keep_row_turn else "all"
-            t0 = float(row["t_start"])
-            t1 = float(row["t_end"])
-            stats = ape_for_segment(gt_path, est_path, t0, t1, t_max_diff)
-            if stats and "rmse" in stats:
-                if seg_type not in type_errors:
-                    type_errors[seg_type] = []
-                type_errors[seg_type].append({
-                    "t_start":    t0,
-                    "t_end":      t1,
-                    "ate_rmse":   stats["rmse"],
-                    "ate_mean":   stats.get("mean"),
-                    "n_frames":   int(row["n_frames"]),
-                    "duration_s": float(row["duration_s"]),
-                })
-
-        for stype, segs in type_errors.items():
-            rmse_vals = [s["ate_rmse"] for s in segs]
-            agri[stype] = {
-                "n_segments":     len(segs),
-                "ate_rmse_mean":  round(float(np.mean(rmse_vals)), 6),
-                "ate_rmse_std":   round(float(np.std(rmse_vals)), 6),
-                "segments":       segs,
-            }
+            rows = list(csv.DictReader(f))
+        agri = segment_ate_global(gt_path, est_path, rows, keep_row_turn,
+                                  t_max_diff)
 
     # ── Assemble output ───────────────────────────────────────────────────────
     out = {
@@ -564,6 +747,9 @@ def main():
         "use_imu": rt.use_imu,
         "use_lc":  rt.use_lc,
         "gt_source": gt_source,
+        "gt_provenance": gt_provenance,
+        "eval_schema": 2,          # 2 = 2026-08-05 metric fixes (see PROGRESS)
+        "run_status": run_status,
         "n_pairs_ate": n_pairs,
         "ate": {
             "rmse":   ate_stats.get("rmse"),
@@ -579,11 +765,24 @@ def main():
             "std":    ate_se3_stats.get("std"),
             "max":    ate_se3_stats.get("max"),
         },
+        # Origin-only alignment (GNSS runs only; empty dict otherwise)
+        "ate_origin": {
+            "rmse":   ate_origin_stats.get("rmse"),
+            "mean":   ate_origin_stats.get("mean"),
+            "median": ate_origin_stats.get("median"),
+            "max":    ate_origin_stats.get("max"),
+        } if ate_origin_stats else {},
         "rpe_trans_1m": {
             "rmse": rpe_t.get("rmse"),
             "mean": rpe_t.get("mean"),
             "std":  rpe_t.get("std"),
             "max":  rpe_t.get("max"),
+        },
+        # No scale correction — does not absorb scale drift (2026-08-05)
+        "rpe_trans_1m_se3": {
+            "rmse": rpe_t_se3.get("rmse"),
+            "mean": rpe_t_se3.get("mean"),
+            "std":  rpe_t_se3.get("std"),
         },
         "rpe_rot_1m_deg": {
             "rmse": rpe_r.get("rmse"),
@@ -593,6 +792,7 @@ def main():
         "kitti_drift": kitti,
         "scale_factor":  scale,
         "final_drift_m": final_drift,
+        "coverage":      coverage,
         "robustness":    robustness,
         "runtime":       runtime,
         "machine":       machine_info,

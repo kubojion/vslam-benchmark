@@ -106,4 +106,7 @@ print(json.dumps({'algo':'mast3r_slam','dataset':'$DATASET','seq':'$SEQ','run_id
                   'run_type':'$RUN_TYPE','use_imu':False,'use_lc':$USE_LC_PY,
                   'duration_s':$DUR,'frames':$NFR,'fps':$NFR/$DUR if $DUR>0 else 0}))
 " > "$OUT_DIR/run_meta.json"
+python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
+    --config "${CONFIG:-${CONFIG_FILE:-${CFG:-}}}" --container "${CONTAINER:-}" \
+    --playback-rate "${PLAYBACK_RATE:-${OV2SLAM_PLAYBACK_RATE:-${OPENVINS_RATE:-}}}" || true
 echo "[mast3r_slam] done (run ${RUN_ID})"

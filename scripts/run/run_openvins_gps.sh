@@ -214,5 +214,7 @@ d = {
 Path("$OUT_DIR/run_meta.json").write_text(json.dumps(d, indent=2))
 print("[openvins_gps] run_meta.json written")
 PYEOF
+python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
+    --container "${CONTAINER:-}" --playback-rate "${OPENVINS_RATE:-}" || true
 
 echo "[openvins_gps] done: $NFR frames, ${FPS} fps, ${DUR}s" | tee -a "$LOG"

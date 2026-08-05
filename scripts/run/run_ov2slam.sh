@@ -195,5 +195,8 @@ meta = {
 meta["fps"] = meta["frames"] / meta["duration_s"] if meta["duration_s"] else 0.0
 Path("$OUT_DIR/run_meta.json").write_text(json.dumps(meta, indent=2) + "\n")
 PY
+python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
+    --config "${OV2SLAM_CONFIG:-}" --container "${CONTAINER:-}" \
+    --playback-rate "${OV2SLAM_PLAYBACK_RATE:-}" || true
 
 echo "[ov2slam] done: $FRAMES/$FRAMES_TOTAL poses" | tee -a "$LOG"

@@ -40,9 +40,21 @@ def main() -> int:
     rospy.init_node("odometry_to_tum", anonymous=True, disable_signals=True)
     f = _open(args.out)
     n = [0]  # mutable counter
+    prev = [None]        # previous stamp — timestamp-jump guard (2026-08-05):
+    MAX_JUMP = 60.0      # estimators publishing wall-clock predict-only states
+                         # after playback ends must not be recorded (see the
+                         # openvins_gps corrupt-tail incident)
+
+    def _guard(t) -> bool:
+        if prev[0] is not None and t - prev[0] > MAX_JUMP:
+            return False
+        prev[0] = t
+        return True
 
     def cb_odom(msg: Odometry):
         t = msg.header.stamp.to_sec()
+        if not _guard(t):
+            return
         p = msg.pose.pose.position
         q = msg.pose.pose.orientation
         f.write(f"{t:.9f} {p.x} {p.y} {p.z} {q.x} {q.y} {q.z} {q.w}\n")
@@ -52,6 +64,8 @@ def main() -> int:
 
     def cb_pose(msg: PoseStamped):
         t = msg.header.stamp.to_sec()
+        if not _guard(t):
+            return
         p = msg.pose.position
         q = msg.pose.orientation
         f.write(f"{t:.9f} {p.x} {p.y} {p.z} {q.x} {q.y} {q.z} {q.w}\n")
