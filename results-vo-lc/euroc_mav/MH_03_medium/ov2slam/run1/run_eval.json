@@ -7,6 +7,15 @@
   "use_imu": false,
   "use_lc": true,
   "gt_source": "interpolated",
+  "gt_provenance": {
+    "file": "gt_interp_tum.txt",
+    "source": "interpolated",
+    "sha256": "c39b1a2f94649d5164278bbceae5510edaffaabb7b538096c0b6204215ccb9e8",
+    "mtime": 1786002888,
+    "n_rows": 2631
+  },
+  "eval_schema": 2,
+  "run_status": "ok",
   "n_pairs_ate": 2631,
   "ate": {
     "rmse": 0.046777,
@@ -22,24 +31,44 @@
     "std": 0.019808,
     "max": 0.183632
   },
+  "ate_origin": {},
   "rpe_trans_1m": {
     "rmse": 0.019696,
     "mean": 0.014655,
     "std": 0.013159,
     "max": 0.058747
   },
+  "rpe_trans_1m_se3": {
+    "rmse": 0.01895,
+    "mean": 0.014012,
+    "std": 0.012758
+  },
   "rpe_rot_1m_deg": {
-    "rmse": 18.359415,
+    "rmse": 18.359416,
     "mean": 12.681748,
     "std": 13.275594
   },
   "kitti_drift": {
     "rpe_10m_trans_rmse": 0.033648,
+    "rpe_10m_trans_rmse_se3": 0.033348,
+    "drift_10m_pct": 0.333,
     "rpe_50m_trans_rmse": 0.007035,
-    "rpe_100m_trans_rmse": null
+    "rpe_50m_trans_rmse_se3": 0.011779,
+    "drift_50m_pct": 0.024,
+    "rpe_100m_trans_rmse": null,
+    "rpe_100m_trans_rmse_se3": null
   },
-  "scale_factor": 0.9985274337667869,
-  "final_drift_m": 4.9977,
+  "scale_factor": 0.9985274346049109,
+  "final_drift_m": 0.1093,
+  "coverage": {
+    "coverage_gap_pct": 100.0,
+    "traj_span_s": 134.95,
+    "interior_gap_s": 0.0,
+    "gap_threshold_s": 2.0,
+    "n_gaps": 0,
+    "ts_unit": "s",
+    "ts_dropped": 0
+  },
   "robustness": {
     "init_success": true,
     "init_time_s": null,
@@ -48,6 +77,7 @@
     "map_resets": 0,
     "output_valid": true,
     "first_failure_s": null,
+    "log_instrumented": true,
     "frames_total": 2700,
     "frames_tracked": 2700,
     "track_pct": 100.0

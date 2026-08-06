@@ -3,100 +3,160 @@
   "algo": "airslam",
   "dataset": "hortimulti",
   "seq": "strawberry03",
+  "run_type": "vo",
+  "use_imu": false,
+  "use_lc": false,
   "gt_source": "interpolated",
-  "n_pairs_ate": 460,
+  "gt_provenance": {
+    "file": "gt_interp_tum.txt",
+    "source": "interpolated",
+    "sha256": "121c7606b4601eaee82ad7988d523b222a1aff6fc27e4c0fa543c13c0a836cbd",
+    "mtime": 1786002891,
+    "n_rows": 2419
+  },
+  "eval_schema": 2,
+  "run_status": "ok",
+  "n_pairs_ate": 459,
   "ate": {
-    "rmse": 3.811442,
-    "mean": 3.453604,
-    "median": 3.168468,
-    "std": 1.612362,
-    "max": 6.209262
+    "rmse": 3.805395,
+    "mean": 3.446864,
+    "median": 3.194206,
+    "std": 1.612501,
+    "max": 6.171197
   },
   "ate_se3": {
-    "rmse": 3.949514,
-    "mean": 3.485927,
-    "median": 2.55092,
-    "std": 1.856603,
-    "max": 7.505287
+    "rmse": 3.94954,
+    "mean": 3.483759,
+    "median": 2.543519,
+    "std": 1.860722,
+    "max": 7.496743
   },
+  "ate_origin": {},
   "rpe_trans_1m": {
-    "rmse": 0.141808,
-    "mean": 0.076252,
-    "std": 0.119562,
-    "max": 0.72285
+    "rmse": 0.141558,
+    "mean": 0.076412,
+    "std": 0.119163,
+    "max": 0.721274
+  },
+  "rpe_trans_1m_se3": {
+    "rmse": 0.192474,
+    "mean": 0.114142,
+    "std": 0.154977
   },
   "rpe_rot_1m_deg": {
-    "rmse": 19.510106,
-    "mean": 8.504088,
-    "std": 17.559178
+    "rmse": 19.687845,
+    "mean": 8.497536,
+    "std": 17.759592
   },
   "kitti_drift": {
-    "rpe_10m_trans_rmse": 0.817491,
-    "rpe_50m_trans_rmse": 3.402897,
-    "rpe_100m_trans_rmse": 3.788594
+    "rpe_10m_trans_rmse": 0.819593,
+    "rpe_10m_trans_rmse_se3": 1.162025,
+    "drift_10m_pct": 11.62,
+    "rpe_50m_trans_rmse": 3.331483,
+    "rpe_50m_trans_rmse_se3": 6.01455,
+    "drift_50m_pct": 12.029,
+    "rpe_100m_trans_rmse": 3.40888,
+    "rpe_100m_trans_rmse_se3": 3.033863,
+    "drift_100m_pct": 3.034
   },
-  "scale_factor": 1.0654833173974199,
-  "final_drift_m": 11.2322,
+  "scale_factor": 1.0670861792418558,
+  "final_drift_m": 7.4433,
+  "coverage": {
+    "coverage_gap_pct": 97.5,
+    "traj_span_s": 236.52,
+    "interior_gap_s": 0.41,
+    "gap_threshold_s": 2.026,
+    "n_gaps": 2,
+    "ts_unit": "s",
+    "ts_dropped": 0
+  },
   "robustness": {
     "init_success": true,
     "init_time_s": null,
-    "tracking_losses": 0,
+    "tracking_losses": null,
     "loop_closures": 0,
-    "map_resets": 0,
+    "map_resets": null,
     "output_valid": true,
     "first_failure_s": null,
-    "frames_total": 2425,
+    "log_instrumented": true,
+    "frames_total": 2419,
     "frames_tracked": 2425,
-    "track_pct": 100.0
+    "track_pct": 100.2
   },
   "runtime": {
     "wall_s": 309.64,
     "fps": 7.832,
     "fps_raw": 7.832
   },
+  "machine": {
+    "os": "Ubuntu 22.04.5 LTS",
+    "kernel": "6.8.0-136-generic",
+    "cpu": "Intel(R) Core(TM) i9-14900HX",
+    "cpu_cores": {
+      "physical": 24,
+      "logical": 32
+    },
+    "ram_total_gb": 31.1,
+    "gpus": [
+      {
+        "name": "NVIDIA GeForce RTX 4080 Laptop GPU",
+        "memory": "12282 MiB",
+        "driver": "580.173.02"
+      }
+    ],
+    "python": "3.10.20",
+    "collected_at": "evaluation",
+    "note": "machine of the EVALUATION host; run host unverified (run predates run-time capture)"
+  },
   "agri_segments": {
     "row": {
       "n_segments": 5,
-      "ate_rmse_mean": 0.206899,
-      "ate_rmse_std": 0.128678,
+      "ate_rmse_mean": 3.147273,
+      "ate_rmse_std": 1.334626,
+      "alignment": "global_se3",
       "segments": [
         {
           "t_start": 1770731344.371207,
           "t_end": 1770731382.1081827,
-          "ate_rmse": 0.067347,
-          "ate_mean": 0.0615,
+          "ate_rmse": 4.861337,
+          "ate_mean": 4.822826,
+          "n_pairs": 90,
           "n_frames": 379,
           "duration_s": 37.737
         },
         {
           "t_start": 1770731397.9975832,
           "t_end": 1770731431.4832652,
-          "ate_rmse": 0.28927,
-          "ate_mean": 0.252107,
+          "ate_rmse": 3.40459,
+          "ate_mean": 2.862041,
+          "n_pairs": 76,
           "n_frames": 336,
           "duration_s": 33.486
         },
         {
           "t_start": 1770731431.580135,
           "t_end": 1770731440.673167,
-          "ate_rmse": 0.213605,
-          "ate_mean": 0.182558,
+          "ate_rmse": 1.642215,
+          "ate_mean": 1.498556,
+          "n_pairs": 17,
           "n_frames": 92,
           "duration_s": 9.093
         },
         {
           "t_start": 1770731452.467824,
           "t_end": 1770731486.24814,
-          "ate_rmse": 0.065988,
-          "ate_mean": 0.058079,
+          "ate_rmse": 1.979567,
+          "ate_mean": 1.971111,
+          "n_pairs": 87,
           "n_frames": 339,
           "duration_s": 33.78
         },
         {
           "t_start": 1770731499.6429293,
           "t_end": 1770731558.9064503,
-          "ate_rmse": 0.398287,
-          "ate_mean": 0.29642,
+          "ate_rmse": 3.848656,
+          "ate_mean": 3.514043,
+          "n_pairs": 106,
           "n_frames": 594,
           "duration_s": 59.264
         }
@@ -104,38 +164,43 @@
     },
     "turn": {
       "n_segments": 4,
-      "ate_rmse_mean": 0.035995,
-      "ate_rmse_std": 0.005095,
+      "ate_rmse_mean": 4.473724,
+      "ate_rmse_std": 2.744157,
+      "alignment": "global_se3",
       "segments": [
         {
           "t_start": 1770731382.2075768,
           "t_end": 1770731397.8967366,
-          "ate_rmse": 0.035242,
-          "ate_mean": 0.033118,
+          "ate_rmse": 6.129546,
+          "ate_mean": 6.128931,
+          "n_pairs": 21,
           "n_frames": 158,
           "duration_s": 15.689
         },
         {
           "t_start": 1770731440.773929,
           "t_end": 1770731452.3686497,
-          "ate_rmse": 0.031116,
-          "ate_mean": 0.027558,
+          "ate_rmse": 2.470513,
+          "ate_mean": 2.470042,
+          "n_pairs": 19,
           "n_frames": 117,
           "duration_s": 11.595
         },
         {
           "t_start": 1770731486.3495173,
           "t_end": 1770731499.5415547,
-          "ate_rmse": 0.033171,
-          "ate_mean": 0.029717,
+          "ate_rmse": 1.838837,
+          "ate_mean": 1.838799,
+          "n_pairs": 21,
           "n_frames": 133,
           "duration_s": 13.192
         },
         {
           "t_start": 1770731562.6166313,
           "t_end": 1770731586.5908613,
-          "ate_rmse": 0.044451,
-          "ate_mean": 0.03791,
+          "ate_rmse": 7.456,
+          "ate_mean": 7.455978,
+          "n_pairs": 19,
           "n_frames": 241,
           "duration_s": 23.974
         }

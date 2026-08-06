@@ -7,50 +7,80 @@
   "use_imu": true,
   "use_lc": false,
   "gt_source": "interpolated",
-  "n_pairs_ate": 25662,
+  "gt_provenance": {
+    "file": "gt_interp_tum.txt",
+    "source": "interpolated",
+    "sha256": "c39b1a2f94649d5164278bbceae5510edaffaabb7b538096c0b6204215ccb9e8",
+    "mtime": 1786002888,
+    "n_rows": 2631
+  },
+  "eval_schema": 2,
+  "run_status": "ok",
+  "n_pairs_ate": 2567,
   "ate": {
-    "rmse": 0.126375,
-    "mean": 0.119879,
-    "median": 0.130053,
-    "std": 0.039996,
-    "max": 0.232065
+    "rmse": 0.12643,
+    "mean": 0.119923,
+    "median": 0.130001,
+    "std": 0.040037,
+    "max": 0.231516
   },
   "ate_se3": {
-    "rmse": 0.132154,
-    "mean": 0.125132,
-    "median": 0.135948,
-    "std": 0.042504,
-    "max": 0.247947
+    "rmse": 0.132219,
+    "mean": 0.125194,
+    "median": 0.135946,
+    "std": 0.042526,
+    "max": 0.246254
   },
+  "ate_origin": {},
   "rpe_trans_1m": {
-    "rmse": 0.02296,
-    "mean": 0.017963,
-    "std": 0.0143,
-    "max": 0.076739
+    "rmse": 0.023454,
+    "mean": 0.018414,
+    "std": 0.014526,
+    "max": 0.069832
+  },
+  "rpe_trans_1m_se3": {
+    "rmse": 0.027646,
+    "mean": 0.022159,
+    "std": 0.016532
   },
   "rpe_rot_1m_deg": {
-    "rmse": 0.223989,
-    "mean": 0.121466,
-    "std": 0.188194
+    "rmse": 0.226389,
+    "mean": 0.120291,
+    "std": 0.191786
   },
   "kitti_drift": {
-    "rpe_10m_trans_rmse": 0.085858,
-    "rpe_50m_trans_rmse": 0.029352,
-    "rpe_100m_trans_rmse": null
+    "rpe_10m_trans_rmse": 0.066569,
+    "rpe_10m_trans_rmse_se3": 0.094516,
+    "drift_10m_pct": 0.945,
+    "rpe_50m_trans_rmse": 0.144333,
+    "rpe_50m_trans_rmse_se3": 0.087523,
+    "drift_50m_pct": 0.175,
+    "rpe_100m_trans_rmse": null,
+    "rpe_100m_trans_rmse_se3": null
   },
-  "scale_factor": 0.9893488817859312,
-  "final_drift_m": 4.7777,
+  "scale_factor": 0.9893366915112288,
+  "final_drift_m": 0.1838,
+  "coverage": {
+    "coverage_gap_pct": 95.9,
+    "traj_span_s": 129.44,
+    "interior_gap_s": 0.0,
+    "gap_threshold_s": 2.0,
+    "n_gaps": 0,
+    "ts_unit": "s",
+    "ts_dropped": 0
+  },
   "robustness": {
     "init_success": false,
     "init_time_s": null,
     "tracking_losses": 0,
-    "loop_closures": 0,
+    "loop_closures": null,
     "map_resets": 0,
     "output_valid": true,
     "first_failure_s": null,
-    "frames_total": 26302,
+    "log_instrumented": true,
+    "frames_total": 2631,
     "frames_tracked": 25890,
-    "track_pct": 98.4
+    "track_pct": 984.0
   },
   "runtime": {
     "vram_mean_mib": 466.2,

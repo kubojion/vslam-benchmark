@@ -7,6 +7,15 @@
   "use_imu": true,
   "use_lc": false,
   "gt_source": "interpolated",
+  "gt_provenance": {
+    "file": "gt_interp_tum.txt",
+    "source": "interpolated",
+    "sha256": "121c7606b4601eaee82ad7988d523b222a1aff6fc27e4c0fa543c13c0a836cbd",
+    "mtime": 1786002891,
+    "n_rows": 2419
+  },
+  "eval_schema": 2,
+  "run_status": "ok",
   "n_pairs_ate": 231,
   "ate": {
     "rmse": 16.495828,
@@ -22,11 +31,22 @@
     "std": 24.860815,
     "max": 92.192704
   },
+  "ate_origin": {
+    "rmse": 90.658073,
+    "mean": 82.484479,
+    "median": 68.130492,
+    "max": 154.46624
+  },
   "rpe_trans_1m": {
     "rmse": 2.897383,
     "mean": 2.186745,
     "std": 1.900783,
     "max": 6.720775
+  },
+  "rpe_trans_1m_se3": {
+    "rmse": 4.207553,
+    "mean": 2.682756,
+    "std": 3.241346
   },
   "rpe_rot_1m_deg": {
     "rmse": 2.462996,
@@ -35,22 +55,38 @@
   },
   "kitti_drift": {
     "rpe_10m_trans_rmse": 14.134824,
+    "rpe_10m_trans_rmse_se3": 8.312088,
+    "drift_10m_pct": 83.121,
     "rpe_50m_trans_rmse": 0.567139,
-    "rpe_100m_trans_rmse": null
+    "rpe_50m_trans_rmse_se3": 21.348035,
+    "drift_50m_pct": 42.696,
+    "rpe_100m_trans_rmse": null,
+    "rpe_100m_trans_rmse_se3": 24.029966,
+    "drift_100m_pct": 24.03
   },
   "scale_factor": 0.16473692590990516,
-  "final_drift_m": 84463317177493.17,
+  "final_drift_m": 16.6611,
+  "coverage": {
+    "coverage_gap_pct": 100.0,
+    "traj_span_s": 9522147.36,
+    "interior_gap_s": 9521895.52,
+    "gap_threshold_s": 2.0,
+    "n_gaps": 1,
+    "ts_unit": "s",
+    "ts_dropped": 0
+  },
   "robustness": {
-    "init_success": false,
+    "init_success": null,
     "init_time_s": null,
-    "tracking_losses": 0,
-    "loop_closures": 0,
-    "map_resets": 0,
+    "tracking_losses": null,
+    "loop_closures": null,
+    "map_resets": null,
     "output_valid": true,
     "first_failure_s": null,
-    "frames_total": 2425,
+    "log_instrumented": false,
+    "frames_total": 2419,
     "frames_tracked": 2400,
-    "track_pct": 99.0
+    "track_pct": 99.2
   },
   "runtime": {
     "vram_mean_mib": 15.0,
@@ -65,49 +101,75 @@
     "fps": 9.691,
     "fps_raw": 9.691
   },
+  "machine": {
+    "os": "Ubuntu 22.04.5 LTS",
+    "kernel": "6.8.0-136-generic",
+    "cpu": "Intel(R) Core(TM) i9-14900HX",
+    "cpu_cores": {
+      "physical": 24,
+      "logical": 32
+    },
+    "ram_total_gb": 31.1,
+    "gpus": [
+      {
+        "name": "NVIDIA GeForce RTX 4080 Laptop GPU",
+        "memory": "12282 MiB",
+        "driver": "580.173.02"
+      }
+    ],
+    "python": "3.10.20",
+    "collected_at": "evaluation",
+    "note": "machine of the EVALUATION host; run host unverified (run predates run-time capture)"
+  },
   "agri_segments": {
     "row": {
       "n_segments": 5,
-      "ate_rmse_mean": 3.478015,
-      "ate_rmse_std": 2.55031,
+      "ate_rmse_mean": 41.518901,
+      "ate_rmse_std": 28.293339,
+      "alignment": "global_se3",
       "segments": [
         {
           "t_start": 1770731344.371207,
           "t_end": 1770731382.1081827,
-          "ate_rmse": 4.683439,
-          "ate_mean": 3.669094,
+          "ate_rmse": 81.734974,
+          "ate_mean": 81.460325,
+          "n_pairs": 32,
           "n_frames": 379,
           "duration_s": 37.737
         },
         {
           "t_start": 1770731397.9975832,
           "t_end": 1770731431.4832652,
-          "ate_rmse": 0.929162,
-          "ate_mean": 0.86208,
+          "ate_rmse": 26.115191,
+          "ate_mean": 25.16851,
+          "n_pairs": 24,
           "n_frames": 336,
           "duration_s": 33.486
         },
         {
           "t_start": 1770731431.580135,
           "t_end": 1770731440.673167,
-          "ate_rmse": 0.185121,
-          "ate_mean": 0.171855,
+          "ate_rmse": 20.334715,
+          "ate_mean": 20.263072,
+          "n_pairs": 11,
           "n_frames": 92,
           "duration_s": 9.093
         },
         {
           "t_start": 1770731452.467824,
           "t_end": 1770731486.24814,
-          "ate_rmse": 4.575562,
-          "ate_mean": 3.964641,
+          "ate_rmse": 18.584989,
+          "ate_mean": 18.242356,
+          "n_pairs": 49,
           "n_frames": 339,
           "duration_s": 33.78
         },
         {
           "t_start": 1770731499.6429293,
           "t_end": 1770731558.9064503,
-          "ate_rmse": 7.016793,
-          "ate_mean": 6.20796,
+          "ate_rmse": 60.824634,
+          "ate_mean": 59.655219,
+          "n_pairs": 55,
           "n_frames": 594,
           "duration_s": 59.264
         }
@@ -115,38 +177,43 @@
     },
     "turn": {
       "n_segments": 4,
-      "ate_rmse_mean": 0.530158,
-      "ate_rmse_std": 0.188616,
+      "ate_rmse_mean": 33.214323,
+      "ate_rmse_std": 15.326032,
+      "alignment": "global_se3",
       "segments": [
         {
           "t_start": 1770731382.2075768,
           "t_end": 1770731397.8967366,
-          "ate_rmse": 0.815785,
-          "ate_mean": 0.734828,
+          "ate_rmse": 56.070069,
+          "ate_mean": 55.053774,
+          "n_pairs": 13,
           "n_frames": 158,
           "duration_s": 15.689
         },
         {
           "t_start": 1770731440.773929,
           "t_end": 1770731452.3686497,
-          "ate_rmse": 0.300333,
-          "ate_mean": 0.27196,
+          "ate_rmse": 27.899454,
+          "ate_mean": 27.526504,
+          "n_pairs": 7,
           "n_frames": 117,
           "duration_s": 11.595
         },
         {
           "t_start": 1770731486.3495173,
           "t_end": 1770731499.5415547,
-          "ate_rmse": 0.55858,
-          "ate_mean": 0.522812,
+          "ate_rmse": 24.137545,
+          "ate_mean": 24.102495,
+          "n_pairs": 16,
           "n_frames": 133,
           "duration_s": 13.192
         },
         {
           "t_start": 1770731562.6166313,
           "t_end": 1770731586.5908613,
-          "ate_rmse": 0.445936,
-          "ate_mean": 0.394556,
+          "ate_rmse": 24.750225,
+          "ate_mean": 20.927658,
+          "n_pairs": 20,
           "n_frames": 241,
           "duration_s": 23.974
         }

@@ -3,51 +3,85 @@
   "algo": "droidslam",
   "dataset": "euroc_mav",
   "seq": "MH_01_easy",
+  "run_type": "vo",
+  "use_imu": false,
+  "use_lc": false,
   "gt_source": "interpolated",
-  "n_pairs_ate": 3682,
+  "gt_provenance": {
+    "file": "gt_interp_tum.txt",
+    "source": "interpolated",
+    "sha256": "889b38f3fc91bd33105bb65c97847a61b2ac13b307b1c12d20085505cbc06603",
+    "mtime": 1786002887,
+    "n_rows": 3638
+  },
+  "eval_schema": 2,
+  "run_status": "ok",
+  "n_pairs_ate": 3638,
   "ate": {
-    "rmse": 4.082552,
-    "mean": 3.650118,
-    "median": 3.700517,
-    "std": 1.828625,
-    "max": 8.509322
+    "rmse": 4.06442,
+    "mean": 3.632782,
+    "median": 3.737894,
+    "std": 1.822746,
+    "max": 8.469561
   },
   "ate_se3": {
-    "rmse": 7.890648,
-    "mean": 6.960634,
-    "median": 6.003792,
-    "std": 3.716437,
-    "max": 17.509992
+    "rmse": 7.866241,
+    "mean": 6.94261,
+    "median": 6.06215,
+    "std": 3.698365,
+    "max": 17.449101
   },
+  "ate_origin": {},
   "rpe_trans_1m": {
-    "rmse": 0.499946,
-    "mean": 0.292329,
-    "std": 0.405573,
-    "max": 2.856587
+    "rmse": 0.508732,
+    "mean": 0.293748,
+    "std": 0.415356,
+    "max": 2.816465
+  },
+  "rpe_trans_1m_se3": {
+    "rmse": 1.096546,
+    "mean": 0.762218,
+    "std": 0.788313
   },
   "rpe_rot_1m_deg": {
-    "rmse": 19.252318,
-    "mean": 15.148035,
-    "std": 11.882289
+    "rmse": 18.609567,
+    "mean": 14.374881,
+    "std": 11.818578
   },
   "kitti_drift": {
-    "rpe_10m_trans_rmse": 2.007264,
-    "rpe_50m_trans_rmse": 6.109739,
-    "rpe_100m_trans_rmse": 9.52175
+    "rpe_10m_trans_rmse": 1.998693,
+    "rpe_10m_trans_rmse_se3": 1.791636,
+    "drift_10m_pct": 17.916,
+    "rpe_50m_trans_rmse": 6.176281,
+    "rpe_50m_trans_rmse_se3": 3.215693,
+    "drift_50m_pct": 6.431,
+    "rpe_100m_trans_rmse": 8.988461,
+    "rpe_100m_trans_rmse_se3": 5.277561,
+    "drift_100m_pct": 5.278
   },
-  "scale_factor": 0.17270309063671296,
-  "final_drift_m": 5.4106,
+  "scale_factor": 0.17479789030634077,
+  "final_drift_m": 13.2839,
+  "coverage": {
+    "coverage_gap_pct": 100.0,
+    "traj_span_s": 184.05,
+    "interior_gap_s": 0.0,
+    "gap_threshold_s": 2.0,
+    "n_gaps": 0,
+    "ts_unit": "s",
+    "ts_dropped": 0
+  },
   "robustness": {
     "init_success": false,
     "init_time_s": null,
-    "tracking_losses": 0,
-    "loop_closures": 0,
-    "map_resets": 0,
+    "tracking_losses": null,
+    "loop_closures": null,
+    "map_resets": null,
     "output_valid": true,
     "first_failure_s": null,
-    "frames_total": 3682,
+    "log_instrumented": true,
+    "frames_total": 3638,
     "frames_tracked": 3682,
-    "track_pct": 100.0
+    "track_pct": 101.2
   },
   "runtime": {
     "vram_mean_mib": 11527.4,
@@ -62,165 +96,25 @@
     "fps": 13.173,
     "fps_raw": 13.173
   },
-  "agri_segments": {
-    "all": {
-      "n_segments": 19,
-      "ate_rmse_mean": 0.860881,
-      "ate_rmse_std": 0.518191,
-      "segments": [
-        {
-          "t_start": 1403636579.7635555,
-          "t_end": 1403636598.7135556,
-          "ate_rmse": 0.176607,
-          "ate_mean": 0.159678,
-          "n_frames": 380,
-          "duration_s": 18.95
-        },
-        {
-          "t_start": 1403636598.7635555,
-          "t_end": 1403636631.5135555,
-          "ate_rmse": 0.302024,
-          "ate_mean": 0.190256,
-          "n_frames": 656,
-          "duration_s": 32.75
-        },
-        {
-          "t_start": 1403636631.5635555,
-          "t_end": 1403636634.4635556,
-          "ate_rmse": 0.455799,
-          "ate_mean": 0.40155,
-          "n_frames": 59,
-          "duration_s": 2.9
-        },
-        {
-          "t_start": 1403636634.5135555,
-          "t_end": 1403636639.1135554,
-          "ate_rmse": 0.847249,
-          "ate_mean": 0.749923,
-          "n_frames": 93,
-          "duration_s": 4.6
-        },
-        {
-          "t_start": 1403636639.1635556,
-          "t_end": 1403636644.7635555,
-          "ate_rmse": 0.607149,
-          "ate_mean": 0.508234,
-          "n_frames": 113,
-          "duration_s": 5.6
-        },
-        {
-          "t_start": 1403636644.8135555,
-          "t_end": 1403636657.1135554,
-          "ate_rmse": 1.227013,
-          "ate_mean": 1.147683,
-          "n_frames": 247,
-          "duration_s": 12.3
-        },
-        {
-          "t_start": 1403636657.1635556,
-          "t_end": 1403636661.1635556,
-          "ate_rmse": 0.680326,
-          "ate_mean": 0.61982,
-          "n_frames": 81,
-          "duration_s": 4.0
-        },
-        {
-          "t_start": 1403636661.2135556,
-          "t_end": 1403636671.1135554,
-          "ate_rmse": 1.312509,
-          "ate_mean": 1.204377,
-          "n_frames": 199,
-          "duration_s": 9.9
-        },
-        {
-          "t_start": 1403636671.1635556,
-          "t_end": 1403636674.2135556,
-          "ate_rmse": 0.281189,
-          "ate_mean": 0.231203,
-          "n_frames": 62,
-          "duration_s": 3.05
-        },
-        {
-          "t_start": 1403636674.2635555,
-          "t_end": 1403636681.6135554,
-          "ate_rmse": 1.096478,
-          "ate_mean": 0.997604,
-          "n_frames": 148,
-          "duration_s": 7.35
-        },
-        {
-          "t_start": 1403636681.6635556,
-          "t_end": 1403636690.9635556,
-          "ate_rmse": 1.778351,
-          "ate_mean": 1.540584,
-          "n_frames": 187,
-          "duration_s": 9.3
-        },
-        {
-          "t_start": 1403636691.0135555,
-          "t_end": 1403636692.7135556,
-          "ate_rmse": 0.327002,
-          "ate_mean": 0.287098,
-          "n_frames": 35,
-          "duration_s": 1.7
-        },
-        {
-          "t_start": 1403636692.7635555,
-          "t_end": 1403636703.1135554,
-          "ate_rmse": 0.485376,
-          "ate_mean": 0.454423,
-          "n_frames": 208,
-          "duration_s": 10.35
-        },
-        {
-          "t_start": 1403636703.1635556,
-          "t_end": 1403636713.4135554,
-          "ate_rmse": 2.051443,
-          "ate_mean": 1.872393,
-          "n_frames": 206,
-          "duration_s": 10.25
-        },
-        {
-          "t_start": 1403636713.4635556,
-          "t_end": 1403636719.6635556,
-          "ate_rmse": 0.90275,
-          "ate_mean": 0.764227,
-          "n_frames": 125,
-          "duration_s": 6.2
-        },
-        {
-          "t_start": 1403636719.7135556,
-          "t_end": 1403636730.6635556,
-          "ate_rmse": 1.083245,
-          "ate_mean": 0.945569,
-          "n_frames": 220,
-          "duration_s": 10.95
-        },
-        {
-          "t_start": 1403636730.7135556,
-          "t_end": 1403636735.2135556,
-          "ate_rmse": 0.470686,
-          "ate_mean": 0.413874,
-          "n_frames": 91,
-          "duration_s": 4.5
-        },
-        {
-          "t_start": 1403636735.2635555,
-          "t_end": 1403636746.9635556,
-          "ate_rmse": 0.7545,
-          "ate_mean": 0.673385,
-          "n_frames": 235,
-          "duration_s": 11.7
-        },
-        {
-          "t_start": 1403636747.0135555,
-          "t_end": 1403636763.8135555,
-          "ate_rmse": 1.517045,
-          "ate_mean": 1.368824,
-          "n_frames": 337,
-          "duration_s": 16.8
-        }
-      ]
-    }
-  }
+  "machine": {
+    "os": "Ubuntu 22.04.5 LTS",
+    "kernel": "6.8.0-136-generic",
+    "cpu": "Intel(R) Core(TM) i9-14900HX",
+    "cpu_cores": {
+      "physical": 24,
+      "logical": 32
+    },
+    "ram_total_gb": 31.1,
+    "gpus": [
+      {
+        "name": "NVIDIA GeForce RTX 4080 Laptop GPU",
+        "memory": "12282 MiB",
+        "driver": "580.173.02"
+      }
+    ],
+    "python": "3.10.20",
+    "collected_at": "evaluation",
+    "note": "machine of the EVALUATION host; run host unverified (run predates run-time capture)"
+  },
+  "agri_segments": {}
 }

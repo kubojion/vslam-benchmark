@@ -7,13 +7,22 @@
   "use_imu": true,
   "use_lc": true,
   "gt_source": "interpolated",
+  "gt_provenance": {
+    "file": "gt_interp_tum.txt",
+    "source": "interpolated",
+    "sha256": "c39b1a2f94649d5164278bbceae5510edaffaabb7b538096c0b6204215ccb9e8",
+    "mtime": 1786002888,
+    "n_rows": 2631
+  },
+  "eval_schema": 2,
+  "run_status": "ok",
   "n_pairs_ate": 2631,
   "ate": {
     "rmse": 0.027646,
     "mean": 0.024441,
     "median": 0.023697,
     "std": 0.012921,
-    "max": 0.090615
+    "max": 0.090614
   },
   "ate_se3": {
     "rmse": 0.032168,
@@ -22,11 +31,17 @@
     "std": 0.015788,
     "max": 0.10314
   },
+  "ate_origin": {},
   "rpe_trans_1m": {
     "rmse": 0.013944,
     "mean": 0.010462,
     "std": 0.009219,
-    "max": 0.045823
+    "max": 0.045822
+  },
+  "rpe_trans_1m_se3": {
+    "rmse": 0.014803,
+    "mean": 0.010867,
+    "std": 0.010052
   },
   "rpe_rot_1m_deg": {
     "rmse": 0.089034,
@@ -35,22 +50,37 @@
   },
   "kitti_drift": {
     "rpe_10m_trans_rmse": 0.042884,
+    "rpe_10m_trans_rmse_se3": 0.035607,
+    "drift_10m_pct": 0.356,
     "rpe_50m_trans_rmse": 0.018086,
-    "rpe_100m_trans_rmse": null
+    "rpe_50m_trans_rmse_se3": 0.004213,
+    "drift_50m_pct": 0.008,
+    "rpe_100m_trans_rmse": null,
+    "rpe_100m_trans_rmse_se3": null
   },
-  "scale_factor": 0.9954264721681378,
-  "final_drift_m": 4.9721,
+  "scale_factor": 0.9954264730303001,
+  "final_drift_m": 0.0195,
+  "coverage": {
+    "coverage_gap_pct": 100.0,
+    "traj_span_s": 134.95,
+    "interior_gap_s": 0.0,
+    "gap_threshold_s": 2.0,
+    "n_gaps": 0,
+    "ts_unit": "s",
+    "ts_dropped": 0
+  },
   "robustness": {
     "init_success": true,
     "init_time_s": 0.733,
     "tracking_losses": 0,
     "loop_closures": 39,
-    "map_resets": 0,
+    "map_resets": null,
     "output_valid": true,
     "first_failure_s": null,
-    "frames_total": 26302,
+    "log_instrumented": true,
+    "frames_total": 2631,
     "frames_tracked": 2700,
-    "track_pct": 10.3
+    "track_pct": 102.6
   },
   "runtime": {
     "vram_mean_mib": 671.0,

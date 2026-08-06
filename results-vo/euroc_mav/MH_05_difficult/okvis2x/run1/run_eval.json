@@ -7,13 +7,22 @@
   "use_imu": false,
   "use_lc": false,
   "gt_source": "interpolated",
+  "gt_provenance": {
+    "file": "gt_interp_tum.txt",
+    "source": "interpolated",
+    "sha256": "11570e3e026a3c84f76cc4232ff382568b2f3d174080ddb74cfd19a262444e81",
+    "mtime": 1786002889,
+    "n_rows": 2221
+  },
+  "eval_schema": 2,
+  "run_status": "ok",
   "n_pairs_ate": 2221,
   "ate": {
     "rmse": 0.153102,
-    "mean": 0.143897,
+    "mean": 0.143898,
     "median": 0.136582,
     "std": 0.052285,
-    "max": 0.264822
+    "max": 0.264823
   },
   "ate_se3": {
     "rmse": 0.154312,
@@ -22,11 +31,17 @@
     "std": 0.05717,
     "max": 0.261222
   },
+  "ate_origin": {},
   "rpe_trans_1m": {
     "rmse": 0.03381,
     "mean": 0.027139,
     "std": 0.020164,
     "max": 0.083568
+  },
+  "rpe_trans_1m_se3": {
+    "rmse": 0.031567,
+    "mean": 0.024454,
+    "std": 0.019962
   },
   "rpe_rot_1m_deg": {
     "rmse": 0.239826,
@@ -35,22 +50,37 @@
   },
   "kitti_drift": {
     "rpe_10m_trans_rmse": 0.113197,
+    "rpe_10m_trans_rmse_se3": 0.098225,
+    "drift_10m_pct": 0.982,
     "rpe_50m_trans_rmse": 0.050925,
-    "rpe_100m_trans_rmse": null
+    "rpe_50m_trans_rmse_se3": 0.056023,
+    "drift_50m_pct": 0.112,
+    "rpe_100m_trans_rmse": null,
+    "rpe_100m_trans_rmse_se3": null
   },
-  "scale_factor": 1.00281203085821,
-  "final_drift_m": 4.9318,
+  "scale_factor": 1.00281203082369,
+  "final_drift_m": 0.1593,
+  "coverage": {
+    "coverage_gap_pct": 100.0,
+    "traj_span_s": 113.55,
+    "interior_gap_s": 0.0,
+    "gap_threshold_s": 2.0,
+    "n_gaps": 0,
+    "ts_unit": "s",
+    "ts_dropped": 0
+  },
   "robustness": {
     "init_success": true,
     "init_time_s": 0.7,
     "tracking_losses": 0,
     "loop_closures": 0,
-    "map_resets": 0,
+    "map_resets": null,
     "output_valid": true,
     "first_failure_s": null,
-    "frames_total": 22212,
+    "log_instrumented": true,
+    "frames_total": 2221,
     "frames_tracked": 2272,
-    "track_pct": 10.2
+    "track_pct": 102.3
   },
   "runtime": {
     "vram_mean_mib": 537.2,

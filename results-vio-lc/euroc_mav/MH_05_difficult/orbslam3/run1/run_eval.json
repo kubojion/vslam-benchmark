@@ -7,6 +7,15 @@
   "use_imu": true,
   "use_lc": true,
   "gt_source": "interpolated",
+  "gt_provenance": {
+    "file": "gt_interp_tum.txt",
+    "source": "interpolated",
+    "sha256": "11570e3e026a3c84f76cc4232ff382568b2f3d174080ddb74cfd19a262444e81",
+    "mtime": 1786002889,
+    "n_rows": 2221
+  },
+  "eval_schema": 2,
+  "run_status": "ok",
   "n_pairs_ate": 2170,
   "ate": {
     "rmse": 0.061974,
@@ -20,13 +29,19 @@
     "mean": 0.063372,
     "median": 0.057827,
     "std": 0.025928,
-    "max": 0.136517
+    "max": 0.136518
   },
+  "ate_origin": {},
   "rpe_trans_1m": {
     "rmse": 0.016978,
     "mean": 0.013269,
     "std": 0.010592,
     "max": 0.051125
+  },
+  "rpe_trans_1m_se3": {
+    "rmse": 0.017043,
+    "mean": 0.013461,
+    "std": 0.010453
   },
   "rpe_rot_1m_deg": {
     "rmse": 0.075485,
@@ -35,11 +50,24 @@
   },
   "kitti_drift": {
     "rpe_10m_trans_rmse": 0.052211,
+    "rpe_10m_trans_rmse_se3": 0.061794,
+    "drift_10m_pct": 0.618,
     "rpe_50m_trans_rmse": null,
-    "rpe_100m_trans_rmse": null
+    "rpe_50m_trans_rmse_se3": null,
+    "rpe_100m_trans_rmse": null,
+    "rpe_100m_trans_rmse_se3": null
   },
-  "scale_factor": 0.9958154056778962,
-  "final_drift_m": 5.0202,
+  "scale_factor": 0.9958154056106439,
+  "final_drift_m": 0.0796,
+  "coverage": {
+    "coverage_gap_pct": 96.5,
+    "traj_span_s": 109.6,
+    "interior_gap_s": 0.0,
+    "gap_threshold_s": 2.0,
+    "n_gaps": 0,
+    "ts_unit": "s",
+    "ts_dropped": 0
+  },
   "robustness": {
     "init_success": true,
     "init_time_s": 7.023,
@@ -48,9 +76,10 @@
     "map_resets": 0,
     "output_valid": true,
     "first_failure_s": null,
-    "frames_total": 22212,
+    "log_instrumented": true,
+    "frames_total": 2221,
     "frames_tracked": 2193,
-    "track_pct": 9.9
+    "track_pct": 98.7
   },
   "runtime": {
     "vram_mean_mib": 779.1,

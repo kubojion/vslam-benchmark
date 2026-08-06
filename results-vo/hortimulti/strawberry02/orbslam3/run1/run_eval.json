@@ -7,39 +7,69 @@
   "use_imu": false,
   "use_lc": false,
   "gt_source": "interpolated",
-  "n_pairs_ate": 4437,
+  "gt_provenance": {
+    "file": "gt_interp_tum.txt",
+    "source": "interpolated",
+    "sha256": "b41a673828063d3e03ccbfe13c9c630e6261c1f0676f7d8be74ffcebb404f6ac",
+    "mtime": 1786002890,
+    "n_rows": 8823
+  },
+  "eval_schema": 2,
+  "run_status": "ok",
+  "n_pairs_ate": 3828,
   "ate": {
-    "rmse": 1.380261,
-    "mean": 1.29735,
-    "median": 1.247838,
-    "std": 0.471173,
-    "max": 3.434502
+    "rmse": 1.254693,
+    "mean": 1.197543,
+    "median": 1.211654,
+    "std": 0.374359,
+    "max": 3.213786
   },
   "ate_se3": {
-    "rmse": 2.345826,
-    "mean": 2.144636,
-    "median": 2.234114,
-    "std": 0.950492,
-    "max": 4.121964
+    "rmse": 2.184603,
+    "mean": 1.973961,
+    "median": 1.906634,
+    "std": 0.935933,
+    "max": 3.883479
   },
+  "ate_origin": {},
   "rpe_trans_1m": {
-    "rmse": 0.11323,
-    "mean": 0.079971,
-    "std": 0.080161,
-    "max": 0.648174
+    "rmse": 0.116214,
+    "mean": 0.081215,
+    "std": 0.083126,
+    "max": 0.69214
+  },
+  "rpe_trans_1m_se3": {
+    "rmse": 0.128137,
+    "mean": 0.091534,
+    "std": 0.08967
   },
   "rpe_rot_1m_deg": {
-    "rmse": 11.551332,
-    "mean": 4.911864,
-    "std": 10.454992
+    "rmse": 12.280435,
+    "mean": 4.998247,
+    "std": 11.217246
   },
   "kitti_drift": {
-    "rpe_10m_trans_rmse": 0.411572,
-    "rpe_50m_trans_rmse": 1.06924,
-    "rpe_100m_trans_rmse": 2.224635
+    "rpe_10m_trans_rmse": 0.382481,
+    "rpe_10m_trans_rmse_se3": 0.588085,
+    "drift_10m_pct": 5.881,
+    "rpe_50m_trans_rmse": 1.060303,
+    "rpe_50m_trans_rmse_se3": 1.936334,
+    "drift_50m_pct": 3.873,
+    "rpe_100m_trans_rmse": 2.160031,
+    "rpe_100m_trans_rmse_se3": 2.992985,
+    "drift_100m_pct": 2.993
   },
-  "scale_factor": 1.040049844350058,
-  "final_drift_m": 111.2887,
+  "scale_factor": 1.0390025901547784,
+  "final_drift_m": 3.6871,
+  "coverage": {
+    "coverage_gap_pct": 46.6,
+    "traj_span_s": 443.34,
+    "interior_gap_s": 0.0,
+    "gap_threshold_s": 2.0,
+    "n_gaps": 0,
+    "ts_unit": "s",
+    "ts_dropped": 0
+  },
   "robustness": {
     "init_success": true,
     "init_time_s": 2.699,
@@ -48,9 +78,10 @@
     "map_resets": 0,
     "output_valid": true,
     "first_failure_s": null,
-    "frames_total": 9530,
+    "log_instrumented": true,
+    "frames_total": 8823,
     "frames_tracked": 4437,
-    "track_pct": 46.6
+    "track_pct": 50.3
   },
   "runtime": {
     "vram_mean_mib": 600.7,
@@ -86,62 +117,70 @@
   "agri_segments": {
     "row": {
       "n_segments": 7,
-      "ate_rmse_mean": 0.200746,
-      "ate_rmse_std": 0.179057,
+      "ate_rmse_mean": 2.229506,
+      "ate_rmse_std": 0.549353,
+      "alignment": "global_se3",
       "segments": [
         {
           "t_start": 1770725890.94385,
           "t_end": 1770725995.58222,
-          "ate_rmse": 0.157751,
-          "ate_mean": 0.132759,
+          "ate_rmse": 1.739544,
+          "ate_mean": 1.641767,
+          "n_pairs": 794,
           "n_frames": 459,
           "duration_s": 104.638
         },
         {
           "t_start": 1770726015.1706,
           "t_end": 1770726051.44898,
-          "ate_rmse": 0.111149,
-          "ate_mean": 0.088064,
+          "ate_rmse": 2.950262,
+          "ate_mean": 2.931247,
+          "n_pairs": 344,
           "n_frames": 184,
           "duration_s": 36.278
         },
         {
           "t_start": 1770726051.84895,
           "t_end": 1770726053.64778,
-          "ate_rmse": 0.111091,
-          "ate_mean": 0.099278,
+          "ate_rmse": 2.691162,
+          "ate_mean": 2.69066,
+          "n_pairs": 10,
           "n_frames": 5,
           "duration_s": 1.799
         },
         {
           "t_start": 1770726054.04763,
           "t_end": 1770726056.64576,
-          "ate_rmse": 0.065257,
-          "ate_mean": 0.056526,
+          "ate_rmse": 2.643645,
+          "ate_mean": 2.642849,
+          "n_pairs": 26,
           "n_frames": 9,
           "duration_s": 2.598
         },
         {
           "t_start": 1770726056.8458,
           "t_end": 1770726098.42115,
-          "ate_rmse": 0.631288,
-          "ate_mean": 0.554389,
+          "ate_rmse": 2.115459,
+          "ate_mean": 1.942164,
+          "n_pairs": 249,
           "n_frames": 88,
           "duration_s": 41.575
         },
         {
           "t_start": 1770726098.82093,
           "t_end": 1770726154.98753,
-          "ate_rmse": 0.17275,
-          "ate_mean": 0.145222,
+          "ate_rmse": 1.449543,
+          "ate_mean": 1.292485,
+          "n_pairs": 549,
           "n_frames": 233,
           "duration_s": 56.167
         },
         {
           "t_start": 1770726171.77774,
           "t_end": 1770726316.49144,
-          "ate_rmse": 0.155936,
-          "ate_mean": 0.139308,
+          "ate_rmse": 2.016924,
+          "ate_mean": 1.790281,
+          "n_pairs": 1388,
           "n_frames": 591,
           "duration_s": 144.714
         }
@@ -149,38 +188,43 @@
     },
     "turn": {
       "n_segments": 4,
-      "ate_rmse_mean": 0.097039,
-      "ate_rmse_std": 0.042899,
+      "ate_rmse_mean": 3.080271,
+      "ate_rmse_std": 0.277484,
+      "alignment": "global_se3",
       "segments": [
         {
           "t_start": 1770725995.68203,
           "t_end": 1770726014.97053,
-          "ate_rmse": 0.099187,
-          "ate_mean": 0.075689,
+          "ate_rmse": 3.138905,
+          "ate_mean": 3.136046,
+          "n_pairs": 166,
           "n_frames": 71,
           "duration_s": 19.289
         },
         {
           "t_start": 1770726155.08777,
           "t_end": 1770726171.47776,
-          "ate_rmse": 0.136416,
-          "ate_mean": 0.115429,
+          "ate_rmse": 3.101917,
+          "ate_mean": 3.085052,
+          "n_pairs": 110,
           "n_frames": 57,
           "duration_s": 16.39
         },
         {
           "t_start": 1770726316.69106,
           "t_end": 1770726318.39013,
-          "ate_rmse": 0.026558,
-          "ate_mean": 0.02451,
+          "ate_rmse": 2.70557,
+          "ate_mean": 2.704743,
+          "n_pairs": 17,
           "n_frames": 11,
           "duration_s": 1.699
         },
         {
           "t_start": 1770726318.4901,
           "t_end": 1770726348.17236,
-          "ate_rmse": 0.125996,
-          "ate_mean": 0.104608,
+          "ate_rmse": 3.374693,
+          "ate_mean": 3.350165,
+          "n_pairs": 151,
           "n_frames": 78,
           "duration_s": 29.682
         }

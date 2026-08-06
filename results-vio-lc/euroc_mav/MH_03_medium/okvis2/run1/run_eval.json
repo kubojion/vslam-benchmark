@@ -7,11 +7,20 @@
   "use_imu": true,
   "use_lc": true,
   "gt_source": "interpolated",
+  "gt_provenance": {
+    "file": "gt_interp_tum.txt",
+    "source": "interpolated",
+    "sha256": "c39b1a2f94649d5164278bbceae5510edaffaabb7b538096c0b6204215ccb9e8",
+    "mtime": 1786002888,
+    "n_rows": 2631
+  },
+  "eval_schema": 2,
+  "run_status": "ok",
   "n_pairs_ate": 2631,
   "ate": {
     "rmse": 0.023969,
     "mean": 0.021053,
-    "median": 0.018203,
+    "median": 0.018204,
     "std": 0.011457,
     "max": 0.101137
   },
@@ -22,35 +31,56 @@
     "std": 0.012841,
     "max": 0.102764
   },
+  "ate_origin": {},
   "rpe_trans_1m": {
     "rmse": 0.014801,
     "mean": 0.010325,
     "std": 0.010605,
-    "max": 0.047922
+    "max": 0.047921
+  },
+  "rpe_trans_1m_se3": {
+    "rmse": 0.015269,
+    "mean": 0.011589,
+    "std": 0.009942
   },
   "rpe_rot_1m_deg": {
-    "rmse": 0.095049,
-    "mean": 0.078307,
+    "rmse": 0.095048,
+    "mean": 0.078306,
     "std": 0.053873
   },
   "kitti_drift": {
     "rpe_10m_trans_rmse": 0.037366,
+    "rpe_10m_trans_rmse_se3": 0.034787,
+    "drift_10m_pct": 0.348,
     "rpe_50m_trans_rmse": 0.014509,
-    "rpe_100m_trans_rmse": null
+    "rpe_50m_trans_rmse_se3": 0.036955,
+    "drift_50m_pct": 0.074,
+    "rpe_100m_trans_rmse": null,
+    "rpe_100m_trans_rmse_se3": null
   },
-  "scale_factor": 0.9934913315881531,
-  "final_drift_m": 4.9698,
+  "scale_factor": 0.9934913324432989,
+  "final_drift_m": 0.0172,
+  "coverage": {
+    "coverage_gap_pct": 100.0,
+    "traj_span_s": 134.95,
+    "interior_gap_s": 0.0,
+    "gap_threshold_s": 2.0,
+    "n_gaps": 0,
+    "ts_unit": "s",
+    "ts_dropped": 0
+  },
   "robustness": {
     "init_success": true,
     "init_time_s": 0.737,
     "tracking_losses": 0,
     "loop_closures": 42,
-    "map_resets": 0,
+    "map_resets": null,
     "output_valid": true,
     "first_failure_s": null,
-    "frames_total": 26302,
+    "log_instrumented": true,
+    "frames_total": 2631,
     "frames_tracked": 2700,
-    "track_pct": 10.3
+    "track_pct": 102.6
   },
   "runtime": {
     "vram_mean_mib": 679.0,
