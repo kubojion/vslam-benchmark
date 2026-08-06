@@ -117,18 +117,35 @@
   "agri_segments": {
     "row": {
       "n_segments": 1,
-      "ate_rmse_mean": 639751.156909,
+      "ate_rmse_mean": 491803.386255,
       "ate_rmse_std": 0.0,
       "alignment": "global_se3",
       "segments": [
         {
           "t_start": 1783069468.3356447,
-          "t_end": 1783071643.3189511,
-          "ate_rmse": 639751.156909,
-          "ate_mean": 553891.152295,
-          "n_pairs": 386,
-          "n_frames": 10874,
-          "duration_s": 2174.983
+          "t_end": 1783070066.7386692,
+          "ate_rmse": 491803.386255,
+          "ate_mean": 442361.589343,
+          "n_pairs": 318,
+          "n_frames": 2991,
+          "duration_s": 598.403
+        }
+      ]
+    },
+    "turn": {
+      "n_segments": 1,
+      "ate_rmse_mean": 1091867.221613,
+      "ate_rmse_std": 0.0,
+      "alignment": "global_se3",
+      "segments": [
+        {
+          "t_start": 1783070066.9386535,
+          "t_end": 1783070220.7316577,
+          "ate_rmse": 1091867.221613,
+          "ate_mean": 1075455.87316,
+          "n_pairs": 68,
+          "n_frames": 770,
+          "duration_s": 153.793
         }
       ]
     }

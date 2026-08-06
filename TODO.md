@@ -250,10 +250,30 @@ Legend: ✅ run complete | 🟡 run complete with caveat | ⬜ config only | �
 | 15 | Add `loopClosing: 0` to hortimulti/euroc/zed2i `_stereo.yaml` | `[x]` clean LC-off baselines are the current VO table (2026-08-04) |
 | 16 | Re-evaluate the 2 colleague-machine OKVIS2 VIO-LC runs with corrected LC metric | `[x]` closed by the machine-B re-evaluation campaign (2026-08-06, all EuRoC/HortiMulti runs re-parsed) |
 | 17 | ~~Create GitHub forks~~ | `[x]` **DONE 2026-08-06** — forks created, branches pushed (airslam 1b70ff6, open_vins 289bca3), `.gitmodules` re-pointed |
-| 18 | Machine B: regenerate zed2i **vio + vo-lc** segment maps (still drawn against the wrong 1.86 m GT) and commit euroc/hortimulti/zed2i GT files under the new `.gitignore` exception | `[ ]` see `docs/campaigns/machine-b-verification-20260806.md` |
-| 19 | Fix `_segment_trajectory.py` turn detection for zed2i (currently 2 pseudo-row segments / 0 turns on a 6-row field → zed2i row/turn analysis meaningless) | `[ ]` |
+| 18 | Machine B: regenerate zed2i **vio + vo-lc** segment maps (still drawn against the wrong 1.86 m GT) and commit euroc/hortimulti/zed2i GT files under the new `.gitignore` exception | `[x]` **DONE 2026-08-06** — maps regenerated for all three zed2i buckets; GT/times files + dataset alias symlinks committed |
+| 19 | Fix `_segment_trajectory.py` turn detection for zed2i (currently 2 pseudo-row segments / 0 turns on a 6-row field → zed2i row/turn analysis meaningless) | `[x]` **DONE 2026-08-06** — root cause was identity GT orientations, not the turn threshold. See finding below |
 
 ---
+
+> **ZED2i TURN DETECTION (task 19, 2026-08-06, machine B):** the "2 pseudo-row segments / 0 turns"
+> symptom was **not** a turn-angle threshold problem. `_segment_trajectory.py` derived heading from
+> the GT quaternion, but the ZED2i GT is built from GPS position only — every row carries an
+> **identity quaternion**, so yaw was constant 0 deg and no turn could ever be detected. Fix: a
+> `yaw_from_path()` fallback that derives heading from the path tangent (2 m smoothing window) when
+> the GT orientations are all identity. Verified neutral for rosariov2/hortimulti/euroc (those have
+> real orientations, so the fallback never fires). ZED2i also needs `--min_seg_path_m 5` (the 25 m
+> default merges its short 6-row pattern). Result: **15 segments {10 row, 5 turn}** (was 2 row / 0
+> turn), and all 18 zed2i runs now report both row and turn ATE — e.g. ORB-SLAM3 VO 0.292 m row /
+> 0.283 m turn, Basalt 0.448 / 0.642, DPVO 12.24 / 20.02.
+>
+> Two related issues found and **deliberately not fixed** (brief rule 5 — no improvised pipeline
+> changes):
+> 1. **`merge_segments` coalescing bug** — adjacent same-type segments are not merged. Fixing it
+>    changes segmentation repo-wide (rosariov2 seq1 107 -> 43 segments, hortimulti 25 -> 14,
+>    euroc 0 -> 11) and would require re-evaluating every rosariov2 run, which rule 3 forbids on
+>    this machine. A `NOTE` documenting this sits at the call site.
+> 2. **`datasets/rosariov2/sequence1/segments_auto.csv` is stale** relative to that sequence's
+>    repaired PGT ground truth. Not regenerated here (rule 3).
 
 > **ORB-SLAM3 VO NATIVE (2026-07-31, this machine):** the submodule builds and runs natively (no
 > Docker) - `src/ORB_SLAM3/Examples/Stereo/stereo_euroc` linked against a local Pangolin, driven by

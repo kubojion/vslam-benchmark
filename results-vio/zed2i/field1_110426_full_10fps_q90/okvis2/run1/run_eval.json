@@ -116,28 +116,99 @@
   },
   "agri_segments": {
     "row": {
-      "n_segments": 2,
-      "ate_rmse_mean": 1771291.633607,
-      "ate_rmse_std": 1553827.464511,
+      "n_segments": 6,
+      "ate_rmse_mean": 1255524.556776,
+      "ate_rmse_std": 1202194.414763,
       "alignment": "global_se3",
       "segments": [
         {
           "t_start": 1783069468.3356447,
-          "t_end": 1783071643.3189511,
-          "ate_rmse": 672569.696658,
-          "ate_mean": 672569.696059,
-          "n_pairs": 21744,
-          "n_frames": 10874,
-          "duration_s": 2174.983
+          "t_end": 1783070066.7386692,
+          "ate_rmse": 672564.516703,
+          "ate_mean": 672564.516268,
+          "n_pairs": 5983,
+          "n_frames": 2991,
+          "duration_s": 598.403
         },
         {
-          "t_start": 1783071643.5288808,
-          "t_end": 1783074089.719098,
-          "ate_rmse": 2870013.570557,
-          "ate_mean": 2066864.767645,
-          "n_pairs": 8373,
-          "n_frames": 12232,
-          "duration_s": 2446.19
+          "t_start": 1783070220.9315767,
+          "t_end": 1783070552.1502717,
+          "ate_rmse": 672552.3397,
+          "ate_mean": 672552.339563,
+          "n_pairs": 3309,
+          "n_frames": 1657,
+          "duration_s": 331.219
+        },
+        {
+          "t_start": 1783070552.330282,
+          "t_end": 1783070993.5199947,
+          "ate_rmse": 672603.123025,
+          "ate_mean": 672603.122904,
+          "n_pairs": 4411,
+          "n_frames": 2207,
+          "duration_s": 441.19
+        },
+        {
+          "t_start": 1783070993.729975,
+          "t_end": 1783071804.926517,
+          "ate_rmse": 664164.203503,
+          "ate_mean": 663498.913261,
+          "n_pairs": 8112,
+          "n_frames": 4057,
+          "duration_s": 811.197
+        },
+        {
+          "t_start": 1783071805.1364353,
+          "t_end": 1783072207.5185928,
+          "ate_rmse": 1176861.646369,
+          "ate_mean": 906155.075143,
+          "n_pairs": 4023,
+          "n_frames": 2013,
+          "duration_s": 402.382
+        },
+        {
+          "t_start": 1783072207.7185478,
+          "t_end": 1783072354.5157814,
+          "ate_rmse": 3674401.511358,
+          "ate_mean": 3624428.293708,
+          "n_pairs": 1467,
+          "n_frames": 735,
+          "duration_s": 146.797
+        }
+      ]
+    },
+    "turn": {
+      "n_segments": 3,
+      "ate_rmse_mean": 4290026.532305,
+      "ate_rmse_std": 3181420.147666,
+      "alignment": "global_se3",
+      "segments": [
+        {
+          "t_start": 1783070066.9386535,
+          "t_end": 1783070220.7316577,
+          "ate_rmse": 672523.24023,
+          "ate_mean": 672523.240223,
+          "n_pairs": 1538,
+          "n_frames": 770,
+          "duration_s": 153.793
+        },
+        {
+          "t_start": 1783072354.7157803,
+          "t_end": 1783072450.9141486,
+          "ate_rmse": 5544985.252379,
+          "ate_mean": 5524418.209691,
+          "n_pairs": 962,
+          "n_frames": 482,
+          "duration_s": 96.198
+        },
+        {
+          "t_start": 1783072451.1214073,
+          "t_end": 1783072521.9129636,
+          "ate_rmse": 6652571.104305,
+          "ate_mean": 6650613.875144,
+          "n_pairs": 299,
+          "n_frames": 355,
+          "duration_s": 70.792
         }
       ]
     }

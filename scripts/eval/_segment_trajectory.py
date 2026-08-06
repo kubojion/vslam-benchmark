@@ -31,6 +31,30 @@ def cumulative_path(xy):
     return np.concatenate([[0.0], np.cumsum(d)])
 
 
+def yaw_from_path(xy, smooth_m=2.0):
+    """Heading (deg) from the path tangent, for GT without orientation.
+
+    The tangent is taken over a window of `smooth_m` of travelled path rather
+    than between consecutive samples, so GNSS jitter while nearly stationary
+    does not masquerade as rotation.
+    """
+    s = cumulative_path(xy)
+    yaw = np.zeros(len(xy))
+    for i in range(len(xy)):
+        lo = int(np.searchsorted(s, s[i] - smooth_m / 2.0, side="left"))
+        hi = int(np.searchsorted(s, s[i] + smooth_m / 2.0, side="right")) - 1
+        lo = max(0, min(lo, len(xy) - 1)); hi = max(0, min(hi, len(xy) - 1))
+        if hi <= lo:
+            yaw[i] = yaw[i - 1] if i else 0.0
+            continue
+        d = xy[hi] - xy[lo]
+        if np.hypot(*d) < 1e-6:
+            yaw[i] = yaw[i - 1] if i else 0.0
+        else:
+            yaw[i] = np.degrees(np.arctan2(d[1], d[0]))
+    return yaw
+
+
 def window_indices(s, i, half):
     n = len(s)
     lo = i
@@ -125,6 +149,12 @@ def merge_segments(t, is_turn, s, min_seg_path_m):
                 out.append(seg)
                 k += 1
         segs = out
+    # NOTE: absorbing a short segment into a neighbour can leave two ADJACENT
+    # segments of the same type (row | short-turn | row -> row | row), so a
+    # single row may be reported as several. Coalescing them is more correct,
+    # but it changes segmentation for every dataset (rosariov2 seq1 107 -> 43
+    # segments) and would require re-evaluating all runs, including rosariov2.
+    # Left as-is deliberately; see TODO / machine-B report.
     return segs
 
 
@@ -145,6 +175,16 @@ def main():
     xy  = data[:, 1:3]
     quat = data[:, 4:8]
     yaw = Rotation.from_quat(quat).as_euler("zyx", degrees=True)[:, 0]
+
+    # Some ground truths carry position only and store identity quaternions
+    # (e.g. RTK-GNSS references such as zed2i). Yaw is then constant, the
+    # heading-change test can never fire, and a whole multi-row traverse is
+    # reported as one "row" with zero turns. Fall back to the path tangent,
+    # which is a good heading proxy for a ground vehicle.
+    if np.allclose(quat, [0.0, 0.0, 0.0, 1.0], atol=1e-6):
+        yaw = yaw_from_path(xy)
+        print("[segment_traj] GT has identity orientations - "
+              "deriving heading from the path tangent")
 
     is_turn, s = classify(
         t, xy, yaw,

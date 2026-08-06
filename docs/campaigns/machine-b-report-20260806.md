@@ -308,3 +308,60 @@ fixed: **re-evaluating those 18 on the reference machine would complete provenan
 - No SLAM re-runs, no tuning re-runs, no N≥5 replication (rule 6).
 - No pipeline code was modified (rule 5) — the `plot_comparison.py` bug is reported, not patched.
 - Nothing committed or pushed (owner's standing instruction).
+
+---
+
+# Addendum — follow-up tasks 18 & 19 (2026-08-06, same machine)
+
+After Jion's changes were pulled in and the submodules re-synced to the fork URLs
+(`git submodule sync && git submodule update`), two follow-up tasks were run.
+
+## Task 18 — ZED2i segment maps + GT tracking: PASS
+
+- **Segment maps.** All three ZED2i buckets (`vo`, `vo-lc`, `vio`) were redrawn against the
+  corrected 2.86 m lever-arm ground truth. 78/78 `segment_map*.png` under `results-*/zed2i` are now
+  newer than `segments_auto.csv` — no stale maps remain. `_plot_segments.py` is a standalone script,
+  **not** invoked by `_evaluate_run.py`, so re-evaluation alone does not refresh these figures.
+- **GT tracking.** EuRoC, HortiMulti and ZED2i `gt_*.txt` + `times.txt` are now git-tracked under the
+  new `.gitignore` exception, together with the five dataset alias **symlinks** (mode 120000 — these
+  are not picked up by a plain `git add datasets/` and needed `git add -f`). This closes decision
+  item 3 above.
+- Decision items 4 and 8 are also closed: the runtime prerequisites now live in the
+  `kubojion/AirSLAM` and `kubojion/open_vins` forks, and the owner has authorised these commits.
+  **Nothing has been pushed.**
+
+## Task 19 — ZED2i turn detection: PASS (root cause was the GT, not the threshold)
+
+The brief framed this as a turn-angle threshold problem. It was not.
+
+`_segment_trajectory.py` derived vehicle heading from the ground-truth **quaternion**. The ZED2i GT
+is reconstructed from GPS position alone, so every row carries an **identity quaternion**; yaw was
+constant 0 deg and no turn could ever be detected, regardless of threshold.
+
+**Fix:** a `yaw_from_path()` fallback that derives heading from the path tangent over a 2 m smoothing
+window, activated only when the GT orientations are all identity (`np.allclose(quat, [0,0,0,1])`).
+The dataset also needs `--min_seg_path_m 5`; the 25 m default swallows its short 6-row pattern.
+
+| | before | after |
+|---|---|---|
+| segments | 2 row, 0 turn | **15 — 10 row, 5 turn** |
+| ZED2i runs with row *and* turn ATE | 0 / 18 | **18 / 18** |
+
+Sample VO results (row / turn ATE RMSE, m): ORB-SLAM3 0.292 / 0.283, OV2SLAM 0.345 / 0.499,
+Basalt 0.448 / 0.642, OKVIS2-X 1.420 / 1.396, AirSLAM 2.667 / 4.163, OKVIS2 3.287 / 3.181,
+DPVO 12.241 / 20.017.
+
+**Verified neutral elsewhere.** rosariov2, hortimulti and euroc_mav carry real GT orientations, so
+the fallback never fires and their segment counts are unchanged. All 259 rows across the 5 CSVs were
+rebuilt; `make_report_tables.py --check` returns OK and `verify_claims.py` passes.
+
+### Two further bugs found — reported, not fixed (rule 5)
+
+1. **`merge_segments` does not coalesce adjacent same-type segments.** Fixing it changes
+   segmentation repo-wide (rosariov2 seq1 107 -> 43, hortimulti 25 -> 14, euroc 0 -> 11) and would
+   require re-evaluating every rosariov2 run — which rule 3 forbids on this machine. The change was
+   prototyped, confirmed as the cause, then **reverted**; a `NOTE` at the call site records it.
+2. **`datasets/rosariov2/sequence1/segments_auto.csv` is stale** with respect to that sequence's
+   repaired PGT ground truth. Not regenerated here (rule 3).
+
+Both are the natural first items for whoever owns the segmentation pipeline next.
