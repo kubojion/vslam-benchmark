@@ -1,15 +1,14 @@
 # vSLAM Benchmark
 
-> Updated: 2026-08-04 - VO has 110 evaluated rows (native ORB-SLAM3, agri VO is partial-coverage -
-> finding 14); VO-LC has 40 (DPV-SLAM + OKVIS2 + OKVIS2-X + ORB-SLAM3 + OV2SLAM); VIO has 55 (49-row
-> core + six ZED2i); VIO-LC has 25 (OKVIS2 + OKVIS2-X + AirSLAM on 7 core, ORB-SLAM3 seq5 + agri);
-> GNSS-VIO has 20 N=1 headline runs (+2 PPK variants). Key findings: 13 the IMU helps only with
-> excitation (collapses on ZED2i, wins on Rosario), 14 ORB's low agri VO ATE is a tracking-loss
-> artefact, 15 loop closure on crops is mechanism-dependent and never immune. All CSVs and figures
-> (ATE bars, scale, FPS, ATE-vs-FPS, trajectory overlays) regenerated 2026-08-04.
-> HortiMulti VIO uses corrected camera-IMU extrinsics, EuRoC MH_03/MH_05 and the local ZED2i field
-> sequence are included, and the Rosario sequence5 PPK-versus-conventional study is retained. See
-> [PROGRESS.md](PROGRESS.md) for limitations and current results.
+> **Updated 2026-08-06.** 259 runs (VO 110 / VO-LC 40 / VIO 55 / VIO-LC 28 / GNSS-VIO 26) across
+> Rosario v2, HortiMulti, the own ZED2i field sequence and EuRoC (control), all at
+> `eval_schema: 2` — the 2026-08-05 evaluation overhaul (fixed GT interpolation, gap-aware
+> coverage, SE3-primary metrics, origin-aligned GNSS ATE, GT + machine provenance per run) —
+> verified byte-reproducible across both benchmark machines. Results: see
+> [docs/generated/tables.md](docs/generated/tables.md) (never hand-transcribed); status + open
+> work: [TODO.md](TODO.md); narrative + findings 1–15: [PROGRESS.md](PROGRESS.md); next
+> milestone: the **N=5 server campaign**
+> ([docs/campaigns/server-campaign-plan.md](docs/campaigns/server-campaign-plan.md)).
 
 | Algorithm | Type | Source |
 |---|---|---|
@@ -18,9 +17,9 @@
 | **OKVIS2-X** | Multi-sensor OKVIS2 extension; VO/VIO/VIO-LC/GNSS capability | [ethz-mrl/OKVIS2-X](https://github.com/ethz-mrl/OKVIS2-X) (cmake build, system deps). Wired in independently of OKVIS2: own source tree, configs, runner and results. |
 | **MAC-VO** | Hybrid (learned uncertainty), stereo VO | [kubojion/MAC-VO @ vslam-benchmark-patches](https://github.com/kubojion/MAC-VO/tree/vslam-benchmark-patches) |
 | **Basalt** | Optimization-based stereo VO / VIO | [VladyslavUsenko/basalt](https://gitlab.com/VladyslavUsenko/basalt) (binary install v0.1.7) |
-| **AirSLAM** | Deep-feature point-line VO / VIO / V-SLAM (TRO 2025) | [sair-lab/AirSLAM](https://github.com/sair-lab/AirSLAM) (Docker, ROS Noetic + TensorRT) |
+| **AirSLAM** | Deep-feature point-line VO / VIO / V-SLAM (TRO 2025) | [kubojion/AirSLAM @ vslam-benchmark-patches](https://github.com/kubojion/AirSLAM/tree/vslam-benchmark-patches) (Docker, ROS Noetic + TensorRT; fork carries the VIO launch files) |
 | **OV2SLAM** | Fully online feature/KLT stereo VO with BA and optional online-BoW LC | [ov2slam/ov2slam](https://github.com/ov2slam/ov2slam) (Docker, ROS 1 Noetic) |
-| **OpenVINS** | MSCKF stereo-IMU filter (VIO only, no LC) | [rpng/open_vins](https://github.com/rpng/open_vins) (Docker, ROS 2 Humble) |
+| **OpenVINS** | MSCKF stereo-IMU filter (VIO only, no LC) | [kubojion/open_vins @ vslam-benchmark-patches](https://github.com/kubojion/open_vins/tree/vslam-benchmark-patches) (Docker, ROS 2 Humble; fork carries Dockerfile.benchmark) |
 | **Voxel-SVIO** | Voxel-map-augmented stereo MSCKF VIO (RA-L 2025) | [ZikangYuan/voxel_svio](https://github.com/ZikangYuan/voxel_svio) (Docker, ROS 1 Noetic) |
 | **CIFASIS GNSS-SI** | Tightly-coupled GNSS+stereo+inertial SLAM, ORB-SLAM3-based (JFR 2023) | [CIFASIS/gnss-stereo-inertial-fusion](https://github.com/CIFASIS/gnss-stereo-inertial-fusion) (Docker, ROS 1 Noetic) |
 | **RTAB-Map** | Graph-based stereo SLAM with optional IMU + GNSS factors | [introlab/rtabmap_ros](https://github.com/introlab/rtabmap_ros) (apt, ROS 2 Humble) |
@@ -67,9 +66,14 @@ benchmark-gnss-vio.csv # aggregated metrics for gnss-vio runs
 obsolete/            # quarantined data (e.g. ORB-SLAM3 stereo+LC runs that
                      # don't fit the current run-type scheme)
 experiments/          # smoke/failed artifacts excluded from benchmark discovery
-docs/                # public documentation (this file + 3 below)
+vendor/prerequisites/ # OKVIS2 external CMake patches + install.sh (see its README)
+datasets/            # bulk data untracked; gt_*.txt / times.txt / manifest.json
+                     # / segments_auto.csv ARE git-tracked (GT provenance)
+docs/                # documentation — see docs/README.md for the layout:
+                     # core how-tos | generated/ (tables, claims, figures) |
+                     # campaigns/ (agent briefs + campaign records) | private/
 PROGRESS.md          # running log of results and known issues
-TODO.md              # authoritative open-work matrix
+TODO.md              # authoritative open-work matrix (🔁 = re-run recommended)
 ```
 
 ## Run-type abstraction
@@ -158,155 +162,27 @@ conda run -n macvo python3 scripts/eval/build_benchmark_csv.py all
 
 ## Results snapshot
 
-**The `benchmark-*.csv` files are the source of truth**, and
-[docs/generated/tables.md](docs/generated/tables.md) (regenerate with
-`python3 scripts/eval/make_report_tables.py`) is the only sanctioned rendering of them —
-never hand-transcribe results numbers. See [PROGRESS.md](PROGRESS.md) for narrative and findings.
+**Source of truth:** the five `benchmark-*.csv` files (full rebuilds from `results-*/`, one row
+per run, `eval_schema: 2`). **The only sanctioned rendering** is
+[docs/generated/tables.md](docs/generated/tables.md) — regenerate with
+`python3 scripts/eval/make_report_tables.py` (SE3-primary, coverage-gated, machine-checkable
+bolding). Numbers for prose come from
+[docs/generated/verified-claims.md](docs/generated/verified-claims.md); report figures live in
+[docs/generated/figures/](docs/generated/figures/). Never hand-transcribe a results number.
 
-> The legacy tables below predate the 2026-08-05 evaluation fixes and the finding-11
-> retraction (the bolded ORB-SLAM3 values were single lucky draws of a non-deterministic
-> system, superseded by the truly-LC-off re-runs). They are retained only as historical
-> context — quote the generated tables, not these.
+Current state (2026-08-06): 259 runs across VO / VO-LC / VIO / VIO-LC / GNSS-VIO on
+Rosario v2, HortiMulti, the ZED2i field sequence, and EuRoC (control). All runs carry GT
+provenance (sha256) and run-host machine identity; CSVs are byte-reproducible on any clone.
+Most cells are N=1 — the **N=5 server campaign**
+([docs/campaigns/server-campaign-plan.md](docs/campaigns/server-campaign-plan.md)) is the next
+milestone; cells marked 🔁 in [TODO.md](TODO.md) additionally need a config-fairness A/B first.
 
-Representative VO numbers (N=3 unless noted):
-
-| Algorithm | Dataset | Seq | ATE Sim(3) | Runs |
-|---|---|---|---|---|
-| ORB-SLAM3 | Rosario v2 | seq1 | 1.18 ± 0.32 m (superseded — finding 11) | 3 |
-| ORB-SLAM3 | Rosario v2 | seq5 | 20.21 ± 4.20 m (superseded — finding 11) | 3 |
-| ORB-SLAM3 | HortiMulti | strawberry02 | 0.893 ± 0.139 m (superseded — finding 11) | 3 |
-| ORB-SLAM3 | HortiMulti | strawberry03 | 0.104 ± 0.001 m (superseded — finding 11) | 3 |
-| DROID-SLAM | Rosario v2 | seq1 | 45.37 m | 3 |
-| DROID-SLAM | Rosario v2 | seq5 | 50.02 m | 3 |
-| DROID-SLAM | HortiMulti | strawberry02 | 38.92 m | 3 |
-| DROID-SLAM | HortiMulti | strawberry03 | 18.76 m | 3 |
-| MAC-VO | Rosario v2 | seq1 | 13.52 ± 0.01 m | 3 |
-| MAC-VO | Rosario v2 | seq5 | 19.384 ± 0.006 m | 3 |
-| MAC-VO | HortiMulti | strawberry03 | 0.505 ± 0.010 m | 3 |
-| MAC-VO | HortiMulti | strawberry02 | 10.23 ± 0.50 m | 3 |
-| Basalt | Rosario v2 | seq1 | 14.28 ± 0.30 m | 3 |
-| Basalt | Rosario v2 | seq5 | 15.04 ± 0.06 m | 3 |
-| Basalt | HortiMulti | strawberry02 | 2.098 ± 0.001 m | 3 |
-| Basalt | HortiMulti | strawberry03 | **0.275 ± 0.000 m** | 3 |
-| AirSLAM | HortiMulti | strawberry03 | 3.631 ± 0.205 m | 3 |
-| AirSLAM | HortiMulti | strawberry02 | 20.220 ± 0.824 m | 3 |
-| AirSLAM | Rosario v2 | seq1 | 9.89 ± 0.06 m | 3 |
-| AirSLAM | Rosario v2 | seq5 | 12.72 ± 0.99 m | 3 |
-
-ZED2i field VO (N=1; the project's own agricultural field sequence, 46 k frames @ 1080p):
-
-| Algorithm | ATE Sim(3) | Scale |
-|---|---|---|
-| ORB-SLAM3 | **0.256 m** | 0.992 |
-| Basalt | 0.446 m | 0.990 |
-| OKVIS2-X | 1.436 m | 0.990 |
-| OKVIS2 | 3.372 m | 0.970 |
-| AirSLAM | 3.866 m | 0.965 |
-
-> ZED2i ground truth is derived from the RTK GNSS stream, so it is not independent of a GNSS
-> input; these VO numbers use no GNSS and are position-only. MAC-VO on ZED2i (~6 h) is pending.
-> OKVIS2/OKVIS2-X VO are best-effort (IMU disabled); they do far better here (weak-excitation
-> stereo) than in their scale-collapsed ZED2i *VIO* runs.
-
-> **ORB-SLAM3 reproducibility note** (corrected 2026-08-05; see PROGRESS finding 11): an apparent
-> Docker-vs-native accuracy divergence on agricultural sequences was investigated and attributed
-> to ORB-SLAM3's own run-to-run non-determinism (N=3 spreads up to ~4x on crops), **not** to the
-> build environment — the earlier "2.1x worse in Docker" claim is retracted, and the old
-> single-run references (seq1 1.18 m, str02 0.893 m, str03 0.104 m) were single lucky draws.
-> Containerized results are not inherently suspect; container overhead matters only for the
-> real-time-ROS-fed algorithms (see the feeding-regime note in docs/evaluation.md).
-
-DPVO (monocular learned VO; replaces the dropped DROID-SLAM, N=1, Sim(3) ATE):
-
-| Dataset | Seq | DPVO | DROID-SLAM | best stereo |
-|---|---|---|---|---|
-| Rosario v2 | seq5 | **3.92 m** | 50.02 m | 12.72 (AirSLAM) |
-| Rosario v2 | seq1 | 4.93 m | 45.37 m | 1.18 (ORB-SLAM3) |
-| ZED2i | field1 | 1.43 m | - | 0.256 (ORB-SLAM3) |
-| HortiMulti | str03 | 1.82 m | 18.76 m | 0.104 (ORB-SLAM3) |
-| HortiMulti | str02 | 14.59 m | 38.92 m | 0.893 (ORB-SLAM3) |
-| EuRoC | MH_01/03/05 | 0.12 / 0.13 / 0.12 m | 4.08 / 3.52 / 6.59 m | - |
-
-> DPVO is the standout on the **outdoor** agricultural data: on Rosario seq5 it beats every
-> stereo method (monocular!), and on both Rosario sequences it improves ~9-13x over DROID-SLAM,
-> the method it replaces. It is weaker on the long low-texture greenhouse traverse (str02) - the
-> opposite failure profile from feature-based methods. Its loop-closure variant DPV-SLAM helps
-> 2-3x on EuRoC but **hurts on every agricultural sequence** (false loops from repetitive crop
-> rows -- see PROGRESS.md finding 10). It is **light**: ~2-4 GB VRAM even on the
-> 46 k-frame ZED2i sequence, where MegaSaM and MASt3R-SLAM both OOM a 12 GB card. Monocular ->
-> up-to-scale, so only Sim(3) ATE is comparable.
-
-Representative VIO numbers (Phase 2, N=1 unless noted):
-
-| Algorithm | Dataset | Seq | ATE Sim3 | N |
-|---|---|---|---|---|
-| ORB-SLAM3 | Rosario v2 | seq5 | **2.29 m** | 1 |
-| ORB-SLAM3 | HortiMulti | strawberry03 | **0.396 m** | 1 |
-| Basalt | Rosario v2 | seq5 | **4.74 m** | 1 |
-| Basalt | HortiMulti | strawberry02 | **2.492 m** | 1 |
-| Basalt | HortiMulti | strawberry03 | **0.194 m** | 1 |
-| OKVIS2 | HortiMulti | strawberry02 | **2.145 m** | 1 |
-| OKVIS2-X | HortiMulti | strawberry02 | **2.130 m** | 1 |
-| OpenVINS | Rosario v2 | seq1 | 2.32 m | 1 |
-| OpenVINS | EuRoC | MH_01_easy | 0.058 m | 1 |
-| Voxel-SVIO | Rosario v2 | seq1 | 4.40 m | 1 |
-| Voxel-SVIO | HortiMulti | strawberry02 | 5.83 m | 1 |
-
-Representative GNSS-VIO numbers (N=1, all 16 runs; source `benchmark-gnss-vio.csv`):
-
-| Algorithm | Dataset | Seq | ATE Sim3 | Scale | N |
-|---|---|---|---|---|---|
-| VINS-Fusion+GPS | Rosario v2 | seq1 | **1.188 m** | 1.006 | 1 |
-| RTAB-Map+GPS | Rosario v2 | seq1 | 2.138 m | 1.019 | 1 |
-| OpenVINS+GPS | Rosario v2 | seq1 | 2.388 m | 1.022 | 1 |
-| CIFASIS GNSS-SI | Rosario v2 | seq1 | 3.583 m | 1.019 | 1 |
-| VINS-Fusion+GPS | Rosario v2 | seq5 | **0.911 m** | 1.002 | 1 |
-| CIFASIS GNSS-SI | Rosario v2 | seq5 | 2.062 m | 1.019 | 1 |
-| OpenVINS+GPS | Rosario v2 | seq5 | 4.179 m | 1.013 | 1 |
-| RTAB-Map+GPS | Rosario v2 | seq5 | 4.901 m | 1.011 | 1 |
-| VINS-Fusion+GPS | HortiMulti | strawberry02 | **4.899 m** | 1.034 | 1 |
-| RTAB-Map+GPS | HortiMulti | strawberry02 | 6.298 m | 1.043 | 1 |
-| CIFASIS GNSS-SI | HortiMulti | strawberry02 | 7.256 m | 1.022 | 1 |
-| OpenVINS+GPS | HortiMulti | strawberry02 | 30.865 m | 0.554 | 1 |
-| CIFASIS GNSS-SI | HortiMulti | strawberry03 | **1.502 m** | 1.042 | 1 |
-| RTAB-Map+GPS | HortiMulti | strawberry03 | 1.764 m | 1.027 | 1 |
-| VINS-Fusion+GPS | HortiMulti | strawberry03 | 2.395 m | 1.033 | 1 |
-| OpenVINS+GPS | HortiMulti | strawberry03 | 16.496 m | 0.165 | 1 |
-
-GNSS fusion is the strongest track on the agricultural sequences: VINS-Fusion+GPS
-wins three of the four, and every method except OpenVINS+GPS holds scale within
-4% of metric. OpenVINS+GPS collapses on both HortiMulti sequences (scale 0.554
-and 0.165) - the `robot_localization` filter never converges there, so those two
-rows are failures rather than accuracy figures. Note the two Rosario sequences
-use PPK-quality GPS; see PROGRESS.md for the GPS-quality study (measured PPK vs
-conventional) and the vertical-noise investigation.
-
-All seven VIO algorithms now have corrected-extrinsic N=1 results on both HortiMulti sequences,
-with scale near 1. The older vibration-floor/algorithm-limit conclusion was invalidated by applying
-the rectification rotation and correcting transform direction. These are provisional validation
-runs; N=3 repeatability remains pending. See [PROGRESS.md](PROGRESS.md) for the controlled evidence.
-
-### [NON-AGRICULTURAL REFERENCE] EuRoC-MAV (single-run reference)
-
-> [NON-AGRICULTURAL REFERENCE] Not part of the agricultural benchmark. Single runs are used to verify that configs and the evaluation pipeline behave consistently on known indoor sequences.
-
-| Sequence | Algorithm | ATE Sim3 [m] | ATE SE3 [m] | RPE [m/m] | Scale | FPS |
-|---|---|---|---|---|---|---|
-| MH_01_easy | ORB-SLAM3 | **0.0340** | **0.0352** | 0.0156 | 1.0021 | 18.17 |
-| MH_01_easy | Basalt | 0.0567 | 0.0873 | 0.0085 | 1.0156 | 176.75 |
-| MH_01_easy | AirSLAM | 0.1107 | 0.1156 | 0.0195 | 1.0073 | 15.33 |
-| MH_01_easy | MAC-VO | 0.1981 | 0.1993 | 0.0295 | 1.0051 | 1.29 |
-| MH_01_easy | DROID-SLAM | 4.083 | 7.891 | 0.500 | 0.173 | 13.17 |
-| MH_03_medium | ORB-SLAM3 | 0.0437 | 0.0520 | 0.0179 | 0.9922 | 17.89 |
-| MH_03_medium | Basalt | 0.1372 | 0.1397 | 0.0159 | 1.0075 | 113.47 |
-| MH_03_medium | AirSLAM | 0.1431 | 0.1443 | 0.0188 | 0.9950 | 31.73 |
-| MH_03_medium | MAC-VO | 0.3403 | 0.3405 | 0.0187 | 0.9961 | 1.15 |
-| MH_03_medium | DROID-SLAM | 3.523 | 7.105 | 2.274 | 0.082 | 10.94 |
-| MH_05_difficult | ORB-SLAM3 | 0.0720 | 0.0781 | 0.2282 | 0.9956 | 17.97 |
-| MH_05_difficult | Basalt | 0.1816 | 0.1931 | 0.0870 | 1.0097 | 108.72 |
-| MH_05_difficult | AirSLAM | 0.2968 | 0.3066 | 0.0256 | 1.0116 | 34.92 |
-| MH_05_difficult | MAC-VO | 0.4697 | 0.4836 | 0.0276 | 1.0172 | 0.86 |
-| MH_05_difficult | DROID-SLAM | 6.594 | 8.514 | 0.786 | 0.248 | 13.85 |
+Headline findings (stated with their caveats in [PROGRESS.md](PROGRESS.md) findings 1–15):
+loop-closure benefit on crops is mechanism- and revisit-dependent (finding 15); the IMU's value
+is excitation-dependent — helps on Rosario, collapses on the constant-velocity ZED2i field run
+(finding 13, calibration confounds still open); ORB-SLAM3's low agricultural VO ATE is a
+partial-coverage artifact (finding 14); GNSS fusion bounds error outdoors but the loose-vs-tight
+comparison is on hold pending the 🔁 re-runs.
 
 ## License
 

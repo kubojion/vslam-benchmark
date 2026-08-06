@@ -24,7 +24,8 @@
 	url = https://github.com/HKUST-Aerial-Robotics/VINS-Fusion.git
 [submodule "src/airslam"]
 	path = src/airslam
-	url = https://github.com/sair-lab/AirSLAM.git
+	url = https://github.com/kubojion/AirSLAM.git
+	branch = vslam-benchmark-patches
 [submodule "src/cifasis_gnss_si"]
 	path = src/cifasis_gnss_si
 	url = https://github.com/CIFASIS/gnss-stereo-inertial-fusion.git
@@ -36,7 +37,8 @@
 	url = https://github.com/ethz-mrl/okvis2.git
 [submodule "src/open_vins"]
 	path = src/open_vins
-	url = https://github.com/rpng/open_vins.git
+	url = https://github.com/kubojion/open_vins.git
+	branch = vslam-benchmark-patches
 [submodule "src/voxel_svio"]
 	path = src/voxel_svio
 	url = https://github.com/ZikangYuan/voxel_svio.git

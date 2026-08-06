@@ -12,7 +12,9 @@ import matplotlib.pyplot as plt
 WS = os.environ.get(
     "VSLAM_WS",
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-OUT = os.path.join(WS, "figures"); os.makedirs(OUT, exist_ok=True)
+# Output lives with the other generated report assets (moved 2026-08-06;
+# the repo root figures/ dir was report material, not benchmark material).
+OUT = os.path.join(WS, "docs", "generated", "figures"); os.makedirs(OUT, exist_ok=True)
 plt.rcParams.update({"font.size": 11, "figure.dpi": 150})
 
 def load_csv(m):

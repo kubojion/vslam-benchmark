@@ -25,6 +25,28 @@ extension; result integration currently manual), **OpenVINS** (MSCKF VIO, Docker
 
 ---
 
+## 2026-08-06 — Machine-B campaign, cross-verification, repo hardening
+
+The 2026-08-05 fixes were propagated to the datasets/results held on machine B and
+independently verified (5-agent verification on Jion's machine): all 173 EuRoC/HortiMulti/zed2i
+runs re-evaluated (0 failures), CSVs reproduce **byte-identically on both machines**, and every
+checkable number in `docs/campaigns/machine-b-report-20260806.md` verified exact — with the
+prose corrections and one residual gap recorded in
+`docs/campaigns/machine-b-verification-20260806.md` (notably: zed2i **vio/vo-lc** segment maps
+still render the superseded 1.86 m GT; "every shifted cell improved" is false — str02
+vins_fusion +2.3% and voxel_svio +2.1% regressed, legitimately, from artifact removal).
+Number impact: HortiMulti str02 improved 5–9% for every algorithm (707 GT-artifact frames
+removed), EuRoC basalt MH01 −22.5% (frozen boundary poses), zed2i ≤0.52% (published values
+confirmed). Machine-B's seq1 forensics confirmed its local dataset copy WAS the divergent
+raw-GPS one — repaired against the authoritative hashes; GT/times/segments files are now
+**git-tracked** (`.gitignore` exception) so dataset divergence cannot recur.
+Also: `gt_provenance` completed to 259/259; forks created and wired
+(`kubojion/AirSLAM`, `kubojion/open_vins` @ `vslam-benchmark-patches` in `.gitmodules`);
+runtime prerequisites vendored (`vendor/prerequisites/` + install.sh); `plot_comparison.py`
+accepts all five run types; report figures moved to `docs/generated/figures/`; docs
+reorganized (`docs/README.md`); next milestone: **N=5 server campaign**
+(`docs/campaigns/server-campaign-plan.md`).
+
 ## 2026-08-05 — Evaluation-pipeline fixes (external audit + repairs)
 
 A full audit of the evaluation layer produced the following repairs. **All benchmark CSVs are now

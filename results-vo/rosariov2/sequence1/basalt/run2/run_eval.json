@@ -7,6 +7,13 @@
   "use_imu": false,
   "use_lc": false,
   "gt_source": "interpolated",
+  "gt_provenance": {
+    "file": "gt_interp_tum.txt",
+    "source": "interpolated",
+    "sha256": "5b2bc209a511987335b293daab7dcd6d83e6424063a51d21321a64f2f0812da5",
+    "mtime": 1785964843,
+    "n_rows": 13745
+  },
   "eval_schema": 2,
   "run_status": "ok",
   "n_pairs_ate": 13745,

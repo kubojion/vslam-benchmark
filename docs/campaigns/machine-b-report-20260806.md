@@ -1,7 +1,7 @@
 # Machine-B report — 2026-08-06
 
 Machine: **Intel i9-14900HX / RTX 4080 Laptop** (holds EuRoC, HortiMulti, ZED2i).
-Executed against `docs/machine-b-brief.md` (written on Jion's machine after commit `39a4a4c`).
+Executed against `docs/campaigns/machine-b-brief.md` (written on Jion's machine after commit `39a4a4c`).
 Repo state at start: `main`, clean, 0 unpushed commits, `39a4a4c` already present (HEAD `023c58e`).
 
 **Headline:** all six tasks executed. 173 runs re-evaluated (155 EuRoC/HortiMulti + 18 ZED2i),

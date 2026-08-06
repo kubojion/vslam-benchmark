@@ -37,13 +37,17 @@ commits, and report back the judgment calls instead of deciding them.
 - `git pull` and confirm `git log` contains `39a4a4c`.
 - Find a python env with numpy/scipy/pandas and `evo_ape` on PATH (reference machine used
   evo **v1.36.4**; record your version).
-- Compatibility smoke test: pick one existing **EuRoC** run (e.g.
-  `results-vio/euroc_mav/MH_01_easy/basalt/run1`), back up its `run_eval.json`, re-run
-  `python3 scripts/eval/_evaluate_run.py euroc_mav MH_01_easy basalt 1 vio`, and diff the
-  legacy fields (`ate.rmse`, `ate_se3.rmse`, `rpe_trans_1m.rmse`, `scale_factor`,
-  `n_pairs_ate`) against the backup — **they must match exactly** (GT unchanged at this
-  point). If they differ, STOP: your evo/scipy version disagrees with the reference machine —
-  report versions and the diff.
+- Compatibility smoke test *(reworded 2026-08-06 after the machine-B campaign — the original
+  "must match exactly" premise fails once `gt_interp_tum.txt` has been regenerated with the
+  fixed interpolator, because dropped boundary frames change the matched point set)*:
+  pick one existing **EuRoC** run, back up its `run_eval.json`, re-run
+  `python3 scripts/eval/_evaluate_run.py euroc_mav MH_01_easy basalt 1 vio` and check:
+  (a) if the sequence's `gt_interp_tum.txt` is untouched, legacy fields must match the backup
+  exactly; (b) if it was already regenerated, `n_pairs_ate` may shrink by the dropped-frame
+  count and values may shift — in that case verify env compatibility directly by running the
+  same evaluation twice and confirming the two runs are bit-identical to each other, and
+  record your evo version (reference: **1.36.4**; 1.37.0 was shown bit-identical on this
+  pipeline). Only a *nondeterministic or version-dependent* difference is a STOP.
 
 ## Task 1 — Rosario seq1 dataset copy (forensics FIRST, then repair)
 

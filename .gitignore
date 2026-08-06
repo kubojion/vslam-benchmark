@@ -1,5 +1,14 @@
 # --- bulky / generated / private ---
-datasets/
+# datasets: bulk data (images/bags) stays untracked, but ground-truth and
+# timing files ARE tracked (2026-08-06, machine-B decision 3): the seq1 GT
+# divergence happened precisely because git carried the code but not the GT.
+datasets/**
+!datasets/**/
+!datasets/**/gt_tum.txt
+!datasets/**/gt_interp_tum.txt
+!datasets/**/times.txt
+!datasets/**/manifest.json
+!datasets/**/segments_auto.csv
 obsolete/
 logs/
 docs/private/

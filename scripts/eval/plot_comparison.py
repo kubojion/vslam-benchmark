@@ -77,7 +77,7 @@ def main():
     ap.add_argument("dataset", nargs="?", default="rosariov2")
     ap.add_argument("seq", nargs="?", default="sequence1")
     ap.add_argument("--type", dest="run_type", default="vo",
-                    choices=["vo", "vio", "vio-lc"])
+                    choices=["vo", "vo-lc", "vio", "vio-lc", "gnss-vio"])
     args = ap.parse_args()
     dataset = args.dataset
     seq = args.seq

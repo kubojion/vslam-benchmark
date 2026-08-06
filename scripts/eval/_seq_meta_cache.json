@@ -1,11 +1,11 @@
 {
-  "_provenance": "Generated 2026-08-05 from the existing benchmark CSVs (values recorded when datasets were locally present). Used as fallback by build_benchmark_csv.py when datasets/<ds>/<seq> is absent. Regenerate by rebuilding on a machine holding the datasets.",
+  "_provenance": "Regenerated 2026-08-06 from the machine-B-rebuilt CSVs (post GT-fix sequence metadata: path lengths reflect the regenerated gt_interp files). Fallback for build_benchmark_csv.py on machines without datasets/. Regenerate on a machine holding the datasets after any GT change.",
   "sequences": {
     "euroc_mav/MH_01_easy": {
       "image_height": 480,
       "image_width": 752,
       "input_fps": 20.01,
-      "path_length_gt_m": 80.63,
+      "path_length_gt_m": 80.51,
       "sequence_duration_s": 184.05,
       "sequence_frames_total": 3682
     },
@@ -13,7 +13,7 @@
       "image_height": 480,
       "image_width": 752,
       "input_fps": 20.01,
-      "path_length_gt_m": 130.93,
+      "path_length_gt_m": 130.69,
       "sequence_duration_s": 134.95,
       "sequence_frames_total": 2700
     },
@@ -21,7 +21,7 @@
       "image_height": 480,
       "image_width": 752,
       "input_fps": 20.01,
-      "path_length_gt_m": 97.59,
+      "path_length_gt_m": 97.52,
       "sequence_duration_s": 113.6,
       "sequence_frames_total": 2273
     },
@@ -29,7 +29,7 @@
       "image_height": 480,
       "image_width": 640,
       "input_fps": 10.01,
-      "path_length_gt_m": 940.26,
+      "path_length_gt_m": 940.14,
       "sequence_duration_s": 952.31,
       "sequence_frames_total": 9530
     },
@@ -37,7 +37,7 @@
       "image_height": 480,
       "image_width": 640,
       "input_fps": 10.01,
-      "path_length_gt_m": 228.61,
+      "path_length_gt_m": 228.6,
       "sequence_duration_s": 242.22,
       "sequence_frames_total": 2425
     },
@@ -45,7 +45,7 @@
       "image_height": 720,
       "image_width": 1280,
       "input_fps": 14.7,
-      "path_length_gt_m": 775.64,
+      "path_length_gt_m": 785.94,
       "sequence_duration_s": 940.42,
       "sequence_frames_total": 13821
     },
@@ -61,7 +61,7 @@
       "image_height": 1080,
       "image_width": 1920,
       "input_fps": 10.0,
-      "path_length_gt_m": 424.84,
+      "path_length_gt_m": 425.86,
       "sequence_duration_s": 4629.14,
       "sequence_frames_total": 46283
     }
