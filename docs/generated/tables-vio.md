@@ -17,13 +17,13 @@ inside the band carry no bold — that is an honest tie, not an omission.
 
 | Algorithm | seq1 | seq5 | str02 | str03 | zed2i |
 |---|---|---|---|---|---|
-| ORB-SLAM3 | 4.8 | **2.62** | 2.44 | 0.796 | — |
-| Basalt | 3.09 | 4.59 | 2.93 | 0.658 | 9.98 |
-| AirSLAM | 16.6 | 12.2 | 5.34 | 1.47 | 3.97 |
-| OKVIS2 | 19.4 | 19.8 | 2.46 | 0.655 | ✗ collapse |
-| OKVIS2-X | 19.7 | 20 | 2.49 | 0.643 | ✗ collapse |
-| OpenVINS | 2.54 | 10.8 | 2.63 | 0.657 | ✗ collapse |
-| Voxel-SVIO | 4.47 | 6.81 | 5.94 | 0.72 | 3.73 |
+| ORB-SLAM3 | 4.8 | **2.62** | 2.36 | 0.795 | — |
+| Basalt | 3.09 | 4.59 | 2.83 | 0.658 | 9.99 |
+| AirSLAM | 16.6 | 12.2 | 5.29 | 1.47 | 3.97 |
+| OKVIS2 | 19.4 | 19.8 | 2.39 | 0.654 | ✗ collapse |
+| OKVIS2-X | 19.7 | 20 | 2.4 | 0.643 | ✗ collapse |
+| OpenVINS | 2.54 | 10.8 | 2.61 | 0.657 | ✗ collapse |
+| Voxel-SVIO | 4.47 | 6.81 | 6.05 | 0.719 | 3.72 |
 
 > No bold in column(s) seq1, str02, str03, zed2i: top-2 margin is inside the winner's dispersion band (honest tie).
 
@@ -31,13 +31,13 @@ inside the band carry no bold — that is an honest tie, not an omission.
 
 | Algorithm | seq1 | seq5 | str02 | str03 | zed2i |
 |---|---|---|---|---|---|
-| ORB-SLAM3 | 4.7 | 2.29 | 1.48 | 0.396 | — |
-| Basalt | 2.99 | 4.56 | 2.49 | 0.194 | 9.14 |
-| AirSLAM | 16.5 | 12.1 | 5.3 | 1.24 | 3.9 |
-| OKVIS2 | 18.9 | 19.5 | 2.14 | 0.398 | ✗ collapse |
-| OKVIS2-X | 19.2 | 19.6 | 2.13 | 0.343 | ✗ collapse |
-| OpenVINS | 2.32 | 10.8 | 2.24 | 0.429 | ✗ collapse |
-| Voxel-SVIO | 4.4 | 6.8 | 5.83 | 0.437 | 3.71 |
+| ORB-SLAM3 | 4.7 | 2.29 | 1.37 | 0.396 | — |
+| Basalt | 2.99 | 4.56 | 2.41 | 0.194 | 9.14 |
+| AirSLAM | 16.5 | 12.1 | 5.24 | 1.23 | 3.9 |
+| OKVIS2 | 18.9 | 19.5 | 2.09 | 0.397 | ✗ collapse |
+| OKVIS2-X | 19.2 | 19.6 | 2.07 | 0.344 | ✗ collapse |
+| OpenVINS | 2.32 | 10.8 | 2.25 | 0.429 | ✗ collapse |
+| Voxel-SVIO | 4.4 | 6.8 | 5.95 | 0.436 | 3.7 |
 
 </details>
 
@@ -46,11 +46,11 @@ inside the band carry no bold — that is an honest tie, not an omission.
 | Algorithm | MH01 | MH03 | MH05 |
 |---|---|---|---|
 | ORB-SLAM3 | 0.0363 | **0.0305** | *0.0695 @80%* |
-| Basalt | 0.0723 | 0.0596 | **0.121** |
-| AirSLAM | *0.104 @86%* | *0.091 @88%* | *0.142 @92%* |
-| OKVIS2 | 0.0585 | 0.0987 | 0.165 |
+| Basalt | 0.0714 | 0.0596 | **0.121** |
+| AirSLAM | *0.103 @86%* | *0.091 @88%* | *0.142 @92%* |
+| OKVIS2 | 0.0575 | 0.0987 | 0.165 |
 | OKVIS2-X | 0.0516 | 0.0722 | 0.153 |
-| OpenVINS | 0.0582 | 0.132 | *0.222 @94%* |
+| OpenVINS | 0.0562 | 0.132 | *0.223 @94%* |
 | Voxel-SVIO | *0.086 @75%* | 0.0815 | 0.163 |
 
 > No bold in column(s) MH01: top-2 margin is inside the winner's dispersion band (honest tie).
@@ -60,11 +60,11 @@ inside the band carry no bold — that is an honest tie, not an omission.
 | Algorithm | MH01 | MH03 | MH05 |
 |---|---|---|---|
 | ORB-SLAM3 | 0.025 | 0.0304 | *0.048 @80%* |
-| Basalt | 0.0348 | 0.0457 | 0.111 |
-| AirSLAM | *0.102 @86%* | *0.0881 @88%* | *0.136 @92%* |
-| OKVIS2 | 0.0542 | 0.0982 | 0.151 |
+| Basalt | 0.0333 | 0.0457 | 0.111 |
+| AirSLAM | *0.101 @86%* | *0.0881 @88%* | *0.136 @92%* |
+| OKVIS2 | 0.053 | 0.0982 | 0.151 |
 | OKVIS2-X | 0.0459 | 0.0721 | 0.144 |
-| OpenVINS | 0.0582 | 0.126 | *0.205 @94%* |
+| OpenVINS | 0.0562 | 0.126 | *0.205 @94%* |
 | Voxel-SVIO | *0.0825 @75%* | 0.0813 | 0.162 |
 
 </details>

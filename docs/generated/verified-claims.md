@@ -35,28 +35,28 @@ VIO fps range 1.3–47.3; VIO-LC fps range 1.40–3.62. The old claim '1.4–3.6
 Claim '~2x faster' holds only on isolated cells; typical is 0.8–1.5x. State the range, not '2x'.
 
 ## EuRoC stereo scale sanity
-21 stereo EuRoC VO runs: mean scale 1.0029, max |scale-1| 1.72%. (Old '1.001 over 39 runs' is stale.)
+21 stereo EuRoC VO runs: mean scale 1.0029, max |scale-1| 1.70%. (Old '1.001 over 39 runs' is stale.)
 
 ## Basalt VO scale drift on Rosario
 scale range 0.782–0.939 (|error| 6.1–21.8%).
 
 ## ORB-SLAM3 run-to-run spread (N>=3 VO cells)
-  hortimulti/strawberry02: N=3 ATE 0.64–1.42 m (x2.2)
-  hortimulti/strawberry03: N=3 ATE 0.18–0.24 m (x1.3)
+  hortimulti/strawberry02: N=3 ATE 0.65–1.42 m (x2.2)
+  hortimulti/strawberry03: N=3 ATE 0.18–0.23 m (x1.3)
   rosariov2/sequence1: N=3 ATE 0.67–4.98 m (x7.4)
   rosariov2/sequence5: N=3 ATE 4.00–13.97 m (x3.5)
 
 ## IMU effect (median ATE Sim3, VO -> VIO, per dataset)
   rosariov2: airslam: 10.93->14.31; basalt: 14.34->3.77; okvis2: 18.40->19.19; okvis2x: 16.02->19.38; orbslam3: 4.49->3.49
-  hortimulti: airslam: 11.66->3.27; basalt: 1.19->1.34; okvis2: 1.03->1.27; okvis2x: 1.33->1.24; orbslam3: 0.44->0.94
-  zed2i: airslam: 3.87->3.90; basalt: 0.45->9.14; okvis2: 3.37->17.67; okvis2x: 1.44->18.31
-  euroc_mav: airslam: 0.14->0.10; basalt: 0.14->0.05; okvis2: 0.13->0.10; okvis2x: 0.15->0.07; orbslam3: 0.05->0.03
+  hortimulti: airslam: 11.62->3.24; basalt: 1.16->1.30; okvis2: 1.02->1.25; okvis2x: 1.29->1.21; orbslam3: 0.44->0.88
+  zed2i: airslam: 3.87->3.90; basalt: 0.45->9.14; okvis2: 3.37->17.67; okvis2x: 1.43->18.31
+  euroc_mav: airslam: 0.14->0.10; basalt: 0.13->0.05; okvis2: 0.13->0.10; okvis2x: 0.15->0.07; orbslam3: 0.05->0.03
 
 ## Loop-closure blow-ups (|change| > 100% vs same-algo VO)
-  dpvo hortimulti/strawberry03: 1.82->8.83 (+386%)
+  dpvo hortimulti/strawberry03: 1.81->8.80 (+387%)
   okvis2x hortimulti/strawberry03: 0.68->2.53 (+271%)
   orbslam3 rosariov2/sequence5: 6.69->14.63 (+119%)
-  ov2slam hortimulti/strawberry02: 5.76->23.50 (+308%)
+  ov2slam hortimulti/strawberry02: 5.23->22.97 (+339%)
 
 ## ORB-SLAM3 agricultural VO coverage (gap-aware)
 range 42–100% across 12 runs.

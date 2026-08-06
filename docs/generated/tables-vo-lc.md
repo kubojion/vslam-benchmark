@@ -17,11 +17,11 @@ inside the band carry no bold — that is an honest tie, not an omission.
 
 | Algorithm | seq1 | seq5 | str02 | str03 | zed2i |
 |---|---|---|---|---|---|
-| ORB-SLAM3 | **1.47** | *14.8 @73%* | *2.07 @53%* | 0.783 | 0.255 |
-| OV2SLAM | 4.12 | **2.36** | 24 | 0.578 | 0.36 |
-| OKVIS2 | 19.2 | 15.8 | 1.98 | 0.575 | 0.777 |
-| OKVIS2-X | 19.8 | 13.5 | 1.93 | 2.7 | *0.32 @78%* |
-| DPVO (mono) | 34.6 | 36.8 | 26.7 | 11.1 | 14.5 |
+| ORB-SLAM3 | **1.47** | *14.8 @73%* | *2.06 @53%* | 0.782 | 0.254 |
+| OV2SLAM | 4.12 | **2.36** | 23.5 | 0.577 | 0.359 |
+| OKVIS2 | 19.2 | 15.8 | 1.89 | 0.574 | 0.776 |
+| OKVIS2-X | 19.8 | 13.5 | 1.88 | 2.69 | *0.32 @78%* |
+| DPVO (mono) | 34.6 | 36.8 | 27.1 | 11.1 | 14.5 |
 
 > No bold in column(s) str02, str03, zed2i: top-2 margin is inside the winner's dispersion band (honest tie).
 
@@ -29,11 +29,11 @@ inside the band carry no bold — that is an honest tie, not an omission.
 
 | Algorithm | seq1 | seq5 | str02 | str03 | zed2i |
 |---|---|---|---|---|---|
-| ORB-SLAM3 | 0.954 | *14.6 @73%* | *0.717 @53%* | 0.104 | 0.202 |
-| OV2SLAM | 4.06 | 2.23 | 23.5 | 0.0957 | 0.314 |
-| OKVIS2 | 18.7 | 15.6 | 1.39 | 0.118 | 0.752 |
-| OKVIS2-X | 19.2 | 13.4 | 1.22 | 2.53 | *0.294 @78%* |
-| DPVO (mono) | 9.34 | 6.51 | 22 | 8.83 | 2.36 |
+| ORB-SLAM3 | 0.954 | *14.6 @73%* | *0.717 @53%* | 0.104 | 0.201 |
+| OV2SLAM | 4.06 | 2.23 | 23 | 0.0958 | 0.314 |
+| OKVIS2 | 18.7 | 15.6 | 1.3 | 0.118 | 0.752 |
+| OKVIS2-X | 19.2 | 13.4 | 1.2 | 2.53 | *0.294 @78%* |
+| DPVO (mono) | 9.34 | 6.51 | 21.1 | 8.8 | 2.35 |
 
 </details>
 
@@ -69,4 +69,4 @@ inside the band carry no bold — that is an honest tie, not an omission.
 | OV2SLAM | 39 | 6 | 2 | 15 | 8 | 10 | 14 | 4 |
 | OKVIS2 | 76 | 0 | 7 | 54 | 1261 | 36 | 44 | 18 |
 | OKVIS2-X | 30 | 1 | 7 | 7 | 357 | 37 | 37 | 20 |
-| DPVO (mono) | n/i | n/i | 0 | 0 | 0 | 0 | 0 | 0 |
+| DPVO (mono) | n/i | n/i | n/i | n/i | n/i | n/i | n/i | n/i |

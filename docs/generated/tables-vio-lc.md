@@ -17,10 +17,10 @@ inside the band carry no bold — that is an honest tie, not an omission.
 
 | Algorithm | seq1 | seq5 | str02 | str03 |
 |---|---|---|---|---|
-| ORB-SLAM3 | **0.705** | **2.71** | 2.19 | 0.693 |
-| AirSLAM | 15.9 | 25.5 | 5.57 | 0.958 |
-| OKVIS2 | 18.8 | 20.8 | 1.98 | **0.596** |
-| OKVIS2-X | 18.1 | 19.6 | 2.12 | 0.757 |
+| ORB-SLAM3 | **0.705** | **2.71** | 2.11 | 0.693 |
+| AirSLAM | 15.9 | 25.5 | 5.58 | 0.956 |
+| OKVIS2 | 18.8 | 20.8 | 1.9 | **0.596** |
+| OKVIS2-X | 18.1 | 19.6 | 2.01 | 0.756 |
 
 > No bold in column(s) str02: top-2 margin is inside the winner's dispersion band (honest tie).
 
@@ -28,10 +28,10 @@ inside the band carry no bold — that is an honest tie, not an omission.
 
 | Algorithm | seq1 | seq5 | str02 | str03 |
 |---|---|---|---|---|
-| ORB-SLAM3 | 0.574 | 2.45 | 0.883 | 0.192 |
-| AirSLAM | 15.8 | 24.2 | 5.36 | 0.616 |
-| OKVIS2 | 18.3 | 20.4 | 1.33 | 0.099 |
-| OKVIS2-X | 17.8 | 19.3 | 1.78 | 0.113 |
+| ORB-SLAM3 | 0.574 | 2.45 | 0.807 | 0.192 |
+| AirSLAM | 15.8 | 24.2 | 5.36 | 0.615 |
+| OKVIS2 | 18.3 | 20.4 | 1.28 | 0.099 |
+| OKVIS2-X | 17.8 | 19.3 | 1.66 | 0.113 |
 
 </details>
 
