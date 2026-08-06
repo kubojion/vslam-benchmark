@@ -16,8 +16,10 @@ It contains:
 - `mav0/cam0/data/*.jpg` and `mav0/cam1/data/*.jpg`: rectified stereo images.
 - `times.txt`: camera timestamps in nanoseconds.
 - `imu.csv`: raw IMU export.
-- `gt_tum.txt`: RTK-derived ground truth using the original 1.86 m lever arm.
-- `gt_measured_2p86_interp_tum.txt`: RTK-derived ground truth with the measured 2.86 m GPS-to-camera lever arm.
+- `gt_tum.txt`: RTK-derived ground truth using the **correct 2.86 m** GPS-to-camera lever arm
+  (installed 2026-08-06; see "Ground-truth lever arm" below).
+- `gt_tum.txt.wrong-1p86-lever`: the superseded 1.86 m file, archived. **Do not use.**
+- `gt_measured_2p86_interp_tum.txt`: reference 2.86 m interpolated GT (kept for verification).
 - `manifest.json`: source bags, topics, camera intrinsics, FPS, and export notes.
 
 The ORB-SLAM3 config for this sequence is:
@@ -60,11 +62,11 @@ ORB_SLAM3_DIR=/path/to/ORB_SLAM3 bash scripts/run/run_orbslam3.sh zed2i field1_1
 
 ## Evaluate Against RTK
 
-For the current dataset, prefer the measured 2.86 m lever-arm GT:
+`gt_tum.txt` / `gt_interp_tum.txt` are already the correct 2.86 m GT — no copying is needed.
+(Historically the 2.86 m file had to be copied over a wrong 1.86 m default; that is now fixed.)
 
 ```bash
-cp datasets/zed2i/field1_110426_full_10fps_q90/gt_measured_2p86_interp_tum.txt \
-   datasets/zed2i/field1_110426_full_10fps_q90/gt_interp_tum.txt
+# no GT substitution required; evaluate directly
 
 conda run -n droid_slam python3 scripts/eval/_evaluate_run.py \
   zed2i field1_110426_full_10fps_q90 orbslam3 2
@@ -109,3 +111,25 @@ Run it with the full sequence config:
 ORB_CONFIG=configs/orbslam3/zed2i_full_10fps_q90.yaml \
   bash scripts/run/run_orbslam3.sh zed2i field1_110426_full_10fps_q90_map_preview_1k 1
 ```
+
+
+## Ground-truth lever arm (2026-08-06)
+
+The GPS position antenna (`moving_base`, the REAR antenna) sits 0.320 m ahead of the rear axle;
+the ZED optical centre sits 3.180 m ahead of it. The antenna->camera lever arm is therefore
+**3.180 - 0.320 = 2.860 m**. Both are measured from the same datum, so the CAR/4WS `base_link`
+convention cancels — mixing those conventions is what produced the earlier, undocumented 1.86 m
+extractor default. `scripts/data/_zed2i_ros2_extract.py` now defaults `--gps_to_camera_x` to 2.86.
+
+Published ZED2i ATEs were always scored against the correct 2.86 m *interpolated* GT; only the raw
+`gt_tum.txt` (which feeds `segments_auto.csv`, segment maps and trajectory overlays) carried the
+1.86 m error. It was replaced on 2026-08-06 and all 18 zed2i runs re-evaluated: ATEs moved by
+<= 0.51 % (median 0.068 %), consistent with the interpolation fix alone.
+
+Note `--gps_to_camera_z` is 0.0, so GT altitude is the **antenna's**, not the camera's 1.31 m
+height. This does not affect horizontal ATE.
+
+**Two-machine clock offset:** the camera and robot are recorded by different computers into
+different bags; `/gps/fix` appears in both, giving a measured **0.10 s** camera->robot offset
+(residual +/-40 ms ~ +/-2.4 cm at 0.6 m/s). Anything fusing camera and RTK across the two bags
+must apply it.
