@@ -1,0 +1,143 @@
+{
+  "dataset": "field1_110426_full_10fps_q90",
+  "zed_bag": "/home/iman/datasets/zed2i_bags/zed2i_vislam_rtk_hd1080_compressed_20260703_110426",
+  "rtk_bag": "/home/iman/Downloads/field-test-0703/field1/field1-all-rows-follow-0703-nav2-3",
+  "image_format": "jpg",
+  "jpeg_quality": 90,
+  "recompress_jpeg": true,
+  "target_fps": 10.0,
+  "stereo_pairs": 46283,
+  "start_ns": 1783069468179227815,
+  "end_ns": 1783074097316885815,
+  "duration_s": 4629.137658,
+  "topics": {
+    "left": "/zed/zed_node/left/color/rect/image/compressed",
+    "right": "/zed/zed_node/right/color/rect/image/compressed",
+    "imu": "/zed/zed_node/imu/data_raw",
+    "gps_moving_base": "/gps/fix",
+    "gps_rover_heading": "/ublox_rover/fix"
+  },
+  "camera_info": {
+    "left": {
+      "width": 1920,
+      "height": 1080,
+      "distortion_model": "rational_polynomial",
+      "frame_id": "zed_left_camera_frame_optical",
+      "k": [
+        1118.6947021484375,
+        0.0,
+        964.8566284179688,
+        0.0,
+        1118.6947021484375,
+        559.3102416992188,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "d": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "r": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "p": [
+        1118.6947021484375,
+        0.0,
+        964.8566284179688,
+        0.0,
+        0.0,
+        1118.6947021484375,
+        559.3102416992188,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    "right": {
+      "width": 1920,
+      "height": 1080,
+      "distortion_model": "rational_polynomial",
+      "frame_id": "zed_right_camera_frame_optical",
+      "k": [
+        1118.6947021484375,
+        0.0,
+        964.8566284179688,
+        0.0,
+        1118.6947021484375,
+        559.3102416992188,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "d": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "r": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "p": [
+        1118.6947021484375,
+        0.0,
+        964.8566284179688,
+        -134.0713653564453,
+        0.0,
+        1118.6947021484375,
+        559.3102416992188,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  },
+  "gps_gt": {
+    "gps_rows": 23107,
+    "gt_rows": 23107,
+    "heading_rows": 23107,
+    "origin_lat_lon_alt": [
+      52.291369976,
+      16.39219627,
+      120.94820000000001
+    ],
+    "lever_x_m": 1.86,
+    "lever_z_m": 0.0
+  },
+  "notes": [
+    "gt_tum.txt is RTK moving-base GPS shifted horizontally by gps_to_camera_x using rover/moving-base heading.",
+    "gt_tum.txt orientation is identity; use position metrics for validation.",
+    "gps_to_camera_z is relative antenna-to-camera height, not camera height from ground."
+  ]
+}
