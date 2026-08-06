@@ -250,8 +250,8 @@ Legend: ✅ run complete | 🟡 run complete with caveat | ⬜ config only | �
 | 15 | Add `loopClosing: 0` to hortimulti/euroc/zed2i `_stereo.yaml` | `[x]` clean LC-off baselines are the current VO table (2026-08-04) |
 | 16 | Re-evaluate the 2 colleague-machine OKVIS2 VIO-LC runs with corrected LC metric | `[x]` closed by the machine-B re-evaluation campaign (2026-08-06, all EuRoC/HortiMulti runs re-parsed) |
 | 17 | ~~Create GitHub forks~~ | `[x]` **DONE 2026-08-06** — forks created, branches pushed (airslam 1b70ff6, open_vins 289bca3), `.gitmodules` re-pointed |
-| 18 | Machine B: regenerate zed2i **vio + vo-lc** segment maps (still drawn against the wrong 1.86 m GT) and commit euroc/hortimulti/zed2i GT files under the new `.gitignore` exception | `[x]` **DONE 2026-08-06** — maps regenerated for all three zed2i buckets; GT/times files + dataset alias symlinks committed |
-| 19 | Fix `_segment_trajectory.py` turn detection for zed2i (currently 2 pseudo-row segments / 0 turns on a 6-row field → zed2i row/turn analysis meaningless) | `[x]` **DONE 2026-08-06** — root cause was identity GT orientations, not the turn threshold. See finding below |
+| 18 | ~~Machine B: zed2i segment maps + GT tracking~~ | `[x]` **DONE 2026-08-06** (commits 9b0fc92 + 42c3492): vio/vo-lc maps regenerated on 2.86 m GT; euroc/hortimulti/zed2i GT + times + segments + alias symlinks tracked — verified byte-reproducible CSVs on any clone |
+| 19 | ~~Fix zed2i turn detection~~ | `[x]` **DONE 2026-08-06** (5d71cbd): tangent-derived headings (2 m path smoothing) → zed2i now 10 row + 5 turn segments; zed2i runs re-evaluated. Known limitation (documented in-code): short absorbed segments can split one row into several — coalescing deferred to the server-campaign re-eval since it re-segments every dataset |
 
 ---
 
