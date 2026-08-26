@@ -129,15 +129,16 @@ python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$
 MONPID=$!
 trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
 
-# The configs disable every display, so no window should ever open. Guard anyway:
-# OpenCV highgui can still initialise a backend on some builds.
+# OpenCV highgui can initialise even when every display option is false. A
+# server may export DISPLAY while denying access, so use a private X server by
+# default. Set OKVIS_INTERACTIVE=1 only for a deliberate GUI run.
 RUN_PREFIX=()
-if [[ -z "${DISPLAY:-}" ]]; then
+if [[ "${OKVIS_INTERACTIVE:-0}" != "1" ]]; then
     if command -v xvfb-run >/dev/null; then
         RUN_PREFIX=(xvfb-run -a -s "-screen 0 1280x720x24")
     else
         export QT_QPA_PLATFORM=offscreen
-        echo "[okvis2x] no DISPLAY and xvfb-run missing; setting QT_QPA_PLATFORM=offscreen" | tee -a "$LOG_GLOBAL"
+        echo "[okvis2x] xvfb-run missing; setting QT_QPA_PLATFORM=offscreen" | tee -a "$LOG_GLOBAL"
     fi
 fi
 

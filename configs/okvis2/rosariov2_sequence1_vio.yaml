@@ -41,21 +41,20 @@ camera_parameters:
         sigma_r_final_ba: 0.03
         sigma_alpha_final_ba: 0.3
 
-# IMU noise model: RealSense D435i.
-# Using OKVIS2 author's own D435i reference values, NOT raw Allan-variance.
-# Ref: https://github.com/ethz-mrl/okvis2/blob/main/config/realsense_D435i.yaml
+# IMU: RealSense D435i. Effective recording-noise envelope derived by
+# scripts/analysis/derive_okvis_imu_noise.py; random walks are calibrated Allan values.
 imu_parameters:
     use: true
     a_max: 160.0
     g_max: 10.0
-    sigma_g_c: 0.00278     # gyro noise density [rad/s/sqrt(Hz)]  (OKVIS2 D435i ref)
-    sigma_a_c: 0.0252      # accel noise density [m/s^2/sqrt(Hz)]  (OKVIS2 D435i ref)
+    sigma_g_c: 0.0015       # effective gyro density [rad/s/sqrt(Hz)]
+    sigma_a_c: 0.070        # effective accel density [m/s^2/sqrt(Hz)]
     sigma_bg: 0.03
     sigma_ba: 0.1
-    sigma_gw_c: 0.0008     # gyro bias random walk                  (OKVIS2 D435i ref)
-    sigma_aw_c: 0.04       # accel bias random walk                 (OKVIS2 D435i ref)
+    sigma_gw_c: 1.823e-06 # calibrated gyro bias random walk
+    sigma_aw_c: 4.750e-05 # calibrated accel bias random walk
     g: 9.7958              # Argentina (Rosario lat -32.95)
-    g0: [ 0.0, 0.0, 0.0 ]
+    g0: [-0.0044351044, -0.0008770673, -0.0017121638] # stationary-head mean
     a0: [ 0.0, 0.0, 0.0 ]
     T_BS:
         [1.0, 0.0, 0.0, 0.0,

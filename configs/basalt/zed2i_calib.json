@@ -79,14 +79,14 @@
         ],
         "imu_update_rate": 100.0,
         "accel_noise_std": [
-            0.00044,
-            0.00044,
-            0.00044
+            0.180,
+            0.180,
+            0.180
         ],
         "gyro_noise_std": [
-            0.004992,
-            0.004992,
-            0.004992
+            0.0195,
+            0.0195,
+            0.0195
         ],
         "accel_bias_std": [
             0.0202,
@@ -94,12 +94,12 @@
             0.0202
         ],
         "gyro_bias_std": [
-            0.0424,
-            0.0424,
-            0.0424
+            0.0007400196,
+            0.0007400196,
+            0.0007400196
         ],
         "cam_time_offset_ns": 0,
         "vignette": [],
-        "_comment_noise": "IMU noise = ZED factory values (accel 4.4e-4, gyro 4.99e-3 rad|m/s^2 per sqrtHz, 400Hz native). NOTE: VIO underperforms VO on this dataset regardless of noise - tested factory vs data-measured (2.17e-2) accel noise; measured was WORSE (scale 0.71 vs 0.82). The problem is insufficient rotational excitation, not noise. Use VO. See PROGRESS.md."
+        "_comment_noise": "Common ZED field profile: effective measurement densities from the benchmark recording (gyro 0.0195 rad/s/sqrtHz, accel 0.180 m/s^2/sqrtHz); factory bias random walks with gyro converted from 0.0424 deg/s^2/sqrtHz to 0.0007400196 rad/s^2/sqrtHz. Derived without trajectory-error feedback; see docs/okvis-imu-noise-derivation.md."
     }
 }

@@ -52,7 +52,8 @@ show_track: 0
 flow_back: 1
 
 #optimization parameters
-max_solver_time: 0.04
+# Offline quality benchmark: let max_num_iterations/convergence stop the solve.
+max_solver_time: 1.0
 max_num_iterations: 8
 keyframe_parallax: 10.0
 

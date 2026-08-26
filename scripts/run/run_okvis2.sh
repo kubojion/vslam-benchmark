@@ -65,14 +65,16 @@ python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$
 MONPID=$!
 trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
 
-# OKVIS2 calls cv::imshow; run under a virtual X server if no DISPLAY.
+# OKVIS2 calls cv::imshow even when displays are disabled. A server may export
+# DISPLAY while denying this process access, so benchmark runs use their own X
+# server by default. Set OKVIS_INTERACTIVE=1 only for a deliberate GUI run.
 RUN_PREFIX=()
-if [[ -z "${DISPLAY:-}" ]]; then
+if [[ "${OKVIS_INTERACTIVE:-0}" != "1" ]]; then
     if command -v xvfb-run >/dev/null; then
         RUN_PREFIX=(xvfb-run -a -s "-screen 0 1280x720x24")
     else
         export QT_QPA_PLATFORM=offscreen
-        echo "[okvis2] no DISPLAY and xvfb-run missing; setting QT_QPA_PLATFORM=offscreen" | tee -a "$LOG_GLOBAL"
+        echo "[okvis2] xvfb-run missing; setting QT_QPA_PLATFORM=offscreen" | tee -a "$LOG_GLOBAL"
     fi
 fi
 

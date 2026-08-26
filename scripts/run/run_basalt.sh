@@ -5,8 +5,7 @@
 # run_type selects results tree AND whether IMU is used:
 #   vo      -> results/vo/<dataset>/<seq>/basalt/run<N>/         (--use-imu false)
 #   vio     -> results/vio/<dataset>/<seq>/basalt/run<N>/        (--use-imu true)
-#   vio-lc  -> results/vio-lc/<dataset>/<seq>/basalt/run<N>/     (--use-imu true)
-#               (Basalt has no LC; vio-lc is logged but treated like vio)
+# Basalt does not implement loop closure, so LC run types are rejected.
 #
 # Outputs:
 #   trajectory.txt  - TUM format (timestamp_s tx ty tz qx qy qz qw)
@@ -17,7 +16,7 @@
 # Dependencies:
 #   basalt_vio must be on PATH (source ~/.basalt/env or add ~/.local/bin to PATH)
 #   configs/basalt/<dataset>_calib.json  - stereo calibration (pinhole, rectified)
-#   configs/basalt/vo_config.json        - VIO optimisation config
+#   configs/basalt/{vo,vio}_config.json  - upstream estimator profiles
 set -euo pipefail
 
 DATASET=$1; SEQ=$2; RUN_ID=${3:-1}; RUN_TYPE=${4:-vo}
@@ -29,16 +28,14 @@ SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/basalt/run${RUN_ID}"
 LOG_GLOBAL="$WS/logs/${DATASET}_${SEQ}_basalt_${RUN_TYPE}_run${RUN_ID}.log"
 CALIB="$WS/configs/basalt/${DATASET}_calib.json"
-# Use dataset-specific vo_config if it exists, else fall back to default
-if [[ -f "$WS/configs/basalt/${DATASET}_vo_config.json" ]]; then
-    VO_CFG="$WS/configs/basalt/${DATASET}_vo_config.json"
-else
-    VO_CFG="$WS/configs/basalt/vo_config.json"
-fi
-
-if [[ "$RUN_TYPE" == "vio-lc" ]]; then
-    echo "[basalt] WARNING: Basalt has no built-in loop closure; running plain VIO" >&2
-fi
+case "$RUN_TYPE" in
+    vo)  ESTIMATOR_CFG="${BASALT_CONFIG:-$WS/configs/basalt/vo_config.json}" ;;
+    vio) ESTIMATOR_CFG="${BASALT_CONFIG:-$WS/configs/basalt/vio_config.json}" ;;
+    *)
+        echo "[basalt] ERROR: Basalt supports only vo and vio (no loop closure)" >&2
+        exit 2
+        ;;
+esac
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
@@ -55,7 +52,7 @@ fi
 BASALT_BIN=$(command -v basalt_vio)
 PROV_ARGS=(
     --artifact "camera_calibration=$CALIB"
-    --artifact "estimator_config=$VO_CFG"
+    --artifact "estimator_config=$ESTIMATOR_CFG"
     --binary "estimator=$BASALT_BIN"
     --param "use_imu=$USE_IMU"
     --param "num_threads=0"
@@ -115,7 +112,7 @@ basalt_vio \
     --dataset-path "$SEQ_DIR" \
     --dataset-type euroc \
     --cam-calib "$CALIB" \
-    --config-path "$VO_CFG" \
+    --config-path "$ESTIMATOR_CFG" \
     --use-imu "$USE_IMU" \
     --save-trajectory tum \
     --num-threads 0 > "$OUT_DIR/run_log.txt" 2>&1

@@ -47,7 +47,7 @@ Camera.height: 480
 Camera.fps: 20
 
 # 0 = grayscale
-Camera.RGB: 1
+Camera.RGB: 0
 
 #--------------------------------------------------------------------------------------------
 # Stereo Parameters

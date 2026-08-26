@@ -38,14 +38,12 @@ initializer_parameter:
     gravity_mag: 9.812           # Poznan, Poland (~52.29 deg N)
     downsample_cameras: false
 
-# ZED 2 IMU (ZED2i field1_110426_full_10fps_q90). Noise values match configs/openvins/rosariov2/
-# kalibr_imu_chain.yaml and configs/basalt/rosariov2_calib.json (validated by
-# Basalt and OKVIS2 runs).
+# ZED2i field1 IMU. Common recording-derived profile shared by all estimators.
 imu_parameter:
-    accelerometer_noise_density: 4.4000e-04
+    accelerometer_noise_density: 1.8000e-01
     accelerometer_random_walk:   2.0200e-02
-    gyroscope_noise_density:     4.9920e-03
-    gyroscope_random_walk:       4.2400e-02
+    gyroscope_noise_density:     1.9500e-02
+    gyroscope_random_walk:       7.400196e-04 # factory deg-to-rad
     sigma_pix: 1.0
     Tw: [ 1.0, 0.0, 0.0,
           0.0, 1.0, 0.0,

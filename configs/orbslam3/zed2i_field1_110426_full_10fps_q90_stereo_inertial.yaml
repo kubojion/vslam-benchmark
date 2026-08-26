@@ -1,7 +1,7 @@
 %YAML:1.0
 # ORB-SLAM3 stereo-inertial (VIO) config for ZED2i field1_110426_full_10fps_q90.
 # IMU co-located with cam0 (ZED2i factory ~0.675 deg) => IMU.T_b_c1 = identity.
-# ZED factory IMU noise, ~100 Hz. VIO underperforms VO here (IMU under-excited).
+# Common recording-derived ZED IMU profile, ~100 Hz.
 
 File.version: "1.0"
 
@@ -85,7 +85,7 @@ RIGHT.P: !!opencv-matrix
          0.0, 1118.6947021484375, 559.3102416992188, 0.0,
          0.0, 0.0, 1.0, 0.0]
 
-ORBextractor.nFeatures: 2000
+ORBextractor.nFeatures: 1200
 ORBextractor.scaleFactor: 1.2
 ORBextractor.nLevels: 8
 ORBextractor.iniThFAST: 20
@@ -108,10 +108,10 @@ IMU.T_b_c1: !!opencv-matrix
           0.0, 0.0, 1.0, 0.0,
           0.0, 0.0, 0.0, 1.0 ]
 
-# ZED2i factory IMU noise (SN30291010), continuous-time densities.
-IMU.NoiseGyro: 4.9920e-03
-IMU.NoiseAcc:  4.4000e-04
-IMU.GyroWalk:  4.2400e-02
+# Common ZED field IMU profile (SN30291010), continuous-time densities.
+IMU.NoiseGyro: 1.9500e-02
+IMU.NoiseAcc:  1.8000e-01
+IMU.GyroWalk:  7.400196e-04
 IMU.AccWalk:   2.0200e-02
 IMU.Frequency: 100.0
 IMU.InsertKFsWhenLost: 1

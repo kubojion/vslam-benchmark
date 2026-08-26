@@ -11,8 +11,7 @@
 #  - calib_cam_intrinsics:false    same reason.
 #  - gravity_mag: 9.7958           Cordoba, Argentina (~31°S).
 #  - track_frequency: 15.0         camera publishes at 15 Hz.
-#  - num_pts: 250                  bumped vs. EuRoC default to compensate for
-#                                  sparser-textured outdoor scenes.
+#  - num_pts: 200                  frozen upstream quality profile.
 #  - histogram_method: HISTOGRAM   keeps default (cheap and robust on IR).
 
 verbosity: "INFO"
@@ -82,7 +81,7 @@ filepath_gt: "/tmp/ov_groundtruth.txt"
 
 # Front-end (KLT)
 use_klt: true
-num_pts: 250
+num_pts: 200
 fast_threshold: 20
 grid_x: 5
 grid_y: 5

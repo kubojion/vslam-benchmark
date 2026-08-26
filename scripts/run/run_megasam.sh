@@ -90,6 +90,10 @@ PROV_ARGS=(
     --artifact "depth_anything_model=$REPO/Depth-Anything/checkpoints/depth_anything_vitl14.pth"
     --source "algorithm=$REPO"
     --param "unidepth_model=unidepth-v2-vitl14" --param "visualization=false"
+    --param "buffer=1024" --param "beta=0.3" --param "warmup=8"
+    --param "keyframe_thresh=2.0" --param "frontend_thresh=12.0"
+    --param "frontend_window=25" --param "frontend_radius=2" --param "frontend_nms=1"
+    --param "backend_thresh=16.0" --param "backend_radius=2" --param "backend_nms=3"
     --conda-env megasam
 )
 
@@ -147,6 +151,11 @@ RGBPY
         --scene_name "$SCENE" \
         --mono_depth_path "$REPO/Depth-Anything/video_visualization" \
         --metric_depth_path "$REPO/UniDepth/outputs" \
+        --buffer 1024 --beta 0.3 --warmup 8 \
+        --keyframe_thresh 2.0 \
+        --frontend_thresh 12.0 --frontend_window 25 \
+        --frontend_radius 2 --frontend_nms 1 \
+        --backend_thresh 16.0 --backend_radius 2 --backend_nms 3 \
         --disable_vis
 ) 2>&1 | python3 -u -c "
 import sys, time

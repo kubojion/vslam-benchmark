@@ -58,19 +58,20 @@ camera_parameters:
         sigma_r_final_ba: 0.03
         sigma_alpha_final_ba: 0.3
 
-# IMU noise model: RealSense D435i values identified by CIFASIS.
+# IMU: RealSense D435i. Effective recording-noise envelope derived by
+# scripts/analysis/derive_okvis_imu_noise.py; random walks are calibrated Allan values.
 imu_parameters:
     use: true
     a_max: 176.0
     g_max: 7.8
-    sigma_g_c: 2.324e-04   # gyro noise density [rad/s/sqrt(Hz)]
-    sigma_a_c: 9.943e-04   # accel noise density [m/s^2/sqrt(Hz)]
+    sigma_g_c: 0.0015       # effective gyro density [rad/s/sqrt(Hz)]
+    sigma_a_c: 0.070        # effective accel density [m/s^2/sqrt(Hz)]
     sigma_bg: 0.01
     sigma_ba: 0.1
-    sigma_gw_c: 1.823e-06  # gyro bias random walk
-    sigma_aw_c: 4.750e-05  # accel bias random walk
+    sigma_gw_c: 1.823e-06 # calibrated gyro bias random walk
+    sigma_aw_c: 4.750e-05 # calibrated accel bias random walk
     g: 9.7958              # Argentina (Rosario lat -32.95)
-    g0: [ 0.0, 0.0, 0.0 ]
+    g0: [-0.0042909713, -0.0005803788, -0.0016624973] # stationary-head mean
     a0: [ 0.0, 0.0, 0.0 ]
     T_BS:
         [1.0, 0.0, 0.0, 0.0,

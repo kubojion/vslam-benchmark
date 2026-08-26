@@ -25,7 +25,7 @@ Camera.height: 1080
 Stereo.b: 0.11984626005940135
 Stereo.ThDepth: 80.0
 
-ORBextractor.nFeatures: 2000
+ORBextractor.nFeatures: 1200
 ORBextractor.scaleFactor: 1.2
 ORBextractor.nLevels: 8
 ORBextractor.iniThFAST: 20

@@ -9,7 +9,7 @@
 #   - ros-humble-rtabmap-ros (apt-installed)
 #   - ros-humble-cv-bridge, ros-humble-image-transport
 #   - python3-rosbag2 + rclpy (provided by the rtabmap_ros stack)
-#   - configs/rtabmap_gps/<dataset>.yaml
+#   - configs/rtabmap_gps/benchmark.ini
 #
 # Dataset layout (EuRoC-ASL under datasets/<dataset>/<seq>/mav0/):
 #   cam0/data/*.png      cam1/data/*.png
@@ -38,16 +38,8 @@ SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/rtabmap_gps/run${RUN_ID}"
 LOG="$WS/logs/${DATASET}_${SEQ}_rtabmap_gps_${RUN_TYPE}_run${RUN_ID}.log"
 
-CFG_HOST_SEQ="$WS/configs/rtabmap_gps/${DATASET}_${SEQ}.yaml"
-CFG_HOST_DSET="$WS/configs/rtabmap_gps/${DATASET}.yaml"
-if [[ -f "$CFG_HOST_SEQ" ]]; then
-    CFG_HOST="$CFG_HOST_SEQ"
-elif [[ -f "$CFG_HOST_DSET" ]]; then
-    CFG_HOST="$CFG_HOST_DSET"
-else
-    echo "[rtabmap_gps] missing config: tried $CFG_HOST_SEQ and $CFG_HOST_DSET" >&2
-    exit 2
-fi
+CFG_HOST="$WS/configs/rtabmap_gps/benchmark.ini"
+[[ -f "$CFG_HOST" ]] || { echo "[rtabmap_gps] missing config: $CFG_HOST" >&2; exit 2; }
 
 [[ -d "$SEQ_DIR/mav0/cam0/data" && -d "$SEQ_DIR/mav0/cam1/data" ]] \
     || { echo "[rtabmap_gps] missing $SEQ_DIR/mav0/cam{0,1}/data" >&2; exit 2; }
@@ -142,7 +134,7 @@ mark_resource_start "$OUT_DIR"
 
 # ---- Launch RTAB-Map (stereo_outdoor.launch.py) ---------------------------
 # We use the rtabmap_launch package's stereo_outdoor.launch.py and overlay
-# our YAML via params_file.
+# our estimator settings via RTAB-Map's documented INI cfg argument.
 ros2 launch rtabmap_launch rtabmap.launch.py \
     stereo:=true \
     left_image_topic:=/cam0/image_raw \
@@ -154,6 +146,7 @@ ros2 launch rtabmap_launch rtabmap.launch.py \
     gps_topic:=/fix \
     frame_id:=base_link \
     approx_sync:=true \
+    odom_always_process_most_recent_frame:=false \
     qos:=2 \
     rtabmap_args:="--delete_db_on_start --Mem/IncrementalMemory true --Optimizer/PriorsIgnored false --Optimizer/Strategy 1 --Optimizer/Robust true" \
     rtabmap_viz:=false \
@@ -276,6 +269,7 @@ enrich_run_meta "$OUT_DIR/run_meta.json" \
     --transport-stats "$OUT_DIR/transport_stats.json" \
     --artifact "estimator_config=$CFG_HOST" \
     --param "playback_rate=1.0" --param "gnss_variant=$GNSS_VARIANT" \
+    --param "odom_always_process_most_recent_frame=false" \
     --param "ros_package=ros-humble-rtabmap-ros:$ROS_PACKAGE_VERSION"
 
 echo "[rtabmap_gps] done (run ${RUN_ID})" | tee -a "$LOG"

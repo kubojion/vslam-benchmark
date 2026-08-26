@@ -61,9 +61,12 @@ DPVO is monocular and up to scale. Its primary metric must therefore be Sim(3)-a
 
 MAC-VO is stereo. The statement near the top of `scripts/run/run_macvo.sh` that describes it as monocular is incorrect documentation; the configured `EuRoC_NoIMU` loader consumes both cam0 and cam1.
 
-### 2.3 Low-priority semantic mismatch
+### 2.3 Resolved low-priority semantic mismatch
 
-The ORB-SLAM3 EuRoC configuration states that `Camera.RGB: 0` means grayscale but currently sets the value to `1`. The input images are already one-channel grayscale, so this is effectively inert in the current path. It should still be changed to `0` for semantic correctness and to prevent surprises if the input loader changes.
+The ORB-SLAM3 EuRoC configuration stated that `Camera.RGB: 0` means grayscale
+but set the value to `1`. The input images are one-channel grayscale, so this
+was inert in the current path. It has now been corrected to `0` in every EuRoC
+VO/VIO and loop-closure variant for semantic consistency.
 
 ## 3. Evidence from the current EuRoC VO runs
 

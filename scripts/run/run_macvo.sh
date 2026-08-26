@@ -3,8 +3,8 @@
 # Usage: scripts/run/run_macvo.sh <dataset> <seq> [run_id=1] [run_type=vo]
 #
 # MAC-VO is stereo VO without IMU or LC, so it only makes sense under
-# run_type=vo. The flag is accepted for uniformity but vio / vio-lc will
-# print a warning and still run vision-only.
+# run_type=vo. Unsupported sensor modes are rejected instead of being silently
+# routed into a misleading results table.
 set -eo pipefail
 DATASET=$1; SEQ=$2; RUN_ID=${3:-1}; RUN_TYPE=${4:-vo}
 WS=$(cd "$(dirname "$0")/../.." && pwd)
@@ -12,7 +12,8 @@ source "$WS/scripts/_paths.sh"
 canonicalize_dataset "$DATASET"
 resolve_run_type "$RUN_TYPE"
 if [[ "$RUN_TYPE" != "vo" ]]; then
-    echo "[macvo] WARNING: MAC-VO has no IMU / LC support; routing output to $RESULTS_ROOT anyway" >&2
+    echo "[macvo] ERROR: MAC-VO supports only run_type=vo" >&2
+    exit 2
 fi
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/macvo/run${RUN_ID}"
 LOG="$WS/logs/${DATASET}_${SEQ}_macvo_${RUN_TYPE}_run${RUN_ID}.log"
@@ -43,7 +44,7 @@ PROV_ARGS=(
     --artifact "effective_dataset_config=$DATA_CFG"
     --artifact "model=$WS/src/MAC-VO/Model/MACVO_FrontendCov.pth"
     --source "algorithm=$WS/src/MAC-VO"
-    --param "use_rerun_viewer=true" --param "matmul_precision=medium"
+    --param "use_rerun_viewer=false" --param "matmul_precision=medium"
     --conda-env macvo
 )
 
@@ -54,7 +55,6 @@ python3 MACVO.py \
     --odom "$ODOM_CFG" \
     --data "$DATA_CFG" \
     --resultRoot "$WS/src/MAC-VO/Results" \
-    --useRR \
     --noeval \
     2>&1 | tee "$LOG"
 MACVO_RC=${PIPESTATUS[0]}

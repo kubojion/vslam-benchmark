@@ -1,5 +1,5 @@
 %YAML:1.0
-# OKVIS2 stereo-inertial (VIO) configuration for ZED2i field1_110426_full_10fps_q90 (identity T_SC, ZED factory IMU noise; VIO<VO here).
+# OKVIS2 stereo-inertial (VIO) configuration for ZED2i field1_110426_full_10fps_q90 (identity T_SC, common field IMU profile).
 # Same calibration as sequence5 - recorded with the same robot and sensor box.
 
 cameras:
@@ -48,14 +48,14 @@ imu_parameters:
     use: true
     a_max: 160.0
     g_max: 10.0
-    sigma_g_c: 0.004992     # gyro noise density [rad/s/sqrt(Hz)]  (OKVIS2 D435i ref)
-    sigma_a_c: 0.00044      # accel noise density [m/s^2/sqrt(Hz)]  (OKVIS2 D435i ref)
+    sigma_g_c: 0.0195       # effective field-recording gyro envelope
+    sigma_a_c: 0.180        # effective field-recording accel envelope
     sigma_bg: 0.03
     sigma_ba: 0.1
-    sigma_gw_c: 0.0424     # gyro bias random walk                  (OKVIS2 D435i ref)
-    sigma_aw_c: 0.0202       # accel bias random walk                 (OKVIS2 D435i ref)
-    g: 9.812              # Argentina (Rosario lat -32.95)
-    g0: [ 0.0, 0.0, 0.0 ]
+    sigma_gw_c: 7.400196e-04 # ZED factory random walk, deg-to-rad converted
+    sigma_aw_c: 0.0202       # ZED factory accel bias random walk
+    g: 9.812                 # Poznan, Poland (~52.29 deg N)
+    g0: [ 0.0018397597, -0.0023903539, -0.0055601826 ]
     a0: [ 0.0, 0.0, 0.0 ]
     T_BS:
         [1.0, 0.0, 0.0, 0.0,

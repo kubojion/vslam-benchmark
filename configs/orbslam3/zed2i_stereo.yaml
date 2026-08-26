@@ -83,7 +83,7 @@ RIGHT.P: !!opencv-matrix
          0.0, 1118.6947021484375, 559.3102416992188, 0.0,
          0.0, 0.0, 1.0, 0.0]
 
-ORBextractor.nFeatures: 2000
+ORBextractor.nFeatures: 1200
 ORBextractor.scaleFactor: 1.2
 ORBextractor.nLevels: 8
 ORBextractor.iniThFAST: 20

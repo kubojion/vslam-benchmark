@@ -45,19 +45,19 @@ camera_parameters:
         sigma_r_final_ba: 0.03
         sigma_alpha_final_ba: 0.3
 
-# IMU noise model: ZED2i factory (SN30291010), ~100 Hz as recorded.
+# IMU noise model: common ZED2i field profile (SN30291010), ~100 Hz as recorded.
 imu_parameters:
     use: false
     a_max: 160.0
     g_max: 10.0
-    sigma_g_c: 0.004992     # gyro noise density [rad/s/sqrt(Hz)]  (ZED factory)
-    sigma_a_c: 0.00044      # accel noise density [m/s^2/sqrt(Hz)]  (ZED factory)
+    sigma_g_c: 0.0195       # effective field-recording gyro envelope
+    sigma_a_c: 0.180        # effective field-recording accel envelope
     sigma_bg: 0.03
     sigma_ba: 0.1
-    sigma_gw_c: 0.0424     # gyro bias random walk                  (ZED factory)
-    sigma_aw_c: 0.0202       # accel bias random walk                 (ZED factory)
-    g: 9.812              # Poznan, Poland (~52.29 deg N)
-    g0: [ 0.0, 0.0, 0.0 ]
+    sigma_gw_c: 7.400196e-04 # ZED factory random walk, deg-to-rad converted
+    sigma_aw_c: 0.0202       # ZED factory accel bias random walk
+    g: 9.812                 # Poznan, Poland (~52.29 deg N)
+    g0: [ 0.0018397597, -0.0023903539, -0.0055601826 ]
     a0: [ 0.0, 0.0, 0.0 ]
     s_a: [ 1.0, 1.0, 1.0 ]
     T_BS:
