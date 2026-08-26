@@ -1,20 +1,21 @@
-1.735 [93mUpdated outdated /home/iman/.evo/settings.json[39m
-1.735 Running with config...
-1.735 BACKEND_THRESH: 64.0
-1.735 BUFFER_SIZE: 4096
-1.735 CENTROID_SEL_STRAT: RANDOM
-1.735 CLASSIC_LOOP_CLOSURE: False
-1.735 GLOBAL_OPT_FREQ: 15
-1.735 KEYFRAME_INDEX: 4
-1.735 KEYFRAME_THRESH: 15.0
-1.735 LOOP_CLOSE_WINDOW_SIZE: 3
-1.735 LOOP_CLOSURE: False
-1.735 LOOP_RETR_THRESH: 0.04
-1.735 MAX_EDGE_AGE: 1000
-1.735 MIXED_PRECISION: True
-1.735 MOTION_DAMPING: 0.5
-1.735 MOTION_MODEL: DAMPED_LINEAR
-1.735 OPTIMIZATION_WINDOW: 10
-1.735 PATCHES_PER_FRAME: 96
-1.735 PATCH_LIFETIME: 13
-1.735 REMOVAL_WINDOW: 22
+3.252 Traceback (most recent call last):
+3.252   File "/data/imoroz/conda/envs/dpvo/lib/python3.10/site-packages/evo/tools/plot.py", line 65, in apply_settings
+3.252     shell = get_ipython().__class__.__name__  # type: ignore
+3.252 NameError: name 'get_ipython' is not defined
+3.252 
+3.252 During handling of the above exception, another exception occurred:
+3.252 
+3.252 Traceback (most recent call last):
+3.252   File "/data/imoroz/vslam-benchmark/src/DPVO/demo.py", line 13, in <module>
+3.252     from dpvo.plot_utils import plot_trajectory, save_output_for_COLMAP, save_ply
+3.252   File "/data/imoroz/vslam-benchmark/src/DPVO/dpvo/plot_utils.py", line 7, in <module>
+3.252     from evo.tools import plot
+3.252   File "/data/imoroz/conda/envs/dpvo/lib/python3.10/site-packages/evo/tools/plot.py", line 101, in <module>
+3.252     apply_settings(SETTINGS)
+3.252   File "/data/imoroz/conda/envs/dpvo/lib/python3.10/site-packages/evo/tools/plot.py", line 71, in apply_settings
+3.252     mpl.use(settings.plot_backend)
+3.252   File "/data/imoroz/conda/envs/dpvo/lib/python3.10/site-packages/matplotlib/__init__.py", line 1284, in use
+3.252     plt.switch_backend(name)
+3.252   File "/data/imoroz/conda/envs/dpvo/lib/python3.10/site-packages/matplotlib/pyplot.py", line 432, in switch_backend
+3.252     raise ImportError(
+3.252 ImportError: Cannot load backend 'TkAgg' which requires the 'tk' interactive framework, as 'headless' is currently running

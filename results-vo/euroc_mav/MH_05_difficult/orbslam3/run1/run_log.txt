@@ -1,70 +1,60 @@
-[orbslam3] euroc_mav/MH_05_difficult type=vo run=1 -> /home/iman/slam_tests/vslam-benchmark/results-vo/euroc_mav/MH_05_difficult/orbslam3/run1
-0.044 num_seq = 1
-0.044 file name: euroc_mav_MH_05_difficult_orbslam3
-0.045 Loading images for sequence 0...LOADED!
-0.045 
-0.045 -------
-0.045 
-0.045 ORB-SLAM3 Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
-0.045 ORB-SLAM2 Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
-0.045 This program comes with ABSOLUTELY NO WARRANTY;
-0.045 This is free software, and you are welcome to redistribute it
-0.045 under certain conditions. See LICENSE.txt.
-0.045 
-0.045 Input sensor was set to: Stereo
-0.045 Loading settings from /home/iman/slam_tests/vslam-benchmark/configs/orbslam3/euroc_mav_stereo.yaml
-0.045 Camera1.k3 optional parameter does not exist...
-0.045 	-Loaded camera 1
-0.045 Camera2.k3 optional parameter does not exist...
-0.045 	-Loaded camera 2
-0.045 Camera.newHeight optional parameter does not exist...
-0.045 Camera.newWidth optional parameter does not exist...
-0.045 	-Loaded image info
-0.045 	-Loaded ORB settings
-0.045 	-Loaded viewer settings
-0.045 System.LoadAtlasFromFile optional parameter does not exist...
-0.045 System.SaveAtlasToFile optional parameter does not exist...
-0.045 	-Loaded Atlas settings
-0.045 System.thFarPoints optional parameter does not exist...
-0.045 	-Loaded misc parameters
-0.049 	-Computed rectification maps
-0.049 ----------------------------------
-0.049 SLAM settings: 
-0.052 	-Camera 1 parameters (Pinhole): [ 458.65399169921875 457.29598999023438 367.21499633789062 248.375 ]
-0.052 	-Camera 1 distortion parameters: [  -0.28340810537338257 0.073959067463874817 0.00019359000725671649 1.7618711353861727e-05 ]
-0.052 	-Camera 2 parameters (Pinhole: [ 457.58700561523438 456.13400268554688 379.99899291992188 255.23800659179688 ]
-0.052 	-Camera 1 distortion parameters: [  -0.2836836576461792 0.074512839317321777 -0.00010473000293131918 -3.555907096597366e-05 ]
-0.052 	-Original image size: [ 752 , 480 ]
-0.052 	-Current image size: [ 752 , 480 ]
-0.052 	-Camera 1 parameters after rectification: [  456.71499633789062 456.71499633789062 364.52615356445312 257.268798828125 ]
-0.052 	-Sequence FPS: 20
-0.052 	-Stereo baseline: 0.11007784307003021
-0.052 	-Stereo depth threshold : 60
-0.052 	-Features per image: 1200
-0.052 	-ORB scale factor: 1.2000000476837158
-0.052 	-ORB number of scales: 8
-0.052 	-Initial FAST threshold: 20
-0.052 	-Min FAST threshold: 7
-0.052 
-0.052 
-0.052 Loading ORB Vocabulary. This could take a while...
-2.674 Vocabulary loaded!
-2.674 
-2.680 Initialization of Atlas from scratch 
-2.680 Creation of new map with id: 0
-2.680 Creation of new map with last KF id: 0
-2.681 Seq. Name: 
-2.681 There are 1 cameras in the atlas
-2.681 Camera 0 is pinhole
-2.710 First KF:0; Map init KF:0
-2.710 New Map created with 150 points
-2.992 Starting the Viewer
-124.369 Shutdown
-124.369 
-124.369 Saving trajectory to f_euroc_mav_MH_05_difficult_orbslam3.txt ...
-124.369 There are 1 maps in the atlas
-124.369   Map 0 has 277 KFs
-124.374 
-124.374 End of saving trajectory to f_euroc_mav_MH_05_difficult_orbslam3.txt ...
-124.374 
-124.374 Saving keyframe trajectory to kf_euroc_mav_MH_05_difficult_orbslam3.txt ...
+[orbslam3] euroc_mav/MH_05_difficult type=vo run=1 -> /data/imoroz/vslam-benchmark/results-vo/euroc_mav/MH_05_difficult/orbslam3/run1
+0.028 num_seq = 1
+0.029 file name: euroc_mav_MH_05_difficult_orbslam3
+0.029 Loading images for sequence 0...LOADED!
+0.029 
+0.029 -------
+0.029 
+0.029 ORB-SLAM3 Copyright (C) 2017-2020 Carlos Campos, Richard Elvira, Juan J. Gómez, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.029 ORB-SLAM2 Copyright (C) 2014-2016 Raúl Mur-Artal, José M.M. Montiel and Juan D. Tardós, University of Zaragoza.
+0.029 This program comes with ABSOLUTELY NO WARRANTY;
+0.029 This is free software, and you are welcome to redistribute it
+0.029 under certain conditions. See LICENSE.txt.
+0.029 
+0.029 Input sensor was set to: Stereo
+0.029 Loading settings from /data/imoroz/vslam-benchmark/configs/orbslam3/euroc_mav_stereo.yaml
+0.029 Camera1.k3 optional parameter does not exist...
+0.029 	-Loaded camera 1
+0.029 Camera2.k3 optional parameter does not exist...
+0.029 	-Loaded camera 2
+0.029 Camera.newHeight optional parameter does not exist...
+0.029 Camera.newWidth optional parameter does not exist...
+0.029 	-Loaded image info
+0.029 	-Loaded ORB settings
+0.029 	-Loaded viewer settings
+0.029 System.LoadAtlasFromFile optional parameter does not exist...
+0.029 System.SaveAtlasToFile optional parameter does not exist...
+0.029 	-Loaded Atlas settings
+0.029 System.thFarPoints optional parameter does not exist...
+0.029 	-Loaded misc parameters
+0.033 	-Computed rectification maps
+0.033 ----------------------------------
+0.033 SLAM settings: 
+0.033 	-Camera 1 parameters (Pinhole): [ 458.65399169921875 457.29598999023438 367.21499633789062 248.375 ]
+0.033 	-Camera 1 distortion parameters: [  -0.28340810537338257 0.073959067463874817 0.00019359000725671649 1.7618711353861727e-05 ]
+0.033 	-Camera 2 parameters (Pinhole: [ 457.58700561523438 456.13400268554688 379.99899291992188 255.23800659179688 ]
+0.033 	-Camera 1 distortion parameters: [  -0.2836836576461792 0.074512839317321777 -0.00010473000293131918 -3.555907096597366e-05 ]
+0.033 	-Original image size: [ 752 , 480 ]
+0.033 	-Current image size: [ 752 , 480 ]
+0.033 	-Camera 1 parameters after rectification: [  456.71499633789062 456.71499633789062 364.52615356445312 257.268798828125 ]
+0.033 	-Sequence FPS: 20
+0.033 	-Stereo baseline: 0.11007784307003021
+0.033 	-Stereo depth threshold : 60
+0.033 	-Features per image: 1200
+0.033 	-ORB scale factor: 1.2000000476837158
+0.033 	-ORB number of scales: 8
+0.033 	-Initial FAST threshold: 20
+0.033 	-Min FAST threshold: 7
+0.033 
+0.033 
+0.033 Loading ORB Vocabulary. This could take a while...
+1.979 Vocabulary loaded!
+1.979 
+1.986 Initialization of Atlas from scratch 
+1.986 Creation of new map with id: 0
+1.986 Creation of new map with last KF id: 0
+1.987 Seq. Name: 
+1.987 There are 1 cameras in the atlas
+1.987 Camera 0 is pinhole
+1.988 terminate called after throwing an instance of 'std::runtime_error'
+1.988   what():  Pangolin X11: Failed to open X display

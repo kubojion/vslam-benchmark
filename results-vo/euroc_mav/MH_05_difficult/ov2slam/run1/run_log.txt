@@ -1,4 +1,4 @@
-[ov2slam] euroc_mav/MH_05_difficult run=1 type=vo -> /home/iman/slam_tests/vslam-benchmark/results-vo/euroc_mav/MH_05_difficult/ov2slam/run1
+[ov2slam] euroc_mav/MH_05_difficult run=1 type=vo -> /data/imoroz/vslam-benchmark/results-vo/euroc_mav/MH_05_difficult/ov2slam/run1
 [ov2slam-player] cam0=2273 cam1=2273; waiting 1.0s
 
 Launching OV²SLAM...
@@ -24,16 +24,16 @@ ROS visualizer is being created...
 
 Pinhole Camera Model created
 
- Camera Calibration set as :
+ Camera Calibration set as : 
 
 
- K =
+ K = 
 458.654       0 367.215
       0 457.296 248.375
       0       0       1
 
  D =   -0.283408   0.0739591  0.00019359 1.76187e-05
- opt K =
+ opt K = 
 [458.654, 0, 367.215;
  0, 457.296, 248.375;
  0, 0, 1]
@@ -41,23 +41,23 @@ Pinhole Camera Model created
 
 Pinhole Camera Model created
 
- Camera Calibration set as :
+ Camera Calibration set as : 
 
 
- K =
+ K = 
 457.587       0 379.999
       0 456.134 255.238
       0       0       1
 
  D =    -0.283684    0.0745128  -0.00010473 -3.55591e-05
- opt K =
+ opt K = 
 [457.587, 0, 379.999;
  0, 456.134, 255.238;
  0, 0, 1]
- Camera Extrinsic :
+ Camera Extrinsic : 
 
 
- Rc0ci =
+ Rc0ci = 
     0.999997  -0.00231714 -0.000343393
   0.00231207     0.999898   -0.0140907
  0.000376008    0.0140898     0.999901
@@ -86,19 +86,19 @@ Mapper Object is created!
 
 Sensors Grabber is created...
 
-OV²SLAM is ready to process incoming images!
-
 Mapper is ready to process Keyframes!
 
- Use LoopCLoser : 0
+OV²SLAM is ready to process incoming images!
+
  Estimator is ready to process Keyframes!
 
+ Use LoopCLoser : 0
 Starting the measurements reader thread!
 
 
 =======================================================================
- BRIEF CANNOT BE USED ACCORDING TO CMAKELISTS (Opencv Contrib not enabled)
- ORB WILL BE USED INSTEAD!  (BUT NO ROTATION  OR SCALE INVARIANCE ENABLED)
+ BRIEF CANNOT BE USED ACCORDING TO CMAKELISTS (Opencv Contrib not enabled) 
+ ORB WILL BE USED INSTEAD!  (BUT NO ROTATION  OR SCALE INVARIANCE ENABLED) 
 
 
 =======================================================================
@@ -117,25 +117,25 @@ Starting the measurements reader thread!
 [ov2slam-player] done: left=2273 right=2273; waiting 1.0s
 terminate called without an active exception
 Stack trace (most recent call last):
-#8    Object "", at 0xffffffffffffffff, in
-#7    Object "/root/catkin_ws/devel/lib/ov2slam/ov2slam_node", at 0x57cd01650ead, in _start
-#6    Object "/usr/lib/x86_64-linux-gnu/libc-2.31.so", at 0x7edca638b082, in __libc_start_main
+#8    Object "", at 0xffffffffffffffff, in 
+#7    Object "/root/catkin_ws/devel/lib/ov2slam/ov2slam_node", at 0x5600c99bfead, in _start
+#6    Object "/usr/lib/x86_64-linux-gnu/libc-2.31.so", at 0x7ef13e2d7082, in __libc_start_main
 #5  | Source "/root/catkin_ws/src/ov2slam/src/ov2slam_node.cpp", line 208, in ~thread
     |   207:     // Start a thread for providing new measurements to the SLAM
     | > 208:     std::thread sync_thread(&SensorsGrabber::sync_process, &sb);
-    |   209:
+    |   209: 
     |   210:     // ROS Spin
-      Source "/usr/include/c++/9/thread", line 139, in main [0x57cd01650c7c]
+      Source "/usr/include/c++/9/thread", line 139, in main [0x5600c99bfc7c]
         136:     ~thread()
         137:     {
         138:       if (joinable())
       > 139: 	std::terminate();
         140:     }
-        141:
+        141: 
         142:     thread(const thread&) = delete;
-#4    Object "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28", at 0x7edca661e3e6, in std::terminate()
-#3    Object "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28", at 0x7edca661e37b, in
-#2    Object "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28", at 0x7edca66128d0, in
-#1    Object "/usr/lib/x86_64-linux-gnu/libc-2.31.so", at 0x7edca6389858, in abort
-#0    Object "/usr/lib/x86_64-linux-gnu/libc-2.31.so", at 0x7edca63aa00b, in raise
-Aborted (Signal sent by tkill() 896 0)
+#4    Object "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28", at 0x7ef13e56a3e6, in std::terminate()
+#3    Object "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28", at 0x7ef13e56a37b, in 
+#2    Object "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28", at 0x7ef13e55e8d0, in 
+#1    Object "/usr/lib/x86_64-linux-gnu/libc-2.31.so", at 0x7ef13e2d5858, in abort
+#0    Object "/usr/lib/x86_64-linux-gnu/libc-2.31.so", at 0x7ef13e2f600b, in raise
+Aborted (Signal sent by tkill() 46992 0)

@@ -1,4 +1,4 @@
-[ov2slam] euroc_mav/MH_03_medium run=1 type=vo -> /home/iman/slam_tests/vslam-benchmark/results-vo/euroc_mav/MH_03_medium/ov2slam/run1
+[ov2slam] euroc_mav/MH_03_medium run=1 type=vo -> /data/imoroz/vslam-benchmark/results-vo/euroc_mav/MH_03_medium/ov2slam/run1
 [ov2slam-player] cam0=2700 cam1=2700; waiting 1.0s
 
 Launching OV²SLAM...
@@ -84,9 +84,9 @@ Feature Extractor is constructed!
 
 Mapper Object is created!
 
-Sensors Grabber is created...
-
 Mapper is ready to process Keyframes!
+
+Sensors Grabber is created...
 
 OV²SLAM is ready to process incoming images!
 
@@ -120,14 +120,14 @@ Starting the measurements reader thread!
 terminate called without an active exception
 Stack trace (most recent call last):
 #8    Object "", at 0xffffffffffffffff, in 
-#7    Object "/root/catkin_ws/devel/lib/ov2slam/ov2slam_node", at 0x56d20bf9bead, in _start
-#6    Object "/usr/lib/x86_64-linux-gnu/libc-2.31.so", at 0x7255bdbad082, in __libc_start_main
+#7    Object "/root/catkin_ws/devel/lib/ov2slam/ov2slam_node", at 0x6442df765ead, in _start
+#6    Object "/usr/lib/x86_64-linux-gnu/libc-2.31.so", at 0x7fd4b8294082, in __libc_start_main
 #5  | Source "/root/catkin_ws/src/ov2slam/src/ov2slam_node.cpp", line 208, in ~thread
     |   207:     // Start a thread for providing new measurements to the SLAM
     | > 208:     std::thread sync_thread(&SensorsGrabber::sync_process, &sb);
     |   209: 
     |   210:     // ROS Spin
-      Source "/usr/include/c++/9/thread", line 139, in main [0x56d20bf9bc7c]
+      Source "/usr/include/c++/9/thread", line 139, in main [0x6442df765c7c]
         136:     ~thread()
         137:     {
         138:       if (joinable())
@@ -135,9 +135,9 @@ Stack trace (most recent call last):
         140:     }
         141: 
         142:     thread(const thread&) = delete;
-#4    Object "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28", at 0x7255bde403e6, in std::terminate()
-#3    Object "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28", at 0x7255bde4037b, in 
-#2    Object "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28", at 0x7255bde348d0, in 
-#1    Object "/usr/lib/x86_64-linux-gnu/libc-2.31.so", at 0x7255bdbab858, in abort
-#0    Object "/usr/lib/x86_64-linux-gnu/libc-2.31.so", at 0x7255bdbcc00b, in raise
-Aborted (Signal sent by tkill() 58315 0)
+#4    Object "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28", at 0x7fd4b85273e6, in std::terminate()
+#3    Object "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28", at 0x7fd4b852737b, in 
+#2    Object "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28", at 0x7fd4b851b8d0, in 
+#1    Object "/usr/lib/x86_64-linux-gnu/libc-2.31.so", at 0x7fd4b8292858, in abort
+#0    Object "/usr/lib/x86_64-linux-gnu/libc-2.31.so", at 0x7fd4b82b300b, in raise
+Aborted (Signal sent by tkill() 25690 0)

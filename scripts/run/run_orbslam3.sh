@@ -63,6 +63,18 @@ cd "$WS/src/ORB_SLAM3"
 echo "[orbslam3] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL" "$OUT_DIR/run_log.txt"
 echo "[orbslam3] binary=$BIN  cfg=$CFG" | tee -a "$LOG_GLOBAL"
 
+# Pangolin creates an X11 window even when its viewer is disabled in the
+# benchmark config.  Supply a virtual display automatically on headless hosts.
+RUN_PREFIX=()
+if [[ -z "${DISPLAY:-}" ]]; then
+    command -v xvfb-run >/dev/null || {
+        echo "[orbslam3] ERROR: DISPLAY is unset and xvfb-run is not installed" | tee -a "$LOG_GLOBAL"
+        exit 2
+    }
+    RUN_PREFIX=(xvfb-run -a)
+    echo "[orbslam3] DISPLAY is unset; using xvfb-run -a" | tee -a "$LOG_GLOBAL"
+fi
+
 # Resource monitor: GPU + CPU + RAM sampled every 1 s
 python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
 MONPID=$!
@@ -72,7 +84,7 @@ START=$(date +%s.%N)
 # ORB-SLAM3 may crash in Pangolin destructor after saving trajectories; that is
 # harmless — we only care that the trajectory file was written before exit.
 # Pipe through a Python timestamper so each log line gets a relative offset (s).
-"$BIN" \
+"${RUN_PREFIX[@]}" "$BIN" \
     Vocabulary/ORBvoc.txt \
     "$CFG" \
     "$SEQ_DIR" \

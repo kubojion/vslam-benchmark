@@ -1,1 +1,36 @@
-{"algo": "okvis2x", "dataset": "euroc_mav", "seq": "MH_01_easy", "run_id": 1, "run_type": "vo", "duration_s": 195.46044874191284, "frames": 3682, "fps": 18.837570586271063}
+{
+ "algo": "okvis2x",
+ "dataset": "euroc_mav",
+ "seq": "MH_01_easy",
+ "run_id": 1,
+ "run_type": "vo",
+ "use_imu": false,
+ "use_lc": false,
+ "duration_s": 235.36841773986816,
+ "frames": 3682,
+ "fps": 15.643560148623628,
+ "provenance": {
+  "config_path": "/data/imoroz/vslam-benchmark/configs/okvis2x/euroc_mav_MH_01_easy_vo.yaml",
+  "config_sha256": "0046a06b18b67a04d6448dc7b770c93e3da130d79064c3396c84feba998b65ca",
+  "git_describe": "32c6150-dirty"
+ },
+ "machine": {
+  "os": "Ubuntu 22.04.5 LTS",
+  "kernel": "6.8.0-124-generic",
+  "cpu": "Intel(R) Core(TM) Ultra 9 285K",
+  "cpu_cores": {
+   "physical": 24,
+   "logical": 24
+  },
+  "ram_total_gb": 125.2,
+  "gpus": [
+   {
+    "name": "NVIDIA GeForce RTX 4090",
+    "memory": "24564 MiB",
+    "driver": "580.95.05"
+   }
+  ],
+  "python": "3.13.5",
+  "collected_at": "run"
+ }
+}

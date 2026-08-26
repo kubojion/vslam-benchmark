@@ -1,19 +1,21 @@
-1.627 Running with config...
-1.627 BACKEND_THRESH: 64.0
-1.627 BUFFER_SIZE: 4096
-1.627 CENTROID_SEL_STRAT: RANDOM
-1.627 CLASSIC_LOOP_CLOSURE: False
-1.627 GLOBAL_OPT_FREQ: 15
-1.627 KEYFRAME_INDEX: 4
-1.627 KEYFRAME_THRESH: 15.0
-1.627 LOOP_CLOSE_WINDOW_SIZE: 3
-1.627 LOOP_CLOSURE: False
-1.627 LOOP_RETR_THRESH: 0.04
-1.627 MAX_EDGE_AGE: 1000
-1.627 MIXED_PRECISION: True
-1.627 MOTION_DAMPING: 0.5
-1.627 MOTION_MODEL: DAMPED_LINEAR
-1.627 OPTIMIZATION_WINDOW: 10
-1.627 PATCHES_PER_FRAME: 96
-1.627 PATCH_LIFETIME: 13
-1.627 REMOVAL_WINDOW: 22
+2.541 Traceback (most recent call last):
+2.541   File "/data/imoroz/conda/envs/dpvo/lib/python3.10/site-packages/evo/tools/plot.py", line 65, in apply_settings
+2.541     shell = get_ipython().__class__.__name__  # type: ignore
+2.541 NameError: name 'get_ipython' is not defined
+2.541 
+2.541 During handling of the above exception, another exception occurred:
+2.541 
+2.541 Traceback (most recent call last):
+2.541   File "/data/imoroz/vslam-benchmark/src/DPVO/demo.py", line 13, in <module>
+2.541     from dpvo.plot_utils import plot_trajectory, save_output_for_COLMAP, save_ply
+2.541   File "/data/imoroz/vslam-benchmark/src/DPVO/dpvo/plot_utils.py", line 7, in <module>
+2.541     from evo.tools import plot
+2.541   File "/data/imoroz/conda/envs/dpvo/lib/python3.10/site-packages/evo/tools/plot.py", line 101, in <module>
+2.541     apply_settings(SETTINGS)
+2.541   File "/data/imoroz/conda/envs/dpvo/lib/python3.10/site-packages/evo/tools/plot.py", line 71, in apply_settings
+2.541     mpl.use(settings.plot_backend)
+2.541   File "/data/imoroz/conda/envs/dpvo/lib/python3.10/site-packages/matplotlib/__init__.py", line 1284, in use
+2.541     plt.switch_backend(name)
+2.541   File "/data/imoroz/conda/envs/dpvo/lib/python3.10/site-packages/matplotlib/pyplot.py", line 432, in switch_backend
+2.541     raise ImportError(
+2.541 ImportError: Cannot load backend 'TkAgg' which requires the 'tk' interactive framework, as 'headless' is currently running

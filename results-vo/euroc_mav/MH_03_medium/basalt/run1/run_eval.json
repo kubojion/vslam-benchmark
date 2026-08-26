@@ -18,48 +18,48 @@
   "run_status": "ok",
   "n_pairs_ate": 2631,
   "ate": {
-    "rmse": 0.129618,
-    "mean": 0.106018,
-    "median": 0.078297,
-    "std": 0.074571,
-    "max": 0.515129
+    "rmse": 0.129496,
+    "mean": 0.106046,
+    "median": 0.078649,
+    "std": 0.074319,
+    "max": 0.514949
   },
   "ate_se3": {
-    "rmse": 0.132541,
-    "mean": 0.111629,
-    "median": 0.092306,
-    "std": 0.071456,
-    "max": 0.510328
+    "rmse": 0.132372,
+    "mean": 0.111618,
+    "median": 0.092181,
+    "std": 0.07116,
+    "max": 0.510206
   },
   "ate_origin": {},
   "rpe_trans_1m": {
-    "rmse": 0.015608,
-    "mean": 0.01146,
+    "rmse": 0.015624,
+    "mean": 0.011482,
     "std": 0.010596,
-    "max": 0.054163
+    "max": 0.054233
   },
   "rpe_trans_1m_se3": {
-    "rmse": 0.019014,
-    "mean": 0.015275,
-    "std": 0.011323
+    "rmse": 0.019013,
+    "mean": 0.015274,
+    "std": 0.011322
   },
   "rpe_rot_1m_deg": {
-    "rmse": 0.327331,
-    "mean": 0.133165,
-    "std": 0.299019
+    "rmse": 0.327319,
+    "mean": 0.133169,
+    "std": 0.299004
   },
   "kitti_drift": {
-    "rpe_10m_trans_rmse": 0.04992,
-    "rpe_10m_trans_rmse_se3": 0.089003,
+    "rpe_10m_trans_rmse": 0.050162,
+    "rpe_10m_trans_rmse_se3": 0.088995,
     "drift_10m_pct": 0.89,
-    "rpe_50m_trans_rmse": 0.068607,
-    "rpe_50m_trans_rmse_se3": 0.062648,
+    "rpe_50m_trans_rmse": 0.068881,
+    "rpe_50m_trans_rmse_se3": 0.062611,
     "drift_50m_pct": 0.125,
     "rpe_100m_trans_rmse": null,
     "rpe_100m_trans_rmse_se3": null
   },
-  "scale_factor": 1.0077981943466805,
-  "final_drift_m": 0.4812,
+  "scale_factor": 1.007730947002096,
+  "final_drift_m": 0.4783,
   "coverage": {
     "coverage_gap_pct": 100.0,
     "traj_span_s": 134.95,
@@ -83,37 +83,36 @@
     "track_pct": 102.6
   },
   "runtime": {
-    "vram_mean_mib": 115.0,
-    "vram_peak_mib": 115.0,
-    "gpu_mean_pct": 36.2,
-    "gpu_peak_pct": 42.0,
-    "cpu_mean_pct": 87.6,
-    "cpu_peak_pct": 95.9,
-    "ram_mean_mib": 16361.7,
-    "ram_peak_mib": 16425.0,
-    "wall_s": 23.79,
-    "fps": 113.471,
-    "fps_raw": 113.471
+    "vram_mean_mib": 15.0,
+    "vram_peak_mib": 15.0,
+    "gpu_mean_pct": 0.0,
+    "gpu_peak_pct": 0.0,
+    "cpu_mean_pct": 0.0,
+    "cpu_peak_pct": 0.0,
+    "ram_mean_mib": 11105.3,
+    "ram_peak_mib": 11147.0,
+    "wall_s": 10.53,
+    "fps": 256.505,
+    "fps_raw": 256.505
   },
   "machine": {
     "os": "Ubuntu 22.04.5 LTS",
-    "kernel": "6.8.0-136-generic",
-    "cpu": "Intel(R) Core(TM) i9-14900HX",
+    "kernel": "6.8.0-124-generic",
+    "cpu": "Intel(R) Core(TM) Ultra 9 285K",
     "cpu_cores": {
       "physical": 24,
-      "logical": 32
+      "logical": 24
     },
-    "ram_total_gb": 31.1,
+    "ram_total_gb": 125.2,
     "gpus": [
       {
-        "name": "NVIDIA GeForce RTX 4080 Laptop GPU",
-        "memory": "12282 MiB",
-        "driver": "580.173.02"
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory": "24564 MiB",
+        "driver": "580.95.05"
       }
     ],
-    "python": "3.10.20",
-    "collected_at": "evaluation",
-    "note": "machine of the EVALUATION host; run host unverified (run predates run-time capture)"
+    "python": "3.13.5",
+    "collected_at": "run"
   },
   "agri_segments": {}
 }

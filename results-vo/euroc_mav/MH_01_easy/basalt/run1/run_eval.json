@@ -18,18 +18,18 @@
   "run_status": "ok",
   "n_pairs_ate": 3638,
   "ate": {
-    "rmse": 0.043954,
-    "mean": 0.03846,
-    "median": 0.034805,
-    "std": 0.021278,
-    "max": 0.126929
+    "rmse": 0.043951,
+    "mean": 0.038458,
+    "median": 0.034802,
+    "std": 0.021276,
+    "max": 0.126922
   },
   "ate_se3": {
-    "rmse": 0.080444,
-    "mean": 0.074903,
-    "median": 0.081482,
+    "rmse": 0.080442,
+    "mean": 0.074901,
+    "median": 0.081479,
     "std": 0.029339,
-    "max": 0.15248
+    "max": 0.152481
   },
   "ate_origin": {},
   "rpe_trans_1m": {
@@ -44,12 +44,12 @@
     "std": 0.008278
   },
   "rpe_rot_1m_deg": {
-    "rmse": 0.143708,
+    "rmse": 0.143709,
     "mean": 0.126702,
     "std": 0.067814
   },
   "kitti_drift": {
-    "rpe_10m_trans_rmse": 0.017275,
+    "rpe_10m_trans_rmse": 0.017276,
     "rpe_10m_trans_rmse_se3": 0.108675,
     "drift_10m_pct": 1.087,
     "rpe_50m_trans_rmse": null,
@@ -57,7 +57,7 @@
     "rpe_100m_trans_rmse": null,
     "rpe_100m_trans_rmse_se3": null
   },
-  "scale_factor": 1.015890423252173,
+  "scale_factor": 1.015890295609379,
   "final_drift_m": 0.1411,
   "coverage": {
     "coverage_gap_pct": 100.0,
@@ -82,37 +82,36 @@
     "track_pct": 101.2
   },
   "runtime": {
-    "vram_mean_mib": 53.0,
-    "vram_peak_mib": 53.0,
+    "vram_mean_mib": 15.0,
+    "vram_peak_mib": 15.0,
     "gpu_mean_pct": 0.0,
     "gpu_peak_pct": 0.0,
-    "cpu_mean_pct": 87.2,
-    "cpu_peak_pct": 98.5,
-    "ram_mean_mib": 14099.6,
-    "ram_peak_mib": 14148.0,
-    "wall_s": 20.83,
-    "fps": 176.751,
-    "fps_raw": 176.751
+    "cpu_mean_pct": 0.0,
+    "cpu_peak_pct": 0.0,
+    "ram_mean_mib": 11086.9,
+    "ram_peak_mib": 11228.0,
+    "wall_s": 12.34,
+    "fps": 298.38,
+    "fps_raw": 298.38
   },
   "machine": {
     "os": "Ubuntu 22.04.5 LTS",
-    "kernel": "6.8.0-136-generic",
-    "cpu": "Intel(R) Core(TM) i9-14900HX",
+    "kernel": "6.8.0-124-generic",
+    "cpu": "Intel(R) Core(TM) Ultra 9 285K",
     "cpu_cores": {
       "physical": 24,
-      "logical": 32
+      "logical": 24
     },
-    "ram_total_gb": 31.1,
+    "ram_total_gb": 125.2,
     "gpus": [
       {
-        "name": "NVIDIA GeForce RTX 4080 Laptop GPU",
-        "memory": "12282 MiB",
-        "driver": "580.173.02"
+        "name": "NVIDIA GeForce RTX 4090",
+        "memory": "24564 MiB",
+        "driver": "580.95.05"
       }
     ],
-    "python": "3.10.20",
-    "collected_at": "evaluation",
-    "note": "machine of the EVALUATION host; run host unverified (run predates run-time capture)"
+    "python": "3.13.5",
+    "collected_at": "run"
   },
   "agri_segments": {}
 }
