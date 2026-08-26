@@ -87,7 +87,9 @@ python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$
 MONPID=$!
 cleanup() {
     [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true
-    [[ -n "${EFFECTIVE_CFG:-}" ]] && rm -f "$EFFECTIVE_CFG"
+    if [[ -n "${EFFECTIVE_CFG:-}" ]]; then
+        rm -f "$EFFECTIVE_CFG"
+    fi
 }
 trap cleanup EXIT
 
