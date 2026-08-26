@@ -4,15 +4,15 @@
 #
 # run_type -> config file + results tree:
 #   vo       -> configs/okvis2x/<dataset>_<seq>_vo.yaml
-#               -> results-vo/<dataset>/<seq>/okvis2x/run<N>/
+#               -> results/vo/<dataset>/<seq>/okvis2x/run<N>/
 #   vo-lc    -> configs/okvis2x/<dataset>_<seq>_vo_lc.yaml
-#               -> results-vo-lc/<dataset>/<seq>/okvis2x/run<N>/
+#               -> results/vo-lc/<dataset>/<seq>/okvis2x/run<N>/
 #   vio      -> configs/okvis2x/<dataset>_<seq>_vio.yaml
-#               -> results-vio/<dataset>/<seq>/okvis2x/run<N>/
+#               -> results/vio/<dataset>/<seq>/okvis2x/run<N>/
 #   vio-lc   -> configs/okvis2x/<dataset>_<seq>_vio_lc.yaml
-#               -> results-vio-lc/<dataset>/<seq>/okvis2x/run<N>/
+#               -> results/vio-lc/<dataset>/<seq>/okvis2x/run<N>/
 #   gnss-vio -> configs/okvis2x/<dataset>_<seq>_gnss_vio.yaml
-#               -> results-gnss-vio/<dataset>/<seq>/okvis2x/run<N>/
+#               -> results/gnss-vio/<dataset>/<seq>/okvis2x/run<N>/
 #
 # OKVIS2-X is the successor to OKVIS2 (tightly-coupled GNSS, LiDAR, dense depth).
 # Only the sparse estimator app `okvis_app_synchronous` is used here.
@@ -87,7 +87,8 @@ if [[ "$RUN_TYPE" == "gnss-vio" ]]; then
     fi
 fi
 
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 echo "[okvis2x] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL"
 
 # ── Generate EuRoC data.csv manifests if missing ─────────────────────────────

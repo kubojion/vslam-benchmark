@@ -5,7 +5,7 @@
 # OpenVINS is a visual-inertial filter (no loop closure in the open-source
 # distribution). Supported run_type values:
 #   vio     -> configs/openvins/<dataset>/estimator_config.yaml
-#              -> results-vio/<dataset>/<seq>/openvins/run<N>/
+#              -> results/vio/<dataset>/<seq>/openvins/run<N>/
 # vo and vio-lc are NOT supported (rejected here so the benchmark wrapper
 # does not silently misclassify the run).
 #
@@ -52,7 +52,8 @@ if ! docker image inspect openvins:humble >/dev/null 2>&1; then
     exit 2
 fi
 
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 echo "[openvins] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL" "$OUT_DIR/run_log.txt"
 
 # Resource monitor (matches the other run_*.sh wrappers).

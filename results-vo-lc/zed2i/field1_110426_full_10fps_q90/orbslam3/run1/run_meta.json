@@ -1,1 +1,0 @@
-{"algo": "orbslam3", "dataset": "zed2i", "seq": "field1_110426_full_10fps_q90", "run_id": 1, "run_type": "vo-lc", "use_imu": false, "use_lc": true, "duration_s": 5977.392310142517, "frames": 46283, "fps": 7.743008589459053}

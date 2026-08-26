@@ -4,13 +4,13 @@
 #
 # run_type selects binary + config + results tree:
 #   vo      -> stereo_euroc          + <dataset>_stereo.yaml          (LC off)
-#              -> results-vo/<dataset>/<seq>/orbslam3/run<N>/
+#              -> results/vo/<dataset>/<seq>/orbslam3/run<N>/
 #   vo-lc   -> stereo_euroc          + <dataset>_stereo_lc.yaml       (LC on)
-#              -> results-vo-lc/<dataset>/<seq>/orbslam3/run<N>/
+#              -> results/vo-lc/<dataset>/<seq>/orbslam3/run<N>/
 #   vio     -> stereo_inertial_euroc + <dataset>_stereo_inertial.yaml (LC off)
-#              -> results-vio/<dataset>/<seq>/orbslam3/run<N>/
+#              -> results/vio/<dataset>/<seq>/orbslam3/run<N>/
 #   vio-lc  -> stereo_inertial_euroc + <dataset>_stereo_inertial_lc.yaml (LC on)
-#              -> results-vio-lc/<dataset>/<seq>/orbslam3/run<N>/
+#              -> results/vio-lc/<dataset>/<seq>/orbslam3/run<N>/
 #
 # vio / vio-lc require:
 #   - <dataset_seq>/mav0/cam0/data, /mav0/cam1/data, /mav0/imu0/data.csv  (EuRoC)
@@ -57,7 +57,8 @@ CFG="${ORBSLAM3_CONFIG:-$CFG}"
     echo "[orbslam3] hint: python3 scripts/data/imu_to_euroc.py $SEQ_DIR" >&2
     exit 2
 }
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 
 cd "$WS/src/ORB_SLAM3"
 echo "[orbslam3] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL" "$OUT_DIR/run_log.txt"

@@ -3,14 +3,14 @@
 
 Generates three categories of figures per <dataset>/<seq>:
 
-  (1) PER-RUN MAPS       -> results/<dataset>/<seq>/<algo>/run<N>/segment_map.png
+  (1) PER-RUN MAPS       -> results/<run-type>/<dataset>/<seq>/<algo>/run<N>/segment_map.png
       GT dashed black + single algorithm run aligned trajectory.
 
-  (2) PER-ALGORITHM MAPS -> results/<dataset>/<seq>/<algo>/segment_map.png
+  (2) PER-ALGORITHM MAPS -> results/<run-type>/<dataset>/<seq>/<algo>/segment_map.png
       GT dashed black + all of that algorithm's runs overlaid (grey) +
       the mean trajectory (bold, algo-coloured).
 
-  (3) CROSS-ALGORITHM    -> results/<dataset>/<seq>/segment_map.png
+  (3) CROSS-ALGORITHM    -> results/<run-type>/<dataset>/<seq>/segment_map.png
       GT dashed black + mean trajectory of each algorithm.
 
 Alongside each segment_map.png a segment_map_3d.png is generated showing
@@ -353,7 +353,8 @@ def plot_per_algo(dataset, seq, algo, gt_xyz, t_gt, ws, results_root, dpi, figsi
     algo_dir = results_root / dataset / seq / algo
     if not algo_dir.exists():
         return False
-    run_dirs = sorted(algo_dir.glob("run*"))
+    run_dirs = [rd for rd in sorted(algo_dir.glob("run*"))
+                if (rd / "COMPLETE").is_file()]
     if not run_dirs:
         return False
 
@@ -436,6 +437,8 @@ def plot_compare(dataset, seq, algos, gt_xyz, t_gt, ws, results_root, dpi, figsi
             continue
         runs_2d, runs_3d = [], []
         for rd in sorted(algo_dir.glob("run*")):
+            if not (rd / "COMPLETE").is_file():
+                continue
             traj = rd / "trajectory.txt"
             if not traj.exists():
                 continue
@@ -555,6 +558,8 @@ def main():
         if not algo_dir.exists():
             continue
         for rd in sorted(algo_dir.glob("run*")):
+            if not (rd / "COMPLETE").is_file():
+                continue
             run_id = rd.name.replace("run", "")
             plot_per_run(args.dataset, args.seq, algo, run_id,
                          gt_xyz, t_gt, ws, results_root, args.dpi, args.figsize)

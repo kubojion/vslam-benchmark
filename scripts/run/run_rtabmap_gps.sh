@@ -56,7 +56,8 @@ fi
 [[ -f "$SEQ_DIR/gps.csv" ]] \
     || { echo "[rtabmap_gps] missing GPS $SEQ_DIR/gps.csv" >&2; exit 2; }
 
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 echo "[rtabmap_gps] $DATASET/$SEQ run=${RUN_ID} -> $OUT_DIR" | tee "$LOG"
 echo "[rtabmap_gps] config: $CFG_HOST" | tee -a "$LOG"
 

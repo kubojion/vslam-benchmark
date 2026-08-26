@@ -16,7 +16,8 @@ SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/droidslam/run${RUN_ID}"
 LOG="$WS/logs/${DATASET}_${SEQ}_droidslam_${RUN_TYPE}_run${RUN_ID}.log"
 CALIB="$WS/configs/droidslam/${DATASET}.txt"
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 # Conda's activate/deactivate scripts reference variables (SYS_SYSROOT,
 # _CONDA_PYTHON_SYSCONFIGDATA_NAME_USED, …) that may be unset; -u makes bash
 # treat that as a fatal error.  Disable it only around conda operations.

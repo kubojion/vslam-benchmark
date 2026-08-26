@@ -1,1 +1,0 @@
-{"algo": "airslam", "dataset": "hortimulti", "seq": "strawberry02", "run_id": 1, "run_type": "vio-lc", "use_imu": true, "use_lc": true, "duration_s": 536.280739068985, "frames": 1941, "fps": 3.6193729488955553}

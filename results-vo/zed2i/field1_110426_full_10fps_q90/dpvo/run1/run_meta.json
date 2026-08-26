@@ -1,1 +1,0 @@
-{"algo": "dpvo", "dataset": "zed2i", "seq": "field1_110426_full_10fps_q90", "run_id": 1, "run_type": "vo", "use_imu": false, "use_lc": false, "duration_s": 3685.7045090198517, "frames": 46283, "fps": 12.557436410524442}

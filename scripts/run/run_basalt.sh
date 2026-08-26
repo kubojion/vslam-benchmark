@@ -3,9 +3,9 @@
 # Usage: scripts/run/run_basalt.sh <dataset> <seq> [run_id=1] [run_type=vo]
 #
 # run_type selects results tree AND whether IMU is used:
-#   vo      -> results-vo/<dataset>/<seq>/basalt/run<N>/         (--use-imu false)
-#   vio     -> results-vio/<dataset>/<seq>/basalt/run<N>/        (--use-imu true)
-#   vio-lc  -> results-vio-lc/<dataset>/<seq>/basalt/run<N>/     (--use-imu true)
+#   vo      -> results/vo/<dataset>/<seq>/basalt/run<N>/         (--use-imu false)
+#   vio     -> results/vio/<dataset>/<seq>/basalt/run<N>/        (--use-imu true)
+#   vio-lc  -> results/vio-lc/<dataset>/<seq>/basalt/run<N>/     (--use-imu true)
 #               (Basalt has no LC; vio-lc is logged but treated like vio)
 #
 # Outputs:
@@ -40,7 +40,8 @@ if [[ "$RUN_TYPE" == "vio-lc" ]]; then
     echo "[basalt] WARNING: Basalt has no built-in loop closure; running plain VIO" >&2
 fi
 
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 
 # ── PATH: source Basalt env to ensure basalt_vio is available ────────────────
 if [[ -f "$HOME/.basalt/env" ]]; then

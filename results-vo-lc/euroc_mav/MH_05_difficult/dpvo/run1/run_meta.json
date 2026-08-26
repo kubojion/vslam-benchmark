@@ -1,1 +1,0 @@
-{"algo": "dpvo", "dataset": "euroc_mav", "seq": "MH_05_difficult", "run_id": 1, "run_type": "vo-lc", "use_imu": false, "use_lc": true, "duration_s": 118.50416254997253, "frames": 2273, "fps": 19.18076083649373}

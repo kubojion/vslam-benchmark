@@ -77,7 +77,8 @@ case "$DATASET" in
         echo "[openvins_gps] no parameters defined for dataset=$DATASET" >&2; exit 2 ;;
 esac
 
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 echo "[openvins_gps] $DATASET/$SEQ run=${RUN_ID} -> $OUT_DIR" | tee "$LOG"
 : > "$OUT_DIR/player.log"
 

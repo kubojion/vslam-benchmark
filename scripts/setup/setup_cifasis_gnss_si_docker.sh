@@ -19,6 +19,7 @@ DOCKERFILE="$WS/scripts/setup/cifasis_gnss_si.Dockerfile"
 SRC_DIR="$WS/src/cifasis_gnss_si"
 
 cd "$WS"
+mkdir -p "$WS/results"
 
 if [[ ! -d "$SRC_DIR" ]]; then
     echo "ERROR: $SRC_DIR not found." >&2
@@ -33,15 +34,18 @@ if ! docker image inspect "$IMAGE" &>/dev/null; then
 fi
 
 if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
+    if ! docker inspect -f '{{range .Mounts}}{{println .Destination}}{{end}}' "$CONTAINER" | grep -qx /results; then
+        echo "ERROR: existing container '$CONTAINER' uses retired result mounts." >&2
+        echo "Stop and remove it, then rerun this setup script to mount $WS/results at /results." >&2
+        exit 2
+    fi
     echo "[setup] Container '$CONTAINER' already exists - skipping creation."
 else
     echo "[setup] Creating container '$CONTAINER'..."
     docker run -d \
         --network host \
         --volume "$WS/datasets:/datasets:ro" \
-        --volume "$WS/results-vio:/results-vio" \
-        --volume "$WS/results-vio-lc:/results-vio-lc" \
-        --volume "$WS/results-gnss-vio:/results-gnss-vio" \
+        --volume "$WS/results:/results" \
         --volume "$WS/configs:/benchmark_configs:ro" \
         --volume "$WS/scripts:/benchmark_scripts:ro" \
         --name "$CONTAINER" \

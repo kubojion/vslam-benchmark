@@ -6,11 +6,11 @@
 #   resolve_run_type "${RUN_TYPE:-vo}"   # sets RESULTS_ROOT and CSV_PATH
 #
 # Run types:
-#   vo       : visual-only / no IMU, no loop closure        -> results-vo/        benchmark-vo.csv
-#   vo-lc    : visual-only + loop closure                    -> results-vo-lc/     benchmark-vo-lc.csv
-#   vio      : visual-inertial, no loop closure              -> results-vio/       benchmark-vio.csv
-#   vio-lc   : visual-inertial + loop closure                -> results-vio-lc/    benchmark-vio-lc.csv
-#   gnss-vio : visual-inertial + loose/tight GPS fusion      -> results-gnss-vio/  benchmark-gnss-vio.csv
+#   vo       : visual-only / no IMU, no loop closure        -> results/vo/        benchmark-vo.csv
+#   vo-lc    : visual-only + loop closure                    -> results/vo-lc/     benchmark-vo-lc.csv
+#   vio      : visual-inertial, no loop closure              -> results/vio/       benchmark-vio.csv
+#   vio-lc   : visual-inertial + loop closure                -> results/vio-lc/    benchmark-vio-lc.csv
+#   gnss-vio : visual-inertial + loose/tight GPS fusion      -> results/gnss-vio/  benchmark-gnss-vio.csv
 #
 # Exported on success: RESULTS_ROOT (abs path), CSV_PATH (abs path),
 #                      RUN_TYPE (normalised), USE_IMU (true|false), USE_LC (true|false),
@@ -32,10 +32,11 @@ canonicalize_dataset() {
 
 resolve_run_type() {
     local rt="${1:-vo}"
+    export RESULTS_BASE="$WS/results"
     case "$rt" in
         vo)
             export RUN_TYPE="vo"
-            export RESULTS_ROOT="$WS/results-vo"
+            export RESULTS_ROOT="$RESULTS_BASE/vo"
             export CSV_PATH="$WS/benchmark-vo.csv"
             export USE_IMU="false"
             export USE_LC="false"
@@ -43,7 +44,7 @@ resolve_run_type() {
             ;;
         vo-lc|vol-c|vo_lc)
             export RUN_TYPE="vo-lc"
-            export RESULTS_ROOT="$WS/results-vo-lc"
+            export RESULTS_ROOT="$RESULTS_BASE/vo-lc"
             export CSV_PATH="$WS/benchmark-vo-lc.csv"
             export USE_IMU="false"
             export USE_LC="true"
@@ -51,7 +52,7 @@ resolve_run_type() {
             ;;
         vio)
             export RUN_TYPE="vio"
-            export RESULTS_ROOT="$WS/results-vio"
+            export RESULTS_ROOT="$RESULTS_BASE/vio"
             export CSV_PATH="$WS/benchmark-vio.csv"
             export USE_IMU="true"
             export USE_LC="false"
@@ -59,7 +60,7 @@ resolve_run_type() {
             ;;
         vio-lc|viol-c|vio_lc)
             export RUN_TYPE="vio-lc"
-            export RESULTS_ROOT="$WS/results-vio-lc"
+            export RESULTS_ROOT="$RESULTS_BASE/vio-lc"
             export CSV_PATH="$WS/benchmark-vio-lc.csv"
             export USE_IMU="true"
             export USE_LC="true"
@@ -67,7 +68,7 @@ resolve_run_type() {
             ;;
         gnss-vio|gnss_vio|gnssvio)
             export RUN_TYPE="gnss-vio"
-            export RESULTS_ROOT="$WS/results-gnss-vio"
+            export RESULTS_ROOT="$RESULTS_BASE/gnss-vio"
             export CSV_PATH="$WS/benchmark-gnss-vio.csv"
             export USE_IMU="true"
             export USE_LC="false"
@@ -78,4 +79,30 @@ resolve_run_type() {
             return 2
             ;;
     esac
+}
+
+# Create a run directory only when it is absent or empty.  Direct runner use
+# must never merge a new execution with stale files from an earlier attempt.
+prepare_fresh_run_dir() {
+    local out="${1:?output directory required}"
+    local root_real out_real
+    root_real=$(readlink -m "${RESULTS_ROOT:?resolve_run_type must run first}")
+    out_real=$(readlink -m "$out")
+    case "$out_real" in
+        "$root_real"/*) ;;
+        *)
+            echo "ERROR: refusing result path outside $root_real: $out_real" >&2
+            return 2
+            ;;
+    esac
+    if [[ -d "$out_real" ]] && [[ -n "$(find "$out_real" -mindepth 1 -maxdepth 1 -print -quit)" ]]; then
+        echo "ERROR: result directory already exists and is nonempty: $out_real" >&2
+        echo "Run through run_benchmark.sh to replace the whole algorithm cell, or move/remove it explicitly." >&2
+        return 2
+    fi
+    if [[ -e "$out_real" && ! -d "$out_real" ]]; then
+        echo "ERROR: result path exists but is not a directory: $out_real" >&2
+        return 2
+    fi
+    mkdir -p "$out_real"
 }

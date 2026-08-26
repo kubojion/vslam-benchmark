@@ -13,7 +13,7 @@ num_of_cam: 2
 imu_topic: "/imu0"
 image0_topic: "/cam0/image_raw"
 image1_topic: "/cam1/image_raw"
-output_path: "/results-gnss-vio/hortimulti/strawberry02/vins_fusion_gps/"
+output_path: "/results/gnss-vio/hortimulti/strawberry02/vins_fusion_gps/"
 
 cam0_calib: "hortimulti_cam0.yaml"
 cam1_calib: "hortimulti_cam1.yaml"
@@ -69,5 +69,5 @@ td: 0.009160379134269684
 
 #loop closure parameters
 load_previous_pose_graph: 0
-pose_graph_save_path: "/results-gnss-vio/hortimulti/strawberry02/vins_fusion_gps/pose_graph/"
+pose_graph_save_path: "/results/gnss-vio/hortimulti/strawberry02/vins_fusion_gps/pose_graph/"
 save_image: 0

@@ -8,7 +8,7 @@ Usage:
     run_type ∈ {vo, vo-lc, vio, vio-lc, gnss-vio, all}  (default: all)
 
 Layouts:
-    results-<type>/<dataset>/<seq>/<algo>/run<N>[_variant]/run_eval.json
+    results/<type>/<dataset>/<seq>/<algo>/run<N>[_variant]/run_eval.json
         -> benchmark-<type>.csv
 
 Rebuilt 2026-08-05 (see PROGRESS "aggregation fixes"):
@@ -386,7 +386,10 @@ def build_one(rt) -> int:
         print(f"[info] {rt.name}: results dir missing ({results_root}), skipping")
         return 0
 
-    eval_files = sorted(results_root.glob("*/*/*/run*/run_eval.json"))
+    eval_files = [
+        path for path in sorted(results_root.glob("*/*/*/run*/run_eval.json"))
+        if (path.parent / "COMPLETE").is_file()
+    ]
     # Pre-load sequence metadata
     seq_meta_cache: dict[tuple, dict] = {}
     rows = []

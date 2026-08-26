@@ -41,10 +41,10 @@ This populates `cam0/`, `cam1/`, `times.txt`, `gt_tum.txt`.
 bash scripts/run/run_benchmark.sh <dataset> <seq> <algo> [N=3] [run_type=vo]
 ```
 
-* `vo`     - no IMU, no LC, output -> `results-vo/`        (`benchmark-vo.csv`)
-* `vo-lc`  - no IMU, LC on, output -> `results-vo-lc/`     (`benchmark-vo-lc.csv`)
-* `vio`    - IMU on, no LC, output -> `results-vio/`       (`benchmark-vio.csv`)
-* `vio-lc` - IMU on, LC on, output -> `results-vio-lc/`    (`benchmark-vio-lc.csv`)
+* `vo`     - no IMU, no LC, output -> `results/vo/`        (`benchmark-vo.csv`)
+* `vo-lc`  - no IMU, LC on, output -> `results/vo-lc/`     (`benchmark-vo-lc.csv`)
+* `vio`    - IMU on, no LC, output -> `results/vio/`       (`benchmark-vio.csv`)
+* `vio-lc` - IMU on, LC on, output -> `results/vio-lc/`    (`benchmark-vio-lc.csv`)
 
 ```bash
 # Default (vo) - all five with the standard 3-run + evaluation pipeline:
@@ -86,7 +86,9 @@ bash scripts/run/run_mast3r_slam.sh rosariov2 sequence2 1 vo-lc
 ```
 
 Per-run output: `<RESULTS_ROOT>/<dataset>/<seq>/<algo>/run<N>/{trajectory.txt, run_log.txt, resources.csv}`
-where `<RESULTS_ROOT>` is `results-vo/`, `results-vo-lc/`, `results-vio/`, or `results-vio-lc/` depending on `run_type`.
+where `<RESULTS_ROOT>` is `results/<run-type>/`. A direct runner refuses a
+nonempty run directory; use `run_benchmark.sh` to replace an existing algorithm
+cell safely and create its `COMPLETE` markers.
 
 ### Per-algorithm run-type support
 
@@ -141,7 +143,7 @@ where `<RESULTS_ROOT>` is `results-vo/`, `results-vo-lc/`, `results-vio/`, or `r
 * **Basalt** runs the prebuilt binary `basalt_vio` (installed to `~/.local/bin/`) which `run_basalt.sh` sources via `~/.basalt/env`. Two config files are required: a per-dataset camera calibration (`configs/basalt/<dataset>_calib.json`) and a shared VO config (`configs/basalt/vo_config.json`). The calibration uses the EuRoC JSON format (pinhole camera model, flat vignette for rectified images). `run_basalt.sh` auto-generates `mav0/cam0/data.csv` and `mav0/cam1/data.csv` on first use - no manual data prep needed. Basalt outputs TUM-format timestamps already in SECONDS (no conversion needed, unlike ORB-SLAM3). The `vio_min_triangulation_dist` in `vo_config.json` must be set BELOW the stereo baseline of the smallest-baseline dataset (currently 0.03 m for Rosario v2 baseline of 4.97 cm).
 * **AirSLAM** runs inside the `air_slam` Docker container (ROS Noetic + TensorRT). Requires Docker + nvidia-container-toolkit installed and the container created (see [setup.md](setup.md) sections 7a-7d). The container is started automatically by `run_airslam.sh` if it is stopped. On the **first run per dataset**, TensorRT compiles a resolution-specific engine (~5-10 min); subsequent runs reuse the cache. Config files: `configs/airslam/<dataset>_camera.yaml` (VO, use_imu: 0), `configs/airslam/<dataset>_camera_vio.yaml` (VIO/VIO-LC, use_imu: 1), and `configs/airslam/<dataset>_<vo|vo_lc|vio|vio_slam>.yaml` (VO-keyframe params). For hortimulti, `_camera.yaml` is the VIO config and `_camera_vo.yaml` is the VO override. `vo-lc` and `vio-lc` are two-step processes: `run_airslam.sh` runs `visual_odometry` (produces `trajectory_v0.txt`), then automatically runs `map_refinement` (produces `trajectory_v1.txt`) using `configs/airslam/<dataset>_mr.yaml`. The dataset must have `mav0/cam0/data/` and `mav0/cam1/data/` in EuRoC ASL format (images named by nanosecond timestamp), plus `mav0/imu0/data.csv` for VIO/VIO-LC.
 * **OpenVINS** runs inside the `openvins:humble` Docker image (ROS 2 Humble + colcon build of `ov_core/ov_init/ov_msckf/ov_eval`). Build it once with `docker build -t openvins:humble -f src/open_vins/Dockerfile.benchmark src/open_vins`. Configs live in `configs/openvins/<dataset>/{estimator_config.yaml, kalibr_imu_chain.yaml, kalibr_imucam_chain.yaml}`. The wrapper launches `ros2 launch ov_msckf subscribe.launch.py` plus a Python data player (`scripts/run/openvins_data_player.py`) that replays `mav0/cam{0,1}/data/` and `mav0/imu0/data.csv` over `/cam{0,1}/image_raw` and `/imu0` and dumps the resulting TUM trajectory by subscribing to `/ov_msckf/odomimu`. Only `vio` is supported - OpenVINS has no VO mode and no built-in loop closure.
-* **Voxel-SVIO** runs inside the `vslam_voxel_svio:noetic` Docker container (ROS 1 Noetic, CPU-only). Build it once with `bash scripts/setup/setup_voxel_svio_docker.sh` (clones nothing - run `git clone https://github.com/ZikangYuan/voxel_svio.git src/voxel_svio` first). Configs live in `configs/voxel_svio/` as a single YAML per sequence (or per dataset for rosariov2/hortimulti). The runner `scripts/run/run_voxel_svio.sh` `rosparam load`s the config, starts `vio_node`, then launches a ROS 1 data player (`scripts/run/voxel_svio_data_player.py`) that replays `mav0/cam{0,1}/data/` and `mav0/imu0/data.csv` over `/cam{0,1}/image_raw` and `/imu0`. After the player finishes the runner SIGINTs `vio_node` and copies `src/voxel_svio/output/pose.txt` (TUM format) to `results-vio/<dataset>/<seq>/voxel_svio/run<N>/trajectory.txt`. Only `vio` is supported.
+* **Voxel-SVIO** runs inside the `vslam_voxel_svio:noetic` Docker container (ROS 1 Noetic, CPU-only). Build it once with `bash scripts/setup/setup_voxel_svio_docker.sh` (clones nothing - run `git clone https://github.com/ZikangYuan/voxel_svio.git src/voxel_svio` first). Configs live in `configs/voxel_svio/` as a single YAML per sequence (or per dataset for rosariov2/hortimulti). The runner `scripts/run/run_voxel_svio.sh` `rosparam load`s the config, starts `vio_node`, then launches a ROS 1 data player (`scripts/run/voxel_svio_data_player.py`) that replays `mav0/cam{0,1}/data/` and `mav0/imu0/data.csv` over `/cam{0,1}/image_raw` and `/imu0`. After the player finishes the runner SIGINTs `vio_node` and copies `src/voxel_svio/output/pose.txt` (TUM format) to `results/vio/<dataset>/<seq>/voxel_svio/run<N>/trajectory.txt`. Only `vio` is supported.
 
 ## Adding AirSLAM for a new dataset
 
@@ -174,7 +176,7 @@ For HortiMulti add `configs/macvo/hortimulti_strawberry04.yaml`; ORB-SLAM3 / Bas
 Five algorithms are wired into the `gnss-vio` track. All five require a
 `gps.csv` file in the sequence directory (header
 `t,lat,lon,alt[,cov_xx,cov_yy,cov_zz,status]`). They write to
-`results-gnss-vio/` and contribute to `benchmark-gnss-vio.csv`.
+`results/gnss-vio/` and contribute to `benchmark-gnss-vio.csv`.
 
 The four ROS-based runners below replay `gps.csv` over a ROS topic via a data
 player. **OKVIS2-X is the exception**: it is not a ROS node and reads GNSS from
@@ -213,7 +215,7 @@ python3 scripts/data/gps_to_okvis2x.py datasets/rosariov2/sequence1 --h-err 0.2 
   `scripts/run/run_vins_fusion_gps.sh` starts `vins_node`,
   `global_fusion_node`, and a small Python recorder that subscribes to
   `/globalEstimator/global_odometry` and writes a TUM file directly to
-  `results-gnss-vio/`. Only `gnss-vio` is supported by this runner.
+  `results/gnss-vio/`. Only `gnss-vio` is supported by this runner.
 
 * **OpenVINS+GPS** fuses OpenVINS VIO with GPS through a `robot_localization`
   EKF (ROS 2 Humble, `sudo apt install ros-humble-robot-localization`).

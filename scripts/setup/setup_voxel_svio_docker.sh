@@ -14,6 +14,7 @@ IMAGE="vslam_voxel_svio:noetic"
 DOCKERFILE="$WS/scripts/setup/voxel_svio.Dockerfile"
 
 cd "$WS"
+mkdir -p "$WS/results"
 
 # ---- Sanity ----------------------------------------------------------------
 if [[ ! -d "$WS/src/voxel_svio" ]]; then
@@ -30,6 +31,11 @@ fi
 
 # ---- Create container if missing -------------------------------------------
 if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
+    if ! docker inspect -f '{{range .Mounts}}{{println .Destination}}{{end}}' "$CONTAINER" | grep -qx /results; then
+        echo "ERROR: existing container '$CONTAINER' uses retired result mounts." >&2
+        echo "Stop and remove it, then rerun this setup script to mount $WS/results at /results." >&2
+        exit 2
+    fi
     echo "[setup] Container '$CONTAINER' already exists - skipping creation."
 else
     echo "[setup] Creating container '$CONTAINER'..."
@@ -37,9 +43,7 @@ else
         --network host \
         --volume "$WS/src/voxel_svio:/root/catkin_ws/src/voxel_svio" \
         --volume "$WS/datasets:/datasets:ro" \
-        --volume "$WS/results-vo:/results-vo" \
-        --volume "$WS/results-vio:/results-vio" \
-        --volume "$WS/results-vio-lc:/results-vio-lc" \
+        --volume "$WS/results:/results" \
         --volume "$WS/configs:/benchmark_configs:ro" \
         --volume "$WS/scripts:/benchmark_scripts:ro" \
         --name "$CONTAINER" \

@@ -3,10 +3,10 @@
 # Usage: scripts/run/run_airslam.sh <dataset> <seq> [run_id=1] [run_type=vo]
 #
 # run_type selects results tree AND launch file:
-#   vo      -> results-vo/.../airslam/run<N>/       launch=vo_euroc.launch        cfg=<dataset>_vo.yaml
-#   vo-lc   -> results-vo-lc/.../airslam/run<N>/    launch=vo_euroc.launch        cfg=<dataset>_vo_lc.yaml + map_refinement
-#   vio     -> results-vio/.../airslam/run<N>/      launch=vio_euroc.launch       cfg=<dataset>_vio.yaml      (requires IMU)
-#   vio-lc  -> results-vio-lc/.../airslam/run<N>/   launch=vio_euroc.launch       cfg=<dataset>_vio_slam.yaml + map_refinement (full V-SLAM with LC)
+#   vo      -> results/vo/.../airslam/run<N>/       launch=vo_euroc.launch        cfg=<dataset>_vo.yaml
+#   vo-lc   -> results/vo-lc/.../airslam/run<N>/    launch=vo_euroc.launch        cfg=<dataset>_vo_lc.yaml + map_refinement
+#   vio     -> results/vio/.../airslam/run<N>/      launch=vio_euroc.launch       cfg=<dataset>_vio.yaml      (requires IMU)
+#   vio-lc  -> results/vio-lc/.../airslam/run<N>/   launch=vio_euroc.launch       cfg=<dataset>_vio_slam.yaml + map_refinement (full V-SLAM with LC)
 #
 # Requires:
 #   - Docker with nvidia-container-toolkit (see docs/setup.md)
@@ -55,7 +55,7 @@ else
 fi
 VO_CFG="/benchmark_configs/airslam/${DATASET}_${CFG_TAG}.yaml"
 DATAROOT="/datasets/$DATASET/$SEQ/mav0"
-CONT_RESULTS_DIR="/$(basename "$RESULTS_ROOT")"
+CONT_RESULTS_DIR="/results/$RUN_TYPE"
 SAVING_DIR="${CONT_RESULTS_DIR}/$DATASET/$SEQ/airslam/run${RUN_ID}"
 MODEL_DIR="/root/catkin_ws/src/air_slam/output"
 
@@ -75,7 +75,8 @@ if [[ "$USE_IMU" == "true" && ! -f "$SEQ_DIR/mav0/imu0/data.csv" ]]; then
     echo "ERROR: $RUN_TYPE requires $SEQ_DIR/mav0/imu0/data.csv (run IMU extraction)"; exit 2;
 fi
 
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 rm -f "$OUT_DIR/trajectory.txt" "$OUT_DIR/trajectory_v0.txt" "$OUT_DIR/trajectory_v1.txt"
 
 # ---- Ensure Docker container is running -----------------------------------
@@ -89,10 +90,7 @@ if ! docker ps --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
             --runtime nvidia --gpus all \
             --volume "$WS/src/airslam:/root/catkin_ws/src/air_slam" \
             --volume "$WS/datasets:/datasets:ro" \
-            --volume "$WS/results-vo:/results-vo" \
-            --volume "$WS/results-vo-lc:/results-vo-lc" \
-            --volume "$WS/results-vio:/results-vio" \
-            --volume "$WS/results-vio-lc:/results-vio-lc" \
+            --volume "$WS/results:/results" \
             --volume "$WS/configs:/benchmark_configs:ro" \
             --name "$CONTAINER" \
             xukuanhit/air_slam:v4 /bin/bash -c "tail -f /dev/null"
@@ -101,7 +99,7 @@ if ! docker ps --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
     fi
 fi
 
-MOUNT_DEST="/$(basename "$RESULTS_ROOT")"
+MOUNT_DEST="/results"
 if ! docker inspect -f '{{range .Mounts}}{{println .Destination}}{{end}}' "$CONTAINER" | grep -qx "$MOUNT_DEST"; then
     echo "[airslam] ERROR: container '$CONTAINER' is missing mount $MOUNT_DEST" >&2
     echo "[airslam] recreate it so $RESULTS_ROOT is mounted before running $RUN_TYPE" >&2

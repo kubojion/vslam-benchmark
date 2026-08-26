@@ -49,7 +49,8 @@ CFG_CONT="/benchmark_configs/vins_fusion/$(basename "$CFG_HOST")"
 [[ -f "$SEQ_DIR/gps.csv" ]] \
     || { echo "[vins_fusion] missing GPS $SEQ_DIR/gps.csv" >&2; exit 2; }
 
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 echo "[vins_fusion] $DATASET/$SEQ run=${RUN_ID} -> $OUT_DIR" | tee "$LOG"
 
 # ---- Ensure container ------------------------------------------------------
@@ -80,7 +81,13 @@ trap "kill $MONPID 2>/dev/null || true" EXIT
 DATAROOT_CONT="/datasets/$DATASET/$SEQ"
 PLAYER_CONT="/benchmark_scripts/run/gnss_data_player.py"
 RECORDER_CONT="/benchmark_scripts/run/odometry_to_tum.py"
-TRAJ_CONT="/results-gnss-vio/$DATASET/$SEQ/vins_fusion_gps/run${RUN_ID}/trajectory.txt"
+if ! docker inspect -f '{{range .Mounts}}{{println .Destination}}{{end}}' "$CONTAINER" | grep -qx /results; then
+    echo "[vins_fusion] ERROR: container '$CONTAINER' is missing the /results mount" >&2
+    echo "[vins_fusion] recreate it with scripts/setup/setup_vins_fusion_docker.sh" >&2
+    exit 2
+fi
+
+TRAJ_CONT="/results/gnss-vio/$DATASET/$SEQ/vins_fusion_gps/run${RUN_ID}/trajectory.txt"
 
 START=$(date +%s.%N)
 

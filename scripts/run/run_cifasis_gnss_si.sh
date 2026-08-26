@@ -56,7 +56,8 @@ CFG_CONT="/benchmark_configs/cifasis_gnss_si/$(basename "$CFG_HOST")"
 [[ -f "$SEQ_DIR/gps.csv" ]] \
     || { echo "[cifasis_gnss_si] missing GPS $SEQ_DIR/gps.csv" >&2; exit 2; }
 
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 echo "[cifasis_gnss_si] $DATASET/$SEQ run=${RUN_ID} -> $OUT_DIR" | tee "$LOG"
 echo "[cifasis_gnss_si] config: $CFG_HOST" | tee -a "$LOG"
 

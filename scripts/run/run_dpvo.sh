@@ -4,8 +4,8 @@
 # Usage: scripts/run/run_dpvo.sh <dataset> <seq> [run_id=1] [run_type=vo]
 #
 # DPVO is monocular (cam0 only), no IMU. run_type:
-#   vo      -> DPVO (odometry only)                -> results-vo/
-#   vo-lc   -> DPV-SLAM (LOOP_CLOSURE True)         -> results-vo-lc/
+#   vo      -> DPVO (odometry only)                -> results/vo/
+#   vo-lc   -> DPV-SLAM (LOOP_CLOSURE True)         -> results/vo-lc/
 #             (monocular + LC; there is no IMU.)
 #
 # Monocular -> the trajectory is up-to-scale; only Sim(3)-aligned ATE is
@@ -83,7 +83,8 @@ PY
     IMG_DIR="$STAGE_DIR"
 fi
 
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 : > "$OUT_DIR/run_log.txt"
 NAME="bench_${DATASET}_${SEQ}_${RUN_TYPE}_run${RUN_ID}"
 

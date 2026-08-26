@@ -53,11 +53,13 @@ scripts/
 ├── run/             # per-algorithm runners + multi-run benchmark driver
 └── eval/            # ATE/RPE + per-segment evaluation + plots
                      # (_run_type.py defines the python-side run-type table)
-results-vo/          # vo runs           (no IMU, no LC, no GNSS)
-results-vo-lc/       # vo-lc runs        (no IMU, LC on, no GNSS)
-results-vio/         # vio runs          (IMU on, LC off, no GNSS)
-results-vio-lc/      # vio-lc runs       (IMU on, LC on, no GNSS)
-results-gnss-vio/    # gnss-vio runs     (IMU on, LC off, GNSS on)
+results/             # generated artifacts, manifest, and local browser (Git-ignored)
+├── vo/              # visual-only, no loop closure
+├── vo-lc/           # visual-only with loop closure
+├── vio/             # visual-inertial, no loop closure
+├── vio-lc/          # visual-inertial with loop closure
+├── gnss-vio/        # visual-inertial with GNSS
+└── site/            # generated static result browser
 benchmark-vo.csv     # aggregated metrics for vo runs
 benchmark-vo-lc.csv  # aggregated metrics for vo-lc runs
 benchmark-vio.csv    # aggregated metrics for vio runs
@@ -84,11 +86,11 @@ location of its output:
 
 | run_type | IMU | Loop closure | GNSS | Results folder | Aggregated CSV |
 |---|---|---|---|---|---|
-| `vo` | off | off | off | `results-vo/` | `benchmark-vo.csv` |
-| `vo-lc` | off | on | off | `results-vo-lc/` | `benchmark-vo-lc.csv` |
-| `vio` | on | off | off | `results-vio/` | `benchmark-vio.csv` |
-| `vio-lc` | on | on | off | `results-vio-lc/` | `benchmark-vio-lc.csv` |
-| `gnss-vio` | on | off | on | `results-gnss-vio/` | `benchmark-gnss-vio.csv` |
+| `vo` | off | off | off | `results/vo/` | `benchmark-vo.csv` |
+| `vo-lc` | off | on | off | `results/vo-lc/` | `benchmark-vo-lc.csv` |
+| `vio` | on | off | off | `results/vio/` | `benchmark-vio.csv` |
+| `vio-lc` | on | on | off | `results/vio-lc/` | `benchmark-vio-lc.csv` |
+| `gnss-vio` | on | off | on | `results/gnss-vio/` | `benchmark-gnss-vio.csv` |
 
 Not every algorithm supports every run type. The runners reject or
 warn for unsupported combinations:
@@ -134,23 +136,26 @@ bash scripts/data/convert_rosario_to_tum.sh datasets/rosariov2/sequence1
 # 4. run any algorithm 3x with full evaluation (default run_type=vo)
 bash scripts/run/run_benchmark.sh rosariov2 sequence1 macvo 3
 
-# 4b. same sequence as VIO (IMU on, LC off) - writes to results-vio/
+# 4b. same sequence as VIO (IMU on, LC off) - writes to results/vio/
 bash scripts/run/run_benchmark.sh rosariov2 sequence1 basalt 3 vio
 
-# 4c. AirSLAM full V-SLAM (IMU + LC) - writes to results-vio-lc/
+# 4c. AirSLAM full V-SLAM (IMU + LC) - writes to results/vio-lc/
 bash scripts/run/run_benchmark.sh rosariov2 sequence1 airslam 3 vio-lc
 
-# 4d. DPV-SLAM visual-only loop closure - writes to results-vo-lc/
+# 4d. DPV-SLAM visual-only loop closure - writes to results/vo-lc/
 bash scripts/run/run_benchmark.sh rosariov2 sequence1 dpvo 1 vo-lc
 
-# 4e. CIFASIS GNSS-SI (stereo + IMU + GNSS) - writes to results-gnss-vio/
+# 4e. CIFASIS GNSS-SI (stereo + IMU + GNSS) - writes to results/gnss-vio/
 bash scripts/run/run_benchmark.sh rosariov2 sequence1 cifasis_gnss_si 3 gnss-vio
 
 # 5. rebuild aggregated CSVs from per-run JSONs
 conda run -n macvo python3 scripts/eval/build_benchmark_csv.py all
 
-# 6. read results-vo/rosariov2/sequence1/macvo/report.md (or the equivalent
-#    file under results-vio / results-vio-lc)
+# 6. read results/vo/rosariov2/sequence1/macvo/report.md (or the equivalent
+#    file under another results/<run-type>/ directory)
+
+# 7. browse local artifacts, plots, logs, and the five tracked comparisons
+bash scripts/results/serve_site.sh 8080
 ```
 
 ## Documentation
@@ -158,11 +163,12 @@ conda run -n macvo python3 scripts/eval/build_benchmark_csv.py all
 * [docs/setup.md](docs/setup.md) - system deps, building Pangolin + ORB-SLAM3, conda envs, Docker containers.
 * [docs/running_algorithms.md](docs/running_algorithms.md) - how to run any algorithm on any dataset / run-type combination.
 * [docs/evaluation.md](docs/evaluation.md) - evaluation pipeline, metric definitions, plot conventions.
+* [docs/result-storage-design.md](docs/result-storage-design.md) - result replacement, completeness, manifest, and browser behavior.
 * [PROGRESS.md](PROGRESS.md) - current results tables (VO / VIO / VIO-LC), known issues, dataset-specific notes.
 
 ## Results snapshot
 
-**Source of truth:** the five `benchmark-*.csv` files (full rebuilds from `results-*/`, one row
+**Published source of truth:** the five tracked `benchmark-*.csv` files (rebuilt from complete runs under `results/`, one row
 per run, `eval_schema: 2`). **The only sanctioned rendering** is
 [docs/generated/tables.md](docs/generated/tables.md) — regenerate with
 `python3 scripts/eval/make_report_tables.py` (SE3-primary, coverage-gated, machine-checkable

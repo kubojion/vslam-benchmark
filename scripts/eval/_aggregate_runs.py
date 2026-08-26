@@ -9,11 +9,11 @@ Writes: <results_root>/<dataset>/<seq>/<algo>/metrics.csv
         <results_root>/<dataset>/<seq>/<algo>/report.md
 
 Where <results_root> is one of:
-    results-vo/       (run_type=vo)
-    results-vo-lc/    (run_type=vo-lc)
-    results-vio/      (run_type=vio)
-    results-vio-lc/   (run_type=vio-lc)
-    results-gnss-vio/ (run_type=gnss-vio)
+    results/vo/       (run_type=vo)
+    results/vo-lc/    (run_type=vo-lc)
+    results/vio/      (run_type=vio)
+    results/vio-lc/   (run_type=vio-lc)
+    results/gnss-vio/ (run_type=gnss-vio)
 
 metrics.csv format: one row per run + two summary rows (mean, std).
 report.md: thesis-ready table matching the supervisor's required format.
@@ -32,6 +32,9 @@ from _run_type import canonicalize_dataset, resolve as resolve_run_type  # noqa:
 def load_runs(algo_dir: Path):
     runs = []
     for p in sorted(algo_dir.glob("run*/run_eval.json")):
+        if not (p.parent / "COMPLETE").is_file():
+            print(f"[aggregate] skipping incomplete run: {p.parent}")
+            continue
         try:
             runs.append(json.loads(p.read_text()))
         except Exception as e:

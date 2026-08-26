@@ -67,7 +67,12 @@ def main() -> int:
     cfg = opt("--config")
     if cfg:
         cfg_p = Path(cfg)
-        prov["config_path"] = str(cfg_p)
+        repo = Path(__file__).resolve().parents[2]
+        try:
+            prov["config_path"] = cfg_p.resolve().relative_to(repo).as_posix()
+        except ValueError:
+            # Avoid leaking a home or server path through exported metadata.
+            prov["config_path"] = cfg_p.name
         prov["config_sha256"] = sha256_file(cfg_p)
     rate = opt("--playback-rate")
     if rate:
@@ -98,6 +103,16 @@ def main() -> int:
         pass
 
     meta["provenance"] = prov
+
+    # Stable application-specific pseudonym. Never store the hostname or raw
+    # /etc/machine-id in result artifacts.
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "results"))
+        from machine_id import get_machine_id
+        meta["machine_id"] = get_machine_id()
+    except Exception as e:
+        meta["machine_id"] = "unknown"
+        prov.setdefault("warnings", []).append(f"machine_id unavailable: {e}")
 
     # Run-host machine identity, captured AT RUN TIME (authoritative).
     try:

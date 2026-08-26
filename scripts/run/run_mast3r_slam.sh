@@ -4,8 +4,8 @@
 # Usage: scripts/run/run_mast3r_slam.sh <dataset> <seq> [run_id=1] [run_type=vo|vo-lc]
 #
 # Supported run types:
-#   vo    -> LC disabled, output -> results-vo/<dataset>/<seq>/mast3r_slam/run<N>/
-#   vo-lc -> LC enabled,  output -> results-vo-lc/<dataset>/<seq>/mast3r_slam/run<N>/
+#   vo    -> LC disabled, output -> results/vo/<dataset>/<seq>/mast3r_slam/run<N>/
+#   vo-lc -> LC enabled,  output -> results/vo-lc/<dataset>/<seq>/mast3r_slam/run<N>/
 
 #
 # 'vio' / 'vio-lc' are rejected: MASt3R-SLAM has no IMU support.
@@ -54,7 +54,8 @@ for candidate in "$SEQ_DIR/cam0" "$SEQ_DIR/mav0/cam0/data"; do
 done
 [[ -n "$IMG_DIR" ]] || { echo "ERROR: no cam0 image folder under $SEQ_DIR"; exit 2; }
 
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 
 set +u
 source "$HOME/miniconda3/etc/profile.d/conda.sh"

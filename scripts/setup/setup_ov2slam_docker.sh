@@ -5,6 +5,7 @@ set -euo pipefail
 WS=$(cd "$(dirname "$0")/../.." && pwd)
 CONTAINER="ov2slam"
 IMAGE="vslam_ov2slam:noetic"
+mkdir -p "$WS/results"
 
 if [[ ! -f "$WS/src/ov2slam/CMakeLists.txt" ]]; then
     echo "ERROR: OV2SLAM submodule is not initialized." >&2
@@ -17,14 +18,18 @@ if ! docker image inspect "$IMAGE" &>/dev/null; then
 fi
 
 if docker inspect "$CONTAINER" &>/dev/null; then
+    if ! docker inspect -f '{{range .Mounts}}{{println .Destination}}{{end}}' "$CONTAINER" | grep -qx /results; then
+        echo "ERROR: existing container '$CONTAINER' uses retired result mounts." >&2
+        echo "Stop and remove it, then rerun this setup script to mount $WS/results at /results." >&2
+        exit 2
+    fi
     echo "[setup] Container '$CONTAINER' already exists."
 else
     echo "[setup] Creating container '$CONTAINER'..."
     docker run -d \
         --network host \
         --volume "$WS/datasets:/datasets:ro" \
-        --volume "$WS/results-vo:/results-vo" \
-        --volume "$WS/results-vo-lc:/results-vo-lc" \
+        --volume "$WS/results:/results" \
         --volume "$WS/configs:/benchmark_configs:ro" \
         --volume "$WS/scripts:/benchmark_scripts:ro" \
         --name "$CONTAINER" \

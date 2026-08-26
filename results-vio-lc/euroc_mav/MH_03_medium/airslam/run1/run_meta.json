@@ -1,1 +1,0 @@
-{"algo": "airslam", "dataset": "euroc_mav", "seq": "MH_03_medium", "run_id": 1, "run_type": "vio-lc", "use_imu": true, "use_lc": true, "duration_s": 126.15311002731323, "frames": 300, "fps": 2.3780626568385625}

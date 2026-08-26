@@ -65,14 +65,21 @@ if [[ "$(docker inspect -f '{{.State.Running}}' "$CONTAINER" 2>/dev/null || true
     fi
 fi
 
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 rm -f "$OUT_DIR"/ov2slam_*.txt "$OUT_DIR/trajectory.txt" "$OUT_DIR/run_log.txt"
 echo "[ov2slam] $DATASET/$SEQ run=$RUN_ID type=$RUN_TYPE -> $OUT_DIR" | tee "$LOG"
 
 CFG_CONT="/benchmark_configs/ov2slam/$(basename "$CFG_HOST")"
 DATA_CONT="/datasets/$DATASET/$SEQ"
-OUT_CONT="/results-${RUN_TYPE}/$DATASET/$SEQ/ov2slam/run${RUN_ID}"
+OUT_CONT="/results/$RUN_TYPE/$DATASET/$SEQ/ov2slam/run${RUN_ID}"
 PLAYER_CONT="/benchmark_scripts/run/ov2slam_data_player.py"
+
+if ! docker inspect -f '{{range .Mounts}}{{println .Destination}}{{end}}' "$CONTAINER" | grep -qx /results; then
+    echo "[ov2slam] ERROR: container '$CONTAINER' is missing the /results mount" >&2
+    echo "[ov2slam] recreate it with scripts/setup/setup_ov2slam_docker.sh" >&2
+    exit 2
+fi
 
 MONPID=""
 ROSCORE_PID=""

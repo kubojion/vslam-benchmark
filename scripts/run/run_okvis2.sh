@@ -4,13 +4,13 @@
 #
 # run_type -> config file + results tree:
 #   vo      -> configs/okvis2/<dataset>_<seq>_vo.yaml
-#              -> results-vo/<dataset>/<seq>/okvis2/run<N>/
+#              -> results/vo/<dataset>/<seq>/okvis2/run<N>/
 #   vo-lc   -> configs/okvis2/<dataset>_<seq>_vo_lc.yaml
-#              -> results-vo-lc/<dataset>/<seq>/okvis2/run<N>/
+#              -> results/vo-lc/<dataset>/<seq>/okvis2/run<N>/
 #   vio     -> configs/okvis2/<dataset>_<seq>_vio.yaml
-#              -> results-vio/<dataset>/<seq>/okvis2/run<N>/
+#              -> results/vio/<dataset>/<seq>/okvis2/run<N>/
 #   vio-lc  -> configs/okvis2/<dataset>_<seq>_vio_lc.yaml
-#              -> results-vio-lc/<dataset>/<seq>/okvis2/run<N>/
+#              -> results/vio-lc/<dataset>/<seq>/okvis2/run<N>/
 #
 # Note: OKVIS2 is fundamentally a Visual-INERTIAL estimator. Running with
 # `imu_parameters.use: false` (vo / vo-lc) is supported by the parameter reader but
@@ -54,7 +54,8 @@ if grep -qE '^\s*do_loop_closures:\s*true' "$CFG"; then OKMODE=slam; else OKMODE
 APP="$WS/src/okvis2/build/okvis_app_synchronous"
 [[ -x "$APP" ]] || { echo "[okvis2] missing $APP — run scripts/build/build_okvis2.sh first" >&2; exit 2; }
 
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 echo "[okvis2] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL" "$OUT_DIR/run_log.txt"
 
 # Resource monitor (matches the other run_*.sh wrappers)

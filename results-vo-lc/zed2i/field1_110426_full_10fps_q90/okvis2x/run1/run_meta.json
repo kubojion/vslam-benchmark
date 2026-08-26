@@ -1,1 +1,0 @@
-{"algo": "okvis2x", "dataset": "zed2i", "seq": "field1_110426_full_10fps_q90", "run_id": 1, "run_type": "vo-lc", "use_imu": false, "use_lc": true, "duration_s": 9257.551272153854, "frames": 36069, "fps": 3.8961706978057293}

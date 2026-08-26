@@ -10,7 +10,7 @@ rather than genuine terrain following.
 Usage:
     python3 scripts/eval/_gnss_vio_axis_error.py
 
-Reads results-gnss-vio/<dataset>/<seq>/<algo>/run1/trajectory.txt against
+Reads results/gnss-vio/<dataset>/<seq>/<algo>/run1/trajectory.txt against
 datasets/<dataset>/<seq>/gt_tum.txt for every GNSS-VIO algorithm/sequence.
 """
 from pathlib import Path
@@ -90,7 +90,7 @@ def main():
     ]
     for algo in algos:
         for ds, sq in seqs:
-            est = WS / "results-gnss-vio" / ds / sq / algo / "run1" / "trajectory.txt"
+            est = WS / "results" / "gnss-vio" / ds / sq / algo / "run1" / "trajectory.txt"
             gtp = WS / "datasets" / ds / sq / "gt_tum.txt"
             if not est.exists() or not gtp.exists():
                 continue

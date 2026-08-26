@@ -57,7 +57,8 @@ for ck in "$REPO/checkpoints/megasam_final.pth" \
     [[ -f "$ck" ]] || { echo "[megasam] ERROR: missing checkpoint $ck" >&2; exit 2; }
 done
 
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 : > "$OUT_DIR/run_log.txt"
 
 # The pipeline keys its intermediate + output directories off the scene name,

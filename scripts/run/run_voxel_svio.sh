@@ -22,7 +22,7 @@
 #      and IMU samples to /cam0/image_raw, /cam1/image_raw, /imu0.
 #   3. After the player exits, send SIGINT to roslaunch.
 #   4. Voxel-SVIO writes pose.txt to its src/voxel_svio/output/ directory;
-#      copy and rename to results-vio/<dataset>/<seq>/voxel_svio/run<N>/trajectory.txt.
+#      copy and rename to results/vio/<dataset>/<seq>/voxel_svio/run<N>/trajectory.txt.
 set -eo pipefail
 
 DATASET=$1; SEQ=$2; RUN_ID=${3:-1}; RUN_TYPE=${4:-vio}
@@ -60,7 +60,8 @@ CFG_CONT="/benchmark_configs/voxel_svio/$(basename "$CFG_HOST")"
 [[ -f "$SEQ_DIR/mav0/imu0/data.csv" ]] \
     || { echo "[voxel_svio] missing IMU $SEQ_DIR/mav0/imu0/data.csv" >&2; exit 2; }
 
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 echo "[voxel_svio] $DATASET/$SEQ run=${RUN_ID} -> $OUT_DIR" | tee "$LOG"
 
 # ---- Ensure Docker container is running -----------------------------------

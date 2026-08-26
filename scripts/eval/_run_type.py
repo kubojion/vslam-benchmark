@@ -1,26 +1,26 @@
 #!/usr/bin/env python3
 """Shared run-type definitions for the evaluation pipeline.
 
-Four run types are supported:
+Five run types are supported:
 
     vo       visual-only / no IMU, no loop closure
-             -> results folder:  <repo>/results-vo
+             -> results folder:  <repo>/results/vo
              -> CSV file:        <repo>/benchmark-vo.csv
 
     vo-lc   visual-only + loop closure
-             -> results folder:  <repo>/results-vo-lc
+             -> results folder:  <repo>/results/vo-lc
              -> CSV file:        <repo>/benchmark-vo-lc.csv
 
     vio      visual-inertial, no loop closure
-             -> results folder:  <repo>/results-vio
+             -> results folder:  <repo>/results/vio
              -> CSV file:        <repo>/benchmark-vio.csv
 
     vio-lc   visual-inertial + loop closure
-             -> results folder:  <repo>/results-vio-lc
+             -> results folder:  <repo>/results/vio-lc
              -> CSV file:        <repo>/benchmark-vio-lc.csv
 
     gnss-vio visual-inertial + GNSS fusion (loose or tight)
-             -> results folder:  <repo>/results-gnss-vio
+             -> results folder:  <repo>/results/gnss-vio
              -> CSV file:        <repo>/benchmark-gnss-vio.csv
 
 Usage::
@@ -28,7 +28,7 @@ Usage::
     from _run_type import RunType, resolve
 
     rt = resolve("vio")
-    rt.results_root          # PosixPath('.../results-vio')
+    rt.results_root          # PosixPath('.../results/vio')
     rt.csv_path              # PosixPath('.../benchmark-vio.csv')
     rt.use_imu, rt.use_lc    # True, False
 """
@@ -75,23 +75,23 @@ def resolve(name: str, repo: Path | None = None) -> RunType:
     if n in ("gnssvio", "gnss_vio"):
         n = "gnss-vio"
     if n == "vo":
-        return RunType("vo", repo / "results-vo", repo / "benchmark-vo.csv",
+        return RunType("vo", repo / "results" / "vo", repo / "benchmark-vo.csv",
                        use_imu=False, use_lc=False, use_gnss=False)
     if n == "vo-lc":
-        return RunType("vo-lc", repo / "results-vo-lc", repo / "benchmark-vo-lc.csv",
+        return RunType("vo-lc", repo / "results" / "vo-lc", repo / "benchmark-vo-lc.csv",
                        use_imu=False, use_lc=True, use_gnss=False)
     if n == "vio":
-        return RunType("vio", repo / "results-vio", repo / "benchmark-vio.csv",
+        return RunType("vio", repo / "results" / "vio", repo / "benchmark-vio.csv",
                        use_imu=True, use_lc=False, use_gnss=False)
     if n == "vio-lc":
-        return RunType("vio-lc", repo / "results-vio-lc", repo / "benchmark-vio-lc.csv",
+        return RunType("vio-lc", repo / "results" / "vio-lc", repo / "benchmark-vio-lc.csv",
                        use_imu=True, use_lc=True, use_gnss=False)
     if n == "gnss-vio":
-        return RunType("gnss-vio", repo / "results-gnss-vio", repo / "benchmark-gnss-vio.csv",
+        return RunType("gnss-vio", repo / "results" / "gnss-vio", repo / "benchmark-gnss-vio.csv",
                        use_imu=True, use_lc=False, use_gnss=True)
     raise SystemExit(f"unknown run-type {name!r}. Use one of: {', '.join(RUN_TYPES)}")
 
 
 def all_types(repo: Path | None = None) -> list[RunType]:
-    """Return all three RunType definitions."""
+    """Return all five RunType definitions."""
     return [resolve(t, repo) for t in RUN_TYPES]

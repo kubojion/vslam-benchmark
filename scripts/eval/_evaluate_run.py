@@ -5,11 +5,11 @@ Usage:
     python3 _evaluate_run.py <dataset> <seq> <algo> <run_id> [run_type=vo]
 
 run_type selects which results-tree this run lives in:
-  vo       -> results-vo/<dataset>/<seq>/<algo>/run<N>/
-  vo-lc    -> results-vo-lc/<dataset>/<seq>/<algo>/run<N>/
-  vio      -> results-vio/<dataset>/<seq>/<algo>/run<N>/
-  vio-lc   -> results-vio-lc/<dataset>/<seq>/<algo>/run<N>/
-  gnss-vio -> results-gnss-vio/<dataset>/<seq>/<algo>/run<N>/
+  vo       -> results/vo/<dataset>/<seq>/<algo>/run<N>/
+  vo-lc    -> results/vo-lc/<dataset>/<seq>/<algo>/run<N>/
+  vio      -> results/vio/<dataset>/<seq>/<algo>/run<N>/
+  vio-lc   -> results/vio-lc/<dataset>/<seq>/<algo>/run<N>/
+  gnss-vio -> results/gnss-vio/<dataset>/<seq>/<algo>/run<N>/
 
 Looks for:
   datasets/<dataset>/<seq>/gt_interp_tum.txt   (preferred)

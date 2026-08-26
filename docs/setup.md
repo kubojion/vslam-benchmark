@@ -176,6 +176,12 @@ docker stop air_slam
 docker rm air_slam
 ```
 
+Containers created before the unified result store use retired `results-*`
+mounts and cannot be updated in place. Stop and remove the affected benchmark
+container, then rerun its `scripts/setup/setup_*_docker.sh` script. The source,
+datasets, configs, and generated `results/` directory are bind-mounted and are
+not removed with the container.
+
 ## 8. Smoke test
 
 ```bash
@@ -183,7 +189,7 @@ docker rm air_slam
 bash scripts/run/run_orbslam3.sh hortimulti strawberry02 1
 ```
 
-Output should appear under `results-vo/hortimulti/strawberry02/orbslam3/run1/`.
+Output should appear under `results/vo/hortimulti/strawberry02/orbslam3/run1/`.
 
 ## 9. MegaSaM (optional, monocular)
 
@@ -338,7 +344,7 @@ This script:
 1. Builds image `vslam_voxel_svio:noetic` from
    `scripts/setup/voxel_svio.Dockerfile` (ROS Noetic + Ceres + glog/gflags).
 2. Creates container `voxel_svio` with bind mounts for
-   `src/voxel_svio`, `datasets/` (read-only), `results-vio/`,
+   `src/voxel_svio`, `datasets/` (read-only), `results/`,
    `configs/voxel_svio/` and `scripts/`.
 3. Runs `catkin_make -DCMAKE_BUILD_TYPE=Release` inside the container.
 
@@ -420,7 +426,7 @@ bash scripts/run/run_okvis2x.sh euroc smoke_mh_01_easy_200 9001 vio
 ## 14. GNSS-VIO algorithms
 
 The `gnss-vio` run-type adds four GPS-aware algorithms. Each writes to
-`results-gnss-vio/` and `benchmark-gnss-vio.csv`.
+`results/gnss-vio/` and `benchmark-gnss-vio.csv`.
 
 | Algorithm | Setup | ROS |
 |---|---|---|

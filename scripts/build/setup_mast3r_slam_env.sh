@@ -7,7 +7,7 @@
 # Notes:
 #   * Monocular. The retrieval head supports loop closure.
 #   * Map this to run_type=vio-lc (monocular + LC) by setting USE_IMU=false
-#     inside the run script and routing output to results-vio-lc/. We expose
+#     inside the run script and routing output to results/vio-lc/. We expose
 #     run_type=vo (LC disabled) and run_type=vio-lc (LC enabled) only.
 #   * vio (LC off, IMU on) is not supported by this algorithm.
 set -eo pipefail

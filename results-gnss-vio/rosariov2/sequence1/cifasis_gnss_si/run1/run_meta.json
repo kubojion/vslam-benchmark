@@ -1,1 +1,0 @@
-{"algo": "cifasis_gnss_si", "dataset": "rosariov2", "seq": "sequence1", "run_id": 1, "run_type": "gnss-vio", "duration_s": 934.95, "frames": 13745, "fps": 14.701, "note": "trajectory recovered manually; runner traj path fixed for subsequent runs"}

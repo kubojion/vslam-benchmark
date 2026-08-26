@@ -13,11 +13,11 @@ Every run is classified by a `run_type`:
 
 | run_type   | IMU | LC  | GNSS | Results tree           | Aggregated CSV            |
 |------------|-----|-----|------|------------------------|---------------------------|
-| `vo`       | off | off | off  | `results-vo/`          | `benchmark-vo.csv`        |
-| `vo-lc`    | off | on  | off  | `results-vo-lc/`       | `benchmark-vo-lc.csv`     |
-| `vio`      | on  | off | off  | `results-vio/`         | `benchmark-vio.csv`       |
-| `vio-lc`   | on  | on  | off  | `results-vio-lc/`      | `benchmark-vio-lc.csv`    |
-| `gnss-vio` | on  | -   | on   | `results-gnss-vio/`    | `benchmark-gnss-vio.csv`  |
+| `vo`       | off | off | off  | `results/vo/`          | `benchmark-vo.csv`        |
+| `vo-lc`    | off | on  | off  | `results/vo-lc/`       | `benchmark-vo-lc.csv`     |
+| `vio`      | on  | off | off  | `results/vio/`         | `benchmark-vio.csv`       |
+| `vio-lc`   | on  | on  | off  | `results/vio-lc/`      | `benchmark-vio-lc.csv`    |
+| `gnss-vio` | on  | -   | on   | `results/gnss-vio/`    | `benchmark-gnss-vio.csv`  |
 
 Paths are resolved by `scripts/_paths.sh` (bash, `resolve_run_type`) and
 `scripts/eval/_run_type.py` (python, `resolve(name)` / `all_types()`).
@@ -55,7 +55,7 @@ python3 $EVAL/_interpolate_gt.py datasets/$DS/$SEQ/gt_tum.txt \
 python3 $EVAL/_segment_trajectory.py datasets/$DS/$SEQ
 
 # 3. Evaluate every run for a given algo
-for r in results-$TYPE/$DS/$SEQ/$ALGO/run*; do
+for r in results/$TYPE/$DS/$SEQ/$ALGO/run*; do
     RUN_ID="${r##*run}"
     python3 $EVAL/_evaluate_run.py $DS $SEQ $ALGO "$RUN_ID" $TYPE
 done

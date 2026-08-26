@@ -20,7 +20,8 @@ LOG="$WS/logs/${DATASET}_${SEQ}_macvo_${RUN_TYPE}_run${RUN_ID}.log"
 ODOM_CFG="$WS/src/MAC-VO/Config/Experiment/MACVO/MACVO_Performant.yaml"
 DATA_CFG_SRC="$WS/configs/macvo/${DATASET}_${SEQ}.yaml"
 [[ -f "$DATA_CFG_SRC" ]] || { echo "ERROR: no MAC-VO config for ${DATASET}/${SEQ} at $DATA_CFG_SRC"; exit 2; }
-mkdir -p "$OUT_DIR" "$WS/logs"
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
 # Substitute __WS__ placeholder so configs are portable across machines.
 DATA_CFG="$(mktemp -t macvo_cfg_XXXXXX.yaml)"
 sed "s|__WS__|$WS|g" "$DATA_CFG_SRC" > "$DATA_CFG"
