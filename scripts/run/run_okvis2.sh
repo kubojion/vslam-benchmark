@@ -75,6 +75,7 @@ if [[ -z "${DISPLAY:-}" ]]; then
 fi
 
 START=$(date +%s.%N)
+set +e
 "${RUN_PREFIX[@]}" "$APP" "$CFG" "$SEQ_DIR/mav0" 2>&1 | \
   python3 -u -c "
 import sys, time
@@ -82,13 +83,33 @@ t0 = time.time()
 for line in sys.stdin:
     sys.stdout.write(f'{time.time()-t0:.3f} {line}')
     sys.stdout.flush()
-" | tee -a "$OUT_DIR/run_log.txt" "$LOG_GLOBAL" || true
+" | tee -a "$OUT_DIR/run_log.txt" "$LOG_GLOBAL"
+OKVIS_RC=${PIPESTATUS[0]}
+set -e
 END=$(date +%s.%N)
+
+MATCHING_THREADS=$(awk '/num_matching_threads:/ {print $2; exit}' "$CFG")
+PROV_ARGS=(
+    --artifact "estimator_config=$CFG"
+    --source "algorithm=$WS/src/okvis2"
+    --binary "estimator=$APP"
+    --param "use_imu=$USE_IMU"
+    --param "use_lc=$USE_LC"
+    --param "matching_threads=${MATCHING_THREADS:-unknown}"
+)
+if (( OKVIS_RC != 0 )); then
+    record_failed_run_meta "$OUT_DIR/run_meta.json" okvis2 "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" "$OKVIS_RC" "estimator exited nonzero" "${PROV_ARGS[@]}"
+    echo "[okvis2] ERROR: estimator exited with status $OKVIS_RC" | tee -a "$LOG_GLOBAL"
+    exit "$OKVIS_RC"
+fi
 
 # OKVIS2 writes okvis2-<vio|slam>_trajectory.csv next to mav0/.
 RAW="$SEQ_DIR/mav0/okvis2-${OKMODE}_trajectory.csv"
 RAW_FINAL="$SEQ_DIR/mav0/okvis2-${OKMODE}-final_trajectory.csv"
 if [[ ! -f "$RAW" ]]; then
+    record_failed_run_meta "$OUT_DIR/run_meta.json" okvis2 "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" 1 "trajectory was not produced" "${PROV_ARGS[@]}"
     echo "[okvis2] ERROR: no $RAW produced — run failed" | tee -a "$LOG_GLOBAL"
     exit 1
 fi
@@ -136,7 +157,5 @@ print(json.dumps({
     'fps':$NFR/$DUR if $DUR>0 else 0
 }))
 " > "$OUT_DIR/run_meta.json"
-python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
-    --config "${CONFIG:-${CONFIG_FILE:-${CFG:-}}}" --container "${CONTAINER:-}" \
-    --playback-rate "${PLAYBACK_RATE:-${OV2SLAM_PLAYBACK_RATE:-${OPENVINS_RATE:-}}}" || true
+enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
 echo "[okvis2] run ${RUN_ID} done in ${DUR}s, ${NFR} poses"

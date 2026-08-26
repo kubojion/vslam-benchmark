@@ -83,6 +83,13 @@ cd "$REPO"
 # `depth_anything` module used by stage 1a; UniDepth holds `unidepth`.
 export PYTHONPATH="$REPO/base/droid_slam:$REPO/Depth-Anything:$REPO/UniDepth:${PYTHONPATH:-}"
 export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0}"
+PROV_ARGS=(
+    --artifact "megasam_model=$REPO/checkpoints/megasam_final.pth"
+    --artifact "depth_anything_model=$REPO/Depth-Anything/checkpoints/depth_anything_vitl14.pth"
+    --source "algorithm=$REPO"
+    --param "unidepth_model=unidepth-v2-vitl14" --param "visualization=false"
+    --conda-env megasam
+)
 
 rm -rf "$REPO/reconstructions/$SCENE" "$REPO/Depth-Anything/video_visualization/$SCENE"
 
@@ -91,7 +98,9 @@ UNIDEPTH_RGB_DIR="$(mktemp -d -t megasam_rgb_XXXXXX)"
 trap 'kill $MONPID 2>/dev/null || true; rm -rf "$UNIDEPTH_RGB_DIR"' EXIT
 
 START=$(date +%s.%N)
-{
+set +e
+(
+    set -e
     echo "=== stage 1a: Depth-Anything (relative mono-depth) ==="
     python3 Depth-Anything/run_videos.py \
         --encoder vitl \
@@ -136,17 +145,26 @@ RGBPY
         --mono_depth_path "$REPO/Depth-Anything/video_visualization" \
         --metric_depth_path "$REPO/UniDepth/outputs" \
         --disable_vis
-} 2>&1 | python3 -u -c "
+) 2>&1 | python3 -u -c "
 import sys, time
 t0 = time.time()
 for line in sys.stdin:
     sys.stdout.write(f'{time.time()-t0:.3f} {line}')
     sys.stdout.flush()
 " | tee -a "$OUT_DIR/run_log.txt" "$LOG"
+MEGASAM_RC=${PIPESTATUS[0]}
+set -e
 END=$(date +%s.%N)
+if (( MEGASAM_RC != 0 )); then
+    record_failed_run_meta "$OUT_DIR/run_meta.json" megasam "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" "$MEGASAM_RC" "pipeline exited nonzero" "${PROV_ARGS[@]}"
+    exit "$MEGASAM_RC"
+fi
 
 POSES="$REPO/reconstructions/$SCENE/poses.npy"
 if [[ ! -f "$POSES" ]]; then
+    record_failed_run_meta "$OUT_DIR/run_meta.json" megasam "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" 1 "poses artifact was not produced" "${PROV_ARGS[@]}"
     echo "[megasam] ERROR: no poses at $POSES — pipeline failed" | tee -a "$LOG"
     exit 1
 fi
@@ -183,7 +201,5 @@ print(json.dumps({'algo':'megasam','dataset':'$DATASET','seq':'$SEQ','run_id':$R
                   'run_type':'$RUN_TYPE','use_imu':False,'use_lc':False,
                   'duration_s':$DUR,'frames':$NFR,'fps':$NFR/$DUR if $DUR>0 else 0}))
 " > "$OUT_DIR/run_meta.json"
-python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
-    --config "${CONFIG:-${CONFIG_FILE:-${CFG:-}}}" --container "${CONTAINER:-}" \
-    --playback-rate "${PLAYBACK_RATE:-${OV2SLAM_PLAYBACK_RATE:-${OPENVINS_RATE:-}}}" || true
+enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
 echo "[megasam] run ${RUN_ID} done in ${DUR}s, ${NFR} poses" | tee -a "$LOG"

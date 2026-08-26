@@ -16,7 +16,7 @@ RESULTS = REPO / "results"
 RUN_TYPES = ("vo", "vo-lc", "vio", "vio-lc", "gnss-vio")
 sys.path.insert(0, str(HERE))
 from machine_id import get_machine_id  # noqa: E402
-from validate_run import validate, validate_location  # noqa: E402
+from validate_run import validate, validate_location, validate_provenance  # noqa: E402
 
 
 def sha256(path: Path) -> str:
@@ -83,9 +83,25 @@ def run_entry(run_type: str, run_dir: Path) -> dict:
     metadata = read_json(run_dir / "run_meta.json")
     evaluation = read_json(run_dir / "run_eval.json")
     errors = validate_location(run_dir) + validate(run_dir)
+    provenance_errors = validate_provenance(run_dir, required_schema=None)
+    if metadata.get("run_status") == "failed":
+        provenance_errors = [
+            error for error in provenance_errors
+            if not error.startswith("unaccepted process exit code ")
+        ]
+    schema = metadata.get("provenance_schema")
+    if schema is None:
+        provenance_status = "legacy"
+    elif schema == 2 and not provenance_errors:
+        provenance_status = "complete"
+    else:
+        provenance_status = "invalid"
+    errors.extend(provenance_errors)
+    process = metadata.get("process")
+    process_exit_code = process.get("exit_code") if isinstance(process, dict) else None
     if (run_dir / "COMPLETE").is_file():
         status = "complete" if not errors else "invalid"
-    elif metadata.get("exit_code") not in (None, 0):
+    elif metadata.get("run_status") == "failed" or process_exit_code not in (None, 0):
         status = "failed"
     else:
         status = "incomplete"
@@ -104,6 +120,8 @@ def run_entry(run_type: str, run_dir: Path) -> dict:
         "repeat": repeat,
         "status": status,
         "machine_id": metadata.get("machine_id", "unknown"),
+        "provenance_status": provenance_status,
+        "provenance_schema": schema,
         "metrics": metric_summary(evaluation),
         "artifacts": artifact_inventory(run_dir),
     }

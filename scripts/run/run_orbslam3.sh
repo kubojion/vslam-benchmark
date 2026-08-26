@@ -82,9 +82,8 @@ MONPID=$!
 trap "kill $MONPID 2>/dev/null || true" EXIT
 
 START=$(date +%s.%N)
-# ORB-SLAM3 may crash in Pangolin destructor after saving trajectories; that is
-# harmless — we only care that the trajectory file was written before exit.
 # Pipe through a Python timestamper so each log line gets a relative offset (s).
+set +e
 "${RUN_PREFIX[@]}" "$BIN" \
     Vocabulary/ORBvoc.txt \
     "$CFG" \
@@ -97,11 +96,44 @@ t0 = time.time()
 for line in sys.stdin:
     sys.stdout.write(f'{time.time()-t0:.3f} {line}')
     sys.stdout.flush()
-" | tee -a "$OUT_DIR/run_log.txt" "$LOG_GLOBAL" || true
+" | tee -a "$OUT_DIR/run_log.txt" "$LOG_GLOBAL"
+ORB_RC=${PIPESTATUS[0]}
+set -e
 END=$(date +%s.%N)
 
+PROV_ARGS=(
+    --artifact "estimator_config=$CFG"
+    --artifact "vocabulary=$WS/src/ORB_SLAM3/Vocabulary/ORBvoc.txt"
+    --source "algorithm=$WS/src/ORB_SLAM3"
+    --binary "estimator=$WS/src/ORB_SLAM3/${BIN#./}"
+    --param "use_imu=$USE_IMU"
+    --param "use_lc=$USE_LC"
+    --param "pacing_policy=dataset_timestamps"
+)
 TRAJ_SRC="f_${DATASET}_${SEQ}_orbslam3.txt"
+PROCESS_ARGS=(--process-exit-code "$ORB_RC")
+
+if (( ORB_RC != 0 )); then
+    if (( ORB_RC == 139 )) && [[ -s "$TRAJ_SRC" ]] \
+        && grep -Fq "End of saving trajectory to $TRAJ_SRC" "$OUT_DIR/run_log.txt" \
+        && grep -Fq "Segmentation fault (core dumped)" "$OUT_DIR/run_log.txt"; then
+        PROCESS_ARGS+=(
+            --accepted-nonzero-exit
+            --failure-reason "known Pangolin shutdown segfault after canonical trajectory save"
+        )
+        echo "[orbslam3] accepting known post-save Pangolin shutdown fault (exit 139)" \
+            | tee -a "$LOG_GLOBAL"
+    else
+        record_failed_run_meta "$OUT_DIR/run_meta.json" orbslam3 "$DATASET" "$SEQ" \
+            "$RUN_ID" "$RUN_TYPE" "$ORB_RC" "estimator exited nonzero" "${PROV_ARGS[@]}"
+        echo "[orbslam3] ERROR: estimator exited with status $ORB_RC" | tee -a "$LOG_GLOBAL"
+        exit "$ORB_RC"
+    fi
+fi
+
 if [[ ! -f "$TRAJ_SRC" ]]; then
+    record_failed_run_meta "$OUT_DIR/run_meta.json" orbslam3 "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" 1 "trajectory was not produced" "${PROV_ARGS[@]}"
     echo "[orbslam3] ERROR: trajectory file not found — SLAM likely failed" | tee -a "$LOG_GLOBAL"
     exit 1
 fi
@@ -130,7 +162,5 @@ print(json.dumps({
     'fps':$NFR/$DUR if $DUR>0 else 0
 }))
 " > "$OUT_DIR/run_meta.json"
-python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
-    --config "${CONFIG:-${CONFIG_FILE:-${CFG:-}}}" --container "${CONTAINER:-}" \
-    --playback-rate "${PLAYBACK_RATE:-${OV2SLAM_PLAYBACK_RATE:-${OPENVINS_RATE:-}}}" || true
+enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}" "${PROCESS_ARGS[@]}"
 echo "[orbslam3] run ${RUN_ID} done in ${DUR}s, ${NFR} frames"

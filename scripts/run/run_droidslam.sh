@@ -5,6 +5,7 @@
 # DROID-SLAM has no IMU or LC support. Only run_type=vo is meaningful.
 set -eo pipefail
 DATASET=$1; SEQ=$2; RUN_ID=${3:-1}; RUN_TYPE=${4:-vo}; shift 4 2>/dev/null || true
+EXTRA_ARGS="$*"
 WS=$(cd "$(dirname "$0")/../.." && pwd)
 source "$WS/scripts/_paths.sh"
 canonicalize_dataset "$DATASET"
@@ -41,7 +42,18 @@ python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
 MONPID=$!
 trap "kill $MONPID 2>/dev/null || true" EXIT
 
+PROV_ARGS=(
+    --artifact "camera_calibration=$CALIB"
+    --artifact "model=$WS/src/DROID-SLAM/droid.pth"
+    --source "algorithm=$WS/src/DROID-SLAM"
+    --param "stereo=true" --param "stride=1" --param "buffer=1024"
+    --param "filter_threshold=6.0" --param "frontend_window=16"
+    --param "skip_backend=true" --param "extra_args=${EXTRA_ARGS:-none}"
+    --conda-env droidenv
+)
+
 START=$(date +%s.%N)
+set +e
 python3 "$WS/scripts/run/_droid_demo_wrapper.py" \
     --imagedir "$SEQ_DIR/cam0" \
     --rightimagedir "$SEQ_DIR/cam1" \
@@ -57,16 +69,33 @@ python3 "$WS/scripts/run/_droid_demo_wrapper.py" \
     --frontend_window 16 \
     --skip_backend \
     "$@" 2>&1 | tee "$LOG"
+DROID_RC=${PIPESTATUS[0]}
+set -e
 END=$(date +%s.%N)
+if (( DROID_RC != 0 )); then
+    # If the model is absent the wrapper cannot run and there is no model
+    # artifact to hash, so leave the partial logs without fabricated metadata.
+    if [[ -f "$WS/src/DROID-SLAM/droid.pth" ]]; then
+        record_failed_run_meta "$OUT_DIR/run_meta.json" droidslam "$DATASET" "$SEQ" \
+            "$RUN_ID" "$RUN_TYPE" "$DROID_RC" "estimator exited nonzero" "${PROV_ARGS[@]}"
+    fi
+    exit "$DROID_RC"
+fi
+
+if [[ ! -s "$OUT_DIR/trajectory.txt" ]]; then
+    record_failed_run_meta "$OUT_DIR/run_meta.json" droidslam "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" 1 "trajectory was not produced" "${PROV_ARGS[@]}"
+    echo "[droidslam] ERROR: trajectory was not produced" | tee -a "$LOG"
+    exit 1
+fi
 
 DUR=$(python3 -c "print($END-$START)")
 NFR=$(wc -l < "$OUT_DIR/trajectory.txt" 2>/dev/null || echo 0)
 python3 -c "
 import json
 print(json.dumps({'algo':'droidslam','dataset':'$DATASET','seq':'$SEQ','run_id':$RUN_ID,
+                  'run_type':'$RUN_TYPE','use_imu':False,'use_lc':False,
                   'duration_s':$DUR,'frames':$NFR,'fps':$NFR/$DUR if $DUR>0 else 0}))
 " > "$OUT_DIR/run_meta.json"
-python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
-    --config "${CONFIG:-${CONFIG_FILE:-${CFG:-}}}" --container "${CONTAINER:-}" \
-    --playback-rate "${PLAYBACK_RATE:-${OV2SLAM_PLAYBACK_RATE:-${OPENVINS_RATE:-}}}" || true
+enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
 echo "[droidslam] done (run ${RUN_ID})"

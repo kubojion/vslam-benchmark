@@ -42,10 +42,13 @@ CALIB="$WS/configs/dpvo/${DATASET}.txt"
 NET="$REPO/dpvo.pth"
 STRIDE="${DPVO_STRIDE:-1}"   # 1 = every frame (most comparable to the other VO methods)
 SKIP="${DPVO_SKIP:-0}"
+SEED="${DPVO_SEED:-$((1000 + RUN_ID))}"
+ALGO_CFG="$REPO/config/default.yaml"
 
 [[ -d "$REPO" ]] || { echo "[dpvo] ERROR: repo missing at $REPO (run scripts/build/setup_dpvo_env.sh)" >&2; exit 2; }
 [[ -f "$NET" ]]  || { echo "[dpvo] ERROR: weights missing at $NET" >&2; exit 2; }
 [[ -f "$CALIB" ]] || { echo "[dpvo] ERROR: no calib at $CALIB" >&2; exit 2; }
+[[ -f "$ALGO_CFG" ]] || { echo "[dpvo] ERROR: no config at $ALGO_CFG" >&2; exit 2; }
 
 # Monocular: cam0 only.
 IMG_DIR=""
@@ -101,9 +104,19 @@ trap 'kill $MONPID 2>/dev/null || true; [[ -n "${STAGE_DIR:-}" ]] && rm -rf "$ST
 
 cd "$REPO"
 rm -f "saved_trajectories/${NAME}.txt"
+PROV_ARGS=(
+    --artifact "camera_calibration=$CALIB"
+    --artifact "algorithm_config=$ALGO_CFG"
+    --artifact "model=$NET"
+    --source "algorithm=$REPO"
+    --param "stride=$STRIDE" --param "skip=$SKIP"
+    --param "loop_closure=$USE_LC" --seed "$SEED"
+    --conda-env dpvo
+)
 
 START=$(date +%s.%N)
-python3 demo.py \
+set +e
+python3 "$WS/scripts/run/_seeded_python.py" "$SEED" demo.py \
     --imagedir "$IMG_DIR" \
     --calib "$CALIB" \
     --network "$NET" \
@@ -117,10 +130,19 @@ t0 = time.time()
 for line in sys.stdin:
     sys.stdout.write(f'{time.time()-t0:.3f} {line}'); sys.stdout.flush()
 " | tee -a "$OUT_DIR/run_log.txt" "$LOG"
+DPVO_RC=${PIPESTATUS[0]}
+set -e
 END=$(date +%s.%N)
+if (( DPVO_RC != 0 )); then
+    record_failed_run_meta "$OUT_DIR/run_meta.json" dpvo "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" "$DPVO_RC" "estimator exited nonzero" "${PROV_ARGS[@]}"
+    exit "$DPVO_RC"
+fi
 
 RAW="$REPO/saved_trajectories/${NAME}.txt"
 if [[ ! -s "$RAW" ]]; then
+    record_failed_run_meta "$OUT_DIR/run_meta.json" dpvo "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" 1 "trajectory was not produced" "${PROV_ARGS[@]}"
     echo "[dpvo] ERROR: no trajectory at $RAW — run failed" | tee -a "$LOG"; exit 1
 fi
 
@@ -154,7 +176,5 @@ print(json.dumps({'algo':'dpvo','dataset':'$DATASET','seq':'$SEQ','run_id':$RUN_
                   'run_type':'$RUN_TYPE','use_imu':False,'use_lc':$USE_LC,
                   'duration_s':$DUR,'frames':$NFR,'fps':$NFR/$DUR if $DUR>0 else 0}))
 " > "$OUT_DIR/run_meta.json"
-python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
-    --config "${CONFIG:-${CONFIG_FILE:-${CFG:-}}}" --container "${CONTAINER:-}" \
-    --playback-rate "${PLAYBACK_RATE:-${OV2SLAM_PLAYBACK_RATE:-${OPENVINS_RATE:-}}}" || true
+enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
 echo "[dpvo] run ${RUN_ID} done in ${DUR}s, ${NFR} poses" | tee -a "$LOG"

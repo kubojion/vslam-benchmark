@@ -106,3 +106,28 @@ prepare_fresh_run_dir() {
     fi
     mkdir -p "$out_real"
 }
+
+# Provenance wrappers shared by every runner. Enrichment is intentionally not
+# best-effort: if reproducibility metadata cannot be recorded, the run must not
+# become a complete benchmark result.
+enrich_run_meta() {
+    local meta_path="${1:?run_meta.json path required}"
+    shift
+    python3 "$WS/scripts/run/_enrich_run_meta.py" "$meta_path" "$@"
+}
+
+record_failed_run_meta() {
+    local meta_path="${1:?meta path required}"
+    local algo="${2:?algorithm required}"
+    local dataset="${3:?dataset required}"
+    local sequence="${4:?sequence required}"
+    local run_id="${5:?run id required}"
+    local run_type="${6:?run type required}"
+    local exit_code="${7:?exit code required}"
+    local reason="${8:?failure reason required}"
+    shift 8
+    python3 "$WS/scripts/run/_enrich_run_meta.py" "$meta_path" \
+        --create --algo "$algo" --dataset "$dataset" --sequence "$sequence" \
+        --run-id "$run_id" --run-type "$run_type" \
+        --process-exit-code "$exit_code" --failure-reason "$reason" "$@"
+}

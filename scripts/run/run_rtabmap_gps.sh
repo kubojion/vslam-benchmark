@@ -67,6 +67,8 @@ if ! dpkg -l ros-humble-rtabmap-ros &>/dev/null; then
     echo "Run: sudo apt install ros-humble-rtabmap-ros" >&2
     exit 2
 fi
+ROS_PACKAGE_VERSION=$(dpkg-query -W -f='${Version}' ros-humble-rtabmap-ros)
+GNSS_VARIANT="${GNSS_VARIANT:-default}"
 
 # ---- Pre-run cleanup (orphaned ROS 2 nodes corrupt subsequent runs) --------
 # NB: patterns must NOT match this script's own command line
@@ -263,8 +265,9 @@ print(json.dumps({
     'fps':$NFR/$DUR if $DUR>0 else 0
 }))
 " > "$OUT_DIR/run_meta.json"
-python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
-    --config "${CONFIG:-${CONFIG_FILE:-${CFG:-}}}" --container "${CONTAINER:-}" \
-    --playback-rate "${PLAYBACK_RATE:-${OV2SLAM_PLAYBACK_RATE:-${OPENVINS_RATE:-}}}" || true
+enrich_run_meta "$OUT_DIR/run_meta.json" \
+    --artifact "estimator_config=$CFG_HOST" \
+    --param "playback_rate=1.0" --param "gnss_variant=$GNSS_VARIANT" \
+    --param "ros_package=ros-humble-rtabmap-ros:$ROS_PACKAGE_VERSION"
 
 echo "[rtabmap_gps] done (run ${RUN_ID})" | tee -a "$LOG"

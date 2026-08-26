@@ -38,6 +38,7 @@ OV_CFG_DIR="$WS/configs/openvins/$DATASET"
 RL_CFG_DIR="$WS/configs/robot_loc_openvins"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/openvins_gps/run${RUN_ID}"
 LOG="$WS/logs/${DATASET}_${SEQ}_openvins_gps_${RUN_TYPE}_run${RUN_ID}.log"
+GNSS_VARIANT="${GNSS_VARIANT:-default}"
 
 # ---- Validate inputs -------------------------------------------------------
 [[ -f "$OV_CFG_DIR/estimator_config.yaml" ]] \
@@ -215,7 +216,14 @@ d = {
 Path("$OUT_DIR/run_meta.json").write_text(json.dumps(d, indent=2))
 print("[openvins_gps] run_meta.json written")
 PYEOF
-python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
-    --container "${CONTAINER:-}" --playback-rate "${OPENVINS_RATE:-}" || true
+enrich_run_meta "$OUT_DIR/run_meta.json" \
+    --artifact "estimator_config=$OV_CFG_DIR/estimator_config.yaml" \
+    --artifact "imu_calibration=$OV_CFG_DIR/kalibr_imu_chain.yaml" \
+    --artifact "camera_imu_calibration=$OV_CFG_DIR/kalibr_imucam_chain.yaml" \
+    --artifact "ekf_config=$RL_CFG_DIR/ekf_gps.yaml" \
+    --artifact "navsat_config=$RL_CFG_DIR/navsat.yaml" \
+    --source "algorithm=$WS/src/open_vins" \
+    --param "playback_rate=1.0" --param "gnss_variant=$GNSS_VARIANT" \
+    --container-image openvins:humble
 
 echo "[openvins_gps] done: $NFR frames, ${FPS} fps, ${DUR}s" | tee -a "$LOG"

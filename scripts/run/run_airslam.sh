@@ -62,12 +62,27 @@ MODEL_DIR="/root/catkin_ws/src/air_slam/output"
 CONTAINER="air_slam"
 
 CAM_CFG_HOST="$WS/configs/airslam/$(basename "$CAM_CFG")"
+VO_CFG_HOST="$WS/configs/airslam/${DATASET}_${CFG_TAG}.yaml"
 [[ -f "$CAM_CFG_HOST" ]] || {
     echo "ERROR: no AirSLAM camera config at $CAM_CFG_HOST"; exit 2; }
-[[ -f "$WS/configs/airslam/${DATASET}_${CFG_TAG}.yaml" ]] || {
+[[ -f "$VO_CFG_HOST" ]] || {
     echo "ERROR: no AirSLAM ${CFG_TAG} config at configs/airslam/${DATASET}_${CFG_TAG}.yaml"; exit 2; }
 if [[ "$USE_LC" == "true" && ! -f "$WS/configs/airslam/${DATASET}_mr.yaml" ]]; then
     echo "ERROR: no AirSLAM map-refinement config at configs/airslam/${DATASET}_mr.yaml"; exit 2;
+fi
+ENGINE_NAME=$(awk '/^[[:space:]]*engine_file:/ {print $2; exit}' "$VO_CFG_HOST" | tr -d "\"'")
+[[ -n "$ENGINE_NAME" ]] || { echo "ERROR: no engine_file in $VO_CFG_HOST" >&2; exit 2; }
+ENGINE_HOST="$WS/src/airslam/output/$ENGINE_NAME"
+PROV_ARGS=(
+    --artifact "camera_config=$CAM_CFG_HOST"
+    --artifact "odometry_config=$VO_CFG_HOST"
+    --source "algorithm=$WS/src/airslam"
+    --param "use_imu=$USE_IMU" --param "use_lc=$USE_LC"
+    --param "playback_rate=offline"
+    --container "$CONTAINER"
+)
+if [[ "$USE_LC" == "true" ]]; then
+    PROV_ARGS+=(--artifact "map_refinement_config=$WS/configs/airslam/${DATASET}_mr.yaml")
 fi
 [[ -d "$SEQ_DIR/mav0/cam0/data" ]] || {
     echo "ERROR: missing EuRoC image folder $SEQ_DIR/mav0/cam0/data"; exit 2; }
@@ -191,6 +206,10 @@ else
     RAW_TRAJ="$OUT_DIR/trajectory_v0.txt"
 fi
 if [[ ! -s "$RAW_TRAJ" ]]; then
+    FAILED_PROV=("${PROV_ARGS[@]}")
+    [[ -f "$ENGINE_HOST" ]] && FAILED_PROV+=(--artifact "tensorrt_engine=$ENGINE_HOST")
+    record_failed_run_meta "$OUT_DIR/run_meta.json" airslam "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" 1 "trajectory was not produced" "${FAILED_PROV[@]}"
     echo "ERROR: no non-empty trajectory found in $OUT_DIR after AirSLAM run" >&2
     echo "Files in output dir:" >&2
     ls "$OUT_DIR" >&2
@@ -199,6 +218,8 @@ fi
 
 # Timestamps are already in seconds (AirSLAM parses ns filenames to double seconds).
 mv -f "$RAW_TRAJ" "$OUT_DIR/trajectory.txt"
+[[ -f "$ENGINE_HOST" ]] || { echo "ERROR: TensorRT engine missing after run: $ENGINE_HOST" >&2; exit 1; }
+PROV_ARGS+=(--artifact "tensorrt_engine=$ENGINE_HOST")
 
 cp "$LOG" "$OUT_DIR/run_log.txt"
 
@@ -218,8 +239,6 @@ print(json.dumps({'algo':'airslam','dataset':'$DATASET','seq':'$SEQ','run_id':$R
                   'use_lc':$([[ "$USE_LC" == "true" ]] && echo True || echo False),
                   'duration_s':$DUR,'frames':$NFR,'fps':$NFR/$DUR if $DUR>0 else 0}))
 " > "$OUT_DIR/run_meta.json"
-python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
-    --config "${CONFIG:-${CONFIG_FILE:-${CFG:-}}}" --container "${CONTAINER:-}" \
-    --playback-rate "${PLAYBACK_RATE:-${OV2SLAM_PLAYBACK_RATE:-${OPENVINS_RATE:-}}}" || true
+enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
 
 echo "[airslam] done (run ${RUN_ID})"

@@ -52,6 +52,15 @@ if ! command -v basalt_vio &>/dev/null; then
     echo "[basalt] ERROR: basalt_vio not found. Run: curl -LsSf https://gitlab.com/VladyslavUsenko/basalt/-/raw/master/scripts/install.sh | sh" >&2
     exit 1
 fi
+BASALT_BIN=$(command -v basalt_vio)
+PROV_ARGS=(
+    --artifact "camera_calibration=$CALIB"
+    --artifact "estimator_config=$VO_CFG"
+    --binary "estimator=$BASALT_BIN"
+    --param "use_imu=$USE_IMU"
+    --param "num_threads=0"
+    --param "playback_rate=offline"
+)
 
 echo "[basalt] $DATASET/$SEQ run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL"
 
@@ -97,6 +106,7 @@ trap "kill $MONPID 2>/dev/null || true" EXIT
 cd "$OUT_DIR"
 
 START=$(date +%s.%N)
+set +e
 basalt_vio \
     --show-gui 0 \
     --dataset-path "$SEQ_DIR" \
@@ -105,15 +115,26 @@ basalt_vio \
     --config-path "$VO_CFG" \
     --use-imu "$USE_IMU" \
     --save-trajectory tum \
-    --num-threads 0 > "$OUT_DIR/run_log.txt" 2>&1 || true
+    --num-threads 0 > "$OUT_DIR/run_log.txt" 2>&1
+BASALT_RC=$?
+set -e
 # Mirror run_log.txt to the global log
 cat "$OUT_DIR/run_log.txt" >> "$LOG_GLOBAL" || true
 END=$(date +%s.%N)
+
+if [[ "$BASALT_RC" -ne 0 ]]; then
+    record_failed_run_meta "$OUT_DIR/run_meta.json" basalt "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" "$BASALT_RC" "basalt_vio exited nonzero" "${PROV_ARGS[@]}"
+    echo "[basalt] ERROR: basalt_vio exited with status $BASALT_RC" | tee -a "$LOG_GLOBAL"
+    exit "$BASALT_RC"
+fi
 
 # ── Verify output ─────────────────────────────────────────────────────────────
 # basalt_vio writes trajectory.txt in TUM format (timestamp in seconds).
 # Timestamps are already in seconds - no conversion needed.
 if [[ ! -f "$OUT_DIR/trajectory.txt" ]]; then
+    record_failed_run_meta "$OUT_DIR/run_meta.json" basalt "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" 1 "trajectory was not produced" "${PROV_ARGS[@]}"
     echo "[basalt] ERROR: trajectory.txt not found - Basalt likely failed" | tee -a "$LOG_GLOBAL"
     exit 1
 fi
@@ -128,13 +149,13 @@ print(json.dumps({
     'dataset':  '$DATASET',
     'seq':      '$SEQ',
     'run_id':   $RUN_ID,
+    'run_type': '$RUN_TYPE',
+    'use_imu':  $([[ "$USE_IMU" == "true" ]] && echo True || echo False),
     'duration_s': $DUR,
     'frames':   $NFR,
     'fps':      $NFR/$DUR if $DUR > 0 else 0,
 }))
 " > "$OUT_DIR/run_meta.json"
-python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
-    --config "${CONFIG:-${CONFIG_FILE:-${CFG:-}}}" --container "${CONTAINER:-}" \
-    --playback-rate "${PLAYBACK_RATE:-${OV2SLAM_PLAYBACK_RATE:-${OPENVINS_RATE:-}}}" || true
+enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
 
 echo "[basalt] run ${RUN_ID} done in ${DUR}s, ${NFR} frames"

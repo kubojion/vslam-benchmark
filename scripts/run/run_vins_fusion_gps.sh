@@ -41,6 +41,11 @@ else
     exit 2
 fi
 CFG_CONT="/benchmark_configs/vins_fusion/$(basename "$CFG_HOST")"
+CAM0_CFG="$WS/configs/vins_fusion/${DATASET}_cam0.yaml"
+CAM1_CFG="$WS/configs/vins_fusion/${DATASET}_cam1.yaml"
+[[ -f "$CAM0_CFG" && -f "$CAM1_CFG" ]] \
+    || { echo "[vins_fusion] missing camera calibration for $DATASET" >&2; exit 2; }
+GNSS_VARIANT="${GNSS_VARIANT:-default}"
 
 [[ -d "$SEQ_DIR/mav0/cam0/data" && -d "$SEQ_DIR/mav0/cam1/data" ]] \
     || { echo "[vins_fusion] missing $SEQ_DIR/mav0/cam{0,1}/data" >&2; exit 2; }
@@ -166,8 +171,11 @@ print(json.dumps({
     'fps':$NFR/$DUR if $DUR>0 else 0
 }))
 " > "$OUT_DIR/run_meta.json"
-python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
-    --config "${CONFIG:-${CONFIG_FILE:-${CFG:-}}}" --container "${CONTAINER:-}" \
-    --playback-rate "${PLAYBACK_RATE:-${OV2SLAM_PLAYBACK_RATE:-${OPENVINS_RATE:-}}}" || true
+enrich_run_meta "$OUT_DIR/run_meta.json" \
+    --artifact "estimator_config=$CFG_HOST" \
+    --artifact "camera0_config=$CAM0_CFG" --artifact "camera1_config=$CAM1_CFG" \
+    --source "algorithm=$WS/src/VINS-Fusion" \
+    --param "playback_rate=1.0" --param "gnss_variant=$GNSS_VARIANT" \
+    --container "$CONTAINER"
 
 echo "[vins_fusion] done (run ${RUN_ID})" | tee -a "$LOG"

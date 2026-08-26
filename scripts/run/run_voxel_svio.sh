@@ -201,8 +201,10 @@ print(json.dumps({
     'fps':$NFR/$DUR if $DUR>0 else 0
 }))
 " > "$OUT_DIR/run_meta.json"
-python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
-    --config "${CONFIG:-${CONFIG_FILE:-${CFG:-}}}" --container "${CONTAINER:-}" \
-    --playback-rate "${PLAYBACK_RATE:-${OV2SLAM_PLAYBACK_RATE:-${OPENVINS_RATE:-}}}" || true
+enrich_run_meta "$OUT_DIR/run_meta.json" \
+    --artifact "estimator_config=$CFG_HOST" \
+    --source "algorithm=$WS/src/voxel_svio" \
+    --param "playback_rate=1.0" \
+    --container "$CONTAINER"
 
 echo "[voxel_svio] done (run ${RUN_ID})" | tee -a "$LOG"

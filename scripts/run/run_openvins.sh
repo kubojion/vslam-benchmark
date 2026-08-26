@@ -81,6 +81,7 @@ fi
 # We mount the workspace at /ws inside the container. host UID/GID is passed
 # through so the trajectory file is owned by the user (not root).
 START=$(date +%s.%N)
+set +e
 docker run --rm \
     --network host \
     --user "$(id -u):$(id -g)" \
@@ -126,10 +127,29 @@ t0 = time.time()
 for line in sys.stdin:
     sys.stdout.write(f'{time.time()-t0:.3f} {line}')
     sys.stdout.flush()
-" | tee -a "$OUT_DIR/run_log.txt" "$LOG_GLOBAL" || true
+" | tee -a "$OUT_DIR/run_log.txt" "$LOG_GLOBAL"
+OPENVINS_RC=${PIPESTATUS[0]}
+set -e
 END=$(date +%s.%N)
 
+PROV_ARGS=(
+    --artifact "estimator_config=$CFG_DIR/estimator_config.yaml"
+    --artifact "imu_calibration=$CFG_DIR/kalibr_imu_chain.yaml"
+    --artifact "camera_imu_calibration=$CFG_DIR/kalibr_imucam_chain.yaml"
+    --source "algorithm=$WS/src/open_vins"
+    --param "playback_rate=${OPENVINS_RATE:-1.0}"
+    --container-image openvins:humble
+)
+if (( OPENVINS_RC != 0 )); then
+    record_failed_run_meta "$OUT_DIR/run_meta.json" openvins "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" "$OPENVINS_RC" "container pipeline exited nonzero" "${PROV_ARGS[@]}"
+    echo "[openvins] ERROR: container exited with status $OPENVINS_RC" | tee -a "$LOG_GLOBAL"
+    exit "$OPENVINS_RC"
+fi
+
 if [[ ! -s "$OUT_DIR/trajectory.txt" ]]; then
+    record_failed_run_meta "$OUT_DIR/run_meta.json" openvins "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" 1 "trajectory was not produced" "${PROV_ARGS[@]}"
     echo "[openvins] ERROR: empty/missing $OUT_DIR/trajectory.txt - run failed" | tee -a "$LOG_GLOBAL"
     exit 1
 fi
@@ -145,7 +165,5 @@ print(json.dumps({
     'fps':$NFR/$DUR if $DUR>0 else 0
 }))
 " > "$OUT_DIR/run_meta.json"
-python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
-    --config "${CONFIG:-${CONFIG_FILE:-${CFG:-}}}" --container "${CONTAINER:-}" \
-    --playback-rate "${PLAYBACK_RATE:-${OV2SLAM_PLAYBACK_RATE:-${OPENVINS_RATE:-}}}" || true
+enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
 echo "[openvins] run ${RUN_ID} done in ${DUR}s, ${NFR} poses"

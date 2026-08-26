@@ -94,6 +94,7 @@ PLAYER_CONT="/benchmark_scripts/run/gnss_data_player.py"
 # When using PPK gps.csv, override at the call site or extend this script.
 GPS_COV_XY=1.0
 GPS_COV_Z=4.0
+GNSS_VARIANT="${GNSS_VARIANT:-default}"
 
 # ---- Reset trajectory output inside container -----------------------------
 docker exec "$CONTAINER" bash -c "rm -f /root/.ros/CameraTrajectoryGPSOpt.txt /root/.ros/KeyFrameTrajectoryGPSOpt.txt /root/.ros/CameraTrajectory.txt /root/.ros/KeyFrameTrajectory.txt /root/catkin_ws/src/gnss-stereo-inertial-fusion/CameraTrajectoryGPSOpt.txt /root/catkin_ws/src/gnss-stereo-inertial-fusion/KeyFrameTrajectoryGPSOpt.txt /root/catkin_ws/src/gnss-stereo-inertial-fusion/CameraTrajectory.txt /root/catkin_ws/src/gnss-stereo-inertial-fusion/KeyFrameTrajectory.txt 2>/dev/null || true"
@@ -180,8 +181,12 @@ print(json.dumps({
     'fps':$NFR/$DUR if $DUR>0 else 0
 }))
 " > "$OUT_DIR/run_meta.json"
-python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
-    --config "${CONFIG:-${CONFIG_FILE:-${CFG:-}}}" --container "${CONTAINER:-}" \
-    --playback-rate "${PLAYBACK_RATE:-${OV2SLAM_PLAYBACK_RATE:-${OPENVINS_RATE:-}}}" || true
+enrich_run_meta "$OUT_DIR/run_meta.json" \
+    --artifact "estimator_config=$CFG_HOST" \
+    --artifact "vocabulary=$WS/src/cifasis_gnss_si/Vocabulary/ORBvoc.txt.tar.gz" \
+    --source "algorithm=$WS/src/cifasis_gnss_si" \
+    --param "gps_cov_xy=$GPS_COV_XY" --param "gps_cov_z=$GPS_COV_Z" \
+    --param "playback_rate=1.0" --param "gnss_variant=$GNSS_VARIANT" \
+    --container "$CONTAINER"
 
 echo "[cifasis_gnss_si] done (run ${RUN_ID})" | tee -a "$LOG"

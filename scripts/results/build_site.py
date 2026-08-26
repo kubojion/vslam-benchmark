@@ -96,6 +96,7 @@ def run_page(run: dict, page_name: str, file_key: str) -> str:
 <h1>{esc(run['algorithm'])}: {esc(run['dataset'])}/{esc(run['sequence'])}</h1>
 <dl><dt>Run type</dt><dd>{esc(run['run_type'])}</dd><dt>Repeat</dt><dd>{esc(run['repeat'])}</dd>
 <dt>Status</dt><dd class="status-{esc(run['status'])}">{esc(run['status'])}</dd>
+<dt>Provenance</dt><dd class="provenance-{esc(run.get('provenance_status', 'legacy'))}">{esc(run.get('provenance_status', 'legacy'))}</dd>
 <dt>Machine</dt><dd>{esc(run.get('machine_id', 'unknown'))}</dd>
 <dt>ATE RMSE</dt><dd>{esc(metric(run, 'ate_rmse'))}</dd>
 <dt>SE3 ATE RMSE</dt><dd>{esc(metric(run, 'ate_se3_rmse'))}</dd>
@@ -113,7 +114,8 @@ def index_page(manifest: dict, page_map: dict[str, str]) -> str:
         rows.append(f"""<tr data-type="{esc(run['run_type'])}" data-search="{esc(' '.join(str(run.get(k, '')) for k in ('dataset','sequence','algorithm','status')).lower())}">
 <td>{esc(run['run_type'])}</td><td>{esc(run['dataset'])}</td><td>{esc(run['sequence'])}</td>
 <td><a href="runs/{esc(page_map[key])}">{esc(run['algorithm'])}</a></td><td>{esc(run['repeat'])}</td>
-<td class="status-{esc(run['status'])}">{esc(run['status'])}</td><td>{esc(metric(run, 'ate_rmse'))}</td>
+<td class="status-{esc(run['status'])}">{esc(run['status'])}</td>
+<td class="provenance-{esc(run.get('provenance_status', 'legacy'))}">{esc(run.get('provenance_status', 'legacy'))}</td><td>{esc(metric(run, 'ate_rmse'))}</td>
 <td>{esc(metric(run, 'ate_se3_rmse'))}</td><td>{esc(metric(run, 'coverage_gap_pct'))}</td><td>{esc(metric(run, 'fps'))}</td></tr>""")
     buttons = "".join(f'<button data-type="{t}">{t}</button>' for t in ("all", *RUN_TYPES))
     comparisons = " · ".join(
@@ -125,7 +127,7 @@ def index_page(manifest: dict, page_map: dict[str, str]) -> str:
 <h1>VSLAM benchmark results</h1><p>Machine: {esc(manifest.get('machine_id'))} · Git: {esc((manifest.get('git_commit') or '')[:12])}</p>
 <p>{comparisons}</p>
 <div class="controls">{buttons}<input id="filter" placeholder="Filter dataset, sequence, algorithm, or status"></div>
-<table><thead><tr><th>Type</th><th>Dataset</th><th>Sequence</th><th>Algorithm</th><th>Run</th><th>Status</th><th>ATE</th><th>SE3 ATE</th><th>Coverage %</th><th>FPS</th></tr></thead>
+<table><thead><tr><th>Type</th><th>Dataset</th><th>Sequence</th><th>Algorithm</th><th>Run</th><th>Status</th><th>Provenance</th><th>ATE</th><th>SE3 ATE</th><th>Coverage %</th><th>FPS</th></tr></thead>
 <tbody>{''.join(rows)}</tbody></table><script src="assets/site.js"></script></body></html>"""
 
 
@@ -165,7 +167,7 @@ def main() -> int:
     (TEMP / "comparisons").mkdir()
     (TEMP / "catalog.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
     (TEMP / "assets" / "style.css").write_text("""
-body{font:15px system-ui,sans-serif;max-width:1500px;margin:2rem auto;padding:0 1rem;color:#202124}a{color:#1558b0}table{border-collapse:collapse;width:100%}th,td{border-bottom:1px solid #ddd;padding:.45rem;text-align:left;white-space:nowrap}th{position:sticky;top:0;background:#fff}.table-scroll{overflow:auto;max-height:75vh}.controls{display:flex;gap:.4rem;flex-wrap:wrap;margin:1rem 0}.controls input{min-width:22rem;padding:.45rem}button{padding:.4rem .7rem}.status-complete{color:#147a37;font-weight:600}.status-invalid,.status-failed{color:#b42318;font-weight:600}.status-incomplete{color:#9a6700;font-weight:600}.plots{display:flex;flex-wrap:wrap;gap:1rem}.plots figure{margin:0;max-width:48%}.plots img{max-width:100%;max-height:520px}dt{font-weight:600;float:left;clear:left;width:10rem}dd{margin-left:11rem;margin-bottom:.35rem}nav{margin-bottom:1rem}@media(max-width:700px){.plots figure{max-width:100%}.controls input{min-width:100%}}
+body{font:15px system-ui,sans-serif;max-width:1500px;margin:2rem auto;padding:0 1rem;color:#202124}a{color:#1558b0}table{border-collapse:collapse;width:100%}th,td{border-bottom:1px solid #ddd;padding:.45rem;text-align:left;white-space:nowrap}th{position:sticky;top:0;background:#fff}.table-scroll{overflow:auto;max-height:75vh}.controls{display:flex;gap:.4rem;flex-wrap:wrap;margin:1rem 0}.controls input{min-width:22rem;padding:.45rem}button{padding:.4rem .7rem}.status-complete,.provenance-complete{color:#147a37;font-weight:600}.status-invalid,.status-failed,.provenance-invalid{color:#b42318;font-weight:600}.status-incomplete,.provenance-legacy{color:#9a6700;font-weight:600}.plots{display:flex;flex-wrap:wrap;gap:1rem}.plots figure{margin:0;max-width:48%}.plots img{max-width:100%;max-height:520px}dt{font-weight:600;float:left;clear:left;width:10rem}dd{margin-left:11rem;margin-bottom:.35rem}nav{margin-bottom:1rem}@media(max-width:700px){.plots figure{max-width:100%}.controls input{min-width:100%}}
 """.strip() + "\n")
     (TEMP / "assets" / "site.js").write_text("""
 let active='all';const rows=[...document.querySelectorAll('tbody tr')],input=document.querySelector('#filter');function apply(){const q=input.value.toLowerCase();for(const row of rows)row.hidden=!((active==='all'||row.dataset.type===active)&&row.dataset.search.includes(q))}for(const b of document.querySelectorAll('button[data-type]'))b.onclick=()=>{active=b.dataset.type;apply()};input.oninput=apply;

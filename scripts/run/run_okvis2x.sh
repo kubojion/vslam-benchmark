@@ -148,6 +148,7 @@ fi
 # okvis_app_synchronous writes okvis2_final_ba.png. Without the cd those land
 # in whatever directory the runner was invoked from, i.e. the repo root.
 START=$(date +%s.%N)
+set +e
 ( cd "$OUT_DIR" && "${RUN_PREFIX[@]}" "$APP" "$CFG" "$SEQ_DIR/mav0" "$OUT_DIR" ) 2>&1 | \
   python3 -u -c "
 import sys, time
@@ -155,8 +156,26 @@ t0 = time.time()
 for line in sys.stdin:
     sys.stdout.write(f'{time.time()-t0:.3f} {line}')
     sys.stdout.flush()
-" | tee -a "$OUT_DIR/run_log.txt" "$LOG_GLOBAL" || true
+" | tee -a "$OUT_DIR/run_log.txt" "$LOG_GLOBAL"
+OKVIS_RC=${PIPESTATUS[0]}
+set -e
 END=$(date +%s.%N)
+
+PROV_ARGS=(
+    --artifact "estimator_config=$CFG"
+    --artifact "vocabulary=$WS/src/okvis2x/build/small_voc.yml.gz"
+    --source "algorithm=$WS/src/okvis2x"
+    --binary "estimator=$APP"
+    --param "use_imu=$USE_IMU"
+    --param "use_lc=$USE_LC"
+    --param "use_gnss=$USE_GNSS"
+)
+if (( OKVIS_RC != 0 )); then
+    record_failed_run_meta "$OUT_DIR/run_meta.json" okvis2x "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" "$OKVIS_RC" "estimator exited nonzero" "${PROV_ARGS[@]}"
+    echo "[okvis2x] ERROR: estimator exited with status $OKVIS_RC" | tee -a "$LOG_GLOBAL"
+    exit "$OKVIS_RC"
+fi
 
 # Which CSV is the run's answer?
 #   vo / vio / gnss-vio : the causal (real-time) estimate.
@@ -181,6 +200,8 @@ else
     RAW="$CAUSAL"
 fi
 if ! has_poses "${RAW:-}"; then
+    record_failed_run_meta "$OUT_DIR/run_meta.json" okvis2x "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" 1 "trajectory was not produced" "${PROV_ARGS[@]}"
     echo "[okvis2x] ERROR: no poses produced in $OUT_DIR — run failed" | tee -a "$LOG_GLOBAL"
     echo "[okvis2x] check $OUT_DIR/run_log.txt for the abort reason" | tee -a "$LOG_GLOBAL"
     exit 1
@@ -220,7 +241,5 @@ print(json.dumps({
     'fps':$NFR/$DUR if $DUR>0 else 0
 }))
 " > "$OUT_DIR/run_meta.json"
-python3 "$(dirname "$0")/_enrich_run_meta.py" "$OUT_DIR/run_meta.json" \
-    --config "${CONFIG:-${CONFIG_FILE:-${CFG:-}}}" --container "${CONTAINER:-}" \
-    --playback-rate "${PLAYBACK_RATE:-${OV2SLAM_PLAYBACK_RATE:-${OPENVINS_RATE:-}}}" || true
+enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
 echo "[okvis2x] run ${RUN_ID} done in ${DUR}s, ${NFR} poses"
