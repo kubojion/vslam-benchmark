@@ -50,8 +50,30 @@ case "$RUN_TYPE" in
 esac
 # Optional override for config sweeps (e.g. feature-count tuning); mirrors
 # OKVIS2X_CONFIG. Falls back to the canonical per-dataset config.
-CFG="${ORBSLAM3_CONFIG:-$CFG}"
-[[ -f "$CFG" ]] || { echo "[orbslam3] missing config: $CFG" >&2; exit 2; }
+CFG_SOURCE="${ORBSLAM3_CONFIG:-$CFG}"
+
+# ZED2i has one field-specific stereo-inertial sensor calibration. Both VIO
+# modes share it; loop closure is materialized as a run-type switch below.
+if [[ ! -f "$CFG_SOURCE" && "$DATASET" == "zed2i" && "$RUN_TYPE" =~ ^vio ]]; then
+    ZED_VIO_CFG="$WS/configs/orbslam3/${DATASET}_${SEQ}_stereo_inertial.yaml"
+    [[ -f "$ZED_VIO_CFG" ]] && CFG_SOURCE="$ZED_VIO_CFG"
+fi
+[[ -f "$CFG_SOURCE" ]] || { echo "[orbslam3] missing config: $CFG_SOURCE" >&2; exit 2; }
+
+# This checkout reads the lower-case `loopClosing` key. Some legacy configs
+# also contain `System.LoopClosing`, which upstream ignores. Generate the
+# effective mode config so the result bucket and estimator behavior agree.
+EFFECTIVE_CFG=$(mktemp -t orbslam3_cfg_XXXXXX.yaml)
+LC_VALUE=0
+[[ "$USE_LC" == "true" ]] && LC_VALUE=1
+awk -v lc="$LC_VALUE" '
+    BEGIN { saw_lc=0 }
+    /^loopClosing:[[:space:]]*/ { print "loopClosing: " lc; saw_lc=1; next }
+    /^System\.LoopClosing:[[:space:]]*/ { print "System.LoopClosing: " lc; next }
+    { print }
+    END { if (!saw_lc) print "loopClosing: " lc }
+' "$CFG_SOURCE" > "$EFFECTIVE_CFG"
+CFG="$EFFECTIVE_CFG"
 [[ "$RUN_TYPE" =~ vio ]] && [[ ! -f "$SEQ_DIR/mav0/imu0/data.csv" ]] && {
     echo "[orbslam3] missing IMU: $SEQ_DIR/mav0/imu0/data.csv" >&2
     echo "[orbslam3] hint: python3 scripts/data/imu_to_euroc.py $SEQ_DIR" >&2
@@ -62,7 +84,7 @@ prepare_fresh_run_dir "$OUT_DIR"
 
 cd "$WS/src/ORB_SLAM3"
 echo "[orbslam3] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL" "$OUT_DIR/run_log.txt"
-echo "[orbslam3] binary=$BIN  cfg=$CFG" | tee -a "$LOG_GLOBAL"
+echo "[orbslam3] binary=$BIN  config_source=$CFG_SOURCE  effective_config=$CFG" | tee -a "$LOG_GLOBAL"
 
 # Pangolin creates an X11 window even when its viewer is disabled in the
 # benchmark config.  Supply a virtual display automatically on headless hosts.
@@ -81,7 +103,11 @@ prepare_resource_window "$OUT_DIR"
 python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$$" --interval 1 \
     --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
+cleanup() {
+    [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true
+    [[ -n "${EFFECTIVE_CFG:-}" ]] && rm -f "$EFFECTIVE_CFG"
+}
+trap cleanup EXIT
 
 START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
@@ -108,6 +134,7 @@ MONPID=""
 
 PROV_ARGS=(
     --artifact "estimator_config=$CFG"
+    --artifact "estimator_config_source=$CFG_SOURCE"
     --artifact "vocabulary=$WS/src/ORB_SLAM3/Vocabulary/ORBvoc.txt"
     --source "algorithm=$WS/src/ORB_SLAM3"
     --binary "estimator=$WS/src/ORB_SLAM3/${BIN#./}"

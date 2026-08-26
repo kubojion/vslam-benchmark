@@ -40,6 +40,15 @@ case "$RUN_TYPE" in
     *)       echo "[airslam] unknown run_type: $RUN_TYPE (expected vo|vo-lc|vio|vio-lc)" >&2; exit 2 ;;
 esac
 
+# Loop closure is performed by the separate map_refinement stage below.  The
+# odometry sensor profile is therefore shared between VIO and VIO-LC when a
+# duplicated *_vio_slam.yaml is not present (currently the ZED2i profile).
+PROFILE_TAG="$CFG_TAG"
+if [[ "$RUN_TYPE" == "vio-lc" \
+      && ! -f "$WS/configs/airslam/${DATASET}_${PROFILE_TAG}.yaml" ]]; then
+    PROFILE_TAG="vio"
+fi
+
 SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/airslam/run${RUN_ID}"
 LOG="$WS/logs/${DATASET}_${SEQ}_airslam_${RUN_TYPE}_run${RUN_ID}.log"
@@ -53,7 +62,7 @@ elif [[ "$USE_IMU" == "false" && -f "$WS/configs/airslam/${DATASET}_camera_vo.ya
 else
     CAM_CFG="/benchmark_configs/airslam/${DATASET}_camera.yaml"
 fi
-VO_CFG="/benchmark_configs/airslam/${DATASET}_${CFG_TAG}.yaml"
+VO_CFG="/benchmark_configs/airslam/${DATASET}_${PROFILE_TAG}.yaml"
 DATAROOT="/datasets/$DATASET/$SEQ/mav0"
 CONT_RESULTS_DIR="/results/$RUN_TYPE"
 SAVING_DIR="${CONT_RESULTS_DIR}/$DATASET/$SEQ/airslam/run${RUN_ID}"
@@ -62,11 +71,11 @@ MODEL_DIR="/root/catkin_ws/src/air_slam/output"
 CONTAINER="air_slam"
 
 CAM_CFG_HOST="$WS/configs/airslam/$(basename "$CAM_CFG")"
-VO_CFG_HOST="$WS/configs/airslam/${DATASET}_${CFG_TAG}.yaml"
+VO_CFG_HOST="$WS/configs/airslam/${DATASET}_${PROFILE_TAG}.yaml"
 [[ -f "$CAM_CFG_HOST" ]] || {
     echo "ERROR: no AirSLAM camera config at $CAM_CFG_HOST"; exit 2; }
 [[ -f "$VO_CFG_HOST" ]] || {
-    echo "ERROR: no AirSLAM ${CFG_TAG} config at configs/airslam/${DATASET}_${CFG_TAG}.yaml"; exit 2; }
+    echo "ERROR: no AirSLAM ${PROFILE_TAG} config at configs/airslam/${DATASET}_${PROFILE_TAG}.yaml"; exit 2; }
 if [[ "$USE_LC" == "true" && ! -f "$WS/configs/airslam/${DATASET}_mr.yaml" ]]; then
     echo "ERROR: no AirSLAM map-refinement config at configs/airslam/${DATASET}_mr.yaml"; exit 2;
 fi

@@ -42,7 +42,29 @@ if [[ -n "${OKVIS2_CONFIG:-}" ]]; then
     [[ "$CFG" = /* ]] || CFG="$WS/$CFG"
     echo "[okvis2] config override: $CFG"
 fi
-[[ -f "$CFG" ]] || { echo "[okvis2] missing config: $CFG" >&2; exit 2; }
+CFG_SOURCE="$CFG"
+EFFECTIVE_CFG=""
+
+# A run-type switch is not a sensor profile. If a dedicated VIO-LC file is
+# absent, materialize it from the sequence's VIO calibration by changing only
+# do_loop_closures. ZED2i uses this path to avoid duplicated calibration.
+if [[ ! -f "$CFG_SOURCE" && "$RUN_TYPE" == "vio-lc" ]]; then
+    VIO_CFG="$WS/configs/okvis2/${DATASET}_${SEQ}_vio.yaml"
+    if [[ -f "$VIO_CFG" ]]; then
+        CFG_SOURCE="$VIO_CFG"
+        EFFECTIVE_CFG=$(mktemp -t okvis2_cfg_XXXXXX.yaml)
+        awk '
+            /^[[:space:]]*do_loop_closures:[[:space:]]*/ {
+                sub(/do_loop_closures:[[:space:]]*(true|false)/, "do_loop_closures: true")
+            }
+            { print }
+        ' "$CFG_SOURCE" > "$EFFECTIVE_CFG"
+        CFG="$EFFECTIVE_CFG"
+        echo "[okvis2] materialized VIO-LC config from $CFG_SOURCE"
+    fi
+fi
+[[ -f "$CFG_SOURCE" ]] || { echo "[okvis2] missing config: $CFG_SOURCE" >&2; exit 2; }
+[[ -n "$EFFECTIVE_CFG" ]] || CFG="$CFG_SOURCE"
 if grep -qE '^\s*do_loop_closures:\s*true' "$CFG"; then OKMODE=slam; else OKMODE=vio; fi
 [[ -d "$SEQ_DIR/mav0/cam0/data" && -d "$SEQ_DIR/mav0/cam1/data" ]] \
     || { echo "[okvis2] missing $SEQ_DIR/mav0/cam{0,1}/data" >&2; exit 2; }
@@ -63,7 +85,11 @@ prepare_resource_window "$OUT_DIR"
 python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$$" --interval 1 \
     --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
+cleanup() {
+    [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true
+    [[ -n "${EFFECTIVE_CFG:-}" ]] && rm -f "$EFFECTIVE_CFG"
+}
+trap cleanup EXIT
 
 # OKVIS2 calls cv::imshow even when displays are disabled. A server may export
 # DISPLAY while denying this process access, so benchmark runs use their own X
@@ -98,6 +124,7 @@ MONPID=""
 MATCHING_THREADS=$(awk '/num_matching_threads:/ {print $2; exit}' "$CFG")
 PROV_ARGS=(
     --artifact "estimator_config=$CFG"
+    --artifact "estimator_config_source=$CFG_SOURCE"
     --source "algorithm=$WS/src/okvis2"
     --binary "estimator=$APP"
     --param "use_imu=$USE_IMU"
