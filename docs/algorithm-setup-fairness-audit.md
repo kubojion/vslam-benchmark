@@ -168,6 +168,12 @@ The current untracked `BASALT_VERSION` records `0.1.7`; this information should 
 
 ### 4.3 Invalid resource comparison
 
+Implementation status (2026-08-26): addressed for new runs by measurement
+schema 1. Native/Conda algorithms use process-tree accounting, Docker
+algorithms use container PID accounting, and hybrid pipelines combine both.
+Historical whole-system samples remain legacy and are not promoted to scoped
+performance metrics.
+
 `_resource_monitor.py` reads whole-GPU memory/utilization and whole-system CPU/RAM. These values include unrelated processes, Xorg, containers, caches, and any concurrent workload. They are useful for operational monitoring but are not suitable for per-algorithm efficiency claims.
 
 For a performance campaign, collect:
@@ -180,6 +186,11 @@ For a performance campaign, collect:
 - Model/engine compilation as a one-time setup cost rather than steady-state runtime.
 
 ### 4.4 Invalid FPS comparison
+
+Implementation status (2026-08-26): addressed for new runs by measurement
+schema 1. Processing FPS is emitted only for unpaced maximum-throughput
+execution; end-to-end FPS, trajectory pose rate, and real-time factor are
+stored separately. Paced and ROS transport runs leave processing FPS null.
 
 The current `fps` field is generally `output_poses / wall_time`. This is not a common processing-rate definition:
 

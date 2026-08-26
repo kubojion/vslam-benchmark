@@ -103,7 +103,8 @@ for i in $(seq 1 "$N"); do
     conda run -n macvo python3 \
         "$EVAL/_evaluate_run.py" "$DATASET" "$SEQ" "$ALGO" "$i" "$RUN_TYPE"
     python3 "$WS/scripts/results/validate_run.py" \
-        "$RESULTS_ROOT/$DATASET/$SEQ/$ALGO/run${i}" --require-provenance 2
+        "$RESULTS_ROOT/$DATASET/$SEQ/$ALGO/run${i}" \
+        --require-provenance 2 --require-measurements 1
 done
 
 # ── Step 5: Aggregate ─────────────────────────────────────────────────────────

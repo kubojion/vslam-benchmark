@@ -157,8 +157,12 @@ def main():
     init_t    = gather(lambda r: r["robustness"].get("init_time_s"))
     fail_t    = gather(lambda r: r["robustness"].get("first_failure_s"))
 
-    wall_s   = gather(lambda r: r["runtime"].get("wall_s"))
-    fps_vals = gather(lambda r: r["runtime"].get("fps"))
+    wall_s = gather(
+        lambda r: r["runtime"].get("end_to_end_time_s", r["runtime"].get("wall_s"))
+    )
+    fps_vals = gather(
+        lambda r: r["runtime"].get("processing_fps", r["runtime"].get("fps"))
+    )
     cpu_mean = gather(lambda r: r["runtime"].get("cpu_mean_pct"))
     cpu_peak = gather(lambda r: r["runtime"].get("cpu_peak_pct"))
     ram_mean = gather(lambda r: r["runtime"].get("ram_mean_mib"))
@@ -167,8 +171,13 @@ def main():
     vram_peak = gather(lambda r: r["runtime"].get("vram_peak_mib"))
     gpu_mean  = gather(lambda r: r["runtime"].get("gpu_mean_pct"))
 
-    # RTF = fps / input_fps
-    rtf = [f / input_fps if f is not None else None for f in fps_vals]
+    # RTF is dataset duration / end-to-end time. It is independent of output
+    # trajectory density and therefore valid for sparse estimators.
+    rtf = gather(lambda r: r["runtime"].get("realtime_factor"))
+    rtf = [
+        value if value is not None else (f / input_fps if f is not None else None)
+        for value, f in zip(rtf, fps_vals)
+    ]
 
     # Agricultural segments: per type
     agri_types = set()
@@ -191,7 +200,7 @@ def main():
         "frames_tracked", "frames_total", "track_pct",
         "tracking_losses", "loop_closures", "map_resets",
         "init_success", "init_time_s", "first_failure_s",
-        "wall_s", "fps", "rtf",
+        "end_to_end_s", "processing_fps", "realtime_factor",
         "cpu_mean_pct", "cpu_peak_pct",
         "ram_mean_mib", "ram_peak_mib",
         "vram_mean_mib", "vram_peak_mib", "gpu_mean_pct",
@@ -382,7 +391,7 @@ def main():
         "| Metric | Value |",
         "|---|---|",
         f"| Wall-clock runtime [s] | {_pm(safe_mean(wall_s), wall_s, 1)} |",
-        f"| Mean FPS | {_pm(safe_mean(fps_vals), fps_vals, 2)} |",
+        f"| Mean processing FPS | {_pm(safe_mean(fps_vals), fps_vals, 2)} |",
         f"| Real-time factor (input {input_fps:.0f} fps) | {_pm(safe_mean(rtf), rtf, 3)} |",
         f"| CPU mean [%] | {_pm(safe_mean(cpu_mean), cpu_mean, 1)} |",
         f"| CPU peak [%] | {_pm(safe_mean(cpu_peak), cpu_peak, 1)} |",
@@ -447,7 +456,7 @@ def main():
         "",
         "| Run | ATE RMSE Sim3 [m] | ATE RMSE SE3 [m] | RPE [m] | RPE rot [°/m] |"
         " KITTI 10 m | KITTI 50 m | KITTI 100 m | Scale | Final drift [m] |"
-        " Wall-s | FPS | Track% | Loops |",
+        " End-to-end-s | Processing FPS | Track% | Loops |",
         "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     for i, r in enumerate(runs):
@@ -497,7 +506,7 @@ def main():
     print(f"  ATE RMSE:  {fmt_pm(safe_mean(ate_rmse), safe_std(ate_rmse))} m")
     print(f"  RPE trans: {fmt_pm(safe_mean(rpe_t_rmse), safe_std(rpe_t_rmse))} m/m")
     print(f"  RPE rot:   {fmt_pm(safe_mean(rpe_r_rmse), safe_std(rpe_r_rmse))} °/m")
-    print(f"  FPS:       {fmt_pm(safe_mean(fps_vals), safe_std(fps_vals), 2)}")
+    print(f"  Proc FPS:  {fmt_pm(safe_mean(fps_vals), safe_std(fps_vals), 2)}")
     for t in sorted(agri_types):
         m, s = agri_mean.get(t, (None, 0.0))
         print(f"  ATE [{t}]: {fmt_pm(m, s)} m")

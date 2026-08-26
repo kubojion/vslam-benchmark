@@ -6,7 +6,7 @@ Writes to <results_root>/:
   ate_bar_euroc.png              - EuRoC-MAV ATE
   ate_bar_zed2i.png              - local ZED2i ATE
   scale_factor_<section>.png     - scale factor deviation from 1.0
-  fps_bar_<section>.png          - FPS comparison
+  fps_bar_<section>.png          - processing-FPS comparison
 
 Usage:
     python3 scripts/eval/plot_benchmark_summary.py [--type vo|vo-lc|vio|vio-lc|gnss-vio] [--dpi 180]
@@ -231,7 +231,7 @@ def plot_scale_factor(data, seqs, title, algos, out_path, dpi):
 def plot_fps_bar(data, seqs, title, algos, out_path, dpi):
     fig, ax = plt.subplots(figsize=section_figsize(seqs, algos, 5.2))
     plot_grouped_bars(ax, data, algos, seqs, "fps", require_positive=True)
-    ax.set_ylabel("Mean FPS", fontsize=12)
+    ax.set_ylabel("Mean processing FPS", fontsize=12)
     ax.set_title(f"Processing Speed - {title}", fontsize=13)
     ax.set_ylim(bottom=0)
     add_legend(fig, algos)

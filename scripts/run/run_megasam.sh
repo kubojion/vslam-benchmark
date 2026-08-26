@@ -73,9 +73,11 @@ source "$HOME/miniconda3/etc/profile.d/conda.sh"
 conda activate megasam
 set -u
 
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$$" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap "kill $MONPID 2>/dev/null || true" EXIT
+trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
 
 cd "$REPO"
 # None of these are installed as packages: base/droid_slam holds the vendored
@@ -95,9 +97,10 @@ rm -rf "$REPO/reconstructions/$SCENE" "$REPO/Depth-Anything/video_visualization/
 
 # Scratch RGB copy for stage 1b (see note below). Removed on exit.
 UNIDEPTH_RGB_DIR="$(mktemp -d -t megasam_rgb_XXXXXX)"
-trap 'kill $MONPID 2>/dev/null || true; rm -rf "$UNIDEPTH_RGB_DIR"' EXIT
+trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true; rm -rf "$UNIDEPTH_RGB_DIR"' EXIT
 
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 set +e
 (
     set -e
@@ -155,6 +158,8 @@ for line in sys.stdin:
 MEGASAM_RC=${PIPESTATUS[0]}
 set -e
 END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 if (( MEGASAM_RC != 0 )); then
     record_failed_run_meta "$OUT_DIR/run_meta.json" megasam "$DATASET" "$SEQ" \
         "$RUN_ID" "$RUN_TYPE" "$MEGASAM_RC" "pipeline exited nonzero" "${PROV_ARGS[@]}"
@@ -201,5 +206,5 @@ print(json.dumps({'algo':'megasam','dataset':'$DATASET','seq':'$SEQ','run_id':$R
                   'run_type':'$RUN_TYPE','use_imu':False,'use_lc':False,
                   'duration_s':$DUR,'frames':$NFR,'fps':$NFR/$DUR if $DUR>0 else 0}))
 " > "$OUT_DIR/run_meta.json"
-enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
+enrich_run_meta "$OUT_DIR/run_meta.json" --measurement-mode max_throughput "${PROV_ARGS[@]}"
 echo "[megasam] run ${RUN_ID} done in ${DUR}s, ${NFR} poses" | tee -a "$LOG"

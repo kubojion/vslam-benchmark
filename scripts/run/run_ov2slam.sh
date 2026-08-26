@@ -95,7 +95,9 @@ cleanup() {
 }
 trap cleanup EXIT
 
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --container "$CONTAINER" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
 
 docker exec "$CONTAINER" bash -c "
@@ -118,6 +120,7 @@ docker exec "$CONTAINER" bash -c \
 }
 
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 docker exec "$CONTAINER" bash -c "
     set -e
     source /opt/ros/noetic/setup.bash
@@ -136,7 +139,8 @@ kill -0 "$NODE_PID" 2>/dev/null || {
 docker exec "$CONTAINER" bash -c "
     source /opt/ros/noetic/setup.bash
     exec python3 '$PLAYER_CONT' '$DATA_CONT' \
-        --rate '${OV2SLAM_PLAYBACK_RATE:-1.0}' --start-delay 1.0 --end-wait 1.0
+        --rate '${OV2SLAM_PLAYBACK_RATE:-1.0}' --start-delay 1.0 --end-wait 1.0 \
+        --stats-out '/results/$RUN_TYPE/$DATASET/$SEQ/ov2slam/run${RUN_ID}/transport_stats.json'
 " 2>&1 | tee -a "$LOG"
 
 RAW="$OUT_DIR/ov2slam_traj.txt"
@@ -158,6 +162,8 @@ if [[ ! -s "$TARGET" ]] && kill -0 "$NODE_PID" 2>/dev/null; then
 fi
 wait "$NODE_PID" 2>/dev/null || true
 END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 
 if [[ ! -s "$RAW" ]]; then
     echo "[ov2slam] no raw trajectory produced" | tee -a "$LOG"
@@ -176,8 +182,6 @@ else
 fi
 
 cp "$LOG" "$OUT_DIR/run_log.txt"
-kill "$MONPID" 2>/dev/null || true
-MONPID=""
 
 DURATION=$(python3 -c "print($END - $START)")
 FRAMES=$(wc -l < "$OUT_DIR/trajectory.txt")
@@ -203,6 +207,8 @@ meta["fps"] = meta["frames"] / meta["duration_s"] if meta["duration_s"] else 0.0
 Path("$OUT_DIR/run_meta.json").write_text(json.dumps(meta, indent=2) + "\n")
 PY
 enrich_run_meta "$OUT_DIR/run_meta.json" \
+    --measurement-mode transport \
+    --transport-stats "$OUT_DIR/transport_stats.json" \
     --artifact "estimator_config=$CFG_HOST" \
     --source "algorithm=$WS/src/ov2slam" \
     --param "use_lc=$USE_LC" \

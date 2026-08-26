@@ -79,9 +79,11 @@ docker exec "$CONTAINER" bash -c "
 " 2>/dev/null || true
 sleep 2
 
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --container "$CONTAINER" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap "kill $MONPID 2>/dev/null || true" EXIT
+trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
 
 DATAROOT_CONT="/datasets/$DATASET/$SEQ"
 PLAYER_CONT="/benchmark_scripts/run/gnss_data_player.py"
@@ -95,6 +97,7 @@ fi
 TRAJ_CONT="/results/gnss-vio/$DATASET/$SEQ/vins_fusion_gps/run${RUN_ID}/trajectory.txt"
 
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 
 # ---- Start roscore + vins + global_fusion ---------------------------------
 # IMPORTANT: each `&&` chain ending in `&` runs the whole chain in a subshell.
@@ -130,7 +133,8 @@ docker exec "$CONTAINER" bash -c "
         --cam0-topic /cam0/image_raw \
         --cam1-topic /cam1/image_raw \
         --gps-topic /gps \
-        --gps-cov-xy 1.0 --gps-cov-z 4.0
+        --gps-cov-xy 1.0 --gps-cov-z 4.0 \
+        --stats-out /results/$RUN_TYPE/$DATASET/$SEQ/vins_fusion_gps/run${RUN_ID}/transport_stats.json
 " 2>&1 | tee -a "$LOG"
 
 # ---- Stop everything ------------------------------------------------------
@@ -151,6 +155,8 @@ docker exec "$CONTAINER" bash -c "
 wait "$NODE_PID" 2>/dev/null || true
 
 END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 
 # ---- Verify trajectory ----------------------------------------------------
 if [[ ! -s "$OUT_DIR/trajectory.txt" ]]; then
@@ -172,6 +178,8 @@ print(json.dumps({
 }))
 " > "$OUT_DIR/run_meta.json"
 enrich_run_meta "$OUT_DIR/run_meta.json" \
+    --measurement-mode transport \
+    --transport-stats "$OUT_DIR/transport_stats.json" \
     --artifact "estimator_config=$CFG_HOST" \
     --artifact "camera0_config=$CAM0_CFG" --artifact "camera1_config=$CAM1_CFG" \
     --source "algorithm=$WS/src/VINS-Fusion" \

@@ -77,9 +77,11 @@ if ! docker ps --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
 fi
 
 # ---- Resource monitor -----------------------------------------------------
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --container "$CONTAINER" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap "kill $MONPID 2>/dev/null || true" EXIT
+trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
 
 # ---- Reset voxel_svio output dir before the run ---------------------------
 # Voxel-SVIO appends to pose.txt; clear it so each run is fresh.
@@ -93,6 +95,7 @@ DATAROOT_CONT="/datasets/$DATASET/$SEQ"
 PLAYER_HOST="/benchmark_scripts/run/voxel_svio_data_player.py"
 
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 
 # ---- Start roscore inside the container ------------------------------------
 docker exec "$CONTAINER" bash -c "
@@ -127,7 +130,8 @@ sleep 3
 # ---- Run data player inside container -------------------------------------
 docker exec "$CONTAINER" bash -c "
     source /opt/ros/noetic/setup.bash &&
-    python3 $PLAYER_HOST $DATAROOT_CONT --rate 1.0 --start-delay 1.0 --end-wait 3.0
+    python3 $PLAYER_HOST $DATAROOT_CONT --rate 1.0 --start-delay 1.0 --end-wait 3.0 \
+        --stats-out /results/$RUN_TYPE/$DATASET/$SEQ/voxel_svio/run${RUN_ID}/transport_stats.json
 " 2>&1 | tee -a "$LOG"
 
 # ---- Stop vio_node and roscore --------------------------------------------
@@ -146,6 +150,8 @@ docker exec "$CONTAINER" bash -c "pkill -f '[r]oscore' 2>/dev/null || true; pkil
 kill "$ROSCORE_PID" 2>/dev/null || true
 
 END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 
 # ---- Collect trajectory ---------------------------------------------------
 POSE_HOST="$WS/src/voxel_svio/output/pose.txt"
@@ -202,6 +208,8 @@ print(json.dumps({
 }))
 " > "$OUT_DIR/run_meta.json"
 enrich_run_meta "$OUT_DIR/run_meta.json" \
+    --measurement-mode transport \
+    --transport-stats "$OUT_DIR/transport_stats.json" \
     --artifact "estimator_config=$CFG_HOST" \
     --source "algorithm=$WS/src/voxel_svio" \
     --param "playback_rate=1.0" \

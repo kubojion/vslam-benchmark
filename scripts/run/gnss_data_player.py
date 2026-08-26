@@ -36,6 +36,7 @@ import csv
 import sys
 import time
 from pathlib import Path
+from _transport_stats import write_transport_stats
 
 import cv2
 import numpy as np
@@ -160,6 +161,7 @@ def main() -> int:
                     help="Skip GPS publishing even if gps.csv exists")
     ap.add_argument("--gps-csv", type=Path, default=None,
                     help="Override path to gps.csv (default <seq_dir>/gps.csv)")
+    ap.add_argument("--stats-out", type=Path)
     args = ap.parse_args()
 
     mav0 = args.seq_dir / "mav0"
@@ -201,6 +203,7 @@ def main() -> int:
         return 2
 
     cam1_idx = {t: p for t, p in cam1}
+    expected_cam = sum(1 for t, _ in cam0 if t in cam1_idx)
 
     print(f"[player] cam0={len(cam0)} cam1={len(cam1)} imu={len(imu)} gps={len(gps)}",
           flush=True)
@@ -296,6 +299,14 @@ def main() -> int:
     print(f"[player] done: cam={n_cam} imu={n_imu} gps={n_gps}; "
           f"waiting {args.end_wait}s ...", flush=True)
     time.sleep(args.end_wait)
+    write_transport_stats(
+        args.stats_out,
+        camera_frames_expected=expected_cam,
+        camera_frames_published=n_cam,
+        imu_messages_published=n_imu,
+        gnss_messages_published=n_gps,
+        camera_read_failures=max(0, expected_cam - n_cam),
+    )
     return 0
 
 

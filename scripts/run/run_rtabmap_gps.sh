@@ -78,14 +78,16 @@ pkill -9 -f 'rtabmap_slam|rtabmap_odom|rtabmap_sync|rtabmap.launch|stereo_odomet
 sleep 2
 
 # ---- Resource monitor ------------------------------------------------------
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$$" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
 
 DB_PATH="/tmp/rtabmap_${DATASET}_${SEQ}_run${RUN_ID}.db"
 rm -f "$DB_PATH"
 
 cleanup() {
-    kill "$MONPID" 2>/dev/null || true
+    [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true
     kill "$TF_CAM_PID" "$TF_IMU_PID" "$TF_GPS_PID" "$IMU_FILTER_PID" 2>/dev/null || true
     pkill -INT -f 'rtabmap_slam|rtabmap_odom|rtabmap_sync|rtabmap.launch|stereo_odometry|gnss_data_player_ros2|imu_filter_madgwick' 2>/dev/null || true
     sleep 1
@@ -136,6 +138,7 @@ case "$DATASET" in
 esac
 
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 
 # ---- Launch RTAB-Map (stereo_outdoor.launch.py) ---------------------------
 # We use the rtabmap_launch package's stereo_outdoor.launch.py and overlay
@@ -203,6 +206,7 @@ if [[ -x "$WS/scripts/run/gnss_data_player_ros2.py" ]]; then
         --cam-fx     "$CAM_FX" --cam-fy       "$CAM_FY" \
         --cam-cx     "$CAM_CX" --cam-cy       "$CAM_CY" \
         --cam-baseline "$CAM_BASELINE" \
+        --stats-out "$OUT_DIR/transport_stats.json" \
         2>&1 | tee -a "$LOG"
 else
     echo "[rtabmap_gps] WARNING: gnss_data_player_ros2.py not found." | tee -a "$LOG"
@@ -220,6 +224,8 @@ kill -KILL "$LAUNCH_PID" 2>/dev/null || true
 wait "$LAUNCH_PID" 2>/dev/null || true
 
 END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 
 # ---- Export trajectory from rtabmap database -------------------------------
 # rtabmap-export writes <stem>_poses.txt in TUM format with --poses flag.
@@ -266,6 +272,8 @@ print(json.dumps({
 }))
 " > "$OUT_DIR/run_meta.json"
 enrich_run_meta "$OUT_DIR/run_meta.json" \
+    --measurement-mode transport \
+    --transport-stats "$OUT_DIR/transport_stats.json" \
     --artifact "estimator_config=$CFG_HOST" \
     --param "playback_rate=1.0" --param "gnss_variant=$GNSS_VARIANT" \
     --param "ros_package=ros-humble-rtabmap-ros:$ROS_PACKAGE_VERSION"

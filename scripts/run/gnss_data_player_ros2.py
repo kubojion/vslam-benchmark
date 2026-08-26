@@ -36,6 +36,7 @@ from cv_bridge import CvBridge  # type: ignore
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
 from sensor_msgs.msg import Image, Imu, NavSatFix, NavSatStatus, CameraInfo
+from _transport_stats import write_transport_stats
 from builtin_interfaces.msg import Time as TimeMsg
 
 
@@ -131,6 +132,7 @@ def main() -> int:
     ap.add_argument("--gps-cov-z", type=float, default=4.0)
     ap.add_argument("--no-gps", action="store_true")
     ap.add_argument("--gps-csv", type=Path, default=None)
+    ap.add_argument("--stats-out", type=Path)
     ap.add_argument("--imu-best-effort", action="store_true",
                     help="Publish IMU with BEST_EFFORT QoS (required for "
                          "OpenVINS SensorDataQoS; default RELIABLE for RTAB-Map).")
@@ -238,6 +240,7 @@ def main() -> int:
         return 2
 
     cam1_idx = {t: p for t, p in cam1}
+    expected_cam = sum(1 for t, _ in cam0 if t in cam1_idx)
 
     node.get_logger().info(
         f"cam0={len(cam0)} cam1={len(cam1)} imu={len(imu)} gps={len(gps)}"
@@ -342,6 +345,14 @@ def main() -> int:
         f"done: cam={n_cam} imu={n_imu} gps={n_gps}; waiting {args.end_wait}s ..."
     )
     time.sleep(args.end_wait)
+    write_transport_stats(
+        args.stats_out,
+        camera_frames_expected=expected_cam,
+        camera_frames_published=n_cam,
+        imu_messages_published=n_imu,
+        gnss_messages_published=n_gps,
+        camera_read_failures=max(0, expected_cam - n_cam),
+    )
     node.destroy_node()
     rclpy.shutdown()
     return 0

@@ -77,11 +77,14 @@ if [[ -z "${DISPLAY:-}" ]]; then
 fi
 
 # Resource monitor: GPU + CPU + RAM sampled every 1 s
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$$" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap "kill $MONPID 2>/dev/null || true" EXIT
+trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
 
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 # Pipe through a Python timestamper so each log line gets a relative offset (s).
 set +e
 "${RUN_PREFIX[@]}" "$BIN" \
@@ -100,6 +103,8 @@ for line in sys.stdin:
 ORB_RC=${PIPESTATUS[0]}
 set -e
 END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 
 PROV_ARGS=(
     --artifact "estimator_config=$CFG"
@@ -162,5 +167,5 @@ print(json.dumps({
     'fps':$NFR/$DUR if $DUR>0 else 0
 }))
 " > "$OUT_DIR/run_meta.json"
-enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}" "${PROCESS_ARGS[@]}"
+enrich_run_meta "$OUT_DIR/run_meta.json" --measurement-mode paced "${PROV_ARGS[@]}" "${PROCESS_ARGS[@]}"
 echo "[orbslam3] run ${RUN_ID} done in ${DUR}s, ${NFR} frames"

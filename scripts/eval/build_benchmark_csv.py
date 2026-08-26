@@ -89,9 +89,18 @@ COLUMNS = [
     "ate_se3_rmse_pct_path", "ate_sim3_rmse_pct_path",
     # Robustness (None/blank = not instrumented for this algorithm)
     "loop_closures", "tracking_losses", "map_resets", "init_success",
-    # Timing
-    "duration_s", "fps", "real_time_factor", "processing_ms_per_frame",
+    # Timing and flow. `fps` is retained as a compatibility alias for
+    # processing_fps and is blank when true processing time is unavailable.
+    "measurement_mode", "input_frames", "processed_frames", "published_frames",
+    "output_poses", "dropped_frames", "publisher_dropped_frames",
+    "processing_time_s", "end_to_end_time_s", "initialization_time_s",
+    "steady_state_time_s", "final_optimization_time_s", "shutdown_time_s",
+    "processing_fps",
+    "end_to_end_fps", "trajectory_pose_rate", "real_time_factor",
+    "deadline_misses", "max_queue_depth",
+    "duration_s", "fps", "processing_ms_per_frame",
     # Resource usage
+    "resource_scope", "cpu_time_s",
     "cpu_mean_pct", "cpu_peak_pct", "ram_mean_mib", "ram_peak_mib",
     "vram_mean_mib", "vram_peak_mib", "gpu_mean_pct", "gpu_peak_pct",
     # Agricultural segments (+ which alignment semantics produced them:
@@ -273,12 +282,22 @@ def row_from_eval(eval_path: Path, seq_meta: dict, rt) -> dict | None:
     ate_sim3_pct_path = _round(ate_sim3_rmse / path_gt * 100, 2) if (ate_sim3_rmse and path_gt) else None
 
     # Derived: timing
-    wall_s = runtime.get("wall_s") or _g(meta, "duration_s")
-    fps_val = runtime.get("fps") or _g(meta, "fps")
+    wall_s = runtime.get("end_to_end_time_s") or runtime.get("wall_s") or _g(meta, "duration_s")
+    processing_time = runtime.get("processing_time_s")
+    processing_fps = runtime.get("processing_fps")
+    fps_val = processing_fps if runtime.get("measurement_schema") else (runtime.get("fps") or _g(meta, "fps"))
     seq_dur = seq_meta.get("sequence_duration_s")
-    rtf = _round(seq_dur / wall_s, 3) if (seq_dur and wall_s) else None
-    frames_tracked = rob.get("frames_tracked") or _g(meta, "frames")
-    ms_per_frame = _round(wall_s * 1000 / frames_tracked, 2) if (wall_s and frames_tracked) else None
+    rtf = runtime.get("realtime_factor")
+    if rtf is None:
+        rtf = _round(seq_dur / wall_s, 3) if (seq_dur and wall_s) else None
+    frames_tracked = rob.get("frames_tracked")
+    if not runtime.get("measurement_schema"):
+        frames_tracked = frames_tracked or _g(meta, "frames")
+    processed_frames = runtime.get("processed_frames")
+    ms_per_frame = (
+        _round(processing_time * 1000 / processed_frames, 2)
+        if processing_time and processed_frames else None
+    )
 
     # Coverage: gap-aware (computed here for every row so legacy runs get it
     # too; identical helper to what _evaluate_run.py records for new runs)
@@ -345,11 +364,31 @@ def row_from_eval(eval_path: Path, seq_meta: dict, rt) -> dict | None:
         "map_resets": rob.get("map_resets"),
         "init_success": rob.get("init_success"),
         # Timing
+        "measurement_mode": runtime.get("measurement_mode"),
+        "input_frames": runtime.get("input_frames"),
+        "processed_frames": processed_frames,
+        "published_frames": runtime.get("published_frames"),
+        "output_poses": runtime.get("output_poses") or traj_info.get("frames_output"),
+        "dropped_frames": runtime.get("dropped_frames"),
+        "publisher_dropped_frames": runtime.get("publisher_dropped_frames"),
+        "processing_time_s": processing_time,
+        "end_to_end_time_s": wall_s,
+        "initialization_time_s": runtime.get("initialization_time_s"),
+        "steady_state_time_s": runtime.get("steady_state_time_s"),
+        "final_optimization_time_s": runtime.get("final_optimization_time_s"),
+        "shutdown_time_s": runtime.get("shutdown_time_s"),
+        "processing_fps": processing_fps,
+        "end_to_end_fps": runtime.get("end_to_end_fps"),
+        "trajectory_pose_rate": runtime.get("trajectory_pose_rate"),
         "duration_s": wall_s,
         "fps": fps_val,
         "real_time_factor": rtf,
+        "deadline_misses": runtime.get("deadline_misses"),
+        "max_queue_depth": runtime.get("max_queue_depth"),
         "processing_ms_per_frame": ms_per_frame,
         # Resources
+        "resource_scope": runtime.get("resource_scope"),
+        "cpu_time_s": runtime.get("cpu_time_s"),
         "cpu_mean_pct": runtime.get("cpu_mean_pct"),
         "cpu_peak_pct": runtime.get("cpu_peak_pct"),
         "ram_mean_mib": runtime.get("ram_mean_mib"),

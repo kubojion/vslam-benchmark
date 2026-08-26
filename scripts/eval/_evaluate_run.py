@@ -449,7 +449,7 @@ def parse_log(log_path, algo):
 # Resource stats from CSV
 # ──────────────────────────────────────────────────────────────────────────────
 def parse_resources(csv_path):
-    """Parse resources.csv -> dict of mean/max values. Returns None on failure."""
+    """Parse scoped resources.csv, retaining legacy files as explicitly unscoped."""
     if not os.path.isfile(csv_path):
         return None
     try:
@@ -458,29 +458,38 @@ def parse_resources(csv_path):
         if not rows:
             return None
 
-        def col(name, default=0.0):
+        def col(name):
             vals = []
             for r in rows:
                 try:
-                    vals.append(float(r.get(name, default)))
-                except ValueError:
+                    raw = r.get(name)
+                    if raw not in (None, ""):
+                        vals.append(float(raw))
+                except (TypeError, ValueError):
                     pass
-            return vals if vals else [default]
+            return vals
+
+        def summary(values, fn):
+            return round(float(fn(values)), 1) if values else None
 
         vram = col("vram_mib")
         gpu  = col("gpu_util_pct")
         cpu  = col("cpu_pct")
         ram  = col("ram_mib")
+        cpu_time = col("cpu_time_s")
+        scopes = sorted({row.get("scope") for row in rows if row.get("scope")})
 
         return {
-            "vram_mean_mib":  round(float(np.mean(vram)), 1),
-            "vram_peak_mib":  round(float(np.max(vram)), 1),
-            "gpu_mean_pct":   round(float(np.mean(gpu)), 1),
-            "gpu_peak_pct":   round(float(np.max(gpu)), 1),
-            "cpu_mean_pct":   round(float(np.mean(cpu)), 1),
-            "cpu_peak_pct":   round(float(np.max(cpu)), 1),
-            "ram_mean_mib":   round(float(np.mean(ram)), 1),
-            "ram_peak_mib":   round(float(np.max(ram)), 1),
+            "resource_scope": scopes[0] if len(scopes) == 1 else "legacy_whole_system",
+            "vram_mean_mib": summary(vram, np.mean),
+            "vram_peak_mib": summary(vram, np.max),
+            "gpu_mean_pct": summary(gpu, np.mean),
+            "gpu_peak_pct": summary(gpu, np.max),
+            "cpu_mean_pct": summary(cpu, np.mean),
+            "cpu_peak_pct": summary(cpu, np.max),
+            "cpu_time_s": summary(cpu_time, np.max),
+            "ram_mean_mib": summary(ram, np.mean),
+            "ram_peak_mib": summary(ram, np.max),
         }
     except Exception as e:
         print(f"[eval] resource parse failed: {e}", file=sys.stderr)
@@ -637,19 +646,27 @@ def main():
     meta_path = run_dir / "run_meta.json"
     if meta_path.exists():
         meta = json.loads(meta_path.read_text())
+        measurements = meta.get("measurements") if isinstance(meta.get("measurements"), dict) else None
         # Modern runners record the input camera count explicitly. Some legacy
         # "interpolated" GT files retain a higher-rate pose stream, so their
         # line count is not a reliable camera-frame total.
-        gt_total = meta.get("frames_total")
-        if not gt_total:
-            gt_total = sum(1 for _ in open(gt_path)) if gt_path else meta.get("frames")
-        tracked  = meta.get("frames", None)
-        robustness["frames_total"]   = gt_total
-        robustness["frames_tracked"] = tracked
-        if gt_total and tracked:
-            robustness["track_pct"] = round(100.0 * tracked / gt_total, 1)
-        elif meta.get("frames"):
-            robustness["track_pct"] = 100.0
+        if measurements:
+            robustness["frames_total"] = measurements.get("input_frames")
+            robustness["frames_processed"] = measurements.get("processed_frames")
+            robustness["frames_published"] = measurements.get("published_frames")
+            robustness["output_poses"] = measurements.get("output_poses")
+            robustness["dropped_frames"] = measurements.get("dropped_frames")
+        else:
+            gt_total = meta.get("frames_total")
+            if not gt_total:
+                gt_total = sum(1 for _ in open(gt_path)) if gt_path else meta.get("frames")
+            tracked = meta.get("frames", None)
+            robustness["frames_total"] = gt_total
+            robustness["frames_tracked"] = tracked
+            if gt_total and tracked:
+                robustness["track_pct"] = round(100.0 * tracked / gt_total, 1)
+            elif meta.get("frames"):
+                robustness["track_pct"] = 100.0
     else:
         meta = {}
 
@@ -683,12 +700,39 @@ def main():
     res_path = run_dir / "resources.csv"
     runtime = parse_resources(str(res_path)) or {}
     if meta:
-        runtime["wall_s"] = round(meta.get("duration_s") or 0, 2)
-        fps = meta.get("fps") or 0
-        runtime["fps"] = round(fps, 3)
-        # Real-time factor: fps / input_fps (we don't know input fps here,
-        # so leave it as fps and let aggregate compute RTF from sequence metadata)
-        runtime["fps_raw"] = round(fps, 3)
+        measurements = meta.get("measurements")
+        if isinstance(measurements, dict):
+            runtime.update({
+                "measurement_schema": meta.get("measurement_schema"),
+                "measurement_mode": measurements.get("mode"),
+                "input_frames": measurements.get("input_frames"),
+                "processed_frames": measurements.get("processed_frames"),
+                "published_frames": measurements.get("published_frames"),
+                "dropped_frames": measurements.get("dropped_frames"),
+                "publisher_dropped_frames": measurements.get("publisher_dropped_frames"),
+                "output_poses": measurements.get("output_poses"),
+                "processing_time_s": measurements.get("processing_time_s"),
+                "end_to_end_time_s": measurements.get("end_to_end_time_s"),
+                "initialization_time_s": measurements.get("initialization_time_s"),
+                "steady_state_time_s": measurements.get("steady_state_time_s"),
+                "final_optimization_time_s": measurements.get("final_optimization_time_s"),
+                "shutdown_time_s": measurements.get("shutdown_time_s"),
+                "processing_fps": measurements.get("processing_fps"),
+                "end_to_end_fps": measurements.get("end_to_end_fps"),
+                "trajectory_pose_rate": measurements.get("trajectory_pose_rate"),
+                "realtime_factor": measurements.get("realtime_factor"),
+                "processing_time_scope": measurements.get("processing_time_scope"),
+                "deadline_misses": measurements.get("deadline_misses"),
+                "max_queue_depth": measurements.get("max_queue_depth"),
+            })
+            # Temporary alias for report templates; it now means end-to-end
+            # elapsed time only, never processing throughput.
+            runtime["wall_s"] = measurements.get("end_to_end_time_s")
+        else:
+            runtime["wall_s"] = round(meta.get("duration_s") or 0, 2)
+            fps = meta.get("fps") or 0
+            runtime["fps"] = round(fps, 3)
+            runtime["fps_raw"] = round(fps, 3)
 
     # ── Machine specs (provenance for the runtime numbers above) ──────────────
     # Policy (fixed 2026-08-05): the machine block must identify the RUN host,
@@ -813,7 +857,8 @@ def main():
     print(f"  RPE trans RMSE: {out['rpe_trans_1m']['rmse']:.4f} m/m  (1-metre windows)")
     print(f"  RPE rot RMSE:   {out['rpe_rot_1m_deg']['rmse']:.3f} °/m")
     print(f"  Scale factor:   {scale:.4f}" if scale else "  Scale factor:   n/a")
-    print(f"  Wall-clock:     {runtime.get('wall_s','?')} s  |  {runtime.get('fps','?')} fps")
+    print(f"  End-to-end:     {runtime.get('end_to_end_time_s', runtime.get('wall_s','?'))} s")
+    print(f"  Processing FPS: {runtime.get('processing_fps', 'n/a')}")
     if agri:
         for stype, v in agri.items():
             print(f"  ATE [{stype}]:   {v['ate_rmse_mean']:.4f} m  ({v['n_segments']} segs)")

@@ -56,10 +56,15 @@ mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
 echo "[openvins] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL" "$OUT_DIR/run_log.txt"
 
-# Resource monitor (matches the other run_*.sh wrappers).
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+# Measure the host runner tree plus the ephemeral estimator container.  The
+# monitor tolerates the container not existing until docker run starts.
+RUN_CONTAINER="vslam_openvins_${DATASET}_${SEQ}_${RUN_ID}_$$"
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" \
+    --pid "$$" --container "$RUN_CONTAINER" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap "kill $MONPID 2>/dev/null || true" EXIT
+trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
 
 OUT_REL=$(realpath --relative-to="$WS" "$OUT_DIR")
 
@@ -81,8 +86,10 @@ fi
 # We mount the workspace at /ws inside the container. host UID/GID is passed
 # through so the trajectory file is owned by the user (not root).
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 set +e
 docker run --rm \
+    --name "$RUN_CONTAINER" \
     --network host \
     --user "$(id -u):$(id -g)" \
     --volume "$WS:/ws" \
@@ -105,7 +112,8 @@ docker run --rm \
             $SEQ_IN \
             /ws/${OUT_REL}/trajectory.txt \
             --rate ${OPENVINS_RATE:-1.0} \
-            --start-delay 1.0 --end-wait 3.0
+            --start-delay 1.0 --end-wait 3.0 \
+            --stats-out /ws/${OUT_REL}/transport_stats.json
         kill -INT \$OV_PID 2>/dev/null || true
         # ros2 launch doesn't always exit on SIGINT; force-kill after a grace period.
         for i in 1 2 3 4 5; do
@@ -131,6 +139,8 @@ for line in sys.stdin:
 OPENVINS_RC=${PIPESTATUS[0]}
 set -e
 END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 
 PROV_ARGS=(
     --artifact "estimator_config=$CFG_DIR/estimator_config.yaml"
@@ -165,5 +175,6 @@ print(json.dumps({
     'fps':$NFR/$DUR if $DUR>0 else 0
 }))
 " > "$OUT_DIR/run_meta.json"
-enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
+enrich_run_meta "$OUT_DIR/run_meta.json" --measurement-mode transport \
+    --transport-stats "$OUT_DIR/transport_stats.json" "${PROV_ARGS[@]}"
 echo "[openvins] run ${RUN_ID} done in ${DUR}s, ${NFR} poses"

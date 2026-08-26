@@ -210,12 +210,18 @@ The manifest should contain:
 - SHA-256 hashes for the canonical trajectory, `run_meta.json`, and
   `run_eval.json` when present;
 - an inventory of additional files with paths and sizes.
-- provenance status (`complete`, `legacy`, or `invalid`) and schema version.
+- provenance and measurement status (`complete`, `legacy`, or `invalid`) and
+  schema versions.
 
 New executions use the mandatory schema described in
 [run-provenance.md](run-provenance.md). Migrated historical runs remain
 discoverable as `legacy`; the manifest does not invent missing execution-time
 identity for them.
+
+Measurement schema 1 is documented in
+[run-measurements.md](run-measurements.md). It keeps historical runs visible as
+`legacy` while preventing whole-system resources or pose-rate FPS from being
+presented as estimator performance for new runs.
 
 Example:
 

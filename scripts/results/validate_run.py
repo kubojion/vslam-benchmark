@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import os
 import math
@@ -222,11 +223,124 @@ def validate_provenance(run_dir: Path, *, required_schema: int | None) -> list[s
     return errors
 
 
+def validate_measurements(run_dir: Path, *, required_schema: int | None) -> list[str]:
+    errors: list[str] = []
+    meta_path = run_dir / "run_meta.json"
+    if not meta_path.is_file():
+        return errors
+    try:
+        meta = json.loads(meta_path.read_text())
+    except Exception:
+        return errors
+    schema = meta.get("measurement_schema")
+    if schema is None and required_schema is None:
+        return errors
+    expected = required_schema or 1
+    if schema != expected:
+        return [f"measurement_schema is {schema!r}, expected {expected}"]
+    values = meta.get("measurements")
+    if not isinstance(values, dict):
+        return ["missing measurements object"]
+
+    mode = values.get("mode")
+    if mode not in {"max_throughput", "paced", "transport"}:
+        errors.append(f"invalid measurement mode {mode!r}")
+
+    for field in (
+        "input_frames", "processed_frames", "published_frames", "dropped_frames",
+        "publisher_dropped_frames", "output_poses", "deadline_misses", "max_queue_depth",
+    ):
+        value = values.get(field)
+        if value is not None and (not isinstance(value, int) or isinstance(value, bool) or value < 0):
+            errors.append(f"measurement {field!r} is not a non-negative integer or null")
+    for field in (
+        "input_duration_s", "trajectory_duration_s", "processing_time_s",
+        "end_to_end_time_s", "initialization_time_s", "steady_state_time_s",
+        "final_optimization_time_s", "shutdown_time_s", "processing_fps", "end_to_end_fps",
+        "trajectory_pose_rate", "realtime_factor",
+    ):
+        value = values.get(field)
+        if value is not None and (
+            not isinstance(value, (int, float)) or isinstance(value, bool)
+            or not math.isfinite(float(value)) or value < 0
+        ):
+            errors.append(f"measurement {field!r} is not a finite non-negative number or null")
+
+    if not isinstance(values.get("input_frames"), int) or values["input_frames"] < 1:
+        errors.append("input frame count is unavailable")
+    if not isinstance(values.get("output_poses"), int) or values["output_poses"] < 2:
+        errors.append("output pose count is unavailable")
+    if not isinstance(values.get("end_to_end_time_s"), (int, float)) or values["end_to_end_time_s"] <= 0:
+        errors.append("end-to-end time is unavailable")
+
+    trajectory = run_dir / "trajectory.txt"
+    if trajectory.is_file() and isinstance(values.get("output_poses"), int):
+        with trajectory.open() as stream:
+            actual_poses = sum(
+                1 for line in stream if line.strip() and not line.lstrip().startswith("#")
+            )
+        if actual_poses != values["output_poses"]:
+            errors.append(
+                f"output pose count {values['output_poses']} does not match trajectory rows {actual_poses}"
+            )
+
+    if mode in {"max_throughput", "paced"}:
+        if values.get("processed_frames") != values.get("input_frames"):
+            errors.append(f"{mode} run did not account for every input frame")
+    if mode == "max_throughput":
+        if values.get("processing_time_s") != values.get("end_to_end_time_s"):
+            errors.append("max-throughput processing time does not match estimator command time")
+        frames = values.get("processed_frames")
+        seconds = values.get("processing_time_s")
+        expected_fps = frames / seconds if frames is not None and seconds else None
+        observed_fps = values.get("processing_fps")
+        if expected_fps is None or observed_fps is None or not math.isclose(
+            expected_fps, observed_fps, rel_tol=1e-9, abs_tol=1e-9,
+        ):
+            errors.append("processing FPS is missing or inconsistent")
+    elif values.get("processing_fps") is not None or values.get("processing_time_s") is not None:
+        errors.append(f"{mode} run claims processing throughput without internal timing")
+
+    if mode == "transport":
+        transport = values.get("transport")
+        if not isinstance(transport, dict):
+            errors.append("transport run has no publisher statistics")
+        elif values.get("published_frames") != transport.get("camera_frames_published"):
+            errors.append("published frame count disagrees with transport statistics")
+        if values.get("processed_frames") is not None or values.get("dropped_frames") is not None:
+            errors.append("transport run invents estimator receive/drop counts")
+
+    scope = values.get("resource_scope")
+    if scope not in {"process_tree", "container", "process_tree+container"}:
+        errors.append("resource measurements are missing an explicit scoped target")
+    resources = run_dir / "resources.csv"
+    try:
+        with resources.open(newline="") as stream:
+            rows = list(csv.DictReader(stream))
+    except (OSError, csv.Error) as exc:
+        errors.append(f"cannot read scoped resources.csv: {exc}")
+        rows = []
+    if not rows:
+        errors.append("scoped resources.csv has no samples")
+    else:
+        scopes = {row.get("scope") for row in rows}
+        if scopes != {scope}:
+            errors.append("resources.csv contains an absent or inconsistent scope")
+        if not any(row.get("target_available") == "true" for row in rows):
+            errors.append("resource target was unavailable for every sample")
+        if not any(row.get("cpu_time_s") not in {None, ""} for row in rows):
+            errors.append("resources.csv has no process CPU accounting")
+        if not any(row.get("ram_mib") not in {None, ""} for row in rows):
+            errors.append("resources.csv has no process memory accounting")
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("run_dir", type=Path)
     parser.add_argument("--check-only", action="store_true")
     parser.add_argument("--require-provenance", type=int, choices=(2,))
+    parser.add_argument("--require-measurements", type=int, choices=(1,))
     args = parser.parse_args()
     run_dir = args.run_dir.resolve()
     location_errors = validate_location(run_dir)
@@ -239,6 +353,7 @@ def main() -> int:
         marker.unlink()
     errors = validate(run_dir)
     errors.extend(validate_provenance(run_dir, required_schema=args.require_provenance))
+    errors.extend(validate_measurements(run_dir, required_schema=args.require_measurements))
     if errors:
         for error in errors:
             print(f"[validate] {run_dir}: {error}")

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -14,7 +15,7 @@ from pathlib import Path
 RESULTS_SCRIPTS = Path(__file__).resolve().parents[1]
 RUN_SCRIPTS = RESULTS_SCRIPTS.parent / "run"
 sys.path.insert(0, str(RESULTS_SCRIPTS))
-from validate_run import validate_provenance  # noqa: E402
+from validate_run import validate_measurements, validate_provenance  # noqa: E402
 from provenance_requirements import REQUIREMENTS  # noqa: E402
 
 
@@ -28,6 +29,14 @@ def load_enricher():
 
 def load_script(name: str):
     spec = importlib.util.spec_from_file_location(name, RESULTS_SCRIPTS / f"{name}.py")
+    module = importlib.util.module_from_spec(spec)
+    assert spec.loader
+    spec.loader.exec_module(module)
+    return module
+
+
+def load_run_script(name: str):
+    spec = importlib.util.spec_from_file_location(name, RUN_SCRIPTS / f"{name}.py")
     module = importlib.util.module_from_spec(spec)
     assert spec.loader
     spec.loader.exec_module(module)
@@ -129,6 +138,99 @@ class ProvenanceValidationTests(unittest.TestCase):
                 self.assertIn("--conda-env", text, algorithm)
             if requirement.container:
                 self.assertRegex(text, r"--container(?:-image)?\b", algorithm)
+            self.assertIn("--measurement-mode", text, algorithm)
+            self.assertRegex(text, r"(?s)_resource_monitor\.py.*--(?:pid|container)", algorithm)
+            self.assertIn("mark_resource_start", text, algorithm)
+            self.assertIn("finish_resource_window", text, algorithm)
+            self.assertLess(text.index("_resource_monitor.py"), text.index("mark_resource_start"), algorithm)
+            self.assertLess(text.index("mark_resource_start"), text.index("finish_resource_window"), algorithm)
+            self.assertLess(text.index("finish_resource_window"), text.rindex("enrich_run_meta"), algorithm)
+            if "--measurement-mode transport" in text:
+                self.assertIn("--transport-stats", text, algorithm)
+
+
+class MeasurementValidationTests(unittest.TestCase):
+    def write_run(self, root: Path, measurements: dict) -> Path:
+        run = root / "run1"
+        run.mkdir()
+        trajectory = "".join(
+            f"{i}.0 {i}.0 0 0 0 0 0 1\n" for i in range(3)
+        )
+        (run / "trajectory.txt").write_text(trajectory)
+        (run / "run_meta.json").write_text(json.dumps({
+            "measurement_schema": 1,
+            "measurements": measurements,
+        }))
+        (run / "resources.csv").write_text(
+            "t_s,scope,label,target_available,process_count,cpu_pct,cpu_time_s,ram_mib,vram_mib,gpu_util_pct\n"
+            "0.0,process_tree,test,true,1,,0.1,10,,\n"
+            "0.1,process_tree,test,true,1,50,0.2,11,,\n"
+        )
+        return run
+
+    def test_valid_max_throughput_measurements(self):
+        values = {
+            "mode": "max_throughput", "input_frames": 3, "processed_frames": 3,
+            "published_frames": None, "dropped_frames": None,
+            "publisher_dropped_frames": None, "output_poses": 3,
+            "input_duration_s": 2.0, "trajectory_duration_s": 2.0,
+            "processing_time_s": 1.0, "end_to_end_time_s": 1.0,
+            "processing_fps": 3.0, "end_to_end_fps": 3.0,
+            "trajectory_pose_rate": 1.5, "realtime_factor": 2.0,
+            "processing_time_scope": "estimator_command_including_initialization_and_finalization",
+            "resource_scope": "process_tree", "transport": None,
+        }
+        with tempfile.TemporaryDirectory() as raw:
+            run = self.write_run(Path(raw), values)
+            self.assertEqual(validate_measurements(run, required_schema=1), [])
+
+    def test_transport_does_not_invent_downstream_drops(self):
+        values = {
+            "mode": "transport", "input_frames": 3, "processed_frames": None,
+            "published_frames": 3, "dropped_frames": None,
+            "publisher_dropped_frames": 0, "output_poses": 3,
+            "input_duration_s": 2.0, "trajectory_duration_s": 2.0,
+            "processing_time_s": None, "end_to_end_time_s": 3.0,
+            "processing_fps": None, "end_to_end_fps": 1.0,
+            "trajectory_pose_rate": 1.5, "realtime_factor": 2 / 3,
+            "processing_time_scope": "unavailable", "resource_scope": "process_tree",
+            "transport": {"camera_frames_expected": 3, "camera_frames_published": 3},
+        }
+        with tempfile.TemporaryDirectory() as raw:
+            run = self.write_run(Path(raw), values)
+            self.assertEqual(validate_measurements(run, required_schema=1), [])
+            values["dropped_frames"] = 0
+            (run / "run_meta.json").write_text(json.dumps({
+                "measurement_schema": 1, "measurements": values,
+            }))
+            self.assertTrue(any(
+                "invents estimator" in error
+                for error in validate_measurements(run, required_schema=1)
+            ))
+
+    def test_paced_run_has_no_processing_fps_and_rejects_system_scope(self):
+        values = {
+            "mode": "paced", "input_frames": 3, "processed_frames": 3,
+            "published_frames": None, "dropped_frames": None,
+            "publisher_dropped_frames": None, "output_poses": 3,
+            "input_duration_s": 2.0, "trajectory_duration_s": 2.0,
+            "processing_time_s": None, "end_to_end_time_s": 2.2,
+            "processing_fps": None, "end_to_end_fps": 3 / 2.2,
+            "trajectory_pose_rate": 1.5, "realtime_factor": 2 / 2.2,
+            "processing_time_scope": "unavailable", "resource_scope": "process_tree",
+            "transport": None,
+        }
+        with tempfile.TemporaryDirectory() as raw:
+            run = self.write_run(Path(raw), values)
+            self.assertEqual(validate_measurements(run, required_schema=1), [])
+            values["resource_scope"] = "system"
+            (run / "run_meta.json").write_text(json.dumps({
+                "measurement_schema": 1, "measurements": values,
+            }))
+            self.assertTrue(any(
+                "explicit scoped target" in error
+                for error in validate_measurements(run, required_schema=1)
+            ))
 
 
 class EnricherTests(unittest.TestCase):
@@ -179,8 +281,16 @@ class EnricherTests(unittest.TestCase):
             meta_path = run / "run_meta.json"
             meta_path.write_text(json.dumps({
                 "algo": "basalt", "dataset": "test", "seq": "seq",
-                "run_id": 1, "run_type": "vio",
+                "run_id": 1, "run_type": "vio", "duration_s": 1.0,
             }))
+            (run / "trajectory.txt").write_text(
+                "0 0 0 0 0 0 0 1\n1 1 0 0 0 0 0 1\n2 2 0 0 0 0 0 1\n"
+            )
+            (run / "resources.csv").write_text(
+                "t_s,scope,label,target_available,process_count,cpu_pct,cpu_time_s,ram_mib,vram_mib,gpu_util_pct\n"
+                "0,process_tree,test,true,1,,0.1,10,,\n"
+            )
+            self.module.sequence_measurements = lambda *_: (3, 2.0)
             calibration = root / "calib.json"
             config = root / "estimator.json"
             binary = root / "basalt_vio"
@@ -196,6 +306,7 @@ class EnricherTests(unittest.TestCase):
                     "--binary", f"estimator={binary}",
                     "--param", "use_imu=true", "--param", "num_threads=0",
                     "--param", "playback_rate=offline",
+                    "--measurement-mode", "max_throughput",
                 ]
                 with warnings.catch_warnings():
                     warnings.simplefilter("ignore", ResourceWarning)
@@ -203,9 +314,51 @@ class EnricherTests(unittest.TestCase):
             finally:
                 sys.argv = old_argv
             self.assertEqual(validate_provenance(run, required_schema=2), [])
+            self.assertEqual(validate_measurements(run, required_schema=1), [])
             enriched = json.loads(meta_path.read_text())
             self.assertRegex(enriched["machine_id"], r"^machine-[0-9a-f]{12}$")
             self.assertNotIn(str(Path.home()), meta_path.read_text())
+
+
+class SeededPythonTests(unittest.TestCase):
+    def test_script_directory_shadows_environment_packages(self):
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            package = root / "shadowpkg"
+            package.mkdir()
+            (package / "__init__.py").write_text("VALUE = 'source-tree'\n")
+            script = root / "demo.py"
+            script.write_text("import shadowpkg; print(shadowpkg.VALUE)\n")
+            result = subprocess.run(
+                [sys.executable, str(RUN_SCRIPTS / "_seeded_python.py"), "7", str(script)],
+                capture_output=True, text=True, check=False,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(result.stdout.strip(), "source-tree")
+
+
+class MeasurementHelperTests(unittest.TestCase):
+    def test_proc_accounting_needs_no_optional_python_package(self):
+        module = load_run_script("_resource_monitor")
+        pids = module.process_tree_pids([os.getpid()])
+        self.assertIn(os.getpid(), pids)
+        cpu, rss, count = module.process_stats(pids, set())
+        self.assertGreaterEqual(cpu, 0)
+        self.assertGreater(rss, 0)
+        self.assertGreaterEqual(count, 1)
+
+    def test_transport_stats_are_atomic_and_typed(self):
+        module = load_run_script("_transport_stats")
+        with tempfile.TemporaryDirectory() as raw:
+            path = Path(raw) / "transport.json"
+            module.write_transport_stats(
+                path, camera_frames_expected=10, camera_frames_published=9,
+                imu_messages_published=20,
+            )
+            value = json.loads(path.read_text())
+            self.assertEqual(value["schema"], 1)
+            self.assertEqual(value["camera_frames_published"], 9)
+            self.assertFalse(path.with_suffix(".json.tmp").exists())
 
 
 class ManifestAndSiteTests(unittest.TestCase):
@@ -241,6 +394,7 @@ class ManifestAndSiteTests(unittest.TestCase):
         index = module.index_page({"runs": [run]}, {run["path"]: "run.html"})
         detail = module.run_page(run, "run.html", "files")
         self.assertIn("<th>Provenance</th>", index)
+        self.assertIn("<th>Measurements</th>", index)
         self.assertIn("provenance-complete", index)
         self.assertIn("<dt>Provenance</dt>", detail)
 

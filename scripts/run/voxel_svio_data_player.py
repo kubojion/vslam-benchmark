@@ -35,6 +35,7 @@ import numpy as np
 import rospy
 from sensor_msgs.msg import Image, Imu
 from cv_bridge import CvBridge
+from _transport_stats import write_transport_stats
 
 
 # ---------------------------------------------------------------------------
@@ -95,6 +96,7 @@ def main() -> int:
                     help="Seconds to wait after last message before exiting")
     ap.add_argument("--frame-id-cam", default="cam")
     ap.add_argument("--frame-id-imu", default="imu")
+    ap.add_argument("--stats-out", type=Path)
     args = ap.parse_args()
 
     mav0 = args.seq_dir / "mav0"
@@ -127,6 +129,7 @@ def main() -> int:
 
     # Index cam1 by timestamp for fast lookup.
     cam1_idx = {t: p for t, p in cam1}
+    expected_cam = sum(1 for t, _ in cam0 if t in cam1_idx)
 
     print(f"[player] cam0={len(cam0)} cam1={len(cam1)} imu={len(imu)}", flush=True)
     print(f"[player] waiting {args.start_delay}s for subscribers ...", flush=True)
@@ -196,6 +199,14 @@ def main() -> int:
 
     print(f"[player] done: cam={n_cam} imu={n_imu}; waiting {args.end_wait}s ...", flush=True)
     time.sleep(args.end_wait)
+    write_transport_stats(
+        args.stats_out,
+        camera_frames_expected=expected_cam,
+        camera_frames_published=n_cam,
+        imu_messages_published=n_imu,
+        gnss_messages_published=0,
+        camera_read_failures=max(0, expected_cam - n_cam),
+    )
     return 0
 
 

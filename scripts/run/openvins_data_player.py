@@ -39,6 +39,7 @@ from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
 from sensor_msgs.msg import Image, Imu
 from nav_msgs.msg import Odometry
+from _transport_stats import write_transport_stats
 from cv_bridge import CvBridge
 
 
@@ -88,13 +89,17 @@ def _load_cam(csv_path: Path, img_dir: Path) -> List[Tuple[int, Path]]:
 
 class Player(Node):
     def __init__(self, seq_dir: Path, out_traj: Path, rate: float,
-                 start_delay: float, end_wait: float):
+                 start_delay: float, end_wait: float, stats_out: Path | None):
         super().__init__("openvins_data_player")
         self.seq_dir = seq_dir
         self.out_traj = out_traj
         self.rate = rate
         self.start_delay = start_delay
         self.end_wait = end_wait
+        self.stats_out = stats_out
+        self.published_cam0 = 0
+        self.published_cam1 = 0
+        self.published_imu = 0
 
         # Publishers. OpenVINS' ROS2Visualizer uses different QoS per topic:
         #   - cameras (message_filters::Subscriber): RELIABLE, depth=10  (default)
@@ -212,10 +217,13 @@ class Player(Node):
 
             if kind == "imu":
                 self.pub_imu.publish(self._make_imu_msg(t_ns, *payload))
+                self.published_imu += 1
             elif kind == "cam0":
                 self.pub_cam0.publish(self._make_image_msg(t_ns, payload, "cam0"))
+                self.published_cam0 += 1
             elif kind == "cam1":
                 self.pub_cam1.publish(self._make_image_msg(t_ns, payload, "cam1"))
+                self.published_cam1 += 1
 
             if i % 5000 == 0:
                 pct = 100.0 * i / len(events)
@@ -228,6 +236,17 @@ class Player(Node):
         time.sleep(self.end_wait)
 
         self.write_trajectory()
+        expected = min(len(self.cam0), len(self.cam1))
+        published = min(self.published_cam0, self.published_cam1)
+        write_transport_stats(
+            self.stats_out,
+            camera_frames_expected=expected,
+            camera_frames_published=published,
+            imu_messages_published=self.published_imu,
+            gnss_messages_published=0,
+            camera_read_failures=max(0, expected - published),
+            estimator_output_messages=len(self.poses),
+        )
 
     # ------------------------------------------------------------------
     def write_trajectory(self):
@@ -250,6 +269,7 @@ def main():
                    help="seconds to wait before publishing (let OpenVINS register)")
     p.add_argument("--end-wait", type=float, default=3.0,
                    help="seconds to spin after last event before writing trajectory")
+    p.add_argument("--stats-out", type=Path)
     args = p.parse_args()
 
     if not (args.seq_dir / "mav0").is_dir():
@@ -257,7 +277,10 @@ def main():
         sys.exit(2)
 
     rclpy.init()
-    node = Player(args.seq_dir, args.out_traj, args.rate, args.start_delay, args.end_wait)
+    node = Player(
+        args.seq_dir, args.out_traj, args.rate, args.start_delay, args.end_wait,
+        args.stats_out,
+    )
     try:
         node.play()
     except KeyboardInterrupt:

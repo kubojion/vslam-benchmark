@@ -131,3 +131,24 @@ record_failed_run_meta() {
         --run-id "$run_id" --run-type "$run_type" \
         --process-exit-code "$exit_code" --failure-reason "$reason" "$@"
 }
+
+# Delimit the exact estimator/pipeline interval sampled by _resource_monitor.
+# Runners may start the monitor before containers or ROS graphs exist; samples
+# begin only after mark_resource_start and are flushed before metadata/eval.
+prepare_resource_window() {
+    local out="${1:?run directory required}"
+    rm -f "$out/.resource_start" "$out/.resource_stop"
+}
+
+mark_resource_start() {
+    local out="${1:?run directory required}"
+    : > "$out/.resource_start"
+}
+
+finish_resource_window() {
+    local out="${1:?run directory required}"
+    local monitor_pid="${2:?monitor PID required}"
+    : > "$out/.resource_stop"
+    wait "$monitor_pid" 2>/dev/null || true
+    rm -f "$out/.resource_start" "$out/.resource_stop"
+}

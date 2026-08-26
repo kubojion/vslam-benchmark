@@ -59,9 +59,11 @@ prepare_fresh_run_dir "$OUT_DIR"
 echo "[okvis2] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL" "$OUT_DIR/run_log.txt"
 
 # Resource monitor (matches the other run_*.sh wrappers)
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$$" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap "kill $MONPID 2>/dev/null || true" EXIT
+trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
 
 # OKVIS2 calls cv::imshow; run under a virtual X server if no DISPLAY.
 RUN_PREFIX=()
@@ -75,6 +77,7 @@ if [[ -z "${DISPLAY:-}" ]]; then
 fi
 
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 set +e
 "${RUN_PREFIX[@]}" "$APP" "$CFG" "$SEQ_DIR/mav0" 2>&1 | \
   python3 -u -c "
@@ -87,6 +90,8 @@ for line in sys.stdin:
 OKVIS_RC=${PIPESTATUS[0]}
 set -e
 END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 
 MATCHING_THREADS=$(awk '/num_matching_threads:/ {print $2; exit}' "$CFG")
 PROV_ARGS=(
@@ -157,5 +162,5 @@ print(json.dumps({
     'fps':$NFR/$DUR if $DUR>0 else 0
 }))
 " > "$OUT_DIR/run_meta.json"
-enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
+enrich_run_meta "$OUT_DIR/run_meta.json" --measurement-mode max_throughput "${PROV_ARGS[@]}"
 echo "[okvis2] run ${RUN_ID} done in ${DUR}s, ${NFR} poses"

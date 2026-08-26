@@ -16,7 +16,9 @@ RESULTS = REPO / "results"
 RUN_TYPES = ("vo", "vo-lc", "vio", "vio-lc", "gnss-vio")
 sys.path.insert(0, str(HERE))
 from machine_id import get_machine_id  # noqa: E402
-from validate_run import validate, validate_location, validate_provenance  # noqa: E402
+from validate_run import (  # noqa: E402
+    validate, validate_location, validate_measurements, validate_provenance,
+)
 
 
 def sha256(path: Path) -> str:
@@ -57,8 +59,12 @@ def metric_summary(evaluation: dict) -> dict:
         "scale_factor": evaluation.get("scale_factor"),
         "coverage_gap_pct": coverage.get("coverage_gap_pct"),
         "n_pairs_ate": evaluation.get("n_pairs_ate"),
-        "fps": runtime.get("fps"),
-        "wall_s": runtime.get("wall_s"),
+        "processing_fps": runtime.get("processing_fps"),
+        "end_to_end_fps": runtime.get("end_to_end_fps"),
+        "trajectory_pose_rate": runtime.get("trajectory_pose_rate"),
+        "realtime_factor": runtime.get("realtime_factor"),
+        "end_to_end_time_s": runtime.get("end_to_end_time_s", runtime.get("wall_s")),
+        "resource_scope": runtime.get("resource_scope"),
     }
 
 
@@ -84,6 +90,7 @@ def run_entry(run_type: str, run_dir: Path) -> dict:
     evaluation = read_json(run_dir / "run_eval.json")
     errors = validate_location(run_dir) + validate(run_dir)
     provenance_errors = validate_provenance(run_dir, required_schema=None)
+    measurement_errors = validate_measurements(run_dir, required_schema=None)
     if metadata.get("run_status") == "failed":
         provenance_errors = [
             error for error in provenance_errors
@@ -97,6 +104,14 @@ def run_entry(run_type: str, run_dir: Path) -> dict:
     else:
         provenance_status = "invalid"
     errors.extend(provenance_errors)
+    measurement_schema = metadata.get("measurement_schema")
+    if measurement_schema is None:
+        measurement_status = "legacy"
+    elif measurement_schema == 1 and not measurement_errors:
+        measurement_status = "complete"
+    else:
+        measurement_status = "invalid"
+    errors.extend(measurement_errors)
     process = metadata.get("process")
     process_exit_code = process.get("exit_code") if isinstance(process, dict) else None
     if (run_dir / "COMPLETE").is_file():
@@ -122,6 +137,8 @@ def run_entry(run_type: str, run_dir: Path) -> dict:
         "machine_id": metadata.get("machine_id", "unknown"),
         "provenance_status": provenance_status,
         "provenance_schema": schema,
+        "measurement_status": measurement_status,
+        "measurement_schema": measurement_schema,
         "metrics": metric_summary(evaluation),
         "artifacts": artifact_inventory(run_dir),
     }

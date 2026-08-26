@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ATE (SE3) vs FPS scatter plot across all algorithms and sequences.
+"""ATE (SE3) vs measured processing FPS across algorithms and sequences.
 
 Reads benchmark-<type>.csv and writes <results_root>/ate_vs_fps.png.
 Each point = one (algo, dataset, seq) combination, mean across runs.
@@ -172,8 +172,8 @@ def main():
     ax.set_xscale("log")
     ax.axvspan(50, ax.get_xlim()[1], color="red", alpha=0.05)
     ax.set_xlabel("ATE SE(3) RMSE [m]  (log scale; >50 m = diverged)", fontsize=13)
-    ax.set_ylabel("FPS", fontsize=13)
-    ax.set_title(f"ATE vs FPS - {rt.name} run-type", fontsize=14, pad=12)
+    ax.set_ylabel("Processing FPS", fontsize=13)
+    ax.set_title(f"ATE vs processing FPS - {rt.name} run-type", fontsize=14, pad=12)
     ax.tick_params(labelsize=11)
 
     # Legend - two separate groups: algorithms (colour) and datasets (marker)

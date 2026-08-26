@@ -123,9 +123,11 @@ for cam in ['cam0', 'cam1']:
 " 2>&1 | tee -a "$LOG_GLOBAL"
 
 # Resource monitor (matches the other run_*.sh wrappers)
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$$" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap "kill $MONPID 2>/dev/null || true" EXIT
+trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
 
 # The configs disable every display, so no window should ever open. Guard anyway:
 # OpenCV highgui can still initialise a backend on some builds.
@@ -148,6 +150,7 @@ fi
 # okvis_app_synchronous writes okvis2_final_ba.png. Without the cd those land
 # in whatever directory the runner was invoked from, i.e. the repo root.
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 set +e
 ( cd "$OUT_DIR" && "${RUN_PREFIX[@]}" "$APP" "$CFG" "$SEQ_DIR/mav0" "$OUT_DIR" ) 2>&1 | \
   python3 -u -c "
@@ -160,6 +163,8 @@ for line in sys.stdin:
 OKVIS_RC=${PIPESTATUS[0]}
 set -e
 END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 
 PROV_ARGS=(
     --artifact "estimator_config=$CFG"
@@ -241,5 +246,5 @@ print(json.dumps({
     'fps':$NFR/$DUR if $DUR>0 else 0
 }))
 " > "$OUT_DIR/run_meta.json"
-enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
+enrich_run_meta "$OUT_DIR/run_meta.json" --measurement-mode max_throughput "${PROV_ARGS[@]}"
 echo "[okvis2x] run ${RUN_ID} done in ${DUR}s, ${NFR} poses"

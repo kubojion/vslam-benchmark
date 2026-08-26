@@ -31,9 +31,11 @@ conda activate macvo
 set -u
 
 cd "$WS/src/MAC-VO"
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$$" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap 'kill $MONPID 2>/dev/null || true; rm -f "$DATA_CFG"' EXIT
+trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true; rm -f "$DATA_CFG"' EXIT
 
 PROV_ARGS=(
     --artifact "odometry_config=$ODOM_CFG"
@@ -46,6 +48,7 @@ PROV_ARGS=(
 )
 
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 set +e
 python3 MACVO.py \
     --odom "$ODOM_CFG" \
@@ -57,6 +60,8 @@ python3 MACVO.py \
 MACVO_RC=${PIPESTATUS[0]}
 set -e
 END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 if (( MACVO_RC != 0 )); then
     record_failed_run_meta "$OUT_DIR/run_meta.json" macvo "$DATASET" "$SEQ" \
         "$RUN_ID" "$RUN_TYPE" "$MACVO_RC" "estimator exited nonzero" "${PROV_ARGS[@]}"
@@ -100,5 +105,5 @@ print(json.dumps({'algo':'macvo','dataset':'$DATASET','seq':'$SEQ','run_id':$RUN
                   'duration_s':$DUR,'frames':$NFR,'fps':$NFR/$DUR if $DUR>0 else 0,
                   'sandbox':'Results/' + '$SBX'.split('/Results/', 1)[-1]}))
 " > "$OUT_DIR/run_meta.json"
-enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
+enrich_run_meta "$OUT_DIR/run_meta.json" --measurement-mode max_throughput "${PROV_ARGS[@]}"
 echo "[macvo] done (run ${RUN_ID})"

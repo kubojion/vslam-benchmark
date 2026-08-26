@@ -28,6 +28,7 @@ import re
 import socket
 import subprocess
 import sys
+import time
 from pathlib import Path
 from typing import Any
 
@@ -53,6 +54,7 @@ TRACKED_ENV = (
     "AIRSLAM_LAUNCH",
     "GNSS_VARIANT",
 )
+MEASUREMENT_MODES = ("max_throughput", "paced", "transport")
 
 
 def privacy_safe_string(value: str) -> str:
@@ -203,6 +205,149 @@ def parse_scalar(raw: str) -> Any:
             return raw
 
 
+def _timestamps(path: Path) -> list[float]:
+    values: list[float] = []
+    try:
+        with path.open() as stream:
+            for line in stream:
+                line = line.strip()
+                if not line or line.startswith("#"):
+                    continue
+                token = line.split(",", 1)[0].split()[0]
+                if token.lower() in {"timestamp", "timestamp_ns", "time"}:
+                    continue
+                values.append(float(token))
+    except (OSError, ValueError):
+        return []
+    if values and max(abs(value) for value in values) > 1e11:
+        values = [value / 1e9 for value in values]
+    return values
+
+
+def sequence_measurements(dataset: str, sequence: str) -> tuple[int | None, float | None]:
+    seq_dir = REPO / "datasets" / dataset / sequence
+    candidates = (
+        seq_dir / "times.txt",
+        seq_dir / "mav0" / "cam0" / "data.csv",
+    )
+    for candidate in candidates:
+        values = _timestamps(candidate)
+        if values:
+            duration = values[-1] - values[0] if len(values) > 1 else None
+            return len(values), duration if duration is not None and duration > 0 else None
+    return None, None
+
+
+def trajectory_measurements(path: Path) -> tuple[int | None, float | None]:
+    values = _timestamps(path)
+    if not values:
+        return None, None
+    duration = values[-1] - values[0] if len(values) > 1 else None
+    return len(values), duration if duration is not None and duration > 0 else None
+
+
+def read_transport_stats(raw_path: str | None) -> dict[str, Any] | None:
+    if not raw_path:
+        return None
+    path = Path(raw_path).expanduser()
+    if not path.is_absolute():
+        path = REPO / path
+    try:
+        value = json.loads(path.read_text())
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"cannot read transport statistics {raw_path!r}: {exc}") from exc
+    if not isinstance(value, dict):
+        raise ValueError("transport statistics must be a JSON object")
+    allowed: dict[str, Any] = {}
+    for key in (
+        "camera_frames_expected", "camera_frames_published", "imu_messages_published",
+        "gnss_messages_published", "camera_read_failures",
+        "estimator_output_messages",
+    ):
+        item = value.get(key)
+        if item is not None:
+            if not isinstance(item, int) or item < 0:
+                raise ValueError(f"transport statistic {key!r} must be a non-negative integer")
+            allowed[key] = item
+    return allowed
+
+
+def resource_scope(run_dir: Path) -> str | None:
+    path = run_dir / "resources.csv"
+    import csv
+    for _ in range(50):
+        try:
+            with path.open(newline="") as stream:
+                row = next(csv.DictReader(stream), None)
+            scope = row.get("scope") if row else None
+            if scope in {"process_tree", "container", "process_tree+container"}:
+                return scope
+        except (OSError, csv.Error):
+            pass
+        time.sleep(0.1)
+    return None
+
+
+def build_measurements(
+    meta: dict[str, Any], run_dir: Path, mode: str, transport_path: str | None,
+) -> dict[str, Any]:
+    dataset = str(meta.get("dataset", ""))
+    sequence = str(meta.get("seq") or meta.get("sequence") or "")
+    input_frames, input_duration = sequence_measurements(dataset, sequence)
+    output_poses, trajectory_duration = trajectory_measurements(run_dir / "trajectory.txt")
+    try:
+        end_to_end = float(meta.get("duration_s"))
+        if end_to_end <= 0:
+            end_to_end = None
+    except (TypeError, ValueError):
+        end_to_end = None
+
+    transport = read_transport_stats(transport_path)
+    processed_frames: int | None = input_frames if mode in {"max_throughput", "paced"} else None
+    processing_time = end_to_end if mode == "max_throughput" else None
+    processing_fps = (
+        processed_frames / processing_time
+        if processed_frames is not None and processing_time else None
+    )
+    published_frames = transport.get("camera_frames_published") if transport else None
+    publisher_dropped = None
+    if transport and transport.get("camera_frames_expected") is not None and published_frames is not None:
+        publisher_dropped = max(0, transport["camera_frames_expected"] - published_frames)
+
+    measurements: dict[str, Any] = {
+        "mode": mode,
+        "input_frames": input_frames,
+        "processed_frames": processed_frames,
+        "published_frames": published_frames,
+        # End-estimator drop counts require estimator instrumentation.  Source
+        # publisher misses are reported separately and never substituted.
+        "dropped_frames": None,
+        "publisher_dropped_frames": publisher_dropped,
+        "output_poses": output_poses,
+        "input_duration_s": input_duration,
+        "trajectory_duration_s": trajectory_duration,
+        "processing_time_s": processing_time,
+        "end_to_end_time_s": end_to_end,
+        "initialization_time_s": None,
+        "steady_state_time_s": None,
+        "final_optimization_time_s": None,
+        "shutdown_time_s": None,
+        "processing_fps": processing_fps,
+        "end_to_end_fps": input_frames / end_to_end if input_frames is not None and end_to_end else None,
+        "trajectory_pose_rate": output_poses / trajectory_duration if output_poses and trajectory_duration else None,
+        "realtime_factor": input_duration / end_to_end if input_duration and end_to_end else None,
+        "processing_time_scope": (
+            "estimator_command_including_initialization_and_finalization"
+            if mode == "max_throughput" else "unavailable"
+        ),
+        "resource_scope": resource_scope(run_dir),
+        "deadline_misses": None,
+        "max_queue_depth": None,
+        "transport": transport,
+    }
+    return measurements
+
+
 def conda_snapshot(name: str, run_dir: Path) -> dict[str, Any]:
     raw = command(["conda", "list", "-n", name, "--json"], timeout=60)
     if raw is None:
@@ -306,6 +451,8 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--process-exit-code", type=int, default=0)
     p.add_argument("--accepted-nonzero-exit", action="store_true")
     p.add_argument("--failure-reason")
+    p.add_argument("--measurement-mode", choices=MEASUREMENT_MODES)
+    p.add_argument("--transport-stats")
     # Backward-compatible aliases while out-of-tree runners migrate.
     p.add_argument("--config")
     p.add_argument("--playback-rate")
@@ -399,6 +546,17 @@ def main() -> int:
         }
         meta["provenance_schema"] = 2
         meta["provenance"] = provenance
+        if args.measurement_mode:
+            meta["measurement_schema"] = 1
+            meta["measurements"] = build_measurements(
+                meta, run_dir, args.measurement_mode, args.transport_stats,
+            )
+            # Retain old fields for historical readers, but make their meaning
+            # explicit.  New consumers use the measurements object above.
+            if "fps" in meta:
+                meta["legacy_fps_semantics"] = "output_poses_per_end_to_end_second"
+        elif meta.get("run_status") != "failed":
+            raise ValueError("successful runs require --measurement-mode")
 
         sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "results"))
         from machine_id import get_machine_id

@@ -122,9 +122,11 @@ if ! docker inspect -f '{{range .Mounts}}{{println .Destination}}{{end}}' "$CONT
 fi
 
 # ---- Resource monitor (host-side) -----------------------------------------
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --container "$CONTAINER" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap "kill $MONPID 2>/dev/null || true" EXIT
+trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
 
 # ---- Run AirSLAM inside container -----------------------------------------
 # roslaunch (ROS1) does not auto-exit when processing finishes because the node
@@ -132,6 +134,7 @@ trap "kill $MONPID 2>/dev/null || true" EXIT
 # trajectory_v0.txt (written by visual_odometry.cpp after all frames), then send
 # SIGINT to roslaunch inside the container to shut it down cleanly.
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 
 docker exec "$CONTAINER" bash -c "
     source /opt/ros/noetic/setup.bash &&
@@ -197,6 +200,8 @@ if [[ "$USE_LC" == "true" && -s "$TRAJ_HOST" ]]; then
 fi
 
 END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 
 # Rename to trajectory.txt for consistency with other runners.
 # For LC run types use trajectory_v1.txt (post-LC) if available, else fall back to v0.
@@ -239,6 +244,6 @@ print(json.dumps({'algo':'airslam','dataset':'$DATASET','seq':'$SEQ','run_id':$R
                   'use_lc':$([[ "$USE_LC" == "true" ]] && echo True || echo False),
                   'duration_s':$DUR,'frames':$NFR,'fps':$NFR/$DUR if $DUR>0 else 0}))
 " > "$OUT_DIR/run_meta.json"
-enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
+enrich_run_meta "$OUT_DIR/run_meta.json" --measurement-mode max_throughput "${PROV_ARGS[@]}"
 
 echo "[airslam] done (run ${RUN_ID})"

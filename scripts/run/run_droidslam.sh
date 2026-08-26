@@ -38,9 +38,11 @@ export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 # OOM on long sequences (Rosario ~940 m / HortiMulti ~950 m). Reduce if OOM.
 
 cd "$WS/src/DROID-SLAM"
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$$" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap "kill $MONPID 2>/dev/null || true" EXIT
+trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
 
 PROV_ARGS=(
     --artifact "camera_calibration=$CALIB"
@@ -53,6 +55,7 @@ PROV_ARGS=(
 )
 
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 set +e
 python3 "$WS/scripts/run/_droid_demo_wrapper.py" \
     --imagedir "$SEQ_DIR/cam0" \
@@ -72,6 +75,8 @@ python3 "$WS/scripts/run/_droid_demo_wrapper.py" \
 DROID_RC=${PIPESTATUS[0]}
 set -e
 END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 if (( DROID_RC != 0 )); then
     # If the model is absent the wrapper cannot run and there is no model
     # artifact to hash, so leave the partial logs without fabricated metadata.
@@ -97,5 +102,5 @@ print(json.dumps({'algo':'droidslam','dataset':'$DATASET','seq':'$SEQ','run_id':
                   'run_type':'$RUN_TYPE','use_imu':False,'use_lc':False,
                   'duration_s':$DUR,'frames':$NFR,'fps':$NFR/$DUR if $DUR>0 else 0}))
 " > "$OUT_DIR/run_meta.json"
-enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
+enrich_run_meta "$OUT_DIR/run_meta.json" --measurement-mode max_throughput "${PROV_ARGS[@]}"
 echo "[droidslam] done (run ${RUN_ID})"

@@ -97,15 +97,18 @@ for cam in ['cam0', 'cam1']:
 " 2>&1 | tee -a "$LOG_GLOBAL"
 
 # ── Resource monitor: CPU + RAM sampled every 1 s ────────────────────────────
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$$" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap "kill $MONPID 2>/dev/null || true" EXIT
+trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
 
 # ── Run Basalt VIO (vision-only, no IMU) ─────────────────────────────────────
 # basalt_vio saves trajectory.txt in the CWD; cd to $OUT_DIR so it lands there.
 cd "$OUT_DIR"
 
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 set +e
 basalt_vio \
     --show-gui 0 \
@@ -121,6 +124,8 @@ set -e
 # Mirror run_log.txt to the global log
 cat "$OUT_DIR/run_log.txt" >> "$LOG_GLOBAL" || true
 END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 
 if [[ "$BASALT_RC" -ne 0 ]]; then
     record_failed_run_meta "$OUT_DIR/run_meta.json" basalt "$DATASET" "$SEQ" \
@@ -156,6 +161,6 @@ print(json.dumps({
     'fps':      $NFR/$DUR if $DUR > 0 else 0,
 }))
 " > "$OUT_DIR/run_meta.json"
-enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
+enrich_run_meta "$OUT_DIR/run_meta.json" --measurement-mode max_throughput "${PROV_ARGS[@]}"
 
 echo "[basalt] run ${RUN_ID} done in ${DUR}s, ${NFR} frames"

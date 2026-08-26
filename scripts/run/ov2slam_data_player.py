@@ -12,6 +12,7 @@ import cv2
 import rospy
 from cv_bridge import CvBridge
 from sensor_msgs.msg import Image
+from _transport_stats import write_transport_stats
 
 
 def load_camera(csv_path: Path, image_dir: Path):
@@ -41,6 +42,7 @@ def main() -> int:
     parser.add_argument("--rate", type=float, default=1.0)
     parser.add_argument("--start-delay", type=float, default=2.0)
     parser.add_argument("--end-wait", type=float, default=1.0)
+    parser.add_argument("--stats-out", type=Path)
     args = parser.parse_args()
 
     if args.rate <= 0:
@@ -104,6 +106,14 @@ def main() -> int:
         flush=True,
     )
     time.sleep(args.end_wait)
+    write_transport_stats(
+        args.stats_out,
+        camera_frames_expected=min(len(cam0), len(cam1)),
+        camera_frames_published=min(published),
+        imu_messages_published=0,
+        gnss_messages_published=0,
+        camera_read_failures=max(0, min(len(cam0), len(cam1)) - min(published)),
+    )
     return 0
 
 

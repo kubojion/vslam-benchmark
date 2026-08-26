@@ -98,9 +98,11 @@ source "$HOME/miniconda3/etc/profile.d/conda.sh"
 conda activate dpvo
 set -u
 
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$$" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap 'kill $MONPID 2>/dev/null || true; [[ -n "${STAGE_DIR:-}" ]] && rm -rf "$STAGE_DIR"' EXIT
+trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true; [[ -n "${STAGE_DIR:-}" ]] && rm -rf "$STAGE_DIR"' EXIT
 
 cd "$REPO"
 rm -f "saved_trajectories/${NAME}.txt"
@@ -115,6 +117,7 @@ PROV_ARGS=(
 )
 
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 set +e
 python3 "$WS/scripts/run/_seeded_python.py" "$SEED" demo.py \
     --imagedir "$IMG_DIR" \
@@ -133,6 +136,8 @@ for line in sys.stdin:
 DPVO_RC=${PIPESTATUS[0]}
 set -e
 END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 if (( DPVO_RC != 0 )); then
     record_failed_run_meta "$OUT_DIR/run_meta.json" dpvo "$DATASET" "$SEQ" \
         "$RUN_ID" "$RUN_TYPE" "$DPVO_RC" "estimator exited nonzero" "${PROV_ARGS[@]}"
@@ -176,5 +181,5 @@ print(json.dumps({'algo':'dpvo','dataset':'$DATASET','seq':'$SEQ','run_id':$RUN_
                   'run_type':'$RUN_TYPE','use_imu':False,'use_lc':$USE_LC,
                   'duration_s':$DUR,'frames':$NFR,'fps':$NFR/$DUR if $DUR>0 else 0}))
 " > "$OUT_DIR/run_meta.json"
-enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
+enrich_run_meta "$OUT_DIR/run_meta.json" --measurement-mode max_throughput "${PROV_ARGS[@]}"
 echo "[dpvo] run ${RUN_ID} done in ${DUR}s, ${NFR} poses" | tee -a "$LOG"

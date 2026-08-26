@@ -73,9 +73,11 @@ if ! docker ps --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
 fi
 
 # ---- Resource monitor -----------------------------------------------------
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --container "$CONTAINER" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap "kill $MONPID 2>/dev/null || true" EXIT
+trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
 
 # ---- Kill any stale nodes from a previous (possibly orphaned) run ----------
 # A leftover player/estimator on the same topics corrupts a fresh run.
@@ -100,6 +102,7 @@ GNSS_VARIANT="${GNSS_VARIANT:-default}"
 docker exec "$CONTAINER" bash -c "rm -f /root/.ros/CameraTrajectoryGPSOpt.txt /root/.ros/KeyFrameTrajectoryGPSOpt.txt /root/.ros/CameraTrajectory.txt /root/.ros/KeyFrameTrajectory.txt /root/catkin_ws/src/gnss-stereo-inertial-fusion/CameraTrajectoryGPSOpt.txt /root/catkin_ws/src/gnss-stereo-inertial-fusion/KeyFrameTrajectoryGPSOpt.txt /root/catkin_ws/src/gnss-stereo-inertial-fusion/CameraTrajectory.txt /root/catkin_ws/src/gnss-stereo-inertial-fusion/KeyFrameTrajectory.txt 2>/dev/null || true"
 
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 
 # ---- Start roscore + GNSS_SI node -----------------------------------------
 # We don't use the upstream rosario.launch (it expects a rosbag input). Instead
@@ -140,7 +143,8 @@ docker exec "$CONTAINER" bash -c "
         --cam1-topic /stereo/right/image_raw \
         --imu-topic  /imu \
         --gps-topic  /gps/fix \
-        --gps-cov-xy $GPS_COV_XY --gps-cov-z $GPS_COV_Z
+        --gps-cov-xy $GPS_COV_XY --gps-cov-z $GPS_COV_Z \
+        --stats-out /results/$RUN_TYPE/$DATASET/$SEQ/cifasis_gnss_si/run${RUN_ID}/transport_stats.json
 " 2>&1 | tee -a "$LOG"
 
 # ---- Stop GNSS_Stereo_Inertial --------------------------------------------
@@ -151,6 +155,8 @@ docker exec "$CONTAINER" bash -c "pkill -SIGKILL -f GNSS_Stereo_Inertial 2>/dev/
 wait "$NODE_PID" 2>/dev/null || true
 
 END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 
 # ---- Collect trajectory ---------------------------------------------------
 # The GNSS_SI node saves trajectories to its working directory (the source
@@ -182,6 +188,8 @@ print(json.dumps({
 }))
 " > "$OUT_DIR/run_meta.json"
 enrich_run_meta "$OUT_DIR/run_meta.json" \
+    --measurement-mode transport \
+    --transport-stats "$OUT_DIR/transport_stats.json" \
     --artifact "estimator_config=$CFG_HOST" \
     --artifact "vocabulary=$WS/src/cifasis_gnss_si/Vocabulary/ORBvoc.txt.tar.gz" \
     --source "algorithm=$WS/src/cifasis_gnss_si" \

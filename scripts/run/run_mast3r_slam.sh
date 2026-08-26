@@ -64,12 +64,15 @@ source "$HOME/miniconda3/etc/profile.d/conda.sh"
 conda activate mast3r_slam
 set -u
 
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$$" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap "kill $MONPID 2>/dev/null || true" EXIT
+trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
 
 cd "$REPO"
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 
 # main.py takes --save-as as a LABEL, not a path: it writes
 #   logs/<save-as>/<basename of --dataset>.txt
@@ -98,6 +101,8 @@ MAST3R_RC=${PIPESTATUS[0]}
 set -e
 
 END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 if (( MAST3R_RC != 0 )); then
     record_failed_run_meta "$OUT_DIR/run_meta.json" mast3r_slam "$DATASET" "$SEQ" \
         "$RUN_ID" "$RUN_TYPE" "$MAST3R_RC" "estimator exited nonzero" "${PROV_ARGS[@]}"
@@ -127,5 +132,5 @@ print(json.dumps({'algo':'mast3r_slam','dataset':'$DATASET','seq':'$SEQ','run_id
                   'run_type':'$RUN_TYPE','use_imu':False,'use_lc':$USE_LC_PY,
                   'duration_s':$DUR,'frames':$NFR,'fps':$NFR/$DUR if $DUR>0 else 0}))
 " > "$OUT_DIR/run_meta.json"
-enrich_run_meta "$OUT_DIR/run_meta.json" "${PROV_ARGS[@]}"
+enrich_run_meta "$OUT_DIR/run_meta.json" --measurement-mode max_throughput "${PROV_ARGS[@]}"
 echo "[mast3r_slam] done (run ${RUN_ID})"

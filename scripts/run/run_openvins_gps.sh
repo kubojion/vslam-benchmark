@@ -92,7 +92,11 @@ pkill -9 -f 'ekf_node|navsat_transform_node|odom_to_tum_ros2|gnss_data_player_ro
 sleep 1
 
 # ---- Resource monitor ------------------------------------------------------
-python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" 1 &
+RUN_CONTAINER="vslam_openvins_gps_${DATASET}_${SEQ}_${RUN_ID}_$$"
+prepare_resource_window "$OUT_DIR"
+python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" \
+    --pid "$$" --container "$RUN_CONTAINER" --interval 1 \
+    --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
 
 # ---- Static TF publishers --------------------------------------------------
@@ -145,6 +149,7 @@ sleep 1.5
 # ---- OpenVINS in Docker (detached, --network host) -------------------------
 OUT_REL=$(realpath --relative-to="$WS" "$OUT_DIR")
 DOCKER_CID=$(docker run --detach --rm \
+    --name "$RUN_CONTAINER" \
     --network host \
     --user "$(id -u):$(id -g)" \
     --volume "$WS:/ws" \
@@ -163,7 +168,8 @@ DOCKER_CID=$(docker run --detach --rm \
 echo "[openvins_gps] Docker container: $DOCKER_CID" | tee -a "$LOG"
 
 cleanup() {
-    kill "$MONPID" "$TF_ODOM_PID" "$TF_IMU_PID" "$TF_GPS_PID" \
+    [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true
+    kill "$TF_ODOM_PID" "$TF_IMU_PID" "$TF_GPS_PID" \
          "$EKF_PID" "$NAVSAT_PID" "$REC_PID" 2>/dev/null || true
     docker kill "$DOCKER_CID" 2>/dev/null || true
     pkill -KILL -f 'ekf_node|navsat_transform_node|odom_to_tum_ros2|static_transform_publisher|gnss_data_player_ros2' 2>/dev/null || true
@@ -174,6 +180,7 @@ sleep 3
 
 # ---- Data player (foreground; publishes cam0/cam1/imu0/fix) ----------------
 START=$(date +%s.%N)
+mark_resource_start "$OUT_DIR"
 python3 "$WS/scripts/run/gnss_data_player_ros2.py" \
     "$SEQ_DIR" \
     --rate 1.0 \
@@ -185,11 +192,14 @@ python3 "$WS/scripts/run/gnss_data_player_ros2.py" \
     --cam-cx "$CAM_CX" --cam-cy "$CAM_CY" \
     --cam-baseline "$CAM_BASELINE" \
     --frame-id-gps gps \
+    --stats-out "$OUT_DIR/transport_stats.json" \
     2>&1 | tee -a "$OUT_DIR/player.log" "$LOG"
-END=$(date +%s.%N)
 
 echo "[openvins_gps] player done, waiting for EKF flush..." | tee -a "$LOG"
 sleep 8
+END=$(date +%s.%N)
+finish_resource_window "$OUT_DIR" "$MONPID"
+MONPID=""
 
 if [[ ! -s "$OUT_DIR/trajectory.txt" ]]; then
     echo "[openvins_gps] ERROR: empty/missing trajectory.txt" | tee -a "$LOG"
@@ -217,6 +227,8 @@ Path("$OUT_DIR/run_meta.json").write_text(json.dumps(d, indent=2))
 print("[openvins_gps] run_meta.json written")
 PYEOF
 enrich_run_meta "$OUT_DIR/run_meta.json" \
+    --measurement-mode transport \
+    --transport-stats "$OUT_DIR/transport_stats.json" \
     --artifact "estimator_config=$OV_CFG_DIR/estimator_config.yaml" \
     --artifact "imu_calibration=$OV_CFG_DIR/kalibr_imu_chain.yaml" \
     --artifact "camera_imu_calibration=$OV_CFG_DIR/kalibr_imucam_chain.yaml" \

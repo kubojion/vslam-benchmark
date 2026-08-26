@@ -4,6 +4,10 @@ New benchmark runs use provenance schema 2. The schema makes every completed
 result traceable to the effective estimator inputs and executable environment
 without storing usernames, hostnames, or private absolute paths.
 
+Runtime and resource semantics are specified separately in
+[run-measurements.md](run-measurements.md). A new completed benchmark run must
+pass both provenance schema 2 and measurement schema 1.
+
 ## What a completed run records
 
 `run_meta.json` contains:
@@ -72,12 +76,13 @@ Validate a newly produced run with:
 ```bash
 python3 scripts/results/validate_run.py \
   results/<run-type>/<dataset>/<sequence>/<algorithm>/run<N> \
-  --check-only --require-provenance 2
+  --check-only --require-provenance 2 --require-measurements 1
 ```
 
-`build_manifest.py` reports provenance as `complete`, `legacy`, or `invalid`.
-The generated HTTP result browser shows the same status on the run table and
-detail pages, and exposes the snapshotted inputs alongside plots and logs.
+`build_manifest.py` reports provenance and measurements independently as
+`complete`, `legacy`, or `invalid`. The generated HTTP result browser shows the
+same statuses on the run table and detail pages, and exposes the snapshotted
+inputs alongside plots and logs.
 
 Run the focused tests with:
 
