@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate and run the serial N=5 quality campaign.
+"""Validate and resume the legacy serial quality campaign definition.
 
 The committed JSON file is the protocol.  Runtime state and logs stay under
 logs/server-campaign/ and make an interrupted campaign safely resumable.
@@ -22,6 +22,8 @@ from typing import Any
 
 
 REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(REPO/'scripts/run'))
+from _config_preflight import select_orb_config, select_basalt_config
 DEFAULT_MANIFEST = REPO / "configs/campaigns/quality-final.json"
 RUN_TYPES = ("vo", "vo-lc", "vio", "vio-lc", "gnss-vio")
 EXCLUDED = {"droidslam", "megasam", "mast3r_slam"}
@@ -187,14 +189,8 @@ def config_groups(cell: dict[str, str]) -> list[tuple[str, tuple[Path, ...]]]:
 
     mode = run_type.replace("-", "_")
     if algorithm == "orbslam3":
-        suffix = {
-            "vo": "stereo", "vo-lc": "stereo_lc",
-            "vio": "stereo_inertial", "vio-lc": "stereo_inertial_lc",
-        }[run_type]
-        paths = [f"configs/orbslam3/{dataset}_{suffix}.yaml"]
-        if dataset == "zed2i" and run_type.startswith("vio"):
-            paths.append(f"configs/orbslam3/{dataset}_{sequence}_stereo_inertial.yaml")
-        require("ORB-SLAM3 sensor profile", *paths)
+        selected = select_orb_config(REPO, dataset, sequence, run_type)
+        require("ORB-SLAM3 sensor profile", str(selected.relative_to(REPO)))
         require("ORB-SLAM3 vocabulary", "src/ORB_SLAM3/Vocabulary/ORBvoc.txt")
     elif algorithm == "okvis2":
         paths = [f"configs/okvis2/{dataset}_{sequence}_{mode}.yaml"]
@@ -218,7 +214,8 @@ def config_groups(cell: dict[str, str]) -> list[tuple[str, tuple[Path, ...]]]:
                 f"configs/airslam/{dataset}_camera.yaml")
     elif algorithm == "basalt":
         require("Basalt calibration", f"configs/basalt/{dataset}_calib.json")
-        require("Basalt estimator profile", f"configs/basalt/{run_type}_config.json")
+        selected = select_basalt_config(REPO, dataset, run_type)
+        require("Basalt estimator profile", str(selected.relative_to(REPO)))
     elif algorithm == "ov2slam":
         require("OV2SLAM profile",
                 f"configs/ov2slam/{dataset}_{sequence}_{mode}.yaml",
@@ -278,7 +275,12 @@ def preflight(
         if not dataset.is_dir():
             errors.append(f"missing dataset: {dataset.relative_to(REPO)}")
             continue
-        for label, candidates in config_groups(cell):
+        try:
+            groups = config_groups(cell)
+        except (ValueError,KeyError,OSError) as exc:
+            errors.append(f"{cell_key(cell)}: configuration validation failed: {exc}")
+            groups = []
+        for label, candidates in groups:
             if not any(path.is_file() and path.stat().st_size > 0 for path in candidates):
                 rendered = " or ".join(str(path.relative_to(REPO)) for path in candidates)
                 errors.append(f"{cell_key(cell)}: missing {label}: {rendered}")
@@ -631,9 +633,9 @@ def execute(doc: dict[str, Any], manifest_hash: str, cells: list[dict[str, str]]
     repeats = doc["repeats"]
     for index, cell in enumerate(cells, 1):
         key = cell_key(cell)
-        if state["cells"].get(key, {}).get("status") == "ok":
-            print(f"[{index:03d}/{len(cells)}] skip completed {key}", flush=True)
-            continue
+        # The old cell status is historical evidence, not a cache validation.
+        # The per-run controller checks current artifacts and never restarts an
+        # occupied physical ID, including genuine failures.
         if not args.disable_idle_guard:
             idle_guard(args.max_load, args.min_free_vram_mib)
         log_path = campaign_dir / f"{index:03d}_{key.replace('/', '__')}.log"
@@ -642,8 +644,12 @@ def execute(doc: dict[str, Any], manifest_hash: str, cells: list[dict[str, str]]
             cell["dataset"], cell["sequence"], cell["algorithm"],
             str(repeats), cell["run_type"],
         ]
+        previous = state["cells"].get(key)
         entry = {**cell, "status": "running", "attempts": [],
                  "started_at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}
+        if previous:
+            entry["previous_invocations"] = previous.get("previous_invocations", []) + [
+                {k:v for k,v in previous.items() if k != "previous_invocations"}]
         state["cells"][key] = entry
         save_state(state_path, state)
 
@@ -737,8 +743,8 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    if args.retry < 0:
-        print("ERROR: --retry cannot be negative", file=sys.stderr)
+    if args.retry != 0:
+        print("ERROR: automatic retries are disabled; preserve failures and plan a new attempt explicitly", file=sys.stderr)
         return 2
     if args.cell_timeout_s < 0:
         print("ERROR: --cell-timeout-s cannot be negative", file=sys.stderr)

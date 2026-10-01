@@ -214,6 +214,24 @@ old destructive cell-wide workflow. Repair/audit completion and verified executi
 readiness must be reported separately; native crashes are not resolved by wrapper
 or syntax checks. See [the extended goal](codex-goal.md#7-prepare-the-future-n3-campaign-without-executing-it).
 
+The wrapper now delegates to `scripts/campaign/run_repetitions.py`. Existing
+physical run IDs are never estimated again: saved trajectories are evaluated,
+partial outputs/failures are retained, and missing outputs after interruption
+require an explicitly planned new attempt. Each new repetition is evaluated before
+the next begins. Atomic per-attempt state, global/cell locks, independent evaluation
+backups, and input/evaluator hash checks protect resumption. The legacy campaign
+driver no longer trusts an old `status=ok` cell entry to skip artifact validation,
+retains prior invocation history, and disables automatic retries. Direct runners
+claim a fresh output directory atomically rather than accepting an occupied one.
+
+Validation: 74 tests plus three subtests pass, including fake-executor interruption,
+partial-output retention, nonzero-exit trajectory recovery, immediate evaluation,
+evaluation-only retry, identity conflict and concurrent-lock cases. One real saved
+ORB/EuRoC trajectory was evaluated through the new CLI into a separate staging path
+and passed its read-only cache check. No estimator was invoked. Container cleanup,
+native crashes and future manifest readiness still need the remaining audit; this
+is not a claim that execution problems are fixed.
+
 Outstanding before this goal is complete:
 
 1. Audit staged numerical changes and failures against actual saved artifacts;
