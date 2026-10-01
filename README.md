@@ -1,12 +1,12 @@
 # vSLAM Benchmark
 
-> **Repair update 2026-10-01:** saved-artifact recovery now provides **545/600 staged
+> **Repair update 2026-10-01:** saved-artifact recovery now provides **545/600 repaired
 > evaluations** for the original four-mode N=3 campaign; 176 cells have three evaluations.
 > These counts include failures and do not certify publication readiness. A future
 > **N=3 campaign across all five modes** is being prepared with the existing exclusions.
 > Start with [TODO](TODO.md), [repair evidence](docs/repair-audit-20261001.md), and
 > [future campaign preparation](docs/campaigns/future-n3-preparation.md).
-> CSVs/reports remain provisional until schema-3 integration and qualification finish.
+> Root CSVs/reports/browser are reconciled; publication qualification remains blocked.
 > No new estimator executions or campaigns are authorized as part of this repair.
 
 
@@ -127,8 +127,8 @@ cd vslam-benchmark
 #       bash scripts/build/setup_megasam_env.sh
 #       bash scripts/build/setup_mast3r_slam_env.sh
 
-# Note: preserve existing result cells before rerunning: run_benchmark.sh replaces
-# a whole cell. Check TODO.md for pending runtime/provenance qualification.
+# Future execution requires readiness and authorization. The controller preserves
+# existing attempts and evaluates each repetition before continuing. See TODO.md.
 
 # 3. drop a dataset under datasets/<dataset>/<seq>/ and convert it
 bash scripts/data/convert_rosario_to_tum.sh datasets/rosariov2/sequence1
@@ -163,22 +163,28 @@ bash scripts/results/serve_site.sh 8080
 * [docs/setup.md](docs/setup.md) - system deps, building Pangolin + ORB-SLAM3, conda envs, Docker containers.
 * [docs/running_algorithms.md](docs/running_algorithms.md) - how to run any algorithm on any dataset / run-type combination.
 * [docs/evaluation.md](docs/evaluation.md) - evaluation pipeline, metric definitions, plot conventions.
-* [docs/result-storage-design.md](docs/result-storage-design.md) - result replacement, completeness, manifest, and browser behavior.
+* [docs/result-storage-design.md](docs/result-storage-design.md) - attempt preservation, evaluation history, manifest, and browser behavior.
 * [PROGRESS.md](PROGRESS.md) - current results tables (VO / VIO / VIO-LC), known issues, dataset-specific notes.
 
 ## Results snapshot
 
-Current completion is documented in [the status audit](docs/campaigns/server-status-20261001.md),
-which counts `run_eval.json` plus COMPLETE markers against the executed manifest. An evaluated
-run can be a recorded collapse and can have partial coverage; completion is not an accuracy claim.
+Current numerical and execution status is documented in [TODO](TODO.md) and
+[the repair audit](docs/repair-audit-20261001.md). The original four-mode campaign
+has 545/600 evaluated repetitions, including five collapses. Across all scopes,
+593 saved evaluations were repaired and promoted without new estimator runs.
 
-The five root `benchmark-*.csv` files are derived exports and currently contain an older
-259-row snapshot. The result store contains 577 complete evaluated artifacts across campaign,
-historical and smoke scopes. Five smoke runs need exclusion from headline discovery.
-The [generated tables](docs/generated/tables.md) and
-[claim numbers](docs/generated/verified-claims.md) also need a synchronized refresh after the
-metric/reporting blockers in the audit are repaired. Do not hand-edit their numeric contents
-or present them as finalized publication results.
+The five root CSVs now contain **666 rows**: 660 planned default repetitions plus
+six separate GNSS variants. Missing runs and failures are explicit; these are not
+666 successes. The [tables](docs/generated/tables.md),
+[evidence counts](docs/generated/verified-claims.md),
+[figures](docs/generated/README.md) and browser use the same checked inventory.
+Historical/smoke results remain inspectable outside headline comparisons.
+
+No current cell is certified as clean publication-ready N=3. The
+[qualification review](docs/publication-qualification-20261001.md) identifies
+specific provenance/reference gaps and 30 confirmed configuration reruns. It does
+not request rerunning every saved result. Old generated reports and figures are
+[archived](docs/generated/historical-before-repair-20261001/README.md).
 
 The historical observations in [PROGRESS.md](PROGRESS.md) require reassessment against the
 corrected calibration, declared configuration cohorts, failures and coverage. In particular,

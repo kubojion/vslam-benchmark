@@ -1,9 +1,10 @@
 # All-configuration repair audit — 2026-10-01
 
 This is a working audit for [the active repair goal](codex-goal.md), covering VO,
-VO-LC, VIO, VIO-LC and GNSS-VIO. The repair is **not yet complete**. Staged numerical
-evaluations do not establish publication qualification, and the root CSVs/site
-have not yet been replaced by this repair.
+VO-LC, VIO, VIO-LC and GNSS-VIO. The repair is **not yet complete**.
+The 593 repaired evaluations, five root CSVs, cell reports, tables, figures and
+browser are now reconciled and promoted. Numerical repair does not establish
+publication qualification; runner/readiness preparation and final checks continue.
 
 The [publication qualification review](publication-qualification-20261001.md) now
 records specific evidence gaps for every retained attempt. All 593 staged JSONs
@@ -32,8 +33,8 @@ The new implementation is in `scripts/eval/_metrics.py`, `_pose_frames.py`,
 `_trajectory_evaluation.py`, `_saved_run.py` and `_run_observations.py`.
 `reevaluate_saved_runs.py` writes a separate staging tree and a manifest.
 `_evaluate_run.py` now uses the shared schema-3 implementation, with evidence and
-evaluator checks and preservation of earlier evaluation bytes. Generators are
-integrated against staging; promotion of the root outputs remains outstanding.
+evaluator checks and preservation of earlier evaluation bytes. Generators use the checked inventory; staging was promoted after numerical and
+review reconciliation. Prior evaluation bytes are retained per run and externally.
 
 ### Physical pose frame
 
@@ -432,3 +433,28 @@ Current manifest totals are **30 required reruns, 87 missing, 543 blocked/review
 none is verified ready to execute. The historical timing subtotal is approximately
 37.2 hours for 25 actions, with 92 of the 117 missing/rerun actions unestimated.
 This supersedes the earlier 24/87/549 draft counts; it is not a full-campaign estimate.
+
+## Published derived outputs
+
+All 593 staged evaluations were promoted with byte equality to their ordinary result
+paths; previous JSONs are independently preserved under each run's `.evaluation_history/`.
+The promotion ledger is `results/repair-20261001/promotion-manifest.json`. Trajectories,
+metadata, logs, config snapshots and COMPLETE markers are unchanged. CSV evaluation
+links now point to the ordinary result folders when they match staging.
+
+The five root CSVs contain 666 planned/variant rows, with 226 cell/variant summaries
+and 690 browser entries. Figures cover all five modes plus separate GNSS variants
+in PNG/PDF and include a machine-readable data/identity file. They are provisional
+diagnostics, not certified comparisons. Eighteen superseded generated files were
+archived with verified hashes under `docs/generated/historical-before-repair-20261001/`.
+The obsolete destructive storage/running instructions are preserved as dated sibling
+documents; the active guides now describe attempt preservation and immediate evaluation.
+
+Post-promotion validation: 133 tests plus three subtests pass; all 226 cell reports,
+tables, claim counts and 19 figure/data outputs reproduce exactly. All 593 targets
+match staging and their prior evaluation archives verify. Comparison with the earlier
+backup checks 3,471 non-evaluation evidence files with no changes. The published
+browser has 696 pages and 8,767 verified local links, with no broken links or legacy
+image previews. The future manifest remains valid and rejects all 660 actions for
+execution readiness, as expected. Earlier stage-specific counts and pending-promotion
+notes in this chronological audit are superseded by this paragraph.

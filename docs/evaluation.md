@@ -1,9 +1,10 @@
 # Evaluation
 
-Status: 2026-10-01, repair in progress. Schema-3 evaluations and reconciled exports
-are validated in `results/repair-20261001/`. Root CSVs, old per-cell reports and the
-results browser remain legacy snapshots until promotion. Scientific qualification
-is still incomplete; numerical evaluation alone never awards an N=3 green tick.
+Status: 2026-10-01, repair in progress. All 593 schema-3 evaluations are promoted to
+their ordinary result paths. Root CSVs, per-cell reports, tables, figures and browser
+are reconciled against `results/repair-20261001/inventory.json`. The
+[qualification review](publication-qualification-20261001.md) identifies specific
+unresolved blockers; numerical evaluation alone never awards an N=3 green tick.
 See [the repair audit](repair-audit-20261001.md) and [the goal](codex-goal.md).
 
 ## Run types and inventory
@@ -117,16 +118,23 @@ configuration and evaluator hashes. Previous metrics are independently preserved
 this repair. Legacy GT interpolation and segmentation caches are not consumed by
 the schema-3 evaluator.
 
-The following commands only rebuild derived staging outputs from saved evidence:
+The following commands rebuild published derived outputs from saved evidence;
+they never launch estimators:
 
 ```bash
 PY=/data/imoroz/conda/envs/macvo/bin/python
 python3 scripts/campaign/build_repair_inventory.py
-$PY scripts/eval/build_benchmark_csv.py all --output-dir results/repair-20261001/exports
-$PY scripts/eval/_aggregate_runs.py --all --output-root results/repair-20261001/cell-reports
-$PY scripts/eval/make_report_tables.py --csv-dir results/repair-20261001/exports --output-dir results/repair-20261001/tables
-$PY scripts/eval/_aggregate_runs.py --all --output-root results/repair-20261001/cell-reports --check
-$PY scripts/eval/make_report_tables.py --csv-dir results/repair-20261001/exports --output-dir results/repair-20261001/tables --check
+$PY scripts/eval/build_benchmark_csv.py all
+$PY scripts/eval/_aggregate_runs.py --all
+$PY scripts/eval/make_report_tables.py
+$PY scripts/eval/verify_claims.py
+$PY scripts/eval/make_report_figures.py
+$PY scripts/results/build_manifest.py
+$PY scripts/results/build_site.py
+$PY scripts/eval/_aggregate_runs.py --all --check
+$PY scripts/eval/make_report_tables.py --check
+$PY scripts/eval/verify_claims.py --check
+$PY scripts/eval/make_report_figures.py --check
 ```
 
 `--check` is read-only: it regenerates expected bytes in memory and rejects stale
@@ -134,15 +142,25 @@ source CSVs or report contents. This proves reconciliation with the hash-checked
 inventory, not scientific correctness by itself. Replaced derived files are
 preserved under `results/.derived-history/` before atomic replacement.
 
-The browser generator now consumes the same inventory, with separate numerical,
+For changed evaluation code or input evidence, back up staging and regenerate with
+`reevaluate_saved_runs.py --stage results/repair-20261001`, then rebuild/check the
+inventory. `promote_repaired_evaluations.py` performs a read-only promotion preflight;
+`--apply` preserves previous JSONs and promotes checked staging. Rebuild the inventory
+after promotion, then regenerate the dependent outputs above. An interrupted promotion
+can resume after inventory reconstruction; matching targets are skipped. Do not change
+original run metadata to make qualification checks pass.
+
+The browser generator consumes the same inventory, with separate numerical,
 execution, qualification, variant and membership fields. Its schema-2 manifest and
-690-entry browser are staged at `results/repair-20261001/browser-manifest.json` and
-`results/repair-20261001/site/`. Root browser promotion is still pending. Each detail
+690-entry browser are at `results/manifest.json` and `results/site/`. Each detail
 page links the current numerical evaluation separately from historical artifacts;
 legacy figures are labelled and not previewed as repaired plots. Historical/smoke
 entries are outside the default browser filter.
 
-Legacy trajectory/segment/FPS figures still need replacement with validated figures
-or archival. They must not be presented as current repaired evidence.
+Current all-mode figures use checked CSVs, separate scale models/cohorts and carry
+explicit provisional labels. Their exact inputs, cell data and PNG/PDF hashes are in
+`docs/generated/figures/figure-data.json`. Old report figures are archived under
+`docs/generated/historical-before-repair-20261001/`. Legacy per-run plots remain raw
+historical artifacts in the browser and must not be presented as repaired evidence.
 The earlier hand-transcribed/legacy report definitions are preserved in Git and the
 verified pre-repair backup, rather than mixed with this protocol.

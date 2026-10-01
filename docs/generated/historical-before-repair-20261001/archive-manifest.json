@@ -1,0 +1,95 @@
+{
+  "status": "verified_before_removal",
+  "records": [
+    {
+      "original": "docs/generated/figures/fig_determinism.png",
+      "archive": "docs/generated/historical-before-repair-20261001/figures/fig_determinism.png",
+      "sha256": "75572e71ac1121c7eea32d3ac3cbe76c4c81f73a19359622919b986966ba13fb"
+    },
+    {
+      "original": "docs/generated/figures/fig_imu_excitation.png",
+      "archive": "docs/generated/historical-before-repair-20261001/figures/fig_imu_excitation.png",
+      "sha256": "39f42f5f553153795130558f76fc25e2ac93de70128f60eeb9ebec086c10a117"
+    },
+    {
+      "original": "docs/generated/figures/fig_imu_signal_excitation_bands.png",
+      "archive": "docs/generated/historical-before-repair-20261001/figures/fig_imu_signal_excitation_bands.png",
+      "sha256": "a3e3efcfa239bd5bcdecff606e588d55fc66207ebd5a3a75f9ee0abbc774f65c"
+    },
+    {
+      "original": "docs/generated/figures/fig_imu_signal_excitation_cdf.png",
+      "archive": "docs/generated/historical-before-repair-20261001/figures/fig_imu_signal_excitation_cdf.png",
+      "sha256": "7d797703d70b4c0ecb6a8fb5fa4bce9ec6886c56ac086cdb443fb8bdc221c6db"
+    },
+    {
+      "original": "docs/generated/figures/fig_imu_signal_excitation_spectra.png",
+      "archive": "docs/generated/historical-before-repair-20261001/figures/fig_imu_signal_excitation_spectra.png",
+      "sha256": "e2ccf36ebb83433052d4ae0a606377a58753c00a140f958e48960de478389345"
+    },
+    {
+      "original": "docs/generated/figures/fig_imu_signal_excitation_summary.png",
+      "archive": "docs/generated/historical-before-repair-20261001/figures/fig_imu_signal_excitation_summary.png",
+      "sha256": "297a21c2cbdbba8f659a4bf37a903979f2dd8e278ddbe80f00f6f6576d44ad57"
+    },
+    {
+      "original": "docs/generated/figures/fig_lc_mechanism.png",
+      "archive": "docs/generated/historical-before-repair-20261001/figures/fig_lc_mechanism.png",
+      "sha256": "d8bc0315708d2e435d202b92acb54e793a679bb5f5f65daf10a982079ceadfa1"
+    },
+    {
+      "original": "docs/generated/figures/fig_master_vio_heatmap.png",
+      "archive": "docs/generated/historical-before-repair-20261001/figures/fig_master_vio_heatmap.png",
+      "sha256": "58b6189be0ce49deab993b67f083cd1034f65b65eaea59f2cf486e7d49c3805f"
+    },
+    {
+      "original": "docs/generated/figures/fig_master_vo_heatmap.png",
+      "archive": "docs/generated/historical-before-repair-20261001/figures/fig_master_vo_heatmap.png",
+      "sha256": "ef52f87f301f7d75c91a021f09e3e4eddeebf46d690b70c48fa0e064ac69a1be"
+    },
+    {
+      "original": "docs/generated/figures/fig_orb_progression.png",
+      "archive": "docs/generated/historical-before-repair-20261001/figures/fig_orb_progression.png",
+      "sha256": "5d6ee4e69beb4011d980549f0f44befc1b405b0901f127d2c91459c86501a288"
+    },
+    {
+      "original": "docs/generated/figures/imu_signal_excitation_metrics.csv",
+      "archive": "docs/generated/historical-before-repair-20261001/figures/imu_signal_excitation_metrics.csv",
+      "sha256": "efaf13e5cdbde82519d9a7fe1d4445d03740fe20e65e9db0b4fc7fad08bca0ce"
+    },
+    {
+      "original": "docs/generated/tables-gnss-vio.md",
+      "archive": "docs/generated/historical-before-repair-20261001/tables-gnss-vio.md",
+      "sha256": "7f7238416a388cf6d633c4081f5ad63e0ce45c30b789ef5d9aad2dfc7c736f83"
+    },
+    {
+      "original": "docs/generated/tables-vio-lc.md",
+      "archive": "docs/generated/historical-before-repair-20261001/tables-vio-lc.md",
+      "sha256": "6862c00ba7bd58a177220f0761c6947ff5c1ae1927ccd746e95f5652debe066e"
+    },
+    {
+      "original": "docs/generated/tables-vio.md",
+      "archive": "docs/generated/historical-before-repair-20261001/tables-vio.md",
+      "sha256": "763baa72abfb93916b0f7b3f4b731bccaa0ba7b3b62375fdc34bdb3c055d4a91"
+    },
+    {
+      "original": "docs/generated/tables-vo-lc.md",
+      "archive": "docs/generated/historical-before-repair-20261001/tables-vo-lc.md",
+      "sha256": "142af55672594614a4831cddbf73852ddf343163bde4c30da102f9b0d5554130"
+    },
+    {
+      "original": "docs/generated/tables-vo.md",
+      "archive": "docs/generated/historical-before-repair-20261001/tables-vo.md",
+      "sha256": "2f8b5587985e86346e37a31b40686ff389f46c9f23be5c1b7247a4d68d19ca60"
+    },
+    {
+      "original": "docs/generated/tables.md",
+      "archive": "docs/generated/historical-before-repair-20261001/tables.md",
+      "sha256": "6a1e24b42e59157a520a7113f69c3d23c8d40980e8a48548e059ab353b603882"
+    },
+    {
+      "original": "docs/generated/verified-claims.md",
+      "archive": "docs/generated/historical-before-repair-20261001/verified-claims.md",
+      "sha256": "faddd579071b5f755db71f0ced207e753e0cd507bacf9a41f712c06d265ba3e2"
+    }
+  ]
+}

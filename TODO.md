@@ -1,15 +1,15 @@
 # vSLAM Benchmark - TODO
 
 > **Repair update 2026-10-01.** Original matrices and task-table layouts retained.
-> The original four-mode campaign now has **545/600 staged evaluations** after seven
+> The original four-mode campaign now has **545/600 repaired evaluations** after seven
 > saved trajectories were recovered: **176 cells at N=3, 17 at N=1, seven at N=0**.
-> Five evaluated attempts retain scale collapse. **55 repetitions lack a staged
+> Five evaluated attempts retain scale collapse. **55 repetitions lack an
 > evaluation; this does not mean 55 new executions are needed.**
 > The future target is **N=3 across all five modes**, retaining existing algorithm exclusions.
 > GNSS's 20 legacy default attempts and six variants remain separate from the original
-> server campaign. Qualification and the executable future manifest are still in progress.
-> **No green publication ticks are awarded while that review is incomplete.**
-> CSVs/reports await schema-3 integration and promotion. No estimator was launched during
+> server campaign. Specific qualification blockers and the guarded future manifest are documented.
+> **No green publication ticks are awarded with unresolved qualification blockers.**
+> Root CSVs, evaluations, reports, figures and browser are reconciled. No estimator was launched during
 > this repair. See [repair evidence](docs/repair-audit-20261001.md) and [the goal](docs/codex-goal.md).
 
 ---
@@ -26,7 +26,7 @@ Legend per cell: ✅ N=3 scientifically qualified for the documented claim | �
 ❌ failed attempt, no complete evaluation | ⏳ output exists, evaluation pending |
 ⬜ not run / config only | 🔧 config missing | ➖ excluded / unsupported | 🔁 configuration review needed.
 
-**N counts schema-3 staged evaluations, including retained failures**, independently of
+**N counts current schema-3 evaluations, including retained failures**, independently of
 historical COMPLETE markers. `N=0` can include an attempted crash. `N=1; +2` means two
 target repetitions still lack evaluations, subject to configuration/cohort review.
 `collapse r2` retains a negative outcome. `invalid trajectory` is an evaluation failure,
@@ -66,7 +66,7 @@ repetitions; none is yet certified ready to execute.
 > cohort. Evaluation cannot repair the estimator-side setting.
 > DROID-SLAM is historical and excluded from the target. MASt3R/MegaSaM OOM notes refer
 > to the earlier 12 GB machine, not a verified OOM measurement on this 24 GB server.
-> DPVO is monocular; DPV-SLAM is its VO-LC variant. Current headline metric labeling needs repair.
+> DPVO is monocular; DPV-SLAM is its VO-LC variant. Current headline labels use Sim(3) for both monocular modes.
 
 ### VIO (stereo + IMU, no loop closure) - `results/vio/`
 
@@ -82,7 +82,7 @@ repetitions; none is yet certified ready to execute.
 
 > HortiMulti IMU and rectified camera–IMU corrections are implemented. All seven non-ZED
 > sequences have N=3 for six algorithms; **OpenVINS remains N=1 in every cell**. Six
-> previously unscored run1 trajectories are evaluated in staging, retaining exit 134.
+> previously unscored run1 trajectories have repaired evaluations, retaining exit 134.
 > Rosario seq1/seq5 contain catastrophic scale failures; shutdown errors do not explain
 > away those failures. Other recovered trajectories remain under review.
 > **ZED:** the six N=1 results use the corrected camera-optical/IMU transform. OpenVINS
@@ -104,7 +104,7 @@ repetitions; none is yet certified ready to execute.
 
 > **OKVIS2:** all seven non-ZED cells now have N=3 after the September 23 recovery,
 > using the later final-full-BA-disabled configuration. On ZED, run1 finished (exit 0,
-> 46,282 output poses) and is evaluated in staging (ATE 0.720 m, with reference limitations).
+> 46,282 output poses) and has a repaired evaluation (ATE 0.720 m, with reference limitations).
 > Its historical COMPLETE marker is still absent. Run2 was killed and run3 is absent.
 > The repaired wrapper preserves attempts and evaluates each repetition immediately.
 > **OKVIS2-X ZED:** no complete evaluated run; latest recovery stopped near initialization.
@@ -384,18 +384,18 @@ server runners. Remaining gaps are shown in the matrices above.
 
 | Task | Status |
 |---|---|
-| Rebuild `benchmark-vo.csv` after ORB-SLAM3 VO-clean results land | `[ ]` |
-| Rebuild `benchmark-vio.csv` after N=3 runs (Basalt/ORB-SLAM3/OpenVINS) | `[ ]` |
+| Rebuild `benchmark-vo.csv` after ORB-SLAM3 VO-clean results land | `[x]` current 192 planned rows; unresolved ORB attempts remain visible |
+| Rebuild `benchmark-vio.csv` after N=3 runs (Basalt/ORB-SLAM3/OpenVINS) | `[x]` current 168 planned rows; missing repetitions are explicit |
 | Add MASt3R-SLAM to applicable CSVs | `[ ]` deferred scope extension, not a missing N=3 obligation |
 | Generate segment maps for all new Phase 2 sequences | `[ ]` |
-| Final cross-algo ATE plots (VO vs VIO per sequence) | `[ ]` |
+| Final cross-algo ATE plots (VO vs VIO per sequence) | `[~]` all-mode provisional diagnostics generated; publication comparisons blocked by qualification |
 | Thesis-ready LaTeX table | `[ ]` |
-| Exclude five COMPLETE smoke artifacts from headline discovery | `[ ]` preserve their evidence; current builder would include them |
-| DPVO metric labeling and mixed-status / failure counts | `[ ]` headline SE3/Sim3 mismatch; retain failures and repeat denominators |
-| RPE, GNSS origin alignment, ZED orientation and sparse-output coverage semantics | `[ ]` repair/relabel and re-evaluate affected trajectories |
-| GT/segmentation cache freshness and deferred segment coalescing | `[ ]` verify before re-evaluation |
-| Refresh all CSVs, tables/claims, figures and browser together | `[ ]` root CSVs still 259 rows; current store has 577 complete evaluations across mixed scopes |
-| Freeze source/config/binary provenance and declare final N / GNSS scope | `[ ]` current dirty source and configuration cohorts require reconciliation |
+| Exclude five COMPLETE smoke artifacts from headline discovery | `[x]` explicit campaign membership; all smoke/historical evidence retained |
+| DPVO metric labeling and mixed-status / failure counts | `[x]` monocular Sim(3), metric SE(3); failures and planned denominators retained |
+| RPE, GNSS origin alignment, ZED orientation and sparse-output coverage semantics | `[x]` corrected definitions, unsupported metrics withheld; 593 evaluations reconciled |
+| GT/segmentation cache freshness and deferred segment coalescing | `[x]` hash-bound inputs and corrected geometric segment generation |
+| Refresh all CSVs, tables/claims, figures and browser together | `[x]` 666 CSV rows, 226 cell/variant summaries, 690 browser entries; failures remain explicit |
+| Freeze source/config/binary provenance and declare final N / GNSS scope | `[!]` future N=3 all five modes declared; exact historical runner/native build gaps remain |
 
 ---
 
@@ -403,14 +403,14 @@ server runners. Remaining gaps are shown in the matrices above.
 
 | Algorithm | Reason |
 |---|---|
-| DROID-SLAM | "Bulky, old, requires tons of resources" (supervisor). N=3 results kept in `results-vo/` as historical reference. |
+| DROID-SLAM | Historical exclusion retained. Original attribution is documented in the audit; saved results are under `results/vo/`, outside campaign comparisons. |
 | Stella-VSLAM | "Mostly reimplementation of ORB-SLAM3, adds nothing" (supervisor). |
 | VINS-Fusion | Overlaps Basalt + OpenVINS; ROS1 only. |
 | SVO Pro Open | ROS1 Melodic only; frozen toolchain. |
 | DSO / Stereo-DSO | Misaligned with stereo-IMU direction. |
 | cuVSLAM | Closed-source (NVIDIA). Cite KITTI numbers only. |
 | Kimera-VIO | Overlaps OpenVINS. |
-| MegaSaM | Lower priority than MASt3R-SLAM and DPVO; keep as optional. |
+| MegaSaM | Excluded from the current and future campaign manifest; old memory failures do not establish a 4090 limit. |
 
 ---
 

@@ -69,6 +69,8 @@ def saved_attempt(repo,relative,stage):
     run=repo/'results'/relative;meta=read(run/'run_meta.json')
     staged=stage/'evaluations'/relative/'run_eval.json'
     value=read(staged)
+    published=run/'run_eval.json'
+    current=published if staged.is_file() and published.is_file() and staged.read_bytes()==published.read_bytes() else staged
     blockers=[]
     if value:
         for item in value.get('evaluation_provenance',{}).get('inputs',[])+value.get('pose_frames',{}).get('evidence',[]):
@@ -96,7 +98,8 @@ def saved_attempt(repo,relative,stage):
     qualification=review_saved(relative,meta,value,findings,snapshot_records,exists=run.is_dir())
     return dict(path='results/'+relative,exists=run.is_dir(),files=files,
         trajectory_saved=(run/'trajectory.txt').is_file(),historical_complete=(run/'COMPLETE').is_file(),
-        evaluated=bool(value),evaluation_path=str(staged.relative_to(repo)) if value else None,
+        evaluated=bool(value),evaluation_path=str(current.relative_to(repo)) if value else None,
+        staged_evaluation_path=str(staged.relative_to(repo)) if value else None,
         numerical_status=value.get('run_status'),process=process,
         qualification=qualification,confirmed_protocol_findings=findings,
         pose_frame_blockers=value.get('pose_frames',{}).get('blockers',[]),

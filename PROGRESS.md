@@ -1,7 +1,7 @@
 # vSLAM Benchmark - Progress
 
 > Current repair status: **2026-10-01**, in progress. The original four-mode RTX 4090
-> N=3 campaign has **545/600 staged evaluations: 176 cells at N=3, 17 at N=1, seven
+> N=3 campaign has **545/600 repaired evaluations: 176 cells at N=3, 17 at N=1, seven
 > without a staged evaluation**. Five evaluated attempts retain scale collapse.
 > See [TODO](TODO.md) and [the repair audit](docs/repair-audit-20261001.md).
 > The older summaries and numbered findings below are dated historical observations;
@@ -94,6 +94,14 @@
   mark provisional scores. Unsupported causal IMU/loop-closure and processing-rate
   claims were removed. Validation: 131 tests and three subtests pass. Root output
   promotion is the next step; these generated diagnostics are still in staging.
+
+- Promoted all 593 repaired evaluations, preserving earlier JSONs per run. Rebuilt
+  the five root CSVs (666 planned/variant rows), 226 cell/variant reports, current
+  tables/claim counts, all-mode PNG/PDF diagnostics and the 690-entry browser.
+  Archived 18 superseded generated files with checksums. Ordinary result paths
+  now expose the repaired metrics; original run evidence and markers are unchanged.
+  Storage/running guides now describe safe per-attempt resumption. The earlier
+  stage notes above remain chronological records, not current promotion blockers.
 
 ## 2026-10-01 — Initial server inventory (before the repair above)
 

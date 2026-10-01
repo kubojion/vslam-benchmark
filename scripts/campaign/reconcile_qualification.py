@@ -16,7 +16,7 @@ def main():
     for attempt in [a for c in inventory['cells'] for a in c['attempts']]+inventory['other_artifacts']:
         if not attempt.get('evaluation_path'):
             continue
-        path = REPO/attempt['evaluation_path']
+        path = REPO/(attempt.get('staged_evaluation_path') or attempt['evaluation_path'])
         value = json.loads(path.read_text())
         before = {k: v for k, v in value.items() if k not in ('qualification', 'qualification_provenance')}
         apply_review(REPO, REPO/attempt['path'], value)

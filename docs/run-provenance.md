@@ -41,9 +41,18 @@ Failed and interrupted runs never receive `COMPLETE`. Runners that can safely
 identify the primary process also write a failed `run_meta.json` with its real
 exit code. Partial logs remain available for diagnosis.
 
-Historical runs migrated into `results/` before schema 2 remain valid and are
-labelled `legacy` rather than being retroactively assigned provenance that was
-not captured at execution time.
+Historical runs migrated into `results/` before schema 2 remain preserved and are
+labelled `legacy`. Their scientific validity requires separate evidence; they are
+not retroactively assigned provenance that was not captured at execution time.
+
+The historical schema-2 collector stored dirty diff digests without the bytes and
+did not identify every dynamically linked or container-built estimator binary.
+Passing the schema contract therefore does not establish exact implementation
+reproducibility. The [qualification review](publication-qualification-20261001.md)
+records these gaps per run, including dirty nested-source summaries. Preserve
+historical hashes and recover their underlying evidence rather than relabelling
+them with today's source or repaired runner. Future collection still needs a
+reviewed complete source/build capture before execution can be certified ready.
 
 ## Algorithm contracts
 

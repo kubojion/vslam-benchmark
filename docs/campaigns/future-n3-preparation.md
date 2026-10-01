@@ -35,14 +35,14 @@ input hashes and provenance blockers. Original trajectories are unchanged.
 manifest consumed by `scripts/campaign/run_future_manifest.py`. It is deliberately
 **in progress**, not a final campaign release or a claim of readiness.
 
-Current classification before qualification decisions are complete:
+Current classification after the historical evidence review:
 
 | Category | Logical repetitions | Meaning |
 |---|---:|---|
 | Required rerun | 30 | Six ORB ZED FPS cases, 18 AirSLAM EuRoC inertial rectification cases and six ORB Horti VIO-LC rectification cases; preserve previous cohorts |
 | Missing | 87 | No saved default attempt directory for that repetition |
-| Blocked/review | 543 | Saved results or failed/partial attempts need the specified review/recovery |
-| Reusable, qualified | 0 certified yet | Existing outcomes are being assessed; this does not mean all must be rerun |
+| Blocked/review | 543 | Specific provenance/reference or failed-attempt prerequisites remain unresolved |
+| Reusable, qualified | 0 certified yet | Strong publication qualification lacks required evidence; this does not mean all must be rerun |
 
 All 660 actions are currently unverified for future execution. The 30 reruns and
 87 missing repetitions retain prerequisites; their category is not permission to
@@ -58,7 +58,8 @@ estimate.** It excludes unresolved blocked actions, validation diagnostics and
 re-evaluation overhead. Each action records the source runs, observed range, pacing
 mode and uncertainty. Old-machine GNSS times and early failures are not treated as
 full server-runtime estimates. Execution is serialized because estimators share
-containers, CPU/GPU resources and some native output locations.
+containers and CPU/GPU resources. Included wrappers now isolate their native outputs
+per attempt, with actual post-repair native execution still unverified.
 
 ## Read-only validation and regeneration
 
@@ -97,8 +98,10 @@ execution begins require an explicit new campaign revision, preserving old state
 - `_evaluate_run.py` uses schema 3, checks input/evaluator hashes and saves independent
   content-addressed copies of earlier evaluation JSONs before replacing them.
   It does not create historical COMPLETE markers or scientific qualification ticks.
-- No report aggregation is allowed to infer success from one successful attempt in
-  a mixed cell. Report/site integration with the authoritative inventory is ongoing.
+- No report aggregation infers success from one successful attempt in a mixed cell.
+  Root evaluations, CSVs, cell reports, tables, figures and browser are now reconciled
+  with the authoritative inventory. The [claim review](../publication-qualification-20261001.md)
+  records historical evidence gaps separately from the 30 confirmed reruns.
 
 ## Completion and readiness are distinct
 
@@ -134,10 +137,10 @@ Uninstrumented processing counts/FPS stay unknown; available-input/wall-time rat
 are nominal. See [measurement semantics](../run-measurements.md). Historical saved
 metadata and processing claims remain preserved as evidence.
 
-Current validation: 126 tests plus three subtests pass. Manifest structure and
+Current validation: 133 tests plus three subtests pass. Manifest structure and
 evidence hashes validate for all 660 actions; `--require-ready` correctly refuses
-all 660 because readiness prerequisites remain unresolved. The staged browser has
-690 entries/696 pages, with 8,174 checked local links and no broken link or legacy
+all 660 because readiness prerequisites remain unresolved. The published browser has
+690 entries/696 pages, with 8,767 checked local links and no broken link or legacy
 image preview. Evidence is under `results/repair-20261001/` in
 `future-manifest-validation.json` and `browser-validation.json`. This does not
 complete the outstanding scientific qualification, root-output promotion or cleanup.
