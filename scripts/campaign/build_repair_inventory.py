@@ -113,13 +113,14 @@ def saved_attempt(repo,relative,stage):
 
 
 def runtime_estimate(attempts):
-    # Use the same cell and server only. Failed/partial/shutdown attempts cannot
-    # establish the time to process a complete future repetition.
+    # Use the same cell and server only. Failed/partial/shutdown attempts and
+    # confirmed invalid configurations cannot establish a corrected run's time.
     times=[];sources=[];modes=set()
     for a in attempts:
         runtime=a['runtime'];seconds=runtime.get('end_to_end_time_s')
         coverage=a.get('coverage',{}).get('coverage_gap_pct')
         if (a['machine_id']==SERVER and a['process'].get('exit_code')==0 and
+            not a.get('confirmed_protocol_findings') and
             not a.get('qualification',{}).get('native_error_observations') and
             a['numerical_status']=='ok' and isinstance(seconds,(int,float)) and seconds>0 and
             isinstance(coverage,(int,float)) and coverage>=95):

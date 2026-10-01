@@ -1,5 +1,9 @@
 # Acceptance review validation — 2026-10-01
 
+> Historical validation of acceptance checkpoint `e0ee49b`. The subsequent
+> [matched-session validation](reference-validation-20261001.md) supersedes current
+> numerical-change and action counts. The checks below describe that earlier snapshot.
+
 The focused review is complete within its no-estimation scope. See the
 [acceptance handoff](acceptance-handoff-20261001.md) for decisions and remaining
 actions, and [claim criteria](paper-acceptance-20261001.md) for their meaning.

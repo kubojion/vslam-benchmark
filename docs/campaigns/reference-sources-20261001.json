@@ -1,0 +1,474 @@
+{
+  "schema": 1,
+  "status": "matched_session_review_complete_with_explicit_unresolved_blockers",
+  "retrieved_utc": "2026-10-01",
+  "files": [
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-feb-calibration.yaml",
+      "url": "https://s3.eidf.ac.uk/eidf258-hortimulti-a-multi-sensor-dataset-for-polytunnels/Feb2026/Strawberry/calibration.yaml",
+      "sha256": "37b321c6bb5c9bcfebc08399d11bfcc8e5ec2d872d6cf375c176a9c671370340",
+      "bytes": 6961
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-feb-str02-GT.csv",
+      "url": "https://s3.eidf.ac.uk/eidf258-hortimulti-a-multi-sensor-dataset-for-polytunnels/Feb2026/Strawberry/Strawberry_2/GT_trajectory.csv",
+      "sha256": "b7172b7c505bd9ee94e0a278fcd865d645b88ccf00a3d5f92d914e7348950d8e",
+      "bytes": 432159
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-feb-str03-GT.csv",
+      "url": "https://s3.eidf.ac.uk/eidf258-hortimulti-a-multi-sensor-dataset-for-polytunnels/Feb2026/Strawberry/Strawberry_3/GT_trajectory.csv",
+      "sha256": "bc112aff7736e04d49353d58a9d24124692a05346db1f8ae224ac4c0c728b3a2",
+      "bytes": 216056
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-bag-prefix",
+      "url": "https://s3.eidf.ac.uk/eidf258-hortimulti-a-multi-sensor-dataset-for-polytunnels/Feb2026/Strawberry/Strawberry_2/Strawberry_2.bag",
+      "sha256": "8f94524120d31700fd0db4423580d05e27105190108b3d4b3b8cfccb4e873508",
+      "bytes": 16777216,
+      "http_range": "bytes=0-16777215",
+      "full_bag_downloaded": false
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-str03-bag-prefix",
+      "url": "https://s3.eidf.ac.uk/eidf258-hortimulti-a-multi-sensor-dataset-for-polytunnels/Feb2026/Strawberry/Strawberry_3/Strawberry_3.bag",
+      "sha256": "75b5849c790676f650897cd63e4f98e87930a3342b82f117bebe97d2b9c5d8fc",
+      "bytes": 16777216,
+      "http_range": "bytes=0-16777215",
+      "full_bag_downloaded": false
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-calibration-kalibr_ir_stereo_imu.tar.gz",
+      "url": "http://fs01.cifasis-conicet.gov.ar:90/~robot_desmalezador/rosariov2/calibration/kalibr_ir_stereo_imu.tar.gz",
+      "sha256": "5d4276b16ee0a5714fb43977f55f7b35b3614f0f4fd45f6e0f9b5b57b052169b",
+      "bytes": 2285
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-calibration-kalibr_ir_stereo.tar.gz",
+      "url": "http://fs01.cifasis-conicet.gov.ar:90/~robot_desmalezador/rosariov2/calibration/kalibr_ir_stereo.tar.gz",
+      "sha256": "304587fa68e3ac96234dd880921f493116e1e1f05cb0b95867e4560adf1b06d9",
+      "bytes": 2074558
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-seq1-GT.csv",
+      "url": "http://fs01.cifasis-conicet.gov.ar:90/~robot_desmalezador/rosariov2/sequences_plain/mins_tum/2023-12-22-13-14-16_mins_tum.csv",
+      "sha256": "d6f5e2da9a8fa95a60689c45753c2e6bccb584aba4b9b86b07928e60bb35edaf",
+      "bytes": 1400801
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-seq1-bag-prefix",
+      "url": "http://fs01.cifasis-conicet.gov.ar:90/~robot_desmalezador/rosariov2/sequences/2023-12-22-13-14-16.compressed.bag",
+      "sha256": "12becea81cae7d28f71102068ae36a2fea70f2e7e741f1578690a00a1abf7827",
+      "bytes": 8388608,
+      "http_range": "bytes=0-8388607",
+      "full_bag_downloaded": false
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-seq5-GT.csv",
+      "url": "http://fs01.cifasis-conicet.gov.ar:90/~robot_desmalezador/rosariov2/sequences_plain/mins_tum/2023-12-26-15-10-15_mins_tum.csv",
+      "sha256": "5cbcf9b73d503ee40572a9deba01e20697b7d5ff3b66b48618c72d91ca9e9430",
+      "bytes": 1194182
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-seq5-bag-prefix",
+      "url": "http://fs01.cifasis-conicet.gov.ar:90/~robot_desmalezador/rosariov2/sequences/2023-12-26-15-10-15.compressed.bag",
+      "sha256": "d12c4b4147147fc06b0bbe7750590cfdba07a008bc78c563743ac17126e9e313",
+      "bytes": 8388608,
+      "http_range": "bytes=0-8388607",
+      "full_bag_downloaded": false
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-kalibr-aprilgrid_calib_2-camchain-imucam.yaml",
+      "sha256": "76b3309c2b9c56989d8e38d9254259ed4834a20c17cfc1f5771623f610370afb",
+      "bytes": 1755,
+      "source_archives": [
+        "rosario-calibration-kalibr_ir_stereo_imu.tar.gz",
+        "rosario-calibration-kalibr_ir_stereo.tar.gz"
+      ]
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-kalibr-aprilgrid_calib_2-results-out.txt",
+      "sha256": "3e4a613e8abc398e135a61539be4cefa6a98bea28a5ab825922de1930eb761a8",
+      "bytes": 1718,
+      "source_archives": [
+        "rosario-calibration-kalibr_ir_stereo_imu.tar.gz",
+        "rosario-calibration-kalibr_ir_stereo.tar.gz"
+      ]
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-kalibr-aprilgrid_calib_2-imu.yaml",
+      "sha256": "e6805f2396b4e3f961fa957a2a12434d8625bd597101a6a1ba875be1f852a146",
+      "bytes": 404,
+      "source_archives": [
+        "rosario-calibration-kalibr_ir_stereo_imu.tar.gz",
+        "rosario-calibration-kalibr_ir_stereo.tar.gz"
+      ]
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-kalibr-aprilgrid_calib_2-results-cam.txt",
+      "sha256": "e3b5afa9f5d772b374010c8b74a7ef2333561976fbf3ccbf9960aac83ced896b",
+      "bytes": 1267,
+      "source_archives": [
+        "rosario-calibration-kalibr_ir_stereo_imu.tar.gz",
+        "rosario-calibration-kalibr_ir_stereo.tar.gz"
+      ]
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-kalibr-aprilgrid_calib_2-results-imucam.txt",
+      "sha256": "40979a824a836b5fae299b89ee3a167238c16d348646d35c102d3d9d0330ed47",
+      "bytes": 3985,
+      "source_archives": [
+        "rosario-calibration-kalibr_ir_stereo_imu.tar.gz",
+        "rosario-calibration-kalibr_ir_stereo.tar.gz"
+      ]
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-kalibr-aprilgrid_calib_2-camchain.yaml",
+      "sha256": "692a2bcd49e57175efdb4a29e06495ff1edebc6893d926fce1a8e789a963a6d4",
+      "bytes": 1037,
+      "source_archives": [
+        "rosario-calibration-kalibr_ir_stereo_imu.tar.gz",
+        "rosario-calibration-kalibr_ir_stereo.tar.gz"
+      ]
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/LVI-SAM-Easyused-PolyTunnel_camera.yaml",
+      "sha256": "59be1feee58052c557f0b179da444c84d0b066bb006ea9eaea321c20abee1351",
+      "bytes": 3913,
+      "kind": "additional_research_source_not_a_replacement_for_matching_session_calibration"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/LVI-SAM-Easyused-PolyTunnel_lidar.yaml",
+      "sha256": "1ed7ed2cfd84a0ce80f0fbef45b0e93e7f9e36a20bedde2b49d287f76c399b91",
+      "bytes": 5579,
+      "kind": "additional_research_source_not_a_replacement_for_matching_session_calibration"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/Semantic-LIOSAM-mapOptmization.cpp",
+      "sha256": "2cb75cab264a7c1b5e06d5158468372e0884aadceaddd5b83f7a58d7c609d90e",
+      "bytes": 77615,
+      "url": "https://raw.githubusercontent.com/shuoyuanxu/Semantic-LIOSAM/9cc51f618da6f1341fd1e4db15b9015c91dfc6a8/src/mapOptmization.cpp"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/Semantic-LIOSAM-params.yaml",
+      "sha256": "29be9df57628cd0735d801e5dfd9a23f9d7b16e077a71c1bdd25a0030bdd8c94",
+      "bytes": 10407,
+      "url": "https://raw.githubusercontent.com/shuoyuanxu/Semantic-LIOSAM/9cc51f618da6f1341fd1e4db15b9015c91dfc6a8/config/params.yaml"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/Semantic-LIOSAM-polytunnel.urdf.xacro",
+      "sha256": "d71286caa7a07eb94b97a96b7c35c56fa2689cecf9986e740790ac7a8a7ef8d6",
+      "bytes": 1538,
+      "url": "https://raw.githubusercontent.com/shuoyuanxu/Semantic-LIOSAM/d0d8dfd5bbcf4d8d2d441f086f210a621d662688/config/polytunnel.urdf.xacro"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/bag-prefix-evidence.json",
+      "sha256": "19fba0ecbed86ac12537cfb1dd0835f779610dd0bf3a4df0a62d4b4887437ed8",
+      "bytes": 82357,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/download-record.json",
+      "sha256": "bb4132d99d3e71e1fda8cb34909120453bc456c56e5ae8d07c046c47cac89475",
+      "bytes": 3180,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-bag-prefix-forwardLeft-1770725407332646377.png",
+      "sha256": "dc578dda430bff6064ae8fa1cd39eb2f3726b12c8951619c3b1a6824bbd3ebb0",
+      "bytes": 1439118,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-bag-prefix-forwardLeft-1770725407398832239.png",
+      "sha256": "8a7a86d0a8c8f68a1a24ea3034091d68e6a2bd4c23c9147ee541df1845811c4f",
+      "bytes": 1437677,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-bag-prefix-forwardRight-1770725407344669979.png",
+      "sha256": "5c0092ddb4f16c4e4f2b23124e5f6a934da29635775cbb2b8c35f42d31145d09",
+      "bytes": 1389732,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-bag-prefix-forwardRight-1770725407399735413.png",
+      "sha256": "570d49a29fade66e64e466516af28c7cd20773c08fdce8a7d75266d10a4aba23",
+      "bytes": 1389334,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-feb-str02-tags.csv",
+      "sha256": "aa63a2fb26fc793de4dd223add2c0c11f3698cf0e28a8855d998d7ae25313f13",
+      "bytes": 21252,
+      "url": "https://s3.eidf.ac.uk/eidf258-hortimulti-a-multi-sensor-dataset-for-polytunnels/Feb2026/Strawberry/Strawberry_2/GT_tag.csv"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-feb-str03-tags.csv",
+      "sha256": "aa63a2fb26fc793de4dd223add2c0c11f3698cf0e28a8855d998d7ae25313f13",
+      "bytes": 21252,
+      "url": "https://s3.eidf.ac.uk/eidf258-hortimulti-a-multi-sensor-dataset-for-polytunnels/Feb2026/Strawberry/Strawberry_3/GT_tag.csv"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-pixel-comparison.json",
+      "sha256": "748eab627dc41cd1cbb7df1c2b43ba630dc964849b9fcd143099250930f4e182",
+      "bytes": 1090,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-reference-comparison.json",
+      "sha256": "cbb55906f506cf81726233ec51c30b6372dc5cec1ccbb4c34debf7b5dfa6b2a0",
+      "bytes": 452,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-reference-tag-diagnostic.json",
+      "sha256": "ed062fbbc5906b962bff8cd48b2f864a48f302b83d88493454cd06c09a2683cd",
+      "bytes": 1574,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-str02-bag-index",
+      "sha256": "0530babc3be946b4235720bcdd703ce09130bc815eaf6e6c11978b7aca1c9ce9",
+      "bytes": 3210581,
+      "kind": "additional_research_source_not_a_replacement_for_matching_session_calibration",
+      "url": "https://s3.eidf.ac.uk/eidf258-hortimulti-a-multi-sensor-dataset-for-polytunnels/Feb2026/Strawberry/Strawberry_2/Strawberry_2.bag",
+      "http_range": "bytes=43246178438-43249389018",
+      "full_bag_downloaded": false
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-str02-chunk-index.json",
+      "sha256": "d2938e1a8b093618d70f34a14c37e6f8776685442be7efc8ea6e78c74a9c3668",
+      "bytes": 1474066,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-str02-reference-start-chunks",
+      "sha256": "b8bcdf3e29c97ee1c62693cc72ec381153ae269f54033ba38ae29f98a30ec2a3",
+      "bytes": 5611544,
+      "kind": "additional_research_source_not_a_replacement_for_matching_session_calibration",
+      "url": "https://s3.eidf.ac.uk/eidf258-hortimulti-a-multi-sensor-dataset-for-polytunnels/Feb2026/Strawberry/Strawberry_2/Strawberry_2.bag",
+      "http_range": "bytes=125603910-131215453",
+      "full_bag_downloaded": false
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-str02-reference-start-chunks-forwardLeft-1770725410125609456.png",
+      "sha256": "0a3b1b058d5d91caae533893d97cfa516ddbfd8a04a3941e90cd11271eb3b55c",
+      "bytes": 1430965,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-str02-reference-start-chunks-forwardLeft-1770725410199345149.png",
+      "sha256": "cd2def9e3f35f9b1858eeb893307a7708e03183ed4dbd98fe76fcf88bb274469",
+      "bytes": 1429466,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-str02-reference-start-chunks-forwardRight-1770725410104371705.png",
+      "sha256": "a42d3b7f006977296cdb2cb5f83498b471195ada8ba924e62aafcaf64d1478ce",
+      "bytes": 1383787,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-str02-reference-start-chunks-forwardRight-1770725410198809600.png",
+      "sha256": "3b9eb20cb86414a5369f30516af37b374459c55f72c0c1a7243637bfc05ec825",
+      "bytes": 1380835,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-str03-bag-prefix-forwardLeft-1770731344371206942.png",
+      "sha256": "d56c818b6fffc4cbe1f1dc01ea2973926ed7ad904d98dc7c65878842432434f6",
+      "bytes": 1431060,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-str03-bag-prefix-forwardLeft-1770731344426653853.png",
+      "sha256": "d55f7a1f4a9d642bee1e53076671e4ddb281ae1408439dc4d6eed1c391b42e1a",
+      "bytes": 1432445,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-str03-bag-prefix-forwardRight-1770731344395402256.png",
+      "sha256": "3cbaccb80e98e9d5d4226c18ba08e58f5ffe6bbc45f5751a47090dc6949c3036",
+      "bytes": 1381851,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/horti-str03-bag-prefix-forwardRight-1770731344450818412.png",
+      "sha256": "39549b95d1701c75b5aeff3c0f86d7f2b37bd2246ec23de10c1f94b4da9cc052",
+      "bytes": 1380952,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/raw-imu-comparison.json",
+      "sha256": "3bbf05f75e317df77f527c64b81b24c8bc4d09c0a50a7e8955a4f996b113bda5",
+      "bytes": 1466,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-CHANGELOG.md",
+      "sha256": "b2eb9fd13587fe185f43be23d3ced6fa52fe7df61d13e8f2c2eda44d25643c60",
+      "bytes": 1206,
+      "kind": "additional_research_source_not_a_replacement_for_matching_session_calibration"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-README.md",
+      "sha256": "93a5ab952dd133488aef240072360f61929d16a05683abbb40b85602e6b370a7",
+      "bytes": 4494,
+      "kind": "additional_research_source_not_a_replacement_for_matching_session_calibration"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-bag-index",
+      "sha256": "8c581511f9680f874b4a78a81c37743459db312880dbe9855f5e48b7f794ae41",
+      "bytes": 8274,
+      "kind": "additional_research_source_not_a_replacement_for_matching_session_calibration"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-calibration",
+      "sha256": "da53f805a622eb46d35a08fb02a13637ce04fb654c1596cec3f8bec7ec851c18",
+      "bytes": 3605,
+      "kind": "additional_research_source_not_a_replacement_for_matching_session_calibration"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-index.html",
+      "sha256": "c76ae074449b015b68d434106516dc199dcc781b73e2e21e9e429d1cbf8a5a36",
+      "bytes": 2453,
+      "kind": "additional_research_source_not_a_replacement_for_matching_session_calibration"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-reference-comparison.json",
+      "sha256": "684be9a0a7a3e8ffabd7fac31ad54257976424dacc548f2e65d6ddcf3edc4c18",
+      "bytes": 625,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-sequences_plain",
+      "sha256": "bb87a6b0d6183bd8aa67a22264c1d5729df946cc497b7f4430d913211143e5a9",
+      "bytes": 1258,
+      "kind": "additional_research_source_not_a_replacement_for_matching_session_calibration"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/rosario-sequences_plain-mins_tum",
+      "sha256": "4da0f1ddb82cce1150bcdf58c3597957b425cafde626373f4c4cee6f87924c5c",
+      "bytes": 2350,
+      "kind": "additional_research_source_not_a_replacement_for_matching_session_calibration"
+    },
+    {
+      "path": "results/reference-review-20261001/author-downloads/zed-reference-construction-check.json",
+      "sha256": "1766af3d5687ac31a5cb5d8d62c1fd23a7afda5593de29d34b9601affce66b45",
+      "bytes": 1002,
+      "kind": "derived_local_evidence_from_preserved_sources_not_author_assertion"
+    },
+    {
+      "path": "results/reference-review-20261001/zed-source-verification.json",
+      "sha256": "0c22b11eec49b6fd5d8cb5b522f02e714d8e5c8ccda445033f0685000b8eea66",
+      "bytes": 28533,
+      "kind": "derived_verification_or_pinned_message_definition_not_original_bag"
+    },
+    {
+      "path": "results/reference-review-20261001/check_zed_source_records.py",
+      "sha256": "da4c0195f2d11b342d41ed0c33d3f3105b52b95be40bf9056b2c0123d47ca5b2",
+      "bytes": 7919,
+      "kind": "derived_verification_or_pinned_message_definition_not_original_bag"
+    },
+    {
+      "path": "results/reference-review-20261001/ublox-message-source/CarrSoln.msg",
+      "sha256": "413cec479d49f9a773e681682894d5a8b28cc9939850d629db6c1c5c5423e682",
+      "bytes": 220,
+      "kind": "derived_verification_or_pinned_message_definition_not_original_bag",
+      "url": "https://raw.githubusercontent.com/aussierobots/ublox_dgnss/7ace9d516ae86c947eb6cd0913350075343531f6/ublox_ubx_msgs/msg/CarrSoln.msg"
+    },
+    {
+      "path": "results/reference-review-20261001/ublox-message-source/GpsFix.msg",
+      "sha256": "37fc627dee7d983dec15bc3e221ca136948b41245b7fb6ca297b4a1e71d20f9c",
+      "bytes": 193,
+      "kind": "derived_verification_or_pinned_message_definition_not_original_bag",
+      "url": "https://raw.githubusercontent.com/aussierobots/ublox_dgnss/7ace9d516ae86c947eb6cd0913350075343531f6/ublox_ubx_msgs/msg/GpsFix.msg"
+    },
+    {
+      "path": "results/reference-review-20261001/ublox-message-source/PSMPVT.msg",
+      "sha256": "02aba6214d24a9e875481ad3da08238f961594c0a3eaeb60748c36e0b6a5e286",
+      "bytes": 261,
+      "kind": "derived_verification_or_pinned_message_definition_not_original_bag",
+      "url": "https://raw.githubusercontent.com/aussierobots/ublox_dgnss/7ace9d516ae86c947eb6cd0913350075343531f6/ublox_ubx_msgs/msg/PSMPVT.msg"
+    },
+    {
+      "path": "results/reference-review-20261001/ublox-message-source/UBXNavPVT.msg",
+      "sha256": "f1cd748fbf2b662ae09ce350531e26abe867083106f1435aa97b3588a24b3ad1",
+      "bytes": 2738,
+      "kind": "derived_verification_or_pinned_message_definition_not_original_bag",
+      "url": "https://raw.githubusercontent.com/aussierobots/ublox_dgnss/7ace9d516ae86c947eb6cd0913350075343531f6/ublox_ubx_msgs/msg/UBXNavPVT.msg"
+    },
+    {
+      "path": "results/reference-review-20261001/ublox-message-source/UBXNavRelPosNED.msg",
+      "sha256": "3cd2824637ee152c8c2d2ef281a6637121128fe9c5ba363083ffb67a31cf453c",
+      "bytes": 2443,
+      "kind": "derived_verification_or_pinned_message_definition_not_original_bag",
+      "url": "https://raw.githubusercontent.com/aussierobots/ublox_dgnss/7ace9d516ae86c947eb6cd0913350075343531f6/ublox_ubx_msgs/msg/UBXNavRelPosNED.msg"
+    },
+    {
+      "path": "results/reference-review-20261001/ublox-message-source/source.json",
+      "sha256": "6df89f26d26fb7d38a18e78e2e1988e202fa424a041fd0d75c3c008fa795759a",
+      "bytes": 2831,
+      "kind": "derived_verification_or_pinned_message_definition_not_original_bag"
+    },
+    {
+      "path": "results/reference-review-20261001/zed-clock-sensitivity.json",
+      "sha256": "c359c0273891a4a14c2eff41ad89cd302a41002b0c4ad73a2163b659d833beca",
+      "bytes": 22330,
+      "kind": "conditional_sensitivity_no_fitted_offset_no_canonical_metric_change"
+    },
+    {
+      "path": "results/reference-review-20261001/check_zed_clock_sensitivity.py",
+      "sha256": "0460aa670adac1e674f3aef87befc7940a1f9caa829b70bbc809111e24bbc85e",
+      "bytes": 2370,
+      "kind": "conditional_sensitivity_no_fitted_offset_no_canonical_metric_change"
+    },
+    {
+      "path": "results/reference-review-20261001/zed-clock-example-reproduction.json",
+      "sha256": "3d1368919441c26baf28c2c5009f5e9135d307c38aa8bdae868f14bc5dfa310d",
+      "bytes": 3024,
+      "kind": "conditional_sensitivity_no_fitted_offset_no_canonical_metric_change"
+    },
+    {
+      "path": "results/reference-review-20261001/reproduce_zed_clock_examples.py",
+      "sha256": "104a909e0eb5189910d81da213a22df99ec8cd6df0d508d311afd59f0725e53f",
+      "bytes": 1910,
+      "kind": "conditional_sensitivity_no_fitted_offset_no_canonical_metric_change"
+    }
+  ],
+  "repositories": [
+    {
+      "path": "results/reference-review-20261001/author-sources/basalt",
+      "commit": "0f3b2b52c807f70ff4e2973ce253c73329eea7bc",
+      "url": "https://github.com/VladyslavUsenko/basalt.git"
+    },
+    {
+      "path": "results/reference-review-20261001/author-sources/SensorSuite",
+      "commit": "a82811067b4a0b175d184627ff4a739b9b7fafb3",
+      "url": "https://github.com/shuoyuanxu/AgricultureDataset-SensorSuiteBuild.git"
+    },
+    {
+      "path": "results/reference-review-20261001/author-sources/Poly-TagSLAM",
+      "commit": "d8c05daf231b7bf490f27c16f8833e930bf45943",
+      "url": "https://github.com/shuoyuanxu/Poly-TagSLAM.git"
+    },
+    {
+      "path": "results/reference-review-20261001/author-sources/rosariov2",
+      "commit": "82115db620b57a5decb48ffe70b4639f00ce3ec9",
+      "url": "https://github.com/CIFASIS/rosariov2.git"
+    },
+    {
+      "path": "results/reference-review-20261001/author-sources/HortiMulti",
+      "commit": "6df2c26ea3133594b7fb1ee80d7dbb2bf513a66e",
+      "url": "https://github.com/shuoyuanxu/HortiMulti.git"
+    }
+  ],
+  "restrictions": [
+    "no_estimation",
+    "no_push",
+    "preserve_original_inputs_and_provenance_hashes"
+  ],
+  "previous_checkpoint": "e0ee49be0e536fc89c266b40d64e15c9d57cd0c9",
+  "external_read_only_evidence": "docs/campaigns/zed-source-records-20261001.json"
+}

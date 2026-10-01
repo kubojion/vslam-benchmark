@@ -3,27 +3,27 @@
   "inputs": [
     {
       "path": "results/repair-20261001/inventory.json",
-      "sha256": "1e584467acb412d3a47eb84808814cdc41b70ae36dda68b6119d195b5054d3b1"
+      "sha256": "862177ac574b62e12b71ae533e0f00330586207959bf3cbc811664f57f7d2b4f"
     },
     {
       "path": "benchmark-vo.csv",
-      "sha256": "0fcd6a94c426825cfe0e2f4a08873d38a7b623e3ea08bf3652b2d8611faa7d79"
+      "sha256": "281a1d2e577339f57ad1ae173a7986d9a7822a76dd668818e53d1488e93849d1"
     },
     {
       "path": "benchmark-vo-lc.csv",
-      "sha256": "e2c3d00ca6c67307cd1cfd6087968a7a7dfa8a9dfe1cc8782b4dcb48c0c3ee3f"
+      "sha256": "74837ed0caa431b848e1348d4ad4992dfcf724659d066505889601db8a8a2817"
     },
     {
       "path": "benchmark-vio.csv",
-      "sha256": "fa2bbb34651c53608958ab6bd2788c4c3e4277ebf8cf73c93959e3e19aba17cd"
+      "sha256": "6902205aca1e7b1185e872809d225efc6473b8a291194d698e7ab0a95bab0f5e"
     },
     {
       "path": "benchmark-vio-lc.csv",
-      "sha256": "aec902f2f17c52bae0dcb0f95660fafdd80cb5ad952d628dbf7921ac838e63ad"
+      "sha256": "8e63a79d0ed0ec15c0780eb2d0285b87c3f2fccb34bce54beafd9ac94e39854a"
     },
     {
       "path": "benchmark-gnss-vio.csv",
-      "sha256": "6a001d4ce87d203b9f76d50656ce70941538d29365a69258735b306e848be496"
+      "sha256": "b43cee6493aa173d418fa9fc6a9ac3f241eca175a520e28192faa59ffe050bb6"
     }
   ],
   "status": "mixed_acceptance_see_per_cell_flags_and_claim_limits",
@@ -60,6 +60,7 @@
         "paper_usable": 1,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "retain_failure_in_attempt_denominator"
@@ -148,6 +149,7 @@
         "paper_usable": 1,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "retain_failure_in_attempt_denominator"
@@ -369,7 +371,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -407,7 +409,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -454,7 +457,8 @@
           }
         ],
         "scientific_blockers": [
-          "camera_fps_changed_15_to_10"
+          "camera_fps_changed_15_to_10",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved"
         ]
       },
       "flags": [
@@ -719,7 +723,7 @@
         "ov2slam",
         "default"
       ],
-      "value": 9.852471291278182,
+      "value": 9.852471289170458,
       "annotation": "9.85\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -741,6 +745,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -766,11 +771,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 9.73408068299627,
-              "median": 9.852471291278182,
-              "min": 9.318701792977496,
-              "max": 10.031068964733132,
-              "sample_std": 0.3706467306557576
+              "mean": 9.734080680548342,
+              "median": 9.852471289170458,
+              "min": 9.318701789741283,
+              "max": 10.031068962733285,
+              "sample_std": 0.3706467313313182
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -788,8 +793,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -804,7 +808,7 @@
         "ov2slam",
         "default"
       ],
-      "value": 9.351771476603124,
+      "value": 9.35177147799502,
       "annotation": "9.35\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -826,6 +830,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -851,11 +856,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 9.25092440686324,
-              "median": 9.351771476603124,
-              "min": 8.899089299922458,
-              "max": 9.501912444064137,
-              "sample_std": 0.31380971046886946
+              "mean": 9.25092440797648,
+              "median": 9.35177147799502,
+              "min": 8.89908930072061,
+              "max": 9.501912445213813,
+              "sample_std": 0.31380971070485014
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -873,8 +878,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -958,7 +962,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -1042,7 +1046,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -1079,7 +1083,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -1126,7 +1131,7 @@
           }
         ],
         "scientific_blockers": [
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable"
         ]
       },
@@ -1391,7 +1396,7 @@
         "macvo",
         "default"
       ],
-      "value": 13.60811246076235,
+      "value": 13.608112462067162,
       "annotation": "13.6\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -1413,6 +1418,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -1438,11 +1444,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 13.611033306391162,
-              "median": 13.60811246076235,
-              "min": 13.601506037434216,
-              "max": 13.623481420976923,
-              "sample_std": 0.01127509977130051
+              "mean": 13.61103330770153,
+              "median": 13.608112462067162,
+              "min": 13.601506038738234,
+              "max": 13.623481422299198,
+              "sample_std": 0.011275099781276072
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -1460,8 +1466,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -1476,7 +1481,7 @@
         "macvo",
         "default"
       ],
-      "value": 18.954974899010505,
+      "value": 18.95497490453874,
       "annotation": "19\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -1498,6 +1503,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -1523,11 +1529,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 18.9618252322948,
-              "median": 18.954974899010505,
-              "min": 18.949501283185583,
-              "max": 18.98099951468831,
-              "sample_std": 0.016829436904700155
+              "mean": 18.96182523785271,
+              "median": 18.95497490453874,
+              "min": 18.949501288771067,
+              "max": 18.98099952024833,
+              "sample_std": 0.016829436901844484
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -1545,8 +1551,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -1630,7 +1635,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -1714,7 +1719,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -1751,7 +1756,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -1798,7 +1804,7 @@
           }
         ],
         "scientific_blockers": [
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable"
         ]
       },
@@ -2060,7 +2066,7 @@
         "basalt",
         "default"
       ],
-      "value": 6.580577865329457,
+      "value": 6.58057786273653,
       "annotation": "6.58\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -2082,6 +2088,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -2107,11 +2114,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 6.828650021596942,
-              "median": 6.580577865329457,
-              "min": 5.9044732413203915,
-              "max": 8.000898958140978,
-              "sample_std": 1.0700023563399645
+              "mean": 6.8286500152605445,
+              "median": 6.58057786273653,
+              "min": 5.904473235537953,
+              "max": 8.000898947507151,
+              "sample_std": 1.0700023533127454
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -2129,8 +2136,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -2145,7 +2151,7 @@
         "basalt",
         "default"
       ],
-      "value": 8.762434427354284,
+      "value": 8.762434395262115,
       "annotation": "8.76\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -2167,6 +2173,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -2192,11 +2199,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 8.774133231498286,
-              "median": 8.762434427354284,
-              "min": 8.739996604388608,
-              "max": 8.819968662751965,
-              "sample_std": 0.041249594464889044
+              "mean": 8.774133199393848,
+              "median": 8.762434395262115,
+              "min": 8.739996572250341,
+              "max": 8.81996863066909,
+              "sample_std": 0.0412495944891272
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -2214,8 +2221,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -2299,7 +2305,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -2383,7 +2389,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -2420,7 +2426,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -2467,7 +2474,7 @@
           }
         ],
         "scientific_blockers": [
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable"
         ]
       },
@@ -2729,7 +2736,7 @@
         "airslam",
         "default"
       ],
-      "value": 41.52285572049328,
+      "value": 41.522855723709746,
       "annotation": "41.5\n3/3 ok\nK,B",
       "summary": {
         "identity": [
@@ -2751,6 +2758,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -2776,11 +2784,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 41.720109063845015,
-              "median": 41.52285572049328,
-              "min": 40.09257432227692,
-              "max": 43.54489714876484,
-              "sample_std": 1.7345935793925809
+              "mean": 41.720109067554624,
+              "median": 41.522855723709746,
+              "min": 40.09257432589305,
+              "max": 43.54489715306107,
+              "sample_std": 1.7345935797730387
             },
             "dense_coverage_pct": {
               "n": 0,
@@ -2798,8 +2806,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -2815,7 +2822,7 @@
         "airslam",
         "default"
       ],
-      "value": 19.716432794281364,
+      "value": 19.71643279738697,
       "annotation": "19.7\n3/3 ok\nK,B",
       "summary": {
         "identity": [
@@ -2837,6 +2844,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -2862,11 +2870,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 19.716403850487442,
-              "median": 19.716432794281364,
-              "min": 19.716345211541032,
-              "max": 19.716433545639934,
-              "sample_std": 5.07842068172448e-05
+              "mean": 19.716403853592702,
+              "median": 19.71643279738697,
+              "min": 19.716345214645575,
+              "max": 19.716433548745556,
+              "sample_std": 5.07842074367308e-05
             },
             "dense_coverage_pct": {
               "n": 0,
@@ -2884,8 +2892,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -2970,7 +2977,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -3055,7 +3062,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -3093,7 +3100,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -3140,7 +3148,7 @@
           }
         ],
         "scientific_blockers": [
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable"
         ]
       },
@@ -3409,7 +3417,7 @@
         "okvis2",
         "default"
       ],
-      "value": 18.78518756870515,
+      "value": 18.78518757076628,
       "annotation": "18.8\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -3431,6 +3439,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -3456,11 +3465,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 18.697084001213824,
-              "median": 18.78518756870515,
-              "min": 18.24751952679501,
-              "max": 19.058544908141315,
-              "sample_std": 0.41262843000755983
+              "mean": 18.697084003219558,
+              "median": 18.78518757076628,
+              "min": 18.24751952903111,
+              "max": 19.058544909861286,
+              "sample_std": 0.41262842976281716
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -3478,8 +3487,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -3494,7 +3502,7 @@
         "okvis2",
         "default"
       ],
-      "value": 15.24523733266318,
+      "value": 15.245237337888643,
       "annotation": "15.2\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -3516,6 +3524,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -3541,11 +3550,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 15.221268571428643,
-              "median": 15.24523733266318,
-              "min": 14.549377422216237,
-              "max": 15.869190959406511,
-              "sample_std": 0.660233155312587
+              "mean": 15.221268576147134,
+              "median": 15.245237337888643,
+              "min": 14.549377426102511,
+              "max": 15.86919096445025,
+              "sample_std": 0.6602331559048362
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -3563,8 +3572,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -3648,7 +3656,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -3732,7 +3740,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -3774,7 +3782,8 @@
           "collapse_under_recorded_reference_diagnostic_not_verified_physical_scale",
           "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
           "no_measured_processing_rate_or_realtime_deadline_claim",
-          "retain_failure_in_attempt_denominator"
+          "retain_failure_in_attempt_denominator",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -3822,7 +3831,7 @@
           }
         ],
         "scientific_blockers": [
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable"
         ]
       },
@@ -4085,7 +4094,7 @@
         "okvis2x",
         "default"
       ],
-      "value": 19.608126020809582,
+      "value": 19.608126023512536,
       "annotation": "19.6\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -4107,6 +4116,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -4132,11 +4142,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 19.141039008916277,
-              "median": 19.608126020809582,
-              "min": 17.45009870353751,
-              "max": 20.364892302401742,
-              "sample_std": 1.5124923598169142
+              "mean": 19.141039011115247,
+              "median": 19.608126023512536,
+              "min": 17.45009870560493,
+              "max": 20.364892304228277,
+              "sample_std": 1.5124923598175892
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -4154,8 +4164,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -4170,7 +4179,7 @@
         "okvis2x",
         "default"
       ],
-      "value": 15.194927984061362,
+      "value": 15.194927988883084,
       "annotation": "15.2\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -4192,6 +4201,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -4217,11 +4227,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 15.47906483475158,
-              "median": 15.194927984061362,
-              "min": 15.058132390212661,
-              "max": 16.184134129980713,
-              "sample_std": 0.6144267994889917
+              "mean": 15.479064840055834,
+              "median": 15.194927988883084,
+              "min": 15.05813239651971,
+              "max": 16.184134134764708,
+              "sample_std": 0.6144267989585607
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -4239,8 +4249,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -4324,7 +4333,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -4408,7 +4417,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -4445,7 +4454,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -4492,7 +4502,7 @@
           }
         ],
         "scientific_blockers": [
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable"
         ]
       },
@@ -4754,7 +4764,7 @@
         "dpvo",
         "default"
       ],
-      "value": 3.590965562744271,
+      "value": 3.590965531352525,
       "annotation": "3.59\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -4776,6 +4786,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -4801,11 +4812,11 @@
             "alignment": "sim3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 3.26533824368572,
-              "median": 3.590965562744271,
-              "min": 2.344362432817924,
-              "max": 3.8606867354949648,
-              "sample_std": 0.8089095814182189
+              "mean": 3.2653382159627227,
+              "median": 3.590965531352525,
+              "min": 2.344362408615996,
+              "max": 3.860686707919647,
+              "sample_std": 0.8089095787296962
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -4823,8 +4834,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -4839,7 +4849,7 @@
         "dpvo",
         "default"
       ],
-      "value": 2.4461768529631853,
+      "value": 2.4461768676301126,
       "annotation": "2.45\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -4861,6 +4871,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -4886,11 +4897,11 @@
             "alignment": "sim3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 2.6839866371891334,
-              "median": 2.4461768529631853,
-              "min": 2.1984708092969134,
-              "max": 3.407312249307301,
-              "sample_std": 0.6385448511081981
+              "mean": 2.6839866410570767,
+              "median": 2.4461768676301126,
+              "min": 2.198470802372318,
+              "max": 3.4073122531687994,
+              "sample_std": 0.6385448531966831
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -4908,8 +4919,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -4993,7 +5003,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -5077,7 +5087,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -5114,7 +5124,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -5161,7 +5172,7 @@
           }
         ],
         "scientific_blockers": [
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable"
         ]
       },
@@ -5447,6 +5458,7 @@
         "paper_usable": 1,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "retain_failure_in_attempt_denominator"
@@ -5511,7 +5523,7 @@
         "orbslam3",
         "default"
       ],
-      "value": 11.484128667854545,
+      "value": 11.484128662238934,
       "annotation": "11.5\n3/3 ok\nP,B",
       "summary": {
         "identity": [
@@ -5533,6 +5545,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -5558,11 +5571,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 12.433647095710036,
-              "median": 11.484128667854545,
-              "min": 9.672829906422201,
-              "max": 16.14398271285336,
-              "sample_std": 3.338434302884114
+              "mean": 12.433647091732073,
+              "median": 11.484128662238934,
+              "min": 9.672829905258046,
+              "max": 16.143982707699237,
+              "sample_std": 3.3384343012999307
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -5580,8 +5593,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -5666,7 +5678,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -5752,7 +5764,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -5790,7 +5802,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -5876,7 +5889,8 @@
         ],
         "scientific_blockers": [
           "camera_fps_changed_15_to_10",
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
+          "within_cell_source_binary_parameter_or_hardware_mismatch",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved"
         ]
       },
       "flags": [
@@ -6148,7 +6162,7 @@
         "ov2slam",
         "default"
       ],
-      "value": 4.046163569917294,
+      "value": 4.046163560522318,
       "annotation": "4.05\n2/3 ok\nB,F",
       "summary": {
         "identity": [
@@ -6173,6 +6187,7 @@
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "collapse_under_recorded_reference_diagnostic_not_verified_physical_scale",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "retain_failure_in_attempt_denominator"
@@ -6201,11 +6216,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 2,
-              "mean": 4.046163569917294,
-              "median": 4.046163569917294,
-              "min": 3.9603103107029765,
-              "max": 4.1320168291316115,
-              "sample_std": 0.12141484355482074
+              "mean": 4.046163560522318,
+              "median": 4.046163560522318,
+              "min": 3.960310300707179,
+              "max": 4.132016820337457,
+              "sample_std": 0.12141484440451049
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -6223,8 +6238,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -6240,7 +6254,7 @@
         "ov2slam",
         "default"
       ],
-      "value": 5.12628859038998,
+      "value": 5.126288577053186,
       "annotation": "5.13\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -6262,6 +6276,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -6287,11 +6302,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 5.310466307416477,
-              "median": 5.12628859038998,
-              "min": 4.86343731438879,
-              "max": 5.941673017470661,
-              "sample_std": 0.5622180461679734
+              "mean": 5.310466295103597,
+              "median": 5.126288577053186,
+              "min": 4.863437302902483,
+              "max": 5.9416730053551206,
+              "sample_std": 0.5622180461178523
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -6309,8 +6324,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -6394,7 +6408,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -6478,7 +6492,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -6515,7 +6529,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -6562,7 +6577,7 @@
           }
         ],
         "scientific_blockers": [
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable"
         ]
       },
@@ -6827,7 +6842,7 @@
         "airslam",
         "default"
       ],
-      "value": 42.65631160383924,
+      "value": 42.65631160702448,
       "annotation": "42.7\n3/3 ok\nK,B",
       "summary": {
         "identity": [
@@ -6849,6 +6864,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -6874,11 +6890,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 44.19023379094711,
-              "median": 42.65631160383924,
-              "min": 41.30974363366828,
-              "max": 48.604646135333816,
-              "sample_std": 3.8818279951947714
+              "mean": 44.19023379422041,
+              "median": 42.65631160702448,
+              "min": 41.30974363648727,
+              "max": 48.60464613914949,
+              "sample_std": 3.881827995689124
             },
             "dense_coverage_pct": {
               "n": 0,
@@ -6896,8 +6912,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -6913,7 +6928,7 @@
         "airslam",
         "default"
       ],
-      "value": 19.77806287885677,
+      "value": 19.778062881144002,
       "annotation": "19.8\n3/3 ok\nK,B",
       "summary": {
         "identity": [
@@ -6935,6 +6950,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -6960,11 +6976,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 19.29536502355488,
-              "median": 19.77806287885677,
-              "min": 18.25495610251595,
-              "max": 19.853076089291914,
-              "sample_std": 0.9018008580989402
+              "mean": 19.295365024828804,
+              "median": 19.778062881144002,
+              "min": 18.254956101698497,
+              "max": 19.85307609164391,
+              "sample_std": 0.9018008599099075
             },
             "dense_coverage_pct": {
               "n": 0,
@@ -6982,8 +6998,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -7068,7 +7083,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -7153,7 +7168,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -7191,7 +7206,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -7278,7 +7294,7 @@
         "scientific_blockers": [
           "historical_workspace_digest_differs_keep_cohorts_separate",
           "within_cell_source_binary_parameter_or_hardware_mismatch",
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable"
         ]
       },
@@ -7548,7 +7564,7 @@
         "okvis2",
         "default"
       ],
-      "value": 19.451450108251443,
+      "value": 19.451450110691297,
       "annotation": "19.5\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -7570,6 +7586,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -7595,11 +7612,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 19.35752798454694,
-              "median": 19.451450108251443,
-              "min": 18.83380697086572,
-              "max": 19.787326874523664,
-              "sample_std": 0.4836487110071077
+              "mean": 19.35752798675684,
+              "median": 19.451450110691297,
+              "min": 18.833806973118485,
+              "max": 19.78732687646073,
+              "sample_std": 0.4836487108849998
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -7617,8 +7634,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -7633,7 +7649,7 @@
         "okvis2",
         "default"
       ],
-      "value": 16.503684562724896,
+      "value": 16.50368456821532,
       "annotation": "16.5\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -7655,6 +7671,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -7680,11 +7697,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 16.845631304888794,
-              "median": 16.503684562724896,
-              "min": 15.786942979963325,
-              "max": 18.246266371978162,
-              "sample_std": 1.2648176024570577
+              "mean": 16.845631309415143,
+              "median": 16.50368456821532,
+              "min": 15.786942984069665,
+              "max": 18.24626637596045,
+              "sample_std": 1.264817602201275
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -7702,8 +7719,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -7787,7 +7803,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -7871,7 +7887,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -7911,7 +7927,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -7997,7 +8014,7 @@
         "scientific_blockers": [
           "missing_repetition",
           "native_execution_cause_and_usable_export_missing",
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable"
         ]
       },
@@ -8283,6 +8300,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -8308,11 +8326,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 2,
-              "mean": 18.42954746397405,
-              "median": 18.42954746397405,
-              "min": 17.38530179253787,
-              "max": 19.47379313541023,
-              "sample_std": 1.4767863909944443
+              "mean": 18.429547465487225,
+              "median": 18.429547465487225,
+              "min": 17.385301793887795,
+              "max": 19.473793137086652,
+              "sample_std": 1.476786391225313
             },
             "dense_coverage_pct": {
               "n": 2,
@@ -8348,10 +8366,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 17.649427567046683,
-              "median": 17.649427567046683,
-              "min": 17.649427567046683,
-              "max": 17.649427567046683,
+              "mean": 17.64942756854335,
+              "median": 17.64942756854335,
+              "min": 17.64942756854335,
+              "max": 17.64942756854335,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -8369,8 +8387,7 @@
         ],
         "scientific_blockers": [
           "historical_workspace_digest_differs_keep_cohorts_separate",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified",
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved",
           "within_cell_source_binary_parameter_or_hardware_mismatch"
         ]
       },
@@ -8387,7 +8404,7 @@
         "okvis2x",
         "default"
       ],
-      "value": 14.573941681402843,
+      "value": 14.57394168603779,
       "annotation": "14.6\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -8409,6 +8426,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -8434,11 +8452,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 14.434198030799916,
-              "median": 14.573941681402843,
-              "min": 13.70814422171367,
-              "max": 15.020508189283232,
-              "sample_std": 0.6672488379582278
+              "mean": 14.434198035592866,
+              "median": 14.57394168603779,
+              "min": 13.708144225905386,
+              "max": 15.02050819483542,
+              "sample_std": 0.6672488386023635
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -8456,8 +8474,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -8541,7 +8558,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -8625,7 +8642,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -8664,7 +8681,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -8711,7 +8729,7 @@
         "scientific_blockers": [
           "missing_repetition",
           "native_execution_cause_and_usable_export_missing",
-          "zed_reference_camera_lever_arm_heading_altitude_unverified"
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved"
         ]
       },
       "flags": [
@@ -8974,7 +8992,7 @@
         "dpvo",
         "default"
       ],
-      "value": 8.152813693376245,
+      "value": 8.152813674983765,
       "annotation": "8.15\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -8996,6 +9014,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -9021,11 +9040,11 @@
             "alignment": "sim3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 8.069192673939662,
-              "median": 8.152813693376245,
-              "min": 7.539676032343888,
-              "max": 8.515088296098854,
-              "sample_std": 0.49305337159338763
+              "mean": 8.06919265720887,
+              "median": 8.152813674983765,
+              "min": 7.539676019254435,
+              "max": 8.515088277388406,
+              "sample_std": 0.49305336860200544
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -9043,8 +9062,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -9059,7 +9077,7 @@
         "dpvo",
         "default"
       ],
-      "value": 5.735614488225043,
+      "value": 5.735614495657445,
       "annotation": "5.74\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -9081,6 +9099,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -9106,11 +9125,11 @@
             "alignment": "sim3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 6.76239719145834,
-              "median": 5.735614488225043,
-              "min": 5.177049387357183,
-              "max": 9.374527698792793,
-              "sample_std": 2.2793459771362907
+              "mean": 6.762397193983857,
+              "median": 5.735614495657445,
+              "min": 5.177049390348492,
+              "max": 9.374527695945634,
+              "sample_std": 2.279345972790553
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -9128,8 +9147,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -9213,7 +9231,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -9297,7 +9315,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -9334,7 +9352,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -9381,7 +9400,7 @@
           }
         ],
         "scientific_blockers": [
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable"
         ]
       },
@@ -9643,7 +9662,7 @@
         "orbslam3",
         "default"
       ],
-      "value": 4.519776536274429,
+      "value": 4.519776539265728,
       "annotation": "4.52\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -9665,6 +9684,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -9690,11 +9710,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 4.534075449485263,
-              "median": 4.519776536274429,
-              "min": 4.303674863297825,
-              "max": 4.778774948883535,
-              "sample_std": 0.23787258568432249
+              "mean": 4.534075452468199,
+              "median": 4.519776539265728,
+              "min": 4.303674866482748,
+              "max": 4.778774951656121,
+              "sample_std": 0.237872585478057
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -9712,8 +9732,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -9728,7 +9747,7 @@
         "orbslam3",
         "default"
       ],
-      "value": 3.2688301627145697,
+      "value": 3.2688301617525783,
       "annotation": "3.27\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -9750,6 +9769,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -9775,11 +9795,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 2.8722413542269374,
-              "median": 3.2688301627145697,
-              "min": 2.0756944709000105,
-              "max": 3.272199429066232,
-              "sample_std": 0.689831893284384
+              "mean": 2.872241353454623,
+              "median": 3.2688301617525783,
+              "min": 2.075694471032684,
+              "max": 3.272199427578607,
+              "sample_std": 0.6898318925000021
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -9797,8 +9817,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -9814,7 +9833,7 @@
         "default"
       ],
       "value": 2.512078329740872,
-      "annotation": "2.51\n3/3 ok\nB",
+      "annotation": "2.51\n3/3 ok\nR",
       "summary": {
         "identity": [
           "vio",
@@ -9830,7 +9849,7 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
@@ -9882,11 +9901,12 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_camera_imu_time_offset_uncompensated",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
-        "B"
+        "R"
       ]
     },
     {
@@ -9898,7 +9918,7 @@
         "default"
       ],
       "value": 0.8271303929936756,
-      "annotation": "0.827\n3/3 ok\nB",
+      "annotation": "0.827\n3/3 ok\nR",
       "summary": {
         "identity": [
           "vio",
@@ -9914,7 +9934,7 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
@@ -9966,11 +9986,12 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_camera_imu_time_offset_uncompensated",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
-        "B"
+        "R"
       ]
     },
     {
@@ -10008,7 +10029,8 @@
           "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "retain_failure_in_attempt_denominator",
-          "serial_specific_imu_rotation_and_timing_unverified"
+          "serial_specific_imu_rotation_and_timing_unverified",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -10319,8 +10341,8 @@
         "basalt",
         "default"
       ],
-      "value": 1.5823526186105827,
-      "annotation": "1.58\n3/3 ok\nB",
+      "value": 1.5865422261409965,
+      "annotation": "1.59\n3/3 ok\nR",
       "summary": {
         "identity": [
           "vio",
@@ -10336,11 +10358,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -10366,11 +10389,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 1.5824161916547692,
-              "median": 1.5823526186105827,
-              "min": 1.582084193444297,
-              "max": 1.5828117629094276,
-              "sample_std": 0.0003679272762488874
+              "mean": 1.5866013984478378,
+              "median": 1.5865422261409965,
+              "min": 1.586265516679355,
+              "max": 1.5869964525231621,
+              "sample_std": 0.00036904311856914923
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -10388,12 +10411,12 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_identity_camera_imu_extrinsic",
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
-        "B"
+        "R"
       ]
     },
     {
@@ -10404,8 +10427,8 @@
         "basalt",
         "default"
       ],
-      "value": 1.9708905205825018,
-      "annotation": "1.97\n3/3 ok\nB",
+      "value": 1.9752876724193345,
+      "annotation": "1.98\n3/3 ok\nR",
       "summary": {
         "identity": [
           "vio",
@@ -10421,11 +10444,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -10451,11 +10475,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 1.9671046817518165,
-              "median": 1.9708905205825018,
-              "min": 1.9594835246807223,
-              "max": 1.9709399999922255,
-              "sample_std": 0.006600161996475075
+              "mean": 1.9715083116631003,
+              "median": 1.9752876724193345,
+              "min": 1.9638996520788814,
+              "max": 1.975337610491085,
+              "sample_std": 0.006589339796530958
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -10473,12 +10497,12 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_identity_camera_imu_extrinsic",
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
-        "B"
+        "R"
       ]
     },
     {
@@ -10558,7 +10582,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -10642,7 +10666,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -10681,7 +10705,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -10727,7 +10752,7 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable",
           "zed_serial_specific_imu_rotation_and_time_offset_unverified"
         ]
@@ -10991,7 +11016,7 @@
         "airslam",
         "default"
       ],
-      "value": 37.9251154900033,
+      "value": 37.925115493331404,
       "annotation": "37.9\n3/3 ok\nK,B",
       "summary": {
         "identity": [
@@ -11013,6 +11038,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -11038,11 +11064,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 37.864298334990785,
-              "median": 37.9251154900033,
-              "min": 36.975228926748684,
-              "max": 38.69255058822037,
-              "sample_std": 0.8602746462600362
+              "mean": 37.86429833834722,
+              "median": 37.925115493331404,
+              "min": 36.97522893006889,
+              "max": 38.69255059164137,
+              "sample_std": 0.8602746463088384
             },
             "dense_coverage_pct": {
               "n": 0,
@@ -11060,8 +11086,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -11077,7 +11102,7 @@
         "airslam",
         "default"
       ],
-      "value": 37.15974907525997,
+      "value": 37.15974907872943,
       "annotation": "37.2\n3/3 ok\nK,B",
       "summary": {
         "identity": [
@@ -11099,6 +11124,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -11124,10 +11150,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 37.15974907525997,
-              "median": 37.15974907525997,
-              "min": 37.15974907525997,
-              "max": 37.15974907525997,
+              "mean": 37.15974907872943,
+              "median": 37.15974907872943,
+              "min": 37.15974907872943,
+              "max": 37.15974907872943,
               "sample_std": 0.0
             },
             "dense_coverage_pct": {
@@ -11146,8 +11172,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -11164,7 +11189,7 @@
         "default"
       ],
       "value": 5.008875506953741,
-      "annotation": "5.01\n3/3 ok\nK,B",
+      "annotation": "5.01\n3/3 ok\nK,R",
       "summary": {
         "identity": [
           "vio",
@@ -11180,7 +11205,7 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
@@ -11232,12 +11257,13 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_camera_imu_time_offset_uncompensated",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
         "K",
-        "B"
+        "R"
       ]
     },
     {
@@ -11249,7 +11275,7 @@
         "default"
       ],
       "value": 1.2797268992078084,
-      "annotation": "1.28\n3/3 ok\nK,B",
+      "annotation": "1.28\n3/3 ok\nK,R",
       "summary": {
         "identity": [
           "vio",
@@ -11265,7 +11291,7 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
@@ -11317,12 +11343,13 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_camera_imu_time_offset_uncompensated",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
         "K",
-        "B"
+        "R"
       ]
     },
     {
@@ -11357,7 +11384,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -11403,7 +11431,7 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable",
           "zed_serial_specific_imu_rotation_and_time_offset_unverified"
         ]
@@ -11677,7 +11705,7 @@
         "okvis2",
         "default"
       ],
-      "value": 3.781539856992721,
+      "value": 3.781539855588494,
       "annotation": "3.78\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -11699,6 +11727,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -11724,11 +11753,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 3.7990931521058364,
-              "median": 3.781539856992721,
-              "min": 3.753505466033112,
-              "max": 3.8622341332916763,
-              "sample_std": 0.056449706801293284
+              "mean": 3.7990931507867542,
+              "median": 3.781539855588494,
+              "min": 3.7535054646881245,
+              "max": 3.862234132083644,
+              "sample_std": 0.0564497068870984
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -11746,8 +11775,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -11762,7 +11790,7 @@
         "okvis2",
         "default"
       ],
-      "value": 8.91347984427825,
+      "value": 8.913479847864307,
       "annotation": "8.91\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -11784,6 +11812,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -11809,11 +11838,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 9.102161154374386,
-              "median": 8.91347984427825,
-              "min": 8.814823642924885,
-              "max": 9.578179975920023,
-              "sample_std": 0.4151851398661101
+              "mean": 9.102161158093836,
+              "median": 8.913479847864307,
+              "min": 8.81482364661639,
+              "max": 9.578179979800808,
+              "sample_std": 0.41518513999857787
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -11831,8 +11860,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -11848,7 +11876,7 @@
         "default"
       ],
       "value": 2.222073680437965,
-      "annotation": "2.22\n3/3 ok\nB",
+      "annotation": "2.22\n3/3 ok\nR",
       "summary": {
         "identity": [
           "vio",
@@ -11864,7 +11892,7 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
@@ -11916,11 +11944,12 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_camera_imu_time_offset_uncompensated",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
-        "B"
+        "R"
       ]
     },
     {
@@ -11932,7 +11961,7 @@
         "default"
       ],
       "value": 0.6729398778852604,
-      "annotation": "0.673\n3/3 ok\nB",
+      "annotation": "0.673\n3/3 ok\nR",
       "summary": {
         "identity": [
           "vio",
@@ -11948,7 +11977,7 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
@@ -12000,11 +12029,12 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_camera_imu_time_offset_uncompensated",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
-        "B"
+        "R"
       ]
     },
     {
@@ -12039,7 +12069,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -12085,7 +12116,7 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable",
           "zed_serial_specific_imu_rotation_and_time_offset_unverified"
         ]
@@ -12349,7 +12380,7 @@
         "okvis2x",
         "default"
       ],
-      "value": 4.671614917663363,
+      "value": 4.671614916073672,
       "annotation": "4.67\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -12371,6 +12402,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -12396,11 +12428,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 4.534269918794526,
-              "median": 4.671614917663363,
-              "min": 4.1725554856412606,
-              "max": 4.758639353078953,
-              "sample_std": 0.3162614605882156
+              "mean": 4.534269917227733,
+              "median": 4.671614916073672,
+              "min": 4.172555484522132,
+              "max": 4.758639351087396,
+              "sample_std": 0.3162614601765694
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -12418,8 +12450,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -12434,7 +12465,7 @@
         "okvis2x",
         "default"
       ],
-      "value": 9.915158009107046,
+      "value": 9.915158012949787,
       "annotation": "9.92\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -12456,6 +12487,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -12481,11 +12513,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 9.94965331441829,
-              "median": 9.915158009107046,
-              "min": 9.879166699022022,
-              "max": 10.054635235125804,
-              "sample_std": 0.09268088452851585
+              "mean": 9.949653318324746,
+              "median": 9.915158012949787,
+              "min": 9.879166702942106,
+              "max": 10.054635239082343,
+              "sample_std": 0.09268088456355549
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -12503,8 +12535,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -12520,7 +12551,7 @@
         "default"
       ],
       "value": 2.140813548510439,
-      "annotation": "2.14\n3/3 ok\nB",
+      "annotation": "2.14\n3/3 ok\nR",
       "summary": {
         "identity": [
           "vio",
@@ -12536,7 +12567,7 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
@@ -12588,11 +12619,12 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_camera_imu_time_offset_uncompensated",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
-        "B"
+        "R"
       ]
     },
     {
@@ -12604,7 +12636,7 @@
         "default"
       ],
       "value": 0.6865063979788345,
-      "annotation": "0.687\n3/3 ok\nB",
+      "annotation": "0.687\n3/3 ok\nR",
       "summary": {
         "identity": [
           "vio",
@@ -12620,7 +12652,7 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
@@ -12672,11 +12704,12 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_camera_imu_time_offset_uncompensated",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
-        "B"
+        "R"
       ]
     },
     {
@@ -12711,7 +12744,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -12757,7 +12791,7 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable",
           "zed_serial_specific_imu_rotation_and_time_offset_unverified"
         ]
@@ -13022,7 +13056,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\n0/3 ok\nX,F,M",
+      "annotation": "no score\n0/3 ok\nR,X,M",
       "summary": {
         "identity": [
           "vio",
@@ -13039,13 +13073,14 @@
           "missing": 2
         },
         "acceptance": {
-          "valid_observed_failure": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
-        "paper_usable": 1,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "collapse_under_recorded_reference_diagnostic_not_verified_physical_scale",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "retain_failure_in_attempt_denominator"
@@ -13060,7 +13095,7 @@
               "scale_collapse": 1
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 0,
             "accepted_primary_ate": {
               "n": 0,
               "mean": null,
@@ -13093,12 +13128,14 @@
           }
         ],
         "scientific_blockers": [
-          "missing_repetition"
+          "missing_repetition",
+          "rosario_identity_camera_imu_extrinsic",
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
+        "R",
         "X",
-        "F",
         "M"
       ]
     },
@@ -13111,7 +13148,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\n0/3 ok\nX,F,M",
+      "annotation": "no score\n0/3 ok\nR,X,M",
       "summary": {
         "identity": [
           "vio",
@@ -13128,13 +13165,14 @@
           "missing": 2
         },
         "acceptance": {
-          "valid_observed_failure": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
-        "paper_usable": 1,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "collapse_under_recorded_reference_diagnostic_not_verified_physical_scale",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "retain_failure_in_attempt_denominator"
@@ -13149,7 +13187,7 @@
               "scale_collapse": 1
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 0,
             "accepted_primary_ate": {
               "n": 0,
               "mean": null,
@@ -13182,12 +13220,14 @@
           }
         ],
         "scientific_blockers": [
-          "missing_repetition"
+          "missing_repetition",
+          "rosario_identity_camera_imu_extrinsic",
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
+        "R",
         "X",
-        "F",
         "M"
       ]
     },
@@ -13268,7 +13308,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved",
           "missing_repetition"
         ]
       },
@@ -13355,7 +13395,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved",
           "missing_repetition"
         ]
       },
@@ -13401,7 +13441,8 @@
           "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "retain_failure_in_attempt_denominator",
-          "serial_specific_imu_rotation_and_timing_unverified"
+          "serial_specific_imu_rotation_and_timing_unverified",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -13723,8 +13764,8 @@
         "voxel_svio",
         "default"
       ],
-      "value": 4.648616309213059,
-      "annotation": "4.65\n3/3 ok\nB",
+      "value": 4.650886460689511,
+      "annotation": "4.65\n3/3 ok\nR",
       "summary": {
         "identity": [
           "vio",
@@ -13740,11 +13781,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -13770,11 +13812,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 4.709413200510587,
-              "median": 4.648616309213059,
-              "min": 3.677377701050411,
-              "max": 5.802245591268292,
-              "sample_std": 1.063737789219378
+              "mean": 4.711666700469768,
+              "median": 4.650886460689511,
+              "min": 3.680074442350986,
+              "max": 5.804039198368805,
+              "sample_std": 1.0632860618677684
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -13792,12 +13834,12 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_identity_camera_imu_extrinsic",
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
-        "B"
+        "R"
       ]
     },
     {
@@ -13808,8 +13850,8 @@
         "voxel_svio",
         "default"
       ],
-      "value": 6.550139538410864,
-      "annotation": "6.55\n3/3 ok\nB",
+      "value": 6.553299194761011,
+      "annotation": "6.55\n3/3 ok\nR",
       "summary": {
         "identity": [
           "vio",
@@ -13825,11 +13867,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -13855,11 +13898,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 6.8348652815692885,
-              "median": 6.550139538410864,
-              "min": 6.536519621587503,
-              "max": 7.417936684709498,
-              "sample_std": 0.5050005657457113
+              "mean": 6.838018600804317,
+              "median": 6.553299194761011,
+              "min": 6.53971439160998,
+              "max": 7.421042216041962,
+              "sample_std": 0.504958947502411
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -13877,12 +13920,12 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_identity_camera_imu_extrinsic",
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
-        "B"
+        "R"
       ]
     },
     {
@@ -13962,7 +14005,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -14046,7 +14089,7 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
@@ -14085,7 +14128,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -14131,7 +14175,7 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable",
           "zed_serial_specific_imu_rotation_and_time_offset_unverified"
         ]
@@ -14400,7 +14444,7 @@
         "orbslam3",
         "default"
       ],
-      "value": 0.8316861561657493,
+      "value": 0.831686159150314,
       "annotation": "0.832\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -14422,6 +14466,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -14447,11 +14492,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.8464096232017331,
-              "median": 0.8316861561657493,
-              "min": 0.8153740941419619,
-              "max": 0.8921686192974881,
-              "sample_std": 0.040459055038834804
+              "mean": 0.8464096261069994,
+              "median": 0.831686159150314,
+              "min": 0.8153740956709683,
+              "max": 0.892168623499716,
+              "sample_std": 0.0404590562856888
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -14469,8 +14514,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -14485,7 +14529,7 @@
         "orbslam3",
         "default"
       ],
-      "value": 2.1220897061452897,
+      "value": 2.1220897056424173,
       "annotation": "2.12\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -14507,6 +14551,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -14532,11 +14577,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 2.2007432139759118,
-              "median": 2.1220897061452897,
-              "min": 2.0704049891118865,
-              "max": 2.409734946670559,
-              "sample_std": 0.18282774883681888
+              "mean": 2.2007432136700453,
+              "median": 2.1220897056424173,
+              "min": 2.0704049886580544,
+              "max": 2.4097349467096643,
+              "sample_std": 0.18282774912910765
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -14554,8 +14599,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -14639,6 +14683,8 @@
           }
         ],
         "scientific_blockers": [
+          "horti_camera_imu_time_offset_uncompensated",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved",
           "orb_horti_rectified_camera_imu_extrinsic"
         ]
       },
@@ -14723,6 +14769,8 @@
           }
         ],
         "scientific_blockers": [
+          "horti_camera_imu_time_offset_uncompensated",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved",
           "orb_horti_rectified_camera_imu_extrinsic"
         ]
       },
@@ -14765,7 +14813,8 @@
           "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "retain_failure_in_attempt_denominator",
-          "serial_specific_imu_rotation_and_timing_unverified"
+          "serial_specific_imu_rotation_and_timing_unverified",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -15076,7 +15125,7 @@
         "airslam",
         "default"
       ],
-      "value": 17.479996741757223,
+      "value": 17.479996742995848,
       "annotation": "17.5\n3/3 ok\nK,B",
       "summary": {
         "identity": [
@@ -15098,6 +15147,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -15123,11 +15173,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 24.343548225279015,
-              "median": 17.479996741757223,
-              "min": 17.321468087214775,
-              "max": 38.229179846865044,
-              "sample_std": 12.025570962801316
+              "mean": 24.343548227490516,
+              "median": 17.479996742995848,
+              "min": 17.321468088860442,
+              "max": 38.22917985061525,
+              "sample_std": 12.025570964132507
             },
             "dense_coverage_pct": {
               "n": 0,
@@ -15145,8 +15195,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -15162,7 +15211,7 @@
         "airslam",
         "default"
       ],
-      "value": 31.91569754372516,
+      "value": 31.91569754898272,
       "annotation": "31.9\n3/3 ok\nK,B",
       "summary": {
         "identity": [
@@ -15184,6 +15233,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -15209,10 +15259,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 31.91569754372516,
-              "median": 31.91569754372516,
-              "min": 31.91569754372516,
-              "max": 31.91569754372516,
+              "mean": 31.91569754898272,
+              "median": 31.91569754898272,
+              "min": 31.91569754898272,
+              "max": 31.91569754898272,
               "sample_std": 0.0
             },
             "dense_coverage_pct": {
@@ -15231,8 +15281,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -15249,7 +15298,7 @@
         "default"
       ],
       "value": 6.642467091180798,
-      "annotation": "6.64\n3/3 ok\nK,B",
+      "annotation": "6.64\n3/3 ok\nK,R",
       "summary": {
         "identity": [
           "vio-lc",
@@ -15265,7 +15314,7 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
@@ -15317,12 +15366,13 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_camera_imu_time_offset_uncompensated",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
         "K",
-        "B"
+        "R"
       ]
     },
     {
@@ -15334,7 +15384,7 @@
         "default"
       ],
       "value": 1.1930228858341907,
-      "annotation": "1.19\n3/3 ok\nK,B",
+      "annotation": "1.19\n3/3 ok\nK,R",
       "summary": {
         "identity": [
           "vio-lc",
@@ -15350,7 +15400,7 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
@@ -15402,12 +15452,13 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_camera_imu_time_offset_uncompensated",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
         "K",
-        "B"
+        "R"
       ]
     },
     {
@@ -15442,7 +15493,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -15488,7 +15540,7 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable",
           "zed_serial_specific_imu_rotation_and_time_offset_unverified"
         ]
@@ -15762,7 +15814,7 @@
         "okvis2",
         "default"
       ],
-      "value": 0.8371761652445712,
+      "value": 0.8371761651438495,
       "annotation": "0.837\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -15784,6 +15836,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -15809,11 +15862,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.8378711131594615,
-              "median": 0.8371761652445712,
-              "min": 0.835200286694006,
-              "max": 0.8412368875398072,
-              "sample_std": 0.0030777186187482407
+              "mean": 0.8378711130604575,
+              "median": 0.8371761651438495,
+              "min": 0.8352002865761239,
+              "max": 0.8412368874613989,
+              "sample_std": 0.003077718638395015
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -15831,8 +15884,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -15847,7 +15899,7 @@
         "okvis2",
         "default"
       ],
-      "value": 9.244182354104558,
+      "value": 9.244182358196515,
       "annotation": "9.24\n3/3 ok\nB",
       "summary": {
         "identity": [
@@ -15869,6 +15921,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -15894,11 +15947,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 9.254087384428857,
-              "median": 9.244182354104558,
-              "min": 9.076380547153631,
-              "max": 9.44169925202838,
-              "sample_std": 0.18286066075603838
+              "mean": 9.254087388620103,
+              "median": 9.244182358196515,
+              "min": 9.076380551284265,
+              "max": 9.441699256379533,
+              "sample_std": 0.18286066087021008
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -15916,8 +15969,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -15933,7 +15985,7 @@
         "default"
       ],
       "value": 1.741519352593355,
-      "annotation": "1.74\n3/3 ok\nB",
+      "annotation": "1.74\n3/3 ok\nR",
       "summary": {
         "identity": [
           "vio-lc",
@@ -15949,7 +16001,7 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
@@ -16001,11 +16053,12 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_camera_imu_time_offset_uncompensated",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
-        "B"
+        "R"
       ]
     },
     {
@@ -16017,7 +16070,7 @@
         "default"
       ],
       "value": 0.664570163123549,
-      "annotation": "0.665\n3/3 ok\nB",
+      "annotation": "0.665\n3/3 ok\nR",
       "summary": {
         "identity": [
           "vio-lc",
@@ -16033,7 +16086,7 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
@@ -16085,11 +16138,12 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_camera_imu_time_offset_uncompensated",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
-        "B"
+        "R"
       ]
     },
     {
@@ -16124,7 +16178,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -16170,7 +16225,7 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable",
           "zed_serial_specific_imu_rotation_and_time_offset_unverified"
         ]
@@ -16434,8 +16489,8 @@
         "okvis2x",
         "default"
       ],
-      "value": 5.360350209893733,
-      "annotation": "5.36\n3/3 ok\nB",
+      "value": 5.348853878740864,
+      "annotation": "5.35\n3/3 ok\nB",
       "summary": {
         "identity": [
           "vio-lc",
@@ -16456,6 +16511,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -16481,11 +16537,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 4.3689688081742215,
-              "median": 5.360350209893733,
-              "min": 1.9554728663374772,
-              "max": 5.791083348291455,
-              "sample_std": 2.10121506635454
+              "mean": 4.362805272346261,
+              "median": 5.348853878740864,
+              "min": 1.9579042150723531,
+              "max": 5.781657723225565,
+              "sample_std": 2.0939177666298296
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -16503,8 +16559,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -16519,8 +16574,8 @@
         "okvis2x",
         "default"
       ],
-      "value": 8.583123404249887,
-      "annotation": "8.58\n3/3 ok\nB",
+      "value": 8.567710870998212,
+      "annotation": "8.57\n3/3 ok\nB",
       "summary": {
         "identity": [
           "vio-lc",
@@ -16541,6 +16596,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -16566,11 +16622,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 8.774481835206059,
-              "median": 8.583123404249887,
-              "min": 8.45469423019921,
-              "max": 9.285627871169078,
-              "sample_std": 0.4472987991794366
+              "mean": 8.757557472362512,
+              "median": 8.567710870998212,
+              "min": 8.437486368349903,
+              "max": 9.267475177739419,
+              "sample_std": 0.446376136195852
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -16588,8 +16644,7 @@
           }
         ],
         "scientific_blockers": [
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification",
-          "rosario_rectified_camera_reference_chain_and_baseline_convention_unverified"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -16605,7 +16660,7 @@
         "default"
       ],
       "value": 3.386986302899239,
-      "annotation": "3.39\n3/3 ok\nB",
+      "annotation": "3.39\n3/3 ok\nR",
       "summary": {
         "identity": [
           "vio-lc",
@@ -16621,7 +16676,7 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
@@ -16673,11 +16728,12 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_camera_imu_time_offset_uncompensated",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
-        "B"
+        "R"
       ]
     },
     {
@@ -16689,7 +16745,7 @@
         "default"
       ],
       "value": 1.4567889290941225,
-      "annotation": "1.46\n3/3 ok\nB",
+      "annotation": "1.46\n3/3 ok\nR",
       "summary": {
         "identity": [
           "vio-lc",
@@ -16705,7 +16761,7 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "rerun_required": 3
         },
         "paper_usable": 0,
         "claim_limits": [
@@ -16757,11 +16813,12 @@
           }
         ],
         "scientific_blockers": [
-          "horti_reference_to_camera_extrinsic_unverified"
+          "horti_camera_imu_time_offset_uncompensated",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ]
       },
       "flags": [
-        "B"
+        "R"
       ]
     },
     {
@@ -16796,7 +16853,8 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -16842,7 +16900,7 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_reference_camera_lever_arm_heading_altitude_unverified",
+          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
           "zed_reference_orientation_unavailable",
           "zed_serial_specific_imu_rotation_and_time_offset_unverified"
         ]
@@ -17106,7 +17164,7 @@
         "vins_fusion_gps",
         "conventional_gps"
       ],
-      "value": 0.9730547875214346,
+      "value": 0.9730547310603889,
       "annotation": "0.973\n1/1 ok\nB",
       "summary": {
         "identity": [
@@ -17154,10 +17212,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 0.9730547875214346,
-              "median": 0.9730547875214346,
-              "min": 0.9730547875214346,
-              "max": 0.9730547875214346,
+              "mean": 0.9730547310603889,
+              "median": 0.9730547310603889,
+              "min": 0.9730547310603889,
+              "max": 0.9730547310603889,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -17178,8 +17236,7 @@
           "execution_exit_nonzero_or_unverified",
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_configuration_and_implementation_evidence_missing",
-          "historical_gnss_input_covariance_antenna_and_fusion_output_unverified",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification"
+          "historical_gnss_input_covariance_antenna_and_fusion_output_unverified"
         ]
       },
       "flags": [
@@ -17194,7 +17251,7 @@
         "rtabmap_gps",
         "conventional_gps"
       ],
-      "value": 1.7717074125959122,
+      "value": 1.7717073962565302,
       "annotation": "1.77\n1/1 ok\nP,B",
       "summary": {
         "identity": [
@@ -17243,10 +17300,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 1.7717074125959122,
-              "median": 1.7717074125959122,
-              "min": 1.7717074125959122,
-              "max": 1.7717074125959122,
+              "mean": 1.7717073962565302,
+              "median": 1.7717073962565302,
+              "min": 1.7717073962565302,
+              "max": 1.7717073962565302,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -17267,8 +17324,7 @@
           "execution_exit_nonzero_or_unverified",
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_configuration_and_implementation_evidence_missing",
-          "historical_gnss_input_covariance_antenna_and_fusion_output_unverified",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification"
+          "historical_gnss_input_covariance_antenna_and_fusion_output_unverified"
         ]
       },
       "flags": [
@@ -17284,7 +17340,7 @@
         "cifasis_gnss_si",
         "conventional_gps"
       ],
-      "value": 1.3377574047455314,
+      "value": 1.337757402150755,
       "annotation": "1.34\n1/1 ok\nB",
       "summary": {
         "identity": [
@@ -17332,10 +17388,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 1.3377574047455314,
-              "median": 1.3377574047455314,
-              "min": 1.3377574047455314,
-              "max": 1.3377574047455314,
+              "mean": 1.337757402150755,
+              "median": 1.337757402150755,
+              "min": 1.337757402150755,
+              "max": 1.337757402150755,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -17356,8 +17412,7 @@
           "execution_exit_nonzero_or_unverified",
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_configuration_and_implementation_evidence_missing",
-          "historical_gnss_input_covariance_antenna_and_fusion_output_unverified",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification"
+          "historical_gnss_input_covariance_antenna_and_fusion_output_unverified"
         ]
       },
       "flags": [
@@ -17372,7 +17427,7 @@
         "openvins_gps",
         "conventional_gps"
       ],
-      "value": 4.743703030593697,
+      "value": 4.743703039532745,
       "annotation": "4.74\n1/1 ok\nP,B",
       "summary": {
         "identity": [
@@ -17421,10 +17476,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 4.743703030593697,
-              "median": 4.743703030593697,
-              "min": 4.743703030593697,
-              "max": 4.743703030593697,
+              "mean": 4.743703039532745,
+              "median": 4.743703039532745,
+              "min": 4.743703039532745,
+              "max": 4.743703039532745,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -17445,8 +17500,7 @@
           "execution_exit_nonzero_or_unverified",
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_configuration_and_implementation_evidence_missing",
-          "historical_gnss_input_covariance_antenna_and_fusion_output_unverified",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification"
+          "historical_gnss_input_covariance_antenna_and_fusion_output_unverified"
         ]
       },
       "flags": [
@@ -17462,8 +17516,8 @@
         "okvis2x",
         "default"
       ],
-      "value": 8.633311297848467,
-      "annotation": "8.63\n1/3 ok\nB,M",
+      "value": 8.633311297565788,
+      "annotation": "8.63\n1/3 ok\nR,M",
       "summary": {
         "identity": [
           "gnss-vio",
@@ -17480,12 +17534,13 @@
           "missing": 2
         },
         "acceptance": {
-          "blocked": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -17511,10 +17566,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 8.633311297848467,
-              "median": 8.633311297848467,
-              "min": 8.633311297848467,
-              "max": 8.633311297848467,
+              "mean": 8.633311297565788,
+              "median": 8.633311297565788,
+              "min": 8.633311297565788,
+              "max": 8.633311297565788,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -17533,13 +17588,14 @@
         "scientific_blockers": [
           "estimate_frame_unverified: expected one saved estimator_config, found 0",
           "gnss_reference_independence_and_global_frame_not_established",
+          "gnss_zero_antenna_lever_arm_in_native_log",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
           "missing_repetition",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
-        "B",
+        "R",
         "M"
       ]
     },
@@ -17551,8 +17607,8 @@
         "okvis2x",
         "default"
       ],
-      "value": 7.758590870175654,
-      "annotation": "7.76\n1/3 ok\nB,M",
+      "value": 7.758590864155502,
+      "annotation": "7.76\n1/3 ok\nR,M",
       "summary": {
         "identity": [
           "gnss-vio",
@@ -17569,12 +17625,13 @@
           "missing": 2
         },
         "acceptance": {
-          "blocked": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -17600,10 +17657,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 7.758590870175654,
-              "median": 7.758590870175654,
-              "min": 7.758590870175654,
-              "max": 7.758590870175654,
+              "mean": 7.758590864155502,
+              "median": 7.758590864155502,
+              "min": 7.758590864155502,
+              "max": 7.758590864155502,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -17622,13 +17679,14 @@
         "scientific_blockers": [
           "estimate_frame_unverified: expected one saved estimator_config, found 0",
           "gnss_reference_independence_and_global_frame_not_established",
+          "gnss_zero_antenna_lever_arm_in_native_log",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
           "missing_repetition",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
-        "B",
+        "R",
         "M"
       ]
     },
@@ -17641,7 +17699,7 @@
         "default"
       ],
       "value": 2.5910148323570765,
-      "annotation": "2.59\n1/3 ok\nB,M",
+      "annotation": "2.59\n1/3 ok\nR,M",
       "summary": {
         "identity": [
           "gnss-vio",
@@ -17658,7 +17716,7 @@
           "missing": 2
         },
         "acceptance": {
-          "blocked": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
         "paper_usable": 0,
@@ -17711,13 +17769,14 @@
         "scientific_blockers": [
           "estimate_frame_unverified: expected one saved estimator_config, found 0",
           "gnss_reference_independence_and_global_frame_not_established",
+          "gnss_zero_antenna_lever_arm_in_native_log",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
-          "horti_reference_to_camera_extrinsic_unverified",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved",
           "missing_repetition"
         ]
       },
       "flags": [
-        "B",
+        "R",
         "M"
       ]
     },
@@ -17730,7 +17789,7 @@
         "default"
       ],
       "value": 0.6231703486594247,
-      "annotation": "0.623\n1/3 ok\nB,M",
+      "annotation": "0.623\n1/3 ok\nR,M",
       "summary": {
         "identity": [
           "gnss-vio",
@@ -17747,7 +17806,7 @@
           "missing": 2
         },
         "acceptance": {
-          "blocked": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
         "paper_usable": 0,
@@ -17800,13 +17859,14 @@
         "scientific_blockers": [
           "estimate_frame_unverified: expected one saved estimator_config, found 0",
           "gnss_reference_independence_and_global_frame_not_established",
+          "gnss_zero_antenna_lever_arm_in_native_log",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
-          "horti_reference_to_camera_extrinsic_unverified",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved",
           "missing_repetition"
         ]
       },
       "flags": [
-        "B",
+        "R",
         "M"
       ]
     },
@@ -17818,7 +17878,7 @@
         "vins_fusion_gps",
         "default"
       ],
-      "value": 1.226624438207716,
+      "value": 1.2266244095707604,
       "annotation": "1.23\n1/3 ok\nB,M",
       "summary": {
         "identity": [
@@ -17842,6 +17902,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -17867,10 +17928,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 1.226624438207716,
-              "median": 1.226624438207716,
-              "min": 1.226624438207716,
-              "max": 1.226624438207716,
+              "mean": 1.2266244095707604,
+              "median": 1.2266244095707604,
+              "min": 1.2266244095707604,
+              "max": 1.2266244095707604,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -17891,7 +17952,7 @@
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
           "missing_repetition",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -17907,7 +17968,7 @@
         "vins_fusion_gps",
         "default"
       ],
-      "value": 0.9288786774017214,
+      "value": 0.9288786113967884,
       "annotation": "0.929\n1/3 ok\nB,M",
       "summary": {
         "identity": [
@@ -17931,6 +17992,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -17956,10 +18018,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 0.9288786774017214,
-              "median": 0.9288786774017214,
-              "min": 0.9288786774017214,
-              "max": 0.9288786774017214,
+              "mean": 0.9288786113967884,
+              "median": 0.9288786113967884,
+              "min": 0.9288786113967884,
+              "max": 0.9288786113967884,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -17980,7 +18042,7 @@
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
           "missing_repetition",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -18068,7 +18130,7 @@
           "estimate_frame_unverified: output frame not established for vins_fusion_gps",
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
-          "horti_reference_to_camera_extrinsic_unverified",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved",
           "missing_repetition"
         ]
       },
@@ -18157,7 +18219,7 @@
           "estimate_frame_unverified: output frame not established for vins_fusion_gps",
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
-          "horti_reference_to_camera_extrinsic_unverified",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved",
           "missing_repetition"
         ]
       },
@@ -18174,7 +18236,7 @@
         "rtabmap_gps",
         "default"
       ],
-      "value": 2.3088515170768145,
+      "value": 2.3088515018914975,
       "annotation": "2.31\n1/3 ok\nP,B,M",
       "summary": {
         "identity": [
@@ -18198,6 +18260,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -18223,10 +18286,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 2.3088515170768145,
-              "median": 2.3088515170768145,
-              "min": 2.3088515170768145,
-              "max": 2.3088515170768145,
+              "mean": 2.3088515018914975,
+              "median": 2.3088515018914975,
+              "min": 2.3088515018914975,
+              "max": 2.3088515018914975,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -18247,7 +18310,7 @@
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
           "missing_repetition",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -18264,7 +18327,7 @@
         "rtabmap_gps",
         "default"
       ],
-      "value": 4.910203630741364,
+      "value": 4.910203628792883,
       "annotation": "4.91\n1/3 ok\nP,B,M",
       "summary": {
         "identity": [
@@ -18288,6 +18351,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -18313,10 +18377,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 4.910203630741364,
-              "median": 4.910203630741364,
-              "min": 4.910203630741364,
-              "max": 4.910203630741364,
+              "mean": 4.910203628792883,
+              "median": 4.910203628792883,
+              "min": 4.910203628792883,
+              "max": 4.910203628792883,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -18337,7 +18401,7 @@
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
           "missing_repetition",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -18426,7 +18490,7 @@
           "estimate_frame_unverified: output frame not established for rtabmap_gps",
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
-          "horti_reference_to_camera_extrinsic_unverified",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved",
           "missing_repetition"
         ]
       },
@@ -18516,7 +18580,7 @@
           "estimate_frame_unverified: output frame not established for rtabmap_gps",
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
-          "horti_reference_to_camera_extrinsic_unverified",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved",
           "missing_repetition"
         ]
       },
@@ -18534,8 +18598,8 @@
         "cifasis_gnss_si",
         "default"
       ],
-      "value": 3.691348582408524,
-      "annotation": "3.69\n1/3 ok\nB,M",
+      "value": 3.6913485963907275,
+      "annotation": "3.69\n1/3 ok\nR,M",
       "summary": {
         "identity": [
           "gnss-vio",
@@ -18552,12 +18616,13 @@
           "missing": 2
         },
         "acceptance": {
-          "blocked": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -18583,10 +18648,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 3.691348582408524,
-              "median": 3.691348582408524,
-              "min": 3.691348582408524,
-              "max": 3.691348582408524,
+              "mean": 3.6913485963907275,
+              "median": 3.6913485963907275,
+              "min": 3.6913485963907275,
+              "max": 3.6913485963907275,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -18607,11 +18672,12 @@
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
           "missing_repetition",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved",
+          "rosario_v1_antenna_lever_arm_used_on_v2"
         ]
       },
       "flags": [
-        "B",
+        "R",
         "M"
       ]
     },
@@ -18623,7 +18689,7 @@
         "cifasis_gnss_si",
         "default"
       ],
-      "value": 2.2736064784051844,
+      "value": 2.2736064650014045,
       "annotation": "2.27\n1/3 ok\nB,M",
       "summary": {
         "identity": [
@@ -18647,6 +18713,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -18672,10 +18739,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 2.2736064784051844,
-              "median": 2.2736064784051844,
-              "min": 2.2736064784051844,
-              "max": 2.2736064784051844,
+              "mean": 2.2736064650014045,
+              "median": 2.2736064650014045,
+              "min": 2.2736064650014045,
+              "max": 2.2736064650014045,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -18696,7 +18763,7 @@
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
           "missing_repetition",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -18784,7 +18851,7 @@
           "estimate_frame_unverified: output frame not established for cifasis_gnss_si",
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
-          "horti_reference_to_camera_extrinsic_unverified",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved",
           "missing_repetition"
         ]
       },
@@ -18873,7 +18940,7 @@
           "estimate_frame_unverified: output frame not established for cifasis_gnss_si",
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
-          "horti_reference_to_camera_extrinsic_unverified",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved",
           "missing_repetition"
         ]
       },
@@ -18890,7 +18957,7 @@
         "openvins_gps",
         "default"
       ],
-      "value": 2.5782977171355954,
+      "value": 2.5782977135595946,
       "annotation": "2.58\n1/3 ok\nP,B,M",
       "summary": {
         "identity": [
@@ -18914,6 +18981,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -18939,10 +19007,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 2.5782977171355954,
-              "median": 2.5782977171355954,
-              "min": 2.5782977171355954,
-              "max": 2.5782977171355954,
+              "mean": 2.5782977135595946,
+              "median": 2.5782977135595946,
+              "min": 2.5782977135595946,
+              "max": 2.5782977135595946,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -18963,7 +19031,7 @@
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
           "missing_repetition",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -18980,7 +19048,7 @@
         "openvins_gps",
         "default"
       ],
-      "value": 4.223603618799518,
+      "value": 4.223603613788478,
       "annotation": "4.22\n1/3 ok\nP,B,M",
       "summary": {
         "identity": [
@@ -19004,6 +19072,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -19029,10 +19098,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 4.223603618799518,
-              "median": 4.223603618799518,
-              "min": 4.223603618799518,
-              "max": 4.223603618799518,
+              "mean": 4.223603613788478,
+              "median": 4.223603613788478,
+              "min": 4.223603613788478,
+              "max": 4.223603613788478,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -19053,7 +19122,7 @@
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
           "missing_repetition",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification"
+          "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ]
       },
       "flags": [
@@ -19142,7 +19211,7 @@
           "estimate_frame_unverified: output frame not established for openvins_gps",
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
-          "horti_reference_to_camera_extrinsic_unverified",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved",
           "missing_repetition"
         ]
       },
@@ -19232,7 +19301,7 @@
           "estimate_frame_unverified: output frame not established for openvins_gps",
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified",
-          "horti_reference_to_camera_extrinsic_unverified",
+          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved",
           "missing_repetition"
         ]
       },
@@ -19250,7 +19319,7 @@
         "vins_fusion_gps",
         "hybrid_alt"
       ],
-      "value": 0.9164680056456727,
+      "value": 0.9164679459088992,
       "annotation": "0.916\n1/1 ok\nB",
       "summary": {
         "identity": [
@@ -19298,10 +19367,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 0.9164680056456727,
-              "median": 0.9164680056456727,
-              "min": 0.9164680056456727,
-              "max": 0.9164680056456727,
+              "mean": 0.9164679459088992,
+              "median": 0.9164679459088992,
+              "min": 0.9164679459088992,
+              "max": 0.9164679459088992,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -19322,8 +19391,7 @@
           "execution_exit_nonzero_or_unverified",
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_configuration_and_implementation_evidence_missing",
-          "historical_gnss_input_covariance_antenna_and_fusion_output_unverified",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification"
+          "historical_gnss_input_covariance_antenna_and_fusion_output_unverified"
         ]
       },
       "flags": [
@@ -19338,7 +19406,7 @@
         "vins_fusion_gps",
         "ppk_full"
       ],
-      "value": 11.15896066017597,
+      "value": 11.158960645734,
       "annotation": "11.2\n1/1 ok\nB",
       "summary": {
         "identity": [
@@ -19386,10 +19454,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 11.15896066017597,
-              "median": 11.15896066017597,
-              "min": 11.15896066017597,
-              "max": 11.15896066017597,
+              "mean": 11.158960645734,
+              "median": 11.158960645734,
+              "min": 11.158960645734,
+              "max": 11.158960645734,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -19410,8 +19478,7 @@
           "execution_exit_nonzero_or_unverified",
           "gnss_reference_independence_and_global_frame_not_established",
           "historical_effective_configuration_and_implementation_evidence_missing",
-          "historical_gnss_input_covariance_antenna_and_fusion_output_unverified",
-          "rosario_rectified_camera_axes_and_reference_chain_require_verification"
+          "historical_gnss_input_covariance_antenna_and_fusion_output_unverified"
         ]
       },
       "flags": [
@@ -19446,19 +19513,19 @@
     },
     {
       "path": "fig_accuracy_vio_default.png",
-      "sha256": "34126fa1cd9cfaf04d07d2c88430550afbe56e00a1cf2d95c38db93958f3f676"
+      "sha256": "278f992bbfcb9abaa40bcad83ae94c3be500439f2973b05b2618a796c26c2c3a"
     },
     {
       "path": "fig_accuracy_vio_default.pdf",
-      "sha256": "74fbc4e1e435a7fbbec641df23022df0cd9c1c1254cd86714a37b397438767d2"
+      "sha256": "8dca0e64f4e6e500077d497d524433fa2b5ef55196cf43fe02990791d0b6cea7"
     },
     {
       "path": "fig_accuracy_vio-lc_default.png",
-      "sha256": "4be9f6b6291fb748d56706e02a78f42ad5282bf0356ccf4296f10e8333561525"
+      "sha256": "4eb11bc1b826cf10b84642a815fb59a68358bd5d4673c219382bbd071fa7e1db"
     },
     {
       "path": "fig_accuracy_vio-lc_default.pdf",
-      "sha256": "93543bee53cceb6b8179c48519e962bf44a9ce020c62c6530e2951175ce55191"
+      "sha256": "a5f13d5132926bc4bc2dfa766f31fe3fea8caa20fce3553c39e028a387ceaf98"
     },
     {
       "path": "fig_accuracy_gnss-vio_conventional_gps.png",
@@ -19470,11 +19537,11 @@
     },
     {
       "path": "fig_accuracy_gnss-vio_default.png",
-      "sha256": "7f5c7eca6fb3cb6bf8b963ff5b6fd2d11e10158b066e2997b93094047c98f910"
+      "sha256": "98723583097386f9d0517cbaa7d31fb5c48f79eec5e8325695b69f3aecaaee5c"
     },
     {
       "path": "fig_accuracy_gnss-vio_default.pdf",
-      "sha256": "3251b187b3b701f2f0334ba28358ae95184206cf348a5d3a665405447ec16016"
+      "sha256": "9a152448a7096c800d7daca7a88ad1c36aac23bfabd831cd48e475b6cf78787a"
     },
     {
       "path": "fig_accuracy_gnss-vio_hybrid_alt.png",

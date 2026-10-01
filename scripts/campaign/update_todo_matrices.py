@@ -23,11 +23,17 @@ def render_cell(cell):
     findings={f['code'] for a in cell['attempts'] for f in a.get('confirmed_protocol_findings',[])}
     if findings & {'airslam_rectified_camera_imu_extrinsic','orb_horti_rectified_camera_imu_extrinsic'}:
         flags.append('rerun: rectified IMU')
+    if 'rosario_identity_camera_imu_extrinsic' in findings:flags.append('rerun: IMU extrinsic')
+    if 'horti_camera_imu_time_offset_uncompensated' in findings:flags.append('rerun: time offset')
+    if findings & {'gnss_zero_antenna_lever_arm_in_native_log','rosario_v1_antenna_lever_arm_used_on_v2'}:
+        flags.append('rerun: antenna lever')
     if any(a['numerical_status']=='eval_failed' for a in cell['attempts']):flags.append('invalid trajectory')
     if algo=='orbslam3' and ds=='zed2i' and mode in ('vo','vo-lc'):flags.append('rerun: FPS')
     if states.get('blocked'):
         flags.append('blocked: GNSS evidence' if mode=='gnss-vio' else
             'blocked: reference/IMU' if ds=='zed2i' and mode in ('vio','vio-lc') else
+            'blocked: camera model' if ds=='rosariov2' and n else
+            'blocked: reference/clock' if ds=='hortimulti' and n else
             'blocked: reference' if ds!='euroc_mav' and n else 'blocked: execution/evidence')
     if states.get('accepted_with_limitation'):
         flags.append('limited')

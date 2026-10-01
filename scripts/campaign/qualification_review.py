@@ -7,19 +7,34 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+from functools import lru_cache
 from acceptance_ledger import reviewed_decision, LEDGER, DOCUMENT
 
 REVIEW_DOCUMENT = 'docs/publication-qualification-20261001.md'
 
 
+@lru_cache(maxsize=4096)
+def _evidence_hash(path, mtime_ns, ctime_ns, size):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
 def review_identity(repo):
     paths = ['scripts/campaign/qualification_review.py', 'scripts/campaign/protocol_findings.py', REVIEW_DOCUMENT,
              'scripts/campaign/acceptance_ledger.py']
+    paths += [p for p in ('docs/campaigns/horti-time-offset-findings-20261001.json',
+                          'docs/campaigns/gnss-lever-findings-20261001.json',
+                          'docs/campaigns/reference-sources-20261001.json',
+                          'docs/reference-review-20261001.md') if (repo/p).is_file()]
     paths += [p for p in (LEDGER, DOCUMENT) if (repo/p).is_file()]
     if (repo/LEDGER).is_file():
         paths += [r['path'] for r in json.loads((repo/LEDGER).read_text()).get('supporting_evidence', [])]
-    return dict(schema=1, evidence=[dict(path=p, sha256=hashlib.sha256((repo/p).read_bytes()).hexdigest())
-                                    for p in paths])
+    evidence = []
+    for p in dict.fromkeys(paths):
+        path = repo/p
+        stat = path.stat()
+        evidence.append(dict(path=p, sha256=_evidence_hash(
+            str(path), stat.st_mtime_ns, stat.st_ctime_ns, stat.st_size)))
+    return dict(schema=1, evidence=evidence)
 
 
 def review_saved(relative, meta, evaluation, findings, snapshots, *, exists, repo=None):

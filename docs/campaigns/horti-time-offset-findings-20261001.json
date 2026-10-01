@@ -1,0 +1,1014 @@
+{
+  "schema": 1,
+  "status": "reviewed_estimator_input_defect",
+  "attempts": {
+    "vio/hortimulti/strawberry03/airslam/run1": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "camera_config",
+      "config_sha256": "6ad320bfc79898e7958cfb33d85b33821c4bfcc7b4afc6ba5e01b51124692119",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/airslam/src/dataset.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry03/airslam/run2": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "camera_config",
+      "config_sha256": "6ad320bfc79898e7958cfb33d85b33821c4bfcc7b4afc6ba5e01b51124692119",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/airslam/src/dataset.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry03/airslam/run3": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "camera_config",
+      "config_sha256": "6ad320bfc79898e7958cfb33d85b33821c4bfcc7b4afc6ba5e01b51124692119",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/airslam/src/dataset.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry02/airslam/run1": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "camera_config",
+      "config_sha256": "6ad320bfc79898e7958cfb33d85b33821c4bfcc7b4afc6ba5e01b51124692119",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/airslam/src/dataset.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry02/airslam/run2": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "camera_config",
+      "config_sha256": "6ad320bfc79898e7958cfb33d85b33821c4bfcc7b4afc6ba5e01b51124692119",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/airslam/src/dataset.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry02/airslam/run3": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "camera_config",
+      "config_sha256": "6ad320bfc79898e7958cfb33d85b33821c4bfcc7b4afc6ba5e01b51124692119",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/airslam/src/dataset.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry03/okvis2/run1": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "d812a2acb8617e93c7f6875cbda197dd35b330944ae59a3a1ce983343fb10011",
+      "algorithm_source": {
+        "commit": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry03/okvis2/run2": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "d812a2acb8617e93c7f6875cbda197dd35b330944ae59a3a1ce983343fb10011",
+      "algorithm_source": {
+        "commit": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry03/okvis2/run3": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "d812a2acb8617e93c7f6875cbda197dd35b330944ae59a3a1ce983343fb10011",
+      "algorithm_source": {
+        "commit": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry03/orbslam3/run1": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "9d5429921726317e47c8a02d052f9739e40fcc7a68ec4aa1e6a4052feb2114c9",
+      "algorithm_source": {
+        "commit": "e4b3ebd0c838cec6ea5707f8f36353fe8dfecf15",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/ORB_SLAM3",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry03/orbslam3/run2": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "9d5429921726317e47c8a02d052f9739e40fcc7a68ec4aa1e6a4052feb2114c9",
+      "algorithm_source": {
+        "commit": "e4b3ebd0c838cec6ea5707f8f36353fe8dfecf15",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/ORB_SLAM3",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry03/orbslam3/run3": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "9d5429921726317e47c8a02d052f9739e40fcc7a68ec4aa1e6a4052feb2114c9",
+      "algorithm_source": {
+        "commit": "e4b3ebd0c838cec6ea5707f8f36353fe8dfecf15",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/ORB_SLAM3",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry02/orbslam3/run1": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "9d5429921726317e47c8a02d052f9739e40fcc7a68ec4aa1e6a4052feb2114c9",
+      "algorithm_source": {
+        "commit": "e4b3ebd0c838cec6ea5707f8f36353fe8dfecf15",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/ORB_SLAM3",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry02/orbslam3/run2": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "9d5429921726317e47c8a02d052f9739e40fcc7a68ec4aa1e6a4052feb2114c9",
+      "algorithm_source": {
+        "commit": "e4b3ebd0c838cec6ea5707f8f36353fe8dfecf15",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/ORB_SLAM3",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry02/orbslam3/run3": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "9d5429921726317e47c8a02d052f9739e40fcc7a68ec4aa1e6a4052feb2114c9",
+      "algorithm_source": {
+        "commit": "e4b3ebd0c838cec6ea5707f8f36353fe8dfecf15",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/ORB_SLAM3",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry03/okvis2x/run1": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "42c9703364d0240f0903c1c208c3ef93818a4838cd9aeddb569575fe1e557e86",
+      "algorithm_source": {
+        "commit": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2x",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2x/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry03/okvis2x/run2": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "42c9703364d0240f0903c1c208c3ef93818a4838cd9aeddb569575fe1e557e86",
+      "algorithm_source": {
+        "commit": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2x",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2x/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry03/okvis2x/run3": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "42c9703364d0240f0903c1c208c3ef93818a4838cd9aeddb569575fe1e557e86",
+      "algorithm_source": {
+        "commit": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2x",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2x/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry02/okvis2/run1": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "065502906eb02ba422b728948bbe18a137832be12ec0a244e07ca1638b2b630b",
+      "algorithm_source": {
+        "commit": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry02/okvis2/run2": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "065502906eb02ba422b728948bbe18a137832be12ec0a244e07ca1638b2b630b",
+      "algorithm_source": {
+        "commit": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry02/okvis2/run3": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "065502906eb02ba422b728948bbe18a137832be12ec0a244e07ca1638b2b630b",
+      "algorithm_source": {
+        "commit": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry02/okvis2x/run1": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "d432f134a88fba823f9410212215d2d086a3998849d11d1d09cba1870dc83b62",
+      "algorithm_source": {
+        "commit": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2x",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2x/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry02/okvis2x/run2": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "d432f134a88fba823f9410212215d2d086a3998849d11d1d09cba1870dc83b62",
+      "algorithm_source": {
+        "commit": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2x",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2x/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio/hortimulti/strawberry02/okvis2x/run3": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "d432f134a88fba823f9410212215d2d086a3998849d11d1d09cba1870dc83b62",
+      "algorithm_source": {
+        "commit": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2x",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2x/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry03/airslam/run1": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "camera_config",
+      "config_sha256": "6ad320bfc79898e7958cfb33d85b33821c4bfcc7b4afc6ba5e01b51124692119",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/airslam/src/dataset.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry03/airslam/run2": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "camera_config",
+      "config_sha256": "6ad320bfc79898e7958cfb33d85b33821c4bfcc7b4afc6ba5e01b51124692119",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/airslam/src/dataset.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry03/airslam/run3": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "camera_config",
+      "config_sha256": "6ad320bfc79898e7958cfb33d85b33821c4bfcc7b4afc6ba5e01b51124692119",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/airslam/src/dataset.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/airslam/run1": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "camera_config",
+      "config_sha256": "6ad320bfc79898e7958cfb33d85b33821c4bfcc7b4afc6ba5e01b51124692119",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/airslam/src/dataset.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/airslam/run2": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "camera_config",
+      "config_sha256": "6ad320bfc79898e7958cfb33d85b33821c4bfcc7b4afc6ba5e01b51124692119",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/airslam/src/dataset.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/airslam/run3": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "camera_config",
+      "config_sha256": "6ad320bfc79898e7958cfb33d85b33821c4bfcc7b4afc6ba5e01b51124692119",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/airslam/src/dataset.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry03/okvis2/run1": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "a4c821e945fdd30a9de681299e474bd51e15ec8363496cd405f27473bcd9cbf1",
+      "algorithm_source": {
+        "commit": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry03/okvis2/run2": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "a4c821e945fdd30a9de681299e474bd51e15ec8363496cd405f27473bcd9cbf1",
+      "algorithm_source": {
+        "commit": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry03/okvis2/run3": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "a4c821e945fdd30a9de681299e474bd51e15ec8363496cd405f27473bcd9cbf1",
+      "algorithm_source": {
+        "commit": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry03/orbslam3/run1": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "ae1fa03edd93576bf87d2d11d421e933d66f6a67018e4194f3a45dd357bd74de",
+      "algorithm_source": {
+        "commit": "e4b3ebd0c838cec6ea5707f8f36353fe8dfecf15",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/ORB_SLAM3",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry03/orbslam3/run2": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "ae1fa03edd93576bf87d2d11d421e933d66f6a67018e4194f3a45dd357bd74de",
+      "algorithm_source": {
+        "commit": "e4b3ebd0c838cec6ea5707f8f36353fe8dfecf15",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/ORB_SLAM3",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry03/orbslam3/run3": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "ae1fa03edd93576bf87d2d11d421e933d66f6a67018e4194f3a45dd357bd74de",
+      "algorithm_source": {
+        "commit": "e4b3ebd0c838cec6ea5707f8f36353fe8dfecf15",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/ORB_SLAM3",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/orbslam3/run1": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "ae1fa03edd93576bf87d2d11d421e933d66f6a67018e4194f3a45dd357bd74de",
+      "algorithm_source": {
+        "commit": "e4b3ebd0c838cec6ea5707f8f36353fe8dfecf15",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/ORB_SLAM3",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/orbslam3/run2": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "ae1fa03edd93576bf87d2d11d421e933d66f6a67018e4194f3a45dd357bd74de",
+      "algorithm_source": {
+        "commit": "e4b3ebd0c838cec6ea5707f8f36353fe8dfecf15",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/ORB_SLAM3",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/orbslam3/run3": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "ae1fa03edd93576bf87d2d11d421e933d66f6a67018e4194f3a45dd357bd74de",
+      "algorithm_source": {
+        "commit": "e4b3ebd0c838cec6ea5707f8f36353fe8dfecf15",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/ORB_SLAM3",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc.cc",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry03/okvis2x/run1": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "a0ea544a17717f67ce2b9e32abfd860e044ffd976f120a21f9ea97cbbecc230a",
+      "algorithm_source": {
+        "commit": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2x",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2x/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry03/okvis2x/run2": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "a0ea544a17717f67ce2b9e32abfd860e044ffd976f120a21f9ea97cbbecc230a",
+      "algorithm_source": {
+        "commit": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2x",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2x/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry03/okvis2x/run3": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "a0ea544a17717f67ce2b9e32abfd860e044ffd976f120a21f9ea97cbbecc230a",
+      "algorithm_source": {
+        "commit": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2x",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2x/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/okvis2/run1": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "a14cbe2af002d01afd55f93e6299b824ff1c3b9e9d54f6248cf67ed4c00a16fa",
+      "algorithm_source": {
+        "commit": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/okvis2/run2": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "a14cbe2af002d01afd55f93e6299b824ff1c3b9e9d54f6248cf67ed4c00a16fa",
+      "algorithm_source": {
+        "commit": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/okvis2/run3": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "a14cbe2af002d01afd55f93e6299b824ff1c3b9e9d54f6248cf67ed4c00a16fa",
+      "algorithm_source": {
+        "commit": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/okvis2x/run1": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "88208d9beee64822d66cf91e2e482d320462b7709f629975d2a580688315afcc",
+      "algorithm_source": {
+        "commit": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2x",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2x/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/okvis2x/run2": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "88208d9beee64822d66cf91e2e482d320462b7709f629975d2a580688315afcc",
+      "algorithm_source": {
+        "commit": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2x",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2x/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/okvis2x/run3": {
+      "code": "horti_camera_imu_time_offset_uncompensated",
+      "disposition": "required_rerun",
+      "prerequisite": "apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts",
+      "role": "estimator_config",
+      "config_sha256": "88208d9beee64822d66cf91e2e482d320462b7709f629975d2a580688315afcc",
+      "algorithm_source": {
+        "commit": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2x",
+        "role": "algorithm"
+      },
+      "expected_camera_to_imu_offset_s": 0.009160379134269684,
+      "observed_input_clock_policy": "raw_image_and_imu_timestamps_no_compensation",
+      "implementation_evidence": "src/okvis2x/okvis_multisensor_processing/src/ThreadedSlam.cpp",
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    }
+  }
+}

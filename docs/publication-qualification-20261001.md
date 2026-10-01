@@ -11,7 +11,8 @@ history alone is no longer treated as proof that every result is invalid.
 original evidence and numerical content, and blocks stale decisions. Unreviewed
 artifacts retain the conservative fallback. Acceptance, outcome, repetition count
 and execution readiness remain separate. See the generated acceptance handoff for
-current counts and exact actions. The 30 confirmed estimator-side reruns remain.
+current counts and exact actions. The matched-session review now establishes 91 distinct estimator-side reruns; see
+[the evidence and unresolved physical questions](reference-review-20261001.md).
 
 ## What prevents a stronger certificate
 
@@ -53,7 +54,7 @@ The following additional provenance gaps are concrete:
   evidence. Current GNSS preparation repairs cannot certify those older runs.
 
 Independent reference issues remain on all agricultural datasets: Horti's original
-reference-to-camera transform, Rosario's rectified reference/sensor chain, and ZED's
+reference-to-camera transform, Rosario's image/projection/baseline consistency (its physical reference chain is now resolved), and ZED's
 position-only reference and lever-arm assumptions. ZED inertial modes additionally
 need serial-specific rotation and time-offset evidence. GNSS requires an explicit
 reference-independence and global-frame assessment. See the

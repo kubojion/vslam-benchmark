@@ -1,0 +1,192 @@
+{
+  "schema": 1,
+  "attempts": {
+    "gnss-vio/rosariov2/sequence1/okvis2x/run1": {
+      "code": "gnss_zero_antenna_lever_arm_in_native_log",
+      "disposition": "required_rerun",
+      "prerequisite": "use_dataset_session_specific_imu_to_selected_gnss_antenna_transform_and_verify_native_loaded_values",
+      "log": {
+        "path": "results/gnss-vio/rosariov2/sequence1/okvis2x/run1/run_log.txt",
+        "sha256": "80ed0dc8b2f523019114522a39a0c5b261b765ba68cd7bf0c0aff879087fcb48"
+      },
+      "observations": [
+        {
+          "line": 18,
+          "text": "0.374 \tr_SA: 0 0 0 "
+        },
+        {
+          "line": 683,
+          "text": "387.191 5 Import full optimisation         \t      2\t00:00:00.019283\t(00:00:00.009641 +- 00:00:00.001246)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 702,
+          "text": "397.859 5 Import full optimisation         \t      2\t00:00:00.019283\t(00:00:00.009641 +- 00:00:00.001246)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 721,
+          "text": "408.555 5 Import full optimisation         \t      2\t00:00:00.019283\t(00:00:00.009641 +- 00:00:00.001246)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 740,
+          "text": "419.582 5 Import full optimisation         \t      2\t00:00:00.019283\t(00:00:00.009641 +- 00:00:00.001246)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 759,
+          "text": "430.865 5 Import full optimisation         \t      2\t00:00:00.019283\t(00:00:00.009641 +- 00:00:00.001246)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 790,
+          "text": "442.147 5 Import full optimisation         \t      3\t00:00:00.029490\t(00:00:00.009830 +- 00:00:00.001052)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 809,
+          "text": "453.367 5 Import full optimisation         \t      3\t00:00:00.029490\t(00:00:00.009830 +- 00:00:00.001052)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 828,
+          "text": "464.029 5 Import full optimisation         \t      3\t00:00:00.029490\t(00:00:00.009830 +- 00:00:00.001052)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 839,
+          "text": "474.580 1 DetectAndDescribe                \t   5943\t00:01:04.678315\t(00:00:00.010883 +- 00:00:00.001190)\t[00:00:00.007310,00:00:00.016622]"
+        },
+        {
+          "line": 847,
+          "text": "474.580 5 Import full optimisation         \t      3\t00:00:00.029490\t(00:00:00.009830 +- 00:00:00.001052)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 866,
+          "text": "484.693 5 Import full optimisation         \t      3\t00:00:00.029490\t(00:00:00.009830 +- 00:00:00.001052)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 885,
+          "text": "495.310 5 Import full optimisation         \t      3\t00:00:00.029490\t(00:00:00.009830 +- 00:00:00.001052)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 916,
+          "text": "506.366 5 Import full optimisation         \t      4\t00:00:00.039467\t(00:00:00.009867 +- 00:00:00.000913)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 935,
+          "text": "517.807 5 Import full optimisation         \t      4\t00:00:00.039467\t(00:00:00.009867 +- 00:00:00.000913)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 954,
+          "text": "529.474 5 Import full optimisation         \t      4\t00:00:00.039467\t(00:00:00.009867 +- 00:00:00.000913)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 973,
+          "text": "540.755 5 Import full optimisation         \t      4\t00:00:00.039467\t(00:00:00.009867 +- 00:00:00.000913)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 992,
+          "text": "552.475 5 Import full optimisation         \t      4\t00:00:00.039467\t(00:00:00.009867 +- 00:00:00.000913)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 1011,
+          "text": "564.038 5 Import full optimisation         \t      4\t00:00:00.039467\t(00:00:00.009867 +- 00:00:00.000913)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 1030,
+          "text": "575.973 5 Import full optimisation         \t      4\t00:00:00.039467\t(00:00:00.009867 +- 00:00:00.000913)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 1049,
+          "text": "588.027 5 Import full optimisation         \t      4\t00:00:00.039467\t(00:00:00.009867 +- 00:00:00.000913)\t[00:00:00.008395,00:00:00.010887]"
+        },
+        {
+          "line": 1068,
+          "text": "600.271 5 Import full optimisation         \t      4\t00:00:00.039467\t(00:00:00.009867 +- 00:00:00.000913)\t[00:00:00.008395,00:00:00.010887]"
+        }
+      ],
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "gnss-vio/rosariov2/sequence5/okvis2x/run1": {
+      "code": "gnss_zero_antenna_lever_arm_in_native_log",
+      "disposition": "required_rerun",
+      "prerequisite": "use_dataset_session_specific_imu_to_selected_gnss_antenna_transform_and_verify_native_loaded_values",
+      "log": {
+        "path": "results/gnss-vio/rosariov2/sequence5/okvis2x/run1/run_log.txt",
+        "sha256": "ccd7513122cc36167147c6ae5cc3381e0337a5d2417cc458fc2bbc194b9e07b0"
+      },
+      "observations": [
+        {
+          "line": 18,
+          "text": "0.405 \tr_SA: 0 0 0 "
+        }
+      ],
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "gnss-vio/hortimulti/strawberry02/okvis2x/run1": {
+      "code": "gnss_zero_antenna_lever_arm_in_native_log",
+      "disposition": "required_rerun",
+      "prerequisite": "use_dataset_session_specific_imu_to_selected_gnss_antenna_transform_and_verify_native_loaded_values",
+      "log": {
+        "path": "results/gnss-vio/hortimulti/strawberry02/okvis2x/run1/run_log.txt",
+        "sha256": "787201b1149f043a47b3dfb5951b8c285adf13f009f017732be2fa088af1b44f"
+      },
+      "observations": [
+        {
+          "line": 18,
+          "text": "0.220 \tr_SA: 0 0 0 "
+        }
+      ],
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "gnss-vio/hortimulti/strawberry03/okvis2x/run1": {
+      "code": "gnss_zero_antenna_lever_arm_in_native_log",
+      "disposition": "required_rerun",
+      "prerequisite": "use_dataset_session_specific_imu_to_selected_gnss_antenna_transform_and_verify_native_loaded_values",
+      "log": {
+        "path": "results/gnss-vio/hortimulti/strawberry03/okvis2x/run1/run_log.txt",
+        "sha256": "ebef7c4414a1df8335ef880afd31331677e1191a354db92a7e7030dea5460a0e"
+      },
+      "observations": [
+        {
+          "line": 18,
+          "text": "0.199 \tr_SA: 0 0 0 "
+        }
+      ],
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    },
+    "gnss-vio/rosariov2/sequence1/cifasis_gnss_si/run1": {
+      "code": "rosario_v1_antenna_lever_arm_used_on_v2",
+      "disposition": "required_rerun",
+      "prerequisite": "use_dataset_session_specific_imu_to_selected_gnss_antenna_transform_and_verify_native_loaded_values",
+      "log": {
+        "path": "results/gnss-vio/rosariov2/sequence1/cifasis_gnss_si/run1/run_log.txt",
+        "sha256": "44f02185e35fe16c1931bbe2f1da371aba74e21f851c2fe9350946a375c75207"
+      },
+      "observations": [
+        {
+          "line": 85,
+          "text": "[0.22183;"
+        },
+        {
+          "line": 86,
+          "text": " 0.01088;"
+        },
+        {
+          "line": 87,
+          "text": " -0.17569999]"
+        }
+      ],
+      "evidence": [
+        "docs/reference-review-20261001.md",
+        "docs/campaigns/reference-sources-20261001.json"
+      ]
+    }
+  }
+}

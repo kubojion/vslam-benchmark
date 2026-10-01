@@ -42,7 +42,8 @@ cameras:
 camera_parameters:
     timestamp_tolerance: 0.005
     sync_cameras: [0, 1]
-    image_delay: 0.0
+    # February-session Kalibr t_imu=t_camera+9.160379 ms; OKVIS subtracts image_delay.
+    image_delay: -0.009160379134269684
     online_calibration:
         do_extrinsics: false
         do_extrinsics_final_ba: true
@@ -116,7 +117,8 @@ output_parameters:
 # estimator down-weights it appropriately -- but do not expect Rosario-PPK accuracy.
 gps_parameters:
     data_type: geodetic
-    # IMU-to-GNSS antenna translation [m], from platform calibration.
-    r_SA: [ 0.62, -0.11, 0.42 ]
+    # IMU-origin to selected antenna in IMU axes [m]; matched session chain.
+    # See docs/campaigns/gnss-lever-calibration-20261001.json.
+    r_SA: [ 0.3731801128217999, -0.1555276923232, -0.49366459745139996 ]
     yaw_error_threshold: 1.0
     robust_gps_init: true

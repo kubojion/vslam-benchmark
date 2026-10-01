@@ -1,5 +1,17 @@
 # ZED2i camera–IMU extrinsics
 
+## Original-record verification, 2026-10-01
+
+The [matched-session review](reference-review-20261001.md) independently verifies
+the supplied July 3 robot bag and camera-laptop GPS/TF extract. It establishes the
+physical 2.86 m longitudinal lever and quantifies the approximately 16.4 mm residual
+from the antenna-heading/left-camera offsets. Clock alignment is a disclosed limitation after the requested sensitivity check;
+reference 3D/quality policy and per-serial camera/IMU rotation remain unresolved. The latter is absent
+from all supplied recordings and requires camera S/N 30291010 on the SDK. The
+axis-convention correction below remains a nominal profile, not a per-serial
+calibration certificate. Read-only original paths/hashes are in
+[the source index](campaigns/zed-source-records-20261001.json).
+
 ## Applied calibration
 
 The benchmark ZED2i (S/N 30291010) exports rectified images in

@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "dataset": "rosariov2",
+  "sequences": [
+    "sequence1",
+    "sequence5"
+  ],
+  "reference_frame": "realsense_imu",
+  "target_frame": "realsense_infra1_optical_frame",
+  "reference_topic": "/mins/imu/pose",
+  "input_image_topic": "/realsense/infra1/image_rect_raw",
+  "T_imu_left": [
+    [
+      0.9999922359986658,
+      -0.003898148656441657,
+      -0.0005765235818587994,
+      -0.004483027809925508
+    ],
+    [
+      0.0038952107282768295,
+      0.999979852551538,
+      -0.00501216763353817,
+      0.01917969921314904
+    ],
+    [
+      0.0005960501409061838,
+      0.005009883038220819,
+      0.9999872728170957,
+      0.02758414303707034
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "source": {
+    "path": "results/reference-review-20261001/author-downloads/rosario-kalibr-aprilgrid_calib_2-camchain-imucam.yaml",
+    "sha256": "76b3309c2b9c56989d8e38d9254259ed4834a20c17cfc1f5771623f610370afb",
+    "url": "http://fs01.cifasis-conicet.gov.ar:90/~robot_desmalezador/rosariov2/calibration/kalibr_ir_stereo_imu.tar.gz"
+  },
+  "source_transform_convention": "T_cam_imu maps IMU coordinates to camera coordinates; inverse maps left camera coordinates to IMU coordinates",
+  "recording_reference_match": "all published pose/timestamp rows agree with saved references within numerical formatting precision",
+  "image_frame_match": "original bag images match saved pixels and retain the calibrated image_rect_raw optical axes; no extra Kalibr stereoRectify rotation was applied",
+  "claim_limits": [
+    "reference_fuses_same_stereo_and_imu_and_ppk_gnss_not_independent_sensor_ground_truth",
+    "physical_output_frame_conversion_does_not_repair_wrong_estimator_calibration"
+  ],
+  "parameter_consistency_approved": false
+}

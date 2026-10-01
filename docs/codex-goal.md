@@ -4,11 +4,23 @@ Prepared: 2026-10-01. Workspace: `/data/imoroz/vslam-benchmark`.
 
 ## Objective and scope
 
-Current extension: complete the user-authorized focused configuration/fairness and
-claim-acceptance review, preserving this repair. The [acceptance review](paper-acceptance-20261001.md)
+Current extension: resolve the remaining agricultural calibration/reference
+acceptance blockers from authoritative materials matched to the exact saved
+recordings. Start with Rosario and HortiMulti, then ZED and GNSS. Preserve the
+completed configuration/fairness review and its accepted decisions; do not restart
+the general audit. For each case, retain supported claims, repair evaluation from
+saved trajectories, or identify exact estimator-side reruns without executing them.
+The matched-session review is recorded in [the reference review](reference-review-20261001.md).
+It identifies 91 distinct required reruns and corrects 159 Rosario evaluations while
+preserving 45 accepted EuRoC N=3 cells. Remaining physical/native prerequisites are
+explicit; this does not certify readiness for new estimation.
+Reconcile changed decisions into CSVs, reports, figures and the existing TODO matrix
+format, and finish with counts and concrete production prerequisites. The
+[acceptance review](paper-acceptance-20261001.md)
 and [current handoff](acceptance-handoff-20261001.md) supersede the historical blanket
 hold below. Preserve explicit accepted/limited/failure decisions across regeneration;
-keep 30 concrete reruns separate from missing repetitions and material blockers.
+keep its initial 30 concrete reruns separate from missing repetitions and material
+blockers, adding further reruns only when the new evidence establishes a defect.
 No estimator execution, tuning, history rewriting or pushing is authorized. The old
 temporary maintenance pause was explicitly revoked; continue the active goal.
 

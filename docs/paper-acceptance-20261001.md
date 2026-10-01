@@ -4,7 +4,9 @@ This review supersedes the blanket historical-provenance hold in the earlier
 [repair handoff](repair-handoff-20261001.md). It accepts specific claims supported
 by saved evidence. It does not certify exact historical rebuilds, optimal tuning,
 real-time operation, agricultural reference accuracy, or repaired runner readiness.
-No estimator was run and no algorithm parameter was changed in this review.
+No estimator was run. The subsequent [matched-session reference review](reference-review-20261001.md)
+corrects Rosario evaluation and future timing/GNSS calibration settings; saved run
+parameters and the accepted EuRoC numerical values remain unchanged.
 
 ## Comparison and acceptance criteria
 
@@ -64,7 +66,7 @@ points, not evidence of optimality. Full saved configs remain the protocol sourc
 | Voxel-SVIO | 500 features and the bundled estimator settings; gravity 9.81007 rather than 9.81. MH01 uses the author's expressly recommended 10 s initialization window; MH03/MH05 use 2 s. MH01's approximately 75% coverage remains a limited outcome, not grounds for tuning or replacing the runs. |
 | DPVO / DPV-SLAM | Saved 96-patch config matches the bundled default; benchmark stride 1 versus demo CLI default 2 processes every input image. Seeds 1001/1002/1003 are intentional independent repetitions. Directory input is not half-resolution video input; it is undistorted and cropped to multiples of 16. LC uses proximity retrieval, not classic DBoW. Sim(3) claims stay separate from metric stereo. |
 | MAC-VO | Saved official Performant config matches its bundled example, which explicitly is not the paper-reproduction profile. EuRoC uses native 752×480 input, disabled GT poses, and the loader's approximately 0.110 m baseline. GeneralStereo uses the local 640×480 resize adaptation. All 24 saved exports were checked against native poses/timestamps; absent GeneralStereo `gt_pose` fields do not imply GT leakage. |
-| GNSS modes | Current recipes and repaired selectors cannot establish historical covariance, antenna/input selection, output frame or reference independence. All 20 default observations and six variants remain blocked for accuracy claims; the invalid full-pose VINS-Fusion Horti02 export remains an observed artifact failure. |
+| GNSS modes | Current recipes and repaired selectors cannot establish historical covariance, antenna/input selection, output frame or reference independence. Five default observations now require reruns from native-log antenna evidence; the other 15 defaults and six variants retain unresolved accuracy blockers; the invalid full-pose VINS-Fusion Horti02 export remains an observed artifact failure. |
 
 Different feature budgets, solver iterations, initialization and internal resizing
 are legitimate algorithm/profile differences when disclosed. They do not support
@@ -100,9 +102,10 @@ input, alignment, coverage and optimization protocol.
 Six ORB startup attempts with saved configs/logs and nonzero exits are accepted
 as observed configured-attempt failures only. `bad_alloc`, segmentation faults
 and optimizer assertions do not establish OOM, insufficient GPU power or a
-sensor-excitation root cause. Five retained collapse outcomes also remain visible
-as failures under the existing diagnostic convention, with physical agricultural
-accuracy expressly withheld. This does not waive their reference uncertainties.
+sensor-excitation root cause. Five retained collapse outcomes remain visible. The two OpenVINS Rosario collapses
+now have confirmed identity-extrinsic defects and require corrected estimation;
+three other collapses remain accepted diagnostic failure observations. Physical
+agricultural accuracy is withheld; no failure has been erased.
 OKVIS2 ZED VO-LC r2 ended with `Killed` and lacks metadata/output; OKVIS2-X ZED
 VO-LC r1 has exit 141 and no usable final trajectory. Their execution causes remain
 blocked, not certified algorithm failures or invented missing executions.
@@ -113,15 +116,19 @@ separate: OKVIS2-X Rosario seq1 VO-LC, ORB ZED VO-LC, AirSLAM ZED VO-LC.
 
 ## Remaining material evidence and execution
 
-Horti needs the original reference-to-IMU/camera transform (str02 TagMap/base_link,
-str03 odom/odom_mapping). Rosario needs its `/mins/imu/pose` to rectified-camera
-chain and the baseline convention reconciled. ZED needs reference lever-arm,
-heading/altitude assumptions; inertial modes also need serial-specific IMU
-rotation/time offset. GNSS requires effective historical input/covariance/antenna
-and independent reference evidence. More repetitions cannot establish these facts.
+The [matched-session review](reference-review-20261001.md) resolves Rosario's
+physical IMU-to-camera reference chain and repairs evaluation, but finds a shared
+image/projection/baseline inconsistency. Horti's February calibration and reference
+rows match; the exact generation-origin and timestamp linkage remains unresolved.
+ZED original bags and the physical longitudinal lever are verified; 3D/quality
+policy and serial calibration remain unresolved. Its unmeasured camera/RTK clock
+is a disclosed limitation after the requested sensitivity check, not a blocker. GNSS still requires historical inputs, covariance, selected
+antenna and fusion-output evidence. More repetitions cannot establish these facts.
 
-The exact 30 mandatory reruns remain six ORB ZED VO/VO-LC, eighteen Air EuRoC
-VIO/VIO-LC and six ORB Horti VIO-LC. Missing slots remain separate from existing
+There are now 91 distinct required reruns: the previous 30, fourteen Rosario
+identity-extrinsic cases, forty-two additional Horti timing cases (48 timing
+findings overlap six previous ORB rectification reruns), and five GNSS lever cases.
+Missing slots remain separate from existing
 failed/interrupted attempts. The generated acceptance handoff and future manifest
 list every action. Retaining accepted saved results requires no estimator execution;
 it does not verify the repaired runner. Production execution stays blocked until

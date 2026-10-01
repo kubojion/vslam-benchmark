@@ -63,10 +63,10 @@ imu_parameter:
           0.0, 0.0, 0.0,
           0.0, 0.0, 0.0 ]
 
-# Rosario v2 cameras: ZED IR, pre-rectified to 1280x720 mono8. Distortion = 0.
-# IMU is treated as colocated with cam0 (matches the convention used by the
-# Rosario v2 paper, basalt and OKVIS2 configs); cam1 is offset by the stereo
-# baseline (~49.7 mm) along +x in the IMU frame.
+# Rosario v2 cameras: RealSense IR, pre-rectified to 1280x720 mono8. Distortion = 0.
+# BLOCKED historical identity profile: the physical IMU is not colocated.
+# Replace jointly with the matched image/projection/stereo model before VIO.
+# See docs/reference-review-20261001.md; this profile is not validated.
 camera_parameter:
     timeshift_cam_imu_left: 0.0
     timeshift_cam_imu_right: 0.0

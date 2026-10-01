@@ -31,7 +31,7 @@ def test_unknown_reference_and_recorded_exit_are_concrete_prerequisites():
     cell=dict(algorithm='okvis2',dataset='hortimulti',run_type='vo-lc')
     attempt=dict(process={'exit_code':134},qualification={'blockers':['reference_frame_unknown']})
     items=qualification_prerequisites(cell,attempt,{})
-    assert 'establish_reference_to_camera_extrinsic_from_original_calibration' in items
+    assert 'link_february_reference_generation_origin_and_clock_to_each_saved_session' in items
     assert 'resolve_or_document_claim_limit:reference_frame_unknown' in items
     assert 'retain_nonzero_exit_and_review_saved_native_failure_evidence' in items
     assert any('bundle_adjustment' in item for item in items)
@@ -50,9 +50,10 @@ def test_runtime_excludes_other_hardware_and_partial_or_failed_runs():
     partial=copy.deepcopy(base);partial['coverage']['coverage_gap_pct']=20
     failed=copy.deepcopy(base);failed['process']['exit_code']=134
     native=copy.deepcopy(base);native['qualification']={'native_error_observations':[{'text':'terminate called'}]}
-    result=runtime_estimate([base,other,partial,failed,native])
+    invalid=copy.deepcopy(base);invalid['confirmed_protocol_findings']=[{'code':'wrong_camera_imu_offset'}]
+    result=runtime_estimate([base,other,partial,failed,native,invalid])
     assert result['estimate_s']==100 and result['sources']==['run1']
-    assert runtime_estimate([other,partial,failed])['estimate_s'] is None
+    assert runtime_estimate([other,partial,failed,invalid])['estimate_s'] is None
 
 
 def manifest():

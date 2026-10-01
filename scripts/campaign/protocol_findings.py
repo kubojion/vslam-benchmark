@@ -5,9 +5,30 @@ list does not certify a result. Never infer historical settings from current fil
 """
 from pathlib import Path
 import hashlib
+import json
 import re
 
 AIRSLAM_UNCORRECTED_SOURCE = '1b70ff63ea5f7c5654a4ec986abc59c838793208'
+
+# Individually reviewed saved profiles, not hashes of today's configuration.
+# Both raw bag IMU samples and the published calibration contradict colocation.
+ROSARIO_IDENTITY_PROFILES = {
+    'basalt': ('camera_calibration', '6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d'),
+    'openvins': ('camera_imu_calibration', '408a887ef92567582dc9d8f189093bd816168127f57efed8d63c44481f1a2262'),
+    'voxel_svio': ('estimator_config', '4f9a27d350b437bf3e3c5636b4278e39f736e387751c14d0d184b2b0e6d1df0c'),
+}
+
+
+def verified_snapshot(repo, relative, records, role):
+    matches = [a for a in records if a.get('role') == role and a.get('snapshot')]
+    if len(matches) != 1:
+        return None
+    item = matches[0]
+    path = Path(repo) / 'results' / relative / item['snapshot']
+    if not path.is_file():
+        return None
+    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    return (path, digest) if digest == item.get('snapshot_sha256') else None
 
 
 def scalar(text,key):
@@ -15,18 +36,42 @@ def scalar(text,key):
     return float(found[0]) if len(found)==1 else None
 
 
+def native_gnss_findings(repo, relative):
+    """Actual loaded antenna values can establish a defect without a config copy."""
+    review = Path(repo) / 'docs/campaigns/gnss-lever-findings-20261001.json'
+    if not relative.startswith('gnss-vio/') or not review.is_file():
+        return []
+    record = json.loads(review.read_text()).get('attempts', {}).get(relative)
+    if not record:
+        return []
+    log = Path(repo) / record['log']['path']
+    if not log.is_file() or hashlib.sha256(log.read_bytes()).hexdigest() != record['log']['sha256']:
+        return []
+    return [{key: record[key] for key in ('code', 'disposition', 'prerequisite', 'evidence')}]
+
+
 def historical_findings(repo,relative,meta):
     mode,ds,seq,algo,_=Path(relative).parts
+    issues = native_gnss_findings(repo, relative)
     records=meta.get('provenance',{}).get('artifacts',[])
     role='camera_config' if algo=='airslam' else 'estimator_config'
     snapshots=[a for a in records if a.get('role')==role and a.get('snapshot')]
-    if len(snapshots)!=1:return []
+    if len(snapshots)!=1:return issues
     path=Path(repo)/'results'/relative/snapshots[0]['snapshot']
-    if not path.is_file():return []
+    if not path.is_file():return issues
     if hashlib.sha256(path.read_bytes()).hexdigest()!=snapshots[0].get('snapshot_sha256'):
-        return []
+        return issues
     text=path.read_text()
-    issues=[]
+    if ds == 'rosariov2' and mode == 'vio' and algo in ROSARIO_IDENTITY_PROFILES:
+        calibration_role, reviewed_hash = ROSARIO_IDENTITY_PROFILES[algo]
+        calibration = verified_snapshot(repo, relative, records, calibration_role)
+        # OpenVINS can estimate spatial extrinsics, but these reviewed attempts
+        # explicitly disabled it. Estimating time offset cannot repair geometry.
+        fixed = algo != 'openvins' or re.search(r'^calib_cam_extrinsics:\s*false\b', text, re.M)
+        if calibration and calibration[1] == reviewed_hash and fixed:
+            issues.append(dict(code='rosario_identity_camera_imu_extrinsic', disposition='required_rerun',
+                prerequisite='use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt',
+                evidence=['docs/reference-review-20261001.md', 'docs/campaigns/reference-sources-20261001.json']))
     if algo=='orbslam3' and ds=='zed2i' and mode in ('vo','vo-lc') and scalar(text,'Camera.fps')==15:
         issues.append(dict(code='camera_fps_changed_15_to_10',disposition='required_rerun',
             prerequisite='retain_fps15_attempts_and_validate_sequence_specific_10hz_config',
@@ -48,4 +93,13 @@ def historical_findings(repo,relative,meta):
         issues.append(dict(code='airslam_rectified_camera_imu_extrinsic',disposition='required_rerun',
             prerequisite='apply_reviewed_rectification_patch_build_record_binary_hashes_and_validate_fusion_before_corrected_cohort',
             evidence=['docs/airslam-rectification-audit.md','scripts/patches/airslam-rectified-imu-extrinsic.patch']))
+    time_review = Path(repo) / 'docs/campaigns/horti-time-offset-findings-20261001.json'
+    if ds == 'hortimulti' and time_review.is_file():
+        reviewed = json.loads(time_review.read_text()).get('attempts', {}).get(relative)
+        if reviewed:
+            calibration = verified_snapshot(repo, relative, records, reviewed['role'])
+            if (calibration and calibration[1] == reviewed['config_sha256']
+                    and source == reviewed['algorithm_source']):
+                issues.append({key: reviewed[key] for key in
+                               ('code', 'disposition', 'prerequisite', 'evidence')})
     return issues

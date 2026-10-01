@@ -9,7 +9,8 @@ from scipy.spatial.transform import Rotation
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from _pose_frames import (FrameEvidenceError, Snapshots, matrix, okvis_final_extrinsic,
-                          read_yaml, rectified_to_raw)
+                          read_yaml, rectified_to_raw, physical_rosario_imu_to_camera,
+                          estimate_transform)
 
 
 def test_saved_config_hash_is_required(tmp_path):
@@ -60,3 +61,26 @@ def test_saved_final_extrinsics_require_matching_final_trajectory(tmp_path):
     selected.write_text('1 0 0 0 0 0 0 1\n2 2 0 0 0 0 0 1\n')
     with pytest.raises(FrameEvidenceError, match='does not match'):
         okvis_final_extrinsic(snapshots)
+
+
+def test_physical_rosario_frame_is_independent_of_wrong_estimator_extrinsic(tmp_path):
+    path = tmp_path / 'docs/campaigns/rosario-reference-calibration-20261001.json'
+    path.parent.mkdir(parents=True)
+    t = np.eye(4)
+    t[:3, :3] = Rotation.from_euler('xyz', [.01, -.02, .03]).as_matrix()
+    t[:3, 3] = [.04, -.02, .03]
+    path.write_text(json.dumps(dict(dataset='rosariov2', sequences=['sequence1'],
+                                    T_imu_left=t.tolist())))
+    calibration = tmp_path / 'saved.json'
+    calibration.write_text(json.dumps({'value0': {'T_imu_cam': [dict(
+        px=0, py=0, pz=0, qx=0, qy=0, qz=0, qw=1)]}}))
+    meta = {'provenance': {'artifacts': [dict(role='camera_calibration',
+        snapshot=calibration.name, snapshot_sha256=hashlib.sha256(calibration.read_bytes()).hexdigest())]}}
+    snapshots = Snapshots(tmp_path, meta, tmp_path)
+    _, inertial, _ = estimate_transform(tmp_path, 'rosariov2', 'sequence1', 'basalt', True, snapshots)
+    _, visual, _ = estimate_transform(tmp_path, 'rosariov2', 'sequence1', 'basalt', False, snapshots)
+    np.testing.assert_allclose(inertial, t)
+    np.testing.assert_allclose(visual, np.eye(4))
+    assert any(e['path'] == str(path.relative_to(tmp_path)) for e in snapshots.evidence)
+    with pytest.raises(FrameEvidenceError, match='recording'):
+        physical_rosario_imu_to_camera(tmp_path, 'unreviewed_sequence', snapshots)

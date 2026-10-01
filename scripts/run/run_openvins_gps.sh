@@ -62,8 +62,8 @@ case "$DATASET" in
         CAM_FX=648.8624169653789; CAM_FY=648.8624169653789
         CAM_CX=645.0113372802734;  CAM_CY=348.24266815185547
         CAM_BASELINE=0.0497336941
-        # GPS antenna lever arm: base_link -> gps (from run_rtabmap_gps.sh)
-        GPS_TX=0.22183; GPS_TY=0.01088; GPS_TZ=-0.17570
+        # IMU -> reach1 antenna [m]; matched Rosario v2 URDF chain.
+        GPS_TX=-0.38590209722861857; GPS_TY=-0.08430426617958506; GPS_TZ=-0.2863138542576906
         ;;
     hortimulti)
         # Rectified intrinsics from ORB-SLAM3 stereo config (640x480).
@@ -71,8 +71,8 @@ case "$DATASET" in
         CAM_FX=262.7149; CAM_FY=262.7149
         CAM_CX=329.4310; CAM_CY=219.5617
         CAM_BASELINE=0.139502
-        # GPS antenna lever arm: base_link -> gps (from calibration.yaml)
-        GPS_TX=0.62; GPS_TY=-0.11; GPS_TZ=0.42
+        # IMU -> antenna [m]; compose February base/mount/Ouster/IMU chain.
+        GPS_TX=0.3731801128217999; GPS_TY=-0.1555276923232; GPS_TZ=-0.49366459745139996
         ;;
     *)
         echo "[openvins_gps] no parameters defined for dataset=$DATASET" >&2; exit 2 ;;

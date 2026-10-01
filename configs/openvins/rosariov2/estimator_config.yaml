@@ -1,14 +1,12 @@
 %YAML:1.0
 
-# OpenVINS estimator config for Rosario v2 (sequence1, sequence5 — ZED stereo IR
+# OpenVINS estimator config for Rosario v2 (sequence1, sequence5 — RealSense stereo IR
 # at 15 Hz + integrated IMU at 200 Hz, pre-rectified 1280x720 mono8 images).
 #
 # Tuning notes vs. upstream euroc_mav config:
-#  - calib_cam_extrinsics:false    Rosario uses pre-rectified images and a
-#                                  factory-calibrated rigid stereo pair; we trust
-#                                  the calibration and do not re-optimise it
-#                                  online (saves filter capacity).
-#  - calib_cam_intrinsics:false    same reason.
+#  - Spatial calibration is disabled in this historical profile. Its identity
+#    IMU/camera geometry is invalid; production remains BLOCKED until a consistent
+#    matched image/projection/extrinsic model is selected. See reference review.
 #  - gravity_mag: 9.7958           Cordoba, Argentina (~31°S).
 #  - track_frequency: 15.0         camera publishes at 15 Hz.
 #  - num_pts: 200                  frozen upstream quality profile.

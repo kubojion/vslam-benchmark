@@ -111,7 +111,8 @@ output_parameters:
 #   python3 scripts/data/gps_to_okvis2x.py datasets/rosariov2/sequence5
 gps_parameters:
     data_type: geodetic
-    # IMU-to-GNSS antenna translation [m], from platform calibration.
-    r_SA: [ 0.22183, 0.01088, -0.17570 ]
+    # IMU-origin to selected antenna in IMU axes [m]; matched session chain.
+    # See docs/campaigns/gnss-lever-calibration-20261001.json.
+    r_SA: [ -0.38590209722861857, -0.08430426617958506, -0.2863138542576906 ]
     yaw_error_threshold: 1.0
     robust_gps_init: true

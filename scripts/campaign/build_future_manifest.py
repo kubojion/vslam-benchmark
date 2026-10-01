@@ -67,11 +67,16 @@ def qualification_prerequisites(cell,attempt,decision):
             result.append('resolve_or_document_claim_limit:'+blocker)
     # Missing attempts lack an evaluation from which to inherit reference issues.
     ds=cell['dataset'];mode=cell['run_type'];algo=cell['algorithm']
-    if ds=='hortimulti':result.append('establish_reference_to_camera_extrinsic_from_original_calibration')
-    if ds=='rosariov2':result.append('verify_rectified_camera_axes_and_reference_sensor_chain')
+    if ds=='hortimulti':result.extend(['link_february_reference_generation_origin_and_clock_to_each_saved_session',
+        'validate_camera_imu_time_compensation_and_output_clock_in_native_path'])
+    if ds=='rosariov2':result.append('reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline')
     if ds=='zed2i':
-        result.append('restrict_reference_claims_to_position_and_review_lever_arm_assumptions')
+        result.append('settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock')
         if mode in ('vio','vio-lc'):result.append('resolve_serial_specific_imu_rotation_and_time_offset_evidence')
+    if mode=='gnss-vio' and algo=='vins_fusion_gps':result.append('implement_and_validate_antenna_lever_in_global_position_factor')
+    if mode=='gnss-vio' and algo=='openvins_gps':result.append('validate_enu_heading_initialization_and_imu_body_alias')
+    if ds=='rosariov2' and (mode=='vio' and algo in ('basalt','openvins','voxel_svio') or algo=='openvins_gps'):
+        result.append('replace_identity_imu_camera_profile_with_consistent_matched_camera_model')
     if algo=='airslam':result.append('declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison')
     if algo in ('orbslam3','airslam','ov2slam','openvins'):
         result.append('document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review')

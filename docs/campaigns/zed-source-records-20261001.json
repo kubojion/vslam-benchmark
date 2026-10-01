@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "status": "original_recording_and_saved_construction_verified_clock_disclosed_3d_reference_unresolved",
+  "sources": [
+    {
+      "path": "/data/imoroz/vslam-source-records/zed2i-20260703/camera-laptop_gps_fix_tf_static/gps_fix_tf_static_0.mcap",
+      "sha256": "3b2cc182e7d705133a54167762061a574afd60424999263194f3ac8683ca70b3",
+      "bytes": 4244225
+    },
+    {
+      "path": "/data/imoroz/vslam-source-records/zed2i-20260703/camera-laptop_gps_fix_tf_static/metadata.yaml",
+      "sha256": "b878ef1f9f7853649fe72fcd9b66dc134395f682b11b3b564b89dc6901798be1",
+      "bytes": 1482
+    },
+    {
+      "path": "/data/imoroz/vslam-source-records/zed2i-20260703/robot-camera-gps-params.txt",
+      "sha256": "3e07106a92dd1de5f19961fcf2d875f9662c0851290bd5a8905b4cc67377e5a8",
+      "bytes": 16562
+    },
+    {
+      "path": "/data/imoroz/vslam-source-records/zed2i-20260703/robot-rtk-bag_0703-nav2-follow-field1-row3-6-2-5-1-4/0703-nav2-follow-field1-row3-6-2-5-1-4.db3",
+      "sha256": "30784ec79dba792f7fc4c820068e5b5627a63a7777eed75ec73ce1a93a6af3e6",
+      "bytes": 877883392
+    },
+    {
+      "path": "/data/imoroz/vslam-source-records/zed2i-20260703/robot-rtk-bag_0703-nav2-follow-field1-row3-6-2-5-1-4/metadata.yaml",
+      "sha256": "c2f0374695c885ab321c94b601da4264f81f2d56a71d1bcbff22613f502232a3",
+      "bytes": 64436
+    },
+    {
+      "path": "/data/imoroz/vslam-source-records/zed2i-20260703/README.md",
+      "sha256": "30ba47c24b077c1073e51e9b89d2219d4b4a6d1658f228659b28874730d15d44",
+      "bytes": 3753
+    },
+    {
+      "path": "/data/imoroz/vslam-source-records/zed2i-20260703/SHA256SUMS",
+      "sha256": "05ad90671f0772a7db7c9891ed8fea7db2343411ba452d4812c66139947f9dfb",
+      "bytes": 634
+    },
+    {
+      "path": "/data/imoroz/vslam-source-records/zed2i-20260703/CLOCK-OFFSET-NOTE.md",
+      "sha256": "c7e859a4452ceced0d97d7875a64e36c56154b1beac3b1f16623764a1b49779b",
+      "bytes": 4650
+    }
+  ],
+  "verification": {
+    "path": "results/reference-review-20261001/zed-source-verification.json",
+    "sha256": "0c22b11eec49b6fd5d8cb5b522f02e714d8e5c8ccda445033f0685000b8eea66"
+  },
+  "original_files_read_only": true,
+  "camera_bag_not_copied": "142 GB merged recording remains on user SSD; already prepared images/IMU/camera_info retained. Not needed to verify this GPS/TF evidence.",
+  "serial_imu_rotation": "Not in supplied recordings; camera S/N 30291010 must provide it through SDK.",
+  "remaining": [
+    "GNSS quality acceptance/masking protocol (absolute RTK float epochs exist)",
+    "antenna altitude and roll for 3D claims",
+    "recorded lateral antenna calibration validity for July and explicit left-camera reference target",
+    "serial-specific IMU calibration for inertial claims"
+  ],
+  "source_document_history": [
+    {
+      "path": "/data/imoroz/vslam-source-records/zed2i-20260703/README.md",
+      "sha256": "7d374130591cba83f57f5c446c2649a67af2eee726ce27ebcc32ca58ce691fb1",
+      "bytes": 3493,
+      "disposition": "source owner supplied clock-note clarification after initial audit; original five checksum-listed data files unchanged"
+    }
+  ],
+  "clock_disposition": "disclosed_limitation_at_user_direction_after_benchmark_sensitivity_reproduction; no measured field offset and no fitted correction; hangar +0.10s does not apply"
+}

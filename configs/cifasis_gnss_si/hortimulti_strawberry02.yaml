@@ -50,15 +50,13 @@ Tbc: !!opencv-matrix
 System.UseGlobalMeas: 1
 System.GPSSimulatedNoise: 0.0
 
-# t_b_g = base_link -> gps_frame translation (from calibration.yaml, in base_link).
-# We approximate IMU<->base_link as identity here (T_imu_link_os_sensor is small).
+# IMU-origin to selected GNSS antenna, expressed in IMU axes [m].
+# Matched session chain: docs/campaigns/gnss-lever-calibration-20261001.json.
 System.t_b_g: !!opencv-matrix
    rows: 3
    cols: 1
    dt: f
-   data: [ 0.6200000000,
-          -0.1100000000,
-           0.4200000000 ]
+   data: [ 0.3731801128217999, -0.1555276923232, -0.49366459745139996 ]
 
 # IMU noise (Kalibr from calibration.yaml imu0 block).
 IMU.NoiseGyro:  6.0369579e-04

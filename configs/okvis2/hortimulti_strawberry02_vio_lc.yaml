@@ -10,9 +10,9 @@
 #   cam0: T_forwardLeft_cam_imu_link (directly from calibration.yaml)
 #   cam1: inverse of T_imu_link_forwardRight_cam (computed)
 #
-# Known cam-IMU timeshift: ~9.16 ms (camera leads IMU).
-# image_delay is left at 0.0; online calibration (calib_cam_timeoffset in
-# OpenVINS notation) will refine it. Adjust to -0.00916 if needed.
+# February-session Kalibr: t_imu = t_camera + 0.009160379134269684 s.
+# OKVIS applies t_corrected = t_camera - image_delay; its spatial extrinsic
+# optimizer does not estimate time offset. See docs/reference-review-20261001.md.
 
 # T_SC = official calibration.yaml T_imu_link_forwardLeft/Right_cam (camera->IMU)
 # composed with cv2.fisheye.stereoRectify R_rect (1.22 deg), because the images in
@@ -50,7 +50,7 @@ cameras:
 camera_parameters:
     timestamp_tolerance: 0.005
     sync_cameras: [0, 1]
-    image_delay: 0.0
+    image_delay: -0.009160379134269684
     online_calibration:
         do_extrinsics: false
         do_extrinsics_final_ba: true

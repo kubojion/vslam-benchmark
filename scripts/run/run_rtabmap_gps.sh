@@ -90,7 +90,7 @@ source /opt/ros/humble/setup.bash
 # CAM_*  : rectified pinhole intrinsics for the synthesised CameraInfo.
 # CAM_Q* / CAM_T* : base_link(IMU body) -> camera optical frame transform.
 #                   Taken directly from Tbc in the matching cifasis config
-#                   (Tbc maps IMU body -> camera optical).
+#                   (Tbc maps camera coordinates into IMU body coordinates).
 # GPS_T* : base_link -> gps frame lever arm (System.t_b_g in the cifasis config).
 # RTAB-Map needs these TFs to initialise stereo+IMU odometry and to fuse GPS;
 # the data player publishes sensor data only, not TF, so we publish them here.
@@ -106,7 +106,7 @@ case "$DATASET" in
         # Tbc near-identity (RealSense D435i): q(xyzw), t.
         CAM_QX=0.002505; CAM_QY=-0.000293; CAM_QZ=0.001948; CAM_QW=0.999995
         CAM_TX=-0.004483; CAM_TY=0.019179; CAM_TZ=0.027584
-        GPS_TX=0.22183; GPS_TY=0.01088; GPS_TZ=-0.17570
+        GPS_TX=-0.38590209722861857; GPS_TY=-0.08430426617958506; GPS_TZ=-0.2863138542576906
         ;;
     hortimulti)
         CAM_W=640; CAM_H=480
@@ -116,7 +116,7 @@ case "$DATASET" in
         # Tbc 90-deg camera/body rotation (Kalibr): q(xyzw), t.
         CAM_QX=-0.511409; CAM_QY=0.4924; CAM_QZ=-0.492013; CAM_QW=0.50391
         CAM_TX=0.1219040939; CAM_TY=0.0366053924; CAM_TZ=-0.0562970105
-        GPS_TX=0.62; GPS_TY=-0.11; GPS_TZ=0.42
+        GPS_TX=0.3731801128217999; GPS_TY=-0.1555276923232; GPS_TZ=-0.49366459745139996
         ;;
     *)
         echo "[rtabmap_gps] no intrinsics defined for dataset=$DATASET" >&2

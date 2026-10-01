@@ -54,15 +54,13 @@ Tbc: !!opencv-matrix
 System.UseGlobalMeas: 1
 System.GPSSimulatedNoise: 0.0
 
-# t_b_g = body(imu) -> gps_frame lever arm.
-# Source: CIFASIS gnss-stereo-inertial-fusion rosario_dataset/t_b_g.json.
+# IMU-origin to selected GNSS antenna, expressed in IMU axes [m].
+# Matched session chain: docs/campaigns/gnss-lever-calibration-20261001.json.
 System.t_b_g: !!opencv-matrix
    rows: 3
    cols: 1
    dt: f
-   data: [ 0.22183,
-           0.01088,
-          -0.17570 ]
+   data: [ -0.38590209722861857, -0.08430426617958506, -0.2863138542576906 ]
 
 # IMU noise (RealSense D435i, from CIFASIS rosariov2 evaluation config).
 IMU.NoiseGyro:  2.324e-04

@@ -112,6 +112,28 @@ def physical_euroc_imu_to_camera(ws, seq, snapshots):
     return matrix(sensors[0]['T_BS'])
 
 
+def physical_rosario_imu_to_camera(ws, seq, snapshots):
+    """Physical calibration for the unchanged image_rect_raw input axes.
+
+    This is independent of an estimator's assumed/optimized extrinsic. Matching
+    a physical output frame does not validate those estimator-side assumptions.
+    """
+    path = Path(ws) / 'docs/campaigns/rosario-reference-calibration-20261001.json'
+    value = json.loads(path.read_text())
+    if seq not in value['sequences'] or value['dataset'] != 'rosariov2':
+        raise FrameEvidenceError('unreviewed Rosario reference recording')
+    snapshots.evidence.append(file_evidence(path, ws))
+    return matrix(value['T_imu_left'])
+
+
+def physical_imu_to_camera(ws, dataset, seq, snapshots):
+    if dataset == 'euroc_mav':
+        return physical_euroc_imu_to_camera(ws, seq, snapshots)
+    if dataset == 'rosariov2':
+        return physical_rosario_imu_to_camera(ws, seq, snapshots)
+    raise FrameEvidenceError('independent physical IMU calibration not established')
+
+
 def okvis_final_extrinsic(snapshots):
     """Recover final static T_SC0, validating map and selected pose export.
 
@@ -156,8 +178,8 @@ def estimate_transform(ws, dataset, seq, algo, use_imu, snapshots):
         online = cfg.get('camera_parameters', {}).get('online_calibration', {})
         final_ba = cfg.get('estimator_parameters', {}).get('do_final_ba', False)
         source = [f'src/{algo}/okvis_multisensor_processing/src/TrajectoryOutput.cpp']
-        if use_imu and dataset == 'euroc_mav':
-            return 'physical_imu_sensor', physical_euroc_imu_to_camera(ws, seq, snapshots), source
+        if use_imu and dataset in ('euroc_mav', 'rosariov2'):
+            return 'physical_imu_sensor', physical_imu_to_camera(ws, dataset, seq, snapshots), source
         if online.get('do_extrinsics') or (final_ba and online.get('do_extrinsics_final_ba')):
             return 'sensor_with_saved_final_calibration', okvis_final_extrinsic(snapshots), source + [f'src/{algo}/okvis_ceres/src/Component.cpp']
         return 'imu_sensor', matrix(cfg['cameras'][0]['T_SC']), source
@@ -165,8 +187,8 @@ def estimate_transform(ws, dataset, seq, algo, use_imu, snapshots):
         cfg = snapshots.read('camera_calibration')['value0']['T_imu_cam'][0]
         t = rotation_transform(Rotation.from_quat([cfg[k] for k in ('qx', 'qy', 'qz', 'qw')]).as_matrix())
         t[:3, 3] = [cfg[k] for k in ('px', 'py', 'pz')]
-        if use_imu and dataset == 'euroc_mav':
-            t = physical_euroc_imu_to_camera(ws, seq, snapshots)
+        if use_imu and dataset in ('euroc_mav', 'rosariov2'):
+            t = physical_imu_to_camera(ws, dataset, seq, snapshots)
         return 'imu_or_virtual_body', matrix(t), ['https://github.com/VladyslavUsenko/basalt/blob/0f3b2b52c807f70ff4e2973ce253c73329eea7bc/src/vio.cpp']
     if algo == 'openvins':
         cfg = snapshots.read('estimator_config')
@@ -174,20 +196,20 @@ def estimate_transform(ws, dataset, seq, algo, use_imu, snapshots):
             raise FrameEvidenceError('online camera extrinsics require saved calibration per pose')
         cam = snapshots.read('camera_imu_calibration')['cam0']
         t = matrix(cam['T_imu_cam']) if 'T_imu_cam' in cam else np.linalg.inv(matrix(cam['T_cam_imu']))
-        if dataset == 'euroc_mav':
-            t = physical_euroc_imu_to_camera(ws, seq, snapshots)
+        if dataset in ('euroc_mav', 'rosariov2'):
+            t = physical_imu_to_camera(ws, dataset, seq, snapshots)
         return 'imu', t, ['src/open_vins/ov_msckf/src/ros/ROS2Visualizer.cpp', 'src/open_vins/ov_core/src/utils/quat_ops.h']
     if algo == 'voxel_svio':
         cfg = snapshots.read('estimator_config')
         if cfg.get('state_parameter', {}).get('calib_cam_extrinsics', False):
             raise FrameEvidenceError('online camera extrinsics require saved calibration per pose')
-        t = physical_euroc_imu_to_camera(ws, seq, snapshots) if dataset == 'euroc_mav' else matrix(cfg['camera_parameter']['T_imu_cam_left'])
+        t = physical_imu_to_camera(ws, dataset, seq, snapshots) if dataset in ('euroc_mav', 'rosariov2') else matrix(cfg['camera_parameter']['T_imu_cam_left'])
         return 'imu', t, ['src/voxel_svio/src/stereoVio.cpp', 'src/voxel_svio/src/quatOps.cpp']
     if algo == 'orbslam3':
         cfg = snapshots.read('estimator_config')
         source = ['src/ORB_SLAM3/src/System.cc', 'src/ORB_SLAM3/src/Settings.cc']
         if use_imu:
-            t = physical_euroc_imu_to_camera(ws, seq, snapshots) if dataset == 'euroc_mav' else matrix(cfg['IMU.T_b_c1'])
+            t = physical_imu_to_camera(ws, dataset, seq, snapshots) if dataset in ('euroc_mav', 'rosariov2') else matrix(cfg['IMU.T_b_c1'])
             return 'imu_body', t, source
         if cfg['Camera.type'] == 'Rectified':
             return 'left_camera_input_axes', np.eye(4), source
@@ -264,15 +286,15 @@ def frame_policy(ws, run_dir, meta, dataset, seq, algo, use_imu):
         except (KeyError, OSError, ValueError) as exc:
             policy['blockers'].append(f'reference_frame_unverified: {exc}')
     elif dataset == 'rosariov2':
-        # Published CIFASIS Tbc: camera origin in the RealSense IMU frame.
-        # No undocumented rectification rotation is guessed. Orientation RPE is
-        # withheld until the image_rect_raw axes are traced to the calibration.
-        t = [[.999992, -.003898, -.000576, -.004483],
-             [.003895, .999979, -.005012, .019179],
-             [.000596, .005009, .999987, .027584], [0, 0, 0, 1]]
-        policy.update(reference_frame='mins_imu_pose', reference_transform=t)
-        policy['source_locations'].append('https://github.com/CIFASIS/rosariov2/blob/82115db620b57a5decb48ffe70b4639f00ce3ec9/data/evaluation/orb-slam3_rosariov2.yaml')
-        policy['blockers'].append('rosario_rectified_camera_axes_and_reference_chain_require_verification')
+        try:
+            t = physical_rosario_imu_to_camera(ws, seq, snapshots)
+            policy.update(reference_frame='mins_imu_pose', reference_transform=t.tolist(),
+                          orientation_valid=True,
+                          common_origin_verified=policy['estimate_transform'] is not None,
+                          reference_limitations=['fused_stereo_imu_ppk_reference_not_independent_ground_truth'])
+            policy['source_locations'].append('docs/reference-review-20261001.md')
+        except (FrameEvidenceError, KeyError, OSError, ValueError) as exc:
+            policy['blockers'].append(f'reference_frame_unverified: {exc}')
     elif dataset == 'zed2i':
         policy.update(reference_frame='lever_arm_corrected_camera_position_identity_quaternion',
                       reference_transform=np.eye(4).tolist(),

@@ -1,10 +1,10 @@
 %YAML:1.0
 # OpenVINS imu-cam extrinsics for Rosario v2.
 #
-# Images are pre-rectified ZED IR (1280x720, mono8); distortion is zero.
-# IMU is treated as colocated with cam0 (this is the convention used by the
-# Rosario v2 paper, basalt config, and OKVIS2 config). cam1 is offset by the
-# stereo baseline along +x in the IMU frame.
+# Images are recorded rectified RealSense IR (1280x720, mono8); distortion is zero.
+# BLOCKED historical identity profile: the physical IMU is not colocated.
+# Replace jointly with the matched image/projection/stereo model before VIO.
+# See docs/reference-review-20261001.md; this profile is not validated.
 #
 # T_imu_cam = (R_CtoI | p_CinI) per OpenVINS docs.
 

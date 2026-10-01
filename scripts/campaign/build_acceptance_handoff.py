@@ -49,7 +49,7 @@ def main():
     preserved_write(REPO/'results/acceptance-20261001/handoff.json',json.dumps(output,indent=2)+'\n')
     lines=['# Acceptance handoff — 2026-10-01','',
         'Generated from the checked inventory. The [claim review](paper-acceptance-20261001.md) defines eligibility, limitations and evidence. '
-        'This supersedes the earlier blanket hold; numerical values and historical attempt records are unchanged. '
+        'This includes the [matched-session calibration review](reference-review-20261001.md): Rosario frame-dependent metrics were corrected; accepted EuRoC values and original attempts are preserved. '
         '**Acceptance review complete; native execution remains unverified.**','',
         '| Mode | Clean accepted N=3 cells | Accepted repetitions | Limited repetitions | Observed failures accepted | Required reruns | Missing | Blocked |',
         '|---|---:|---:|---:|---:|---:|---:|---:|']
@@ -69,7 +69,7 @@ def main():
         if q['status'] in ('accepted_with_limitation','valid_observed_failure'):
             limits=[s for s in q['claim_limits'] if s not in ('accuracy_conditional_on_observed_exports_and_reference_support','no_measured_processing_rate_or_realtime_deadline_claim')]
             lines.append(f"| `{a['path']}` | {q['status']} | {'; '.join(limits)} |")
-    lines+=['','## Exact required reruns','','These are the existing 30 confirmed cases, not 30 newly discovered defects. Preserve every original attempt and use a new physical ID/cohort.','',
+    lines+=['','## Exact required reruns','',f"There are {counts['required_rerun']} distinct confirmed cases: the previous 30 plus the matched-session findings. Preserve every original attempt and use a new physical ID/cohort.",'',
         '| Cell | Logical repetitions | Concrete defect |','|---|---|---|']
     for c in inv['cells']:
         rows=[a for a in actions if a['cell']==c['key'] and a['category']=='required_rerun']
@@ -84,7 +84,7 @@ def main():
         '| Evidence needed | Blocked attempts |','|---|---:|']
     lines += [f'| {b} | {n} |' for b,n in sorted(blockers.items())]
     lines+=['','## Next execution, after authorization','','First resolve static prerequisites: apply/build the reviewed AirSLAM rectification patch; verify the corrected ORB FPS/IMU profiles load; capture actual native exits separately from wrapper/player exits; diagnose OV2SLAM/Voxel shutdown and the remaining ORB/OKVIS ZED execution failures. '
-        'Retain the existing final-optimization/profile choices; do not tune them on these test scores. Agricultural reference and GNSS evidence must be obtained before qualified production comparisons.','',
+        'Retain the existing final-optimization/profile choices; do not tune them on these test scores. Resolve the specific remaining image/projection, reference-origin/time and GNSS-input issues in the matched-session review before qualified production comparisons.','',
         '**Smallest useful first batch: three diagnostic targets** — OpenVINS EuRoC MH01 VIO, AirSLAM EuRoC MH01 VIO, and AirSLAM EuRoC MH01 VIO-LC. '
         'These cover the shutdown/capture path and both patched Air inertial stages needed for the immediately actionable EuRoC missing/rerun cases. '
         'Freeze a separately labelled bounded-input diagnostic recipe, preserve its input subset and all output, and exercise normal completion plus safe interruption/resume without overwriting. '
@@ -97,7 +97,7 @@ def main():
     lines+=['',f'The timing subtotal is {sum(known)/3600:.1f} serialized hours for {len(known)} of the {len(estimates)} required/missing actions; {len(estimates)-len(known)} have no comparable complete same-cell timing. '
         'It excludes native-error samples, diagnostics, unresolved blocked cases and evaluation/capture overhead. No total-campaign runtime is justified.','',
         '## Reproduction and preservation','','Regenerate inventory, reconcile qualification, promote checked evaluations, then regenerate CSVs, TODO, reports and this handoff. '
-        'The numerical evaluator has not changed. Review decisions fail closed if pinned evidence changes. '
+        'Rosario evaluation now uses the matched physical IMU-to-camera transform; other numerical fields are unchanged. Review decisions fail closed if pinned evidence changes. '
         'Run `build_future_manifest.py` after source/input/asset refresh; ordinary validation is read-only and is not readiness approval. '
         'The historical authorship mapping and all original provenance hashes remain intact. The obsolete temporary pause remains explicitly revoked.']
     preserved_write(REPO/'docs/acceptance-handoff-20261001.md','\n'.join(lines)+'\n')

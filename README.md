@@ -181,9 +181,12 @@ six separate GNSS variants. Missing runs and failures are explicit; these are no
 [figures](docs/generated/README.md) and browser use the same checked inventory.
 Historical/smoke results remain inspectable outside headline comparisons.
 
-No current cell is certified as clean publication-ready N=3. The
-[qualification review](docs/publication-qualification-20261001.md) identifies
-specific provenance/reference gaps and 30 confirmed configuration reruns. It does
+The [claim review](docs/paper-acceptance-20261001.md) accepts **45 clean N=3 EuRoC
+cells** for the documented recorded-profile comparison. The subsequent
+[matched-session audit](docs/reference-review-20261001.md) corrects 159 Rosario
+evaluations and identifies **91 distinct required reruns**; it grants no additional
+agricultural green ticks. There are 210 reusable observations, 87 missing slots
+and 272 blocked cases in the future manifest. Native execution remains unverified. It does
 not request rerunning every saved result. Old generated reports and figures are
 [archived](docs/generated/historical-before-repair-20261001/README.md).
 
