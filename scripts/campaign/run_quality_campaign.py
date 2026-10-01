@@ -13,6 +13,8 @@ import json
 import os
 from pathlib import Path
 import shutil
+import selectors
+import signal
 import subprocess
 import sys
 import time
@@ -92,8 +94,36 @@ def source_fingerprint() -> str:
     h.update(run_output(["git", "rev-parse", "HEAD"], check=True).encode())
     h.update(run_output(["git", "submodule", "status", "--recursive"], check=True).encode())
     h.update(subprocess.run(
-        ["git", "diff", "--binary", "HEAD", "--", "scripts", "configs"],
+        ["git", "diff", "--binary", "HEAD", "--", "scripts", "configs", "datasets"],
         cwd=REPO, stdout=subprocess.PIPE, check=True).stdout)
+    untracked_sources = sorted(filter(None, run_output([
+        "git", "ls-files", "--others", "--exclude-standard", "--", "scripts", "configs",
+    ], check=True).splitlines()))
+    for relative in untracked_sources:
+        path = REPO / relative
+        h.update(b"untracked\0")
+        h.update(relative.encode())
+        h.update(b"\0")
+        h.update(path.read_bytes())
+    # A superproject records only a submodule commit, not uncommitted changes
+    # inside its checkout. Hash every direct algorithm checkout so an accepted
+    # dirty-source campaign cannot silently change implementation on resume.
+    for path in sorted((REPO / "src").iterdir()):
+        if not path.is_dir():
+            continue
+        revision = subprocess.run(
+            ["git", "-C", str(path), "rev-parse", "HEAD"],
+            cwd=REPO, text=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+        )
+        if revision.returncode:
+            continue
+        commit = revision.stdout.strip()
+        relative = path.relative_to(REPO).as_posix()
+        h.update(relative.encode())
+        h.update(commit.encode())
+        h.update(subprocess.run(
+            ["git", "-C", str(path), "diff", "--binary", "HEAD"],
+            cwd=REPO, stdout=subprocess.PIPE, check=True).stdout)
     for path in ("src/okvis2", "src/okvis2x"):
         h.update(path.encode())
         h.update(run_output(["git", "-C", path, "rev-parse", "HEAD"], check=True).encode())
@@ -228,7 +258,14 @@ def config_groups(cell: dict[str, str]) -> list[tuple[str, tuple[Path, ...]]]:
     return groups
 
 
-def preflight(doc: dict[str, Any], cells: list[dict[str, str]], *, require_engines: bool) -> list[str]:
+def preflight(
+    doc: dict[str, Any],
+    cells: list[dict[str, str]],
+    *,
+    require_engines: bool,
+    allow_modified_driver: bool = False,
+    allow_modified_benchmark_source: bool = False,
+) -> list[str]:
     errors = validate_manifest(doc, cells)
     warnings: list[str] = []
     algorithms = sorted({c["algorithm"] for c in cells})
@@ -339,6 +376,18 @@ def preflight(doc: dict[str, Any], cells: list[dict[str, str]], *, require_engin
     for line in status.splitlines():
         path = line[3:]
         if path not in {"src/okvis2", "src/okvis2x"}:
+            # Documentation cannot change estimator behaviour. Scripts,
+            # configs, tracked dataset metadata and algorithm checkouts can,
+            # so accept them only behind the explicit audited source-change
+            # switch; source_fingerprint() covers each executable input.
+            if path.startswith("docs/"):
+                continue
+            if allow_modified_benchmark_source and path.startswith(
+                ("scripts/", "configs/", "datasets/", "src/")
+            ):
+                continue
+            if allow_modified_driver and path == "scripts/campaign/run_quality_campaign.py":
+                continue
             unexpected.append(line)
     if unexpected:
         errors.append("unexpected tracked worktree changes:\n  " + "\n  ".join(unexpected))
@@ -366,6 +415,27 @@ def preflight(doc: dict[str, Any], cells: list[dict[str, str]], *, require_engin
                     f"{dependency_paths or ['clean; expected prerequisite patch']}")
     if status:
         warnings.append("OKVIS2 build-prerequisite patches make nested submodules dirty; source is fingerprinted")
+    if allow_modified_driver:
+        warnings.append(
+            "modified campaign driver accepted for the explicitly unguarded development pass; "
+            "source is fingerprinted"
+        )
+    untracked_sources = sorted(filter(None, run_output([
+        "git", "ls-files", "--others", "--exclude-standard", "--", "scripts", "configs",
+    ], check=True).splitlines()))
+    if untracked_sources and not allow_modified_benchmark_source:
+        errors.append(
+            "untracked benchmark source requires explicit source-change acceptance:\n  "
+            + "\n  ".join(untracked_sources)
+        )
+    elif untracked_sources:
+        warnings.append(
+            "untracked benchmark source explicitly accepted and included in the source fingerprint"
+        )
+    if allow_modified_benchmark_source:
+        warnings.append(
+            "modified benchmark source explicitly accepted; the fingerprint transition is audited"
+        )
 
     for warning in warnings:
         print(f"[preflight] WARNING: {warning}")
@@ -397,6 +467,116 @@ def save_state(path: Path, state: dict[str, Any]) -> None:
     os.replace(tmp, path)
 
 
+def accept_source_fingerprint_change(
+    state: dict[str, Any],
+    fingerprint: str,
+    *,
+    reason: str,
+    accepted_at: str | None = None,
+) -> bool:
+    """Update a campaign fingerprint while preserving an auditable transition."""
+    previous = state.get("source_fingerprint")
+    if previous == fingerprint:
+        return False
+    reason = reason.strip()
+    if not reason:
+        raise ValueError("a non-empty source-change reason is required")
+    state.setdefault("source_fingerprint_history", []).append({
+        "accepted_at": accepted_at or time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+        "previous": previous,
+        "current": fingerprint,
+        "reason": reason,
+    })
+    state["source_fingerprint"] = fingerprint
+    return True
+
+
+def run_cell_process(
+    command: list[str],
+    log_path: Path,
+    *,
+    timeout_s: float,
+) -> tuple[int, bool, float]:
+    """Run one cell while streaming output, with a process-group deadline."""
+    started = time.monotonic()
+    timed_out = False
+    process = subprocess.Popen(
+        command,
+        cwd=REPO,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        bufsize=1,
+        start_new_session=True,
+    )
+    assert process.stdout is not None
+    selector = selectors.DefaultSelector()
+    selector.register(process.stdout, selectors.EVENT_READ)
+    deadline = started + timeout_s if timeout_s > 0 else None
+
+    def write_output(text: str) -> None:
+        sys.stdout.write(text)
+        sys.stdout.flush()
+        log.write(text)
+        log.flush()
+
+    with log_path.open("a") as log:
+        while selector.get_map():
+            if deadline is not None and time.monotonic() >= deadline:
+                timed_out = True
+                print(
+                    f"[timeout] cell exceeded {timeout_s:g}s; terminating process group",
+                    flush=True,
+                )
+                try:
+                    os.killpg(process.pid, signal.SIGTERM)
+                except ProcessLookupError:
+                    pass
+                try:
+                    process.wait(timeout=15)
+                except subprocess.TimeoutExpired:
+                    try:
+                        os.killpg(process.pid, signal.SIGKILL)
+                    except ProcessLookupError:
+                        pass
+                    process.wait()
+
+            wait_s = 0.5
+            if deadline is not None and not timed_out:
+                wait_s = max(0.0, min(wait_s, deadline - time.monotonic()))
+            events = selector.select(wait_s)
+            if not events:
+                if process.poll() is not None and timed_out:
+                    # After group termination, wait for the pipe to close.
+                    events = selector.select(0)
+                    if not events:
+                        break
+                continue
+            for key, _ in events:
+                line = key.fileobj.readline()
+                if line:
+                    write_output(line)
+                else:
+                    selector.unregister(key.fileobj)
+        selector.close()
+
+        # Capture any final buffered output without allowing a descendant to
+        # hold the pipe open indefinitely after the process group was killed.
+        if process.poll() is None:
+            process.wait()
+        try:
+            tail, _ = process.communicate(timeout=5)
+        except subprocess.TimeoutExpired:
+            try:
+                os.killpg(process.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+            tail, _ = process.communicate()
+        if tail:
+            write_output(tail)
+    return process.returncode, timed_out, time.monotonic() - started
+
+
 def execute(doc: dict[str, Any], manifest_hash: str, cells: list[dict[str, str]], args: argparse.Namespace) -> int:
     campaign_dir = REPO / "logs/server-campaign" / doc["campaign_id"]
     campaign_dir.mkdir(parents=True, exist_ok=True)
@@ -415,8 +595,22 @@ def execute(doc: dict[str, Any], manifest_hash: str, cells: list[dict[str, str]]
             print("ERROR: manifest changed since campaign state was created", file=sys.stderr)
             return 2
         if state.get("source_fingerprint") != fingerprint:
-            print("ERROR: tracked campaign source changed; archive state before starting a new campaign", file=sys.stderr)
-            return 2
+            if not args.accept_source_change:
+                print(
+                    "ERROR: campaign source changed; use --accept-source-change with "
+                    "--source-change-reason to resume with an audited transition",
+                    file=sys.stderr,
+                )
+                return 2
+            try:
+                accept_source_fingerprint_change(
+                    state, fingerprint, reason=args.source_change_reason,
+                )
+            except ValueError as exc:
+                print(f"ERROR: {exc}", file=sys.stderr)
+                return 2
+            save_state(state_path, state)
+            print("[source] accepted and recorded source-fingerprint transition", flush=True)
     else:
         state = {
             "campaign_id": doc["campaign_id"],
@@ -427,13 +621,21 @@ def execute(doc: dict[str, Any], manifest_hash: str, cells: list[dict[str, str]]
         }
         save_state(state_path, state)
 
+    if args.disable_idle_guard:
+        print(
+            "[guard] DISABLED: cells may run under CPU/GPU contention; "
+            "do not use this campaign for final performance results",
+            flush=True,
+        )
+
     repeats = doc["repeats"]
     for index, cell in enumerate(cells, 1):
         key = cell_key(cell)
         if state["cells"].get(key, {}).get("status") == "ok":
             print(f"[{index:03d}/{len(cells)}] skip completed {key}", flush=True)
             continue
-        idle_guard(args.max_load, args.min_free_vram_mib)
+        if not args.disable_idle_guard:
+            idle_guard(args.max_load, args.min_free_vram_mib)
         log_path = campaign_dir / f"{index:03d}_{key.replace('/', '__')}.log"
         command = [
             "bash", str(REPO / "scripts/run/run_benchmark.sh"),
@@ -446,31 +648,30 @@ def execute(doc: dict[str, Any], manifest_hash: str, cells: list[dict[str, str]]
         save_state(state_path, state)
 
         rc = 1
+        timed_out = False
         for attempt in range(1, args.retry + 2):
             print(f"[{index:03d}/{len(cells)}] {key} attempt {attempt}", flush=True)
-            started = time.time()
             with log_path.open("a") as log:
                 log.write(f"\n===== attempt {attempt} {' '.join(command)} =====\n")
                 log.flush()
-                process = subprocess.Popen(command, cwd=REPO, text=True,
-                                           stdout=subprocess.PIPE,
-                                           stderr=subprocess.STDOUT,
-                                           bufsize=1)
-                assert process.stdout is not None
-                for line in process.stdout:
-                    sys.stdout.write(line)
-                    log.write(line)
-                rc = process.wait()
+            rc, timed_out, duration_s = run_cell_process(
+                command, log_path, timeout_s=args.cell_timeout_s
+            )
             entry["attempts"].append({
                 "attempt": attempt,
                 "exit_code": rc,
-                "duration_s": round(time.time() - started, 3),
+                "duration_s": round(duration_s, 3),
+                "timed_out": timed_out,
             })
             save_state(state_path, state)
             if rc == 0:
                 break
+            if timed_out:
+                break
 
-        entry["status"] = "ok" if rc == 0 else "failed"
+        entry["status"] = "ok" if rc == 0 else ("timeout" if timed_out else "failed")
+        if timed_out:
+            entry["failure_reason"] = f"cell timeout after {args.cell_timeout_s:g}s"
         entry["finished_at"] = time.strftime("%Y-%m-%dT%H:%M:%S%z")
         save_state(state_path, state)
         if rc != 0 and not args.continue_on_failure:
@@ -503,8 +704,32 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--list", action="store_true", help="print the expanded cells")
     parser.add_argument("--preflight", action="store_true", help="validate without running (default)")
     parser.add_argument("--run", action="store_true", help="execute/resume the campaign")
-    parser.add_argument("--retry", type=int, default=1, help="retries after a failed cell (default: 1)")
+    parser.add_argument(
+        "--retry", type=int, default=0,
+        help="retries after a failed cell (default: 0; avoids survivorship bias)",
+    )
+    parser.add_argument(
+        "--cell-timeout-s",
+        type=float,
+        default=172800.0,
+        help="maximum seconds per cell attempt; 0 disables the deadline (default: 172800)",
+    )
     parser.add_argument("--continue-on-failure", action="store_true")
+    parser.add_argument(
+        "--accept-source-change",
+        action="store_true",
+        help="resume after intentional source changes and record the fingerprint transition",
+    )
+    parser.add_argument(
+        "--source-change-reason",
+        default="",
+        help="audit reason required with --accept-source-change",
+    )
+    parser.add_argument(
+        "--disable-idle-guard",
+        action="store_true",
+        help="launch cells despite CPU/GPU contention (development runs only)",
+    )
     parser.add_argument("--max-load", type=float, default=max(4.0, (os.cpu_count() or 1) / 4))
     parser.add_argument("--min-free-vram-mib", type=int, default=20000)
     return parser.parse_args()
@@ -514,6 +739,15 @@ def main() -> int:
     args = parse_args()
     if args.retry < 0:
         print("ERROR: --retry cannot be negative", file=sys.stderr)
+        return 2
+    if args.cell_timeout_s < 0:
+        print("ERROR: --cell-timeout-s cannot be negative", file=sys.stderr)
+        return 2
+    if args.accept_source_change and not args.source_change_reason.strip():
+        print("ERROR: --accept-source-change requires --source-change-reason", file=sys.stderr)
+        return 2
+    if args.source_change_reason and not args.accept_source_change:
+        print("ERROR: --source-change-reason requires --accept-source-change", file=sys.stderr)
         return 2
     if args.run and (args.list or args.preflight):
         print("ERROR: --run cannot be combined with --list or --preflight", file=sys.stderr)
@@ -526,7 +760,13 @@ def main() -> int:
         print(f"{len(cells)} cells, {len(cells) * doc['repeats']} executions")
         return 0
 
-    errors = preflight(doc, cells, require_engines=True)
+    errors = preflight(
+        doc,
+        cells,
+        require_engines=True,
+        allow_modified_driver=args.disable_idle_guard,
+        allow_modified_benchmark_source=args.accept_source_change,
+    )
     if errors:
         for error in errors:
             print(f"[preflight] ERROR: {error}", file=sys.stderr)

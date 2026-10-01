@@ -98,6 +98,31 @@ if [[ -z "${DISPLAY:-}" ]]; then
     echo "[orbslam3] DISPLAY is unset; using xvfb-run -a" | tee -a "$LOG_GLOBAL"
 fi
 
+ESTIMATOR_COMMAND=(
+    "$BIN"
+    Vocabulary/ORBvoc.txt
+    "$CFG"
+    "$SEQ_DIR"
+    "$SEQ_DIR/times.txt"
+    "${DATASET}_${SEQ}_orbslam3"
+)
+if [[ "${ORBSLAM3_GDB:-0}" == "1" ]]; then
+    command -v gdb >/dev/null || {
+        echo "[orbslam3] ERROR: ORBSLAM3_GDB=1 but gdb is unavailable" | tee -a "$LOG_GLOBAL"
+        exit 2
+    }
+    ESTIMATOR_COMMAND=(
+        gdb --batch --return-child-result
+        -ex "set pagination off"
+        -ex "set print thread-events off"
+        -ex run
+        -ex "thread apply all backtrace"
+        --args "${ESTIMATOR_COMMAND[@]}"
+    )
+    echo "[orbslam3] diagnostic mode: capturing all-thread backtrace with gdb" \
+        | tee -a "$LOG_GLOBAL"
+fi
+
 # Resource monitor: GPU + CPU + RAM sampled every 1 s
 prepare_resource_window "$OUT_DIR"
 python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$$" --interval 1 \
@@ -113,12 +138,7 @@ START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
 # Pipe through a Python timestamper so each log line gets a relative offset (s).
 set +e
-"${RUN_PREFIX[@]}" "$BIN" \
-    Vocabulary/ORBvoc.txt \
-    "$CFG" \
-    "$SEQ_DIR" \
-    "$SEQ_DIR/times.txt" \
-    "${DATASET}_${SEQ}_orbslam3" 2>&1 | \
+"${RUN_PREFIX[@]}" "${ESTIMATOR_COMMAND[@]}" 2>&1 | \
   python3 -u -c "
 import sys, time
 t0 = time.time()
@@ -141,19 +161,17 @@ PROV_ARGS=(
     --param "use_imu=$USE_IMU"
     --param "use_lc=$USE_LC"
     --param "pacing_policy=dataset_timestamps"
+    --param "gdb_diagnostic=${ORBSLAM3_GDB:-0}"
 )
 TRAJ_SRC="f_${DATASET}_${SEQ}_orbslam3.txt"
 PROCESS_ARGS=(--process-exit-code "$ORB_RC")
+POST_SAVE_NONZERO=false
 
 if (( ORB_RC != 0 )); then
-    if (( ORB_RC == 139 )) && [[ -s "$TRAJ_SRC" ]] \
-        && grep -Fq "End of saving trajectory to $TRAJ_SRC" "$OUT_DIR/run_log.txt" \
-        && grep -Fq "Segmentation fault (core dumped)" "$OUT_DIR/run_log.txt"; then
-        PROCESS_ARGS+=(
-            --accepted-nonzero-exit
-            --failure-reason "known Pangolin shutdown segfault after canonical trajectory save"
-        )
-        echo "[orbslam3] accepting known post-save Pangolin shutdown fault (exit 139)" \
+    if [[ "$ORB_RC" =~ ^(134|135|139)$ ]] && [[ -s "$TRAJ_SRC" ]] \
+        && grep -Fq "End of saving trajectory to $TRAJ_SRC" "$OUT_DIR/run_log.txt"; then
+        POST_SAVE_NONZERO=true
+        echo "[orbslam3] deferring post-save shutdown signal acceptance (exit $ORB_RC) until trajectory validation" \
             | tee -a "$LOG_GLOBAL"
     else
         record_failed_run_meta "$OUT_DIR/run_meta.json" orbslam3 "$DATASET" "$SEQ" \
@@ -169,14 +187,31 @@ if [[ ! -f "$TRAJ_SRC" ]]; then
     echo "[orbslam3] ERROR: trajectory file not found — SLAM likely failed" | tee -a "$LOG_GLOBAL"
     exit 1
 fi
-mv "$TRAJ_SRC" "$OUT_DIR/trajectory.txt"
+mv "$TRAJ_SRC" "$OUT_DIR/trajectory_raw_ns.txt"
 mv "kf_${DATASET}_${SEQ}_orbslam3.txt" "$OUT_DIR/keyframes.txt" 2>/dev/null || true
 
-# stereo_euroc emits nanosecond timestamps; evo and gt_tum.txt use seconds.
-# Convert in-place: divide column 1 by 1e9, preserve full 9-decimal precision.
-awk '{printf "%.9f %s %s %s %s %s %s %s\n",$1/1e9,$2,$3,$4,$5,$6,$7,$8}' \
-    "$OUT_DIR/trajectory.txt" > "$OUT_DIR/trajectory_s.txt"
-mv "$OUT_DIR/trajectory_s.txt" "$OUT_DIR/trajectory.txt"
+# stereo_euroc emits nanosecond timestamps and can repeat its last exact pose
+# while tracking is lost. Preserve the source and remove only exact duplicate
+# timestamp+pose rows; conflicting duplicates and time reversal are failures.
+if ! python3 "$WS/scripts/results/canonicalize_orb_trajectory.py" \
+    "$OUT_DIR/trajectory_raw_ns.txt" "$OUT_DIR/trajectory.txt" \
+    --stats "$OUT_DIR/trajectory_filter.json" | tee -a "$LOG_GLOBAL"; then
+    record_failed_run_meta "$OUT_DIR/run_meta.json" orbslam3 "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" "$ORB_RC" "trajectory canonicalization failed" "${PROV_ARGS[@]}"
+    echo "[orbslam3] ERROR: trajectory failed canonical validation" | tee -a "$LOG_GLOBAL"
+    exit 1
+fi
+
+PROV_ARGS+=(--param "trajectory_canonicalization=drop_exact_duplicate_timestamp_pose_rows")
+if [[ "$POST_SAVE_NONZERO" == "true" ]]; then
+    PROCESS_ARGS+=(
+        --accepted-nonzero-exit
+        --failure-reason "post-save shutdown signal after canonical trajectory validation"
+    )
+    echo "[orbslam3] accepting post-save shutdown signal (exit $ORB_RC); trajectory is canonical" \
+        | tee -a "$LOG_GLOBAL"
+fi
+
 [[ -f "$OUT_DIR/keyframes.txt" ]] && \
 awk '{printf "%.9f %s %s %s %s %s %s %s\n",$1/1e9,$2,$3,$4,$5,$6,$7,$8}' \
     "$OUT_DIR/keyframes.txt" > "$OUT_DIR/keyframes_s.txt" && \
@@ -186,12 +221,14 @@ DUR=$(python3 -c "print($END-$START)")
 NFR=$(wc -l < "$OUT_DIR/trajectory.txt")
 python3 -c "
 import json
+trajectory_filter=json.load(open('$OUT_DIR/trajectory_filter.json'))
 print(json.dumps({
     'algo':'orbslam3','dataset':'$DATASET','seq':'$SEQ','run_id':$RUN_ID,
     'run_type':'$RUN_TYPE','use_imu':$([[ "$USE_IMU" == "true" ]] && echo True || echo False),
     'use_lc':$([[ "$USE_LC" == "true" ]] && echo True || echo False),
     'duration_s':$DUR,'frames':$NFR,
-    'fps':$NFR/$DUR if $DUR>0 else 0
+    'fps':$NFR/$DUR if $DUR>0 else 0,
+    'trajectory_canonicalization':trajectory_filter
 }))
 " > "$OUT_DIR/run_meta.json"
 enrich_run_meta "$OUT_DIR/run_meta.json" --measurement-mode paced "${PROV_ARGS[@]}" "${PROCESS_ARGS[@]}"

@@ -24,6 +24,7 @@ into the `openvins:humble` container and points
 |--------------|---------------------------------|---------------------------------------------------|
 | `EuRoC-MAV/` | VI-Sensor (wide-FoV global shutter + ADIS16448) | Verbatim copy of upstream `config/euroc_mav/`. Used for sanity testing against the published numbers. |
 | `rosariov2/` | ZED stereo IR + integrated IMU  | Pre-rectified 1280x720 mono8, 15 Hz cameras + 200 Hz IMU. T_imu_cam0 = identity (IMU is colocated with cam0). |
+| `zed2i/` | ZED2i S/N 30291010 | Pre-rectified 1920x1080 at 10 Hz + ~100 Hz IMU. Optical/body frame conversion and SDK translation are documented in `docs/zed2i-imu-extrinsics.md`. |
 
 When adding a new dataset:
 

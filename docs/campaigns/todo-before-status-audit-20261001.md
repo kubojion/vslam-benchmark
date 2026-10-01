@@ -1,13 +1,40 @@
+# Archived TODO before the 2026-10-01 status reconciliation
+
+Historical record only. Its checkboxes, matrices, counts, scientific claims and paths are superseded by [the current TODO](../../TODO.md) and [the status audit](server-status-20261001.md).
+
+---
+
 # vSLAM Benchmark - TODO
 
-> **Updated 2026-10-01.** Original matrix and task-table layout retained; cells below are
-> checked against current run artifacts. Executed server target: **N=3, no GNSS**, RTX 4090.
-> **538/600 evaluated runs; 176/200 cells have N=3** (174 all-ok, two with a collapse),
-> ten cells have N=1 and fourteen have no complete evaluation. **62 evaluations remain.**
-> The original N=5/GNSS plan is a separate, unfinished scope. No active benchmark process
-> was observed in the audit; some campaign state entries still incorrectly say `running`.
-> See [the detailed audit](docs/campaigns/server-status-20261001.md) for exact missing IDs.
-> Root CSVs and generated numeric reports remain stale/provisional pending the repairs below.
+> **Revised 2026-08-06 (post pipeline-overhaul + machine-B campaign).** All 259 runs are at
+> `eval_schema: 2` (fixed GT interpolation, gap-aware coverage, SE3-primary metrics,
+> origin-aligned GNSS ATE, global-alignment segments) with `gt_provenance` on every run; the
+> five `benchmark-*.csv` are full rebuilds, byte-reproducible on both machines; report tables
+> come ONLY from `scripts/eval/make_report_tables.py` (see `docs/generated/tables.md`), prose
+> numbers from `scripts/eval/verify_claims.py`. See `PROGRESS.md` "2026-08-05 —
+> Evaluation-pipeline fixes", `docs/campaigns/machine-b-report-20260806.md` and
+> `docs/campaigns/machine-b-verification-20260806.md`.
+> **Next milestone: the N=5 server campaign** (RTX 3090 / 24 GB) — see
+> `docs/campaigns/server-campaign-plan.md`. The 🔁 cells below fold into it.
+
+> Older summary (2026-08-03, kept for context): VO has 109 evaluated rows. OV2SLAM VO filled on
+> str02/MH_01/MH_03 (OV2SLAM zed2i done — matrix row is authoritative). ORB-SLAM3 rebuilt/run NATIVELY from the submodule
+> (no Docker): EuRoC N=1 (~0.05 m, deterministic), agricultural N=3 median+range (str02/seq1/seq5 are
+> severely non-deterministic; str03 is stable) - see the VO note and finding 11. VO-LC has 40 rows:
+> DPV-SLAM, OKVIS2, OKVIS2-X and ORB-SLAM3 now cover all 8 sequences (the two OKVIS zed2i cells are
+> partial-coverage - see note). ORB-SLAM3 VO-LC (LC on) vs VO (LC off) on Rosario shows LC helps
+> where a true loop exists (seq1: 4 loops, 1.52 m) and is inert where none does (seq5: 0 loops).
+> The core VIO N=1
+> matrix has 49 rows (7 algorithms x 7 standard sequences); corrected HortiMulti extrinsics and
+> EuRoC MH_03/MH_05 are included. ZED2i adds six usable VIO trajectories plus one failed
+> ORB-SLAM3 attempt, so `benchmark-vio.csv` has 55 rows. VIO-LC has 28 rows: OKVIS2, OKVIS2-X,
+> AirSLAM and ORB-SLAM3 across all 7 core sequences - ORB-SLAM3 VIO-LC is the best config on Rosario
+> (seq1 1.08 m, 127 loops) and fires zero loops on EuRoC (IMU makes LC redundant there)
+> (no zed2i VIO-LC cell - no configs). GNSS-VIO N=1 is
+> complete: 20 rows (5 algorithms x 4 GPS-bearing sequences), including the retained
+> sequence5 PPK-versus-conventional study. Remaining priorities are N=3 validation, corrected-
+> extrinsic OpenVINS+GPS HortiMulti reruns and evaluator hardening. OKVIS2-X automation is now
+> committed (build script, runner, GPS converter), so its remaining gaps are runs, not tooling.
 
 ---
 
@@ -19,123 +46,188 @@
 
 ## Run combinations matrix
 
-Legend per cell: ✅ evaluated, no flagged run-status/coverage issue | 🟡 evaluated with caveat |
-❌ failed attempt, no complete evaluation | ⏳ output exists, evaluation pending |
-⬜ not run / config only | 🔧 config missing | ➖ excluded / unsupported | 🔁 configuration review needed.
+Legend per cell: ✅ run complete | 🟡 run complete with caveat | ⬜ config only |
+🔧 config missing | ➖ mode unsupported | **🔁 re-run recommended** (config-fairness
+equalization — the cell's published value compares a tuned configuration against untuned
+competitors, or vice versa; see `PROGRESS.md` config-deviation findings and
+`docs/campaigns/server-campaign-plan.md` §C13. The N=5 server campaign re-runs ALL agricultural cells
+anyway; 🔁 marks the ones that additionally need an A/B config decision first)
 
-**N is the number of current evaluated repetitions**, normally requiring `run_eval.json` +
-`COMPLETE`. `N=0` does **not** mean no attempt: the accompanying error explains what happened.
-An explicitly **unvalidated** cell has evaluation JSON but lacks COMPLETE and is excluded
-from validated totals. `N=1; +2` means two repetitions still needed for N=3.
-`partial k/N` means k evaluated repetitions have reported coverage below 95%; it is not
-an additional run count. `collapse r2` retains a failed localization outcome within N=3.
-Coverage is the current evaluator's estimate and still needs the methodological review below.
-✅ does not certify scientific validity, publication readiness, or a finalized configuration.
+### VO (no IMU, no loop closure) - `results-vo/`
 
-### VO (no IMU, no loop closure) - `results/vo/`
+Legend: ✅ run complete | 🟡 run complete with caveat | ⬜ config only | 🔧 config missing | ➖ mode unsupported
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ❌ N=0; crash | ❌ N=0; crash | ❌ N=0; crash | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 |
-| Basalt | ✅ N=3 | ✅ N=3 | 🟡 N=3; 🔁 config | 🟡 N=3; 🔁 config | 🟡 N=3; 🔁 config | 🟡 N=3; 🔁 config | 🟡 N=3; 🔁 config | 🟡 N=3; 🔁 config |
-| MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 |
-| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; partial 3/3 | 🟡 N=3; partial 3/3 | 🟡 N=3; partial 3/3 | ✅ N=3 |
-| DROID-SLAM | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=1 historical | 🟡 N=1 historical | 🟡 N=1 historical | ➖ excluded; no run |
-| DPVO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 |
-| OKVIS2 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; collapse r2 |
-| OKVIS2-X | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 |
-| OV2SLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 |
-| MASt3R-SLAM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | 🔧 config missing; excluded |
-| MegaSaM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | 🔧 config missing; excluded |
+| ORB-SLAM3 | 🟡 N=3 | 🟡 N=3 | 🟡 N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 🔁 |
+| Basalt | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| MAC-VO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ config only |
+| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| DROID-SLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ⬜ config only |
+| DPVO | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| OKVIS2 | ✅ N=1 🔁 | ✅ N=1 🔁 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| OKVIS2-X | ✅ N=1 🔁 | ✅ N=1 🔁 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| OV2SLAM | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| MASt3R-SLAM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🔧 config missing |
+| MegaSaM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🔧 config missing |
 
-> **Remaining:** ORB-SLAM3 Rosario seq1/seq5 and Horti str02 need recovery (no current
-> complete evaluations). OKVIS2 ZED run2 is a retained collapse, not an unexecuted repetition.
-> **🔁 Basalt:** Rosario uses triangulation distance 0.03; the other six cells retain 0.05,
-> whereas the shared current config is 0.03. Review/freeze the configuration before rerunning.
-> Basalt ZED also snapshots the earlier shared calibration; verify pose-frame equivalence.
-> DROID-SLAM is historical and excluded from the target. MASt3R/MegaSaM OOM notes refer
-> to the earlier 12 GB machine, not a verified OOM measurement on this 24 GB server.
-> DPVO is monocular; DPV-SLAM is its VO-LC variant. Current headline metric labeling needs repair.
+> 🔁 (2026-08-06): OKVIS2/OKVIS2-X Rosario VO ran the stock EuRoC frontend while their
+> HortiMulti cells ran a 5-parameter tuned frontend — the "good on HortiMulti, poor on
+> Rosario" contrast partly measures tuning. A/B: re-run Rosario with the HortiMulti frontend
+> (or HortiMulti with the EuRoC one). Basalt str02/str03 🔁 (VIO matrix): its HortiMulti cells
+> carry a dedicated config + ~457x-inflated accel noise left from a superseded debugging sweep.
+> ORB-SLAM3 zed2i 🔁: nFeatures 2000 vs 1200 everywhere else — one 1200-run bounds finding 2.
+> MASt3R-SLAM/MegaSaM OOM cells: the 24 GB RTX 3090 server may lift the 12 GB OOM — optional
+> revisit during the server campaign.
 
-### VIO (stereo + IMU, no loop closure) - `results/vio/`
+> ORB-SLAM3 VO = LC-off mode required (`LoopClosing: 0` or dedicated build). Old LC-on results are in `obsolete/`.
+> **DPVO (2026-07-27):** monocular learned VO, replaces dropped DROID-SLAM. Best VO on Rosario
+> seq5 (3.9m, beats all stereo), 2nd on seq1; ~9-13x better than DROID-SLAM. Light (~2-4 GB VRAM,
+> runs on all sequences incl. 46k-frame zed2i where MegaSaM/MASt3R OOM). EuRoC calib needs radtan
+> distortion (raw images); agricultural configs are rectified. DPV-SLAM is tracked separately as `vo-lc`.
 
-| Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
-|---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; partial 1/3 | ✅ N=3 | ❌ N=0; crash |
-| Basalt | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; +2 |
-| OKVIS2 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; +2 |
-| OKVIS2-X | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; +2 |
-| OpenVINS | ❌ N=0; failed | ❌ N=0; failed | ❌ N=0; failed | ❌ N=0; failed | ❌ N=0; failed | ❌ N=0; failed | 🟡 N=1; +2; partial 1/1 | 🟡 N=1; +2; collapse r1 |
-| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; partial 3/3 | 🟡 N=3; partial 3/3 | 🟡 N=3; partial 3/3 | 🟡 N=1; +2 |
-| Voxel-SVIO | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; partial 3/3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; +2 |
+> **zed2i field1** = local ZED2i field dataset (46283 pairs, 1080p, 77 min, RTK GT). Under the
+> tested N=1 configurations, ORB-SLAM3 VO (0.256 m) and Basalt VO (0.446 m) outperformed every
+> VIO attempt. The evidence is consistent with weak inertial excitation, but the exact factory
+> camera-IMU transform and timing still need controlled validation.
 
-> HortiMulti IMU and rectified camera–IMU corrections are implemented. All seven non-ZED
-> sequences have N=3 for six algorithms; **OpenVINS remains incomplete**. Its MH05 run1
-> is evaluated; other core cells lack complete evaluations. At least the Rosario seq1
-> campaign failure occurred during player shutdown after exporting poses (exit 134), so
-> inspect recoverable outputs before classifying it as estimator tracking failure.
-> **ZED:** the six N=1 results use the corrected camera-optical/IMU transform. OpenVINS
-> still collapses; ORB-SLAM3 still has no evaluated output. Each N=1 cell needs run2/run3.
-> The old identity-transform results and excitation-only explanation are historical.
-> See [ZED calibration](docs/zed2i-imu-extrinsics.md) for remaining residual/timing limitations.
+### VIO (stereo + IMU, no loop closure) - `results-vio/`
 
-### VO-LC (visual only + loop closure) - `results/vo-lc/`
+Legend: ✅ run complete | 🟡 run complete with caveat | ⬜ config only | 🔧 config missing | ➖ mode unsupported
+
+All core agricultural/EuRoC cells have N=1 results as of 2026-07-21. HortiMulti was corrected via
+the camera-IMU extrinsic fix and no scale-collapsed core cells remain. ZED2i has six usable VIO
+trajectories plus one ORB-SLAM3 failed attempt; every tested VIO configuration underperformed the
+two VO baselines. Next step for the core table: **N=5 on the server** (`docs/campaigns/server-campaign-plan.md`).
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| DPV-SLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 |
-| OKVIS2 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ⏳ N=0; r1 exported; r2 killed |
-| OKVIS2-X | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ❌ N=0; failed |
-| ORB-SLAM3 | ❌ N=0; crash | 🟡 N=3; partial 2/3 | 🟡 N=3; partial 3/3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 |
-| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; partial 3/3 | 🟡 N=3; partial 3/3 | 🟡 N=3; partial 3/3 | ✅ N=3 |
-| OV2SLAM | 🟡 N=3; collapse r2 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 |
-| MASt3R-SLAM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | 🔧 config missing; excluded |
+| ORB-SLAM3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 failed |
+| Basalt | ✅ N=1 | ✅ N=1 | ✅ N=1 🔁 | ✅ N=1 🔁 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 |
+| OKVIS2 | ✅ N=1 🔁 | ✅ N=1 🔁 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 |
+| OKVIS2-X | ✅ N=1 🔁 | ✅ N=1 🔁 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 |
+| OpenVINS | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 |
+| AirSLAM | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 |
+| Voxel-SVIO | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 |
 
-> **OKVIS2:** all seven non-ZED cells now have N=3 after the September 23 recovery,
-> using the later final-full-BA-disabled configuration. On ZED, run1 finished (exit 0,
-> 46,282 output poses), but has no evaluation/COMPLETE. Run2 was killed and run3 is absent.
-> Preserve/evaluate run1 before restarting: the wrapper replaces the entire cell.
-> **OKVIS2-X ZED:** no complete evaluated run; latest recovery stopped near initialization.
-> **ORB-SLAM3 Rosario seq1:** native crash; no complete evaluated run.
-> **OV2SLAM Rosario seq1:** N=3 includes run2 collapse; retain it in failure-rate reporting.
-> AirSLAM and OV2SLAM VO-LC are now implemented and N=3 on all eight sequences.
-> Loop-event counts and final-BA settings require explicit interpretation; prior N=1
-> conclusions are not automatically conclusions about this server cohort.
+> HortiMulti IMU: extracted - str02=190493 samples, str03=48448 samples. Path: `datasets/hortimulti/strawberry{02,03}/mav0/imu0/data.csv`
+> **HortiMulti VIO fix (2026-07-20):** the dominant cross-algorithm configuration error was a
+> wrong camera-IMU extrinsic (raw fisheye extrinsic used on rectified images = missing 1.22 deg rotation;
+> OKVIS2/OKVIS2-X/AirSLAM additionally had it inverted). Corrected in configs - scale now ~1.0
+> everywhere. See PROGRESS.md.
+> Voxel-SVIO: VIO-only (no VO, no LC). Runs via Docker (`vslam_voxel_svio:noetic`). Wrapper had a
+> `pkill` self-match bug (fixed) that reported "no trajectory" on successful runs; it is also
+> non-deterministic (real-time player) - ~2x run-to-run spread, so N=3 matters here especially.
+> OKVIS2 (standalone) was built 2026-07-20 (`build_okvis2.sh`, needed -DHAVE_LIBREALSENSE=OFF
+> -DUSE_CUDA=OFF).
+> **zed2i field1 VIO (all 7 algorithms attempted, 2026-07-21):** under the tested N=1
+> configurations, all usable VIO trajectories underperform the two VO baselines:
+> - **No collapse, but VIO≫VO:** Voxel-SVIO 3.71 m (scale 0.978, ~71 s static-init delay -
+>   its log spams "Failed static init: no accel jerk detected" until the first real motion),
+>   AirSLAM 3.90 m (scale 0.965), Basalt 9.14 m (scale 0.816). All track cleanly but land
+>   ~15-35× worse than VO (ORB-SLAM3 VO 0.256 m, Basalt VO 0.446 m).
+> - **Scale collapse (evo Sim3 scale ≈ 0, SE3 ATE explodes to 10^5-10^6 m):** OpenVINS 5.33 m
+>   (only 8.7 % tracked), OKVIS2 17.7 m, OKVIS2-X 18.3 m - the tightly-coupled filters.
+> - **ORB-SLAM3:** VIO tracking is chronically unstable (repeated "Fail to track local map!")
+>   and the committed attempt **segfaults in SaveTrajectoryEuRoC at export** -
+>   no usable trajectory. Config authored (`zed2i_field1_..._stereo_inertial.yaml`, identity T_b_c1).
+> The pattern is consistent with insufficient rotational excitation (mean |gyro| 4.7 deg/s), but
+> it is not yet a proven shared root cause: the runs are N=1 and share calibration/timing assumptions.
+> Apply the exact factory camera-IMU transform and validate timing before deciding whether N=3 is useful.
 
-### VIO-LC (stereo + IMU + loop closure) - `results/vio-lc/`
+### VO-LC (visual only + loop closure) - `results-vo-lc/`
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; partial 1/3 | ✅ N=3 | ❌ N=0; crash |
-| OKVIS2 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; +2 |
-| OKVIS2-X | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; +2 |
-| AirSLAM | ✅ N=3 | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; partial 3/3 | 🟡 N=3; partial 3/3 | 🟡 N=3; partial 3/3 | 🟡 N=1; +2 |
+| DPV-SLAM | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| OKVIS2 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 partial |
+| OKVIS2-X | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | 🟡 N=1 partial |
+| ORB-SLAM3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| AirSLAM | 🔧 run as VIO-LC | 🔧 run as VIO-LC | 🔧 run as VIO-LC | 🔧 run as VIO-LC | 🔧 run as VIO-LC | 🔧 run as VIO-LC | 🔧 run as VIO-LC | 🔧 run as VIO-LC |
+| OV2SLAM | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only | ⬜ config only |
+| MASt3R-SLAM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🟡 OOM | 🔧 config missing |
 
-> All four methods have N=3 on the seven non-ZED sequences. **ZED configs now exist**:
-> OKVIS2, OKVIS2-X and AirSLAM each have corrected N=1 and need two more repetitions;
-> ORB-SLAM3's corrected attempt failed. AirSLAM's map refinement is an offline step;
-> final corrected trajectories do not by themselves establish live navigation latency.
+> DPV-SLAM = DPVO + proximity loop closure (monocular, no IMU). LC **helps 2-3x on EuRoC but hurts every agricultural sequence** (false loops on repetitive crop rows) - see PROGRESS.md finding 10.
+> **OKVIS2 / OKVIS2-X VO-LC full-sequence N=1 completed (2026-07-30/31).** IMU residuals off, LC on.
+> Both loop-close: real accepted-closure counts (corrected metric, 2026-08-03) are e.g. seq1 OKVIS2 76,
+> OKVIS2-X 30. **The earlier "OKVIS2-X = 0 closures" was a log-parsing bug** (its Frontend.cpp logs the
+> same `LOOP CLOSURE: current frame` line as OKVIS2; the eval counted the wrong lines - fixed in
+> `_evaluate_run.py`, see finding 12). EuRoC ATE is excellent (OKVIS2/OKVIS2-X MH_01 ~0.02 m).
+> **The two zed2i cells are partial-coverage (🟡):** OKVIS2 (0.752 m, ~93% of frames) and OKVIS2-X
+> (0.294 m, ~78%) both **wedge in end-of-sequence global BA on the 46k-frame zed2i sequence** and
+> never terminate; a SIGTERM flushes a usable trajectory that evaluates cleanly over the covered
+> span. Budget zed2i OKVIS-family LC as kill-to-flush, or cap the sequence.
+> AirSLAM's LC lives in its offline `map_refinement` step; no visual-only `_vo_lc` config exists, and
+> the LC that was run uses the inertial `_vio_slam` config, so AirSLAM's loop-closure results are
+> tracked in **VIO-LC**, not here (🔧 = no vo-lc config).
+> **ORB-SLAM3 VO-LC N=1 all 8 sequences completed (2026-08-03, native).** LC on (`loopClosing: 1`)
+> vs the LC-off VO baseline. On the one dataset with a clean LC-off VO baseline (Rosario): seq1 fires
+> 4 loops -> 1.52 m (vs VO median 3.00 m, LC **helps**); seq5 fires 0 loops -> 15.55 m (LC inert, no
+> revisit). Loops also fired on str03 (1) and MH_05 (1). NOTE the HortiMulti/EuRoC/zed2i *VO* configs
+> lack `loopClosing: 0`, so their VO baseline had LC on by default (contaminated) - only Rosario VO is
+> a true LC-off baseline; see finding 11 revision.
+> OV2SLAM (`configs/ov2slam/<dataset>_vo_lc.yaml`) and MASt3R-SLAM VO-LC runs are still pending. The
+> OKVIS2/OKVIS2-X dataset readers still require `mav0/imu0/data.csv` even when IMU residuals are disabled.
 
-### GNSS-VIO (stereo + IMU + GNSS) - `results/gnss-vio/`
+### VIO-LC (stereo + IMU + loop closure) - `results-vio-lc/`
+
+Legend: ✅ run complete | 🟡 run complete with caveat | ⬜ config only | 🔧 config missing | ➖ mode unsupported
+
+| Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 |
+|---|---|---|---|---|---|---|---|
+| ORB-SLAM3 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| OKVIS2 | ✅ N=1 | ✅ N=1 | ✅ N=1 🔁 | ✅ N=1 🔁 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| OKVIS2-X | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+| AirSLAM | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 | ✅ N=1 |
+> 🔁 OKVIS2 hortimulti VIO-LC kept the stock EuRoC frontend while every other OKVIS2 hortimulti
+> mode AND all OKVIS2-X hortimulti modes use the tuned 5-param frontend — the OKVIS2-vs-OKVIS2-X
+> VIO-LC comparison on str02/str03 is not like-for-like until re-run with the tuned frontend.
+> HortiMulti IMU: extracted. Path: `datasets/hortimulti/strawberry{02,03}/mav0/imu0/data.csv`
+> **VIO-LC full-sequence N=1 completed (2026-07-30/31)** for OKVIS2 and OKVIS2-X (all 7 core
+> sequences) and AirSLAM (4 agricultural sequences). AirSLAM = front-end (`vio_euroc.launch`) +
+> offline `map_refinement`; the runner previously referenced a non-existent `vio_slam_euroc.launch`
+> - fixed in `run_airslam.sh`. AirSLAM EuRoC MH_01/03/05 are done (see the matrix above; the
+> earlier "re-queued but not yet run" note was stale — consistency sweep 2026-08-05).
+> There is **no zed2i VIO-LC column**: OKVIS2 has no zed2i `_vio_lc` config, AirSLAM has no
+> zed2i `_vio_slam` config, and OKVIS2-X zed2i VIO-LC was cut before running (the long pole, ~5-6 h,
+> same end-of-sequence stall as its VO-LC cell). Consistent with finding 10: LC yields no meaningful
+> ATE gain over VIO on the agricultural sequences (OKVIS2 seq1 18.3 m VIO-LC vs 18.9 m VO-LC).
+
+### GNSS-VIO (stereo + IMU + GNSS) - `results-gnss-vio/`
+
+Legend: ✅ run complete | 🟡 run complete with caveat | ⬜ config only | 🔧 config missing
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 |
 |---|---|---|---|---|
-| CIFASIS GNSS-SI | 🟡 N=1 historical | 🟡 N=1 historical; PPK | 🟡 N=1 historical | 🟡 N=1 historical |
-| RTAB-Map | 🟡 N=1 historical | 🟡 N=1 historical; partial; PPK | 🟡 N=1 historical | 🟡 N=1 historical |
-| VINS-Fusion | 🟡 N=1 eval; unvalidated | 🟡 N=1 eval; unvalidated; PPK | 🟡 N=1 eval; unvalidated | 🟡 N=1 eval; unvalidated |
-| OpenVINS+GPS | 🟡 N=1 historical; review | 🟡 N=1 historical; partial; review; PPK | 🟡 N=1 historical; review | 🟡 N=1 historical; review |
-| OKVIS2-X (tight) | 🟡 N=1 historical; 🔁 config | 🟡 N=1 historical; 🔁 config; PPK | 🟡 N=1 historical; 🔁 config | 🟡 N=1 historical; 🔁 config |
+| CIFASIS GNSS-SI | ✅ N=1 | ✅ N=1 PPK | ✅ N=1 | ✅ N=1 |
+| RTAB-Map | ✅ N=1 | 🟡 N=1 PPK | ✅ N=1 | ✅ N=1 |
+| VINS-Fusion | ✅ N=1 | ✅ N=1 PPK | ✅ N=1 | ✅ N=1 |
+| OpenVINS+GPS | 🟡 N=1 | 🟡 N=1 PPK | 🟡 N=1 | 🟡 N=1 |
+| OKVIS2-X (tight) | ✅ N=1 🔁 | ✅ N=1 🔁 | ✅ N=1 | ✅ N=1 |
 
-> **Excluded from the executed server N=3 campaign.** These are historical N=1 results
-> from earlier machines, not repeated server measurements. Sixteen default cells have
-> COMPLETE; all four VINS-Fusion default cells have evaluation JSON but lack that marker.
-> Three conventional-GPS variants are separately complete; three additional variants lack
-> COMPLETE. Validate artifacts rather than adding markers manually.
-> OpenVINS+GPS HortiMulti still needs corrected-extrinsic reruns/review. Current OKVIS2-X
-> configs have nonzero antenna lever arms, but historical results do not establish that the
-> revised configuration was rerun. GNSS N=5 remains unfinished if retained in final scope.
-> Seq5 PPK and seq1 conventional GPS remain distinct inputs; seq1 PPK requires its recording.
-> HortiMulti has consumer GNSS. EuRoC has no GNSS and is not part of this track.
+> 🔁 OKVIS2-X tight-GNSS Rosario: antenna lever arm hard-coded `r_SA=[0,0,0]` (unmeasured) AND
+> the untuned EuRoC frontend, while its winning HortiMulti cells run the tuned frontend — the
+> "loose beats tight coupling" conclusion flips exactly along this boundary and must not be
+> published until these cells are re-run with a measured lever arm + equalized config.
+
+> EuRoC-MAV is **not** part of the gnss-vio track (no GPS in the dataset).
+> Runners: `run_cifasis_gnss_si.sh`, `run_rtabmap_gps.sh`, `run_vins_fusion_gps.sh`, `run_openvins_gps.sh` (all accept `<dataset> <seq> [run_id] gnss-vio`).
+>
+> ~~OKVIS2-X is not one of these 16 runs~~ stale — OKVIS2-X tight-GNSS ran on all four
+> GPS-bearing sequences 2026-08-05 (see the matrix row above, with its 🔁 caveat).
+> Use `run_benchmark.sh <dataset> <seq> <algo> <N> gnss-vio` to run + evaluate automatically.
+>
+> **GPS quality:** rosariov2 **seq5 now uses high-quality PPK GPS** (`/reach_1/ppk/fix`, vertical RMSE
+> ~0.12 m vs ~1.44 m conventional); the seq5 GNSS-VIO results above are PPK. **seq1 still uses
+> conventional GPS** - no seq1 PPK log is available locally, so seq1 has NOT been re-run on PPK (do not
+> confuse the two). PPK upgrade improved vertical RMSE -23% to -86% and overall ATE for the
+> loosely-coupled estimators (VINS-Fusion, OpenVINS); CIFASIS vertical improved but overall ATE rose
+> (horizontal re-balance); RTAB-Map inconclusive (odometry non-determinism), hence 🟡. HortiMulti has
+> **no** higher-grade GPS available (only consumer `/antobot_gps`, status=0, vertical sigma 6.5-7.7 m),
+> so its vertical error is a hardware limit. See `PROGRESS.md` GNSS-VIO GPS-quality study +
+> `scripts/eval/_gps_noise_analysis.py`.
+>
+> **Remaining:** re-run seq1 on PPK if/when the seq1 PPK log becomes available.
 
 ---
 
@@ -144,36 +236,31 @@ Coverage is the current evaluator's estimate and still needs the methodological 
 | # | Task | Status |
 |---|---|---|
 | 1 | Extract HortiMulti IMU (`/ms/imu/data` -> `mav0/imu0/data.csv`) | `[x]` |
-| 2 | Run core VIO matrix | `[~]` six algorithms N=3 on all seven core sequences; OpenVINS only MH05 N=1; see VIO cells |
+| 2 | Run core VIO N=1 matrix | `[x]` 49 rows (7 algorithms x 7 standard sequences); ZED2i adds 6 usable rows + 1 failed attempt |
 | 3 | Diagnose and fix hortimulti VIO scale collapse | `[x]` **root cause was a camera-IMU EXTRINSIC bug, NOT vibration** (the earlier "vibration floor" conclusion was wrong). Fixed in config; all algos scale ~1.0. See PROGRESS.md "RESOLVED". |
 | 3b | Build OKVIS2 standalone (was never built) | `[x]` (`build_okvis2.sh`; -DHAVE_LIBREALSENSE=OFF -DUSE_CUDA=OFF) |
 | 3c | Re-run 2 stale bad VIO runs (Voxel EuRoC, OpenVINS seq5) | `[x]` (were bad runs, not algorithm limits) |
 | 3d | Add EuRoC MH_03/MH_05 VIO coverage + fix EuRoC times.txt (s->ns) | `[x]` |
-| 4 | Run ORB-SLAM3 VIO on rosariov2/seq1 N=3 | `[x]` N=3 evaluated |
-| 5 | Run Basalt VIO on rosariov2/seq1 N=3 | `[x]` N=3 evaluated |
-| 6 | Run OpenVINS VIO on rosariov2/seq5 N=3 | `[!]` no complete evaluated repetitions; shutdown failure/recovery pending |
+| 4 | ~~Run ORB-SLAM3 VIO on rosariov2/seq1 N=3~~ | folded into task 9 (server campaign) |
+| 5 | ~~Run Basalt VIO on rosariov2/seq1 N=3~~ | folded into task 9 (server campaign) |
+| 6 | ~~Run OpenVINS VIO on rosariov2/seq5 N=3~~ | folded into task 9 (server campaign) |
 | 7 | MASt3R-SLAM / MegaSaM revisit on the 24 GB server (optional — both OOM'd at 12 GB) | `[ ]` |
-| 8 | ORB-SLAM3 VO-clean LC-off re-runs | `[~]` LC-off configuration implemented; Rosario seq1/seq5 and Horti str02 missing after crashes |
-| 9 | Finish executed N=3 server campaign (no GNSS) | `[~]` 538/600 evaluated runs; 176/200 cells N=3. Original N=5/GNSS target is separate and unfinished |
-| 10 | Complete/validate GNSS-VIO N=1 sweep | `[~]` 16 default cells COMPLETE; four VINS-Fusion evaluations unvalidated; server repeats not run |
-| 10b | Re-run OpenVINS+GPS HortiMulti with corrected extrinsics; validate all four rows | `[ ]` not completed by the no-GNSS server campaign |
+| 8 | ORB-SLAM3 VO-clean LC-off re-runs | `[x]` done 2026-08-04 (truly LC-off re-runs are the current VO table) |
+| 9 | **N=5 server campaign** (supersedes all N=3 items): every agricultural cell x 5 run types at N=5, one machine, uniform feeding protocol, incl. the 🔁 config-equalization A/Bs | `[ ]` see `docs/campaigns/server-campaign-plan.md` |
+| 10 | Complete GNSS-VIO N=1 sweep | `[x]` 20 headline runs (5 algorithms incl. OKVIS2-X x 4 sequences) |
+| 10b | Re-run OpenVINS+GPS HortiMulti with corrected extrinsics; validate all four rows | `[ ]` folded into task 9 |
 | 11 | Normalize EuRoC dataset aliases and result/config paths to `euroc_mav` | `[x]` central shell/Python canonicalization; obsolete aliases removed |
 | 12 | Commit local-only runtime prerequisites | `[x]` **DONE 2026-08-06**: AirSLAM launch files + OpenVINS Dockerfile live in the forks (`kubojion/AirSLAM`, `kubojion/open_vins` @ `vslam-benchmark-patches`, wired in `.gitmodules`); OKVIS2 external CMake patches remain vendored in `vendor/prerequisites/` (nested upstream submodules — patch dir is the clean carrier) |
-| 13 | Finish remaining LC/VO cells | `[~]` MAC-VO ZED VO and AirSLAM/OV2SLAM VO-LC N=3 done; ZED OKVIS2/OKVIS2-X VO-LC still incomplete |
+| 13 | Finish remaining LC/VO cells | `[x]` … Still open: OKVIS2-X zed2i VIO-LC (~5-6 h, kill-to-flush), MAC-VO zed2i VO (~6 h) — candidates for the server |
 | 14 | OKVIS2-X "0 loop closures" | `[x]` **RESOLVED: log-parsing bug, not the algorithm.** See finding 12 |
 | 15 | Add `loopClosing: 0` to hortimulti/euroc/zed2i `_stereo.yaml` | `[x]` clean LC-off baselines are the current VO table (2026-08-04) |
 | 16 | Re-evaluate the 2 colleague-machine OKVIS2 VIO-LC runs with corrected LC metric | `[x]` closed by the machine-B re-evaluation campaign (2026-08-06, all EuRoC/HortiMulti runs re-parsed) |
 | 17 | ~~Create GitHub forks~~ | `[x]` **DONE 2026-08-06** — forks created, branches pushed (airslam 1b70ff6, open_vins 289bca3), `.gitmodules` re-pointed |
 | 18 | ~~Machine B: zed2i segment maps + GT tracking~~ | `[x]` **DONE 2026-08-06** (commits 9b0fc92 + 42c3492): vio/vo-lc maps regenerated on 2.86 m GT; euroc/hortimulti/zed2i GT + times + segments + alias symlinks tracked — verified byte-reproducible CSVs on any clone |
 | 19 | ~~Fix zed2i turn detection~~ | `[x]` **DONE 2026-08-06** (5d71cbd): tangent-derived headings (2 m path smoothing) → zed2i now 10 row + 5 turn segments; zed2i runs re-evaluated. Known limitation (documented in-code): short absorbed segments can split one row into several — coalescing deferred to the server-campaign re-eval since it re-segments every dataset |
-| 20 | Complete corrected ZED VIO/VIO-LC N=3 | `[~]` nine cells at N=1 (including one collapse); two ORB cells failed |
-| 21 | Freeze Basalt VO configuration cohort | `[ ]` Rosario 0.03 versus remaining six cells 0.05 triangulation distance; review ZED shared calibration |
-| 22 | Preserve/evaluate interrupted outputs and reconcile stale state | `[ ]` ZED OKVIS2 VO-LC run1 exported; three state files have stale running entries |
-| 23 | Repair metric/reporting issues and exclude five smoke runs from headline discovery | `[ ]` see aggregation/reporting below before regeneration |
 
 ---
 
-> **Historical note; current matrix above takes precedence.**
 > **ZED2i TURN DETECTION (task 19, 2026-08-06, machine B):** the "2 pseudo-row segments / 0 turns"
 > symptom was **not** a turn-angle threshold problem. `_segment_trajectory.py` derived heading from
 > the GT quaternion, but the ZED2i GT is built from GPS position only — every row carries an
@@ -194,7 +281,6 @@ Coverage is the current evaluator's estimate and still needs the methodological 
 > 2. **`datasets/rosariov2/sequence1/segments_auto.csv` is stale** relative to that sequence's
 >    repaired PGT ground truth. Not regenerated here (rule 3).
 
-> **Historical note; counts and metrics below describe July, not current artifacts.**
 > **ORB-SLAM3 VO NATIVE (2026-07-31, this machine):** the submodule builds and runs natively (no
 > Docker) - `src/ORB_SLAM3/Examples/Stereo/stereo_euroc` linked against a local Pangolin, driven by
 > `run_orbslam3.sh`. The agricultural/EuRoC VO cells were filled natively here. **The earlier
@@ -213,62 +299,55 @@ Coverage is the current evaluator's estimate and still needs the methodological 
 
 | Task | Status |
 |---|---|
-| VO-clean (LC-off) on rosariov2/seq1 N=3 | `[!]` N=0 complete evaluations; recovery crashes |
-| VO-clean on hortimulti str02+03 N=3 | `[~]` str02 N=0 (crash); str03 N=3 evaluated |
-| VO-clean on EuRoC MH_01/03/05 N=1 | `[x]` now N=3 on each |
-| VIO rosariov2/seq1 N=3 | `[x]` N=3 evaluated |
-| VIO-LC rosariov2/seq1 N=3 | `[x]` N=3 evaluated |
-| VIO EuRoC MH_01/03/05 N=1 | `[x]` now N=3 on each |
-| VIO-LC EuRoC N=1 | `[x]` now N=3 on each |
-| ZED VIO / VIO-LC N=3 | `[!]` both N=0 complete evaluations; crashes |
+| VO-clean (LC-off) on rosariov2/seq1 N=3 | `[ ]` |
+| VO-clean on hortimulti str02+03 N=3 | `[ ]` |
+| VO-clean on EuRoC MH_01/03/05 N=1 | `[ ]` |
+| VIO rosariov2/seq1 N=3 | `[ ]` |
+| VIO-LC rosariov2/seq1 N=3 | `[ ]` |
+| VIO EuRoC MH_01/03/05 N=1 | `[x]`; N=3 pending |
+| VIO-LC EuRoC N=1 | `[ ]` |
 
 ### Basalt
 
 | Task | Status |
 |---|---|
-| VIO rosariov2/seq1 N=3 | `[x]` N=3 evaluated |
-| VIO EuRoC MH_01/03/05 N=1 | `[x]` now N=3 on each |
-| VIO hortimulti (after IMU extraction) | `[x]` N=3 on both |
+| VIO rosariov2/seq1 N=3 | `[ ]` |
+| VIO EuRoC MH_01/03/05 N=1 | `[x]`; N=3 pending |
+| VIO hortimulti (after IMU extraction) | `[x]` |
 | hortimulti VIO scale collapse | `[x]` **FIXED via extrinsic correction** (was misdiagnosed as vibration floor; the 5-run noise sweep searched the wrong parameter). With rectified T_imu_cam: str02 22.9->2.49 m, str03 2.85->0.19 m, scale 0.57->1.03. |
-| ZED corrected VIO N=3 | `[~]` N=1; run2/run3 needed |
-| VO configuration consistency | `[~]` all eight cells N=3, but six retain 0.05 versus current 0.03 triangulation distance |
 
 ### OpenVINS
 
 | Task | Status |
 |---|---|
-| VIO rosariov2/seq5 N=3 | `[!]` N=0 complete evaluations; recovery needed |
-| VIO EuRoC MH_01/03/05 N=1 | `[~]` MH01/MH03 N=0; MH05 N=1 (two repeats needed) |
-| VIO hortimulti (after IMU extraction) | `[!]` extraction/config fix done; neither current cell has a complete evaluation |
-| ZED corrected VIO N=3 | `[~]` N=1 collapse; preserve outcome, run2/run3 missing |
+| VIO rosariov2/seq5 N=3 | `[ ]` |
+| VIO EuRoC MH_01/03/05 N=1 | `[x]`; N=3 pending |
+| VIO hortimulti (after IMU extraction) | `[x]` |
 
 ### AirSLAM
 
 | Task | Status |
 |---|---|
-| VIO rosariov2/seq1+seq5 N=3 | `[x]` N=3 on both |
-| VI-SLAM (VIO-LC) rosariov2 N=3 | `[x]` N=3 on both |
-| VIO/VI-SLAM hortimulti (after IMU extraction) | `[x]` N=3 on both sequences/modes |
-| VIO EuRoC MH_01/03/05 N=1 | `[x]` now N=3 on each |
+| VIO rosariov2/seq1+seq5 N=3 | `[ ]` |
+| VI-SLAM (VIO-LC) rosariov2 N=3 | `[ ]` |
+| VIO/VI-SLAM hortimulti (after IMU extraction) | `[x]` |
+| VIO EuRoC MH_01/03/05 N=1 | `[x]`; N=3 pending |
 | hortimulti str02/str03 scale collapse | `[x]` **FIXED**: extrinsic was inverted AND missing rectification. str02 46.3->5.30 m, str03 16.3->1.24 m, scale ~1.0. (Also recovered lost `vio_euroc.launch`; TensorRT needed a host reboot after a driver update.) |
-| ZED corrected VIO / VIO-LC N=3 | `[~]` each N=1; run2/run3 missing |
 
 ### OKVIS2
 
 | Task | Status |
 |---|---|
-| Scale seq1+seq5 to N=3 | `[x]` N=3 for VO, VO-LC, VIO and VIO-LC |
+| Scale seq1+seq5 to N=3 | `[ ]` |
 | Add hortimulti + EuRoC configs | `[x]` |
-| VIO EuRoC MH_01/03/05 N=1 | `[x]` now N=3 on each |
+| VIO EuRoC MH_01/03/05 N=1 | `[x]`; N=3 pending |
 | hortimulti failure | `[x]` **FIXED via extrinsic correction** (the tracking failures were largely self-inflicted by the wrong extrinsic, not greenhouse texture). str02 49.9->2.14 m, str03 15.5->0.40 m, scale 0->1.03. Independent check: freshly-built binary + config patched hours earlier. |
-| ZED VO-LC N=3 | `[~]` N=0 evaluated; run1 exported, run2 killed, run3 absent |
-| ZED corrected VIO / VIO-LC N=3 | `[~]` each N=1; two repetitions missing |
 
 ### OKVIS2-X
 
 Source and result integration exists independently of OKVIS2. The top-level build, run and
-GPS-conversion automation is committed; repeated VO/VIO results now exist through the
-server runners. Remaining gaps are shown in the matrices above.
+GPS-conversion automation is now committed; the existing VO/VIO result artifacts predate it and
+came from manual runs, so they have not yet been reproduced through the runner.
 
 | Task | Status |
 |---|---|
@@ -279,15 +358,13 @@ server runners. Remaining gaps are shown in the matrices above.
 | gnss-vio configs (rosariov2 seq1+seq5) | `[x]` |
 | `gps.csv` -> `mav0/gps0/data_raw.csv` converter | `[x]` |
 | Register in eval pipeline (LOG_PATTERNS, plot dicts) | `[x]` |
-| Measure `r_SA` (GNSS antenna lever arm) on the robot | `[~]` nonzero lever arms configured; verify provenance and rerun historical GNSS cohort |
-| First gnss-vio runs (rosariov2 seq1+seq5) | `[x]` historical N=1 results exist; no server GNSS repeats |
-| Reproduce VO/VIO results through `run_okvis2x.sh` | `[x]` VO N=3 all eight; VIO N=3 seven core + corrected ZED N=1 |
-| Manual N=1 VIO results | `[x]` superseded by server N=3 core and corrected ZED N=1 |
+| Measure `r_SA` (GNSS antenna lever arm) on the robot | `[ ]` (configs currently assume `[0,0,0]`) |
+| First gnss-vio runs (rosariov2 seq1+seq5) | `[ ]` |
+| Reproduce VO/VIO results through `run_okvis2x.sh` | `[ ]` (current artifacts are manual) |
+| Manual N=1 VIO results | `[x]` all 7 core sequences plus ZED2i (see VIO matrix); N=3 pending |
 | Recover HortiMulti IMU + GPS from hortimulti.zip | `[x]` (str02 190493/7620, str03 48448/1939 - counts match bag) |
-| HortiMulti gnss_vio configs | `[x]` configs and historical N=1 results exist |
+| HortiMulti gnss_vio configs | `[ ]` (GPS recovered for both sequences, so unblocked) |
 | Head-to-head OKVIS2 vs OKVIS2-X on rosariov2 vio | `[x]` seq1: OKVIS2 18.89 / OKVIS2-X 18.89; seq5: 20.29 / 20.40 - near-identical (shared estimator core) |
-| ZED VO-LC N=3 | `[!]` N=0 complete evaluations; latest recovery stopped near initialization |
-| ZED corrected VIO / VIO-LC N=3 | `[~]` each N=1; run2/run3 missing |
 
 ### MASt3R-SLAM
 
@@ -296,10 +373,10 @@ server runners. Remaining gaps are shown in the matrices above.
 | Download checkpoints | `[x]` 2.9 GB, Naver Labs direct URLs (see setup.md §10) |
 | Build env (CUDA 12.1 nvcc, vendored dust3r/in3d, numpy/opencv pins) | `[x]` |
 | Port runner to upstream API (`--save-as`, `--calib`, retrieval.k) | `[x]` |
-| Smoke test | `[!]` historical 12 GB OOM; reported server slowness needs retained trial evidence |
-| VO / VIO-LC runs on agri sequences | `[ ]` deferred/excluded from current campaign; supported visual tracks are VO / VO-LC (no VIO) |
+| Smoke test | `[!]` **blocked: OOM on 12 GB VRAM** |
+| VO / VIO-LC runs on agri sequences | `[!]` blocked by the above - needs a larger card |
 
-> Historical setup observations on the earlier machine (not current server measurements): MASt3R-SLAM
+> Not a wiring problem: the env and runner work and reach real execution. MASt3R-SLAM
 > keeps every keyframe on-GPU with no supported bound (`local_opt.window_size` is read
 > but never applied upstream; `dataset.img_downsample` breaks the fixed-512 checkpoint;
 > `dataset.subsample: 2` still OOM'd on rosariov2). Checkpoints are CC-BY-NC-SA-4.0.
@@ -313,7 +390,7 @@ server runners. Remaining gaps are shown in the matrices above.
 | Runtime deps (torch_scatter, xformers, huggingface_hub, `numpy<2`) | `[x]` |
 | Port runner to the real 3-stage pipeline | `[x]` was calling a non-existent `megasam.demo` module |
 | Grayscale workaround for UniDepth stage | `[x]` PIL mis-slices mode-`L` images; runner feeds it an RGB copy |
-| First end-to-end run (hortimulti str03) | `[~]` historical partial pipeline check; not currently running; excluded from campaign |
+| First end-to-end run (hortimulti str03) | `[~]` in progress - stages 1a/1b pass, stage 2 untested |
 | Runs on remaining sequences | `[ ]` |
 | zed2i config | `[ ]` |
 
@@ -327,21 +404,21 @@ server runners. Remaining gaps are shown in the matrices above.
 | Task | Status |
 |---|---|
 | Setup script, configs and runner | `[x]` |
-| DPVO VO N=1 on all 8 sequences | `[x]` now N=3 on all eight |
-| DPV-SLAM VO-LC N=1 on all 8 sequences | `[x]` now N=3 on all eight |
+| DPVO VO N=1 on all 8 sequences | `[x]` (`results-vo/`, `benchmark-vo.csv`) |
+| DPV-SLAM VO-LC N=1 on all 8 sequences | `[x]` (`results-vo-lc/`, `benchmark-vo-lc.csv`) |
 | Keep DPV-SLAM out of true VIO-LC bucket | `[x]` moved out of `results-vio-lc/` |
 
 ### VO-LC Candidates
 
 | Task | Status |
 |---|---|
-| OKVIS2 VO-LC full N=1 (all 8 sequences) | `[~]` seven non-ZED N=3; ZED run1 exported but unevaluated |
-| OKVIS2-X VO-LC full N=1 (all 8 sequences) | `[~]` seven non-ZED N=3; ZED N=0 complete evaluations |
-| ORB-SLAM3 runner + configs for rosariov2/hortimulti/EuRoC/zed2i | `[~]` seven cells N=3; Rosario seq1 recovery crashes |
-| MASt3R-SLAM runner + configs for rosariov2/hortimulti/EuRoC | `[x]` scaffolded; excluded from current campaign |
-| AirSLAM VO-LC | `[x]` visual-only LC now implemented; N=3 all eight |
-| OV2SLAM VO full N=1 (str02/MH_01/MH_03 filled) | `[x]` now N=3 all eight, including ZED |
-| OV2SLAM VO-LC full-sequence runs | `[x]` N=3 all eight; Rosario seq1 run2 collapse retained |
+| OKVIS2 VO-LC full N=1 (all 8 sequences) | `[x]` done; zed2i partial-coverage (kill-to-flush, see VO-LC note) |
+| OKVIS2-X VO-LC full N=1 (all 8 sequences) | `[x]` done; zed2i partial. ~~0 accepted closures - verify LC~~ resolved: that was the log-parser bug (task 14 / finding 12); corrected counts are comparable to OKVIS2 (e.g. 30 vs 76 on seq1) |
+| ORB-SLAM3 runner + configs for rosariov2/hortimulti/EuRoC/zed2i | `[x]` configured; 200-frame VO-LC smoke passed; full-sequence VO-LC still pending |
+| MASt3R-SLAM runner + configs for rosariov2/hortimulti/EuRoC | `[x]` configured, blocked on >12 GB VRAM for full sequences |
+| AirSLAM VO-LC | `[x]` reclassified as VIO-LC (LC is inseparable from its inertial pipeline) |
+| OV2SLAM VO full N=1 (str02/MH_01/MH_03 filled) | `[x]` done; only zed2i VO still pending (~2 h) |
+| OV2SLAM VO-LC full-sequence runs | `[ ]` configs exist; not yet run |
 
 ### OV2SLAM
 
@@ -349,7 +426,7 @@ server runners. Remaining gaps are shown in the matrices above.
 |---|---|
 | Accuracy-first configs (`force_realtime: 0`, half-speed replay for measured runs) | `[x]` |
 | VO N=1 on Rosario seq1+seq5, EuRoC MH_05 and HortiMulti str03 | `[x]` 7.236 m / 8.045 m / 0.099 m / 0.351 m Sim3 ATE |
-| Complete VO N=1 sweep on the remaining four standard sequences | `[x]` N=3 all eight; see matrix for coverage caveats |
+| Complete VO N=1 sweep on the remaining four standard sequences | `[ ]` HortiMulti str02, EuRoC MH_01/MH_03, ZED2i field1 |
 
 ### Voxel-SVIO
 
@@ -359,10 +436,9 @@ server runners. Remaining gaps are shown in the matrices above.
 | Configs: euroc_mav (per-seq), rosariov2, hortimulti | `[x]` |
 | Run script (`scripts/run/run_voxel_svio.sh`) + ROS1 data player | `[x]` |
 | Smoke test EuRoC MH_01_easy N=1 | `[x]` (0.083 m; earlier 3.03 m row was a stale bad run) |
-| VIO rosariov2/seq1+seq5 N=3 | `[x]` N=3 both |
-| VIO hortimulti str02+str03 N=3 | `[x]` N=3 both |
-| VIO EuRoC MH_01/03/05 N=1 -> N=3 | `[x]` N=3 each |
-| ZED corrected VIO N=3 | `[~]` N=1; run2/run3 missing |
+| VIO rosariov2/seq1+seq5 N=3 | `[ ]` |
+| VIO hortimulti str02+str03 N=3 | `[ ]` |
+| VIO EuRoC MH_01/03/05 N=1 -> N=3 | `[ ]` |
 
 ---
 
@@ -372,16 +448,10 @@ server runners. Remaining gaps are shown in the matrices above.
 |---|---|
 | Rebuild `benchmark-vo.csv` after ORB-SLAM3 VO-clean results land | `[ ]` |
 | Rebuild `benchmark-vio.csv` after N=3 runs (Basalt/ORB-SLAM3/OpenVINS) | `[ ]` |
-| Add MASt3R-SLAM to applicable CSVs | `[ ]` deferred scope extension, not a missing N=3 obligation |
+| Add MASt3R-SLAM to applicable CSVs | `[ ]` |
 | Generate segment maps for all new Phase 2 sequences | `[ ]` |
 | Final cross-algo ATE plots (VO vs VIO per sequence) | `[ ]` |
 | Thesis-ready LaTeX table | `[ ]` |
-| Exclude five COMPLETE smoke artifacts from headline discovery | `[ ]` preserve their evidence; current builder would include them |
-| DPVO metric labeling and mixed-status / failure counts | `[ ]` headline SE3/Sim3 mismatch; retain failures and repeat denominators |
-| RPE, GNSS origin alignment, ZED orientation and sparse-output coverage semantics | `[ ]` repair/relabel and re-evaluate affected trajectories |
-| GT/segmentation cache freshness and deferred segment coalescing | `[ ]` verify before re-evaluation |
-| Refresh all CSVs, tables/claims, figures and browser together | `[ ]` root CSVs still 259 rows; current store has 577 complete evaluations across mixed scopes |
-| Freeze source/config/binary provenance and declare final N / GNSS scope | `[ ]` current dirty source and configuration cohorts require reconciliation |
 
 ---
 
@@ -402,8 +472,6 @@ server runners. Remaining gaps are shown in the matrices above.
 
 ## Adding a new algorithm
 
-Complete the current matrix gaps and reporting repairs before expanding scope.
-
 1. Build / containerize under `src/<algo>/`.
 2. Write `scripts/run/run_<algo>.sh` with signature `<dataset> <seq> [run_id=1] [run_type=vo]`.
 3. Write config(s) under `configs/<algo>/`.
@@ -420,8 +488,6 @@ Complete the current matrix gaps and reporting repairs before expanding scope.
 ---
 
 ## DONE (Phase 1 - VO benchmark)
-
-> Historical Phase 1 record. The current run status is in the matrices above.
 
 All Phase 1 VO runs are complete (N=3) and evaluated. See PROGRESS.md Phase 1 for the full
 results table. Summary:
@@ -461,9 +527,6 @@ Kept as Phase 2 restructure (Phase 4.5):
 
 ## Standard vSLAM benchmarking pipeline (reference)
 
-See [evaluation](docs/evaluation.md) for current implementation limitations: translation
-uses point-distance residuals, and rotational accuracy needs valid orientation GT.
-
 The community-standard evaluation workflow (Sturm 2012, TUM RGB-D; Geiger 2012,
 KITTI; Grupp 2017, evo) has the following stages:
 
@@ -472,15 +535,15 @@ KITTI; Grupp 2017, evo) has the following stages:
 2. **Algorithm config** — write a correctly-named YAML config file for each
    (algorithm, dataset) pair; verify all required parameters are present.
 3. **Run** — execute the algorithm, capture trajectory + runtime metadata
-   (FPS, peak GPU MB); save to `results/<type>/<dataset>/<seq>/<algo>/`.
+   (FPS, peak GPU MB); save to `results/<dataset>/<seq>/<algo>/`.
 4. **Timestamp normalisation** — ensure all estimated trajectories use
    second-epoch timestamps matching the GT file's epoch.
 5. **ATE / APE** (`evo_ape`) — absolute trajectory error after rigid SE(3)
    alignment; primary global accuracy metric.  Report RMSE and mean.
 6. **RPE** (`evo_rpe`) — relative pose error over a fixed window (~1 s);
    measures local drift.  Report RMSE of translational and rotational error.
-7. **Coverage** — inspect time support and tracking outages. Output-pose count divided
-   by input-frame count measures output rate, not reliable trajectory coverage.
+7. **Completion rate** — `N_estimated / N_total × 100 %`; captures how often
+   the system loses tracking.
 8. **Runtime metrics** — wall-clock FPS, peak GPU memory, CPU usage.
 9. **Multi-run benchmark** — run algorithm N times (N=3); `run_orbslam3.sh <dataset> <seq> <run_id>`.
 10. **Per-run evaluation** — `scripts/eval/_evaluate_run.py <dataset> <seq> <algo> <run_id>` → `run_eval.json`.
@@ -490,8 +553,6 @@ KITTI; Grupp 2017, evo) has the following stages:
 ---
 
 ## Phase 0 – Infrastructure
-
-> Historical implementation checklist. Current evaluation limitations are tracked above.
 
 | Task | Status |
 |---|---|
@@ -513,21 +574,19 @@ KITTI; Grupp 2017, evo) has the following stages:
 | **Sim(3) vs SE(3) reporting**: both alignments computed every run | `[x]` |
 | **Body↔camera mount mismatch documented** (Strawberry-03 RPE rot artefact) | `[x]` |
 | `run_droidslam.sh` / `run_macvo.sh` upgraded to **multi-run framework** (`<run_id>` arg, `_resource_monitor.py`) | `[x]` |
-| DROID-SLAM conda env (`droidenv`) | `[x]`; lietorch, torch_scatter, droid_backends all built |
-| MAC-VO conda env | `[x]`; `macvo` env created; models downloaded |
-| **Basalt binary install** (`~/.local/bin/basalt_vio`, v0.1.7) | `[x]`; Binary installer for Ubuntu 22.04; sources `~/.basalt/env` |
-| `run_basalt.sh` | `[x]`; EuRoC format, auto-generates `mav0/cam*/data.csv`, `--use-imu false` |
-| `configs/basalt/hortimulti_calib.json` + `rosariov2_calib.json` + `vo_config.json` | `[x]`; Pinhole + `vio_min_triangulation_dist: 0.03` |
-| **AirSLAM Docker** (`air_slam` container, `xukuanhit/air_slam:v4`) | `[x]`; Docker Engine + nvidia-container-toolkit; catkin_make inside container |
-| `scripts/setup/setup_airslam_docker.sh` | `[x]`; One-shot pull + create + build |
-| `run_airslam.sh` | `[x]`; Polls `trajectory_v0.txt`, `pkill roslaunch`, `mv -f`, FPS from input frames |
-| `configs/airslam/{hortimulti,rosariov2}_{camera,vo}.yaml` | `[x]`; Per-dataset intrinsics + TRT engine name |
+| DROID-SLAM conda env (`droidenv`) | `[x]` | lietorch, torch_scatter, droid_backends all built |
+| MAC-VO conda env | `[x]` | `macvo` env created; models downloaded |
+| **Basalt binary install** (`~/.local/bin/basalt_vio`, v0.1.7) | `[x]` | Binary installer for Ubuntu 22.04; sources `~/.basalt/env` |
+| `run_basalt.sh` | `[x]` | EuRoC format, auto-generates `mav0/cam*/data.csv`, `--use-imu false` |
+| `configs/basalt/hortimulti_calib.json` + `rosariov2_calib.json` + `vo_config.json` | `[x]` | Pinhole + `vio_min_triangulation_dist: 0.03` |
+| **AirSLAM Docker** (`air_slam` container, `xukuanhit/air_slam:v4`) | `[x]` | Docker Engine + nvidia-container-toolkit; catkin_make inside container |
+| `scripts/setup/setup_airslam_docker.sh` | `[x]` | One-shot pull + create + build |
+| `run_airslam.sh` | `[x]` | Polls `trajectory_v0.txt`, `pkill roslaunch`, `mv -f`, FPS from input frames |
+| `configs/airslam/{hortimulti,rosariov2}_{camera,vo}.yaml` | `[x]` | Per-dataset intrinsics + TRT engine name |
 
 ---
 
 ## Phase 1 – Dataset: Rosario v2
-
-> Historical experiments and values; superseded as current status by the matrices above.
 
 > Agricultural field rows, stereo + GPS GT, 15 fps, 1280×720.
 > Full sequence 1 = 13 821 frames, ~18 min.
@@ -598,13 +657,13 @@ KITTI; Grupp 2017, evo) has the following stages:
 |---|---|
 | All four algorithms run on sequence 1 (single run) | `[x]` |
 | ORB-SLAM3 + DROID-SLAM run on sequence 5 | `[x]` |
-| MAC-VO on sequence 5 × 3 | `[x]`; ATE Sim3 **19.384 ± 0.006 m** (3 runs; scale=0.933, 100% tracking) |
-| ORB-SLAM3 × 3 multi-run benchmark seq1 | `[x]`; ATE 1.176 ± 0.317 m, `report.md` + `segment_map.png` |
-| ORB-SLAM3 × 3 multi-run benchmark seq5 | `[x]`; ATE 20.207 ± 4.204 m, `report.md` + `segment_map.png` |
-| Segment maps for seq1 and seq5 | `[x]`; seq1 ✓, seq5 ✓ |
-| `metrics.csv` + `report.md` for seq1 | `[x]`; done |
-| `metrics.csv` + `report.md` for seq5 | `[x]`; done |
-| Comparison table for thesis chapter | `[ ]`; Final LaTeX/PDF table for thesis |
+| MAC-VO on sequence 5 × 3 | `[x]` | ATE Sim3 **19.384 ± 0.006 m** (3 runs; scale=0.933, 100% tracking) |
+| ORB-SLAM3 × 3 multi-run benchmark seq1 | `[x]` | ATE 1.176 ± 0.317 m, `report.md` + `segment_map.png` |
+| ORB-SLAM3 × 3 multi-run benchmark seq5 | `[x]` | ATE 20.207 ± 4.204 m, `report.md` + `segment_map.png` |
+| Segment maps for seq1 and seq5 | `[x]` | seq1 ✓, seq5 ✓ |
+| `metrics.csv` + `report.md` for seq1 | `[x]` | done |
+| `metrics.csv` + `report.md` for seq5 | `[x]` | done |
+| Comparison table for thesis chapter | `[ ]` | Final LaTeX/PDF table for thesis |
 
 ### 1-F  Basalt (stereo VO)
 
@@ -629,9 +688,6 @@ KITTI; Grupp 2017, evo) has the following stages:
 ---
 
 ## GNSS-VIO (stereo + IMU + GNSS) - `results-gnss-vio/`
-
-> Historical infrastructure/experiment record. Use the GNSS matrix above for current
-> artifact validation status; server GNSS repeats were excluded.
 
 Phase F: GPS-aware algorithms with full Sim(3)+SE(3) eval pipeline.
 

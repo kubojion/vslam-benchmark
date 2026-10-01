@@ -1,6 +1,9 @@
 %YAML:1.0
 # ORB-SLAM3 stereo-inertial (VIO) config for ZED2i field1_110426_full_10fps_q90.
-# IMU co-located with cam0 (ZED2i factory ~0.675 deg) => IMU.T_b_c1 = identity.
+# Raw IMU samples use zed_imu_link (ROS body: x forward, y left, z up), while
+# the rectified images use zed_left_camera_frame_optical (x right, y down,
+# z forward). IMU.T_b_c1 includes that mandatory frame conversion and the
+# ZED2i camera-to-IMU translation.
 # Common recording-derived ZED IMU profile, ~100 Hz.
 
 File.version: "1.0"
@@ -20,7 +23,7 @@ Camera2.cy: 559.3102416992188
 # Images are JPEG color files read by OpenCV as BGR.
 Camera.RGB: 0
 
-Camera.fps: 15
+Camera.fps: 10
 Camera.width: 1920
 Camera.height: 1080
 
@@ -97,15 +100,17 @@ System.LoopClosing: 0
 #------------------------------------------------------------------------------
 # IMU
 #------------------------------------------------------------------------------
-# IMU.T_b_c1 = body(IMU) <- cam0. ZED2i IMU is co-located with the left camera
-# (factory rotation ~0.675 deg), treated as identity for this benchmark.
+# IMU.T_b_c1 = body(IMU) <- cam0 optical.  The ZED SDK reports the IMU origin
+# at [-0.002, -0.023061, 0.000217] m in the left non-optical camera frame.
+# The serial-specific residual rotation (~0.675 deg for SN30291010) was not
+# retained in the bag; identity is used only for that small body-frame term.
 IMU.T_b_c1: !!opencv-matrix
   rows: 4
   cols: 4
   dt: f
-  data: [ 1.0, 0.0, 0.0, 0.0,
-          0.0, 1.0, 0.0, 0.0,
-          0.0, 0.0, 1.0, 0.0,
+  data: [ 0.0, 0.0, 1.0,  0.002,
+         -1.0, 0.0, 0.0,  0.023061,
+          0.0,-1.0, 0.0, -0.000217,
           0.0, 0.0, 0.0, 1.0 ]
 
 # Common ZED field IMU profile (SN30291010), continuous-time densities.

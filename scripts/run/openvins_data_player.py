@@ -35,6 +35,7 @@ from typing import List, Tuple
 import cv2
 import numpy as np
 import rclpy
+from rclpy.executors import SingleThreadedExecutor
 from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
 from sensor_msgs.msg import Image, Imu
@@ -189,14 +190,6 @@ class Player(Node):
             events.append((r[0], "cam1", r[1]))
         events.sort(key=lambda e: e[0])
 
-        # Spin the executor in a background thread so subscription callbacks
-        # (the /ov_msckf/odomimu pose stream) keep firing while the main
-        # thread is busy with pacing and image I/O. Without this the player
-        # silently drops poses once it falls slightly behind real time.
-        spin_thread = threading.Thread(
-            target=lambda: rclpy.spin(self), daemon=True)
-        spin_thread.start()
-
         # Wait for the OpenVINS node to come up and our publishers to be
         # discovered. OpenVINS uses subscription_count gates on output topics
         # and we want to be sure the ROS graph is settled.
@@ -281,14 +274,31 @@ def main():
         args.seq_dir, args.out_traj, args.rate, args.start_delay, args.end_wait,
         args.stats_out,
     )
+    # Own the executor explicitly. rclpy.spin(node) creates a hidden executor;
+    # destroying the node while its daemon thread is still in spin() aborts
+    # ROS 2 Humble after the trajectory has already been written.
+    executor = SingleThreadedExecutor()
+    executor.add_node(node)
+    spin_thread = threading.Thread(
+        target=executor.spin,
+        name="openvins-data-player-executor",
+        daemon=False,
+    )
+    spin_thread.start()
     try:
         node.play()
     except KeyboardInterrupt:
         node.get_logger().warning("interrupted; writing partial trajectory")
         node.write_trajectory()
     finally:
+        executor.shutdown(timeout_sec=5.0)
+        spin_thread.join(timeout=5.0)
+        if spin_thread.is_alive():
+            node.get_logger().error("ROS executor did not stop cleanly")
+        executor.remove_node(node)
         node.destroy_node()
-        rclpy.shutdown()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
 if __name__ == "__main__":

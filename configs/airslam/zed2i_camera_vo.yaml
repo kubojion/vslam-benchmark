@@ -11,7 +11,8 @@
 #
 # T_type 0 (EuRoC Tbc): cam0 identity (= body frame); cam1 displaced +baseline
 # along body x, so T_bc1 translation is -baseline in x.
-# IMU co-located with cam0 (ZED2i factory ~0.675 deg), treated as identity.
+# VO is deliberately camera-centred and does not consume the ZED IMU. Use
+# zed2i_camera_vio.yaml for the camera-optical-to-IMU calibration.
 
 image_height: 1080
 image_width: 1920

@@ -1,18 +1,15 @@
 # vSLAM Benchmark
 
-> **Updated 2026-08-06.** 259 runs (VO 110 / VO-LC 40 / VIO 55 / VIO-LC 28 / GNSS-VIO 26) across
-> Rosario v2, HortiMulti, the own ZED2i field sequence and EuRoC (control), all at
-> `eval_schema: 2` — the 2026-08-05 evaluation overhaul (fixed GT interpolation, gap-aware
-> coverage, SE3-primary metrics, origin-aligned GNSS ATE, GT + machine provenance per run) —
-> verified byte-reproducible across both benchmark machines. Results: see
-> [docs/generated/tables.md](docs/generated/tables.md) (never hand-transcribed); status + open
-> work: [TODO.md](TODO.md); narrative + findings 1–15: [PROGRESS.md](PROGRESS.md); next
-> milestone: the **N=5 server campaign**
-> ([docs/campaigns/server-campaign-plan.md](docs/campaigns/server-campaign-plan.md)).
+> **Status checked 2026-10-01:** the executed server campaign is **N=3 without GNSS**,
+> with **538/600 evaluated runs and 176/200 cells at N=3**. It is incomplete; the original
+> N=5/GNSS plan has not been fulfilled. Start with [TODO](TODO.md) and the
+> [artifact-based status audit](docs/campaigns/server-status-20261001.md).
+> Generated numeric reports are provisional/stale pending the documented evaluator repairs.
+
 
 | Algorithm | Type | Source |
 |---|---|---|
-| **ORB-SLAM3** | Classical feature-based, stereo / stereo-inertial, optional LC | [kubojion/ORB_SLAM3 @ vslam-benchmark-patches](https://github.com/kubojion/ORB_SLAM3/tree/vslam-benchmark-patches). Built + run natively (no Docker). VO filled: EuRoC N=1 (stable), agricultural N=3 median/range (severely non-deterministic — see PROGRESS finding 11). Old LC-on results quarantined in `obsolete/`. |
+| **ORB-SLAM3** | Classical feature-based, stereo / stereo-inertial, optional LC | [kubojion/ORB_SLAM3 @ vslam-benchmark-patches](https://github.com/kubojion/ORB_SLAM3/tree/vslam-benchmark-patches). Built and run natively. Current repeat coverage and crash gaps are recorded in TODO; older results are historical. |
 | **OKVIS2** | Sliding-window MAP stereo-inertial, optional DBoW + Sim3 LC | [ethz-mrl/okvis2](https://github.com/ethz-mrl/okvis2) (cmake build, system deps) |
 | **OKVIS2-X** | Multi-sensor OKVIS2 extension; VO/VIO/VIO-LC/GNSS capability | [ethz-mrl/OKVIS2-X](https://github.com/ethz-mrl/OKVIS2-X) (cmake build, system deps). Wired in independently of OKVIS2: own source tree, configs, runner and results. |
 | **MAC-VO** | Hybrid (learned uncertainty), stereo VO | [kubojion/MAC-VO @ vslam-benchmark-patches](https://github.com/kubojion/MAC-VO/tree/vslam-benchmark-patches) |
@@ -32,13 +29,13 @@
 ## Datasets
 
 * **Rosario v2** - outdoor soybean field, stereo + IMU + GPS.
-* **HortiMulti** - indoor strawberry polytunnel, stereo + IMU.
+* **HortiMulti** - indoor strawberry polytunnel, stereo + IMU + consumer GNSS.
 * **ZED2i `field1_110426_full_10fps_q90`** - the project's own agricultural field sequence, stereo + IMU + RTK position reference.
 * **EuRoC-MAV** (MH_01_easy, MH_03_medium, MH_05_difficult) - [NON-AGRICULTURAL REFERENCE] indoor MAV flight, stereo + IMU. Used as a sanity check only.
 
 Rosario v2, HortiMulti and the local ZED2i field sequence are the agricultural scope. A separate
 GREENBOT dataset is not part of the current benchmark. EuRoC-MAV is tracked as a
-[NON-AGRICULTURAL REFERENCE] and run once per algorithm to verify configs and the evaluation pipeline.
+[NON-AGRICULTURAL REFERENCE] for configuration/evaluation checks; the executed server campaign includes three repetitions per cell.
 Its canonical repository identifier/path is `euroc_mav`; CLI aliases `EuRoC-MAV` and `euroc` are
 normalized before result/config paths are constructed.
 
@@ -98,7 +95,7 @@ warn for unsupported combinations:
 | Algorithm   | `vo` | `vo-lc` | `vio` | `vio-lc` |
 |-------------|------|---------|-------|----------|
 | ORB-SLAM3   | yes (requires LC-off build) | yes | yes | yes |
-| OKVIS2      | yes | yes (experimental) | yes | yes (IMU sigmas need 5-10x inflation, see PROGRESS.md) |
+| OKVIS2      | yes | yes (experimental) | yes | yes (see docs/okvis-imu-noise-derivation.md) |
 | OKVIS2-X    | yes (best-effort, no IMU) | yes (experimental) | yes | yes (also `gnss-vio`: tightly-coupled GNSS) |
 | AirSLAM     | yes | yes | yes | yes |
 | OV2SLAM     | yes | yes | no | no |
@@ -127,8 +124,8 @@ cd vslam-benchmark
 #       bash scripts/build/setup_megasam_env.sh
 #       bash scripts/build/setup_mast3r_slam_env.sh
 
-# Note: TODO.md lists small local-only AirSLAM/OpenVINS/OKVIS2 prerequisites
-# that still need commits in their owning submodules before every runner is reproducible.
+# Note: preserve existing result cells before rerunning: run_benchmark.sh replaces
+# a whole cell. Check TODO.md for pending runtime/provenance qualification.
 
 # 3. drop a dataset under datasets/<dataset>/<seq>/ and convert it
 bash scripts/data/convert_rosario_to_tum.sh datasets/rosariov2/sequence1
@@ -168,27 +165,23 @@ bash scripts/results/serve_site.sh 8080
 
 ## Results snapshot
 
-**Published source of truth:** the five tracked `benchmark-*.csv` files (rebuilt from complete runs under `results/`, one row
-per run, `eval_schema: 2`). **The only sanctioned rendering** is
-[docs/generated/tables.md](docs/generated/tables.md) — regenerate with
-`python3 scripts/eval/make_report_tables.py` (SE3-primary, coverage-gated, machine-checkable
-bolding). Numbers for prose come from
-[docs/generated/verified-claims.md](docs/generated/verified-claims.md); report figures live in
-[docs/generated/figures/](docs/generated/figures/). Never hand-transcribe a results number.
+Current completion is documented in [the status audit](docs/campaigns/server-status-20261001.md),
+which counts `run_eval.json` plus COMPLETE markers against the executed manifest. An evaluated
+run can be a recorded collapse and can have partial coverage; completion is not an accuracy claim.
 
-Current state (2026-08-06): 259 runs across VO / VO-LC / VIO / VIO-LC / GNSS-VIO on
-Rosario v2, HortiMulti, the ZED2i field sequence, and EuRoC (control). All runs carry GT
-provenance (sha256) and run-host machine identity; CSVs are byte-reproducible on any clone.
-Most cells are N=1 — the **N=5 server campaign**
-([docs/campaigns/server-campaign-plan.md](docs/campaigns/server-campaign-plan.md)) is the next
-milestone; cells marked 🔁 in [TODO.md](TODO.md) additionally need a config-fairness A/B first.
+The five root `benchmark-*.csv` files are derived exports and currently contain an older
+259-row snapshot. The result store contains 577 complete evaluated artifacts across campaign,
+historical and smoke scopes. Five smoke runs need exclusion from headline discovery.
+The [generated tables](docs/generated/tables.md) and
+[claim numbers](docs/generated/verified-claims.md) also need a synchronized refresh after the
+metric/reporting blockers in the audit are repaired. Do not hand-edit their numeric contents
+or present them as finalized publication results.
 
-Headline findings (stated with their caveats in [PROGRESS.md](PROGRESS.md) findings 1–15):
-loop-closure benefit on crops is mechanism- and revisit-dependent (finding 15); the IMU's value
-is excitation-dependent — helps on Rosario, collapses on the constant-velocity ZED2i field run
-(finding 13, calibration confounds still open); ORB-SLAM3's low agricultural VO ATE is a
-partial-coverage artifact (finding 14); GNSS fusion bounds error outdoors but the loose-vs-tight
-comparison is on hold pending the 🔁 re-runs.
+The historical observations in [PROGRESS.md](PROGRESS.md) require reassessment against the
+corrected calibration, declared configuration cohorts, failures and coverage. In particular,
+old ZED VIO collapse cannot be attributed solely to weak excitation after discovery of the
+optical-camera/IMU frame error. The next milestone is closing the current execution and
+validation gaps before expanding the algorithm set.
 
 ## License
 

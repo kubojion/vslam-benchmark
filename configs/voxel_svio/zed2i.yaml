@@ -61,10 +61,9 @@ imu_parameter:
           0.0, 0.0, 0.0,
           0.0, 0.0, 0.0 ]
 
-# Rosario v2 cameras: ZED IR, pre-rectified to 1280x720 mono8. Distortion = 0.
-# IMU is treated as colocated with cam0 (matches the convention used by the
-# Rosario v2 paper, basalt and OKVIS2 configs); cam1 is offset by the stereo
-# baseline (~49.7 mm) along +x in the IMU frame.
+# ZED2i rectified optical cameras. Raw IMU samples use zed_imu_link, so these
+# transforms include the mandatory ROS-body/optical axis conversion and the
+# ZED2i SDK camera-to-IMU translation. See docs/zed2i-imu-extrinsics.md.
 camera_parameter:
     timeshift_cam_imu_left: 0.0
     timeshift_cam_imu_right: 0.0
@@ -76,13 +75,13 @@ camera_parameter:
     distortion_coeffs_right: [0.0, 0.0, 0.0, 0.0]
     resolution_left:  [1920, 1080]
     resolution_right: [1920, 1080]
-    T_imu_cam_left:  [1.0, 0.0, 0.0, 0.0,
-                      0.0, 1.0, 0.0, 0.0,
-                      0.0, 0.0, 1.0, 0.0,
+    T_imu_cam_left:  [0.0, 0.0, 1.0, 0.002,
+                     -1.0, 0.0, 0.0, 0.023061,
+                      0.0,-1.0, 0.0,-0.000217,
                       0.0, 0.0, 0.0, 1.0]
-    T_imu_cam_right: [1.0, 0.0, 0.0, 0.1198462504,
-                      0.0, 1.0, 0.0, 0.0,
-                      0.0, 0.0, 1.0, 0.0,
+    T_imu_cam_right: [0.0, 0.0, 1.0, 0.002,
+                     -1.0, 0.0, 0.0,-0.0967852504,
+                      0.0,-1.0, 0.0,-0.000217,
                       0.0, 0.0, 0.0, 1.0]
 
 odometry_parameter:

@@ -1,6 +1,14 @@
 # Result storage and browser design
 
-Status: implemented 2026-08-26
+Status: implemented 2026-08-26; operational limitations reviewed 2026-10-01.
+
+The current store is not a finalized campaign: see [the status audit](campaigns/server-status-20261001.md).
+COMPLETE permits both `ok` and `scale_collapse`; it does not certify tracking success.
+Cell replacement removes the old result before all new repetitions succeed, and the batch
+wrapper evaluates after all repetitions, so interruption can leave successful output unscored.
+Preserve such output before recovery. Five COMPLETE smoke runs currently remain under
+headline roots and need exclusion; root CSVs and browser snapshots are not synchronized.
+The design below does not imply these operational gaps have been closed.
 
 ## Purpose
 

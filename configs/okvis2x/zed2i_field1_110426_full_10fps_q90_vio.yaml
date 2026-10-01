@@ -1,6 +1,7 @@
 %YAML:1.0
 # OKVIS2-X stereo-inertial (VIO) configuration for ZED2i field1_110426_full_10fps_q90.
-# Identity T_SC (IMU co-located w/ left cam, ZED factory 0.675 deg); common field IMU profile.
+# T_SC maps rectified optical cameras into zed_imu_link; see
+# docs/zed2i-imu-extrinsics.md. Common field IMU profile.
 # VIO underperforms VO here (IMU under-excited); table-completeness run.
 #
 #   rosariov2_sequence1_gnss_vio.yaml (imu use=true,  do_loop_closures=false, GNSS on)
@@ -8,9 +9,9 @@
 
 cameras:
      - {T_SC:
-        [ 1.0, 0.0, 0.0, 0.0,
-          0.0, 1.0, 0.0, 0.0,
-          0.0, 0.0, 1.0, 0.0,
+        [ 0.0, 0.0, 1.0,  0.002,
+         -1.0, 0.0, 0.0,  0.023061,
+          0.0,-1.0, 0.0, -0.000217,
           0.0, 0.0, 0.0, 1.0],
         image_dimension: [1920, 1080],
         distortion_coefficients: [0.0, 0.0, 0.0, 0.0],
@@ -22,9 +23,9 @@ cameras:
         slam_use: okvis}
 
      - {T_SC:
-        [ 1.0, 0.0, 0.0, 0.1198462504,
-          0.0, 1.0, 0.0, 0.0,
-          0.0, 0.0, 1.0, 0.0,
+        [ 0.0, 0.0, 1.0,  0.002,
+         -1.0, 0.0, 0.0, -0.0967852504,
+          0.0,-1.0, 0.0, -0.000217,
           0.0, 0.0, 0.0, 1.0],
         image_dimension: [1920, 1080],
         distortion_coefficients: [0.0, 0.0, 0.0, 0.0],

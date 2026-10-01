@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "campaign_id": "zed2i-imu-recalibration-n1",
+  "description": "N=1 rerun of ZED2i cells affected by the optical-camera to IMU extrinsic correction",
+  "repeats": 1,
+  "expected_cells": 11,
+  "expected_executions": 11,
+  "sequences": [
+    {"dataset": "zed2i", "sequence": "field1_110426_full_10fps_q90"}
+  ],
+  "gnss_sequences": [],
+  "tables": {
+    "vo": [],
+    "vo-lc": [],
+    "vio": [
+      "orbslam3", "openvins", "basalt", "airslam", "okvis2", "okvis2x",
+      "voxel_svio"
+    ],
+    "vio-lc": ["orbslam3", "airslam", "okvis2", "okvis2x"],
+    "gnss-vio": []
+  },
+  "excluded": {}
+}

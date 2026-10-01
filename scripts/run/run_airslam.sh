@@ -69,6 +69,88 @@ SAVING_DIR="${CONT_RESULTS_DIR}/$DATASET/$SEQ/airslam/run${RUN_ID}"
 MODEL_DIR="/root/catkin_ws/src/air_slam/output"
 
 CONTAINER="air_slam"
+STAGE_TIMEOUT_S=${AIRSLAM_STAGE_TIMEOUT_S:-43200}
+STARTUP_TIMEOUT_S=${AIRSLAM_STARTUP_TIMEOUT_S:-300}
+REFINEMENT_MAX_ATTEMPTS=${AIRSLAM_REFINEMENT_MAX_ATTEMPTS:-3}
+
+if ! [[ "$REFINEMENT_MAX_ATTEMPTS" =~ ^[1-9][0-9]*$ ]]; then
+    echo "[airslam] AIRSLAM_REFINEMENT_MAX_ATTEMPTS must be a positive integer" >&2
+    exit 2
+fi
+
+is_container_process_running() {
+    local process_name=$1
+    docker exec "$CONTAINER" pgrep -f "[/]${process_name}([[:space:]]|$)" >/dev/null 2>&1
+}
+
+stop_roslaunch() {
+    docker exec "$CONTAINER" bash -c \
+        "pkill -SIGINT -f '[r]oslaunch( --skip-log-check)? air_slam' 2>/dev/null || true"
+}
+
+reset_airslam_runtime() {
+    # This benchmark owns the dedicated AirSLAM container. An interrupted
+    # launch can otherwise leave estimator nodes registered with the ROS
+    # master, making the next launch fail with a duplicate node name.
+    stop_roslaunch
+    docker exec "$CONTAINER" bash -c \
+        "pkill -SIGTERM -f '[/](visual_odometry|map_refinement)([[:space:]]|$)' 2>/dev/null || true"
+    for _ in $(seq 1 20); do
+        if ! is_container_process_running visual_odometry \
+                && ! is_container_process_running map_refinement; then
+            return 0
+        fi
+        sleep 1
+    done
+    docker exec "$CONTAINER" bash -c \
+        "pkill -SIGKILL -f '[/](visual_odometry|map_refinement)([[:space:]]|$)' 2>/dev/null || true"
+}
+
+stop_launch_pipeline() {
+    local host_pid=$1
+    stop_roslaunch
+    for _ in $(seq 1 30); do
+        kill -0 "$host_pid" 2>/dev/null || break
+        sleep 1
+    done
+    if kill -0 "$host_pid" 2>/dev/null; then
+        kill "$host_pid" 2>/dev/null || true
+        sleep 1
+    fi
+    kill -0 "$host_pid" 2>/dev/null && kill -KILL "$host_pid" 2>/dev/null || true
+    wait "$host_pid" 2>/dev/null || true
+}
+
+wait_for_stage_output() {
+    local output_path=$1
+    local host_pid=$2
+    local process_name=$3
+    local label=$4
+    local started_at=$SECONDS
+    local process_seen=false
+
+    while [[ ! -s "$output_path" ]]; do
+        if ! kill -0 "$host_pid" 2>/dev/null; then
+            AIRSLAM_FAILURE="$label launcher exited before producing $(basename "$output_path")"
+            return 1
+        fi
+        if is_container_process_running "$process_name"; then
+            process_seen=true
+        elif [[ "$process_seen" == "true" ]]; then
+            AIRSLAM_FAILURE="$label process exited before producing $(basename "$output_path")"
+            return 1
+        elif (( SECONDS - started_at >= STARTUP_TIMEOUT_S )); then
+            AIRSLAM_FAILURE="$label process did not start within ${STARTUP_TIMEOUT_S}s"
+            return 1
+        fi
+        if (( SECONDS - started_at >= STAGE_TIMEOUT_S )); then
+            AIRSLAM_FAILURE="$label exceeded the ${STAGE_TIMEOUT_S}s stage timeout"
+            return 1
+        fi
+        sleep 5
+    done
+    return 0
+}
 
 CAM_CFG_HOST="$WS/configs/airslam/$(basename "$CAM_CFG")"
 VO_CFG_HOST="$WS/configs/airslam/${DATASET}_${PROFILE_TAG}.yaml"
@@ -88,6 +170,9 @@ PROV_ARGS=(
     --source "algorithm=$WS/src/airslam"
     --param "use_imu=$USE_IMU" --param "use_lc=$USE_LC"
     --param "playback_rate=offline"
+    --param "stage_timeout_s=$STAGE_TIMEOUT_S"
+    --param "startup_timeout_s=$STARTUP_TIMEOUT_S"
+    --param "refinement_max_attempts=$REFINEMENT_MAX_ATTEMPTS"
     --container "$CONTAINER"
 )
 if [[ "$USE_LC" == "true" ]]; then
@@ -130,12 +215,27 @@ if ! docker inspect -f '{{range .Mounts}}{{println .Destination}}{{end}}' "$CONT
     exit 2
 fi
 
+reset_airslam_runtime
+
 # ---- Resource monitor (host-side) -----------------------------------------
 prepare_resource_window "$OUT_DIR"
 python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --container "$CONTAINER" --interval 1 \
     --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
+EXEC_PID=""
+MR_PID=""
+cleanup() {
+    [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true
+    if [[ -n "${EXEC_PID:-}" ]] && kill -0 "$EXEC_PID" 2>/dev/null; then
+        stop_roslaunch || true
+        kill "$EXEC_PID" 2>/dev/null || true
+    fi
+    if [[ -n "${MR_PID:-}" ]] && kill -0 "$MR_PID" 2>/dev/null; then
+        stop_roslaunch || true
+        kill "$MR_PID" 2>/dev/null || true
+    fi
+}
+trap cleanup EXIT
 
 # ---- Run AirSLAM inside container -----------------------------------------
 # roslaunch (ROS1) does not auto-exit when processing finishes because the node
@@ -149,7 +249,7 @@ docker exec "$CONTAINER" bash -c "
     source /opt/ros/noetic/setup.bash &&
     source /root/catkin_ws/devel/setup.bash &&
     mkdir -p '$SAVING_DIR' &&
-    roslaunch air_slam $LAUNCH_FILE \
+    roslaunch --skip-log-check air_slam $LAUNCH_FILE \
         dataroot:='$DATAROOT' \
         camera_config_path:='$CAM_CFG' \
         config_path:='$VO_CFG' \
@@ -163,18 +263,20 @@ EXEC_PID=$!
 # frames; it can be empty when the estimator fails to initialise.
 TRAJ_HOST="$OUT_DIR/trajectory_v0.txt"
 echo "[airslam] waiting for trajectory_v0.txt ..."
-while [[ ! -e "$TRAJ_HOST" ]]; do
-    sleep 5
-    if ! kill -0 "$EXEC_PID" 2>/dev/null; then break; fi  # exited early (crash)
-done
+AIRSLAM_FAILURE=""
+wait_for_stage_output "$TRAJ_HOST" "$EXEC_PID" visual_odometry "visual odometry" || \
+    echo "[airslam] ERROR: $AIRSLAM_FAILURE" | tee -a "$LOG"
 
 # Stop roslaunch (it won't exit on its own after processing)
 if kill -0 "$EXEC_PID" 2>/dev/null; then
-    echo "[airslam] trajectory saved, stopping roslaunch..."
-    docker exec "$CONTAINER" bash -c "pkill -SIGINT -f roslaunch 2>/dev/null || true"
-    sleep 3
-    wait "$EXEC_PID" 2>/dev/null || true
+    if [[ -s "$TRAJ_HOST" ]]; then
+        echo "[airslam] trajectory saved, stopping roslaunch..."
+    else
+        echo "[airslam] stopping failed visual-odometry launch..."
+    fi
+    stop_launch_pipeline "$EXEC_PID"
 fi
+EXEC_PID=""
 
 # ---- Locate trajectory output from saving_dir -----------------------------
 # visual_odometry.cpp writes trajectory_v0.txt (TUM format, timestamps in SECONDS).
@@ -183,29 +285,43 @@ fi
 if [[ "$USE_LC" == "true" && -s "$TRAJ_HOST" ]]; then
     MR_CFG="/benchmark_configs/airslam/${DATASET}_mr.yaml"
     VOC_PATH="/root/catkin_ws/src/air_slam/voc/point_voc_L4.bin"
-    echo "[airslam] running map_refinement (step 2 of ${RUN_TYPE})..."
-    docker exec "$CONTAINER" bash -c "
-        source /opt/ros/noetic/setup.bash &&
-        source /root/catkin_ws/devel/setup.bash &&
-        roslaunch air_slam mr_euroc.launch \
-            map_root:='$SAVING_DIR' \
-            config_path:='$MR_CFG' \
-            model_dir:='$MODEL_DIR' \
-            voc_path:='$VOC_PATH' \
-            visualization:=false
-    " 2>&1 | tee -a "$LOG" &
-    MR_PID=$!
     MR_TRAJ="$OUT_DIR/trajectory_v1.txt"
-    echo "[airslam] waiting for trajectory_v1.txt ..."
-    while [[ ! -s "$MR_TRAJ" ]]; do
-        sleep 5
-        if ! kill -0 "$MR_PID" 2>/dev/null; then break; fi
+    for ((MR_ATTEMPT=1; MR_ATTEMPT<=REFINEMENT_MAX_ATTEMPTS; MR_ATTEMPT++)); do
+        # map_refinement occasionally aborts inside its junction-database build.
+        # Preserve the completed VO map/trajectory and retry only this offline
+        # stage, removing outputs which may have been partially written.
+        rm -f "$MR_TRAJ" "$OUT_DIR/AirSLAM_mapv1.bin"
+        echo "[airslam] running map_refinement (step 2 of ${RUN_TYPE}, attempt ${MR_ATTEMPT}/${REFINEMENT_MAX_ATTEMPTS})..."
+        docker exec "$CONTAINER" bash -c "
+            source /opt/ros/noetic/setup.bash &&
+            source /root/catkin_ws/devel/setup.bash &&
+            roslaunch --skip-log-check air_slam mr_euroc.launch \
+                map_root:='$SAVING_DIR' \
+                config_path:='$MR_CFG' \
+                model_dir:='$MODEL_DIR' \
+                voc_path:='$VOC_PATH' \
+                visualization:=false
+        " 2>&1 | tee -a "$LOG" &
+        MR_PID=$!
+        echo "[airslam] waiting for trajectory_v1.txt ..."
+        AIRSLAM_FAILURE=""
+        if wait_for_stage_output "$MR_TRAJ" "$MR_PID" map_refinement "map refinement"; then
+            MR_SUCCEEDED=true
+        else
+            MR_SUCCEEDED=false
+            echo "[airslam] ERROR: $AIRSLAM_FAILURE" | tee -a "$LOG"
+        fi
+        if kill -0 "$MR_PID" 2>/dev/null; then
+            stop_launch_pipeline "$MR_PID"
+        fi
+        MR_PID=""
+        if [[ "$MR_SUCCEEDED" == "true" ]]; then
+            break
+        fi
+        if (( MR_ATTEMPT < REFINEMENT_MAX_ATTEMPTS )); then
+            echo "[airslam] retrying map_refinement without repeating visual odometry..." | tee -a "$LOG"
+        fi
     done
-    if kill -0 "$MR_PID" 2>/dev/null; then
-        docker exec "$CONTAINER" bash -c "pkill -SIGINT -f roslaunch 2>/dev/null || true"
-        sleep 3
-        wait "$MR_PID" 2>/dev/null || true
-    fi
 fi
 
 END=$(date +%s.%N)
@@ -213,8 +329,9 @@ finish_resource_window "$OUT_DIR" "$MONPID"
 MONPID=""
 
 # Rename to trajectory.txt for consistency with other runners.
-# For LC run types use trajectory_v1.txt (post-LC) if available, else fall back to v0.
-if [[ "$USE_LC" == "true" && -s "$OUT_DIR/trajectory_v1.txt" ]]; then
+# LC run types must use trajectory_v1.txt. Falling back to the VO output would
+# silently put a non-loop-closed trajectory in the loop-closure results table.
+if [[ "$USE_LC" == "true" ]]; then
     RAW_TRAJ="$OUT_DIR/trajectory_v1.txt"
 else
     RAW_TRAJ="$OUT_DIR/trajectory_v0.txt"
@@ -223,7 +340,7 @@ if [[ ! -s "$RAW_TRAJ" ]]; then
     FAILED_PROV=("${PROV_ARGS[@]}")
     [[ -f "$ENGINE_HOST" ]] && FAILED_PROV+=(--artifact "tensorrt_engine=$ENGINE_HOST")
     record_failed_run_meta "$OUT_DIR/run_meta.json" airslam "$DATASET" "$SEQ" \
-        "$RUN_ID" "$RUN_TYPE" 1 "trajectory was not produced" "${FAILED_PROV[@]}"
+        "$RUN_ID" "$RUN_TYPE" 1 "${AIRSLAM_FAILURE:-trajectory was not produced}" "${FAILED_PROV[@]}"
     echo "ERROR: no non-empty trajectory found in $OUT_DIR after AirSLAM run" >&2
     echo "Files in output dir:" >&2
     ls "$OUT_DIR" >&2

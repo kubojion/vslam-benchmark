@@ -1,5 +1,7 @@
 # ZED2i Dataset Setup
 
+> **Status note 2026-10-01:** camera-optical/IMU frame corrections and the corrected N=1 cohort are documented in [ZED IMU extrinsics](zed2i-imu-extrinsics.md). See [the server audit](campaigns/server-status-20261001.md) for missing N=3 repetitions; old identity-extrinsic results are historical.
+
 This repo is a small visual-SLAM benchmark harness. It stores converted datasets,
 algorithm configs, run scripts, and evaluation output in one predictable layout.
 

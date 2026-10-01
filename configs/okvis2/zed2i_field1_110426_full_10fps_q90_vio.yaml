@@ -1,12 +1,14 @@
 %YAML:1.0
-# OKVIS2 stereo-inertial (VIO) configuration for ZED2i field1_110426_full_10fps_q90 (identity T_SC, common field IMU profile).
+# OKVIS2 stereo-inertial (VIO) configuration for ZED2i field1_110426_full_10fps_q90.
 # Same calibration as sequence5 - recorded with the same robot and sensor box.
+# T_SC maps rectified optical cameras into zed_imu_link; see
+# docs/zed2i-imu-extrinsics.md.
 
 cameras:
      - {T_SC:
-        [ 1.0, 0.0, 0.0, 0.0,
-          0.0, 1.0, 0.0, 0.0,
-          0.0, 0.0, 1.0, 0.0,
+        [ 0.0, 0.0, 1.0,  0.002,
+         -1.0, 0.0, 0.0,  0.023061,
+          0.0,-1.0, 0.0, -0.000217,
           0.0, 0.0, 0.0, 1.0],
         image_dimension: [1920, 1080],
         distortion_coefficients: [0.0, 0.0, 0.0, 0.0],
@@ -17,9 +19,9 @@ cameras:
         slam_use: okvis}
 
      - {T_SC:
-        [ 1.0, 0.0, 0.0, 0.1198462504,
-          0.0, 1.0, 0.0, 0.0,
-          0.0, 0.0, 1.0, 0.0,
+        [ 0.0, 0.0, 1.0,  0.002,
+         -1.0, 0.0, 0.0, -0.0967852504,
+          0.0,-1.0, 0.0, -0.000217,
           0.0, 0.0, 0.0, 1.0],
         image_dimension: [1920, 1080],
         distortion_coefficients: [0.0, 0.0, 0.0, 0.0],
