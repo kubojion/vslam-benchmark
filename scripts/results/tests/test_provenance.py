@@ -331,8 +331,14 @@ class EnricherTests(unittest.TestCase):
             finally:
                 sys.argv = old_argv
             self.assertEqual(validate_provenance(run, required_schema=2), [])
-            self.assertEqual(validate_measurements(run, required_schema=1), [])
+            self.assertEqual(validate_measurements(run, required_schema=2), [])
             enriched = json.loads(meta_path.read_text())
+            self.assertIsNone(enriched["measurements"]["processed_frames"])
+            self.assertIsNone(enriched["measurements"]["processing_fps"])
+            self.assertEqual(enriched["measurements"]["command_input_fps"], 3.0)
+            enriched["measurements"]["processed_frames"] = 3
+            meta_path.write_text(json.dumps(enriched))
+            self.assertTrue(any("invents estimator" in e for e in validate_measurements(run, required_schema=2)))
             self.assertRegex(enriched["machine_id"], r"^machine-[0-9a-f]{12}$")
             self.assertNotIn(str(Path.home()), meta_path.read_text())
 
@@ -355,6 +361,18 @@ class SeededPythonTests(unittest.TestCase):
 
 
 class MeasurementHelperTests(unittest.TestCase):
+    def test_input_count_is_not_a_processing_counter_in_any_mode(self):
+        module = load_enricher()
+        module.sequence_measurements = lambda *_: (100, 10.)
+        module.trajectory_measurements = lambda *_: (6, 5.)
+        module.resource_scope = lambda *_: "process_tree"
+        for mode in ("max_throughput", "paced", "transport"):
+            result = module.build_measurements({"duration_s": 20.}, Path("unused"), mode, None)
+            self.assertIsNone(result["processed_frames"])
+            self.assertIsNone(result["processing_fps"])
+            self.assertEqual(result["end_to_end_fps"], 5.)
+            self.assertEqual(result["command_input_fps"], 5. if mode == "max_throughput" else None)
+
     def test_proc_accounting_needs_no_optional_python_package(self):
         module = load_run_script("_resource_monitor")
         pids = module.process_tree_pids([os.getpid()])

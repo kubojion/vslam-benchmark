@@ -12,6 +12,7 @@ from build_benchmark_csv import build_rows, csv_text, load_inventory, preserved_
 from build_repair_inventory import cohort_identity
 from _aggregate_runs import summarize_cell, write_cells
 from make_report_tables import cell_text, render_tables, main as tables_main
+from _saved_run import interpreted_measurements
 
 
 def attempt(run=1,algo='okvis2',mode='vo',**changes):
@@ -28,6 +29,18 @@ def evaluation(**changes):
 
 def rows(tmp_path,n=3):
     return [row_from_attempt(attempt(i),evaluation(),None,repo=tmp_path) for i in range(1,n+1)]
+
+
+def test_legacy_processing_assumptions_are_withheld_without_mutating_evidence(tmp_path):
+    raw={'measurement_schema':1,'measurements':{'mode':'max_throughput','input_frames':100,
+         'processed_frames':100,'processing_time_s':5.,'processing_fps':20.,'end_to_end_time_s':5.}}
+    before=copy.deepcopy(raw)
+    interpreted=interpreted_measurements(raw)
+    assert raw==before and interpreted['processed_frames'] is None
+    assert interpreted['command_input_fps']==20. and interpreted['processing_fps'] is None
+    row=row_from_attempt(attempt(),evaluation(runtime=interpreted),None,repo=tmp_path)
+    assert row['processed_frames'] is None and row['fps'] is None and row['processing_ms_per_frame'] is None
+    assert row['command_input_fps']==20. and 'withheld' in row['measurement_warning']
 
 
 def test_monocular_primary_sparse_unknowns_and_failed_position_diagnostic(tmp_path):

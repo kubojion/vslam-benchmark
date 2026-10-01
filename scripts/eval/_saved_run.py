@@ -95,6 +95,28 @@ def segment_metrics(paired, rows, monocular):
             for kind, segs in groups.items()}
 
 
+def interpreted_measurements(meta):
+    """Withhold inferred schema-1 processing counts without altering raw metadata."""
+    values = dict(meta.get('measurements') or {})
+    if not values:
+        return values
+    values['measurement_interpretation_schema'] = 2
+    values['end_to_end_fps_semantics'] = 'available_input_frames_per_wrapper_elapsed_second'
+    if meta.get('measurement_schema') != 2:
+        legacy = {key: values.get(key) for key in (
+            'processed_frames', 'processing_time_s', 'processing_fps', 'processing_time_scope')}
+        values['legacy_processing_claims'] = legacy
+        if any(legacy[key] is not None for key in ('processed_frames','processing_time_s','processing_fps')):
+            values['measurement_warning'] = 'legacy_input_count_assumed_processed; processing_claims_withheld'
+        if values.get('mode') == 'max_throughput':
+            values['command_time_s'] = legacy['processing_time_s']
+            values['command_input_fps'] = legacy['processing_fps']
+            values['command_time_scope'] = 'legacy_recorded_command_scope_unverified'
+        values.update(processed_frames=None, processing_time_s=None, processing_fps=None,
+                      processing_time_scope='unavailable', processed_frames_evidence='unavailable')
+    return values
+
+
 def evaluate_saved_run(ws, run_dir, *, gt_override=None):
     ws, run_dir = Path(ws).resolve(), Path(run_dir).resolve()
     mode, dataset, seq, algo, run_name = run_dir.relative_to(ws/'results').parts
@@ -134,7 +156,7 @@ def evaluate_saved_run(ws, run_dir, *, gt_override=None):
     # OpenVINS estimator messages are in a separate saved node log.
     log_path = run_dir/('openvins_node.log' if algo == 'openvins' and (run_dir/'openvins_node.log').exists() else 'run_log.txt')
     robustness = parse_log(str(log_path), algo)
-    measurements = meta.get('measurements', {})
+    measurements = interpreted_measurements(meta)
     robustness.update(output_valid=numerical['run_status'] == 'ok',
                       frames_total=measurements.get('input_frames'), frames_processed=measurements.get('processed_frames'),
                       frames_published=measurements.get('published_frames'), output_poses=len(estimate),

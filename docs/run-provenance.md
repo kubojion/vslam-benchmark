@@ -6,7 +6,7 @@ without storing usernames, hostnames, or private absolute paths.
 
 Runtime and resource semantics are specified separately in
 [run-measurements.md](run-measurements.md). A new completed benchmark run must
-pass both provenance schema 2 and measurement schema 1.
+pass both provenance schema 2 and measurement schema 2.
 
 ## What a completed run records
 
@@ -76,7 +76,7 @@ Validate a newly produced run with:
 ```bash
 python3 scripts/results/validate_run.py \
   results/<run-type>/<dataset>/<sequence>/<algorithm>/run<N> \
-  --check-only --require-provenance 2 --require-measurements 1
+  --check-only --require-provenance 2 --require-measurements 2
 ```
 
 `build_manifest.py` reports provenance and measurements independently as

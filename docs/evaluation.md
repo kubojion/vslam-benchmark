@@ -96,9 +96,13 @@ do not rank unqualified results. No `any ok` condition creates a green tick.
 
 ## Runtime
 
-Only explicitly recorded measurement fields are exported. `fps` is a compatibility
-alias for known processing FPS; output-pose density and legacy wall FPS are not
-substitutes. Dataset rate is observed from integer-nanosecond input timestamps.
+Processing claims require instrumentation, not just a recorded number. Historical
+schema-1 processing counts/FPS were inferred from input availability and are now
+withheld, with their original values retained in evaluation audit fields. `fps`
+is a compatibility alias for measured processing FPS and is currently blank.
+`command_input_fps` and `end_to_end_fps` are explicitly nominal input/time ratios;
+neither establishes complete processing or real-time latency. Dataset rate is
+observed from integer-nanosecond input timestamps.
 Paced, transport-driven and maximum-throughput modes stay distinct. Unknown machine
 identity is not replaced by the evaluation/report host. See [run measurements](run-measurements.md).
 

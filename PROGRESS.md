@@ -58,6 +58,13 @@
   caller-supplied GPS covariance and its ambiguous trajectory fallback. Synthetic
   process tests pass; actual container/ROS startup, shutdown and fusion remain
   unverified. See [runner audit](docs/runner-isolation-audit.md).
+- Corrected an unsupported measurement assumption: schema 1 assigned all available
+  input frames to the processed count. All 593 evaluations were restaged; pose
+  metrics, coverage, pair counts and numerical outcomes are exactly unchanged.
+  Processing counts are withheld in 472 records and processing FPS in 393; original
+  values remain as legacy evidence. New schema-2 metadata keeps uninstrumented
+  processing fields unknown and reports nominal input/time ratios separately.
+  See [measurement semantics](docs/run-measurements.md).
 
 ## 2026-10-01 — Initial server inventory (before the repair above)
 

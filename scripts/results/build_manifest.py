@@ -69,6 +69,8 @@ def metric_summary(evaluation: dict) -> dict:
         "n_pairs_ate": evaluation.get("n_pairs_ate"),
         "processing_fps": runtime.get("processing_fps"),
         "end_to_end_fps": runtime.get("end_to_end_fps"),
+        "command_input_fps": runtime.get("command_input_fps"),
+        "measurement_warning": runtime.get("measurement_warning"),
         "trajectory_pose_rate": runtime.get("trajectory_pose_rate"),
         "realtime_factor": runtime.get("realtime_factor"),
         "end_to_end_time_s": runtime.get("end_to_end_time_s", runtime.get("wall_s")),
@@ -116,6 +118,8 @@ def run_entry(run_type: str, run_dir: Path) -> dict:
     if measurement_schema is None:
         measurement_status = "legacy"
     elif measurement_schema == 1 and not measurement_errors:
+        measurement_status = "legacy_assumed_processing"
+    elif measurement_schema == 2 and not measurement_errors:
         measurement_status = "complete"
     else:
         measurement_status = "invalid"

@@ -235,9 +235,8 @@ def validate_measurements(run_dir: Path, *, required_schema: int | None) -> list
     schema = meta.get("measurement_schema")
     if schema is None and required_schema is None:
         return errors
-    expected = required_schema or 1
-    if schema != expected:
-        return [f"measurement_schema is {schema!r}, expected {expected}"]
+    if schema not in (1, 2) or (required_schema is not None and schema != required_schema):
+        return [f"measurement_schema is {schema!r}, expected {required_schema or '1 or 2'}"]
     values = meta.get("measurements")
     if not isinstance(values, dict):
         return ["missing measurements object"]
@@ -258,6 +257,7 @@ def validate_measurements(run_dir: Path, *, required_schema: int | None) -> list
         "end_to_end_time_s", "initialization_time_s", "steady_state_time_s",
         "final_optimization_time_s", "shutdown_time_s", "processing_fps", "end_to_end_fps",
         "trajectory_pose_rate", "realtime_factor",
+        "command_time_s", "command_input_fps",
     ):
         value = values.get(field)
         if value is not None and (
@@ -284,10 +284,10 @@ def validate_measurements(run_dir: Path, *, required_schema: int | None) -> list
                 f"output pose count {values['output_poses']} does not match trajectory rows {actual_poses}"
             )
 
-    if mode in {"max_throughput", "paced"}:
+    if schema == 1 and mode in {"max_throughput", "paced"}:
         if values.get("processed_frames") != values.get("input_frames"):
             errors.append(f"{mode} run did not account for every input frame")
-    if mode == "max_throughput":
+    if schema == 1 and mode == "max_throughput":
         if values.get("processing_time_s") != values.get("end_to_end_time_s"):
             errors.append("max-throughput processing time does not match estimator command time")
         frames = values.get("processed_frames")
@@ -300,6 +300,25 @@ def validate_measurements(run_dir: Path, *, required_schema: int | None) -> list
             errors.append("processing FPS is missing or inconsistent")
     elif values.get("processing_fps") is not None or values.get("processing_time_s") is not None:
         errors.append(f"{mode} run claims processing throughput without internal timing")
+
+    if schema == 2:
+        # No current counter/timer adapter provides the evidence needed for these
+        # claims. Future instrumentation must extend this contract explicitly.
+        if values.get("processed_frames") is not None or values.get("dropped_frames") is not None:
+            errors.append("run invents estimator processed/drop counts without instrumentation")
+        if values.get("processed_frames_evidence") != "unavailable":
+            errors.append("unsupported processed-frame evidence in measurement schema 2")
+        if values.get("processing_time_scope") != "unavailable":
+            errors.append("processing time scope requires unavailable instrumentation")
+        if mode == "max_throughput":
+            seconds = values.get("command_time_s")
+            nominal = values.get("command_input_fps")
+            frames = values.get("input_frames")
+            expected = frames / seconds if isinstance(frames, int) and isinstance(seconds, (int, float)) and seconds > 0 else None
+            if seconds != values.get("end_to_end_time_s") or expected is None or not isinstance(nominal, (int, float)) or not math.isclose(expected, nominal, rel_tol=1e-9):
+                errors.append("nominal command input throughput is missing or inconsistent")
+        elif values.get("command_time_s") is not None or values.get("command_input_fps") is not None:
+            errors.append("paced/transport run claims unmeasured command throughput")
 
     if mode == "transport":
         transport = values.get("transport")
@@ -340,7 +359,7 @@ def main() -> int:
     parser.add_argument("run_dir", type=Path)
     parser.add_argument("--check-only", action="store_true")
     parser.add_argument("--require-provenance", type=int, choices=(2,))
-    parser.add_argument("--require-measurements", type=int, choices=(1,))
+    parser.add_argument("--require-measurements", type=int, choices=(1, 2))
     args = parser.parse_args()
     run_dir = args.run_dir.resolve()
     location_errors = validate_location(run_dir)

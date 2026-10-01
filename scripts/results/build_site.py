@@ -127,9 +127,11 @@ def run_page(run: dict, page_name: str, file_key: str) -> str:
 <dt>Camera pose coverage [%]</dt><dd>{esc(metric(run, 'camera_pose_coverage_pct')) or 'unknown'}</dd>
 <dt>Reference paired [%]</dt><dd>{esc(metric(run, 'reference_pairs_pct_of_input')) or 'unknown'}</dd>
 <dt>Processing FPS</dt><dd>{esc(metric(run, 'processing_fps'))}</dd>
-<dt>End-to-end FPS</dt><dd>{esc(metric(run, 'end_to_end_fps'))}</dd>
+<dt>Nominal input FPS</dt><dd>{esc(metric(run, 'end_to_end_fps'))} (available inputs / wrapper elapsed time)</dd>
+<dt>Command input FPS</dt><dd>{esc(metric(run, 'command_input_fps'))} (available inputs / command time)</dd>
+<dt>Measurement note</dt><dd>{esc(metric(run, 'measurement_warning'))}</dd>
 <dt>Trajectory pose rate</dt><dd>{esc(metric(run, 'trajectory_pose_rate'))}</dd>
-<dt>Real-time factor</dt><dd>{esc(metric(run, 'realtime_factor'))}</dd>
+<dt>Dataset/wall factor</dt><dd>{esc(metric(run, 'realtime_factor'))} (does not establish latency or complete processing)</dd>
 <dt>Resource scope</dt><dd>{esc(metric(run, 'resource_scope'))}</dd></dl>
 {f'<h2>Validation</h2><ul>{validation}</ul>' if validation else ''}
 {f'<h2>Scientific blockers</h2><ul>{blockers}</ul>' if blockers else ''}

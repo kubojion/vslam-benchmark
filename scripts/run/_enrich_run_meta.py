@@ -23,6 +23,7 @@ import argparse
 import fcntl
 import hashlib
 import json
+import math
 import os
 import re
 import socket
@@ -297,18 +298,15 @@ def build_measurements(
     output_poses, trajectory_duration = trajectory_measurements(run_dir / "trajectory.txt")
     try:
         end_to_end = float(meta.get("duration_s"))
-        if end_to_end <= 0:
+        if not math.isfinite(end_to_end) or end_to_end <= 0:
             end_to_end = None
     except (TypeError, ValueError):
         end_to_end = None
 
     transport = read_transport_stats(transport_path)
-    processed_frames: int | None = input_frames if mode in {"max_throughput", "paced"} else None
-    processing_time = end_to_end if mode == "max_throughput" else None
-    processing_fps = (
-        processed_frames / processing_time
-        if processed_frames is not None and processing_time else None
-    )
+    # Input availability and successful wrapper exit are not a processing counter.
+    # No current runner provides instrumented per-frame processing/timing evidence.
+    command_time = end_to_end if mode == "max_throughput" else None
     published_frames = transport.get("camera_frames_published") if transport else None
     publisher_dropped = None
     if transport and transport.get("camera_frames_expected") is not None and published_frames is not None:
@@ -317,7 +315,7 @@ def build_measurements(
     measurements: dict[str, Any] = {
         "mode": mode,
         "input_frames": input_frames,
-        "processed_frames": processed_frames,
+        "processed_frames": None,
         "published_frames": published_frames,
         # End-estimator drop counts require estimator instrumentation.  Source
         # publisher misses are reported separately and never substituted.
@@ -326,17 +324,22 @@ def build_measurements(
         "output_poses": output_poses,
         "input_duration_s": input_duration,
         "trajectory_duration_s": trajectory_duration,
-        "processing_time_s": processing_time,
+        "processing_time_s": None,
+        "command_time_s": command_time,
+        "command_input_fps": input_frames / command_time if input_frames is not None and command_time else None,
         "end_to_end_time_s": end_to_end,
         "initialization_time_s": None,
         "steady_state_time_s": None,
         "final_optimization_time_s": None,
         "shutdown_time_s": None,
-        "processing_fps": processing_fps,
+        "processing_fps": None,
         "end_to_end_fps": input_frames / end_to_end if input_frames is not None and end_to_end else None,
         "trajectory_pose_rate": output_poses / trajectory_duration if output_poses and trajectory_duration else None,
         "realtime_factor": input_duration / end_to_end if input_duration and end_to_end else None,
-        "processing_time_scope": (
+        "processing_time_scope": "unavailable",
+        "processed_frames_evidence": "unavailable",
+        "end_to_end_fps_semantics": "available_input_frames_per_wrapper_elapsed_second",
+        "command_time_scope": (
             "estimator_command_including_initialization_and_finalization"
             if mode == "max_throughput" else "unavailable"
         ),
@@ -576,7 +579,7 @@ def main() -> int:
         meta["provenance_schema"] = 2
         meta["provenance"] = provenance
         if args.measurement_mode:
-            meta["measurement_schema"] = 1
+            meta["measurement_schema"] = 2
             meta["measurements"] = build_measurements(
                 meta, run_dir, args.measurement_mode, args.transport_stats,
             )

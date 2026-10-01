@@ -147,7 +147,7 @@ def commands(repo, dataset, sequence, algorithm, run_id, mode):
     return dict(runner=['bash', str(repo/'scripts/run'/f'run_{algorithm}.sh'), dataset, sequence, str(run_id), mode],
                 evaluator=evaluate, cache_check=evaluate+['--check-current'],
                 validator=[sys.executable, str(repo/'scripts/results/validate_run.py'), str(run),
-                           '--check-only', '--require-provenance', '2', '--require-measurements', '1'])
+                           '--check-only', '--require-provenance', '2', '--require-measurements', '2'])
 
 
 def main():

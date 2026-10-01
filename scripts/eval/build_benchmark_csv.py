@@ -47,7 +47,9 @@ COLUMNS = ['dataset', 'seq', 'environment_type', 'algo', 'run_type', 'use_imu', 
  'reference_pairs_pct_of_input', 'reference_supported_pose_pct',
  'position_only_diagnostic_ate_se3_rmse_m', 'position_only_diagnostic_qualified',
  'displacement_magnitude_error_1m_se3_rmse_m', 'displacement_magnitude_error_1m_sim3_rmse_m',
- 'window_protocol', 'evaluator_sha256', 'machine_id']
+ 'window_protocol', 'evaluator_sha256', 'machine_id', 'measurement_interpretation_schema',
+ 'measurement_warning', 'command_time_s', 'command_input_fps', 'command_time_scope',
+ 'end_to_end_fps_semantics']
 
 
 def get(document,*keys):

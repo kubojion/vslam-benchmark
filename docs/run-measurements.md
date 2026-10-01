@@ -1,86 +1,97 @@
 # Run measurements
 
-New benchmark runs use measurement schema 1. The schema separates estimator
-throughput, pipeline elapsed time, trajectory density, and dataset pacing so a
-sparse or deliberately real-time estimator is not rewarded or penalized by an
-ambiguous `poses / wall time` value.
+New runs use **measurement schema 2**. Input availability, published messages,
+exported poses and processed frames are different quantities. No current runner
+provides instrumented estimator frame counts or internal processing timers, so
+`processed_frames`, `dropped_frames`, `processing_time_s` and `processing_fps`
+remain `null` in every execution mode. A zero exit does not prove every frame was
+processed, and a keyframe count is not an image-processing count.
 
 ## Common fields
 
 `run_meta.json` stores a `measurements` object with:
 
-- `input_frames`: stereo timestamps available to the run;
-- `processed_frames`: frames submitted by a completed direct dataset loop, or
-  `null` when a ROS subscriber does not expose a receive counter;
-- `published_frames`: stereo pairs emitted by a benchmark ROS player;
-- `dropped_frames`: estimator-side drops, kept `null` unless measured by the
-  estimator;
-- `publisher_dropped_frames`: source frames that the benchmark player could
-  not publish, reported separately from downstream drops;
+- `input_frames`: timestamps available in the dataset;
+- `published_frames`: camera pairs emitted by the benchmark ROS player;
+- `publisher_dropped_frames`: expected pairs the player did not publish;
 - `output_poses`: rows in the canonical trajectory;
-- `processing_time_s` and `processing_fps`: available only when the estimator
-  runs at maximum throughput without artificial pacing;
-- `initialization_time_s`, `steady_state_time_s`,
-  `final_optimization_time_s`, and `shutdown_time_s`: nullable phase timings,
-  left `null` until an estimator exposes trustworthy boundaries;
-- `end_to_end_time_s` and `end_to_end_fps`: elapsed pipeline time and input
-  frames per elapsed second;
-- `trajectory_pose_rate`: output poses per second of trajectory time;
-- `realtime_factor`: dataset duration divided by end-to-end elapsed time.
-- `deadline_misses` and `max_queue_depth`: nullable real-time diagnostics,
-  never inferred from trajectory sparsity.
+- `input_duration_s` and `trajectory_duration_s`: their respective timestamp spans;
+- `end_to_end_time_s`: the elapsed window explicitly measured by the wrapper;
+- `end_to_end_fps`: **nominal available input frames per elapsed second**, not an
+  observed estimator processing rate;
+- `command_time_s` and `command_input_fps`: the maximum-throughput command window
+  and nominal input count divided by that window, including initialization and
+  finalization; unavailable for paced/transport pipelines;
+- `trajectory_pose_rate`: output poses divided by trajectory duration;
+- `realtime_factor`: dataset duration divided by wrapper elapsed time; this does
+  not establish latency, deadline compliance, or complete processing;
+- phase times, deadline misses and queue depth: `null` until directly instrumented.
 
-The old top-level `fps` remains in runner metadata for compatibility and is
-explicitly labelled `legacy_fps_semantics`. New evaluation, CSV, manifest, and
-HTTP pages do not use it as processing throughput.
+The intended timing window is documented by `command_time_scope`. Wrapper windows
+are not guaranteed to have equal phase boundaries across algorithms. Native or
+ROS runtime validation must establish the actual scope before timing comparisons
+are qualified. Deliberate pacing also limits comparisons of nominal rates.
 
 ## Execution modes
 
-| Mode | Processing FPS | Processed frames | Intended use |
+| Mode | Nominal command input FPS | Measured processing FPS/count | Intended use |
 |---|---:|---:|---|
-| `max_throughput` | Recorded | All input frames after successful completion | Offline direct-dataset algorithms |
-| `paced` | Unavailable | All input frames after successful completion | Executors with deliberate dataset-time sleeps |
-| `transport` | Unavailable | Unavailable unless the estimator exposes it | ROS publisher/subscriber pipelines |
+| `max_throughput` | Available | Unknown | Direct dataset command without deliberate pacing |
+| `paced` | Unavailable | Unknown | Executors with dataset-time sleeps |
+| `transport` | Unavailable | Unknown | Publisher/subscriber pipelines |
 
-For `max_throughput`, processing time covers the estimator command including
-its initialization and finalization. It does not pretend to be tracker-only
-kernel time. Paced and transport runs never derive processing speed from
-trajectory rows.
+Adding real processing counters requires a documented instrumentation adapter and
+an explicit validation contract. Schema 2 currently rejects processing claims
+instead of accepting a number simply because it equals the dataset size.
 
-## Scoped resources
+## Historical schema 1 correction
 
-`resources.csv` is sampled only between the runner's explicit measurement
-start and stop markers. It excludes setup, stale-process cleanup, provenance
-hashing, and evaluation.
+Schema 1 assigned all input frames to `processed_frames` for direct/paced runs.
+Its maximum-throughput `processing_fps` therefore used an assumed count. The
+2026-10-01 audit found no per-run counter evidence establishing that assumption.
 
-Native and Conda runners measure their runner process tree. Persistent Docker
-runners measure the host PIDs in that container. Hybrid OpenVINS pipelines
-measure both the host process tree and the estimator container. Recorded
-columns are cumulative CPU time, interval CPU percentage, aggregate RSS,
-per-PID NVIDIA memory, and per-PID NVIDIA SM utilization.
+Original metadata is preserved. Schema-3 reevaluation now stores those original
+claims under `runtime.legacy_processing_claims`, withholds them from processing
+fields, and exposes the old command ratio under `command_input_fps` with an
+unverified legacy scope label. The interpretation is versioned separately as
+`measurement_interpretation_schema=2`. Browser schema-1 status is
+`legacy_assumed_processing`, not current measurement completeness. Structural
+schema-1 validation remains available for historical inspection.
 
-GPU fields are empty when the NVIDIA driver does not expose a per-PID value;
-empty never means zero. Whole-machine GPU, CPU, or RAM values are not accepted
-for schema-1 runs.
+The old top-level `fps` is also preserved as legacy metadata. Corrected CSV `fps`
+and processing columns stay blank without instrumentation. These changes do not
+alter pose accuracy, reference associations or numerical failure outcomes.
 
-## ROS transport accounting
+## Scoped resources and transport
 
-The repository ROS players atomically write `transport_stats.json` with
-expected and published camera pairs, published IMU/GNSS messages, and camera
-read failures. These prove what the benchmark source emitted. They do not
-prove what an estimator subscriber received, processed, or dropped. Those
-fields remain `null` until an algorithm provides a trustworthy counter.
+`resources.csv` is sampled between explicit start/stop markers. Native and Conda
+runners target their process tree; persistent Docker runners target the container;
+hybrid OpenVINS pipelines include both. Fields include cumulative CPU time,
+interval CPU percentage, aggregate RSS and available per-PID GPU measurements.
+Container scope does not itself prove that unrelated manual work was absent.
+
+Missing GPU telemetry is unknown, never zero. Whole-machine resource values are
+not accepted as scoped schema-2 measurements. Older unscoped observations remain
+historical evidence.
+
+ROS players atomically record expected/published camera pairs, IMU/GNSS messages
+and read failures in `transport_stats.json`. These establish source emissions;
+they do not establish estimator receipt, processing or drops. Attempt process
+states and shutdown signal logs are separate execution evidence, described in the
+[runner audit](runner-isolation-audit.md).
 
 ## Validation
 
-`run_benchmark.sh` requires both provenance schema 2 and measurement schema 1
-before writing `COMPLETE`:
+The repetition controller requires provenance schema 2 and measurement schema 2
+for new attempts before completion validation:
 
 ```bash
 python3 scripts/results/validate_run.py \
   results/<type>/<dataset>/<sequence>/<algorithm>/run<N> \
-  --check-only --require-provenance 2 --require-measurements 1
+  --check-only --require-provenance 2 --require-measurements 2
 ```
 
-Historical runs without measurement schema 1 remain browseable as `legacy`.
-They are not retroactively assigned scoped resource or processing metrics.
+Historical recovery can still evaluate a saved trajectory without a new schema-2
+metadata record. It does not fabricate a COMPLETE marker, processing counter or
+publication qualification. No estimator executions were used to validate this
+measurement repair.

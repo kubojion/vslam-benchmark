@@ -304,8 +304,8 @@ tree is preserved at
 All 593 staged evaluations were rebuilt without errors. Comparison with that
 snapshot confirms unchanged SE(3)/Sim(3) ATE, RPE, paired counts and numerical
 statuses in every record; 592 coverage records changed. See
-`results/repair-20261001/coverage-restaging-validation.json`. The current numerical
-evaluator digest is `85161e55398004ecc1f11b765deedf4b1a08300b4f650193d82ce58c073a4acb`.
+`results/repair-20261001/coverage-restaging-validation.json`. The evaluator digest
+at that stage was `85161e55398004ecc1f11b765deedf4b1a08300b4f650193d82ce58c073a4acb`.
 
 VINS-Fusion+GPS Strawberry02 run1 still fails quaternion validation. Its 4,413
 supported positions permit an explicitly unqualified sensor-origin diagnostic:
@@ -375,3 +375,29 @@ an existing site is moved into `results/.derived-sites/` before replacement.
 The staged browser is under `results/repair-20261001/site/`; root promotion and
 validated figure replacement remain outstanding. Browser regression tests pass,
 and a local link audit is saved as `browser-validation.json` in the staging tree.
+
+## Measurement assumption correction
+
+Schema 1 treated all available input frames as processed for direct/paced runs,
+without per-run estimator counter evidence. Maximum-throughput processing FPS
+inherited that assumption. New measurement schema 2 leaves processing counts,
+processing time and processing FPS unknown in all current wrappers. Nominal
+input/time ratios remain separately labelled; they do not prove complete processing
+or deadline compliance. See [measurement semantics](run-measurements.md).
+
+Before restaging, 604 staging/evidence JSON files were independently copied and
+hash-verified under
+`/data/imoroz/vslam-repair-backups/20261001T130031Z-staging-before-measurement-repair/`.
+All 593 evaluations were rebuilt without errors. Every pose metric, reference
+association count, coverage field and numerical outcome is exactly unchanged.
+The processing count changes in 472 records; 393 inferred processing FPS values
+are withheld while retaining their original metadata and legacy audit fields.
+Five hundred forty-five runtime records gain the new interpretation labels.
+Evidence: `results/repair-20261001/measurement-restaging-validation.json`.
+
+Current evaluator digest:
+`50700b4e3b53ccf1e88f2f5d4829de723fc5df6975e893506cdd47919eac24c8`.
+Prior independent numerical checks still apply through exact numerical equality
+across both coverage and measurement restaging passes. These are reporting repairs,
+not replacement estimator attempts. Future completion validation requires measurement
+schema 2; historical recovery remains separate from execution completion.
