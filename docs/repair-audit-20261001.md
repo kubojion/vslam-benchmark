@@ -353,7 +353,7 @@ repair/verification.
 TODO's existing six affected cells now include `rerun: rectified IMU`, preserving
 their N=3 observation counts and exact matrix layout. The inventory and future
 manifest derive the finding only from hash-verified historical snapshots and the
-recorded clean source revision. Current action counts are 24 required reruns
+recorded clean source revision. Action counts at that stage were 24 required reruns
 (six ORB FPS plus 18 AirSLAM fusion cases), 87 missing and 549 blocked/review;
 no qualified reuse or execution readiness is claimed. The runtime subtotal remains
 36.1 hours for 19 known actions; 92 missing/rerun actions have unknown runtime.
@@ -401,3 +401,25 @@ Prior independent numerical checks still apply through exact numerical equality
 across both coverage and measurement restaging passes. These are reporting repairs,
 not replacement estimator attempts. Future completion validation requires measurement
 schema 2; historical recovery remains separate from execution completion.
+
+## Saved parameter and mode audit
+
+The [saved-parameter review](saved-parameter-review-20261001.md) traces selected
+effective fields from 561 hash-verified configuration records across the 690
+planned/retained records. Its scope covers 1,220 passing sensor/mode checks, 21
+unverified checks, 41 settings with multiple recorded values and 14 warnings for
+identical ignored ORB key duplicates. Passing those checks is not full qualification.
+
+It also confirms a separate calibration defect in all six ORB-SLAM3 HortiMulti
+VIO-LC repetitions: raw-camera IMU rotation was retained for rectified images.
+Composing the extraction rectification reproduces the existing VIO sensor profile
+within 4.55e-11, with a 1.218949-degree rotation correction. The future VIO-LC config
+is repaired; the six historical results require a new corrected estimation cohort.
+Their raw records and numerical evaluations are retained. Reference-frame provenance
+and native validation remain separate blockers. The two TODO cells now show the
+rerun reason without changing matrix structure.
+
+Current manifest totals are **30 required reruns, 87 missing, 543 blocked/review**;
+none is verified ready to execute. The historical timing subtotal is approximately
+37.2 hours for 25 actions, with 92 of the 117 missing/rerun actions unestimated.
+This supersedes the earlier 24/87/549 draft counts; it is not a full-campaign estimate.

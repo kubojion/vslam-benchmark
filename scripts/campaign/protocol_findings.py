@@ -31,6 +31,16 @@ def historical_findings(repo,relative,meta):
         issues.append(dict(code='camera_fps_changed_15_to_10',disposition='required_rerun',
             prerequisite='retain_fps15_attempts_and_validate_sequence_specific_10hz_config',
             evidence=['docs/repair-audit-20261001.md']))
+    if algo=='orbslam3' and ds=='hortimulti' and mode=='vio-lc':
+        matrix=re.search(r'^IMU\.T_b_c1:[\s\S]*?data:\s*\[([^\]]+)\]',text,re.M)
+        values=[float(x) for x in matrix[1].replace(',',' ').split()] if matrix else []
+        raw=[.0521232345,-.0073054379,.9986139389,.1219040939,
+             -.9986040017,-.0089493528,.0520572461,.0366053924,
+             .0085566474,-.9999332676,-.0077617087,-.0562970105,0.,0.,0.,1.]
+        if len(values)==16 and all(abs(a-b)<1e-9 for a,b in zip(values,raw)):
+            issues.append(dict(code='orb_horti_rectified_camera_imu_extrinsic',disposition='required_rerun',
+                prerequisite='validate_rectified_horti_imu_extrinsic_and_run_new_vio_lc_cohort_preserving_raw_frame_attempts',
+                evidence=['docs/saved-parameter-review-20261001.md','results/repair-20261001/orb-horti-rectification-validation.json']))
     source=next((s for s in meta.get('provenance',{}).get('sources',[]) if s.get('role')=='algorithm'),{})
     if (algo=='airslam' and mode in ('vio','vio-lc') and scalar(text,'use_imu')==1
             and scalar(text,'distortion_type') in (1,2) and source.get('commit')==AIRSLAM_UNCORRECTED_SOURCE

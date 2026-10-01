@@ -15,7 +15,8 @@ def render_cell(cell):
     failed=[i+1 for i,a in enumerate(cell['attempts']) if a['numerical_status']=='scale_collapse']
     if failed:flags.append('collapse '+','.join(f'r{i}' for i in failed))
     findings={f['code'] for a in cell['attempts'] for f in a.get('confirmed_protocol_findings',[])}
-    if 'airslam_rectified_camera_imu_extrinsic' in findings:flags.append('rerun: rectified IMU')
+    if findings & {'airslam_rectified_camera_imu_extrinsic','orb_horti_rectified_camera_imu_extrinsic'}:
+        flags.append('rerun: rectified IMU')
     if any(a['numerical_status']=='eval_failed' for a in cell['attempts']):flags.append('invalid trajectory')
     if mode=='gnss-vio':flags.append('legacy; provenance')
     elif algo=='orbslam3' and ds=='zed2i' and mode in ('vo','vo-lc'):flags.append('rerun: FPS')

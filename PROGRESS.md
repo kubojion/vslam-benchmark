@@ -74,6 +74,15 @@
   overrides. Counts remain 24 reruns, 87 missing, 549 blocked/review and 0 verified
   ready. The ~36.1 h runtime subtotal covers only 19 actions; 92 missing/rerun
   estimates and all blocked-action estimates remain unknown.
+- A hash-verified saved-parameter audit now covers all 690 planned/retained records
+  (561 with config evidence), exposing remaining depth, initialization, online
+  calibration and final-BA adaptations. It confirmed six ORB Horti VIO-LC attempts
+  with a raw/rectified IMU-axis mismatch of 1.21895 degrees. The future config is
+  corrected; those six results are retained and marked for a corrected cohort.
+  Current manifest counts supersede the preceding stage: **30 reruns, 87 missing,
+  543 blocked/review, 0 verified ready**. The known runtime subtotal is ~37.2 h for
+  25 actions, with 92 missing/rerun estimates unknown. Matrix layouts are unchanged.
+  See [saved parameter review](docs/saved-parameter-review-20261001.md).
 
 ## 2026-10-01 — Initial server inventory (before the repair above)
 

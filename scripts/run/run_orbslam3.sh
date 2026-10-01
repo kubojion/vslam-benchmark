@@ -62,11 +62,10 @@ EFFECTIVE_CFG=$(mktemp -t orbslam3_cfg_XXXXXX.yaml)
 LC_VALUE=0
 [[ "$USE_LC" == "true" ]] && LC_VALUE=1
 awk -v lc="$LC_VALUE" '
-    BEGIN { saw_lc=0 }
-    /^loopClosing:[[:space:]]*/ { print "loopClosing: " lc; saw_lc=1; next }
-    /^System\.LoopClosing:[[:space:]]*/ { print "System.LoopClosing: " lc; next }
+    /^loopClosing:[[:space:]]*/ { next }
+    /^System\.LoopClosing:[[:space:]]*/ { next }
     { print }
-    END { if (!saw_lc) print "loopClosing: " lc }
+    END { print "loopClosing: " lc }
 ' "$CFG_SOURCE" > "$EFFECTIVE_CFG"
 CFG="$EFFECTIVE_CFG"
 [[ "$RUN_TYPE" =~ vio ]] && [[ ! -f "$SEQ_DIR/mav0/imu0/data.csv" ]] && {

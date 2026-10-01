@@ -39,20 +39,20 @@ Current classification before qualification decisions are complete:
 
 | Category | Logical repetitions | Meaning |
 |---|---:|---|
-| Required rerun | 24 | Six ORB ZED FPS cases and 18 AirSLAM EuRoC VIO/VIO-LC rectified-IMU cases; preserve previous cohorts |
+| Required rerun | 30 | Six ORB ZED FPS cases, 18 AirSLAM EuRoC inertial rectification cases and six ORB Horti VIO-LC rectification cases; preserve previous cohorts |
 | Missing | 87 | No saved default attempt directory for that repetition |
-| Blocked/review | 549 | Saved results or failed/partial attempts need the specified review/recovery |
+| Blocked/review | 543 | Saved results or failed/partial attempts need the specified review/recovery |
 | Reusable, qualified | 0 certified yet | Existing outcomes are being assessed; this does not mean all must be rerun |
 
-All 660 actions are currently unverified for future execution. The 24 reruns and
+All 660 actions are currently unverified for future execution. The 30 reruns and
 87 missing repetitions retain prerequisites; their category is not permission to
 start them. Review will move eligible saved observations into reusable status,
 including genuine failures under a valid protocol. Invalid estimator settings
 require a separate corrected cohort; failures must not be repeatedly sampled until
 three successes remain.
 
-The current runtime calculation covers **19 of the 111 missing/rerun actions**, with
-a combined historical median estimate of about **36.1 hours**. The other 92 lack a
+The current runtime calculation covers **25 of the 117 missing/rerun actions**, with
+a combined historical median estimate of about **37.2 hours**. The other 92 lack a
 comparable complete same-cell run on this server. **This is not a total campaign
 estimate.** It excludes unresolved blocked actions, validation diagnostics and
 re-evaluation overhead. Each action records the source runs, observed range, pacing
@@ -117,16 +117,16 @@ The manifest now carries each saved attempt's qualification and specific unresol
 reference/frame, sparse-export, final-BA and failure prerequisites, including
 dataset prerequisites for missing attempts. A corrected AirSLAM cohort is no longer
 incorrectly described as an FPS-15 cohort. All original invalid-config cohorts must
-be preserved. The current 24 reruns, 87 missing repetitions and 549 blocked/review
-cases are unchanged; 0 actions are certified ready.
+be preserved. The current 30 reruns, 87 missing repetitions and 543 blocked/review
+cases include the six newly confirmed ORB Horti VIO-LC cases; 0 actions are certified ready.
 
 Execution uses the recorded runner-default recipe. The preflight rejects nonempty
 inherited configuration, playback, GNSS input/covariance, seed and numerical-runtime
 overrides listed in `environment_policy`; it does not silently discard them. Such
 changes require a separately reviewed recipe. DPVO's planned seed is explicit and
 deterministically derived from its fresh physical attempt ID. Runtime estimates
-remain historical planning estimates: about 36.1 serialized hours for the 19 actions
-with comparable timing, with 92 of the 111 rerun/missing actions unestimated. This
+remain historical planning estimates: about 37.2 serialized hours for the 25 actions
+with comparable timing, with 92 of the 117 rerun/missing actions unestimated. This
 is not an estimate for the entire remaining campaign.
 
 The repetition controller now requires measurement schema 2 for new attempts.
@@ -134,7 +134,7 @@ Uninstrumented processing counts/FPS stay unknown; available-input/wall-time rat
 are nominal. See [measurement semantics](../run-measurements.md). Historical saved
 metadata and processing claims remain preserved as evidence.
 
-Current validation: 120 tests plus three subtests pass. Manifest structure and
+Current validation: 126 tests plus three subtests pass. Manifest structure and
 evidence hashes validate for all 660 actions; `--require-ready` correctly refuses
 all 660 because readiness prerequisites remain unresolved. The staged browser has
 690 entries/696 pages, with 8,174 checked local links and no broken link or legacy

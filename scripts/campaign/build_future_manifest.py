@@ -64,6 +64,10 @@ def qualification_prerequisites(cell,attempt,decision):
         result.append('restrict_reference_claims_to_position_and_review_lever_arm_assumptions')
         if mode in ('vio','vio-lc'):result.append('resolve_serial_specific_imu_rotation_and_time_offset_evidence')
     if algo=='airslam':result.append('declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison')
+    if algo in ('orbslam3','airslam','ov2slam','openvins'):
+        result.append('document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review')
+    if algo=='okvis2x' and mode=='vio-lc' and ds=='zed2i':
+        result.append('declare_three_frame_lc_window_variant_versus_five_frame_other_rigs')
     if algo in ('okvis2','okvis2x') and mode in ('vo-lc','vio-lc'):
         result.append('freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy')
     if attempt.get('process',{}).get('exit_code') not in (None,0):

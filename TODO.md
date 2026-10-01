@@ -34,6 +34,13 @@ not usable accuracy. AirSLAM's sparse keyframes cannot establish dense tracking 
 Historical DROID counts remain excluded. A green `N=3 ✅` requires documented scientific
 qualification; successful execution alone is insufficient.
 
+The latest saved-parameter check confirms six additional required reruns: ORB-SLAM3
+HortiMulti VIO-LC used a raw-camera IMU rotation with rectified images. The two cells
+below retain `N=3` and now say `rerun: rectified IMU`. See the
+[saved-parameter review](docs/saved-parameter-review-20261001.md). Across all five modes,
+the future draft now lists 30 required reruns, 87 missing and 543 blocked/review
+repetitions; none is yet certified ready to execute.
+
 ### VO (no IMU, no loop closure) - `results/vo/`
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
@@ -111,7 +118,7 @@ qualification; successful execution alone is insufficient.
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | ❌ N=0; crash |
+| ORB-SLAM3 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; rerun: rectified IMU; reference review | 🟡 N=3; rerun: rectified IMU; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | ❌ N=0; crash |
 | OKVIS2 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=1; IMU review; +2 |
 | OKVIS2-X | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=1; IMU review; +2 |
 | AirSLAM | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=1; IMU review; +2 |

@@ -10,6 +10,13 @@
 > The future target is N=3 across all five modes, retaining algorithm exclusions;
 > preparation is ongoing and no campaign is authorized by this documentation change.
 
+> **Saved-run check:** the [October parameter review](saved-parameter-review-20261001.md)
+> found remaining rig-specific ORB/AirSLAM depth, OV2SLAM initialization/coverage,
+> OpenVINS initialization/online-calibration and OKVIS2-X LC-window settings.
+> Thus the August fixed-profile proposal does not fully describe the executed runs.
+> Both OKVIS2 LC modes disable final BA in their saved configs; OKVIS2-X enables it.
+> Six ORB Horti VIO-LC runs also need a rectified-IMU correction and rerun.
+
 **Date:** 2026-08-26
 **Scope:** algorithms represented in the five benchmark tables (`vo`, `vo-lc`,
 `vio`, `vio-lc`, and `gnss-vio`)
