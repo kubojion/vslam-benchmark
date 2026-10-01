@@ -68,32 +68,34 @@ if (( MACVO_RC != 0 )); then
     exit "$MACVO_RC"
 fi
 
-# MAC-VO writes to Results/<project_name>/<timestr>/
-# Only consider sandbox dirs created/modified after this run started
-SBX=$(find "$WS/src/MAC-VO/Results" -mindepth 2 -maxdepth 2 -type d -newer "$DATA_CFG" 2>/dev/null | sort -t/ -k8 | tail -n1)
-if [[ ! -d "$SBX" ]]; then
+# Resolve this exact project and a newly written native pose file.
+if ! SBX=$(python3 - "$WS" "$DATA_CFG" "$ODOM_CFG" <<'PY'
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(sys.argv[1])/'scripts/eval'))
+from _macvo_to_tum import select_sandbox
+print(select_sandbox(Path(sys.argv[1])/'src/MAC-VO/Results', sys.argv[2], sys.argv[3], sys.argv[2]))
+PY
+); then
     record_failed_run_meta "$OUT_DIR/run_meta.json" macvo "$DATASET" "$SEQ" \
         "$RUN_ID" "$RUN_TYPE" 1 "result sandbox was not produced" "${PROV_ARGS[@]}"
     echo "no Results space produced"
     exit 1
 fi
-python3 "$WS/scripts/eval/_macvo_to_tum.py" "$SBX" "$OUT_DIR/trajectory.txt"
-
-# If times.txt exists (nanosecond timestamps), replace fake frame-index timestamps
-TIMES="$WS/datasets/$DATASET/$SEQ/times.txt"
-if [[ -f "$TIMES" ]]; then
-    python3 - "$OUT_DIR/trajectory.txt" "$TIMES" <<'PYEOF'
-import sys
-traj, times_file = sys.argv[1], sys.argv[2]
-ts = [float(t)/1e9 for t in open(times_file).read().split()]
-lines = open(traj).readlines()
-if len(lines) > len(ts):
-    raise SystemExit(f"trajectory has {len(lines)} poses but only {len(ts)} timestamps")
-with open(traj, "w") as f:
-    for i, line in enumerate(lines):
-        parts = line.split(); parts[0] = f"{ts[i]:.9f}"
-        f.write(" ".join(parts) + "\n")
-PYEOF
+LOADER=$(python3 - "$DATA_CFG" <<'PY'
+import sys, yaml
+print(yaml.safe_load(open(sys.argv[1]))['type'])
+PY
+)
+CONVERT_ARGS=("$SBX" "$OUT_DIR/trajectory.txt" --loader "$LOADER"
+    --times-ns "$WS/datasets/$DATASET/$SEQ/times.txt")
+if [[ "$LOADER" == "GeneralStereo" ]]; then
+    CONVERT_ARGS+=(--left "$WS/datasets/$DATASET/$SEQ/left" --right "$WS/datasets/$DATASET/$SEQ/right")
+fi
+if ! python3 "$WS/scripts/eval/_macvo_to_tum.py" "${CONVERT_ARGS[@]}"; then
+    record_failed_run_meta "$OUT_DIR/run_meta.json" macvo "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" 1 "native trajectory/timestamp validation failed" "${PROV_ARGS[@]}"
+    exit 1
 fi
 
 DUR=$(python3 -c "print($END-$START)")

@@ -48,17 +48,12 @@ case "$RUN_TYPE" in
         exit 2
         ;;
 esac
-# Optional override for config sweeps (e.g. feature-count tuning); mirrors
-# OKVIS2X_CONFIG. Falls back to the canonical per-dataset config.
-CFG_SOURCE="${ORBSLAM3_CONFIG:-$CFG}"
-
-# ZED2i has one field-specific stereo-inertial sensor calibration. Both VIO
-# modes share it; loop closure is materialized as a run-type switch below.
-if [[ ! -f "$CFG_SOURCE" && "$DATASET" == "zed2i" && "$RUN_TYPE" =~ ^vio ]]; then
-    ZED_VIO_CFG="$WS/configs/orbslam3/${DATASET}_${SEQ}_stereo_inertial.yaml"
-    [[ -f "$ZED_VIO_CFG" ]] && CFG_SOURCE="$ZED_VIO_CFG"
-fi
-[[ -f "$CFG_SOURCE" ]] || { echo "[orbslam3] missing config: $CFG_SOURCE" >&2; exit 2; }
+# Select sequence-specific calibration first and reject a camera-rate mismatch
+# before creating an output directory. Previously the 10 Hz field sequence used
+# the generic 15 Hz VO config despite a correct sequence file already existing.
+CONFIG_ARGS=(orbslam3 "$WS" "$DATASET" "$SEQ" "$RUN_TYPE")
+[[ -n "${ORBSLAM3_CONFIG:-}" ]] && CONFIG_ARGS+=(--override "$ORBSLAM3_CONFIG")
+CFG_SOURCE=$(python3 "$WS/scripts/run/_config_preflight.py" "${CONFIG_ARGS[@]}")
 
 # This checkout reads the lower-case `loopClosing` key. Some legacy configs
 # also contain `System.LoopClosing`, which upstream ignores. Generate the

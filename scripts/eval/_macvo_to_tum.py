@@ -1,48 +1,93 @@
 #!/usr/bin/env python3
-"""Convert a MAC-VO Sandbox folder into a TUM trajectory file.
-MAC-VO stores estimated poses as 'poses.npy' (Nx7: tx ty tz qx qy qz qw)
-and timestamps in 'timestamps.npy' (or in metadata). We try a few likely
-locations and field names.
+"""Convert reviewed MAC-VO Nx8 poses.npy with evidenced camera timestamps.
+
+EuRoC_NoIMU stores nanoseconds. GeneralStereo stores index*1000 placeholders;
+replace those only after verifying both image orders against the camera times.
+Never invent a frame rate or attach timestamps to an unknown partial export.
 """
-import sys, os, glob, numpy as np
-SBX, OUT = sys.argv[1], sys.argv[2]
+import argparse
+import hashlib
+import json
+from pathlib import Path
 
-candidates_pose = ["poses.npy", "trajectory.npy", "estimated_poses.npy",
-                   "MACVO/poses.npy"]
-candidates_time = ["timestamps.npy", "times.npy"]
+import numpy as np
 
-def find(c):
-    for p in c:
-        full = os.path.join(SBX, p)
-        if os.path.isfile(full): return full
-    matches = []
-    for p in c:
-        matches += glob.glob(os.path.join(SBX, "**", os.path.basename(p)), recursive=True)
-    return matches[0] if matches else None
+from _metrics import validate_poses
 
-ppath = find(candidates_pose)
-tpath = find(candidates_time)
-if ppath is None:
-    sys.exit(f"no pose npy found under {SBX}; check Sandbox structure")
-poses = np.load(ppath)
-if poses.shape[1] == 7:
-    trans, quat = poses[:, :3], poses[:, 3:]
-elif poses.shape[1] == 8:
-    # maybe (t, tx,ty,tz, qx,qy,qz,qw)
-    times = poses[:, 0]; trans = poses[:, 1:4]; quat = poses[:, 4:8]
-elif poses.shape[1:] == (4, 4):
-    from scipy.spatial.transform import Rotation as R
-    trans = poses[:, :3, 3]
-    quat  = R.from_matrix(poses[:, :3, :3]).as_quat()
-else:
-    sys.exit(f"unexpected pose shape {poses.shape}")
 
-if tpath is not None:
-    times = np.load(tpath).astype(float)
-else:
-    if 'times' not in dir(): times = np.arange(len(poses), dtype=float) * 0.05  # fallback 20Hz
-with open(OUT, "w") as f:
-    for t, p, q in zip(times, trans, quat):
-        f.write(f"{t:.9f} {p[0]:.6f} {p[1]:.6f} {p[2]:.6f} "
-                f"{q[0]:.6f} {q[1]:.6f} {q[2]:.6f} {q[3]:.6f}\n")
-print(f"wrote {OUT}  ({len(times)} poses)")
+def digest(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def convert(sandbox, times_file, loader, *, left=None, right=None, image_format='png'):
+    source = Path(sandbox)/'poses.npy'
+    poses = np.load(source, allow_pickle=False)
+    times_ns = np.loadtxt(times_file, dtype=np.int64, ndmin=1)
+    if poses.ndim != 2 or poses.shape != (len(times_ns), 8):
+        raise ValueError('native poses.npy must have exactly one Nx8 pose per input camera frame')
+    if len(times_ns) < 2 or np.any(np.diff(times_ns) <= 0) or not np.isfinite(poses).all():
+        raise ValueError('invalid native pose or input camera timestamps')
+    evidence = {'loader': loader, 'native_poses_sha256': digest(source),
+                'camera_times_sha256': digest(times_file), 'poses': len(poses),
+                'input_camera_frames': len(times_ns), 'orientation_convention_changed': False}
+    out = poses.copy()
+    if loader == 'EuRoC_NoIMU':
+        native_seconds = poses[:, 0]/1e9
+        if not np.allclose(native_seconds, times_ns/1e9, atol=1e-6, rtol=0):
+            raise ValueError('EuRoC native timestamps do not match the complete camera sequence')
+        out[:, 0] = native_seconds
+        evidence['timestamp_mapping'] = 'native_nanoseconds_to_seconds'
+    elif loader == 'GeneralStereo':
+        if not np.array_equal(poses[:, 0], np.arange(len(poses))*1000):
+            raise ValueError('GeneralStereo native frame indices are not the complete sequential export')
+        image_order = {}
+        for name, directory in [('left', left), ('right', right)]:
+            if directory is None:
+                raise ValueError('GeneralStereo conversion requires both image directories')
+            images = sorted(Path(directory).glob(f'*.{image_format}'))
+            if len(images) != len(times_ns) or not np.array_equal([int(p.stem) for p in images], times_ns):
+                raise ValueError(f'{name} image order/count does not match camera times')
+            image_order[name] = hashlib.sha256('\n'.join(p.name for p in images).encode()).hexdigest()
+        out[:, 0] = times_ns/1e9
+        evidence.update(timestamp_mapping='verified_input_image_order', image_order_sha256=image_order)
+    else:
+        raise ValueError(f'unreviewed MAC-VO loader {loader!r}')
+    validate_poses(out)
+    return out, evidence
+
+
+def select_sandbox(results_root, dataset_config, odometry_config, newer_than):
+    import yaml
+    data = yaml.safe_load(Path(dataset_config).read_text())
+    odom = yaml.safe_load(Path(odometry_config).read_text())
+    project = odom['Odometry']['name']+'@'+data['name']
+    # A freshly created directory alone may contain no poses after an error.
+    candidates = [p.parent for p in (Path(results_root)/project).glob('*/poses.npy')
+                  if p.stat().st_mtime_ns > Path(newer_than).stat().st_mtime_ns]
+    if len(candidates) != 1:
+        raise ValueError(f'expected one fresh {project} pose export, found {len(candidates)}')
+    return candidates[0]
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('sandbox', type=Path)
+    ap.add_argument('output', type=Path)
+    ap.add_argument('--times-ns', required=True, type=Path)
+    ap.add_argument('--loader', required=True, choices=('EuRoC_NoIMU', 'GeneralStereo'))
+    ap.add_argument('--left', type=Path)
+    ap.add_argument('--right', type=Path)
+    ap.add_argument('--image-format', default='png')
+    args = ap.parse_args()
+    poses, evidence = convert(args.sandbox, args.times_ns, args.loader, left=args.left, right=args.right,
+                              image_format=args.image_format)
+    temporary = args.output.with_name('.'+args.output.name+'.tmp')
+    np.savetxt(temporary, poses, fmt=['%.9f']+['%.9f']*7)
+    temporary.replace(args.output)
+    evidence['trajectory_sha256'] = digest(args.output)
+    args.output.with_name('trajectory_conversion.json').write_text(json.dumps(evidence, indent=2)+'\n')
+    print(f'wrote {args.output}: {len(poses)} verified camera timestamps')
+
+
+if __name__ == '__main__':
+    main()

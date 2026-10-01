@@ -29,13 +29,18 @@ OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/basalt/run${RUN_ID}"
 LOG_GLOBAL="$WS/logs/${DATASET}_${SEQ}_basalt_${RUN_TYPE}_run${RUN_ID}.log"
 CALIB="$WS/configs/basalt/${DATASET}_calib.json"
 case "$RUN_TYPE" in
-    vo)  ESTIMATOR_CFG="${BASALT_CONFIG:-$WS/configs/basalt/vo_config.json}" ;;
-    vio) ESTIMATOR_CFG="${BASALT_CONFIG:-$WS/configs/basalt/vio_config.json}" ;;
+    vo|vio) ;;
     *)
         echo "[basalt] ERROR: Basalt supports only vo and vio (no loop closure)" >&2
         exit 2
         ;;
 esac
+
+# Rosario's 49.7 mm baseline needs the recorded 30 mm VO triangulation gate.
+# Other datasets retain the upstream 50 mm gate; do not change them implicitly.
+CONFIG_ARGS=(basalt "$WS" "$DATASET" "$SEQ" "$RUN_TYPE")
+[[ -n "${BASALT_CONFIG:-}" ]] && CONFIG_ARGS+=(--override "$BASALT_CONFIG")
+ESTIMATOR_CFG=$(python3 "$WS/scripts/run/_config_preflight.py" "${CONFIG_ARGS[@]}")
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"

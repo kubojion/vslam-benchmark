@@ -164,6 +164,56 @@ monocular DPVO, sparse AirSLAM and historical GNSS. The record is
 agreement on the supplied paired poses, not the correctness of unresolved input
 calibration or reference conventions.
 
+## Configuration selection and native-export checks
+
+Read-only checks in `results/repair-20261001/config-export-validation.json` cover
+all 48 ORB/Basalt mode–sequence selections and all 24 saved MAC-VO VO repetitions.
+
+- ORB now selects the existing sequence-specific ZED 10 FPS profile in VO/VO-LC.
+  The previous runner selected the generic 15 FPS profile. The six historical
+  VO/VO-LC repetitions retain their original snapshots and require a corrected
+  configuration cohort; editing evaluation cannot change estimator behavior.
+  Preflight checks the configured rate against the observed mean input rate, with
+  a fixed 5% acquisition tolerance. ZED's irregular 15-to-10 Hz decimation has a
+  median interval near 1/15 s, so using median interval here would be incorrect.
+- Basalt's upstream VO triangulation gate compares squared camera translation
+  against `vio_min_triangulation_dist` squared. Rosario's 0.0497336941 m baseline
+  cannot pass the 0.05 m initial stereo gate. Keep the recovered Rosario 0.03 m
+  setting as an explicit dataset compatibility exception in
+  `configs/basalt/rosariov2_vo_config.json`; restore the upstream 0.05 m setting for
+  the other six VO cells, matching their historical snapshots. This reconciles a
+  post hoc compatibility repair with the policy; it is not a prespecified universal
+  parameter or a setting selected from test-set ATE. The runner now validates the
+  gate against the calibration baseline. Source:
+  [Basalt VO triangulation](https://github.com/VladyslavUsenko/basalt/blob/0f3b2b52c807f70ff4e2973ce253c73329eea7bc/src/vi_estimator/sqrt_keypoint_vo.cpp).
+- Basalt ZED's previous and current transforms have identical relative stereo
+  geometry (maximum matrix difference `1.39e-17`); the virtual body frame changed.
+  Pure VO evaluation uses its saved frame. This finding does not validate the old
+  VIO extrinsic or fix sensor fusion after execution.
+- All 24 MAC-VO saved exports have the complete native pose count. EuRoC native
+  nanosecond timestamps and GeneralStereo's verified left/right image order give
+  exactly the timestamps in the existing TUM files. Pose differences are bounded
+  by the previous six-decimal export rounding (`5.01e-7` per component). Original
+  trajectories were not overwritten. The converter now rejects unknown loaders,
+  partial/nonsequential exports and mismatched image ordering instead of assigning
+  an invented frame rate or blindly attaching the first N input timestamps. The
+  runner requires a unique fresh sandbox for the exact dataset/odometry project.
+
+The configuration/export changes pass 57 evaluation/result tests and shell syntax
+checks. These are static and saved-artifact checks, not estimator execution tests.
+Remaining reference-frame and publication qualification blockers still apply.
+
+## Future campaign scope extension
+
+The user extended the active goal to prepare an executable future N=3 campaign in
+all five modes, retaining the current exclusions and the no-estimator-execution
+restriction. The original four-mode campaign remains a historical 600-attempt
+protocol. Future GNSS repetitions and input variants need explicit cohort and
+action identities. Safe per-run resumption and immediate evaluation replace the
+old destructive cell-wide workflow. Repair/audit completion and verified execution
+readiness must be reported separately; native crashes are not resolved by wrapper
+or syntax checks. See [the extended goal](codex-goal.md#7-prepare-the-future-n3-campaign-without-executing-it).
+
 Outstanding before this goal is complete:
 
 1. Audit staged numerical changes and failures against actual saved artifacts;
@@ -180,3 +230,6 @@ Outstanding before this goal is complete:
 5. Safely archive obsolete derived outputs; finish contradictory-documentation
    cleanup and record an exact future rerun/diagnostic list. Commit and validate the
    complete repair, including explicit qualification counts and remaining blockers.
+6. Deliver the future N=3 manifest with separate reuse/rerun/missing/blocked actions,
+   prerequisites, runtime estimates and readiness evidence; validate safe per-run
+   execution/recovery behavior with synthetic fixtures only.
