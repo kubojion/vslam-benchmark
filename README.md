@@ -1,10 +1,13 @@
 # vSLAM Benchmark
 
-> **Status checked 2026-10-01:** the executed server campaign is **N=3 without GNSS**,
-> with **538/600 evaluated runs and 176/200 cells at N=3**. It is incomplete; the original
-> N=5/GNSS plan has not been fulfilled. Start with [TODO](TODO.md) and the
-> [artifact-based status audit](docs/campaigns/server-status-20261001.md).
-> Generated numeric reports are provisional/stale pending the documented evaluator repairs.
+> **Repair update 2026-10-01:** saved-artifact recovery now provides **545/600 staged
+> evaluations** for the original four-mode N=3 campaign; 176 cells have three evaluations.
+> These counts include failures and do not certify publication readiness. A future
+> **N=3 campaign across all five modes** is being prepared with the existing exclusions.
+> Start with [TODO](TODO.md), [repair evidence](docs/repair-audit-20261001.md), and
+> [future campaign preparation](docs/campaigns/future-n3-preparation.md).
+> CSVs/reports remain provisional until schema-3 integration and qualification finish.
+> No new estimator executions or campaigns are authorized as part of this repair.
 
 
 | Algorithm | Type | Source |

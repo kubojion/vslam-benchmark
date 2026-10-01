@@ -1,5 +1,11 @@
 # Server status audit — 2026-10-01
 
+> Initial inventory, superseded for current counts by [the repair audit](../repair-audit-20261001.md)
+> and [TODO](../../TODO.md). Saved-artifact recovery now stages 545 original campaign
+> evaluations, versus the 538 marker-qualified evaluations counted below. Preserve
+> this report as the pre-repair record. Future five-mode N=3 preparation is tracked
+> [separately](future-n3-preparation.md); the old N=5 plan is not retroactively complete.
+
 This is an artifact inventory, not a certification of scientific validity. No estimators,
 re-evaluations, campaign resumes, or result replacements were launched during this audit.
 Existing uncommitted implementation and calibration work was preserved.
