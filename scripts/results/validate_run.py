@@ -20,6 +20,58 @@ SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 COMMIT_RE = re.compile(r"^[0-9a-f]{40,64}$")
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from provenance_requirements import requirement_for  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'run'))
+from _capture_implementation import verify_capture, digest_file
+from _capture_inputs import verify_identity
+from _capture_runtime import verify_identity as verify_runtime_identity
+
+
+def validate_implementation_capture(run_dir, *, required=False, repo=None):
+    try:
+        meta=json.loads((run_dir/'run_meta.json').read_text())
+        capture=meta.get('provenance',{}).get('implementation_capture')
+        if not capture:
+            return ['missing pre-estimation implementation capture'] if required else []
+        if capture.get('snapshot')!='provenance/implementation.json' or capture.get('phase')!='before_estimation':
+            return ['unexpected implementation capture path or phase']
+        path=run_dir/capture['snapshot']
+        if digest_file(path)!=capture.get('snapshot_sha256'):
+            return ['implementation capture manifest hash mismatch']
+        # Historical verification checks the preserved archive, not today's tree.
+        verify_capture(repo or Path(__file__).resolve().parents[2],path,check_live=False)
+        return []
+    except (OSError,ValueError,KeyError) as exc:
+        return ['implementation capture invalid: '+str(exc)]
+
+
+def validate_input_capture(run_dir, *, required=False):
+    try:
+        meta=json.loads((run_dir/'run_meta.json').read_text())
+        item=meta.get('provenance',{}).get('prepared_inputs')
+        if not item:return ['missing pre-estimation input capture'] if required else []
+        if item.get('snapshot')!='provenance/inputs.json':return ['unexpected input capture path']
+        path=run_dir/item['snapshot']
+        if digest_file(path)!=item.get('snapshot_sha256'):return ['input capture manifest hash mismatch']
+        value=json.loads(path.read_text());verify_identity(None,value,check_live=False)
+        if value['sha256']!=item.get('content_sha256') or item.get('verified_unchanged_after_execution') is not True:
+            return ['input capture missing final verification']
+        return []
+    except (OSError,ValueError,KeyError) as exc:return ['input capture invalid: '+str(exc)]
+
+
+def validate_runtime_capture(run_dir, *, required=False):
+    try:
+        meta=json.loads((run_dir/'run_meta.json').read_text())
+        item=meta.get('provenance',{}).get('runtime_assets')
+        if not item:return ['missing pre-estimation runtime asset capture'] if required else []
+        if item.get('snapshot')!='provenance/runtime-assets.json':return ['unexpected runtime asset capture path']
+        path=run_dir/item['snapshot']
+        if digest_file(path)!=item.get('snapshot_sha256'):return ['runtime asset manifest hash mismatch']
+        value=json.loads(path.read_text());verify_runtime_identity(None,value,check_live=False)
+        if value['sha256']!=item.get('content_sha256') or item.get('verified_unchanged_after_execution') is not True or value.get('missing'):
+            return ['runtime asset capture missing final verification or required asset']
+        return []
+    except (OSError,ValueError,KeyError) as exc:return ['runtime asset capture invalid: '+str(exc)]
 
 
 def validate_location(run_dir: Path) -> list[str]:
@@ -360,6 +412,7 @@ def main() -> int:
     parser.add_argument("--check-only", action="store_true")
     parser.add_argument("--require-provenance", type=int, choices=(2,))
     parser.add_argument("--require-measurements", type=int, choices=(1, 2))
+    parser.add_argument("--require-implementation-capture", action="store_true")
     args = parser.parse_args()
     run_dir = args.run_dir.resolve()
     location_errors = validate_location(run_dir)
@@ -373,6 +426,9 @@ def main() -> int:
     errors = validate(run_dir)
     errors.extend(validate_provenance(run_dir, required_schema=args.require_provenance))
     errors.extend(validate_measurements(run_dir, required_schema=args.require_measurements))
+    errors.extend(validate_implementation_capture(run_dir,required=args.require_implementation_capture))
+    errors.extend(validate_input_capture(run_dir,required=args.require_implementation_capture))
+    errors.extend(validate_runtime_capture(run_dir,required=args.require_implementation_capture))
     if errors:
         for error in errors:
             print(f"[validate] {run_dir}: {error}")

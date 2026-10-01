@@ -140,6 +140,7 @@ PROV_ARGS=(
     --param "process_isolation=attempt_token"
     --artifact "estimator_config=$CFG"
     --artifact "estimator_config_source=$CFG_SOURCE"
+    --artifact "vocabulary=$WS/src/okvis2/build/small_voc.yml.gz"
     --source "algorithm=$WS/src/okvis2"
     --binary "estimator=$APP"
     --param "use_imu=$USE_IMU"

@@ -42,11 +42,6 @@ CONFIG_ARGS=(basalt "$WS" "$DATASET" "$SEQ" "$RUN_TYPE")
 [[ -n "${BASALT_CONFIG:-}" ]] && CONFIG_ARGS+=(--override "$BASALT_CONFIG")
 ESTIMATOR_CFG=$(python3 "$WS/scripts/run/_config_preflight.py" "${CONFIG_ARGS[@]}")
 
-mkdir -p "$WS/logs"
-prepare_fresh_run_dir "$OUT_DIR"
-CONTAINER=""
-source "$WS/scripts/run/_owned_process.sh"
-
 # ── PATH: source Basalt env to ensure basalt_vio is available ────────────────
 if [[ -f "$HOME/.basalt/env" ]]; then
     # shellcheck source=/dev/null
@@ -57,6 +52,12 @@ if ! command -v basalt_vio &>/dev/null; then
     exit 1
 fi
 BASALT_BIN=$(command -v basalt_vio)
+
+mkdir -p "$WS/logs"
+prepare_fresh_run_dir "$OUT_DIR"
+CONTAINER=""
+source "$WS/scripts/run/_owned_process.sh"
+
 PROV_ARGS=(
     --param "process_isolation=attempt_token"
     --artifact "camera_calibration=$CALIB"
@@ -69,37 +70,14 @@ PROV_ARGS=(
 
 echo "[basalt] $DATASET/$SEQ run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL"
 
-# ── Generate EuRoC data.csv manifests if missing ─────────────────────────────
-python3 -c "
-import glob, os, sys
-
-seq_dir = '$SEQ_DIR'
-for cam in ['cam0', 'cam1']:
-    data_dir = f'{seq_dir}/mav0/{cam}/data'
-    csv_path = f'{seq_dir}/mav0/{cam}/data.csv'
-    if os.path.exists(csv_path):
-        n = sum(1 for _ in open(csv_path)) - 1
-        print(f'[basalt] {cam}/data.csv already has {n} entries', flush=True)
-        continue
-    # Deduplicate by timestamp stem: the zed2i tree carries both <ts>.jpg and a
-    # <ts>.png symlink to the same image, so a naive png+jpg glob lists every
-    # frame TWICE. Duplicate timestamps make basalt abort with
-    #   Assertion (kpt_pos.host_kf_id.frame_id != state_t.getT_ns()) failed
-    # in BundleAdjustmentBase::optimize_single_frame_pose. png wins when both exist.
-    by_stem = {}
-    for ext in ('png', 'jpg'):
-        for img in glob.glob(f'{data_dir}/*.{ext}'):
-            by_stem.setdefault(os.path.splitext(os.path.basename(img))[0],
-                               os.path.basename(img))
-    if not by_stem:
-        print(f'[basalt] ERROR: no images found in {data_dir}', file=sys.stderr)
-        sys.exit(1)
-    with open(csv_path, 'w') as f:
-        f.write('#timestamp [ns],filename\n')
-        for ts in sorted(by_stem, key=int):
-            f.write(f'{ts},{by_stem[ts]}\n')
-    print(f'[basalt] wrote {cam}/data.csv ({len(by_stem)} entries)', flush=True)
-" 2>&1 | tee -a "$LOG_GLOBAL"
+# Prepared datasets are immutable during estimation. Missing manifests must be
+# repaired in a separate reviewed data-preparation step, never by this runner.
+for camera in cam0 cam1; do
+    [[ -s "$SEQ_DIR/mav0/$camera/data.csv" ]] || {
+        echo "[basalt] missing prepared $camera/data.csv; prepare and audit the dataset first" >&2
+        exit 2
+    }
+done
 
 # ── Resource monitor: CPU + RAM sampled every 1 s ────────────────────────────
 prepare_resource_window "$OUT_DIR"

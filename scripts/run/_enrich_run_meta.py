@@ -33,6 +33,11 @@ import time
 from pathlib import Path
 from typing import Any
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _capture_implementation import verify_capture
+from _capture_inputs import verify_identity
+from _capture_runtime import verify_identity as verify_runtime_identity
+
 
 REPO = Path(__file__).resolve().parents[2]
 RESULTS = REPO / "results"
@@ -484,6 +489,7 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--failure-reason")
     p.add_argument("--measurement-mode", choices=MEASUREMENT_MODES)
     p.add_argument("--transport-stats")
+    p.add_argument("--require-implementation-capture", action="store_true")
     # Backward-compatible aliases while out-of-tree runners migrate.
     p.add_argument("--config")
     p.add_argument("--playback-rate")
@@ -551,6 +557,44 @@ def main() -> int:
             "workspace": workspace_entry(),
             "runtime": {"python": sys.version.split()[0]},
         }
+        capture_path = run_dir / "provenance/implementation.json"
+        if args.require_implementation_capture or capture_path.is_file():
+            verification = verify_capture(REPO, capture_path, check_live=True)
+            capture_digest = hashlib.sha256(capture_path.read_bytes()).hexdigest()
+            capture_value = json.loads(capture_path.read_text())
+            provenance["implementation_capture"] = {
+                "schema": 1, "snapshot": "provenance/implementation.json",
+                "snapshot_sha256": capture_digest, "phase": "before_estimation",
+                "verification": verification,
+                "native_binary_source_linkage_verified": False,
+            }
+            trees = {tree["role"]: tree for tree in capture_value["trees"]}
+            for role, entry in [("workspace", provenance["workspace"]),
+                                *[(s["role"], s) for s in provenance["sources"]]]:
+                if role not in trees or trees[role]["commit"] != entry["commit"]:
+                    raise ValueError("implementation capture does not match recorded source revision")
+                entry.update(snapshot="provenance/implementation.json",
+                             snapshot_sha256=capture_digest, capture_role=role)
+            input_path=run_dir/'provenance/inputs.json'
+            input_value=json.loads(input_path.read_text())
+            verify_identity(REPO,input_value,check_live=True)
+            provenance['prepared_inputs']={
+                'snapshot':'provenance/inputs.json',
+                'snapshot_sha256':hashlib.sha256(input_path.read_bytes()).hexdigest(),
+                'content_sha256':input_value['sha256'],
+                'verified_unchanged_after_execution':True,
+            }
+            runtime_path=run_dir/'provenance/runtime-assets.json'
+            runtime_value=json.loads(runtime_path.read_text())
+            verify_runtime_identity(REPO,runtime_value,check_live=True)
+            provenance['runtime_assets']={
+                'snapshot':'provenance/runtime-assets.json',
+                'snapshot_sha256':hashlib.sha256(runtime_path.read_bytes()).hexdigest(),
+                'content_sha256':runtime_value['sha256'],
+                'verified_unchanged_after_execution':True,
+                'native_binary_source_linkage_verified':False,
+                'loaded_dependency_closure_verified':False,
+            }
         if args.seed is not None:
             provenance["parameters"]["seed"] = parse_scalar(args.seed)
         env = {

@@ -39,10 +39,15 @@ The following additional provenance gaps are concrete:
 - ORB records its small example launcher executable, but not the dynamically
   linked estimator library. The source checkout identity and executable alone do
   not identify that historical library build.
-- AirSLAM, OV2SLAM, OpenVINS and Voxel-SVIO record container image identities and
+- AirSLAM, OV2SLAM and Voxel-SVIO record container image identities and
   source revisions, but no run-time native executable hash. A mutable container
   or mounted build can differ from the immutable image. This is a provenance gap,
   not proof of a mismatched executable.
+- OpenVINS uses a fresh container whose `/colcon_ws/install` is inside the immutable
+  image, not a mounted mutable build. Its image ID therefore identifies those
+  installed bytes. Historical dirty runner bytes and runtime resolution/build-source
+  linkage remain unverified; do not describe this as evidence of a mutable estimator
+  binary. The present read-only asset audit does not retroactively supply that proof.
 - Basalt records a native binary hash; the corresponding installed package/source
   revision is not established. It must not be silently assigned the revision used
   to inspect its output convention.

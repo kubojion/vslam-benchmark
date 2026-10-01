@@ -37,3 +37,11 @@ def test_review_without_machine_gaps_still_requires_an_explicit_claim_decision()
     decision = review(meta={'process': {'exit_code': 0}, 'provenance': {
         'workspace': {'commit': 'known', 'dirty': False}}})
     assert decision['blockers'] == ['explicit_configuration_input_and_claim_review_not_recorded']
+
+
+def test_openvins_immutable_image_is_not_labelled_a_mutable_container_binary():
+    decision=review_saved('vio/euroc_mav/MH_01_easy/openvins/run1',
+        {'process':{'exit_code':0},'provenance':{'workspace':{'commit':'known'},'container':{'image_id':'sha256:known'}}},
+        {'run_status':'ok','coverage':{'coverage_gap_pct':100}},[],[{'verified':True}],exists=True)
+    assert 'historical_mutable_container_native_executable_not_identified' not in decision['blockers']
+    assert 'historical_container_runtime_resolution_and_build_source_linkage_unverified' in decision['blockers']

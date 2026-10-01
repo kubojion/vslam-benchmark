@@ -139,8 +139,9 @@ resolve without missing config files. DPVO additionally records its Python defau
 settings source, because its YAML overrides only part of the configuration. Recipe
 digests and selected files are checked by the manifest validator and before execution.
 This establishes source selection, not that the native process loaded the expected
-effective values. Runtime materialization and full input/build capture remain explicit
-prerequisites; no readiness flag is granted from selection alone.
+effective values. Current input/source/known-build capture is implemented below;
+native materialization, dependency resolution and build linkage remain prerequisites.
+No readiness flag is granted from selection alone.
 
 This check caught a repair-introduced DPVO prerequisite error: the isolated runner
 required `ORBvoc.txt` for any LC mode, but the configured proximity LC does not use
@@ -159,7 +160,8 @@ all 660 because readiness prerequisites remain unresolved. The published browser
 690 entries/696 pages, with 8,767 checked local links and no broken link or legacy
 image preview. Evidence is under `results/repair-20261001/` in
 `future-manifest-validation.json` and `browser-validation.json`. This does not
-complete the outstanding scientific qualification, root-output promotion or cleanup.
+establish scientific qualification or native execution readiness. Root-output
+promotion and the archival cleanup described in the audit are complete.
 
 The [AirSLAM source audit](../airslam-rectification-audit.md) establishes that the
 recorded EuRoC fusion configuration mixes rectified visual axes with raw-camera
@@ -199,3 +201,44 @@ input copies, zero-status handling, covariance units, invalid inputs, no-fix
 filtering and container-path mapping. Shell syntax and Python compilation pass.
 No ROS estimator or GNSS campaign was run; fusion, native crashes, reference frames
 and process isolation remain separate readiness checks.
+
+## Source, data and runtime asset preservation
+
+Future attempts now preserve exact runner/configuration and recursively nested
+algorithm source bytes before estimation. Dirty and non-ignored untracked files
+are stored independently in the private `results/.implementation-blobs/sha256/`
+archive. All eight prepared sequences have per-file content identities, including
+camera membership/aliases, IMU, times, default GPS and reference files. All 14
+included algorithm/composite runners have current known native/model/container
+asset inventories. Persistent-container build files were read without starting
+containers; OpenVINS's installed prefix is covered by its immutable image ID.
+
+The future manifest pins these evidence files. New runners compare their own
+capture to the selected campaign identity; enrichment verifies unchanged source,
+input and runtime bytes after execution. A changed or missing artifact prevents
+completion and leaves the attempt available for diagnosis. Source-to-binary build
+linkage, dynamic dependency resolution and effective native configuration loading
+remain explicit prerequisites. Present-day capture cannot reconstruct a historical
+missing patch or certify a calibration. See [provenance](../run-provenance.md).
+
+Read-only preparation/verification commands (no estimator, container startup or build):
+
+```bash
+python3 scripts/campaign/build_execution_assets.py --verify
+python3 scripts/campaign/run_future_manifest.py results/repair-20261001/future-n3-manifest.json --check-inputs --check-implementations
+```
+
+After reviewed source/input/asset changes, commit the code, use
+`build_execution_assets.py --refresh` to preserve and replace outdated current
+identities, and regenerate the future manifest. Its source captures are tied to
+the commit and exact checkout bytes; unrelated later Git commits also require
+refreshed source identity. This is deliberate staleness detection, not automatic
+approval of a changed campaign. Hash preparation overhead is excluded from
+estimator timing. Source archives must accompany an independent results backup.
+
+Basalt no longer generates missing camera CSVs inside a shared dataset during a
+run. Those manifests must be prepared and audited separately. Direct runners now
+also refuse an occupied orphan-log identity, matching the repetition controller.
+The execution environment guard additionally rejects inherited library/Python/ROS
+search-path overrides; the present interactive environment has `LD_LIBRARY_PATH`
+set, so it also fails that guard until a reviewed launch environment is selected.

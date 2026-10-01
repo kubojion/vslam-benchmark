@@ -27,6 +27,7 @@ results/                                 # ignored raw and derived artifacts
   manifest.json                          # 690 planned/retained browser records
   site/                                  # generated browser
   repair-20261001/                        # inventory, staging, validation, future manifest
+  .implementation-blobs/sha256/           # private exact source bytes; preserve with results
   .derived-history/                      # content-addressed previous derived bytes
   .derived-sites/                        # independently retained previous sites
 ```

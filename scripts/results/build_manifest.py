@@ -20,6 +20,7 @@ sys.path.insert(0, str(REPO / 'scripts/eval'))
 from build_benchmark_csv import build_rows, load_inventory, preserved_write, row_from_attempt
 from validate_run import (  # noqa: E402
     validate, validate_location, validate_measurements, validate_provenance,
+    validate_implementation_capture, validate_input_capture, validate_runtime_capture,
 )
 
 
@@ -100,6 +101,9 @@ def run_entry(run_type: str, run_dir: Path) -> dict:
     evaluation = read_json(run_dir / "run_eval.json")
     errors = validate_location(run_dir) + validate(run_dir)
     provenance_errors = validate_provenance(run_dir, required_schema=None)
+    provenance_errors += validate_implementation_capture(run_dir)
+    provenance_errors += validate_input_capture(run_dir)
+    provenance_errors += validate_runtime_capture(run_dir)
     measurement_errors = validate_measurements(run_dir, required_schema=None)
     if metadata.get("run_status") == "failed":
         provenance_errors = [

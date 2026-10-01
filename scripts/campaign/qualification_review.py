@@ -33,6 +33,10 @@ def review_saved(relative, meta, evaluation, findings, snapshots, *, exists):
         blockers.append('historical_effective_configuration_and_implementation_evidence_missing')
     else:
         workspace = provenance.get('workspace', {})
+        runtime_capture=provenance.get('runtime_assets',{})
+        if runtime_capture and not (runtime_capture.get('native_binary_source_linkage_verified') and
+                                    runtime_capture.get('loaded_dependency_closure_verified')):
+            blockers.append('native_build_source_linkage_and_loaded_dependency_closure_unverified')
         if workspace.get('dirty') and not workspace.get('snapshot'):
             blockers.append('historical_dirty_runner_tree_recorded_only_as_nonreconstructable_digest')
         elif not workspace.get('commit'):
@@ -44,9 +48,11 @@ def review_saved(relative, meta, evaluation, findings, snapshots, *, exists):
             blockers.append('historical_config_snapshot_missing_or_unverified')
         if algorithm == 'basalt':
             blockers.append('installed_basalt_binary_to_source_revision_not_established')
-        if algorithm in ('airslam', 'ov2slam', 'openvins', 'voxel_svio') and not provenance.get('binaries'):
+        if algorithm in ('airslam', 'ov2slam', 'voxel_svio') and not provenance.get('binaries') and not runtime_capture:
             blockers.append('historical_mutable_container_native_executable_not_identified')
-        if algorithm == 'orbslam3':
+        if algorithm == 'openvins' and not provenance.get('runtime_assets'):
+            blockers.append('historical_container_runtime_resolution_and_build_source_linkage_unverified')
+        if algorithm == 'orbslam3' and not runtime_capture:
             blockers.append('historical_orb_shared_estimator_library_not_identified')
     if not evaluation:
         blockers.append('no_evaluated_saved_trajectory_retain_execution_evidence')

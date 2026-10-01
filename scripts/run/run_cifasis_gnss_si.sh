@@ -192,6 +192,7 @@ enrich_run_meta "$OUT_DIR/run_meta.json" \
     --transport-stats "$OUT_DIR/transport_stats.json" \
     --artifact "estimator_config=$CFG_HOST" \
     --artifact "vocabulary=$WS/src/cifasis_gnss_si/Vocabulary/ORBvoc.txt.tar.gz" \
+    --param "vocabulary_artifact_semantics=compressed_source_archive;loaded_bytes_in_runtime_assets" \
     --source "algorithm=$WS/src/cifasis_gnss_si" \
     --param "process_isolation=attempt_token_private_ros_master" \
     --param "trajectory_source=CameraTrajectoryGPSOpt.txt" \

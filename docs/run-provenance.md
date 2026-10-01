@@ -1,8 +1,9 @@
 # Run provenance
 
-New benchmark runs use provenance schema 2. The schema makes every completed
-result traceable to the effective estimator inputs and executable environment
-without storing usernames, hostnames, or private absolute paths.
+New benchmark runs use provenance schema 2 with mandatory pre-estimation source,
+input and known runtime-asset captures. These preserve concrete reproducibility
+evidence; they do not establish physical calibration, build-source linkage or the
+complete set of libraries loaded at runtime.
 
 Runtime and resource semantics are specified separately in
 [run-measurements.md](run-measurements.md). A new completed benchmark run must
@@ -51,8 +52,41 @@ Passing the schema contract therefore does not establish exact implementation
 reproducibility. The [qualification review](publication-qualification-20261001.md)
 records these gaps per run, including dirty nested-source summaries. Preserve
 historical hashes and recover their underlying evidence rather than relabelling
-them with today's source or repaired runner. Future collection still needs a
-reviewed complete source/build capture before execution can be certified ready.
+them with today's source or repaired runner. Future capture now preserves exact
+checkout bytes and known build assets. Build-source linkage and loaded dependency
+resolution remain requirements before execution can be certified ready.
+
+## Pre-estimation preservation
+
+`prepare_fresh_run_dir` reserves an unused attempt and captures:
+
+- `provenance/implementation.json`: exact tracked and non-ignored untracked runner,
+  configuration and recursively nested algorithm files, including local edits,
+  deletions, symlinks and permissions. Source bytes are independently stored in
+  `results/.implementation-blobs/sha256/`, outside the browser's per-run tree.
+- `provenance/inputs.json`: content hashes and membership of prepared camera images,
+  camera CSVs/calibrations, timestamps, IMU, default GPS and reference files. Camera
+  aliases must resolve to the same sensor directories. Large datasets are not copied.
+  The private hash cache checks device, inode, size, mtime and ctime; any changed
+  signature forces content rehashing. Custom GNSS inputs have their separate copy.
+- `provenance/runtime-assets.json`: known native executables/libraries, models and
+  vocabularies, immutable image identities and persistent-container build files.
+  Container inspection/copying requires no estimator or container startup. Missing
+  known assets reject a new attempt. This is a declared asset inventory, not proof
+  of complete dynamic dependency resolution or which source built each binary.
+
+Enrichment verifies these captures against the post-execution inputs and checkout.
+New completion validation requires the captures and their hashes. Changed artifacts
+prevent a completion marker; partial outputs and process records remain preserved.
+Later historical validation checks preserved manifests/blobs without requiring
+today's source or dataset to match an old run. Preserve the blob store with the
+results: a manifest alone cannot restore source bytes. Raw source blobs are private
+and may contain local paths; do not publish them blindly through the result browser.
+
+Campaign preflight also checks selected configuration recipes and pinned source,
+input and runtime identities. Each new runner checks its capture against the
+campaign expectation, avoiding a silent substitution after preflight. Capture and
+verification overhead lies outside the timed estimator/pipeline interval.
 
 ## Algorithm contracts
 
@@ -85,7 +119,8 @@ Validate a newly produced run with:
 ```bash
 python3 scripts/results/validate_run.py \
   results/<run-type>/<dataset>/<sequence>/<algorithm>/run<N> \
-  --check-only --require-provenance 2 --require-measurements 2
+  --check-only --require-provenance 2 --require-measurements 2 \
+  --require-implementation-capture
 ```
 
 `build_manifest.py` reports provenance and measurements independently as

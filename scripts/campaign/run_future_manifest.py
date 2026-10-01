@@ -30,6 +30,10 @@ UNREVIEWED_OVERRIDES=(
     'AIRSLAM_STARTUP_TIMEOUT_S','AIRSLAM_REFINEMENT_MAX_ATTEMPTS','OWNED_STOP_GRACE',
     'CUDA_VISIBLE_DEVICES','NVIDIA_VISIBLE_DEVICES','OMP_NUM_THREADS','MKL_NUM_THREADS',
     'OPENBLAS_NUM_THREADS','CUBLAS_WORKSPACE_CONFIG','NVIDIA_TF32_OVERRIDE',
+    'LD_LIBRARY_PATH','LD_PRELOAD','PYTHONPATH','ROS_PACKAGE_PATH','AMENT_PREFIX_PATH',
+    'CMAKE_PREFIX_PATH','COLCON_PREFIX_PATH','VSLAM_EXPECTED_INPUT_SHA256',
+    'VSLAM_EXPECTED_RUNTIME_SHA256',
+    'VSLAM_EXPECTED_SOURCE_SHA256',
 )
 
 
@@ -83,6 +87,12 @@ def validate(repo,manifest,*,check_files=True):
         category=action.get('category')
         if category not in CATEGORIES:errors.append('unknown action category')
         recipe=action.get('configuration_recipe')
+        if manifest.get('input_identity_schema')==1 and not action.get('prepared_inputs'):
+            errors.append('action is missing prepared input identity')
+        if manifest.get('runtime_identity_schema')==1 and not action.get('runtime_assets'):
+            errors.append('action is missing runtime asset identity')
+        if manifest.get('implementation_capture_schema')==1 and not action.get('implementation_capture'):
+            errors.append('action is missing source implementation capture')
         if manifest.get('configuration_recipe_schema')==1 and not recipe:
             errors.append('action is missing its configuration recipe')
         if recipe:
@@ -118,6 +128,9 @@ def validate(repo,manifest,*,check_files=True):
         for action in manifest.get('actions',[]):
             items+=action.get('prior_evidence',[])+action.get('review_evidence',[])
             items+=action.get('configuration_recipe',{}).get('source_files',[])
+            if action.get('prepared_inputs'):items.append(action['prepared_inputs'])
+            if action.get('runtime_assets'):items.append(action['runtime_assets'])
+            if action.get('implementation_capture'):items.append(action['implementation_capture'])
         by_path={}
         for item in items:
             if item['path'] in by_path and by_path[item['path']]['sha256']!=item['sha256']:
@@ -143,6 +156,8 @@ def execute(repo,manifest,manifest_hash,actions,*,executor=run_command):
         errors=verify_files(repo,action['prior_evidence']+action.get('review_evidence',[])+
                             action.get('configuration_recipe',{}).get('source_files',[]))
         if errors:raise ValueError('; '.join(errors))
+    verify_prepared_inputs(repo,actions)
+    verify_implementations(repo,actions)
     root=repo/'logs/server-campaign'/component(manifest['campaign_id'])
     with lock(root/'manifest.lock'):
         path=root/'state.json'
@@ -159,10 +174,60 @@ def execute(repo,manifest,manifest_hash,actions,*,executor=run_command):
                 # Avoid recursively duplicating the history on repeated resumes.
                 if previous:record['history'][-1]={k:v for k,v in previous.items() if k!='history'}
                 state['actions'][key]=record;atomic_json(path,state)
-                result=executor(action['command'],check=False)
+                # Each runner compares its own pre-estimation capture to this
+                # reviewed identity, closing the gap between preflight and start.
+                expected=action.get('prepared_inputs',{}).get('content_sha256')
+                if expected:os.environ['VSLAM_EXPECTED_INPUT_SHA256']=expected
+                runtime_expected=action.get('runtime_assets',{}).get('content_sha256')
+                if runtime_expected:os.environ['VSLAM_EXPECTED_RUNTIME_SHA256']=runtime_expected
+                source_expected=action.get('implementation_capture',{}).get('content_sha256')
+                if source_expected:os.environ['VSLAM_EXPECTED_SOURCE_SHA256']=source_expected
+                try:result=executor(action['command'],check=False)
+                finally:
+                    os.environ.pop('VSLAM_EXPECTED_INPUT_SHA256',None)
+                    os.environ.pop('VSLAM_EXPECTED_RUNTIME_SHA256',None)
+                    os.environ.pop('VSLAM_EXPECTED_SOURCE_SHA256',None)
                 record.update(status='evaluated' if result.returncode==0 else 'failure_or_review',exit_code=result.returncode,finished_at=now())
             atomic_json(path,state)
     return state
+
+
+def verify_prepared_inputs(repo,actions):
+    sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'run'))
+    from _capture_inputs import verify_identity
+    seen=set()
+    for action in actions:
+        item=action.get('prepared_inputs')
+        if not item or item['path'] in seen:continue
+        errors=verify_files(repo,[item])
+        if errors:raise ValueError('; '.join(errors))
+        value=json.loads((repo/item['path']).read_text())
+        if value['sha256']!=item['content_sha256']:raise ValueError('prepared input identity disagrees with action')
+        verify_identity(repo,value,check_live=True);seen.add(item['path'])
+
+
+def verify_implementations(repo,actions):
+    sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'run'))
+    from _capture_runtime import verify_identity
+    from _capture_implementation import verify_capture
+    seen=set()
+    for action in actions:
+        for field in ('runtime_assets','implementation_capture'):
+            item=action.get(field)
+            if not item or item['path'] in seen:continue
+            errors=verify_files(repo,[item])
+            if errors:raise ValueError('; '.join(errors))
+            path=repo/item['path']
+            if field=='runtime_assets':
+                value=json.loads(path.read_text())
+                if value['sha256']!=item['content_sha256']:raise ValueError('runtime identity disagrees with action')
+                verify_identity(repo,value,check_live=True)
+            else:
+                value=json.loads(path.read_text())
+                actual=hashlib.sha256(json.dumps(value['trees'],sort_keys=True,separators=(',',':')).encode()).hexdigest()
+                if actual!=item['content_sha256']:raise ValueError('source identity disagrees with action')
+                verify_capture(repo,path,check_live=True)
+            seen.add(item['path'])
 
 
 def main():
@@ -171,6 +236,8 @@ def main():
     ap.add_argument('--action',action='append',help='select exact action ID (repeatable); default all')
     ap.add_argument('--run',action='store_true',help='execute selected verified-ready actions; default only validates')
     ap.add_argument('--require-ready',action='store_true',help='fail preflight if any selected action is blocked/unverified')
+    ap.add_argument('--check-inputs',action='store_true',help='also verify current prepared sensor bytes (read-only; cached by file identity)')
+    ap.add_argument('--check-implementations',action='store_true',help='also verify source archives/current trees and known native/model/container assets; no estimator execution')
     args=ap.parse_args();raw=args.manifest.read_bytes();manifest=json.loads(raw)
     errors=validate(REPO,manifest)
     selected=[a for a in manifest.get('actions',[]) if not args.action or a['id'] in args.action]
@@ -181,6 +248,12 @@ def main():
     if args.require_ready or args.run:
         try:check_execution_environment()
         except ValueError as exc:errors.append(str(exc))
+    if args.check_inputs:
+        try:verify_prepared_inputs(REPO,selected)
+        except (OSError,ValueError,KeyError) as exc:errors.append(str(exc))
+    if args.check_implementations:
+        try:verify_implementations(REPO,selected)
+        except (OSError,ValueError,KeyError,subprocess.SubprocessError) as exc:errors.append(str(exc))
     if errors:
         for error in errors:print('[manifest] '+error,file=sys.stderr)
         return 2

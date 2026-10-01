@@ -82,11 +82,30 @@ def build(repo,inventory,inventory_path,decisions):
     for cell in inventory['cells']:
         key=cell['key'];decision=decisions.get('cells',{}).get(key,{})
         recipe=config_recipe(repo,cell)
+        input_path=repo/'results/repair-20261001/prepared-inputs'/f"{cell['dataset']}--{cell['sequence']}.json"
+        input_record=None
+        if input_path.is_file():
+            value=json.loads(input_path.read_text())
+            input_record=dict(path=str(input_path.relative_to(repo)),sha256=digest(input_path),content_sha256=value['sha256'])
+        runtime_path=repo/'results/repair-20261001/runtime-assets'/f"{cell['algorithm']}.json"
+        runtime_record=None;runtime_missing=[]
+        if runtime_path.is_file():
+            value=json.loads(runtime_path.read_text());runtime_missing=value['missing']
+            runtime_record=dict(path=str(runtime_path.relative_to(repo)),sha256=digest(runtime_path),content_sha256=value['sha256'])
+        source_path=repo/'results/repair-20261001/implementation-capture-current'/cell['algorithm']/'provenance/implementation.json'
+        source_record=dict(path=str(source_path.relative_to(repo)),sha256=digest(source_path)) if source_path.is_file() else None
+        if source_record:
+            trees=json.loads(source_path.read_text())['trees']
+            source_record['content_sha256']=hashlib.sha256(json.dumps(trees,sort_keys=True,separators=(',',':')).encode()).hexdigest()
         occupied={p.name for p in (repo/'results'/key).glob('run*')}
         next_id=10001
         for repetition,attempt in enumerate(cell['attempts'],1):
             category,reason=action_category(cell,attempt,decision)
             prerequisites=list(decision.get('blockers',[]))
+            if not input_record:prerequisites.append('capture_and_verify_prepared_input_content')
+            if not runtime_record:prerequisites.append('capture_current_native_model_container_assets')
+            if not source_record:prerequisites.append('capture_current_exact_source_implementation')
+            prerequisites.extend(runtime_missing)
             prerequisites.extend(recipe['selection_errors'])
             if not decision.get('effective_configuration_verified'):
                 prerequisites.extend(recipe['unresolved'])
@@ -119,6 +138,8 @@ def build(repo,inventory,inventory_path,decisions):
                 observed_outcome=attempt['numerical_status'],recorded_process=attempt['process'],
                 prior_qualification=attempt.get('qualification'),
                 configuration_recipe=recipe,
+                prepared_inputs=input_record,
+                runtime_assets=runtime_record,implementation_capture=source_record,
                 planned_random_seed=1000+run_id if cell['algorithm']=='dpvo' and run_required else None,
                 planned_output=output if run_required else None,command=command if run_required else None,
                 cohort=cohort,prerequisites=sorted(set(prerequisites)),runtime_estimate=runtime,
@@ -126,7 +147,8 @@ def build(repo,inventory,inventory_path,decisions):
                     execution_validation='verified' if decision.get('execution_verified') else 'not_verified_after_repairs'),
                 review_evidence=decision.get('evidence',[])))
     estimates=[a['runtime_estimate'].get('estimate_s') for a in actions if a['category'] in ('missing','required_rerun')]
-    return dict(schema_version=2,configuration_recipe_schema=1,campaign_id='future-n3-five-modes',audit_status='in_progress',
+    return dict(schema_version=2,configuration_recipe_schema=1,input_identity_schema=1,runtime_identity_schema=1,
+        implementation_capture_schema=1,campaign_id='future-n3-five-modes',audit_status='in_progress',
         target=dict(default_cells=len(inventory['cells']),repetitions=3,logical_repetitions=len(actions),
                     note='Original four-mode 600-attempt campaign plus 20 GNSS default cells at N=3; legacy GNSS experiments remain separate'),
         exclusions=inventory['excluded'],inventory=dict(path=str(inventory_path.relative_to(repo)),sha256=digest(inventory_path)),

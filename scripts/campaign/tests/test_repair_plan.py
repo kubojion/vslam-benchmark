@@ -9,7 +9,7 @@ import pytest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from build_future_manifest import action_category, qualification_prerequisites
 from build_repair_inventory import runtime_estimate
-from run_future_manifest import validate,execute,check_execution_environment
+from run_future_manifest import validate,execute,check_execution_environment,UNREVIEWED_OVERRIDES
 from update_todo_matrices import update
 
 
@@ -73,7 +73,8 @@ def test_manifest_requires_unique_complete_logical_repetitions_and_matching_comm
     assert any('exactly three' in s for s in validate(tmp_path,m,check_files=False))
 
 
-def test_no_partial_launch_before_detecting_blocked_action(tmp_path):
+def test_no_partial_launch_before_detecting_blocked_action(tmp_path,monkeypatch):
+    for name in UNREVIEWED_OVERRIDES:monkeypatch.delenv(name,raising=False)
     m=manifest();events=[]
     def fake(command,check=False):events.append(command);return subprocess.CompletedProcess(command,0)
     with pytest.raises(ValueError,match='blocked'):

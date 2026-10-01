@@ -111,6 +111,17 @@
   Validation now passes 136 tests plus three subtests. Remaining preparation includes
   complete future source/build/input capture and the final readiness handoff.
 
+- Added pre-estimation exact source archives, input-content identities for all eight
+  sequences, and known runtime/model/container asset inventories for all 14 included
+  runners. New completion checks verify these captures after execution. The future
+  manifest pins the identities and checks them before launch. Captures do not prove
+  source-to-binary linkage or loaded dependency resolution; these remain prerequisites.
+- Basalt now refuses missing prepared camera CSVs rather than modifying shared data.
+  Direct runners also preserve orphan logs. OpenVINS qualification wording now
+  distinguishes its immutable installed image from persistent mutable builds.
+  All 593 review records were reconciled without changing numerical fields.
+  The expanded suite passes 148 tests and three subtests; final handoff checks remain.
+
 ## 2026-10-01 — Initial server inventory (before the repair above)
 
 - Completed N=3 cells now cover most of VO, VO-LC, VIO and VIO-LC. The September 23

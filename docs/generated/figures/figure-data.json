@@ -3,7 +3,7 @@
   "inputs": [
     {
       "path": "results/repair-20261001/inventory.json",
-      "sha256": "bf29a252333853b0563be7ffc315e195140eba7347692a2c23a8dc24e50f4317"
+      "sha256": "37edb0ebe999a415ee2939a9e227cf6624b6851111a463c267eec6d47b8075fd"
     },
     {
       "path": "benchmark-vo.csv",
@@ -15,7 +15,7 @@
     },
     {
       "path": "benchmark-vio.csv",
-      "sha256": "f05079137c9537454fab2a10b5b275b0e2589ab58e03ef734687f6880bf3b9df"
+      "sha256": "d1d9df6689d91d7facb46f177d17af93f8a459e1cc9ad630fe8c3074c713fdc6"
     },
     {
       "path": "benchmark-vio-lc.csv",
@@ -10740,8 +10740,8 @@
         ],
         "scientific_blockers": [
           "execution_exit_nonzero_or_unverified",
+          "historical_container_runtime_resolution_and_build_source_linkage_unverified",
           "historical_dirty_runner_tree_recorded_only_as_nonreconstructable_digest",
-          "historical_mutable_container_native_executable_not_identified",
           "missing_repetition",
           "rosario_rectified_camera_axes_and_reference_chain_require_verification"
         ]
@@ -10811,8 +10811,8 @@
         ],
         "scientific_blockers": [
           "execution_exit_nonzero_or_unverified",
+          "historical_container_runtime_resolution_and_build_source_linkage_unverified",
           "historical_dirty_runner_tree_recorded_only_as_nonreconstructable_digest",
-          "historical_mutable_container_native_executable_not_identified",
           "missing_repetition",
           "rosario_rectified_camera_axes_and_reference_chain_require_verification"
         ]
@@ -10882,8 +10882,8 @@
         ],
         "scientific_blockers": [
           "execution_exit_nonzero_or_unverified",
+          "historical_container_runtime_resolution_and_build_source_linkage_unverified",
           "historical_dirty_runner_tree_recorded_only_as_nonreconstructable_digest",
-          "historical_mutable_container_native_executable_not_identified",
           "horti_reference_to_camera_extrinsic_unverified",
           "missing_repetition"
         ]
@@ -10953,8 +10953,8 @@
         ],
         "scientific_blockers": [
           "execution_exit_nonzero_or_unverified",
+          "historical_container_runtime_resolution_and_build_source_linkage_unverified",
           "historical_dirty_runner_tree_recorded_only_as_nonreconstructable_digest",
-          "historical_mutable_container_native_executable_not_identified",
           "horti_reference_to_camera_extrinsic_unverified",
           "missing_repetition"
         ]
@@ -11023,8 +11023,8 @@
           }
         ],
         "scientific_blockers": [
+          "historical_container_runtime_resolution_and_build_source_linkage_unverified",
           "historical_dirty_runner_tree_recorded_only_as_nonreconstructable_digest",
-          "historical_mutable_container_native_executable_not_identified",
           "missing_repetition",
           "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
           "zed_reference_orientation_unavailable",
@@ -11095,8 +11095,8 @@
         ],
         "scientific_blockers": [
           "execution_exit_nonzero_or_unverified",
+          "historical_container_runtime_resolution_and_build_source_linkage_unverified",
           "historical_dirty_runner_tree_recorded_only_as_nonreconstructable_digest",
-          "historical_mutable_container_native_executable_not_identified",
           "missing_repetition"
         ]
       },
@@ -11165,8 +11165,8 @@
         ],
         "scientific_blockers": [
           "execution_exit_nonzero_or_unverified",
+          "historical_container_runtime_resolution_and_build_source_linkage_unverified",
           "historical_dirty_runner_tree_recorded_only_as_nonreconstructable_digest",
-          "historical_mutable_container_native_executable_not_identified",
           "missing_repetition"
         ]
       },
@@ -11234,8 +11234,8 @@
           }
         ],
         "scientific_blockers": [
+          "historical_container_runtime_resolution_and_build_source_linkage_unverified",
           "historical_dirty_runner_tree_recorded_only_as_nonreconstructable_digest",
-          "historical_mutable_container_native_executable_not_identified",
           "missing_repetition"
         ]
       },

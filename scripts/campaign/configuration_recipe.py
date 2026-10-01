@@ -106,6 +106,6 @@ def config_recipe(repo, cell):
         selection_errors=errors,scope='default source selection and deterministic materialization identity only',
         runtime_materialization_verified=False,
         unresolved=['verify_effective_native_config_after_runtime_materialization',
-                    'freeze_complete_input_content_and_implementation_build_identities_before_campaign'])
+                    'verify_native_build_source_linkage_and_loaded_runtime_dependency_closure'])
     recipe['sha256']=sha(json.dumps(recipe,sort_keys=True,separators=(',',':')).encode())
     return recipe

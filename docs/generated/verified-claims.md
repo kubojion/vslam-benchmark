@@ -61,9 +61,9 @@ Scientific statuses among existing headline attempts: blocked=549, rerun_require
 
 | Source | SHA-256 |
 |---|---|
-| `inventory.json` | `bf29a252333853b0563be7ffc315e195140eba7347692a2c23a8dc24e50f4317` |
+| `inventory.json` | `37edb0ebe999a415ee2939a9e227cf6624b6851111a463c267eec6d47b8075fd` |
 | `benchmark-vo.csv` | `00bcfb4a4874ee335774a48250cd4d3dc0f814100906359a240b1295722cfbc7` |
 | `benchmark-vo-lc.csv` | `8189ee0b28d53869cb1349c3f74764236ec0bebe67b6980d96f135e9cf9dd2e6` |
-| `benchmark-vio.csv` | `f05079137c9537454fab2a10b5b275b0e2589ab58e03ef734687f6880bf3b9df` |
+| `benchmark-vio.csv` | `d1d9df6689d91d7facb46f177d17af93f8a459e1cc9ad630fe8c3074c713fdc6` |
 | `benchmark-vio-lc.csv` | `8414dac0064feb425dcbd7a7b8f84a58fedd0e364305a1da46c9d53422f16b83` |
 | `benchmark-gnss-vio.csv` | `97224381ae15f94661a59370126d5ed50e02040565f66c78b370f1fa172dbf13` |

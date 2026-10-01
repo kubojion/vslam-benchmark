@@ -100,9 +100,22 @@ prepare_fresh_run_dir() {
         echo "Use run_benchmark.sh for saved-output recovery; a new attempt needs a new physical run ID." >&2
         return 2
     fi
+    local relative dataset sequence algorithm attempt orphan_log
+    relative=${out_real#"$root_real/"}
+    IFS=/ read -r dataset sequence algorithm attempt <<< "$relative"
+    orphan_log="$WS/logs/${dataset}_${sequence}_${algorithm}_${RUN_TYPE}_${attempt}.log"
+    if [[ -e "$orphan_log" || -L "$orphan_log" ]]; then
+        echo "ERROR: existing attempt log is preserved: $orphan_log" >&2
+        return 2
+    fi
     mkdir -p "$(dirname "$out_real")"
     # Atomic mkdir also prevents two direct runners claiming an empty directory.
     mkdir "$out_real"
+    # Capture runner/config and recursively nested algorithm checkout bytes before
+    # any estimator can start. A failed capture consumes and preserves this ID.
+    python3 "$WS/scripts/run/_capture_implementation.py" --repo "$WS" --run "$out_real"
+    python3 "$WS/scripts/run/_capture_inputs.py" --repo "$WS" --run "$out_real"
+    python3 "$WS/scripts/run/_capture_runtime.py" --repo "$WS" --run "$out_real"
 }
 
 # Provenance wrappers shared by every runner. Enrichment is intentionally not
@@ -111,7 +124,7 @@ prepare_fresh_run_dir() {
 enrich_run_meta() {
     local meta_path="${1:?run_meta.json path required}"
     shift
-    python3 "$WS/scripts/run/_enrich_run_meta.py" "$meta_path" "$@"
+    python3 "$WS/scripts/run/_enrich_run_meta.py" "$meta_path" --require-implementation-capture "$@"
 }
 
 # Freeze the actual GNSS CSV for this physical attempt. A variant label alone
@@ -145,6 +158,7 @@ record_failed_run_meta() {
     local reason="${8:?failure reason required}"
     shift 8
     python3 "$WS/scripts/run/_enrich_run_meta.py" "$meta_path" \
+        --require-implementation-capture \
         --create --algo "$algo" --dataset "$dataset" --sequence "$sequence" \
         --run-id "$run_id" --run-type "$run_type" \
         --process-exit-code "$exit_code" --failure-reason "$reason" "$@"
