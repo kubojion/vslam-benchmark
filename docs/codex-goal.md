@@ -27,10 +27,12 @@ repetitions with new attempts, add algorithms, or download/rebuild large models.
 Initial preservation is complete: checkpoint commit
 `8e62998c992c9aaef5a0ddc0df2a8d2512fb1f76` and verified backup
 `/data/imoroz/vslam-repair-backups/20261001T102654Z-vo-pre-repair/`.
-That backup contains VO results, the results site/manifest, logs, experiments and
-nested repository changes; it does **not** yet contain all four other results
-trees. Extend and verify backups for those trees and any other affected artifacts
-before changing them. The expanded goal does not waive preservation requirements.
+That backup now contains all five results trees, the results site/manifest, logs,
+experiments and nested repository changes. The initial 5,396 copied files were
+verified against their originals; the extension verified another 4,634 files from
+VO-LC, VIO, VIO-LC and GNSS-VIO. The backup records this in `VERIFIED` and
+`VERIFIED_ALL_MODES`, with checksum inventories and restoration instructions.
+Preserve and verify any additional affected artifacts before changing them.
 
 ## 1. Preserve all existing progress before implementation
 
@@ -276,3 +278,19 @@ additional machine time required for backups and re-evaluation. This supersedes
 the original VO-only 8–16 hour estimate. It is a planning estimate, not a deadline
 promise; calibration provenance gaps or unexpectedly large artifacts may change
 it. Give progress updates and continue until the defined scope is complete.
+
+## Copyable goal prompt
+
+Complete the benchmark repair for **VO, VO-LC, VIO, VIO-LC and GNSS-VIO**, following
+`/data/imoroz/vslam-benchmark/docs/codex-goal.md`. Preserve existing progress with
+verified commits and backups. Do not launch new estimator runs or add algorithms.
+
+Audit every configuration, repair issues recoverable from existing artifacts,
+re-evaluate saved trajectories, reconcile CSVs and reports, update documentation,
+and safely archive obsolete material. Preserve all TODO matrix formats. Award
+`N=3 ✅` only after documented scientific qualification; retain genuine failures,
+actual repetition counts, distinct input variants and explicit rerun requirements.
+
+Validate and commit the repairs. Report qualified results, unresolved blockers,
+required future runs, backup locations and commit hashes. Continue until all work
+possible within this scope is complete.
