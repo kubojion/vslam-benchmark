@@ -26,9 +26,13 @@
   separately. Actions remain unverified/blocked until their review prerequisites are
   discharged; no unresolved native crash is claimed fixed.
 - Remaining: finish configuration/reference/input qualification, applicable runner
-  fixes (including explicit GNSS input selection), integrate/reconcile CSVs and
+  fixes and execution-isolation checks, integrate/reconcile CSVs and
   reports, complete safe cleanup, and finalize the manifest/readiness assessment.
   See [future campaign preparation](docs/campaigns/future-n3-preparation.md).
+- GNSS input selection now preserves the actual file/hash and covariance/status
+  policy; non-default variants need an explicit input file. OKVIS2-X uses a private
+  per-attempt native conversion, avoiding shared-cache staleness. Four current inputs
+  validate without estimator execution; historical provenance gaps remain open.
 
 ## 2026-10-01 — Initial server inventory (before the repair above)
 

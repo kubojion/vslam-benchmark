@@ -94,6 +94,14 @@ def requirement_for(algorithm: str, run_type: str) -> Requirement | None:
     base = REQUIREMENTS.get(algorithm)
     if base is None:
         return None
+    if run_type == "gnss-vio":
+        return Requirement(
+            artifacts=base.artifacts | {"gnss_input", "gnss_input_manifest"} |
+                ({"gnss_native_input"} if algorithm == "okvis2x" else set()),
+            sources=base.sources, binaries=base.binaries,
+            parameters=base.parameters | {"gnss_variant", "gps_cov_xy", "gps_cov_z", "gps_status"},
+            environment=base.environment, container=base.container,
+        )
     if algorithm == "airslam" and run_type in {"vo-lc", "vio-lc"}:
         return Requirement(
             artifacts=base.artifacts | {"map_refinement_config"},

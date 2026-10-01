@@ -1,0 +1,76 @@
+{
+  "old_head": "7ed3a3c6911976770d0305ebe47975536c0d74e7",
+  "new_head": "a6fca67aa3c1367c3a686057b4cabb3b7579fab4",
+  "remote_base": "6c06c70fd6980c94c250867edce5af74fdfa3362",
+  "backup_ref": "refs/heads/backup/author-before-20261001T114608Z",
+  "cutoff": "after 2026-09-23 Europe/Warsaw",
+  "identity": "kubojion <161458080+kubojion@users.noreply.github.com>",
+  "commits": [
+    {
+      "old": "6a416844e5327dfe99c2c1441a6e93dc70f17713",
+      "new": "6a416844e5327dfe99c2c1441a6e93dc70f17713",
+      "identity_changed": false,
+      "subject": "Fix missing ZED run modes"
+    },
+    {
+      "old": "ff8ffaaf38dabae7e15e87c0364221f985c6bd1c",
+      "new": "ff8ffaaf38dabae7e15e87c0364221f985c6bd1c",
+      "identity_changed": false,
+      "subject": "Prepare final quality campaign"
+    },
+    {
+      "old": "5b4b6e5c852020d6942c7e4cd449d240cc97a49c",
+      "new": "5b4b6e5c852020d6942c7e4cd449d240cc97a49c",
+      "identity_changed": false,
+      "subject": "Fix OKVIS cleanup status"
+    },
+    {
+      "old": "8e62998c992c9aaef5a0ddc0df2a8d2512fb1f76",
+      "new": "22a63852e0a0ee34a77db9ffb6996c0eabea288a",
+      "identity_changed": true,
+      "subject": "Checkpoint existing workspace before VO evaluation repair"
+    },
+    {
+      "old": "1926e085c284c6e6ace961685892bc6e91c1ede4",
+      "new": "1041206e1af8fc2b2af6af1c18fd9af24afe913b",
+      "identity_changed": true,
+      "subject": "Expand repair goal to all benchmark configurations"
+    },
+    {
+      "old": "a836fc3f9076b7d4e50f75551df89fab25164ee8",
+      "new": "0feafef55d93686642ef58c44988b036ed4ed762",
+      "identity_changed": true,
+      "subject": "Record verified all-mode backups and reusable repair goal"
+    },
+    {
+      "old": "13a8fc77097b5f690faacc91731e051893e735b2",
+      "new": "0a0566c70d42768b51fb99054f73a0fa6852b0db",
+      "identity_changed": true,
+      "subject": "Stage auditable evaluation with explicit pose frames and corrected metrics"
+    },
+    {
+      "old": "0c27cff7e96b8d95a42d82348e7cb080c7e568f8",
+      "new": "335ca828d0bbb6ac0594b56f39f8f8007d275fa3",
+      "identity_changed": true,
+      "subject": "Extend repair goal with future five-mode N3 campaign preparation"
+    },
+    {
+      "old": "4f561e1ab8706dd9c98fdcf5c5e41eaaa678e5b1",
+      "new": "c288f1cf397361aee1df0eece0fba10ad429a819",
+      "identity_changed": true,
+      "subject": "Validate sensor profile selection and MAC-VO native exports"
+    },
+    {
+      "old": "a82832e4be005be671a3f5895fc8c162c5f7d842",
+      "new": "a01fcd9ec35abeae5fdc64bd2748113210b50551",
+      "identity_changed": true,
+      "subject": "Preserve attempts and evaluate every repetition before continuing"
+    },
+    {
+      "old": "7ed3a3c6911976770d0305ebe47975536c0d74e7",
+      "new": "a6fca67aa3c1367c3a686057b4cabb3b7579fab4",
+      "identity_changed": true,
+      "subject": "Reconcile staged attempts and prepare guarded five-mode N3 actions"
+    }
+  ]
+}

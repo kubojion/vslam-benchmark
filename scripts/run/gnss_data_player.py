@@ -33,6 +33,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+from _gnss_input import read_gnss_csv, fix_uncertainty
 import sys
 import time
 from pathlib import Path
@@ -84,43 +85,7 @@ def _load_cam(csv_path: Path, img_dir: Path):
 
 
 def _load_gps(csv_path: Path):
-    """Return list of (t_ns, lat, lon, alt, cov_xx, cov_yy, cov_zz, status).
-
-    Columns 4-7 (cov + status) default to 0 when not present in the file.
-    Input timestamps are seconds (float) and converted to nanoseconds.
-    """
-    out = []
-    with csv_path.open() as f:
-        rd = csv.reader(f)
-        # Skip header line.
-        first = next(rd, None)
-        if first is None:
-            return out
-        # First row may be header or data: try to parse.
-        rows = []
-        try:
-            float(first[0])
-            rows.append(first)
-        except (ValueError, IndexError):
-            pass  # header
-        rows.extend(rd)
-        for row in rows:
-            if not row:
-                continue
-            try:
-                t_s = float(row[0])
-                lat = float(row[1])
-                lon = float(row[2])
-                alt = float(row[3])
-            except (ValueError, IndexError):
-                continue
-            cov_xx = float(row[4]) if len(row) > 4 and row[4] else 0.0
-            cov_yy = float(row[5]) if len(row) > 5 and row[5] else 0.0
-            cov_zz = float(row[6]) if len(row) > 6 and row[6] else 0.0
-            status = int(float(row[7])) if len(row) > 7 and row[7] else 0
-            out.append((int(t_s * 1e9), lat, lon, alt, cov_xx, cov_yy, cov_zz, status))
-    out.sort(key=lambda r: r[0])
-    return out
+    return read_gnss_csv(csv_path)
 
 
 def _ros_time(t_ns: int) -> rospy.Time:
@@ -260,13 +225,11 @@ def main() -> int:
             msg.longitude = lon
             msg.altitude = alt
             # Status / service: prefer CSV value when present, else CLI default.
-            msg.status.status = int(status) if status else int(args.gps_status)
+            covariance, fix_status = fix_uncertainty((cov_xx,cov_yy,cov_zz), status, args.gps_cov_xy, args.gps_cov_z, args.gps_status)
+            msg.status.status = fix_status
             msg.status.service = NavSatStatus.SERVICE_GPS
             # Covariance: prefer CSV values when nonzero, else CLI defaults.
-            if cov_xx > 0 or cov_yy > 0 or cov_zz > 0:
-                cxx, cyy, czz = cov_xx, cov_yy, cov_zz
-            else:
-                cxx, cyy, czz = args.gps_cov_xy, args.gps_cov_xy, args.gps_cov_z
+            cxx, cyy, czz = covariance
             msg.position_covariance = [
                 cxx, 0.0, 0.0,
                 0.0, cyy, 0.0,

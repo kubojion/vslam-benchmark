@@ -114,6 +114,26 @@ enrich_run_meta() {
     python3 "$WS/scripts/run/_enrich_run_meta.py" "$meta_path" "$@"
 }
 
+# Freeze the actual GNSS CSV for this physical attempt. A variant label alone
+# cannot select an input. Containers already mount results at /results.
+prepare_gnss_input() {
+    local out="${1:?fresh output directory required}"
+    local sequence_dir="${2:?sequence directory required}"
+    local input_csv="${GNSS_CSV:-$sequence_dir/gps.csv}"
+    local explicit=()
+    [[ -z "${GNSS_CSV:-}" ]] || explicit=(--explicit-source)
+    [[ "$input_csv" = /* ]] || input_csv="$WS/$input_csv"
+    export GNSS_VARIANT="${GNSS_VARIANT:-default}"
+    export GPS_COV_XY="${GPS_COV_XY:-1.0}"
+    export GPS_COV_Z="${GPS_COV_Z:-4.0}"
+    export GPS_STATUS="${GPS_STATUS:-0}"
+    python3 "$WS/scripts/run/_gnss_input.py" "$input_csv" "$out/gnss_input.csv" \
+        --variant "$GNSS_VARIANT" "${explicit[@]}" \
+        --cov-xy "$GPS_COV_XY" --cov-z "$GPS_COV_Z" --status "$GPS_STATUS" || return "$?"
+    export GNSS_INPUT="$out/gnss_input.csv"
+    export GNSS_INPUT_CONT="/${out#"$WS/"}/gnss_input.csv"
+}
+
 record_failed_run_meta() {
     local meta_path="${1:?meta path required}"
     local algo="${2:?algorithm required}"

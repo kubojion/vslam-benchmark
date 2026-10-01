@@ -51,11 +51,10 @@ GNSS_VARIANT="${GNSS_VARIANT:-default}"
     || { echo "[vins_fusion] missing $SEQ_DIR/mav0/cam{0,1}/data" >&2; exit 2; }
 [[ -f "$SEQ_DIR/mav0/imu0/data.csv" ]] \
     || { echo "[vins_fusion] missing IMU $SEQ_DIR/mav0/imu0/data.csv" >&2; exit 2; }
-[[ -f "$SEQ_DIR/gps.csv" ]] \
-    || { echo "[vins_fusion] missing GPS $SEQ_DIR/gps.csv" >&2; exit 2; }
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
+prepare_gnss_input "$OUT_DIR" "$SEQ_DIR"
 echo "[vins_fusion] $DATASET/$SEQ run=${RUN_ID} -> $OUT_DIR" | tee "$LOG"
 
 # ---- Ensure container ------------------------------------------------------
@@ -128,12 +127,13 @@ sleep 10
 docker exec "$CONTAINER" bash -c "
     source /opt/ros/noetic/setup.bash &&
     python3 $PLAYER_CONT $DATAROOT_CONT \
+        --gps-csv $GNSS_INPUT_CONT --gps-status $GPS_STATUS \
         --rate 1.0 --start-delay 1.0 --end-wait 5.0 \
         --imu-topic /imu0 \
         --cam0-topic /cam0/image_raw \
         --cam1-topic /cam1/image_raw \
         --gps-topic /gps \
-        --gps-cov-xy 1.0 --gps-cov-z 4.0 \
+        --gps-cov-xy $GPS_COV_XY --gps-cov-z $GPS_COV_Z \
         --stats-out /results/$RUN_TYPE/$DATASET/$SEQ/vins_fusion_gps/run${RUN_ID}/transport_stats.json
 " 2>&1 | tee -a "$LOG"
 
@@ -178,6 +178,8 @@ print(json.dumps({
 }))
 " > "$OUT_DIR/run_meta.json"
 enrich_run_meta "$OUT_DIR/run_meta.json" \
+    --artifact "gnss_input=$GNSS_INPUT" --artifact "gnss_input_manifest=$OUT_DIR/gnss_input.json" \
+    --param "gps_cov_xy=$GPS_COV_XY" --param "gps_cov_z=$GPS_COV_Z" --param "gps_status=$GPS_STATUS" \
     --measurement-mode transport \
     --transport-stats "$OUT_DIR/transport_stats.json" \
     --artifact "estimator_config=$CFG_HOST" \

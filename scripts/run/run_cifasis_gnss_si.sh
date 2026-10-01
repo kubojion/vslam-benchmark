@@ -53,11 +53,10 @@ CFG_CONT="/benchmark_configs/cifasis_gnss_si/$(basename "$CFG_HOST")"
     || { echo "[cifasis_gnss_si] missing $SEQ_DIR/mav0/cam{0,1}/data" >&2; exit 2; }
 [[ -f "$SEQ_DIR/mav0/imu0/data.csv" ]] \
     || { echo "[cifasis_gnss_si] missing IMU $SEQ_DIR/mav0/imu0/data.csv" >&2; exit 2; }
-[[ -f "$SEQ_DIR/gps.csv" ]] \
-    || { echo "[cifasis_gnss_si] missing GPS $SEQ_DIR/gps.csv" >&2; exit 2; }
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
+prepare_gnss_input "$OUT_DIR" "$SEQ_DIR"
 echo "[cifasis_gnss_si] $DATASET/$SEQ run=${RUN_ID} -> $OUT_DIR" | tee "$LOG"
 echo "[cifasis_gnss_si] config: $CFG_HOST" | tee -a "$LOG"
 
@@ -138,6 +137,7 @@ sleep 8
 docker exec "$CONTAINER" bash -c "
     source /opt/ros/noetic/setup.bash &&
     python3 $PLAYER_CONT $DATAROOT_CONT \
+        --gps-csv $GNSS_INPUT_CONT --gps-status $GPS_STATUS \
         --rate 1.0 --start-delay 1.0 --end-wait 5.0 \
         --cam0-topic /stereo/left/image_raw \
         --cam1-topic /stereo/right/image_raw \
@@ -188,12 +188,13 @@ print(json.dumps({
 }))
 " > "$OUT_DIR/run_meta.json"
 enrich_run_meta "$OUT_DIR/run_meta.json" \
+    --artifact "gnss_input=$GNSS_INPUT" --artifact "gnss_input_manifest=$OUT_DIR/gnss_input.json" \
+    --param "gps_cov_xy=$GPS_COV_XY" --param "gps_cov_z=$GPS_COV_Z" --param "gps_status=$GPS_STATUS" \
     --measurement-mode transport \
     --transport-stats "$OUT_DIR/transport_stats.json" \
     --artifact "estimator_config=$CFG_HOST" \
     --artifact "vocabulary=$WS/src/cifasis_gnss_si/Vocabulary/ORBvoc.txt.tar.gz" \
     --source "algorithm=$WS/src/cifasis_gnss_si" \
-    --param "gps_cov_xy=$GPS_COV_XY" --param "gps_cov_z=$GPS_COV_Z" \
     --param "playback_rate=1.0" --param "gnss_variant=$GNSS_VARIANT" \
     --container "$CONTAINER"
 

@@ -45,11 +45,10 @@ CFG_HOST="$WS/configs/rtabmap_gps/benchmark.ini"
     || { echo "[rtabmap_gps] missing $SEQ_DIR/mav0/cam{0,1}/data" >&2; exit 2; }
 [[ -f "$SEQ_DIR/mav0/imu0/data.csv" ]] \
     || { echo "[rtabmap_gps] missing IMU $SEQ_DIR/mav0/imu0/data.csv" >&2; exit 2; }
-[[ -f "$SEQ_DIR/gps.csv" ]] \
-    || { echo "[rtabmap_gps] missing GPS $SEQ_DIR/gps.csv" >&2; exit 2; }
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
+prepare_gnss_input "$OUT_DIR" "$SEQ_DIR"
 echo "[rtabmap_gps] $DATASET/$SEQ run=${RUN_ID} -> $OUT_DIR" | tee "$LOG"
 echo "[rtabmap_gps] config: $CFG_HOST" | tee -a "$LOG"
 
@@ -195,6 +194,8 @@ if [[ -x "$WS/scripts/run/gnss_data_player_ros2.py" ]]; then
     python3 "$WS/scripts/run/gnss_data_player_ros2.py" "$SEQ_DIR" \
         --rate 1.0 --start-delay 1.0 --end-wait 3.0 \
         --gps-topic /fix \
+    --gps-csv "$GNSS_INPUT" --gps-status "$GPS_STATUS" \
+    --gps-cov-xy "$GPS_COV_XY" --gps-cov-z "$GPS_COV_Z" \
         --cam-width  "$CAM_W"  --cam-height   "$CAM_H" \
         --cam-fx     "$CAM_FX" --cam-fy       "$CAM_FY" \
         --cam-cx     "$CAM_CX" --cam-cy       "$CAM_CY" \
@@ -265,6 +266,8 @@ print(json.dumps({
 }))
 " > "$OUT_DIR/run_meta.json"
 enrich_run_meta "$OUT_DIR/run_meta.json" \
+    --artifact "gnss_input=$GNSS_INPUT" --artifact "gnss_input_manifest=$OUT_DIR/gnss_input.json" \
+    --param "gps_cov_xy=$GPS_COV_XY" --param "gps_cov_z=$GPS_COV_Z" --param "gps_status=$GPS_STATUS" \
     --measurement-mode transport \
     --transport-stats "$OUT_DIR/transport_stats.json" \
     --artifact "estimator_config=$CFG_HOST" \

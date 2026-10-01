@@ -41,6 +41,14 @@ VO-LC, VIO, VIO-LC and GNSS-VIO. The backup records this in `VERIFIED` and
 `VERIFIED_ALL_MODES`, with checksum inventories and restoration instructions.
 Preserve and verify any additional affected artifacts before changing them.
 
+Attribution maintenance outside this repair rewrote eight post-2026-09-23 commit
+identities on 2026-10-01, with file trees unchanged. Keep the historical hashes in
+run provenance and backup records unchanged. The original checkpoint above maps
+to `22a63852e0a0ee34a77db9ffb6996c0eabea288a`; see the preserved
+[old-to-new mapping](campaigns/git-author-rewrite-20261001.json). Original history
+remains under `backup/author-before-20261001T114608Z`. The maintenance push failed;
+no repair push is authorized. Re-read Git status/history before further commits.
+
 ## 1. Preserve all existing progress before implementation
 
 1. Re-read applicable repository instructions. Inventory Git status, active jobs,

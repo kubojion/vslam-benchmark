@@ -16,10 +16,12 @@ require a fresh physical attempt under a corrected configuration cohort.
 Six historical GNSS input-variant experiments remain separate from those default
 cells. They are retained, evaluated and audited, not merged to obtain three default
 repetitions or automatically expanded into new experiments. Their input provenance
-and variant selection need repair: `GNSS_VARIANT` currently labels metadata while
-the runners still consume `gps.csv`. A label alone does not establish which GNSS
-measurements or covariances were used. The players support explicit CSV selection,
-but that selection still needs wiring and validation in the runners.
+and historical variant provenance need review. The repaired runners now require an
+explicit `GNSS_CSV` for a non-default `GNSS_VARIANT`, copy the selected CSV into the
+attempt, and record its hash, fallback covariance and status policy. Players consume
+that preserved copy. A label alone still does not establish the physical source or
+accuracy of historical GNSS measurements; missing run-time evidence is not recreated
+from today's files.
 
 Inventory: `results/repair-20261001/inventory.json`. This reconciles all 660 default
 slots, plus 15 historical excluded artifacts, six GNSS variants and nine other
@@ -108,3 +110,33 @@ checks, successful manifest generation, or a saved valid trajectory alone. Nativ
 ORB crashes, ZED inertial calibration uncertainty, AirSLAM rectification/keyframe
 semantics, GNSS provenance and remaining reference transforms stay explicit until
 resolved. No execution problem is claimed fixed solely because the wrapper changed.
+
+## GNSS input repair validation
+
+All five GNSS wrappers now preserve the selected input, including the default
+`gps.csv`, before execution. Non-default labels require `GNSS_CSV=<explicit file>`;
+relative paths are resolved against the repository. Covariance fallbacks remain
+`GPS_COV_XY=1.0` and `GPS_COV_Z=4.0` in square metres unless explicitly supplied.
+`GPS_STATUS=0` is the fallback only when the CSV lacks a status. CSV status 0 is
+preserved; status -1 fixes are excluded. Invalid order, non-finite positions and
+negative variances are rejected rather than silently sorted/skipped.
+
+OKVIS2-X generates a new native GPS CSV in a private per-attempt input view. It
+links the existing camera/IMU directories and never mutates or trusts the shared
+`mav0/gps0/data_raw.csv` merely because that file exists. Horizontal covariance is
+converted to the isotropic standard deviation its reader requires; vertical
+variance is square-rooted independently. The converter refuses replacement.
+
+The four current source files pass read-only validation (4,703/3,982 Rosario fixes;
+7,620/1,939 Horti fixes). Their existing native caches have identical position and
+standard-deviation values to fresh conversion. Timestamp differences are at most
+232 ns from previous floating-point conversion. Thus this audit found no current
+cache position mismatch; the repair prevents future stale-input reuse. It does not
+prove which bytes legacy runs actually consumed. Evidence is recorded in
+`results/repair-20261001/gnss-input-validation.json`.
+
+Ninety tests plus three subtests pass, including variant/file binding, immutable
+input copies, zero-status handling, covariance units, invalid inputs, no-fix
+filtering and container-path mapping. Shell syntax and Python compilation pass.
+No ROS estimator or GNSS campaign was run; fusion, native crashes, reference frames
+and process isolation remain separate readiness checks.

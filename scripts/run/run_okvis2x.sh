@@ -77,18 +77,22 @@ APP="$WS/src/okvis2x/build/okvis_app_synchronous"
 [[ -f "$WS/src/okvis2x/build/small_voc.yml.gz" ]] \
     || { echo "[okvis2x] missing small_voc.yml.gz next to $APP — re-run scripts/build/build_okvis2x.sh" >&2; exit 2; }
 
-# GNSS: the geodetic reader expects mav0/gps0/data_raw.csv.
-if [[ "$RUN_TYPE" == "gnss-vio" ]]; then
-    if [[ ! -f "$SEQ_DIR/mav0/gps0/data_raw.csv" ]]; then
-        [[ -f "$SEQ_DIR/gps.csv" ]] \
-            || { echo "[okvis2x] missing $SEQ_DIR/gps.csv (needed for gnss-vio)" >&2; exit 2; }
-        echo "[okvis2x] generating mav0/gps0/data_raw.csv from gps.csv ..."
-        python3 "$WS/scripts/data/gps_to_okvis2x.py" "$SEQ_DIR"
-    fi
-fi
-
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
+INPUT_MAV0="$SEQ_DIR/mav0"
+if [[ "$RUN_TYPE" == "gnss-vio" ]]; then
+    prepare_gnss_input "$OUT_DIR" "$SEQ_DIR"
+    # Private lightweight dataset view: never reuse/mutate the shared GPS cache.
+    INPUT_MAV0="$OUT_DIR/input/mav0"
+    mkdir -p "$INPUT_MAV0/gps0"
+    for sensor in cam0 cam1 imu0; do
+        ln -s "$SEQ_DIR/mav0/$sensor" "$INPUT_MAV0/$sensor"
+    done
+    GNSS_H_ERR=$(python3 -c 'import math,sys;print(math.sqrt(float(sys.argv[1])))' "$GPS_COV_XY")
+    GNSS_V_ERR=$(python3 -c 'import math,sys;print(math.sqrt(float(sys.argv[1])))' "$GPS_COV_Z")
+    python3 "$WS/scripts/data/gps_to_okvis2x.py" "$SEQ_DIR" --source "$GNSS_INPUT" \
+        --output "$INPUT_MAV0/gps0/data_raw.csv" --h-err "$GNSS_H_ERR" --v-err "$GNSS_V_ERR"
+fi
 echo "[okvis2x] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL"
 
 # ── Generate EuRoC data.csv manifests if missing ─────────────────────────────
@@ -153,7 +157,7 @@ fi
 START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
 set +e
-( cd "$OUT_DIR" && "${RUN_PREFIX[@]}" "$APP" "$CFG" "$SEQ_DIR/mav0" "$OUT_DIR" ) 2>&1 | \
+( cd "$OUT_DIR" && "${RUN_PREFIX[@]}" "$APP" "$CFG" "$INPUT_MAV0" "$OUT_DIR" ) 2>&1 | \
   python3 -u -c "
 import sys, time
 t0 = time.time()
@@ -176,6 +180,13 @@ PROV_ARGS=(
     --param "use_lc=$USE_LC"
     --param "use_gnss=$USE_GNSS"
 )
+if [[ "$RUN_TYPE" == "gnss-vio" ]]; then
+    PROV_ARGS+=(--artifact "gnss_input=$GNSS_INPUT"
+        --artifact "gnss_input_manifest=$OUT_DIR/gnss_input.json"
+        --artifact "gnss_native_input=$INPUT_MAV0/gps0/data_raw.csv"
+        --param "gnss_variant=$GNSS_VARIANT" --param "gps_cov_xy=$GPS_COV_XY"
+        --param "gps_cov_z=$GPS_COV_Z" --param "gps_status=$GPS_STATUS")
+fi
 if (( OKVIS_RC != 0 )); then
     record_failed_run_meta "$OUT_DIR/run_meta.json" okvis2x "$DATASET" "$SEQ" \
         "$RUN_ID" "$RUN_TYPE" "$OKVIS_RC" "estimator exited nonzero" "${PROV_ARGS[@]}"

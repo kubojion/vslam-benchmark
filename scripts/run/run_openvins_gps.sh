@@ -47,8 +47,6 @@ GNSS_VARIANT="${GNSS_VARIANT:-default}"
     || { echo "[openvins_gps] missing $SEQ_DIR/mav0/cam{0,1}/data" >&2; exit 2; }
 [[ -f "$SEQ_DIR/mav0/imu0/data.csv" ]] \
     || { echo "[openvins_gps] missing IMU data" >&2; exit 2; }
-[[ -f "$SEQ_DIR/gps.csv" ]] \
-    || { echo "[openvins_gps] missing $SEQ_DIR/gps.csv" >&2; exit 2; }
 docker image inspect openvins:humble >/dev/null 2>&1 \
     || { echo "[openvins_gps] openvins:humble image not found - build it first" >&2; exit 2; }
 dpkg -l ros-humble-robot-localization &>/dev/null \
@@ -80,6 +78,7 @@ esac
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
+prepare_gnss_input "$OUT_DIR" "$SEQ_DIR"
 echo "[openvins_gps] $DATASET/$SEQ run=${RUN_ID} -> $OUT_DIR" | tee "$LOG"
 : > "$OUT_DIR/player.log"
 
@@ -192,6 +191,8 @@ python3 "$WS/scripts/run/gnss_data_player_ros2.py" \
     --cam-cx "$CAM_CX" --cam-cy "$CAM_CY" \
     --cam-baseline "$CAM_BASELINE" \
     --frame-id-gps gps \
+    --gps-csv "$GNSS_INPUT" --gps-status "$GPS_STATUS" \
+    --gps-cov-xy "$GPS_COV_XY" --gps-cov-z "$GPS_COV_Z" \
     --stats-out "$OUT_DIR/transport_stats.json" \
     2>&1 | tee -a "$OUT_DIR/player.log" "$LOG"
 
@@ -227,6 +228,8 @@ Path("$OUT_DIR/run_meta.json").write_text(json.dumps(d, indent=2))
 print("[openvins_gps] run_meta.json written")
 PYEOF
 enrich_run_meta "$OUT_DIR/run_meta.json" \
+    --artifact "gnss_input=$GNSS_INPUT" --artifact "gnss_input_manifest=$OUT_DIR/gnss_input.json" \
+    --param "gps_cov_xy=$GPS_COV_XY" --param "gps_cov_z=$GPS_COV_Z" --param "gps_status=$GPS_STATUS" \
     --measurement-mode transport \
     --transport-stats "$OUT_DIR/transport_stats.json" \
     --artifact "estimator_config=$OV_CFG_DIR/estimator_config.yaml" \

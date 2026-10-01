@@ -205,6 +205,14 @@ Remaining reference-frame and publication qualification blockers still apply.
 
 ## Future campaign scope extension
 
+Attribution bookkeeping on 2026-10-01 rewrote eight repair-era commit identities
+to kubojion. All eleven mapped old/new commit trees (including three unchanged
+August commits) were independently checked and are identical. See the preserved
+[mapping](campaigns/git-author-rewrite-20261001.json). The original history is kept
+at `backup/author-before-20261001T114608Z` and in the external author-rewrite backup.
+Historical run/source and backup hashes remain unchanged. The reported push failed;
+the repair continues locally under the existing no-push restriction.
+
 The user extended the active goal to prepare an executable future N=3 campaign in
 all five modes, retaining the current exclusions and the no-estimator-execution
 restriction. The original four-mode campaign remains a historical 600-attempt
@@ -247,7 +255,17 @@ recommendation to rerun 567 results. Hash-checked manifest validation passes and
 `--require-ready` correctly fails with 660 unready actions. Eighty tests plus three
 subtests pass, including matrix-format preservation and no partial launch before
 detecting a blocked selection. See [the preparation record](campaigns/future-n3-preparation.md)
-for commands, scope, runtime limits and unresolved GNSS variant selection.
+for commands, scope, runtime limits and unresolved historical GNSS provenance.
+
+The subsequent GNSS input repair binds every future run to a preserved CSV/hash
+and recorded variance/status policy. All five wrappers select that saved input;
+OKVIS2-X converts into a private input view rather than an existence-only dataset
+cache. ROS 1, ROS 2 and the native converter share strict parsing, preserve status 0,
+exclude explicit no-fix rows and fill missing covariance per axis. The four current
+CSV files validate, and their old native caches match position/uncertainty values
+(at most 232 ns timestamp rounding difference). No historical source bytes were
+overwritten or retroactively attributed to a run. Ninety tests plus three subtests
+pass; see [the detailed validation](campaigns/future-n3-preparation.md#gnss-input-repair-validation).
 
 Outstanding before this goal is complete:
 
