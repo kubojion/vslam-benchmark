@@ -130,7 +130,15 @@ source CSVs or report contents. This proves reconciliation with the hash-checked
 inventory, not scientific correctness by itself. Replaced derived files are
 preserved under `results/.derived-history/` before atomic replacement.
 
-Legacy trajectory/segment/FPS figures and the browser still need schema-3
-integration and promotion. They must not be presented as current repaired evidence.
+The browser generator now consumes the same inventory, with separate numerical,
+execution, qualification, variant and membership fields. Its schema-2 manifest and
+690-entry browser are staged at `results/repair-20261001/browser-manifest.json` and
+`results/repair-20261001/site/`. Root browser promotion is still pending. Each detail
+page links the current numerical evaluation separately from historical artifacts;
+legacy figures are labelled and not previewed as repaired plots. Historical/smoke
+entries are outside the default browser filter.
+
+Legacy trajectory/segment/FPS figures still need replacement with validated figures
+or archival. They must not be presented as current repaired evidence.
 The earlier hand-transcribed/legacy report definitions are preserved in Git and the
 verified pre-repair backup, rather than mixed with this protocol.

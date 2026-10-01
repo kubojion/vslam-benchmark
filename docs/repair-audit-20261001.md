@@ -356,3 +356,21 @@ recorded clean source revision. Current action counts are 24 required reruns
 (six ORB FPS plus 18 AirSLAM fusion cases), 87 missing and 549 blocked/review;
 no qualified reuse or execution readiness is claimed. The runtime subtotal remains
 36.1 hours for 19 known actions; 92 missing/rerun actions have unknown runtime.
+
+## Browser integration stage
+
+The browser now uses the authoritative inventory rather than scanning COMPLETE
+markers. Its 690 entries comprise 660 planned default repetitions and all 30
+separately identified variant/historical/smoke artifacts. Numerical outcomes,
+execution, source provenance, scientific qualification, cohorts and variants are
+shown separately; absent run hardware is not replaced by the generator host.
+Stale inventory/CSV/evaluation hashes are rejected. Current numerical JSONs are
+linked separately from historical saved evaluation artifacts.
+
+Legacy images are retained and labelled `historical_derived`, with no previews
+suggesting that they were regenerated under schema 3. Historical/smoke artifacts
+are outside the initial browser filter. New builds use a unique temporary directory;
+an existing site is moved into `results/.derived-sites/` before replacement.
+The staged browser is under `results/repair-20261001/site/`; root promotion and
+validated figure replacement remain outstanding. Browser regression tests pass,
+and a local link audit is saved as `browser-validation.json` in the staging tree.

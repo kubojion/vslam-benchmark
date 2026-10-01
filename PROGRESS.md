@@ -48,6 +48,10 @@
   say `rerun: rectified IMU`; previous results are retained. Future refinement
   retries are disabled. The draft manifest now has 24 reruns, 87 missing and 549
   blocked/review cases, with none certified ready to execute.
+- Connected the staged results browser to the same hash-checked inventory: 690
+  planned/artifact entries, with failures, missing runs, variants and scientific
+  blockers explicit. Historical plots are labelled rather than previewed as current
+  figures. Browser source CSVs must match the inventory before generation.
 
 ## 2026-10-01 — Initial server inventory (before the repair above)
 

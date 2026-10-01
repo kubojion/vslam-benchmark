@@ -362,6 +362,45 @@ class MeasurementHelperTests(unittest.TestCase):
 
 
 class ManifestAndSiteTests(unittest.TestCase):
+    def test_browser_refuses_changed_current_evaluation(self):
+        import hashlib
+        module=load_script('build_site')
+        with tempfile.TemporaryDirectory() as raw:
+            module.REPO=Path(raw);module.RESULTS=Path(raw)/'results'
+            source=module.RESULTS/'stage/run_eval.json';source.parent.mkdir(parents=True)
+            source.write_text('{"eval_schema": 3}')
+            run={'evaluation_path':'results/stage/run_eval.json',
+                 'evaluation_sha256':hashlib.sha256(source.read_bytes()).hexdigest()}
+            artifact={'path':'repaired_run_eval.json','source_path':run['evaluation_path']}
+            output=Path(raw)/'export/repaired_run_eval.json'
+            module.artifact_copy(run,artifact,output)
+            saved=output.read_bytes();source.write_text('{"eval_schema": 2}')
+            with self.assertRaisesRegex(ValueError,'changed'):
+                module.artifact_copy(run,artifact,output)
+            self.assertEqual(output.read_bytes(),saved)
+
+    def test_reconciled_browser_keeps_qualification_and_historical_scope_explicit(self):
+        module = load_script('build_site')
+        run = dict(path='vo/dataset/sequence/algorithm/run1',run_type='vo',dataset='dataset',
+                   sequence='sequence',algorithm='algorithm',repeat=1,status='ok',
+                   scientific_status='rerun_required',scientific_blockers=['bad calibration'],
+                   process_exit_code=139,execution_status='exited_nonzero',
+                   campaign_membership='historical_excluded',input_variant='default',
+                   metrics={'primary_ate_rmse_m':.1,'primary_alignment':'sim3','coverage_gap_pct':None},
+                   artifacts=[{'path':'old.png','interpretation':'historical_derived'}])
+        module.artifact_copy=lambda *args: Path('fake')
+        index=module.index_page({'runs':[run]}, {run['path']:'run.html'})
+        detail=module.run_page(run,'run.html','files')
+        self.assertIn('data-headline="no"', index)
+        self.assertIn('rerun_required', index)
+        self.assertIn('historical_excluded', detail)
+        self.assertIn('bad calibration', detail)
+        self.assertIn('exited_nonzero; exit 139', detail)
+        self.assertIn('0.1000 (sim3)', detail)
+        self.assertIn('Dense coverage [%]</dt><dd>unknown', detail)
+        self.assertIn('historical_derived', detail)
+        self.assertNotIn('<img', detail)
+
     def test_manifest_labels_legacy_and_invalid_provenance(self):
         module = load_script("build_manifest")
         with tempfile.TemporaryDirectory() as raw:
@@ -374,7 +413,7 @@ class ManifestAndSiteTests(unittest.TestCase):
             module.validate = lambda _: []
             module.validate_provenance = lambda *_args, **_kwargs: []
             legacy = module.run_entry("vo", run)
-            self.assertEqual(legacy["status"], "complete")
+            self.assertEqual(legacy["status"], "unreconciled")
             self.assertEqual(legacy["provenance_status"], "legacy")
 
             (run / "run_meta.json").write_text(json.dumps({"run_id": 1, "provenance_schema": 2}))
