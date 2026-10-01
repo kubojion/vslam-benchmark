@@ -31,6 +31,9 @@ def pipeline_evidence(repo):
 
 
 def action_category(cell,attempt,decision):
+    findings=attempt.get('confirmed_protocol_findings',[])
+    if findings:
+        return 'required_rerun',';'.join(f['code'] for f in findings)
     if cell['algorithm']=='orbslam3' and cell['dataset']=='zed2i' and cell['run_type'] in ('vo','vo-lc'):
         return 'required_rerun','camera_fps_changed_15_to_10'
     if not attempt['exists']:
@@ -54,6 +57,7 @@ def build(repo,inventory,inventory_path,decisions):
         for repetition,attempt in enumerate(cell['attempts'],1):
             category,reason=action_category(cell,attempt,decision)
             prerequisites=list(decision.get('blockers',[]))
+            prerequisites.extend(f['prerequisite'] for f in attempt.get('confirmed_protocol_findings',[]))
             if not decision.get('review_complete'):
                 prerequisites.append('complete_cell_configuration_input_and_claim_review')
             if category=='blocked':prerequisites.append(reason)

@@ -30,7 +30,7 @@ distortion_type: 0   # 0 = undistorted / pre-rectified input
 cam0:
   intrinsics: [648.8624, 648.8624, 645.0113, 348.2427]  # fx fy cx cy
   distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
-  T_type: 0           # EuRoC format, T is Tbc (body -> camera)
+  T_type: 0           # EuRoC format, T is Tbc (camera -> body)
   T:
   - [1.0, 0.0, 0.0,  0.0]
   - [0.0, 1.0, 0.0,  0.0]

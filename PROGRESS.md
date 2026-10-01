@@ -42,6 +42,12 @@
   DPVO uses Sim(3) in headline cells, and unknown instrumentation stays blank.
   Regeneration checks pass; root exports/browser promotion and scientific review
   remain unfinished. One hundred tests plus three subtests pass for this stage.
+- Confirmed AirSLAM's raw/rectified IMU-axis mismatch in the recorded EuRoC source
+  and all 18 saved VIO/VIO-LC configs. Prepared a source patch and checked its
+  geometry without applying/building/running it. The six affected matrix cells now
+  say `rerun: rectified IMU`; previous results are retained. Future refinement
+  retries are disabled. The draft manifest now has 24 reruns, 87 missing and 549
+  blocked/review cases, with none certified ready to execute.
 
 ## 2026-10-01 — Initial server inventory (before the repair above)
 

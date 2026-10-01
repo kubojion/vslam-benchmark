@@ -9,8 +9,8 @@
 # distortion_type: 1 (radial-tangential / radtan).
 #
 # Intrinsics and distortion from EuRoC sensor.yaml.
-# T_BS (body -> sensor) matrices taken directly from sensor.yaml;
-# T_type: 0 = EuRoC convention (T is T_bc = body -> camera).
+# T_BS (sensor -> body) matrices taken directly from sensor.yaml;
+# T_type: 0 = EuRoC convention (T is T_bc = camera -> body).
 
 image_height: 480
 image_width:  752
@@ -26,7 +26,7 @@ distortion_type: 1   # 1 = radtan [k1, k2, p1, p2, k3]
 cam0:
   intrinsics: [458.654, 457.296, 367.215, 248.375]
   distortion_coeffs: [-0.28340811, 0.07395907, 0.00019359, 1.76187114e-05, 0.0]
-  T_type: 0    # EuRoC format: T is T_bc (body -> camera)
+  T_type: 0    # EuRoC format: T is T_bc (camera -> body)
   T:
   - [ 0.0148655429818, -0.999880929698,  0.00414029679422, -0.0216401454975]
   - [ 0.999557249008,   0.0149672133247, 0.025715529948,   -0.064676986768 ]

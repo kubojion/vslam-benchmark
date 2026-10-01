@@ -335,3 +335,24 @@ semantics, preserved failures/variants, inventory hash invalidation and read-onl
 regeneration checks. Outputs remain in staging while qualification, browser/figure
 integration and promotion are finished. This is an export-repair milestone, not
 completion of the goal or certification of future execution readiness.
+
+## Confirmed AirSLAM fusion-frame issue
+
+The subsequent [AirSLAM rectification audit](airslam-rectification-audit.md)
+confirms a raw/rectified camera-to-IMU mismatch in recorded source and all 18
+EuRoC VIO/VIO-LC saved configurations. Its source patch passes apply-check and
+transform-composition validation but is not applied, built or execution tested.
+The historical source/binary attribution limitation remains explicit. Future
+map-refinement retries are now disabled instead of deleting and retrying partial
+stage outputs; original stage trajectories are retained when exporting the common
+trajectory filename. Shell syntax and a synthetic early-rejection test pass.
+Shared-container process ownership and native stage exit accounting still need
+repair/verification.
+
+TODO's existing six affected cells now include `rerun: rectified IMU`, preserving
+their N=3 observation counts and exact matrix layout. The inventory and future
+manifest derive the finding only from hash-verified historical snapshots and the
+recorded clean source revision. Current action counts are 24 required reruns
+(six ORB FPS plus 18 AirSLAM fusion cases), 87 missing and 549 blocked/review;
+no qualified reuse or execution readiness is claimed. The runtime subtotal remains
+36.1 hours for 19 known actions; 92 missing/rerun actions have unknown runtime.

@@ -79,3 +79,37 @@ def test_todo_layout_preserved_and_failure_is_not_green():
     assert [s.count('|') for s in before.splitlines()]==[s.count('|') for s in after.splitlines()]
     assert [s for s in before.splitlines() if not s.startswith('| OKVIS2')]==[s for s in after.splitlines() if not s.startswith('| OKVIS2')]
     assert '✅' not in after and 'collapse r2' in after
+
+
+def test_airslam_rectified_imu_finding_requires_preserved_clean_source_and_saved_config(tmp_path):
+    import hashlib
+    from protocol_findings import historical_findings,AIRSLAM_UNCORRECTED_SOURCE
+    rel='vio/euroc_mav/MH_01_easy/airslam/run1';run=tmp_path/'results'/rel;run.mkdir(parents=True)
+    (run/'camera.yaml').write_text('use_imu: 1\ndistortion_type: 1\n')
+    meta={'provenance':{'artifacts':[{'role':'camera_config','snapshot':'camera.yaml'}],
+                       'sources':[{'role':'algorithm','commit':AIRSLAM_UNCORRECTED_SOURCE,'dirty':False}]}}
+    meta['provenance']['artifacts'][0]['snapshot_sha256']=hashlib.sha256((run/'camera.yaml').read_bytes()).hexdigest()
+    findings=historical_findings(tmp_path,rel,meta)
+    assert findings[0]['code']=='airslam_rectified_camera_imu_extrinsic'
+    cell={'algorithm':'airslam','dataset':'euroc_mav','run_type':'vio'}
+    assert action_category(cell,{'confirmed_protocol_findings':findings},{'reuse_qualified':True})[0]=='required_rerun'
+    meta['provenance']['sources'][0]['dirty']=True
+    assert historical_findings(tmp_path,rel,meta)==[]  # unknown patch history, not proof of no issue
+    meta['provenance']['sources'][0]['dirty']=False
+    (run/'camera.yaml').write_text('use_imu: 1\ndistortion_type: 0\n')
+    assert historical_findings(tmp_path,rel,meta)==[]
+    meta['provenance']['artifacts'][0]['snapshot_sha256']=hashlib.sha256((run/'camera.yaml').read_bytes()).hexdigest()
+    assert historical_findings(tmp_path,rel,meta)==[]
+
+
+def test_airslam_rejects_refinement_retries_before_any_container_or_attempt(tmp_path):
+    import os
+    repo=Path(__file__).resolve().parents[3]
+    fake=tmp_path/'docker';marker=tmp_path/'called'
+    fake.write_text('#!/bin/sh\ntouch "'+str(marker)+'"\nexit 99\n');fake.chmod(0o755)
+    env=dict(os.environ,PATH=str(tmp_path)+os.pathsep+os.environ['PATH'],AIRSLAM_REFINEMENT_MAX_ATTEMPTS='2')
+    run=subprocess.run(['bash',str(repo/'scripts/run/run_airslam.sh'),'unit_no_estimator','sequence','987654','vo-lc'],
+                       env=env,capture_output=True,text=True)
+    assert run.returncode==2 and 'retries are disabled' in run.stderr
+    assert not marker.exists()
+    assert not (repo/'results/vo-lc/unit_no_estimator').exists()

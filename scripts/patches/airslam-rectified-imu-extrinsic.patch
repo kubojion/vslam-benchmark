@@ -1,0 +1,17 @@
+--- a/src/camera.cc
++++ b/src/camera.cc
+@@ -73,6 +73,14 @@
+       cv::fisheye::initUndistortRectifyMap(K1, D1.rowRange(0,4), R1, P1.rowRange(0,3).colRange(0,3),
+           image_size, CV_32F, _mapr1, _mapr2);
+     }
++
++    // R0 maps raw left-camera coordinates into the rectified image axes.
++    // Visual poses/landmarks use those rectified axes, so IMU constraints must
++    // use T_body_rectified = T_body_raw * T_raw_rectified as well.
++    Eigen::Matrix3d R_rectified_raw;
++    cv::cv2eigen(R0, R_rectified_raw);
++    _Tbc.block<3, 3>(0, 0) = Tbc0.block<3, 3>(0, 0) * R_rectified_raw.transpose();
++    _Tcb = _Tbc.inverse();
+ 
+     _bf = std::abs(P1.at<double>(0, 3));
+     _max_x_diff = _bf / _depth_lower_thr;

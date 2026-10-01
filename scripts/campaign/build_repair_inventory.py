@@ -17,6 +17,7 @@ import sys
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from run_quality_campaign import expand_cells, cell_key, load_manifest
 from run_repetitions import atomic_json
+from protocol_findings import historical_findings
 
 REPO=Path(__file__).resolve().parents[2]
 MODES=('vo','vo-lc','vio','vio-lc','gnss-vio')
@@ -85,15 +86,20 @@ def saved_attempt(repo,relative,stage):
     files=[evidence(run/n,repo) for n in ('trajectory.txt','run_meta.json','run_eval.json','run_log.txt') if (run/n).is_file()]
     files.extend(value.get('evaluation_provenance',{}).get('inputs',[]))
     files.extend(value.get('pose_frames',{}).get('evidence',[]))
+    files.extend(s['actual'] for s in snapshot_records if s['actual'])
     if staged.is_file():files.append(evidence(staged,repo))
     files=list({item['path']:item for item in files}.values())
     process=meta.get('process',{})
     cohort,cohort_evidence=cohort_identity(meta,algo)
+    findings=historical_findings(repo,relative,meta)
+    qualification=dict(value.get('qualification',{'status':'not_evaluated','blockers':[]}))
+    qualification['blockers']=list(qualification.get('blockers',[]))+[f['code'] for f in findings]
+    if findings:qualification['status']='rerun_required'
     return dict(path='results/'+relative,exists=run.is_dir(),files=files,
         trajectory_saved=(run/'trajectory.txt').is_file(),historical_complete=(run/'COMPLETE').is_file(),
         evaluated=bool(value),evaluation_path=str(staged.relative_to(repo)) if value else None,
         numerical_status=value.get('run_status'),process=process,
-        qualification=value.get('qualification',{'status':'not_evaluated','blockers':[]}),
+        qualification=qualification,confirmed_protocol_findings=findings,
         pose_frame_blockers=value.get('pose_frames',{}).get('blockers',[]),
         snapshots=snapshot_records,source_records=meta.get('provenance',{}).get('sources',[]),
         parameters=meta.get('provenance',{}).get('parameters',{}),

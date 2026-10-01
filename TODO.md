@@ -70,7 +70,7 @@ qualification; successful execution alone is insufficient.
 | OKVIS2 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=1; IMU review; +2 |
 | OKVIS2-X | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=1; IMU review; +2 |
 | OpenVINS | 🟡 N=1; collapse r1; reference review; exit 134; +2 | 🟡 N=1; collapse r1; reference review; exit 134; +2 | 🟡 N=1; reference review; exit 134; +2 | 🟡 N=1; reference review; exit 134; +2 | 🟡 N=1; review; exit 134; +2 | 🟡 N=1; review; exit 134; +2 | 🟡 N=1; review; +2 | 🟡 N=1; collapse r1; IMU review; +2 |
-| AirSLAM | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=1; IMU review; +2 |
+| AirSLAM | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=1; IMU review; +2 |
 | Voxel-SVIO | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=1; IMU review; +2 |
 
 > HortiMulti IMU and rectified camera–IMU corrections are implemented. All seven non-ZED
@@ -114,7 +114,7 @@ qualification; successful execution alone is insufficient.
 | ORB-SLAM3 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | ❌ N=0; crash |
 | OKVIS2 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=1; IMU review; +2 |
 | OKVIS2-X | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=1; IMU review; +2 |
-| AirSLAM | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=1; IMU review; +2 |
+| AirSLAM | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=1; IMU review; +2 |
 
 > All four methods have N=3 on the seven non-ZED sequences. **ZED configs now exist**:
 > OKVIS2, OKVIS2-X and AirSLAM each have corrected N=1 and need two more repetitions;

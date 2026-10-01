@@ -39,20 +39,20 @@ Current classification before qualification decisions are complete:
 
 | Category | Logical repetitions | Meaning |
 |---|---:|---|
-| Required rerun | 6 | ORB ZED VO/VO-LC used 15 FPS with 10 Hz inputs; keep the previous cohort |
+| Required rerun | 24 | Six ORB ZED FPS cases and 18 AirSLAM EuRoC VIO/VIO-LC rectified-IMU cases; preserve previous cohorts |
 | Missing | 87 | No saved default attempt directory for that repetition |
-| Blocked/review | 567 | Saved results or failed/partial attempts need the specified review/recovery |
+| Blocked/review | 549 | Saved results or failed/partial attempts need the specified review/recovery |
 | Reusable, qualified | 0 certified yet | Existing outcomes are being assessed; this does not mean all must be rerun |
 
-All 660 actions are currently unverified for future execution. The six reruns and
+All 660 actions are currently unverified for future execution. The 24 reruns and
 87 missing repetitions retain prerequisites; their category is not permission to
 start them. Review will move eligible saved observations into reusable status,
 including genuine failures under a valid protocol. Invalid estimator settings
 require a separate corrected cohort; failures must not be repeatedly sampled until
 three successes remain.
 
-The current runtime calculation covers **19 of the 93 missing/rerun actions**, with
-a combined historical median estimate of about **36.1 hours**. The other 74 lack a
+The current runtime calculation covers **19 of the 111 missing/rerun actions**, with
+a combined historical median estimate of about **36.1 hours**. The other 92 lack a
 comparable complete same-cell run on this server. **This is not a total campaign
 estimate.** It excludes unresolved blocked actions, validation diagnostics and
 re-evaluation overhead. Each action records the source runs, observed range, pacing
@@ -110,6 +110,15 @@ checks, successful manifest generation, or a saved valid trajectory alone. Nativ
 ORB crashes, ZED inertial calibration uncertainty, AirSLAM rectification/keyframe
 semantics, GNSS provenance and remaining reference transforms stay explicit until
 resolved. No execution problem is claimed fixed solely because the wrapper changed.
+
+The [AirSLAM source audit](../airslam-rectification-audit.md) establishes that the
+recorded EuRoC fusion configuration mixes rectified visual axes with raw-camera
+IMU extrinsics. A source patch is prepared and its transform algebra checked;
+application, build and execution validation remain prerequisites. Eighteen existing
+VIO/VIO-LC repetitions require a corrected cohort. Historical executable hashes
+were not captured, so exact loaded-binary attribution remains limited. Future
+AirSLAM map-refinement retries are disabled and partial stage artifacts are retained;
+the previous up-to-three-stage-attempt policy remains in historical metadata.
 
 ## GNSS input repair validation
 

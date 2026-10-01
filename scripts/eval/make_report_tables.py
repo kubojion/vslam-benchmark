@@ -72,6 +72,7 @@ def cell_text(rows):
     if outcomes:pieces.append(', '.join(outcomes))
     crashes=sum(r['process_exit_code'] not in (None,0) for r in rows)
     if crashes:pieces.append(f'{crashes} nonzero exit')
+    if any(r['scientific_status']=='rerun_required' for r in rows):pieces.append('rerun required')
     if any(r['export_kind']=='keyframes' for r in rows):pieces.append('keyframes')
     dense=[r['coverage_gap_pct'] for r in rows if r['eval_schema']==3]
     if dense and all(v is not None for v in dense):pieces.append(f'coverage ≥{min(dense):.1f}%')

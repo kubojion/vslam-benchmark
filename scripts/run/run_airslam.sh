@@ -71,10 +71,10 @@ MODEL_DIR="/root/catkin_ws/src/air_slam/output"
 CONTAINER="air_slam"
 STAGE_TIMEOUT_S=${AIRSLAM_STAGE_TIMEOUT_S:-43200}
 STARTUP_TIMEOUT_S=${AIRSLAM_STARTUP_TIMEOUT_S:-300}
-REFINEMENT_MAX_ATTEMPTS=${AIRSLAM_REFINEMENT_MAX_ATTEMPTS:-3}
+REFINEMENT_MAX_ATTEMPTS=${AIRSLAM_REFINEMENT_MAX_ATTEMPTS:-1}
 
-if ! [[ "$REFINEMENT_MAX_ATTEMPTS" =~ ^[1-9][0-9]*$ ]]; then
-    echo "[airslam] AIRSLAM_REFINEMENT_MAX_ATTEMPTS must be a positive integer" >&2
+if [[ "$REFINEMENT_MAX_ATTEMPTS" != "1" ]]; then
+    echo "[airslam] map-refinement retries are disabled; preserve a failed attempt and plan a separate attempt explicitly" >&2
     exit 2
 fi
 
@@ -186,7 +186,6 @@ fi
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
-rm -f "$OUT_DIR/trajectory.txt" "$OUT_DIR/trajectory_v0.txt" "$OUT_DIR/trajectory_v1.txt"
 
 # ---- Ensure Docker container is running -----------------------------------
 if ! docker ps --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
@@ -286,49 +285,35 @@ if [[ "$USE_LC" == "true" && -s "$TRAJ_HOST" ]]; then
     MR_CFG="/benchmark_configs/airslam/${DATASET}_mr.yaml"
     VOC_PATH="/root/catkin_ws/src/air_slam/voc/point_voc_L4.bin"
     MR_TRAJ="$OUT_DIR/trajectory_v1.txt"
-    for ((MR_ATTEMPT=1; MR_ATTEMPT<=REFINEMENT_MAX_ATTEMPTS; MR_ATTEMPT++)); do
-        # map_refinement occasionally aborts inside its junction-database build.
-        # Preserve the completed VO map/trajectory and retry only this offline
-        # stage, removing outputs which may have been partially written.
-        rm -f "$MR_TRAJ" "$OUT_DIR/AirSLAM_mapv1.bin"
-        echo "[airslam] running map_refinement (step 2 of ${RUN_TYPE}, attempt ${MR_ATTEMPT}/${REFINEMENT_MAX_ATTEMPTS})..."
-        docker exec "$CONTAINER" bash -c "
-            source /opt/ros/noetic/setup.bash &&
-            source /root/catkin_ws/devel/setup.bash &&
-            roslaunch --skip-log-check air_slam mr_euroc.launch \
-                map_root:='$SAVING_DIR' \
-                config_path:='$MR_CFG' \
-                model_dir:='$MODEL_DIR' \
-                voc_path:='$VOC_PATH' \
-                visualization:=false
-        " 2>&1 | tee -a "$LOG" &
-        MR_PID=$!
-        echo "[airslam] waiting for trajectory_v1.txt ..."
-        AIRSLAM_FAILURE=""
-        if wait_for_stage_output "$MR_TRAJ" "$MR_PID" map_refinement "map refinement"; then
-            MR_SUCCEEDED=true
-        else
-            MR_SUCCEEDED=false
-            echo "[airslam] ERROR: $AIRSLAM_FAILURE" | tee -a "$LOG"
-        fi
-        if kill -0 "$MR_PID" 2>/dev/null; then
-            stop_launch_pipeline "$MR_PID"
-        fi
-        MR_PID=""
-        if [[ "$MR_SUCCEEDED" == "true" ]]; then
-            break
-        fi
-        if (( MR_ATTEMPT < REFINEMENT_MAX_ATTEMPTS )); then
-            echo "[airslam] retrying map_refinement without repeating visual odometry..." | tee -a "$LOG"
-        fi
-    done
+    # One refinement stage per attempt. Retain its partial map and trajectory on
+    # failure; repeating until successful would change the failure denominator.
+    echo "[airslam] running map_refinement (step 2 of ${RUN_TYPE})..."
+    docker exec "$CONTAINER" bash -c "
+        source /opt/ros/noetic/setup.bash &&
+        source /root/catkin_ws/devel/setup.bash &&
+        roslaunch --skip-log-check air_slam mr_euroc.launch \
+            map_root:='$SAVING_DIR' \
+            config_path:='$MR_CFG' \
+            model_dir:='$MODEL_DIR' \
+            voc_path:='$VOC_PATH' \
+            visualization:=false
+    " 2>&1 | tee -a "$LOG" &
+    MR_PID=$!
+    echo "[airslam] waiting for trajectory_v1.txt ..."
+    AIRSLAM_FAILURE=""
+    wait_for_stage_output "$MR_TRAJ" "$MR_PID" map_refinement "map refinement" || \
+        echo "[airslam] ERROR: $AIRSLAM_FAILURE" | tee -a "$LOG"
+    if kill -0 "$MR_PID" 2>/dev/null; then
+        stop_launch_pipeline "$MR_PID"
+    fi
+    MR_PID=""
 fi
 
 END=$(date +%s.%N)
 finish_resource_window "$OUT_DIR" "$MONPID"
 MONPID=""
 
-# Rename to trajectory.txt for consistency with other runners.
+# Copy to trajectory.txt while preserving the original stage export.
 # LC run types must use trajectory_v1.txt. Falling back to the VO output would
 # silently put a non-loop-closed trajectory in the loop-closure results table.
 if [[ "$USE_LC" == "true" ]]; then
@@ -348,7 +333,7 @@ if [[ ! -s "$RAW_TRAJ" ]]; then
 fi
 
 # Timestamps are already in seconds (AirSLAM parses ns filenames to double seconds).
-mv -f "$RAW_TRAJ" "$OUT_DIR/trajectory.txt"
+cp -p "$RAW_TRAJ" "$OUT_DIR/trajectory.txt"
 [[ -f "$ENGINE_HOST" ]] || { echo "ERROR: TensorRT engine missing after run: $ENGINE_HOST" >&2; exit 1; }
 PROV_ARGS+=(--artifact "tensorrt_engine=$ENGINE_HOST")
 

@@ -72,6 +72,8 @@ def test_failure_missing_exit_and_cohort_denominators(tmp_path):
     result=summarize_cell(data)
     assert len(result['cohorts'])==2 and not result['clean_qualified_n3']
     assert 'cohort other' in cell_text(data)
+    data[0]['scientific_status']='rerun_required'
+    assert 'rerun required' in cell_text(data)
 
 
 def test_variant_separation_preservation_and_reproducible_check(tmp_path):
