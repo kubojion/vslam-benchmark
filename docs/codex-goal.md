@@ -4,6 +4,14 @@ Prepared: 2026-10-01. Workspace: `/data/imoroz/vslam-benchmark`.
 
 ## Objective and scope
 
+Continuation checkpoint, 2026-10-01: repaired numerical results are now promoted
+to all ordinary result folders and the five root CSVs. Current reports/figures and
+browser are reconciled; superseded generated artifacts are archived with hashes.
+Preserve these completed steps. Remaining preparation includes full future
+source/build/input provenance capture, final manifest/readiness checks and handoff.
+Historical qualification blockers remain explicit and are not automatic rerun
+requests. The goal remains active; the obsolete temporary pause stays revoked.
+
 Repair and reconcile **all five benchmark configurations: VO, VO-LC, VIO, VIO-LC
 and GNSS-VIO**, across their existing algorithms, datasets, repetitions and declared
 input variants. Saved results, evaluation, CSVs, reports, documentation and every

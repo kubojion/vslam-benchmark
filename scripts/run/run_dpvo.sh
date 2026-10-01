@@ -28,8 +28,8 @@ canonicalize_dataset "$DATASET"
 resolve_run_type "$RUN_TYPE"
 
 case "$RUN_TYPE" in
-    vo)     DPVO_OPTS=() ;;
-    vo-lc)  DPVO_OPTS=(--opts LOOP_CLOSURE True) ;;   # DPV-SLAM
+    vo)     DPVO_OPTS=(--opts LOOP_CLOSURE False CLASSIC_LOOP_CLOSURE False) ;;
+    vo-lc)  DPVO_OPTS=(--opts LOOP_CLOSURE True CLASSIC_LOOP_CLOSURE False) ;;   # DPV-SLAM
     vio-lc) echo "[dpvo] ERROR: DPV-SLAM is visual-only LC; use run_type=vo-lc, not vio-lc" >&2; exit 2 ;;
     *)      echo "[dpvo] ERROR: run_type must be vo (DPVO) or vo-lc (DPV-SLAM)" >&2; exit 2 ;;
 esac
@@ -110,11 +110,9 @@ trap 'exit 143' TERM
 
 mkdir "$OUT_DIR/native"
 cd "$OUT_DIR/native"
-# Long-term retrieval expects this filename in the current directory.
-if [[ "$USE_LC" == "true" ]]; then
-    [[ -f "$REPO/ORBvoc.txt" ]] || { echo '[dpvo] missing LC vocabulary' >&2; exit 2; }
-    ln -s "$REPO/ORBvoc.txt" ORBvoc.txt
-fi
+# This benchmark enables proximity-based LOOP_CLOSURE, not the separate
+# CLASSIC_LOOP_CLOSURE retrieval implementation. The latter alone uses ORBvoc.
+# Keep it explicitly disabled so changing CWD needs no unused vocabulary.
 PROV_ARGS=(
     --param "process_isolation=attempt_token"
     --artifact "camera_calibration=$CALIB"
@@ -122,7 +120,7 @@ PROV_ARGS=(
     --artifact "model=$NET"
     --source "algorithm=$REPO"
     --param "stride=$STRIDE" --param "skip=$SKIP"
-    --param "loop_closure=$USE_LC" --seed "$SEED"
+    --param "loop_closure=$USE_LC" --param "classic_loop_closure=false" --seed "$SEED"
     --conda-env dpvo
 )
 

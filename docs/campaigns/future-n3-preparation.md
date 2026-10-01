@@ -132,12 +132,28 @@ remain historical planning estimates: about 37.2 serialized hours for the 25 act
 with comparable timing, with 92 of the 117 rerun/missing actions unestimated. This
 is not an estimate for the entire remaining campaign.
 
+Each action now carries an explicit configuration recipe: selected source paths and
+hashes, included preprocessing/calibration files, deterministic LC materialization,
+and runner-source identity for embedded ROS parameters. All 220 cell selections
+resolve without missing config files. DPVO additionally records its Python default
+settings source, because its YAML overrides only part of the configuration. Recipe
+digests and selected files are checked by the manifest validator and before execution.
+This establishes source selection, not that the native process loaded the expected
+effective values. Runtime materialization and full input/build capture remain explicit
+prerequisites; no readiness flag is granted from selection alone.
+
+This check caught a repair-introduced DPVO prerequisite error: the isolated runner
+required `ORBvoc.txt` for any LC mode, but the configured proximity LC does not use
+that vocabulary. Only the separate classic retrieval backend uses it. The unnecessary
+requirement was removed and classic LC explicitly fixed off, matching the historical
+upstream default. No historical trajectory or LC algorithm was changed.
+
 The repetition controller now requires measurement schema 2 for new attempts.
 Uninstrumented processing counts/FPS stay unknown; available-input/wall-time ratios
 are nominal. See [measurement semantics](../run-measurements.md). Historical saved
 metadata and processing claims remain preserved as evidence.
 
-Current validation: 133 tests plus three subtests pass. Manifest structure and
+Current validation: 136 tests plus three subtests pass. Manifest structure and
 evidence hashes validate for all 660 actions; `--require-ready` correctly refuses
 all 660 because readiness prerequisites remain unresolved. The published browser has
 690 entries/696 pages, with 8,767 checked local links and no broken link or legacy

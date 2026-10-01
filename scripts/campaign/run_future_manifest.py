@@ -82,6 +82,16 @@ def validate(repo,manifest,*,check_files=True):
         by_cell.setdefault(action['cell'],[]).append(rep)
         category=action.get('category')
         if category not in CATEGORIES:errors.append('unknown action category')
+        recipe=action.get('configuration_recipe')
+        if manifest.get('configuration_recipe_schema')==1 and not recipe:
+            errors.append('action is missing its configuration recipe')
+        if recipe:
+            claimed=recipe.get('sha256')
+            payload={k:v for k,v in recipe.items() if k!='sha256'}
+            actual=hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+            if claimed!=actual:errors.append('configuration recipe digest mismatch')
+            if action.get('readiness',{}).get('verified_ready_to_run') and recipe.get('selection_errors'):
+                errors.append('ready action has unresolved configuration selection errors')
         if category=='reusable' and (action.get('prerequisites') or not action.get('review_evidence')):
             errors.append('reusable action lacks completed qualification evidence')
         if category in ('missing','required_rerun'):
@@ -107,6 +117,7 @@ def validate(repo,manifest,*,check_files=True):
         items+=(manifest.get('qualification_review') or {}).get('evidence',[])
         for action in manifest.get('actions',[]):
             items+=action.get('prior_evidence',[])+action.get('review_evidence',[])
+            items+=action.get('configuration_recipe',{}).get('source_files',[])
         by_path={}
         for item in items:
             if item['path'] in by_path and by_path[item['path']]['sha256']!=item['sha256']:
@@ -129,7 +140,8 @@ def execute(repo,manifest,manifest_hash,actions,*,executor=run_command):
             raise ValueError('selected action is blocked: '+action['id'])
         if action['category']!='reusable' and not action['readiness']['verified_ready_to_run']:
             raise ValueError('selected action is not verified ready to run: '+action['id'])
-        errors=verify_files(repo,action['prior_evidence']+action.get('review_evidence',[]))
+        errors=verify_files(repo,action['prior_evidence']+action.get('review_evidence',[])+
+                            action.get('configuration_recipe',{}).get('source_files',[]))
         if errors:raise ValueError('; '.join(errors))
     root=repo/'logs/server-campaign'/component(manifest['campaign_id'])
     with lock(root/'manifest.lock'):

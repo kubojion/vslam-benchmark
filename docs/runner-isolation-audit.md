@@ -45,7 +45,8 @@ execution remains unverified after the changes.
   across repetitions and modes. Existing source-tree files are preserved.
 - DPVO's upstream `demo.py` writes `saved_trajectories/` relative to its working
   directory. It now runs in attempt `native/` with explicit absolute config,
-  model and script paths; LC receives a link to its expected vocabulary. The
+  model and script paths. The configured proximity-based LC does not use ORBvoc;
+  the separate `CLASSIC_LOOP_CLOSURE` remains explicitly disabled in both modes. The
   wrapper no longer deletes a source-tree trajectory before starting.
 - MAC-VO receives the attempt's `native/` as `--resultRoot` and selects its sandbox
   only inside that directory. The old shared `src/MAC-VO/Results` remains intact.

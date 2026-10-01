@@ -17,6 +17,7 @@ import sys
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from run_repetitions import atomic_json
 from run_future_manifest import UNREVIEWED_OVERRIDES
+from configuration_recipe import config_recipe
 
 REPO=Path(__file__).resolve().parents[2]
 
@@ -80,11 +81,15 @@ def build(repo,inventory,inventory_path,decisions):
     actions=[];target_paths=set()
     for cell in inventory['cells']:
         key=cell['key'];decision=decisions.get('cells',{}).get(key,{})
+        recipe=config_recipe(repo,cell)
         occupied={p.name for p in (repo/'results'/key).glob('run*')}
         next_id=10001
         for repetition,attempt in enumerate(cell['attempts'],1):
             category,reason=action_category(cell,attempt,decision)
             prerequisites=list(decision.get('blockers',[]))
+            prerequisites.extend(recipe['selection_errors'])
+            if not decision.get('effective_configuration_verified'):
+                prerequisites.extend(recipe['unresolved'])
             prerequisites.extend(f['prerequisite'] for f in attempt.get('confirmed_protocol_findings',[]))
             prerequisites.extend(qualification_prerequisites(cell,attempt,decision))
             if category=='blocked':prerequisites.append(reason)
@@ -113,6 +118,7 @@ def build(repo,inventory,inventory_path,decisions):
                 category=category,reason=reason,prior_attempt=attempt['path'],prior_evidence=attempt['files'],
                 observed_outcome=attempt['numerical_status'],recorded_process=attempt['process'],
                 prior_qualification=attempt.get('qualification'),
+                configuration_recipe=recipe,
                 planned_random_seed=1000+run_id if cell['algorithm']=='dpvo' and run_required else None,
                 planned_output=output if run_required else None,command=command if run_required else None,
                 cohort=cohort,prerequisites=sorted(set(prerequisites)),runtime_estimate=runtime,
@@ -120,7 +126,7 @@ def build(repo,inventory,inventory_path,decisions):
                     execution_validation='verified' if decision.get('execution_verified') else 'not_verified_after_repairs'),
                 review_evidence=decision.get('evidence',[])))
     estimates=[a['runtime_estimate'].get('estimate_s') for a in actions if a['category'] in ('missing','required_rerun')]
-    return dict(schema_version=2,campaign_id='future-n3-five-modes',audit_status='in_progress',
+    return dict(schema_version=2,configuration_recipe_schema=1,campaign_id='future-n3-five-modes',audit_status='in_progress',
         target=dict(default_cells=len(inventory['cells']),repetitions=3,logical_repetitions=len(actions),
                     note='Original four-mode 600-attempt campaign plus 20 GNSS default cells at N=3; legacy GNSS experiments remain separate'),
         exclusions=inventory['excluded'],inventory=dict(path=str(inventory_path.relative_to(repo)),sha256=digest(inventory_path)),
@@ -132,6 +138,8 @@ def build(repo,inventory,inventory_path,decisions):
              note='not merged into default N=3 repetitions or automatically scheduled')
              for a in inventory['other_artifacts'] if a['category']=='gnss_variant'],
         summary=dict(categories=dict(Counter(a['category'] for a in actions)),
+            configuration_recipes=len(inventory['cells']),
+            configuration_selection_errors=sum(bool(a['configuration_recipe']['selection_errors']) for a in actions if a['repetition']==1),
             verified_ready_to_run=sum(a['readiness']['verified_ready_to_run'] for a in actions),
             estimated_serial_estimation_s=sum(x for x in estimates if x is not None),
             actions_with_unknown_runtime=sum(x is None for x in estimates),

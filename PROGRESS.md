@@ -102,6 +102,14 @@
   now expose the repaired metrics; original run evidence and markers are unchanged.
   Storage/running guides now describe safe per-attempt resumption. The earlier
   stage notes above remain chronological records, not current promotion blockers.
+- Future actions now identify the selected configs and deterministic materialization
+  recipe for every one of the 220 cells, including upstream defaults and embedded
+  runner parameters. All selections resolve; native loading remains unverified.
+  This caught and removed an unnecessary DPVO ORB-vocabulary requirement introduced
+  during output isolation: the configured proximity LC does not use classic retrieval.
+  Both modes explicitly keep classic LC off, matching the historical default.
+  Validation now passes 136 tests plus three subtests. Remaining preparation includes
+  complete future source/build/input capture and the final readiness handoff.
 
 ## 2026-10-01 — Initial server inventory (before the repair above)
 
