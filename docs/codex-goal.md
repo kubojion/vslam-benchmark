@@ -12,6 +12,13 @@ qualification. The user explicitly expanded the ongoing goal from VO to all
 configurations on 2026-10-01; this revised scope supersedes the original VO-only
 wording wherever it remains in earlier chat or the initially registered objective.
 
+Scope extension, 2026-10-01: also prepare an executable **future N=3 campaign across
+all five modes**, retaining the existing algorithm exclusions. This extends the
+active goal; preserve completed repairs, staged evaluations, commits and backups.
+Do not restart the audit. Campaign preparation is authorized; campaign execution
+is not. Keep the stricter existing restriction against new estimator executions
+unless the user explicitly changes it later.
+
 The earlier VO findings are the starting evidence, not an exhaustive issue list.
 Audit each additional mode independently, including its sensor inputs, calibration,
 loop-closure behavior, failure evidence, evaluation and exports. Shared code fixes
@@ -248,7 +255,62 @@ Use the same meanings wherever results are marked. Do not lower qualification
 criteria to make the matrix green. If data needed to decide are unavailable, leave
 the specific blocker explicit and continue other authorized work.
 
-## 7. Validation and completion
+## 7. Prepare the future N=3 campaign without executing it
+
+- Establish the future campaign's explicit dataset, algorithm, mode and input-variant
+  membership from the existing scope. Retain existing exclusions, including
+  MASt3R-SLAM and MegaSaM, and keep historical/smoke algorithms outside the campaign.
+  GNSS-VIO now has a future N=3 target; this does not retroactively place its legacy
+  runs in the previously executed four-mode campaign. Distinct GNSS input variants
+  must have separate cohort identities and repetition counts.
+- Deliver a versioned, executable campaign manifest and a validated runner that
+  distinguish **reusable runs, required reruns, missing repetitions and blocked
+  cases**. Every planned repetition must have an explicit action, evidence links,
+  effective configuration identity, prerequisites and readiness status. A blocked
+  case must not become executable merely because it lacks a COMPLETE marker.
+- Recover and evaluate usable saved trajectories before scheduling estimation.
+  A genuine algorithm failure under a valid protocol remains an observed outcome;
+  do not selectively rerun failures until three successes appear. Replacement of
+  an invalid configuration belongs to a new, recorded cohort, with the original
+  attempt and failure retained.
+- Replace destructive cell-wide preparation with safe **per-run resumption**.
+  Preserve prior attempts and their logs/configs/metadata; do not overwrite an
+  existing run directory. Distinguish repetition identity from attempt identity.
+  Resume using verified artifact/configuration evidence, not markers alone.
+  Reject conflicting or stale manifest state and protect concurrent execution.
+- Evaluate each completed repetition immediately, before moving to the next
+  repetition. On an estimator or evaluator error, preserve partial artifacts and
+  persist that attempt's status. Recovery/re-evaluation must not require restarting
+  a whole cell or erase previous outcomes. Make interruption and retry behavior
+  explicit and test it using synthetic fixtures without invoking estimators.
+- Audit and repair applicable configurations, runners and evaluation scripts across
+  all five modes. Test preflight checks and command generation against real inputs
+  and saved configuration evidence. Unresolved native crashes, missing calibration,
+  unavailable executables or unverified sensor conventions remain explicit blockers.
+- Estimate runtime from comparable historical attempts, documenting hardware,
+  input length, pacing, final optimization and uncertainty. Give per-action and
+  total serialized estimates/ranges where supported; use unknown for unsupported
+  estimates. Reuse and evaluation-only work must not incur a fictitious full-run
+  estimate. Include prerequisites and resource/concurrency constraints.
+- Provide a dry-run/preflight command and a future execution command. Validate the
+  manifest and runner now, but do not launch any full/partial campaign or estimator
+  smoke run. Update all documentation and the existing TODO matrices consistently.
+
+Keep these statuses separate:
+
+1. **Repair/audit complete**: all work possible without new estimation is done,
+   evidence is reconciled, the future manifest is usable, and remaining blockers
+   have concrete prerequisites and planned actions.
+2. **Verified ready to run**: the particular manifest action has passed its required
+   static/input/configuration checks and any necessary execution validation has
+   supporting evidence. If execution validation is missing, label it explicitly;
+   a shell syntax check or a generated command does not establish execution readiness.
+
+Neither status certifies a publishable result before evaluation/qualification.
+Do not claim an unresolved execution problem was fixed, or that every action is
+ready merely because the repair/audit goal has been completed.
+
+## 8. Validation and completion
 
 - Add meaningful tests for transform direction/lever arms, rotation-reference
   availability, metric semantics, sparse coverage, campaign filtering, mixed failure
@@ -265,6 +327,8 @@ the specific blocker explicit and continue other authorized work.
   collaborators' subsequent changes; do not push or publish externally.
 - Deliver checkpoint/final commit hashes, backup locations, validation results,
   qualified-cell counts per mode, remaining blockers and required future runs.
+  Include the executable future N=3 manifest, preflight command, runtime estimates,
+  prerequisite list and a separate readiness assessment for its actions.
 
 The goal is complete when every issue repairable within the no-new-runs scope has
 been addressed and validated, all relevant outputs/docs agree, and irrecoverable
@@ -293,4 +357,10 @@ actual repetition counts, distinct input variants and explicit rerun requirement
 
 Validate and commit the repairs. Report qualified results, unresolved blockers,
 required future runs, backup locations and commit hashes. Continue until all work
-possible within this scope is complete.
+possible within this scope is complete. Also prepare and validate an executable
+future N=3 campaign across all five modes, retaining existing algorithm exclusions.
+Fix safe per-run resumption, preserve previous attempts and evaluate each completed
+repetition immediately. Separate reusable runs, required reruns, missing repetitions
+and blocked cases, with prerequisites and runtime estimates. Distinguish repair/audit
+completion from verified execution readiness; do not run a campaign or claim that
+unresolved execution problems are fixed.
