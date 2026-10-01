@@ -1,17 +1,22 @@
-# VO benchmark repair and qualification goal
+# All-configuration benchmark repair and qualification goal
 
 Prepared: 2026-10-01. Workspace: `/data/imoroz/vslam-benchmark`.
 
 ## Objective and scope
 
-Repair and reconcile the existing **VO-only** benchmark so that saved results,
-evaluation, CSVs, reports, documentation and the TODO matrix agree, and each result
-has an evidence-based publication qualification. Continue the preceding VO audit;
-do not silently expand scientific qualification to VO-LC, VIO, VIO-LC or GNSS.
-Shared code changes must preserve those modes and explicitly document any impact
-or need for later re-evaluation. Keep other modes' existing matrix entries intact
-unless correcting an objectively established inventory fact; do not award them
-new scientific qualification as a side effect of this work.
+Repair and reconcile **all five benchmark configurations: VO, VO-LC, VIO, VIO-LC
+and GNSS-VIO**, across their existing algorithms, datasets, repetitions and declared
+input variants. Saved results, evaluation, CSVs, reports, documentation and every
+TODO matrix must agree, and each result must have an evidence-based publication
+qualification. The user explicitly expanded the ongoing goal from VO to all
+configurations on 2026-10-01; this revised scope supersedes the original VO-only
+wording wherever it remains in earlier chat or the initially registered objective.
+
+The earlier VO findings are the starting evidence, not an exhaustive issue list.
+Audit each additional mode independently, including its sensor inputs, calibration,
+loop-closure behavior, failure evidence, evaluation and exports. Shared code fixes
+must be tested across all affected modes; do not infer qualification in one mode
+from successful results in another.
 
 The user requests no new estimator executions. Use existing trajectories, logs,
 config snapshots, calibration sources and metadata. Unit tests, synthetic fixtures,
@@ -19,8 +24,13 @@ read-only diagnostics, artifact validation and re-evaluation of saved trajectori
 are allowed. Do not start/resume a campaign, run smoke estimators, replace failed
 repetitions with new attempts, add algorithms, or download/rebuild large models.
 
-This file is the preparation deliverable. The checkpoint below is the first step
-of implementation, before editing benchmark code, configs, results or existing docs.
+Initial preservation is complete: checkpoint commit
+`8e62998c992c9aaef5a0ddc0df2a8d2512fb1f76` and verified backup
+`/data/imoroz/vslam-repair-backups/20261001T102654Z-vo-pre-repair/`.
+That backup contains VO results, the results site/manifest, logs, experiments and
+nested repository changes; it does **not** yet contain all four other results
+trees. Extend and verify backups for those trees and any other affected artifacts
+before changing them. The expanded goal does not waive preservation requirements.
 
 ## 1. Preserve all existing progress before implementation
 
@@ -48,10 +58,17 @@ of implementation, before editing benchmark code, configs, results or existing d
 
 ## 2. Establish the authoritative inventory and protocol
 
-- Use the executed N=3 campaign manifest, not directory count or the older N=5 plan,
-  to enumerate target VO cells and repetitions. At the preceding audit there were
-  64 cells, 192 target repetitions and 183 current evaluated repetitions. Recount;
-  these are observations, not constants to force into the output.
+- Use the executed N=3 campaign manifest to enumerate the four non-GNSS modes:
+  200 cells and 600 planned repetitions. The preceding audit found 538 evaluated
+  repetitions, including 183 VO evaluations. Recount; these are observations, not
+  constants to force into the output.
+- Inventory GNSS-VIO separately, including default, conventional-GPS, PPK and other
+  declared variants. Preserve its historical machine/cohort identities. GNSS was
+  excluded from the executed N=3 campaign; inclusion in this audit does not turn its
+  N=1 results into N=3 results or claim the older N=5 plan has been fulfilled.
+- Reconcile the original N=5/GNSS proposal, actual executed manifests, recovery
+  campaigns and current artifacts without silently redefining their run targets.
+  Report outstanding repetitions and scope decisions without launching runs.
 - Distinguish successful execution, valid saved trajectory, evaluated repetition,
   scientifically qualified configuration and genuine estimator failure.
 - Preserve every genuine failure. Identify historical DROID runs and smoke tests
@@ -68,7 +85,7 @@ of implementation, before editing benchmark code, configs, results or existing d
 
 ### Pose frames and reference validity
 
-- Establish the physical output frame for every VO algorithm/dataset from source,
+- Establish the physical output frame for every algorithm/dataset/mode from source,
   saved configuration and calibration evidence. Include rectified versus raw
   optical frames, camera/body/IMU transforms and antenna-to-camera lever arms.
 - Convert estimates/reference poses consistently before computing metrics. Apply
@@ -84,9 +101,17 @@ of implementation, before editing benchmark code, configs, results or existing d
 
 ### Metrics, sampling and failures
 
-- Correct the main-table DPVO mismatch: monocular shape evaluation requires the
-  declared Sim(3) metric; stereo metric-scale evaluation uses SE(3). Label both
-  clearly and avoid misleading cross-modality ranking.
+- Correct the main-table DPVO/DPV-SLAM mismatch: monocular shape evaluation requires
+  the declared Sim(3) metric; metric-scale stereo/VIO evaluation uses SE(3). Label
+  both clearly and avoid misleading cross-modality ranking.
+- Define GNSS global-frame accuracy separately from freely aligned trajectory
+  shape accuracy. Verify ENU/NED/ECEF conventions, origins, antenna lever arms,
+  timestamps and any permitted translation/yaw alignment. Evo `align_origin`
+  aligns the first pose's rotation as well as translation; do not describe it as
+  translation-only or let alignment conceal the global error being studied.
+- Document the independence and limitations of each reference trajectory,
+  particularly where GNSS used by an estimator also contributes to the reference.
+  Keep conventional and PPK input variants separate in comparisons/aggregation.
 - Correct the use/description of evo `point_distance`. It measures displacement
   magnitude differences, not full relative-pose translation error. Implement the
   intended conventional metric where reference poses permit it, or expose the
@@ -105,43 +130,86 @@ of implementation, before editing benchmark code, configs, results or existing d
 - Keep paced, transport-driven and maximum-throughput timing distinct. Do not
   infer real-time latency or deadline performance from an offline wall-clock rate.
 
-## 4. Resolve configuration inconsistencies without new runs
+## 4. Resolve configuration inconsistencies across all modes without new runs
 
 - Document author-provided settings separately from benchmark adaptations. Audit
   algorithm parameters embedded in files named camera/calibration configs too.
 - ORB-SLAM3 ZED snapshots specify 15 FPS for an approximately 10 Hz input. Correct
   future-run configuration/validation as justified, preserve historical snapshots
   and mark affected results for rerun if estimator behavior could change.
-- Basalt Rosario runs use triangulation threshold 0.03; six other cells use 0.05.
+- Basalt Rosario VO runs use triangulation threshold 0.03; six other VO cells use 0.05.
   Reconcile this with the stated parameter policy and physical baseline evidence.
   Do not select settings by final test-set ATE, or silently relabel old runs as
   having used the current configuration. Review ZED's changed shared extrinsics.
 - AirSLAM depth limits and ORB depth thresholds vary by dataset. Trace provenance
   and justification; disclose justified adaptations and flag unsupported ones.
-- Retain ORB startup failures on Rosario 1/5 and Strawberry 02. Fix only source or
+- Retain ORB VO startup failures on Rosario 1/5 and Strawberry 02. Fix only source or
   wrapper defects that can actually be established/tested without estimator runs;
   record unresolved crash causes and exact future diagnostic requirements.
 - Review the four recorded post-save ORB crashes independently from startup
   failures. A saved valid trajectory may support analysis, but does not prove a
   clean exit or a particular crash cause. Preserve that distinction in status.
-- Retain OKVIS2 ZED run 2's scale collapse. Do not misattribute it to OKVIS2-X or
+- Retain OKVIS2 ZED VO run 2's scale collapse. Do not misattribute it to OKVIS2-X or
   replace it with successful repetitions. Investigate existing artifacts only.
 - Clarify MASt3R-SLAM/MegaSaM exclusion history and rationale without claiming a
   Git author proves who approved the decision. Do not add or run them in this goal.
+
+### VIO and VIO-LC qualification
+
+- Trace the actual saved camera-to-IMU transforms, coordinate axes, camera/IMU time
+  offsets, rates, noise units/discretization, biases and initialization settings.
+  Distinguish measured calibration from defaults or locally chosen noise inflation.
+- Separate the corrected ZED IMU N=1 cohort from older identity-transform results.
+  Assess the unresolved serial-specific residual rotation and timing evidence;
+  corrected files alone do not prove that existing runs used them or are qualified.
+- Inspect OpenVINS failed/shutdown attempts for recoverable trajectories, and
+  assess its retained ZED collapse. Apply the same inspection to ORB, Voxel-SVIO,
+  Basalt and other IMU methods. Do not infer OOM or bad excitation without evidence.
+- Incorrect estimator-side IMU calibration generally requires rerunning estimation;
+  a post-hoc trajectory transform cannot repair the sensor-fusion computation.
+
+### Loop closure, final optimization and recovery
+
+- Verify effective LC switches for every VO-LC/VIO-LC method and confirm they are
+  off in VO/VIO. Distinguish causal online poses, final corrected poses and offline
+  full bundle adjustment. Keep their accuracy and runtime claims separate.
+- Reconcile the recovered OKVIS2 full-BA-disabled cohort with earlier settings and
+  OKVIS2-X. Do not attribute a configuration difference solely to algorithm choice.
+- Inspect unscored saved outputs, including OKVIS2 ZED VO-LC run 1, before treating
+  missing evaluations as missing executions. Validate and evaluate recoverable
+  artifacts without inventing completion evidence or restarting the entire cell.
+- Retain OV2SLAM Rosario VO-LC collapse and all other genuine failures. Log-reported
+  loop events must not be presented as verified correct/accepted loop closures.
+
+### GNSS-VIO qualification
+
+- Verify source measurements, fix/covariance interpretation, time association,
+  antenna offsets, fusion mechanism and mode-specific settings for CIFASIS,
+  OKVIS2-X, VINS-Fusion+GPS, RTAB-Map+GPS and OpenVINS+GPS.
+- Label benchmark-created fusion composites accurately; they are not necessarily
+  an upstream author's endorsed estimator configuration or tightly coupled fusion.
+- Review historical GNSS results with missing COMPLETE markers and variant outputs
+  against actual artifact/provenance evidence. Recover valid evaluations where
+  possible; do not merely add markers to inflate completion counts.
+- Keep historical hardware/runtimes and distinct sensor-input variants explicit.
+  Flag absent calibration or input-provenance evidence instead of reconstructing
+  it from today's files and claiming that it was present at execution time.
 
 ## 5. Re-evaluate, reconcile and clean up
 
 1. Validate corrected evaluation on representative saved trajectories and synthetic
    tests. Stage new outputs separately so failure cannot erase the existing set.
-2. Re-evaluate all affected current VO runs with the selected evaluator schema.
+2. Re-evaluate all affected existing runs across all five modes with the selected
+   evaluator schema, including recoverable unscored outputs and declared variants.
    Retain immutable original trajectories and source provenance. Record evaluator
    identity, transforms, inputs and old/new metric changes.
-3. Rebuild target-filtered VO CSVs, per-cell summaries, tables and relevant figures
+3. Rebuild all five mode CSVs, per-cell summaries, tables and relevant figures
    from one authoritative inventory. Report missing/failed attempts explicitly.
    Reconcile run identifiers, statuses, N, metrics and provenance across all layers.
+   Include the results browser/manifest and combined reports in this reconciliation.
 4. Ensure shared generators cannot accidentally mix smoke, historical, accepted,
-   superseded and differently configured repetitions. Avoid silently refreshing
-   unqualified non-VO results under changed scientific assumptions.
+   superseded and differently configured repetitions. Regeneration must preserve
+   qualification warnings and input-variant distinctions in every mode.
 5. Archive superseded reports and unused derived material after checking references
    and backups. Remove only confirmed disposable duplicates/caches with no evidence
    value. Failed logs, old configs and original metrics are not automatically junk.
@@ -151,9 +219,11 @@ of implementation, before editing benchmark code, configs, results or existing d
 
 ## 6. Preserve the TODO matrix and qualify cells honestly
 
-Keep the user's existing matrix layout, cells, sequence order, headings and task
-tables. Update cell contents and a concise legend; do not replace the matrix with
-a prose checklist.
+Keep all five of the user's existing matrix layouts, cells, sequence order,
+headings and task tables. Update cell contents and a concise consistent legend;
+do not replace matrices with prose checklists. Audit every mode's green ticks
+against the new qualification criteria rather than retaining legacy completion
+ticks as if they established publication readiness.
 
 Maintain separate machine-readable fields for run count, observed outcome and
 scientific qualification, and derive displayed statuses from them where practical:
@@ -169,6 +239,8 @@ scientific qualification, and derive displayed statuses from them where practica
 - `rerun required`: identify the exact cells/repetitions and why saved-artifact
   correction cannot recover the needed evidence. Do not execute those reruns.
 - `missing/failed attempt`: distinguish absent evidence from a completed evaluation.
+- `N=1` or `N=2`: preserve the actual count and any validated single-run claims;
+  never display an N=3 qualification tick for fewer than three repetitions.
 
 Use the same meanings wherever results are marked. Do not lower qualification
 criteria to make the matrix green. If data needed to decide are unavailable, leave
@@ -179,15 +251,18 @@ the specific blocker explicit and continue other authorized work.
 - Add meaningful tests for transform direction/lever arms, rotation-reference
   availability, metric semantics, sparse coverage, campaign filtering, mixed failure
   aggregation and cache invalidation where changed. Run relevant existing tests.
-- Cross-check representative numerical results independently. Reconcile all current
-  VO identities and per-run exports; verify reproducible report generation.
+- Cross-check representative numerical results independently in every mode,
+  including sensor fusion, loop closure and GNSS alignment/variant cases.
+  Reconcile all current identities and per-run exports; verify reproducible report
+  generation and shared-code compatibility across all five configurations.
 - Keep an audit of confirmed fixes, metric changes, archived paths, unresolved
-  assumptions and the exact future rerun list. Note effects of shared code on modes
-  outside VO without certifying them.
+  assumptions and the exact future rerun list, grouped by mode, dataset, algorithm,
+  input/configuration cohort and repetition. Clearly distinguish re-evaluation
+  already completed from estimation that must be rerun later.
 - Commit completed repairs and documentation in reviewable local commits. Preserve
   collaborators' subsequent changes; do not push or publish externally.
 - Deliver checkpoint/final commit hashes, backup locations, validation results,
-  qualified-cell counts, remaining blockers and required future runs.
+  qualified-cell counts per mode, remaining blockers and required future runs.
 
 The goal is complete when every issue repairable within the no-new-runs scope has
 been addressed and validated, all relevant outputs/docs agree, and irrecoverable
@@ -196,7 +271,8 @@ all cells to be green, successful new runs, or a promise of publication acceptan
 
 ## Initial effort estimate
 
-Approximately 8–16 hours of active work plus any additional machine time required
-for backup and re-evaluation. This is a planning estimate, not a deadline promise;
-calibration provenance gaps or unexpectedly large artifacts may change it. Give
-progress updates and continue until the defined scope is complete.
+The expanded five-mode scope is provisionally 24–40 hours of active work plus any
+additional machine time required for backups and re-evaluation. This supersedes
+the original VO-only 8–16 hour estimate. It is a planning estimate, not a deadline
+promise; calibration provenance gaps or unexpectedly large artifacts may change
+it. Give progress updates and continue until the defined scope is complete.
