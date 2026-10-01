@@ -56,13 +56,8 @@ def yaw_from_path(xy, smooth_m=2.0):
 
 
 def window_indices(s, i, half):
-    n = len(s)
-    lo = i
-    while lo > 0 and s[i] - s[lo - 1] < half:
-        lo -= 1
-    hi = i
-    while hi < n - 1 and s[hi + 1] - s[i] < half:
-        hi += 1
+    lo = min(i, int(np.searchsorted(s, s[i] - half, side="right")))
+    hi = max(i, int(np.searchsorted(s, s[i] + half, side="left")) - 1)
     return lo, hi
 
 
@@ -136,26 +131,31 @@ def merge_segments(t, is_turn, s, min_seg_path_m):
                         "t_end":   nxt["t_end"],
                         "is_turn": nxt["is_turn"],
                         "n":       seg["n"] + nxt["n"],
-                        "path":    seg["path"] + nxt["path"],
+                        "path":    float(np.interp(nxt["t_end"], t, s) - np.interp(seg["t_start"], t, s)),
                     })
                     k += 2
                 else:
                     prev = out[-1]
                     prev["t_end"] = seg["t_end"]
                     prev["n"]    += seg["n"]
-                    prev["path"] += seg["path"]
+                    prev["path"] = float(np.interp(prev["t_end"], t, s) - np.interp(prev["t_start"], t, s))
                     k += 1
             else:
                 out.append(seg)
                 k += 1
         segs = out
-    # NOTE: absorbing a short segment into a neighbour can leave two ADJACENT
-    # segments of the same type (row | short-turn | row -> row | row), so a
-    # single row may be reported as several. Coalescing them is more correct,
-    # but it changes segmentation for every dataset (rosariov2 seq1 107 -> 43
-    # segments) and would require re-evaluating all runs, including rosariov2.
-    # Left as-is deliberately; see TODO / machine-B report.
-    return segs
+    # Absorbing a short segment can leave adjacent regions with the same label.
+    # Coalesce them, counting their joining path interval too.
+    merged = []
+    for seg in segs:
+        if merged and merged[-1]['is_turn'] == seg['is_turn']:
+            prev = merged[-1]
+            prev['t_end'] = seg['t_end']
+            prev['n'] += seg['n']
+            prev['path'] = float(np.interp(prev['t_end'], t, s) - np.interp(prev['t_start'], t, s))
+        else:
+            merged.append(dict(seg))
+    return merged
 
 
 def main():

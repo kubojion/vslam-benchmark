@@ -4,6 +4,11 @@
 > including known limitations. Publication blockers and current run counts are tracked in
 > [the server audit](campaigns/server-status-20261001.md). Numeric reports are provisional.
 
+> Repair in progress: [the all-configuration repair audit](repair-audit-20261001.md)
+> documents the schema-3 evaluator and its separate staging tree. The pipeline and
+> field definitions below describe the existing schema-2 outputs until promotion.
+> Staged results are not yet publication-qualified or reflected in the root CSVs.
+
 
 The pipeline turns raw trajectories into per-segment ATE numbers and plots.
 `scripts/run/run_benchmark.sh` runs the full chain automatically; this page
