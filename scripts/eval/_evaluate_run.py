@@ -48,6 +48,50 @@ DISTINGUISH_ROW_TURN_BY_DATASET = {
 }
 
 
+def trajectory_motion_issue(path: str | Path) -> str | None:
+    """Return a reason when an estimate contains poses but no actual motion."""
+    rows = []
+    try:
+        with Path(path).open() as stream:
+            for line in stream:
+                if not line.strip() or line.lstrip().startswith("#"):
+                    continue
+                fields = line.split()
+                if len(fields) >= 8:
+                    rows.append([float(value) for value in fields[:8]])
+    except (OSError, ValueError) as exc:
+        return f"trajectory could not be inspected: {exc}"
+    if len(rows) < 2:
+        return "trajectory contains fewer than two poses"
+
+    poses = np.asarray(rows, dtype=np.float64)
+    if not np.all(np.isfinite(poses)):
+        return "trajectory contains non-finite poses"
+    translation_change = float(np.max(np.linalg.norm(poses[:, 1:4] - poses[0, 1:4], axis=1)))
+    quaternions = poses[:, 4:8]
+    norms = np.linalg.norm(quaternions, axis=1)
+    if np.any(norms < 1e-12):
+        return "trajectory contains a zero quaternion"
+    quaternions = quaternions / norms[:, None]
+    orientation_change = float(np.max(1.0 - np.abs(quaternions @ quaternions[0])))
+    if translation_change <= 1e-6 and orientation_change <= 1e-10:
+        return "trajectory contains no estimated motion"
+    return None
+
+
+def format_metric(value, precision: int = 4) -> str:
+    """Format optional numeric metrics without crashing failure reporting."""
+    if value is None:
+        return "n/a"
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return "n/a"
+    if not np.isfinite(number):
+        return "n/a"
+    return f"{number:.{precision}f}"
+
+
 def distinguish_row_turn_for_dataset(dataset: str) -> bool:
     """Return whether row/turn split should be preserved for this dataset.
 
@@ -585,6 +629,9 @@ def main():
         gt_provenance["error"] = str(_e)
 
     est_path = str(traj_path)
+    motion_issue = trajectory_motion_issue(traj_path)
+    if motion_issue:
+        print(f"[eval] trajectory rejected: {motion_issue}", file=sys.stderr)
 
     # ── Accuracy metrics ──────────────────────────────────────────────────────
     # Sim(3) alignment (--correct_scale): standard practice for monocular VO,
@@ -674,8 +721,11 @@ def main():
     # unconditionally True whenever run_meta.json existed).
     ate_ok = ate_stats.get("rmse") is not None and (n_pairs or 0) >= 10
     scale_collapsed = scale is not None and (scale < 0.1 or scale > 10.0)
-    robustness["output_valid"] = bool(ate_ok and not scale_collapsed)
-    if not ate_ok:
+    robustness["output_valid"] = bool(ate_ok and not scale_collapsed and not motion_issue)
+    if motion_issue:
+        run_status = "tracking_failed"
+        robustness["failure_reason"] = motion_issue
+    elif not ate_ok:
         run_status = "eval_failed"
     elif scale_collapsed:
         run_status = "scale_collapse"
@@ -851,17 +901,18 @@ def main():
     print(f"\n{'='*60}")
     print(f"  {algo.upper()}  |  {dataset}/{seq}  |  run {run_id}")
     print(f"{'='*60}")
-    print(f"  ATE RMSE (Sim3):{out['ate']['rmse']:.4f} m  ({n_pairs} pairs, GT: {gt_source})")
+    print(f"  Status:          {run_status}")
+    print(f"  ATE RMSE (Sim3):{format_metric(out['ate']['rmse'])} m  ({n_pairs or 0} pairs, GT: {gt_source})")
     if out['ate_se3']['rmse'] is not None:
-        print(f"  ATE RMSE (SE3): {out['ate_se3']['rmse']:.4f} m   (no scale correction)")
-    print(f"  RPE trans RMSE: {out['rpe_trans_1m']['rmse']:.4f} m/m  (1-metre windows)")
-    print(f"  RPE rot RMSE:   {out['rpe_rot_1m_deg']['rmse']:.3f} °/m")
-    print(f"  Scale factor:   {scale:.4f}" if scale else "  Scale factor:   n/a")
+        print(f"  ATE RMSE (SE3): {format_metric(out['ate_se3']['rmse'])} m   (no scale correction)")
+    print(f"  RPE trans RMSE: {format_metric(out['rpe_trans_1m']['rmse'])} m/m  (1-metre windows)")
+    print(f"  RPE rot RMSE:   {format_metric(out['rpe_rot_1m_deg']['rmse'], 3)} °/m")
+    print(f"  Scale factor:   {format_metric(scale)}")
     print(f"  End-to-end:     {runtime.get('end_to_end_time_s', runtime.get('wall_s','?'))} s")
     print(f"  Processing FPS: {runtime.get('processing_fps', 'n/a')}")
     if agri:
         for stype, v in agri.items():
-            print(f"  ATE [{stype}]:   {v['ate_rmse_mean']:.4f} m  ({v['n_segments']} segs)")
+            print(f"  ATE [{stype}]:   {format_metric(v.get('ate_rmse_mean'))} m  ({v.get('n_segments', 0)} segs)")
     print()
 
 

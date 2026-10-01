@@ -1,13 +1,15 @@
 %YAML:1.0
 # OKVIS2-X stereo-inertial + loop closure (VIO-LC) configuration for ZED2i field1_110426_full_10fps_q90.
+# T_SC maps rectified optical cameras into zed_imu_link; see
+# docs/zed2i-imu-extrinsics.md.
 #
 # IMU noise values are OKVIS2-compatible -- see PROGRESS.md Phase 4.6.
 
 cameras:
      - {T_SC:
-        [ 1.0, 0.0, 0.0, 0.0,
-          0.0, 1.0, 0.0, 0.0,
-          0.0, 0.0, 1.0, 0.0,
+        [ 0.0, 0.0, 1.0,  0.002,
+         -1.0, 0.0, 0.0,  0.023061,
+          0.0,-1.0, 0.0, -0.000217,
           0.0, 0.0, 0.0, 1.0],
         image_dimension: [1920, 1080],
         distortion_coefficients: [0.0, 0.0, 0.0, 0.0],
@@ -19,9 +21,9 @@ cameras:
         slam_use: okvis}
 
      - {T_SC:
-        [ 1.0, 0.0, 0.0, 0.1198462504,
-          0.0, 1.0, 0.0, 0.0,
-          0.0, 0.0, 1.0, 0.0,
+        [ 0.0, 0.0, 1.0,  0.002,
+         -1.0, 0.0, 0.0, -0.0967852504,
+          0.0,-1.0, 0.0, -0.000217,
           0.0, 0.0, 0.0, 1.0],
         image_dimension: [1920, 1080],
         distortion_coefficients: [0.0, 0.0, 0.0, 0.0],

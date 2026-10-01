@@ -1,5 +1,11 @@
 # Running the algorithms
 
+> Current run coverage and recovery work: [TODO](../TODO.md) and
+> [2026-10-01 audit](campaigns/server-status-20261001.md). The executed campaign used
+> N=3 without GNSS. `run_benchmark.sh` replaces the whole target cell and evaluates only
+> after every requested repetition finishes; preserve recoverable runs before restarting.
+
+
 > Fully revised: 2026-05-30 22:41 - Added Voxel-SVIO (RA-L 2025) Docker setup, configs, and per-algo notes.
 > Updated: 05-31 - rosariov2 seq5 re-run with high-quality PPK GPS (GPS-quality study in PROGRESS.md); seq5 gps.csv is now PPK (conventional preserved as gps_conventional.csv). Fixed stale hortimulti IMU note (IMU extracted); added GNSS-VIO run examples.
 
@@ -111,14 +117,14 @@ cell safely and create its `COMPLETE` markers.
 ## Notes per algorithm
 
 * **ORB-SLAM3** needs the executable `stereo_euroc` from `src/ORB_SLAM3/Examples/Stereo/`. Re-run `./build.sh` if it's missing.
-* **OKVIS2** uses the binary `src/okvis2/build/okvis_app_synchronous`. Config files: `configs/okvis2/<dataset>_<seq>_<vo|vo_lc|vio|vio_lc>.yaml` (per-sequence, per-mode). Run type is controlled by the `--run-type` flag passed by `run_okvis2.sh`. Configs exist for rosariov2 (seq1, seq5), EuRoC (MH_01/03/05), HortiMulti (strawberry02/03), and zed2i. **IMU noise params must use OKVIS2-compatible values** - raw Allan-variance numbers from sensor calibration are typically 12-840x too tight for OKVIS2's MAP estimator and cause scale collapse. Use the D435i reference values in the rosariov2 configs as a starting point. See PROGRESS.md Phase 4.6 for the full diagnosis and corrected params.
+* **OKVIS2** uses the binary `src/okvis2/build/okvis_app_synchronous`. Config files: `configs/okvis2/<dataset>_<seq>_<vo|vo_lc|vio|vio_lc>.yaml` (per-sequence, per-mode). Run type is controlled by the `--run-type` flag passed by `run_okvis2.sh`. Configs exist for rosariov2 (seq1, seq5), EuRoC (MH_01/03/05), HortiMulti (strawberry02/03), and zed2i. **IMU parameters follow the documented per-dataset effective recording noise envelope**, not an arbitrary D435i multiplier. See [noise derivation](okvis-imu-noise-derivation.md) and the saved run configuration. Check camera–IMU frame conventions before attributing collapse to noise.
 * **OKVIS2-X** uses the binary `src/okvis2x/build/okvis_app_synchronous`, built by `bash scripts/build/build_okvis2x.sh` (see [setup.md](setup.md) §13). It is wired in **completely independently of OKVIS2** - separate source tree, configs, runner and results dir - so the two can be compared head-to-head in the same CSV. Config files: `configs/okvis2x/<dataset>_<seq>_<vo|vo_lc|vio|vio_lc|gnss_vio>.yaml`. Things worth knowing:
   * The app signature is `okvis_app_synchronous <config.yaml> <dataset-folder> <output-dir>`. The dataset folder is `mav0/` (the directory holding `cam0/`, `imu0/`, `gps0/`) - **not** the sequence root. Unlike OKVIS2 it writes straight to the output dir, so nothing lands in `datasets/`. (The upstream README documents a 4-argument form with a second `se2-config`; that applies to the `okvis2x_app_*` mapping apps, not this one.)
   * `mav0/imu0/data.csv` is opened unconditionally by the dataset reader, so it is required even for `vo` / `vo-lc` (where `imu_parameters.use: false`). Generate it with `python3 scripts/data/imu_to_euroc.py <seq_dir>`.
   * The reader takes its image list from `mav0/cam{0,1}/data.csv` and aborts with `no images found for camera N` if absent - it does **not** fall back to listing `data/`. `run_okvis2x.sh` auto-generates both manifests on first use, as `run_basalt.sh` does.
-  * **IMU noise params must use OKVIS2-compatible values** - the shipped configs carry the corrected D435i-reference values; see PROGRESS.md Phase 4.6. `vo` / `vo-lc` are best-effort: the front-end is not designed for IMU-less stereo.
+  * **IMU noise profiles** follow [the recording-based derivation](okvis-imu-noise-derivation.md); the old D435i-reference guidance is historical. `vo` / `vo-lc` are best-effort: the front-end is not designed for IMU-less stereo.
   * For `vo-lc` / `vio-lc` the runner takes the post-BA loop-closed trajectory (`okvis2-slam-final-ba_trajectory.csv`); for the other run types it takes the causal estimate. All raw CSVs are kept in the run dir.
-  * OKVIS2-X does not log *accepted* visual loop closures, so `loop_closures` stays empty for `vio-lc` runs. That is a logging limitation, not a sign that LC is off.
+  * OKVIS2-X `loop_closures` uses the corrected event parser. Treat counts as algorithm-specific log events, not a standardized cross-algorithm count of accepted constraints.
   * **Parameter sweeps**: set `OKVIS2X_CONFIG=<path>` to override the run-type -> config mapping, and give the run its own `run_id` so it lands in a separate `run<N>/`:
     ```bash
     OKVIS2X_CONFIG=configs/okvis2x/sweeps/my_variant.yaml \
@@ -265,7 +271,7 @@ See the GNSS-VIO GPS-quality study in `PROGRESS.md`.
 Use `run_benchmark.sh` with `run_type=gnss-vio` for the full run+eval pipeline:
 
 ```bash
-# N=3 runs + evaluate + aggregate + append to benchmark-gnss-vio.csv:
+# N=3 runs + evaluate + aggregate (rebuild root CSVs separately):
 bash scripts/run/run_benchmark.sh rosariov2 sequence1 cifasis_gnss_si 3 gnss-vio
 bash scripts/run/run_benchmark.sh rosariov2 sequence1 vins_fusion_gps 3 gnss-vio
 bash scripts/run/run_benchmark.sh rosariov2 sequence1 rtabmap_gps     3 gnss-vio

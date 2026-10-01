@@ -18,17 +18,17 @@ inside the band carry no bold — that is an honest tie, not an omission.
 | Algorithm | seq1 | seq5 | str02 | str03 |
 |---|---|---|---|---|
 | OKVIS2-X | 8.63 | 7.76 | **2.59** | **0.623** |
-| VINS-Fusion+GPS | **1.22** | **0.92** | 5.26 | 2.47 |
 | RTAB-Map+GPS | 2.31 | *4.91 @37%* | 6.54 | 1.83 |
-| CIFASIS GNSS-SI | 3.69 | 2.27 | 7.16 | 1.68 |
+| CIFASIS GNSS-SI | 3.69 | **2.27** | 7.16 | 1.68 |
 | OpenVINS+GPS | 2.58 | *4.23 @90%* | 42.9 | 48 |
+
+> No bold in column(s) seq1: top-2 margin is inside the winner's dispersion band (honest tie).
 
 <details><summary>Agricultural — ATE Sim(3) [m] (secondary; absorbs scale error)</summary>
 
 | Algorithm | seq1 | seq5 | str02 | str03 |
 |---|---|---|---|---|
 | OKVIS2-X | 8.63 | 7.76 | 2.26 | 0.282 |
-| VINS-Fusion+GPS | 1.19 | 0.916 | 5.01 | 2.4 |
 | RTAB-Map+GPS | 2.14 | *4.89 @37%* | 6.26 | 1.76 |
 | CIFASIS GNSS-SI | 3.58 | 2.06 | 7.1 | 1.5 |
 | OpenVINS+GPS | 2.38 | *4.18 @90%* | 30.9 | 16.5 |
@@ -42,8 +42,5 @@ inside the band carry no bold — that is an honest tie, not an omission.
 | CIFASIS GNSS-SI | seq5 | conventional_gps | 1.34 | 0.941 | 1.019 |
 | OpenVINS+GPS | seq5 | conventional_gps | 4.75 | 4.66 | 1.018 |
 | RTAB-Map+GPS | seq5 | conventional_gps | 1.77 | 1.64 | 1.014 |
-| VINS-Fusion+GPS | seq5 | conventional_gps | 0.966 | 0.963 | 1.001 |
-| VINS-Fusion+GPS | seq5 | hybrid_alt | 0.909 | 0.906 | 1.002 |
-| VINS-Fusion+GPS | seq5 | ppk_full | 11.2 | 10.5 | 0.931 |
 
-> Origin-aligned ATE (global-frame error, the honest GNSS metric) is available for 26/26 runs (re-evaluated ones); remaining runs need re-evaluation on the machine holding their datasets.
+> Origin-aligned ATE (global-frame error, the honest GNSS metric) is available for 19/19 runs (re-evaluated ones); remaining runs need re-evaluation on the machine holding their datasets.

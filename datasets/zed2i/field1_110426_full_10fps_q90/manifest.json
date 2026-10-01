@@ -123,6 +123,13 @@
       ]
     }
   },
+  "imu_info": {
+    "rows": 462419,
+    "frame_ids": [
+      "zed_imu_link"
+    ],
+    "values_rotated_by_extractor": false
+  },
   "gps_gt": {
     "gps_rows": 23107,
     "gt_rows": 23107,
@@ -138,6 +145,7 @@
   "notes": [
     "gt_tum.txt is RTK moving-base GPS shifted horizontally by gps_to_camera_x using rover/moving-base heading.",
     "gt_tum.txt orientation is identity; use position metrics for validation.",
-    "gps_to_camera_z is relative antenna-to-camera height, not camera height from ground."
+    "gps_to_camera_z is relative antenna-to-camera height, not camera height from ground.",
+    "imu.csv preserves the raw message axes; estimator extrinsics must map optical cameras to the recorded IMU frame."
   ]
 }

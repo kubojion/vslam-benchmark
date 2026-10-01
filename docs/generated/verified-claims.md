@@ -2,61 +2,61 @@
 
 Every prose claim in the report must cite a table cell or a line below.
 
-## VINS-Fusion+GPS on Rosario seq5
-ATE Sim3 0.916 m, SE3 0.920 m over a 13.3-minute sequence (796 s). Do NOT quote '0.4–0.9 m' or '15-minute' — the 0.49 figure was the old unaligned final_drift metric and the sequence is ~13 min.
-
 ## AirSLAM speed
-VIO fps range 1.3–47.3; VIO-LC fps range 1.40–3.62. The old claim '1.4–3.6 fps slowest VIO' was the VIO-LC range. CAVEAT: AirSLAM fps counts keyframe poses only and runs offline — not comparable to ROS-fed algorithms (see feeding-regime note).
+VIO fps range 35.3–51.1; VIO-LC fps range 5.55–31.09. The old claim '1.4–3.6 fps slowest VIO' was the VIO-LC range. CAVEAT: AirSLAM fps counts keyframe poses only and runs offline — not comparable to ROS-fed algorithms (see feeding-regime note).
 
 ## OKVIS2-X speedup over OKVIS2 (wall-clock ratio, median)
-  vo euroc_mav/MH_01_easy: x0.95
-  vo euroc_mav/MH_03_medium: x0.99
-  vo euroc_mav/MH_05_difficult: x0.99
-  vo hortimulti/strawberry02: x1.09
-  vo hortimulti/strawberry03: x1.15
-  vo rosariov2/sequence1: x1.45
-  vo rosariov2/sequence5: x1.54
-  vo zed2i/field1_110426_full_10fps_q90: x1.46
-  vio euroc_mav/MH_01_easy: x2.59
-  vio euroc_mav/MH_03_medium: x0.93
-  vio euroc_mav/MH_05_difficult: x0.91
-  vio hortimulti/strawberry02: x0.97
-  vio hortimulti/strawberry03: x0.85
-  vio rosariov2/sequence1: x1.29
-  vio rosariov2/sequence5: x1.53
-  vio zed2i/field1_110426_full_10fps_q90: x1.08
-  vio-lc euroc_mav/MH_01_easy: x0.98
-  vio-lc euroc_mav/MH_03_medium: x0.92
-  vio-lc euroc_mav/MH_05_difficult: x0.92
-  vio-lc hortimulti/strawberry02: x0.57
-  vio-lc hortimulti/strawberry03: x0.83
-  vio-lc rosariov2/sequence1: x1.59
-  vio-lc rosariov2/sequence5: x1.59
+  vo euroc_mav/MH_01_easy: x1.04
+  vo euroc_mav/MH_03_medium: x1.04
+  vo euroc_mav/MH_05_difficult: x1.02
+  vo hortimulti/strawberry02: x1.05
+  vo hortimulti/strawberry03: x1.08
+  vo rosariov2/sequence1: x1.05
+  vo rosariov2/sequence5: x1.04
+  vo zed2i/field1_110426_full_10fps_q90: x1.82
+  vio euroc_mav/MH_01_easy: x1.02
+  vio euroc_mav/MH_03_medium: x1.03
+  vio euroc_mav/MH_05_difficult: x1.02
+  vio hortimulti/strawberry02: x1.05
+  vio hortimulti/strawberry03: x1.03
+  vio rosariov2/sequence1: x1.08
+  vio rosariov2/sequence5: x1.07
+  vio zed2i/field1_110426_full_10fps_q90: x1.14
+  vio-lc euroc_mav/MH_01_easy: x1.01
+  vio-lc euroc_mav/MH_03_medium: x0.99
+  vio-lc euroc_mav/MH_05_difficult: x1.00
+  vio-lc hortimulti/strawberry02: x0.96
+  vio-lc hortimulti/strawberry03: x0.98
+  vio-lc rosariov2/sequence1: x1.09
+  vio-lc rosariov2/sequence5: x1.10
+  vio-lc zed2i/field1_110426_full_10fps_q90: x0.80
 Claim '~2x faster' holds only on isolated cells; typical is 0.8–1.5x. State the range, not '2x'.
 
 ## EuRoC stereo scale sanity
-21 stereo EuRoC VO runs: mean scale 1.0029, max |scale-1| 1.70%. (Old '1.001 over 39 runs' is stale.)
+66 stereo EuRoC VO runs: mean scale 1.0023, max |scale-1| 1.85%. (Old '1.001 over 39 runs' is stale.)
 
 ## Basalt VO scale drift on Rosario
-scale range 0.782–0.939 (|error| 6.1–21.8%).
+scale range 0.974–1.006 (|error| 0.6–2.6%).
 
 ## ORB-SLAM3 run-to-run spread (N>=3 VO cells)
-  hortimulti/strawberry02: N=3 ATE 0.65–1.42 m (x2.2)
-  hortimulti/strawberry03: N=3 ATE 0.18–0.23 m (x1.3)
-  rosariov2/sequence1: N=3 ATE 0.67–4.98 m (x7.4)
-  rosariov2/sequence5: N=3 ATE 4.00–13.97 m (x3.5)
+  euroc_mav/MH_01_easy: N=3 ATE 0.04–0.05 m (x1.4)
+  euroc_mav/MH_03_medium: N=3 ATE 0.04–0.05 m (x1.2)
+  euroc_mav/MH_05_difficult: N=3 ATE 0.05–0.07 m (x1.4)
+  hortimulti/strawberry03: N=3 ATE 0.19–0.24 m (x1.3)
+  zed2i/field1_110426_full_10fps_q90: N=3 ATE 0.18–0.20 m (x1.2)
 
 ## IMU effect (median ATE Sim3, VO -> VIO, per dataset)
-  rosariov2: airslam: 10.93->14.31; basalt: 14.34->3.77; okvis2: 18.40->19.19; okvis2x: 16.02->19.38; orbslam3: 4.49->3.49
-  hortimulti: airslam: 11.62->3.24; basalt: 1.16->1.30; okvis2: 1.02->1.25; okvis2x: 1.29->1.21; orbslam3: 0.44->0.88
-  zed2i: airslam: 3.87->3.90; basalt: 0.45->9.14; okvis2: 3.37->17.67; okvis2x: 1.43->18.31
-  euroc_mav: airslam: 0.14->0.10; basalt: 0.13->0.05; okvis2: 0.13->0.10; okvis2x: 0.15->0.07; orbslam3: 0.05->0.03
+  rosariov2: airslam: 27.92->34.43; basalt: 8.31->1.61; okvis2: 16.78->6.30; okvis2x: 16.59->7.29
+  hortimulti: airslam: 9.62->2.93; basalt: 1.24->1.54; okvis2: 0.75->0.72; okvis2x: 1.19->0.75; orbslam3: 0.23->1.04
+  zed2i: airslam: 3.57->3.28; basalt: 0.44->0.38; okvis2: 3.71->0.44; okvis2x: 1.77->0.43
+  euroc_mav: airslam: 0.15->0.11; basalt: 0.11->0.05; okvis2: 0.14->0.07; okvis2x: 0.12->0.08; orbslam3: 0.05->0.03
 
 ## Loop-closure blow-ups (|change| > 100% vs same-algo VO)
-  dpvo hortimulti/strawberry03: 1.81->8.80 (+387%)
-  okvis2x hortimulti/strawberry03: 0.68->2.53 (+271%)
-  orbslam3 rosariov2/sequence5: 6.69->14.63 (+119%)
-  ov2slam hortimulti/strawberry02: 5.23->22.97 (+339%)
+  dpvo hortimulti/strawberry03: 1.73->8.82 (+411%)
+  dpvo rosariov2/sequence1: 3.58->8.15 (+127%)
+  dpvo rosariov2/sequence5: 2.45->5.74 (+134%)
+  okvis2x hortimulti/strawberry03: 0.35->1.30 (+268%)
+  ov2slam zed2i/field1_110426_full_10fps_q90: 0.38->0.77 (+103%)
 
 ## ORB-SLAM3 agricultural VO coverage (gap-aware)
-range 42–100% across 12 runs.
+range 100–100% across 3 runs.

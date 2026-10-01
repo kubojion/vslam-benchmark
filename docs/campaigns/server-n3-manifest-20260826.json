@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "campaign_id": "quality-final-n3-no-gnss",
+  "description": "Single-configuration, quality-only N=3 benchmark campaign without GNSS algorithms",
+  "repeats": 3,
+  "expected_cells": 200,
+  "expected_executions": 600,
+  "sequences": [
+    {"dataset": "rosariov2", "sequence": "sequence1"},
+    {"dataset": "rosariov2", "sequence": "sequence5"},
+    {"dataset": "hortimulti", "sequence": "strawberry02"},
+    {"dataset": "hortimulti", "sequence": "strawberry03"},
+    {"dataset": "euroc_mav", "sequence": "MH_01_easy"},
+    {"dataset": "euroc_mav", "sequence": "MH_03_medium"},
+    {"dataset": "euroc_mav", "sequence": "MH_05_difficult"},
+    {"dataset": "zed2i", "sequence": "field1_110426_full_10fps_q90"}
+  ],
+  "gnss_sequences": [],
+  "tables": {
+    "vo": [
+      "orbslam3", "okvis2", "okvis2x", "airslam", "basalt", "ov2slam",
+      "dpvo", "macvo"
+    ],
+    "vo-lc": [
+      "orbslam3", "okvis2", "okvis2x", "airslam", "ov2slam", "dpvo"
+    ],
+    "vio": [
+      "orbslam3", "okvis2", "okvis2x", "airslam", "basalt", "openvins",
+      "voxel_svio"
+    ],
+    "vio-lc": ["orbslam3", "okvis2", "okvis2x", "airslam"],
+    "gnss-vio": []
+  },
+  "excluded": {
+    "droidslam": "Replaced by DPVO in the report",
+    "megasam": "Not installed or in current campaign scope",
+    "mast3r_slam": "Not installed or in current campaign scope",
+    "gnss-vio": "Excluded from this time-limited campaign"
+  }
+}

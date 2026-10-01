@@ -15,23 +15,23 @@ inside the band carry no bold — that is an honest tie, not an omission.
 
 ## Agricultural — ATE SE(3) RMSE [m]
 
-| Algorithm | seq1 | seq5 | str02 | str03 |
-|---|---|---|---|---|
-| ORB-SLAM3 | **0.705** | **2.71** | 2.11 | 0.693 |
-| AirSLAM | 15.9 | 25.5 | 5.58 | 0.956 |
-| OKVIS2 | 18.8 | 20.8 | 1.9 | **0.596** |
-| OKVIS2-X | 18.1 | 19.6 | 2.01 | 0.756 |
+| Algorithm | seq1 | seq5 | str02 | str03 | zed2i |
+|---|---|---|---|---|---|
+| ORB-SLAM3 | 0.832 (0.815–0.892) | **2.12 (2.07–2.41)** | 2.2 (2.18–2.23) | 0.669 (0.668–0.689) | — |
+| AirSLAM | 17.5 (17.3–38.2) | 31.9 (31.9–31.9) | 6.64 (6.46–7.07) | 1.19 (0.816–1.21) | 3.35 |
+| OKVIS2 | 0.837 (0.835–0.841) | 9.25 (9.08–9.44) | **1.7 (1.69–2.04)** | **0.643 (0.627–0.649)** | 0.33 |
+| OKVIS2-X | 5.35 (1.96–5.78) | 8.57 (8.44–9.27) | 3.37 (3.26–3.97) | 1.42 (0.737–1.65) | 0.324 |
 
-> No bold in column(s) str02: top-2 margin is inside the winner's dispersion band (honest tie).
+> No bold in column(s) seq1, zed2i: top-2 margin is inside the winner's dispersion band (honest tie).
 
 <details><summary>Agricultural — ATE Sim(3) [m] (secondary; absorbs scale error)</summary>
 
-| Algorithm | seq1 | seq5 | str02 | str03 |
-|---|---|---|---|---|
-| ORB-SLAM3 | 0.574 | 2.45 | 0.807 | 0.192 |
-| AirSLAM | 15.8 | 24.2 | 5.36 | 0.615 |
-| OKVIS2 | 18.3 | 20.4 | 1.28 | 0.099 |
-| OKVIS2-X | 17.8 | 19.3 | 1.66 | 0.113 |
+| Algorithm | seq1 | seq5 | str02 | str03 | zed2i |
+|---|---|---|---|---|---|
+| ORB-SLAM3 | 0.67 (0.62–0.773) | 1.72 (1.65–2.17) | 0.89 (0.88–0.91) | 0.173 (0.164–0.197) | — |
+| AirSLAM | 17.3 (17.1–35.1) | 29.8 (29.8–29.8) | 5.69 (5.62–5.92) | 1.06 (0.283–1.08) | 3.31 |
+| OKVIS2 | 0.0927 (0.091–0.101) | 9.24 (9.08–9.44) | 0.724 (0.717–1.37) | 0.0662 (0.0632–0.0769) | 0.286 |
+| OKVIS2-X | 5.11 (0.103–5.27) | 8.48 (8.43–9.25) | 1.48 (0.716–1.97) | 0.188 (0.0633–1.25) | 0.295 |
 
 </details>
 
@@ -39,29 +39,29 @@ inside the band carry no bold — that is an honest tie, not an omission.
 
 | Algorithm | MH01 | MH03 | MH05 |
 |---|---|---|---|
-| ORB-SLAM3 | 0.0358 | 0.0279 | 0.0685 |
-| AirSLAM | *0.0446 @86%* | *0.0427 @88%* | *0.0603 @92%* |
-| OKVIS2 | 0.0289 | 0.0335 | 0.0865 |
-| OKVIS2-X | **0.0187** | 0.0322 | **0.0474** |
+| ORB-SLAM3 | 0.0419 (0.0382–0.0462) | *0.0327 (0.0261–0.0328) @86%* | 0.058 (0.0521–0.0623) |
+| AirSLAM | *0.0478 (0.0477–0.0479) @86%* | *0.0411 (0.0411–0.0412) @88%* | *0.0577 (0.0575–0.058) @94%* |
+| OKVIS2 | 0.0249 (0.0238–0.026) | 0.031 (0.0303–0.0315) | 0.0732 (0.0613–0.0743) |
+| OKVIS2-X | **0.0161 (0.0151–0.0188)** | **0.0249 (0.0245–0.0268)** | 0.0496 (0.0466–0.0684) |
 
-> No bold in column(s) MH03: top-2 margin is inside the winner's dispersion band (honest tie).
+> No bold in column(s) MH05: top-2 margin is inside the winner's dispersion band (honest tie).
 
 <details><summary>EuRoC reference (non-agricultural control) — ATE Sim(3) [m] (secondary; absorbs scale error)</summary>
 
 | Algorithm | MH01 | MH03 | MH05 |
 |---|---|---|---|
-| ORB-SLAM3 | 0.0245 | 0.0279 | 0.062 |
-| AirSLAM | *0.0405 @86%* | *0.0413 @88%* | *0.0504 @92%* |
-| OKVIS2 | 0.0196 | 0.024 | 0.0486 |
-| OKVIS2-X | 0.0136 | 0.0276 | 0.0453 |
+| ORB-SLAM3 | 0.0217 (0.0188–0.0233) | *0.0293 (0.0253–0.0303) @86%* | 0.0422 (0.0409–0.0556) |
+| AirSLAM | *0.0463 (0.0463–0.0463) @86%* | *0.0405 (0.0405–0.0406) @88%* | *0.0543 (0.0538–0.0544) @94%* |
+| OKVIS2 | 0.0193 (0.0186–0.0214) | 0.0233 (0.0232–0.0271) | 0.0476 (0.047–0.0566) |
+| OKVIS2-X | 0.0152 (0.014–0.0158) | 0.0245 (0.0242–0.0267) | 0.0455 (0.042–0.0463) |
 
 </details>
 
 ## Log-reported loop-closure events (NOT verified accepted loops — heterogeneous per-algorithm log greps; n/i = not instrumented)
 
-| Algorithm | seq1 | seq5 | str02 | str03 | MH01 | MH03 | MH05 |
-|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | 127 | 0 | 1 | 6 | 0 | 0 | 0 |
-| AirSLAM | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| OKVIS2 | 76 | 0 | 4 | 64 | 34 | 42 | 20 |
-| OKVIS2-X | 27 | 1 | 8 | 16 | 29 | 39 | 14 |
+| Algorithm | seq1 | seq5 | str02 | str03 | zed2i | MH01 | MH03 | MH05 |
+|---|---|---|---|---|---|---|---|---|
+| ORB-SLAM3 | 22 | 0 | 1 | 2 | — | 0 | 0 | 0 |
+| AirSLAM | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| OKVIS2 | 221 | 1 | 8 | 62 | 1133 | 30 | 41 | 20 |
+| OKVIS2-X | 33 | 2 | 6 | 23 | 403 | 32 | 40 | 17 |

@@ -1,0 +1,6 @@
+sequence,source,sample_rate_hz,duration_s,gyro_operational_rms_deg_s,accel_operational_rms_m_s2,gyro_vibration_rms_deg_s,accel_vibration_rms_m_s2,gyro_vibration_to_operational,accel_vibration_to_operational,low_excitation_pct
+Rosario seq1,datasets/rosariov2/sequence1/mav0/imu0/data.csv,200.000,940.527,5.404181,0.623211,1.990658,1.424155,0.368355,2.285189,2.127660
+Rosario seq5,datasets/rosariov2/sequence5/mav0/imu0/data.csv,200.000,796.313,4.256650,0.616317,2.029634,1.457649,0.476815,2.365097,2.889447
+Horti str02,datasets/hortimulti/strawberry02/mav0/imu0/data.csv,200.000,952.467,6.728548,1.025069,5.486606,3.357493,0.815422,3.275383,0.735294
+Horti str03,datasets/hortimulti/strawberry03/mav0/imu0/data.csv,200.000,242.236,8.014470,0.953477,4.282447,2.638915,0.534339,2.767676,0.826446
+ZED2i field1,datasets/zed2i/field1_110426_full_10fps_q90/mav0/imu0/data.csv,100.000,4628.956,0.642798,0.083883,2.670328,0.320931,4.154223,3.825909,84.204840

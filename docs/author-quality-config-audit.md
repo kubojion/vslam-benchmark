@@ -1,5 +1,7 @@
 # Author-Sourced Quality Configuration Audit
 
+> **Status note 2026-10-01:** this is the August configuration-policy record. The executed campaign used N=3 without GNSS, not the proposed N=5. Later Basalt VO, ZED calibration and OKVIS2 full-BA changes require cohort reconciliation; see [the current audit](campaigns/server-status-20261001.md). The noise procedure is documented in [noise derivation](okvis-imu-noise-derivation.md).
+
 **Date:** 2026-08-26
 **Scope:** algorithms represented in the five benchmark tables (`vo`, `vo-lc`,
 `vio`, `vio-lc`, and `gnss-vio`)

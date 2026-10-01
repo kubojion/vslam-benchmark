@@ -1,5 +1,39 @@
 # vSLAM Benchmark - Progress
 
+> Current status: **2026-10-01**. The executed RTX 4090 campaign is N=3 without GNSS:
+> **538/600 evaluated runs; 176/200 cells at N=3** (174 all-ok, two with a collapse).
+> Ten cells have N=1; fourteen have no complete evaluation. No campaign/estimator process
+> was observed. See [TODO](TODO.md) and the [full status audit](docs/campaigns/server-status-20261001.md).
+> The older summaries and numbered findings below are dated historical observations;
+> do not use their counts or excitation-only explanations as current conclusions.
+
+## 2026-10-01 — Server inventory and documentation reconciliation
+
+- Completed N=3 cells now cover most of VO, VO-LC, VIO and VIO-LC. The September 23
+  OKVIS2 VO-LC recovery finished all seven non-ZED cells; its ZED run1 exported successfully
+  but remains unevaluated after run2 was killed. Preserve that output before replacement.
+- The September 16 corrected ZED IMU campaign has nine evaluated N=1 cells (eight ok,
+  OpenVINS scale collapse) and two ORB-SLAM3 failures. Old identity-extrinsic results do
+  not describe the corrected cohort. The remaining serial-specific calibration term is open.
+- Remaining gaps: agricultural ORB VO/VO-LC crashes, OpenVINS core VIO recovery, both
+  ZED OKVIS-family VO-LC cells and corrected ZED IMU repetitions. Three state files contain
+  stale running entries, with no matching process at audit.
+- Basalt VO configurations differ between the recovered Rosario cells (0.03 triangulation
+  threshold) and the other six cells (0.05). Freeze the cohort before claiming uniformity.
+- Root CSVs still have 259 rows versus 577 COMPLETE evaluated artifacts on disk; the
+  latter include 15 historical DROID runs and five smoke runs outside the campaign target.
+  GNSS has 19 COMPLETE legacy artifacts, not a repeated server campaign.
+- Documentation now distinguishes evaluated repetitions, successful tracking, negative
+  outcomes, and pending work. The pre-audit TODO is archived under `docs/campaigns/`.
+- Numeric report regeneration remains pending metric/reporting repairs and smoke exclusion:
+  DPVO metric labeling, mixed-status aggregation, point-distance/RPE semantics, GNSS origin
+  alignment, ZED orientation placeholders, coverage support and cache freshness. See the audit.
+
+This audit changed documentation only. It did not rerun estimators, mark incomplete artifacts
+complete, alter campaign state, or overwrite configurations/results.
+
+## Historical summary (August 2026; superseded as current status)
+
 > Updated: 2026-08-04 - **VO: 110 rows** (ORB-SLAM3 native; its agri "VO" baseline re-run truly LC-off,
 > `loopClosing:0` - str03 0.104→0.217 confirms it was LC-assisted; agri VO is partial-coverage 42-58%,
 > finding 14). **VO-LC: 40 rows** (DPV-SLAM, OKVIS2, OKVIS2-X, ORB-SLAM3, OV2SLAM). **VIO: 55 rows**
@@ -896,12 +930,12 @@ Wired via Docker only (no host build) to keep the host environment clean.
 ### Build & runtime
 
 - Image: `openvins:humble` (~1.5 GB), built from
-  [src/open_vins/Dockerfile.benchmark](../src/open_vins/Dockerfile.benchmark) on top of
+  [src/open_vins/Dockerfile.benchmark](src/open_vins/Dockerfile.benchmark) on top of
   `ros:humble-ros-base-jammy`. Builds packages `ov_core`, `ov_init`, `ov_msckf`, `ov_eval`
   with `-DENABLE_ARUCO_TAGS=OFF`.
-- Wrapper: [scripts/run/run_openvins.sh](../scripts/run/run_openvins.sh) launches
+- Wrapper: [scripts/run/run_openvins.sh](scripts/run/run_openvins.sh) launches
   `ros2 launch ov_msckf subscribe.launch.py` inside the image, then runs a Python
-  data player ([scripts/run/openvins_data_player.py](../scripts/run/openvins_data_player.py))
+  data player ([scripts/run/openvins_data_player.py](scripts/run/openvins_data_player.py))
   in the same container that streams `mav0/cam{0,1}/data/` and `mav0/imu0/data.csv`
   over `/cam{0,1}/image_raw` and `/imu0`, and saves `/ov_msckf/odomimu` as TUM.
 - `OPENVINS_RATE` env var controls playback speed (default 1.0 = real-time).

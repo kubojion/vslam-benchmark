@@ -1,0 +1,1 @@
+/data/imoroz/vslam-benchmark/datasets/euroc/mh_01_easy/gt_tum.txt

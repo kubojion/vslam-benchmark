@@ -1,5 +1,7 @@
 # Algorithm Setup and Fair-Comparison Audit
 
+> **Status note 2026-10-01:** retain this as the dated August audit. Implementation and result coverage have changed since then; current completion and unresolved findings are in [the server status audit](campaigns/server-status-20261001.md).
+
 **Date:** 2026-08-26
 **Scope:** Five-table benchmark (`vo`, `vo-lc`, `vio`, `vio-lc`, and `gnss-vio`) on the RTX 4090 server
 **Detailed setup evidence:** EuRoC-MAV VO sweep of Basalt, AirSLAM, OKVIS2, OKVIS2-X, ORB-SLAM3, OV²SLAM, DPVO, and MAC-VO

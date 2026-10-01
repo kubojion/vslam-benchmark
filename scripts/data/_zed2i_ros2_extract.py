@@ -170,8 +170,9 @@ def camera_info_to_dict(msg: CameraInfo) -> dict:
     }
 
 
-def extract_imu(zed_bag: Path, out: Path, start_ns: int, end_ns: int) -> int:
+def extract_imu(zed_bag: Path, out: Path, start_ns: int, end_ns: int) -> dict:
     rows = []
+    frame_ids: set[str] = set()
     reader = open_reader(zed_bag)
     while reader.has_next():
         topic, raw, _ts = reader.read_next()
@@ -183,6 +184,7 @@ def extract_imu(zed_bag: Path, out: Path, start_ns: int, end_ns: int) -> int:
             continue
         if ns > end_ns:
             break
+        frame_ids.add(msg.header.frame_id)
         rows.append([
             ns / 1e9,
             msg.linear_acceleration.x,
@@ -196,7 +198,11 @@ def extract_imu(zed_bag: Path, out: Path, start_ns: int, end_ns: int) -> int:
         w = csv.writer(f)
         w.writerow(["t", "ax", "ay", "az", "gx", "gy", "gz"])
         w.writerows(rows)
-    return len(rows)
+    return {
+        "rows": len(rows),
+        "frame_ids": sorted(frame_ids),
+        "values_rotated_by_extractor": False,
+    }
 
 
 def wgs84_to_ecef(lat_deg: float, lon_deg: float, alt: float) -> tuple[float, float, float]:
@@ -374,8 +380,8 @@ def main() -> int:
     start_ns, end_ns = matched[0], matched[-1]
     print(f"[zed2i] image window: {start_ns} -> {end_ns}")
 
-    imu_count = extract_imu(zed_bag, out, start_ns, end_ns)
-    print(f"[zed2i] imu rows: {imu_count}")
+    imu_info = extract_imu(zed_bag, out, start_ns, end_ns)
+    print(f"[zed2i] imu rows: {imu_info['rows']} (frames: {imu_info['frame_ids']})")
 
     gps_summary = extract_gps_gt(
         rtk_bag, out, start_ns, end_ns, args.gps_to_camera_x, args.gps_to_camera_z
@@ -410,11 +416,13 @@ def main() -> int:
             "gps_rover_heading": GPS_ROVER_TOPIC,
         },
         "camera_info": camera_info,
+        "imu_info": imu_info,
         "gps_gt": gps_summary,
         "notes": [
             "gt_tum.txt is RTK moving-base GPS shifted horizontally by gps_to_camera_x using rover/moving-base heading.",
             "gt_tum.txt orientation is identity; use position metrics for validation.",
             "gps_to_camera_z is relative antenna-to-camera height, not camera height from ground.",
+            "imu.csv preserves the raw message axes; estimator extrinsics must map optical cameras to the recorded IMU frame.",
         ],
     }
     (out / "manifest.json").write_text(json.dumps(manifest, indent=2))

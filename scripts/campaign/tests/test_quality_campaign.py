@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.util
 from pathlib import Path
 import unittest
+import tempfile
 
 
 REPO = Path(__file__).resolve().parents[3]
@@ -46,6 +47,55 @@ class CampaignDefinitionTests(unittest.TestCase):
             with self.subTest(algorithm=algorithm):
                 for _, candidates in campaign.config_groups(cell):
                     self.assertTrue(any(path.is_file() for path in candidates), candidates)
+
+
+class SourceFingerprintTransitionTests(unittest.TestCase):
+    def test_transition_is_recorded_and_updates_current_fingerprint(self) -> None:
+        state = {"source_fingerprint": "old"}
+        changed = campaign.accept_source_fingerprint_change(
+            state,
+            "new",
+            reason="raise the cell deadline for long ZED quality runs",
+            accepted_at="2026-09-10T08:30:00+0200",
+        )
+        self.assertTrue(changed)
+        self.assertEqual("new", state["source_fingerprint"])
+        self.assertEqual([{
+            "accepted_at": "2026-09-10T08:30:00+0200",
+            "previous": "old",
+            "current": "new",
+            "reason": "raise the cell deadline for long ZED quality runs",
+        }], state["source_fingerprint_history"])
+
+    def test_no_history_entry_when_fingerprint_is_unchanged(self) -> None:
+        state = {"source_fingerprint": "same"}
+        changed = campaign.accept_source_fingerprint_change(
+            state, "same", reason="not used",
+        )
+        self.assertFalse(changed)
+        self.assertNotIn("source_fingerprint_history", state)
+
+    def test_changed_fingerprint_requires_reason(self) -> None:
+        state = {"source_fingerprint": "old"}
+        with self.assertRaisesRegex(ValueError, "non-empty"):
+            campaign.accept_source_fingerprint_change(state, "new", reason="  ")
+        self.assertEqual({"source_fingerprint": "old"}, state)
+
+
+class CellProcessTests(unittest.TestCase):
+    def test_timeout_terminates_process_group_and_preserves_output(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            log = Path(tmp) / "cell.log"
+            returncode, timed_out, duration = campaign.run_cell_process(
+                ["bash", "-c", "echo started; sleep 30"],
+                log,
+                timeout_s=0.2,
+            )
+            contents = log.read_text()
+        self.assertTrue(timed_out)
+        self.assertLess(duration, 5.0)
+        self.assertNotEqual(returncode, 0)
+        self.assertIn("started", contents)
 
 
 if __name__ == "__main__":

@@ -1,25 +1,25 @@
 {
     "value0": {
         "_comment": "ZED2i HD1080 rectified stereo. Intrinsics/baseline confirmed from two independent sources: dataset manifest.json camera_info AND the ZED factory calibration for this unit (/usr/local/zed/settings/SN30291010.conf, Baseline=119.844mm). Images are pre-rectified (distortion all zeros).",
-        "_comment_extrinsic": "T_imu_cam cam0 set to identity: the ZED2i factory camera_imu_transform (queried from firmware, SN30291010) is only 0.675 deg / 23.1 mm from identity, i.e. the IMU is effectively co-located with the left camera. Same assumption used for rosariov2 (also a ZED). VERIFY EMPIRICALLY (gyro-vs-VO Kabsch) before trusting for VIO.",
+        "_comment_extrinsic": "T_imu_cam maps each rectified optical camera into zed_imu_link. It includes the mandatory ROS-body/optical axis conversion and the ZED2i SDK translation [-0.002, -0.023061, 0.000217] m (IMU origin in the left non-optical camera frame). The serial-specific residual rotation (~0.675 deg for SN30291010) was not retained in the bag, so identity is used only for that small body-frame term. See docs/zed2i-imu-extrinsics.md.",
         "T_imu_cam": [
             {
-                "px": 0.0,
-                "py": 0.0,
-                "pz": 0.0,
-                "qx": 0.0,
-                "qy": 0.0,
-                "qz": 0.0,
-                "qw": 1.0
+                "px": 0.002,
+                "py": 0.023061,
+                "pz": -0.000217,
+                "qx": -0.5,
+                "qy": 0.5,
+                "qz": -0.5,
+                "qw": 0.5
             },
             {
-                "px": 0.1198462504,
-                "py": 0.0,
-                "pz": 0.0,
-                "qx": 0.0,
-                "qy": 0.0,
-                "qz": 0.0,
-                "qw": 1.0
+                "px": 0.002,
+                "py": -0.0967852504,
+                "pz": -0.000217,
+                "qx": -0.5,
+                "qy": 0.5,
+                "qz": -0.5,
+                "qw": 0.5
             }
         ],
         "intrinsics": [

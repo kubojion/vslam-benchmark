@@ -1,7 +1,9 @@
 # Evaluation
 
-> Fully revised: 2026-05-30 - Added run-type flag examples; clarified CSV rebuild step; added segment-map and ATE-vs-FPS plot commands.
-> Updated: 05-31-10:42 - Added `gnss-vio` run type; documented eval pipeline for gnss-vio algorithms.
+> Status reviewed 2026-10-01. The field definitions below describe current implementation,
+> including known limitations. Publication blockers and current run counts are tracked in
+> [the server audit](campaigns/server-status-20261001.md). Numeric reports are provisional.
+
 
 The pipeline turns raw trajectories into per-segment ATE numbers and plots.
 `scripts/run/run_benchmark.sh` runs the full chain automatically; this page
@@ -81,15 +83,15 @@ For each algorithm, on each sequence:
 |---|---|
 | `ATE SE3` | RMSE after rigid SE(3) alignment only (no scale). **Primary metric for stereo/VIO** (finding 4) — does not absorb scale drift. |
 | `ATE Sim3` | RMSE after Sim(3) alignment (scale + rotation + translation). Primary only for monocular methods; secondary/diagnostic for stereo. |
-| `ATE origin` | (GNSS-VIO runs, eval_schema 2) ATE after origin-translation only — the honest global-frame metric for GNSS-fused estimates; Sim3/SE3 alignment absorbs exactly what GNSS anchors. |
+| `ATE origin` | GNSS-VIO ATE after evo `--align_origin`: rigid rotation **and** translation aligning the first poses. It is not translation-only or raw global-frame GNSS error; initial heading error is absorbed. |
 | `Scale` | Sim(3) scale factor recovered by the alignment. Far from 1.0 → systematic scale drift. |
-| `RPE trans / rot` | Relative pose error on 1-metre windows. `*_se3` variants (eval_schema 2) are computed WITHOUT scale correction — use those for local drift; the legacy scale-corrected variant can distort local drift when scale varies along the trajectory. |
-| `drift_{10,50,100}m_pct` | Drift over 10/50/100 m windows as % of window length, no scale correction (KITTI convention). |
-| `coverage_gap_pct` | **The one coverage metric**: gap-aware fraction of the sequence with pose output (`_coverage.py`) — robust to keyframe-only exporters and interior tracking holes. `track_pct` (output rate) and `trajectory_time_coverage_pct` (endpoint span) are deprecated. |
+| `RPE trans / rot` | The current translation field uses evo `point_distance`, the absolute difference of the two displacement magnitudes over 1-metre windows, **not** full relative-pose translation error. `*_se3` omits scale correction. Rotation requires valid orientation GT and consistent body/camera frames; ZED identity-quaternion placeholders do not qualify. |
+| `drift_{10,50,100}m_pct` | Current point-distance residual over 10/50/100 m windows divided by the window length. No scale correction. This is **not standard KITTI translational drift**; fix/relabel before comparison with published KITTI numbers. |
+| `coverage_gap_pct` | Current gap-aware time-support estimate (`_coverage.py`). Its gap threshold is max(2 s, 5 × median output interval), so very sparse outputs can hide long gaps. A common-support audit remains required. `track_pct` measures output rate; endpoint-span coverage ignores interior holes. |
 | `ATE [row]` / `ATE [turn]` | Per-segment RMSE of the **globally SE(3)-aligned** trajectory (`segment_alignment=global_se3`, 2026-08-05). Legacy rows used an independent per-segment Sim(3) fit, which is degenerate on straight rows — do not compare across the two semantics. |
 | `Frames` | Number of poses in `trajectory.txt` (keyframe-only for some algorithms). |
 | `Loops` | Log-reported loop-closure events, parsed per-algorithm (orbslam3/okvis2/okvis2x/ov2slam/airslam/mast3r_slam). NOT verified accepted loops; blank = not instrumented. |
-| `Duration` / `FPS` | Wall-clock and output-poses per second. NOT comparable across feeding regimes (offline file-fed vs real-time ROS playback) or machines. |
+| `Duration` / `FPS` | Legacy reports may use output-poses per wall second. Current CSV builder uses `fps` as a processing-FPS alias when processing time is known, otherwise blank. Read explicit `processing_fps`, `end_to_end_fps`, `trajectory_pose_rate`, measurement mode and resource scope; see [run measurements](run-measurements.md). |
 | `run_status` | ok / scale_collapse (Sim3 scale <0.1 or >10) / eval_failed. |
 
 Multi-run aggregations report mean ± std (ddof=1) **plus median / min / max rows**; report tables
@@ -97,16 +99,16 @@ use `median (min–max)`, generated exclusively by `scripts/eval/make_report_tab
 
 ## What the plots show
 
-`results-<type>/<ds>/<seq>/segment_map.png` overlays all algorithms vs ground truth.
-`results-<type>/<ds>/<seq>/segment_map_3d.png` is the same view with an added Z axis.
+`results/<type>/<ds>/<seq>/segment_map.png` overlays all algorithms vs ground truth.
+`results/<type>/<ds>/<seq>/segment_map_3d.png` is the same view with an added Z axis.
 Individual runs are drawn in light grey; the per-algorithm mean trajectory is
 drawn thick in the algorithm's colour (ORB-SLAM3 green, MAC-VO orange, Basalt red,
 AirSLAM light blue, OpenVINS purple). Ground truth is a dashed black line.
 
-Per-algorithm plots (`results-<type>/<ds>/<seq>/<algo>/segment_map.png`) zoom in on
+Per-algorithm plots (`results/<type>/<ds>/<seq>/<algo>/segment_map.png`) zoom in on
 one algorithm with individual runs + mean.
 
-`results-<type>/ate_vs_fps.png` shows ATE SE(3) vs FPS for every algo/sequence combination
+`results/<type>/ate_vs_fps.png` shows ATE SE(3) vs FPS for every algo/sequence combination
 (run `scripts/eval/plot_ate_vs_fps.py --type <type>` to regenerate).
 
 ## Sim(3) vs SE(3)
@@ -114,12 +116,30 @@ one algorithm with individual runs + mean.
 ORB-SLAM3 with stereo input is metric, so Sim(3) and SE(3) ATE should be
 close. Large gaps (e.g. Rosario seq5: Sim3 approx 20 m, SE3 approx 21 m, scale 0.90)
 indicate scale drift over long straight sections without loop closures.
-MAC-VO produces up-to-scale trajectories - always read Sim3 ATE for it.
+MAC-VO uses calibrated stereo and belongs to the metric-scale comparison: use SE(3)
+ATE as primary. DPVO/DPV-SLAM is monocular and needs Sim(3) for trajectory-shape comparison.
+The current table generator incorrectly passes SE(3) for DPVO headline cells despite
+claiming Sim(3) in its header; fix this before publication.
 OpenVINS / OKVIS2 / Basalt are metric (stereo+IMU), so Sim3 and SE3 should
-agree; a scale far from 1.0 suggests IMU noise parameters are miscalibrated.
+agree in successful tracking; a large scale error can reflect calibration, initialization,
+tracking or estimator failure and does not uniquely diagnose IMU noise.
 
 ## Re-evaluating without re-running SLAM
 
-After tweaking `_evaluate_run.py` (e.g. a new metric), just re-run steps 3-5;
-the SLAM trajectory files in `results/.../trajectory.txt` are the only input
-needed.
+After evaluator fixes, re-evaluate affected saved trajectories using the matching GT,
+configuration/pose-frame provenance, run metadata and logs. Revalidate artifacts, then refresh
+aggregates, CSVs, tables, claims and plots together. Preserve the earlier evaluations as a
+separate version when semantics change; `eval_schema: 2` alone does not prove equivalent code.
+
+`run_benchmark.sh` currently reuses GT interpolation and segmentation files whenever they
+exist. It does not invalidate them by input hash. Verify these caches after any GT or timing
+change before evaluating; do not assume that launching another benchmark repairs them.
+
+`make_report_tables.py --check` checks its own rendering rules, not correctness of metric
+semantics or completeness against a campaign manifest. Mixed-status cells currently qualify
+for ranking if any repetition is `ok`, and bolding uses a dispersion heuristic rather than a
+statistical significance test. Report attempted/evaluated/successful counts explicitly.
+
+Before rebuilding exports, exclude the five COMPLETE smoke runs documented in the
+[status audit](campaigns/server-status-20261001.md). Root CSVs, generated reports and the
+browser are currently different snapshots; regeneration remains pending these repairs.

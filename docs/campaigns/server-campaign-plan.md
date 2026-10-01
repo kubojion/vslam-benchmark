@@ -1,4 +1,13 @@
-# Final quality campaign plan (RTX 4090, N=5)
+# Server campaign plan (RTX 4090): original N=5 protocol and executed N=3 scope
+
+> **2026-10-01 reconciliation:** the protocol below describes the original N=5 target,
+> not the campaign actually completed. The executed `quality-final-n3-no-gnss` manifest
+> requests 200 cells / 600 runs (N=3, including EuRoC, excluding GNSS). Current inventory:
+> 538 evaluated runs, 176 N=3 cells, ten N=1 cells, fourteen cells without a complete
+> evaluation. No matching campaign process was observed; some state entries are stale.
+> See [the audit](server-status-20261001.md) and [executed manifest snapshot](server-n3-manifest-20260826.json).
+> The default commands below still select the N=5 manifest. They are not a recovery
+> instruction for missing N=3 repetitions. Confirm scope and preserve current artifacts first.
 
 This is the launch protocol for the single final benchmark campaign. It compares every
 currently supported algorithm in each applicable table with one fixed, documented quality
@@ -23,7 +32,8 @@ strawberry03, EuRoC MH_01/MH_03/MH_05, and the full ZED2i field sequence. GNSS-V
 only to Rosario v2 and HortiMulti, where GNSS input exists.
 
 DROID-SLAM is excluded because DPVO replaced it in the report. MegaSaM and MASt3R-SLAM are
-not installed and are outside this campaign; they must not appear as failed or empty cells.
+outside this campaign; historical installation/OOM notes do not establish current server
+feasibility. They are not missing target cells.
 
 ## Before launch
 
@@ -66,13 +76,16 @@ python3 scripts/campaign/run_quality_campaign.py --run
 ```
 
 The driver owns a single campaign lock and runs only one cell at a time. Each cell calls
-`run_benchmark.sh ... 5 <run-type>`, which transactionally replaces that cell so stale runs or
-plots cannot leak into it. A failed cell is retried once. If it fails twice, the default is to
+`run_benchmark.sh ... 5 <run-type>`, which locks and replaces the entire cell, including existing successful repetitions.
+This is not rollback-safe: the old cell is removed before all replacements succeed.
+Preserve recoverable outputs and evaluate them before any restart. A failed cell is retried once. If it fails twice, the default is to
 stop and retain its logs rather than silently produce an incomplete report.
 
 State and per-cell logs are stored under
 `logs/server-campaign/quality-final-n5/` (gitignored). Re-running the same command skips cells
-marked successful. Resume is refused if the manifest or fingerprinted benchmark source changed.
+marked successful. Manifest changes are rejected. Source changes require the explicit audited source-change
+transition supported by the current driver; inspect its help and provenance before resuming.
+An old successful state entry does not revalidate a cell subsequently replaced by recovery work.
 
 ## Completion
 
