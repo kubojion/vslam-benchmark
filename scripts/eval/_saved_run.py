@@ -16,7 +16,7 @@ from _pose_frames import file_evidence, frame_policy
 from _run_observations import parse_log, parse_resources
 from _run_type import resolve
 from _segment_trajectory import classify, merge_segments, yaw_from_path
-from _trajectory_evaluation import evaluate_arrays
+from _trajectory_evaluation import evaluate_arrays, position_only_diagnostic
 
 
 def atomic_json(path, value):
@@ -127,6 +127,10 @@ def evaluate_saved_run(ws, run_dir, *, gt_override=None):
                          rpe_rot_1m_deg=statistics([]), window_drift={}, scale_factor=None,
                          final_drift_m=None, coverage={'coverage_gap_pct': None, 'validation_error': str(exc)})
         paired = {}
+        if rt.use_gnss:
+            diagnostic=position_only_diagnostic(reference,estimate,times,policy)
+            if diagnostic is not None:
+                numerical['position_only_diagnostic']=diagnostic
     # OpenVINS estimator messages are in a separate saved node log.
     log_path = run_dir/('openvins_node.log' if algo == 'openvins' and (run_dir/'openvins_node.log').exists() else 'run_log.txt')
     robustness = parse_log(str(log_path), algo)

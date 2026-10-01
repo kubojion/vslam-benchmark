@@ -37,7 +37,7 @@ def right_transform(poses, sensor_T_target):
     """
     a = np.asarray(poses).copy()
     t = np.asarray(sensor_T_target, dtype=float)
-    if t.shape != (4, 4) or not np.allclose(t[3], [0, 0, 0, 1]):
+    if t.shape != (4, 4) or not np.isfinite(t).all() or not np.allclose(t[3], [0, 0, 0, 1]):
         raise ValueError("expected a homogeneous 4x4 transform")
     if not np.allclose(t[:3, :3].T @ t[:3, :3], np.eye(3), atol=2e-5):
         raise ValueError("extrinsic rotation is not orthonormal")
@@ -81,8 +81,10 @@ def camera_association(estimate, camera_times, tolerance_s=0.005):
     """
     a = validate_poses(estimate)
     t = np.asarray(camera_times, dtype=float)
-    if len(t) < 2 or np.any(np.diff(t) <= 0):
-        raise ValueError("camera timestamps must be strictly increasing")
+    if t.ndim != 1 or len(t) < 2 or not np.isfinite(t).all() or np.any(np.diff(t) <= 0):
+        raise ValueError("camera timestamps must be finite, one-dimensional and strictly increasing")
+    if not np.isfinite(tolerance_s) or tolerance_s < 0:
+        raise ValueError("association tolerance must be finite and nonnegative")
     hi = np.clip(np.searchsorted(a[:, 0], t), 0, len(a) - 1)
     lo = np.maximum(hi - 1, 0)
     idx = np.where(np.abs(a[lo, 0] - t) <= np.abs(a[hi, 0] - t), lo, hi)

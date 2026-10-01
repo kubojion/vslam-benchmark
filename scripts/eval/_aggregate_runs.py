@@ -1,517 +1,151 @@
 #!/usr/bin/env python3
-"""Aggregate N per-run run_eval.json files into metrics.csv and report.md.
+"""Aggregate authoritative schema-3 CSV rows without dropping failures or mixing cohorts.
 
-Usage:
-    python3 _aggregate_runs.py <dataset> <seq> <algo> [input_fps=10] [run_type=vo]
-
-Reads:  <results_root>/<dataset>/<seq>/<algo>/run*/run_eval.json
-Writes: <results_root>/<dataset>/<seq>/<algo>/metrics.csv
-        <results_root>/<dataset>/<seq>/<algo>/report.md
-
-Where <results_root> is one of:
-    results/vo/       (run_type=vo)
-    results/vo-lc/    (run_type=vo-lc)
-    results/vio/      (run_type=vio)
-    results/vio-lc/   (run_type=vio-lc)
-    results/gnss-vio/ (run_type=gnss-vio)
-
-metrics.csv format: one row per run + two summary rows (mean, std).
-report.md: thesis-ready table matching the supervisor's required format.
+Compatibility CLI: <dataset> <seq> <algo> [auto] [mode]. --all builds every cell.
+The old FPS argument is accepted but never used to manufacture runtime metrics.
 """
+from __future__ import annotations
+
+import argparse
+from collections import Counter, defaultdict
 import json
-import sys
 import math
 from pathlib import Path
+import statistics
 
-import numpy as np
-
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _run_type import canonicalize_dataset, resolve as resolve_run_type  # noqa: E402
-
-
-def load_runs(algo_dir: Path):
-    runs = []
-    for p in sorted(algo_dir.glob("run*/run_eval.json")):
-        if not (p.parent / "COMPLETE").is_file():
-            print(f"[aggregate] skipping incomplete run: {p.parent}")
-            continue
-        try:
-            runs.append(json.loads(p.read_text()))
-        except Exception as e:
-            print(f"[aggregate] could not load {p}: {e}")
-    return runs
+from build_benchmark_csv import REPO, build_rows, csv_text, load_inventory, preserved_write
+from _run_type import canonicalize_dataset
 
 
-def safe_mean(vals):
-    v = [x for x in vals if x is not None and not math.isnan(x)]
-    return float(np.mean(v)) if v else None
+def numeric(value):
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
 
 
-def safe_std(vals):
-    # ddof=1 (sample std) — ddof=0 understated the spread by ~18% at N=3
-    # (fixed 2026-08-05). At N<=3 any std is fragile; prefer median + min-max.
-    v = [x for x in vals if x is not None and not math.isnan(x)]
-    return float(np.std(v, ddof=1)) if len(v) > 1 else 0.0
+def summary(values):
+    values = [v for v in values if numeric(v)]
+    return dict(n=len(values), mean=statistics.mean(values) if values else None,
+                median=statistics.median(values) if values else None,
+                min=min(values) if values else None, max=max(values) if values else None,
+                sample_std=statistics.stdev(values) if len(values)>1 else None)
 
 
-def safe_median(vals):
-    v = [x for x in vals if x is not None and not math.isnan(x)]
-    return float(np.median(v)) if v else None
+def cohort_summary(rows):
+    # Accuracy among numerically valid saved trajectories is conditional. A
+    # nonzero process exit remains in counts and prevents a clean-success tick.
+    selected = [r for r in rows if r['run_status']=='ok']
+    alignments = {r['primary_alignment'] for r in rows}
+    if len(alignments)!=1:
+        raise ValueError('cannot aggregate different primary alignments')
+    return dict(cohort=rows[0]['cohort'], planned_members=len(rows),
+                evaluated=sum(r['eval_schema']==3 for r in rows),
+                outcomes=dict(Counter(r['run_status'] for r in rows)),
+                qualified=sum(r['paper_ready'] is True for r in rows),
+                nonzero_exits=sum(r['process_exit_code'] not in (None,0) for r in rows),
+                alignment=next(iter(alignments)),
+                conditional_primary_ate=summary([r['primary_ate_rmse_m'] for r in selected]),
+                dense_coverage_pct=summary([r['coverage_gap_pct'] for r in rows]),
+                run_paths=[r['run_path'] for r in rows])
 
 
-def safe_min(vals):
-    v = [x for x in vals if x is not None and not math.isnan(x)]
-    return float(np.min(v)) if v else None
+def summarize_cell(rows):
+    if not rows:
+        raise ValueError('empty cell')
+    identities={(r['run_type'],r['dataset'],r['seq'],r['algo'],r['gnss_variant']) for r in rows}
+    if len(identities)!=1:
+        raise ValueError('variants/cells must be summarized separately')
+    groups=defaultdict(list)
+    for row in rows:
+        if row['attempt_exists']:
+            groups[row['cohort']].append(row)
+    outcomes=dict(Counter(r['run_status'] for r in rows))
+    return dict(identity=list(next(iter(identities))), planned_slots=len(rows),
+                attempted=sum(r['attempt_exists'] for r in rows),
+                evaluated=sum(r['eval_schema']==3 for r in rows), outcomes=outcomes,
+                clean_qualified_n3=(len(rows)==3 and len(groups)==1 and all(
+                    r['paper_ready'] is True and r['run_status']=='ok' and r['process_exit_code']==0
+                    and numeric(r['coverage_gap_pct']) and r['coverage_gap_pct']>=95 for r in rows)),
+                cohorts=[cohort_summary(group) for _,group in sorted(groups.items())],
+                scientific_blockers=sorted({blocker for r in rows for blocker in json.loads(r['scientific_blockers'])}))
 
 
-def safe_max(vals):
-    v = [x for x in vals if x is not None and not math.isnan(x)]
-    return float(np.max(v)) if v else None
+def number(value):
+    return 'unknown' if value is None else f'{value:.6g}'
 
 
-def fmt(val, dec=4):
-    if val is None:
-        return "N/A"
-    return f"{val:.{dec}f}"
+def render_report(rows, result):
+    mode,ds,seq,algo,variant=result['identity']
+    lines=[f'# {algo} — {mode}, {ds}/{seq}, input {variant}', '',
+           'Generated from the hash-checked attempt inventory and schema-3 evaluations.', '',
+           f"Planned slots: {result['planned_slots']}; attempted: {result['attempted']}; "
+           f"evaluated: {result['evaluated']}. Outcomes: `{json.dumps(result['outcomes'],sort_keys=True)}`.", '',
+           '**N=3 ✅ qualified**' if result['clean_qualified_n3'] else '**Not a qualified clean N=3 cell.**', '',
+           'ATE below describes numerically valid saved trajectories only. Failures and missing '
+           'repetitions stay in the denominator; conditional accuracy is not a success rate. '
+           'Separate source/configuration/hardware cohorts are never pooled. '
+           'Unverified legacy attempts each retain a separate identity.', '',
+           '| Run | Numerical outcome | Exit | Qualification | Primary alignment | ATE RMSE [m] | Dense coverage [%] |',
+           '|---|---|---|---|---|---|---|']
+    for r in rows:
+        lines.append(f"| {r['run']} | {r['run_status']} | {r['process_exit_code'] if r['process_exit_code'] is not None else 'unknown'} | "
+                     f"{r['scientific_status']} | {r['primary_alignment']} | {number(r['primary_ate_rmse_m'])} | {number(r['coverage_gap_pct'])} |")
+    for group in result['cohorts']:
+        stats=group['conditional_primary_ate']
+        lines+=['',f"## Recorded cohort `{group['cohort']}`", '',
+                f"Conditional {group['alignment'].upper()} ATE: N={stats['n']}; median {number(stats['median'])} m; "
+                f"range {number(stats['min'])}–{number(stats['max'])} m; sample SD {number(stats['sample_std'])} m.",
+                f"Evaluated {group['evaluated']}; qualified {group['qualified']}; nonzero exits {group['nonzero_exits']}."]
+    lines+=['', '## Interpretation', '',
+            'Sparse keyframes do not establish dense tracking coverage. Unknown fields stay unknown. '
+            'SE(3) shape alignment does not measure absolute GNSS global error. DPVO uses Sim(3); '
+            'its unknown metric scale prevents direct ranking with metric stereo/VIO. '
+            'Displacement-magnitude errors and custom distance windows are separately named in the CSV; '
+            'the windows are not the KITTI protocol.', '', '## Qualification blockers', '']
+    lines += ['- '+s for s in result['scientific_blockers']] or ['None recorded.']
+    return '\n'.join(lines)+'\n'
 
 
-def fmt_pm(mean, std, dec=4):
-    if mean is None:
-        return "N/A"
-    if std == 0:
-        return fmt(mean, dec)
-    return f"{mean:.{dec}f} ± {std:.{dec}f}"
+def write_cells(rows,output_root,repo=REPO,check=False):
+    groups=defaultdict(list)
+    for row in rows:
+        groups[(row['run_type'],row['dataset'],row['seq'],row['algo'],row['gnss_variant'])].append(row)
+    differences=[]
+    for identity,group in sorted(groups.items()):
+        mode,ds,seq,algo,variant=identity
+        folder=Path(output_root)/mode/ds/seq/algo
+        if variant!='default':
+            folder=folder/'variants'/variant
+        result=summarize_cell(group)
+        outputs={'metrics.csv':csv_text(group), 'summary.json':json.dumps(result,indent=2,allow_nan=False)+'\n',
+                 'report.md':render_report(group,result)}
+        for name,content in outputs.items():
+            path=folder/name
+            if check:
+                if not path.is_file() or path.read_text()!=content: differences.append(str(path))
+            else:
+                preserved_write(path,content,repo)
+    return len(groups),differences
 
 
 def main():
-    if len(sys.argv) < 4:
-        print(f"Usage: {sys.argv[0]} <dataset> <seq> <algo> [input_fps=10] [run_type=vo]",
-              file=sys.stderr)
-        sys.exit(1)
-
-    dataset = canonicalize_dataset(sys.argv[1])
-    seq, algo = sys.argv[2], sys.argv[3]
-    # input_fps: a number, or "auto" to resolve from the per-sequence metadata
-    # cache (fixes the hardcoded 10 fps that made every EuRoC RTF 2x wrong).
-    raw_fps = sys.argv[4] if len(sys.argv) > 4 else "auto"
-    run_type_name = sys.argv[5] if len(sys.argv) > 5 else "vo"
-
-    if str(raw_fps).lower() == "auto":
-        input_fps = None
-        try:
-            _cache_p = Path(__file__).resolve().parent / "_seq_meta_cache.json"
-            _cache = json.loads(_cache_p.read_text()).get("sequences", {})
-            input_fps = _cache.get(f"{dataset}/{seq}", {}).get("input_fps")
-        except Exception:
-            pass
-        if not input_fps:
-            input_fps = 10.0
-            print(f"[aggregate] WARNING: input_fps unknown for {dataset}/{seq}, "
-                  f"assuming 10.0 — RTF may be wrong", file=sys.stderr)
-    else:
-        input_fps = float(raw_fps)
-
-    ws = Path(__file__).resolve().parents[2]
-    rt = resolve_run_type(run_type_name, ws)
-    algo_dir = rt.results_root / dataset / seq / algo
-    runs = load_runs(algo_dir)
-
-    if not runs:
-        print(f"[aggregate] No run_eval.json found under {algo_dir}", file=sys.stderr)
-        sys.exit(1)
-
-    n = len(runs)
-    print(f"[aggregate] Found {n} run(s) for {algo} on {dataset}/{seq}")
-
-    # ── Collect per-run scalars ───────────────────────────────────────────────
-    def gather(fn):
-        return [fn(r) for r in runs]
-
-    ate_rmse   = gather(lambda r: r["ate"].get("rmse"))
-    ate_mean   = gather(lambda r: r["ate"].get("mean"))
-    ate_median = gather(lambda r: r["ate"].get("median"))
-    ate_std    = gather(lambda r: r["ate"].get("std"))
-    ate_max    = gather(lambda r: r["ate"].get("max"))
-
-    # SE(3) (no scale correction) — honest stereo accuracy
-    ate_se3_rmse = gather(lambda r: r.get("ate_se3", {}).get("rmse"))
-    ate_se3_max  = gather(lambda r: r.get("ate_se3", {}).get("max"))
-
-    rpe_t_rmse = gather(lambda r: r["rpe_trans_1m"].get("rmse"))
-    rpe_r_rmse = gather(lambda r: r["rpe_rot_1m_deg"].get("rmse"))
-
-    kitti_10  = gather(lambda r: r["kitti_drift"].get("rpe_10m_trans_rmse"))
-    kitti_50  = gather(lambda r: r["kitti_drift"].get("rpe_50m_trans_rmse"))
-    kitti_100 = gather(lambda r: r["kitti_drift"].get("rpe_100m_trans_rmse"))
-
-    scale     = gather(lambda r: r.get("scale_factor"))
-    final_dr  = gather(lambda r: r.get("final_drift_m"))
-
-    frames_tracked = gather(lambda r: r["robustness"].get("frames_tracked"))
-    frames_total   = gather(lambda r: r["robustness"].get("frames_total"))
-    track_pct      = gather(lambda r: r["robustness"].get("track_pct"))
-    t_losses  = gather(lambda r: r["robustness"].get("tracking_losses", 0))
-    loop_cl   = gather(lambda r: r["robustness"].get("loop_closures", 0))
-    map_rst   = gather(lambda r: r["robustness"].get("map_resets", 0))
-    init_ok   = gather(lambda r: r["robustness"].get("init_success", False))
-    init_t    = gather(lambda r: r["robustness"].get("init_time_s"))
-    fail_t    = gather(lambda r: r["robustness"].get("first_failure_s"))
-
-    wall_s = gather(
-        lambda r: r["runtime"].get("end_to_end_time_s", r["runtime"].get("wall_s"))
-    )
-    fps_vals = gather(
-        lambda r: r["runtime"].get("processing_fps", r["runtime"].get("fps"))
-    )
-    cpu_mean = gather(lambda r: r["runtime"].get("cpu_mean_pct"))
-    cpu_peak = gather(lambda r: r["runtime"].get("cpu_peak_pct"))
-    ram_mean = gather(lambda r: r["runtime"].get("ram_mean_mib"))
-    ram_peak = gather(lambda r: r["runtime"].get("ram_peak_mib"))
-    vram_mean = gather(lambda r: r["runtime"].get("vram_mean_mib"))
-    vram_peak = gather(lambda r: r["runtime"].get("vram_peak_mib"))
-    gpu_mean  = gather(lambda r: r["runtime"].get("gpu_mean_pct"))
-
-    # RTF is dataset duration / end-to-end time. It is independent of output
-    # trajectory density and therefore valid for sparse estimators.
-    rtf = gather(lambda r: r["runtime"].get("realtime_factor"))
-    rtf = [
-        value if value is not None else (f / input_fps if f is not None else None)
-        for value, f in zip(rtf, fps_vals)
-    ]
-
-    # Agricultural segments: per type
-    agri_types = set()
-    for r in runs:
-        agri_types.update(r.get("agri_segments", {}).keys())
-    agri_mean = {}
-    for t in sorted(agri_types):
-        vals = [r["agri_segments"].get(t, {}).get("ate_rmse_mean")
-                for r in runs if t in r.get("agri_segments", {})]
-        agri_mean[t] = (safe_mean(vals), safe_std(vals))
-
-    # ── Write metrics.csv ─────────────────────────────────────────────────────
-    csv_path = algo_dir / "metrics.csv"
-    header = [
-        "run",
-        "ate_rmse_m", "ate_mean_m", "ate_median_m", "ate_std_m", "ate_max_m",
-        "rpe_point_dist_1m_rmse", "rpe_rot_1m_rmse_deg",
-        "kitti_10m_trans_rmse", "kitti_50m_trans_rmse", "kitti_100m_trans_rmse",
-        "scale_factor", "final_drift_m",
-        "frames_tracked", "frames_total", "track_pct",
-        "tracking_losses", "loop_closures", "map_resets",
-        "init_success", "init_time_s", "first_failure_s",
-        "end_to_end_s", "processing_fps", "realtime_factor",
-        "cpu_mean_pct", "cpu_peak_pct",
-        "ram_mean_mib", "ram_peak_mib",
-        "vram_mean_mib", "vram_peak_mib", "gpu_mean_pct",
-    ] + [f"agri_{t}_ate_rmse" for t in sorted(agri_types)]
-
-    rows = []
-    for i, r in enumerate(runs):
-        rid = r.get("run", i + 1)
-        fps_i = fps_vals[i]
-        row = [
-            f"run{rid}",
-            fmt(ate_rmse[i]), fmt(ate_mean[i]), fmt(ate_median[i]),
-            fmt(ate_std[i]),  fmt(ate_max[i]),
-            fmt(rpe_t_rmse[i]), fmt(rpe_r_rmse[i]),
-            fmt(kitti_10[i]), fmt(kitti_50[i]), fmt(kitti_100[i]),
-            fmt(scale[i]), fmt(final_dr[i]),
-            str(frames_tracked[i] or "N/A"),
-            str(frames_total[i] or "N/A"),
-            fmt(track_pct[i], 1),
-            str(t_losses[i]), str(loop_cl[i]), str(map_rst[i]),
-            str(init_ok[i]),
-            fmt(init_t[i], 2) if init_t[i] is not None else "N/A",
-            fmt(fail_t[i], 2) if fail_t[i] is not None else "N/A",
-            fmt(wall_s[i], 1), fmt(fps_i, 3), fmt(rtf[i], 3),
-            fmt(cpu_mean[i], 1), fmt(cpu_peak[i], 1),
-            fmt(ram_mean[i], 0), fmt(ram_peak[i], 0),
-            fmt(vram_mean[i], 0), fmt(vram_peak[i], 0), fmt(gpu_mean[i], 1),
-        ] + [fmt(r.get("agri_segments", {}).get(t, {}).get("ate_rmse_mean"))
-             for t in sorted(agri_types)]   # per-RUN value (was the across-run
-        rows.append(row)                    # mean for every row — fixed 2026-08-05)
-
-    # Summary rows (only meaningful if n > 1)
-    def smean(vals):
-        v = safe_mean(vals)
-        return fmt(v) if v is not None else "N/A"
-    def sstd(vals):
-        return fmt(safe_std(vals))
-
-    mean_row = ["mean",
-        smean(ate_rmse), smean(ate_mean), smean(ate_median),
-        smean(ate_std),  smean(ate_max),
-        smean(rpe_t_rmse), smean(rpe_r_rmse),
-        smean(kitti_10), smean(kitti_50), smean(kitti_100),
-        smean(scale), smean(final_dr),
-        "N/A", "N/A", smean(track_pct),
-        smean(t_losses), smean(loop_cl), smean(map_rst),
-        "N/A", "N/A", "N/A",
-        smean(wall_s), smean(fps_vals), smean(rtf),
-        smean(cpu_mean), smean(cpu_peak),
-        smean(ram_mean), smean(ram_peak),
-        smean(vram_mean), smean(vram_peak), smean(gpu_mean),
-    ] + [smean([v for v in [r["agri_segments"].get(t, {}).get("ate_rmse_mean")
-                            for r in runs] if v is not None])
-         for t in sorted(agri_types)]
-
-    std_row = ["std",
-        sstd(ate_rmse), sstd(ate_mean), sstd(ate_median),
-        sstd(ate_std),  sstd(ate_max),
-        sstd(rpe_t_rmse), sstd(rpe_r_rmse),
-        sstd(kitti_10), sstd(kitti_50), sstd(kitti_100),
-        sstd(scale), sstd(final_dr),
-        "N/A", "N/A", sstd(track_pct),
-        sstd(t_losses), sstd(loop_cl), sstd(map_rst),
-        "N/A", "N/A", "N/A",
-        sstd(wall_s), sstd(fps_vals), sstd(rtf),
-        sstd(cpu_mean), sstd(cpu_peak),
-        sstd(ram_mean), sstd(ram_peak),
-        sstd(vram_mean), sstd(vram_peak), sstd(gpu_mean),
-    ] + [sstd([v for v in [r["agri_segments"].get(t, {}).get("ate_rmse_mean")
-                           for r in runs] if v is not None])
-         for t in sorted(agri_types)]
-
-    # median / min / max summary rows (added 2026-08-05 — the report tables use
-    # median + range, which the canonical artifacts could not previously supply)
-    def srow(label, fn):
-        return [label,
-            fmt(fn(ate_rmse)), fmt(fn(ate_mean)), fmt(fn(ate_median)),
-            fmt(fn(ate_std)),  fmt(fn(ate_max)),
-            fmt(fn(rpe_t_rmse)), fmt(fn(rpe_r_rmse)),
-            fmt(fn(kitti_10)), fmt(fn(kitti_50)), fmt(fn(kitti_100)),
-            fmt(fn(scale)), fmt(fn(final_dr)),
-            "N/A", "N/A", fmt(fn(track_pct), 1),
-            fmt(fn(t_losses), 1), fmt(fn(loop_cl), 1), fmt(fn(map_rst), 1),
-            "N/A", "N/A", "N/A",
-            fmt(fn(wall_s), 1), fmt(fn(fps_vals), 3), fmt(fn(rtf), 3),
-            fmt(fn(cpu_mean), 1), fmt(fn(cpu_peak), 1),
-            fmt(fn(ram_mean), 0), fmt(fn(ram_peak), 0),
-            fmt(fn(vram_mean), 0), fmt(fn(vram_peak), 0), fmt(fn(gpu_mean), 1),
-        ] + [fmt(fn([r.get("agri_segments", {}).get(t, {}).get("ate_rmse_mean")
-                     for r in runs]))
-             for t in sorted(agri_types)]
-
-    with open(csv_path, "w") as f:
-        f.write(",".join(header) + "\n")
-        for row in rows:
-            f.write(",".join(row) + "\n")
-        f.write(",".join(mean_row) + "\n")
-        f.write(",".join(std_row) + "\n")
-        f.write(",".join(srow("median", safe_median)) + "\n")
-        f.write(",".join(srow("min", safe_min)) + "\n")
-        f.write(",".join(srow("max", safe_max)) + "\n")
-
-    print(f"[aggregate] wrote {csv_path}")
-
-    # ── Write report.md ───────────────────────────────────────────────────────
-    report_path = algo_dir / "report.md"
-
-    def _pm(mean_v, std_v, dec=4):
-        if mean_v is None:
-            return "N/A"
-        s = safe_std(std_v) if isinstance(std_v, list) else std_v
-        return fmt_pm(mean_v, s, dec) if n > 1 else fmt(mean_v, dec)
-
-    def _robustr(vals):
-        """Return modal value for robustness booleans/counts across runs."""
-        v = [x for x in vals if x is not None]
-        if not v:
-            return "N/A"
-        if isinstance(v[0], bool):
-            return "yes" if sum(v) > len(v) / 2 else "no"
-        return str(int(round(safe_mean(v), 0)))
-
-    # Dataset metadata from first run
-    r0 = runs[0]
-
-    lines = [
-        f"# Benchmark Report — {algo.upper()} on {dataset} / {seq}",
-        "",
-        f"**Runs:** {n}  |  **GT source:** {r0.get('gt_source', 'N/A')}  "
-        f"|  **Generated by:** `scripts/eval/_aggregate_runs.py`",
-        "",
-        "---",
-        "",
-        "## Dataset / Sequence Metadata",
-        "",
-        "| Item | Value |",
-        "|---|---|",
-        f"| Dataset | {dataset} |",
-        f"| Sequence | {seq} |",
-        f"| Algorithm | {algo} |",
-        f"| Number of frames | {r0['robustness'].get('frames_total', 'N/A')} |",
-        f"| Run type | {rt.name} |",
-        f"| IMU used | {'yes' if rt.use_imu else 'no'} |",
-        f"| Loop closure | {'enabled' if rt.use_lc else 'disabled'} |",
-        "",
-        "---",
-        "",
-        "## Accuracy Metrics",
-        "",
-        f"> {'Mean ± std across ' + str(n) + ' runs.' if n > 1 else 'Single run.'}",
-        "",
-        "| Metric | Value |",
-        "|---|---|",
-        f"| ATE RMSE [m] (Sim3) | {_pm(safe_mean(ate_rmse), ate_rmse, 4)} |",
-        f"| ATE RMSE [m] (SE3, stereo metric)  | {_pm(safe_mean(ate_se3_rmse), ate_se3_rmse, 4)} |",
-        f"| ATE mean [m] | {_pm(safe_mean(ate_mean), ate_mean, 4)} |",
-        f"| ATE median [m] | {_pm(safe_mean(ate_median), ate_median, 4)} |",
-        f"| ATE std [m] | {_pm(safe_mean(ate_std), ate_std, 4)} |",
-        f"| ATE max [m] | {_pm(safe_mean(ate_max), ate_max, 4)} |",
-        f"| RPE point_distance RMSE [m] (1 m windows) | {_pm(safe_mean(rpe_t_rmse), rpe_t_rmse, 4)} |",
-        f"| RPE rotation RMSE [°/m] | {_pm(safe_mean(rpe_r_rmse), rpe_r_rmse, 3)} |",
-        f"| KITTI drift @ 10 m [m] | {_pm(safe_mean(kitti_10), kitti_10, 4)} |",
-        f"| KITTI drift @ 50 m [m] | {_pm(safe_mean(kitti_50), kitti_50, 4)} |",
-        f"| KITTI drift @ 100 m [m] | {_pm(safe_mean(kitti_100), kitti_100, 4)} |",
-        f"| Scale factor (Sim3) | {_pm(safe_mean(scale), scale, 4)} |",
-        f"| Final drift [m] (approx) | {_pm(safe_mean(final_dr), final_dr, 4)} |",
-        "",
-        "---",
-        "",
-        "## Robustness Metrics",
-        "",
-        "| Metric | Value |",
-        "|---|---|",
-        f"| Sequence completed | {'yes' if all(r['robustness'].get('track_pct', 0) == 100 for r in runs) else 'no'} |",
-        f"| Frames tracked [%] | {_pm(safe_mean(track_pct), track_pct, 1)} |",
-        f"| Tracking losses | {_robustr(t_losses)} |",
-        f"| First failure [s] | {_robustr(fail_t)} |",
-        f"| Initialisation success | {_robustr(init_ok)} |",
-        f"| Initialisation time [s] | {_robustr(init_t)} |",
-        f"| Loop closures detected | {_robustr(loop_cl)} |",
-        f"| Map resets | {_robustr(map_rst)} |",
-        f"| Output trajectory valid | yes |",
-        "",
-        "---",
-        "",
-        "## Runtime / Computational Metrics",
-        "",
-        "| Metric | Value |",
-        "|---|---|",
-        f"| Wall-clock runtime [s] | {_pm(safe_mean(wall_s), wall_s, 1)} |",
-        f"| Mean processing FPS | {_pm(safe_mean(fps_vals), fps_vals, 2)} |",
-        f"| Real-time factor (input {input_fps:.0f} fps) | {_pm(safe_mean(rtf), rtf, 3)} |",
-        f"| CPU mean [%] | {_pm(safe_mean(cpu_mean), cpu_mean, 1)} |",
-        f"| CPU peak [%] | {_pm(safe_mean(cpu_peak), cpu_peak, 1)} |",
-        f"| RAM mean [MiB] | {_pm(safe_mean(ram_mean), ram_mean, 0)} |",
-        f"| RAM peak [MiB] | {_pm(safe_mean(ram_peak), ram_peak, 0)} |",
-        f"| VRAM mean [MiB] | {_pm(safe_mean(vram_mean), vram_mean, 0)} |",
-        f"| VRAM peak [MiB] | {_pm(safe_mean(vram_peak), vram_peak, 0)} |",
-        f"| GPU utilisation mean [%] | {_pm(safe_mean(gpu_mean), gpu_mean, 1)} |",
-    ]
-
-    if agri_types:
-        # Gather per-type n_segments and average duration across runs
-        agri_n_segs = {}   # t -> [n_segs per run]
-        agri_avg_dur = {}  # t -> [avg_duration_s per run]
-        for t in sorted(agri_types):
-            n_segs_per_run = []
-            avg_dur_per_run = []
-            for r in runs:
-                seg_data = r.get("agri_segments", {}).get(t)
-                if seg_data:
-                    n_segs_per_run.append(seg_data.get("n_segments", 0))
-                    segs = seg_data.get("segments", [])
-                    if segs:
-                        avg_dur = sum(s["duration_s"] for s in segs) / len(segs)
-                        avg_dur_per_run.append(avg_dur)
-            agri_n_segs[t] = n_segs_per_run
-            agri_avg_dur[t] = avg_dur_per_run
-
-        lines += [
-            "",
-            "---",
-            "",
-            "## Agricultural Segment Metrics",
-            "",
-        ]
-        lines += [
-            "| Segment type | Mean ATE RMSE [m] ± std (across runs) | N segments | Avg duration [s] | N runs with data |",
-            "|---|---|---|---|---|",
-        ]
-        for t in sorted(agri_types):
-            vals = [r["agri_segments"].get(t, {}).get("ate_rmse_mean")
-                    for r in runs if t in r.get("agri_segments", {})]
-            n_data = len(vals)
-            m = safe_mean(vals)
-            s = safe_std(vals)
-            n_segs_m = agri_n_segs[t]
-            n_segs_str = str(int(round(safe_mean(n_segs_m), 0))) if n_segs_m else "N/A"
-            avg_dur_str = fmt(safe_mean(agri_avg_dur[t]), 1) if agri_avg_dur[t] else "N/A"
-            lines.append(
-                f"| {t} "
-                f"| {fmt_pm(m, s, 4) if m is not None else 'N/A'} "
-                f"| {n_segs_str} "
-                f"| {avg_dur_str} "
-                f"| {n_data}/{n} |"
-            )
-
-    lines += [
-        "",
-        "---",
-        "",
-        "## Per-Run Detail",
-        "",
-        "| Run | ATE RMSE Sim3 [m] | ATE RMSE SE3 [m] | RPE [m] | RPE rot [°/m] |"
-        " KITTI 10 m | KITTI 50 m | KITTI 100 m | Scale | Final drift [m] |"
-        " End-to-end-s | Processing FPS | Track% | Loops |",
-        "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
-    ]
-    for i, r in enumerate(runs):
-        lines.append(
-            f"| run{r.get('run', i + 1)} "
-            f"| {fmt(ate_rmse[i])} "
-            f"| {fmt(ate_se3_rmse[i])} "
-            f"| {fmt(rpe_t_rmse[i])} "
-            f"| {fmt(rpe_r_rmse[i], 2)} "
-            f"| {fmt(kitti_10[i], 4)} "
-            f"| {fmt(kitti_50[i], 4)} "
-            f"| {fmt(kitti_100[i], 4)} "
-            f"| {fmt(scale[i], 4)} "
-            f"| {fmt(final_dr[i], 4)} "
-            f"| {fmt(wall_s[i], 1)} "
-            f"| {fmt(fps_vals[i], 2)} "
-            f"| {fmt(track_pct[i], 1)} "
-            f"| {loop_cl[i]} |"
-        )
-    if n > 1:
-        lines.append(
-            f"| **mean ± std** "
-            f"| {_pm(safe_mean(ate_rmse), ate_rmse, 4)} "
-            f"| {_pm(safe_mean(ate_se3_rmse), ate_se3_rmse, 4)} "
-            f"| {_pm(safe_mean(rpe_t_rmse), rpe_t_rmse, 4)} "
-            f"| {_pm(safe_mean(rpe_r_rmse), rpe_r_rmse, 2)} "
-            f"| {_pm(safe_mean(kitti_10), kitti_10, 4)} "
-            f"| {_pm(safe_mean(kitti_50), kitti_50, 4)} "
-            f"| {_pm(safe_mean(kitti_100), kitti_100, 4)} "
-            f"| {_pm(safe_mean(scale), scale, 4)} "
-            f"| {_pm(safe_mean(final_dr), final_dr, 4)} "
-            f"| {_pm(safe_mean(wall_s), wall_s, 1)} "
-            f"| {_pm(safe_mean(fps_vals), fps_vals, 2)} "
-            f"| {_pm(safe_mean(track_pct), track_pct, 1)} "
-            f"| {_robustr(loop_cl)} |"
-        )
-
-    lines.append("")
-
-    report_path.write_text("\n".join(lines))
-    print(f"[aggregate] wrote {report_path}")
-
-    # Terminal summary
-    print(f"\n{'='*60}")
-    print(f"  SUMMARY  {algo.upper()} | {dataset}/{seq}  ({n} run(s))")
-    print(f"{'='*60}")
-    print(f"  ATE RMSE:  {fmt_pm(safe_mean(ate_rmse), safe_std(ate_rmse))} m")
-    print(f"  RPE trans: {fmt_pm(safe_mean(rpe_t_rmse), safe_std(rpe_t_rmse))} m/m")
-    print(f"  RPE rot:   {fmt_pm(safe_mean(rpe_r_rmse), safe_std(rpe_r_rmse))} °/m")
-    print(f"  Proc FPS:  {fmt_pm(safe_mean(fps_vals), safe_std(fps_vals), 2)}")
-    for t in sorted(agri_types):
-        m, s = agri_mean.get(t, (None, 0.0))
-        print(f"  ATE [{t}]: {fmt_pm(m, s)} m")
-    print()
+    ap=argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('dataset',nargs='?');ap.add_argument('sequence',nargs='?');ap.add_argument('algorithm',nargs='?')
+    ap.add_argument('input_fps',nargs='?',default='auto');ap.add_argument('mode',nargs='?',default='vo')
+    ap.add_argument('--all',action='store_true');ap.add_argument('--check',action='store_true')
+    ap.add_argument('--inventory',type=Path,default=REPO/'results/repair-20261001/inventory.json')
+    ap.add_argument('--output-root',type=Path,default=REPO/'results')
+    args=ap.parse_args()
+    if not args.all and not all((args.dataset,args.sequence,args.algorithm)):
+        ap.error('specify --all or dataset sequence algorithm')
+    rows=build_rows(load_inventory(args.inventory))
+    if not args.all:
+        rows=[r for r in rows if (r['dataset'],r['seq'],r['algo'],r['run_type'])==(
+            canonicalize_dataset(args.dataset),args.sequence,args.algorithm,args.mode)]
+    if not rows:
+        ap.error('no matching protocol cell')
+    n,differences=write_cells(rows,args.output_root,check=args.check)
+    print(f'[aggregate] {n} cells/variants; {len(differences)} stale outputs')
+    for path in differences:print(path)
+    return bool(differences)
 
 
-if __name__ == "__main__":
-    main()
+if __name__=='__main__':raise SystemExit(main())

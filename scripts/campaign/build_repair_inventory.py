@@ -31,6 +31,38 @@ def read(path):
     return json.loads(path.read_text()) if path.is_file() else {}
 
 
+def cohort_identity(meta, algorithm):
+    """Group recorded effective settings, not just similarly named config files.
+
+    Historical hashes identify historical bytes: never translate run records
+    through an author-rewrite map. DPVO's recorded repetition seed is the sole
+    excluded parameter; different seeds are intentional repeated trials.
+    A signature groups evidence, it does not certify its completeness.
+    """
+    provenance = meta.get('provenance', {})
+    if not provenance:
+        return None, None
+    parameters = dict(provenance.get('parameters', {}))
+    if algorithm == 'dpvo':
+        parameters.pop('seed', None)
+    def ordered(records):
+        return sorted(records, key=lambda r: json.dumps(r, sort_keys=True))
+    payload = dict(
+        artifacts=ordered([dict(role=a.get('role'), sha256=a.get('snapshot_sha256') or a.get('sha256'))
+                           for a in provenance.get('artifacts', [])]),
+        sources=ordered([{k: s.get(k) for k in ('role','path','commit','dirty','diff_sha256')}
+                         for s in provenance.get('sources', [])]),
+        binaries=ordered([{k: b.get(k) for k in ('role','path','sha256')}
+                          for b in provenance.get('binaries', [])]),
+        parameters=parameters, workspace=provenance.get('workspace'),
+        environment={k: v for k, v in provenance.get('environment', {}).items() if k != 'snapshot'},
+        container=provenance.get('container'), runtime=provenance.get('runtime'),
+        machine_id=meta.get('machine_id'),
+    )
+    digest = hashlib.sha256(json.dumps(payload, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+    return digest, payload
+
+
 def saved_attempt(repo,relative,stage):
     run=repo/'results'/relative;meta=read(run/'run_meta.json')
     staged=stage/'evaluations'/relative/'run_eval.json'
@@ -56,6 +88,7 @@ def saved_attempt(repo,relative,stage):
     if staged.is_file():files.append(evidence(staged,repo))
     files=list({item['path']:item for item in files}.values())
     process=meta.get('process',{})
+    cohort,cohort_evidence=cohort_identity(meta,algo)
     return dict(path='results/'+relative,exists=run.is_dir(),files=files,
         trajectory_saved=(run/'trajectory.txt').is_file(),historical_complete=(run/'COMPLETE').is_file(),
         evaluated=bool(value),evaluation_path=str(staged.relative_to(repo)) if value else None,
@@ -64,6 +97,7 @@ def saved_attempt(repo,relative,stage):
         pose_frame_blockers=value.get('pose_frames',{}).get('blockers',[]),
         snapshots=snapshot_records,source_records=meta.get('provenance',{}).get('sources',[]),
         parameters=meta.get('provenance',{}).get('parameters',{}),
+        cohort_fingerprint=cohort,cohort_evidence=cohort_evidence,
         config_fingerprint=hashlib.sha256(json.dumps(sorted((s['role'],s['saved']) for s in snapshot_records),sort_keys=True).encode()).hexdigest() if snapshot_records else None,
         machine_id=meta.get('machine_id'),runtime=meta.get('measurements',{}),
         coverage=value.get('coverage',{}),failure_reason=process.get('failure_reason') or value.get('failure_reason'))
@@ -101,6 +135,7 @@ def build(repo,stage):
             attempts=attempts,evaluated=sum(a['evaluated'] for a in attempts),
             outcomes=dict(Counter(a['numerical_status'] for a in attempts if a['evaluated'])),
             within_cell_config_consistent=len({a['config_fingerprint'] for a in attempts if a['config_fingerprint']})<=1,
+            within_cell_cohort_consistent=len({a['cohort_fingerprint'] for a in attempts if a['cohort_fingerprint']})<=1,
             runtime_estimate=runtime_estimate(attempts),qualification='pending_review'))
     other=[]
     paths={p.parent for mode in MODES for pattern in ('run*/trajectory.txt','run*/run_eval.json','run*/run_meta.json')

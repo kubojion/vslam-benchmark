@@ -33,6 +33,15 @@
   policy; non-default variants need an explicit input file. OKVIS2-X uses a private
   per-attempt native conversion, avoiding shared-cache staleness. Four current inputs
   validate without estimator execution; historical provenance gaps remain open.
+- Corrected coverage so absent reference poses do not become missing estimator
+  exports. Restaged all 593 records; ATE/RPE values, paired counts and numerical
+  outcomes are unchanged. A failed GNSS full-pose export now has a separate,
+  independently checked position-only diagnostic; its failed status is retained.
+- Validated staged CSVs (666 planned/variant rows), 226 cell/variant summaries and
+  report tables. Failures, missing repetitions and distinct cohorts stay visible;
+  DPVO uses Sim(3) in headline cells, and unknown instrumentation stays blank.
+  Regeneration checks pass; root exports/browser promotion and scientific review
+  remain unfinished. One hundred tests plus three subtests pass for this stage.
 
 ## 2026-10-01 — Initial server inventory (before the repair above)
 

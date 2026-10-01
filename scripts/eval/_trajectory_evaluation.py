@@ -9,6 +9,32 @@ from _metrics import (apply_alignment, camera_association, distance_pairs,
                       validate_poses)
 
 
+def position_only_diagnostic(reference, estimate, camera_times, frames):
+    """Recover positional diagnostics without claiming invalid orientations valid.
+
+    Used only after full trajectory validation fails. No quaternion is normalized
+    in the saved evidence, and a required rotating lever arm prevents recovery.
+    """
+    a=np.asarray(estimate,dtype=float)
+    if a.ndim!=2 or a.shape[1]!=8 or len(a)<10 or not np.isfinite(a[:,:4]).all():
+        return None
+    transform=frames.get('estimate_transform')
+    if transform is not None and not np.allclose(np.asarray(transform)[:3,3],0):
+        return None
+    temporary=a.copy();temporary[:,4:]=[0,0,0,1]
+    diagnostic_frames=dict(frames,orientation_valid=False,common_origin_verified=False)
+    try:
+        metrics,_=evaluate_arrays(reference,temporary,camera_times,diagnostic_frames,gnss=True)
+    except ValueError:
+        return None
+    return dict(status='position_diagnostic_only',saved_orientations_valid=False,
+        orientation_used_for_position=False,publication_qualified=False,
+        note='Original orientation validation failed; positions scored as provisional sensor-origin diagnostics. Original trajectory is unchanged.',
+        ate_se3=metrics['ate_se3'],ate_sim3=metrics['ate'],n_pairs=metrics['n_pairs_ate'],
+        scale_factor=metrics['scale_factor'],position_numerical_status=metrics['run_status'],
+        translation_only=metrics.get('ate_translation_only_diagnostic'))
+
+
 def evaluate_arrays(reference, estimate, camera_times, frames, *, monocular=False,
                     sparse_export=False, gnss=False, tolerance_s=0.005,
                     reference_max_gap_s=0.5):
@@ -21,6 +47,8 @@ def evaluate_arrays(reference, estimate, camera_times, frames, *, monocular=Fals
     g, e = validate_poses(reference), validate_poses(estimate)
     camera_times = np.asarray(camera_times, dtype=float)
     sampled, camera_ids, dt = camera_association(e, camera_times, tolerance_s)
+    # Keep export availability independent of ground-truth availability.
+    observed_times, observed_dt = sampled[:, 0].copy(), dt.copy()
     reference_at_est, support = interpolate_reference(g, sampled[:, 0], reference_max_gap_s)
     sampled, camera_ids, dt = sampled[support], camera_ids[support], dt[support]
     _, camera_support = interpolate_reference(g, camera_times, reference_max_gap_s)
@@ -73,17 +101,20 @@ def evaluate_arrays(reference, estimate, camera_times, frames, *, monocular=Fals
         'export_kind': 'keyframes' if sparse_export else 'poses',
         'input_camera_frames': len(camera_times), 'output_poses': len(e),
         'reference_supported_camera_frames': int(camera_support.sum()),
-        'associated_camera_frames': len(sampled),
-        'camera_pose_coverage_pct': 100*len(sampled)/len(camera_times),
-        'reference_supported_pose_pct': 100*len(sampled)/int(camera_support.sum()) if camera_support.any() else None,
-        'association_dt_max_s': float(dt.max()) if len(dt) else None,
-        'association_dt_mean_s': float(dt.mean()) if len(dt) else None,
+        'associated_camera_frames': len(observed_times),
+        'reference_paired_camera_frames': len(sampled),
+        'camera_pose_coverage_pct': 100*len(observed_times)/len(camera_times),
+        'reference_pairs_pct_of_input': 100*len(sampled)/len(camera_times),
+        'reference_supported_pose_pct': 100*int(camera_support[camera_ids].sum())/int(camera_support.sum()) if camera_support.any() else None,
+        'association_dt_max_s': float(observed_dt.max()) if len(observed_dt) else None,
+        'association_dt_mean_s': float(observed_dt.mean()) if len(observed_dt) else None,
         'sequence_duration_s': duration,
         'coverage_gap_pct': None,
     }
-    if len(sampled):
-        span = float(sampled[-1, 0] - sampled[0, 0])
-        gaps = np.diff(sampled[:, 0])
+    if len(observed_times):
+        bounded_times = np.clip(observed_times, camera_times[0], camera_times[-1])
+        span = float(bounded_times[-1] - bounded_times[0])
+        gaps = np.diff(bounded_times)
         out['coverage'].update(export_span_s=span, export_span_pct=100*span/duration,
                                maximum_export_gap_s=float(gaps.max()) if len(gaps) else None)
         # Keyframe spacing is not tracking instrumentation. Withhold this field

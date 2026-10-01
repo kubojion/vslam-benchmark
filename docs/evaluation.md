@@ -1,167 +1,136 @@
 # Evaluation
 
-> Status reviewed 2026-10-01. The field definitions below describe current implementation,
-> including known limitations. Publication blockers and current run counts are tracked in
-> [the server audit](campaigns/server-status-20261001.md). Numeric reports are provisional.
+Status: 2026-10-01, repair in progress. Schema-3 evaluations and reconciled exports
+are validated in `results/repair-20261001/`. Root CSVs, old per-cell reports and the
+results browser remain legacy snapshots until promotion. Scientific qualification
+is still incomplete; numerical evaluation alone never awards an N=3 green tick.
+See [the repair audit](repair-audit-20261001.md) and [the goal](codex-goal.md).
 
-> Repair in progress: [the all-configuration repair audit](repair-audit-20261001.md)
-> documents the schema-3 evaluator and its separate staging tree. `_evaluate_run.py`
-> now uses schema 3 and preserves previous metrics in `.evaluation_history/` before
-> replacement. The field definitions below still describe legacy schema-2 reports
-> until report integration/promotion is complete.
-> Staged results are not yet publication-qualified or reflected in the root CSVs.
+## Run types and inventory
 
+| Mode | IMU | Loop closure | GNSS | Results | CSV |
+|---|---|---|---|---|---|
+| VO | off | off | off | `results/vo/` | `benchmark-vo.csv` |
+| VO-LC | off | on | off | `results/vo-lc/` | `benchmark-vo-lc.csv` |
+| VIO | on | off | off | `results/vio/` | `benchmark-vio.csv` |
+| VIO-LC | on | on | off | `results/vio-lc/` | `benchmark-vio-lc.csv` |
+| GNSS-VIO | on | algorithm/config dependent | on | `results/gnss-vio/` | `benchmark-gnss-vio.csv` |
 
-`scripts/run/run_benchmark.sh` now resumes individual physical run IDs and evaluates
-each saved trajectory immediately, including after a nonzero estimator exit. It
-never deletes an existing cell or retries an occupied attempt in place. The legacy
-automatic aggregation/site step is suspended during report-schema integration.
-Qualification is separate from numerical evaluation and execution completion.
+`build_repair_inventory.py` enumerates the executed four-mode N=3 campaign and the
+20 legacy GNSS default cells with a future N=3 target. The five CSVs contain all
+660 planned default slots, including missing and failed attempts, plus six separate
+legacy GNSS input-variant rows: **192 VO, 144 VO-LC, 168 VIO, 96 VIO-LC, 66 GNSS-VIO**.
+They are not 666 successful runs. Historical excluded algorithms and smoke attempts
+remain in the inventory and are excluded from headline CSVs.
 
-Read-only inspection (does not run an estimator):
+Inventory evidence hashes are verified before export. The cohort identity includes
+saved config/model hashes, source revisions/diffs, binary hashes, parameters,
+workspace provenance, environment/container records and machine identity. DPVO's
+repetition seed is deliberately excluded from the cohort signature, but retained
+in attempt metadata; no other parameter is ignored. A signature groups recorded
+evidence, not proof that missing provenance has been recovered. Unverified legacy
+attempts remain separate rather than being pooled by a common `unknown` label.
+Historical Git hashes remain historical after the author rewrite; see the
+[mapping](campaigns/git-author-rewrite-20261001.json).
 
-```bash
-bash scripts/run/run_benchmark.sh euroc_mav MH_01_easy orbslam3 3 vo --dry-run
-```
+## Evaluation definitions
 
-`--recover-only` evaluates saved outputs and never starts estimation. Re-evaluation
-preserves previous JSON bytes; trajectories and historical COMPLETE markers are
-unchanged. The controller checks evaluator/input/configuration hashes before
-reusing cached metrics, records attempts under `results/.attempt-state/`, and uses
-global/cell locks. A new attempt requires a new physical run ID; the future campaign
-manifest will map it to the logical repetition and configuration cohort.
+The evaluator reads immutable saved poses and the raw reference, verifies saved
+configuration evidence, and transforms sensor origins only where supported by
+source/calibration evidence. It never substitutes a current config for an absent
+historical snapshot. See `_pose_frames.py` and each evaluation's `pose_frames`.
 
-## Run types and result layout
-
-Every run is classified by a `run_type`:
-
-| run_type   | IMU | LC  | GNSS | Results tree           | Aggregated CSV            |
-|------------|-----|-----|------|------------------------|---------------------------|
-| `vo`       | off | off | off  | `results/vo/`          | `benchmark-vo.csv`        |
-| `vo-lc`    | off | on  | off  | `results/vo-lc/`       | `benchmark-vo-lc.csv`     |
-| `vio`      | on  | off | off  | `results/vio/`         | `benchmark-vio.csv`       |
-| `vio-lc`   | on  | on  | off  | `results/vio-lc/`      | `benchmark-vio-lc.csv`    |
-| `gnss-vio` | on  | -   | on   | `results/gnss-vio/`    | `benchmark-gnss-vio.csv`  |
-
-Paths are resolved by `scripts/_paths.sh` (bash, `resolve_run_type`) and
-`scripts/eval/_run_type.py` (python, `resolve(name)` / `all_types()`).
-Every eval and plotting script accepts a `--type` flag (Python) or a
-fourth/fifth positional argument (Bash) selecting the run type.
-
-## Pipeline
-
-```
-trajectory.txt  ──►  _evaluate_run.py    →  run_eval.json
-multiple runs   ──►  _aggregate_runs.py  →  metrics.csv + report.md
-all algos       ──►  _plot_segments.py   →  segment_map.png + segment_map_3d.png
-benchmark.csv   ──►  plot_ate_vs_fps.py  →  ate_vs_fps.png
-```
-
-The following legacy report commands require schema-3 integration before their
-outputs can be used in the paper. They do not establish publication qualification:
-
-```bash
-WS=$(pwd)
-EVAL=$WS/scripts/eval
-TYPE=vo          # or: vo-lc, vio, vio-lc, gnss-vio
-DS=rosariov2     # or: hortimulti, euroc_mav
-SEQ=sequence1    # or: sequence5, strawberry02, strawberry03, MH_01_easy ...
-ALGO=macvo       # or: orbslam3, basalt, airslam, openvins, okvis2,
-                 #     cifasis_gnss_si, rtabmap_gps, vins_fusion_gps (gnss-vio only)
-
-# 1. Interpolate GT to SLAM timestamps (once per sequence, shared across run types).
-#    Since 2026-08-05: out-of-range camera frames are DROPPED (no boundary clamping)
-#    and GT gaps > max(0.5 s, 3x median GT dt) are masked (no bridging of RTK outages).
-python3 $EVAL/_interpolate_gt.py datasets/$DS/$SEQ/gt_tum.txt \
-    datasets/$DS/$SEQ/times.txt datasets/$DS/$SEQ/gt_interp_tum.txt  # [--max-gap S]
-
-# 2. Auto-segment GT into row / turn segments (once per sequence)
-python3 $EVAL/_segment_trajectory.py datasets/$DS/$SEQ
-
-# 3. Evaluate every run for a given algo
-for r in results/$TYPE/$DS/$SEQ/$ALGO/run*; do
-    RUN_ID="${r##*run}"
-    python3 $EVAL/_evaluate_run.py $DS $SEQ $ALGO "$RUN_ID" $TYPE
-done
-
-# 4. Aggregate runs (mean/std/median/min/max rows; input fps auto-resolved per dataset)
-python3 $EVAL/_aggregate_runs.py $DS $SEQ $ALGO auto $TYPE
-
-# 5. Plot trajectories (2D + 3D segment maps, all algos on this sequence)
-python3 $EVAL/_plot_segments.py --type $TYPE $DS $SEQ
-
-# 6. ATE vs FPS comparison across all sequences (per run-type)
-python3 $EVAL/plot_ate_vs_fps.py --type $TYPE
-
-# 7. Rebuild all aggregated CSVs from per-run JSONs (vo, vo-lc, vio, vio-lc, gnss-vio)
-python3 $EVAL/build_benchmark_csv.py all
-```
-
-## What `report.md` contains
-
-For each algorithm, on each sequence:
-
-| Column | Meaning |
+| Field | Schema-3 meaning |
 |---|---|
-| `ATE SE3` | RMSE after rigid SE(3) alignment only (no scale). **Primary metric for stereo/VIO** (finding 4) — does not absorb scale drift. |
-| `ATE Sim3` | RMSE after Sim(3) alignment (scale + rotation + translation). Primary only for monocular methods; secondary/diagnostic for stereo. |
-| `ATE origin` | GNSS-VIO ATE after evo `--align_origin`: rigid rotation **and** translation aligning the first poses. It is not translation-only or raw global-frame GNSS error; initial heading error is absorbed. |
-| `Scale` | Sim(3) scale factor recovered by the alignment. Far from 1.0 → systematic scale drift. |
-| `RPE trans / rot` | The current translation field uses evo `point_distance`, the absolute difference of the two displacement magnitudes over 1-metre windows, **not** full relative-pose translation error. `*_se3` omits scale correction. Rotation requires valid orientation GT and consistent body/camera frames; ZED identity-quaternion placeholders do not qualify. |
-| `drift_{10,50,100}m_pct` | Current point-distance residual over 10/50/100 m windows divided by the window length. No scale correction. This is **not standard KITTI translational drift**; fix/relabel before comparison with published KITTI numbers. |
-| `coverage_gap_pct` | Current gap-aware time-support estimate (`_coverage.py`). Its gap threshold is max(2 s, 5 × median output interval), so very sparse outputs can hide long gaps. A common-support audit remains required. `track_pct` measures output rate; endpoint-span coverage ignores interior holes. |
-| `ATE [row]` / `ATE [turn]` | Per-segment RMSE of the **globally SE(3)-aligned** trajectory (`segment_alignment=global_se3`, 2026-08-05). Legacy rows used an independent per-segment Sim(3) fit, which is degenerate on straight rows — do not compare across the two semantics. |
-| `Frames` | Number of poses in `trajectory.txt` (keyframe-only for some algorithms). |
-| `Loops` | Log-reported loop-closure events, parsed per-algorithm (orbslam3/okvis2/okvis2x/ov2slam/airslam/mast3r_slam). NOT verified accepted loops; blank = not instrumented. |
-| `Duration` / `FPS` | Legacy reports may use output-poses per wall second. Current CSV builder uses `fps` as a processing-FPS alias when processing time is known, otherwise blank. Read explicit `processing_fps`, `end_to_end_fps`, `trajectory_pose_rate`, measurement mode and resource scope; see [run measurements](run-measurements.md). |
-| `run_status` | ok / scale_collapse (Sim3 scale <0.1 or >10) / eval_failed. |
+| `primary_ate_rmse_m` | SE(3) rigid alignment for metric stereo/VIO; Sim(3) shape alignment for monocular DPVO. Metres. |
+| `ate_se3_rmse_m`, `ate_sim3_rmse_m` | Both residuals retained explicitly. Sim(3) absorbs scale error and is diagnostic for metric methods. |
+| `position_metric_validity` | Verified common camera origin or provisional sensor-origin diagnostic. Unknown agricultural reference frames remain explicit. |
+| `rpe_trans_1m_se3_rmse_m` | Norm of the translation of `inverse(delta_reference) * delta_estimate`, after SE(3) alignment. Blank when orientation/origin evidence is inadequate. |
+| `rpe_trans_1m_rmse_m` | Corresponding full relative-pose translation residual after Sim(3) alignment; retained compatibility name. |
+| `rpe_rot_1m_rmse_deg` | Full relative rotation residual, degrees. Withheld for identity-quaternion ZED references and unknown frame chains. |
+| `displacement_magnitude_error_1m_*_rmse_m` | Absolute displacement-magnitude difference (the old evo `point_distance` quantity). This is a different metric from full relative-pose translation error. |
+| `drift_{10,50,100}m_pct` | RMSE of full SE(3) relative translation divided by each actual reference path-window length ×100. Custom overlapping windows, **not KITTI**; unavailable without valid reference poses. |
+| `scale_factor` | Sim(3) fitted scale. For metric estimators, the retained diagnostic collapse threshold is outside [0.1, 10]. Monocular scale is unobservable and is not subjected to that failure threshold. |
+| `ate_origin_*` | Intentionally blank. Legacy evo origin alignment rotated and translated the first pose; it was not verified GNSS global error. |
+| `position_only_diagnostic_ate_se3_rmse_m` | Optional positional diagnostic for an invalid-orientation GNSS export. Does not change failed full-pose status or establish global accuracy. |
+| `ate_row_rmse_m`, `ate_turn_rmse_m` | Mean of geometric path-segment RMSEs after one whole-trajectory alignment: SE(3) for metric methods, Sim(3) for DPVO. Segment labels are geometric, not human annotated. |
 
-Multi-run aggregations report mean ± std (ddof=1) **plus median / min / max rows**; report tables
-use `median (min–max)`, generated exclusively by `scripts/eval/make_report_tables.py`.
+Association selects one observed estimate within 5 ms of each camera timestamp;
+estimates are not interpolated. Reference position/orientation are interpolated at
+the selected estimate time with a maximum reference gap of 0.5 s. Scoring requires
+at least ten supported pairs. Distance windows use the first endpoint at/above the
+requested path length, at most 10% overshoot, and reject unsupported time gaps.
+The complete protocol and evaluator source hashes are stored in every JSON.
 
-## What the plots show
+### Coverage is separate from reference availability
 
-`results/<type>/<ds>/<seq>/segment_map.png` overlays all algorithms vs ground truth.
-`results/<type>/<ds>/<seq>/segment_map_3d.png` is the same view with an added Z axis.
-Individual runs are drawn in light grey; the per-algorithm mean trajectory is
-drawn thick in the algorithm's colour (ORB-SLAM3 green, MAC-VO orange, Basalt red,
-AirSLAM light blue, OpenVINS purple). Ground truth is a dashed black line.
+- `camera_pose_coverage_pct`: distinct associated exported poses / input camera frames.
+- `reference_pairs_pct_of_input`: reference-supported evaluated pairs / input frames.
+- `reference_supported_pose_pct`: evaluated poses associated to reference-supported
+  camera timestamps / reference-supported camera frames.
+- `trajectory_time_coverage_pct`: export endpoint span clipped to the input interval.
+- `coverage_gap_pct`: sum of exported intervals no longer than
+  `max(0.5 s, 5 × median camera interval)`, divided by input duration. It measures
+  observed export support, not proven tracking success.
 
-Per-algorithm plots (`results/<type>/<ds>/<seq>/<algo>/segment_map.png`) zoom in on
-one algorithm with individual runs + mean.
+Ground-truth outages do not reduce exported-pose coverage. AirSLAM keyframe exports
+have no dense `coverage_gap_pct`; their gaps do not establish tracking loss.
+Output poses are never renamed processed images or tracked frames. Unknown tracking
+loss/initialization instrumentation stays blank. Deprecated raw-path-length and
+path-normalized ATE CSV fields are also blank pending a defensible common-support
+path definition; old unsupported numbers are not copied forward.
 
-`results/<type>/ate_vs_fps.png` shows ATE SE(3) vs FPS for every algo/sequence combination
-(run `scripts/eval/plot_ate_vs_fps.py --type <type>` to regenerate).
+### Execution, failure and qualification
 
-## Sim(3) vs SE(3)
+The CSV separates numerical `run_status`, process exit, artifact presence and
+scientific qualification. `ok` means the saved trajectory could be evaluated under
+the stated metric/frame limitations; it does not prove a clean estimator exit or
+publication readiness. Nonzero exits with usable trajectories remain visible.
+Missing attempts, invalid trajectories and scale collapses remain in the denominator.
 
-ORB-SLAM3 with stereo input is metric, so Sim(3) and SE(3) ATE should be
-close. Large gaps (e.g. Rosario seq5: Sim3 approx 20 m, SE3 approx 21 m, scale 0.90)
-indicate scale drift over long straight sections without loop closures.
-MAC-VO uses calibrated stereo and belongs to the metric-scale comparison: use SE(3)
-ATE as primary. DPVO/DPV-SLAM is monocular and needs Sim(3) for trajectory-shape comparison.
-The current table generator incorrectly passes SE(3) for DPVO headline cells despite
-claiming Sim(3) in its header; fix this before publication.
-OpenVINS / OKVIS2 / Basalt are metric (stereo+IMU), so Sim3 and SE3 should
-agree in successful tracking; a large scale error can reflect calibration, initialization,
-tracking or estimator failure and does not uniquely diagnose IMU noise.
+Per-cell `metrics.csv` contains only repetition records; `summary.json` holds
+cohort-specific counts and conditional statistics. `report.md` shows counts,
+failures, exits and blockers. Sample SD is unknown for N<2. Main tables use median
+(min–max), report evaluated/planned counts, separate cohorts and input variants, and
+do not rank unqualified results. No `any ok` condition creates a green tick.
 
-## Re-evaluating without re-running SLAM
+## Runtime
 
-After evaluator fixes, re-evaluate affected saved trajectories using the matching GT,
-configuration/pose-frame provenance, run metadata and logs. Revalidate artifacts, then refresh
-aggregates, CSVs, tables, claims and plots together. Preserve the earlier evaluations as a
-separate version when semantics change; `eval_schema: 2` alone does not prove equivalent code.
+Only explicitly recorded measurement fields are exported. `fps` is a compatibility
+alias for known processing FPS; output-pose density and legacy wall FPS are not
+substitutes. Dataset rate is observed from integer-nanosecond input timestamps.
+Paced, transport-driven and maximum-throughput modes stay distinct. Unknown machine
+identity is not replaced by the evaluation/report host. See [run measurements](run-measurements.md).
 
-`run_benchmark.sh` currently reuses GT interpolation and segmentation files whenever they
-exist. It does not invalidate them by input hash. Verify these caches after any GT or timing
-change before evaluating; do not assume that launching another benchmark repairs them.
+## Re-evaluation and regeneration
 
-`make_report_tables.py --check` checks its own rendering rules, not correctness of metric
-semantics or completeness against a campaign manifest. Mixed-status cells currently qualify
-for ranking if any repetition is `ok`, and bolding uses a dispersion heuristic rather than a
-statistical significance test. Report attempted/evaluated/successful counts explicitly.
+`run_benchmark.sh` delegates to the safe per-run controller. Existing attempt IDs
+are never estimated again or deleted; saved trajectories are evaluated immediately,
+even after a nonzero estimator exit. Cached evaluation reuse requires matching input,
+configuration and evaluator hashes. Previous metrics are independently preserved in
+`.evaluation_history/`; historical `COMPLETE` markers remain unchanged.
+`--recover-only` forbids estimation. No estimator execution is authorized during
+this repair. Legacy GT interpolation and segmentation caches are not consumed by
+the schema-3 evaluator.
 
-Before rebuilding exports, exclude the five COMPLETE smoke runs documented in the
-[status audit](campaigns/server-status-20261001.md). Root CSVs, generated reports and the
-browser are currently different snapshots; regeneration remains pending these repairs.
+The following commands only rebuild derived staging outputs from saved evidence:
+
+```bash
+PY=/data/imoroz/conda/envs/macvo/bin/python
+python3 scripts/campaign/build_repair_inventory.py
+$PY scripts/eval/build_benchmark_csv.py all --output-dir results/repair-20261001/exports
+$PY scripts/eval/_aggregate_runs.py --all --output-root results/repair-20261001/cell-reports
+$PY scripts/eval/make_report_tables.py --csv-dir results/repair-20261001/exports --output-dir results/repair-20261001/tables
+$PY scripts/eval/_aggregate_runs.py --all --output-root results/repair-20261001/cell-reports --check
+$PY scripts/eval/make_report_tables.py --csv-dir results/repair-20261001/exports --output-dir results/repair-20261001/tables --check
+```
+
+`--check` is read-only: it regenerates expected bytes in memory and rejects stale
+source CSVs or report contents. This proves reconciliation with the hash-checked
+inventory, not scientific correctness by itself. Replaced derived files are
+preserved under `results/.derived-history/` before atomic replacement.
+
+Legacy trajectory/segment/FPS figures and the browser still need schema-3
+integration and promotion. They must not be presented as current repaired evidence.
+The earlier hand-transcribed/legacy report definitions are preserved in Git and the
+verified pre-repair backup, rather than mixed with this protocol.

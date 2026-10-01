@@ -63,6 +63,8 @@ def build(repo,inventory,inventory_path,decisions):
                 prerequisites.extend(['verify_gnss_input_variant_covariance_and_antenna_frame','verify_reference_independence_and_fusion_output'])
             if not cell['within_cell_config_consistent']:
                 prerequisites.append('resolve_within_cell_configuration_mismatch')
+            if not cell.get('within_cell_cohort_consistent', True):
+                prerequisites.append('resolve_recorded_source_binary_parameter_or_hardware_cohort_difference')
             # Unique physical IDs preserve every original directory and log.
             while f'run{next_id}' in occupied or (repo/'logs'/f"{cell['dataset']}_{cell['sequence']}_{cell['algorithm']}_{cell['run_type']}_run{next_id}.log").exists():
                 next_id+=1

@@ -122,3 +122,46 @@ def test_compare_full_relative_pose_residuals_with_evo():
         metric = metrics.RPE(pose_relation=relation, delta=1, delta_unit=units.Unit.frames, all_pairs=True)
         metric.process_data((to_evo(g), to_evo(e)))
         np.testing.assert_allclose(metric.error, expected, atol=1e-9)
+
+
+def test_ground_truth_gaps_do_not_become_exported_pose_gaps():
+    g=curve();reference=g[(g[:,0]>=1)&~((g[:,0]>4)&(g[:,0]<5))]
+    out,_=evaluate_arrays(reference,g,g[:,0],frames())
+    coverage=out['coverage']
+    assert coverage['camera_pose_coverage_pct']==100
+    assert coverage['coverage_gap_pct']==100
+    assert coverage['associated_camera_frames']==len(g)
+    assert coverage['reference_paired_camera_frames']<len(g)
+    assert coverage['reference_pairs_pct_of_input']<100
+    assert out['ate_se3']['rmse']<1e-12
+
+
+def test_tolerance_boundary_cannot_make_export_span_exceed_sequence():
+    g=curve();estimate=g.copy();estimate[0,0]-=.001;estimate[-1,0]+=.001
+    out,_=evaluate_arrays(g,estimate,g[:,0],frames())
+    assert out['coverage']['export_span_pct']==100
+    assert out['coverage']['coverage_gap_pct']==100
+
+
+def test_nonfinite_sensor_transform_and_camera_grid_are_rejected():
+    from _metrics import camera_association
+    g=curve();t=np.eye(4);t[0,3]=np.nan
+    with pytest.raises(ValueError,match='homogeneous'):right_transform(g,t)
+    for times in (np.array([0.,np.nan]),np.array([[0.,1.]])):
+        with pytest.raises(ValueError,match='camera timestamps'):camera_association(g,times)
+    with pytest.raises(ValueError,match='tolerance'):camera_association(g,g[:,0],np.nan)
+
+
+def test_invalid_orientation_can_only_yield_explicit_position_diagnostic():
+    from _trajectory_evaluation import position_only_diagnostic
+    g=curve();broken=g.copy();broken[:,4:]*=1.5
+    diag=position_only_diagnostic(g,broken,g[:,0],frames())
+    assert diag['status']=='position_diagnostic_only'
+    assert diag['ate_se3']['rmse']<1e-12
+    assert diag['saved_orientations_valid'] is False
+    assert diag['publication_qualified'] is False
+    assert np.allclose(np.linalg.norm(broken[:,4:],axis=1),1.5)
+    transform=np.eye(4);transform[0,3]=1
+    assert position_only_diagnostic(g,broken,g[:,0],frames(estimate_transform=transform)) is None
+    broken[0,0]=broken[1,0]
+    assert position_only_diagnostic(g,broken,g[:,0],frames()) is None

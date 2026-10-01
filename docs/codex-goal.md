@@ -46,8 +46,11 @@ identities on 2026-10-01, with file trees unchanged. Keep the historical hashes 
 run provenance and backup records unchanged. The original checkpoint above maps
 to `22a63852e0a0ee34a77db9ffb6996c0eabea288a`; see the preserved
 [old-to-new mapping](campaigns/git-author-rewrite-20261001.json). Original history
-remains under `backup/author-before-20261001T114608Z`. The maintenance push failed;
-no repair push is authorized. Re-read Git status/history before further commits.
+remains under `backup/author-before-20261001T114608Z`. The initial maintenance push
+failed; the user subsequently reported a successful push. No repair push is
+authorized. Re-read Git status/history before further commits. The temporary
+maintenance pause was explicitly revoked by the user; continue this existing goal
+from its saved work. Do not reapply that obsolete pause after context compaction.
 
 ## 1. Preserve all existing progress before implementation
 

@@ -210,8 +210,11 @@ to kubojion. All eleven mapped old/new commit trees (including three unchanged
 August commits) were independently checked and are identical. See the preserved
 [mapping](campaigns/git-author-rewrite-20261001.json). The original history is kept
 at `backup/author-before-20261001T114608Z` and in the external author-rewrite backup.
-Historical run/source and backup hashes remain unchanged. The reported push failed;
-the repair continues locally under the existing no-push restriction.
+Historical run/source and backup hashes remain unchanged. The initial push failed;
+the user subsequently reported a successful push and explicitly revoked the
+temporary maintenance pause. The repair continues from saved work under the
+existing no-push and no-estimator restrictions; the obsolete pause must not be
+reapplied after context compaction.
 
 The user extended the active goal to prepare an executable future N=3 campaign in
 all five modes, retaining the current exclusions and the no-estimator-execution
@@ -269,10 +272,10 @@ pass; see [the detailed validation](campaigns/future-n3-preparation.md#gnss-inpu
 
 Outstanding before this goal is complete:
 
-1. Audit staged numerical changes and failures against actual saved artifacts;
-   resolve recoverable timestamp/export issues and independently check real cases
-   in every mode. Recover the seven known unscored campaign trajectories without
-   changing their recorded process-exit evidence.
+1. Complete final numerical/claim reconciliation. All 593 saved artifacts are
+   staged and the seven known unscored campaign trajectories have been recovered;
+   their nonzero exits and missing historical COMPLETE markers remain unchanged.
+   Independent numerical checks cover every mode; qualification is still pending.
 2. Finish configuration, calibration, input, source, runtime and scope qualification
    for all modes, including GNSS variants and final-optimization policy differences.
 3. Integrate the evaluator and qualification inventory into all export/report/site
@@ -286,3 +289,49 @@ Outstanding before this goal is complete:
 6. Deliver the future N=3 manifest with separate reuse/rerun/missing/blocked actions,
    prerequisites, runtime estimates and readiness evidence; validate safe per-run
    execution/recovery behavior with synthetic fixtures only.
+
+## Coverage and export reconciliation stage
+
+Export availability is now counted before reference support is applied: a GT
+outage no longer reduces the estimator's exported-pose coverage. Separate fields
+report camera-pose coverage and reference-supported evaluation coverage. Tolerance
+edges are clipped to input endpoints. Sparse AirSLAM exports still have unknown
+dense coverage. A verified independent 600-file snapshot of the earlier staging
+tree is preserved at
+`/data/imoroz/vslam-repair-backups/20261001T115859Z-staging-before-coverage-repair/`.
+
+All 593 staged evaluations were rebuilt without errors. Comparison with that
+snapshot confirms unchanged SE(3)/Sim(3) ATE, RPE, paired counts and numerical
+statuses in every record; 592 coverage records changed. See
+`results/repair-20261001/coverage-restaging-validation.json`. The current numerical
+evaluator digest is `85161e55398004ecc1f11b765deedf4b1a08300b4f650193d82ce58c073a4acb`.
+
+VINS-Fusion+GPS Strawberry02 run1 still fails quaternion validation. Its 4,413
+supported positions permit an explicitly unqualified sensor-origin diagnostic:
+SE(3) RMSE 5.2624189032 m and Sim(3) RMSE 5.0125903328 m. Independent evo alignment
+agrees within 3.56e-15 m (`position-diagnostic-validation.json`). No quaternion was
+changed on disk; full-pose/global-GNSS accuracy remains invalid/unverified.
+
+The CSV generator now exports all 660 planned default slots plus six GNSS variants,
+including failures and missing attempts. Staged row counts are 192/144/168/96/66
+for VO/VO-LC/VIO/VIO-LC/GNSS-VIO. All 226 cell/variant report groups and six report
+table documents regenerate identically. Runtime/tracking fields stay unknown when
+unrecorded. DPVO headline accuracy uses Sim(3); diagnostic alignment and drift
+semantics are explicit. Failed repetitions cannot qualify through another run's
+`ok` status. Sample standard deviation is unknown at N<2. `--check` detects changed
+source CSVs or rendered bytes without writing them. Replaced derived bytes are
+preserved independently under `results/.derived-history/`.
+
+Cohort signatures now include recorded source/binary/model/parameter/environment,
+workspace and hardware identities, not only config snapshots. Only DPVO's explicit
+repetition seed varies within its signature. Three cells have differing recorded
+workspace provenance: OKVIS2-X Rosario1 VO-LC, ORB-SLAM3 ZED VO-LC and AirSLAM ZED
+VO-LC. Their cohorts remain separate pending review of that difference; matching
+configs alone do not justify pooling them. This finding does not establish that
+their algorithm parameters changed. Unverified legacy runs are not pooled.
+
+Validation: 100 tests plus three subtests pass, with regression coverage for these
+semantics, preserved failures/variants, inventory hash invalidation and read-only
+regeneration checks. Outputs remain in staging while qualification, browser/figure
+integration and promotion are finished. This is an export-repair milestone, not
+completion of the goal or certification of future execution readiness.
