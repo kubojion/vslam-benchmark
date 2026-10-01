@@ -44,15 +44,16 @@ def action_category(cell,attempt,decision):
     if not attempt['evaluated']:
         return 'blocked','recover_saved_trajectory_before_scheduling_estimation'
     # A validated failure is an outcome, never grounds to sample until successful.
-    if decision.get('reuse_qualified') and attempt['numerical_status']!='eval_failed':
+    if (decision.get('reuse_qualified') and attempt.get('qualification',{}).get('reuse_qualified')
+        and attempt['numerical_status']!='eval_failed'):
         return 'reusable','retain_observed_outcome_including_any_genuine_failure'
-    return 'blocked','saved_result_qualification_pending'
+    return 'blocked','saved_result_has_unresolved_scientific_evidence'
 
 
 def qualification_prerequisites(cell,attempt,decision):
     if decision.get('review_complete'):
         return []
-    result=['complete_cell_configuration_input_and_claim_review']
+    result=[] if attempt.get('qualification',{}).get('review')=='historical_evidence_review' else ['complete_cell_configuration_input_and_claim_review']
     for blocker in attempt.get('qualification',{}).get('blockers',[]):
         if blocker!='configuration_and_claim_qualification_pending':
             result.append('resolve_or_document_claim_limit:'+blocker)
@@ -123,7 +124,7 @@ def build(repo,inventory,inventory_path,decisions):
         target=dict(default_cells=len(inventory['cells']),repetitions=3,logical_repetitions=len(actions),
                     note='Original four-mode 600-attempt campaign plus 20 GNSS default cells at N=3; legacy GNSS experiments remain separate'),
         exclusions=inventory['excluded'],inventory=dict(path=str(inventory_path.relative_to(repo)),sha256=digest(inventory_path)),
-        pipeline_files=pipeline_evidence(repo),actions=actions,
+        pipeline_files=pipeline_evidence(repo),qualification_review=inventory.get('qualification_review'),actions=actions,
         environment_policy=dict(kind='runner_defaults_only',reject_nonempty=list(UNREVIEWED_OVERRIDES),
             note='An inherited config, playback, input, seed or numerical-runtime override requires a separately reviewed campaign recipe.'),
         retained_gnss_variants=[dict(path=a['path'],status='preserved_separate_experiment',

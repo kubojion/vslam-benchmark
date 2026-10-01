@@ -83,6 +83,17 @@
   543 blocked/review, 0 verified ready**. The known runtime subtotal is ~37.2 h for
   25 actions, with 92 missing/rerun estimates unknown. Matrix layouts are unchanged.
   See [saved parameter review](docs/saved-parameter-review-20261001.md).
+- Completed a concrete historical claim review and attached it to all 593 staged
+  evaluations without changing their numerical fields. Dirty runner trees and
+  several native builds were identified only by incomplete historical provenance;
+  the review records precise recovery requirements instead of implying that all
+  saved trajectories need rerunning. No cell has a certified green tick. See
+  [publication qualification](docs/publication-qualification-20261001.md).
+- Replaced the legacy figure and claim generators: all five modes now preserve
+  failure denominators, distinguish SE(3)/Sim(3), separate cohorts/variants, and
+  mark provisional scores. Unsupported causal IMU/loop-closure and processing-rate
+  claims were removed. Validation: 131 tests and three subtests pass. Root output
+  promotion is the next step; these generated diagnostics are still in staging.
 
 ## 2026-10-01 — Initial server inventory (before the repair above)
 

@@ -104,6 +104,7 @@ def validate(repo,manifest,*,check_files=True):
     if len(by_cell)!=manifest.get('target',{}).get('default_cells'):errors.append('cell total mismatch')
     if check_files:
         items=[manifest['inventory']]+manifest.get('pipeline_files',[])
+        items+=(manifest.get('qualification_review') or {}).get('evidence',[])
         for action in manifest.get('actions',[]):
             items+=action.get('prior_evidence',[])+action.get('review_evidence',[])
         by_path={}

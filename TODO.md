@@ -45,15 +45,15 @@ repetitions; none is yet certified ready to execute.
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ❌ N=0; crash | ❌ N=0; crash | ❌ N=0; crash | 🟡 N=3; reference review; exit 139 | 🟡 N=3; review | 🟡 N=3; review; exit 139 | 🟡 N=3; review | 🟡 N=3; rerun: FPS; exit 139 |
-| Basalt | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review |
-| MAC-VO | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review |
+| ORB-SLAM3 | ❌ N=0; crash | ❌ N=0; crash | ❌ N=0; crash | 🟡 N=3; reference review; exit 139 | 🟡 N=3; provenance review | 🟡 N=3; provenance review; exit 139 | 🟡 N=3; provenance review | 🟡 N=3; rerun: FPS; exit 139 |
+| Basalt | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review |
+| MAC-VO | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review |
 | AirSLAM | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review |
 | DROID-SLAM | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=1 historical | 🟡 N=1 historical | 🟡 N=1 historical | ➖ excluded; no run |
-| DPVO | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review |
-| OKVIS2 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; collapse r2; review |
-| OKVIS2-X | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review |
-| OV2SLAM | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review |
+| DPVO | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review |
+| OKVIS2 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; collapse r2; provenance review |
+| OKVIS2-X | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review |
+| OV2SLAM | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review |
 | MASt3R-SLAM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | 🔧 config missing; excluded |
 | MegaSaM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | 🔧 config missing; excluded |
 
@@ -72,13 +72,13 @@ repetitions; none is yet certified ready to execute.
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | ❌ N=0; crash |
-| Basalt | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=1; IMU review; +2 |
-| OKVIS2 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=1; IMU review; +2 |
-| OKVIS2-X | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=1; IMU review; +2 |
-| OpenVINS | 🟡 N=1; collapse r1; reference review; exit 134; +2 | 🟡 N=1; collapse r1; reference review; exit 134; +2 | 🟡 N=1; reference review; exit 134; +2 | 🟡 N=1; reference review; exit 134; +2 | 🟡 N=1; review; exit 134; +2 | 🟡 N=1; review; exit 134; +2 | 🟡 N=1; review; +2 | 🟡 N=1; collapse r1; IMU review; +2 |
+| ORB-SLAM3 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | ❌ N=0; crash |
+| Basalt | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=1; IMU review; +2 |
+| OKVIS2 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=1; IMU review; +2 |
+| OKVIS2-X | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=1; IMU review; +2 |
+| OpenVINS | 🟡 N=1; collapse r1; reference review; exit 134; +2 | 🟡 N=1; collapse r1; reference review; exit 134; +2 | 🟡 N=1; reference review; exit 134; +2 | 🟡 N=1; reference review; exit 134; +2 | 🟡 N=1; provenance review; exit 134; +2 | 🟡 N=1; provenance review; exit 134; +2 | 🟡 N=1; provenance review; +2 | 🟡 N=1; collapse r1; IMU review; +2 |
 | AirSLAM | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=1; IMU review; +2 |
-| Voxel-SVIO | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=1; IMU review; +2 |
+| Voxel-SVIO | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=1; IMU review; +2 |
 
 > HortiMulti IMU and rectified camera–IMU corrections are implemented. All seven non-ZED
 > sequences have N=3 for six algorithms; **OpenVINS remains N=1 in every cell**. Six
@@ -94,12 +94,12 @@ repetitions; none is yet certified ready to execute.
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| DPV-SLAM | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review |
-| OKVIS2 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=1; review; +2 |
-| OKVIS2-X | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | ❌ N=0; failed |
-| ORB-SLAM3 | ❌ N=0; crash | 🟡 N=3; reference review | 🟡 N=3; reference review; exit 134,139 | 🟡 N=3; reference review; exit 139 | 🟡 N=3; review; exit 139 | 🟡 N=3; review; exit 139 | 🟡 N=3; review; exit 134 | 🟡 N=3; rerun: FPS; exit 139 |
+| DPV-SLAM | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review |
+| OKVIS2 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=1; provenance review; +2 |
+| OKVIS2-X | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | ❌ N=0; failed |
+| ORB-SLAM3 | ❌ N=0; crash | 🟡 N=3; reference review | 🟡 N=3; reference review; exit 134,139 | 🟡 N=3; reference review; exit 139 | 🟡 N=3; provenance review; exit 139 | 🟡 N=3; provenance review; exit 139 | 🟡 N=3; provenance review; exit 134 | 🟡 N=3; rerun: FPS; exit 139 |
 | AirSLAM | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review |
-| OV2SLAM | 🟡 N=3; collapse r2; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review |
+| OV2SLAM | 🟡 N=3; collapse r2; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review |
 | MASt3R-SLAM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | 🔧 config missing; excluded |
 
 > **OKVIS2:** all seven non-ZED cells now have N=3 after the September 23 recovery,
@@ -118,9 +118,9 @@ repetitions; none is yet certified ready to execute.
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; rerun: rectified IMU; reference review | 🟡 N=3; rerun: rectified IMU; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | ❌ N=0; crash |
-| OKVIS2 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=1; IMU review; +2 |
-| OKVIS2-X | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=3; review | 🟡 N=1; IMU review; +2 |
+| ORB-SLAM3 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; rerun: rectified IMU; reference review | 🟡 N=3; rerun: rectified IMU; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | ❌ N=0; crash |
+| OKVIS2 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=1; IMU review; +2 |
+| OKVIS2-X | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=1; IMU review; +2 |
 | AirSLAM | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=1; IMU review; +2 |
 
 > All four methods have N=3 on the seven non-ZED sequences. **ZED configs now exist**:

@@ -16,6 +16,8 @@ import sys
 
 from _run_type import canonicalize_dataset, resolve
 from _saved_run import atomic_json, evaluate_saved_run, evaluator_identity
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'campaign'))
+from qualification_review import apply_review
 
 
 def evaluation_current(ws, run_dir, document):
@@ -29,6 +31,10 @@ def evaluation_current(ws, run_dir, document):
         return False
     for item in inputs + document.get('pose_frames', {}).get('evidence', []):
         path = ws / item['path']
+        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != item.get('sha256'):
+            return False
+    for item in document.get('qualification_provenance', {}).get('evidence', []):
+        path = ws/item['path']
         if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != item.get('sha256'):
             return False
     return True
@@ -78,6 +84,7 @@ def main():
             document = json.loads(target.read_text())
             return 0 if evaluation_current(ws, run, document) else 1
         result, _ = evaluate_saved_run(ws, run, gt_override=os.environ.get('GT_OVERRIDE'))
+        apply_review(ws, run, result)
         # Verify the inputs still match before publishing derived metrics.
         if not evaluation_current(ws, run, result):
             # Legacy runs can lack run_meta. They may be evaluated, with explicit

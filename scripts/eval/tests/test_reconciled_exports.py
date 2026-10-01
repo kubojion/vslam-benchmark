@@ -13,6 +13,8 @@ from build_repair_inventory import cohort_identity
 from _aggregate_runs import summarize_cell, write_cells
 from make_report_tables import cell_text, render_tables, main as tables_main
 from _saved_run import interpreted_measurements
+from _report_data import plotted_cell
+from verify_claims import render as render_claims
 
 
 def attempt(run=1,algo='okvis2',mode='vo',**changes):
@@ -159,3 +161,28 @@ def test_tables_check_is_read_only_and_detects_changed_bytes(tmp_path,monkeypatc
     assert tables_main()==1 and target.read_text()=='stale'
     source=csv_dir/'benchmark-vo.csv';source.write_text('stale CSV')
     assert tables_main()==1 and source.read_text()=='stale CSV'
+
+
+def test_figures_do_not_pool_cohorts_or_count_numerical_failure_as_success(tmp_path):
+    data=rows(tmp_path)
+    data[1].update(run_status='scale_collapse',primary_ate_rmse_m=10000.)
+    data[2].update(process_exit_code=139,coverage_gap_pct=80)
+    plotted=plotted_cell(data)
+    assert plotted['value']==1 and '2/3 ok' in plotted['annotation']
+    assert set(plotted['flags'])=={'X','P','U'}
+    data[2]['cohort']='different'
+    assert plotted_cell(data)['value'] is None
+    assert 'cohorts' in plotted_cell(data)['flags']
+    # Variant separation is enforced by the same aggregator as all tables.
+    data[2]['gnss_variant']='ppk'
+    with pytest.raises(ValueError,match='variants'):plotted_cell(data)
+
+
+def test_claims_preserve_denominators_and_do_not_invent_speed_or_mechanism_claims(tmp_path):
+    data=rows(tmp_path)
+    data[1].update(run_status='scale_collapse',primary_ate_rmse_m=10000.)
+    data[2].update(run_status='missing',eval_schema=None,attempt_exists=False)
+    text=render_claims(data,[])
+    assert '| vo | 3 | 2 | 1 | 1 | 0 | 0 | 0 |' in text
+    assert 'scale_collapse' in text and 'real-time latency' in text
+    assert '2x faster' not in text and 'COLLAPSES' not in text

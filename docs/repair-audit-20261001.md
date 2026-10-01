@@ -5,6 +5,15 @@ VO-LC, VIO, VIO-LC and GNSS-VIO. The repair is **not yet complete**. Staged nume
 evaluations do not establish publication qualification, and the root CSVs/site
 have not yet been replaced by this repair.
 
+The [publication qualification review](publication-qualification-20261001.md) now
+records specific evidence gaps for every retained attempt. All 593 staged JSONs
+carry that decision with hashes of its implementation and document; their numerical
+fields are unchanged. No clean N=3 cell is certified. Evidence gaps do not themselves
+request reruns; the 30 confirmed configuration-invalid repetitions remain distinct.
+The figure/claim generators now use the same inventory and CSV byte checks as the
+tables. They produce provisional diagnostics for all five modes and separate GNSS
+variants, without the legacy causal narrative or Sim(3)-only pooling.
+
 ## Preservation
 
 - Parent checkpoint: `8e62998c992c9aaef5a0ddc0df2a8d2512fb1f76`.

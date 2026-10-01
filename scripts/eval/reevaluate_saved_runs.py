@@ -13,6 +13,8 @@ import time
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _run_type import RUN_TYPES
 from _saved_run import atomic_json, evaluate_saved_run, evaluator_identity
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'campaign'))
+from qualification_review import apply_review
 
 
 def main():
@@ -38,6 +40,7 @@ def main():
         record = dict(run=str(relative))
         try:
             out, _ = evaluate_saved_run(ws, run)
+            apply_review(ws, run, out)
             if out['evaluation_provenance']['evaluator']['sha256'] != identity['sha256']:
                 raise RuntimeError('evaluator source changed during staging; restart with one version')
             atomic_json(stage/'evaluations'/relative/'run_eval.json', out)

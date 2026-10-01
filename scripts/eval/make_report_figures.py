@@ -1,257 +1,127 @@
 #!/usr/bin/env python3
-"""Report figures that carry findings 13/14/15 (not in the default figure set)."""
-import csv, glob, os
-import numpy as np
+"""Generate provisional, cohort-aware figures from the reconciled CSVs.
+
+No causal IMU/LC narrative or accuracy ranking is inferred. All five modes and
+separate GNSS variants are represented; numerical failure counts remain visible.
+"""
+from __future__ import annotations
+import argparse
+import hashlib
+import io
+import json
+from pathlib import Path
+
 import matplotlib
-matplotlib.use("Agg")
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from matplotlib.colors import LogNorm
+import numpy as np
 
-# Repo root resolved from this file's location (was hardcoded to one
-# machine's absolute path — figures were unreproducible elsewhere).
-# Override with VSLAM_WS if needed.
-WS = os.environ.get(
-    "VSLAM_WS",
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-# Output lives with the other generated report assets (moved 2026-08-06;
-# the repo root figures/ dir was report material, not benchmark material).
-OUT = os.path.join(WS, "docs", "generated", "figures"); os.makedirs(OUT, exist_ok=True)
-plt.rcParams.update({"font.size": 11, "figure.dpi": 150})
+from build_benchmark_csv import REPO, RUN_TYPES, preserved_write
+from make_report_tables import ALGO_LABEL, SEQ_LABEL
+from _report_data import checked_rows, plotted_cell
 
-def load_csv(m):
-    d = {}
-    for r in csv.DictReader(open(f"{WS}/benchmark-{m}.csv")):
-        try: d.setdefault((r["algo"], r["dataset"], r["seq"]), []).append(float(r["ate_sim3_rmse_m"]))
-        except: pass
-    import statistics as st
-    return {k: st.median(v) for k, v in d.items()}
 
-def load_tum(p):
-    a = np.loadtxt(p)
-    return a[:, 0], a[:, 1:4]
+def accuracy_figure(rows, mode, variant):
+    rows = [r for r in rows if r['run_type'] == mode and r['gnss_variant'] == variant]
+    algorithms = [a for a in ALGO_LABEL if any(r['algo'] == a for r in rows)]
+    sequences = [s for s in SEQ_LABEL if any((r['dataset'], r['seq']) == s for r in rows)]
+    alignments = [a for a in ('se3', 'sim3') if any(r['primary_alignment'] == a for r in rows)]
+    sizes = [sum(any(r['algo'] == a and r['primary_alignment'] == alignment for r in rows)
+                 for a in algorithms) for alignment in alignments]
+    fig, axes = plt.subplots(len(alignments), 1, squeeze=False,
+        figsize=(max(8.5, len(sequences)*1.45), max(3.8, sum(sizes)*.73+2.8)),
+        gridspec_kw={'height_ratios': sizes})
+    plotted = []
+    for ax, alignment in zip(axes[:, 0], alignments):
+        selected = [r for r in rows if r['primary_alignment'] == alignment]
+        algos = [a for a in algorithms if any(r['algo'] == a for r in selected)]
+        values = np.full((len(algos), len(sequences)), np.nan)
+        annotations = []
+        for i, algorithm in enumerate(algos):
+            for j, (dataset, sequence) in enumerate(sequences):
+                group = [r for r in selected if (r['dataset'], r['seq'], r['algo']) == (dataset, sequence, algorithm)]
+                if not group: continue
+                item = plotted_cell(group)
+                value = item['value']
+                if value is not None and value > 0: values[i, j] = value
+                annotations.append((i, j, item['annotation']))
+                plotted.append(dict(identity=[mode, dataset, sequence, algorithm, variant], **item))
+        cmap = plt.colormaps['YlGnBu'].copy(); cmap.set_bad('#eeeeee')
+        plotted_image = ax.imshow(values, cmap=cmap, norm=LogNorm(vmin=.01, vmax=1000), aspect='auto')
+        for i, j, annotation in annotations:
+            ax.text(j, i, annotation, ha='center', va='center', fontsize=8,
+                    color='white' if np.isfinite(values[i,j]) and values[i,j] > 2 else 'black')
+        ax.set_xticks(range(len(sequences)), [SEQ_LABEL[s] for s in sequences])
+        ax.set_yticks(range(len(algos)), [ALGO_LABEL[a] for a in algos])
+        ax.set_title('Metric stereo / inertial: SE(3)' if alignment == 'se3' else 'Monocular shape: Sim(3) — separate scale model', fontsize=11)
+        fig.colorbar(plotted_image, ax=ax, fraction=.025, pad=.025,
+                     label='Conditional median ATE RMSE [m]' if len(algos) >= 3 else 'ATE [m]')
+    fig.suptitle(f'{mode.upper()} · input {variant} · provisional conditional median ATE', fontsize=13)
+    fig.text(.02, .015, 'ok/planned = numerical outcomes, not certified successes. U: unqualified; R: config rerun; X: nonzero exit;\n'
+             'P: dense export coverage <95%; K: keyframes (dense coverage unknown). Separate cohorts are not pooled.\n'
+             'Failures/missing slots stay in counts. Agricultural reference issues remain; aligned GNSS scores are not global error.', fontsize=8)
+    fig.tight_layout(rect=(0, .115, 1, .94))
+    return fig, plotted
 
-def umeyama(P, Q):  # align P -> Q (Sim3)
-    muP, muQ = P.mean(0), Q.mean(0)
-    Pc, Qc = P - muP, Q - muQ
-    C = Qc.T @ Pc / len(P)
-    U, D, Vt = np.linalg.svd(C)
-    S = np.eye(3)
-    if np.linalg.det(U) * np.linalg.det(Vt) < 0: S[2, 2] = -1
-    R = U @ S @ Vt
-    s = (D * np.diag(S)).sum() / (Pc ** 2).sum() * len(P)
-    t = muQ - s * R @ muP
-    return s, R, t
 
-def aligned_xy(gt_t, gt_xyz, est_p):
-    et, ep = load_tum(est_p)
-    # match est ts -> nearest gt ts
-    idx = np.searchsorted(gt_t, et); idx = np.clip(idx, 1, len(gt_t) - 1)
-    left = np.abs(et - gt_t[idx - 1]) < np.abs(et - gt_t[idx])
-    gi = idx - left.astype(int)
-    ok = np.abs(et - gt_t[gi]) < 0.1
-    if ok.sum() < 10: return None, None
-    s, R, t = umeyama(ep[ok], gt_xyz[gi[ok]])
-    al = (s * (R @ ep.T).T + t)
-    return al, ok.mean()
+def outcome_figure(rows):
+    modes = list(RUN_TYPES)
+    categories = ['ok', 'scale_collapse', 'eval_failed', 'failed_without_trajectory', 'incomplete', 'saved_not_evaluated', 'missing']
+    colors = ['#367c9c', '#c85a54', '#a64462', '#edb45f', '#967caf', '#7d9979', '#dddddd']
+    fig, ax = plt.subplots(figsize=(10.5, 4.4))
+    left = np.zeros(len(modes))
+    for category, color in zip(categories, colors):
+        counts = [sum(r['run_type'] == m and r['run_status'] == category and r['gnss_variant'] == 'default' for r in rows) for m in modes]
+        if not any(counts): continue
+        ax.barh(modes, counts, left=left, color=color, label=category)
+        for i, count in enumerate(counts):
+            if count >= 4: ax.text(left[i]+count/2, i, str(count), ha='center', va='center', fontsize=9)
+        left += counts
+    ax.set_xlabel('Default logical repetitions (N=3 target; GNSS variants separate)')
+    ax.set_title('Saved numerical outcomes and missing repetitions across all five modes')
+    ax.legend(loc='upper center', bbox_to_anchor=(.5, -.19), ncol=3, fontsize=8)
+    fig.text(.02, .015, 'Numerically ok does not imply clean execution or publication qualification. No failures are removed from the denominator.', fontsize=8)
+    fig.tight_layout(rect=(0, .05, 1, 1))
+    return fig
 
-# ── FIG A: IMU effect is excitation-dependent (VO vs VIO) ────────────────────
-def fig_excitation():
-    VO, VIO = load_csv("vo"), load_csv("vio")
-    panels = [("zed2i", "field1_110426_full_10fps_q90", "ZED2i field  (weak excitation)"),
-              ("rosariov2", "sequence5", "Rosario seq5  (adequate excitation)")]
-    algos = ["basalt", "okvis2", "okvis2x", "airslam", "orbslam3"]  # VO+VIO only (Voxel-SVIO has no VO)
-    lbl = {"basalt": "Basalt", "okvis2": "OKVIS2", "okvis2x": "OKVIS2-X", "airslam": "AirSLAM",
-           "voxel_svio": "Voxel-SVIO", "orbslam3": "ORB-SLAM3"}
-    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
-    for ax, (ds, sq, title) in zip(axes, panels):
-        present = [a for a in algos if (a, ds, sq) in VO or (a, ds, sq) in VIO]
-        x = np.arange(len(present)); w = 0.38
-        vo = [VO.get((a, ds, sq), np.nan) for a in present]
-        vio = [VIO.get((a, ds, sq), np.nan) for a in present]
-        ax.bar(x - w/2, vo, w, label="VO (no IMU)", color="#4CAF50")
-        ax.bar(x + w/2, vio, w, label="VIO (+IMU)", color="#F44336")
-        for i, a in enumerate(present):  # mark methods whose VIO failed (e.g. ORB-SLAM3 on ZED2i)
-            if np.isnan(vio[i]) and not np.isnan(vo[i]):
-                ax.text(x[i] + w/2, vo[i] * 1.15, "VIO\n✗ failed", ha="center", va="bottom", fontsize=7.5, color="#B71C1C", fontweight="bold")
-        ax.set_yscale("log"); ax.set_title(title, fontsize=11)
-        ax.set_xticks(x); ax.set_xticklabels([lbl[a] for a in present], rotation=30, ha="right")
-        ax.set_ylabel("ATE Sim3 (m, log)"); ax.grid(axis="y", alpha=0.3); ax.legend()
-    fig.suptitle("The IMU's value is excitation-dependent:  it COLLAPSES on ZED2i, HELPS on Rosario", fontweight="bold")
-    fig.tight_layout(); p = f"{OUT}/fig_imu_excitation.png"; fig.savefig(p); print(p)
 
-# ── FIG B: loop closure — mechanism x sequence heatmap (VO -> VO-LC) ─────────
-def fig_lc_mechanism():
-    VO, VOLC = load_csv("vo"), load_csv("vo-lc")
-    # columns: EuRoC (distinctive) then the 4 agricultural sequences
-    cols = [("euroc_mav", "MH_01_easy", "EuRoC\nMH01"), ("rosariov2", "sequence1", "seq1"),
-            ("rosariov2", "sequence5", "seq5"), ("hortimulti", "strawberry02", "str02"),
-            ("hortimulti", "strawberry03", "str03")]
-    rows = [("dpvo", "DPV-SLAM  (proximity)"), ("ov2slam", "OV2SLAM  (iBoW)"),
-            ("okvis2", "OKVIS2  (DBoW)")]
-    M = np.full((len(rows), len(cols)), np.nan)
-    for i, (a, _) in enumerate(rows):
-        for j, (ds, sq, _) in enumerate(cols):
-            vo, vl = VO.get((a, ds, sq)), VOLC.get((a, ds, sq))
-            if vo and vl: M[i, j] = 100 * (vl - vo) / vo
-    fig, ax = plt.subplots(figsize=(10, 4.6))
-    im = ax.imshow(np.clip(M, -100, 100), cmap="viridis", vmin=-100, vmax=100, aspect="auto")
-    ax.set_xticks(range(len(cols))); ax.set_xticklabels([c[2] for c in cols], fontsize=11)
-    ax.set_yticks(range(len(rows))); ax.set_yticklabels([r[1] for r in rows], fontsize=11)
-    # vertical divider between EuRoC (distinctive reference) and agri
-    ax.axvline(0.5, color="k", lw=2)
-    for i in range(len(rows)):
-        for j in range(len(cols)):
-            v = M[i, j]
-            if np.isnan(v): continue
-            txt = f"{v:+.0f}%"
-            ax.text(j, i, txt, ha="center", va="center", fontsize=11,
-                    color="white" if abs(v) > 55 else "black",
-                    fontweight="bold" if v > 100 else "normal")
-    cb = fig.colorbar(im, ax=ax, fraction=0.03, pad=0.02)
-    cb.set_label("ATE change  VO → VO-LC  (%)")
-    cb.ax.text(1.3, 1.0, "LC hurts", transform=cb.ax.transAxes, va="top", fontsize=8, color="#B71C1C")
-    cb.ax.text(1.3, 0.0, "LC helps", transform=cb.ax.transAxes, va="bottom", fontsize=8, color="#1B5E20")
-    ax.set_title("Loop closure helps on distinctive scenes, is unreliable on crops:\n"
-                 "proximity always hurts; even verified (iBoW/DBoW) LC can blow up (str02)  —  dark = hurts, light = helps", fontweight="bold", fontsize=10.5)
-    fig.tight_layout(); p = f"{OUT}/fig_lc_mechanism.png"; fig.savefig(p); print(p)
+def main():
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('--inventory', type=Path, default=REPO/'results/repair-20261001/inventory.json')
+    ap.add_argument('--csv-dir', type=Path, default=REPO)
+    ap.add_argument('--output-dir', type=Path, default=REPO/'docs/generated/figures')
+    ap.add_argument('--check', action='store_true')
+    args = ap.parse_args()
+    rows, inputs = checked_rows(args.inventory.resolve(), args.csv_dir.resolve())
+    outputs = {}; plotted = []
+    def save(fig, stem):
+        for suffix in ('png', 'pdf'):
+            buffer = io.BytesIO()
+            metadata = {'CreationDate': None, 'ModDate': None} if suffix == 'pdf' else {'Software': 'vslam schema-3 reporting'}
+            fig.savefig(buffer, format=suffix, dpi=160, metadata=metadata)
+            outputs[f'{stem}.{suffix}'] = buffer.getvalue()
+        plt.close(fig)
+    save(outcome_figure(rows), 'fig_campaign_outcomes')
+    for mode in RUN_TYPES:
+        for variant in sorted({r['gnss_variant'] for r in rows if r['run_type'] == mode}):
+            fig, items = accuracy_figure(rows, mode, variant)
+            save(fig, f'fig_accuracy_{mode}_{variant}')
+            plotted.extend(items)
+    outputs['figure-data.json'] = (json.dumps(dict(schema=1,
+        inputs=[dict(path=str(Path(i['path']).relative_to(REPO)), sha256=i['sha256']) for i in inputs],
+        status='provisional_diagnostics_not_qualified_paper_comparisons', cells=plotted,
+        figures=[dict(path=name, sha256=hashlib.sha256(raw).hexdigest()) for name, raw in outputs.items()]),
+        indent=2, allow_nan=False)+'\n').encode()
+    stale = []
+    for name, raw in outputs.items():
+        path = args.output_dir/name
+        if args.check:
+            if not path.is_file() or path.read_bytes() != raw: stale.append(name)
+        else: preserved_write(path, raw)
+    print(f'[figures] {len(outputs)} outputs; {len(plotted)} cells/variants; {len(stale)} stale')
+    return bool(stale)
 
-# ── FIG C: coverage — ORB fails where others complete + IMU rescue ──────────
-def load_cov(m):
-    d = {}
-    for r in csv.DictReader(open(f"{WS}/benchmark-{m}.csv")):
-        try: d.setdefault((r["algo"], r["dataset"], r["seq"]), []).append(float(r["trajectory_time_coverage_pct"]))
-        except: pass
-    import statistics as st
-    return {k: st.median(v) for k, v in d.items()}
 
-# ── FIG C: whole-benchmark ATE heatmaps (VO + VIO overview pair) ─────────────
-def load_scale(m):
-    d = {}
-    for r in csv.DictReader(open(f"{WS}/benchmark-{m}.csv")):
-        try: d.setdefault((r["algo"], r["dataset"], r["seq"]), []).append(float(r["scale_factor"]))
-        except: pass
-    import statistics as st
-    return {k: st.median(v) for k, v in d.items()}
-
-MASTER_COLS = [("rosariov2", "sequence1", "seq1"), ("rosariov2", "sequence5", "seq5"),
-               ("hortimulti", "strawberry02", "str02"), ("hortimulti", "strawberry03", "str03"),
-               ("euroc_mav", "MH_01_easy", "MH01"), ("euroc_mav", "MH_03_medium", "MH03"),
-               ("euroc_mav", "MH_05_difficult", "MH05"), ("zed2i", "field1_110426_full_10fps_q90", "zed2i")]
-
-def _master(mode, rows, title, fname):
-    from matplotlib.colors import LogNorm
-    ATE, COV, SC = load_csv(mode), load_cov(mode), load_scale(mode)
-    cols = MASTER_COLS
-    M = np.full((len(rows), len(cols)), np.nan)
-    for i, (a, _) in enumerate(rows):
-        for j, (ds, sq, _) in enumerate(cols):
-            if (a, ds, sq) in ATE: M[i, j] = ATE[(a, ds, sq)]
-    fig, ax = plt.subplots(figsize=(11, 0.62 * len(rows) + 1.8))
-    im = ax.imshow(M, cmap="viridis", norm=LogNorm(vmin=0.03, vmax=50), aspect="auto")
-    ax.set_xticks(range(len(cols))); ax.set_xticklabels([c[2] for c in cols], fontsize=11)
-    ax.set_yticks(range(len(rows))); ax.set_yticklabels([r[1] for r in rows], fontsize=11)
-    ax.axvline(3.5, color="k", lw=2); ax.axvline(6.5, color="k", lw=2)   # agri | euroc | zed2i
-    for xc, lab, col in [(1.5, "AGRICULTURAL", "#33691E"), (5, "EuRoC (reference)", "#555"), (7, "ZED2i", "#004D40")]:
-        ax.text(xc, -0.62, lab, ha="center", fontweight="bold", fontsize=9, color=col)
-    for i, (a, _) in enumerate(rows):
-        for j, (ds, sq, _) in enumerate(cols):
-            v = M[i, j]
-            if np.isnan(v): ax.text(j, i, "—", ha="center", va="center", color="#999"); continue
-            mark = ""
-            if COV.get((a, ds, sq), 100) < 90: mark += "*"
-            # scale collapse marker — not for monocular methods (up-to-scale by design)
-            if a not in ("dpvo", "droidslam") and SC.get((a, ds, sq), 1) < 0.5: mark += "✗"
-            ax.text(j, i, f"{v:.2f}{mark}", ha="center", va="center", fontsize=8.5,
-                    color="white" if (v < 0.12 or v > 8) else "black")
-    cb = fig.colorbar(im, ax=ax, fraction=0.03, pad=0.02); cb.set_label("ATE Sim3 RMSE (m, log)")
-    ax.set_title(title, fontweight="bold", fontsize=10.5, pad=30)
-    fig.tight_layout(); p = f"{OUT}/{fname}"; fig.savefig(p); print(p)
-
-def fig_master():
-    # DROID-SLAM excluded: dropped from the benchmark (replaced by DPVO)
-    _master("vo",
-            [("orbslam3", "ORB-SLAM3"), ("ov2slam", "OV2SLAM"), ("dpvo", "DPVO (mono)"),
-             ("basalt", "Basalt"), ("okvis2", "OKVIS2"), ("okvis2x", "OKVIS2-X"),
-             ("macvo", "MAC-VO"), ("airslam", "AirSLAM")],
-            "Whole-benchmark VO accuracy: every method is fine on EuRoC, agriculture is where they diverge\n"
-            "* = partial coverage (ATE not comparable — method lost tracking);  — = not run",
-            "fig_master_vo_heatmap.png")
-    _master("vio",
-            [("orbslam3", "ORB-SLAM3"), ("basalt", "Basalt"), ("okvis2", "OKVIS2"),
-             ("okvis2x", "OKVIS2-X"), ("openvins", "OpenVINS"), ("voxel_svio", "Voxel-SVIO"),
-             ("airslam", "AirSLAM")],
-            "Whole-benchmark VIO accuracy: the ZED2i column exposes the weak-excitation collapse\n"
-            "✗ = scale collapse (Sim3 scale ≈ 0);  * = partial coverage;  — = not run / failed",
-            "fig_master_vio_heatmap.png")
-
-# ── FIG D: ORB-SLAM3 mode progression — IMU rescues coverage, LC fixes ATE ───
-def fig_progression():
-    VO, VIO, VIOLC = load_csv("vo"), load_csv("vio"), load_csv("vio-lc")
-    CV, CVi, CVl = load_cov("vo"), load_cov("vio"), load_cov("vio-lc")
-    cells = [("rosariov2", "sequence1", "Rosario seq1"), ("hortimulti", "strawberry02", "HortiMulti str02")]
-    fig, axes = plt.subplots(1, len(cells), figsize=(12, 5))
-    for ax, (ds, sq, title) in zip(axes, cells):
-        modes = ["VO", "VIO", "VIO-LC"]
-        ate = [VO.get(("orbslam3", ds, sq)), VIO.get(("orbslam3", ds, sq)), VIOLC.get(("orbslam3", ds, sq))]
-        cov = [CV.get(("orbslam3", ds, sq)), CVi.get(("orbslam3", ds, sq)), CVl.get(("orbslam3", ds, sq))]
-        x = np.arange(3)
-        bars = ax.bar(x, ate, 0.5, color=["#90A4AE", "#42A5F5", "#1B5E20"])
-        for b, a in zip(bars, ate):
-            if a is not None: ax.text(b.get_x() + b.get_width()/2, a + 0.05, f"{a:.2f} m", ha="center", fontsize=10, fontweight="bold")
-        # the VO bar's ATE covers only the tracked sub-path — flag it so the short
-        # grey bar is not read as "VO more accurate than VIO"
-        if cov[0] is not None and cov[0] < 90:
-            ax.text(0, ate[0] / 2, f"ATE over only\n{cov[0]:.0f}% of path", ha="center", va="center",
-                    fontsize=8.5, color="white", fontweight="bold")
-        ax.set_xticks(x); ax.set_xticklabels(["VO\n(no IMU)", "VIO\n(+IMU)", "VIO-LC\n(+IMU +LC)"])
-        ax.set_ylabel("ATE Sim3 (m)"); ax.set_title(f"ORB-SLAM3 on {title}", fontweight="bold")
-        ax2 = ax.twinx()
-        ax2.plot(x, cov, "o--", color="#D84315", lw=2, ms=9)
-        for xi, c in zip(x, cov):
-            if c is not None: ax2.text(xi, c - 6, f"{c:.0f}%", ha="center", color="#D84315", fontsize=9, fontweight="bold")
-        ax2.set_ylabel("Coverage (%)", color="#D84315"); ax2.set_ylim(0, 115); ax2.tick_params(axis="y", colors="#D84315")
-    fig.suptitle("How ORB-SLAM3 is fixed on agriculture:  the IMU restores coverage (orange), then loop closure cuts the error (bars)",
-                 fontweight="bold", fontsize=11)
-    fig.tight_layout(rect=[0, 0, 1, 0.94]); p = f"{OUT}/fig_orb_progression.png"; fig.savefig(p); print(p)
-
-# ── FIG E: run-to-run spread — finding 11 (non-determinism) ─────────────────
-def fig_determinism():
-    # all individual runs (not medians) for the N=3 agricultural VO cells
-    runs = {}
-    for r in csv.DictReader(open(f"{WS}/benchmark-vo.csv")):
-        try: runs.setdefault((r["algo"], r["dataset"], r["seq"]), []).append(float(r["ate_sim3_rmse_m"]))
-        except: pass
-    algos = [("basalt", "Basalt", "#F44336"), ("macvo", "MAC-VO", "#4CAF50"),
-             ("airslam", "AirSLAM", "#00BCD4"), ("orbslam3", "ORB-SLAM3", "#2196F3")]
-    seqs = [("rosariov2", "sequence1", "seq1"), ("rosariov2", "sequence5", "seq5"),
-            ("hortimulti", "strawberry02", "str02"), ("hortimulti", "strawberry03", "str03")]
-    fig, ax = plt.subplots(figsize=(11, 5.5))
-    for gi, (ds, sq, sl) in enumerate(seqs):
-        for ai, (a, lab, col) in enumerate(algos):
-            v = runs.get((a, ds, sq), [])
-            if len(v) < 2: continue
-            xp = gi * (len(algos) + 1) + ai
-            ax.plot([xp, xp], [min(v), max(v)], color=col, lw=2.5, alpha=0.55)
-            ax.scatter([xp] * len(v), v, color=col, s=45, zorder=5,
-                       label=lab if gi == 0 else None, edgecolor="k", linewidth=0.4)
-    ax.set_yscale("log")
-    ax.set_xticks([gi * (len(algos) + 1) + (len(algos) - 1) / 2 for gi in range(len(seqs))])
-    ax.set_xticklabels([s[2] for s in seqs], fontsize=12)
-    ax.set_ylabel("ATE Sim3 (m, log) — individual runs (N=3)")
-    ax.grid(axis="y", alpha=0.3); ax.legend(loc="upper right", fontsize=10)
-    # worst max/min ratio across ORB-SLAM3 agri cells, from the data actually plotted
-    orb_ratio = max(max(v) / min(v) for (a, ds, sq), v in runs.items()
-                    if a == "orbslam3" and len(v) >= 2 and ds in ("rosariov2", "hortimulti"))
-    # deterministic-group CV computed from the data, not hardcoded (fix 2026-08-05)
-    det_cvs = [np.std(v, ddof=1) / np.mean(v) * 100
-               for (a, ds, sq), v in runs.items()
-               if a in ("basalt", "macvo", "airslam") and len(v) >= 2
-               and ds in ("rosariov2", "hortimulti") and np.mean(v) > 0]
-    det_cv_max = max(det_cvs) if det_cvs else float("nan")
-    ax.set_title("Run-to-run spread on agricultural sequences (identical binary + config, 3 runs):\n"
-                 f"Basalt / MAC-VO / AirSLAM reproduce (<{det_cv_max:.0f}% CV) — "
-                 f"ORB-SLAM3 varies up to {orb_ratio:.1f}× between runs",
-                 fontweight="bold", fontsize=11)
-    fig.tight_layout(); p = f"{OUT}/fig_determinism.png"; fig.savefig(p); print(p)
-
-fig_excitation(); fig_lc_mechanism(); fig_master(); fig_progression(); fig_determinism()
-print("done ->", OUT)
+if __name__ == '__main__':
+    raise SystemExit(main())

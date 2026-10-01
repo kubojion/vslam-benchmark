@@ -15,8 +15,12 @@ from update_todo_matrices import update
 
 def test_true_failure_is_retained_but_invalid_config_is_replaced():
     cell=dict(algorithm='okvis2',dataset='zed2i',run_type='vo')
-    attempt=dict(exists=True,trajectory_saved=True,evaluated=True,numerical_status='scale_collapse')
+    attempt=dict(exists=True,trajectory_saved=True,evaluated=True,numerical_status='scale_collapse',
+                 qualification={'reuse_qualified':True})
     assert action_category(cell,attempt,{'reuse_qualified':True})[0]=='reusable'
+    attempt['qualification']['reuse_qualified']=False
+    assert action_category(cell,attempt,{'reuse_qualified':True})[0]=='blocked'
+    attempt['qualification']['reuse_qualified']=True
     cell['algorithm']='orbslam3'
     assert action_category(cell,attempt,{'reuse_qualified':True})[0]=='required_rerun'
     attempt['numerical_status']='eval_failed';cell['algorithm']='okvis2'

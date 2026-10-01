@@ -125,7 +125,7 @@ def row_from_attempt(attempt,evaluation,cell,*,repo=REPO,membership='original_n3
         attempt_exists=attempt['exists'],trajectory_saved=attempt['trajectory_saved'],
         execution_status=get(ev,'execution','status') or 'unknown',process_exit_code=process.get('exit_code'),
         scientific_status=qualification.get('status','not_evaluated'),scientific_blockers=json.dumps(blockers,separators=(',',':')),
-        paper_ready=qualification.get('status')=='qualified',
+        paper_ready=qualification.get('status')=='qualified' and not blockers,
         primary_alignment=alignment,primary_ate_rmse_m=get(ev,'ate' if alignment=='sim3' else 'ate_se3','rmse'),
         position_metric_validity=get(ev,'metric_validity','position'),
         orientation_metrics_available=bool(get(ev,'pose_frames','orientation_valid') and get(ev,'pose_frames','common_origin_verified')) if ev else None,
@@ -175,6 +175,8 @@ def row_from_attempt(attempt,evaluation,cell,*,repo=REPO,membership='original_n3
 
 def load_inventory(path,repo=REPO):
     inventory=json.loads(Path(path).read_text());files={}
+    for item in inventory.get('qualification_review',{}).get('evidence',[]):
+        files[item['path']]=item
     for attempt in [a for c in inventory['cells'] for a in c['attempts']]+inventory['other_artifacts']:
         for item in attempt['files']:
             if item['path'] in files and files[item['path']]['sha256']!=item['sha256']:

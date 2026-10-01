@@ -23,7 +23,7 @@ def render_cell(cell):
     elif ds=='zed2i' and mode in ('vio','vio-lc'):flags.append('IMU review')
     elif algo=='airslam':flags.append('sparse; review')
     elif ds in ('rosariov2','hortimulti'):flags.append('reference review')
-    else:flags.append('review')
+    else:flags.append('provenance review')
     nonzero={a['process'].get('exit_code') for a in cell['attempts'] if a['evaluated'] and a['process'].get('exit_code') not in (0,None)}
     if nonzero:flags.append('exit '+','.join(map(str,sorted(nonzero))))
     if n<3:flags.append('+'+str(3-n))

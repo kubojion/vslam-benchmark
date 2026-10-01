@@ -18,6 +18,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parent))
 from run_quality_campaign import expand_cells, cell_key, load_manifest
 from run_repetitions import atomic_json
 from protocol_findings import historical_findings
+from qualification_review import review_saved, review_identity
 
 REPO=Path(__file__).resolve().parents[2]
 MODES=('vo','vo-lc','vio','vio-lc','gnss-vio')
@@ -92,9 +93,7 @@ def saved_attempt(repo,relative,stage):
     process=meta.get('process',{})
     cohort,cohort_evidence=cohort_identity(meta,algo)
     findings=historical_findings(repo,relative,meta)
-    qualification=dict(value.get('qualification',{'status':'not_evaluated','blockers':[]}))
-    qualification['blockers']=list(qualification.get('blockers',[]))+[f['code'] for f in findings]
-    if findings:qualification['status']='rerun_required'
+    qualification=review_saved(relative,meta,value,findings,snapshot_records,exists=run.is_dir())
     return dict(path='results/'+relative,exists=run.is_dir(),files=files,
         trajectory_saved=(run/'trajectory.txt').is_file(),historical_complete=(run/'COMPLETE').is_file(),
         evaluated=bool(value),evaluation_path=str(staged.relative_to(repo)) if value else None,
@@ -160,7 +159,7 @@ def build(repo,stage):
              evaluated_n3=sum(c['evaluated']==3 for c in selected),evaluated_n1=sum(c['evaluated']==1 for c in selected),
              evaluated_n0=sum(c['evaluated']==0 for c in selected),
              outcomes=dict(sum((Counter(c['outcomes']) for c in selected),Counter())))
-    return dict(schema_version=1,audit_status='in_progress',
+    return dict(schema_version=1,audit_status='in_progress',qualification_review=review_identity(repo),
         original_manifest=dict(path='logs/server-campaign/quality-final-n3-no-gnss/manifest.json',sha256=executed_hash),
         scope_source=dict(path='configs/campaigns/quality-final.json',sha256=future_hash,
                           note='algorithm/dataset membership retained; future repeat target is 3, not the historical proposal of 5'),
