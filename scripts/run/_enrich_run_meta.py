@@ -348,6 +348,34 @@ def build_measurements(
     return measurements
 
 
+def execution_stages(run_dir: Path) -> list[dict[str, Any]]:
+    """Summarize retained supervisor evidence, separate from config identity.
+
+    A roslaunch/composite command status is not a native node exit status.
+    Keep both the raw state and signal log available for execution review.
+    """
+    result = []
+    for path in sorted((run_dir / "processes").glob("*.json")):
+        record = json.loads(path.read_text())
+        item = {key: record.get(key) for key in (
+            "status", "exit_code", "signal_requests", "error",
+            "started_unix", "finished_unix", "descendants_remaining_at_parent_exit",
+        )}
+        item.update(stage=path.stem, state=path.relative_to(run_dir).as_posix(),
+                    sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
+                    scope="supervised_command_not_individual_native_nodes")
+        stops = path.with_suffix(".stops.jsonl")
+        item["forced_kill_recorded"] = False
+        if stops.exists():
+            events = [json.loads(line) for line in stops.read_text().splitlines() if line.strip()]
+            item.update(stop_log=stops.relative_to(run_dir).as_posix(),
+                        stop_log_sha256=hashlib.sha256(stops.read_bytes()).hexdigest(),
+                        forced_kill_recorded=any(event.get("signal") == 9
+                            for stop in events for event in stop.get("signals", [])))
+        result.append(item)
+    return result
+
+
 def conda_snapshot(name: str, run_dir: Path) -> dict[str, Any]:
     raw = command(["conda", "list", "-n", name, "--json"], timeout=60)
     if raw is None:
@@ -544,6 +572,7 @@ def main() -> int:
             "accepted_nonzero_exit": bool(args.accepted_nonzero_exit),
             "failure_reason": args.failure_reason,
         }
+        meta["execution_stages"] = execution_stages(run_dir)
         meta["provenance_schema"] = 2
         meta["provenance"] = provenance
         if args.measurement_mode:

@@ -90,8 +90,10 @@ execution begins require an explicit new campaign revision, preserving old state
   trajectory after nonzero estimator exit. Original process evidence is retained.
 - Existing directories are never deleted or estimated again in place. Partial and
   interrupted attempts remain visible. Recovery retries evaluation, not estimation.
-- Atomic state and global/cell locks protect controller use. Native/container cleanup
-  semantics still need review; locks do not control unrelated manually launched jobs.
+- Atomic state and global/cell locks protect controller use. Eight ROS wrappers now
+  use attempt-owned cleanup and private transport; see the [runner audit](../runner-isolation-audit.md).
+  Native/container startup and shutdown still require execution validation; controller
+  locks do not control unrelated manually launched jobs.
 - `_evaluate_run.py` uses schema 3, checks input/evaluator hashes and saves independent
   content-addressed copies of earlier evaluation JSONs before replacing them.
   It does not create historical COMPLETE markers or scientific qualification ticks.

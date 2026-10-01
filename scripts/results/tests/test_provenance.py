@@ -237,6 +237,23 @@ class EnricherTests(unittest.TestCase):
     def setUp(self):
         self.module = load_enricher()
 
+    def test_execution_stage_preserves_forced_shutdown_evidence(self):
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            stages = root / "processes"
+            stages.mkdir()
+            (stages / "node.json").write_text(json.dumps({
+                "status": "exited", "exit_code": -9, "token": "private-token",
+            }))
+            (stages / "node.stops.jsonl").write_text(json.dumps({
+                "signals": [{"signal": 9, "pids": [123]}], "remaining": [],
+            }) + "\n")
+            result = self.module.execution_stages(root)
+            self.assertEqual(result[0]["exit_code"], -9)
+            self.assertTrue(result[0]["forced_kill_recorded"])
+            self.assertEqual(len(result[0]["stop_log_sha256"]), 64)
+            self.assertNotIn("token", result[0])
+
     def test_artifact_hash_and_normalized_snapshot(self):
         with tempfile.TemporaryDirectory() as raw:
             root = Path(raw)

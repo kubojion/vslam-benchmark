@@ -6,7 +6,7 @@
 # distribution). Supported run_type values:
 #   vio     -> configs/openvins/<dataset>/estimator_config.yaml
 #              -> results/vio/<dataset>/<seq>/openvins/run<N>/
-# vo and vio-lc are NOT supported (rejected here so the benchmark wrapper
+# Other modes are not supported (rejected here so the benchmark wrapper
 # does not silently misclassify the run).
 #
 # How it works:
@@ -29,7 +29,7 @@ resolve_run_type "$RUN_TYPE"
 
 case "$RUN_TYPE" in
     vio) ;;
-    vo|vio-lc)
+    *)
         echo "[openvins] run_type='$RUN_TYPE' not supported - OpenVINS is VIO only (no VO mode, no built-in LC)" >&2
         exit 2 ;;
 esac
@@ -54,6 +54,9 @@ fi
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
+CONTAINER=""
+source "$WS/scripts/run/_owned_process.sh"
+owned_ros2_domain
 echo "[openvins] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL" "$OUT_DIR/run_log.txt"
 
 # Measure the host runner tree plus the ephemeral estimator container.  The
@@ -64,7 +67,16 @@ python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" \
     --pid "$$" --container "$RUN_CONTAINER" --interval 1 \
     --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
+cleanup() {
+    [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true
+    # Docker's unique ID binds cleanup to this attempt even if a name is reused.
+    if [[ -s "$OUT_DIR/docker.cid" ]]; then
+        docker stop --time 10 "$(cat "$OUT_DIR/docker.cid")" >/dev/null 2>&1 || true
+    fi
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
 OUT_REL=$(realpath --relative-to="$WS" "$OUT_DIR")
 
@@ -90,44 +102,44 @@ mark_resource_start "$OUT_DIR"
 set +e
 docker run --rm \
     --name "$RUN_CONTAINER" \
+    --cidfile "$OUT_DIR/docker.cid" \
     --network host \
     --user "$(id -u):$(id -g)" \
     --volume "$WS:/ws" \
     "${SEQ_MOUNT[@]}" \
     --workdir /ws \
-    --env HOME=/tmp \
+    --env ROS_HOME=/tmp/vslam_ros \
+    --env ROS_DOMAIN_ID="$ROS_DOMAIN_ID" --env ROS_LOCALHOST_ONLY=1 \
     --entrypoint /bin/bash \
     openvins:humble \
     -c "
-        set -e
+        set -eo pipefail
         source /opt/ros/humble/setup.bash
         source /colcon_ws/install/setup.bash
-        ros2 launch ov_msckf subscribe.launch.py \
+        WS=/ws
+        OUT_DIR=/ws/${OUT_REL}
+        CONTAINER=''
+        source /ws/scripts/run/_owned_process.sh
+        cleanup_stages() { owned_stop player || true; owned_stop node || true; }
+        trap cleanup_stages EXIT
+        trap 'exit 130' INT
+        trap 'exit 143' TERM
+        owned_run node ros2 launch ov_msckf subscribe.launch.py \
             config_path:=/ws/configs/openvins/$DATASET/estimator_config.yaml \
             use_stereo:=true max_cameras:=2 verbosity:=INFO \
             > /ws/${OUT_REL}/openvins_node.log 2>&1 &
         OV_PID=\$!
         sleep 2
-        python3 /ws/scripts/run/openvins_data_player.py \
+        owned_run player python3 /ws/scripts/run/openvins_data_player.py \
             $SEQ_IN \
             /ws/${OUT_REL}/trajectory.txt \
             --rate ${OPENVINS_RATE:-1.0} \
             --start-delay 1.0 --end-wait 3.0 \
             --stats-out /ws/${OUT_REL}/transport_stats.json
-        kill -INT \$OV_PID 2>/dev/null || true
-        # ros2 launch doesn't always exit on SIGINT; force-kill after a grace period.
-        for i in 1 2 3 4 5; do
-            kill -0 \$OV_PID 2>/dev/null || break
-            sleep 1
-        done
-        if kill -0 \$OV_PID 2>/dev/null; then
-            pkill -TERM -P \$OV_PID 2>/dev/null || true
-            kill -TERM \$OV_PID 2>/dev/null || true
-            sleep 2
-            pkill -KILL -f run_subscribe_msckf 2>/dev/null || true
-            kill -KILL \$OV_PID 2>/dev/null || true
-        fi
-        wait \$OV_PID 2>/dev/null || true
+        owned_stop node
+        # Preserve the launcher's status; its separate state also records any
+        # forced shutdown. A produced trajectory cannot conceal a nonzero exit.
+        wait \$OV_PID
     " 2>&1 | \
   python3 -u -c "
 import sys, time
@@ -147,6 +159,7 @@ PROV_ARGS=(
     --artifact "imu_calibration=$CFG_DIR/kalibr_imu_chain.yaml"
     --artifact "camera_imu_calibration=$CFG_DIR/kalibr_imucam_chain.yaml"
     --source "algorithm=$WS/src/open_vins"
+    --param "process_isolation=attempt_token_private_ros2_domain"
     --param "playback_rate=${OPENVINS_RATE:-1.0}"
     --container-image openvins:humble
 )

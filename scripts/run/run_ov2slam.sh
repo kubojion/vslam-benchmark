@@ -21,6 +21,7 @@ SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/ov2slam/run${RUN_ID}"
 LOG="$WS/logs/${DATASET}_${SEQ}_ov2slam_${RUN_TYPE}_run${RUN_ID}.log"
 CONTAINER="ov2slam"
+source "$WS/scripts/run/_owned_process.sh"
 MODE=${RUN_TYPE//-/_}
 
 CFG_SEQ="$WS/configs/ov2slam/${DATASET}_${SEQ}_${MODE}.yaml"
@@ -67,7 +68,6 @@ fi
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
-rm -f "$OUT_DIR"/ov2slam_*.txt "$OUT_DIR/trajectory.txt" "$OUT_DIR/run_log.txt"
 echo "[ov2slam] $DATASET/$SEQ run=$RUN_ID type=$RUN_TYPE -> $OUT_DIR" | tee "$LOG"
 
 CFG_CONT="/benchmark_configs/ov2slam/$(basename "$CFG_HOST")"
@@ -86,42 +86,45 @@ ROSCORE_PID=""
 NODE_PID=""
 cleanup() {
     [[ -n "$MONPID" ]] && kill "$MONPID" 2>/dev/null || true
-    docker exec "$CONTAINER" bash -c \
-        "pkill -SIGINT -f '[o]v2slam_node' 2>/dev/null || true; \
-         pkill -f '[r]oscore' 2>/dev/null || true; \
-         pkill -f '[r]osmaster' 2>/dev/null || true" 2>/dev/null || true
-    [[ -n "$NODE_PID" ]] && kill "$NODE_PID" 2>/dev/null || true
-    [[ -n "$ROSCORE_PID" ]] && kill "$ROSCORE_PID" 2>/dev/null || true
+    owned_stop player || true
+    owned_stop node || true
+    owned_stop roscore || true
 }
+owned_require_idle roscore rosmaster roslaunch ov2slam_node
+owned_ros1_port
 trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
 prepare_resource_window "$OUT_DIR"
 python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --container "$CONTAINER" --interval 1 \
     --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
 
-docker exec "$CONTAINER" bash -c "
+owned_run roscore bash -c "
     source /opt/ros/noetic/setup.bash
-    exec roscore
+    export ROS_MASTER_URI='$ROS_MASTER_URI'
+    exec roscore -p '$ROS_PORT'
 " >> "$LOG" 2>&1 &
 ROSCORE_PID=$!
 
 for _ in $(seq 1 15); do
     if docker exec "$CONTAINER" bash -c \
-        "source /opt/ros/noetic/setup.bash && rostopic list" &>/dev/null; then
+        "export ROS_MASTER_URI='$ROS_MASTER_URI'; source /opt/ros/noetic/setup.bash && rostopic list" &>/dev/null; then
         break
     fi
     sleep 1
 done
 docker exec "$CONTAINER" bash -c \
-    "source /opt/ros/noetic/setup.bash && rostopic list" &>/dev/null || {
+    "export ROS_MASTER_URI='$ROS_MASTER_URI'; source /opt/ros/noetic/setup.bash && rostopic list" &>/dev/null || {
     echo "[ov2slam] roscore did not become ready" | tee -a "$LOG"
     exit 1
 }
 
 START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
-docker exec "$CONTAINER" bash -c "
+owned_run node bash -c "
+    export ROS_MASTER_URI='$ROS_MASTER_URI'
     set -e
     source /opt/ros/noetic/setup.bash
     source /root/catkin_ws/devel/setup.bash
@@ -136,7 +139,8 @@ kill -0 "$NODE_PID" 2>/dev/null || {
     exit 1
 }
 
-docker exec "$CONTAINER" bash -c "
+owned_run player bash -c "
+    export ROS_MASTER_URI='$ROS_MASTER_URI'
     source /opt/ros/noetic/setup.bash
     exec python3 '$PLAYER_CONT' '$DATA_CONT' \
         --rate '${OV2SLAM_PLAYBACK_RATE:-1.0}' --start-delay 1.0 --end-wait 1.0 \
@@ -157,9 +161,8 @@ done
 
 if [[ ! -s "$TARGET" ]] && kill -0 "$NODE_PID" 2>/dev/null; then
     echo "[ov2slam] finish timeout after ${TIMEOUT}s" | tee -a "$LOG"
-    docker exec "$CONTAINER" bash -c \
-        "pkill -SIGINT -f '[o]v2slam_node' 2>/dev/null || true" || true
 fi
+OWNED_STOP_GRACE=30 owned_stop node
 wait "$NODE_PID" 2>/dev/null || true
 END=$(date +%s.%N)
 finish_resource_window "$OUT_DIR" "$MONPID"
@@ -211,6 +214,7 @@ enrich_run_meta "$OUT_DIR/run_meta.json" \
     --transport-stats "$OUT_DIR/transport_stats.json" \
     --artifact "estimator_config=$CFG_HOST" \
     --source "algorithm=$WS/src/ov2slam" \
+    --param "process_isolation=attempt_token_private_ros_master" \
     --param "use_lc=$USE_LC" \
     --param "playback_rate=${OV2SLAM_PLAYBACK_RATE:-1.0}" \
     --param "finish_timeout=$TIMEOUT" \

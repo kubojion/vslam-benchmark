@@ -21,8 +21,8 @@
 #   2. Run the data player inside the container; it publishes EuRoC images
 #      and IMU samples to /cam0/image_raw, /cam1/image_raw, /imu0.
 #   3. After the player exits, send SIGINT to roslaunch.
-#   4. Voxel-SVIO writes pose.txt to its src/voxel_svio/output/ directory;
-#      copy and rename to results/vio/<dataset>/<seq>/voxel_svio/run<N>/trajectory.txt.
+#   4. Voxel-SVIO writes pose.txt to the attempt native/ directory; preserve it
+#      and export the camera-clock trajectory.txt beside it.
 set -eo pipefail
 
 DATASET=$1; SEQ=$2; RUN_ID=${3:-1}; RUN_TYPE=${4:-vio}
@@ -41,6 +41,8 @@ OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/voxel_svio/run${RUN_ID}"
 LOG="$WS/logs/${DATASET}_${SEQ}_voxel_svio_${RUN_TYPE}_run${RUN_ID}.log"
 
 CONTAINER="voxel_svio"
+source "$WS/scripts/run/_owned_process.sh"
+OUT_CONT="/results/$RUN_TYPE/$DATASET/$SEQ/voxel_svio/run${RUN_ID}"
 
 # Per-sequence config first, then per-dataset fallback.
 CFG_HOST_SEQ="$WS/configs/voxel_svio/${DATASET}_${SEQ}.yaml"
@@ -76,20 +78,27 @@ if ! docker ps --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
     fi
 fi
 
+owned_require_idle roscore rosmaster roslaunch vio_node
+owned_ros1_port
+
 # ---- Resource monitor -----------------------------------------------------
 prepare_resource_window "$OUT_DIR"
 python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --container "$CONTAINER" --interval 1 \
     --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
+cleanup() {
+    [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true
+    owned_stop player || true
+    owned_stop node || true
+    owned_stop roscore || true
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
-# ---- Reset voxel_svio output dir before the run ---------------------------
-# Voxel-SVIO appends to pose.txt; clear it so each run is fresh.
-docker exec "$CONTAINER" bash -c "
-    mkdir -p /root/catkin_ws/src/voxel_svio/output &&
-    rm -f /root/catkin_ws/src/voxel_svio/output/pose.txt \
-          /root/catkin_ws/src/voxel_svio/output/parameter_list.txt
-"
+# The native exporter appends; give this attempt its own fresh directory.
+# Never delete another attempt's shared source/output files.
+mkdir "$OUT_DIR/native"
 
 DATAROOT_CONT="/datasets/$DATASET/$SEQ"
 PLAYER_HOST="/benchmark_scripts/run/voxel_svio_data_player.py"
@@ -98,14 +107,16 @@ START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
 
 # ---- Start roscore inside the container ------------------------------------
-docker exec "$CONTAINER" bash -c "
+owned_run roscore bash -c "
+    export ROS_MASTER_URI='$ROS_MASTER_URI'
     source /opt/ros/noetic/setup.bash &&
-    roscore
+    exec roscore -p '$ROS_PORT'
 " 2>&1 >> "$LOG" &
 ROSCORE_PID=$!
 # Wait until rosmaster is reachable (up to 10 s).
 for i in $(seq 1 10); do
     docker exec "$CONTAINER" bash -c "
+        export ROS_MASTER_URI='$ROS_MASTER_URI'
         source /opt/ros/noetic/setup.bash &&
         rostopic list" &>/dev/null && break
     sleep 1
@@ -114,12 +125,13 @@ done
 # Use a local launch wrapper that loads our config (the upstream launch file
 # loads its bundled config/euroc.yaml). We pass the config path via rosparam
 # load on the command line instead.
-docker exec "$CONTAINER" bash -c "
+owned_run node bash -c "
+    export ROS_MASTER_URI='$ROS_MASTER_URI'
     set -e
     source /opt/ros/noetic/setup.bash &&
     source /root/catkin_ws/devel/setup.bash &&
     rosparam load $CFG_CONT &&
-    rosparam set /output_path /root/catkin_ws/src/voxel_svio/output &&
+    rosparam set /output_path '$OUT_CONT/native' &&
     rosrun voxel_svio vio_node
 " 2>&1 | tee -a "$LOG" &
 NODE_PID=$!
@@ -128,40 +140,33 @@ NODE_PID=$!
 sleep 3
 
 # ---- Run data player inside container -------------------------------------
-docker exec "$CONTAINER" bash -c "
+owned_run player bash -c "
+    export ROS_MASTER_URI='$ROS_MASTER_URI'
     source /opt/ros/noetic/setup.bash &&
-    python3 $PLAYER_HOST $DATAROOT_CONT --rate 1.0 --start-delay 1.0 --end-wait 3.0 \
+    exec python3 $PLAYER_HOST $DATAROOT_CONT --rate 1.0 --start-delay 1.0 --end-wait 3.0 \
         --stats-out /results/$RUN_TYPE/$DATASET/$SEQ/voxel_svio/run${RUN_ID}/transport_stats.json
 " 2>&1 | tee -a "$LOG"
 
 # ---- Stop vio_node and roscore --------------------------------------------
 echo "[voxel_svio] data player done; stopping vio_node ..." | tee -a "$LOG"
-# NOTE: the bracket trick ('[v]io_node') is required. `pkill -f vio_node` also
-# matches the `bash -c "pkill -f vio_node"` process running the command itself,
-# so it signals its own parent shell; docker exec then returns 143/130 and
-# `set -eo pipefail` (top of file) aborts the script one line before the
-# trajectory is collected -- the run looks like "no trajectory" even though
-# pose.txt was written correctly. '[v]io_node' matches the node but not the
-# pkill command line. The trailing `|| true` guards set -e regardless.
-docker exec "$CONTAINER" bash -c "pkill -SIGINT -f '[v]io_node' 2>/dev/null || true" || true
-sleep 2
+owned_stop node
 wait "$NODE_PID" 2>/dev/null || true
-docker exec "$CONTAINER" bash -c "pkill -f '[r]oscore' 2>/dev/null || true; pkill -f '[r]osmaster' 2>/dev/null || true" || true
-kill "$ROSCORE_PID" 2>/dev/null || true
+owned_stop roscore
+wait "$ROSCORE_PID" 2>/dev/null || true
 
 END=$(date +%s.%N)
 finish_resource_window "$OUT_DIR" "$MONPID"
 MONPID=""
 
 # ---- Collect trajectory ---------------------------------------------------
-POSE_HOST="$WS/src/voxel_svio/output/pose.txt"
+POSE_HOST="$OUT_DIR/native/pose.txt"
 if [[ ! -s "$POSE_HOST" ]]; then
     echo "[voxel_svio] ERROR: $POSE_HOST is missing or empty" | tee -a "$LOG"
     exit 1
 fi
 cp "$POSE_HOST" "$OUT_DIR/trajectory.txt"
-[[ -f "$WS/src/voxel_svio/output/parameter_list.txt" ]] && \
-    cp "$WS/src/voxel_svio/output/parameter_list.txt" "$OUT_DIR/parameter_list.txt"
+[[ -f "$OUT_DIR/native/parameter_list.txt" ]] && \
+    cp "$OUT_DIR/native/parameter_list.txt" "$OUT_DIR/parameter_list.txt"
 cp "$LOG" "$OUT_DIR/run_log.txt"
 
 # ---- Compensate cam-IMU timeshift in output timestamps --------------------
@@ -212,6 +217,7 @@ enrich_run_meta "$OUT_DIR/run_meta.json" \
     --transport-stats "$OUT_DIR/transport_stats.json" \
     --artifact "estimator_config=$CFG_HOST" \
     --source "algorithm=$WS/src/voxel_svio" \
+    --param "process_isolation=attempt_token_private_ros_master" \
     --param "playback_rate=1.0" \
     --container "$CONTAINER"
 

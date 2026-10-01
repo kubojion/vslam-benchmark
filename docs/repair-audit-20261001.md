@@ -21,9 +21,10 @@ have not yet been replaced by this repair.
 
 The new implementation is in `scripts/eval/_metrics.py`, `_pose_frames.py`,
 `_trajectory_evaluation.py`, `_saved_run.py` and `_run_observations.py`.
-`reevaluate_saved_runs.py` writes a separate staging tree and a manifest. During
-this transition, `_evaluate_run.py` still contains the old implementation;
-promotion and generator integration are outstanding.
+`reevaluate_saved_runs.py` writes a separate staging tree and a manifest.
+`_evaluate_run.py` now uses the shared schema-3 implementation, with evidence and
+evaluator checks and preservation of earlier evaluation bytes. Generators are
+integrated against staging; promotion of the root outputs remains outstanding.
 
 ### Physical pose frame
 

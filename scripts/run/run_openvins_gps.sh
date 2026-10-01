@@ -39,6 +39,8 @@ RL_CFG_DIR="$WS/configs/robot_loc_openvins"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/openvins_gps/run${RUN_ID}"
 LOG="$WS/logs/${DATASET}_${SEQ}_openvins_gps_${RUN_TYPE}_run${RUN_ID}.log"
 GNSS_VARIANT="${GNSS_VARIANT:-default}"
+CONTAINER=""
+source "$WS/scripts/run/_owned_process.sh"
 
 # ---- Validate inputs -------------------------------------------------------
 [[ -f "$OV_CFG_DIR/estimator_config.yaml" ]] \
@@ -86,9 +88,8 @@ echo "[openvins_gps] $DATASET/$SEQ run=${RUN_ID} -> $OUT_DIR" | tee "$LOG"
 # shellcheck disable=SC1091
 source /opt/ros/humble/setup.bash
 
-# ---- Kill any stale nodes from prior runs ----------------------------------
-pkill -9 -f 'ekf_node|navsat_transform_node|odom_to_tum_ros2|gnss_data_player_ros2|static_transform_publisher' 2>/dev/null || true
-sleep 1
+# The host and this attempt's Docker container share a private ROS 2 domain.
+owned_ros2_domain
 
 # ---- Resource monitor ------------------------------------------------------
 RUN_CONTAINER="vslam_openvins_gps_${DATASET}_${SEQ}_${RUN_ID}_$$"
@@ -98,21 +99,31 @@ python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" \
     --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
 
+DOCKER_CID=""
+cleanup() {
+    [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true
+    for stage in player ekf navsat recorder tf_odom tf_imu tf_gps; do owned_stop "$stage" || true; done
+    [[ -z "${DOCKER_CID:-}" ]] || docker kill "$DOCKER_CID" 2>/dev/null || true
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
 # ---- Static TF publishers --------------------------------------------------
 # 1. odom -> global  (EKF odom_frame=odom; OpenVINS frame_id="global")
-ros2 run tf2_ros static_transform_publisher \
+owned_run tf_odom ros2 run tf2_ros static_transform_publisher \
     --x 0 --y 0 --z 0 --qx 0 --qy 0 --qz 0 --qw 1 \
     --frame-id odom --child-frame-id global &
 TF_ODOM_PID=$!
 
 # 2. base_link -> imu  (EKF base_link_frame=base_link; OpenVINS child="imu")
-ros2 run tf2_ros static_transform_publisher \
+owned_run tf_imu ros2 run tf2_ros static_transform_publisher \
     --x 0 --y 0 --z 0 --qx 0 --qy 0 --qz 0 --qw 1 \
     --frame-id base_link --child-frame-id imu &
 TF_IMU_PID=$!
 
 # 3. base_link -> gps  (GPS antenna lever arm for navsat_transform)
-ros2 run tf2_ros static_transform_publisher \
+owned_run tf_gps ros2 run tf2_ros static_transform_publisher \
     --x "$GPS_TX" --y "$GPS_TY" --z "$GPS_TZ" \
     --qx 0 --qy 0 --qz 0 --qw 1 \
     --frame-id base_link --child-frame-id gps &
@@ -121,13 +132,13 @@ TF_GPS_PID=$!
 sleep 0.5
 
 # ---- EKF node (fuses VIO odometry + GPS local-ENU odometry) ---------------
-ros2 run robot_localization ekf_node \
+owned_run ekf ros2 run robot_localization ekf_node \
     --ros-args --params-file "$RL_CFG_DIR/ekf_gps.yaml" \
     > "$OUT_DIR/ekf_node.log" 2>&1 &
 EKF_PID=$!
 
 # ---- navsat_transform_node (NavSatFix -> local ENU odometry) ---------------
-ros2 run robot_localization navsat_transform_node \
+owned_run navsat ros2 run robot_localization navsat_transform_node \
     --ros-args --params-file "$RL_CFG_DIR/navsat.yaml" \
     -r gps/fix:=/fix \
     -r odometry/filtered:=/odometry/filtered \
@@ -136,7 +147,7 @@ ros2 run robot_localization navsat_transform_node \
 NAVSAT_PID=$!
 
 # ---- TUM recorder (subscribes /odometry/filtered) --------------------------
-python3 "$WS/scripts/run/odom_to_tum_ros2.py" \
+owned_run recorder python3 "$WS/scripts/run/odom_to_tum_ros2.py" \
     --topic /odometry/filtered \
     --out "$OUT_DIR/trajectory.txt" \
     --idle-timeout 15.0 \
@@ -153,34 +164,30 @@ DOCKER_CID=$(docker run --detach --rm \
     --user "$(id -u):$(id -g)" \
     --volume "$WS:/ws" \
     --workdir /ws \
-    --env HOME=/tmp \
+    --env ROS_HOME=/tmp/vslam_ros \
+    --env ROS_DOMAIN_ID="$ROS_DOMAIN_ID" --env ROS_LOCALHOST_ONLY=1 \
     --entrypoint /bin/bash \
     openvins:humble \
     -c "
         source /opt/ros/humble/setup.bash
         source /colcon_ws/install/setup.bash
-        ros2 launch ov_msckf subscribe.launch.py \
+        exec python3 /ws/scripts/run/_owned_process.py \
+            --state /ws/${OUT_REL}/processes/openvins.json run -- \
+            ros2 launch ov_msckf subscribe.launch.py \
             config_path:=/ws/configs/openvins/$DATASET/estimator_config.yaml \
             use_stereo:=true max_cameras:=2 verbosity:=INFO \
             > /ws/${OUT_REL}/openvins_node.log 2>&1
     ")
 echo "[openvins_gps] Docker container: $DOCKER_CID" | tee -a "$LOG"
 
-cleanup() {
-    [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true
-    kill "$TF_ODOM_PID" "$TF_IMU_PID" "$TF_GPS_PID" \
-         "$EKF_PID" "$NAVSAT_PID" "$REC_PID" 2>/dev/null || true
-    docker kill "$DOCKER_CID" 2>/dev/null || true
-    pkill -KILL -f 'ekf_node|navsat_transform_node|odom_to_tum_ros2|static_transform_publisher|gnss_data_player_ros2' 2>/dev/null || true
-}
-trap cleanup EXIT
+
 
 sleep 3
 
 # ---- Data player (foreground; publishes cam0/cam1/imu0/fix) ----------------
 START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
-python3 "$WS/scripts/run/gnss_data_player_ros2.py" \
+owned_run player python3 "$WS/scripts/run/gnss_data_player_ros2.py" \
     "$SEQ_DIR" \
     --rate 1.0 \
     --start-delay 1.0 \
@@ -198,6 +205,12 @@ python3 "$WS/scripts/run/gnss_data_player_ros2.py" \
 
 echo "[openvins_gps] player done, waiting for EKF flush..." | tee -a "$LOG"
 sleep 8
+# Flush and stop this attempt's writers before counting/hashing the trajectory.
+docker stop --time 30 "$DOCKER_CID" >> "$LOG" 2>&1
+DOCKER_CID=""
+owned_stop ekf
+owned_stop navsat
+owned_stop recorder
 END=$(date +%s.%N)
 finish_resource_window "$OUT_DIR" "$MONPID"
 MONPID=""
@@ -238,6 +251,7 @@ enrich_run_meta "$OUT_DIR/run_meta.json" \
     --artifact "ekf_config=$RL_CFG_DIR/ekf_gps.yaml" \
     --artifact "navsat_config=$RL_CFG_DIR/navsat.yaml" \
     --source "algorithm=$WS/src/open_vins" \
+    --param "process_isolation=attempt_token_private_ros2_domain" \
     --param "playback_rate=1.0" --param "gnss_variant=$GNSS_VARIANT" \
     --container-image openvins:humble
 

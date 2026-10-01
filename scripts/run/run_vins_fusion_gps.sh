@@ -29,6 +29,7 @@ OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/vins_fusion_gps/run${RUN_ID}"
 LOG="$WS/logs/${DATASET}_${SEQ}_vins_fusion_gps_${RUN_TYPE}_run${RUN_ID}.log"
 
 CONTAINER="vins_fusion"
+source "$WS/scripts/run/_owned_process.sh"
 
 CFG_HOST_SEQ="$WS/configs/vins_fusion/${DATASET}_${SEQ}.yaml"
 CFG_HOST_DSET="$WS/configs/vins_fusion/${DATASET}.yaml"
@@ -68,21 +69,22 @@ if ! docker ps --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
     fi
 fi
 
-# ---- Kill any stale nodes from a previous (possibly orphaned) run ----------
-# A leftover player/estimator publishing to the same topics corrupts the IMU
-# stream of a fresh run ("numerical unstable in preintegration"). Always start
-# from a clean slate.
-docker exec "$CONTAINER" bash -c "
-    pgrep -f 'vins_node|global_fusion|gnss_data_player|odometry_to_tum|roscore|rosmaster|rosout' \
-        | xargs -r kill -9 2>/dev/null || true
-" 2>/dev/null || true
-sleep 2
+# Refuse conflicting work; never kill another attempt or a colleague's nodes.
+owned_require_idle roscore rosmaster roslaunch vins_node global_fusion_node
+owned_ros1_port
 
 prepare_resource_window "$OUT_DIR"
 python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --container "$CONTAINER" --interval 1 \
     --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
+cleanup() {
+    [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true
+    owned_stop player || true
+    owned_stop stack || true
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
 DATAROOT_CONT="/datasets/$DATASET/$SEQ"
 PLAYER_CONT="/benchmark_scripts/run/gnss_data_player.py"
@@ -103,10 +105,11 @@ mark_resource_start "$OUT_DIR"
 # That means `source` commands inside that chain do NOT affect the parent
 # shell, so subsequent `rosrun` invocations get "command not found". Use
 # explicit ;-separated lines and source ROS once at the top.
-docker exec "$CONTAINER" bash -c "
+owned_run stack bash -c "
+    export ROS_MASTER_URI='$ROS_MASTER_URI'
     source /opt/ros/noetic/setup.bash
     source /root/catkin_ws/devel/setup.bash
-    roscore &
+    roscore -p '$ROS_PORT' &
     sleep 4
     rosparam set /use_sim_time false
     rosrun vins vins_node $CFG_CONT &
@@ -124,7 +127,8 @@ NODE_PID=$!
 sleep 10
 
 # ---- Run data player (publishes /imu0, /cam{0,1}/image_raw, /gps) ---------
-docker exec "$CONTAINER" bash -c "
+owned_run player bash -c "
+    export ROS_MASTER_URI='$ROS_MASTER_URI'
     source /opt/ros/noetic/setup.bash &&
     python3 $PLAYER_CONT $DATAROOT_CONT \
         --gps-csv $GNSS_INPUT_CONT --gps-status $GPS_STATUS \
@@ -139,19 +143,7 @@ docker exec "$CONTAINER" bash -c "
 
 # ---- Stop everything ------------------------------------------------------
 echo "[vins_fusion] data player done; stopping nodes ..." | tee -a "$LOG"
-docker exec "$CONTAINER" bash -c "
-    pkill -SIGINT -f vins_node 2>/dev/null || true
-    pkill -SIGINT -f global_fusion_node 2>/dev/null || true
-    pkill -SIGINT -f odometry_to_tum 2>/dev/null || true
-"
-sleep 5
-docker exec "$CONTAINER" bash -c "
-    pkill -SIGKILL -f vins_node 2>/dev/null || true
-    pkill -SIGKILL -f global_fusion_node 2>/dev/null || true
-    pkill -SIGKILL -f odometry_to_tum 2>/dev/null || true
-    pkill -SIGKILL -f roscore 2>/dev/null || true
-    pkill -SIGKILL -f rosmaster 2>/dev/null || true
-"
+owned_stop stack
 wait "$NODE_PID" 2>/dev/null || true
 
 END=$(date +%s.%N)
@@ -185,6 +177,7 @@ enrich_run_meta "$OUT_DIR/run_meta.json" \
     --artifact "estimator_config=$CFG_HOST" \
     --artifact "camera0_config=$CAM0_CFG" --artifact "camera1_config=$CAM1_CFG" \
     --source "algorithm=$WS/src/VINS-Fusion" \
+    --param "process_isolation=attempt_token_private_ros_master" \
     --param "playback_rate=1.0" --param "gnss_variant=$GNSS_VARIANT" \
     --container "$CONTAINER"
 

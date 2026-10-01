@@ -69,6 +69,8 @@ SAVING_DIR="${CONT_RESULTS_DIR}/$DATASET/$SEQ/airslam/run${RUN_ID}"
 MODEL_DIR="/root/catkin_ws/src/air_slam/output"
 
 CONTAINER="air_slam"
+source "$WS/scripts/run/_owned_process.sh"
+AIRSLAM_ACTIVE_STAGE=""
 STAGE_TIMEOUT_S=${AIRSLAM_STAGE_TIMEOUT_S:-43200}
 STARTUP_TIMEOUT_S=${AIRSLAM_STARTUP_TIMEOUT_S:-300}
 REFINEMENT_MAX_ATTEMPTS=${AIRSLAM_REFINEMENT_MAX_ATTEMPTS:-1}
@@ -79,31 +81,17 @@ if [[ "$REFINEMENT_MAX_ATTEMPTS" != "1" ]]; then
 fi
 
 is_container_process_running() {
-    local process_name=$1
-    docker exec "$CONTAINER" pgrep -f "[/]${process_name}([[:space:]]|$)" >/dev/null 2>&1
+    local process_name=$1 stage
+    case "$process_name" in
+        visual_odometry) stage=odometry ;;
+        map_refinement) stage=refinement ;;
+        *) return 2 ;;
+    esac
+    owned_running "$stage" --executable "$process_name"
 }
 
 stop_roslaunch() {
-    docker exec "$CONTAINER" bash -c \
-        "pkill -SIGINT -f '[r]oslaunch( --skip-log-check)? air_slam' 2>/dev/null || true"
-}
-
-reset_airslam_runtime() {
-    # This benchmark owns the dedicated AirSLAM container. An interrupted
-    # launch can otherwise leave estimator nodes registered with the ROS
-    # master, making the next launch fail with a duplicate node name.
-    stop_roslaunch
-    docker exec "$CONTAINER" bash -c \
-        "pkill -SIGTERM -f '[/](visual_odometry|map_refinement)([[:space:]]|$)' 2>/dev/null || true"
-    for _ in $(seq 1 20); do
-        if ! is_container_process_running visual_odometry \
-                && ! is_container_process_running map_refinement; then
-            return 0
-        fi
-        sleep 1
-    done
-    docker exec "$CONTAINER" bash -c \
-        "pkill -SIGKILL -f '[/](visual_odometry|map_refinement)([[:space:]]|$)' 2>/dev/null || true"
+    [[ -z "$AIRSLAM_ACTIVE_STAGE" ]] || owned_stop "$AIRSLAM_ACTIVE_STAGE"
 }
 
 stop_launch_pipeline() {
@@ -170,6 +158,7 @@ PROV_ARGS=(
     --source "algorithm=$WS/src/airslam"
     --param "use_imu=$USE_IMU" --param "use_lc=$USE_LC"
     --param "playback_rate=offline"
+    --param "process_isolation=attempt_token_private_ros_master"
     --param "stage_timeout_s=$STAGE_TIMEOUT_S"
     --param "startup_timeout_s=$STARTUP_TIMEOUT_S"
     --param "refinement_max_attempts=$REFINEMENT_MAX_ATTEMPTS"
@@ -214,7 +203,8 @@ if ! docker inspect -f '{{range .Mounts}}{{println .Destination}}{{end}}' "$CONT
     exit 2
 fi
 
-reset_airslam_runtime
+owned_require_idle roscore rosmaster roslaunch visual_odometry map_refinement
+owned_ros1_port
 
 # ---- Resource monitor (host-side) -----------------------------------------
 prepare_resource_window "$OUT_DIR"
@@ -224,6 +214,7 @@ MONPID=$!
 EXEC_PID=""
 MR_PID=""
 cleanup() {
+    stop_roslaunch || true
     [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true
     if [[ -n "${EXEC_PID:-}" ]] && kill -0 "$EXEC_PID" 2>/dev/null; then
         stop_roslaunch || true
@@ -235,6 +226,8 @@ cleanup() {
     fi
 }
 trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
 # ---- Run AirSLAM inside container -----------------------------------------
 # roslaunch (ROS1) does not auto-exit when processing finishes because the node
@@ -244,11 +237,13 @@ trap cleanup EXIT
 START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
 
-docker exec "$CONTAINER" bash -c "
+AIRSLAM_ACTIVE_STAGE="odometry"
+owned_run odometry bash -c "
+    export ROS_MASTER_URI='$ROS_MASTER_URI'
     source /opt/ros/noetic/setup.bash &&
     source /root/catkin_ws/devel/setup.bash &&
     mkdir -p '$SAVING_DIR' &&
-    roslaunch --skip-log-check air_slam $LAUNCH_FILE \
+    roslaunch -p '$ROS_PORT' --skip-log-check air_slam $LAUNCH_FILE \
         dataroot:='$DATAROOT' \
         camera_config_path:='$CAM_CFG' \
         config_path:='$VO_CFG' \
@@ -288,10 +283,12 @@ if [[ "$USE_LC" == "true" && -s "$TRAJ_HOST" ]]; then
     # One refinement stage per attempt. Retain its partial map and trajectory on
     # failure; repeating until successful would change the failure denominator.
     echo "[airslam] running map_refinement (step 2 of ${RUN_TYPE})..."
-    docker exec "$CONTAINER" bash -c "
+    AIRSLAM_ACTIVE_STAGE="refinement"
+    owned_run refinement bash -c "
+        export ROS_MASTER_URI='$ROS_MASTER_URI'
         source /opt/ros/noetic/setup.bash &&
         source /root/catkin_ws/devel/setup.bash &&
-        roslaunch --skip-log-check air_slam mr_euroc.launch \
+        roslaunch -p '$ROS_PORT' --skip-log-check air_slam mr_euroc.launch \
             map_root:='$SAVING_DIR' \
             config_path:='$MR_CFG' \
             model_dir:='$MODEL_DIR' \

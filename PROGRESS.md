@@ -52,6 +52,12 @@
   planned/artifact entries, with failures, missing runs, variants and scientific
   blockers explicit. Historical plots are labelled rather than previewed as current
   figures. Browser source CSVs must match the inventory before generation.
+- Replaced process-name kills in the eight ROS wrappers with attempt-owned
+  shutdown and private ROS transport. Voxel-SVIO/CIFASIS native outputs and RTAB-Map
+  databases now stay inside their attempt directories. Removed CIFASIS's reset of
+  caller-supplied GPS covariance and its ambiguous trajectory fallback. Synthetic
+  process tests pass; actual container/ROS startup, shutdown and fusion remain
+  unverified. See [runner audit](docs/runner-isolation-audit.md).
 
 ## 2026-10-01 — Initial server inventory (before the repair above)
 

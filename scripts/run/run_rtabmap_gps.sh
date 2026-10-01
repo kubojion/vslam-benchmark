@@ -37,6 +37,8 @@ fi
 SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/rtabmap_gps/run${RUN_ID}"
 LOG="$WS/logs/${DATASET}_${SEQ}_rtabmap_gps_${RUN_TYPE}_run${RUN_ID}.log"
+CONTAINER=""
+source "$WS/scripts/run/_owned_process.sh"
 
 CFG_HOST="$WS/configs/rtabmap_gps/benchmark.ini"
 [[ -f "$CFG_HOST" ]] || { echo "[rtabmap_gps] missing config: $CFG_HOST" >&2; exit 2; }
@@ -61,12 +63,8 @@ fi
 ROS_PACKAGE_VERSION=$(dpkg-query -W -f='${Version}' ros-humble-rtabmap-ros)
 GNSS_VARIANT="${GNSS_VARIANT:-default}"
 
-# ---- Pre-run cleanup (orphaned ROS 2 nodes corrupt subsequent runs) --------
-# NB: patterns must NOT match this script's own command line
-# (run_rtabmap_gps.sh contains the substring "rtabmap"), so target the actual
-# node executables / launch file rather than the bare word "rtabmap".
-pkill -9 -f 'rtabmap_slam|rtabmap_odom|rtabmap_sync|rtabmap.launch|stereo_odometry|gnss_data_player_ros2|static_transform_publisher|imu_filter_madgwick' 2>/dev/null || true
-sleep 2
+# Isolate transport from existing ROS 2 jobs instead of killing them.
+owned_ros2_domain
 
 # ---- Resource monitor ------------------------------------------------------
 prepare_resource_window "$OUT_DIR"
@@ -74,17 +72,15 @@ python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$
     --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
 
-DB_PATH="/tmp/rtabmap_${DATASET}_${SEQ}_run${RUN_ID}.db"
-rm -f "$DB_PATH"
+DB_PATH="$OUT_DIR/rtabmap.db"
 
 cleanup() {
     [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true
-    kill "$TF_CAM_PID" "$TF_IMU_PID" "$TF_GPS_PID" "$IMU_FILTER_PID" 2>/dev/null || true
-    pkill -INT -f 'rtabmap_slam|rtabmap_odom|rtabmap_sync|rtabmap.launch|stereo_odometry|gnss_data_player_ros2|imu_filter_madgwick' 2>/dev/null || true
-    sleep 1
-    pkill -KILL -f 'rtabmap_slam|rtabmap_odom|rtabmap_sync|rtabmap.launch|stereo_odometry|gnss_data_player_ros2|imu_filter_madgwick' 2>/dev/null || true
+    for stage in player launch tf_cam tf_imu tf_gps imu_filter; do owned_stop "$stage" || true; done
 }
 trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
 # ---- Source ROS 2 ----------------------------------------------------------
 # shellcheck disable=SC1091
@@ -134,7 +130,7 @@ mark_resource_start "$OUT_DIR"
 # ---- Launch RTAB-Map (stereo_outdoor.launch.py) ---------------------------
 # We use the rtabmap_launch package's stereo_outdoor.launch.py and overlay
 # our estimator settings via RTAB-Map's documented INI cfg argument.
-ros2 launch rtabmap_launch rtabmap.launch.py \
+owned_run launch ros2 launch rtabmap_launch rtabmap.launch.py \
     stereo:=true \
     left_image_topic:=/cam0/image_raw \
     right_image_topic:=/cam1/image_raw \
@@ -158,16 +154,16 @@ LAUNCH_PID=$!
 # ---- Static TF tree: base_link -> {cam, imu, gps} --------------------------
 # The data player publishes "cam"/"imu"/"gps" frames but no TF. RTAB-Map needs
 # base_link -> sensor transforms to run stereo+IMU odometry and fuse GPS.
-ros2 run tf2_ros static_transform_publisher \
+owned_run tf_cam ros2 run tf2_ros static_transform_publisher \
     --x "$CAM_TX" --y "$CAM_TY" --z "$CAM_TZ" \
     --qx "$CAM_QX" --qy "$CAM_QY" --qz "$CAM_QZ" --qw "$CAM_QW" \
     --frame-id base_link --child-frame-id cam >>"$LOG" 2>&1 &
 TF_CAM_PID=$!
-ros2 run tf2_ros static_transform_publisher \
+owned_run tf_imu ros2 run tf2_ros static_transform_publisher \
     --x 0 --y 0 --z 0 --qx 0 --qy 0 --qz 0 --qw 1 \
     --frame-id base_link --child-frame-id imu >>"$LOG" 2>&1 &
 TF_IMU_PID=$!
-ros2 run tf2_ros static_transform_publisher \
+owned_run tf_gps ros2 run tf2_ros static_transform_publisher \
     --x "$GPS_TX" --y "$GPS_TY" --z "$GPS_TZ" --qx 0 --qy 0 --qz 0 --qw 1 \
     --frame-id base_link --child-frame-id gps >>"$LOG" 2>&1 &
 TF_GPS_PID=$!
@@ -177,7 +173,7 @@ TF_GPS_PID=$!
 # IMU without orientation, so odometry would be stereo-only. Madgwick fuses
 # accel+gyro into an orientation quaternion on /imu/data for gravity-aligned
 # odometry + graph gravity constraints (parity with VINS/CIFASIS).
-ros2 run imu_filter_madgwick imu_filter_madgwick_node --ros-args \
+owned_run imu_filter ros2 run imu_filter_madgwick imu_filter_madgwick_node --ros-args \
     -p use_mag:=false -p publish_tf:=false -p world_frame:=enu \
     -r imu/data_raw:=/imu0 -r imu/data:=/imu/data >>"$LOG" 2>&1 &
 IMU_FILTER_PID=$!
@@ -189,9 +185,9 @@ sleep 5
 # The gnss_data_player is a ROS 1 script. Convert via a thin ROS 2 wrapper
 # below, or invoke directly if rclpy environment is available.
 # NOTE: This script currently assumes a ROS 2-aware gnss_data_player exists.
-# See scripts/run/gnss_data_player_ros2.py (TODO) for the ROS 2 port.
+# The ROS 2 player is scripts/run/gnss_data_player_ros2.py.
 if [[ -x "$WS/scripts/run/gnss_data_player_ros2.py" ]]; then
-    python3 "$WS/scripts/run/gnss_data_player_ros2.py" "$SEQ_DIR" \
+    owned_run player python3 "$WS/scripts/run/gnss_data_player_ros2.py" "$SEQ_DIR" \
         --rate 1.0 --start-delay 1.0 --end-wait 3.0 \
         --gps-topic /fix \
     --gps-csv "$GNSS_INPUT" --gps-status "$GPS_STATUS" \
@@ -212,9 +208,7 @@ fi
 
 # ---- Stop launch ----------------------------------------------------------
 echo "[rtabmap_gps] data player done; stopping rtabmap ..." | tee -a "$LOG"
-kill -INT "$LAUNCH_PID" 2>/dev/null || true
-sleep 3
-kill -KILL "$LAUNCH_PID" 2>/dev/null || true
+OWNED_STOP_GRACE=30 owned_stop launch
 wait "$LAUNCH_PID" 2>/dev/null || true
 
 END=$(date +%s.%N)
@@ -230,9 +224,8 @@ if [[ -f "$DB_PATH" ]]; then
     # the file lands next to the .db (in $DB_PATH's dir) and we copy it out.
     DB_DIR="$(dirname "$DB_PATH")"
     EXPORT_STEM="rtabmap_export_${DATASET}_${SEQ}_run${RUN_ID}"
-    rm -f "$DB_DIR/${EXPORT_STEM}_poses.txt"
-    rtabmap-export --poses --poses_format 11 --output "$EXPORT_STEM" \
-        "$DB_PATH" >>"$LOG" 2>&1 || true
+    owned_run export rtabmap-export --poses --poses_format 11 --output "$EXPORT_STEM" \
+        "$DB_PATH" >>"$LOG" 2>&1
     # poses_format=11 is the TUM "timestamp tx ty tz qx qy qz qw" RGB-D SLAM
     # benchmark format. The output filename has _poses.txt suffix.
     EXPORTED="$DB_DIR/${EXPORT_STEM}_poses.txt"
@@ -240,7 +233,6 @@ if [[ -f "$DB_PATH" ]]; then
         # rtabmap format 11 emits a "#timestamp ..." header and a trailing id
         # column. evo_ape tum requires exactly 8 columns, so strip both.
         awk '!/^#/ && NF>=8 {print $1,$2,$3,$4,$5,$6,$7,$8}' "$EXPORTED" > "$TRAJ"
-        rm -f "$EXPORTED"
     else
         echo "[rtabmap_gps] ERROR: rtabmap-export produced no poses file" | tee -a "$LOG"
     fi
@@ -252,7 +244,6 @@ if [[ ! -s "$TRAJ" ]]; then
 fi
 
 cp "$LOG" "$OUT_DIR/run_log.txt"
-[[ -f "$DB_PATH" ]] && cp "$DB_PATH" "$OUT_DIR/rtabmap.db" || true
 
 DUR=$(python3 -c "print($END-$START)")
 NFR=$(wc -l < "$TRAJ")
@@ -271,6 +262,7 @@ enrich_run_meta "$OUT_DIR/run_meta.json" \
     --measurement-mode transport \
     --transport-stats "$OUT_DIR/transport_stats.json" \
     --artifact "estimator_config=$CFG_HOST" \
+    --param "process_isolation=attempt_token_private_ros2_domain" \
     --param "playback_rate=1.0" --param "gnss_variant=$GNSS_VARIANT" \
     --param "odom_always_process_most_recent_frame=false" \
     --param "ros_package=ros-humble-rtabmap-ros:$ROS_PACKAGE_VERSION"
