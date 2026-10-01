@@ -65,6 +65,10 @@
   values remain as legacy evidence. New schema-2 metadata keeps uninstrumented
   processing fields unknown and reports nominal input/time ratios separately.
   See [measurement semantics](docs/run-measurements.md).
+- Extended owned cleanup to all six included native/Conda wrappers. Isolated
+  OKVIS2, ORB-SLAM3, DPVO and MAC-VO native exports from shared dataset/source trees;
+  previous native outputs are retained. These prevent known stale-output paths in
+  future attempts; actual native execution after the repairs remains unverified.
 
 ## 2026-10-01 — Initial server inventory (before the repair above)
 

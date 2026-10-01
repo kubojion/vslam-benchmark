@@ -44,6 +44,8 @@ ESTIMATOR_CFG=$(python3 "$WS/scripts/run/_config_preflight.py" "${CONFIG_ARGS[@]
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
+CONTAINER=""
+source "$WS/scripts/run/_owned_process.sh"
 
 # ── PATH: source Basalt env to ensure basalt_vio is available ────────────────
 if [[ -f "$HOME/.basalt/env" ]]; then
@@ -56,6 +58,7 @@ if ! command -v basalt_vio &>/dev/null; then
 fi
 BASALT_BIN=$(command -v basalt_vio)
 PROV_ARGS=(
+    --param "process_isolation=attempt_token"
     --artifact "camera_calibration=$CALIB"
     --artifact "estimator_config=$ESTIMATOR_CFG"
     --binary "estimator=$BASALT_BIN"
@@ -103,7 +106,9 @@ prepare_resource_window "$OUT_DIR"
 python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$$" --interval 1 \
     --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
+trap 'owned_stop estimator || true; [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
 # ── Run Basalt VIO (vision-only, no IMU) ─────────────────────────────────────
 # basalt_vio saves trajectory.txt in the CWD; cd to $OUT_DIR so it lands there.
@@ -112,7 +117,7 @@ cd "$OUT_DIR"
 START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
 set +e
-basalt_vio \
+owned_run estimator "$BASALT_BIN" \
     --show-gui 0 \
     --dataset-path "$SEQ_DIR" \
     --dataset-type euroc \

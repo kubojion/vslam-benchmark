@@ -78,6 +78,15 @@ APP="$WS/src/okvis2/build/okvis_app_synchronous"
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
+CONTAINER=""
+source "$WS/scripts/run/_owned_process.sh"
+# Upstream writes native CSVs beside its input sensor folders. A private view
+# preserves the dataset's older trajectories and cannot accept one as new output.
+INPUT_MAV0="$OUT_DIR/input/mav0"
+mkdir -p "$INPUT_MAV0"
+for sensor in cam0 cam1 imu0; do
+    ln -s "$SEQ_DIR/mav0/$sensor" "$INPUT_MAV0/$sensor"
+done
 echo "[okvis2] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL" "$OUT_DIR/run_log.txt"
 
 # Resource monitor (matches the other run_*.sh wrappers)
@@ -86,12 +95,15 @@ python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$
     --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
 cleanup() {
+    owned_stop estimator || true
     [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true
     if [[ -n "${EFFECTIVE_CFG:-}" ]]; then
         rm -f "$EFFECTIVE_CFG"
     fi
 }
 trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
 # OKVIS2 calls cv::imshow even when displays are disabled. A server may export
 # DISPLAY while denying this process access, so benchmark runs use their own X
@@ -109,7 +121,7 @@ fi
 START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
 set +e
-"${RUN_PREFIX[@]}" "$APP" "$CFG" "$SEQ_DIR/mav0" 2>&1 | \
+( cd "$OUT_DIR" && owned_run estimator "${RUN_PREFIX[@]}" "$APP" "$CFG" "$INPUT_MAV0" ) 2>&1 | \
   python3 -u -c "
 import sys, time
 t0 = time.time()
@@ -125,6 +137,7 @@ MONPID=""
 
 MATCHING_THREADS=$(awk '/num_matching_threads:/ {print $2; exit}' "$CFG")
 PROV_ARGS=(
+    --param "process_isolation=attempt_token"
     --artifact "estimator_config=$CFG"
     --artifact "estimator_config_source=$CFG_SOURCE"
     --source "algorithm=$WS/src/okvis2"
@@ -140,9 +153,9 @@ if (( OKVIS_RC != 0 )); then
     exit "$OKVIS_RC"
 fi
 
-# OKVIS2 writes okvis2-<vio|slam>_trajectory.csv next to mav0/.
-RAW="$SEQ_DIR/mav0/okvis2-${OKMODE}_trajectory.csv"
-RAW_FINAL="$SEQ_DIR/mav0/okvis2-${OKMODE}-final_trajectory.csv"
+# OKVIS2 writes inside its private mav0 input view.
+RAW="$INPUT_MAV0/okvis2-${OKMODE}_trajectory.csv"
+RAW_FINAL="$INPUT_MAV0/okvis2-${OKMODE}-final_trajectory.csv"
 if [[ ! -f "$RAW" ]]; then
     record_failed_run_meta "$OUT_DIR/run_meta.json" okvis2 "$DATASET" "$SEQ" \
         "$RUN_ID" "$RUN_TYPE" 1 "trajectory was not produced" "${PROV_ARGS[@]}"

@@ -76,8 +76,12 @@ CFG="$EFFECTIVE_CFG"
 }
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
+CONTAINER=""
+source "$WS/scripts/run/_owned_process.sh"
 
-cd "$WS/src/ORB_SLAM3"
+BIN="$WS/src/ORB_SLAM3/${BIN#./}"
+mkdir "$OUT_DIR/native"
+cd "$OUT_DIR/native"
 echo "[orbslam3] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG_GLOBAL" "$OUT_DIR/run_log.txt"
 echo "[orbslam3] binary=$BIN  config_source=$CFG_SOURCE  effective_config=$CFG" | tee -a "$LOG_GLOBAL"
 
@@ -95,7 +99,7 @@ fi
 
 ESTIMATOR_COMMAND=(
     "$BIN"
-    Vocabulary/ORBvoc.txt
+    "$WS/src/ORB_SLAM3/Vocabulary/ORBvoc.txt"
     "$CFG"
     "$SEQ_DIR"
     "$SEQ_DIR/times.txt"
@@ -124,16 +128,19 @@ python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$
     --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
 cleanup() {
+    owned_stop estimator || true
     [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true
     [[ -n "${EFFECTIVE_CFG:-}" ]] && rm -f "$EFFECTIVE_CFG"
 }
 trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
 START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
 # Pipe through a Python timestamper so each log line gets a relative offset (s).
 set +e
-"${RUN_PREFIX[@]}" "${ESTIMATOR_COMMAND[@]}" 2>&1 | \
+owned_run estimator "${RUN_PREFIX[@]}" "${ESTIMATOR_COMMAND[@]}" 2>&1 | \
   python3 -u -c "
 import sys, time
 t0 = time.time()
@@ -148,11 +155,12 @@ finish_resource_window "$OUT_DIR" "$MONPID"
 MONPID=""
 
 PROV_ARGS=(
+    --param "process_isolation=attempt_token"
     --artifact "estimator_config=$CFG"
     --artifact "estimator_config_source=$CFG_SOURCE"
     --artifact "vocabulary=$WS/src/ORB_SLAM3/Vocabulary/ORBvoc.txt"
     --source "algorithm=$WS/src/ORB_SLAM3"
-    --binary "estimator=$WS/src/ORB_SLAM3/${BIN#./}"
+    --binary "estimator=$BIN"
     --param "use_imu=$USE_IMU"
     --param "use_lc=$USE_LC"
     --param "pacing_policy=dataset_timestamps"

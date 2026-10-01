@@ -88,6 +88,8 @@ fi
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
+CONTAINER=""
+source "$WS/scripts/run/_owned_process.sh"
 : > "$OUT_DIR/run_log.txt"
 NAME="bench_${DATASET}_${SEQ}_${RUN_TYPE}_run${RUN_ID}"
 
@@ -102,11 +104,19 @@ prepare_resource_window "$OUT_DIR"
 python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$$" --interval 1 \
     --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true; [[ -n "${STAGE_DIR:-}" ]] && rm -rf "$STAGE_DIR"' EXIT
+trap 'owned_stop estimator || true; [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true; [[ -n "${STAGE_DIR:-}" ]] && rm -rf "$STAGE_DIR"' EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
-cd "$REPO"
-rm -f "saved_trajectories/${NAME}.txt"
+mkdir "$OUT_DIR/native"
+cd "$OUT_DIR/native"
+# Long-term retrieval expects this filename in the current directory.
+if [[ "$USE_LC" == "true" ]]; then
+    [[ -f "$REPO/ORBvoc.txt" ]] || { echo '[dpvo] missing LC vocabulary' >&2; exit 2; }
+    ln -s "$REPO/ORBvoc.txt" ORBvoc.txt
+fi
 PROV_ARGS=(
+    --param "process_isolation=attempt_token"
     --artifact "camera_calibration=$CALIB"
     --artifact "algorithm_config=$ALGO_CFG"
     --artifact "model=$NET"
@@ -119,7 +129,8 @@ PROV_ARGS=(
 START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
 set +e
-python3 "$WS/scripts/run/_seeded_python.py" "$SEED" demo.py \
+owned_run estimator python3 "$WS/scripts/run/_seeded_python.py" "$SEED" "$REPO/demo.py" \
+    --config "$ALGO_CFG" \
     --imagedir "$IMG_DIR" \
     --calib "$CALIB" \
     --network "$NET" \
@@ -144,7 +155,7 @@ if (( DPVO_RC != 0 )); then
     exit "$DPVO_RC"
 fi
 
-RAW="$REPO/saved_trajectories/${NAME}.txt"
+RAW="$OUT_DIR/native/saved_trajectories/${NAME}.txt"
 if [[ ! -s "$RAW" ]]; then
     record_failed_run_meta "$OUT_DIR/run_meta.json" dpvo "$DATASET" "$SEQ" \
         "$RUN_ID" "$RUN_TYPE" 1 "trajectory was not produced" "${PROV_ARGS[@]}"

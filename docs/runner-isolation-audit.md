@@ -5,6 +5,11 @@ ROS/container execution is **unverified**. No estimator was started; the relevan
 benchmark containers were stopped during this audit and were not started for tests.
 This does not resolve native crashes or establish campaign readiness.
 
+The same process ownership helper now covers the six included native/Conda wrappers:
+ORB-SLAM3, Basalt, OKVIS2, OKVIS2-X, DPVO and MAC-VO. A missing pidfd signalling
+capability fails before a native child is launched. Their estimator/container
+execution remains unverified after the changes.
+
 ## Confirmed defects and repairs
 
 - AirSLAM, OV2SLAM, Voxel-SVIO, VINS-Fusion+GPS, CIFASIS, RTAB-Map+GPS and
@@ -31,6 +36,20 @@ This does not resolve native crashes or establish campaign readiness.
   command errors propagate. OpenVINS rejects all modes except VIO; its GNSS
   composite has its own separate runner. OpenVINS+GPS writers are stopped before
   trajectory counts/hashes are taken.
+- OKVIS2's native application writes CSVs into its dataset argument. The wrapper
+  now passes a private `input/mav0` view linking only the three sensor folders;
+  outputs and debug images stay under the attempt, and old dataset CSVs remain
+  untouched. This was checked against `okvis_app_synchronous.cpp` and its reader.
+- ORB-SLAM3 writes in the attempt's `native/` working directory, with absolute
+  executable/vocabulary paths. Previously its source-tree filenames were shared
+  across repetitions and modes. Existing source-tree files are preserved.
+- DPVO's upstream `demo.py` writes `saved_trajectories/` relative to its working
+  directory. It now runs in attempt `native/` with explicit absolute config,
+  model and script paths; LC receives a link to its expected vocabulary. The
+  wrapper no longer deletes a source-tree trajectory before starting.
+- MAC-VO receives the attempt's `native/` as `--resultRoot` and selects its sandbox
+  only inside that directory. The old shared `src/MAC-VO/Results` remains intact.
+  Basalt and OKVIS2-X already direct their native outputs into each attempt.
 
 ## Ownership and evidence
 

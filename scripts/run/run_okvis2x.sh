@@ -79,6 +79,8 @@ APP="$WS/src/okvis2x/build/okvis_app_synchronous"
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
+CONTAINER=""
+source "$WS/scripts/run/_owned_process.sh"
 INPUT_MAV0="$SEQ_DIR/mav0"
 if [[ "$RUN_TYPE" == "gnss-vio" ]]; then
     prepare_gnss_input "$OUT_DIR" "$SEQ_DIR"
@@ -131,7 +133,9 @@ prepare_resource_window "$OUT_DIR"
 python3 "$WS/scripts/run/_resource_monitor.py" "$OUT_DIR/resources.csv" --pid "$$" --interval 1 \
     --start-file "$OUT_DIR/.resource_start" --stop-file "$OUT_DIR/.resource_stop" &
 MONPID=$!
-trap '[[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
+trap 'owned_stop estimator || true; [[ -n "${MONPID:-}" ]] && kill "$MONPID" 2>/dev/null || true' EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
 # OpenCV highgui can initialise even when every display option is false. A
 # server may export DISPLAY while denying access, so use a private X server by
@@ -157,7 +161,7 @@ fi
 START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
 set +e
-( cd "$OUT_DIR" && "${RUN_PREFIX[@]}" "$APP" "$CFG" "$INPUT_MAV0" "$OUT_DIR" ) 2>&1 | \
+( cd "$OUT_DIR" && owned_run estimator "${RUN_PREFIX[@]}" "$APP" "$CFG" "$INPUT_MAV0" "$OUT_DIR" ) 2>&1 | \
   python3 -u -c "
 import sys, time
 t0 = time.time()
@@ -172,6 +176,7 @@ finish_resource_window "$OUT_DIR" "$MONPID"
 MONPID=""
 
 PROV_ARGS=(
+    --param "process_isolation=attempt_token"
     --artifact "estimator_config=$CFG"
     --artifact "vocabulary=$WS/src/okvis2x/build/small_voc.yml.gz"
     --source "algorithm=$WS/src/okvis2x"
