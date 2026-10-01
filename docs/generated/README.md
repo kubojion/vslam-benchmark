@@ -1,9 +1,9 @@
 # Generated results and publication status
 
 Updated 2026-10-01. These outputs now match the root schema-3 CSVs and the
-hash-checked attempt inventory. They are **provisional scientific results**, not
-certified paper comparisons. See [qualification](../publication-qualification-20261001.md)
-and [TODO](../../TODO.md). No current cell has a qualified clean N=3 tick.
+hash-checked attempt inventory. They combine explicitly accepted, limited and blocked claims, identified in each
+cell; only the stated accepted comparisons are paper-usable. See [qualification](../publication-qualification-20261001.md)
+and [TODO](../../TODO.md). There are 45 clean accepted EuRoC N=3 cells; see the [current handoff](../acceptance-handoff-20261001.md).
 
 - [Tables](tables.md): all five modes, 666 planned/variant rows, separate cohorts,
   explicit failures and missing repetitions.
@@ -12,7 +12,7 @@ and [TODO](../../TODO.md). No current cell has a qualified clean N=3 tick.
 - [Outcome overview](figures/fig_campaign_outcomes.png): all default repetitions.
 - [VO](figures/fig_accuracy_vo_default.png), [VO-LC](figures/fig_accuracy_vo-lc_default.png),
   [VIO](figures/fig_accuracy_vio_default.png), [VIO-LC](figures/fig_accuracy_vio-lc_default.png),
-  [GNSS-VIO](figures/fig_accuracy_gnss-vio_default.png): provisional conditional ATE,
+  [GNSS-VIO](figures/fig_accuracy_gnss-vio_default.png): conditional ATE with acceptance flags,
   with monocular Sim(3) separate from metric SE(3). GNSS variants have separate files.
 - Matching PDFs are available beside every PNG. `figures/figure-data.json` records
   input hashes, per-cell data and figure hashes. Failure denominators are retained;

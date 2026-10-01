@@ -41,7 +41,8 @@ Primary ATE RMSE [m]: **SE(3)** for metric stereo/VIO; **Sim(3)** for monocular 
 Values are conditional on numerically valid saved trajectories, with median
 (min–max) for N≥2 and a single value for N=1. Every cell shows evaluated/planned
 counts and missing/failure outcomes. Distinct recorded cohorts are not pooled.
-`review` means the values are not yet publication qualified; `✅ N=3` requires
+`blocked` means the values are not yet publication qualified; `limited` permits
+only the stated limited claim; `observed failure` retains an adverse outcome. `✅ N=3` requires
 three qualified clean repetitions. No ranking or winner bolding is inferred from
 partial coverage, unknown coverage, sparse keyframes, or unqualified results.
 
@@ -77,7 +78,9 @@ def cell_text(rows):
     dense=[r['coverage_gap_pct'] for r in rows if r['eval_schema']==3]
     if dense and all(v is not None for v in dense):pieces.append(f'coverage ≥{min(dense):.1f}%')
     elif dense:pieces.append('dense coverage unknown')
-    pieces.append('✅ N=3' if result['clean_qualified_n3'] else 'review')
+    if result['clean_qualified_n3']:pieces.append('✅ N=3')
+    else:pieces.append(', '.join(f'{key}: {value}' for key,value in sorted(result['acceptance'].items())))
+    if 'native_shutdown_error_despite_wrapper_exit_zero' in result['claim_limits']:pieces.append('native shutdown error')
     return '; '.join(pieces)
 
 

@@ -31,12 +31,17 @@ def plotted_cell(rows):
     groups = summary['cohorts']
     value = groups[0]['conditional_primary_ate']['median'] if len(groups) == 1 else None
     notes = []
+    if summary['clean_qualified_n3']: notes.append('A3')
     if len(groups) > 1: notes.append('cohorts')
     if any(r['export_kind'] == 'keyframes' for r in rows): notes.append('K')
     if any(r['scientific_status'] == 'rerun_required' for r in rows): notes.append('R')
     if any(r['process_exit_code'] not in (0, None) for r in rows): notes.append('X')
     if any(r['coverage_gap_pct'] is not None and r['coverage_gap_pct'] < 95 for r in rows): notes.append('P')
-    if not summary['clean_qualified_n3']: notes.append('U')
+    if any(r['scientific_status']=='blocked' for r in rows):notes.append('B')
+    if any(r['scientific_status']=='accepted_with_limitation' for r in rows):notes.append('L')
+    if any(r['scientific_status']=='valid_observed_failure' for r in rows):notes.append('F')
+    if any(r['scientific_status']=='not_executed' for r in rows):notes.append('M')
+    if any(r['scientific_status'] not in ('accepted','accepted_with_limitation','valid_observed_failure','not_executed','rerun_required','blocked') for r in rows):notes.append('U')
     ok = summary['outcomes'].get('ok', 0)
     text = f'{value:.3g}' if value is not None else 'no score'
     text += f'\n{ok}/{summary["planned_slots"]} ok'

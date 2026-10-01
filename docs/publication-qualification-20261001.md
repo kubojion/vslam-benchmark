@@ -1,19 +1,17 @@
 # Publication qualification of retained results — 2026-10-01
 
-Numerical repair and publication qualification are separate. The saved trajectories
-support reproducible, explicitly provisional numerical analysis. **No current cell
-has a certified clean N=3 tick.** This is not a decision to rerun every cell, nor a
-claim that every trajectory is wrong. Preserve usable saved results while resolving
-the evidence gaps below. Only the confirmed estimator-side defects create mandatory
-reruns: six ORB ZED VO/VO-LC, eighteen AirSLAM EuRoC VIO/VIO-LC and six ORB Horti
-VIO-LC repetitions.
+The focused [paper acceptance review](paper-acceptance-20261001.md) now supersedes
+this document's earlier blanket hold. Explicit evidence-pinned decisions accept
+recorded-profile EuRoC claims and narrowly defined observed failures. Agricultural
+accuracy and historical GNSS claims remain blocked by material evidence gaps.
+The original provenance findings below remain valid disclosures; incomplete build
+history alone is no longer treated as proof that every result is invalid.
 
-`scripts/campaign/qualification_review.py` derives a per-attempt decision from the
-saved metadata, verified snapshots, numerical evaluation and confirmed findings.
-The inventory and reconciled evaluation JSONs carry the decision and hashes of
-this document and the review implementation. Missing repetitions, retained failures,
-configuration-invalid cohorts and unresolved evidence have distinct statuses.
-The review does not choose successful repetitions or infer correctness from ATE.
+`scripts/campaign/qualification_review.py` replays the explicit ledger, verifies
+original evidence and numerical content, and blocks stale decisions. Unreviewed
+artifacts retain the conservative fallback. Acceptance, outcome, repetition count
+and execution readiness remain separate. See the generated acceptance handoff for
+current counts and exact actions. The 30 confirmed estimator-side reruns remain.
 
 ## What prevents a stronger certificate
 
@@ -25,9 +23,9 @@ recover an exact historical runner tree. The current repaired runner therefore
 cannot certify exactly what conversion, selection or override code ran previously.
 This affects even otherwise promising EuRoC MAC-VO and DPVO results. It does not
 invalidate their recorded clean upstream commits, model/config hashes, full export
-coverage or corrected numerical metrics. Recover a matching historical working-tree
-snapshot or equivalent per-run native/conversion evidence before granting the
-user's strong “nothing left to worry about” tick.
+coverage or corrected numerical metrics. The subsequent acceptance review weighs native/configuration evidence for a
+stated recorded-profile claim. Exact historical rebuild certification would still
+require a matching working-tree snapshot or equivalent reconstruction evidence.
 
 The following additional provenance gaps are concrete:
 
@@ -86,11 +84,11 @@ not proof that every input frame was processed or that tracking was error-free.
 
 ## Next decisions and execution readiness
 
-Recover historical provenance before deciding that reruns are necessary. If it
-cannot be recovered, the authors must explicitly choose a weaker, disclosed claim
-scope or a new fully recorded cohort. Such a choice is not silently made by this
-repair. Reference/calibration evidence must be resolved independently of repeated
-estimation; more repetitions do not establish a missing physical transform.
+The user-authorized focused acceptance review now records the claim decisions in
+[the ledger](campaigns/paper-acceptance-20261001.json). It discloses incomplete
+historical build detail without waiving calibration/reference defects. It does
+not request reruns to improve poor scores. A green tick is scoped to the documented
+comparison and clean criteria, not a guarantee against every possible uncertainty.
 
 Review completion means the available evidence was assessed and blockers are
 specific. It is distinct from native execution readiness after runner repairs.

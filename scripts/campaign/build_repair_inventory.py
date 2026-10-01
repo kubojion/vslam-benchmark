@@ -19,6 +19,7 @@ from run_quality_campaign import expand_cells, cell_key, load_manifest
 from run_repetitions import atomic_json
 from protocol_findings import historical_findings
 from qualification_review import review_saved, review_identity
+from acceptance_ledger import cell_acceptance
 
 REPO=Path(__file__).resolve().parents[2]
 MODES=('vo','vo-lc','vio','vio-lc','gnss-vio')
@@ -95,7 +96,7 @@ def saved_attempt(repo,relative,stage):
     process=meta.get('process',{})
     cohort,cohort_evidence=cohort_identity(meta,algo)
     findings=historical_findings(repo,relative,meta)
-    qualification=review_saved(relative,meta,value,findings,snapshot_records,exists=run.is_dir())
+    qualification=review_saved(relative,meta,value,findings,snapshot_records,exists=run.is_dir(),repo=repo)
     return dict(path='results/'+relative,exists=run.is_dir(),files=files,
         trajectory_saved=(run/'trajectory.txt').is_file(),historical_complete=(run/'COMPLETE').is_file(),
         evaluated=bool(value),evaluation_path=str(current.relative_to(repo)) if value else None,
@@ -119,6 +120,7 @@ def runtime_estimate(attempts):
         runtime=a['runtime'];seconds=runtime.get('end_to_end_time_s')
         coverage=a.get('coverage',{}).get('coverage_gap_pct')
         if (a['machine_id']==SERVER and a['process'].get('exit_code')==0 and
+            not a.get('qualification',{}).get('native_error_observations') and
             a['numerical_status']=='ok' and isinstance(seconds,(int,float)) and seconds>0 and
             isinstance(coverage,(int,float)) and coverage>=95):
             times.append(seconds);sources.append(a['path']);modes.add(runtime.get('mode'))
@@ -144,7 +146,8 @@ def build(repo,stage):
             outcomes=dict(Counter(a['numerical_status'] for a in attempts if a['evaluated'])),
             within_cell_config_consistent=len({a['config_fingerprint'] for a in attempts if a['config_fingerprint']})<=1,
             within_cell_cohort_consistent=len({a['cohort_fingerprint'] for a in attempts if a['cohort_fingerprint']})<=1,
-            runtime_estimate=runtime_estimate(attempts),qualification='pending_review'))
+            runtime_estimate=runtime_estimate(attempts),
+            acceptance=cell_acceptance(attempts, len({a['cohort_fingerprint'] for a in attempts if a['cohort_fingerprint']})<=1)))
     other=[]
     paths={p.parent for mode in MODES for pattern in ('run*/trajectory.txt','run*/run_eval.json','run*/run_meta.json')
            for p in (repo/'results'/mode).glob('*/*/*/'+pattern)}

@@ -7,17 +7,26 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+from acceptance_ledger import reviewed_decision, LEDGER, DOCUMENT
 
 REVIEW_DOCUMENT = 'docs/publication-qualification-20261001.md'
 
 
 def review_identity(repo):
-    paths = ['scripts/campaign/qualification_review.py', 'scripts/campaign/protocol_findings.py', REVIEW_DOCUMENT]
+    paths = ['scripts/campaign/qualification_review.py', 'scripts/campaign/protocol_findings.py', REVIEW_DOCUMENT,
+             'scripts/campaign/acceptance_ledger.py']
+    paths += [p for p in (LEDGER, DOCUMENT) if (repo/p).is_file()]
+    if (repo/LEDGER).is_file():
+        paths += [r['path'] for r in json.loads((repo/LEDGER).read_text()).get('supporting_evidence', [])]
     return dict(schema=1, evidence=[dict(path=p, sha256=hashlib.sha256((repo/p).read_bytes()).hexdigest())
                                     for p in paths])
 
 
-def review_saved(relative, meta, evaluation, findings, snapshots, *, exists):
+def review_saved(relative, meta, evaluation, findings, snapshots, *, exists, repo=None):
+    if repo is not None:
+        reviewed = reviewed_decision(repo, relative, meta, evaluation, findings, snapshots, exists)
+        if reviewed is not None:
+            return reviewed
     mode, dataset, sequence, algorithm, name = Path(relative).parts
     # Recompute review-derived fields from original evidence, not a previous
     # decision. Numerical/frame/execution checks are independently retained.
@@ -107,6 +116,6 @@ def apply_review(repo, run, evaluation):
                 hashlib.sha256(path.read_bytes()).hexdigest() == item.get('snapshot_sha256')))
     relative = str(run.relative_to(repo/'results'))
     evaluation['qualification'] = review_saved(relative, meta, evaluation,
-        historical_findings(repo, relative, meta), snapshots, exists=run.is_dir())
+        historical_findings(repo, relative, meta), snapshots, exists=run.is_dir(), repo=repo)
     evaluation['qualification_provenance'] = review_identity(repo)
     return evaluation

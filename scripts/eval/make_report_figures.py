@@ -57,9 +57,9 @@ def accuracy_figure(rows, mode, variant):
         ax.set_title('Metric stereo / inertial: SE(3)' if alignment == 'se3' else 'Monocular shape: Sim(3) — separate scale model', fontsize=11)
         fig.colorbar(plotted_image, ax=ax, fraction=.025, pad=.025,
                      label='Conditional median ATE RMSE [m]' if len(algos) >= 3 else 'ATE [m]')
-    fig.suptitle(f'{mode.upper()} · input {variant} · provisional conditional median ATE', fontsize=13)
-    fig.text(.02, .015, 'ok/planned = numerical outcomes, not certified successes. U: unqualified; R: config rerun; X: nonzero exit;\n'
-             'P: dense export coverage <95%; K: keyframes (dense coverage unknown). Separate cohorts are not pooled.\n'
+    fig.suptitle(f'{mode.upper()} · input {variant} · conditional median ATE with acceptance flags', fontsize=13)
+    fig.text(.02, .015, 'ok/planned = numerical outcomes. A3: clean accepted N=3; B: blocked; L: limited; F: observed failure; M: missing; U: unreviewed.\n'
+             'R: config rerun; X: nonzero exit; P: coverage <95%; K: keyframes. Separate cohorts are not pooled.\n'
              'Failures/missing slots stay in counts. Agricultural reference issues remain; aligned GNSS scores are not global error.', fontsize=8)
     fig.tight_layout(rect=(0, .115, 1, .94))
     return fig, plotted
@@ -110,7 +110,7 @@ def main():
             plotted.extend(items)
     outputs['figure-data.json'] = (json.dumps(dict(schema=1,
         inputs=[dict(path=str(Path(i['path']).relative_to(REPO)), sha256=i['sha256']) for i in inputs],
-        status='provisional_diagnostics_not_qualified_paper_comparisons', cells=plotted,
+        status='mixed_acceptance_see_per_cell_flags_and_claim_limits', cells=plotted,
         figures=[dict(path=name, sha256=hashlib.sha256(raw).hexdigest()) for name, raw in outputs.items()]),
         indent=2, allow_nan=False)+'\n').encode()
     stale = []

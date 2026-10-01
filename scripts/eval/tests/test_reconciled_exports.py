@@ -91,6 +91,24 @@ def test_failure_missing_exit_and_cohort_denominators(tmp_path):
     assert 'rerun required' in cell_text(data)
 
 
+def test_explicit_acceptance_and_native_shutdown_limits_survive_csv_and_reports(tmp_path):
+    qualification=dict(status='accepted',blockers=[],paper_usable=True,accuracy_eligible=True,
+        claim='recorded_profile_euroc_final_trajectory_se3_metric_accuracy',claim_limits=[])
+    data=[row_from_attempt(attempt(i,qualification=copy.deepcopy(qualification)),evaluation(),None,repo=tmp_path)
+          for i in range(1,4)]
+    assert summarize_cell(data)['clean_qualified_n3'] and '✅ N=3' in cell_text(data)
+    limited=copy.deepcopy(qualification)
+    limited.update(status='accepted_with_limitation',
+        claim_limits=['native_shutdown_error_despite_wrapper_exit_zero'],
+        native_error_observations=[{'line':125,'text':'terminate called'}])
+    data[1]=row_from_attempt(attempt(2,qualification=limited),evaluation(),None,repo=tmp_path)
+    assert data[1]['process_exit_code']==0 and data[1]['native_error_observation_count']==1
+    assert data[1]['paper_usable'] and not data[1]['paper_ready']
+    assert not summarize_cell(data)['clean_qualified_n3']
+    assert summarize_cell(data)['cohorts'][0]['accepted_primary_ate']['n']==3
+    assert 'native shutdown error' in cell_text(data) and 'L' in plotted_cell(data)['flags']
+
+
 def test_variant_separation_preservation_and_reproducible_check(tmp_path):
     data=rows(tmp_path,1);var=copy.deepcopy(data[0]);var['gnss_variant']='ppk';var['primary_ate_rmse_m']=2
     with pytest.raises(ValueError,match='variants'):

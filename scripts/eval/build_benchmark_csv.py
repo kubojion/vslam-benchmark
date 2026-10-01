@@ -49,7 +49,9 @@ COLUMNS = ['dataset', 'seq', 'environment_type', 'algo', 'run_type', 'use_imu', 
  'displacement_magnitude_error_1m_se3_rmse_m', 'displacement_magnitude_error_1m_sim3_rmse_m',
  'window_protocol', 'evaluator_sha256', 'machine_id', 'measurement_interpretation_schema',
  'measurement_warning', 'command_time_s', 'command_input_fps', 'command_time_scope',
- 'end_to_end_fps_semantics']
+ 'end_to_end_fps_semantics', 'paper_usable', 'accuracy_eligible', 'accepted_claim',
+ 'claim_limits', 'reproducibility_disclosures', 'cell_acceptance', 'clean_qualified_n3',
+ 'native_error_observation_count']
 
 
 def get(document,*keys):
@@ -125,7 +127,15 @@ def row_from_attempt(attempt,evaluation,cell,*,repo=REPO,membership='original_n3
         attempt_exists=attempt['exists'],trajectory_saved=attempt['trajectory_saved'],
         execution_status=get(ev,'execution','status') or 'unknown',process_exit_code=process.get('exit_code'),
         scientific_status=qualification.get('status','not_evaluated'),scientific_blockers=json.dumps(blockers,separators=(',',':')),
-        paper_ready=qualification.get('status')=='qualified' and not blockers,
+        paper_ready=qualification.get('status') in ('accepted','qualified') and not blockers,
+        paper_usable=qualification.get('paper_usable',False),
+        accuracy_eligible=qualification.get('accuracy_eligible',False),
+        native_error_observation_count=len(qualification.get('native_error_observations',[])),
+        accepted_claim=qualification.get('claim'),
+        claim_limits=json.dumps(qualification.get('claim_limits',[]),separators=(',',':')),
+        reproducibility_disclosures=json.dumps(qualification.get('disclosures',[]),separators=(',',':')),
+        cell_acceptance=(cell or {}).get('acceptance',{}).get('status'),
+        clean_qualified_n3=(cell or {}).get('acceptance',{}).get('clean_qualified_n3',False),
         primary_alignment=alignment,primary_ate_rmse_m=get(ev,'ate' if alignment=='sim3' else 'ate_se3','rmse'),
         position_metric_validity=get(ev,'metric_validity','position'),
         orientation_metrics_available=bool(get(ev,'pose_frames','orientation_valid') and get(ev,'pose_frames','common_origin_verified')) if ev else None,
@@ -192,6 +202,9 @@ def build_rows(inventory,repo=REPO):
     for cell in inventory['cells']:
         for attempt in cell['attempts']:
             ev=json.loads((repo/attempt['evaluation_path']).read_text()) if attempt['evaluation_path'] else {}
+            if ev and inventory.get('qualification_review') and (ev.get('qualification') != attempt.get('qualification') or
+                ev.get('qualification_provenance') != inventory['qualification_review']):
+                raise ValueError('evaluation qualification disagrees with inventory: '+attempt['path'])
             rows.append(row_from_attempt(attempt,ev,cell,repo=repo,
                 membership='original_n3_campaign' if cell['original_campaign_member'] else 'gnss_default_future_n3'))
     for attempt in inventory['other_artifacts']:

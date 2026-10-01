@@ -6,7 +6,8 @@ Primary ATE RMSE [m]: **SE(3)** for metric stereo/VIO; **Sim(3)** for monocular 
 Values are conditional on numerically valid saved trajectories, with median
 (min–max) for N≥2 and a single value for N=1. Every cell shows evaluated/planned
 counts and missing/failure outcomes. Distinct recorded cohorts are not pooled.
-`review` means the values are not yet publication qualified; `✅ N=3` requires
+`blocked` means the values are not yet publication qualified; `limited` permits
+only the stated limited claim; `observed failure` retains an adverse outcome. `✅ N=3` requires
 three qualified clean repetitions. No ranking or winner bolding is inferred from
 partial coverage, unknown coverage, sparse keyframes, or unqualified results.
 
@@ -20,21 +21,21 @@ remains unknown. Aligned shape ATE does not establish GNSS global accuracy.
 
 | Algorithm (primary alignment) | seq1 | seq5 | str02 | str03 |
 |---|---|---|---|---|
-| OKVIS2-X — SE(3) | 8.633 [score N=1]; eval 1/3; 2 missing; coverage ≥100.0%; review | 7.759 [score N=1]; eval 1/3; 2 missing; coverage ≥100.0%; review | 2.591 [score N=1]; eval 1/3; 2 missing; coverage ≥100.0%; review | 0.6232 [score N=1]; eval 1/3; 2 missing; coverage ≥99.9%; review |
-| VINS-Fusion+GPS — SE(3) | 1.227 [score N=1]; eval 1/3; 2 missing; coverage ≥99.1%; review | 0.9289 [score N=1]; eval 1/3; 2 missing; coverage ≥99.6%; review | no valid score; eval 1/3; 1 eval_failed, 2 missing; dense coverage unknown; review | 2.468 [score N=1]; eval 1/3; 2 missing; coverage ≥98.9%; review |
-| RTAB-Map+GPS — SE(3) | 2.309 [score N=1]; eval 1/3; 2 missing; coverage ≥0.0%; review | 4.91 [score N=1]; eval 1/3; 2 missing; coverage ≥0.0%; review | 6.544 [score N=1]; eval 1/3; 2 missing; coverage ≥0.0%; review | 1.828 [score N=1]; eval 1/3; 2 missing; coverage ≥0.0%; review |
-| CIFASIS GNSS-SI — SE(3) | 3.691 [score N=1]; eval 1/3; 2 missing; coverage ≥99.4%; review | 2.274 [score N=1]; eval 1/3; 2 missing; coverage ≥98.5%; review | 7.156 [score N=1]; eval 1/3; 2 missing; coverage ≥99.1%; review | 1.68 [score N=1]; eval 1/3; 2 missing; coverage ≥96.2%; review |
-| OpenVINS+GPS — SE(3) | 2.578 [score N=1]; eval 1/3; 2 missing; coverage ≥24.9%; review | 4.224 [score N=1]; eval 1/3; 2 missing; coverage ≥16.6%; review | 42.93 [score N=1]; eval 1/3; 2 missing; coverage ≥14.5%; review | 48.01 [score N=1]; eval 1/3; 2 missing; coverage ≥12.7%; review |
+| OKVIS2-X — SE(3) | 8.633 [score N=1]; eval 1/3; 2 missing; coverage ≥100.0%; blocked: 1, not_executed: 2 | 7.759 [score N=1]; eval 1/3; 2 missing; coverage ≥100.0%; blocked: 1, not_executed: 2 | 2.591 [score N=1]; eval 1/3; 2 missing; coverage ≥100.0%; blocked: 1, not_executed: 2 | 0.6232 [score N=1]; eval 1/3; 2 missing; coverage ≥99.9%; blocked: 1, not_executed: 2 |
+| VINS-Fusion+GPS — SE(3) | 1.227 [score N=1]; eval 1/3; 2 missing; coverage ≥99.1%; blocked: 1, not_executed: 2 | 0.9289 [score N=1]; eval 1/3; 2 missing; coverage ≥99.6%; blocked: 1, not_executed: 2 | no valid score; eval 1/3; 1 eval_failed, 2 missing; dense coverage unknown; blocked: 1, not_executed: 2 | 2.468 [score N=1]; eval 1/3; 2 missing; coverage ≥98.9%; blocked: 1, not_executed: 2 |
+| RTAB-Map+GPS — SE(3) | 2.309 [score N=1]; eval 1/3; 2 missing; coverage ≥0.0%; blocked: 1, not_executed: 2 | 4.91 [score N=1]; eval 1/3; 2 missing; coverage ≥0.0%; blocked: 1, not_executed: 2 | 6.544 [score N=1]; eval 1/3; 2 missing; coverage ≥0.0%; blocked: 1, not_executed: 2 | 1.828 [score N=1]; eval 1/3; 2 missing; coverage ≥0.0%; blocked: 1, not_executed: 2 |
+| CIFASIS GNSS-SI — SE(3) | 3.691 [score N=1]; eval 1/3; 2 missing; coverage ≥99.4%; blocked: 1, not_executed: 2 | 2.274 [score N=1]; eval 1/3; 2 missing; coverage ≥98.5%; blocked: 1, not_executed: 2 | 7.156 [score N=1]; eval 1/3; 2 missing; coverage ≥99.1%; blocked: 1, not_executed: 2 | 1.68 [score N=1]; eval 1/3; 2 missing; coverage ≥96.2%; blocked: 1, not_executed: 2 |
+| OpenVINS+GPS — SE(3) | 2.578 [score N=1]; eval 1/3; 2 missing; coverage ≥24.9%; blocked: 1, not_executed: 2 | 4.224 [score N=1]; eval 1/3; 2 missing; coverage ≥16.6%; blocked: 1, not_executed: 2 | 42.93 [score N=1]; eval 1/3; 2 missing; coverage ≥14.5%; blocked: 1, not_executed: 2 | 48.01 [score N=1]; eval 1/3; 2 missing; coverage ≥12.7%; blocked: 1, not_executed: 2 |
 
 ## Legacy GNSS input variants (separate experiments)
 
 | Algorithm | Dataset/sequence | Input variant | Result |
 |---|---|---|---|
-| CIFASIS GNSS-SI | rosariov2/sequence5 | conventional_gps | 1.338 [score N=1]; eval 1/1; coverage ≥98.5%; review |
-| OpenVINS+GPS | rosariov2/sequence5 | conventional_gps | 4.744 [score N=1]; eval 1/1; coverage ≥25.6%; review |
-| RTAB-Map+GPS | rosariov2/sequence5 | conventional_gps | 1.772 [score N=1]; eval 1/1; coverage ≥0.0%; review |
-| VINS-Fusion+GPS | rosariov2/sequence5 | conventional_gps | 0.9731 [score N=1]; eval 1/1; coverage ≥99.6%; review |
-| VINS-Fusion+GPS | rosariov2/sequence5 | hybrid_alt | 0.9165 [score N=1]; eval 1/1; coverage ≥99.6%; review |
-| VINS-Fusion+GPS | rosariov2/sequence5 | ppk_full | 11.16 [score N=1]; eval 1/1; coverage ≥99.6%; review |
+| CIFASIS GNSS-SI | rosariov2/sequence5 | conventional_gps | 1.338 [score N=1]; eval 1/1; coverage ≥98.5%; blocked: 1 |
+| OpenVINS+GPS | rosariov2/sequence5 | conventional_gps | 4.744 [score N=1]; eval 1/1; coverage ≥25.6%; blocked: 1 |
+| RTAB-Map+GPS | rosariov2/sequence5 | conventional_gps | 1.772 [score N=1]; eval 1/1; coverage ≥0.0%; blocked: 1 |
+| VINS-Fusion+GPS | rosariov2/sequence5 | conventional_gps | 0.9731 [score N=1]; eval 1/1; coverage ≥99.6%; blocked: 1 |
+| VINS-Fusion+GPS | rosariov2/sequence5 | hybrid_alt | 0.9165 [score N=1]; eval 1/1; coverage ≥99.6%; blocked: 1 |
+| VINS-Fusion+GPS | rosariov2/sequence5 | ppk_full | 11.16 [score N=1]; eval 1/1; coverage ≥99.6%; blocked: 1 |
 
 GNSS global error remains unqualified: historical coordinate origins, antenna lever arms and reference independence are not established. SE(3)/Sim(3) values describe aligned shape. Invalid-orientation trajectories retain failed full-pose status; any recovered position-only diagnostic is separate in the CSV and is not a qualified score.

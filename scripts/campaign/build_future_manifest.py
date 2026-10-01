@@ -18,6 +18,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parent))
 from run_repetitions import atomic_json
 from run_future_manifest import UNREVIEWED_OVERRIDES
 from configuration_recipe import config_recipe
+from acceptance_ledger import LEDGER, DOCUMENT
 
 REPO=Path(__file__).resolve().parents[2]
 
@@ -40,6 +41,12 @@ def action_category(cell,attempt,decision):
         return 'required_rerun','camera_fps_changed_15_to_10'
     if not attempt['exists']:
         return 'missing','no_saved_attempt'
+    qualification=attempt.get('qualification',{})
+    if (qualification.get('reuse_qualified') and
+        (qualification.get('review')=='explicit_claim_review' or decision.get('reuse_qualified')) and
+        attempt.get('numerical_status')!='eval_failed' and
+        (attempt.get('evaluated') or qualification.get('status')=='valid_observed_failure')):
+        return 'reusable','retain_observed_outcome_including_any_genuine_failure'
     if not attempt['trajectory_saved']:
         return 'blocked','retain_failed_or_interrupted_attempt_and_resolve_execution_cause'
     if not attempt['evaluated']:
@@ -120,6 +127,14 @@ def build(repo,inventory,inventory_path,decisions):
                 prerequisites.append('resolve_within_cell_configuration_mismatch')
             if not cell.get('within_cell_cohort_consistent', True):
                 prerequisites.append('resolve_recorded_source_binary_parameter_or_hardware_cohort_difference')
+            if cell['algorithm'] in ('ov2slam','voxel_svio'):
+                prerequisites.append('capture_native_exit_separately_and_diagnose_logged_shutdown_errors')
+            review_evidence=list(decision.get('evidence',[]))
+            if attempt.get('qualification',{}).get('review')=='explicit_claim_review':
+                review_evidence += [dict(path=p,sha256=digest(repo/p)) for p in (LEDGER,DOCUMENT)]
+            # Acceptance permits retaining this observation. Future build/config
+            # validation applies to new estimation, not to keeping saved evidence.
+            if category=='reusable':prerequisites=[]
             # Unique physical IDs preserve every original directory and log.
             while f'run{next_id}' in occupied or (repo/'logs'/f"{cell['dataset']}_{cell['sequence']}_{cell['algorithm']}_{cell['run_type']}_run{next_id}.log").exists():
                 next_id+=1
@@ -145,7 +160,7 @@ def build(repo,inventory,inventory_path,decisions):
                 cohort=cohort,prerequisites=sorted(set(prerequisites)),runtime_estimate=runtime,
                 readiness=dict(verified_ready_to_run=ready,static_checks='verified' if decision.get('static_verified') else 'pending',
                     execution_validation='verified' if decision.get('execution_verified') else 'not_verified_after_repairs'),
-                review_evidence=decision.get('evidence',[])))
+                review_evidence=review_evidence))
     estimates=[a['runtime_estimate'].get('estimate_s') for a in actions if a['category'] in ('missing','required_rerun')]
     return dict(schema_version=2,configuration_recipe_schema=1,input_identity_schema=1,runtime_identity_schema=1,
         implementation_capture_schema=1,campaign_id='future-n3-five-modes',audit_status='in_progress',

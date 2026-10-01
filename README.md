@@ -7,7 +7,7 @@
 > Start with [TODO](TODO.md), [repair evidence](docs/repair-audit-20261001.md), and
 > [future campaign preparation](docs/campaigns/future-n3-preparation.md).
 > **Repair/audit complete; native execution readiness remains unverified.**
-> See [the handoff](docs/repair-handoff-20261001.md). Root exports are reconciled; publication qualification remains blocked.
+> See [the acceptance handoff](docs/acceptance-handoff-20261001.md). Root exports are reconciled; 45 EuRoC cells now have clean accepted N=3; limited results and material blockers are explicit.
 > No new estimator executions or campaigns are authorized as part of this repair.
 
 

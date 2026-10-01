@@ -95,6 +95,15 @@ failures, exits and blockers. Sample SD is unknown for N<2. Main tables use medi
 (min–max), report evaluated/planned counts, separate cohorts and input variants, and
 do not rank unqualified results. No `any ok` condition creates a green tick.
 
+The [explicit acceptance ledger](campaigns/paper-acceptance-20261001.json) pins each
+reviewed default observation and numerical content. `paper_usable` includes stated
+limited claims and observed failures; `accuracy_eligible` excludes failure-only
+claims. `paper_ready` describes an accepted repetition, while `clean_qualified_n3`
+additionally requires three consistent, dense, zero-exit repetitions with no native
+fatal log observations. `native_error_observation_count` exposes errors masked by a
+wrapper zero exit. Claim limits and reproducibility disclosures accompany the score;
+neither acceptance flag grants future execution readiness.
+
 ## Runtime
 
 Processing claims require instrumentation, not just a recorded number. Historical
@@ -142,6 +151,14 @@ source CSVs or report contents. This proves reconciliation with the hash-checked
 inventory, not scientific correctness by itself. Replaced derived files are
 preserved under `results/.derived-history/` before atomic replacement.
 
+After an explicit claim-review change, run `build_repair_inventory.py`,
+`reconcile_qualification.py`, rebuild the inventory, promote with
+`promote_repaired_evaluations.py --apply`, and rebuild the inventory again before
+the CSV/report commands. These steps preserve numerical fields and earlier JSONs.
+Then run `update_todo_matrices.py`, `build_acceptance_handoff.py` and
+`build_future_manifest.py`. Changed pinned evidence blocks a prior decision;
+normal regeneration never makes new acceptance decisions automatically.
+
 For changed evaluation code or input evidence, back up staging and regenerate with
 `reevaluate_saved_runs.py --stage results/repair-20261001`, then rebuild/check the
 inventory. `promote_repaired_evaluations.py` performs a read-only promotion preflight;
@@ -158,7 +175,7 @@ legacy figures are labelled and not previewed as repaired plots. Historical/smok
 entries are outside the default browser filter.
 
 Current all-mode figures use checked CSVs, separate scale models/cohorts and carry
-explicit provisional labels. Their exact inputs, cell data and PNG/PDF hashes are in
+explicit acceptance/limitation/blocker labels. Their exact inputs, cell data and PNG/PDF hashes are in
 `docs/generated/figures/figure-data.json`. Old report figures are archived under
 `docs/generated/historical-before-repair-20261001/`. Legacy per-run plots remain raw
 historical artifacts in the browser and must not be presented as repaired evidence.

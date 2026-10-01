@@ -7,6 +7,22 @@
 > The older summaries and numbered findings below are dated historical observations;
 > do not use their counts or excitation-only explanations as current conclusions.
 
+## 2026-10-01 — Focused configuration and acceptance review
+
+The [acceptance handoff](docs/acceptance-handoff-20261001.md) supersedes the earlier
+blanket qualification hold. Forty-five clean EuRoC N=3 cells qualify for the stated
+recorded-profile comparison. The 147 accepted repetitions, 54 limited observations
+and 11 valid observed configured-attempt failures are reusable. The 30 concrete
+reruns and 87 missing repetitions remain; 331 observations are blocked by material
+evidence rather than a blanket missing-build rule. All 593 numerical evaluations
+are unchanged. Agricultural accuracy/GNSS claims and native readiness stay unverified.
+
+New saved-log inspection found native shutdown errors in every EuRoC OV2SLAM and
+Voxel-SVIO attempt despite wrapper exit 0; those receive explicit limited labels.
+The native exit capture/shutdown diagnosis is a future prerequisite, not claimed fixed.
+The saved-profile comparison also documents OpenVINS dynamic initialization and
+OKVIS LC-window/final-extrinsic policy choices. No tuning, estimator run or push occurred.
+
 ## 2026-10-01 — All-mode repair and future N=3 preparation
 
 **Completed within the no-new-estimation scope.** [Final handoff](docs/repair-handoff-20261001.md).

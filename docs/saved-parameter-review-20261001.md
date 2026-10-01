@@ -43,13 +43,13 @@ execution readiness.
 
 | Algorithm | Saved settings | Consequence for reporting |
 |---|---|---|
-| ORB-SLAM3 | 1,200 ORB features across recorded configs; `Stereo.ThDepth` is 40 for Horti, 60 for EuRoC, 80 for Rosario/ZED | Feature-budget normalization was applied, but the depth heuristic remains rig-specific. Do not claim every algorithm parameter is fixed across datasets. Historical ZED VO/VO-LC still require the separate 15-to-10 Hz correction. |
+| ORB-SLAM3 | 1,200 ORB features across recorded configs; `Stereo.ThDepth` is 40 for Horti, 60 for EuRoC, 80 for Rosario/ZED | EuRoC's 1,200 features/depth 60 match the bundled example; the benchmark also selected 1,200 elsewhere, while the depth heuristic remains rig-specific. Do not claim every algorithm parameter is fixed across datasets. Historical ZED VO/VO-LC still require the separate 15-to-10 Hz correction. |
 | OKVIS2 / OKVIS2-X | IMU and LC switches agree with the declared non-GNSS modes wherever saved config evidence exists. All recorded OKVIS2 LC configs disable final BA; OKVIS2-X LC configs enable it | Label final BA explicitly in both VO-LC and VIO-LC. The comparison includes an optimization-policy difference, not just an implementation difference. `do_extrinsics_final_ba=true` is inactive when final BA is disabled. |
-| OKVIS2-X | VIO-LC uses five loop-closure frames on EuRoC/Horti/Rosario, three on ZED | Another declared configuration variant is needed; it is not a camera calibration field. |
+| OKVIS2-X | VIO-LC uses five loop-closure frames on EuRoC/Horti/Rosario, three on ZED | Disclose this profile variant; it is not a camera calibration field. The EuRoC example uses three LC frames. OKVIS2 VO-LC also uses five versus its VIO-LC example's three. |
 | Basalt | Rosario VO triangulation gate 0.03 m, other recorded gates 0.05 m; realtime frame dropping disabled | Keep the documented 49.7 mm-baseline exception. Distinguish the separately selected VO/VIO profiles. |
 | AirSLAM | Upper depth bound is 10 m for EuRoC, 15 m for Horti, 50 m for Rosario/ZED | A benchmark adaptation remains inside camera-named files. Sparse export and the 18 EuRoC inertial rectification reruns remain separate issues. |
 | OV2SLAM | `nmaxdist=35` everywhere, but Horti uses initialization parallax 15 and coverage score 20 versus 20/25 elsewhere | The earlier normalization did not produce one identical algorithm profile. Report these remaining adaptations rather than calling all settings unchanged upstream defaults. |
-| OpenVINS | 200 points everywhere; online camera intrinsics/extrinsics calibration enabled for EuRoC and disabled for agriculture; initialization acceleration threshold 1.5 versus 1.0 | The comments justify the calibration switch by pre-rectified input, but this is still an algorithm choice. Record the exception and its selection rationale; do not relabel it as a measured sensor constant. |
+| OpenVINS | 200 points everywhere; online camera intrinsics/extrinsics calibration enabled for EuRoC and disabled for agriculture; initialization acceleration threshold 1.5 versus 1.0 | The comments justify the calibration switch by pre-rectified input, but this is still an algorithm choice. EuRoC additionally enables author-supported dynamic initialization (`init_dyn_use=true` versus the example's false). Record the exceptions and their selection rationale; do not relabel it as a measured sensor constant. |
 | Voxel-SVIO | 500 points; 10 s initialization window for MH01, 2 s elsewhere | The upstream EuRoC config explicitly recommends 10 s for MH01/02/04. Disclose the author-specified sequence exception and retain the observed incomplete MH01 trajectory coverage. |
 | DPVO / DPV-SLAM | Recorded stride 1, skip 0, mode-specific LC and predetermined seeds | Selected input/mode contracts pass where metadata exists. Sim(3) remains the primary monocular shape metric; this does not validate all native/runtime dependencies. |
 | MAC-VO | Official Performant configuration, with loader-specific data configs | Label Performant explicitly; its own config says it is not the paper-reproduction profile. Fifteen generic `gt_pose` checks are unverified because GeneralStereo configs lack that switch; this is not evidence of ground-truth leakage. Inspect loader semantics separately. |
@@ -70,3 +70,8 @@ duplication as evidence that LC was enabled or as a rerun reason by itself.
 Future ORB config materialization drops both old LC keys and writes exactly one
 effective `loopClosing` setting. Original configs/snapshots remain available. Native
 failure diagnoses and scientific qualification are independent of this cleanup.
+
+The subsequent [acceptance review](paper-acceptance-20261001.md) compares 47 saved
+EuRoC profile groups with bundled examples and records every repetition exception.
+Its decisions supersede the earlier blanket qualification hold, not the preserved
+configuration findings or historical evidence.

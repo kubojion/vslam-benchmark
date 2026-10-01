@@ -36,29 +36,29 @@ manifest consumed by `scripts/campaign/run_future_manifest.py`. Preparation and
 repair/audit are complete within the no-new-estimation scope; see the
 [handoff](../repair-handoff-20261001.md). No action is certified ready.
 
-Current classification after the historical evidence review:
+Current classification after the [focused acceptance review](../acceptance-handoff-20261001.md):
 
 | Category | Logical repetitions | Meaning |
 |---|---:|---|
 | Required rerun | 30 | Six ORB ZED FPS cases, 18 AirSLAM EuRoC inertial rectification cases and six ORB Horti VIO-LC rectification cases; preserve previous cohorts |
 | Missing | 87 | No saved default attempt directory for that repetition |
-| Blocked/review | 543 | Specific provenance/reference or failed-attempt prerequisites remain unresolved |
-| Reusable, qualified | 0 certified yet | Strong publication qualification lacks required evidence; this does not mean all must be rerun |
+| Blocked/review | 331 | Material reference/input or unresolved execution evidence remains missing |
+| Reusable for stated claim | 212 | 147 accepted, 54 limited and 11 observed configured-attempt failures; not all clean successes |
 
-All 660 actions are currently unverified for future execution. The 30 reruns and
+No new estimator execution is verified ready. The 212 reusable observations need no new estimation. The 30 reruns and
 87 missing repetitions retain prerequisites; their category is not permission to
 start them. Review will move eligible saved observations into reusable status,
 including genuine failures under a valid protocol. Invalid estimator settings
 require a separate corrected cohort; failures must not be repeatedly sampled until
 three successes remain.
 
-The current runtime calculation covers **25 of the 117 missing/rerun actions**, with
-a combined historical median estimate of about **37.2 hours**. The other 92 lack a
+The current runtime calculation covers **23 of the 117 missing/rerun actions**, with
+a combined historical median estimate of about **34.6 hours**. The other 94 lack a
 comparable complete same-cell run on this server. **This is not a total campaign
 estimate.** It excludes unresolved blocked actions, validation diagnostics and
 re-evaluation overhead. Each action records the source runs, observed range, pacing
 mode and uncertainty. Old-machine GNSS times and early failures are not treated as
-full server-runtime estimates. Execution is serialized because estimators share
+full server-runtime estimates. Native-error samples are also excluded; this removes the Voxel-SVIO ZED sample from the earlier 37.2 h subtotal. Execution is serialized because estimators share
 containers and CPU/GPU resources. Included wrappers now isolate their native outputs
 per attempt, with actual post-repair native execution still unverified.
 
@@ -121,7 +121,7 @@ The manifest now carries each saved attempt's qualification and specific unresol
 reference/frame, sparse-export, final-BA and failure prerequisites, including
 dataset prerequisites for missing attempts. A corrected AirSLAM cohort is no longer
 incorrectly described as an FPS-15 cohort. All original invalid-config cohorts must
-be preserved. The current 30 reruns, 87 missing repetitions and 543 blocked/review
+be preserved. The current 30 reruns, 87 missing repetitions and 331 blocked/review
 cases include the six newly confirmed ORB Horti VIO-LC cases; 0 actions are certified ready.
 
 Execution uses the recorded runner-default recipe. The preflight rejects nonempty
@@ -129,8 +129,8 @@ inherited configuration, playback, GNSS input/covariance, seed and numerical-run
 overrides listed in `environment_policy`; it does not silently discard them. Such
 changes require a separately reviewed recipe. DPVO's planned seed is explicit and
 deterministically derived from its fresh physical attempt ID. Runtime estimates
-remain historical planning estimates: about 37.2 serialized hours for the 25 actions
-with comparable timing, with 92 of the 117 rerun/missing actions unestimated. This
+remain historical planning estimates: about 34.6 serialized hours for the 23 actions
+with comparable timing, with 94 of the 117 rerun/missing actions unestimated. This
 is not an estimate for the entire remaining campaign.
 
 Each action now carries an explicit configuration recipe: selected source paths and

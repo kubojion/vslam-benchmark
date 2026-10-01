@@ -1,16 +1,14 @@
 # vSLAM Benchmark - TODO
 
-> **Repair/audit complete 2026-10-01; execution readiness unverified.** Original matrices and task-table layouts retained.
-> The original four-mode campaign now has **545/600 repaired evaluations** after seven
-> saved trajectories were recovered: **176 cells at N=3, 17 at N=1, seven at N=0**.
-> Five evaluated attempts retain scale collapse. **55 repetitions lack an
-> evaluation; this does not mean 55 new executions are needed.**
-> The future target is **N=3 across all five modes**, retaining existing algorithm exclusions.
-> GNSS's 20 legacy default attempts and six variants remain separate from the original
-> server campaign. Specific qualification blockers and the guarded future manifest are documented.
-> **No green publication ticks are awarded with unresolved qualification blockers.**
-> Root CSVs, evaluations, reports, figures and browser are reconciled. No estimator was launched during
-> this repair. See [the handoff](docs/repair-handoff-20261001.md), [repair evidence](docs/repair-audit-20261001.md) and [the goal](docs/codex-goal.md).
+> **Acceptance review 2026-10-01:** 45 clean N=3 EuRoC cells now qualify for the documented
+> recorded-profile comparison. A further 54 repetitions have explicit limitations;
+> 11 observed configured-attempt failures are retained. Agricultural accuracy and GNSS
+> claims remain blocked by material calibration/reference/input evidence.
+> The five matrix layouts are unchanged. **N counts evaluations, not accepted successes.**
+> Existing 593 evaluations and all numerical values are preserved; the original four-mode
+> campaign still has 545/600 evaluations. No estimator was run and no native execution
+> path is newly certified ready. See [acceptance handoff](docs/acceptance-handoff-20261001.md),
+> [claim criteria](docs/paper-acceptance-20261001.md) and [the repair record](docs/repair-handoff-20261001.md).
 
 ---
 
@@ -22,43 +20,42 @@
 
 ## Run combinations matrix
 
-Legend per cell: ✅ N=3 scientifically qualified for the documented claim | 🟡 evaluation under review |
-❌ failed attempt, no complete evaluation | ⏳ output exists, evaluation pending |
-⬜ not run / config only | 🔧 config missing | ➖ excluded / unsupported | 🔁 configuration review needed.
+Legend per cell: ✅ N=3 clean accepted for the stated claim | 🟠 accepted with limitations |
+❌ observed failure retained | 🟡 blocked by specific evidence | ⬜ missing repetitions |
+🔁 required corrected cohort | ➖ excluded / unsupported | 🔧 missing excluded config.
 
-**N counts current schema-3 evaluations, including retained failures**, independently of
-historical COMPLETE markers. `N=0` can include an attempted crash. `N=1; +2` means two
-target repetitions still lack evaluations, subject to configuration/cohort review.
-`collapse r2` retains a negative outcome. `invalid trajectory` is an evaluation failure,
-not usable accuracy. AirSLAM's sparse keyframes cannot establish dense tracking coverage.
-Historical DROID counts remain excluded. A green `N=3 ✅` requires documented scientific
-qualification; successful execution alone is insufficient.
+**N counts schema-3 evaluations, including retained numerical failures**, independently
+of historical COMPLETE markers. `N=0` can contain an accepted observed startup failure.
+`missing r2,r3` means those physical attempts are absent; existing failed/interrupted
+attempts are not missing. Limited claims name sparse exports, partial coverage,
+nonzero exits or native shutdown errors despite wrapper exit 0. A green tick requires
+three accepted, same-cohort, zero-exit, valid trajectories each with ≥95% dense export
+coverage and no observed native fatal error. It does not certify future runner readiness.
+Monocular Sim(3), final-optimization profiles and historical build disclosures remain explicit.
 
-The latest saved-parameter check confirms six additional required reruns: ORB-SLAM3
-HortiMulti VIO-LC used a raw-camera IMU rotation with rectified images. The two cells
-below retain `N=3` and now say `rerun: rectified IMU`. See the
-[saved-parameter review](docs/saved-parameter-review-20261001.md). Across all five modes,
-the prepared future manifest lists 30 required reruns, 87 missing and 543 blocked/review
-repetitions; none is yet certified ready to execute.
+The future manifest contains **212 reusable observations, 30 required reruns, 87 missing
+repetitions and 331 blocked cases**. No new estimation is certified ready. The 30 defects
+are the existing six ORB ZED FPS, eighteen Air EuRoC inertial rectification and six ORB
+Horti VIO-LC rectification cases. See the handoff for exact repetitions and prerequisites.
 
 ### VO (no IMU, no loop closure) - `results/vo/`
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ❌ N=0; crash | ❌ N=0; crash | ❌ N=0; crash | 🟡 N=3; reference review; exit 139 | 🟡 N=3; provenance review | 🟡 N=3; provenance review; exit 139 | 🟡 N=3; provenance review | 🟡 N=3; rerun: FPS; exit 139 |
-| Basalt | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review |
-| MAC-VO | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review |
-| AirSLAM | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review |
+| ORB-SLAM3 | ❌ N=0; observed failure r1; missing r2,r3 | ❌ N=0; observed failure r1; missing r2,r3 | ❌ N=0; observed failure r1; missing r2,r3 | 🟡 N=3; blocked: reference; exit 139 | ✅ N=3 | 🟠 N=3; limited; exit 139 | ✅ N=3 | 🔁 N=3; rerun: FPS; exit 139 |
+| Basalt | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; blocked: reference |
+| MAC-VO | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; blocked: reference |
+| AirSLAM | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟠 N=3; limited; sparse | 🟠 N=3; limited; sparse | 🟠 N=3; limited; sparse | 🟡 N=3; blocked: reference |
 | DROID-SLAM | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=1 historical | 🟡 N=1 historical | 🟡 N=1 historical | ➖ excluded; no run |
-| DPVO | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review |
-| OKVIS2 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; collapse r2; provenance review |
-| OKVIS2-X | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review |
-| OV2SLAM | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review |
+| DPVO | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; blocked: reference |
+| OKVIS2 | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; collapse r2; blocked: reference; observed failure r2 |
+| OKVIS2-X | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; blocked: reference |
+| OV2SLAM | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟠 N=3; limited; native shutdown error | 🟠 N=3; limited; native shutdown error | 🟠 N=3; limited; native shutdown error | 🟡 N=3; blocked: reference |
 | MASt3R-SLAM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | 🔧 config missing; excluded |
 | MegaSaM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | 🔧 config missing; excluded |
 
-> **Remaining:** ORB-SLAM3 Rosario seq1/seq5 and Horti str02 need recovery (no current
-> complete evaluations). OKVIS2 ZED run2 is a retained collapse, not an unexecuted repetition.
+> **Remaining:** ORB-SLAM3 Rosario seq1/seq5 and Horti str02 retain observed startup failures
+> (no saved trajectories to recover); r2/r3 remain missing. OKVIS2 ZED run2 is a retained collapse, not an unexecuted repetition.
 > **Basalt:** the explicit Rosario compatibility profile uses 0.03; other datasets retain
 > the upstream 0.05 setting, matching saved runs. ZED relative stereo geometry is verified
 > equivalent for pure VO. Other reference/qualification gates still apply.
@@ -72,19 +69,19 @@ repetitions; none is yet certified ready to execute.
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | ❌ N=0; crash |
-| Basalt | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=1; IMU review; +2 |
-| OKVIS2 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=1; IMU review; +2 |
-| OKVIS2-X | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=1; IMU review; +2 |
-| OpenVINS | 🟡 N=1; collapse r1; reference review; exit 134; +2 | 🟡 N=1; collapse r1; reference review; exit 134; +2 | 🟡 N=1; reference review; exit 134; +2 | 🟡 N=1; reference review; exit 134; +2 | 🟡 N=1; provenance review; exit 134; +2 | 🟡 N=1; provenance review; exit 134; +2 | 🟡 N=1; provenance review; +2 | 🟡 N=1; collapse r1; IMU review; +2 |
-| AirSLAM | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=1; IMU review; +2 |
-| Voxel-SVIO | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=1; IMU review; +2 |
+| ORB-SLAM3 | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | ✅ N=3 | 🟠 N=3; limited; partial coverage | ✅ N=3 | ❌ N=0; observed failure r1; missing r2,r3 |
+| Basalt | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
+| OKVIS2 | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
+| OKVIS2-X | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
+| OpenVINS | ❌ N=1; collapse r1; observed failure r1; exit 134; missing r2,r3 | ❌ N=1; collapse r1; observed failure r1; exit 134; missing r2,r3 | 🟡 N=1; blocked: reference; exit 134; missing r2,r3 | 🟡 N=1; blocked: reference; exit 134; missing r2,r3 | 🟠 N=1; limited; exit 134; missing r2,r3 | 🟠 N=1; limited; exit 134; missing r2,r3 | 🟠 N=1; limited; partial coverage; missing r2,r3 | ❌ N=1; collapse r1; observed failure r1; missing r2,r3 |
+| AirSLAM | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🔁 N=3; rerun: rectified IMU | 🔁 N=3; rerun: rectified IMU | 🔁 N=3; rerun: rectified IMU | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
+| Voxel-SVIO | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟠 N=3; limited; native shutdown error; partial coverage | 🟠 N=3; limited; native shutdown error | 🟠 N=3; limited; native shutdown error | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
 
 > HortiMulti IMU and rectified camera–IMU corrections are implemented. All seven non-ZED
 > sequences have N=3 for six algorithms; **OpenVINS remains N=1 in every cell**. Six
 > previously unscored run1 trajectories have repaired evaluations, retaining exit 134.
 > Rosario seq1/seq5 contain catastrophic scale failures; shutdown errors do not explain
-> away those failures. Other recovered trajectories remain under review.
+> away those failures. EuRoC recovered trajectories are accepted with exit/coverage limitations; agricultural accuracy remains blocked.
 > **ZED:** the six N=1 results use the corrected camera-optical/IMU transform. OpenVINS
 > still collapses; ORB-SLAM3 still has no evaluated output. Each N=1 cell needs run2/run3.
 > The old identity-transform results and excitation-only explanation are historical.
@@ -94,12 +91,12 @@ repetitions; none is yet certified ready to execute.
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| DPV-SLAM | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review |
-| OKVIS2 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=1; provenance review; +2 |
-| OKVIS2-X | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | ❌ N=0; failed |
-| ORB-SLAM3 | ❌ N=0; crash | 🟡 N=3; reference review | 🟡 N=3; reference review; exit 134,139 | 🟡 N=3; reference review; exit 139 | 🟡 N=3; provenance review; exit 139 | 🟡 N=3; provenance review; exit 139 | 🟡 N=3; provenance review; exit 134 | 🟡 N=3; rerun: FPS; exit 139 |
-| AirSLAM | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review |
-| OV2SLAM | 🟡 N=3; collapse r2; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review |
+| DPV-SLAM | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; blocked: reference |
+| OKVIS2 | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference; missing r3 |
+| OKVIS2-X | 🟡 N=3; blocked: reference; separate cohorts | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=0; blocked: execution/evidence; missing r2,r3 |
+| ORB-SLAM3 | ❌ N=0; observed failure r1; missing r2,r3 | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference; exit 134,139 | 🟡 N=3; blocked: reference; exit 139 | 🟠 N=3; limited; exit 139 | 🟠 N=3; limited; exit 139 | 🟠 N=3; limited; exit 134 | 🔁 N=3; rerun: FPS; exit 139; separate cohorts |
+| AirSLAM | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟠 N=3; limited; sparse | 🟠 N=3; limited; sparse | 🟠 N=3; limited; sparse | 🟡 N=3; blocked: reference; separate cohorts |
+| OV2SLAM | 🟡 N=3; collapse r2; blocked: reference; observed failure r2 | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟠 N=3; limited; native shutdown error | 🟠 N=3; limited; native shutdown error | 🟠 N=3; limited; native shutdown error | 🟡 N=3; blocked: reference |
 | MASt3R-SLAM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | 🔧 config missing; excluded |
 
 > **OKVIS2:** all seven non-ZED cells now have N=3 after the September 23 recovery,
@@ -118,10 +115,10 @@ repetitions; none is yet certified ready to execute.
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; rerun: rectified IMU; reference review | 🟡 N=3; rerun: rectified IMU; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | ❌ N=0; crash |
-| OKVIS2 | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=1; IMU review; +2 |
-| OKVIS2-X | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; reference review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=3; provenance review | 🟡 N=1; IMU review; +2 |
-| AirSLAM | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=3; rerun: rectified IMU; sparse; review | 🟡 N=1; IMU review; +2 |
+| ORB-SLAM3 | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🔁 N=3; rerun: rectified IMU | 🔁 N=3; rerun: rectified IMU | ✅ N=3 | 🟠 N=3; limited; partial coverage | ✅ N=3 | ❌ N=0; observed failure r1; missing r2,r3 |
+| OKVIS2 | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
+| OKVIS2-X | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
+| AirSLAM | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🟡 N=3; blocked: reference | 🔁 N=3; rerun: rectified IMU | 🔁 N=3; rerun: rectified IMU | 🔁 N=3; rerun: rectified IMU | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
 
 > All four methods have N=3 on the seven non-ZED sequences. **ZED configs now exist**:
 > OKVIS2, OKVIS2-X and AirSLAM each have corrected N=1 and need two more repetitions;
@@ -132,11 +129,11 @@ repetitions; none is yet certified ready to execute.
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 |
 |---|---|---|---|---|
-| CIFASIS GNSS-SI | 🟡 N=1; legacy; provenance; +2 | 🟡 N=1; legacy; provenance; +2 | 🟡 N=1; legacy; provenance; +2 | 🟡 N=1; legacy; provenance; +2 |
-| RTAB-Map | 🟡 N=1; legacy; provenance; +2 | 🟡 N=1; legacy; provenance; +2 | 🟡 N=1; legacy; provenance; +2 | 🟡 N=1; legacy; provenance; +2 |
-| VINS-Fusion | 🟡 N=1; legacy; provenance; +2 | 🟡 N=1; legacy; provenance; +2 | 🟡 N=1; invalid trajectory; legacy; provenance; +2 | 🟡 N=1; legacy; provenance; +2 |
-| OpenVINS+GPS | 🟡 N=1; legacy; provenance; +2 | 🟡 N=1; legacy; provenance; +2 | 🟡 N=1; legacy; provenance; +2 | 🟡 N=1; legacy; provenance; +2 |
-| OKVIS2-X (tight) | 🟡 N=1; legacy; provenance; +2 | 🟡 N=1; legacy; provenance; +2 | 🟡 N=1; legacy; provenance; +2 | 🟡 N=1; legacy; provenance; +2 |
+| CIFASIS GNSS-SI | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 |
+| RTAB-Map | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 |
+| VINS-Fusion | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; invalid trajectory; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 |
+| OpenVINS+GPS | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 |
+| OKVIS2-X (tight) | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 |
 
 > **Excluded from the executed server N=3 campaign.** These are historical N=1 results
 > from earlier machines, not repeated server measurements. Sixteen default cells have
@@ -349,9 +346,9 @@ server runners. Remaining gaps are shown in the matrices above.
 
 | Task | Status |
 |---|---|
-| OKVIS2 VO-LC full N=1 (all 8 sequences) | `[~]` seven non-ZED N=3; ZED run1 exported but unevaluated |
+| OKVIS2 VO-LC full N=1 (all 8 sequences) | `[~]` seven non-ZED N=3; ZED run1 recovered/evaluated, r2 interrupted, r3 missing |
 | OKVIS2-X VO-LC full N=1 (all 8 sequences) | `[~]` seven non-ZED N=3; ZED N=0 complete evaluations |
-| ORB-SLAM3 runner + configs for rosariov2/hortimulti/EuRoC/zed2i | `[~]` seven cells N=3; Rosario seq1 recovery crashes |
+| ORB-SLAM3 runner + configs for rosariov2/hortimulti/EuRoC/zed2i | `[~]` seven cells N=3; Rosario seq1 retains observed r1 startup failure |
 | MASt3R-SLAM runner + configs for rosariov2/hortimulti/EuRoC | `[x]` scaffolded; excluded from current campaign |
 | AirSLAM VO-LC | `[x]` visual-only LC now implemented; N=3 all eight |
 | OV2SLAM VO full N=1 (str02/MH_01/MH_03 filled) | `[x]` now N=3 all eight, including ZED |
@@ -361,7 +358,7 @@ server runners. Remaining gaps are shown in the matrices above.
 
 | Task | Status |
 |---|---|
-| Accuracy-first configs (`force_realtime: 0`, half-speed replay for measured runs) | `[x]` |
+| Accuracy-first configs (`force_realtime: 0`; server metadata records 1.0 replay) | `[x]` |
 | VO N=1 on Rosario seq1+seq5, EuRoC MH_05 and HortiMulti str03 | `[x]` 7.236 m / 8.045 m / 0.099 m / 0.351 m Sim3 ATE |
 | Complete VO N=1 sweep on the remaining four standard sequences | `[x]` N=3 all eight; see matrix for coverage caveats |
 
@@ -388,14 +385,16 @@ server runners. Remaining gaps are shown in the matrices above.
 | Rebuild `benchmark-vio.csv` after N=3 runs (Basalt/ORB-SLAM3/OpenVINS) | `[x]` current 168 planned rows; missing repetitions are explicit |
 | Add MASt3R-SLAM to applicable CSVs | `[ ]` deferred scope extension, not a missing N=3 obligation |
 | Generate segment maps for all new Phase 2 sequences | `[ ]` |
-| Final cross-algo ATE plots (VO vs VIO per sequence) | `[~]` all-mode provisional diagnostics generated; publication comparisons blocked by qualification |
+| Final cross-algo ATE plots (VO vs VIO per sequence) | `[~]` all-mode figures label 45 clean EuRoC N=3 cells, limited claims and material agricultural/GNSS blockers |
+| Explicit claim acceptance and stable regeneration | `[x]` evidence-pinned ledger; 45 clean N=3 cells; numerical results unchanged |
+| Capture actual native exits and validate repaired execution | `[!]` OV2/Voxel shutdown errors found despite wrapper zero; native diagnostic execution remains unauthorized |
 | Thesis-ready LaTeX table | `[ ]` |
 | Exclude five COMPLETE smoke artifacts from headline discovery | `[x]` explicit campaign membership; all smoke/historical evidence retained |
 | DPVO metric labeling and mixed-status / failure counts | `[x]` monocular Sim(3), metric SE(3); failures and planned denominators retained |
 | RPE, GNSS origin alignment, ZED orientation and sparse-output coverage semantics | `[x]` corrected definitions, unsupported metrics withheld; 593 evaluations reconciled |
 | GT/segmentation cache freshness and deferred segment coalescing | `[x]` hash-bound inputs and corrected geometric segment generation |
 | Refresh all CSVs, tables/claims, figures and browser together | `[x]` 666 CSV rows, 226 cell/variant summaries, 690 browser entries; failures remain explicit |
-| Freeze source/config/binary provenance and declare final N / GNSS scope | `[!]` future N=3 all five modes declared; exact historical runner/native build gaps remain |
+| Freeze source/config/binary provenance and declare final N / GNSS scope | `[!]` future N=3 scope frozen; exact historical rebuild gaps disclosed, future native readiness unverified |
 
 ---
 

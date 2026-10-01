@@ -40,6 +40,8 @@ def cohort_summary(rows):
                 evaluated=sum(r['eval_schema']==3 for r in rows),
                 outcomes=dict(Counter(r['run_status'] for r in rows)),
                 qualified=sum(r['paper_ready'] is True for r in rows),
+                paper_usable=sum(r.get('paper_usable') is True for r in rows),
+                accepted_primary_ate=summary([r['primary_ate_rmse_m'] for r in selected if r.get('accuracy_eligible')]),
                 nonzero_exits=sum(r['process_exit_code'] not in (None,0) for r in rows),
                 alignment=next(iter(alignments)),
                 conditional_primary_ate=summary([r['primary_ate_rmse_m'] for r in selected]),
@@ -61,8 +63,12 @@ def summarize_cell(rows):
     return dict(identity=list(next(iter(identities))), planned_slots=len(rows),
                 attempted=sum(r['attempt_exists'] for r in rows),
                 evaluated=sum(r['eval_schema']==3 for r in rows), outcomes=outcomes,
+                acceptance=dict(Counter(r['scientific_status'] for r in rows)),
+                paper_usable=sum(r.get('paper_usable') is True for r in rows),
+                claim_limits=sorted({limit for r in rows for limit in json.loads(r.get('claim_limits') or '[]')}),
                 clean_qualified_n3=(len(rows)==3 and len(groups)==1 and all(
                     r['paper_ready'] is True and r['run_status']=='ok' and r['process_exit_code']==0
+                    and not r.get('native_error_observation_count')
                     and numeric(r['coverage_gap_pct']) and r['coverage_gap_pct']>=95 for r in rows)),
                 cohorts=[cohort_summary(group) for _,group in sorted(groups.items())],
                 scientific_blockers=sorted({blocker for r in rows for blocker in json.loads(r['scientific_blockers'])}))
@@ -79,6 +85,7 @@ def render_report(rows, result):
            f"Planned slots: {result['planned_slots']}; attempted: {result['attempted']}; "
            f"evaluated: {result['evaluated']}. Outcomes: `{json.dumps(result['outcomes'],sort_keys=True)}`.", '',
            '**N=3 ✅ qualified**' if result['clean_qualified_n3'] else '**Not a qualified clean N=3 cell.**', '',
+           f"Acceptance decisions: `{json.dumps(result['acceptance'],sort_keys=True)}`; paper-usable observations: {result['paper_usable']}.", '',
            'ATE below describes numerically valid saved trajectories only. Failures and missing '
            'repetitions stay in the denominator; conditional accuracy is not a success rate. '
            'Separate source/configuration/hardware cohorts are never pooled. '
@@ -94,6 +101,8 @@ def render_report(rows, result):
                 f"Conditional {group['alignment'].upper()} ATE: N={stats['n']}; median {number(stats['median'])} m; "
                 f"range {number(stats['min'])}–{number(stats['max'])} m; sample SD {number(stats['sample_std'])} m.",
                 f"Evaluated {group['evaluated']}; qualified {group['qualified']}; nonzero exits {group['nonzero_exits']}."]
+    lines+=['', '## Accepted claim limits', '']
+    lines += ['- '+s for s in result['claim_limits']] or ['None recorded.']
     lines+=['', '## Interpretation', '',
             'Sparse keyframes do not establish dense tracking coverage. Unknown fields stay unknown. '
             'SE(3) shape alignment does not measure absolute GNSS global error. DPVO uses Sim(3); '

@@ -1,5 +1,9 @@
 # All-configuration repair audit — 2026-10-01
 
+> Historical repair milestones below are preserved. The subsequent [acceptance handoff](acceptance-handoff-20261001.md)
+> supersedes blanket qualification counts and native-error timing assumptions.
+
+
 This records [the completed repair/audit scope](codex-goal.md), covering VO,
 VO-LC, VIO, VIO-LC and GNSS-VIO. See [the final handoff](repair-handoff-20261001.md).
 The 593 repaired evaluations, five root CSVs, cell reports, tables, figures and

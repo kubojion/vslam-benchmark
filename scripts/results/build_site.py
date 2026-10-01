@@ -103,6 +103,7 @@ def run_page(run: dict, page_name: str, file_key: str) -> str:
             )
     validation = "".join(f"<li>{esc(e)}</li>" for e in run.get("validation_errors", []))
     blockers = "".join(f"<li>{esc(e)}</li>" for e in run.get("scientific_blockers", []))
+    limits = "".join(f"<li>{esc(e)}</li>" for e in run.get("claim_limits", []) + run.get('reproducibility_disclosures', []))
     return f"""<!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="../assets/style.css"><title>{esc(run['algorithm'])}</title></head>
@@ -112,6 +113,8 @@ def run_page(run: dict, page_name: str, file_key: str) -> str:
 <dt>Status</dt><dd class="status-{esc(run['status'])}">{esc(run['status'])}</dd>
 <dt>Execution</dt><dd>{esc(run.get('execution_status','unknown'))}; exit {esc(run.get('process_exit_code','unknown'))}</dd>
 <dt>Qualification</dt><dd>{esc(run.get('scientific_status','unreviewed'))}</dd>
+<dt>Accepted claim</dt><dd>{esc(run.get('accepted_claim') or 'none')}</dd>
+<dt>Native error log observations</dt><dd>{esc(run.get('native_error_observation_count',0))}</dd>
 <dt>Membership</dt><dd>{esc(run.get('campaign_membership','unknown'))}</dd>
 <dt>Input variant</dt><dd>{esc(run.get('input_variant','default'))}</dd>
 <dt>Recorded cohort</dt><dd>{esc(run.get('cohort','unknown'))}</dd>
@@ -135,6 +138,7 @@ def run_page(run: dict, page_name: str, file_key: str) -> str:
 <dt>Resource scope</dt><dd>{esc(metric(run, 'resource_scope'))}</dd></dl>
 {f'<h2>Validation</h2><ul>{validation}</ul>' if validation else ''}
 {f'<h2>Scientific blockers</h2><ul>{blockers}</ul>' if blockers else ''}
+{f'<h2>Claim limits and disclosures</h2><ul>{limits}</ul>' if limits else ''}
 <p>Numerical evaluation, execution and qualification are separate. Historical plots remain artifacts; they are not repaired figures.</p>
 <h2>Current plots</h2><div class="plots">{''.join(previews) or '<p>No validated current plots.</p>'}</div>
 <h2>Artifacts</h2><ul>{''.join(links)}</ul></body></html>"""

@@ -49,7 +49,8 @@ def test_runtime_excludes_other_hardware_and_partial_or_failed_runs():
     other=copy.deepcopy(base);other['machine_id']='laptop';other['runtime']['end_to_end_time_s']=1
     partial=copy.deepcopy(base);partial['coverage']['coverage_gap_pct']=20
     failed=copy.deepcopy(base);failed['process']['exit_code']=134
-    result=runtime_estimate([base,other,partial,failed])
+    native=copy.deepcopy(base);native['qualification']={'native_error_observations':[{'text':'terminate called'}]}
+    result=runtime_estimate([base,other,partial,failed,native])
     assert result['estimate_s']==100 and result['sources']==['run1']
     assert runtime_estimate([other,partial,failed])['estimate_s'] is None
 

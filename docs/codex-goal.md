@@ -4,12 +4,20 @@ Prepared: 2026-10-01. Workspace: `/data/imoroz/vslam-benchmark`.
 
 ## Objective and scope
 
+Current extension: complete the user-authorized focused configuration/fairness and
+claim-acceptance review, preserving this repair. The [acceptance review](paper-acceptance-20261001.md)
+and [current handoff](acceptance-handoff-20261001.md) supersede the historical blanket
+hold below. Preserve explicit accepted/limited/failure decisions across regeneration;
+keep 30 concrete reruns separate from missing repetitions and material blockers.
+No estimator execution, tuning, history rewriting or pushing is authorized. The old
+temporary maintenance pause was explicitly revoked; continue the active goal.
+
 Completion checkpoint, 2026-10-01: the repair/audit scope is complete without new
 estimation. All 593 repaired evaluations and root exports are reconciled; exact
 future source/input/known-runtime capture, guarded N=3 preparation and safe cleanup
 are delivered. See [the handoff](repair-handoff-20261001.md) for final validation,
-counts, evidence, backups and prerequisites. No cell is awarded a green publication
-tick and no future action is certified ready to execute. Physical/reference,
+counts, evidence, backups and prerequisites. At that checkpoint no cell had a green publication
+tick; subsequent acceptance decisions are recorded above. No future estimation is certified ready to execute. Physical/reference,
 historical provenance and native-validation gaps remain explicit; they are not
 automatic rerun requests. Preserve completed work. The obsolete temporary pause
 was revoked and must never be reapplied. The original requirements below remain

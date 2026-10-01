@@ -29,7 +29,7 @@ def render(rows, inputs):
         '## Retained adverse outcomes', '',
         '| Run | Numerical status | Exit | Scientific status |', '|---|---|---:|---|']
     for row in rows:
-        if row['run_status'] not in ('ok', 'missing') or row['process_exit_code'] not in (None, 0):
+        if row['run_status'] not in ('ok', 'missing') or row['process_exit_code'] not in (None, 0) or row.get('native_error_observation_count'):
             lines.append(f"| `{row['run_path']}` | {row['run_status']} | {row['process_exit_code'] if row['process_exit_code'] is not None else 'unknown'} | {row['scientific_status']} |")
     lines += ['', '## Claim boundaries', '',
         '- Primary ATE is SE(3) for metric stereo/inertial methods and Sim(3) for monocular DPVO. No cross-scale winner is inferred.',

@@ -14,3 +14,8 @@ provisional; repair completion does not certify publication or native execution 
 
 The superseded report draft lives in `obsolete/report-draft-20260805.md` (gitignored) —
 report content is now written from `generated/`, never the other way around.
+
+Current scientific eligibility: [paper acceptance criteria](paper-acceptance-20261001.md)
+and [acceptance handoff with exact remaining repetitions](acceptance-handoff-20261001.md).
+
+Validation and preservation: [acceptance checks](acceptance-validation-20261001.md).

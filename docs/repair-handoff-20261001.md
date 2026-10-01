@@ -1,5 +1,8 @@
 # Five-mode repair handoff — 2026-10-01
 
+> Historical repair-completion checkpoint. The subsequent [acceptance handoff](acceptance-handoff-20261001.md)
+> supersedes its blanket qualification counts; the numerical repair and provenance record remain intact.
+
 **Repair/audit complete within the no-new-estimation scope. No action is certified
 ready to execute, and no cell has a publication-qualified N=3 green tick.** These
 are separate conclusions. The retained numerical results remain useful provisional

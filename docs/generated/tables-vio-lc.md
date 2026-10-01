@@ -6,7 +6,8 @@ Primary ATE RMSE [m]: **SE(3)** for metric stereo/VIO; **Sim(3)** for monocular 
 Values are conditional on numerically valid saved trajectories, with median
 (min–max) for N≥2 and a single value for N=1. Every cell shows evaluated/planned
 counts and missing/failure outcomes. Distinct recorded cohorts are not pooled.
-`review` means the values are not yet publication qualified; `✅ N=3` requires
+`blocked` means the values are not yet publication qualified; `limited` permits
+only the stated limited claim; `observed failure` retains an adverse outcome. `✅ N=3` requires
 three qualified clean repetitions. No ranking or winner bolding is inferred from
 partial coverage, unknown coverage, sparse keyframes, or unqualified results.
 
@@ -20,19 +21,19 @@ remains unknown. Aligned shape ATE does not establish GNSS global accuracy.
 
 | Algorithm (primary alignment) | seq1 | seq5 | str02 | str03 | zed2i |
 |---|---|---|---|---|---|
-| ORB-SLAM3 — SE(3) | 0.8317 (0.8154–0.8922) [score N=3]; eval 3/3; coverage ≥99.4%; review | 2.122 (2.07–2.41) [score N=3]; eval 3/3; coverage ≥98.5%; review | 2.232 (2.221–2.266) [score N=3]; eval 3/3; rerun required; coverage ≥99.7%; review | 0.6779 (0.6778–0.6978) [score N=3]; eval 3/3; rerun required; coverage ≥99.9%; review | no valid score; eval 0/3; 1 failed_without_trajectory, 2 missing; 1 nonzero exit; review |
-| AirSLAM — SE(3) | 17.48 (17.32–38.23) [score N=3]; eval 3/3; keyframes; dense coverage unknown; review | 31.92 (31.92–31.92) [score N=3]; eval 3/3; keyframes; dense coverage unknown; review | 6.642 (6.465–7.068) [score N=3]; eval 3/3; keyframes; dense coverage unknown; review | 1.193 (0.8163–1.212) [score N=3]; eval 3/3; keyframes; dense coverage unknown; review | 3.346 [score N=1]; eval 1/3; 2 missing; keyframes; dense coverage unknown; review |
-| OKVIS2 — SE(3) | 0.8372 (0.8352–0.8412) [score N=3]; eval 3/3; coverage ≥100.0%; review | 9.244 (9.076–9.442) [score N=3]; eval 3/3; coverage ≥100.0%; review | 1.742 (1.739–2.08) [score N=3]; eval 3/3; coverage ≥100.0%; review | 0.6646 (0.6493–0.6706) [score N=3]; eval 3/3; coverage ≥99.9%; review | 0.3331 [score N=1]; eval 1/3; 2 missing; coverage ≥100.0%; review |
-| OKVIS2-X — SE(3) | 5.36 (1.955–5.791) [score N=3]; eval 3/3; coverage ≥100.0%; review | 8.583 (8.455–9.286) [score N=3]; eval 3/3; coverage ≥100.0%; review | 3.387 (3.283–3.987) [score N=3]; eval 3/3; coverage ≥100.0%; review | 1.457 (0.7583–1.672) [score N=3]; eval 3/3; coverage ≥99.9%; review | 0.3264 [score N=1]; eval 1/3; 2 missing; coverage ≥100.0%; review |
+| ORB-SLAM3 — SE(3) | 0.8317 (0.8154–0.8922) [score N=3]; eval 3/3; coverage ≥99.4%; blocked: 3 | 2.122 (2.07–2.41) [score N=3]; eval 3/3; coverage ≥98.5%; blocked: 3 | 2.232 (2.221–2.266) [score N=3]; eval 3/3; rerun required; coverage ≥99.7%; rerun_required: 3 | 0.6779 (0.6778–0.6978) [score N=3]; eval 3/3; rerun required; coverage ≥99.9%; rerun_required: 3 | no valid score; eval 0/3; 1 failed_without_trajectory, 2 missing; 1 nonzero exit; not_executed: 2, valid_observed_failure: 1 |
+| AirSLAM — SE(3) | 17.48 (17.32–38.23) [score N=3]; eval 3/3; keyframes; dense coverage unknown; blocked: 3 | 31.92 (31.92–31.92) [score N=3]; eval 3/3; keyframes; dense coverage unknown; blocked: 3 | 6.642 (6.465–7.068) [score N=3]; eval 3/3; keyframes; dense coverage unknown; blocked: 3 | 1.193 (0.8163–1.212) [score N=3]; eval 3/3; keyframes; dense coverage unknown; blocked: 3 | 3.346 [score N=1]; eval 1/3; 2 missing; keyframes; dense coverage unknown; blocked: 1, not_executed: 2 |
+| OKVIS2 — SE(3) | 0.8372 (0.8352–0.8412) [score N=3]; eval 3/3; coverage ≥100.0%; blocked: 3 | 9.244 (9.076–9.442) [score N=3]; eval 3/3; coverage ≥100.0%; blocked: 3 | 1.742 (1.739–2.08) [score N=3]; eval 3/3; coverage ≥100.0%; blocked: 3 | 0.6646 (0.6493–0.6706) [score N=3]; eval 3/3; coverage ≥99.9%; blocked: 3 | 0.3331 [score N=1]; eval 1/3; 2 missing; coverage ≥100.0%; blocked: 1, not_executed: 2 |
+| OKVIS2-X — SE(3) | 5.36 (1.955–5.791) [score N=3]; eval 3/3; coverage ≥100.0%; blocked: 3 | 8.583 (8.455–9.286) [score N=3]; eval 3/3; coverage ≥100.0%; blocked: 3 | 3.387 (3.283–3.987) [score N=3]; eval 3/3; coverage ≥100.0%; blocked: 3 | 1.457 (0.7583–1.672) [score N=3]; eval 3/3; coverage ≥99.9%; blocked: 3 | 0.3264 [score N=1]; eval 1/3; 2 missing; coverage ≥100.0%; blocked: 1, not_executed: 2 |
 
 ## EuRoC reference control — primary ATE RMSE [m]
 
 | Algorithm (primary alignment) | MH01 | MH03 | MH05 |
 |---|---|---|---|
-| ORB-SLAM3 — SE(3) | 0.04191 (0.03823–0.04621) [score N=3]; eval 3/3; coverage ≥99.9%; review | 0.03323 (0.02605–0.03332) [score N=3]; eval 3/3; coverage ≥86.3%; review | 0.058 (0.05214–0.06224) [score N=3]; eval 3/3; coverage ≥96.5%; review |
-| AirSLAM — SE(3) | 0.03993 (0.03943–0.03998) [score N=3]; eval 3/3; rerun required; keyframes; dense coverage unknown; review | 0.0248 (0.02473–0.02487) [score N=3]; eval 3/3; rerun required; keyframes; dense coverage unknown; review | 0.05341 (0.05336–0.05373) [score N=3]; eval 3/3; rerun required; keyframes; dense coverage unknown; review |
-| OKVIS2 — SE(3) | 0.02498 (0.02371–0.02603) [score N=3]; eval 3/3; coverage ≥100.0%; review | 0.03051 (0.02994–0.03104) [score N=3]; eval 3/3; coverage ≥100.0%; review | 0.07319 (0.06125–0.07428) [score N=3]; eval 3/3; coverage ≥99.9%; review |
-| OKVIS2-X — SE(3) | 0.01616 (0.01503–0.01873) [score N=3]; eval 3/3; coverage ≥100.0%; review | 0.02454 (0.02435–0.02679) [score N=3]; eval 3/3; coverage ≥100.0%; review | 0.04977 (0.04673–0.0686) [score N=3]; eval 3/3; coverage ≥99.9%; review |
+| ORB-SLAM3 — SE(3) | 0.04191 (0.03823–0.04621) [score N=3]; eval 3/3; coverage ≥99.9%; ✅ N=3 | 0.03323 (0.02605–0.03332) [score N=3]; eval 3/3; coverage ≥86.3%; accepted: 2, accepted_with_limitation: 1 | 0.058 (0.05214–0.06224) [score N=3]; eval 3/3; coverage ≥96.5%; ✅ N=3 |
+| AirSLAM — SE(3) | 0.03993 (0.03943–0.03998) [score N=3]; eval 3/3; rerun required; keyframes; dense coverage unknown; rerun_required: 3 | 0.0248 (0.02473–0.02487) [score N=3]; eval 3/3; rerun required; keyframes; dense coverage unknown; rerun_required: 3 | 0.05341 (0.05336–0.05373) [score N=3]; eval 3/3; rerun required; keyframes; dense coverage unknown; rerun_required: 3 |
+| OKVIS2 — SE(3) | 0.02498 (0.02371–0.02603) [score N=3]; eval 3/3; coverage ≥100.0%; ✅ N=3 | 0.03051 (0.02994–0.03104) [score N=3]; eval 3/3; coverage ≥100.0%; ✅ N=3 | 0.07319 (0.06125–0.07428) [score N=3]; eval 3/3; coverage ≥99.9%; ✅ N=3 |
+| OKVIS2-X — SE(3) | 0.01616 (0.01503–0.01873) [score N=3]; eval 3/3; coverage ≥100.0%; ✅ N=3 | 0.02454 (0.02435–0.02679) [score N=3]; eval 3/3; coverage ≥100.0%; ✅ N=3 | 0.04977 (0.04673–0.0686) [score N=3]; eval 3/3; coverage ≥99.9%; ✅ N=3 |
 
 ## Log observations (not verified accepted loops)
 
