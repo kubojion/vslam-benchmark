@@ -2,6 +2,17 @@
 
 Prepared: 2026-10-01. Workspace: `/data/imoroz/vslam-benchmark`.
 
+## Current authorized continuation
+
+Prepare and execute the [focused EuRoC OpenVINS/AirSLAM campaign](euroc-focused-campaign-20261001.md):
+six missing OpenVINS VIO repetitions and 18 corrected AirSLAM VIO/VIO-LC repetitions,
+after short integration checks and inspection of the first full run. Preserve the
+45 accepted cells and every historical attempt. Use new physical attempt IDs,
+evaluate immediately, retain failures and update all exports consistently. This
+explicit authorization supersedes the historical no-estimator clauses below for
+these EuRoC paths only. No push, accuracy tuning or expansion to other paths is
+authorized. The previous repair/reference audit remains completed; do not restart it.
+
 ## Objective and scope
 
 Current extension: resolve the remaining agricultural calibration/reference

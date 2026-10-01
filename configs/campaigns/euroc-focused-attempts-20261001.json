@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "reason": "Predeclared corrected AirSLAM cohort; keep old physical run1..3 in historical export. Selection is fixed before production and independent of success or score.",
+  "campaign": "configs/campaigns/euroc-focused-20261001.json",
+  "cells": {
+    "vio/euroc_mav/MH_01_easy/airslam": [
+      4,
+      5,
+      6
+    ],
+    "vio/euroc_mav/MH_03_medium/airslam": [
+      4,
+      5,
+      6
+    ],
+    "vio/euroc_mav/MH_05_difficult/airslam": [
+      4,
+      5,
+      6
+    ],
+    "vio-lc/euroc_mav/MH_01_easy/airslam": [
+      4,
+      5,
+      6
+    ],
+    "vio-lc/euroc_mav/MH_03_medium/airslam": [
+      4,
+      5,
+      6
+    ],
+    "vio-lc/euroc_mav/MH_05_difficult/airslam": [
+      4,
+      5,
+      6
+    ]
+  }
+}

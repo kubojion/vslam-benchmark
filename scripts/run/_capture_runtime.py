@@ -84,6 +84,10 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
         container=dict(kind='ephemeral_image',image_id=info['Id'],image='openvins:humble',
                        estimator_prefix='/colcon_ws/install',build_bytes_covered_by_immutable_image=True,
                        note='runner mounts /ws and optional sequence data, not /colcon_ws/install')
+        if algorithm=='openvins':
+            corrected=inspect(['image','inspect','openvins:humble-shutdown-20261001'])
+            container['corrected_euroc_image']={'image':'openvins:humble-shutdown-20261001',
+                                              'image_id':corrected['Id']}
     elif algorithm in CONTAINERS:
         name=CONTAINERS[algorithm];info=inspect(['inspect',name])
         mounts=[]
@@ -95,6 +99,10 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
         container=dict(kind='persistent_container',name=name,image_id=info['Image'],
                        mounts=sorted(mounts,key=lambda x:x['destination']),build_trees=[])
         paths=['/root/catkin_ws/devel/lib']
+        if algorithm=='airslam':
+            # Corrected EuRoC inertial cohort uses an isolated build; retain the
+            # legacy tree identity as well for the other, unchanged modes.
+            paths.append('/root/catkin_ws_rectified_20261001/devel/lib')
         if algorithm=='cifasis_gnss_si':paths = ['/root/catkin_ws/src/gnss-stereo-inertial-fusion/lib',
             '/root/catkin_ws/src/gnss-stereo-inertial-fusion/Examples/ROS/GNSS_SI/GNSS_Stereo_Inertial',
             '/root/catkin_ws/src/gnss-stereo-inertial-fusion/Vocabulary/ORBvoc.txt']

@@ -9,6 +9,8 @@ datasets/**
 !datasets/**/times.txt
 !datasets/**/manifest.json
 !datasets/**/segments_auto.csv
+# Fixed integration subsets are recorded by their campaign recipe and hashes.
+datasets/euroc/MH_01_easy_diag*20261001/
 obsolete/
 logs/
 docs/private/

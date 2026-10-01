@@ -69,6 +69,11 @@ SAVING_DIR="${CONT_RESULTS_DIR}/$DATASET/$SEQ/airslam/run${RUN_ID}"
 MODEL_DIR="/root/catkin_ws/src/air_slam/output"
 
 CONTAINER="air_slam"
+CORRECTED_NATIVE=false
+NATIVE_PREFIX=/root/catkin_ws_rectified_20261001/devel
+if [[ "$DATASET" == "euroc_mav" && "$USE_IMU" == "true" ]]; then
+    CORRECTED_NATIVE=true
+fi
 source "$WS/scripts/run/_owned_process.sh"
 AIRSLAM_ACTIVE_STAGE=""
 STAGE_TIMEOUT_S=${AIRSLAM_STAGE_TIMEOUT_S:-43200}
@@ -140,6 +145,26 @@ wait_for_stage_output() {
     return 0
 }
 
+# Corrected cohort: wait for the native exit, including SaveMap after trajectory
+# export. A trajectory appearing is not completion and must not trigger a signal.
+wait_for_native_exit() {
+    local host_pid=$1 label=$2 started_at=$SECONDS
+    while kill -0 "$host_pid" 2>/dev/null; do
+        if (( SECONDS - started_at >= STAGE_TIMEOUT_S )); then
+            AIRSLAM_FAILURE="$label exceeded the ${STAGE_TIMEOUT_S}s stage timeout"
+            stop_launch_pipeline "$host_pid"
+            return 124
+        fi
+        sleep 1
+    done
+    local code=0
+    wait "$host_pid" || code=$?
+    if (( code != 0 )); then
+        AIRSLAM_FAILURE="$label native process exited with status $code"
+    fi
+    return "$code"
+}
+
 CAM_CFG_HOST="$WS/configs/airslam/$(basename "$CAM_CFG")"
 VO_CFG_HOST="$WS/configs/airslam/${DATASET}_${PROFILE_TAG}.yaml"
 [[ -f "$CAM_CFG_HOST" ]] || {
@@ -164,6 +189,10 @@ PROV_ARGS=(
     --param "refinement_max_attempts=$REFINEMENT_MAX_ATTEMPTS"
     --container "$CONTAINER"
 )
+if [[ "$CORRECTED_NATIVE" == true ]]; then
+    PROV_ARGS+=(--param "build_profile=rectified_euroc_20261001"
+                --param "native_supervision=direct_native_exit")
+fi
 if [[ "$USE_LC" == "true" ]]; then
     PROV_ARGS+=(--artifact "map_refinement_config=$WS/configs/airslam/${DATASET}_mr.yaml")
 fi
@@ -224,6 +253,7 @@ cleanup() {
         stop_roslaunch || true
         kill "$MR_PID" 2>/dev/null || true
     fi
+    [[ "$CORRECTED_NATIVE" != true ]] || owned_stop master || true
 }
 trap cleanup EXIT
 trap 'exit 130' INT
@@ -238,6 +268,28 @@ START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
 
 AIRSLAM_ACTIVE_STAGE="odometry"
+AIRSLAM_NATIVE_RC=0
+if [[ "$CORRECTED_NATIVE" == true ]]; then
+    owned_run master bash -c "source /opt/ros/noetic/setup.bash && exec roscore -p '$ROS_PORT'" \
+        > "$OUT_DIR/roscore.log" 2>&1 &
+    MASTER_PID=$!
+    master_ready=false
+    for _ in $(seq 1 30); do
+        if docker exec -e ROS_MASTER_URI="$ROS_MASTER_URI" "$CONTAINER" bash -c \
+            'source /opt/ros/noetic/setup.bash && rosparam list' >/dev/null 2>&1; then
+            master_ready=true; break
+        fi
+        sleep 1
+    done
+    [[ "$master_ready" == true ]] || { echo 'private ROS master did not start' >&2; exit 2; }
+    owned_run odometry bash -c "
+        export ROS_MASTER_URI='$ROS_MASTER_URI'
+        source /opt/ros/noetic/setup.bash && source '$NATIVE_PREFIX/setup.bash' &&
+        exec '$NATIVE_PREFIX/lib/air_slam/visual_odometry' \
+            _dataroot:='$DATAROOT' _camera_config_path:='$CAM_CFG' \
+            _config_path:='$VO_CFG' _model_dir:='$MODEL_DIR' _saving_dir:='$SAVING_DIR'
+    " 2>&1 | tee "$LOG" &
+else
 owned_run odometry bash -c "
     export ROS_MASTER_URI='$ROS_MASTER_URI'
     source /opt/ros/noetic/setup.bash &&
@@ -251,6 +303,7 @@ owned_run odometry bash -c "
         saving_dir:='$SAVING_DIR' \
         visualization:=false
 " 2>&1 | tee "$LOG" &
+fi
 EXEC_PID=$!
 
 # Wait for trajectory_v0.txt to appear. AirSLAM creates it after processing all
@@ -258,6 +311,9 @@ EXEC_PID=$!
 TRAJ_HOST="$OUT_DIR/trajectory_v0.txt"
 echo "[airslam] waiting for trajectory_v0.txt ..."
 AIRSLAM_FAILURE=""
+if [[ "$CORRECTED_NATIVE" == true ]]; then
+    wait_for_native_exit "$EXEC_PID" odometry || AIRSLAM_NATIVE_RC=$?
+else
 wait_for_stage_output "$TRAJ_HOST" "$EXEC_PID" visual_odometry "visual odometry" || \
     echo "[airslam] ERROR: $AIRSLAM_FAILURE" | tee -a "$LOG"
 
@@ -270,13 +326,14 @@ if kill -0 "$EXEC_PID" 2>/dev/null; then
     fi
     stop_launch_pipeline "$EXEC_PID"
 fi
+fi
 EXEC_PID=""
 
 # ---- Locate trajectory output from saving_dir -----------------------------
 # visual_odometry.cpp writes trajectory_v0.txt (TUM format, timestamps in SECONDS).
 # For LC run types: run map_refinement (step 2) which reads the saved map and
 # produces trajectory_v1.txt (globally consistent poses after LC).
-if [[ "$USE_LC" == "true" && -s "$TRAJ_HOST" ]]; then
+if [[ "$USE_LC" == "true" && -s "$TRAJ_HOST" && "$AIRSLAM_NATIVE_RC" == 0 ]]; then
     MR_CFG="/benchmark_configs/airslam/${DATASET}_mr.yaml"
     VOC_PATH="/root/catkin_ws/src/air_slam/voc/point_voc_L4.bin"
     MR_TRAJ="$OUT_DIR/trajectory_v1.txt"
@@ -284,6 +341,15 @@ if [[ "$USE_LC" == "true" && -s "$TRAJ_HOST" ]]; then
     # failure; repeating until successful would change the failure denominator.
     echo "[airslam] running map_refinement (step 2 of ${RUN_TYPE})..."
     AIRSLAM_ACTIVE_STAGE="refinement"
+    if [[ "$CORRECTED_NATIVE" == true ]]; then
+        owned_run refinement bash -c "
+            export ROS_MASTER_URI='$ROS_MASTER_URI'
+            source /opt/ros/noetic/setup.bash && source '$NATIVE_PREFIX/setup.bash' &&
+            exec '$NATIVE_PREFIX/lib/air_slam/map_refinement' \
+                _map_root:='$SAVING_DIR' _config_path:='$MR_CFG' \
+                _model_dir:='$MODEL_DIR' _voc_path:='$VOC_PATH' _breakpoint:=0
+        " 2>&1 | tee -a "$LOG" &
+    else
     owned_run refinement bash -c "
         export ROS_MASTER_URI='$ROS_MASTER_URI'
         source /opt/ros/noetic/setup.bash &&
@@ -295,15 +361,25 @@ if [[ "$USE_LC" == "true" && -s "$TRAJ_HOST" ]]; then
             voc_path:='$VOC_PATH' \
             visualization:=false
     " 2>&1 | tee -a "$LOG" &
+    fi
     MR_PID=$!
     echo "[airslam] waiting for trajectory_v1.txt ..."
     AIRSLAM_FAILURE=""
+    if [[ "$CORRECTED_NATIVE" == true ]]; then
+        wait_for_native_exit "$MR_PID" refinement || AIRSLAM_NATIVE_RC=$?
+    else
     wait_for_stage_output "$MR_TRAJ" "$MR_PID" map_refinement "map refinement" || \
         echo "[airslam] ERROR: $AIRSLAM_FAILURE" | tee -a "$LOG"
     if kill -0 "$MR_PID" 2>/dev/null; then
         stop_launch_pipeline "$MR_PID"
     fi
+    fi
     MR_PID=""
+fi
+
+if [[ "$CORRECTED_NATIVE" == true ]]; then
+    owned_stop master
+    wait "$MASTER_PID" || true
 fi
 
 END=$(date +%s.%N)
@@ -318,11 +394,16 @@ if [[ "$USE_LC" == "true" ]]; then
 else
     RAW_TRAJ="$OUT_DIR/trajectory_v0.txt"
 fi
-if [[ ! -s "$RAW_TRAJ" ]]; then
+if [[ ! -s "$RAW_TRAJ" || "$AIRSLAM_NATIVE_RC" != 0 ]]; then
+    # Preserve a usable export for immediate evaluation even on native failure.
+    [[ ! -s "$RAW_TRAJ" ]] || cp -p "$RAW_TRAJ" "$OUT_DIR/trajectory.txt"
+    [[ ! -f "$LOG" ]] || cp "$LOG" "$OUT_DIR/run_log.txt"
     FAILED_PROV=("${PROV_ARGS[@]}")
     [[ -f "$ENGINE_HOST" ]] && FAILED_PROV+=(--artifact "tensorrt_engine=$ENGINE_HOST")
+    FAILURE_RC=$AIRSLAM_NATIVE_RC
+    if (( FAILURE_RC == 0 )); then FAILURE_RC=1; fi
     record_failed_run_meta "$OUT_DIR/run_meta.json" airslam "$DATASET" "$SEQ" \
-        "$RUN_ID" "$RUN_TYPE" 1 "${AIRSLAM_FAILURE:-trajectory was not produced}" "${FAILED_PROV[@]}"
+        "$RUN_ID" "$RUN_TYPE" "$FAILURE_RC" "${AIRSLAM_FAILURE:-trajectory was not produced}" "${FAILED_PROV[@]}"
     echo "ERROR: no non-empty trajectory found in $OUT_DIR after AirSLAM run" >&2
     echo "Files in output dir:" >&2
     ls "$OUT_DIR" >&2

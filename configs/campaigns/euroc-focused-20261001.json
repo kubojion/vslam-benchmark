@@ -1,0 +1,272 @@
+{
+  "schema": 1,
+  "scope": "exactly six missing OpenVINS and eighteen corrected AirSLAM EuRoC repetitions",
+  "policy": "one attempt per declared slot; preserve every outcome; evaluate before continuing; no accuracy tuning or success-conditioned retries",
+  "prerequisites": "short integration and first full gates must pass before remainder",
+  "actions": [
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_01_easy",
+      "algorithm": "openvins",
+      "mode": "vio",
+      "physical_run_id": 2,
+      "logical_repetition": 2,
+      "cohort": "euroc-openvins-shutdown-20261001",
+      "output": "results/vio/euroc_mav/MH_01_easy/openvins/run2",
+      "first_full_gate": true
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_01_easy",
+      "algorithm": "openvins",
+      "mode": "vio",
+      "physical_run_id": 3,
+      "logical_repetition": 3,
+      "cohort": "euroc-openvins-shutdown-20261001",
+      "output": "results/vio/euroc_mav/MH_01_easy/openvins/run3",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_01_easy",
+      "algorithm": "airslam",
+      "mode": "vio",
+      "physical_run_id": 4,
+      "logical_repetition": 1,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio/euroc_mav/MH_01_easy/airslam/run4",
+      "first_full_gate": true
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_01_easy",
+      "algorithm": "airslam",
+      "mode": "vio",
+      "physical_run_id": 5,
+      "logical_repetition": 2,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio/euroc_mav/MH_01_easy/airslam/run5",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_01_easy",
+      "algorithm": "airslam",
+      "mode": "vio",
+      "physical_run_id": 6,
+      "logical_repetition": 3,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio/euroc_mav/MH_01_easy/airslam/run6",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_01_easy",
+      "algorithm": "airslam",
+      "mode": "vio-lc",
+      "physical_run_id": 4,
+      "logical_repetition": 1,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4",
+      "first_full_gate": true
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_01_easy",
+      "algorithm": "airslam",
+      "mode": "vio-lc",
+      "physical_run_id": 5,
+      "logical_repetition": 2,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_01_easy",
+      "algorithm": "airslam",
+      "mode": "vio-lc",
+      "physical_run_id": 6,
+      "logical_repetition": 3,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_03_medium",
+      "algorithm": "openvins",
+      "mode": "vio",
+      "physical_run_id": 2,
+      "logical_repetition": 2,
+      "cohort": "euroc-openvins-shutdown-20261001",
+      "output": "results/vio/euroc_mav/MH_03_medium/openvins/run2",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_03_medium",
+      "algorithm": "openvins",
+      "mode": "vio",
+      "physical_run_id": 3,
+      "logical_repetition": 3,
+      "cohort": "euroc-openvins-shutdown-20261001",
+      "output": "results/vio/euroc_mav/MH_03_medium/openvins/run3",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_03_medium",
+      "algorithm": "airslam",
+      "mode": "vio",
+      "physical_run_id": 4,
+      "logical_repetition": 1,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio/euroc_mav/MH_03_medium/airslam/run4",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_03_medium",
+      "algorithm": "airslam",
+      "mode": "vio",
+      "physical_run_id": 5,
+      "logical_repetition": 2,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio/euroc_mav/MH_03_medium/airslam/run5",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_03_medium",
+      "algorithm": "airslam",
+      "mode": "vio",
+      "physical_run_id": 6,
+      "logical_repetition": 3,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio/euroc_mav/MH_03_medium/airslam/run6",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_03_medium",
+      "algorithm": "airslam",
+      "mode": "vio-lc",
+      "physical_run_id": 4,
+      "logical_repetition": 1,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_03_medium",
+      "algorithm": "airslam",
+      "mode": "vio-lc",
+      "physical_run_id": 5,
+      "logical_repetition": 2,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_03_medium",
+      "algorithm": "airslam",
+      "mode": "vio-lc",
+      "physical_run_id": 6,
+      "logical_repetition": 3,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_05_difficult",
+      "algorithm": "openvins",
+      "mode": "vio",
+      "physical_run_id": 2,
+      "logical_repetition": 2,
+      "cohort": "euroc-openvins-shutdown-20261001",
+      "output": "results/vio/euroc_mav/MH_05_difficult/openvins/run2",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_05_difficult",
+      "algorithm": "openvins",
+      "mode": "vio",
+      "physical_run_id": 3,
+      "logical_repetition": 3,
+      "cohort": "euroc-openvins-shutdown-20261001",
+      "output": "results/vio/euroc_mav/MH_05_difficult/openvins/run3",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_05_difficult",
+      "algorithm": "airslam",
+      "mode": "vio",
+      "physical_run_id": 4,
+      "logical_repetition": 1,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio/euroc_mav/MH_05_difficult/airslam/run4",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_05_difficult",
+      "algorithm": "airslam",
+      "mode": "vio",
+      "physical_run_id": 5,
+      "logical_repetition": 2,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio/euroc_mav/MH_05_difficult/airslam/run5",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_05_difficult",
+      "algorithm": "airslam",
+      "mode": "vio",
+      "physical_run_id": 6,
+      "logical_repetition": 3,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio/euroc_mav/MH_05_difficult/airslam/run6",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_05_difficult",
+      "algorithm": "airslam",
+      "mode": "vio-lc",
+      "physical_run_id": 4,
+      "logical_repetition": 1,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_05_difficult",
+      "algorithm": "airslam",
+      "mode": "vio-lc",
+      "physical_run_id": 5,
+      "logical_repetition": 2,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5",
+      "first_full_gate": false
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_05_difficult",
+      "algorithm": "airslam",
+      "mode": "vio-lc",
+      "physical_run_id": 6,
+      "logical_repetition": 3,
+      "cohort": "euroc-airslam-rectified-20261001",
+      "output": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6",
+      "first_full_gate": false
+    }
+  ]
+}

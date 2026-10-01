@@ -1,8 +1,11 @@
 # AirSLAM rectified camera/IMU audit
 
 Reviewed 2026-10-01 from preserved configurations and local source. This finding
-concerns EuRoC VIO and VIO-LC. The source correction is prepared as a patch;
-**it has not been applied to the installed source, built, or execution tested**.
+concerns EuRoC VIO and VIO-LC. During the subsequent authorized
+[focused EuRoC campaign](euroc-focused-campaign-20261001.md), the patch was applied
+and built in a separate workspace. Native camera composition and short VIO and
+VIO-LC execution/export checks passed. **Full-sequence production gates remain
+pending at this preparation checkpoint.** The original build remains intact.
 No existing trajectory or recorded configuration was changed.
 
 ## Established issue
@@ -58,12 +61,13 @@ about correctly calibrated AirSLAM inertial fusion. Original scores remain avail
 as affected-cohort observations. These repetitions are explicit required-rerun
 actions in the future manifest, with no execution readiness granted.
 
-Before future execution, apply/review the patch in an isolated source/build,
-record executable and shared-library hashes, verify rectified/body composition
-through the loaded estimator, and validate startup/shutdown plus artifact export.
-Also resolve sparse-keyframe comparison policy, stage-failure accounting and shared
-container process ownership. Do not perform builds or estimator validation as part
-of the current no-new-estimation campaign repair.
+The focused continuation uses isolated source/build evidence, records executable
+and shared-library hashes, and verifies rectified/body composition through the
+compiled library. Direct native supervision retains stage failures and waits for
+map serialization before cleanup. Sparse keyframe accuracy remains a separately
+labelled limited claim; it is not dense tracking accuracy or real-time evidence.
+The earlier no-estimator restriction was explicitly superseded for the focused
+EuRoC campaign; other benchmark paths remain outside this authorization.
 
 VO/VO-LC use no IMU residuals and do not acquire this fusion blocker. Agricultural
 camera configs currently set `distortion_type: 0`; the above source path does not

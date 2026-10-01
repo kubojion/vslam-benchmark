@@ -206,12 +206,21 @@ def build_rows(inventory,repo=REPO):
                 ev.get('qualification_provenance') != inventory['qualification_review']):
                 raise ValueError('evaluation qualification disagrees with inventory: '+attempt['path'])
             rows.append(row_from_attempt(attempt,ev,cell,repo=repo,
-                membership='original_n3_campaign' if cell['original_campaign_member'] else 'gnss_default_future_n3'))
+                membership=cell.get('comparison_membership') or ('original_n3_campaign' if cell['original_campaign_member'] else 'gnss_default_future_n3')))
     for attempt in inventory['other_artifacts']:
         if attempt['category']!='gnss_variant':continue
         ev=json.loads((repo/attempt['evaluation_path']).read_text()) if attempt['evaluation_path'] else {}
         rows.append(row_from_attempt(attempt,ev,None,repo=repo,membership='legacy_gnss_variant'))
     return sorted(rows,key=lambda r:(r['run_type'],r['dataset'],r['seq'],r['algo'],r['gnss_variant'],int(r['run'])))
+
+
+def build_historical_rows(inventory,repo=REPO):
+    rows=[]
+    for attempt in inventory['other_artifacts']:
+        if attempt['category']!='superseded_calibration_cohort':continue
+        ev=json.loads((repo/attempt['evaluation_path']).read_text()) if attempt['evaluation_path'] else {}
+        rows.append(row_from_attempt(attempt,ev,None,repo=repo,membership=attempt['category']))
+    return rows
 
 
 def csv_text(rows):
@@ -229,6 +238,10 @@ def main():
         selected=[r for r in rows if r['run_type']==mode]
         path=args.output_dir/f'benchmark-{mode}.csv';preserved_write(path,csv_text(selected))
         print(f'[csv] {mode}: {len(selected)} rows including missing/failed repetitions -> {path}')
+    historical=build_historical_rows(inventory)
+    if historical:
+        preserved_write(args.output_dir/'benchmark-historical-cohorts.csv',csv_text(historical))
+        print(f'[csv] historical calibration cohorts: {len(historical)} preserved rows, separate from corrected comparisons')
     return 0
 
 

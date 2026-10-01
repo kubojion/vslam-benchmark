@@ -1,0 +1,84 @@
+diff --git a/ov_msckf/src/ros/ROS2Visualizer.cpp b/ov_msckf/src/ros/ROS2Visualizer.cpp
+index e91cd74..9722782 100644
+--- a/ov_msckf/src/ros/ROS2Visualizer.cpp
++++ b/ov_msckf/src/ros/ROS2Visualizer.cpp
+@@ -149,17 +149,26 @@ ROS2Visualizer::ROS2Visualizer(std::shared_ptr<rclcpp::Node> node, std::shared_p
+ 
+   // Start thread for the image publishing
+   if (_app->get_params().use_multi_threading_pubs) {
+-    std::thread thread([&] {
++    publishing_thread = std::thread([this] {
+       rclcpp::Rate loop_rate(20);
+-      while (rclcpp::ok()) {
++      while (!stop_publishing && rclcpp::ok()) {
+         publish_images();
+         loop_rate.sleep();
+       }
+     });
+-    thread.detach();
+   }
+ }
+ 
++void ROS2Visualizer::stop() {
++  stop_publishing = true;
++  if (publishing_thread.joinable()) publishing_thread.join();
++  // The executor is stopped; drain the last already-dispatched update before
++  // releasing the state and publisher objects it uses.
++  while (thread_update_running) std::this_thread::sleep_for(std::chrono::milliseconds(1));
++}
++
++ROS2Visualizer::~ROS2Visualizer() { stop(); }
++
+ void ROS2Visualizer::setup_subscribers(std::shared_ptr<ov_core::YamlParser> parser) {
+ 
+   // We need a valid parser
+diff --git a/ov_msckf/src/ros/ROS2Visualizer.h b/ov_msckf/src/ros/ROS2Visualizer.h
+index a737f80..709b8e4 100644
+--- a/ov_msckf/src/ros/ROS2Visualizer.h
++++ b/ov_msckf/src/ros/ROS2Visualizer.h
+@@ -85,6 +85,11 @@ public:
+    * @param sim Simulator if we are simulating
+    */
+   ROS2Visualizer(std::shared_ptr<rclcpp::Node> node, std::shared_ptr<VioManager> app, std::shared_ptr<Simulator> sim = nullptr);
++  ~ROS2Visualizer();
++
++  // Call after the executor has stopped dispatching callbacks, before destroying
++  // publishers or the ROS context. Does not change active estimation behavior.
++  void stop();
+ 
+   /**
+    * @brief Will setup ROS subscribers and callbacks
+@@ -180,6 +185,8 @@ protected:
+ 
+   // Thread atomics
+   std::atomic<bool> thread_update_running;
++  std::atomic<bool> stop_publishing{false};
++  std::thread publishing_thread;
+ 
+   /// Queue up camera measurements sorted by time and trigger once we have
+   /// exactly one IMU measurement with timestamp newer than the camera measurement
+diff --git a/ov_msckf/src/run_subscribe_msckf.cpp b/ov_msckf/src/run_subscribe_msckf.cpp
+index 6a5b341..f8c3fc3 100644
+--- a/ov_msckf/src/run_subscribe_msckf.cpp
++++ b/ov_msckf/src/run_subscribe_msckf.cpp
+@@ -112,11 +112,20 @@ int main(int argc, char **argv) {
+   executor.spin();
+ #endif
+ 
++  // Finish background work before reporting or releasing ROS objects.
++#if ROS_AVAILABLE == 2
++  viz->stop();
++#endif
+   // Final visualization
+   viz->visualize_final();
+ #if ROS_AVAILABLE == 1
+   ros::shutdown();
+ #elif ROS_AVAILABLE == 2
++  // Global viz otherwise destroys DDS publishers during static destruction,
++  // after middleware singletons have gone away (Fast DDS SIGSEGV on Humble).
++  // Release them here while the executor/node/context still have clear lifetimes.
++  viz.reset();
++  sys.reset();
+   rclcpp::shutdown();
+ #endif
+ 

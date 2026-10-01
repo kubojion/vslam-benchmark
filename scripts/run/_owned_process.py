@@ -31,6 +31,9 @@ def atomic_json(path,value):
     path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
     fd,name=tempfile.mkstemp(prefix='.'+path.name,dir=str(path.parent))
     try:
+        # Persistent ROS containers run as root; host-side metadata collection
+        # must still be able to read the public, per-attempt process evidence.
+        os.fchmod(fd, 0o644)
         with os.fdopen(fd,'w') as stream:
             json.dump(value,stream,indent=2,allow_nan=False);stream.write('\n');stream.flush();os.fsync(stream.fileno())
         os.replace(name,path)

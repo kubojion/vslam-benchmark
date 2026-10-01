@@ -38,6 +38,8 @@ SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 CFG_DIR="$WS/configs/openvins/$DATASET"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/openvins/run${RUN_ID}"
 LOG_GLOBAL="$WS/logs/${DATASET}_${SEQ}_openvins_${RUN_TYPE}_run${RUN_ID}.log"
+OPENVINS_IMAGE=openvins:humble
+if [[ "$DATASET" == euroc_mav ]]; then OPENVINS_IMAGE=openvins:humble-shutdown-20261001; fi
 
 [[ -d "$CFG_DIR" ]] || { echo "[openvins] missing config dir: $CFG_DIR" >&2; exit 2; }
 [[ -f "$CFG_DIR/estimator_config.yaml" ]] || { echo "[openvins] missing $CFG_DIR/estimator_config.yaml" >&2; exit 2; }
@@ -46,8 +48,8 @@ LOG_GLOBAL="$WS/logs/${DATASET}_${SEQ}_openvins_${RUN_TYPE}_run${RUN_ID}.log"
 [[ -f "$SEQ_DIR/mav0/imu0/data.csv" ]] \
     || { echo "[openvins] missing IMU $SEQ_DIR/mav0/imu0/data.csv" >&2; exit 2; }
 
-if ! docker image inspect openvins:humble >/dev/null 2>&1; then
-    echo "[openvins] docker image 'openvins:humble' not found" >&2
+if ! docker image inspect "$OPENVINS_IMAGE" >/dev/null 2>&1; then
+    echo "[openvins] docker image '$OPENVINS_IMAGE' not found" >&2
     echo "[openvins] build it first:  docker build -t openvins:humble -f src/open_vins/Dockerfile.benchmark src/open_vins" >&2
     exit 2
 fi
@@ -111,7 +113,7 @@ docker run --rm \
     --env ROS_HOME=/tmp/vslam_ros \
     --env ROS_DOMAIN_ID="$ROS_DOMAIN_ID" --env ROS_LOCALHOST_ONLY=1 \
     --entrypoint /bin/bash \
-    openvins:humble \
+    "$OPENVINS_IMAGE" \
     -c "
         set -eo pipefail
         source /opt/ros/humble/setup.bash
@@ -124,9 +126,14 @@ docker run --rm \
         trap cleanup_stages EXIT
         trap 'exit 130' INT
         trap 'exit 143' TERM
-        owned_run node ros2 launch ov_msckf subscribe.launch.py \
-            config_path:=/ws/configs/openvins/$DATASET/estimator_config.yaml \
-            use_stereo:=true max_cameras:=2 verbosity:=INFO \
+        # Same namespace/parameters as subscribe.launch.py, with the native
+        # process directly supervised. ros2 launch can return zero after a node
+        # segfault and forward a second SIGINT during attempt cleanup.
+        owned_run node /colcon_ws/install/lib/ov_msckf/run_subscribe_msckf \
+            --ros-args -r __ns:=/ov_msckf \
+            -p config_path:=/ws/configs/openvins/$DATASET/estimator_config.yaml \
+            -p use_stereo:=true -p max_cameras:=2 -p verbosity:=INFO \
+            -p save_total_state:=false \
             > /ws/${OUT_REL}/openvins_node.log 2>&1 &
         OV_PID=\$!
         sleep 2
@@ -137,8 +144,8 @@ docker run --rm \
             --start-delay 1.0 --end-wait 3.0 \
             --stats-out /ws/${OUT_REL}/transport_stats.json
         owned_stop node
-        # Preserve the launcher's status; its separate state also records any
-        # forced shutdown. A produced trajectory cannot conceal a nonzero exit.
+        # Preserve the native status; separate state records forced shutdown.
+        # A produced trajectory cannot conceal a nonzero estimator exit.
         wait \$OV_PID
     " 2>&1 | \
   python3 -u -c "
@@ -161,7 +168,7 @@ PROV_ARGS=(
     --source "algorithm=$WS/src/open_vins"
     --param "process_isolation=attempt_token_private_ros2_domain"
     --param "playback_rate=${OPENVINS_RATE:-1.0}"
-    --container-image openvins:humble
+    --container-image "$OPENVINS_IMAGE"
 )
 if (( OPENVINS_RC != 0 )); then
     record_failed_run_meta "$OUT_DIR/run_meta.json" openvins "$DATASET" "$SEQ" \

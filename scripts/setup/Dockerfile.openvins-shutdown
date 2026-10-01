@@ -1,0 +1,8 @@
+ARG BASE_IMAGE=openvins:humble
+FROM ${BASE_IMAGE}
+# Preserve the original image. Only the shutdown lifetime correction is rebuilt;
+# active estimator parameters and the inherited dependency versions are unchanged.
+COPY ov_msckf/src/run_subscribe_msckf.cpp /colcon_ws/src/open_vins/ov_msckf/src/run_subscribe_msckf.cpp
+COPY ov_msckf/src/ros/ROS2Visualizer.h /colcon_ws/src/open_vins/ov_msckf/src/ros/ROS2Visualizer.h
+COPY ov_msckf/src/ros/ROS2Visualizer.cpp /colcon_ws/src/open_vins/ov_msckf/src/ros/ROS2Visualizer.cpp
+RUN /bin/bash -c 'source /opt/ros/humble/setup.bash && cd /colcon_ws && CMAKE_BUILD_PARALLEL_LEVEL=8 colcon build --merge-install --packages-select ov_msckf --cmake-args -DCMAKE_BUILD_TYPE=Release -DENABLE_ARUCO_TAGS=OFF'

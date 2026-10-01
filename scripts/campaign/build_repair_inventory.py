@@ -24,6 +24,24 @@ from acceptance_ledger import cell_acceptance
 REPO=Path(__file__).resolve().parents[2]
 MODES=('vo','vo-lc','vio','vio-lc','gnss-vio')
 SERVER='machine-3c9dca59a50f'
+SELECTION='configs/campaigns/euroc-focused-attempts-20261001.json'
+
+
+def selected_attempts(repo):
+    path=repo/SELECTION
+    if not path.is_file():return {}
+    value=read(path)
+    if value.get('schema')!=1:raise ValueError('unsupported selected-attempt schema')
+    result={}
+    for key,ids in value['cells'].items():
+        mode,ds,seq,algo=key.split('/')
+        if (mode not in ('vio','vio-lc') or ds!='euroc_mav' or algo!='airslam'
+            or seq not in ('MH_01_easy','MH_03_medium','MH_05_difficult')
+            or ids!=[4,5,6]):
+            raise ValueError('selection must match the outcome-blind corrected EuRoC campaign')
+        result[key]=ids
+    if len(result)!=6:raise ValueError('corrected cohort must include all six declared cells')
+    return result
 
 
 def evidence(path,repo):
@@ -69,9 +87,9 @@ def cohort_identity(meta, algorithm):
 def saved_attempt(repo,relative,stage):
     run=repo/'results'/relative;meta=read(run/'run_meta.json')
     staged=stage/'evaluations'/relative/'run_eval.json'
-    value=read(staged)
     published=run/'run_eval.json'
-    current=published if staged.is_file() and published.is_file() and staged.read_bytes()==published.read_bytes() else staged
+    value=read(staged if staged.is_file() else published)
+    current=published if not staged.is_file() or (published.is_file() and staged.read_bytes()==published.read_bytes()) else staged
     blockers=[]
     if value:
         for item in value.get('evaluation_provenance',{}).get('inputs',[])+value.get('pose_frames',{}).get('evidence',[]):
@@ -100,7 +118,7 @@ def saved_attempt(repo,relative,stage):
     return dict(path='results/'+relative,exists=run.is_dir(),files=files,
         trajectory_saved=(run/'trajectory.txt').is_file(),historical_complete=(run/'COMPLETE').is_file(),
         evaluated=bool(value),evaluation_path=str(current.relative_to(repo)) if value else None,
-        staged_evaluation_path=str(staged.relative_to(repo)) if value else None,
+        staged_evaluation_path=str(staged.relative_to(repo)) if staged.is_file() and value else None,
         numerical_status=value.get('run_status'),process=process,
         qualification=qualification,confirmed_protocol_findings=findings,
         pose_frame_blockers=value.get('pose_frames',{}).get('blockers',[]),
@@ -135,13 +153,18 @@ def runtime_estimate(attempts):
 def build(repo,stage):
     executed,executed_hash=load_manifest(repo/'logs/server-campaign/quality-final-n3-no-gnss/manifest.json')
     future,future_hash=load_manifest(repo/'configs/campaigns/quality-final.json')
-    cells=[];members=set()
+    cells=[];members=set();selections=selected_attempts(repo);superseded=set()
     for cell in expand_cells(future):
         key=cell_key(cell);attempts=[]
-        for repetition in range(1,4):
-            relative=f'{key}/run{repetition}';members.add(relative)
-            attempts.append(saved_attempt(repo,relative,stage))
+        ids=selections.get(key,[1,2,3])
+        if key in selections:superseded.update(f'{key}/run{i}' for i in (1,2,3))
+        for repetition,physical_id in enumerate(ids,1):
+            relative=f'{key}/run{physical_id}';members.add(relative)
+            attempt=saved_attempt(repo,relative,stage)
+            attempt['logical_repetition']=repetition
+            attempts.append(attempt)
         cells.append(dict(**cell,variant='default',key=key,target_repetitions=3,
+            comparison_membership='corrected_euroc_20261001' if key in selections else None,
             original_campaign_member=cell['algorithm'] in executed['tables'][cell['run_type']],
             attempts=attempts,evaluated=sum(a['evaluated'] for a in attempts),
             outcomes=dict(Counter(a['numerical_status'] for a in attempts if a['evaluated'])),
@@ -156,7 +179,8 @@ def build(repo,stage):
         relative=str(run.relative_to(repo/'results'))
         if relative in members:continue
         name=run.name;algo=run.parent.name;mode=run.relative_to(repo/'results').parts[0]
-        category=('gnss_variant' if mode=='gnss-vio' and '_' in name else
+        category=('superseded_calibration_cohort' if relative in superseded else
+                  'gnss_variant' if mode=='gnss-vio' and '_' in name else
                   'historical_excluded' if algo in future['excluded'] else 'smoke_or_outside_protocol')
         other.append(dict(category=category,**saved_attempt(repo,relative,stage)))
     totals={}
@@ -167,6 +191,7 @@ def build(repo,stage):
              evaluated_n0=sum(c['evaluated']==0 for c in selected),
              outcomes=dict(sum((Counter(c['outcomes']) for c in selected),Counter())))
     return dict(schema_version=1,audit_status='in_progress',qualification_review=review_identity(repo),
+        attempt_selection=evidence(repo/SELECTION,repo) if selections else None,
         original_manifest=dict(path='logs/server-campaign/quality-final-n3-no-gnss/manifest.json',sha256=executed_hash),
         scope_source=dict(path='configs/campaigns/quality-final.json',sha256=future_hash,
                           note='algorithm/dataset membership retained; future repeat target is 3, not the historical proposal of 5'),

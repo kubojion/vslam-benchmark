@@ -13,7 +13,7 @@ import math
 from pathlib import Path
 import statistics
 
-from build_benchmark_csv import REPO, build_rows, csv_text, load_inventory, preserved_write
+from build_benchmark_csv import REPO, build_rows, build_historical_rows, csv_text, load_inventory, preserved_write
 from _run_type import canonicalize_dataset
 
 
@@ -152,6 +152,11 @@ def main():
     if not rows:
         ap.error('no matching protocol cell')
     n,differences=write_cells(rows,args.output_root,check=args.check)
+    if args.all:
+        historical=build_historical_rows(load_inventory(args.inventory))
+        if historical:
+            hn,hd=write_cells(historical,Path(args.output_root)/'historical-cohorts',check=args.check)
+            n+=hn;differences+=hd
     print(f'[aggregate] {n} cells/variants; {len(differences)} stale outputs')
     for path in differences:print(path)
     return bool(differences)
