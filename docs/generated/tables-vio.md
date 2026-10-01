@@ -13,6 +13,10 @@ partial coverage, unknown coverage, sparse keyframes, or unqualified results.
 
 Dense coverage measures exported poses on the camera timeline, separately from
 reference-supported score coverage. Missing ground truth is not a tracking failure.
+EuRoC AirSLAM VIO/VIO-LC uses the fixed corrected cohort (physical runs 4–6,
+logical repetitions 1–3). Original affected runs 1–3 remain in
+`benchmark-historical-cohorts.csv` and separate reports. OpenVINS retains its
+original run1 alongside new runs2–3, with implementation cohorts shown separately.
 Sparse keyframe accuracy is not a dense-frame comparison. Unknown instrumentation
 remains unknown. Aligned shape ATE does not establish GNSS global accuracy.
 
@@ -35,8 +39,8 @@ remains unknown. Aligned shape ATE does not establish GNSS global accuracy.
 |---|---|---|---|
 | ORB-SLAM3 — SE(3) | 0.04336 (0.03802–0.04892) [score N=3]; eval 3/3; coverage ≥99.9%; ✅ N=3 | 0.02994 (0.02757–0.03006) [score N=3]; eval 3/3; coverage ≥85.6%; accepted: 2, accepted_with_limitation: 1 | 0.05657 (0.0503–0.06169) [score N=3]; eval 3/3; coverage ≥96.5%; ✅ N=3 |
 | Basalt — SE(3) | 0.06649 (0.06649–0.06649) [score N=3]; eval 3/3; coverage ≥100.0%; ✅ N=3 | 0.06172 (0.06172–0.06173) [score N=3]; eval 3/3; coverage ≥100.0%; ✅ N=3 | 0.1446 (0.1445–0.1577) [score N=3]; eval 3/3; coverage ≥100.0%; ✅ N=3 |
-| AirSLAM — SE(3) | 0.08377 (0.08374–0.08385) [score N=3]; eval 3/3; rerun required; keyframes; dense coverage unknown; rerun_required: 3 | 0.1154 (0.1154–0.1155) [score N=3]; eval 3/3; rerun required; keyframes; dense coverage unknown; rerun_required: 3 | 0.09347 (0.09146–0.09348) [score N=3]; eval 3/3; rerun required; keyframes; dense coverage unknown; rerun_required: 3 |
+| AirSLAM — SE(3) | 0.09896 (0.09895–0.0993) [score N=3]; eval 3/3; keyframes; dense coverage unknown; accepted_with_limitation: 3 | 0.09902 (0.09892–0.09915) [score N=3]; eval 3/3; keyframes; dense coverage unknown; accepted_with_limitation: 3 | 0.07345 (0.07321–0.07492) [score N=3]; eval 3/3; keyframes; dense coverage unknown; accepted_with_limitation: 3 |
 | OKVIS2 — SE(3) | 0.05291 (0.05018–0.05582) [score N=3]; eval 3/3; coverage ≥100.0%; ✅ N=3 | 0.07253 (0.06487–0.084) [score N=3]; eval 3/3; coverage ≥100.0%; ✅ N=3 | 0.1521 (0.1249–0.179) [score N=3]; eval 3/3; coverage ≥99.9%; ✅ N=3 |
 | OKVIS2-X — SE(3) | 0.04563 (0.03921–0.04797) [score N=3]; eval 3/3; coverage ≥100.0%; ✅ N=3 | 0.09682 (0.08293–0.09874) [score N=3]; eval 3/3; coverage ≥100.0%; ✅ N=3 | 0.1013 (0.08661–0.1185) [score N=3]; eval 3/3; coverage ≥99.9%; ✅ N=3 |
-| OpenVINS — SE(3) | 0.06701 [score N=1]; eval 1/3; 2 missing; 1 nonzero exit; coverage ≥98.4%; accepted_with_limitation: 1, not_executed: 2 | 0.137 [score N=1]; eval 1/3; 2 missing; 1 nonzero exit; coverage ≥95.9%; accepted_with_limitation: 1, not_executed: 2 | 0.164 [score N=1]; eval 1/3; 2 missing; coverage ≥94.1%; accepted_with_limitation: 1, not_executed: 2 |
+| OpenVINS — SE(3) | cohort c3248c2204: 0.05863 (0.04965–0.06762) [score N=2]; cohort f7b533ff18: 0.06701 [score N=1]; eval 3/3; 1 nonzero exit; coverage ≥98.4%; accepted: 2, accepted_with_limitation: 1 | cohort c3248c2204: 0.137 (0.137–0.1371) [score N=2]; cohort f7b533ff18: 0.137 [score N=1]; eval 3/3; 1 nonzero exit; coverage ≥95.9%; accepted: 2, accepted_with_limitation: 1 | cohort 2f96fe3893: 0.164 [score N=1]; cohort c3248c2204: 0.1955 (0.1919–0.1991) [score N=2]; eval 3/3; coverage ≥94.1%; accepted_with_limitation: 3 |
 | Voxel-SVIO — SE(3) | 0.08556 (0.06292–0.09933) [score N=3]; eval 3/3; coverage ≥75.0%; accepted_with_limitation: 3; native shutdown error | 0.123 (0.1057–0.1423) [score N=3]; eval 3/3; coverage ≥96.9%; accepted_with_limitation: 3; native shutdown error | 0.2233 (0.1791–0.2322) [score N=3]; eval 3/3; coverage ≥95.1%; accepted_with_limitation: 3; native shutdown error |

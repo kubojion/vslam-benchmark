@@ -1,9 +1,11 @@
 # Generated results and publication status
 
-Updated 2026-10-01. These outputs now match the root schema-3 CSVs and the
+Updated after the focused EuRoC campaign, 2026-10-02 local. These outputs now match the root schema-3 CSVs and the
 hash-checked attempt inventory. They combine explicitly accepted, limited and blocked claims, identified in each
 cell; only the stated accepted comparisons are paper-usable. See [qualification](../publication-qualification-20261001.md)
 and [TODO](../../TODO.md). There are 45 clean accepted EuRoC N=3 cells; see the [current handoff](../acceptance-handoff-20261001.md).
+
+The EuRoC AirSLAM VIO/VIO-LC comparison uses corrected physical runs4–6, declared before execution. The 18 original affected runs remain in `benchmark-historical-cohorts.csv` and `results/historical-cohorts/`. OpenVINS original/new implementation cohorts remain separate. These changes add no automatic green ticks.
 
 - [Tables](tables.md): all five modes, 666 planned/variant rows, separate cohorts,
   explicit failures and missing repetitions.

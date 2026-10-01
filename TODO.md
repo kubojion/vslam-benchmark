@@ -1,16 +1,14 @@
 # vSLAM Benchmark - TODO
 
-> **Acceptance review 2026-10-01:** 45 clean N=3 EuRoC cells now qualify for the documented
-> recorded-profile comparison. A further 54 repetitions have explicit limitations;
-> Nine observed configured-attempt failures remain reusable; two OpenVINS Rosario collapses
-> now also require calibration reruns. Agricultural accuracy and GNSS
-> claims remain blocked by material calibration/reference/input evidence.
-> The five matrix layouts are unchanged. **N counts evaluations, not accepted successes.**
-> All 593 evaluations were refreshed: 159 Rosario metrics corrected, 434 numerically
-> unchanged; previous derived results and original attempts are preserved. The four-mode
-> campaign still has 545/600 evaluations. No estimator was run and no native execution
-> path is newly certified ready. See [acceptance handoff](docs/acceptance-handoff-20261001.md),
-> [claim criteria](docs/paper-acceptance-20261001.md) and [the repair record](docs/repair-handoff-20261001.md).
+> **Focused campaign complete:** six OpenVINS and 18 corrected AirSLAM EuRoC
+> attempts were executed once: 23 final trajectories evaluated, one native VIO-LC failure retained. All 45 previous green
+> N=3 cells are preserved; 73 repetitions have explicit limitations and
+> 10 observed failures remain reusable. The four-mode comparison has **550/600
+> evaluations**; all scopes contain 622. AirSLAM's new inertial cohort remains
+> limited to keyframes; original affected attempts and OpenVINS run1 limitations remain.
+> **N counts evaluations, not accepted successes. The five matrix layouts are unchanged.**
+> See [campaign evidence](docs/euroc-focused-campaign-20261001.md),
+> [current handoff](docs/acceptance-handoff-20261001.md) and [claim criteria](docs/paper-acceptance-20261001.md).
 
 ---
 
@@ -35,11 +33,12 @@ three accepted, same-cohort, zero-exit, valid trajectories each with ≥95% dens
 coverage and no observed native fatal error. It does not certify future runner readiness.
 Monocular Sim(3), final-optimization profiles and historical build disclosures remain explicit.
 
-The future manifest contains **210 reusable observations, 91 required reruns, 87 missing
-repetitions and 272 blocked cases**. No new estimation is certified ready. The previous
-30 reruns remain; matched-session evidence adds 14 Rosario IMU-extrinsic cases,
-42 additional Horti timing cases and five GNSS antenna-lever cases. See the
-[reference review](docs/reference-review-20261001.md) and handoff for exact evidence and prerequisites.
+The future manifest contains **234 reusable observations, 73 required reruns, 81 missing repetitions and 272 blocked cases**. Focused EuRoC OpenVINS/AirSLAM execution
+is validated; no remaining estimator action is automatically authorized or certified
+ready. Other native and agricultural/GNSS prerequisites remain explicit.
+AirSLAM EuRoC VIO/VIO-LC cells select predeclared physical runs4–6 as logical
+repetitions1–3; original runs1–3 are retained in the historical-cohort CSV and browser.
+OpenVINS cells keep original run1 and new runs2–3 in separate implementation cohorts.
 
 ### VO (no IMU, no loop closure) - `results/vo/`
 
@@ -76,13 +75,13 @@ repetitions and 272 blocked cases**. No new estimation is certified ready. The p
 | Basalt | 🔁 N=3; rerun: IMU extrinsic | 🔁 N=3; rerun: IMU extrinsic | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
 | OKVIS2 | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: time offset | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
 | OKVIS2-X | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: time offset | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
-| OpenVINS | 🔁 N=1; collapse r1; rerun: IMU extrinsic; exit 134; missing r2,r3 | 🔁 N=1; collapse r1; rerun: IMU extrinsic; exit 134; missing r2,r3 | 🟡 N=1; blocked: reference/clock; exit 134; missing r2,r3 | 🟡 N=1; blocked: reference/clock; exit 134; missing r2,r3 | 🟠 N=1; limited; exit 134; missing r2,r3 | 🟠 N=1; limited; exit 134; missing r2,r3 | 🟠 N=1; limited; partial coverage; missing r2,r3 | ❌ N=1; collapse r1; observed failure r1; missing r2,r3 |
-| AirSLAM | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: rectified IMU | 🔁 N=3; rerun: rectified IMU | 🔁 N=3; rerun: rectified IMU | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
+| OpenVINS | 🔁 N=1; collapse r1; rerun: IMU extrinsic; exit 134; missing r2,r3 | 🔁 N=1; collapse r1; rerun: IMU extrinsic; exit 134; missing r2,r3 | 🟡 N=1; blocked: reference/clock; exit 134; missing r2,r3 | 🟡 N=1; blocked: reference/clock; exit 134; missing r2,r3 | 🟠 N=3; limited; exit 134; separate cohorts | 🟠 N=3; limited; exit 134; separate cohorts | 🟠 N=3; limited; partial coverage; separate cohorts | ❌ N=1; collapse r1; observed failure r1; missing r2,r3 |
+| AirSLAM | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: time offset | 🟠 N=3; limited; sparse | 🟠 N=3; limited; sparse | 🟠 N=3; limited; sparse | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
 | Voxel-SVIO | 🔁 N=3; rerun: IMU extrinsic | 🔁 N=3; rerun: IMU extrinsic | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | 🟠 N=3; limited; native shutdown error; partial coverage | 🟠 N=3; limited; native shutdown error | 🟠 N=3; limited; native shutdown error | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
 
 > Horti IMU extraction/rectification corrections exist, but 48 saved inertial attempts
 > still require camera–IMU timing correction (six overlap earlier rectification defects). All seven non-ZED
-> sequences have N=3 for six algorithms; **OpenVINS remains N=1 in every cell**. Six
+> sequences have N=3 for six algorithms; **OpenVINS now has N=3 on EuRoC and N=1 elsewhere**. Six
 > previously unscored run1 trajectories have repaired evaluations, retaining exit 134.
 > Rosario seq1/seq5 retain catastrophic scale failures; the saved fixed identity
 > IMU/camera calibration is now a confirmed defect, not a valid physical convention. EuRoC recovered trajectories are accepted with exit/coverage limitations; agricultural accuracy remains blocked.
@@ -122,7 +121,7 @@ repetitions and 272 blocked cases**. No new estimation is certified ready. The p
 | ORB-SLAM3 | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: rectified IMU; rerun: time offset | 🔁 N=3; rerun: rectified IMU; rerun: time offset | ✅ N=3 | 🟠 N=3; limited; partial coverage | ✅ N=3 | ❌ N=0; observed failure r1; missing r2,r3 |
 | OKVIS2 | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: time offset | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
 | OKVIS2-X | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: time offset | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
-| AirSLAM | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: rectified IMU | 🔁 N=3; rerun: rectified IMU | 🔁 N=3; rerun: rectified IMU | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
+| AirSLAM | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: time offset | 🟠 N=3; limited; sparse | 🟠 N=3; limited; sparse | ❌ N=2; limited; sparse; observed failure r1 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
 
 > All four methods have N=3 on the seven non-ZED sequences. **ZED configs now exist**:
 > OKVIS2, OKVIS2-X and AirSLAM each have corrected N=1 and need two more repetitions;
@@ -159,17 +158,17 @@ repetitions and 272 blocked cases**. No new estimation is certified ready. The p
 | # | Task | Status |
 |---|---|---|
 | 1 | Extract HortiMulti IMU (`/ms/imu/data` -> `mav0/imu0/data.csv`) | `[x]` |
-| 2 | Run core VIO matrix | `[~]` six algorithms N=3 on all seven core sequences; OpenVINS only MH05 N=1; see VIO cells |
+| 2 | Run core VIO matrix | `[~]` OpenVINS now has three evaluated repetitions per EuRoC cell; original exit/coverage limits and separate cohorts remain. See the matrices for other cells and qualification. |
 | 3 | Diagnose and fix hortimulti VIO scale collapse | `[x]` **root cause was a camera-IMU EXTRINSIC bug, NOT vibration** (the earlier "vibration floor" conclusion was wrong). Fixed in config; all algos scale ~1.0. See PROGRESS.md "RESOLVED". |
 | 3b | Build OKVIS2 standalone (was never built) | `[x]` (`build_okvis2.sh`; -DHAVE_LIBREALSENSE=OFF -DUSE_CUDA=OFF) |
 | 3c | Re-run 2 stale bad VIO runs (Voxel EuRoC, OpenVINS seq5) | `[x]` (were bad runs, not algorithm limits) |
 | 3d | Add EuRoC MH_03/MH_05 VIO coverage + fix EuRoC times.txt (s->ns) | `[x]` |
 | 4 | Run ORB-SLAM3 VIO on rosariov2/seq1 N=3 | `[x]` N=3 evaluated |
 | 5 | Run Basalt VIO on rosariov2/seq1 N=3 | `[x]` N=3 evaluated |
-| 6 | Run OpenVINS VIO on rosariov2/seq5 N=3 | `[!]` no complete evaluated repetitions; shutdown failure/recovery pending |
+| 6 | Run OpenVINS VIO on rosariov2/seq5 N=3 | `[!]` run1 recovered and evaluated as collapse; confirmed IMU-extrinsic rerun, missing r2/r3, and agricultural prerequisites remain |
 | 7 | MASt3R-SLAM / MegaSaM revisit on the 24 GB server (optional — both OOM'd at 12 GB) | `[ ]` |
 | 8 | ORB-SLAM3 VO-clean LC-off re-runs | `[~]` LC-off configuration implemented; Rosario seq1/seq5 and Horti str02 missing after crashes |
-| 9 | Finish executed N=3 server campaign (no GNSS) | `[~]` 538/600 evaluated runs; 176/200 cells N=3. Original N=5/GNSS target is separate and unfinished |
+| 9 | Finish executed N=3 server campaign (no GNSS) | `[~]` 550/600 selected evaluations; 178/200 cells contain three evaluations. 45 cells are clean accepted N=3. Original N=5/GNSS target remains separate. |
 | 10 | Complete/validate GNSS-VIO N=1 sweep | `[~]` 16 default cells COMPLETE; four VINS-Fusion evaluations unvalidated; server repeats not run |
 | 10b | Re-run OpenVINS+GPS HortiMulti with corrected extrinsics; validate all four rows | `[ ]` not completed by the no-GNSS server campaign |
 | 11 | Normalize EuRoC dataset aliases and result/config paths to `euroc_mav` | `[x]` central shell/Python canonicalization; obsolete aliases removed |
@@ -252,9 +251,9 @@ repetitions and 272 blocked cases**. No new estimation is certified ready. The p
 
 | Task | Status |
 |---|---|
-| VIO rosariov2/seq5 N=3 | `[!]` N=0 complete evaluations; recovery needed |
-| VIO EuRoC MH_01/03/05 N=1 | `[~]` MH01/MH03 N=0; MH05 N=1 (two repeats needed) |
-| VIO hortimulti (after IMU extraction) | `[!]` extraction/config fix done; neither current cell has a complete evaluation |
+| VIO rosariov2/seq5 N=3 | `[!]` N=1 recovered collapse; IMU-extrinsic rerun and missing r2/r3 remain |
+| VIO EuRoC MH_01/03/05 N=3 | `[x]` six missing repetitions completed; all three cells evaluated N=3. Original run1 limitations, MH05 partial coverage and separate implementation cohorts remain. |
+| VIO hortimulti (after IMU extraction) | `[!]` N=1 recovered evaluation per cell; exit 134, reference/clock blockers and missing r2/r3 remain |
 | ZED corrected VIO N=3 | `[~]` N=1 collapse; preserve outcome, run2/run3 missing |
 
 ### AirSLAM
@@ -264,7 +263,7 @@ repetitions and 272 blocked cases**. No new estimation is certified ready. The p
 | VIO rosariov2/seq1+seq5 N=3 | `[x]` N=3 on both |
 | VI-SLAM (VIO-LC) rosariov2 N=3 | `[x]` N=3 on both |
 | VIO/VI-SLAM hortimulti (after IMU extraction) | `[x]` N=3 on both sequences/modes |
-| VIO EuRoC MH_01/03/05 N=1 | `[x]` now N=3 on each |
+| Corrected EuRoC VIO / VIO-LC cohort | `[x]` all 18 fixed attempts consumed once: VIO N=3 per sequence; VIO-LC MH01/MH03 N=3, MH05 N=2 plus run4 native refinement failure. Sparse-keyframe limits remain. |
 | hortimulti str02/str03 scale collapse | `[x]` **FIXED**: extrinsic was inverted AND missing rectification. str02 46.3->5.30 m, str03 16.3->1.24 m, scale ~1.0. (Also recovered lost `vio_euroc.launch`; TensorRT needed a host reboot after a driver update.) |
 | ZED corrected VIO / VIO-LC N=3 | `[~]` each N=1; run2/run3 missing |
 

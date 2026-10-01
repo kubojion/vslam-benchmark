@@ -13,6 +13,10 @@ partial coverage, unknown coverage, sparse keyframes, or unqualified results.
 
 Dense coverage measures exported poses on the camera timeline, separately from
 reference-supported score coverage. Missing ground truth is not a tracking failure.
+EuRoC AirSLAM VIO/VIO-LC uses the fixed corrected cohort (physical runs 4–6,
+logical repetitions 1–3). Original affected runs 1–3 remain in
+`benchmark-historical-cohorts.csv` and separate reports. OpenVINS retains its
+original run1 alongside new runs2–3, with implementation cohorts shown separately.
 Sparse keyframe accuracy is not a dense-frame comparison. Unknown instrumentation
 remains unknown. Aligned shape ATE does not establish GNSS global accuracy.
 

@@ -1,9 +1,9 @@
-# Future N=3 campaign preparation — repair/audit complete, execution unverified
+# Future N=3 preparation — focused EuRoC validated, other execution unverified
 
 The user extended the existing repair goal on 2026-10-01. Preserve completed work,
 prepare the next campaign across VO, VO-LC, VIO, VIO-LC and GNSS-VIO, and retain the
-DROID-SLAM, MASt3R-SLAM and MegaSaM exclusions. **No new estimator execution is
-permitted during this work.** See [the detailed goal](../codex-goal.md).
+DROID-SLAM, MASt3R-SLAM and MegaSaM exclusions. The original preparation authorized no estimation. A subsequent focused authorization
+completed only the EuRoC OpenVINS/AirSLAM campaign; no further execution is authorized. See [the detailed goal](../codex-goal.md).
 
 ## Scope and evidence
 
@@ -24,8 +24,8 @@ accuracy of historical GNSS measurements; missing run-time evidence is not recre
 from today's files.
 
 Inventory: `results/repair-20261001/inventory.json`. This reconciles all 660 default
-slots, plus 15 historical excluded artifacts, six GNSS variants and nine other
-smoke/out-of-protocol attempts (seven have staged evaluations). Each record includes
+slots, plus 15 historical excluded artifacts, six GNSS variants, 18 superseded AirSLAM
+attempts and 17 smoke/diagnostic/out-of-protocol attempts. Each record includes
 saved config hashes, source metadata, numerical and execution outcomes, evaluation
 input hashes and provenance blockers. Original trajectories are unchanged.
 
@@ -40,27 +40,20 @@ Current classification after the [focused acceptance review](../acceptance-hando
 
 | Category | Logical repetitions | Meaning |
 |---|---:|---|
-| Required rerun | 30 | Six ORB ZED FPS cases, 18 AirSLAM EuRoC inertial rectification cases and six ORB Horti VIO-LC rectification cases; preserve previous cohorts |
-| Missing | 87 | No saved default attempt directory for that repetition |
-| Blocked/review | 331 | Material reference/input or unresolved execution evidence remains missing |
-| Reusable for stated claim | 212 | 147 accepted, 54 limited and 11 observed configured-attempt failures; not all clean successes |
+| Required rerun | 73 | Remaining confirmed estimator-side calibration/profile defects; preserve previous cohorts |
+| Missing | 81 | No saved selected default attempt for that logical repetition |
+| Blocked/review | 272 | Material reference/input or unresolved execution evidence |
+| Reusable for stated claim | 234 | 151 accepted, 73 limited and 10 observed failures; not all clean successes |
 
-No new estimator execution is verified ready. The 212 reusable observations need no new estimation. The 30 reruns and
-87 missing repetitions retain prerequisites; their category is not permission to
-start them. Review will move eligible saved observations into reusable status,
-including genuine failures under a valid protocol. Invalid estimator settings
-require a separate corrected cohort; failures must not be repeatedly sampled until
-three successes remain.
+The focused EuRoC campaign completed six OpenVINS missing repetitions and 18
+corrected AirSLAM repetitions. Those selected observations need no further run.
+Other branches retain their prerequisites; no remaining executable action is
+certified ready or authorized. Failed attempts remain in the denominator.
 
-The current runtime calculation covers **23 of the 117 missing/rerun actions**, with
-a combined historical median estimate of about **34.6 hours**. The other 94 lack a
-comparable complete same-cell run on this server. **This is not a total campaign
-estimate.** It excludes unresolved blocked actions, validation diagnostics and
-re-evaluation overhead. Each action records the source runs, observed range, pacing
-mode and uncertainty. Old-machine GNSS times and early failures are not treated as
-full server-runtime estimates. Native-error samples are also excluded; this removes the Voxel-SVIO ZED sample from the earlier 37.2 h subtotal. Execution is serialized because estimators share
-containers and CPU/GPU resources. Included wrappers now isolate their native outputs
-per attempt, with actual post-repair native execution still unverified.
+The timing subtotal is **24.1 serialized hours for 11 of 154
+required/missing actions**; 143 lack a comparable complete same-cell timing.
+This excludes blocked cases, diagnostics and capture/evaluation overhead, and is
+not a full-campaign estimate. Native-error and partial samples are excluded.
 
 ## Read-only validation and regeneration
 

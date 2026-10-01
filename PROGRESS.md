@@ -1,11 +1,18 @@
 # vSLAM Benchmark - Progress
 
-> Current repair status: **2026-10-01**, repair/audit complete; native readiness unverified. The original four-mode RTX 4090
-> N=3 campaign has **545/600 repaired evaluations: 176 cells at N=3, 17 at N=1, seven
-> without a current evaluation**. Five evaluated attempts retain scale collapse.
-> See [TODO](TODO.md) and [the repair audit](docs/repair-audit-20261001.md).
-> The older summaries and numbered findings below are dated historical observations;
-> do not use their counts or excitation-only explanations as current conclusions.
+> Current status: focused EuRoC campaign complete, with 550/600 four-mode evaluations
+> and 178 cells containing three evaluations. All 45 prior accepted N=3 cells are preserved.
+> Current counts and limitations are in [TODO](TODO.md) and [the handoff](docs/acceptance-handoff-20261001.md).
+> The dated entries below retain historical checkpoints and are not current totals.
+
+## 2026-10-02 — Focused EuRoC execution and reconciliation
+
+Completed exactly six missing OpenVINS VIO repetitions and 18 corrected AirSLAM
+VIO/VIO-LC repetitions. Native exits and available saved exports are verified; each valid final export was evaluated before the next attempt. MH05 AirSLAM VIO-LC run4 retains a junction-database SIGSEGV without final output; runs5–6 succeeded. AirSLAM remains sparse-keyframe accuracy,
+and original OpenVINS run1 limits and implementation cohorts are retained.
+The original 18 affected AirSLAM results stay in a historical-cohort CSV and reports.
+Current future work: 234 reusable observations, 73 required reruns, 81 missing repetitions and 272 blocked cases. No other
+algorithm/dataset path was executed and no push occurred. See [the campaign record](docs/euroc-focused-campaign-20261001.md).
 
 ## 2026-10-01 — Focused configuration and acceptance review
 

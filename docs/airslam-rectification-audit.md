@@ -4,8 +4,8 @@ Reviewed 2026-10-01 from preserved configurations and local source. This finding
 concerns EuRoC VIO and VIO-LC. During the subsequent authorized
 [focused EuRoC campaign](euroc-focused-campaign-20261001.md), the patch was applied
 and built in a separate workspace. Native camera composition and short VIO and
-VIO-LC execution/export checks passed. **Full-sequence production gates remain
-pending at this preparation checkpoint.** The original build remains intact.
+VIO-LC execution/export gates passed. **All 18 corrected attempts are complete: 17 final exports and one retained MH05 VIO-LC refinement SIGSEGV without final output.**
+See [the completed campaign](euroc-focused-campaign-20261001.md); sparse-keyframe limitations remain. The original build remains intact.
 No existing trajectory or recorded configuration was changed.
 
 ## Established issue

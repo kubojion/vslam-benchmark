@@ -52,7 +52,7 @@ def read(path):
     return json.loads(path.read_text()) if path.is_file() else {}
 
 
-def cohort_identity(meta, algorithm):
+def cohort_identity(meta, algorithm, *, run_dir=None):
     """Group recorded effective settings, not just similarly named config files.
 
     Historical hashes identify historical bytes: never translate run records
@@ -80,6 +80,36 @@ def cohort_identity(meta, algorithm):
         container=provenance.get('container'), runtime=provenance.get('runtime'),
         machine_id=meta.get('machine_id'),
     )
+    # Source-capture receipts include wall time and capture duration. Group by
+    # verified content instead, while retaining historical signatures exactly.
+    capture = provenance.get('implementation_capture')
+    if capture:
+        if run_dir is None:
+            raise ValueError('run directory required to verify implementation capture')
+        def verified_snapshot(record):
+            path = Path(run_dir) / record['snapshot']
+            if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != record['snapshot_sha256']:
+                raise ValueError('changed or missing cohort capture: ' + str(path))
+            return json.loads(path.read_text())
+        implementation = verified_snapshot(capture)
+        if implementation.get('schema') != 1 or not implementation.get('trees'):
+            raise ValueError('unsupported or empty implementation capture')
+        workspace = provenance.get('workspace') or {}
+        if (workspace.get('snapshot') != capture['snapshot'] or
+                workspace.get('snapshot_sha256') != capture['snapshot_sha256']):
+            raise ValueError('workspace and implementation capture disagree')
+        payload['workspace'] = {k: v for k, v in workspace.items()
+                                if k not in ('snapshot', 'snapshot_sha256', 'capture_role')}
+        payload['implementation_content_sha256'] = hashlib.sha256(json.dumps(
+            implementation['trees'], sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+        assets = provenance.get('runtime_assets')
+        if assets:
+            runtime = verified_snapshot(assets)
+            content = hashlib.sha256(json.dumps({k: v for k, v in runtime.items() if k != 'sha256'},
+                sort_keys=True, separators=(',', ':'), allow_nan=False).encode()).hexdigest()
+            if runtime.get('sha256') != content or assets.get('content_sha256') != content:
+                raise ValueError('runtime cohort content digest disagrees')
+            payload['runtime_content_sha256'] = content
     digest = hashlib.sha256(json.dumps(payload, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
     return digest, payload
 
@@ -112,7 +142,7 @@ def saved_attempt(repo,relative,stage):
     if staged.is_file():files.append(evidence(staged,repo))
     files=list({item['path']:item for item in files}.values())
     process=meta.get('process',{})
-    cohort,cohort_evidence=cohort_identity(meta,algo)
+    cohort,cohort_evidence=cohort_identity(meta,algo,run_dir=run)
     findings=historical_findings(repo,relative,meta)
     qualification=review_saved(relative,meta,value,findings,snapshot_records,exists=run.is_dir(),repo=repo)
     return dict(path='results/'+relative,exists=run.is_dir(),files=files,
@@ -150,6 +180,12 @@ def runtime_estimate(attempts):
                 uncertainty='observed historical range, not a confidence interval; configuration/runner changes may alter runtime')
 
 
+def attempt_directories(repo):
+    # Interrupted startup can leave logs/process evidence before run_meta exists.
+    # Directory presence is an attempted slot, never a successful evaluation.
+    return {p for mode in MODES for p in (repo/'results'/mode).glob('*/*/*/run*') if p.is_dir()}
+
+
 def build(repo,stage):
     executed,executed_hash=load_manifest(repo/'logs/server-campaign/quality-final-n3-no-gnss/manifest.json')
     future,future_hash=load_manifest(repo/'configs/campaigns/quality-final.json')
@@ -173,8 +209,7 @@ def build(repo,stage):
             runtime_estimate=runtime_estimate(attempts),
             acceptance=cell_acceptance(attempts, len({a['cohort_fingerprint'] for a in attempts if a['cohort_fingerprint']})<=1)))
     other=[]
-    paths={p.parent for mode in MODES for pattern in ('run*/trajectory.txt','run*/run_eval.json','run*/run_meta.json')
-           for p in (repo/'results'/mode).glob('*/*/*/'+pattern)}
+    paths=attempt_directories(repo)
     for run in sorted(paths):
         relative=str(run.relative_to(repo/'results'))
         if relative in members:continue

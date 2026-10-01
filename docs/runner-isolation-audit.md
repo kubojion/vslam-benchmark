@@ -1,9 +1,10 @@
 # Attempt process and output isolation audit — 2026-10-01
 
-Code repair and synthetic validation are complete for the changes below. Actual
-ROS/container execution is **unverified**. No estimator was started; the relevant
-benchmark containers were stopped during this audit and were not started for tests.
-This does not resolve native crashes or establish campaign readiness.
+The original repair below was validated synthetically. Subsequently the separately
+authorized [focused campaign](euroc-focused-campaign-20261001.md) validated OpenVINS
+EuRoC VIO and AirSLAM EuRoC VIO/VIO-LC, including native exits, output capture,
+immediate evaluation and bounded interruption/recovery. Other native paths remain
+unverified; shared helper tests do not establish their execution readiness.
 
 The same process ownership helper now covers the six included native/Conda wrappers:
 ORB-SLAM3, Basalt, OKVIS2, OKVIS2-X, DPVO and MAC-VO. A missing pidfd signalling

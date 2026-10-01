@@ -60,8 +60,9 @@ def accuracy_figure(rows, mode, variant):
     fig.suptitle(f'{mode.upper()} · input {variant} · conditional median ATE with acceptance flags', fontsize=13)
     fig.text(.02, .015, 'ok/planned = numerical outcomes. A3: clean accepted N=3; B: blocked; L: limited; F: observed failure; M: missing; U: unreviewed.\n'
              'R: config rerun; X: nonzero exit; P: coverage <95%; K: keyframes. Separate cohorts are not pooled.\n'
-             'Failures/missing slots stay in counts. Agricultural reference issues remain; aligned GNSS scores are not global error.', fontsize=8)
-    fig.tight_layout(rect=(0, .115, 1, .94))
+             'Failures/missing slots stay in counts. Agricultural reference issues remain; aligned GNSS scores are not global error.\n'
+             'EuRoC AirSLAM VIO/VIO-LC: corrected runs4–6; affected runs1–3 retained in the historical-cohort CSV.', fontsize=8)
+    fig.tight_layout(rect=(0, .135, 1, .94))
     return fig, plotted
 
 

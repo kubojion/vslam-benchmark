@@ -1,16 +1,16 @@
 # Acceptance handoff — 2026-10-01
 
-Generated from the checked inventory. The [claim review](paper-acceptance-20261001.md) defines eligibility, limitations and evidence. This includes the [matched-session calibration review](reference-review-20261001.md): Rosario frame-dependent metrics were corrected; accepted EuRoC values and original attempts are preserved. **Acceptance review complete; native execution remains unverified.**
+Generated from the checked inventory. The [claim review](paper-acceptance-20261001.md) defines eligibility, limitations and evidence. This includes the [matched-session calibration review](reference-review-20261001.md): Rosario frame-dependent metrics were corrected; accepted EuRoC values and original attempts are preserved. **Acceptance review complete; focused EuRoC OpenVINS/AirSLAM execution validated. Other native paths remain unverified.**
 
 | Mode | Clean accepted N=3 cells | Accepted repetitions | Limited repetitions | Observed failures accepted | Required reruns | Missing | Blocked |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | vo | 17 | 53 | 19 | 4 | 3 | 6 | 107 |
 | vo-lc | 9 | 33 | 21 | 2 | 3 | 5 | 80 |
-| vio | 11 | 35 | 13 | 2 | 47 | 28 | 43 |
-| vio-lc | 8 | 26 | 1 | 1 | 33 | 8 | 27 |
+| vio | 11 | 39 | 24 | 2 | 38 | 22 | 43 |
+| vio-lc | 8 | 26 | 9 | 2 | 24 | 8 | 27 |
 | gnss-vio | 0 | 0 | 0 | 0 | 5 | 40 | 15 |
 
-Future default actions: 210 reusable observations, 91 required reruns, 87 missing repetitions, 272 blocked. Retaining an observation does not certify a repaired runner. No new estimator run or push occurred.
+Future default actions: 234 reusable observations, 73 required reruns, 81 missing repetitions, 272 blocked. The separately authorized focused EuRoC campaign is complete; its 24 attempts yielded 23 final evaluations and one retained native refinement failure. No other paths were executed and no push occurred.
 
 ## Clean N=3 cells
 
@@ -112,27 +112,47 @@ Future default actions: 210 reusable observations, 91 required reruns, 87 missin
 | `results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run1` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
 | `results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run2` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
 | `results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run3` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
+| `results/vio/euroc_mav/MH_01_easy/airslam/run4` | accepted_with_limitation | sparse_keyframe_accuracy_only |
+| `results/vio/euroc_mav/MH_01_easy/airslam/run5` | accepted_with_limitation | sparse_keyframe_accuracy_only |
+| `results/vio/euroc_mav/MH_01_easy/airslam/run6` | accepted_with_limitation | sparse_keyframe_accuracy_only |
 | `results/vio/euroc_mav/MH_01_easy/openvins/run1` | accepted_with_limitation | saved_accuracy_with_recorded_nonzero_exit_no_clean_success |
 | `results/vio/euroc_mav/MH_01_easy/voxel_svio/run1` | accepted_with_limitation | export_coverage_below_95_percent_no_clean_success_tick; native_shutdown_error_despite_wrapper_exit_zero |
 | `results/vio/euroc_mav/MH_01_easy/voxel_svio/run2` | accepted_with_limitation | export_coverage_below_95_percent_no_clean_success_tick; native_shutdown_error_despite_wrapper_exit_zero |
 | `results/vio/euroc_mav/MH_01_easy/voxel_svio/run3` | accepted_with_limitation | export_coverage_below_95_percent_no_clean_success_tick; native_shutdown_error_despite_wrapper_exit_zero |
 | `results/vio/euroc_mav/MH_03_medium/orbslam3/run2` | accepted_with_limitation | export_coverage_below_95_percent_no_clean_success_tick |
+| `results/vio/euroc_mav/MH_03_medium/airslam/run4` | accepted_with_limitation | sparse_keyframe_accuracy_only |
+| `results/vio/euroc_mav/MH_03_medium/airslam/run5` | accepted_with_limitation | sparse_keyframe_accuracy_only |
+| `results/vio/euroc_mav/MH_03_medium/airslam/run6` | accepted_with_limitation | sparse_keyframe_accuracy_only |
 | `results/vio/euroc_mav/MH_03_medium/openvins/run1` | accepted_with_limitation | saved_accuracy_with_recorded_nonzero_exit_no_clean_success |
 | `results/vio/euroc_mav/MH_03_medium/voxel_svio/run1` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
 | `results/vio/euroc_mav/MH_03_medium/voxel_svio/run2` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
 | `results/vio/euroc_mav/MH_03_medium/voxel_svio/run3` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
+| `results/vio/euroc_mav/MH_05_difficult/airslam/run4` | accepted_with_limitation | sparse_keyframe_accuracy_only |
+| `results/vio/euroc_mav/MH_05_difficult/airslam/run5` | accepted_with_limitation | sparse_keyframe_accuracy_only |
+| `results/vio/euroc_mav/MH_05_difficult/airslam/run6` | accepted_with_limitation | sparse_keyframe_accuracy_only |
 | `results/vio/euroc_mav/MH_05_difficult/openvins/run1` | accepted_with_limitation | export_coverage_below_95_percent_no_clean_success_tick |
+| `results/vio/euroc_mav/MH_05_difficult/openvins/run2` | accepted_with_limitation | export_coverage_below_95_percent_no_clean_success_tick |
+| `results/vio/euroc_mav/MH_05_difficult/openvins/run3` | accepted_with_limitation | export_coverage_below_95_percent_no_clean_success_tick |
 | `results/vio/euroc_mav/MH_05_difficult/voxel_svio/run1` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
 | `results/vio/euroc_mav/MH_05_difficult/voxel_svio/run2` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
 | `results/vio/euroc_mav/MH_05_difficult/voxel_svio/run3` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
 | `results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | valid_observed_failure | no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim; retain_failure_in_attempt_denominator; serial_specific_imu_rotation_and_timing_unverified; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
 | `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run1` | valid_observed_failure | collapse_under_recorded_reference_diagnostic_not_verified_physical_scale; no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim; retain_failure_in_attempt_denominator; serial_specific_imu_rotation_and_timing_unverified; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vio-lc/euroc_mav/MH_01_easy/airslam/run4` | accepted_with_limitation | sparse_keyframe_accuracy_only; final_offline_map_refinement_accuracy_not_causal_online_trajectory |
+| `results/vio-lc/euroc_mav/MH_01_easy/airslam/run5` | accepted_with_limitation | sparse_keyframe_accuracy_only; final_offline_map_refinement_accuracy_not_causal_online_trajectory |
+| `results/vio-lc/euroc_mav/MH_01_easy/airslam/run6` | accepted_with_limitation | sparse_keyframe_accuracy_only; final_offline_map_refinement_accuracy_not_causal_online_trajectory |
 | `results/vio-lc/euroc_mav/MH_03_medium/orbslam3/run1` | accepted_with_limitation | export_coverage_below_95_percent_no_clean_success_tick |
+| `results/vio-lc/euroc_mav/MH_03_medium/airslam/run4` | accepted_with_limitation | sparse_keyframe_accuracy_only; final_offline_map_refinement_accuracy_not_causal_online_trajectory |
+| `results/vio-lc/euroc_mav/MH_03_medium/airslam/run5` | accepted_with_limitation | sparse_keyframe_accuracy_only; final_offline_map_refinement_accuracy_not_causal_online_trajectory |
+| `results/vio-lc/euroc_mav/MH_03_medium/airslam/run6` | accepted_with_limitation | sparse_keyframe_accuracy_only; final_offline_map_refinement_accuracy_not_causal_online_trajectory |
+| `results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4` | valid_observed_failure | retain_failure_in_attempt_denominator; no_final_vio_lc_trajectory_no_accuracy_claim; intermediate_odometry_is_diagnostic_only; native_junction_database_segfault_root_cause_unresolved |
+| `results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5` | accepted_with_limitation | sparse_keyframe_accuracy_only; final_offline_map_refinement_accuracy_not_causal_online_trajectory |
+| `results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6` | accepted_with_limitation | sparse_keyframe_accuracy_only; final_offline_map_refinement_accuracy_not_causal_online_trajectory |
 | `results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | valid_observed_failure | no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim; retain_failure_in_attempt_denominator; serial_specific_imu_rotation_and_timing_unverified; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
 
 ## Exact required reruns
 
-There are 91 distinct confirmed cases: the previous 30 plus the matched-session findings. Preserve every original attempt and use a new physical ID/cohort.
+There are 73 remaining distinct confirmed cases after the current cohort selection. Superseded affected AirSLAM attempts remain in their original directories and the historical-cohort CSV. Preserve every original attempt and use a new physical ID/cohort.
 
 | Cell | Logical repetitions | Concrete defect |
 |---|---|---|
@@ -152,9 +172,6 @@ There are 91 distinct confirmed cases: the previous 30 plus the matched-session 
 | `vio/hortimulti/strawberry03/okvis2` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
 | `vio/hortimulti/strawberry03/okvis2x` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
 | `vio/hortimulti/strawberry03/airslam` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
-| `vio/euroc_mav/MH_01_easy/airslam` | r1, r2, r3 | airslam_rectified_camera_imu_extrinsic |
-| `vio/euroc_mav/MH_03_medium/airslam` | r1, r2, r3 | airslam_rectified_camera_imu_extrinsic |
-| `vio/euroc_mav/MH_05_difficult/airslam` | r1, r2, r3 | airslam_rectified_camera_imu_extrinsic |
 | `vio-lc/hortimulti/strawberry02/orbslam3` | r1, r2, r3 | orb_horti_rectified_camera_imu_extrinsic;horti_camera_imu_time_offset_uncompensated |
 | `vio-lc/hortimulti/strawberry02/okvis2` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
 | `vio-lc/hortimulti/strawberry02/okvis2x` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
@@ -163,9 +180,6 @@ There are 91 distinct confirmed cases: the previous 30 plus the matched-session 
 | `vio-lc/hortimulti/strawberry03/okvis2` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
 | `vio-lc/hortimulti/strawberry03/okvis2x` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
 | `vio-lc/hortimulti/strawberry03/airslam` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
-| `vio-lc/euroc_mav/MH_01_easy/airslam` | r1, r2, r3 | airslam_rectified_camera_imu_extrinsic |
-| `vio-lc/euroc_mav/MH_03_medium/airslam` | r1, r2, r3 | airslam_rectified_camera_imu_extrinsic |
-| `vio-lc/euroc_mav/MH_05_difficult/airslam` | r1, r2, r3 | airslam_rectified_camera_imu_extrinsic |
 | `gnss-vio/rosariov2/sequence1/cifasis_gnss_si` | r1 | rosario_v1_antenna_lever_arm_used_on_v2 |
 | `gnss-vio/rosariov2/sequence1/okvis2x` | r1 | gnss_zero_antenna_lever_arm_in_native_log |
 | `gnss-vio/rosariov2/sequence5/okvis2x` | r1 | gnss_zero_antenna_lever_arm_in_native_log |
@@ -188,9 +202,6 @@ Missing means no original attempt directory; an existing failed attempt is not r
 | `vio/rosariov2/sequence5/openvins` | r2, r3 |
 | `vio/hortimulti/strawberry02/openvins` | r2, r3 |
 | `vio/hortimulti/strawberry03/openvins` | r2, r3 |
-| `vio/euroc_mav/MH_01_easy/openvins` | r2, r3 |
-| `vio/euroc_mav/MH_03_medium/openvins` | r2, r3 |
-| `vio/euroc_mav/MH_05_difficult/openvins` | r2, r3 |
 | `vio/zed2i/field1_110426_full_10fps_q90/orbslam3` | r2, r3 |
 | `vio/zed2i/field1_110426_full_10fps_q90/okvis2` | r2, r3 |
 | `vio/zed2i/field1_110426_full_10fps_q90/okvis2x` | r2, r3 |
@@ -243,18 +254,20 @@ Exact affected attempt IDs and evidence are in `results/acceptance-20261001/hand
 | zed_reference_orientation_unavailable | 38 |
 | zed_serial_specific_imu_rotation_and_time_offset_unverified | 8 |
 
-## Next execution, after authorization
+## Completed focused execution
 
-First resolve static prerequisites: apply/build the reviewed AirSLAM rectification patch; verify the corrected ORB FPS/IMU profiles load; capture actual native exits separately from wrapper/player exits; diagnose OV2SLAM/Voxel shutdown and the remaining ORB/OKVIS ZED execution failures. Retain the existing final-optimization/profile choices; do not tune them on these test scores. Resolve the specific remaining image/projection, reference-origin/time and GNSS-input issues in the matched-session review before qualified production comparisons.
+The three EuRoC OpenVINS/AirSLAM integration targets and first full gates passed. All six missing OpenVINS repetitions and all 18 corrected AirSLAM slots were consumed once, with immediate evaluation where final output existed and no success-conditioned retries. MH05 VIO-LC run4 has a native junction-database SIGSEGV without final output; runs5–6 succeeded. See [the focused campaign](euroc-focused-campaign-20261001.md) for source, build, configuration, output and shutdown evidence. AirSLAM supports sparse-keyframe accuracy; OpenVINS original run1 limitations and its separate implementation cohort remain. No automatic green tick follows from completing three exports.
 
-**Smallest useful first batch: three diagnostic targets** — OpenVINS EuRoC MH01 VIO, AirSLAM EuRoC MH01 VIO, and AirSLAM EuRoC MH01 VIO-LC. These cover the shutdown/capture path and both patched Air inertial stages needed for the immediately actionable EuRoC missing/rerun cases. Freeze a separately labelled bounded-input diagnostic recipe, preserve its input subset and all output, and exercise normal completion plus safe interruption/resume without overwriting. A truncated diagnostic cannot certify full-sequence stability, LC occurrence or runtime. After it passes, the first production repetition is the full-sequence gate and must be evaluated before continuing.
+## Remaining execution prerequisites
 
-**Whole-scope readiness remains conditional:** the following 31 representative targets cover each of the 30 repaired algorithm/mode paths once, plus ORB ZED inertial+LC. This is the minimum branch-coverage target set used here, not proof that all dataset-specific paths behave identically. Defer blocked agricultural/GNSS targets until their prerequisites are resolved; do not launch this as a campaign. Passing the first three does not certify the other paths. Tests of failure/interruption can be combined with each integration target; no arbitrary extra N=3 diagnostic campaign is proposed.
+Resolve the remaining ORB FPS/IMU native loading, OV2SLAM/Voxel shutdown and ORB/OKVIS ZED failures before those paths are certified. Agricultural/GNSS reference, calibration and input blockers remain. No further estimator execution is authorized by this handoff.
 
-| Diagnostic target | First batch | Full-sequence historical seconds (not diagnostic estimate) |
+The following representatives cover the other algorithm/mode branches; a validated EuRoC path does not certify another dataset.
+
+| Diagnostic target | Execution status | Full-sequence historical seconds (not diagnostic estimate) |
 |---|---|---:|
-| `vio/euroc_mav/MH_01_easy/airslam` | yes | unknown |
-| `vio-lc/euroc_mav/MH_01_easy/airslam` | yes | unknown |
+| `vio/euroc_mav/MH_01_easy/airslam` | focused campaign validated | unknown |
+| `vio-lc/euroc_mav/MH_01_easy/airslam` | focused campaign validated | unknown |
 | `vo/euroc_mav/MH_01_easy/airslam` | deferred | unknown |
 | `vo-lc/euroc_mav/MH_01_easy/airslam` | deferred | unknown |
 | `vio/euroc_mav/MH_01_easy/basalt` | deferred | 9.6 |
@@ -272,7 +285,7 @@ First resolve static prerequisites: apply/build the reviewed AirSLAM rectificati
 | `vio-lc/euroc_mav/MH_01_easy/okvis2x` | deferred | 228.3 |
 | `vo/euroc_mav/MH_01_easy/okvis2x` | deferred | 220.2 |
 | `vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x` | deferred | unknown |
-| `vio/euroc_mav/MH_01_easy/openvins` | yes | unknown |
+| `vio/euroc_mav/MH_01_easy/openvins` | focused campaign validated | 191.8 |
 | `gnss-vio/rosariov2/sequence1/openvins_gps` | deferred | unknown |
 | `vio/zed2i/field1_110426_full_10fps_q90/orbslam3` | deferred | unknown |
 | `vio-lc/hortimulti/strawberry02/orbslam3` | deferred | unknown |
@@ -285,7 +298,7 @@ First resolve static prerequisites: apply/build the reviewed AirSLAM rectificati
 | `vio/euroc_mav/MH_03_medium/voxel_svio` | deferred | unknown |
 | `vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3` | deferred | unknown |
 
-The timing subtotal is 24.1 serialized hours for 11 of the 178 required/missing actions; 167 have no comparable complete same-cell timing. It excludes native-error samples, diagnostics, unresolved blocked cases and evaluation/capture overhead. No total-campaign runtime is justified.
+The timing subtotal is 24.1 serialized hours for 11 of the 154 required/missing actions; 143 have no comparable complete same-cell timing. It excludes native-error samples, diagnostics, unresolved blocked cases and evaluation/capture overhead. No total-campaign runtime is justified.
 
 ## Reproduction and preservation
 

@@ -1,5 +1,8 @@
 # Five-mode repair handoff — 2026-10-01
 
+> Historical checkpoint. Current focused EuRoC execution, counts and remaining limitations are in
+> [the campaign record](euroc-focused-campaign-20261001.md) and [current handoff](acceptance-handoff-20261001.md).
+
 > Historical repair-completion checkpoint. The subsequent [acceptance handoff](acceptance-handoff-20261001.md)
 > supersedes its blanket qualification counts. The later [matched-session review](reference-review-20261001.md)
 > additionally corrects Rosario metrics; this document remains the historical checkpoint.

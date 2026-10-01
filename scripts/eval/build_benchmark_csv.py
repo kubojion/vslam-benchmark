@@ -197,19 +197,24 @@ def load_inventory(path,repo=REPO):
     return inventory
 
 
+def checked_evaluation(attempt, inventory, repo):
+    ev=json.loads((repo/attempt['evaluation_path']).read_text()) if attempt['evaluation_path'] else {}
+    if ev and inventory.get('qualification_review') and (ev.get('qualification') != attempt.get('qualification') or
+        ev.get('qualification_provenance') != inventory['qualification_review']):
+        raise ValueError('evaluation qualification disagrees with inventory: '+attempt['path'])
+    return ev
+
+
 def build_rows(inventory,repo=REPO):
     rows=[]
     for cell in inventory['cells']:
         for attempt in cell['attempts']:
-            ev=json.loads((repo/attempt['evaluation_path']).read_text()) if attempt['evaluation_path'] else {}
-            if ev and inventory.get('qualification_review') and (ev.get('qualification') != attempt.get('qualification') or
-                ev.get('qualification_provenance') != inventory['qualification_review']):
-                raise ValueError('evaluation qualification disagrees with inventory: '+attempt['path'])
+            ev=checked_evaluation(attempt,inventory,repo)
             rows.append(row_from_attempt(attempt,ev,cell,repo=repo,
                 membership=cell.get('comparison_membership') or ('original_n3_campaign' if cell['original_campaign_member'] else 'gnss_default_future_n3')))
     for attempt in inventory['other_artifacts']:
         if attempt['category']!='gnss_variant':continue
-        ev=json.loads((repo/attempt['evaluation_path']).read_text()) if attempt['evaluation_path'] else {}
+        ev=checked_evaluation(attempt,inventory,repo)
         rows.append(row_from_attempt(attempt,ev,None,repo=repo,membership='legacy_gnss_variant'))
     return sorted(rows,key=lambda r:(r['run_type'],r['dataset'],r['seq'],r['algo'],r['gnss_variant'],int(r['run'])))
 
@@ -218,7 +223,7 @@ def build_historical_rows(inventory,repo=REPO):
     rows=[]
     for attempt in inventory['other_artifacts']:
         if attempt['category']!='superseded_calibration_cohort':continue
-        ev=json.loads((repo/attempt['evaluation_path']).read_text()) if attempt['evaluation_path'] else {}
+        ev=checked_evaluation(attempt,inventory,repo)
         rows.append(row_from_attempt(attempt,ev,None,repo=repo,membership=attempt['category']))
     return rows
 

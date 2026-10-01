@@ -13,6 +13,14 @@ explicit authorization supersedes the historical no-estimator clauses below for
 these EuRoC paths only. No push, accuracy tuning or expansion to other paths is
 authorized. The previous repair/reference audit remains completed; do not restart it.
 
+Completion checkpoint for the current continuation: all 24 fixed EuRoC repetitions
+were executed once and reviewed: 23 final outputs evaluated, one native failure without final output retained. Short/first-full gates,
+source/build identity, configuration equality, saved exports and native shutdown
+were checked. Reporting reconciliation preserves the original 45 accepted cells
+and all historical attempts. [The campaign record](euroc-focused-campaign-20261001.md)
+is the current handoff; remaining limitations are explicit. No further estimation,
+algorithm expansion, history rewrite or push is authorized.
+
 ## Objective and scope
 
 Current extension: resolve the remaining agricultural calibration/reference

@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "review_date": "2026-10-01",
-  "review_scope": "extends e0ee49b: matched-session agricultural reference/calibration review; preserves accepted EuRoC claims; native readiness unverified",
+  "review_scope": "extends e0ee49b: matched-session agricultural reference/calibration review; preserves accepted EuRoC claims; native readiness unverified; explicit fixed EuRoC OpenVINS/AirSLAM continuation, 24 new repetitions, no other decisions changed",
   "supporting_evidence": [
     {
       "path": "results/acceptance-20261001/evidence.json",
@@ -314,6 +314,50 @@
     {
       "path": "results/reference-review-20261001/reproduce_zed_clock_examples.py",
       "sha256": "104a909e0eb5189910d81da213a22df99ec8cd6df0d508d311afd59f0725e53f"
+    },
+    {
+      "path": "docs/campaigns/euroc-focused-validation-20261001.json",
+      "sha256": "c3524226ac0ce8a03ac0f6fbba8696b9f0ed68731fac9f10d363ae2d1d9cf3a9"
+    },
+    {
+      "path": "results/euroc-focused-20261001/frozen-assets/index.json",
+      "sha256": "0e3bc31081a82df5e561caf674b74d9647fa3981af0e1c9e477d3a9a2a006df3"
+    },
+    {
+      "path": "results/euroc-focused-20261001/camera-native-verification.json",
+      "sha256": "cd64efb2ce9991912b12202a1125476755c4d9aa6ab02b7e886481f99e994e82"
+    },
+    {
+      "path": "results/euroc-focused-20261001/airslam-first-full-native-maps.json",
+      "sha256": "704e4ef25da4cb0c48ea51b122d02d95e8252acb9095c14eb614790310eeb00c"
+    },
+    {
+      "path": "results/euroc-focused-20261001/airslam-build-identity.txt",
+      "sha256": "68cdb596a73613d2ff5f908ced6f7cacb3fb5194df23b9c074cc49c95759b424"
+    },
+    {
+      "path": "results/euroc-focused-20261001/airslam-build.log",
+      "sha256": "033262610a76659e66bb28568a77efc8ada2aae43f2f2cc1ad9a9de1c8697ca0"
+    },
+    {
+      "path": "results/euroc-focused-20261001/full-gate-review.json",
+      "sha256": "d6cccfe8535002ee7673c4618d1b23289c6d647a9a3953c12d47d8f689ef5ba9"
+    },
+    {
+      "path": "configs/campaigns/euroc-focused-20261001.json",
+      "sha256": "0808c73a0e2ade074eab5a975e427526b72fe067d10ddc42efe0c2cb05d12b55"
+    },
+    {
+      "path": "configs/campaigns/euroc-focused-attempts-20261001.json",
+      "sha256": "82b13d38b3bdeff4b82f8fbc2fc5637fbdd01a758b9e9c2227be90cea6fc50fc"
+    },
+    {
+      "path": "results/euroc-focused-20261001/openvins-shutdown-build.log",
+      "sha256": "3b8ff6bb7161f899d9820f25edc66c0bce7005b1efb6d06e69b79634ae8d58a9"
+    },
+    {
+      "path": "results/euroc-focused-20261001/openvins-shutdown-build-v2.log",
+      "sha256": "a103d98f6707aae10126061904a8c4bd7218d20375d6b53bea3432b740ae914c"
     }
   ],
   "attempts": {
@@ -25066,40 +25110,274 @@
       ]
     },
     "vio/euroc_mav/MH_01_easy/openvins/run2": {
-      "exists": false,
-      "status": "not_executed",
-      "claim": null,
-      "blockers": [
-        "missing_repetition"
-      ],
+      "exists": true,
+      "status": "accepted",
+      "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+      "blockers": [],
       "claim_limits": [
         "accuracy_conditional_on_observed_exports_and_reference_support",
         "no_measured_processing_rate_or_realtime_deadline_claim"
       ],
       "disclosures": [
-        "historical_dirty_runner_bytes_and_some_native_build_linkage_unavailable",
-        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality"
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "benchmark_enables_author_supported_dynamic_initialization",
+        "shutdown_lifetime_repair_and_native_supervision_without_filter_parameter_changes",
+        "retained_original_run1_is_separate_implementation_cohort"
       ],
-      "evaluation_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "evidence": []
+      "evaluation_sha256": "e4beb97eecc50f4dde9d13b3cb4580014be0f5169ad2a9df55c664490fba38d2",
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/docker.cid",
+          "sha256": "f13c5e7ab44ae8946be623afafb383ef36e24a15ed9d0b661461cb0bfd24a022"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/openvins_node.log",
+          "sha256": "f9d5883fdc310ce6d79ce102c1bd836844c0b4ab0f9f0c61798bbbfe0e7b7f74"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/processes/node.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/processes/node.json",
+          "sha256": "f6af48ae846793cae30821d432d6f3005f4fa75783ca31b451c07b4f48ebebe5"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/processes/node.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/processes/node.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/processes/node.stops.jsonl",
+          "sha256": "3abd0b1bf35c435f243b6a314d35d157e7af99e00746a4653a138c0cf111b750"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/processes/player.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/processes/player.json",
+          "sha256": "4cf5efdae80ffa47416dc180b9f72d312bd0002a6fb917cd35eef7955f33735b"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/processes/player.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/processes/player.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+          "sha256": "b9e11b7bcda102f7c8c384c97318d67f3916b58942f9073722f83c22bd7073f7"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/provenance/estimator_config--estimator_config.yaml",
+          "sha256": "393e31721d685fcc640fe11a12d362efeb33464c250f405ee4ae9441d34ad3a8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/provenance/implementation.json",
+          "sha256": "beba0317c5ab9b6ba02a9c8d1499fba13d53ac93a854589184bc60900a18faea"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/provenance/imu_calibration--kalibr_imu_chain.yaml",
+          "sha256": "408ea8b60b5f9e7c8251e6d302f04c0675bfefdd31229bb1afd139bc8f4a0287"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/provenance/inputs.json",
+          "sha256": "29566d7b0658f9ebb15394a56e74c008d083f9c451da9a92c6eac92ddc051744"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/provenance/runtime-assets.json",
+          "sha256": "6b16caf5f13d58ab18ef76d8dde564476c6d9db93c1a0e09c5802a436db1621b"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/resources.csv",
+          "sha256": "5efa1f51353e1e6bce8ef7588bdb06d9c34d7a03231a0617249f8beb0ebfe489"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/ros_domain_id.txt",
+          "sha256": "95aebc97bc646c67fdcd923a5965b001f3c8a5c4d3a77075112e12a3a311d760"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/run_log.txt",
+          "sha256": "5c4fe7fa165978bfe53c679ace788465143db5b1e143a655dffcd295bed7f792"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/run_meta.json",
+          "sha256": "3a5357fb0d38e1170465a520070ddb4af7a3e9471d9095c03a032be138acef26"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/trajectory.txt",
+          "sha256": "8d982dd4f7e5a5ad5c1da57292b9cbb560cdfd34ac7d7a34676879854a14b745"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run2/transport_stats.json",
+          "sha256": "37483f9c8207e1aca8973f6920c05432662b7765e9cd206010f58e3f0b59c774"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/gt_tum.txt",
+          "sha256": "0aa9973011179478c3793ac5ec015f10eac270520c8d0c4673cfa1a36fa6803e"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/times.txt",
+          "sha256": "9354db11b423f7169eda7a3048d9594ee14572c6017e1439dee7861261b065fb"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
     },
     "vio/euroc_mav/MH_01_easy/openvins/run3": {
-      "exists": false,
-      "status": "not_executed",
-      "claim": null,
-      "blockers": [
-        "missing_repetition"
-      ],
+      "exists": true,
+      "status": "accepted",
+      "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+      "blockers": [],
       "claim_limits": [
         "accuracy_conditional_on_observed_exports_and_reference_support",
         "no_measured_processing_rate_or_realtime_deadline_claim"
       ],
       "disclosures": [
-        "historical_dirty_runner_bytes_and_some_native_build_linkage_unavailable",
-        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality"
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "benchmark_enables_author_supported_dynamic_initialization",
+        "shutdown_lifetime_repair_and_native_supervision_without_filter_parameter_changes",
+        "retained_original_run1_is_separate_implementation_cohort"
       ],
-      "evaluation_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "evidence": []
+      "evaluation_sha256": "0b91f3472fba26160738a1bbb4f6612831a084fb36eaf949daec7f7168c3719f",
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/docker.cid",
+          "sha256": "cd2c8a775057bef198c0dd6470cf2a70cfc0c74405a3120c9501d584a5fc1eab"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/openvins_node.log",
+          "sha256": "5f32906335ab02430a42b43f991b4a09a0434e8de829df35c23777885c7fca83"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/processes/node.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/processes/node.json",
+          "sha256": "8c48f7be297c866ec03a41d956d8fbb5abf2fb654036558eac3947ce4e5d2ca2"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/processes/node.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/processes/node.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/processes/node.stops.jsonl",
+          "sha256": "aec73fe69f22560c2a5fa3d83b9d4f2c34fefae1c1337d2f8d750992f54c6fed"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/processes/player.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/processes/player.json",
+          "sha256": "bda7549139436bf258dfbf9f9be496683f7b58f9fb8895315aed346fab0c3441"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/processes/player.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/processes/player.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+          "sha256": "b9e11b7bcda102f7c8c384c97318d67f3916b58942f9073722f83c22bd7073f7"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/provenance/estimator_config--estimator_config.yaml",
+          "sha256": "393e31721d685fcc640fe11a12d362efeb33464c250f405ee4ae9441d34ad3a8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/provenance/implementation.json",
+          "sha256": "63d920c3beeac4b6a17985c478e0291f72b2f13f8748789c42baa37d14066604"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/provenance/imu_calibration--kalibr_imu_chain.yaml",
+          "sha256": "408ea8b60b5f9e7c8251e6d302f04c0675bfefdd31229bb1afd139bc8f4a0287"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/provenance/inputs.json",
+          "sha256": "29566d7b0658f9ebb15394a56e74c008d083f9c451da9a92c6eac92ddc051744"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/provenance/runtime-assets.json",
+          "sha256": "6b16caf5f13d58ab18ef76d8dde564476c6d9db93c1a0e09c5802a436db1621b"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/resources.csv",
+          "sha256": "fa836b417baeb70e46fd591f60fc6cffab79d45150cc419cde3d9947ea186887"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/ros_domain_id.txt",
+          "sha256": "95aebc97bc646c67fdcd923a5965b001f3c8a5c4d3a77075112e12a3a311d760"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/run_log.txt",
+          "sha256": "6da0376d4192b6b089f95294748c5b59d591abc735bbd1bed9a5172613e67cea"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/run_meta.json",
+          "sha256": "db9e899d496c1eb93f340a63dd8793902f8db7490b373abed0c59563e52416ba"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/trajectory.txt",
+          "sha256": "435b318c0e247b7d747057c15c7e3a8329d6797fd0b783c6efdf898a106df1ff"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/openvins/run3/transport_stats.json",
+          "sha256": "0e801e80b6ca62b8feccfc0f2125b65a40af4a3ca4cd25a73de6527a039856d5"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/gt_tum.txt",
+          "sha256": "0aa9973011179478c3793ac5ec015f10eac270520c8d0c4673cfa1a36fa6803e"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/times.txt",
+          "sha256": "9354db11b423f7169eda7a3048d9594ee14572c6017e1439dee7861261b065fb"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
     },
     "vio/euroc_mav/MH_01_easy/voxel_svio/run1": {
       "exists": true,
@@ -26283,40 +26561,274 @@
       ]
     },
     "vio/euroc_mav/MH_03_medium/openvins/run2": {
-      "exists": false,
-      "status": "not_executed",
-      "claim": null,
-      "blockers": [
-        "missing_repetition"
-      ],
+      "exists": true,
+      "status": "accepted",
+      "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+      "blockers": [],
       "claim_limits": [
         "accuracy_conditional_on_observed_exports_and_reference_support",
         "no_measured_processing_rate_or_realtime_deadline_claim"
       ],
       "disclosures": [
-        "historical_dirty_runner_bytes_and_some_native_build_linkage_unavailable",
-        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality"
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "benchmark_enables_author_supported_dynamic_initialization",
+        "shutdown_lifetime_repair_and_native_supervision_without_filter_parameter_changes",
+        "retained_original_run1_is_separate_implementation_cohort"
       ],
-      "evaluation_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "evidence": []
+      "evaluation_sha256": "04e66b16cc9df67d9ece255b37457ef1942a57a695240723bba1c53dae01f180",
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/docker.cid",
+          "sha256": "28b5678b82161af3300aede3c2b7951911c88b73920a816d655c82ea9efc0f05"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/openvins_node.log",
+          "sha256": "73ff62055627ec8ffdb8a16d9f19f199cc19f72ba73a2462692e70fa612c5216"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/processes/node.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/processes/node.json",
+          "sha256": "0441d9215542ded52bf07acabbb0f7879cb556f8ad4957a0a666c616cf0323e6"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/processes/node.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/processes/node.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/processes/node.stops.jsonl",
+          "sha256": "b3f91e2fc1594f3b69469bc617e394de62f47a3dda3963de3d8032263a338dc4"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/processes/player.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/processes/player.json",
+          "sha256": "43e14d9787b9c3fe3c204924dc31e1684566f920584e58f9568a29e37d705f17"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/processes/player.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/processes/player.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+          "sha256": "b9e11b7bcda102f7c8c384c97318d67f3916b58942f9073722f83c22bd7073f7"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/provenance/estimator_config--estimator_config.yaml",
+          "sha256": "393e31721d685fcc640fe11a12d362efeb33464c250f405ee4ae9441d34ad3a8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/provenance/implementation.json",
+          "sha256": "8017971d70977da4008d058a7dba925d65c88305a162fae87b3f760612b9711e"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/provenance/imu_calibration--kalibr_imu_chain.yaml",
+          "sha256": "408ea8b60b5f9e7c8251e6d302f04c0675bfefdd31229bb1afd139bc8f4a0287"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/provenance/inputs.json",
+          "sha256": "83ce37664b9c4def62ee6ff5084e4d2362330a55e2605a9ba03d142e1da99d73"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/provenance/runtime-assets.json",
+          "sha256": "6b16caf5f13d58ab18ef76d8dde564476c6d9db93c1a0e09c5802a436db1621b"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/resources.csv",
+          "sha256": "622f2912367390c9f883db66cbf810d701ceb5c530ae35deb405ca81e7862353"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/ros_domain_id.txt",
+          "sha256": "95aebc97bc646c67fdcd923a5965b001f3c8a5c4d3a77075112e12a3a311d760"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/run_log.txt",
+          "sha256": "8b07400db0c452644ab384ecababe5a53f8d888252ce1414cdc781cabe8b0c6c"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/run_meta.json",
+          "sha256": "e4e01f8559ff5b020a6f388bb4df81dade118e5e362571ab9a18c928e6b206cc"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/trajectory.txt",
+          "sha256": "4e4e5745b952dbd5b3540c7805b22161330e6ae44fc4f46781ece27d5895235d"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run2/transport_stats.json",
+          "sha256": "882af6e7e59e163fa13de51b390f71d84f4728bcac4fbd9cbae6149d5a2138ed"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/gt_tum.txt",
+          "sha256": "a5a093c33d58ae57ac13e3f7cfb7562b9bd479d8b97aa2a81c71e7bcc4bb2196"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/times.txt",
+          "sha256": "f980e3195235db3b4ef412c8cc4ef51fff27168b6b66461a14b939e6f42583a8"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
     },
     "vio/euroc_mav/MH_03_medium/openvins/run3": {
-      "exists": false,
-      "status": "not_executed",
-      "claim": null,
-      "blockers": [
-        "missing_repetition"
-      ],
+      "exists": true,
+      "status": "accepted",
+      "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+      "blockers": [],
       "claim_limits": [
         "accuracy_conditional_on_observed_exports_and_reference_support",
         "no_measured_processing_rate_or_realtime_deadline_claim"
       ],
       "disclosures": [
-        "historical_dirty_runner_bytes_and_some_native_build_linkage_unavailable",
-        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality"
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "benchmark_enables_author_supported_dynamic_initialization",
+        "shutdown_lifetime_repair_and_native_supervision_without_filter_parameter_changes",
+        "retained_original_run1_is_separate_implementation_cohort"
       ],
-      "evaluation_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "evidence": []
+      "evaluation_sha256": "659cc2aa184b3fc2d0d594efaec942519dd97db0b13e10246695ec533a7abdde",
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/docker.cid",
+          "sha256": "e80328ce040eb25de8020e29eaca0e3bee323fc40fa206f3c5af09edfa99275a"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/openvins_node.log",
+          "sha256": "ed7e91b02c2539d57931346d31536bc1d3bbc297ae8f5ecb50e4cd1566ae51a8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/processes/node.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/processes/node.json",
+          "sha256": "dcc2252116e653b3159fdfe4b3fbd8d88a11f724fad388defa0e5449b8a158f6"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/processes/node.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/processes/node.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/processes/node.stops.jsonl",
+          "sha256": "2e5b6af84215e84541b9f0cd600476ebd14b75dca8023728a16ab208df46eaac"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/processes/player.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/processes/player.json",
+          "sha256": "16fc2807043bf840ddba5c9667cdd52ea4aa4528b234cc04c6cfc5563312e22c"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/processes/player.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/processes/player.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+          "sha256": "b9e11b7bcda102f7c8c384c97318d67f3916b58942f9073722f83c22bd7073f7"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/provenance/estimator_config--estimator_config.yaml",
+          "sha256": "393e31721d685fcc640fe11a12d362efeb33464c250f405ee4ae9441d34ad3a8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/provenance/implementation.json",
+          "sha256": "bd9b236deeed86e3af1601a01208bf44a0220e9b80f54fedfd3c73de31c54908"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/provenance/imu_calibration--kalibr_imu_chain.yaml",
+          "sha256": "408ea8b60b5f9e7c8251e6d302f04c0675bfefdd31229bb1afd139bc8f4a0287"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/provenance/inputs.json",
+          "sha256": "83ce37664b9c4def62ee6ff5084e4d2362330a55e2605a9ba03d142e1da99d73"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/provenance/runtime-assets.json",
+          "sha256": "6b16caf5f13d58ab18ef76d8dde564476c6d9db93c1a0e09c5802a436db1621b"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/resources.csv",
+          "sha256": "ef8bf21093ce2ead1a4454bdaa2e40703df6acf83376334e19061fa5e925ef08"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/ros_domain_id.txt",
+          "sha256": "95aebc97bc646c67fdcd923a5965b001f3c8a5c4d3a77075112e12a3a311d760"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/run_log.txt",
+          "sha256": "c69d2ff74eaee458fabc117676363bd3ec629071d074b89d67aa0e1478bb9fec"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/run_meta.json",
+          "sha256": "b2fa5327b3ccea46b04a058573fc026946a6a980dc87cfd94694dd562b43ee0d"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/trajectory.txt",
+          "sha256": "4cd6d1f34f63a08c4be18daf315da52177e10f78d011f65c712f6b32ea87eacb"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/openvins/run3/transport_stats.json",
+          "sha256": "b9a85c5a43ff14d06d2b8b2b9db801af1e40085c57c4ceb0460d2d1835af4233"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/gt_tum.txt",
+          "sha256": "a5a093c33d58ae57ac13e3f7cfb7562b9bd479d8b97aa2a81c71e7bcc4bb2196"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/times.txt",
+          "sha256": "f980e3195235db3b4ef412c8cc4ef51fff27168b6b66461a14b939e6f42583a8"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
     },
     "vio/euroc_mav/MH_03_medium/voxel_svio/run1": {
       "exists": true,
@@ -27491,40 +28003,276 @@
       "native_error_observations": []
     },
     "vio/euroc_mav/MH_05_difficult/openvins/run2": {
-      "exists": false,
-      "status": "not_executed",
-      "claim": null,
-      "blockers": [
-        "missing_repetition"
-      ],
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+      "blockers": [],
       "claim_limits": [
         "accuracy_conditional_on_observed_exports_and_reference_support",
-        "no_measured_processing_rate_or_realtime_deadline_claim"
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "export_coverage_below_95_percent_no_clean_success_tick"
       ],
       "disclosures": [
-        "historical_dirty_runner_bytes_and_some_native_build_linkage_unavailable",
-        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality"
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "benchmark_enables_author_supported_dynamic_initialization",
+        "shutdown_lifetime_repair_and_native_supervision_without_filter_parameter_changes",
+        "retained_original_run1_is_separate_implementation_cohort"
       ],
-      "evaluation_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "evidence": []
+      "evaluation_sha256": "6a63a055b9c83fe3b89d50ee0540d1c7f045af231bef1f279900c82ab3229a27",
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/docker.cid",
+          "sha256": "528bae70ae9e84680f9352383526c373bb8674bc1ede1565b0c7b19d513edc77"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/openvins_node.log",
+          "sha256": "af928082f6de3b3b01ad1fd775ee09faff9f0c70b6875813ccfe8abc74289d00"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/processes/node.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/processes/node.json",
+          "sha256": "0822ab67dc604fcae16dede54fe386eb35d38f831403faa96cbc8218b09e8e2c"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/processes/node.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/processes/node.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/processes/node.stops.jsonl",
+          "sha256": "869035656b33f5332f0c65da841eba17f684b9385e1b9fe3808b1c4fda51fa6c"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/processes/player.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/processes/player.json",
+          "sha256": "795a8d19a3172df075f45ef6645bace292c658a1100a865811de7a7fd284e536"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/processes/player.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/processes/player.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+          "sha256": "b9e11b7bcda102f7c8c384c97318d67f3916b58942f9073722f83c22bd7073f7"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/provenance/estimator_config--estimator_config.yaml",
+          "sha256": "393e31721d685fcc640fe11a12d362efeb33464c250f405ee4ae9441d34ad3a8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/provenance/implementation.json",
+          "sha256": "665cdb01c4a4a4e1a4598172844e284b51d14cfc6669f1d03e0a1280b1791ba0"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/provenance/imu_calibration--kalibr_imu_chain.yaml",
+          "sha256": "408ea8b60b5f9e7c8251e6d302f04c0675bfefdd31229bb1afd139bc8f4a0287"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/provenance/inputs.json",
+          "sha256": "95c9d7bf44e8c9c48ebe52110b593d1bc066ffa39abe6abf5331861eabf3be3e"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/provenance/runtime-assets.json",
+          "sha256": "6b16caf5f13d58ab18ef76d8dde564476c6d9db93c1a0e09c5802a436db1621b"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/resources.csv",
+          "sha256": "4ed6f2e2124c096a7745702795d60ed903298e51c4c6a47e29d5b01226f7ef62"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/ros_domain_id.txt",
+          "sha256": "95aebc97bc646c67fdcd923a5965b001f3c8a5c4d3a77075112e12a3a311d760"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/run_log.txt",
+          "sha256": "159b504059c9ddf9d204a14c3d9d654ced3a1b092aa8d17622fc6485fa625703"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/run_meta.json",
+          "sha256": "4874f48d4d48acbbb7f4586791d27edfc41f64b85d45b7269f543a72b9488cba"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/trajectory.txt",
+          "sha256": "2f6c631451449408159578b53183e9042fc16ad9309371f18a472795bdffa50c"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run2/transport_stats.json",
+          "sha256": "c077837a6c56b270280dc6888658bda8d17d0f6eba89037b462c9e7878a4cb9a"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/gt_tum.txt",
+          "sha256": "317949bd1a68cfbad17428220422d2020802697b4049f73c3298202b6aa6c9af"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/times.txt",
+          "sha256": "d4e428d4daf73371d12035f36d1f39dd8fdf7204cd28c9859ba1cd5e9923755b"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
     },
     "vio/euroc_mav/MH_05_difficult/openvins/run3": {
-      "exists": false,
-      "status": "not_executed",
-      "claim": null,
-      "blockers": [
-        "missing_repetition"
-      ],
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+      "blockers": [],
       "claim_limits": [
         "accuracy_conditional_on_observed_exports_and_reference_support",
-        "no_measured_processing_rate_or_realtime_deadline_claim"
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "export_coverage_below_95_percent_no_clean_success_tick"
       ],
       "disclosures": [
-        "historical_dirty_runner_bytes_and_some_native_build_linkage_unavailable",
-        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality"
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "benchmark_enables_author_supported_dynamic_initialization",
+        "shutdown_lifetime_repair_and_native_supervision_without_filter_parameter_changes",
+        "retained_original_run1_is_separate_implementation_cohort"
       ],
-      "evaluation_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "evidence": []
+      "evaluation_sha256": "6106dca33a55dfc95317ba55c2a029a1317aa7952ab40ac14fc0582eee4f1947",
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/docker.cid",
+          "sha256": "777c673a992d2ea7c9d9b5d8430fe5f24c6f8c334b432938c70255330ff86580"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/openvins_node.log",
+          "sha256": "acd27eee5d50a55b9d5a5fae60ced47bada23ab072f296bb644c1844815a3526"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/processes/node.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/processes/node.json",
+          "sha256": "e8992dcbb5144d4b81786557ef44f9865f15b3e2767b40e8a30aa2803843b5ee"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/processes/node.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/processes/node.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/processes/node.stops.jsonl",
+          "sha256": "e859a6600c7d3bafe54ea9ed175428a021242a94d8f2820b5997353e437a95c5"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/processes/player.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/processes/player.json",
+          "sha256": "b866becb7169d43a7dcbcfc1e8526682bcb0fe2b1eafa4b9dd0182382f951d46"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/processes/player.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/processes/player.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+          "sha256": "b9e11b7bcda102f7c8c384c97318d67f3916b58942f9073722f83c22bd7073f7"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/provenance/estimator_config--estimator_config.yaml",
+          "sha256": "393e31721d685fcc640fe11a12d362efeb33464c250f405ee4ae9441d34ad3a8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/provenance/implementation.json",
+          "sha256": "878b0f6981789e435d04eb41a91f21bb2a9f3aa86f79ec5ebae382566a384196"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/provenance/imu_calibration--kalibr_imu_chain.yaml",
+          "sha256": "408ea8b60b5f9e7c8251e6d302f04c0675bfefdd31229bb1afd139bc8f4a0287"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/provenance/inputs.json",
+          "sha256": "95c9d7bf44e8c9c48ebe52110b593d1bc066ffa39abe6abf5331861eabf3be3e"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/provenance/runtime-assets.json",
+          "sha256": "6b16caf5f13d58ab18ef76d8dde564476c6d9db93c1a0e09c5802a436db1621b"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/resources.csv",
+          "sha256": "fd28bb0f9bd8ed3b41b45eb75e7fd3bad8fd6c2753cd4582e594991d46f6bcd9"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/ros_domain_id.txt",
+          "sha256": "95aebc97bc646c67fdcd923a5965b001f3c8a5c4d3a77075112e12a3a311d760"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/run_log.txt",
+          "sha256": "7424b32640774fca3ab28d98b4a5715954d752be6e716262a6b6f03c87b3f270"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/run_meta.json",
+          "sha256": "6b47f0a5a96b449fa11beedf6bdfdba7eeda6aaaa2f2af4df791eff5827d71fd"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/trajectory.txt",
+          "sha256": "3185a32c58a0ba53a9054276e0b3b6eab7db1466f4be4397d27ede7562effb48"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run3/transport_stats.json",
+          "sha256": "3e69442f2cffd2fcb1308e47eb00f93ebcb9a4b60dc698bc0b2064db9c2fbd76"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/gt_tum.txt",
+          "sha256": "317949bd1a68cfbad17428220422d2020802697b4049f73c3298202b6aa6c9af"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/times.txt",
+          "sha256": "d4e428d4daf73371d12035f36d1f39dd8fdf7204cd28c9859ba1cd5e9923755b"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
     },
     "vio/euroc_mav/MH_05_difficult/voxel_svio/run1": {
       "exists": true,
@@ -35498,6 +36246,2611 @@
       ],
       "evaluation_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
       "evidence": []
+    },
+    "vio/euroc_mav/MH_01_easy/airslam/run4": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry"
+      ],
+      "evaluation_sha256": "1b3b9a308b03629dfccd2bf54be312c2214686a75c4dc10762bde8960dd142d2",
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/AirSLAM_mapv0.bin",
+          "sha256": "3f84be6c510ebd86ca1f392333b87b9671021457caadbc9cc922141caff4b8c7"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/processes/master.json",
+          "sha256": "dad978b941b10d008e0d7b3ccf195b00d774a33885c578ca100d606f1831794f"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/processes/master.stops.jsonl",
+          "sha256": "6f3fcdde833cd750f54772def7e0e51d81f73c318d02946ad9c2dd7366ecb2f7"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/processes/odometry.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/processes/odometry.json",
+          "sha256": "3f1069c5a41bae2ff22c10aa5c3af93daa9ccd0154918a6935087b036d569912"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/provenance/implementation.json",
+          "sha256": "aebeb309e17947303eff7c41fa275840bf22ce0ecccbba17863017a1c3320b64"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/provenance/inputs.json",
+          "sha256": "29566d7b0658f9ebb15394a56e74c008d083f9c451da9a92c6eac92ddc051744"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/provenance/odometry_config--euroc_mav_vio.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/resources.csv",
+          "sha256": "c6c8290448697609109b4d1978d216f6a45c780b20a68076bbec8b2a09689548"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/ros_master_uri.txt",
+          "sha256": "61c48d97f70d78bd451cc9ff7924c5d7b48c7dd5e28c2ed0cdc3d4e9a3f88266"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/roscore.log",
+          "sha256": "c16278294e9739a9796ff19696d81f5ec15b24a4148ead309e83a8942547e94d"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/run_log.txt",
+          "sha256": "56514bf5a1b5d95028d94af947a00bb049731d5517f9c49de46be2d7c8a13fae"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/run_meta.json",
+          "sha256": "aa68d1a8b9c9031024b9a3ce956401914db8a09bcbfb1c8f5832768144ca3683"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/trajectory.txt",
+          "sha256": "eedf12e50ea04ec8106e2bdf7e602f35f1928eb0ed39512779d0429ab1df6a43"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run4/trajectory_v0.txt",
+          "sha256": "eedf12e50ea04ec8106e2bdf7e602f35f1928eb0ed39512779d0429ab1df6a43"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/gt_tum.txt",
+          "sha256": "0aa9973011179478c3793ac5ec015f10eac270520c8d0c4673cfa1a36fa6803e"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/times.txt",
+          "sha256": "9354db11b423f7169eda7a3048d9594ee14572c6017e1439dee7861261b065fb"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
+    },
+    "vio/euroc_mav/MH_01_easy/airslam/run5": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry"
+      ],
+      "evaluation_sha256": "8e9b5152e746e8d40bf03058a0fdcb9dd4b1a4da6e19dbd9a5cf81ce42555b8f",
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/AirSLAM_mapv0.bin",
+          "sha256": "3363eae7c1d500bb79670b64cdb9152a5738c2e050ed945208c2bd345cb27636"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/processes/master.json",
+          "sha256": "ae4dd2cc6488e18d8a7669420cee37779bd412b1d9a63ebe085e3d606b90414e"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/processes/master.stops.jsonl",
+          "sha256": "98868bfa330c289fea0a8f2656fed3456805e24c1bf4e9571fd92b32130331ab"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/processes/odometry.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/processes/odometry.json",
+          "sha256": "7d289b3f2c09a444c8285a4b92e5c9b328bed408a99fb724b1babec0b2e54122"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/provenance/implementation.json",
+          "sha256": "3979a27dd44ecf76a4fb1cae31fd75c093986b48580633b196bb2ed100320063"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/provenance/inputs.json",
+          "sha256": "29566d7b0658f9ebb15394a56e74c008d083f9c451da9a92c6eac92ddc051744"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/provenance/odometry_config--euroc_mav_vio.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/resources.csv",
+          "sha256": "59cba51cd8bf9611614bc976fde106c548baf8caf1b9ef94bd424c0c09145a41"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/ros_master_uri.txt",
+          "sha256": "3da4ea3b75201415503c54876bf430acf12b949b9b911f41ca7881443e2fd83e"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/roscore.log",
+          "sha256": "5e48ea3c523519359a68445183989c0697c6660a9c4cc480bb82131de2c38fdf"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/run_log.txt",
+          "sha256": "487766b954facc4527d0b29a448830b5122bc761f954c36fc97bd466ab18efad"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/run_meta.json",
+          "sha256": "ccd10949e0e72958dd891cbeffd6ac986a2ac1d7431c70c8a30af85fa32b78cd"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/trajectory.txt",
+          "sha256": "5cd0c40ecf2afe76f359d9e3f23314a92e06bddef619cf5b970e578a084dd09d"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run5/trajectory_v0.txt",
+          "sha256": "5cd0c40ecf2afe76f359d9e3f23314a92e06bddef619cf5b970e578a084dd09d"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/gt_tum.txt",
+          "sha256": "0aa9973011179478c3793ac5ec015f10eac270520c8d0c4673cfa1a36fa6803e"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/times.txt",
+          "sha256": "9354db11b423f7169eda7a3048d9594ee14572c6017e1439dee7861261b065fb"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
+    },
+    "vio/euroc_mav/MH_01_easy/airslam/run6": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry"
+      ],
+      "evaluation_sha256": "e21fe222981fcae9a768e3b332e540d492e417a61aa5e06f841fc4ff9db1ca6c",
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/AirSLAM_mapv0.bin",
+          "sha256": "9e052a3ebd61b07092f128a17423107d47c214662654178ce2d57dbc2ef46d39"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/processes/master.json",
+          "sha256": "4941dbbcbace8a678dbdbb0745e98002f8be0f8ff82efc82d8264a5ea6d20f5b"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/processes/master.stops.jsonl",
+          "sha256": "c613f0435c398bc69b61af451c217cb765986a0b084f4c597b26ab7f5ed95460"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/processes/odometry.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/processes/odometry.json",
+          "sha256": "c8177eb832848cc3e7057de3764e616d7034a576f727a31ffd337bb0977975a9"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/provenance/implementation.json",
+          "sha256": "5e5919cf215a0ff52a0f6472d886f9ae78f2e6b1fa127063f25651dbf04ea07b"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/provenance/inputs.json",
+          "sha256": "29566d7b0658f9ebb15394a56e74c008d083f9c451da9a92c6eac92ddc051744"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/provenance/odometry_config--euroc_mav_vio.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/resources.csv",
+          "sha256": "f3cdcd51d42ab4debf969f4c77684e0c34be60ab62aa19198005ca087ebfcbe8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/ros_master_uri.txt",
+          "sha256": "001601f24663fb1ab7e15a7f8816eb226c2d0224e5a6be03180148e076e841d9"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/roscore.log",
+          "sha256": "1c3dccad30372ef3087d6d738f092cb366ddf9d9434871389000a62e27d6648b"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/run_log.txt",
+          "sha256": "5c969d1b681acbd7d584263130225a22e92dd99c3d8250d9cd5db72bced12ccb"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/run_meta.json",
+          "sha256": "286a48042d401ea6a31b2c2d36e29c4b7b93f793747fb1613b8808e2e879a740"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/trajectory.txt",
+          "sha256": "ccf581a9a49e9c07195c76dbf957dac2c22e56b331f9950adeb2bf2e231b2aa3"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/airslam/run6/trajectory_v0.txt",
+          "sha256": "ccf581a9a49e9c07195c76dbf957dac2c22e56b331f9950adeb2bf2e231b2aa3"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/gt_tum.txt",
+          "sha256": "0aa9973011179478c3793ac5ec015f10eac270520c8d0c4673cfa1a36fa6803e"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/times.txt",
+          "sha256": "9354db11b423f7169eda7a3048d9594ee14572c6017e1439dee7861261b065fb"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
+    },
+    "vio-lc/euroc_mav/MH_01_easy/airslam/run4": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only",
+        "final_offline_map_refinement_accuracy_not_causal_online_trajectory"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry"
+      ],
+      "evaluation_sha256": "64e4a1ab7781425108401201a82e61137259fd52360bf2578e7e5a0ecd696f22",
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/AirSLAM_mapv0.bin",
+          "sha256": "d50d6c1211024396e7a9e963c3809e449f9ee0c3d7f89e4e84debf1521b40d1c"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/AirSLAM_mapv1.bin",
+          "sha256": "e1b5cf4555661134863baf7774e4f2d27c34db8029b8550befabff2081a510b7"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/processes/master.json",
+          "sha256": "bdd3ad4cd5d105dd89ecad8223efc5017e124533daf90d69eda07d78ab5201bb"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/processes/master.stops.jsonl",
+          "sha256": "907b6be553642d389f9a9b7e424aaf393b03dddb9d9021eeb53b0b54deab201d"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/processes/odometry.json",
+          "sha256": "eb383468da7eed0745c6b60d82886d1b279a84dc8c269ccfdd1e772d60a24641"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/processes/refinement.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/processes/refinement.json",
+          "sha256": "c4f0fc10132793b0953f2b7361792dea879c7bff1df9e5e6ef4f25c14863a9bf"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/processes/refinement.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/processes/refinement.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/provenance/implementation.json",
+          "sha256": "98dd6ecf7b2b19d054262900097d64fa28ba5e064ab993fbca2d71dd5f92c46d"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/provenance/inputs.json",
+          "sha256": "29566d7b0658f9ebb15394a56e74c008d083f9c451da9a92c6eac92ddc051744"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/provenance/map_refinement_config--euroc_mav_mr.yaml",
+          "sha256": "11da852b80a911f366cca24250b4885f219d414a72e2ffc002e5b721783c530c"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/provenance/odometry_config--euroc_mav_vio_slam.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/resources.csv",
+          "sha256": "cd6d46edd4298cf6c57ad2caa0c6f92b5cdf60f0c3badca41950fddda1fb9efd"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/ros_master_uri.txt",
+          "sha256": "89cbffd97faab42018aea4f35be7eee34462cfa807ed2dd1dfd16ef90551eac9"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/roscore.log",
+          "sha256": "6142075d1f7bf3ed7a4284bace1185b55704e9f57b1dbbf2425da1425f8de365"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/run_log.txt",
+          "sha256": "ce886d31ec4053a41218e24267edb59bffd88b052c7199a7073ebf7930cbc176"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/run_meta.json",
+          "sha256": "4ece1710be6f72edea0b634da6e3f2ca2290cfe6555721a6969cad4b1d72b6bd"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/trajectory.txt",
+          "sha256": "ed01b966eb4542077fff84f1b799176ee15d5d3b0f7356f38b44ef8329adacb7"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/trajectory_v0.txt",
+          "sha256": "afd4cd306801a28bebb0d6f072a3fd30285821fc52a63cb4aa51549bb95a1c0e"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4/trajectory_v1.txt",
+          "sha256": "ed01b966eb4542077fff84f1b799176ee15d5d3b0f7356f38b44ef8329adacb7"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/gt_tum.txt",
+          "sha256": "0aa9973011179478c3793ac5ec015f10eac270520c8d0c4673cfa1a36fa6803e"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/times.txt",
+          "sha256": "9354db11b423f7169eda7a3048d9594ee14572c6017e1439dee7861261b065fb"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
+    },
+    "vio-lc/euroc_mav/MH_01_easy/airslam/run5": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only",
+        "final_offline_map_refinement_accuracy_not_causal_online_trajectory"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry"
+      ],
+      "evaluation_sha256": "a045a8b31704078f90efd17bd20043a6ea280e60b5bb38adf55e2fc7d075da6a",
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/AirSLAM_mapv0.bin",
+          "sha256": "d707fbd098c5736166f5625611d774b7d8a232e3eff6736d5dd48f207e98da31"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/AirSLAM_mapv1.bin",
+          "sha256": "e855fe12e7aec00da7a11bf73171a548f17437929b5b0eca725a9dd41f03572e"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/processes/master.json",
+          "sha256": "d4a6b3ee3b0308b9a85a470d6cb34323258b1773fedac03dd03f1bb8c469eaf6"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/processes/master.stops.jsonl",
+          "sha256": "fca0e11aad3d01f061d061a83b9d33c18e3ba3cef0cc8c3f9a2d84e4df1f7ed0"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/processes/odometry.json",
+          "sha256": "cd5e0cf8a65fdd7ffbbaa6f91ab42082ae9b5723967b9318495218e8f4e41ecd"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/processes/refinement.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/processes/refinement.json",
+          "sha256": "5eeabcd924b099aa2190c3c2e7b3b3b09dd21fe23d51d3fc4796e48b34955530"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/processes/refinement.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/processes/refinement.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/provenance/implementation.json",
+          "sha256": "1f203ef8775f5df20843565ef0a4840a8cca52360c6910e4d3af3e6070a63f41"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/provenance/inputs.json",
+          "sha256": "29566d7b0658f9ebb15394a56e74c008d083f9c451da9a92c6eac92ddc051744"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/provenance/map_refinement_config--euroc_mav_mr.yaml",
+          "sha256": "11da852b80a911f366cca24250b4885f219d414a72e2ffc002e5b721783c530c"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/provenance/odometry_config--euroc_mav_vio_slam.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/resources.csv",
+          "sha256": "2aaa79aa7449ab3906d3232d3d67946deddd3c08f38633a8f4230d6b73e6a675"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/ros_master_uri.txt",
+          "sha256": "419cedede48e95eef825af90590c514fc7f8a86879d85215ef413cd8a5e3f780"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/roscore.log",
+          "sha256": "dc96085845627409de7be8a679e68c2048ce1604e87de19115449f907e06d85d"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/run_log.txt",
+          "sha256": "3dd144dacdbdf63ffdad4a3fac95829c391a5c8d5e67fadf254753430c6b377f"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/run_meta.json",
+          "sha256": "5dc0265188db3c0d13b7659a9e1c0e6b9aa3fec280faf3aff03db5d92a73bd89"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/trajectory.txt",
+          "sha256": "f62904db459838fc54ce92252b11692a50c705c27cb0cf421bd251181de87285"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/trajectory_v0.txt",
+          "sha256": "cc14db0f130d8e10cfd67beb348051b0482f9c0f79f1a10cad62ac6c9b8ccc2a"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5/trajectory_v1.txt",
+          "sha256": "f62904db459838fc54ce92252b11692a50c705c27cb0cf421bd251181de87285"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/gt_tum.txt",
+          "sha256": "0aa9973011179478c3793ac5ec015f10eac270520c8d0c4673cfa1a36fa6803e"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/times.txt",
+          "sha256": "9354db11b423f7169eda7a3048d9594ee14572c6017e1439dee7861261b065fb"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
+    },
+    "vio-lc/euroc_mav/MH_01_easy/airslam/run6": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only",
+        "final_offline_map_refinement_accuracy_not_causal_online_trajectory"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry"
+      ],
+      "evaluation_sha256": "ced12c51a48003eedeebfea2be7c7d1c8a9c14db1a000407c2abace5f0dae6e7",
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/AirSLAM_mapv0.bin",
+          "sha256": "c0231885aa405df86bfe4b07311c270ed79b3289cd4a1d2e8db9d9159b7cc556"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/AirSLAM_mapv1.bin",
+          "sha256": "b02774b5e7d14eda09d1b78c3c57980dc32cd5e7b6c3e317ebc7490c072eead4"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/processes/master.json",
+          "sha256": "caad3a43debc0a84407232f2096d539b6a86e75ac15c88284bcd09d63eca9761"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/processes/master.stops.jsonl",
+          "sha256": "fad292fb54866dea85129b4e87b91a5476af4f7d8a44b30b8fcf97f4877852be"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/processes/odometry.json",
+          "sha256": "e2c51aa43dc87de37265f802ebe0e3f95bb1c1810da1e6d06fa86b525f1ef3d2"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/processes/refinement.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/processes/refinement.json",
+          "sha256": "21027405369b6dafe06cc603a674074ea8c39950acf6ac543e7e8609e6464485"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/processes/refinement.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/processes/refinement.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/provenance/implementation.json",
+          "sha256": "707bcd0be467fe3c11777c1f60f5eabb4c2c7d1403f507ee63c7b987a59a0b6b"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/provenance/inputs.json",
+          "sha256": "29566d7b0658f9ebb15394a56e74c008d083f9c451da9a92c6eac92ddc051744"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/provenance/map_refinement_config--euroc_mav_mr.yaml",
+          "sha256": "11da852b80a911f366cca24250b4885f219d414a72e2ffc002e5b721783c530c"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/provenance/odometry_config--euroc_mav_vio_slam.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/resources.csv",
+          "sha256": "2d89dbdac84d0691d24d24b0925424af1bdc042f6b7ce12cd0b7f5e036a83ac1"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/ros_master_uri.txt",
+          "sha256": "69b6d9a29f269d3ca9c8277d678ceec3175e940881f14d26ee53cb3aa84713e1"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/roscore.log",
+          "sha256": "13c3118bc5c17d9f0c2f0b8d73afb316fa1f2ce0a416af82f88893d521e6ff55"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/run_log.txt",
+          "sha256": "2d06668cdc3fba91fe82c2026bcd30649515b674e52a9dca8644fae509218025"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/run_meta.json",
+          "sha256": "c7e9199752c0f53517348609b09e6ea5d51064411e372515466510cd39c312e7"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/trajectory.txt",
+          "sha256": "df4162e72dbe0da39cc31ab76288236d5360f036783aa99250fa78cea659a055"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/trajectory_v0.txt",
+          "sha256": "3c71ef5c86b668793ba848bc7776e12d09d81068efdd21d956128a49ae23066c"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6/trajectory_v1.txt",
+          "sha256": "df4162e72dbe0da39cc31ab76288236d5360f036783aa99250fa78cea659a055"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/gt_tum.txt",
+          "sha256": "0aa9973011179478c3793ac5ec015f10eac270520c8d0c4673cfa1a36fa6803e"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/times.txt",
+          "sha256": "9354db11b423f7169eda7a3048d9594ee14572c6017e1439dee7861261b065fb"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_01_easy/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
+    },
+    "vio/euroc_mav/MH_03_medium/airslam/run4": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry"
+      ],
+      "evaluation_sha256": "e9d21d4cbbe8cf32356c8addff1706e2ea72a5958f889f46d9a7b481bb142695",
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/AirSLAM_mapv0.bin",
+          "sha256": "541098db41e6423850e53cf204d76c3ef669f7ac610e6365f01b09df30f936ac"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/processes/master.json",
+          "sha256": "d16780d9ba04ad485407cdf4e857e1b706f660c74c58abc3408ebf98340527d0"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/processes/master.stops.jsonl",
+          "sha256": "bcf1fbf71d538b06906ade6c14a4a1903a5f0c713cbe87057482e8ebf4dd025f"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/processes/odometry.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/processes/odometry.json",
+          "sha256": "1f3ad597f2a33da25888ac0097668080818509269fd3b459db5530f7f0855772"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/provenance/implementation.json",
+          "sha256": "682abe555fe1350307c124409108ec7865e10f22126816787d06ec1a367679f6"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/provenance/inputs.json",
+          "sha256": "83ce37664b9c4def62ee6ff5084e4d2362330a55e2605a9ba03d142e1da99d73"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/provenance/odometry_config--euroc_mav_vio.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/resources.csv",
+          "sha256": "e0c0fb39a859247701f87b7d97fbac0e1de062dc37f6d0bc35c56e731f6b5e10"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/ros_master_uri.txt",
+          "sha256": "27708e1c72b0476ec7399b898630127b9216fd2d395f20f48fa1a87d0540fb99"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/roscore.log",
+          "sha256": "7b6321e65a21a6b55b8ca5c543910b7cd9cd8b61aec9a84698ef7634060d17bf"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/run_log.txt",
+          "sha256": "9fdf6b4c7a9f105e74056f5ae16073928707dd713be62b440e45cc6c69bf5cd9"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/run_meta.json",
+          "sha256": "8216d7dedadda65243224c75dd66719dd31c1947210dde5aa7b45d9a7944d844"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/trajectory.txt",
+          "sha256": "b161f7ba1523bcba5ed6ce988806f515ad4960ca49b5c93ecec0e0ce32e9b5ea"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run4/trajectory_v0.txt",
+          "sha256": "b161f7ba1523bcba5ed6ce988806f515ad4960ca49b5c93ecec0e0ce32e9b5ea"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/gt_tum.txt",
+          "sha256": "a5a093c33d58ae57ac13e3f7cfb7562b9bd479d8b97aa2a81c71e7bcc4bb2196"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/times.txt",
+          "sha256": "f980e3195235db3b4ef412c8cc4ef51fff27168b6b66461a14b939e6f42583a8"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
+    },
+    "vio/euroc_mav/MH_03_medium/airslam/run5": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry"
+      ],
+      "evaluation_sha256": "df6ce5e245144c1bed3997eb163ff919c07bb09bfd7d7695e9c486a39e520cf1",
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/AirSLAM_mapv0.bin",
+          "sha256": "442aa599797f22df69fcf858cccce6929028124edc4e4aff805ddadbd928b935"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/processes/master.json",
+          "sha256": "f869c0bcf7a313b9a2fcee9a475ac8b52d6a2b368ac073f4b9a93d6d02d4ab02"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/processes/master.stops.jsonl",
+          "sha256": "db60863ad3fe118e5208f51c2fcf938355a106bc50f74bff1aa9419193cc316a"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/processes/odometry.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/processes/odometry.json",
+          "sha256": "09571120199e43e1c71a4e9ab66b63b0a0b720a1192527523a67e4ef7bf0a65e"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/provenance/implementation.json",
+          "sha256": "529907c62bbd3000b4fa062b6df4c06d3b17ed9e7fb0d00621fb47540935037c"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/provenance/inputs.json",
+          "sha256": "83ce37664b9c4def62ee6ff5084e4d2362330a55e2605a9ba03d142e1da99d73"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/provenance/odometry_config--euroc_mav_vio.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/resources.csv",
+          "sha256": "897caa8d52cc5bb56c5034d4a158a961f00842e8305308197a7a8b58037dea74"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/ros_master_uri.txt",
+          "sha256": "f5a2a585d46eabb92a185771de267bb2e3cfbc36ebfb0241f7957c61737e3059"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/roscore.log",
+          "sha256": "45eb03591aea816cd3adfeea1554e939e69f0759c9c6eb7d68f9d90f9ba874cd"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/run_log.txt",
+          "sha256": "35f3205b73d00a7930a64cca6c2f1346a366553b25b35b28be961d7a0e934a64"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/run_meta.json",
+          "sha256": "6d058c86d5a34f49be64c50733a781788ad45af17c64299c28acb01f30da912b"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/trajectory.txt",
+          "sha256": "75ab61c4ee0aaad817cdc8f5f24fbfb1c6cb15c2ef54ae06a07c1ff0664daa86"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run5/trajectory_v0.txt",
+          "sha256": "75ab61c4ee0aaad817cdc8f5f24fbfb1c6cb15c2ef54ae06a07c1ff0664daa86"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/gt_tum.txt",
+          "sha256": "a5a093c33d58ae57ac13e3f7cfb7562b9bd479d8b97aa2a81c71e7bcc4bb2196"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/times.txt",
+          "sha256": "f980e3195235db3b4ef412c8cc4ef51fff27168b6b66461a14b939e6f42583a8"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
+    },
+    "vio/euroc_mav/MH_03_medium/airslam/run6": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry"
+      ],
+      "evaluation_sha256": "c831080e80cb69903b3fa51a6d95dae12824d9efeb4f3eae1ff10c1bdca197c6",
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/AirSLAM_mapv0.bin",
+          "sha256": "c9cedde1ead0c6e322667046c023fc19f6f2b397898c9bf0050bec5356d62511"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/processes/master.json",
+          "sha256": "ef87811088c941be3acef3290f4365f086d0eb4384a016bc72db7251bbb18d2c"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/processes/master.stops.jsonl",
+          "sha256": "06c9804e387a1efeff772eba8fb03cded8e1de335e03c26854b87b940b85b10e"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/processes/odometry.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/processes/odometry.json",
+          "sha256": "9863562b504f74dba727dbe7cf66db9eb3a6b91fbf248972bb36b12423864f57"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/provenance/implementation.json",
+          "sha256": "7199d293faa15b001dae35cc8c4c9d6d667b184f527369591926050a0c0806d8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/provenance/inputs.json",
+          "sha256": "83ce37664b9c4def62ee6ff5084e4d2362330a55e2605a9ba03d142e1da99d73"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/provenance/odometry_config--euroc_mav_vio.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/resources.csv",
+          "sha256": "2402730ae84aa75e6b7bf4dc3fb4e781e7596d51c9e27f31ad577b26ccc73df0"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/ros_master_uri.txt",
+          "sha256": "0823d0723d192d046cf590a51fadab22c821315a4a1d828db8de765e598312ea"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/roscore.log",
+          "sha256": "b8fbfc0e62c777adbf1f75780f20d4a725cf7463947f5821d4163d7bef04f5fa"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/run_log.txt",
+          "sha256": "80658b5779d6f95994d4134118d030a7fd265a06fdd8e40fae645da5db0220e9"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/run_meta.json",
+          "sha256": "9e5e3a3c5b6e4fe5ed26aa1dc0da6861b693a2a477ef41c72725f03181204043"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/trajectory.txt",
+          "sha256": "3e34175b37994cfe62319a5a0cc7e6df3ddf5046f4834caba3e77f03d605d02e"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/airslam/run6/trajectory_v0.txt",
+          "sha256": "3e34175b37994cfe62319a5a0cc7e6df3ddf5046f4834caba3e77f03d605d02e"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/gt_tum.txt",
+          "sha256": "a5a093c33d58ae57ac13e3f7cfb7562b9bd479d8b97aa2a81c71e7bcc4bb2196"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/times.txt",
+          "sha256": "f980e3195235db3b4ef412c8cc4ef51fff27168b6b66461a14b939e6f42583a8"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
+    },
+    "vio-lc/euroc_mav/MH_03_medium/airslam/run4": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only",
+        "final_offline_map_refinement_accuracy_not_causal_online_trajectory"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry"
+      ],
+      "evaluation_sha256": "8e9188a7678332ee5f94f061569818c7094d34d7aeb524354ff58faf33f1b98c",
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/AirSLAM_mapv0.bin",
+          "sha256": "5ccbf3ff415df8970e846179932dda098e4cc6c7630392c6cb8a57ecca051644"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/AirSLAM_mapv1.bin",
+          "sha256": "f64dd27eceb68b21e40081a3aecb0a79b54ecc8b94ea61b11abcf69b76a79ea9"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/processes/master.json",
+          "sha256": "f68c3f4a9cc940182397346aeea4b6e89304ad506c13532be54d69cf20c97ced"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/processes/master.stops.jsonl",
+          "sha256": "c6c009fa9719bab13d457c99a1caa4c786f6067d7eb9d0fe495f92e83573493c"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/processes/odometry.json",
+          "sha256": "25f239f6dbd70f059b2d5a54092968a67282ea4648ea0bfdf406f6ee7c43db42"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/processes/refinement.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/processes/refinement.json",
+          "sha256": "203552450222236b8d88f45c65bc49250d474c5caba9c6dac994b79ea25c4448"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/processes/refinement.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/processes/refinement.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/provenance/implementation.json",
+          "sha256": "a4ba33c807180a223f43c0e3d43500be8bd0afed8fefa03cbfadd2f23db86eb0"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/provenance/inputs.json",
+          "sha256": "83ce37664b9c4def62ee6ff5084e4d2362330a55e2605a9ba03d142e1da99d73"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/provenance/map_refinement_config--euroc_mav_mr.yaml",
+          "sha256": "11da852b80a911f366cca24250b4885f219d414a72e2ffc002e5b721783c530c"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/provenance/odometry_config--euroc_mav_vio_slam.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/resources.csv",
+          "sha256": "68ad65aaca179fb26533dfacb4b11df24aac88ac1337569554b551277b2293d7"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/ros_master_uri.txt",
+          "sha256": "98968d26eaa7dd23a6178dfeed4b30e52071647ac6b4ed9d1c8287b3e6ce6e74"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/roscore.log",
+          "sha256": "85fd78f9f329c225da6436336be38055e222cd74601d7d35f414996aa9cdca8c"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/run_log.txt",
+          "sha256": "097ac3b2662ff0f7ac92d2ddb57272e135911dd2a456be163d9b47a5c3dc11bd"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/run_meta.json",
+          "sha256": "06fdd28709c2b46f4f10fa004a98c942af46dc36e5d7effa40a64fa2930feafc"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/trajectory.txt",
+          "sha256": "fac3146bb6f61028dafcaa7f70b869f82d89705702bd981ca3505179c576824a"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/trajectory_v0.txt",
+          "sha256": "d47761e0146b688a4e2ec92efa8a49862b680b3ab4ea073441bf9a8a5bca2330"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4/trajectory_v1.txt",
+          "sha256": "fac3146bb6f61028dafcaa7f70b869f82d89705702bd981ca3505179c576824a"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/gt_tum.txt",
+          "sha256": "a5a093c33d58ae57ac13e3f7cfb7562b9bd479d8b97aa2a81c71e7bcc4bb2196"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/times.txt",
+          "sha256": "f980e3195235db3b4ef412c8cc4ef51fff27168b6b66461a14b939e6f42583a8"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
+    },
+    "vio-lc/euroc_mav/MH_03_medium/airslam/run5": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only",
+        "final_offline_map_refinement_accuracy_not_causal_online_trajectory"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry"
+      ],
+      "evaluation_sha256": "03a942855b9aaa29c6a9c74cfb458a6c7a6657b5a39d69a73fc718d5139a6ec3",
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/AirSLAM_mapv0.bin",
+          "sha256": "8f423e044e4467d9abee1dbdf1f43371a90679157058186a180aa3c2ec60e7dc"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/AirSLAM_mapv1.bin",
+          "sha256": "10b88a9a5d4a4ed8f954030680268e9cae868e87331ee7b75241a953eff4c127"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/processes/master.json",
+          "sha256": "f075c7dd23095098ba2ee8ec38d36f55ea06724b5cb7dd7d84ba4b075e4fb1df"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/processes/master.stops.jsonl",
+          "sha256": "c4cddff78a1630e235d76662c4ed54a4276558040735f021289e8a8f87d752aa"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/processes/odometry.json",
+          "sha256": "ee08bc289094177db83aab8cc736e540dba87029d63160e004578cb1603724bd"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/processes/refinement.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/processes/refinement.json",
+          "sha256": "a954f7d7b783ec5a902bce1dd8215ee17efec9bb62faeb2e8151d7484b7839dd"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/processes/refinement.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/processes/refinement.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/provenance/implementation.json",
+          "sha256": "e764af72bc0e140a5f7d9b47a6dfe704f6b5f83175fada9a8009d9809e3a7660"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/provenance/inputs.json",
+          "sha256": "83ce37664b9c4def62ee6ff5084e4d2362330a55e2605a9ba03d142e1da99d73"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/provenance/map_refinement_config--euroc_mav_mr.yaml",
+          "sha256": "11da852b80a911f366cca24250b4885f219d414a72e2ffc002e5b721783c530c"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/provenance/odometry_config--euroc_mav_vio_slam.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/resources.csv",
+          "sha256": "72d0a59d757edac227c611d53b38db24a3fc4c82ada801600c3470da961de28f"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/ros_master_uri.txt",
+          "sha256": "e51006c55afdabd02e3196d3b7182a9ee1e5d338d5a8f88a8e75e2ea763f414e"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/roscore.log",
+          "sha256": "9fa2c1d1e617094e7356d0e599588f6463abb48e17989473f3910a83a19f3613"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/run_log.txt",
+          "sha256": "e73eb8780bbcd86d9e3ad6f553d6dbd58625ca29a66b5999a102cf937ed68326"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/run_meta.json",
+          "sha256": "5ffb5baba3913a082298605be2e05e311706c8225d3b936e315522aa49601568"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/trajectory.txt",
+          "sha256": "2d3148ffce2ffe4d658ca56fc636036827205f03782cba05f6d189bd0f044829"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/trajectory_v0.txt",
+          "sha256": "f6db5a7f6fa14d29ae584882c5b546801d08d90405a975a709824f51600c47e7"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5/trajectory_v1.txt",
+          "sha256": "2d3148ffce2ffe4d658ca56fc636036827205f03782cba05f6d189bd0f044829"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/gt_tum.txt",
+          "sha256": "a5a093c33d58ae57ac13e3f7cfb7562b9bd479d8b97aa2a81c71e7bcc4bb2196"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/times.txt",
+          "sha256": "f980e3195235db3b4ef412c8cc4ef51fff27168b6b66461a14b939e6f42583a8"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
+    },
+    "vio-lc/euroc_mav/MH_03_medium/airslam/run6": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only",
+        "final_offline_map_refinement_accuracy_not_causal_online_trajectory"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry"
+      ],
+      "evaluation_sha256": "d8a72f44f8ebb1e0192d01d09f76b77f82d3865a5e21527ef8d07ccd238f9020",
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/AirSLAM_mapv0.bin",
+          "sha256": "e643bffc554fe63028de427af678fcf778fc7ad60a8d5037a5ef035d017f15a7"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/AirSLAM_mapv1.bin",
+          "sha256": "56c1dd45e061a9638826b3e2dd1bede9fcf9685f199cbf88b25e5cb16b7c2c00"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/processes/master.json",
+          "sha256": "5339f94ff726fd4566982129912d27bb5c8b618cf79f7d7312ebb5d2f68036be"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/processes/master.stops.jsonl",
+          "sha256": "d0aface840dba6fe6a3fc686a0e55acd2976f63a5adea632eb9ccd1ee2ba8932"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/processes/odometry.json",
+          "sha256": "2420ec5ce1541f22ee161fc6da11ad48a36e0bff80eb3ab7c7cbdabcf17dc015"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/processes/refinement.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/processes/refinement.json",
+          "sha256": "4a71de346fdb51fbc8847d609b3e6ee3d66f87e86c02463ab4bb627d8baf478d"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/processes/refinement.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/processes/refinement.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/provenance/implementation.json",
+          "sha256": "2179020cede2cfb9f22be3058e3762ed2dfde41cbd1020f688d12a84f615c171"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/provenance/inputs.json",
+          "sha256": "83ce37664b9c4def62ee6ff5084e4d2362330a55e2605a9ba03d142e1da99d73"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/provenance/map_refinement_config--euroc_mav_mr.yaml",
+          "sha256": "11da852b80a911f366cca24250b4885f219d414a72e2ffc002e5b721783c530c"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/provenance/odometry_config--euroc_mav_vio_slam.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/resources.csv",
+          "sha256": "f2513c99a25eaf7beddffe953d238e939709d4ac3e738c988958ce41f704bb6f"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/ros_master_uri.txt",
+          "sha256": "53a97dbd633b826efb8677e6b690f154257cff8b5cfb2017a64605357b8adc54"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/roscore.log",
+          "sha256": "da2b200636635cad167f5ad16504781f0733a2a35d99df55905cb27691c88eb0"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/run_log.txt",
+          "sha256": "8d362e890a0d47a0560488e925d31f0f413a8df047fddf5e33ace3f652f0c052"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/run_meta.json",
+          "sha256": "863e8c06b3378e69f405a02e8bccafa375db7d52b4212775f9f57f5080f20569"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/trajectory.txt",
+          "sha256": "bf0cbc0260786c4a438eff9dff212b03711fa910bb04c135487f879bd625a4bf"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/trajectory_v0.txt",
+          "sha256": "704d0d6941fc8079c1d91deb49855795096d129b5da9bb0e3cc3c3294f7941b8"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6/trajectory_v1.txt",
+          "sha256": "bf0cbc0260786c4a438eff9dff212b03711fa910bb04c135487f879bd625a4bf"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/gt_tum.txt",
+          "sha256": "a5a093c33d58ae57ac13e3f7cfb7562b9bd479d8b97aa2a81c71e7bcc4bb2196"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/times.txt",
+          "sha256": "f980e3195235db3b4ef412c8cc4ef51fff27168b6b66461a14b939e6f42583a8"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_03_medium/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
+    },
+    "vio/euroc_mav/MH_05_difficult/airslam/run4": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry",
+        "upstream_loader_excludes_one_MH05_image_before_first_IMU_sample"
+      ],
+      "evaluation_sha256": "134fe21941e61f41062dca1b37b675e6b5577dac62b017aa8e7ce657f6db341f",
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/AirSLAM_mapv0.bin",
+          "sha256": "b98e04123151424910f1fa0ec5801102645128fa287934d9981dad429fa03bc0"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/processes/master.json",
+          "sha256": "a4232f2766683226dfddfff16eac5cebdf32f6b26f9031ab8050b336d440e645"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/processes/master.stops.jsonl",
+          "sha256": "75cbcd922cddb3fdf359524a509a65bc491c3f91f7dc007bebf85c6039c63e28"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/processes/odometry.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/processes/odometry.json",
+          "sha256": "d504336231b14c26cb2e8fe3393bd8c5c41e61522a812891fae22b68b5da7071"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/provenance/implementation.json",
+          "sha256": "da839829232f6846e212caf360d522c5d12a739e8aebafe2181f64f60240e145"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/provenance/inputs.json",
+          "sha256": "95c9d7bf44e8c9c48ebe52110b593d1bc066ffa39abe6abf5331861eabf3be3e"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/provenance/odometry_config--euroc_mav_vio.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/resources.csv",
+          "sha256": "3e9b2870e04c6f7cbfd4c89fcbf8f861f299e48be842c3e89623d3ec6086a9cd"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/ros_master_uri.txt",
+          "sha256": "3ee2c0b7c0d7e269f98afe0531fa056a238c0c0354b830cc6e05b971f05f0550"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/roscore.log",
+          "sha256": "d1fb98c1ed13d02017df5b75a76a3dcf928a2b751d901ecc4c00e3a914348057"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/run_log.txt",
+          "sha256": "6bed62a76af2c4112b117c2ce0ed143a557a47e2d636d97f63a059ffd597955a"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/run_meta.json",
+          "sha256": "0ce147e3b7e690f99bf4d2a6a5c9ae68fb208a8656b2df08cf2f1bb87579872e"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/trajectory.txt",
+          "sha256": "2bec589b19ab703cd4095125e1fddb9d60459fdd1ba85221215000194e8f932b"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run4/trajectory_v0.txt",
+          "sha256": "2bec589b19ab703cd4095125e1fddb9d60459fdd1ba85221215000194e8f932b"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/gt_tum.txt",
+          "sha256": "317949bd1a68cfbad17428220422d2020802697b4049f73c3298202b6aa6c9af"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/times.txt",
+          "sha256": "d4e428d4daf73371d12035f36d1f39dd8fdf7204cd28c9859ba1cd5e9923755b"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
+    },
+    "vio/euroc_mav/MH_05_difficult/airslam/run5": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry",
+        "upstream_loader_excludes_one_MH05_image_before_first_IMU_sample"
+      ],
+      "evaluation_sha256": "69f5e5b65185c670d0c7bf38be45a05c3a1eda2ab3a018c011d225cedc0aeed3",
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/AirSLAM_mapv0.bin",
+          "sha256": "e3322af21330994032bf4798b7870077c850b3971ce3f4b842ccabf9bd6895c7"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/processes/master.json",
+          "sha256": "a118bd01753625765e3122318b85367d4f471a920d4e982c2d56fb76f9598790"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/processes/master.stops.jsonl",
+          "sha256": "054d99e865fdb70f59567acc62f863cce2127b84e72d323470e6f72e10022c67"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/processes/odometry.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/processes/odometry.json",
+          "sha256": "f7162224f382eca9a024d01bf15c31502b16f7d3e30d73cc1baaa3be773586a8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/provenance/implementation.json",
+          "sha256": "1d8b06af9db51fb05b035cf063c5f8a24d5a7e9256019786060d7104516b5c7c"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/provenance/inputs.json",
+          "sha256": "95c9d7bf44e8c9c48ebe52110b593d1bc066ffa39abe6abf5331861eabf3be3e"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/provenance/odometry_config--euroc_mav_vio.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/resources.csv",
+          "sha256": "fa0b4377b60f9070eddf5013954975a56bedc53a3aef83cefbe7b0d5083dd042"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/ros_master_uri.txt",
+          "sha256": "31fbf31f98370a931905df5b9c09f5242fc540cc3d008b9ce39a3fc842674224"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/roscore.log",
+          "sha256": "032f530b6a0700075027771856b688c4462e223d0f67e55dc7c0ceb50da945ed"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/run_log.txt",
+          "sha256": "f6bbfbe84e23623b666fe6a41910d20a8b465b2ae827f36952f9dd39bdfe3cd1"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/run_meta.json",
+          "sha256": "2c061096084152aeb360c0e1beee1e166caba722295c986ff4f0dbac8631deb2"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/trajectory.txt",
+          "sha256": "5fe844b3658919a167674efd7259edfbf3ae080331b1b2d5c5216faec7d8c817"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run5/trajectory_v0.txt",
+          "sha256": "5fe844b3658919a167674efd7259edfbf3ae080331b1b2d5c5216faec7d8c817"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/gt_tum.txt",
+          "sha256": "317949bd1a68cfbad17428220422d2020802697b4049f73c3298202b6aa6c9af"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/times.txt",
+          "sha256": "d4e428d4daf73371d12035f36d1f39dd8fdf7204cd28c9859ba1cd5e9923755b"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
+    },
+    "vio/euroc_mav/MH_05_difficult/airslam/run6": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry",
+        "upstream_loader_excludes_one_MH05_image_before_first_IMU_sample"
+      ],
+      "evaluation_sha256": "9da182be07f4e8b252f6e09e3bf0f7f918ed0a4f5a90d98b3f5acf9012b46776",
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/AirSLAM_mapv0.bin",
+          "sha256": "afdf52e5e4f1d64c0867bbbab52bb146807dd19a9f7e04045f23fbecb0293c8d"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/processes/master.json",
+          "sha256": "6cb2331b22049c7ff0fe39459d49961583ec42dbaf4812f032ab12002ed43212"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/processes/master.stops.jsonl",
+          "sha256": "2b2a9417a5984090e5ab88ee35b1358c750437377481bc1ae0405e351694440a"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/processes/odometry.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/processes/odometry.json",
+          "sha256": "10d75284a93d6a464940ff2af4ba4cb211f66885cbaf061c24ca32505cdb280c"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/provenance/implementation.json",
+          "sha256": "000e84f41d430946e38072d17088e0ddb522ffa995ee56e05163d2044115d81b"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/provenance/inputs.json",
+          "sha256": "95c9d7bf44e8c9c48ebe52110b593d1bc066ffa39abe6abf5331861eabf3be3e"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/provenance/odometry_config--euroc_mav_vio.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/resources.csv",
+          "sha256": "d826ff6fdb6e2e0f01059918e163bd8d58de9e7765be267aa776e444170a3fd2"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/ros_master_uri.txt",
+          "sha256": "b6656d7613c7e94ecaa7dd8fc9d392f8d88ffeab99226ba819613bbf378b3317"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/roscore.log",
+          "sha256": "6a5b72bfaab281b3404a22480d5d9fde5c042fcc447006c91d9589afddf983a4"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/run_log.txt",
+          "sha256": "7b7e02069e4b53fb60acf1b3e4b2551b5d32b5028ef7ba19dd7e460e1a35744c"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/run_meta.json",
+          "sha256": "01749a4b1a4681a0df54e85d2246473a45a55ab9a8b0b192e529369f42532603"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/trajectory.txt",
+          "sha256": "14245d0d0fa511dd1040d4905efcd87b305374ab6715365b7017b4d12b951a14"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/airslam/run6/trajectory_v0.txt",
+          "sha256": "14245d0d0fa511dd1040d4905efcd87b305374ab6715365b7017b4d12b951a14"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/gt_tum.txt",
+          "sha256": "317949bd1a68cfbad17428220422d2020802697b4049f73c3298202b6aa6c9af"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/times.txt",
+          "sha256": "d4e428d4daf73371d12035f36d1f39dd8fdf7204cd28c9859ba1cd5e9923755b"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
+    },
+    "vio-lc/euroc_mav/MH_05_difficult/airslam/run4": {
+      "exists": true,
+      "status": "valid_observed_failure",
+      "claim": "configured_attempt_native_refinement_failure_under_corrected_euroc_profile",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "retain_failure_in_attempt_denominator",
+        "no_final_vio_lc_trajectory_no_accuracy_claim",
+        "intermediate_odometry_is_diagnostic_only",
+        "native_junction_database_segfault_root_cause_unresolved"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry",
+        "upstream_loader_excludes_one_MH05_image_before_first_IMU_sample"
+      ],
+      "evaluation_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/AirSLAM_mapv0.bin",
+          "sha256": "053f2a9c003577767a1e651610346a2461d43850b87b9c379b879a99dad285e2"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/processes/master.json",
+          "sha256": "aae9fe01f008f3f157afcc78b6881f58a268b7be062e7f9028acfd64ae9949e0"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/processes/master.stops.jsonl",
+          "sha256": "2844ea29dcc014781c602e7c81b3c971a7a65382f698752aa37d85cda0c720c5"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/processes/odometry.json",
+          "sha256": "e5146ca6dbb972b91cf9c0d7799aee8ea883e756ac68d210aaadc5a1623abdf0"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/processes/refinement.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/processes/refinement.json",
+          "sha256": "f483ba49921850b1f9151b12c101f827e064656e8e7c640759b90ff9ea283e54"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/processes/refinement.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/processes/refinement.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/provenance/implementation.json",
+          "sha256": "17c424ff05325b63b616a109af8fd45d223cd87d491e048b668075ee0f63317a"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/provenance/inputs.json",
+          "sha256": "95c9d7bf44e8c9c48ebe52110b593d1bc066ffa39abe6abf5331861eabf3be3e"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/provenance/map_refinement_config--euroc_mav_mr.yaml",
+          "sha256": "11da852b80a911f366cca24250b4885f219d414a72e2ffc002e5b721783c530c"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/provenance/odometry_config--euroc_mav_vio_slam.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/resources.csv",
+          "sha256": "7b93955671b26ad641bfc2785dde3cefb57e44cfd2be97623f02a057d761ff3d"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/ros_master_uri.txt",
+          "sha256": "121f9c137de830218e39149307c03c86d829bf52a4cfac18ed7e9d927f297230"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/roscore.log",
+          "sha256": "35ca300a84f6ac8527e05e9c31b352bc50d909303ff0192454e6594708fdf022"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/run_log.txt",
+          "sha256": "228450b3076433aede6625f95f06bdd8a5a8e9e593264a9822f1628ecd0fe626"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/run_meta.json",
+          "sha256": "a44ba903c5d3195a49d79ad5fc88258e3a0a3d295d103cdde086ed85689467f9"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4/trajectory_v0.txt",
+          "sha256": "9322ee44abecaeb302440452f0203c6dc21e1ab562787003a1ca40e1bf24f114"
+        },
+        {
+          "path": "results/euroc-focused-20261001/stage-diagnostics/action-21-odometry.json",
+          "sha256": "a63f308acfb8972f02a8f10245503cc921519622e413a3908f6c9f02541d9987"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/gt_tum.txt",
+          "sha256": "317949bd1a68cfbad17428220422d2020802697b4049f73c3298202b6aa6c9af"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/times.txt",
+          "sha256": "d4e428d4daf73371d12035f36d1f39dd8fdf7204cd28c9859ba1cd5e9923755b"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": [
+        {
+          "stage": "refinement",
+          "native_exit": -11,
+          "wrapper_exit": 139,
+          "last_log_message": "Build junction database...",
+          "root_cause": "not established; no final trajectory saved; no forced signal requested"
+        }
+      ]
+    },
+    "vio-lc/euroc_mav/MH_05_difficult/airslam/run5": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only",
+        "final_offline_map_refinement_accuracy_not_causal_online_trajectory"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry",
+        "upstream_loader_excludes_one_MH05_image_before_first_IMU_sample"
+      ],
+      "evaluation_sha256": "336e21d163254533a975485b1474d4ccf3a6ab26a0711c1756e37f432a1a18a0",
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/AirSLAM_mapv0.bin",
+          "sha256": "6fc7cfaf2d3608d8d74030268e428c9addab205928e9ebd4395e3231e2cc318a"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/AirSLAM_mapv1.bin",
+          "sha256": "d3c22d4aa6e4f67be141c11f6fcf9fc6fd4812f95e13b7f41ca4137fcaa870b5"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/processes/master.json",
+          "sha256": "0bececc47c8d24733b4c26e4fdd07d1460c4f3a27c80f2db3396ca855dc61ca0"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/processes/master.stops.jsonl",
+          "sha256": "ddc20faef109c14a4287888d4a3f2726944bfcc62143454b5ff9cae2ab4a066e"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/processes/odometry.json",
+          "sha256": "7e1f55356259216f62ca8dd405fd79523beee317c3056065e77dba53e5cff024"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/processes/refinement.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/processes/refinement.json",
+          "sha256": "68367d6f651ec65db7a5e360e1954be0fc482956d3715a0587bd9d0fb2cbd7ef"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/processes/refinement.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/processes/refinement.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/provenance/implementation.json",
+          "sha256": "d4883dc45adb2aaa29eca578a11836b10d388ac1872c65ee05ecdf38962ff231"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/provenance/inputs.json",
+          "sha256": "95c9d7bf44e8c9c48ebe52110b593d1bc066ffa39abe6abf5331861eabf3be3e"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/provenance/map_refinement_config--euroc_mav_mr.yaml",
+          "sha256": "11da852b80a911f366cca24250b4885f219d414a72e2ffc002e5b721783c530c"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/provenance/odometry_config--euroc_mav_vio_slam.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/resources.csv",
+          "sha256": "fbe1228ca7bc6ac4a6bdfdd6f90a8b6e71787250f81f156c5974b815b88a2af2"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/ros_master_uri.txt",
+          "sha256": "8009335bf25cc0b1274ce80016837b8cee033d38a53f2ab9ab408dfa4cc2ada9"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/roscore.log",
+          "sha256": "ceccb3ea892cda3235dc025e14027f968bcc529f7491018cf5e8f6dea167819b"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/run_log.txt",
+          "sha256": "b1ef1751d4b26efa623cbe7df7f3be8a0cc94a61c9b5388a8ee95d84837f2917"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/run_meta.json",
+          "sha256": "c70bfe632fee2afcd5e9ef59846d35cb48eda317f91cc2749dbd951aa866933c"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/trajectory.txt",
+          "sha256": "bf2626fe3cfe686588f93027caabf6d6bd6514b5454e768d60f30fb6b549dc36"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/trajectory_v0.txt",
+          "sha256": "5f967c831db642339fbfa66d3fd03f1e19579a5d2326eae3063de5504a29e6df"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5/trajectory_v1.txt",
+          "sha256": "bf2626fe3cfe686588f93027caabf6d6bd6514b5454e768d60f30fb6b549dc36"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/gt_tum.txt",
+          "sha256": "317949bd1a68cfbad17428220422d2020802697b4049f73c3298202b6aa6c9af"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/times.txt",
+          "sha256": "d4e428d4daf73371d12035f36d1f39dd8fdf7204cd28c9859ba1cd5e9923755b"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
+    },
+    "vio-lc/euroc_mav/MH_05_difficult/airslam/run6": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "sparse_keyframe_accuracy_only",
+        "final_offline_map_refinement_accuracy_not_causal_online_trajectory"
+      ],
+      "disclosures": [
+        "recorded_profile_comparison_not_author_paper_reproduction_or_optimality",
+        "frozen_source_inputs_and_known_runtime_assets_verified_unchanged",
+        "new_native_source_build_linkage_verified_by_separate_campaign_audit",
+        "complete_loaded_dependency_closure_not_independently_captured_for_every_repetition",
+        "corrected_rectified_camera_imu_extrinsic_implementation_cohort",
+        "physical_attempts_4_5_6_predeclared_as_logical_1_2_3_originals_retained",
+        "one_refinement_attempt_no_success_conditioned_retry",
+        "upstream_loader_excludes_one_MH05_image_before_first_IMU_sample"
+      ],
+      "evaluation_sha256": "acb2a413ec8bbfd532b21d327f32b2e0bb91715031f45778abc4b739a4a86e34",
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/AirSLAM_mapv0.bin",
+          "sha256": "d1a0a50d4272f11be48171cebf3d23e60eb2498be5dc98c803007dbddf99374c"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/AirSLAM_mapv1.bin",
+          "sha256": "1bf84df87823858cc28743d46a0a1c6651a7e9aee6d3b5d0e376444dd9a96171"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/processes/master.json",
+          "sha256": "753d8599cbfc5153729ba36c2e04be906965a4c45dcfe48c2363b9d646bc8175"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/processes/master.stops.jsonl",
+          "sha256": "419b9a85633d1ad2ac2444d433f4373ff15965eea6881cc11809e4093d45302c"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/processes/odometry.json",
+          "sha256": "f697b781ea6203ecdd56226eff3fe62a578fa21a1a1550073622289fb31aa860"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/processes/refinement.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/processes/refinement.json",
+          "sha256": "8a11ea45baff862354c0e1808a3f2b208232e3b0ce4bc24fc08d99a7e23d67af"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/processes/refinement.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/processes/refinement.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/provenance/camera_config--euroc_mav_camera_vio.yaml",
+          "sha256": "696e75d5f2107d76cad4d965cd74853689d9adeeef43bdd01b13fc6f87bb0840"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/provenance/implementation.json",
+          "sha256": "49a95dc1786a7e22a47084999851026102e4488e8dbf4e18a621a15fe31e7fce"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/provenance/inputs.json",
+          "sha256": "95c9d7bf44e8c9c48ebe52110b593d1bc066ffa39abe6abf5331861eabf3be3e"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/provenance/map_refinement_config--euroc_mav_mr.yaml",
+          "sha256": "11da852b80a911f366cca24250b4885f219d414a72e2ffc002e5b721783c530c"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/provenance/odometry_config--euroc_mav_vio_slam.yaml",
+          "sha256": "219bd384ba8fc19452ad9384ef884662614a5d0ae4356b890264dc570c5484c8"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/resources.csv",
+          "sha256": "4b6c1966cbf5d27f66ce2db631d31ea906928f2ffbe620e12cab4579b71c4930"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/ros_master_uri.txt",
+          "sha256": "2416c1175ccacd222cb11d5c44dc7d2a77414c0fae18aa62793441ce6fe3f908"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/roscore.log",
+          "sha256": "5064a5d8f302303c38f3f3e219e9c69a0cbc84ead45c4019e1aef2e711666509"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/run_log.txt",
+          "sha256": "13550962b8b4955949a21c538bb192e4261e31c9d267da8dc580d0f01f7f6516"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/run_meta.json",
+          "sha256": "ac64b3391dee6223c94d1a77b9c735e24c716f3ef80807c7a7fa656689663a48"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/trajectory.txt",
+          "sha256": "2a21654830b7dc6a629f1d37ecaa4b1e33e154df75622db57fe554c0623e750e"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/trajectory_v0.txt",
+          "sha256": "2cc346d8f4a7673f1f8f59ee85cd833403f25dbc81a52b988077308ba71a77d7"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6/trajectory_v1.txt",
+          "sha256": "2a21654830b7dc6a629f1d37ecaa4b1e33e154df75622db57fe554c0623e750e"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/gt_tum.txt",
+          "sha256": "317949bd1a68cfbad17428220422d2020802697b4049f73c3298202b6aa6c9af"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/times.txt",
+          "sha256": "d4e428d4daf73371d12035f36d1f39dd8fdf7204cd28c9859ba1cd5e9923755b"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/mav0/cam0/sensor.yaml",
+          "sha256": "191748edddda5d1368188f5b0a3c4bed6c48842c178ef9d83c50cba17d66e819"
+        },
+        {
+          "path": "datasets/euroc_mav/MH_05_difficult/mav0/cam1/sensor.yaml",
+          "sha256": "a469fd673f369881f37dd6b93d251e9444950360d70c6214bf909cf509ac9524"
+        }
+      ],
+      "native_error_observations": []
     }
   },
   "cells": {
@@ -36948,12 +40301,12 @@
       "verified_ready_to_run": false
     },
     "vio/euroc_mav/MH_01_easy/airslam": {
-      "status": "rerun_required",
+      "status": "accepted_with_limitation",
       "attempts": {
-        "rerun_required": 3
+        "accepted_with_limitation": 3
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
+      "paper_usable_attempts": 3,
       "missing_repetitions": 0,
       "verified_ready_to_run": false
     },
@@ -36968,14 +40321,14 @@
       "verified_ready_to_run": false
     },
     "vio/euroc_mav/MH_01_easy/openvins": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
         "accepted_with_limitation": 1,
-        "not_executed": 2
+        "accepted": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 1,
-      "missing_repetitions": 2,
+      "paper_usable_attempts": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false
     },
     "vio/euroc_mav/MH_01_easy/voxel_svio": {
@@ -37020,12 +40373,12 @@
       "verified_ready_to_run": false
     },
     "vio/euroc_mav/MH_03_medium/airslam": {
-      "status": "rerun_required",
+      "status": "accepted_with_limitation",
       "attempts": {
-        "rerun_required": 3
+        "accepted_with_limitation": 3
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
+      "paper_usable_attempts": 3,
       "missing_repetitions": 0,
       "verified_ready_to_run": false
     },
@@ -37040,14 +40393,14 @@
       "verified_ready_to_run": false
     },
     "vio/euroc_mav/MH_03_medium/openvins": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
         "accepted_with_limitation": 1,
-        "not_executed": 2
+        "accepted": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 1,
-      "missing_repetitions": 2,
+      "paper_usable_attempts": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false
     },
     "vio/euroc_mav/MH_03_medium/voxel_svio": {
@@ -37091,12 +40444,12 @@
       "verified_ready_to_run": false
     },
     "vio/euroc_mav/MH_05_difficult/airslam": {
-      "status": "rerun_required",
+      "status": "accepted_with_limitation",
       "attempts": {
-        "rerun_required": 3
+        "accepted_with_limitation": 3
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
+      "paper_usable_attempts": 3,
       "missing_repetitions": 0,
       "verified_ready_to_run": false
     },
@@ -37111,14 +40464,13 @@
       "verified_ready_to_run": false
     },
     "vio/euroc_mav/MH_05_difficult/openvins": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "accepted_with_limitation": 1,
-        "not_executed": 2
+        "accepted_with_limitation": 3
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 1,
-      "missing_repetitions": 2,
+      "paper_usable_attempts": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false
     },
     "vio/euroc_mav/MH_05_difficult/voxel_svio": {
@@ -37399,12 +40751,12 @@
       "verified_ready_to_run": false
     },
     "vio-lc/euroc_mav/MH_01_easy/airslam": {
-      "status": "rerun_required",
+      "status": "accepted_with_limitation",
       "attempts": {
-        "rerun_required": 3
+        "accepted_with_limitation": 3
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
+      "paper_usable_attempts": 3,
       "missing_repetitions": 0,
       "verified_ready_to_run": false
     },
@@ -37440,12 +40792,12 @@
       "verified_ready_to_run": false
     },
     "vio-lc/euroc_mav/MH_03_medium/airslam": {
-      "status": "rerun_required",
+      "status": "accepted_with_limitation",
       "attempts": {
-        "rerun_required": 3
+        "accepted_with_limitation": 3
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
+      "paper_usable_attempts": 3,
       "missing_repetitions": 0,
       "verified_ready_to_run": false
     },
@@ -37480,12 +40832,13 @@
       "verified_ready_to_run": false
     },
     "vio-lc/euroc_mav/MH_05_difficult/airslam": {
-      "status": "rerun_required",
+      "status": "valid_observed_failure",
       "attempts": {
-        "rerun_required": 3
+        "valid_observed_failure": 1,
+        "accepted_with_limitation": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
+      "paper_usable_attempts": 3,
       "missing_repetitions": 0,
       "verified_ready_to_run": false
     },

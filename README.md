@@ -1,14 +1,13 @@
 # vSLAM Benchmark
 
-> **Repair update 2026-10-01:** saved-artifact recovery now provides **545/600 repaired
-> evaluations** for the original four-mode N=3 campaign; 176 cells have three evaluations.
-> These counts include failures and do not certify publication readiness. A future
-> **N=3 plan across all five modes** is prepared with the existing exclusions.
-> Start with [TODO](TODO.md), [repair evidence](docs/repair-audit-20261001.md), and
-> [future campaign preparation](docs/campaigns/future-n3-preparation.md).
-> **Repair/audit complete; native execution readiness remains unverified.**
-> See [the acceptance handoff](docs/acceptance-handoff-20261001.md). Root exports are reconciled; 45 EuRoC cells now have clean accepted N=3; limited results and material blockers are explicit.
-> No new estimator executions or campaigns are authorized as part of this repair.
+> **Focused EuRoC campaign complete (2026-10-01 UTC / 2026-10-02 local):** six missing
+> OpenVINS repetitions and 18 corrected AirSLAM repetitions have been executed once,
+> reviewed: 23 final trajectories evaluated and one native VIO-LC failure retained. The four-mode comparison has **550/600 evaluations**;
+> all **45 previously accepted N=3 cells** are preserved. AirSLAM has sparse-keyframe
+> limits; OpenVINS retains its original-run limitations and separate implementation cohort.
+> See [TODO](TODO.md), [focused campaign evidence](docs/euroc-focused-campaign-20261001.md)
+> and [the acceptance handoff](docs/acceptance-handoff-20261001.md). Other native paths
+> and agricultural/GNSS prerequisites remain unresolved. No further runs or push are authorized.
 
 
 | Algorithm | Type | Source |
@@ -170,25 +169,23 @@ bash scripts/results/serve_site.sh 8080
 ## Results snapshot
 
 Current numerical and execution status is documented in [TODO](TODO.md) and
-[the repair audit](docs/repair-audit-20261001.md). The original four-mode campaign
-has 545/600 evaluated repetitions, including five collapses. Across all scopes,
-593 saved evaluations were repaired and promoted without new estimator runs.
+[the focused campaign](docs/euroc-focused-campaign-20261001.md). The four-mode
+comparison has 550/600 evaluated repetitions, including retained collapses. Across
+all scopes, 622 evaluations are reconciled. The original 593 numerical
+evaluations and all historical attempts remain intact.
 
-The five root CSVs now contain **666 rows**: 660 planned default repetitions plus
-six separate GNSS variants. Missing runs and failures are explicit; these are not
-666 successes. The [tables](docs/generated/tables.md),
-[evidence counts](docs/generated/verified-claims.md),
-[figures](docs/generated/README.md) and browser use the same checked inventory.
-Historical/smoke results remain inspectable outside headline comparisons.
+The five root CSVs contain **666 rows**: 660 planned default repetitions plus six
+separate GNSS variants. The corrected AirSLAM inertial cohort uses physical runs
+4–6. Its 18 affected original runs remain in `benchmark-historical-cohorts.csv`,
+their original directories and separate reports. Missing runs and failures remain
+explicit. [Tables](docs/generated/tables.md), [counts](docs/generated/verified-claims.md),
+[figures](docs/generated/README.md) and the browser use the same checked inventory.
 
-The [claim review](docs/paper-acceptance-20261001.md) accepts **45 clean N=3 EuRoC
-cells** for the documented recorded-profile comparison. The subsequent
-[matched-session audit](docs/reference-review-20261001.md) corrects 159 Rosario
-evaluations and identifies **91 distinct required reruns**; it grants no additional
-agricultural green ticks. There are 210 reusable observations, 87 missing slots
-and 272 blocked cases in the future manifest. Native execution remains unverified. It does
-not request rerunning every saved result. Old generated reports and figures are
-[archived](docs/generated/historical-before-repair-20261001/README.md).
+The [claim review](docs/paper-acceptance-20261001.md) preserves **45 clean N=3
+EuRoC cells** for the recorded-profile comparison. There are 234 reusable observations, 73 required reruns, 81 missing repetitions and 272 blocked cases.
+The focused EuRoC paths have native execution evidence; this does not certify
+other algorithm/dataset paths or resolve agricultural reference and GNSS blockers.
+Older generated reports and figures remain [archived](docs/generated/historical-before-repair-20261001/README.md).
 
 The historical observations in [PROGRESS.md](PROGRESS.md) require reassessment against the
 corrected calibration, declared configuration cohorts, failures and coverage. In particular,

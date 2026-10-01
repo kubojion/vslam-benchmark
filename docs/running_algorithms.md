@@ -1,11 +1,11 @@
 # Running and recovering benchmark attempts
 
-Updated 2026-10-01. The current repair permits saved-artifact evaluation and static
-checks only: **do not start estimators or campaigns during this goal**. Future
-execution must satisfy the guarded manifest's prerequisites. Existing exclusions
+Updated after the focused EuRoC campaign (2026-10-02 local). Its six OpenVINS and 18 corrected AirSLAM repetitions are complete; no further estimator execution is authorized. Other paths retain the guarded manifest prerequisites. Existing exclusions
 remain: DROID-SLAM, MASt3R-SLAM and MegaSaM. The older
 [algorithm walkthrough](running_algorithms-before-repair-20261001.md) is historical;
 its replacement behavior and several dataset/config assumptions are superseded.
+
+The EuRoC OpenVINS runner selects `openvins:humble-shutdown-20261001`. EuRoC AirSLAM inertial modes require `/root/catkin_ws_rectified_20261001/devel` in `air_slam`; the original build remains for other paths. Native exits are captured directly and refinement has one attempt. See [build and execution evidence](euroc-focused-campaign-20261001.md).
 
 ## Scope and prerequisites
 

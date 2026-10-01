@@ -3,7 +3,7 @@
   "inputs": [
     {
       "path": "results/repair-20261001/inventory.json",
-      "sha256": "862177ac574b62e12b71ae533e0f00330586207959bf3cbc811664f57f7d2b4f"
+      "sha256": "2b55697202e3e83031550c5f3fad07d313ecb0c9b1d06d09044bab3215beafed"
     },
     {
       "path": "benchmark-vo.csv",
@@ -15,11 +15,11 @@
     },
     {
       "path": "benchmark-vio.csv",
-      "sha256": "6902205aca1e7b1185e872809d225efc6473b8a291194d698e7ab0a95bab0f5e"
+      "sha256": "bdc937a097257244e886132948481c72e1b48eefde474dd3783a84643f200816"
     },
     {
       "path": "benchmark-vio-lc.csv",
-      "sha256": "8e63a79d0ed0ec15c0780eb2d0285b87c3f2fccb34bce54beafd9ac94e39854a"
+      "sha256": "8298fd060ed996a89a2b87b4a466c220c9dabe3bbed841fef93686f7fcf649e0"
     },
     {
       "path": "benchmark-gnss-vio.csv",
@@ -11450,8 +11450,8 @@
         "airslam",
         "default"
       ],
-      "value": 0.0837692325923723,
-      "annotation": "0.0838\n3/3 ok\nK,R",
+      "value": 0.09895694587084472,
+      "annotation": "0.099\n3/3 ok\nK,L",
       "summary": {
         "identity": [
           "vio",
@@ -11467,41 +11467,42 @@
           "ok": 3
         },
         "acceptance": {
-          "rerun_required": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "sparse_keyframe_accuracy_only"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "13d3424fca09d13ae51d5ed8f400f96812680790824c4adcdc930b4d0645893a",
+            "cohort": "08ef5be209d4a2b495f6700c9c5e88db3a893871f981d102c996b6d84425e9c0",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.09906900717719744,
+              "median": 0.09895694587084472,
+              "min": 0.09895461971904444,
+              "max": 0.09929545594170314,
+              "sample_std": 0.0001961138316263521
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.0837850174336194,
-              "median": 0.0837692325923723,
-              "min": 0.08373762500571941,
-              "max": 0.08384819470276647,
-              "sample_std": 5.694984974665655e-05
+              "mean": 0.09906900717719744,
+              "median": 0.09895694587084472,
+              "min": 0.09895461971904444,
+              "max": 0.09929545594170314,
+              "sample_std": 0.0001961138316263521
             },
             "dense_coverage_pct": {
               "n": 0,
@@ -11512,19 +11513,17 @@
               "sample_std": null
             },
             "run_paths": [
-              "results/vio/euroc_mav/MH_01_easy/airslam/run1",
-              "results/vio/euroc_mav/MH_01_easy/airslam/run2",
-              "results/vio/euroc_mav/MH_01_easy/airslam/run3"
+              "results/vio/euroc_mav/MH_01_easy/airslam/run4",
+              "results/vio/euroc_mav/MH_01_easy/airslam/run5",
+              "results/vio/euroc_mav/MH_01_easy/airslam/run6"
             ]
           }
         ],
-        "scientific_blockers": [
-          "airslam_rectified_camera_imu_extrinsic"
-        ]
+        "scientific_blockers": []
       },
       "flags": [
         "K",
-        "R"
+        "L"
       ]
     },
     {
@@ -11535,8 +11534,8 @@
         "airslam",
         "default"
       ],
-      "value": 0.11542843244990657,
-      "annotation": "0.115\n3/3 ok\nK,R",
+      "value": 0.09902064686045063,
+      "annotation": "0.099\n3/3 ok\nK,L",
       "summary": {
         "identity": [
           "vio",
@@ -11552,41 +11551,42 @@
           "ok": 3
         },
         "acceptance": {
-          "rerun_required": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "sparse_keyframe_accuracy_only"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "13d3424fca09d13ae51d5ed8f400f96812680790824c4adcdc930b4d0645893a",
+            "cohort": "08ef5be209d4a2b495f6700c9c5e88db3a893871f981d102c996b6d84425e9c0",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.09903084001789886,
+              "median": 0.09902064686045063,
+              "min": 0.09891832178343545,
+              "max": 0.09915355140981048,
+              "sample_std": 0.00011794562147535724
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.1154361020478322,
-              "median": 0.11542843244990657,
-              "min": 0.11535337566494404,
-              "max": 0.115526498028646,
-              "sample_std": 8.681563944758836e-05
+              "mean": 0.09903084001789886,
+              "median": 0.09902064686045063,
+              "min": 0.09891832178343545,
+              "max": 0.09915355140981048,
+              "sample_std": 0.00011794562147535724
             },
             "dense_coverage_pct": {
               "n": 0,
@@ -11597,19 +11597,17 @@
               "sample_std": null
             },
             "run_paths": [
-              "results/vio/euroc_mav/MH_03_medium/airslam/run1",
-              "results/vio/euroc_mav/MH_03_medium/airslam/run2",
-              "results/vio/euroc_mav/MH_03_medium/airslam/run3"
+              "results/vio/euroc_mav/MH_03_medium/airslam/run4",
+              "results/vio/euroc_mav/MH_03_medium/airslam/run5",
+              "results/vio/euroc_mav/MH_03_medium/airslam/run6"
             ]
           }
         ],
-        "scientific_blockers": [
-          "airslam_rectified_camera_imu_extrinsic"
-        ]
+        "scientific_blockers": []
       },
       "flags": [
         "K",
-        "R"
+        "L"
       ]
     },
     {
@@ -11620,8 +11618,8 @@
         "airslam",
         "default"
       ],
-      "value": 0.09347146615890814,
-      "annotation": "0.0935\n3/3 ok\nK,R",
+      "value": 0.07345320492406783,
+      "annotation": "0.0735\n3/3 ok\nK,L",
       "summary": {
         "identity": [
           "vio",
@@ -11637,41 +11635,42 @@
           "ok": 3
         },
         "acceptance": {
-          "rerun_required": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "sparse_keyframe_accuracy_only"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "13d3424fca09d13ae51d5ed8f400f96812680790824c4adcdc930b4d0645893a",
+            "cohort": "08ef5be209d4a2b495f6700c9c5e88db3a893871f981d102c996b6d84425e9c0",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.07386024024961096,
+              "median": 0.07345320492406783,
+              "min": 0.07321087360568979,
+              "max": 0.07491664221907528,
+              "sample_std": 0.0009228596631031012
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.0928044025476063,
-              "median": 0.09347146615890814,
-              "min": 0.09145963534575254,
-              "max": 0.09348210613815823,
-              "sample_std": 0.0011646147099688452
+              "mean": 0.07386024024961096,
+              "median": 0.07345320492406783,
+              "min": 0.07321087360568979,
+              "max": 0.07491664221907528,
+              "sample_std": 0.0009228596631031012
             },
             "dense_coverage_pct": {
               "n": 0,
@@ -11682,19 +11681,17 @@
               "sample_std": null
             },
             "run_paths": [
-              "results/vio/euroc_mav/MH_05_difficult/airslam/run1",
-              "results/vio/euroc_mav/MH_05_difficult/airslam/run2",
-              "results/vio/euroc_mav/MH_05_difficult/airslam/run3"
+              "results/vio/euroc_mav/MH_05_difficult/airslam/run4",
+              "results/vio/euroc_mav/MH_05_difficult/airslam/run5",
+              "results/vio/euroc_mav/MH_05_difficult/airslam/run6"
             ]
           }
         ],
-        "scientific_blockers": [
-          "airslam_rectified_camera_imu_extrinsic"
-        ]
+        "scientific_blockers": []
       },
       "flags": [
         "K",
-        "R"
+        "L"
       ]
     },
     {
@@ -13503,8 +13500,8 @@
         "openvins",
         "default"
       ],
-      "value": 0.06700912836092544,
-      "annotation": "0.067\n1/3 ok\nX,L,M",
+      "value": null,
+      "annotation": "no score\n3/3 ok\ncohorts,X,L",
       "summary": {
         "identity": [
           "vio",
@@ -13514,17 +13511,16 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "ok": 1,
-          "missing": 2
+          "ok": 3
         },
         "acceptance": {
           "accepted_with_limitation": 1,
-          "not_executed": 2
+          "accepted": 2
         },
-        "paper_usable": 1,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "no_measured_processing_rate_or_realtime_deadline_claim",
@@ -13532,6 +13528,46 @@
         ],
         "clean_qualified_n3": false,
         "cohorts": [
+          {
+            "cohort": "c3248c220427d7164a288953a9cbd1444fce9121b82c5476f7ceca1dce324d0d",
+            "planned_members": 2,
+            "evaluated": 2,
+            "outcomes": {
+              "ok": 2
+            },
+            "qualified": 0,
+            "paper_usable": 2,
+            "accepted_primary_ate": {
+              "n": 2,
+              "mean": 0.05863409467493716,
+              "median": 0.05863409467493716,
+              "min": 0.04965060944933654,
+              "max": 0.06761757990053778,
+              "sample_std": 0.012704566643422722
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 2,
+              "mean": 0.05863409467493716,
+              "median": 0.05863409467493716,
+              "min": 0.04965060944933654,
+              "max": 0.06761757990053778,
+              "sample_std": 0.012704566643422722
+            },
+            "dense_coverage_pct": {
+              "n": 2,
+              "mean": 98.37000814953696,
+              "median": 98.37000814953696,
+              "min": 98.37000814953696,
+              "max": 98.37000814953696,
+              "sample_std": 0.0
+            },
+            "run_paths": [
+              "results/vio/euroc_mav/MH_01_easy/openvins/run2",
+              "results/vio/euroc_mav/MH_01_easy/openvins/run3"
+            ]
+          },
           {
             "cohort": "f7b533ff18d2bc003f7d346a6602c498a1ec82be04361e680dd84e28b70dbf41",
             "planned_members": 1,
@@ -13573,13 +13609,13 @@
           }
         ],
         "scientific_blockers": [
-          "missing_repetition"
+          "within_cell_source_binary_parameter_or_hardware_mismatch"
         ]
       },
       "flags": [
+        "cohorts",
         "X",
-        "L",
-        "M"
+        "L"
       ]
     },
     {
@@ -13590,8 +13626,8 @@
         "openvins",
         "default"
       ],
-      "value": 0.13699744862534735,
-      "annotation": "0.137\n1/3 ok\nX,L,M",
+      "value": null,
+      "annotation": "no score\n3/3 ok\ncohorts,X,L",
       "summary": {
         "identity": [
           "vio",
@@ -13601,17 +13637,16 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "ok": 1,
-          "missing": 2
+          "ok": 3
         },
         "acceptance": {
           "accepted_with_limitation": 1,
-          "not_executed": 2
+          "accepted": 2
         },
-        "paper_usable": 1,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "no_measured_processing_rate_or_realtime_deadline_claim",
@@ -13619,6 +13654,46 @@
         ],
         "clean_qualified_n3": false,
         "cohorts": [
+          {
+            "cohort": "c3248c220427d7164a288953a9cbd1444fce9121b82c5476f7ceca1dce324d0d",
+            "planned_members": 2,
+            "evaluated": 2,
+            "outcomes": {
+              "ok": 2
+            },
+            "qualified": 0,
+            "paper_usable": 2,
+            "accepted_primary_ate": {
+              "n": 2,
+              "mean": 0.1370301101407639,
+              "median": 0.1370301101407639,
+              "min": 0.13697571271985381,
+              "max": 0.137084507561674,
+              "sample_std": 7.692957040917575e-05
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 2,
+              "mean": 0.1370301101407639,
+              "median": 0.1370301101407639,
+              "min": 0.13697571271985381,
+              "max": 0.137084507561674,
+              "sample_std": 7.692957040917575e-05
+            },
+            "dense_coverage_pct": {
+              "n": 2,
+              "mean": 95.85031499625975,
+              "median": 95.85031499625975,
+              "min": 95.85031499625975,
+              "max": 95.85031499625975,
+              "sample_std": 0.0
+            },
+            "run_paths": [
+              "results/vio/euroc_mav/MH_03_medium/openvins/run2",
+              "results/vio/euroc_mav/MH_03_medium/openvins/run3"
+            ]
+          },
           {
             "cohort": "f7b533ff18d2bc003f7d346a6602c498a1ec82be04361e680dd84e28b70dbf41",
             "planned_members": 1,
@@ -13660,13 +13735,13 @@
           }
         ],
         "scientific_blockers": [
-          "missing_repetition"
+          "within_cell_source_binary_parameter_or_hardware_mismatch"
         ]
       },
       "flags": [
+        "cohorts",
         "X",
-        "L",
-        "M"
+        "L"
       ]
     },
     {
@@ -13677,8 +13752,8 @@
         "openvins",
         "default"
       ],
-      "value": 0.16396703872705812,
-      "annotation": "0.164\n1/3 ok\nP,L,M",
+      "value": null,
+      "annotation": "no score\n3/3 ok\ncohorts,P,L",
       "summary": {
         "identity": [
           "vio",
@@ -13688,17 +13763,15 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "ok": 1,
-          "missing": 2
+          "ok": 3
         },
         "acceptance": {
-          "accepted_with_limitation": 1,
-          "not_executed": 2
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 1,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "export_coverage_below_95_percent_no_clean_success_tick",
@@ -13744,16 +13817,56 @@
             "run_paths": [
               "results/vio/euroc_mav/MH_05_difficult/openvins/run1"
             ]
+          },
+          {
+            "cohort": "c3248c220427d7164a288953a9cbd1444fce9121b82c5476f7ceca1dce324d0d",
+            "planned_members": 2,
+            "evaluated": 2,
+            "outcomes": {
+              "ok": 2
+            },
+            "qualified": 0,
+            "paper_usable": 2,
+            "accepted_primary_ate": {
+              "n": 2,
+              "mean": 0.19552255194420182,
+              "median": 0.19552255194420182,
+              "min": 0.19193943675271835,
+              "max": 0.19910566713568525,
+              "sample_std": 0.005067290099340967
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 2,
+              "mean": 0.19552255194420182,
+              "median": 0.19552255194420182,
+              "min": 0.19193943675271835,
+              "max": 0.19910566713568525,
+              "sample_std": 0.005067290099340967
+            },
+            "dense_coverage_pct": {
+              "n": 2,
+              "mean": 94.1241196504144,
+              "median": 94.1241196504144,
+              "min": 94.10211262912995,
+              "max": 94.14612667169884,
+              "sample_std": 0.03112262796789515
+            },
+            "run_paths": [
+              "results/vio/euroc_mav/MH_05_difficult/openvins/run2",
+              "results/vio/euroc_mav/MH_05_difficult/openvins/run3"
+            ]
           }
         ],
         "scientific_blockers": [
-          "missing_repetition"
+          "within_cell_source_binary_parameter_or_hardware_mismatch"
         ]
       },
       "flags": [
+        "cohorts",
         "P",
-        "L",
-        "M"
+        "L"
       ]
     },
     {
@@ -15559,8 +15672,8 @@
         "airslam",
         "default"
       ],
-      "value": 0.03992857010246298,
-      "annotation": "0.0399\n3/3 ok\nK,R",
+      "value": 0.03875984745778469,
+      "annotation": "0.0388\n3/3 ok\nK,L",
       "summary": {
         "identity": [
           "vio-lc",
@@ -15576,41 +15689,43 @@
           "ok": 3
         },
         "acceptance": {
-          "rerun_required": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "final_offline_map_refinement_accuracy_not_causal_online_trajectory",
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "sparse_keyframe_accuracy_only"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "76979d58a2e9e561570f2dc2faaf63ee6f1ae9a07d204142bddec402446cebae",
+            "cohort": "16f70d81329ca61df95c11200ad23e478e80e4a3c87c9b48e20656706720ccd8",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.03875898884276168,
+              "median": 0.03875984745778469,
+              "min": 0.03875666845847179,
+              "max": 0.038760450612028555,
+              "sample_std": 2.0320153050718798e-06
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.03977723653289925,
-              "median": 0.03992857010246298,
-              "min": 0.03942798917190236,
-              "max": 0.03997515032433243,
-              "sample_std": 0.0003033524660190274
+              "mean": 0.03875898884276168,
+              "median": 0.03875984745778469,
+              "min": 0.03875666845847179,
+              "max": 0.038760450612028555,
+              "sample_std": 2.0320153050718798e-06
             },
             "dense_coverage_pct": {
               "n": 0,
@@ -15621,19 +15736,17 @@
               "sample_std": null
             },
             "run_paths": [
-              "results/vio-lc/euroc_mav/MH_01_easy/airslam/run1",
-              "results/vio-lc/euroc_mav/MH_01_easy/airslam/run2",
-              "results/vio-lc/euroc_mav/MH_01_easy/airslam/run3"
+              "results/vio-lc/euroc_mav/MH_01_easy/airslam/run4",
+              "results/vio-lc/euroc_mav/MH_01_easy/airslam/run5",
+              "results/vio-lc/euroc_mav/MH_01_easy/airslam/run6"
             ]
           }
         ],
-        "scientific_blockers": [
-          "airslam_rectified_camera_imu_extrinsic"
-        ]
+        "scientific_blockers": []
       },
       "flags": [
         "K",
-        "R"
+        "L"
       ]
     },
     {
@@ -15644,8 +15757,8 @@
         "airslam",
         "default"
       ],
-      "value": 0.02480048925005253,
-      "annotation": "0.0248\n3/3 ok\nK,R",
+      "value": 0.02445144906081998,
+      "annotation": "0.0245\n3/3 ok\nK,L",
       "summary": {
         "identity": [
           "vio-lc",
@@ -15661,41 +15774,43 @@
           "ok": 3
         },
         "acceptance": {
-          "rerun_required": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "final_offline_map_refinement_accuracy_not_causal_online_trajectory",
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "sparse_keyframe_accuracy_only"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "76979d58a2e9e561570f2dc2faaf63ee6f1ae9a07d204142bddec402446cebae",
+            "cohort": "16f70d81329ca61df95c11200ad23e478e80e4a3c87c9b48e20656706720ccd8",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.024410018960753274,
+              "median": 0.02445144906081998,
+              "min": 0.024324185519386116,
+              "max": 0.024454422302053722,
+              "sample_std": 7.434880485626811e-05
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.024801849722741572,
-              "median": 0.02480048925005253,
-              "min": 0.02473366945615158,
-              "max": 0.024871390462020602,
-              "sample_std": 6.88705817373931e-05
+              "mean": 0.024410018960753274,
+              "median": 0.02445144906081998,
+              "min": 0.024324185519386116,
+              "max": 0.024454422302053722,
+              "sample_std": 7.434880485626811e-05
             },
             "dense_coverage_pct": {
               "n": 0,
@@ -15706,19 +15821,17 @@
               "sample_std": null
             },
             "run_paths": [
-              "results/vio-lc/euroc_mav/MH_03_medium/airslam/run1",
-              "results/vio-lc/euroc_mav/MH_03_medium/airslam/run2",
-              "results/vio-lc/euroc_mav/MH_03_medium/airslam/run3"
+              "results/vio-lc/euroc_mav/MH_03_medium/airslam/run4",
+              "results/vio-lc/euroc_mav/MH_03_medium/airslam/run5",
+              "results/vio-lc/euroc_mav/MH_03_medium/airslam/run6"
             ]
           }
         ],
-        "scientific_blockers": [
-          "airslam_rectified_camera_imu_extrinsic"
-        ]
+        "scientific_blockers": []
       },
       "flags": [
         "K",
-        "R"
+        "L"
       ]
     },
     {
@@ -15729,8 +15842,8 @@
         "airslam",
         "default"
       ],
-      "value": 0.053407635964308996,
-      "annotation": "0.0534\n3/3 ok\nK,R",
+      "value": 0.05310780831989023,
+      "annotation": "0.0531\n2/3 ok\nK,X,L,F",
       "summary": {
         "identity": [
           "vio-lc",
@@ -15741,46 +15854,55 @@
         ],
         "planned_slots": 3,
         "attempted": 3,
-        "evaluated": 3,
+        "evaluated": 2,
         "outcomes": {
-          "ok": 3
+          "failed_without_trajectory": 1,
+          "ok": 2
         },
         "acceptance": {
-          "rerun_required": 3
+          "valid_observed_failure": 1,
+          "accepted_with_limitation": 2
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "final_offline_map_refinement_accuracy_not_causal_online_trajectory",
+          "intermediate_odometry_is_diagnostic_only",
+          "native_junction_database_segfault_root_cause_unresolved",
+          "no_final_vio_lc_trajectory_no_accuracy_claim",
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "retain_failure_in_attempt_denominator",
+          "sparse_keyframe_accuracy_only"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "76979d58a2e9e561570f2dc2faaf63ee6f1ae9a07d204142bddec402446cebae",
+            "cohort": "16f70d81329ca61df95c11200ad23e478e80e4a3c87c9b48e20656706720ccd8",
             "planned_members": 3,
-            "evaluated": 3,
+            "evaluated": 2,
             "outcomes": {
-              "ok": 3
+              "failed_without_trajectory": 1,
+              "ok": 2
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 2,
+              "mean": 0.05310780831989023,
+              "median": 0.05310780831989023,
+              "min": 0.053012952428776634,
+              "max": 0.053202664211003836,
+              "sample_std": 0.00013414648768383995
             },
-            "nonzero_exits": 0,
+            "nonzero_exits": 1,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 3,
-              "mean": 0.053499259320604696,
-              "median": 0.053407635964308996,
-              "min": 0.0533649916647831,
-              "max": 0.053725150332721995,
-              "sample_std": 0.00019678591435122323
+              "n": 2,
+              "mean": 0.05310780831989023,
+              "median": 0.05310780831989023,
+              "min": 0.053012952428776634,
+              "max": 0.053202664211003836,
+              "sample_std": 0.00013414648768383995
             },
             "dense_coverage_pct": {
               "n": 0,
@@ -15791,19 +15913,19 @@
               "sample_std": null
             },
             "run_paths": [
-              "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run1",
-              "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run2",
-              "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run3"
+              "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4",
+              "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5",
+              "results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6"
             ]
           }
         ],
-        "scientific_blockers": [
-          "airslam_rectified_camera_imu_extrinsic"
-        ]
+        "scientific_blockers": []
       },
       "flags": [
         "K",
-        "R"
+        "X",
+        "L",
+        "F"
       ]
     },
     {
@@ -19489,75 +19611,75 @@
   "figures": [
     {
       "path": "fig_campaign_outcomes.png",
-      "sha256": "03933b173e44bc95e80cf28807a08c141fad9c65864d72e87c4ec528f882a60f"
+      "sha256": "29ec5af3dd9e1171528d5d9f6697f13afe96e98d541ac16eb2424664c846ae78"
     },
     {
       "path": "fig_campaign_outcomes.pdf",
-      "sha256": "ddda359c5dd222a9e0f5c656ecaea79e07f3adb9c239bce17007c0f22a316e11"
+      "sha256": "09ddb8c6cfccf645b7c53ceea8fc59564a541c8d16694587fa93483268eb3ba6"
     },
     {
       "path": "fig_accuracy_vo_default.png",
-      "sha256": "b2617764b1e46d7d6a5aeea75cd1dd30045120085d5e030f2bd2cc9fb6af5cdd"
+      "sha256": "abe471942cbad7d363c5848ce513ee2d0e5cf3892aceb3cc11cc12dc9c5e2d74"
     },
     {
       "path": "fig_accuracy_vo_default.pdf",
-      "sha256": "561acb8bfbe1f0a9a1a8c0901b3a710137c73cfa3ddc470f11be4b0efbd1cfd4"
+      "sha256": "06e62ecf47063dce0f0f85839cde8994372c1fbe1ed0dd54537a60cb3ce55488"
     },
     {
       "path": "fig_accuracy_vo-lc_default.png",
-      "sha256": "4a10bcf4b1e6b4b951d545e99fdf0b3f2e98c1353610aa9c92be8c37e0e85fd6"
+      "sha256": "fc68ab53186b7d23b6af353b8fba00f2f5a29de9002236c63498261c904fc6f6"
     },
     {
       "path": "fig_accuracy_vo-lc_default.pdf",
-      "sha256": "627732302813797bb39b43d62341887ed098e2d9b861c57a697564b07f82285d"
+      "sha256": "8cc15000fb89a4e35312c2a372368a67f0a3429151dda28d38ba1d0ebce2c5b1"
     },
     {
       "path": "fig_accuracy_vio_default.png",
-      "sha256": "278f992bbfcb9abaa40bcad83ae94c3be500439f2973b05b2618a796c26c2c3a"
+      "sha256": "9a273af71376dbd3abf8225eab4769996a1c2bca02223bebbf8b6dac45803d47"
     },
     {
       "path": "fig_accuracy_vio_default.pdf",
-      "sha256": "8dca0e64f4e6e500077d497d524433fa2b5ef55196cf43fe02990791d0b6cea7"
+      "sha256": "6da085f10af9b88233380d86039e4409f0c773603904230e8535b1c54f953910"
     },
     {
       "path": "fig_accuracy_vio-lc_default.png",
-      "sha256": "4eb11bc1b826cf10b84642a815fb59a68358bd5d4673c219382bbd071fa7e1db"
+      "sha256": "ae27927fb64468cbacef826db361f9dc70f1e4962e15a584ed4500a1390896fd"
     },
     {
       "path": "fig_accuracy_vio-lc_default.pdf",
-      "sha256": "a5f13d5132926bc4bc2dfa766f31fe3fea8caa20fce3553c39e028a387ceaf98"
+      "sha256": "915418b20b6fcc1764876e4408b6e56722506cf5af3408fb181b7b04ad815a2d"
     },
     {
       "path": "fig_accuracy_gnss-vio_conventional_gps.png",
-      "sha256": "2be5c377c2843b740eeffbe254c6e0fcf2ab6b4d2f50ebb5026fc2043c8ee5d0"
+      "sha256": "e9effe3f6137ae160f4f52518bf6e872ea2cc78f50149a693621a088311fa928"
     },
     {
       "path": "fig_accuracy_gnss-vio_conventional_gps.pdf",
-      "sha256": "6a6ece6979d1d71099cc55863e95ed86fb9636352da99a9575c46d21f6d620cb"
+      "sha256": "914f39403620887b0fcf00bf24edd0e596faf8c9b1a6adc0761f49c665f75e92"
     },
     {
       "path": "fig_accuracy_gnss-vio_default.png",
-      "sha256": "98723583097386f9d0517cbaa7d31fb5c48f79eec5e8325695b69f3aecaaee5c"
+      "sha256": "7472283a7f8e547049a849fdd3e9a1b40ddf1dd6f9f5256dad905d3fa504c221"
     },
     {
       "path": "fig_accuracy_gnss-vio_default.pdf",
-      "sha256": "9a152448a7096c800d7daca7a88ad1c36aac23bfabd831cd48e475b6cf78787a"
+      "sha256": "ac8863d51b8601b7390f618d09eb5370f295d901e371fb67e0b9f6935cb11bac"
     },
     {
       "path": "fig_accuracy_gnss-vio_hybrid_alt.png",
-      "sha256": "090d18d78ad252917b3ef2dce4e602710971145d28f55f4c06649f2abdf7643d"
+      "sha256": "4c353eaf4342aabc26f5eeff143742d8e6e1ce177415ec1c46bba14aeaab7c0c"
     },
     {
       "path": "fig_accuracy_gnss-vio_hybrid_alt.pdf",
-      "sha256": "ad25852f7adc3fc193416ab12cb7b165417a79b6ab71446b0457a49525346444"
+      "sha256": "a2a797da94660d232cbd0b2c2cce5203f1708f65a0406a65cc21eb1454b6215c"
     },
     {
       "path": "fig_accuracy_gnss-vio_ppk_full.png",
-      "sha256": "491d160422dd64986c682cdbcb9846499994cb03a74a70f942b7019091208c10"
+      "sha256": "f624518d626762d2c53a91f2c4b21335c1551e10d1d5e23745aac655a98dc618"
     },
     {
       "path": "fig_accuracy_gnss-vio_ppk_full.pdf",
-      "sha256": "c5fd804cf005ab79c0fe7fee08696075a3f478a4ef9ec8e7de25ab967e68a0f5"
+      "sha256": "0c776d590f890b24749d7030ad84eb746fb0f37e9c57934e91574db4d3506586"
     }
   ]
 }

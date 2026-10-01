@@ -3,8 +3,8 @@
 This review supersedes the blanket historical-provenance hold in the earlier
 [repair handoff](repair-handoff-20261001.md). It accepts specific claims supported
 by saved evidence. It does not certify exact historical rebuilds, optimal tuning,
-real-time operation, agricultural reference accuracy, or repaired runner readiness.
-No estimator was run. The subsequent [matched-session reference review](reference-review-20261001.md)
+real-time operation, agricultural reference accuracy, or readiness of untested runner paths.
+The initial review ran no estimator. The separately authorized [focused campaign](euroc-focused-campaign-20261001.md) subsequently consumed 24 EuRoC slots: 23 final trajectories were evaluated immediately and one native refinement failure without final output was retained. The earlier [matched-session reference review](reference-review-20261001.md)
 corrects Rosario evaluation and future timing/GNSS calibration settings; saved run
 parameters and the accepted EuRoC numerical values remain unchanged.
 
@@ -23,7 +23,7 @@ pins original logs/configs/trajectories, evaluation inputs and the numerical
 evaluation content. Qualification fields are excluded from the numerical digest,
 so regeneration can replay the decision without a circular hash. Changed evidence
 blocks acceptance; it never silently requalifies a new run. The ledger covers all
-660 default slots and records cell decisions and per-repetition exceptions.
+660 selected default slots and retains 18 superseded AirSLAM records, with cell decisions and per-repetition exceptions.
 Historical excluded/smoke outputs and GNSS variants retain their separate scopes.
 
 A green **✅ N=3** requires three explicitly accepted, same-cohort repetitions,
@@ -61,7 +61,7 @@ points, not evidence of optimality. Full saved configs remain the protocol sourc
 | OKVIS2-X | Preserves EuRoC calibration, front-end/solver values; disables dense/submap display/mapping for this trajectory benchmark. VO disables IMU. Odometry disables LC/final BA. LC uses final BA and locally enables extrinsic optimization; its LC-frame window is 5 versus the example's 3 (ZED VIO-LC retains 3). These are benchmark profile choices. Do not present OKVIS2 versus OKVIS2-X as a controlled ablation of implementation alone. Final-BA output/frame correspondence is checked against saved native files and final extrinsics. |
 | Basalt | Separate VO/VIO profiles, realtime dropping disabled. Rosario's 0.03 m triangulation compatibility exception avoids the baseline gate; other rigs retain 0.05 m. EuRoC's calibrated native stereo/IMU geometry and exported body origin were already independently reviewed. The installed binary hash is known; exact package/source linkage remains a disclosure. |
 | OV2SLAM | Bundled accurate EuRoC profile with `force_realtime=0`; VO disables LC, VO-LC enables it. `nmaxdist=35` comes from that example. Optimized indexed LC exports are matched to saved raw timestamps; they are not expected to equal the unoptimized trajectory. Horti's initialization/coverage thresholds are separate benchmark adaptations. |
-| AirSLAM | EuRoC camera/odometry/refinement values match bundled examples except IMU disabled in VO and per-rig TensorRT cache names; unused IMU noise fields are absent in historical VO configs. VO/VO-LC support sparse keyframe accuracy only. All 18 EuRoC inertial attempts have the already-confirmed rectified-axis fusion defect and require corrected estimation. |
+| AirSLAM | EuRoC camera/odometry/refinement values match bundled examples except IMU disabled in VO and per-rig TensorRT cache names; unused IMU noise fields are absent in historical VO configs. VO/VO-LC support sparse keyframe accuracy only. The original 18 EuRoC inertial attempts retain the confirmed rectified-axis fusion defect. Of the predeclared corrected runs4–6, 17 have accepted sparse-keyframe accuracy; MH05 VIO-LC run4 remains an observed native refinement failure without final output. Numerical configs are unchanged. |
 | OpenVINS | EuRoC enables `init_dyn_use=true`, whereas the bundled example uses false. This is an author-supported dynamic initializer selected by the benchmark, not an unchanged default. Other EuRoC feature/calibration/initialization settings match the example. Agricultural online-calibration and acceleration-threshold adaptations remain separately disclosed. Its immutable image identifies installed bytes, not verified historical library resolution. |
 | Voxel-SVIO | 500 features and the bundled estimator settings; gravity 9.81007 rather than 9.81. MH01 uses the author's expressly recommended 10 s initialization window; MH03/MH05 use 2 s. MH01's approximately 75% coverage remains a limited outcome, not grounds for tuning or replacing the runs. |
 | DPVO / DPV-SLAM | Saved 96-patch config matches the bundled default; benchmark stride 1 versus demo CLI default 2 processes every input image. Seeds 1001/1002/1003 are intentional independent repetitions. Directory input is not half-resolution video input; it is undistorted and cropped to multiples of 16. LC uses proximity retrieval, not classic DBoW. Sim(3) claims stay separate from metric stereo. |
@@ -88,8 +88,8 @@ Future runners must capture the node's actual exit/signal separately from the
 player/wrapper and diagnose shutdown before production. No such crash is claimed
 fixed by the earlier process-isolation changes.
 ORB MH03 VIO r2 and VIO-LC r1 cover about 85.6% and 86.3%; Voxel MH01 covers
-about 75% in all repetitions. OpenVINS has only r1 per sequence: MH01/MH03 exited
-134 after saving; MH05 has 94.1% coverage. These observations remain intact.
+about 75% in all repetitions. Original OpenVINS r1 remains: MH01/MH03 exited
+134 after saving; MH05 has 94.1% coverage. New r2/r3 were added under a shutdown-repaired implementation with the same numeric configuration. All six exit cleanly; each coverage limitation remains explicit. The old and new cohorts are not pooled.
 
 EuRoC OKVIS2-X VO-LC variability (MH03 ATE about 0.041–0.216 m; MH05 about
 0.205–0.423 m) is not alone evidence of a bad experiment. Native selected exports,
@@ -125,11 +125,16 @@ policy and serial calibration remain unresolved. Its unmeasured camera/RTK clock
 is a disclosed limitation after the requested sensitivity check, not a blocker. GNSS still requires historical inputs, covariance, selected
 antenna and fusion-output evidence. More repetitions cannot establish these facts.
 
-There are now 91 distinct required reruns: the previous 30, fourteen Rosario
-identity-extrinsic cases, forty-two additional Horti timing cases (48 timing
-findings overlap six previous ORB rectification reruns), and five GNSS lever cases.
-Missing slots remain separate from existing
-failed/interrupted attempts. The generated acceptance handoff and future manifest
-list every action. Retaining accepted saved results requires no estimator execution;
-it does not verify the repaired runner. Production execution stays blocked until
-the documented small diagnostic batch and its prerequisites are authorized and pass.
+There are now **73 remaining required reruns**, after completing the 18
+corrected AirSLAM cases. The 81 missing slots remain separate from existing failed
+or interrupted attempts. 234 observations are reusable for their recorded claims;
+272 cases retain material blockers. The focused EuRoC native paths passed short,
+first-full and repeated execution checks. This does not certify other paths. No
+additional estimator execution is authorized by this review.
+
+New cohort grouping uses verified source-tree and runtime content, excluding only
+capture-receipt timestamps/durations. Historical cohort hashes are unchanged.
+The complete source/build/config/input/export/shutdown review is pinned in
+[the focused validation record](campaigns/euroc-focused-validation-20261001.json).
+Native metadata is preserved as recorded, including conservative generic linkage
+flags; separate build/native evidence supports the explicit new decisions.

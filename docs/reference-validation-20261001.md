@@ -1,5 +1,8 @@
 # Matched-session review validation — 2026-10-01
 
+> Historical checkpoint. Current focused EuRoC execution, counts and remaining limitations are in
+> [the campaign record](euroc-focused-campaign-20261001.md) and [current handoff](acceptance-handoff-20261001.md).
+
 This extends the [previous acceptance checkpoint](acceptance-validation-20261001.md).
 The [reference review](reference-review-20261001.md) explains the scientific findings;
 the [current handoff](acceptance-handoff-20261001.md) lists exact remaining actions.

@@ -1,5 +1,10 @@
 # Setup
 
+> EuRoC continuation, 2026-10-02: the validated inertial paths use the isolated AirSLAM build
+> `/root/catkin_ws_rectified_20261001/devel` and OpenVINS image `openvins:humble-shutdown-20261001`.
+> Source commits, build evidence and native artifact backups are recorded in
+> [the focused campaign](euroc-focused-campaign-20261001.md). The original workspaces/images remain intact.
+
 > Fully revised: 2026-05-30 22:41 - Added Voxel-SVIO Docker section (§12).
 
 Tested on Ubuntu 22.04 with an NVIDIA GPU + CUDA 11.8.
