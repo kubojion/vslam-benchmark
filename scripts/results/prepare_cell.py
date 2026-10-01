@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""Safely replace one algorithm result cell beneath results/<run-type>."""
+"""Validate/create a result cell without deleting any existing attempt."""
 
 from __future__ import annotations
 
 import argparse
 import re
-import shutil
 from pathlib import Path
 
 
@@ -19,6 +18,23 @@ def component(value: str) -> str:
     return value
 
 
+def validate_cell(repo, run_type, dataset, sequence, algorithm):
+    if run_type not in RUN_TYPES:
+        raise ValueError('unknown run type')
+    for value in (dataset, sequence, algorithm):
+        component(value)
+    repo = Path(repo).resolve()
+    target = repo/'results'/run_type/dataset/sequence/algorithm
+    for current in (target, *target.parents):
+        if current == repo:
+            break
+        if current.is_symlink():
+            raise ValueError(f'refusing symlink in result cell path: {current}')
+        if current.exists() and not current.is_dir():
+            raise ValueError(f'refusing non-directory result path: {current}')
+    return target
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("repo", type=Path)
@@ -29,32 +45,13 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
-    repo = args.repo.resolve()
-    results_base = repo / "results"
-    if results_base.is_symlink():
-        raise SystemExit(f"refusing symlink result root: {results_base}")
-    run_root = (repo / "results" / args.run_type).resolve()
-    target_raw = run_root / args.dataset / args.sequence / args.algorithm
-    target = target_raw.resolve(strict=False)
-    if target.parent.parent.parent != run_root:
-        raise SystemExit(f"refusing unexpected result depth: {target}")
-    if run_root not in target.parents:
-        raise SystemExit(f"refusing path outside result root: {target}")
-    current = target_raw
-    while current != run_root:
-        if current.is_symlink():
-            raise SystemExit(f"refusing symlink in result cell path: {current}")
-        current = current.parent
+    target = validate_cell(args.repo, args.run_type, args.dataset, args.sequence, args.algorithm)
 
     if args.dry_run:
         print(f"[results] validated cell: {target}")
         return 0
-    print(f"[results] replacing cell: {target}")
-    if target_raw.exists():
-        if not target_raw.is_dir():
-            raise SystemExit(f"refusing non-directory result cell: {target_raw}")
-        shutil.rmtree(target_raw)
-    target.mkdir(parents=True)
+    print(f"[results] preserving cell: {target}")
+    target.mkdir(parents=True, exist_ok=True)
     return 0
 
 

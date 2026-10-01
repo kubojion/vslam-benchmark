@@ -2,6 +2,14 @@
 
 > **Status note 2026-10-01:** this is the August configuration-policy record. The executed campaign used N=3 without GNSS, not the proposed N=5. Later Basalt VO, ZED calibration and OKVIS2 full-BA changes require cohort reconciliation; see [the current audit](campaigns/server-status-20261001.md). The noise procedure is documented in [noise derivation](okvis-imu-noise-derivation.md).
 
+> **Repair update:** Basalt VO now explicitly selects 0.03 m only for Rosario's
+> 0.0497337 m baseline; the other datasets retain the upstream 0.05 m gate. This is
+> a disclosed geometry compatibility exception to the August fixed-profile policy.
+> ORB selects the sequence-specific ZED 10 FPS profile; historical 15 FPS runs need
+> a corrected cohort. See [the repair evidence](repair-audit-20261001.md#configuration-selection-and-native-export-checks).
+> The future target is N=3 across all five modes, retaining algorithm exclusions;
+> preparation is ongoing and no campaign is authorized by this documentation change.
+
 **Date:** 2026-08-26
 **Scope:** algorithms represented in the five benchmark tables (`vo`, `vo-lc`,
 `vio`, `vio-lc`, and `gnss-vio`)

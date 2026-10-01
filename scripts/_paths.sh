@@ -81,7 +81,7 @@ resolve_run_type() {
     esac
 }
 
-# Create a run directory only when it is absent or empty.  Direct runner use
+# Create a run directory only when it is absent. Direct runner use
 # must never merge a new execution with stale files from an earlier attempt.
 prepare_fresh_run_dir() {
     local out="${1:?output directory required}"
@@ -95,16 +95,14 @@ prepare_fresh_run_dir() {
             return 2
             ;;
     esac
-    if [[ -d "$out_real" ]] && [[ -n "$(find "$out_real" -mindepth 1 -maxdepth 1 -print -quit)" ]]; then
-        echo "ERROR: result directory already exists and is nonempty: $out_real" >&2
-        echo "Run through run_benchmark.sh to replace the whole algorithm cell, or move/remove it explicitly." >&2
+    if [[ -e "$out" || -L "$out" ]]; then
+        echo "ERROR: existing attempt is preserved: $out" >&2
+        echo "Use run_benchmark.sh for saved-output recovery; a new attempt needs a new physical run ID." >&2
         return 2
     fi
-    if [[ -e "$out_real" && ! -d "$out_real" ]]; then
-        echo "ERROR: result path exists but is not a directory: $out_real" >&2
-        return 2
-    fi
-    mkdir -p "$out_real"
+    mkdir -p "$(dirname "$out_real")"
+    # Atomic mkdir also prevents two direct runners claiming an empty directory.
+    mkdir "$out_real"
 }
 
 # Provenance wrappers shared by every runner. Enrichment is intentionally not

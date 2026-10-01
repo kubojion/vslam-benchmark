@@ -5,14 +5,31 @@
 > [the server audit](campaigns/server-status-20261001.md). Numeric reports are provisional.
 
 > Repair in progress: [the all-configuration repair audit](repair-audit-20261001.md)
-> documents the schema-3 evaluator and its separate staging tree. The pipeline and
-> field definitions below describe the existing schema-2 outputs until promotion.
+> documents the schema-3 evaluator and its separate staging tree. `_evaluate_run.py`
+> now uses schema 3 and preserves previous metrics in `.evaluation_history/` before
+> replacement. The field definitions below still describe legacy schema-2 reports
+> until report integration/promotion is complete.
 > Staged results are not yet publication-qualified or reflected in the root CSVs.
 
 
-The pipeline turns raw trajectories into per-segment ATE numbers and plots.
-`scripts/run/run_benchmark.sh` runs the full chain automatically; this page
-explains the individual steps and how to read the output.
+`scripts/run/run_benchmark.sh` now resumes individual physical run IDs and evaluates
+each saved trajectory immediately, including after a nonzero estimator exit. It
+never deletes an existing cell or retries an occupied attempt in place. The legacy
+automatic aggregation/site step is suspended during report-schema integration.
+Qualification is separate from numerical evaluation and execution completion.
+
+Read-only inspection (does not run an estimator):
+
+```bash
+bash scripts/run/run_benchmark.sh euroc_mav MH_01_easy orbslam3 3 vo --dry-run
+```
+
+`--recover-only` evaluates saved outputs and never starts estimation. Re-evaluation
+preserves previous JSON bytes; trajectories and historical COMPLETE markers are
+unchanged. The controller checks evaluator/input/configuration hashes before
+reusing cached metrics, records attempts under `results/.attempt-state/`, and uses
+global/cell locks. A new attempt requires a new physical run ID; the future campaign
+manifest will map it to the logical repetition and configuration cohort.
 
 ## Run types and result layout
 
@@ -40,8 +57,8 @@ all algos       ──►  _plot_segments.py   →  segment_map.png + segment_ma
 benchmark.csv   ──►  plot_ate_vs_fps.py  →  ate_vs_fps.png
 ```
 
-Steps are sequenced inside `scripts/run/run_benchmark.sh`. Run them by hand
-when re-evaluating without re-running SLAM:
+The following legacy report commands require schema-3 integration before their
+outputs can be used in the paper. They do not establish publication qualification:
 
 ```bash
 WS=$(pwd)
