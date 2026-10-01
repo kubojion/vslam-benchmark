@@ -54,7 +54,7 @@ def now():
 
 def run_command(command, *, check=False):
     """Forward interruption to the active subprocess group and preserve state."""
-    process = subprocess.Popen(command, start_new_session=True)
+    process = subprocess.Popen(command, cwd=REPO, start_new_session=True)
     try:
         code = process.wait()
     except BaseException:

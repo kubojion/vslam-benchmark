@@ -232,6 +232,23 @@ and passed its read-only cache check. No estimator was invoked. Container cleanu
 native crashes and future manifest readiness still need the remaining audit; this
 is not a claim that execution problems are fixed.
 
+The reconciled inventory now counts 545 original campaign evaluations: VO 183,
+VO-LC 136, VIO 139 and VIO-LC 87. There are 176 N=3 cells, 17 N=1 cells and seven
+without a staged evaluation. The five scale failures remain in these counts.
+GNSS has 20 default evaluation records (one invalid trajectory) and six separate
+variant records. Fifteen historical excluded artifacts and nine other attempts
+(seven scored) remain outside the default campaign.
+
+The draft future manifest has 660 logical repetitions across 220 default cells.
+Initial categories are six confirmed ORB FPS reruns, 87 absent repetitions and
+567 cases pending recovery/qualification decisions. No reusable result or action
+readiness has yet been certified; this is an intermediate review state, not a
+recommendation to rerun 567 results. Hash-checked manifest validation passes and
+`--require-ready` correctly fails with 660 unready actions. Eighty tests plus three
+subtests pass, including matrix-format preservation and no partial launch before
+detecting a blocked selection. See [the preparation record](campaigns/future-n3-preparation.md)
+for commands, scope, runtime limits and unresolved GNSS variant selection.
+
 Outstanding before this goal is complete:
 
 1. Audit staged numerical changes and failures against actual saved artifacts;

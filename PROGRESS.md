@@ -1,13 +1,36 @@
 # vSLAM Benchmark - Progress
 
-> Current status: **2026-10-01**. The executed RTX 4090 campaign is N=3 without GNSS:
-> **538/600 evaluated runs; 176/200 cells at N=3** (174 all-ok, two with a collapse).
-> Ten cells have N=1; fourteen have no complete evaluation. No campaign/estimator process
-> was observed. See [TODO](TODO.md) and the [full status audit](docs/campaigns/server-status-20261001.md).
+> Current repair status: **2026-10-01**, in progress. The original four-mode RTX 4090
+> N=3 campaign has **545/600 staged evaluations: 176 cells at N=3, 17 at N=1, seven
+> without a staged evaluation**. Five evaluated attempts retain scale collapse.
+> See [TODO](TODO.md) and [the repair audit](docs/repair-audit-20261001.md).
 > The older summaries and numbered findings below are dated historical observations;
 > do not use their counts or excitation-only explanations as current conclusions.
 
-## 2026-10-01 — Server inventory and documentation reconciliation
+## 2026-10-01 — All-mode repair and future N=3 preparation (in progress)
+
+- Preserved project progress in checkpoint commits and verified external backups,
+  including all five result trees and nested source changes. No estimator was run.
+- Staged schema-3 evaluation of 593 artifacts, recovering seven unscored original
+  campaign attempts. Historical, smoke and GNSS variant records remain separate.
+  Independent numerical checks cover all five modes; qualification is unfinished.
+- Corrected ORB sequence-profile selection, made Basalt's Rosario geometry exception
+  explicit, and validated all 24 existing MAC-VO exports against their native poses.
+- Replaced destructive cell preparation with per-run resumption, immediate evaluation,
+  preserved failures, atomic state, cache/evidence checks and evaluation backups.
+  The wrapper no longer regenerates legacy reports during schema integration.
+- Updated the five TODO matrices without changing their layouts. Green ticks now
+  require scientific qualification; completion counts alone do not receive a tick.
+- Prepared a draft 660-action future N=3 manifest for 220 default cells across all
+  five modes, retaining exclusions. Six legacy GNSS variant experiments are preserved
+  separately. Actions remain unverified/blocked until their review prerequisites are
+  discharged; no unresolved native crash is claimed fixed.
+- Remaining: finish configuration/reference/input qualification, applicable runner
+  fixes (including explicit GNSS input selection), integrate/reconcile CSVs and
+  reports, complete safe cleanup, and finalize the manifest/readiness assessment.
+  See [future campaign preparation](docs/campaigns/future-n3-preparation.md).
+
+## 2026-10-01 — Initial server inventory (before the repair above)
 
 - Completed N=3 cells now cover most of VO, VO-LC, VIO and VIO-LC. The September 23
   OKVIS2 VO-LC recovery finished all seven non-ZED cells; its ZED run1 exported successfully
