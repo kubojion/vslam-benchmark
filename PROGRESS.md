@@ -69,6 +69,11 @@
   OKVIS2, ORB-SLAM3, DPVO and MAC-VO native exports from shared dataset/source trees;
   previous native outputs are retained. These prevent known stale-output paths in
   future attempts; actual native execution after the repairs remains unverified.
+- Refreshed the future manifest against these repairs. It now exposes specific
+  claim/configuration prerequisites and refuses unreviewed inherited execution
+  overrides. Counts remain 24 reruns, 87 missing, 549 blocked/review and 0 verified
+  ready. The ~36.1 h runtime subtotal covers only 19 actions; 92 missing/rerun
+  estimates and all blocked-action estimates remain unknown.
 
 ## 2026-10-01 — Initial server inventory (before the repair above)
 

@@ -16,6 +16,7 @@ import sys
 
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from run_repetitions import atomic_json
+from run_future_manifest import UNREVIEWED_OVERRIDES
 
 REPO=Path(__file__).resolve().parents[2]
 
@@ -48,6 +49,28 @@ def action_category(cell,attempt,decision):
     return 'blocked','saved_result_qualification_pending'
 
 
+def qualification_prerequisites(cell,attempt,decision):
+    if decision.get('review_complete'):
+        return []
+    result=['complete_cell_configuration_input_and_claim_review']
+    for blocker in attempt.get('qualification',{}).get('blockers',[]):
+        if blocker!='configuration_and_claim_qualification_pending':
+            result.append('resolve_or_document_claim_limit:'+blocker)
+    # Missing attempts lack an evaluation from which to inherit reference issues.
+    ds=cell['dataset'];mode=cell['run_type'];algo=cell['algorithm']
+    if ds=='hortimulti':result.append('establish_reference_to_camera_extrinsic_from_original_calibration')
+    if ds=='rosariov2':result.append('verify_rectified_camera_axes_and_reference_sensor_chain')
+    if ds=='zed2i':
+        result.append('restrict_reference_claims_to_position_and_review_lever_arm_assumptions')
+        if mode in ('vio','vio-lc'):result.append('resolve_serial_specific_imu_rotation_and_time_offset_evidence')
+    if algo=='airslam':result.append('declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison')
+    if algo in ('okvis2','okvis2x') and mode in ('vo-lc','vio-lc'):
+        result.append('freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy')
+    if attempt.get('process',{}).get('exit_code') not in (None,0):
+        result.append('retain_nonzero_exit_and_review_saved_native_failure_evidence')
+    return result
+
+
 def build(repo,inventory,inventory_path,decisions):
     actions=[];target_paths=set()
     for cell in inventory['cells']:
@@ -58,11 +81,10 @@ def build(repo,inventory,inventory_path,decisions):
             category,reason=action_category(cell,attempt,decision)
             prerequisites=list(decision.get('blockers',[]))
             prerequisites.extend(f['prerequisite'] for f in attempt.get('confirmed_protocol_findings',[]))
-            if not decision.get('review_complete'):
-                prerequisites.append('complete_cell_configuration_input_and_claim_review')
+            prerequisites.extend(qualification_prerequisites(cell,attempt,decision))
             if category=='blocked':prerequisites.append(reason)
             if category=='required_rerun' and not decision.get('historical_cohort_preserved'):
-                prerequisites.append('keep_original_fps15_cohort_separate')
+                prerequisites.append('keep_original_invalid_configuration_cohort_separate')
             if cell['run_type']=='gnss-vio' and not decision.get('gnss_protocol_verified'):
                 prerequisites.extend(['verify_gnss_input_variant_covariance_and_antenna_frame','verify_reference_independence_and_fusion_output'])
             if not cell['within_cell_config_consistent']:
@@ -85,6 +107,8 @@ def build(repo,inventory,inventory_path,decisions):
             actions.append(dict(id=f'{key}/default/r{repetition}',cell=key,repetition=repetition,input_variant='default',
                 category=category,reason=reason,prior_attempt=attempt['path'],prior_evidence=attempt['files'],
                 observed_outcome=attempt['numerical_status'],recorded_process=attempt['process'],
+                prior_qualification=attempt.get('qualification'),
+                planned_random_seed=1000+run_id if cell['algorithm']=='dpvo' and run_required else None,
                 planned_output=output if run_required else None,command=command if run_required else None,
                 cohort=cohort,prerequisites=sorted(set(prerequisites)),runtime_estimate=runtime,
                 readiness=dict(verified_ready_to_run=ready,static_checks='verified' if decision.get('static_verified') else 'pending',
@@ -96,6 +120,8 @@ def build(repo,inventory,inventory_path,decisions):
                     note='Original four-mode 600-attempt campaign plus 20 GNSS default cells at N=3; legacy GNSS experiments remain separate'),
         exclusions=inventory['excluded'],inventory=dict(path=str(inventory_path.relative_to(repo)),sha256=digest(inventory_path)),
         pipeline_files=pipeline_evidence(repo),actions=actions,
+        environment_policy=dict(kind='runner_defaults_only',reject_nonempty=list(UNREVIEWED_OVERRIDES),
+            note='An inherited config, playback, input, seed or numerical-runtime override requires a separately reviewed campaign recipe.'),
         retained_gnss_variants=[dict(path=a['path'],status='preserved_separate_experiment',
              prerequisites=['explicit_variant_file_selection_and_historical_provenance_review'],
              note='not merged into default N=3 repetitions or automatically scheduled')

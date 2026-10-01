@@ -7,9 +7,9 @@ import sys
 import pytest
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from build_future_manifest import action_category
+from build_future_manifest import action_category, qualification_prerequisites
 from build_repair_inventory import runtime_estimate
-from run_future_manifest import validate,execute
+from run_future_manifest import validate,execute,check_execution_environment
 from update_todo_matrices import update
 
 
@@ -21,6 +21,22 @@ def test_true_failure_is_retained_but_invalid_config_is_replaced():
     assert action_category(cell,attempt,{'reuse_qualified':True})[0]=='required_rerun'
     attempt['numerical_status']='eval_failed';cell['algorithm']='okvis2'
     assert action_category(cell,attempt,{'reuse_qualified':True})[0]=='blocked'
+
+
+def test_unknown_reference_and_recorded_exit_are_concrete_prerequisites():
+    cell=dict(algorithm='okvis2',dataset='hortimulti',run_type='vo-lc')
+    attempt=dict(process={'exit_code':134},qualification={'blockers':['reference_frame_unknown']})
+    items=qualification_prerequisites(cell,attempt,{})
+    assert 'establish_reference_to_camera_extrinsic_from_original_calibration' in items
+    assert 'resolve_or_document_claim_limit:reference_frame_unknown' in items
+    assert 'retain_nonzero_exit_and_review_saved_native_failure_evidence' in items
+    assert any('bundle_adjustment' in item for item in items)
+
+
+def test_inherited_override_cannot_silently_change_future_recipe():
+    check_execution_environment({'PATH':'/usr/bin','DPVO_SEED':''})
+    for key in ('BASALT_CONFIG','DPVO_STRIDE','GNSS_CSV','GT_OVERRIDE','CUDA_VISIBLE_DEVICES'):
+        with pytest.raises(ValueError,match=key):check_execution_environment({key:'changed'})
 
 
 def test_runtime_excludes_other_hardware_and_partial_or_failed_runs():

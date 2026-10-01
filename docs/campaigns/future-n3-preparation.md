@@ -113,6 +113,35 @@ ORB crashes, ZED inertial calibration uncertainty, AirSLAM rectification/keyfram
 semantics, GNSS provenance and remaining reference transforms stay explicit until
 resolved. No execution problem is claimed fixed solely because the wrapper changed.
 
+The manifest now carries each saved attempt's qualification and specific unresolved
+reference/frame, sparse-export, final-BA and failure prerequisites, including
+dataset prerequisites for missing attempts. A corrected AirSLAM cohort is no longer
+incorrectly described as an FPS-15 cohort. All original invalid-config cohorts must
+be preserved. The current 24 reruns, 87 missing repetitions and 549 blocked/review
+cases are unchanged; 0 actions are certified ready.
+
+Execution uses the recorded runner-default recipe. The preflight rejects nonempty
+inherited configuration, playback, GNSS input/covariance, seed and numerical-runtime
+overrides listed in `environment_policy`; it does not silently discard them. Such
+changes require a separately reviewed recipe. DPVO's planned seed is explicit and
+deterministically derived from its fresh physical attempt ID. Runtime estimates
+remain historical planning estimates: about 36.1 serialized hours for the 19 actions
+with comparable timing, with 92 of the 111 rerun/missing actions unestimated. This
+is not an estimate for the entire remaining campaign.
+
+The repetition controller now requires measurement schema 2 for new attempts.
+Uninstrumented processing counts/FPS stay unknown; available-input/wall-time ratios
+are nominal. See [measurement semantics](../run-measurements.md). Historical saved
+metadata and processing claims remain preserved as evidence.
+
+Current validation: 120 tests plus three subtests pass. Manifest structure and
+evidence hashes validate for all 660 actions; `--require-ready` correctly refuses
+all 660 because readiness prerequisites remain unresolved. The staged browser has
+690 entries/696 pages, with 8,174 checked local links and no broken link or legacy
+image preview. Evidence is under `results/repair-20261001/` in
+`future-manifest-validation.json` and `browser-validation.json`. This does not
+complete the outstanding scientific qualification, root-output promotion or cleanup.
+
 The [AirSLAM source audit](../airslam-rectification-audit.md) establishes that the
 recorded EuRoC fusion configuration mixes rectified visual axes with raw-camera
 IMU extrinsics. A source patch is prepared and its transform algebra checked;

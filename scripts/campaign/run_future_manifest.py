@@ -9,6 +9,7 @@ import argparse
 from collections import Counter
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -21,6 +22,22 @@ REPO=Path(__file__).resolve().parents[2]
 MODES={'vo','vo-lc','vio','vio-lc','gnss-vio'}
 EXCLUDED={'droidslam','mast3r_slam','megasam'}
 CATEGORIES={'reusable','required_rerun','missing','blocked'}
+UNREVIEWED_OVERRIDES=(
+    'BASALT_CONFIG','ORBSLAM3_CONFIG','ORBSLAM3_GDB','OKVIS2_CONFIG','OKVIS2X_CONFIG',
+    'OKVIS_INTERACTIVE','OV2SLAM_CONFIG','OV2SLAM_PLAYBACK_RATE','OV2SLAM_FINISH_TIMEOUT',
+    'OPENVINS_RATE','DPVO_STRIDE','DPVO_SKIP','DPVO_SEED','GNSS_CSV','GNSS_VARIANT',
+    'GPS_COV_XY','GPS_COV_Z','GPS_STATUS','GT_OVERRIDE','AIRSLAM_STAGE_TIMEOUT_S',
+    'AIRSLAM_STARTUP_TIMEOUT_S','AIRSLAM_REFINEMENT_MAX_ATTEMPTS','OWNED_STOP_GRACE',
+    'CUDA_VISIBLE_DEVICES','NVIDIA_VISIBLE_DEVICES','OMP_NUM_THREADS','MKL_NUM_THREADS',
+    'OPENBLAS_NUM_THREADS','CUBLAS_WORKSPACE_CONFIG','NVIDIA_TF32_OVERRIDE',
+)
+
+
+def check_execution_environment(environment=None):
+    environment=os.environ if environment is None else environment
+    overrides=[key for key in UNREVIEWED_OVERRIDES if environment.get(key)]
+    if overrides:
+        raise ValueError('unreviewed inherited execution overrides: '+', '.join(overrides))
 
 
 def digest(path):
@@ -105,6 +122,7 @@ def validate(repo,manifest,*,check_files=True):
 
 def execute(repo,manifest,manifest_hash,actions,*,executor=run_command):
     # Check every selected action before starting any estimator.
+    check_execution_environment()
     for action in actions:
         if action['category']=='blocked' or action['prerequisites']:
             raise ValueError('selected action is blocked: '+action['id'])
@@ -147,6 +165,9 @@ def main():
     unready=[a for a in selected if a['prerequisites'] or a['category']=='blocked' or
              (a['category']!='reusable' and not a['readiness']['verified_ready_to_run'])]
     if args.require_ready and unready:errors.append(f'{len(unready)} selected actions are not verified ready')
+    if args.require_ready or args.run:
+        try:check_execution_environment()
+        except ValueError as exc:errors.append(str(exc))
     if errors:
         for error in errors:print('[manifest] '+error,file=sys.stderr)
         return 2
