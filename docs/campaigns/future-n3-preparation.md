@@ -1,4 +1,4 @@
-# Future N=3 campaign preparation — in progress
+# Future N=3 campaign preparation — repair/audit complete, execution unverified
 
 The user extended the existing repair goal on 2026-10-01. Preserve completed work,
 prepare the next campaign across VO, VO-LC, VIO, VIO-LC and GNSS-VIO, and retain the
@@ -32,8 +32,9 @@ input hashes and provenance blockers. Original trajectories are unchanged.
 ## Current draft manifest
 
 `results/repair-20261001/future-n3-manifest.json` is a schema-2 executable action
-manifest consumed by `scripts/campaign/run_future_manifest.py`. It is deliberately
-**in progress**, not a final campaign release or a claim of readiness.
+manifest consumed by `scripts/campaign/run_future_manifest.py`. Preparation and
+repair/audit are complete within the no-new-estimation scope; see the
+[handoff](../repair-handoff-20261001.md). No action is certified ready.
 
 Current classification after the historical evidence review:
 
@@ -66,8 +67,8 @@ per attempt, with actual post-repair native execution still unverified.
 These commands do not invoke estimators:
 
 ```bash
-python scripts/campaign/build_repair_inventory.py
-python scripts/campaign/build_future_manifest.py
+python scripts/campaign/build_repair_inventory.py --audit-status repair_audit_complete
+python scripts/campaign/build_future_manifest.py --audit-status repair_audit_complete
 python scripts/campaign/run_future_manifest.py results/repair-20261001/future-n3-manifest.json
 ```
 
@@ -107,7 +108,7 @@ execution begins require an explicit new campaign revision, preserving old state
 
 **Repair/audit complete** means all repairs possible without estimation are validated,
 results and documentation agree, cleanup is safe, and the final manifest identifies
-remaining prerequisites. This status has **not** been reached yet.
+remaining prerequisites. This no-new-estimation scope is complete.
 
 **Verified ready to run** is an action-specific claim supported by configuration,
 input, static and required execution evidence. It is not established by syntax
@@ -154,10 +155,10 @@ Uninstrumented processing counts/FPS stay unknown; available-input/wall-time rat
 are nominal. See [measurement semantics](../run-measurements.md). Historical saved
 metadata and processing claims remain preserved as evidence.
 
-Current validation: 136 tests plus three subtests pass. Manifest structure and
+Final validation: 149 tests plus three subtests pass. Manifest structure and
 evidence hashes validate for all 660 actions; `--require-ready` correctly refuses
 all 660 because readiness prerequisites remain unresolved. The published browser has
-690 entries/696 pages, with 8,767 checked local links and no broken link or legacy
+690 entries/696 pages, with 9,360 checked local links and no broken link or legacy
 image preview. Evidence is under `results/repair-20261001/` in
 `future-manifest-validation.json` and `browser-validation.json`. This does not
 establish scientific qualification or native execution readiness. Root-output

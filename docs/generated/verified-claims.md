@@ -61,7 +61,7 @@ Scientific statuses among existing headline attempts: blocked=549, rerun_require
 
 | Source | SHA-256 |
 |---|---|
-| `inventory.json` | `37edb0ebe999a415ee2939a9e227cf6624b6851111a463c267eec6d47b8075fd` |
+| `inventory.json` | `71d4b27733d7abef6aadc49ed9c0dbf964f339b43de24a5ffae0b2f44b8028a9` |
 | `benchmark-vo.csv` | `00bcfb4a4874ee335774a48250cd4d3dc0f814100906359a240b1295722cfbc7` |
 | `benchmark-vo-lc.csv` | `8189ee0b28d53869cb1349c3f74764236ec0bebe67b6980d96f135e9cf9dd2e6` |
 | `benchmark-vio.csv` | `d1d9df6689d91d7facb46f177d17af93f8a459e1cc9ad630fe8c3074c713fdc6` |

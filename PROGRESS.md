@@ -1,13 +1,17 @@
 # vSLAM Benchmark - Progress
 
-> Current repair status: **2026-10-01**, in progress. The original four-mode RTX 4090
+> Current repair status: **2026-10-01**, repair/audit complete; native readiness unverified. The original four-mode RTX 4090
 > N=3 campaign has **545/600 repaired evaluations: 176 cells at N=3, 17 at N=1, seven
-> without a staged evaluation**. Five evaluated attempts retain scale collapse.
+> without a current evaluation**. Five evaluated attempts retain scale collapse.
 > See [TODO](TODO.md) and [the repair audit](docs/repair-audit-20261001.md).
 > The older summaries and numbered findings below are dated historical observations;
 > do not use their counts or excitation-only explanations as current conclusions.
 
-## 2026-10-01 — All-mode repair and future N=3 preparation (in progress)
+## 2026-10-01 — All-mode repair and future N=3 preparation
+
+**Completed within the no-new-estimation scope.** [Final handoff](docs/repair-handoff-20261001.md).
+The bullets below retain chronological milestones; the handoff supersedes intermediate
+remaining-work notes. Scientific and native execution prerequisites remain unresolved.
 
 - Preserved project progress in checkpoint commits and verified external backups,
   including all five result trees and nested source changes. No estimator was run.

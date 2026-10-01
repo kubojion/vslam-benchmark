@@ -174,7 +174,11 @@ def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--stage',type=Path,default=REPO/'results/repair-20261001')
     ap.add_argument('--output',type=Path,default=REPO/'results/repair-20261001/inventory.json')
-    args=ap.parse_args();out=build(REPO,args.stage.resolve());atomic_json(args.output,out)
+    ap.add_argument('--audit-status',choices=('in_progress','repair_audit_complete'),default='in_progress',
+                    help='repair handoff status only; publication qualification remains separate')
+    args=ap.parse_args();out=build(REPO,args.stage.resolve())
+    out['audit_status']=args.audit_status
+    atomic_json(args.output,out)
     print(json.dumps(dict(counts=out['counts'],other_artifacts=dict(Counter(a['category'] for a in out['other_artifacts']))),indent=2))
 
 

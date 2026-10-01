@@ -1,6 +1,6 @@
 # vSLAM Benchmark - TODO
 
-> **Repair update 2026-10-01.** Original matrices and task-table layouts retained.
+> **Repair/audit complete 2026-10-01; execution readiness unverified.** Original matrices and task-table layouts retained.
 > The original four-mode campaign now has **545/600 repaired evaluations** after seven
 > saved trajectories were recovered: **176 cells at N=3, 17 at N=1, seven at N=0**.
 > Five evaluated attempts retain scale collapse. **55 repetitions lack an
@@ -10,7 +10,7 @@
 > server campaign. Specific qualification blockers and the guarded future manifest are documented.
 > **No green publication ticks are awarded with unresolved qualification blockers.**
 > Root CSVs, evaluations, reports, figures and browser are reconciled. No estimator was launched during
-> this repair. See [repair evidence](docs/repair-audit-20261001.md) and [the goal](docs/codex-goal.md).
+> this repair. See [the handoff](docs/repair-handoff-20261001.md), [repair evidence](docs/repair-audit-20261001.md) and [the goal](docs/codex-goal.md).
 
 ---
 
@@ -38,7 +38,7 @@ The latest saved-parameter check confirms six additional required reruns: ORB-SL
 HortiMulti VIO-LC used a raw-camera IMU rotation with rectified images. The two cells
 below retain `N=3` and now say `rerun: rectified IMU`. See the
 [saved-parameter review](docs/saved-parameter-review-20261001.md). Across all five modes,
-the future draft now lists 30 required reruns, 87 missing and 543 blocked/review
+the prepared future manifest lists 30 required reruns, 87 missing and 543 blocked/review
 repetitions; none is yet certified ready to execute.
 
 ### VO (no IMU, no loop closure) - `results/vo/`

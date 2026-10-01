@@ -1,10 +1,12 @@
 # All-configuration repair audit — 2026-10-01
 
-This is a working audit for [the active repair goal](codex-goal.md), covering VO,
-VO-LC, VIO, VIO-LC and GNSS-VIO. The repair is **not yet complete**.
+This records [the completed repair/audit scope](codex-goal.md), covering VO,
+VO-LC, VIO, VIO-LC and GNSS-VIO. See [the final handoff](repair-handoff-20261001.md).
 The 593 repaired evaluations, five root CSVs, cell reports, tables, figures and
 browser are now reconciled and promoted. Numerical repair does not establish
-publication qualification; runner/readiness preparation and final checks continue.
+publication qualification or verified native execution readiness. Earlier sections
+retain chronological stages; intermediate outstanding-work lists are superseded
+by the handoff and completion record.
 
 The [publication qualification review](publication-qualification-20261001.md) now
 records specific evidence gaps for every retained attempt. All 593 staged JSONs
@@ -281,7 +283,7 @@ CSV files validate, and their old native caches match position/uncertainty value
 overwritten or retroactively attributed to a run. Ninety tests plus three subtests
 pass; see [the detailed validation](campaigns/future-n3-preparation.md#gnss-input-repair-validation).
 
-Outstanding before this goal is complete:
+Outstanding at that intermediate stage (superseded by the final handoff):
 
 1. Complete final numerical/claim reconciliation. All 593 saved artifacts are
    staged and the seven known unscored campaign trajectories have been recovered;

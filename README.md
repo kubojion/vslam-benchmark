@@ -3,10 +3,11 @@
 > **Repair update 2026-10-01:** saved-artifact recovery now provides **545/600 repaired
 > evaluations** for the original four-mode N=3 campaign; 176 cells have three evaluations.
 > These counts include failures and do not certify publication readiness. A future
-> **N=3 campaign across all five modes** is being prepared with the existing exclusions.
+> **N=3 plan across all five modes** is prepared with the existing exclusions.
 > Start with [TODO](TODO.md), [repair evidence](docs/repair-audit-20261001.md), and
 > [future campaign preparation](docs/campaigns/future-n3-preparation.md).
-> Root CSVs/reports/browser are reconciled; publication qualification remains blocked.
+> **Repair/audit complete; native execution readiness remains unverified.**
+> See [the handoff](docs/repair-handoff-20261001.md). Root exports are reconciled; publication qualification remains blocked.
 > No new estimator executions or campaigns are authorized as part of this repair.
 
 

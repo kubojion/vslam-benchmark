@@ -1,8 +1,9 @@
 # Documentation index (status reviewed 2026-10-01)
 
-Start with [the current TODO](../TODO.md) and [server status audit](campaigns/server-status-20261001.md).
-The latter has the full N=3 matrix and exact missing runs. Generated numeric tables/claims
-are provisional and do not establish campaign completion; see the audit before citing them.
+Start with [the final repair handoff](repair-handoff-20261001.md) and
+[the current TODO](../TODO.md). The [server status audit](campaigns/server-status-20261001.md)
+is the preserved pre-repair inventory. Generated numeric tables/claims remain
+provisional; repair completion does not certify publication or native execution readiness.
 
 | where | what |
 |---|---|

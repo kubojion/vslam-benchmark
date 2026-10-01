@@ -1,6 +1,6 @@
 # Evaluation
 
-Status: 2026-10-01, repair in progress. All 593 schema-3 evaluations are promoted to
+Status: 2026-10-01, repair/audit complete; scientific qualification remains blocked. All 593 schema-3 evaluations are promoted to
 their ordinary result paths. Root CSVs, per-cell reports, tables, figures and browser
 are reconciled against `results/repair-20261001/inventory.json`. The
 [qualification review](publication-qualification-20261001.md) identifies specific

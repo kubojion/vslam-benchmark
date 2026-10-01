@@ -174,9 +174,13 @@ def main():
     ap.add_argument('--inventory',type=Path,default=REPO/'results/repair-20261001/inventory.json')
     ap.add_argument('--decisions',type=Path)
     ap.add_argument('--output',type=Path,default=REPO/'results/repair-20261001/future-n3-manifest.json')
+    ap.add_argument('--audit-status',choices=('in_progress','repair_audit_complete'),default='in_progress',
+                    help='repair handoff status only; never changes action readiness')
     args=ap.parse_args();path=args.inventory.resolve();inventory=json.loads(path.read_text())
     decisions=json.loads(args.decisions.read_text()) if args.decisions else {}
-    result=build(REPO,inventory,path,decisions);atomic_json(args.output,result)
+    result=build(REPO,inventory,path,decisions)
+    result['audit_status']=args.audit_status
+    atomic_json(args.output,result)
     print(json.dumps(result['summary'],indent=2))
 
 
