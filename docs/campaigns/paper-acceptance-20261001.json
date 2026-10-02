@@ -52501,22 +52501,28 @@
     },
     "vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001": {
       "exists": true,
-      "status": "blocked",
-      "claim": null,
-      "blockers": [
-        "native_build_source_linkage_and_loaded_dependency_closure_unverified",
-        "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
-        "zed_reference_orientation_unavailable",
-        "zed_serial_specific_imu_rotation_and_time_offset_unverified"
-      ],
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "blockers": [],
       "claim_limits": [
         "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
         "configuration_choices_are_not_evidence_of_algorithm_optimality",
         "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
-        "no_measured_processing_rate_or_realtime_deadline_claim"
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
       ],
       "disclosures": [
-        "Completed first repetition preserved while final claim review is pending."
+        "nominal left-camera 3D position only; no reference orientation or surveyed terrain attitude",
+        "approved 448-sample GNSS mask; no interpolation across gaps; RTK float retained and fixed-only sensitivity reported",
+        "unmeasured field camera/robot clock, zero correction, frozen +/-0.1 second sensitivity; no fitted offset",
+        "recovered same-serial factory camera/IMU transform and original recording intrinsics; no claim of historic serial recalibration records",
+        "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction",
+        "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+        "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified"
       ],
       "evaluation_sha256": "25486f69d3a4d654d1a522254194b98f5336912a4cc5fe8ee202cb54008392d7",
       "evidence": [
@@ -52587,19 +52593,79 @@
         {
           "path": "docs/campaigns/log-observation-review-20261002.json",
           "sha256": "79cf627c6571829549f1cb6785095e2421ba087c5c27593192fa809dc7690acf"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/keyframes.txt",
+          "sha256": "a15669e1b4a3f3b38a1e65ce51337dec0f372f16ee00775e90fa469069e4a382"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/processes/estimator.json",
+          "sha256": "b6126ca8dba7c402b3149c9d2a64335bd05150fca8c815c908f2c5d18e17d91d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/provenance/implementation.json",
+          "sha256": "3962d01595e76bc5825aa889f3c9453d9ac14504be718f596df52eb434cdcc17"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/provenance/runtime-assets.json",
+          "sha256": "b52e7a3b60caec449b511c964cf6178a2870b080a097c02d3b0eecc8d34fd532"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/trajectory_filter.json",
+          "sha256": "8abd20e6c2e945a5cd14ba040844abf33f69aab00a111bf5e7c7256a3bdabfe5"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/trajectory_raw_ns.txt",
+          "sha256": "4b5d6aa91eb2170e25c0c9996202be12e0a921758a1feb012947715403232f39"
+        },
+        {
+          "path": "docs/campaigns/zed-approved-screening-20261002.json",
+          "sha256": "e0a658c7af37e3db1dce068c56bd6d5f00ec9e0e37da0847bfa9369399e85f98"
+        },
+        {
+          "path": "docs/campaigns/native-check-review-20261002.json",
+          "sha256": "85d299fdc0aaa833adcd0b157ff844f686b75d6dc4c989d51bb56dcbcd20132e"
+        },
+        {
+          "path": "results/zed-preparation-20261002/independent-source-validation.json",
+          "sha256": "7894a33633d584675d40c6ce76a5cfef1316d4a9fbc02eb47c82efb3ea4b72f0"
+        },
+        {
+          "path": "results/execution-readiness-20261002/completed-zed-reference-review.json",
+          "sha256": "b600a1265dfa7f781c27dd2f1b34e785e1b5c82b0c6d47fb9acf871c6d47f29d"
+        },
+        {
+          "path": "docs/campaigns/completed-zed-first-review-20261002.json",
+          "sha256": "a96d2c2039d2a67a90281faedddbad6636ba953328b5b89cbdf6b3203c1051e3"
         }
       ],
       "native_error_observations": [],
       "protocol": {
-        "status": "blocked",
-        "basis": "Completed first repetition; final effective-setup/reference/claim review pending",
-        "blockers": [
-          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
-          "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
-          "zed_reference_orientation_unavailable",
-          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
-        ],
-        "implementation": "20261002 first predeclared ZED VIO attempt"
+        "status": "verified",
+        "basis": "Predeclared first observation: saved effective configuration, recovered same-serial geometry, full-sequence export, clean native exit and disclosed nominal position-reference sensitivity reviewed",
+        "blockers": [],
+        "implementation": "20261002 recorded first ZED VIO attempt; retain its own cohort",
+        "review_document": "docs/execution-readiness-20261002.md"
       },
       "log_observation_review": {
         "observations": {
@@ -52619,25 +52685,61 @@
           "map_creation_messages": 1
         },
         "review_path": "docs/campaigns/log-observation-review-20261002.json"
+      },
+      "before_completed_zed_claim_review_20261002": {
+        "status": "blocked",
+        "claim": null,
+        "blockers": [
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+          "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
+          "zed_reference_orientation_unavailable",
+          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
+        ],
+        "protocol": {
+          "status": "blocked",
+          "basis": "Completed first repetition; final effective-setup/reference/claim review pending",
+          "blockers": [
+            "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+            "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
+            "zed_reference_orientation_unavailable",
+            "zed_serial_specific_imu_rotation_and_time_offset_unverified"
+          ],
+          "implementation": "20261002 first predeclared ZED VIO attempt"
+        },
+        "claim_limits": [
+          "accuracy_conditional_on_observed_exports_and_reference_support",
+          "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+          "no_measured_processing_rate_or_realtime_deadline_claim"
+        ],
+        "disclosures": [
+          "Completed first repetition preserved while final claim review is pending."
+        ]
       }
     },
     "vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001": {
       "exists": true,
-      "status": "blocked",
-      "claim": null,
-      "blockers": [
-        "native_build_source_linkage_and_loaded_dependency_closure_unverified",
-        "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
-        "zed_reference_orientation_unavailable",
-        "zed_serial_specific_imu_rotation_and_time_offset_unverified"
-      ],
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "blockers": [],
       "claim_limits": [
         "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
         "configuration_choices_are_not_evidence_of_algorithm_optimality",
-        "no_measured_processing_rate_or_realtime_deadline_claim"
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
       ],
       "disclosures": [
-        "Completed first repetition preserved while final claim review is pending."
+        "nominal left-camera 3D position only; no reference orientation or surveyed terrain attitude",
+        "approved 448-sample GNSS mask; no interpolation across gaps; RTK float retained and fixed-only sensitivity reported",
+        "unmeasured field camera/robot clock, zero correction, frozen +/-0.1 second sensitivity; no fitted offset",
+        "recovered same-serial factory camera/IMU transform and original recording intrinsics; no claim of historic serial recalibration records",
+        "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction",
+        "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+        "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified"
       ],
       "evaluation_sha256": "71abe69910678b006d36f79126ea21437411426ccdd2eb6402bb84a7896fdb48",
       "evidence": [
@@ -52704,19 +52806,75 @@
         {
           "path": "docs/campaigns/log-observation-review-20261002.json",
           "sha256": "79cf627c6571829549f1cb6785095e2421ba087c5c27593192fa809dc7690acf"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/okvis2_final_trajectory.csv",
+          "sha256": "ba59679e10398dc846881c0576d58702c2b931c3469479af5176b3cf62391111"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/okvis2_raw_trajectory.csv",
+          "sha256": "4a93630c4a0fbbfb049c68ee4c715a5d5d1c077afa276936350523cdcae06d08"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/processes/estimator.json",
+          "sha256": "28c15b8531496a3ca2c40d474ffcb416e94092ba0de32723bade10dd1a56063c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/provenance/implementation.json",
+          "sha256": "e73715513f63440a304a8ff1a05fdad8b5d2bb61581d3bf7a5b4cac33472e232"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/provenance/runtime-assets.json",
+          "sha256": "bca130d6615faa1adb676edbe68b601deedb487b4439c6461321f9cd8b49a9ab"
+        },
+        {
+          "path": "docs/campaigns/zed-approved-screening-20261002.json",
+          "sha256": "e0a658c7af37e3db1dce068c56bd6d5f00ec9e0e37da0847bfa9369399e85f98"
+        },
+        {
+          "path": "docs/campaigns/native-check-review-20261002.json",
+          "sha256": "85d299fdc0aaa833adcd0b157ff844f686b75d6dc4c989d51bb56dcbcd20132e"
+        },
+        {
+          "path": "results/zed-preparation-20261002/independent-source-validation.json",
+          "sha256": "7894a33633d584675d40c6ce76a5cfef1316d4a9fbc02eb47c82efb3ea4b72f0"
+        },
+        {
+          "path": "results/execution-readiness-20261002/completed-zed-reference-review.json",
+          "sha256": "b600a1265dfa7f781c27dd2f1b34e785e1b5c82b0c6d47fb9acf871c6d47f29d"
+        },
+        {
+          "path": "docs/campaigns/completed-zed-first-review-20261002.json",
+          "sha256": "a96d2c2039d2a67a90281faedddbad6636ba953328b5b89cbdf6b3203c1051e3"
         }
       ],
       "native_error_observations": [],
       "protocol": {
-        "status": "blocked",
-        "basis": "Completed first repetition; final effective-setup/reference/claim review pending",
-        "blockers": [
-          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
-          "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
-          "zed_reference_orientation_unavailable",
-          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
-        ],
-        "implementation": "20261002 first predeclared ZED VIO attempt"
+        "status": "verified",
+        "basis": "Predeclared first observation: saved effective configuration, recovered same-serial geometry, full-sequence export, clean native exit and disclosed nominal position-reference sensitivity reviewed",
+        "blockers": [],
+        "implementation": "20261002 recorded first ZED VIO attempt; retain its own cohort",
+        "review_document": "docs/execution-readiness-20261002.md"
       },
       "log_observation_review": {
         "observations": {
@@ -52736,25 +52894,60 @@
           "map_creation_messages": null
         },
         "review_path": "docs/campaigns/log-observation-review-20261002.json"
+      },
+      "before_completed_zed_claim_review_20261002": {
+        "status": "blocked",
+        "claim": null,
+        "blockers": [
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+          "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
+          "zed_reference_orientation_unavailable",
+          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
+        ],
+        "protocol": {
+          "status": "blocked",
+          "basis": "Completed first repetition; final effective-setup/reference/claim review pending",
+          "blockers": [
+            "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+            "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
+            "zed_reference_orientation_unavailable",
+            "zed_serial_specific_imu_rotation_and_time_offset_unverified"
+          ],
+          "implementation": "20261002 first predeclared ZED VIO attempt"
+        },
+        "claim_limits": [
+          "accuracy_conditional_on_observed_exports_and_reference_support",
+          "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "no_measured_processing_rate_or_realtime_deadline_claim"
+        ],
+        "disclosures": [
+          "Completed first repetition preserved while final claim review is pending."
+        ]
       }
     },
     "vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001": {
       "exists": true,
-      "status": "blocked",
-      "claim": null,
-      "blockers": [
-        "native_build_source_linkage_and_loaded_dependency_closure_unverified",
-        "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
-        "zed_reference_orientation_unavailable",
-        "zed_serial_specific_imu_rotation_and_time_offset_unverified"
-      ],
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "blockers": [],
       "claim_limits": [
         "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
         "configuration_choices_are_not_evidence_of_algorithm_optimality",
-        "no_measured_processing_rate_or_realtime_deadline_claim"
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
       ],
       "disclosures": [
-        "Completed first repetition preserved while final claim review is pending."
+        "nominal left-camera 3D position only; no reference orientation or surveyed terrain attitude",
+        "approved 448-sample GNSS mask; no interpolation across gaps; RTK float retained and fixed-only sensitivity reported",
+        "unmeasured field camera/robot clock, zero correction, frozen +/-0.1 second sensitivity; no fitted offset",
+        "recovered same-serial factory camera/IMU transform and original recording intrinsics; no claim of historic serial recalibration records",
+        "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction",
+        "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+        "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified"
       ],
       "evaluation_sha256": "f88d5714935f48a57d38b324efc83fb08a310a04316875b5b78cf3fe23d655a0",
       "evidence": [
@@ -52817,19 +53010,79 @@
         {
           "path": "docs/campaigns/log-observation-review-20261002.json",
           "sha256": "79cf627c6571829549f1cb6785095e2421ba087c5c27593192fa809dc7690acf"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/okvis2-vio-final-ba_trajectory.csv",
+          "sha256": "014358f77516b889840beaae25e324f362f97d81c1415493197cc6d530797d29"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/okvis2-vio-final_trajectory.csv",
+          "sha256": "014358f77516b889840beaae25e324f362f97d81c1415493197cc6d530797d29"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/okvis2-vio_trajectory.csv",
+          "sha256": "8a5ced37aeec15e201975d8dd6bfbcd5f44a2c88bfb64a10c9e719488020f16c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/processes/estimator.json",
+          "sha256": "6220676180e43fc14de33bec666875537741c95108635133ca96dcb6ca38efd9"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/provenance/implementation.json",
+          "sha256": "369eb06a81115409f427c5431f3423d881ceecbc2460973c0dc7ef0714705738"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/provenance/runtime-assets.json",
+          "sha256": "c0c81fe3c26cd159c687dc1141624aa5ca46ea817c4256ee06b3eac885708970"
+        },
+        {
+          "path": "docs/campaigns/zed-approved-screening-20261002.json",
+          "sha256": "e0a658c7af37e3db1dce068c56bd6d5f00ec9e0e37da0847bfa9369399e85f98"
+        },
+        {
+          "path": "docs/campaigns/native-check-review-20261002.json",
+          "sha256": "85d299fdc0aaa833adcd0b157ff844f686b75d6dc4c989d51bb56dcbcd20132e"
+        },
+        {
+          "path": "results/zed-preparation-20261002/independent-source-validation.json",
+          "sha256": "7894a33633d584675d40c6ce76a5cfef1316d4a9fbc02eb47c82efb3ea4b72f0"
+        },
+        {
+          "path": "results/execution-readiness-20261002/completed-zed-reference-review.json",
+          "sha256": "b600a1265dfa7f781c27dd2f1b34e785e1b5c82b0c6d47fb9acf871c6d47f29d"
+        },
+        {
+          "path": "docs/campaigns/completed-zed-first-review-20261002.json",
+          "sha256": "a96d2c2039d2a67a90281faedddbad6636ba953328b5b89cbdf6b3203c1051e3"
         }
       ],
       "native_error_observations": [],
       "protocol": {
-        "status": "blocked",
-        "basis": "Completed first repetition; final effective-setup/reference/claim review pending",
-        "blockers": [
-          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
-          "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
-          "zed_reference_orientation_unavailable",
-          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
-        ],
-        "implementation": "20261002 first predeclared ZED VIO attempt"
+        "status": "verified",
+        "basis": "Predeclared first observation: saved effective configuration, recovered same-serial geometry, full-sequence export, clean native exit and disclosed nominal position-reference sensitivity reviewed",
+        "blockers": [],
+        "implementation": "20261002 recorded first ZED VIO attempt; retain its own cohort",
+        "review_document": "docs/execution-readiness-20261002.md"
       },
       "log_observation_review": {
         "observations": {
@@ -52849,6 +53102,35 @@
           "map_creation_messages": null
         },
         "review_path": "docs/campaigns/log-observation-review-20261002.json"
+      },
+      "before_completed_zed_claim_review_20261002": {
+        "status": "blocked",
+        "claim": null,
+        "blockers": [
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+          "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
+          "zed_reference_orientation_unavailable",
+          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
+        ],
+        "protocol": {
+          "status": "blocked",
+          "basis": "Completed first repetition; final effective-setup/reference/claim review pending",
+          "blockers": [
+            "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+            "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
+            "zed_reference_orientation_unavailable",
+            "zed_serial_specific_imu_rotation_and_time_offset_unverified"
+          ],
+          "implementation": "20261002 first predeclared ZED VIO attempt"
+        },
+        "claim_limits": [
+          "accuracy_conditional_on_observed_exports_and_reference_support",
+          "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "no_measured_processing_rate_or_realtime_deadline_claim"
+        ],
+        "disclosures": [
+          "Completed first repetition preserved while final claim review is pending."
+        ]
       }
     }
   },
@@ -59196,16 +59478,16 @@
       ]
     },
     "vio/zed2i/field1_110426_full_10fps_q90/orbslam3": {
-      "status": "blocked",
+      "status": "missing_repetitions",
       "attempts": {
-        "blocked": 1,
+        "accepted_with_limitation": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
+      "paper_usable_attempts": 1,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
-      "protocol_state": "blocked",
+      "protocol_state": "verified_missing_repetitions",
       "protocol_verified_n3": false,
       "attempt_count": 1,
       "completed_attempt_count": 1,
@@ -59215,19 +59497,19 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 0,
+      "protocol_verified_attempts": 1,
       "verified_failure_count": 0,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "blocked": 1,
+        "verified": 1,
         "not_executed": 2
       },
       "protocol_cohorts": [
         {
           "cohort": "fb3369fcbbc58f51cb62243f05c04d858b499af7a1ad8ad4eb76d18d3b7aaead",
           "attempts": 1,
-          "verified_completed": 0,
-          "missing_to_n3": null,
+          "verified_completed": 1,
+          "missing_to_n3": 2,
           "run_paths": [
             "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001"
           ]
@@ -59235,16 +59517,16 @@
       ]
     },
     "vio/zed2i/field1_110426_full_10fps_q90/okvis2": {
-      "status": "blocked",
+      "status": "missing_repetitions",
       "attempts": {
-        "blocked": 1,
+        "accepted_with_limitation": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
+      "paper_usable_attempts": 1,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
-      "protocol_state": "blocked",
+      "protocol_state": "verified_missing_repetitions",
       "protocol_verified_n3": false,
       "attempt_count": 1,
       "completed_attempt_count": 1,
@@ -59254,19 +59536,19 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 0,
+      "protocol_verified_attempts": 1,
       "verified_failure_count": 0,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "blocked": 1,
+        "verified": 1,
         "not_executed": 2
       },
       "protocol_cohorts": [
         {
           "cohort": "556d5c22cc6822d397806d431566a66334a4edf45a527259b9fadbe38f19cdc3",
           "attempts": 1,
-          "verified_completed": 0,
-          "missing_to_n3": null,
+          "verified_completed": 1,
+          "missing_to_n3": 2,
           "run_paths": [
             "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001"
           ]
@@ -59274,16 +59556,16 @@
       ]
     },
     "vio/zed2i/field1_110426_full_10fps_q90/okvis2x": {
-      "status": "blocked",
+      "status": "missing_repetitions",
       "attempts": {
-        "blocked": 1,
+        "accepted_with_limitation": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
+      "paper_usable_attempts": 1,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
-      "protocol_state": "blocked",
+      "protocol_state": "verified_missing_repetitions",
       "protocol_verified_n3": false,
       "attempt_count": 1,
       "completed_attempt_count": 1,
@@ -59293,19 +59575,19 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 0,
+      "protocol_verified_attempts": 1,
       "verified_failure_count": 0,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "blocked": 1,
+        "verified": 1,
         "not_executed": 2
       },
       "protocol_cohorts": [
         {
           "cohort": "46d99af6f467f6217d19ff9d8ac3799743eb3af24f4c90ee676fcc754d1dcd66",
           "attempts": 1,
-          "verified_completed": 0,
-          "missing_to_n3": null,
+          "verified_completed": 1,
+          "missing_to_n3": 2,
           "run_paths": [
             "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001"
           ]
@@ -61505,5 +61787,6 @@
   "zed_review_date": "2026-10-02",
   "zed_review_scope": "Recovered factory calibration and independently approved nominal 3D position reference; exact gaps, fixed-only/tilt/height/time sensitivity; preserve historical cohorts and native failures.",
   "native_review_date": "2026-10-02",
-  "native_review_scope": "Individual export/finalization and log-observation overlays; 76 unknown historical non-ZED ORB dependency identities held without claiming incompatibility or requesting blanket reruns. Raw evidence and metrics preserved."
+  "native_review_scope": "Individual export/finalization and log-observation overlays; 76 unknown historical non-ZED ORB dependency identities held without claiming incompatibility or requesting blanket reruns. Raw evidence and metrics preserved.",
+  "completed_zed_first_review": "docs/campaigns/completed-zed-first-review-20261002.json"
 }

@@ -281,7 +281,7 @@ def build(repo,stage):
             attempt['logical_repetition']=repetition
             attempts.append(attempt)
         cells.append(dict(**cell,variant='default',key=key,target_repetitions=3,
-            comparison_membership=('corrected_zed_first_20261002_pending_claim_review' if key in zed_selections
+            comparison_membership=('corrected_zed_first_20261002' if key in zed_selections
                 else 'corrected_euroc_20261001' if key in selections else None),
             original_campaign_member=cell['algorithm'] in executed['tables'][cell['run_type']],
             attempts=attempts,evaluated=sum(a['evaluated'] for a in attempts),

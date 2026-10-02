@@ -57,6 +57,19 @@ def test_missing_failed_cell_cannot_be_omitted(tmp_path):
         completed_zed_selections(tmp_path)
 
 
+@pytest.mark.parametrize('status,evaluated', [('accepted_with_limitation',True),
+                                             ('valid_observed_failure',False)])
+def test_reviewed_completed_slot_is_reusable_without_resampling(status,evaluated):
+    cell=dict(algorithm='orbslam3',dataset='zed2i',run_type='vio',
+              comparison_membership='corrected_zed_first_20261002')
+    attempt=dict(exists=True,logical_repetition=1,numerical_status='ok',evaluated=evaluated,
+                 qualification=dict(review='explicit_claim_review',reuse_qualified=True,status=status))
+    category,reason=action_category(cell,attempt,dict(fresh_cohort=True))
+    assert category=='reusable' and 'predeclared_first' in reason
+    attempt['qualification']['review']='explicit_claim_review_stale'
+    assert action_category(cell,attempt,{})[0]=='blocked'
+
+
 def test_changed_final_receipt_blocks_selection(tmp_path):
     fixture(tmp_path)
     (tmp_path/'states/orbslam3.json').write_text('{}')

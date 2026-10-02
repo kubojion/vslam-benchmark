@@ -1,0 +1,423 @@
+{
+  "schema": 1,
+  "scope": "Completed predeclared first ZED VIO repetitions only; retain no further r1 commands and do not infer N=3 from one accepted attempt",
+  "runs": [
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001",
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_frames": 46283,
+      "output_poses": 46280,
+      "output_input_count_pct": 99.99351813840936,
+      "trajectory_duration_s": 4628.802573680878,
+      "input_duration_s": 4629.137657880783,
+      "process_exit": 0,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 0.297133343827959,
+          "n_pairs": 45281,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 0.29857101234227246,
+          "n_pairs": 43089,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 0.29855082530161997,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 0.295965963400772,
+          "n_pairs": 45280,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.0014174814736609975,
+      "recorded_runtime_assets": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "size_bytes": 57984,
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9"
+        },
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "size_bytes": 4746528,
+          "sha256": "aabd7355621df73575308d66c8484e142f528500fc0a9c0aad13efbc9ee43477"
+        },
+        {
+          "path": "src/ORB_SLAM3/Vocabulary/ORBvoc.txt",
+          "size_bytes": 145250924,
+          "sha256": "f8dd027f7a6cb88129821341194d7f2c75b77b3394257ddd0d2229863d1a3570"
+        },
+        {
+          "path": "src/ORB_SLAM3/lib/libORB_SLAM3.so",
+          "size_bytes": 349478752,
+          "sha256": "412e64cdc8e93776c6ba2494a41741568c3fb7f83569ecec5172c5793343215f"
+        },
+        {
+          "path": "src/ORB_SLAM3/Thirdparty/DBoW2/lib/libDBoW2.so",
+          "size_bytes": 75704,
+          "sha256": "7586680dccebae622f6abba030e09e89924e710e22447fc50df66db10380ff2e"
+        },
+        {
+          "path": "src/ORB_SLAM3/Thirdparty/g2o/lib/libg2o.so",
+          "size_bytes": 777808,
+          "sha256": "fdcf156410df1c800edc0b9dee0a3349f8499657767a2191c1ab4de2762e9ba9"
+        },
+        {
+          "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+          "size_bytes": 71259328,
+          "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b"
+        },
+        {
+          "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+          "size_bytes": 349480888,
+          "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0"
+        }
+      ],
+      "build_claim": "recorded executable/configuration observation; complete transitive build/dependency reconstruction is not established",
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/keyframes.txt",
+          "sha256": "a15669e1b4a3f3b38a1e65ce51337dec0f372f16ee00775e90fa469069e4a382"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/processes/estimator.json",
+          "sha256": "b6126ca8dba7c402b3149c9d2a64335bd05150fca8c815c908f2c5d18e17d91d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/provenance/estimator_config--orbslam3_cfg_WRQEEC.yaml",
+          "sha256": "f2a0872e62f644414ee6ecfb5ae0eba421f60bf9416d1ef94a04044128e6161f"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/provenance/estimator_config_source--zed2i_field1_110426_full_10fps_q90_stereo_inertial.yaml",
+          "sha256": "0fb9901b2788b3bfb178d9373ac9f220651bb45f66c1357ea4fc46f46ff0e12e"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+          "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/provenance/implementation.json",
+          "sha256": "3962d01595e76bc5825aa889f3c9453d9ac14504be718f596df52eb434cdcc17"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/provenance/runtime-assets.json",
+          "sha256": "b52e7a3b60caec449b511c964cf6178a2870b080a097c02d3b0eecc8d34fd532"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/run_eval.json",
+          "sha256": "f0edca6e299e27e34ccf2228828c7cb37bdb1638864d048b4f16fd6644a002c0"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/run_log.txt",
+          "sha256": "48dbe190ba8c0571338797125701624ea25e62ae454a1657a62664a029253832"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/run_meta.json",
+          "sha256": "2d861048f26490ad6c8a6a92f1d314e100b40f15773a7cee01a780194df23437"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/trajectory.txt",
+          "sha256": "3e33edb317982d6b5ccfcb9d48e8feeb9b14d9bbc6f54d9e668db417b4cc96d5"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/trajectory_filter.json",
+          "sha256": "8abd20e6c2e945a5cd14ba040844abf33f69aab00a111bf5e7c7256a3bdabfe5"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/trajectory_raw_ns.txt",
+          "sha256": "4b5d6aa91eb2170e25c0c9996202be12e0a921758a1feb012947715403232f39"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001",
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_frames": 46283,
+      "output_poses": 46280,
+      "output_input_count_pct": 99.99351813840936,
+      "trajectory_duration_s": 4628.802720069885,
+      "input_duration_s": 4629.137657880783,
+      "process_exit": 0,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 0.5282366000851598,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 0.5296736119327957,
+          "n_pairs": 43090,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 0.5277777524383153,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 0.528790151863929,
+          "n_pairs": 45281,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.0005535517787691457,
+      "recorded_runtime_assets": [
+        {
+          "path": "src/okvis2/build/okvis_app_synchronous",
+          "size_bytes": 12578568,
+          "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28"
+        },
+        {
+          "path": "src/okvis2/build/small_voc.yml.gz",
+          "size_bytes": 64538,
+          "sha256": "5794b4add087ff23e54fa229d9773ab2fb25a81a75eac3e29af233b02a929f4d"
+        }
+      ],
+      "build_claim": "recorded executable/configuration observation; complete transitive build/dependency reconstruction is not established",
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/okvis2_final_trajectory.csv",
+          "sha256": "ba59679e10398dc846881c0576d58702c2b931c3469479af5176b3cf62391111"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/okvis2_raw_trajectory.csv",
+          "sha256": "4a93630c4a0fbbfb049c68ee4c715a5d5d1c077afa276936350523cdcae06d08"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/processes/estimator.json",
+          "sha256": "28c15b8531496a3ca2c40d474ffcb416e94092ba0de32723bade10dd1a56063c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/provenance/estimator_config--zed2i_field1_110426_full_10fps_q90_vio.yaml",
+          "sha256": "ea6a93c363ae2e44d871bf6c6c662034de30725544d576f73730266c83fcb818"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/provenance/estimator_config_source--zed2i_field1_110426_full_10fps_q90_vio.yaml",
+          "sha256": "ea6a93c363ae2e44d871bf6c6c662034de30725544d576f73730266c83fcb818"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/provenance/implementation.json",
+          "sha256": "e73715513f63440a304a8ff1a05fdad8b5d2bb61581d3bf7a5b4cac33472e232"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/provenance/runtime-assets.json",
+          "sha256": "bca130d6615faa1adb676edbe68b601deedb487b4439c6461321f9cd8b49a9ab"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/run_eval.json",
+          "sha256": "346614aa345e86db6a517ff75ee7a990e218d9ee0901ae435cf991e1cd674a22"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/run_log.txt",
+          "sha256": "623a346ba1f0a7d0c90c043d10360ef6a8856bfac56768b00bfdd368dab95bd6"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/run_meta.json",
+          "sha256": "8d85835cdbb75baf4e73079bfeec9eecc358d8aba778080b94aa02b7a8a32401"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/trajectory.txt",
+          "sha256": "28af214d975cb9b44b9499aa41e75a278032ba3258322b7e1cdb9056ca3a0ffa"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001",
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_frames": 46283,
+      "output_poses": 46280,
+      "output_input_count_pct": 99.99351813840936,
+      "trajectory_duration_s": 4628.802720069885,
+      "input_duration_s": 4629.137657880783,
+      "process_exit": 0,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 0.42422875799330645,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 0.4254531805840452,
+          "n_pairs": 43090,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 0.4237250611417226,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 0.4248620931911194,
+          "n_pairs": 45281,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.0006333351978129453,
+      "recorded_runtime_assets": [
+        {
+          "path": "src/okvis2x/build/okvis_app_synchronous",
+          "size_bytes": 13359944,
+          "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d"
+        },
+        {
+          "path": "src/okvis2x/build/small_voc.yml.gz",
+          "size_bytes": 64538,
+          "sha256": "5794b4add087ff23e54fa229d9773ab2fb25a81a75eac3e29af233b02a929f4d"
+        }
+      ],
+      "build_claim": "recorded executable/configuration observation; complete transitive build/dependency reconstruction is not established",
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/okvis2-vio-final-ba_trajectory.csv",
+          "sha256": "014358f77516b889840beaae25e324f362f97d81c1415493197cc6d530797d29"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/okvis2-vio-final_trajectory.csv",
+          "sha256": "014358f77516b889840beaae25e324f362f97d81c1415493197cc6d530797d29"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/okvis2-vio_trajectory.csv",
+          "sha256": "8a5ced37aeec15e201975d8dd6bfbcd5f44a2c88bfb64a10c9e719488020f16c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/processes/estimator.json",
+          "sha256": "6220676180e43fc14de33bec666875537741c95108635133ca96dcb6ca38efd9"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/provenance/estimator_config--zed2i_field1_110426_full_10fps_q90_vio.yaml",
+          "sha256": "b366bb32e4b68cf18a589ddc8991e7c3384d6b25d6cb887f418c55ad298ecdf9"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/provenance/implementation.json",
+          "sha256": "369eb06a81115409f427c5431f3423d881ceecbc2460973c0dc7ef0714705738"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/provenance/runtime-assets.json",
+          "sha256": "c0c81fe3c26cd159c687dc1141624aa5ca46ea817c4256ee06b3eac885708970"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/run_eval.json",
+          "sha256": "f4e0dd0fa5f4cf8b12bc4d904f0145bbff525e72ccad1c1624c13c16482d6f1f"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/run_log.txt",
+          "sha256": "4c0bdc3cdf0f5079d15bf840dbd1420ad9eefe4740ead76cf3df5fe5bfe3dd54"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/run_meta.json",
+          "sha256": "7fbde2ad0f2bf100cc17703bee8c3a93349b946f25c1fe9f05ec71fd417c04cb"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/trajectory.txt",
+          "sha256": "f3b4db98314f2d9d85aae56352030fac2bbbe4aa661a9c843c5c60e5b576a08f"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "nominal left-camera 3D position only; no reference orientation or surveyed terrain attitude",
+    "approved 448-sample GNSS mask; no interpolation across gaps; RTK float retained and fixed-only sensitivity reported",
+    "unmeasured field camera/robot clock, zero correction, frozen +/-0.1 second sensitivity; no fitted offset",
+    "recovered same-serial factory camera/IMU transform and original recording intrinsics; no claim of historic serial recalibration records",
+    "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction",
+    "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+    "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified"
+  ],
+  "evidence": [
+    {
+      "path": "docs/campaigns/zed-physical-calibration-20261002.json",
+      "sha256": "0ece85a3d0f4a200cc82e1783111a3bbc1949d6461f1b476d89c2f5053095307"
+    },
+    {
+      "path": "docs/campaigns/zed-approved-screening-20261002.json",
+      "sha256": "e0a658c7af37e3db1dce068c56bd6d5f00ec9e0e37da0847bfa9369399e85f98"
+    },
+    {
+      "path": "docs/campaigns/native-check-review-20261002.json",
+      "sha256": "85d299fdc0aaa833adcd0b157ff844f686b75d6dc4c989d51bb56dcbcd20132e"
+    },
+    {
+      "path": "results/zed-preparation-20261002/independent-source-validation.json",
+      "sha256": "7894a33633d584675d40c6ce76a5cfef1316d4a9fbc02eb47c82efb3ea4b72f0"
+    },
+    {
+      "path": "results/execution-readiness-20261002/completed-zed-reference-review.json",
+      "sha256": "b600a1265dfa7f781c27dd2f1b34e785e1b5c82b0c6d47fb9acf871c6d47f29d"
+    }
+  ]
+}

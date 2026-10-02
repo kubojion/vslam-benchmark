@@ -41,9 +41,16 @@ def action_category(cell,attempt,decision):
         return 'required_rerun','camera_fps_changed_15_to_10'
     if not attempt['exists']:
         return 'missing','no_saved_attempt'
-    if cell.get('comparison_membership')=='corrected_zed_first_20261002_pending_claim_review' and attempt.get('logical_repetition')==1:
+    if cell.get('comparison_membership') in ('corrected_zed_first_20261002_pending_claim_review',
+                                             'corrected_zed_first_20261002') and attempt.get('logical_repetition')==1:
         # The final receipt is an observation, even when failed or not yet qualified.
         # Do not generate another attempt for this already-completed logical slot.
+        qualification=attempt.get('qualification',{})
+        if (qualification.get('review')=='explicit_claim_review'
+                and qualification.get('reuse_qualified')
+                and attempt.get('numerical_status')!='eval_failed'
+                and (attempt.get('evaluated') or qualification.get('status')=='valid_observed_failure')):
+            return 'reusable','retain_reviewed_predeclared_first_attempt_including_genuine_failure'
         return 'blocked','completed_predeclared_attempt_requires_claim_review_no_automatic_rerun'
     if decision.get('fresh_cohort'):
         return 'cohort_completion','complete_predeclared_current_implementation_n3_preserve_all_historical_outcomes'

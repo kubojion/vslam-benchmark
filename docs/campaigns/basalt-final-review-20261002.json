@@ -1,0 +1,123 @@
+{
+  "scope": "final bounded settings and cohort-receipt regression; no production repetitions",
+  "source_head": "3cee23b3babc367525de2fc5838dfd74c5272fdc",
+  "status": "verified",
+  "actions": [
+    {
+      "path": "results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run4",
+      "wrapper_exit": 0,
+      "native_exit": 0,
+      "poses": 862,
+      "settings_materialized": 48,
+      "unsupported_fields_retained": {
+        "config.vio_outlier_threshold": 3.0,
+        "config.vio_filter_iteration": 4,
+        "config.vio_lm_landmark_damping_variant": 1,
+        "config.vio_lm_pose_damping_variant": 1
+      },
+      "cohort": "11810c7520e6528d58fff62f9ebcf408dcd03494fdec48869c0ee58883609c13",
+      "evidence": [
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run4/run_meta.json",
+          "sha256": "e9f229136d084624ab75bf79e68804eaa14258e79aea0835bc22c91a45683342"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run4/trajectory.txt",
+          "sha256": "dd33248c2faa260956cff5949b98bc9b38cfb86d9199446ff83162f3c54011dd"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run4/native-settings-policy.json",
+          "sha256": "3ddd4cbe81704cfe769071950c7aeefae8322d859919d0ae934081e289000f2c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run4/effective-estimator-settings.json",
+          "sha256": "519e0f070d7177c71ca90d7599492b87ce19fe5852943cdb04084185d647291c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run4/native-inputs/clock-policy.json",
+          "sha256": "0f746af854792d6177e0248c5ab3fb4bde02ef8290f4cba0ed0ceb84a22db1cb"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run2",
+      "wrapper_exit": 0,
+      "native_exit": 0,
+      "poses": 100,
+      "settings_materialized": 48,
+      "unsupported_fields_retained": {
+        "config.vio_outlier_threshold": 3.0,
+        "config.vio_filter_iteration": 4,
+        "config.vio_lm_landmark_damping_variant": 1,
+        "config.vio_lm_pose_damping_variant": 1
+      },
+      "cohort": "8ec1e694333c0090ac485d19fe4387879e79b9677c4d6a465d82a6940193fd37",
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run2/run_meta.json",
+          "sha256": "1b0f1fb2c7db73e9f0c32f179d04b872fe143b77dc34919027d014c95960f4cf"
+        },
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run2/trajectory.txt",
+          "sha256": "66916931646e4127d699248fb0b49edb58864286b7e0b7ba9866ef09a5d66529"
+        },
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run2/native-settings-policy.json",
+          "sha256": "90e88dde42ff766f71bbf1e74939e2ad13c1ab6559eebf58a50c2c8d9eceb1ca"
+        },
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run2/effective-estimator-settings.json",
+          "sha256": "519e0f070d7177c71ca90d7599492b87ce19fe5852943cdb04084185d647291c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run2/native-inputs/clock-policy.json",
+          "sha256": "56a7bd93d20da32f00a7d2b3e5f488b67f931460bc3e98264e3118fe7732440d"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run3",
+      "wrapper_exit": 0,
+      "native_exit": 0,
+      "poses": 100,
+      "settings_materialized": 48,
+      "unsupported_fields_retained": {
+        "config.vio_outlier_threshold": 3.0,
+        "config.vio_filter_iteration": 4,
+        "config.vio_lm_landmark_damping_variant": 1,
+        "config.vio_lm_pose_damping_variant": 1
+      },
+      "cohort": "8ec1e694333c0090ac485d19fe4387879e79b9677c4d6a465d82a6940193fd37",
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run3/run_meta.json",
+          "sha256": "00f46f4a08571d2b0b7055fd9052810e322fd2582c25dd8a80f54e18ab2511af"
+        },
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run3/trajectory.txt",
+          "sha256": "1eecd2360095b0597f6e381a715ce9d892c0a673fdf07076d361c9b1ea7ffc8d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run3/native-settings-policy.json",
+          "sha256": "4f879b1dbd7a83b23cc9c5dbdc9c6e29f808989da3c68bc99dfe7c0179e0180e"
+        },
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run3/effective-estimator-settings.json",
+          "sha256": "519e0f070d7177c71ca90d7599492b87ce19fe5852943cdb04084185d647291c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run3/native-inputs/clock-policy.json",
+          "sha256": "675a4df84e5d9dd23c6aa1e5684dd8b7e19fe5dae08888d47139448bca9bb29c"
+        }
+      ]
+    }
+  ],
+  "preserved_failure": {
+    "path": "results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run3",
+    "native_output_saved": true,
+    "wrapper_exit": 1,
+    "reason": "duplicate provenance marker rejected at metadata finalization",
+    "repair": "supply marker once through shared profile helper; no estimator-setting change"
+  },
+  "zed_identical_inputs_share_cohort": true
+}

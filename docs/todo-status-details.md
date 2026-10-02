@@ -1,7 +1,7 @@
 # TODO status details
 
 Generated presentation of the reviewed inventory; no acceptance decisions or scores are changed.
-Inventory SHA-256: `93dae1058b44f7f6bbb0a419c1e8ac73a8748bc14ef1efac3cdb9d7da9831beb`. [Matrix legend](../TODO.md#run-combinations-matrix).
+Inventory SHA-256: `b74f04158c0dd1f2ec2820e96ca745244cd3acda93cdb46fc0c203bfbf7f2312`. [Matrix legend](../TODO.md#run-combinations-matrix).
 [Source inventory](../results/repair-20261001/inventory.json); [acceptance ledger](campaigns/paper-acceptance-20261001.json); [review definitions](protocol-review-20261002.md).
 
 N counts completed verified attempts. Counts describe the selected physical runs, including
@@ -41,10 +41,12 @@ Evidence validation errors (readiness is unverified):
 - stale or absent evidence: results/repair-20261001/inventory.json
 - stale or absent evidence: configs/voxel_svio/zed2i.yaml
 - stale or absent evidence: scripts/campaign/acceptance_ledger.py
+- stale or absent evidence: scripts/campaign/build_future_manifest.py
 - stale or absent evidence: scripts/campaign/build_repair_inventory.py
 - stale or absent evidence: scripts/campaign/configuration_recipe.py
 - stale or absent evidence: scripts/campaign/protocol_status.py
 - stale or absent evidence: scripts/campaign/run_future_manifest.py
+- stale or absent evidence: scripts/campaign/tests/test_completed_zed_selection.py
 - stale or absent evidence: scripts/campaign/tests/test_protocol_status.py
 - stale or absent evidence: scripts/campaign/tests/test_rosario_vio_candidates.py
 - stale or absent evidence: scripts/campaign/tests/test_voxel_wrapper_outcomes.py
@@ -74,10 +76,12 @@ Evidence validation errors (readiness is unverified):
 
 - stale or absent evidence: configs/voxel_svio/zed2i.yaml
 - stale or absent evidence: scripts/campaign/acceptance_ledger.py
+- stale or absent evidence: scripts/campaign/build_future_manifest.py
 - stale or absent evidence: scripts/campaign/build_repair_inventory.py
 - stale or absent evidence: scripts/campaign/configuration_recipe.py
 - stale or absent evidence: scripts/campaign/protocol_status.py
 - stale or absent evidence: scripts/campaign/run_future_manifest.py
+- stale or absent evidence: scripts/campaign/tests/test_completed_zed_selection.py
 - stale or absent evidence: scripts/campaign/tests/test_protocol_status.py
 - stale or absent evidence: scripts/campaign/tests/test_rosario_vio_candidates.py
 - stale or absent evidence: scripts/campaign/tests/test_voxel_wrapper_outcomes.py
@@ -4007,22 +4011,22 @@ Prerequisites: none.
 <a id="vio-zed2i-field1-110426-full-10fps-q90-orbslam3"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/orbslam3
 
-**A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
+**A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
 Cell next-action display: next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run10001](../results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001) | blocked | success | 0 | yes |
+| 1 | [run10001](../results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001) | verified | success | 0 | yes |
 | 2 | [run2](../results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run2) | not_executed | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run3) | not_executed | not_attempted | unknown | no |
 
-Group `fb3369fcbbc58f51cb62243f05c04d858b499af7a1ad8ad4eb76d18d3b7aaead`: 0 verified / 1 recorded; `run10001`.
+Group `fb3369fcbbc58f51cb62243f05c04d858b499af7a1ad8ad4eb76d18d3b7aaead`: 1 verified / 1 recorded; `run10001`.
 
 Confirmed setup findings: none.
-Review blockers: `missing_repetition`, `native_build_source_linkage_and_loaded_dependency_closure_unverified`, `zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified`, `zed_reference_orientation_unavailable`, `zed_serial_specific_imu_rotation_and_time_offset_unverified`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic_rerun`.
@@ -4033,22 +4037,22 @@ Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic
 <a id="vio-zed2i-field1-110426-full-10fps-q90-okvis2"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/okvis2
 
-**A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
+**A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
 Cell next-action display: next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run10001](../results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001) | blocked | success | 0 | yes |
+| 1 | [run10001](../results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001) | verified | success | 0 | yes |
 | 2 | [run2](../results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run2) | not_executed | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run3) | not_executed | not_attempted | unknown | no |
 
-Group `556d5c22cc6822d397806d431566a66334a4edf45a527259b9fadbe38f19cdc3`: 0 verified / 1 recorded; `run10001`.
+Group `556d5c22cc6822d397806d431566a66334a4edf45a527259b9fadbe38f19cdc3`: 1 verified / 1 recorded; `run10001`.
 
 Confirmed setup findings: none.
-Review blockers: `missing_repetition`, `native_build_source_linkage_and_loaded_dependency_closure_unverified`, `zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified`, `zed_reference_orientation_unavailable`, `zed_serial_specific_imu_rotation_and_time_offset_unverified`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic_rerun`.
@@ -4059,22 +4063,22 @@ Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic
 <a id="vio-zed2i-field1-110426-full-10fps-q90-okvis2x"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/okvis2x
 
-**A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
+**A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
 Cell next-action display: next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run10001](../results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001) | blocked | success | 0 | yes |
+| 1 | [run10001](../results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001) | verified | success | 0 | yes |
 | 2 | [run2](../results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run2) | not_executed | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run3) | not_executed | not_attempted | unknown | no |
 
-Group `46d99af6f467f6217d19ff9d8ac3799743eb3af24f4c90ee676fcc754d1dcd66`: 0 verified / 1 recorded; `run10001`.
+Group `46d99af6f467f6217d19ff9d8ac3799743eb3af24f4c90ee676fcc754d1dcd66`: 1 verified / 1 recorded; `run10001`.
 
 Confirmed setup findings: none.
-Review blockers: `missing_repetition`, `native_build_source_linkage_and_loaded_dependency_closure_unverified`, `zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified`, `zed_reference_orientation_unavailable`, `zed_serial_specific_imu_rotation_and_time_offset_unverified`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic_rerun`.

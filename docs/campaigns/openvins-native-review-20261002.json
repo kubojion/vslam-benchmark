@@ -1,0 +1,615 @@
+{
+  "schema": 1,
+  "scope": "bounded diagnostic native handling only; no accuracy ranking or recording-specific profile choice",
+  "checks": [
+    {
+      "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run1",
+      "profile": "openvins-kalibr",
+      "cameras": [
+        {
+          "camera": 0,
+          "T_camera_to_imu": [
+            [
+              0.9999922359986658,
+              -0.003898148656441657,
+              -0.0005765235818587994,
+              -0.004483027809925508
+            ],
+            [
+              0.0038952107282768295,
+              0.999979852551538,
+              -0.00501216763353817,
+              0.01917969921314904
+            ],
+            [
+              0.0005960501409061838,
+              0.005009883038220819,
+              0.9999872728170957,
+              0.02758414303707034
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "native_matrix_copies": 2
+        },
+        {
+          "camera": 1,
+          "T_camera_to_imu": [
+            [
+              0.9999907949863027,
+              -0.003869269816761846,
+              -0.0018543715235080456,
+              0.04575690217196798
+            ],
+            [
+              0.0038597432760560267,
+              0.9999794761332268,
+              -0.005113677166146685,
+              0.019407400233837323
+            ],
+            [
+              0.0018741196613455855,
+              0.005106472696659157,
+              0.9999852056966108,
+              0.027795563357391383
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "native_matrix_copies": 2
+        }
+      ],
+      "transport": {
+        "camera_frames_expected": 862,
+        "camera_frames_published": 862,
+        "camera_read_failures": 0,
+        "estimator_output_messages": 9405,
+        "gnss_messages_published": 0,
+        "imu_messages_published": 11970,
+        "schema": 1
+      },
+      "native_exit": 0,
+      "player_exit": 0,
+      "finite_ordered_unit_quaternion_export": true,
+      "output_poses": 9405,
+      "max_output_vs_imu_stamp_distance_s": 0.0,
+      "output_frame": "physical IMU pose in global; JPL world-to-IMU quaternion has the same xyzw as Hamilton IMU-to-world",
+      "output_clock": "incoming IMU header time, not camera state time",
+      "online_spatial_calibration": false,
+      "online_time_calibration": true,
+      "evidence": [
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run1/run_meta.json",
+          "sha256": "6c464059ede98139490e00e87e66c227ef8632d3de67d46f03fe436547a06656"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run1/openvins_node.log",
+          "sha256": "27f16592037d76e20c98c073077be93abcc4babf770b3315b7f940228ea0beeb"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run1/trajectory.txt",
+          "sha256": "c76b80210a2c919fc69610a2e60016b1c0f694461c04d2199dd0cc7c940320c3"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run1/transport_stats.json",
+          "sha256": "d71489253bc9dc76c819ddc5a39f1309a3bd3391ceb0df58bef1aa14d28d5918"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run1/processes/node.json",
+          "sha256": "7add21b7425c700d70b3bc54edad60832604d72bfdae9f50bcf250fb7b4a8148"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run1/processes/player.json",
+          "sha256": "f7e0b9bdcd74e8de444070a971a0dadc4cde705c465adf85db8d7e168965a9bf"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run1/configuration-profile/estimator_config.yaml",
+          "sha256": "562d88d04a8f331fdb0e401ede7fee4300adb54d501c34469ddfa42852b17404"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run1/configuration-profile/kalibr_imu_chain.yaml",
+          "sha256": "b33f9494dade05d7714118453e9874b589ded6caba12a11af0ce3e594169b36d"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run1/configuration-profile/kalibr_imucam_chain.yaml",
+          "sha256": "fea0bc25927e194546ab53c975e68eda1be4174489c9f70a3ad8fdcdbf2dd21e"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run1/configuration-profile/selection.json",
+          "sha256": "f144923d0ad060542cdb785bbc8188d8bab9ee81ac9d95a1ea5f862458d267f9"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run2",
+      "profile": "openvins-author",
+      "cameras": [
+        {
+          "camera": 0,
+          "T_camera_to_imu": [
+            [
+              0.999882608690506,
+              -0.012188044775194013,
+              0.009285494215426689,
+              0.0029040008953516864
+            ],
+            [
+              0.012241953545801142,
+              0.999908410009514,
+              -0.005771149419876612,
+              0.019044210170245615
+            ],
+            [
+              -0.009214304729566056,
+              0.005884144525923991,
+              0.9999402349298419,
+              0.02885636681866971
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "native_matrix_copies": 2
+        },
+        {
+          "camera": 1,
+          "T_camera_to_imu": [
+            [
+              0.9998940146020145,
+              -0.012158216654204452,
+              0.008008578578953325,
+              0.05313993839676546
+            ],
+            [
+              0.012205511192571218,
+              0.9999082018045918,
+              -0.0058833205279977254,
+              0.019691116201056753
+            ],
+            [
+              -0.00793631272026647,
+              0.005980445777412093,
+              0.9999506233853294,
+              0.028574929732315464
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "native_matrix_copies": 2
+        }
+      ],
+      "transport": {
+        "camera_frames_expected": 862,
+        "camera_frames_published": 862,
+        "camera_read_failures": 0,
+        "estimator_output_messages": 9082,
+        "gnss_messages_published": 0,
+        "imu_messages_published": 11970,
+        "schema": 1
+      },
+      "native_exit": 0,
+      "player_exit": 0,
+      "finite_ordered_unit_quaternion_export": true,
+      "output_poses": 9082,
+      "max_output_vs_imu_stamp_distance_s": 0.0,
+      "output_frame": "physical IMU pose in global; JPL world-to-IMU quaternion has the same xyzw as Hamilton IMU-to-world",
+      "output_clock": "incoming IMU header time, not camera state time",
+      "online_spatial_calibration": true,
+      "online_time_calibration": true,
+      "evidence": [
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run2/run_meta.json",
+          "sha256": "3d2b0788f9702cd85dd244b015cf0a47533862b71bf7b7223a91d70a29fb5020"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run2/openvins_node.log",
+          "sha256": "de35bb6deb491cddeaa59d1bac701b737277217d465deda4eefdc1458d05566d"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run2/trajectory.txt",
+          "sha256": "e68810948fb4ae549c4f1d4040064e01ea6c7bca5f087c27be01a1286657d1bc"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run2/transport_stats.json",
+          "sha256": "dea248cb878c7d351e4a59e59e98f29c06ec29c5702845a4a1d25cb1e2e238f7"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run2/processes/node.json",
+          "sha256": "c6d71366e870702ffb6e55ac1df269b79e6c6ff2e58303b14beeac0e69d73c18"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run2/processes/player.json",
+          "sha256": "bbace3b253b3c1d7fd80d70aba80462c83e97b8f7df432832c0263096d150bba"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run2/configuration-profile/estimator_config.yaml",
+          "sha256": "ff177d04a7801fe0692cfba8bc09eb6d5fa6124c8608fdb86a0249dcdb5df534"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run2/configuration-profile/kalibr_imu_chain.yaml",
+          "sha256": "d233b66f6c21c8050d63fb28a332e6d2a7b843cc0c53c559cfa5a77ae411dac9"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run2/configuration-profile/kalibr_imucam_chain.yaml",
+          "sha256": "15c92b092b1c98e3261eccbcbdd2ef0d328241641ae91ca9ae2dfe0097bce2dd"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run2/configuration-profile/selection.json",
+          "sha256": "5a2da1481c64fa0810042cbd00dd3ba5232647c209fdc62021571faa149df077"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run1",
+      "profile": "openvins-kalibr",
+      "cameras": [
+        {
+          "camera": 0,
+          "T_camera_to_imu": [
+            [
+              0.9999922359986658,
+              -0.003898148656441657,
+              -0.0005765235818587994,
+              -0.004483027809925508
+            ],
+            [
+              0.0038952107282768295,
+              0.999979852551538,
+              -0.00501216763353817,
+              0.01917969921314904
+            ],
+            [
+              0.0005960501409061838,
+              0.005009883038220819,
+              0.9999872728170957,
+              0.02758414303707034
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "native_matrix_copies": 2
+        },
+        {
+          "camera": 1,
+          "T_camera_to_imu": [
+            [
+              0.9999907949863027,
+              -0.003869269816761846,
+              -0.0018543715235080456,
+              0.04575690217196798
+            ],
+            [
+              0.0038597432760560267,
+              0.9999794761332268,
+              -0.005113677166146685,
+              0.019407400233837323
+            ],
+            [
+              0.0018741196613455855,
+              0.005106472696659157,
+              0.9999852056966108,
+              0.027795563357391383
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "native_matrix_copies": 2
+        }
+      ],
+      "transport": {
+        "camera_frames_expected": 863,
+        "camera_frames_published": 863,
+        "camera_read_failures": 0,
+        "estimator_output_messages": 8597,
+        "gnss_messages_published": 0,
+        "imu_messages_published": 11938,
+        "schema": 1
+      },
+      "native_exit": 0,
+      "player_exit": 0,
+      "finite_ordered_unit_quaternion_export": true,
+      "output_poses": 8597,
+      "max_output_vs_imu_stamp_distance_s": 0.0,
+      "output_frame": "physical IMU pose in global; JPL world-to-IMU quaternion has the same xyzw as Hamilton IMU-to-world",
+      "output_clock": "incoming IMU header time, not camera state time",
+      "online_spatial_calibration": false,
+      "online_time_calibration": true,
+      "evidence": [
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run1/run_meta.json",
+          "sha256": "7c10e61aa58a0e824f335dfd089ef8319300dc2f3750907a488f5eba55747bdf"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run1/openvins_node.log",
+          "sha256": "b1241ec66ec17243b81aa7f0d6de038dd52802294828d09f54dc728b2c2f3202"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run1/trajectory.txt",
+          "sha256": "411e84de6eb3c29e5efc308a96bcbad4296b02cf63d40798bb28bb984e250b48"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run1/transport_stats.json",
+          "sha256": "ac3f98a69e1a8dca3a847c31b98d4f43a3a6d8af73437b9e4918a9ae5a134162"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run1/processes/node.json",
+          "sha256": "7ed814ee7551275ae9c83e9a1f9d86a39d8c2164ab548f66093136f71ea1bd6c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run1/processes/player.json",
+          "sha256": "af6d62ad8775ec0053d7cdceb9fab59108aa03ffffde2469eb6d0d799e62c13c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run1/configuration-profile/estimator_config.yaml",
+          "sha256": "562d88d04a8f331fdb0e401ede7fee4300adb54d501c34469ddfa42852b17404"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run1/configuration-profile/kalibr_imu_chain.yaml",
+          "sha256": "b33f9494dade05d7714118453e9874b589ded6caba12a11af0ce3e594169b36d"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run1/configuration-profile/kalibr_imucam_chain.yaml",
+          "sha256": "fea0bc25927e194546ab53c975e68eda1be4174489c9f70a3ad8fdcdbf2dd21e"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run1/configuration-profile/selection.json",
+          "sha256": "f6dc2f630433833585a7f2d0338aa3e2634761d30c713213320a2e1497dc4ccf"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run2",
+      "profile": "openvins-author",
+      "cameras": [
+        {
+          "camera": 0,
+          "T_camera_to_imu": [
+            [
+              0.999882608690506,
+              -0.012188044775194013,
+              0.009285494215426689,
+              0.0029040008953516864
+            ],
+            [
+              0.012241953545801142,
+              0.999908410009514,
+              -0.005771149419876612,
+              0.019044210170245615
+            ],
+            [
+              -0.009214304729566056,
+              0.005884144525923991,
+              0.9999402349298419,
+              0.02885636681866971
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "native_matrix_copies": 2
+        },
+        {
+          "camera": 1,
+          "T_camera_to_imu": [
+            [
+              0.9998940146020145,
+              -0.012158216654204452,
+              0.008008578578953325,
+              0.05313993839676546
+            ],
+            [
+              0.012205511192571218,
+              0.9999082018045918,
+              -0.0058833205279977254,
+              0.019691116201056753
+            ],
+            [
+              -0.00793631272026647,
+              0.005980445777412093,
+              0.9999506233853294,
+              0.028574929732315464
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "native_matrix_copies": 2
+        }
+      ],
+      "transport": {
+        "camera_frames_expected": 863,
+        "camera_frames_published": 863,
+        "camera_read_failures": 0,
+        "estimator_output_messages": 8232,
+        "gnss_messages_published": 0,
+        "imu_messages_published": 11938,
+        "schema": 1
+      },
+      "native_exit": 0,
+      "player_exit": 0,
+      "finite_ordered_unit_quaternion_export": true,
+      "output_poses": 8232,
+      "max_output_vs_imu_stamp_distance_s": 0.0,
+      "output_frame": "physical IMU pose in global; JPL world-to-IMU quaternion has the same xyzw as Hamilton IMU-to-world",
+      "output_clock": "incoming IMU header time, not camera state time",
+      "online_spatial_calibration": true,
+      "online_time_calibration": true,
+      "evidence": [
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run2/run_meta.json",
+          "sha256": "441782c3392761590d6c648c872732c114f50d40b21f398724bbecb952b600ce"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run2/openvins_node.log",
+          "sha256": "8fab9c32aad597236bd922bbb1a9c2d6245c8d485e95a5f3248dc4cc6f2dd662"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run2/trajectory.txt",
+          "sha256": "e69458c984f33bbd8e777f040af2ab70e6b6707cafb49c1e775ed4666e39b6be"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run2/transport_stats.json",
+          "sha256": "aaf0f847c5a4370cb71142c0950799793340805889162a2e2db1a334b2f0e4c5"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run2/processes/node.json",
+          "sha256": "8f29dfcd7346514b4d0d791332a6710cbc71a1b328236a8f90d7bfff60469306"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run2/processes/player.json",
+          "sha256": "913a9d10359a12a05fccd3f2fb70b6b6faed2777c9570f15dd1b34f52a8e4fc8"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run2/configuration-profile/estimator_config.yaml",
+          "sha256": "ff177d04a7801fe0692cfba8bc09eb6d5fa6124c8608fdb86a0249dcdb5df534"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run2/configuration-profile/kalibr_imu_chain.yaml",
+          "sha256": "d233b66f6c21c8050d63fb28a332e6d2a7b843cc0c53c559cfa5a77ae411dac9"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run2/configuration-profile/kalibr_imucam_chain.yaml",
+          "sha256": "15c92b092b1c98e3261eccbcbdd2ef0d328241641ae91ca9ae2dfe0097bce2dd"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/openvins/run2/configuration-profile/selection.json",
+          "sha256": "6d3d34322e9994e74a494117c24152a45e4542e1f64a8b26c0c2a488b7b22b3c"
+        }
+      ]
+    }
+  ],
+  "parameter_logging_defect": {
+    "native_init_max_features": 50,
+    "misleading_historical_debug_value": 10.0,
+    "cause": "upstream variadic PRINT_DEBUG uses %.2f for an int; previous floating argument is printed",
+    "load_only_probe": {
+      "scope": "load-only integer argument inspection before known upstream printf type mismatch; exits before subscriptions or estimation",
+      "results": [
+        {
+          "profile": "openvins-kalibr",
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--user",
+            "1006:1008",
+            "--volume",
+            "/data/imoroz/vslam-benchmark:/ws:ro",
+            "--env",
+            "ROS_HOME=/tmp/ros",
+            "--env",
+            "ROS_LOCALHOST_ONLY=1",
+            "--entrypoint",
+            "bash",
+            "openvins:humble-shutdown-20261001",
+            "-c",
+            "source /opt/ros/humble/setup.bash && source /colcon_ws/install/setup.bash && LD_PRELOAD=/ws/results/execution-readiness-20261002/openvins-load-probe/probe.so /colcon_ws/install/lib/ov_msckf/run_subscribe_msckf --ros-args -p config_path:=/ws/configs/candidates/rosario-vio-20261002/openvins-kalibr/estimator_config.yaml -p verbosity:=DEBUG"
+          ],
+          "exit": 0,
+          "log": "results/execution-readiness-20261002/openvins-load-probe/openvins-kalibr.log",
+          "sha256": "5a6856c41d3eabef00fc199b3210c9b874ec76c95fd8dc24c35db3f7aeeb5858"
+        },
+        {
+          "profile": "openvins-author",
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--user",
+            "1006:1008",
+            "--volume",
+            "/data/imoroz/vslam-benchmark:/ws:ro",
+            "--env",
+            "ROS_HOME=/tmp/ros",
+            "--env",
+            "ROS_LOCALHOST_ONLY=1",
+            "--entrypoint",
+            "bash",
+            "openvins:humble-shutdown-20261001",
+            "-c",
+            "source /opt/ros/humble/setup.bash && source /colcon_ws/install/setup.bash && LD_PRELOAD=/ws/results/execution-readiness-20261002/openvins-load-probe/probe.so /colcon_ws/install/lib/ov_msckf/run_subscribe_msckf --ros-args -p config_path:=/ws/configs/candidates/rosario-vio-20261002/openvins-author/estimator_config.yaml -p verbosity:=DEBUG"
+          ],
+          "exit": 0,
+          "log": "results/execution-readiness-20261002/openvins-load-probe/openvins-author.log",
+          "sha256": "5a6856c41d3eabef00fc199b3210c9b874ec76c95fd8dc24c35db3f7aeeb5858"
+        }
+      ]
+    },
+    "production_image_modified": false,
+    "limitation": "original native DEBUG format remains incorrect; reviewed native integer argument overrides that diagnostic line, not an estimator setting"
+  },
+  "first_frame_handling": "normal beginning retained; sequence5 first camera precedes first IMU by 9.083310 ms, initial 4.098308 ms camera-to-IMU offset leaves 4.985002 ms unsupported. Native buffering/initialization retains its own policy; no wrapper trim or extrapolated ground truth.",
+  "image_handling": "player reads grayscale and publishes mono8 stereo with original camera stamps; native pinhole/radtan calibrations verified; no additional rectification",
+  "frame_claim_limit": "author profile has online camera extrinsics and no saved per-pose calibration; static camera-origin accuracy is not qualified by this diagnostic",
+  "evidence": [
+    {
+      "path": "src/open_vins/ov_msckf/src/ros/ROS2Visualizer.cpp",
+      "sha256": "539e999a4461cee2a2b9c96a0cbaa8b96a05bfbb7d93796cef5056cdcaab224a"
+    },
+    {
+      "path": "src/open_vins/ov_msckf/src/state/Propagator.cpp",
+      "sha256": "3ab1402699142475fa588bdb2a1c4c55ee7f66a1b86b8ee703c66bce76d46210"
+    },
+    {
+      "path": "src/open_vins/ov_init/src/init/InertialInitializerOptions.h",
+      "sha256": "0c7a3b54dcb47c8fa24dc50974a1a3955fe4d55120860bcac5473585ef0a0fb5"
+    },
+    {
+      "path": "scripts/run/openvins_data_player.py",
+      "sha256": "8facae86e315bf666ecf56a4f955d91cea6da8159cb34c2f831842417ad1f55e"
+    },
+    {
+      "path": "results/execution-readiness-20261002/openvins-load-probe/openvins-author.log",
+      "sha256": "5a6856c41d3eabef00fc199b3210c9b874ec76c95fd8dc24c35db3f7aeeb5858"
+    },
+    {
+      "path": "results/execution-readiness-20261002/openvins-load-probe/openvins-kalibr.log",
+      "sha256": "5a6856c41d3eabef00fc199b3210c9b874ec76c95fd8dc24c35db3f7aeeb5858"
+    },
+    {
+      "path": "results/execution-readiness-20261002/openvins-load-probe/probe.cpp",
+      "sha256": "9beab3a9a425c369b47ea9611ecb831ac7a977b94d2d925c46d58d8a691d0073"
+    },
+    {
+      "path": "results/execution-readiness-20261002/openvins-load-probe/probe.so",
+      "sha256": "4012824fcf0d3f93bc8aea135591639cb39d83723dfa8042344cfffc94b99070"
+    },
+    {
+      "path": "results/execution-readiness-20261002/openvins-load-probe/review.json",
+      "sha256": "b5adcb3344a09f38584421d5b8a873f68216327720ac2917481d439423931f32"
+    }
+  ]
+}
