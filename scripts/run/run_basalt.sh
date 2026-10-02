@@ -48,6 +48,8 @@ if [[ -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
         --override "$WS/configs/candidates/rosario-vio-20261002/$ROSARIO_VIO_PROFILE/vio_config.json")
 fi
 ESTIMATOR_CFG=$(python3 "$WS/scripts/run/_config_preflight.py" "${CONFIG_ARGS[@]}")
+CALIB=$(realpath -e "$CALIB")
+ESTIMATOR_CFG=$(realpath -e "$ESTIMATOR_CFG")
 
 # ── PATH: source Basalt env to ensure basalt_vio is available ────────────────
 if [[ -f "$HOME/.basalt/env" ]]; then
@@ -59,6 +61,8 @@ if ! command -v basalt_vio &>/dev/null; then
     exit 1
 fi
 BASALT_BIN=$(command -v basalt_vio)
+BASALT_LIBRARY=$(ldd "$BASALT_BIN" | awk '$1 == "libbasalt.so" && $2 == "=>" { print $3 }')
+[[ -f "$BASALT_LIBRARY" ]] || { echo '[basalt] loaded libbasalt.so identity unavailable' >&2; exit 2; }
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
@@ -66,6 +70,17 @@ snapshot_rosario_candidate
 if [[ -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
     CALIB="$ROSARIO_PROFILE_DIR/calibration.json"
     ESTIMATOR_CFG="$ROSARIO_PROFILE_DIR/vio_config.json"
+fi
+NATIVE_SEQ_DIR="$SEQ_DIR"
+REQUESTED_CALIB="$CALIB"
+if [[ "$USE_IMU" == true ]]; then
+    python3 "$WS/scripts/run/_basalt_input_clock.py" "$SEQ_DIR" "$CALIB" "$OUT_DIR/native-inputs" \
+        > "$OUT_DIR/input-clock-preparation.json"
+    NATIVE_SEQ_DIR="$OUT_DIR/native-inputs/dataset"
+    CALIB="$OUT_DIR/native-inputs/effective-calibration.json"
+    PROFILE_PROV_ARGS+=(--artifact "requested_camera_calibration=$REQUESTED_CALIB"
+        --artifact "input_clock_policy=$OUT_DIR/native-inputs/clock-policy.json"
+        --artifact "effective_imu_input=$NATIVE_SEQ_DIR/mav0/imu0/data.csv")
 fi
 CONTAINER=""
 source "$WS/scripts/run/_owned_process.sh"
@@ -76,6 +91,7 @@ PROV_ARGS=(
     --artifact "camera_calibration=$CALIB"
     --artifact "estimator_config=$ESTIMATOR_CFG"
     --binary "estimator=$BASALT_BIN"
+    --binary "estimator_shared=$BASALT_LIBRARY"
     --param "use_imu=$USE_IMU"
     --param "num_threads=0"
     --param "playback_rate=offline"
@@ -110,7 +126,7 @@ mark_resource_start "$OUT_DIR"
 set +e
 owned_run estimator "$BASALT_BIN" \
     --show-gui 0 \
-    --dataset-path "$SEQ_DIR" \
+    --dataset-path "$NATIVE_SEQ_DIR" \
     --dataset-type euroc \
     --cam-calib "$CALIB" \
     --config-path "$ESTIMATOR_CFG" \

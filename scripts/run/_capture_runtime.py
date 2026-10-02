@@ -71,7 +71,15 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
         for p in ('okvis_app_synchronous','small_voc.yml.gz'):host(f'src/{algorithm}/build/{p}')
         for p in sorted((repo/'src'/algorithm/'build').rglob('*.so*')):
             if p.is_file():host(p.relative_to(repo))
-    elif algorithm=='basalt':host(shutil.which('basalt_vio') or 'missing-basalt_vio')
+    elif algorithm=='basalt':
+        binary=shutil.which('basalt_vio')
+        host(binary or 'missing-basalt_vio')
+        if binary:
+            dependencies=subprocess.check_output(['ldd',binary],text=True,timeout=30)
+            libraries=[line.split()[2] for line in dependencies.splitlines()
+                       if line.strip().startswith('libbasalt.so => /')]
+            if len(libraries)!=1:missing.append('unresolved_basalt_shared_library')
+            for library in libraries:host(library)
     elif algorithm=='dpvo':
         host('src/DPVO/dpvo.pth')
         for p in sorted((repo/'src/DPVO').rglob('*.so')):host(p.relative_to(repo))
@@ -108,6 +116,7 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
         if algorithm=='voxel_svio':
             paths.append('/root/catkin_ws_shutdown_20261002/devel/lib')
             paths.append('/root/vslam_voxel_audit_20261002_v2')
+            paths.append('/root/vslam_voxel_audit_20261002_v3')
         if algorithm=='cifasis_gnss_si':paths = ['/root/catkin_ws/src/gnss-stereo-inertial-fusion/lib',
             '/root/catkin_ws/src/gnss-stereo-inertial-fusion/Examples/ROS/GNSS_SI/GNSS_Stereo_Inertial',
             '/root/catkin_ws/src/gnss-stereo-inertial-fusion/Vocabulary/ORBvoc.txt']

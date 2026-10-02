@@ -12,6 +12,12 @@ datasets/**
 # Fixed integration subsets are recorded by their campaign recipe and hashes.
 datasets/euroc/MH_01_easy_diag*20261001/
 datasets/zed2i/field1_diag60_20261002/
+datasets/zed2i/field1_diag180_20261002/
+datasets/zed2i/field1_readiness10_20261002/
+datasets/rosariov2/sequence1_readiness60_20261002/
+datasets/rosariov2/sequence5_readiness60_20261002/
+datasets/euroc/MH_01_easy_readiness30_20261002/
+datasets/hortimulti/strawberry02_readiness30_20261002/
 obsolete/
 logs/
 docs/private/

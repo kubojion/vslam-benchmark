@@ -21,6 +21,35 @@ Rosario profile selection remains pending the authors; native diagnostic success
 cannot resolve that uncertainty. The prior no-estimator restriction is superseded
 only by these explicitly authorized diagnostics and first repetitions.
 
+## Current TODO formatting requirements — 2026-10-02
+
+These requirements apply to the ongoing work and future TODO regeneration.
+Retain all five matrix layouts and **A/E/S/F counts in every cell**, including
+excluded cells; retain U when present. Do not replace counts with status symbols.
+Place this clear legend above the matrices:
+
+> A = recorded attempts; E = trajectories evaluated; S = clean final exports;
+> F = observed failures; U = unknown outcomes, when present.
+>
+> Example: A3/E3/S0/F3 means three attempts, three evaluated trajectories, no clean
+> final exports and three observed failures. A failed attempt can still produce
+> an evaluable trajectory, so these counts overlap.
+>
+> ✅ N=3 means three verified attempts under consistent settings, including valid
+> observed failures—not necessarily three successful runs.
+
+Keep the other agreed formatting changes: compact cells, selected-run detail
+links, separate implementation groups, red confirmed reruns, yellow unresolved
+review, and distinct saved-result qualification and future execution readiness.
+Do not pool separate implementation groups or infer readiness from a green tick.
+
+Work separately from any active ZED batch. Keep generator/test changes isolated
+from its execution checkout until the batch and evidence capture finish; do not
+alter its runners, configurations, manifests, captured identities or run records
+for this formatting task. Integrate implementation changes only after the batch
+finishes and refresh the applicable campaign identities before another launch.
+This formatting amendment neither pauses nor authorizes execution of a batch.
+
 ## Completed continuation — Rosario/TODO integration into main, 2026-10-02
 
 Make `/data/imoroz/vslam-benchmark` on main the final destination for the reviewed

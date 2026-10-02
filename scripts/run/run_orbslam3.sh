@@ -76,7 +76,9 @@ CFG="$EFFECTIVE_CFG"
 mkdir -p "$WS/logs"
 G2O_COMPAT=""
 ORB_SHARED=""
-if [[ "$DATASET" == zed2i ]]; then
+# All current paths use the same executable/ORB ABI. The incompatible original
+# g2o remains preserved for historical investigation, never selected implicitly.
+select_compatible_orb_runtime() {
     G2O_COMPAT="$WS/results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so"
     ORB_SHARED="$WS/results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so"
     python3 - "$WS" "$G2O_COMPAT" <<'PY'
@@ -92,7 +94,8 @@ for item in native:
     if hashlib.sha256((root/item['path']).read_bytes()).hexdigest() != item['sha256']:
         raise SystemExit('ORB/g2o build changed; revalidate ABI before estimation: '+item['path'])
 PY
-fi
+}
+select_compatible_orb_runtime
 prepare_fresh_run_dir "$OUT_DIR"
 CONTAINER=""
 source "$WS/scripts/run/_owned_process.sh"
@@ -142,8 +145,11 @@ if [[ "${ORBSLAM3_GDB:-0}" == "1" ]]; then
 fi
 if [[ -n "$G2O_COMPAT" ]]; then
     # The original Release g2o has a different Eigen ABI from libORB_SLAM3.
-    # Override it only for this reviewed ZED cohort; preserve old native bytes.
+    # The same mismatch applies to the installed non-ZED path. Preserve old bytes.
     ESTIMATOR_COMMAND=(env "LD_LIBRARY_PATH=$(dirname "$ORB_SHARED"):$(dirname "$G2O_COMPAT"):$HOME/.local/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" "${ESTIMATOR_COMMAND[@]}")
+fi
+if [[ "${ORBSLAM3_LIBRARY_TRACE:-0}" == 1 ]]; then
+    ESTIMATOR_COMMAND=(env LD_DEBUG=libs,files "LD_DEBUG_OUTPUT=$OUT_DIR/native/loader" "${ESTIMATOR_COMMAND[@]}")
 fi
 
 # Resource monitor: GPU + CPU + RAM sampled every 1 s
@@ -189,7 +195,13 @@ PROV_ARGS=(
     --param "use_lc=$USE_LC"
     --param "pacing_policy=dataset_timestamps"
     --param "gdb_diagnostic=${ORBSLAM3_GDB:-0}"
+    --param "library_trace_diagnostic=${ORBSLAM3_LIBRARY_TRACE:-0}"
 )
+if [[ "${ORBSLAM3_LIBRARY_TRACE:-0}" == 1 ]]; then
+    for trace in "$OUT_DIR"/native/loader.*; do
+        [[ ! -f "$trace" ]] || PROV_ARGS+=(--artifact "loaded_dependency_trace_$(basename "$trace")=$trace")
+    done
+fi
 if [[ -n "$G2O_COMPAT" ]]; then
     PROV_ARGS+=(--binary "g2o_compatible=$G2O_COMPAT"
         --binary "estimator_shared=$ORB_SHARED"

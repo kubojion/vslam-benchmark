@@ -49,7 +49,7 @@ if [[ "$DATASET" == zed2i || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
 fi
 VOXEL_BIN="$VOXEL_PREFIX/lib/voxel_svio/vio_node"
 if [[ "$DATASET" == zed2i || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
-    VOXEL_BIN=/root/vslam_voxel_audit_20261002_v2/vio_node
+    VOXEL_BIN=/root/vslam_voxel_audit_20261002_v3/vio_node
 fi
 source "$WS/scripts/run/_owned_process.sh"
 OUT_CONT="/results/$RUN_TYPE/$DATASET/$SEQ/voxel_svio/run${RUN_ID}"
@@ -96,7 +96,7 @@ PROV_ARGS=(
 if [[ "$DATASET" == zed2i || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
     PROV_ARGS+=(--artifact "shutdown_source_patch=$WS/docs/upstream/voxel-svio-subscriber-lifetime.patch"
         --artifact "native_build_review=$WS/docs/campaigns/voxel-zed-shutdown-build-20261002.json"
-        --artifact "parameter_audit_build=$WS/docs/campaigns/voxel-parameter-audit-build-20261002.json")
+        --artifact "parameter_audit_build=$WS/docs/campaigns/voxel-parameter-audit-build-20261002-v3.json")
 fi
 
 # ---- Ensure Docker container is running -----------------------------------

@@ -12,7 +12,7 @@ import shlex
 import subprocess
 
 OLD = Path('/root/catkin_ws_shutdown_20261002')
-NEW = Path('/root/vslam_voxel_audit_20261002_v2')
+NEW = Path('/root/vslam_voxel_audit_20261002_v3')
 
 
 def digest(path):
@@ -45,6 +45,11 @@ static double audit_first_camera = 0, audit_last_camera = 0;
 static int audit_width = 0, audit_height = 0, audit_type = -1;
 ''')
     stereo = replace_once(stereo, '    // odometry_options.recordParameters();', '    odometry_options.recordParameters();')
+    # Native v2 parameter dumps demonstrated that only the propagation options
+    # received the selected offset; initialization silently retained zero.
+    stereo = replace_once(stereo, '    odometry_options.calib_camimu_dt = calib_camimu_dt_left;',
+                          '    odometry_options.calib_camimu_dt = calib_camimu_dt_left;\n'
+                          '    odometry_options.init_options.calib_camimu_dt = calib_camimu_dt_left;')
     stereo = replace_once(stereo, '    processImu(imu_data);', '''    if (audit_imu++ == 0) audit_first_imu = imu_data.timestamp;
     audit_last_imu = imu_data.timestamp;
     processImu(imu_data);''')
@@ -107,7 +112,7 @@ static int audit_width = 0, audit_height = 0, audit_type = -1;
     link[link.index('-o') + 1] = str(NEW / 'vio_node')
     commands.append(link)
     subprocess.run(link, cwd=build_dir, check=True)
-    record = dict(schema=1, scope='parameter and input reporting only; no estimator policy change',
+    record = dict(schema=1, scope='parameter/input reporting and propagation of configured camera-IMU offset into initialization; no threshold tuning',
                   old_prefix=str(OLD), new_executable=str(NEW / 'vio_node'), commands=commands,
                   original_objects=inputs, flags_sha256=digest(flags_path),
                   source=[{'path': str(p), 'sha256': digest(p)} for p in [original / 'stereoVio.cpp',

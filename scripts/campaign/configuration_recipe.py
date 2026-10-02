@@ -50,7 +50,15 @@ def config_recipe(repo, cell):
             operations.append('remove both historical LC keys; append one canonical loopClosing integer')
         elif algorithm == 'basalt':
             selected('estimator_config',select_basalt_config(repo,dataset,mode))
-            selected('camera_calibration',root/'basalt'/f'{dataset}_calib.json')
+            def native_basalt_calibration(text):
+                value=json.loads(text)
+                value['value0']['cam_time_offset_ns']=0
+                return json.dumps(value,indent=2)+'\n'
+            selected('camera_calibration',root/'basalt'/f'{dataset}_calib.json',
+                     native_basalt_calibration if mode=='vio' else None)
+            if mode=='vio':
+                selected('requested_camera_calibration',root/'basalt'/f'{dataset}_calib.json')
+                operations.append('copy IMU CSV into attempt; subtract declared cam_time_offset_ns from each IMU timestamp; set effective native offset to zero; leave all camera timestamps/measurements unchanged')
         elif algorithm in ('okvis2','okvis2x'):
             path=root/algorithm/f'{dataset}_{sequence}_{mode.replace("-","_")}.yaml'
             transform=None

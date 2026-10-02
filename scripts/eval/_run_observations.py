@@ -11,9 +11,11 @@ import numpy as np
 LOG_PATTERNS = {
     "orbslam3": {
         "init_success":    re.compile(r"New Map created with \d+ points"),
-        "tracking_loss":   re.compile(r"\bLOST\b"),
+        # Count explicit messages, not unique episodes; local-map failures can
+        # recover without entering the terminal LOST state.
+        "tracking_loss":   re.compile(r"^(?:Fail to track local map!|Track Lost\.\.\.|IMU\. State LOST|Timestamp jump detected\. State set to LOST\.)"),
         "loop_closure":    re.compile(r"\*Loop detected"),
-        "map_reset":       re.compile(r"Map id:\s*\d+"),
+        "map_reset":       re.compile(r"^(?:Active map Reseting|System Reseting)\s*$"),
     },
     "fasttrack_partial_gpu": {
         "init_success":    re.compile(r"New Map created with \d+ points"),
@@ -114,6 +116,12 @@ LOG_PATTERNS = {
 
 
 _MAP_ID_RE = re.compile(r"Map id:\s*(\d+)")
+ORB_DETAIL_PATTERNS = {
+    'local_tracking_failure_messages': re.compile(r'^Fail to track local map!\s*$'),
+    'local_mapping_reset_messages': re.compile(r'^LM: Reseting (?:current map|Atlas) in Local Mapping\.\.\.\s*$'),
+    'imu_initialization_reset_requests': re.compile(r'^Not enough motion for initializing\. Reseting\.\.\.\s*$'),
+    'map_creation_messages': re.compile(r'^Creation of new map with id:\s*\d+\s*$'),
+}
 
 
 def parse_log(log_path, algo):
@@ -124,11 +132,13 @@ def parse_log(log_path, algo):
         "not instrumented" must be distinguishable from "genuinely zero".
         (Previously DPVO/Voxel-SVIO/all GNSS runners silently reported 0 loop
         closures / 0 tracking losses.)
-      * map_resets now uses the algorithm's OWN configured pattern. The old
+      * map_resets uses the algorithm's OWN configured pattern. The old
         code fetched it and then re-grepped ORB's "Map id:" regex regardless,
         so OV2SLAM's "RESET APPLIED" and OpenVINS' "Reset System" never
-        counted. For ORB-style "Map id: N" patterns the count is
-        (distinct ids - 1); for event-style patterns it is the match count.
+        counted. Legacy id-style patterns use (distinct ids - 1). ORB-SLAM3
+        uses explicit Tracking reset messages; LocalMapping resets, IMU init
+        requests and map creation messages are separate, overlapping counters.
+        These are message counts, not deduplicated failure episodes.
     """
     patterns = LOG_PATTERNS.get(algo, {})
 
@@ -147,9 +157,14 @@ def parse_log(log_path, algo):
         "event_semantics":   "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures",
         "log_available":     os.path.isfile(log_path),
     }
+    details = ORB_DETAIL_PATTERNS if algo == 'orbslam3' else {}
+    result.update({key: 0 if key in details else None for key in ORB_DETAIL_PATTERNS})
+    if details:
+        result['event_semantics'] += ('; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; '
+            'map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations')
 
     if not os.path.isfile(log_path):
-        for key in ("tracking_losses", "loop_closures", "map_resets"):
+        for key in ("tracking_losses", "loop_closures", "map_resets", *ORB_DETAIL_PATTERNS):
             result[key] = None
         return result
 
@@ -169,6 +184,11 @@ def parse_log(log_path, algo):
             else:
                 rel_t = None
                 line = raw_line
+            line = line.strip()
+
+            for key, pattern in details.items():
+                if pattern.search(line):
+                    result[key] += 1
 
             pat_init = patterns.get("init_success")
             if pat_init and pat_init.search(line) and not result["init_success"]:
@@ -251,4 +271,3 @@ def parse_resources(csv_path):
     except Exception as e:
         print(f"[eval] resource parse failed: {e}", file=sys.stderr)
         return None
-
