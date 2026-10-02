@@ -23,6 +23,7 @@ def review_identity(repo):
              'scripts/campaign/acceptance_ledger.py', 'scripts/campaign/protocol_status.py',
              'docs/protocol-review-20261002.md']
     paths += [p for p in ('docs/campaigns/horti-time-offset-findings-20261001.json',
+                          'docs/campaigns/zed-calibration-findings-20261002.json',
                           'docs/campaigns/gnss-lever-findings-20261001.json',
                           'docs/campaigns/reference-sources-20261001.json',
                           'docs/reference-review-20261001.md') if (repo/p).is_file()]

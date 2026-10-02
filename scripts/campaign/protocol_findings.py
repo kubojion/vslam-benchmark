@@ -54,6 +54,14 @@ def historical_findings(repo,relative,meta):
     mode,ds,seq,algo,_=Path(relative).parts
     issues = native_gnss_findings(repo, relative)
     records=meta.get('provenance',{}).get('artifacts',[])
+    zed_review=Path(repo)/'docs/campaigns/zed-calibration-findings-20261002.json'
+    if ds=='zed2i' and mode in ('vio','vio-lc') and zed_review.is_file():
+        reviewed=json.loads(zed_review.read_text()).get('attempts',{}).get(relative)
+        if reviewed:
+            calibration=verified_snapshot(repo,relative,records,reviewed['role'])
+            source=next((s for s in meta.get('provenance',{}).get('sources',[]) if s.get('role')=='algorithm'),{})
+            if calibration and calibration[1]==reviewed['config_sha256'] and source==reviewed['algorithm_source']:
+                issues.append({key:reviewed[key] for key in ('code','disposition','prerequisite','evidence')})
     role='camera_config' if algo=='airslam' else 'estimator_config'
     snapshots=[a for a in records if a.get('role')==role and a.get('snapshot')]
     if len(snapshots)!=1:return issues

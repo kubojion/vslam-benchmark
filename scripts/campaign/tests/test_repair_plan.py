@@ -7,7 +7,7 @@ import sys
 import pytest
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from build_future_manifest import action_category, qualification_prerequisites
+from build_future_manifest import action_category, qualification_prerequisites, resolved_prerequisites
 from build_repair_inventory import runtime_estimate
 from run_future_manifest import validate,execute,check_execution_environment,UNREVIEWED_OVERRIDES
 from update_todo_matrices import update
@@ -25,6 +25,18 @@ def test_true_failure_is_retained_but_invalid_config_is_replaced():
     assert action_category(cell,attempt,{'reuse_qualified':True})[0]=='required_rerun'
     attempt['numerical_status']='eval_failed';cell['algorithm']='okvis2'
     assert action_category(cell,attempt,{'reuse_qualified':True})[0]=='blocked'
+
+
+def test_prerequisite_resolution_requires_unchanged_concrete_evidence(tmp_path):
+    import hashlib
+    proof=tmp_path/'short-check.json';proof.write_text('{"native_exit":0}')
+    decision=dict(resolved_prerequisites=[dict(prerequisite='validate_fixed_path',
+        evidence=[dict(path=proof.name,sha256=hashlib.sha256(proof.read_bytes()).hexdigest())])])
+    assert resolved_prerequisites(tmp_path,decision)=={'validate_fixed_path'}
+    proof.write_text('{"native_exit":139}')
+    with pytest.raises(ValueError,match='stale'):resolved_prerequisites(tmp_path,decision)
+    decision['resolved_prerequisites'][0]['evidence']=[]
+    with pytest.raises(ValueError,match='requires'):resolved_prerequisites(tmp_path,decision)
 
 
 def test_unknown_reference_and_recorded_exit_are_concrete_prerequisites():

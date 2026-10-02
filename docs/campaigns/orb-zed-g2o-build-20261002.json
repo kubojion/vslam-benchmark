@@ -1,0 +1,178 @@
+{
+  "schema": 1,
+  "diagnosis": "g2o Release -march=native uses 32-byte Eigen alignment and larger public objects; ORB RelWithDebInfo uses generic 16-byte alignment",
+  "source": "src/ORB_SLAM3/Thirdparty/g2o",
+  "corrected_library": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+  "commands": [
+    "cmake -S g2o-source -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo",
+    "cmake --build build --parallel 4"
+  ],
+  "probes": [
+    {
+      "library": "/data/imoroz/vslam-benchmark/src/ORB_SLAM3/Thirdparty/g2o/lib",
+      "returncode": -11
+    },
+    {
+      "library": "/data/imoroz/vslam-benchmark/results/zed-preparation-20261002/orb-build/g2o-source/lib",
+      "returncode": 0
+    }
+  ],
+  "evidence": [
+    {
+      "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+      "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b"
+    },
+    {
+      "path": "results/zed-preparation-20261002/orb-build/generic.txt",
+      "sha256": "e34bb3f67e1f026ff5b41a3ac2384e03910102c0542950f8d8c90d2b639cc74c"
+    },
+    {
+      "path": "results/zed-preparation-20261002/orb-build/native.txt",
+      "sha256": "9b47802f6ab2f85aa058135d351b56bd8343c01c1517395dc95bd111cd54458d"
+    },
+    {
+      "path": "results/zed-preparation-20261002/orb-build/graph-abi-results.json",
+      "sha256": "a7e541a8cee3f809a15a0ca455ac65a4fbebad9dde98c43371f5bfb0e95ad4d2"
+    },
+    {
+      "path": "results/zed-preparation-20261002/orb-build/configure.log",
+      "sha256": "ec67f673ab3a06959b4842d9a545114a143eb95f2c9633d693df7423d9b05ff1"
+    },
+    {
+      "path": "results/zed-preparation-20261002/orb-build/build.log",
+      "sha256": "19e2299c2edac05aa7cd623bcf2c9a39d651f3d858673cde4f4bab393a7ce53b"
+    },
+    {
+      "path": "results/zed-preparation-20261002/orb-build/build/CMakeFiles/g2o.dir/flags.make",
+      "sha256": "7bcbafd329e6c52d58c2d14071e7eab9a187c8b9e0e282a1c1ecf93cbb32df0e"
+    },
+    {
+      "path": "src/ORB_SLAM3/lib/libORB_SLAM3.so",
+      "sha256": "412e64cdc8e93776c6ba2494a41741568c3fb7f83569ecec5172c5793343215f"
+    },
+    {
+      "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+      "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9"
+    },
+    {
+      "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+      "sha256": "aabd7355621df73575308d66c8484e142f528500fc0a9c0aad13efbc9ee43477"
+    },
+    {
+      "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+      "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0"
+    },
+    {
+      "path": "docs/upstream/orb-slam3-wait-for-workers.patch",
+      "sha256": "46cd64013943e0c9e38075ccf3dc57584cfb71fccfac424cf1c5e3bf00230cc1"
+    },
+    {
+      "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/build-recipe.json",
+      "sha256": "03b35ea5d9c21f6e9165700ad65da1af128c87dfc5572fa0ff248e0812b3f1b0"
+    }
+  ],
+  "copied_source_hashes": {
+    "README.txt": "234a825b5092cf414f86abdd69ffbcbb75f8101f6e16a5e50249fc9543153a54",
+    "CMakeLists.txt": "cd55c2a392bc4abf0c5788f13312b7dc2016d619b12be117ad2e05f5bafb1d63",
+    "license-bsd.txt": "968d80fdf6138ea9e3f9713392165ccdf5c5ab58c66c38abae1ef731f7077228",
+    "config.h.in": "0c491700c90db2f19d6fa69d0bb27ef3eb04466c87255a643df8a20cf5d56f30",
+    "config.h": "9b4f95e2b99a669cba9e51cb6e2537441934ca2731862c914123d2dd869b6f28",
+    "g2o/stuff/os_specific.c": "adf3d31295b89b071a50754f08061bdd0d27e172861576e93481eaee3ad28b57",
+    "g2o/stuff/property.cpp": "2b069a8987aaaad8342cfa54e3d35e9872683d36209abff603f8ddfff15392ea",
+    "g2o/stuff/timeutil.cpp": "aaf8fd31707af6089766065be1824c6b3be79c3f21b41ff33e25d65d4c7cce34",
+    "g2o/stuff/timeutil.h": "4f540b5adcca2bc54ffbf2ab8fe575cde9dd8016742ecc2028e233290b186a38",
+    "g2o/stuff/string_tools.cpp": "5cb86840aee0a6bcadcd1187c9813b73c699bc9b17b6188b30e7b96b4aca263d",
+    "g2o/stuff/misc.h": "3dec7ae114c44b399adf0b892ece97923ddef1a3ab410287e80b25ef8c264e2e",
+    "g2o/stuff/color_macros.h": "5e253c4401ed28fe6fcad7ed5bc17d9b7d5c93c685adbd2e4f13cfed6596b44f",
+    "g2o/stuff/property.h": "52ad769e4f3d1e5a61512013e4f8a057f7990913daae79ede5707806e1a0d557",
+    "g2o/stuff/os_specific.h": "7e0142edaee894fdf1e256babe975b0deed30ff7caec45d6fabcdb2fc5260796",
+    "g2o/stuff/macros.h": "9d11bfd7cb5966164ecf0eab28da90c387d71a406257bc7213859dd3a0fbbc42",
+    "g2o/stuff/string_tools.h": "3d36e6b6132d1ef686a212d7784727aafc377b607b1f311af70d661d93c76493",
+    "g2o/solvers/linear_solver_dense.h": "3f7d758f6bc04c743301bc2c8cdefaa467b321a7bf89f3699f3804c2beb0f7d0",
+    "g2o/solvers/linear_solver_eigen.h": "a8248f48bf71dbf6f0148db6d959239417eea270e285f88a9bff8a8ada56ef62",
+    "g2o/core/sparse_block_matrix_diagonal.h": "e31698bb9856b178446f4d6bab58ab4b2df39224f0fa17b626214ada0c983018",
+    "g2o/core/hyper_graph.cpp": "4533fad0ebc49ab52931c16335c50e6986cbf1e21e125f2dd9ab78c7653b022b",
+    "g2o/core/block_solver.h": "f5770bc30601b5a4edf9c1fa7024bad0dfa18a64a4d8f35c254615e6369b75f6",
+    "g2o/core/hyper_dijkstra.h": "004c7f33786a8848781f3d9fafd0d13640969877269730f10aea16ac36553521",
+    "g2o/core/marginal_covariance_cholesky.cpp": "dabb811cc88f99f2b15abc04649e1b2deff36bf910a49b53fe5ce6d4c5646fe6",
+    "g2o/core/parameter.cpp": "adf882c9790e3bf00d6e7ceea58903f8a23fc76865b6f2fefe31fd4ff146e6b6",
+    "g2o/core/optimization_algorithm.h": "8efd28639e17cbb106f282e7487bec28d21a3bc1e03ceae39f49e5b76ad226dd",
+    "g2o/core/sparse_block_matrix_test.cpp": "e5d24d09037ef7618719f09d2241469b293f36362d09e4409dacfb3815354761",
+    "g2o/core/sparse_block_matrix.hpp": "2de7df4ff7f1b4eef1cdaa929c4f5cf6ef3bdb26fc4c2ef4c890ad8ce22ea1b4",
+    "g2o/core/solver.h": "8a3d8433ddfca1f5852969cf90e03c7fa42148dcd1866f874ec4ffcf3c5e8cd8",
+    "g2o/core/base_vertex.hpp": "05fcda66893af6ca2310ab5c5ca69548ca96c588abcfe44c7d04bce07b79404a",
+    "g2o/core/factory.cpp": "802f88f0ef981ef4c4c0f1f3f900d956cc72e5751db9738f4257c51dd59bf79c",
+    "g2o/core/sparse_optimizer.h": "2d2b79e84c60f1478c8d4bcc40cab77cb9a7a51dd3da4fff4e9df72cd24a47a4",
+    "g2o/core/optimization_algorithm_levenberg.cpp": "dcb7768aa5c442c9092c431725d4d5f57089097490740ae3cd570e9976ebaf0e",
+    "g2o/core/optimization_algorithm_property.h": "af0f92b8fa924aa6a675d0550ead9bde0de0ef92e1f860fe78d017995f8485d7",
+    "g2o/core/matrix_structure.h": "1d508f74a94466af8e0f6f76bd7b44181df61112f0de37fc645d76fb84dd804f",
+    "g2o/core/optimization_algorithm_dogleg.h": "7e53808c560e0a09705bdbe50c665ee77716d22cbcc93356049a945561b67b3c",
+    "g2o/core/sparse_block_matrix_ccs.h": "5eb5feb615eaa0d31b6f945a5e5a9ef948ab1502d425187faa021ed9d3fb51cf",
+    "g2o/core/base_unary_edge.h": "5d5fb8a7faa5ecb26a9ca90d5a8280643d55c15c2808061afed39fa5721a26d2",
+    "g2o/core/optimization_algorithm_with_hessian.cpp": "9d4403bc65ac6e00cb74289c7469815f34576a1d95d5e4963bb9a9389f48aa02",
+    "g2o/core/optimization_algorithm_gauss_newton.h": "1a2227179e9aeeed0e66aa8c054219b6da1999e6322d8666811afa7e467efa47",
+    "g2o/core/parameter_container.cpp": "119e78e3f46de632d0f7b2cde59e4777770456c2e8cb4f00eca47d5ae4fafba4",
+    "g2o/core/jacobian_workspace.cpp": "45098fc5d4178239f2d77c2d341b0d6ba981c3e6bc53cbc0da041ddc9723c8a8",
+    "g2o/core/robust_kernel_factory.cpp": "bbf2aff4980c691dfb8c3135f2602c073093d461160405557f719c498f982ab8",
+    "g2o/core/robust_kernel.cpp": "42e2bef2c0e1b65c4d5936937fe76dc5a2695053a288c14bae9173a2f2ec5c9e",
+    "g2o/core/block_solver.hpp": "4bd95bc0ba4d03881e0d0537be9dc68e3b2648e69824c0e250fb92eecf2b996e",
+    "g2o/core/eigen_types.h": "b5ae33ea20d5ddd9620c17d7d4269c505f0a17c444c530cb516a9b07e2196011",
+    "g2o/core/robust_kernel.h": "dffa24dd6025ad18096094f3e7819d11b9e4f185ae61e6cfc8d64b3fea67437f",
+    "g2o/core/hyper_dijkstra.cpp": "f686f06917538fe887dc6136d05fcfb4f04623076cddf583202b9b346b6cad64",
+    "g2o/core/marginal_covariance_cholesky.h": "05bf4d1d60e98e565713681f8fa229f47af0810745ba662f6a2d542e92bb1067",
+    "g2o/core/optimization_algorithm_levenberg.h": "fd562b60554a23e4167fc43c9ec1b42942881b88f7f12facbd3051f61f46d8f2",
+    "g2o/core/robust_kernel_impl.h": "6be2f1d8eafe2d930f8ef351a111840f931cc8c0369a2fae0eb93e0b34c1ed6f",
+    "g2o/core/openmp_mutex.h": "2b760a5d810c49acf4b9fe02cd2aaaafb61c7966f7b83298438fbba24c5bb2fb",
+    "g2o/core/estimate_propagator.cpp": "6ec88190e3430acbdb52a0e4c7bc91bfcda3b6af7fdc6f2522a3559b0502d4e6",
+    "g2o/core/linear_solver.h": "6d5e3b3b2d82b4b5179295dc8be790ad59c41227b0437813020ccdc87569d7f3",
+    "g2o/core/base_unary_edge.hpp": "dd727ec8e2c191710d2cc862f5796bd0a2aa407daa8bcd11ea18419b8ea7a795",
+    "g2o/core/hyper_graph_action.cpp": "f706feea6e771bf6e5e4edb5cb22c8719ef3d10ccaac74b77096ae2e676ab16a",
+    "g2o/core/base_vertex.h": "f956ec6d86e3e4b43228ab7bc57810b41cb82062e7b46541399159706e99a97b",
+    "g2o/core/creators.h": "2fb284d0e94250e00ba55e8011b917612172c6d1584b4689ff4f4eabe932e6f1",
+    "g2o/core/factory.h": "63d33b8d51720936382294cdc721efe6bfc22d2f67264996a00ae62e6fccb785",
+    "g2o/core/optimization_algorithm_with_hessian.h": "59d0c50f6fc1773ad2c42c17d91fc64bcbc4aca9694e0e25839daf52dadc594a",
+    "g2o/core/robust_kernel_impl.cpp": "1efeeaac21f96127bb839a9ae6bfab880e7b0c00b45ae82b8f149cfcb9942778",
+    "g2o/core/matrix_operations.h": "825b2138fd65694e06db91f55715e61f1be6b05f96cb92ff796ad0c3cec8fa45",
+    "g2o/core/base_binary_edge.h": "1e396458fb92548a7079d56e6179dc86fd19748541161c198b280016f68b9f37",
+    "g2o/core/batch_stats.h": "cc678452dd908098433152149dcafe3eba1c62c4d98338d1daa7ab248900d416",
+    "g2o/core/hyper_graph_action.h": "40ffdc043c30ad83533cb21ee5549ff88e07b216e73a920fb90501649cdf73fa",
+    "g2o/core/batch_stats.cpp": "556cc47ab9edf677b55b330625988454c058f59a67d2fc4c011f3f605410ddef",
+    "g2o/core/optimization_algorithm_dogleg.cpp": "1c43941163594d377676a84824299e445151d53b01b5bef20fe19ad811e897ef",
+    "g2o/core/optimization_algorithm.cpp": "04734f6c92c324e4df59229dbe59973fdc8f9c8deea3492b8cf064858334958a",
+    "g2o/core/optimizable_graph.h": "fcb528ed12c302e4e547829a70905b4445523c4a4e1ad77e8a470a1f74af40a6",
+    "g2o/core/optimization_algorithm_gauss_newton.cpp": "059bda2ad528c579c5ccbcb6263ebcb05c61be5cd9c9a9ed300c83657aa634c1",
+    "g2o/core/sparse_block_matrix.h": "fe37f3a604dd8851aa709291d00ce4db0d9a914d149e1fd8f6afc38549967ec9",
+    "g2o/core/cache.h": "2c5a42aff3b539ecb351173e2ca42e718531aedb5b623717ecd60ed57b00da32",
+    "g2o/core/robust_kernel_factory.h": "8e74c6e53284ff217668eb72cf55d89a63c4506ca5fa12415ff41fe1e1364afc",
+    "g2o/core/base_edge.h": "683ccd95dc78be9db39fd1b277ef22bf7e8d3cd4792e3acdf9d813896a5e40e2",
+    "g2o/core/base_multi_edge.h": "c42d03957ec4ec139b34eab278df6557d422393644d293e6f25df1452c35d299",
+    "g2o/core/optimizable_graph.cpp": "442c933629684f835af8e8c2b8411a7f6ab056fa3b15619c5508e1753abc2f86",
+    "g2o/core/optimization_algorithm_factory.h": "45fb0b89dd4c8379bdc47157188d724749828453cb1de3238762d64e00ed2011",
+    "g2o/core/base_multi_edge.hpp": "9aac7a9195d5ee6cac3124bad9a115def5fa00e86e82d6b7e513f28aeddacbe2",
+    "g2o/core/matrix_structure.cpp": "b1afe72b3af1ceecc133465b5f663a0332ce86db8d177b24627612496ea62aeb",
+    "g2o/core/base_binary_edge.hpp": "9655a57a1fe518bb372fb5265acea03543dc0707697aac9c77feef6c59c0856c",
+    "g2o/core/solver.cpp": "d9b969dfc280f5ef4cc882304213b64b004ad70669824d582edcbe0da3cf67dd",
+    "g2o/core/cache.cpp": "c463c19d3bfe5f333be2a4d62ccee87145efdca2dc2def774958c7b13bb4ac2f",
+    "g2o/core/parameter.h": "3c6888ca867e952606973aad108e96bd4e2146748d6ae9ba368ac6368a92d49c",
+    "g2o/core/optimization_algorithm_factory.cpp": "4719602c2fcaa107888694aff57fe4e5777e3ddcf642adceb7a9bda23bffb50f",
+    "g2o/core/sparse_optimizer.cpp": "7426fbe2f617654ff31acb52c3bd8a3bb0532cb89c71f58318bdd1d5b9c0125d",
+    "g2o/core/hyper_graph.h": "398f0a3dbb5859c81c34780c4b21c7f103b50bc1ba8e48f4d1c561c882855e03",
+    "g2o/core/estimate_propagator.h": "a1d536ea84b1e0173ea7f00e54eea336581e2f303987485410c54d3d45aed682",
+    "g2o/core/jacobian_workspace.h": "e93cd1b3caa1f4770ddd0df03ca25a490f46132f2a67d365120d996f230c1c49",
+    "g2o/core/parameter_container.h": "fd8240eeb49957aff6036c41c38423ff4327d45c8cafb167159a3b5ef3de7015",
+    "g2o/types/se3quat.h": "13482d9d406651871f732d19cb483944f03b98967442a840e885d46b6bb5694b",
+    "g2o/types/types_six_dof_expmap.cpp": "4a8d225b5bbfecbeda90fb4990fb8f777c69813ec293ee9b06b8685773ff1653",
+    "g2o/types/types_six_dof_expmap.h": "244a22fcba8882a64869760e0658262328d8b91ecf421e3aeeb012b2310cbf3d",
+    "g2o/types/types_sba.h": "7cb71356eafa4a7b14f641a903763b60968da4a334080832f2aa1efb491e3646",
+    "g2o/types/types_seven_dof_expmap.h": "2f055ae0c5e3502a67f8eca70561db78d825600b56963235a8cb270ceebb858d",
+    "g2o/types/types_sba.cpp": "39c3f848a148756dd4ac764a2a3192c259445e941d9af073910a9f758718b627",
+    "g2o/types/se3_ops.h": "74d316a87d2da4174264d6a871e2622e9381d4cad9651ec5210afacf390d7014",
+    "g2o/types/se3mat.h": "e6735e258b6d75587a34839c2dfeff4d1cf24056088eb606c466ed93a1c5df4a",
+    "g2o/types/types_seven_dof_expmap.cpp": "731d1e5ee02e70970dfe6829a419e33c3375cdafbc160c40dde32e1801111fdf",
+    "g2o/types/se3mat.cpp": "c80676a6c255b5d44e1e90691d8c507d1c1306cd67be02c6c48db11258d5e1fd",
+    "g2o/types/sim3.h": "e6819adfba5e6323d4c101ebd413764f6bb49b46d2902f75f322a4760c5b2d39",
+    "g2o/types/se3_ops.hpp": "227eaaa4e3a959b285f0bf62cdb9debecdf93e0cf80e44c9bc9fbcf9aed171e6"
+  },
+  "shutdown_library": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+  "shutdown_repair": "Wait for viewer, local mapper, loop closer and any recorded global BA completion before final export and process exit; algorithm settings unchanged."
+}

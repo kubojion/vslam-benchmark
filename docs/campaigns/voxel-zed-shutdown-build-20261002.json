@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "source_commit": "eac6b87d0f925b96ddd5c5c6b0dcda3d36c7ab5f",
+  "source_checkout_modified": false,
+  "original_prefix": "/root/catkin_ws/devel",
+  "zed_prefix": "/root/catkin_ws_shutdown_20261002/devel",
+  "repair": "Destroy stereo synchronizers while their subscriber signals still exist; preserve single-threaded processing and all estimator parameters.",
+  "build_command": "source /opt/ros/noetic/setup.bash; catkin_make -C /root/catkin_ws_shutdown_20261002 -DCMAKE_BUILD_TYPE=Release -j4",
+  "evidence": [
+    {
+      "path": "docs/upstream/voxel-svio-subscriber-lifetime.patch",
+      "sha256": "4fa42f0101be454c8d9228e93871c2b0dcfb6972e65ffafdb2d0b23f6a455dc6"
+    },
+    {
+      "path": "results/zed-preparation-20261002/voxel-build/build.log",
+      "sha256": "b893ed1caec13a5c419e46717b6731d4933eb3e320a811513511f5344da042a5"
+    },
+    {
+      "path": "results/zed-preparation-20261002/voxel-build/preserved.json",
+      "sha256": "c970e453d3cc09c167d124af4f846321ff4adb08b9728d167984613857f050b1"
+    },
+    {
+      "path": "results/zed-preparation-20261002/voxel-build/stereoVio.h.corrected",
+      "sha256": "33475d7dec2ec091264dc0bd1cfcf360c6f57a554204f2acc61bb19c77ca8d27"
+    },
+    {
+      "path": "results/zed-preparation-20261002/voxel-build/stereoVio.h.original",
+      "sha256": "82a6f6b52c548e90ae6110d6a04ffa7f4d2e8c68cdcf9d6632937d2b80529d02"
+    },
+    {
+      "path": "results/zed-preparation-20261002/voxel-build/vio_node.corrected",
+      "sha256": "8bfac6b64530bfd91376451ad5c217e5a80295d133eb0df0a0d14167e2fe9bc3"
+    },
+    {
+      "path": "results/zed-preparation-20261002/voxel-build/vio_node.original",
+      "sha256": "6e13028122b6c5de65363635fce658e82a630759603a22a3118d204a938717ef"
+    }
+  ]
+}

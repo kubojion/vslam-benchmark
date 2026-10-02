@@ -41,6 +41,10 @@ OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/voxel_svio/run${RUN_ID}"
 LOG="$WS/logs/${DATASET}_${SEQ}_voxel_svio_${RUN_TYPE}_run${RUN_ID}.log"
 
 CONTAINER="voxel_svio"
+VOXEL_PREFIX=/root/catkin_ws/devel
+if [[ "$DATASET" == zed2i ]]; then
+    VOXEL_PREFIX=/root/catkin_ws_shutdown_20261002/devel
+fi
 source "$WS/scripts/run/_owned_process.sh"
 OUT_CONT="/results/$RUN_TYPE/$DATASET/$SEQ/voxel_svio/run${RUN_ID}"
 
@@ -65,6 +69,19 @@ CFG_CONT="/benchmark_configs/voxel_svio/$(basename "$CFG_HOST")"
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
 echo "[voxel_svio] $DATASET/$SEQ run=${RUN_ID} -> $OUT_DIR" | tee "$LOG"
+PROV_ARGS=(
+    --artifact "estimator_config=$CFG_HOST"
+    --source "algorithm=$WS/src/voxel_svio"
+    --param "process_isolation=attempt_token_private_ros_master"
+    --param "playback_rate=1.0"
+    --param "native_prefix=$VOXEL_PREFIX"
+    --param "abort_backtrace_diagnostic=${VOXEL_SVIO_BACKTRACE:-0}"
+    --container "$CONTAINER"
+)
+if [[ "$DATASET" == zed2i ]]; then
+    PROV_ARGS+=(--artifact "shutdown_source_patch=$WS/docs/upstream/voxel-svio-subscriber-lifetime.patch"
+        --artifact "native_build_review=$WS/docs/campaigns/voxel-zed-shutdown-build-20261002.json")
+fi
 
 # ---- Ensure Docker container is running -----------------------------------
 if ! docker ps --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
@@ -91,6 +108,7 @@ cleanup() {
     owned_stop player || true
     owned_stop node || true
     owned_stop roscore || true
+    [[ ! -f "$LOG" ]] || cp "$LOG" "$OUT_DIR/run_log.txt"
 }
 trap cleanup EXIT
 trap 'exit 130' INT
@@ -125,44 +143,60 @@ done
 # Use a local launch wrapper that loads our config (the upstream launch file
 # loads its bundled config/euroc.yaml). We pass the config path via rosparam
 # load on the command line instead.
+NODE_COMMAND="exec $VOXEL_PREFIX/lib/voxel_svio/vio_node"
+if [[ "${VOXEL_SVIO_BACKTRACE:-0}" == 1 ]]; then
+    NODE_COMMAND="exec env LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so SEGFAULT_SIGNALS=abrt $VOXEL_PREFIX/lib/voxel_svio/vio_node"
+fi
 owned_run node bash -c "
     export ROS_MASTER_URI='$ROS_MASTER_URI'
     set -e
     source /opt/ros/noetic/setup.bash &&
-    source /root/catkin_ws/devel/setup.bash &&
+    source $VOXEL_PREFIX/setup.bash &&
     rosparam load $CFG_CONT &&
     rosparam set /output_path '$OUT_CONT/native' &&
-    rosrun voxel_svio vio_node
-" 2>&1 | tee -a "$LOG" &
+    $NODE_COMMAND
+" >> "$LOG" 2>&1 &
 NODE_PID=$!
 
 # Give the node a moment to start subscribing.
 sleep 3
 
 # ---- Run data player inside container -------------------------------------
+set +e
 owned_run player bash -c "
     export ROS_MASTER_URI='$ROS_MASTER_URI'
     source /opt/ros/noetic/setup.bash &&
     exec python3 $PLAYER_HOST $DATAROOT_CONT --rate 1.0 --start-delay 1.0 --end-wait 3.0 \
         --stats-out /results/$RUN_TYPE/$DATASET/$SEQ/voxel_svio/run${RUN_ID}/transport_stats.json
 " 2>&1 | tee -a "$LOG"
+PLAYER_RC=${PIPESTATUS[0]}
+set -e
 
 # ---- Stop vio_node and roscore --------------------------------------------
 echo "[voxel_svio] data player done; stopping vio_node ..." | tee -a "$LOG"
 owned_stop node
-wait "$NODE_PID" 2>/dev/null || true
+set +e
+wait "$NODE_PID"
+NODE_RC=$?
+set -e
 owned_stop roscore
 wait "$ROSCORE_PID" 2>/dev/null || true
 
 END=$(date +%s.%N)
 finish_resource_window "$OUT_DIR" "$MONPID"
 MONPID=""
+cp "$LOG" "$OUT_DIR/run_log.txt"
 
 # ---- Collect trajectory ---------------------------------------------------
 POSE_HOST="$OUT_DIR/native/pose.txt"
 if [[ ! -s "$POSE_HOST" ]]; then
+    FAILURE_RC=$NODE_RC
+    (( FAILURE_RC != 0 )) || FAILURE_RC=$PLAYER_RC
+    (( FAILURE_RC != 0 )) || FAILURE_RC=1
+    record_failed_run_meta "$OUT_DIR/run_meta.json" voxel_svio "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" "$FAILURE_RC" "no saved trajectory; player_exit=$PLAYER_RC native_exit=$NODE_RC" "${PROV_ARGS[@]}"
     echo "[voxel_svio] ERROR: $POSE_HOST is missing or empty" | tee -a "$LOG"
-    exit 1
+    exit "$FAILURE_RC"
 fi
 cp "$POSE_HOST" "$OUT_DIR/trajectory.txt"
 [[ -f "$OUT_DIR/native/parameter_list.txt" ]] && \
@@ -201,6 +235,15 @@ with open(traj_path, 'w') as fh:
 print(f"[voxel_svio] shifted trajectory timestamps by -{shift}s (cam-IMU offset)")
 PYEOF
 
+# Preserve any exported trajectory for recovery, but never hide native failure.
+if (( NODE_RC != 0 || PLAYER_RC != 0 )); then
+    FAILURE_RC=$NODE_RC
+    (( FAILURE_RC != 0 )) || FAILURE_RC=$PLAYER_RC
+    record_failed_run_meta "$OUT_DIR/run_meta.json" voxel_svio "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" "$FAILURE_RC" "player_exit=$PLAYER_RC native_exit=$NODE_RC; retained exported trajectory" "${PROV_ARGS[@]}"
+    exit "$FAILURE_RC"
+fi
+
 DUR=$(python3 -c "print($END-$START)")
 NFR=$(wc -l < "$OUT_DIR/trajectory.txt")
 python3 -c "
@@ -215,10 +258,6 @@ print(json.dumps({
 enrich_run_meta "$OUT_DIR/run_meta.json" \
     --measurement-mode transport \
     --transport-stats "$OUT_DIR/transport_stats.json" \
-    --artifact "estimator_config=$CFG_HOST" \
-    --source "algorithm=$WS/src/voxel_svio" \
-    --param "process_isolation=attempt_token_private_ros_master" \
-    --param "playback_rate=1.0" \
-    --container "$CONTAINER"
+    --process-exit-code "$NODE_RC" "${PROV_ARGS[@]}"
 
 echo "[voxel_svio] done (run ${RUN_ID})" | tee -a "$LOG"

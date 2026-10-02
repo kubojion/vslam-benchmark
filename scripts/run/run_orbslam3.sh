@@ -74,6 +74,25 @@ CFG="$EFFECTIVE_CFG"
     exit 2
 }
 mkdir -p "$WS/logs"
+G2O_COMPAT=""
+ORB_SHARED=""
+if [[ "$DATASET" == zed2i ]]; then
+    G2O_COMPAT="$WS/results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so"
+    ORB_SHARED="$WS/results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so"
+    python3 - "$WS" "$G2O_COMPAT" <<'PY'
+import hashlib, json, sys
+from pathlib import Path
+root, library = map(Path, sys.argv[1:])
+record = json.loads((root/'docs/campaigns/orb-zed-g2o-build-20261002.json').read_text())
+native = [r for r in record['evidence'] if r['path'] in (str(library.relative_to(root)), record['shutdown_library'])
+          or r['path'].startswith('src/ORB_SLAM3/')]
+if len(native) != 5:
+    raise SystemExit('incomplete reviewed ORB/g2o build identity')
+for item in native:
+    if hashlib.sha256((root/item['path']).read_bytes()).hexdigest() != item['sha256']:
+        raise SystemExit('ORB/g2o build changed; revalidate ABI before estimation: '+item['path'])
+PY
+fi
 prepare_fresh_run_dir "$OUT_DIR"
 CONTAINER=""
 source "$WS/scripts/run/_owned_process.sh"
@@ -114,11 +133,17 @@ if [[ "${ORBSLAM3_GDB:-0}" == "1" ]]; then
         -ex "set pagination off"
         -ex "set print thread-events off"
         -ex run
-        -ex "thread apply all backtrace"
+        -ex "backtrace 30"
+        -ex "thread apply all backtrace 20"
         --args "${ESTIMATOR_COMMAND[@]}"
     )
     echo "[orbslam3] diagnostic mode: capturing all-thread backtrace with gdb" \
         | tee -a "$LOG_GLOBAL"
+fi
+if [[ -n "$G2O_COMPAT" ]]; then
+    # The original Release g2o has a different Eigen ABI from libORB_SLAM3.
+    # Override it only for this reviewed ZED cohort; preserve old native bytes.
+    ESTIMATOR_COMMAND=(env "LD_LIBRARY_PATH=$(dirname "$ORB_SHARED"):$(dirname "$G2O_COMPAT"):$HOME/.local/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" "${ESTIMATOR_COMMAND[@]}")
 fi
 
 # Resource monitor: GPU + CPU + RAM sampled every 1 s
@@ -165,6 +190,13 @@ PROV_ARGS=(
     --param "pacing_policy=dataset_timestamps"
     --param "gdb_diagnostic=${ORBSLAM3_GDB:-0}"
 )
+if [[ -n "$G2O_COMPAT" ]]; then
+    PROV_ARGS+=(--binary "g2o_compatible=$G2O_COMPAT"
+        --binary "estimator_shared=$ORB_SHARED"
+        --artifact "g2o_build_review=$WS/docs/campaigns/orb-zed-g2o-build-20261002.json"
+        --artifact "shutdown_source_patch=$WS/docs/upstream/orb-slam3-wait-for-workers.patch"
+        --param "g2o_abi_policy=generic_16byte_eigen_20261002")
+fi
 TRAJ_SRC="f_${DATASET}_${SEQ}_orbslam3.txt"
 PROCESS_ARGS=(--process-exit-code "$ORB_RC")
 POST_SAVE_NONZERO=false

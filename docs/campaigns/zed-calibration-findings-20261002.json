@@ -1,0 +1,231 @@
+{
+  "schema": 1,
+  "attempts": {
+    "vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run1": {
+      "role": "estimator_config",
+      "config_sha256": "e6c05edc09643ff8b7e697eb60d396b8c34bc2c248aad17a01715b6a9eaf6058",
+      "code": "zed_factory_camera_imu_rotation_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort",
+      "evidence": [
+        "docs/zed-preparation-20261002.md",
+        "docs/campaigns/zed-sdk-calibration-20261002.json",
+        "docs/campaigns/zed-physical-calibration-20261002.json"
+      ],
+      "rotation_difference_deg": 0.6750691026184888,
+      "translation_difference_m": 0.00019011734162370123,
+      "algorithm_source": {
+        "commit": "e4b3ebd0c838cec6ea5707f8f36353fe8dfecf15",
+        "diff_sha256": "fda392981da18900f320f09d356c56f5ca3b4d773e3135921d40eb0bd9f8853a",
+        "dirty": true,
+        "path": "src/ORB_SLAM3",
+        "role": "algorithm"
+      }
+    },
+    "vio/zed2i/field1_110426_full_10fps_q90/okvis2/run1": {
+      "role": "estimator_config",
+      "config_sha256": "12ecc5a20bd6770c4b585a54d79b982acaaa40d937e8c25a7463a25a295badc1",
+      "code": "zed_factory_camera_imu_rotation_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort",
+      "evidence": [
+        "docs/zed-preparation-20261002.md",
+        "docs/campaigns/zed-sdk-calibration-20261002.json",
+        "docs/campaigns/zed-physical-calibration-20261002.json"
+      ],
+      "rotation_difference_deg": 0.6750691026184888,
+      "translation_difference_m": 0.00019011734162370123,
+      "algorithm_source": {
+        "commit": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2",
+        "role": "algorithm"
+      }
+    },
+    "vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run1": {
+      "role": "estimator_config",
+      "config_sha256": "fe84b55d2b11424a6de71e27167d9aa42e0f1aa52e8df8d684951fee647b8f8f",
+      "code": "zed_factory_camera_imu_rotation_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort",
+      "evidence": [
+        "docs/zed-preparation-20261002.md",
+        "docs/campaigns/zed-sdk-calibration-20261002.json",
+        "docs/campaigns/zed-physical-calibration-20261002.json"
+      ],
+      "rotation_difference_deg": 0.6750691026184888,
+      "translation_difference_m": 0.00019011734162370123,
+      "algorithm_source": {
+        "commit": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2x",
+        "role": "algorithm"
+      }
+    },
+    "vio/zed2i/field1_110426_full_10fps_q90/airslam/run1": {
+      "role": "camera_config",
+      "config_sha256": "05058d62abac2fceb764f937ad8578604dc8df34630f330dea6a167f49923bd2",
+      "code": "zed_factory_camera_imu_rotation_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort",
+      "evidence": [
+        "docs/zed-preparation-20261002.md",
+        "docs/campaigns/zed-sdk-calibration-20261002.json",
+        "docs/campaigns/zed-physical-calibration-20261002.json"
+      ],
+      "rotation_difference_deg": 0.6750691026184888,
+      "translation_difference_m": 0.00019011734162370123,
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      }
+    },
+    "vio/zed2i/field1_110426_full_10fps_q90/basalt/run1": {
+      "role": "camera_calibration",
+      "config_sha256": "b734b791281f9defd5db59317ea39c5aa7b6e23b1bb816b8d305a4620d7a45d9",
+      "code": "zed_factory_camera_imu_rotation_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort",
+      "evidence": [
+        "docs/zed-preparation-20261002.md",
+        "docs/campaigns/zed-sdk-calibration-20261002.json",
+        "docs/campaigns/zed-physical-calibration-20261002.json"
+      ],
+      "rotation_difference_deg": 0.6750691026184888,
+      "translation_difference_m": 0.00019011734162370123,
+      "algorithm_source": {}
+    },
+    "vio/zed2i/field1_110426_full_10fps_q90/openvins/run1": {
+      "role": "camera_imu_calibration",
+      "config_sha256": "082b76c71f4403049eb17992d827dc7a0095bc54e41f81b8a780c422ea35407f",
+      "code": "zed_factory_camera_imu_rotation_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort",
+      "evidence": [
+        "docs/zed-preparation-20261002.md",
+        "docs/campaigns/zed-sdk-calibration-20261002.json",
+        "docs/campaigns/zed-physical-calibration-20261002.json"
+      ],
+      "rotation_difference_deg": 0.6750691026184888,
+      "translation_difference_m": 0.00019011734162370123,
+      "algorithm_source": {
+        "commit": "289bca34d522e92aa42f4fdaea5534156292c485",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/open_vins",
+        "role": "algorithm"
+      }
+    },
+    "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run1": {
+      "role": "estimator_config",
+      "config_sha256": "f19780bade9a661ca39522f006b3a7e89d3b556623d15664b69742241a0d1bfd",
+      "code": "zed_factory_camera_imu_rotation_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort",
+      "evidence": [
+        "docs/zed-preparation-20261002.md",
+        "docs/campaigns/zed-sdk-calibration-20261002.json",
+        "docs/campaigns/zed-physical-calibration-20261002.json"
+      ],
+      "rotation_difference_deg": 0.6750691026184888,
+      "translation_difference_m": 0.00019011734162370123,
+      "algorithm_source": {
+        "commit": "eac6b87d0f925b96ddd5c5c6b0dcda3d36c7ab5f",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/voxel_svio",
+        "role": "algorithm"
+      }
+    },
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1": {
+      "role": "estimator_config",
+      "config_sha256": "30612030fbe4a364bf7cb904d416ea11049f656d38d62853a2946c02537e0b93",
+      "code": "zed_factory_camera_imu_rotation_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort",
+      "evidence": [
+        "docs/zed-preparation-20261002.md",
+        "docs/campaigns/zed-sdk-calibration-20261002.json",
+        "docs/campaigns/zed-physical-calibration-20261002.json"
+      ],
+      "rotation_difference_deg": 0.6750691026184888,
+      "translation_difference_m": 0.00019011734162370123,
+      "algorithm_source": {
+        "commit": "e4b3ebd0c838cec6ea5707f8f36353fe8dfecf15",
+        "diff_sha256": "fda392981da18900f320f09d356c56f5ca3b4d773e3135921d40eb0bd9f8853a",
+        "dirty": true,
+        "path": "src/ORB_SLAM3",
+        "role": "algorithm"
+      }
+    },
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run1": {
+      "role": "estimator_config",
+      "config_sha256": "5472272dd7f68d102e1d1dafd6aaabe7ea573a6958f43ba1be516b47faf84c6a",
+      "code": "zed_factory_camera_imu_rotation_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort",
+      "evidence": [
+        "docs/zed-preparation-20261002.md",
+        "docs/campaigns/zed-sdk-calibration-20261002.json",
+        "docs/campaigns/zed-physical-calibration-20261002.json"
+      ],
+      "rotation_difference_deg": 0.6750691026184888,
+      "translation_difference_m": 0.00019011734162370123,
+      "algorithm_source": {
+        "commit": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2",
+        "role": "algorithm"
+      }
+    },
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run1": {
+      "role": "estimator_config",
+      "config_sha256": "235387a9cf0516b6fd6635f99121c946208c820a2695f0af90d38e43e4c17eb4",
+      "code": "zed_factory_camera_imu_rotation_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort",
+      "evidence": [
+        "docs/zed-preparation-20261002.md",
+        "docs/campaigns/zed-sdk-calibration-20261002.json",
+        "docs/campaigns/zed-physical-calibration-20261002.json"
+      ],
+      "rotation_difference_deg": 0.6750691026184888,
+      "translation_difference_m": 0.00019011734162370123,
+      "algorithm_source": {
+        "commit": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+        "diff_sha256": "e203584bf587b654b0c3f12a8c1a9b8d9e9d5ee29d0b3b4ebe6ae1de4f48670c",
+        "dirty": true,
+        "path": "src/okvis2x",
+        "role": "algorithm"
+      }
+    },
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1": {
+      "role": "camera_config",
+      "config_sha256": "05058d62abac2fceb764f937ad8578604dc8df34630f330dea6a167f49923bd2",
+      "code": "zed_factory_camera_imu_rotation_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort",
+      "evidence": [
+        "docs/zed-preparation-20261002.md",
+        "docs/campaigns/zed-sdk-calibration-20261002.json",
+        "docs/campaigns/zed-physical-calibration-20261002.json"
+      ],
+      "rotation_difference_deg": 0.6750691026184888,
+      "translation_difference_m": 0.00019011734162370123,
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      }
+    }
+  },
+  "claim": "Historical native outcomes retained, but all affected attempts used the nominal residual rotation instead of the recovered serial calibration. Evaluation cannot repair estimator fusion."
+}

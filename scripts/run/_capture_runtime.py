@@ -65,6 +65,8 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
         for p in ('Examples/Stereo/stereo_euroc','Examples/Stereo-Inertial/stereo_inertial_euroc',
                   'Vocabulary/ORBvoc.txt','lib/libORB_SLAM3.so','Thirdparty/DBoW2/lib/libDBoW2.so','Thirdparty/g2o/lib/libg2o.so'):
             host('src/ORB_SLAM3/'+p)
+        host('results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so')
+        host('results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so')
     elif algorithm in ('okvis2','okvis2x'):
         for p in ('okvis_app_synchronous','small_voc.yml.gz'):host(f'src/{algorithm}/build/{p}')
         for p in sorted((repo/'src'/algorithm/'build').rglob('*.so*')):
@@ -103,6 +105,8 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
             # Corrected EuRoC inertial cohort uses an isolated build; retain the
             # legacy tree identity as well for the other, unchanged modes.
             paths.append('/root/catkin_ws_rectified_20261001/devel/lib')
+        if algorithm=='voxel_svio':
+            paths.append('/root/catkin_ws_shutdown_20261002/devel/lib')
         if algorithm=='cifasis_gnss_si':paths = ['/root/catkin_ws/src/gnss-stereo-inertial-fusion/lib',
             '/root/catkin_ws/src/gnss-stereo-inertial-fusion/Examples/ROS/GNSS_SI/GNSS_Stereo_Inertial',
             '/root/catkin_ws/src/gnss-stereo-inertial-fusion/Vocabulary/ORBvoc.txt']

@@ -101,3 +101,30 @@ def test_matched_levers_close_physical_frame_chains():
     np.testing.assert_allclose(actual, c['T_base_gps'], atol=1e-10)
     # Reusing base_link's antenna translation as an IMU lever cannot close this chain.
     assert np.linalg.norm(np.array(h['T_imu_gps'])[:3, 3] - c['T_base_gps'][:3, 3]) > .9
+
+
+def test_zed_factory_finding_is_bound_to_saved_inertial_attempt(tmp_path):
+    import json
+    relative = 'vio/zed2i/field/basalt/run1'
+    run = tmp_path/'results'/relative
+    run.mkdir(parents=True)
+    calibration = run/'calibration.json'
+    calibration.write_text('{"historical": "axis-only"}')
+    digest = hashlib.sha256(calibration.read_bytes()).hexdigest()
+    review = tmp_path/'docs/campaigns/zed-calibration-findings-20261002.json'
+    review.parent.mkdir(parents=True)
+    review.write_text(json.dumps({'attempts': {relative: {
+        'role': 'camera_calibration', 'config_sha256': digest, 'algorithm_source': {},
+        'code': 'zed_factory_camera_imu_rotation_omitted',
+        'disposition': 'required_rerun', 'prerequisite': 'validate_factory_transform', 'evidence': []}}}))
+    meta = {'provenance': {'artifacts': [dict(role='camera_calibration',
+        snapshot=calibration.name, snapshot_sha256=digest)]}}
+    assert findings.historical_findings(tmp_path, relative, meta)[0]['disposition']=='required_rerun'
+    # Basalt's historical source list can be empty; do not invent an identity.
+    assert findings.historical_findings(tmp_path, relative.replace('run1','run2'), meta)==[]
+    assert findings.historical_findings(tmp_path, relative.replace('vio/','vo/'), meta)==[]
+    meta['provenance']['sources']=[dict(role='algorithm',commit='new-build')]
+    assert findings.historical_findings(tmp_path, relative, meta)==[]
+    del meta['provenance']['sources']
+    calibration.write_text('{"corrected": true}')
+    assert findings.historical_findings(tmp_path, relative, meta)==[]

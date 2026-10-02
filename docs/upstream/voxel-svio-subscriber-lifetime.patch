@@ -1,0 +1,15 @@
+--- a/include/stereoVio.h
++++ b/include/stereoVio.h
+@@ -161,6 +161,12 @@
+ 
+     voxelStereoVio();
+ 
++    ~voxelStereoVio() {
++        // Disconnect callbacks before their subscriber signals are destroyed.
++        sync_cam.clear();
++        sync_subs_cam.clear();
++    }
++
+     void readParameters();
+ 
+     void allocateMemory();

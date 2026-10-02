@@ -16,7 +16,7 @@ import sys
 
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from run_repetitions import atomic_json
-from run_future_manifest import UNREVIEWED_OVERRIDES
+from run_future_manifest import UNREVIEWED_OVERRIDES, verify_files
 from configuration_recipe import config_recipe
 from acceptance_ledger import LEDGER, DOCUMENT
 
@@ -89,10 +89,25 @@ def qualification_prerequisites(cell,attempt,decision):
     return result
 
 
+def resolved_prerequisites(repo, decision):
+    """Only reviewed, content-pinned repairs discharge named prerequisites."""
+    resolved=set()
+    for item in decision.get('resolved_prerequisites', []):
+        evidence=item.get('evidence', [])
+        if not item.get('prerequisite') or not evidence:
+            raise ValueError('prerequisite resolution requires named evidence')
+        errors=verify_files(repo, evidence)
+        if errors:
+            raise ValueError('; '.join(errors))
+        resolved.add(item['prerequisite'])
+    return resolved
+
+
 def build(repo,inventory,inventory_path,decisions):
     actions=[];target_paths=set()
     for cell in inventory['cells']:
         key=cell['key'];decision=decisions.get('cells',{}).get(key,{})
+        resolved=resolved_prerequisites(repo,decision)
         recipe=config_recipe(repo,cell)
         input_path=repo/'results/repair-20261001/prepared-inputs'/f"{cell['dataset']}--{cell['sequence']}.json"
         input_record=None
@@ -134,7 +149,10 @@ def build(repo,inventory,inventory_path,decisions):
                 prerequisites.append('resolve_recorded_source_binary_parameter_or_hardware_cohort_difference')
             if cell['algorithm'] in ('ov2slam','voxel_svio'):
                 prerequisites.append('capture_native_exit_separately_and_diagnose_logged_shutdown_errors')
+            prerequisites=[p for p in prerequisites if p not in resolved]
             review_evidence=list(decision.get('evidence',[]))
+            for resolution in decision.get('resolved_prerequisites', []):
+                review_evidence.extend(resolution['evidence'])
             if attempt.get('qualification',{}).get('review')=='explicit_claim_review':
                 review_evidence += [dict(path=p,sha256=digest(repo/p)) for p in (LEDGER,DOCUMENT)]
             # Acceptance permits retaining this observation. Future build/config
@@ -192,7 +210,8 @@ def build(repo,inventory,inventory_path,decisions):
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--inventory',type=Path,default=REPO/'results/repair-20261001/inventory.json')
-    ap.add_argument('--decisions',type=Path)
+    reviewed=REPO/'docs/campaigns/zed-readiness-review-20261002.json'
+    ap.add_argument('--decisions',type=Path,default=reviewed if reviewed.is_file() else None)
     ap.add_argument('--output',type=Path,default=REPO/'results/repair-20261001/future-n3-manifest.json')
     ap.add_argument('--audit-status',choices=('in_progress','repair_audit_complete'),default='in_progress',
                     help='repair handoff status only; never changes action readiness')
