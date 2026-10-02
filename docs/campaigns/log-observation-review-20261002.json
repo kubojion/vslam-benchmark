@@ -1,0 +1,2160 @@
+{
+  "schema": 1,
+  "semantics": "source-backed message counts, not unique failure episodes; local mapping resets are not full map resets",
+  "parser": {
+    "path": "scripts/eval/_run_observations.py",
+    "sha256": "cba86276a15923a32a651a32589bab1dd59ead14ed9a02d534e63613655ca6e5"
+  },
+  "attempts": [
+    {
+      "path": "results/vio-lc/euroc_mav/MH_01_easy/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.276,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 2,
+        "imu_initialization_reset_requests": 2,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/orbslam3/run1/run_log.txt",
+          "sha256": "1cc2933a11ecbd509fcc834730a8bca1ca141ea03b48db62a9c3fb3d4ef8281b"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/euroc_mav/MH_01_easy/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.265,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 2,
+        "imu_initialization_reset_requests": 2,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/orbslam3/run2/run_log.txt",
+          "sha256": "78d8eaff4b8727e92e2a3a71511763d5129ea86128777d416e40a104b2b505a8"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/euroc_mav/MH_01_easy/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.258,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 2,
+        "imu_initialization_reset_requests": 2,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy/orbslam3/run3/run_log.txt",
+          "sha256": "23922915a8a6c48de1f44365a8aa4a529605030b9dcb656ae9987f73787414f4"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/euroc_mav/MH_03_medium/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.257,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 50,
+        "imu_initialization_reset_requests": 49,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/orbslam3/run1/run_log.txt",
+          "sha256": "d353dcaabc52cfed898715cb73a907e866bc295583765e4696272428f81036e6"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/euroc_mav/MH_03_medium/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.264,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 57,
+        "imu_initialization_reset_requests": 57,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/orbslam3/run2/run_log.txt",
+          "sha256": "d46926eab6d5e6f1877636e1f50b2158a036468a60f358a7c373a7df211f5180"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/euroc_mav/MH_03_medium/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.283,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 55,
+        "imu_initialization_reset_requests": 55,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_03_medium/orbslam3/run3/run_log.txt",
+          "sha256": "21850d135545d26e8cedc67c8f4614097b098fb94e190388a43d151538d67cef"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/euroc_mav/MH_05_difficult/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 6.56,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 21,
+        "imu_initialization_reset_requests": 21,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/orbslam3/run1/run_log.txt",
+          "sha256": "c059728c33f01615423f795f1ef931de8e21da52e4d36e361948d7f25f833791"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/euroc_mav/MH_05_difficult/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 6.539,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 20,
+        "imu_initialization_reset_requests": 20,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/orbslam3/run2/run_log.txt",
+          "sha256": "bb05b643b7a7a1abdeba917c44e8693a82b5d1799af2dd64849f1d195a400dae"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/euroc_mav/MH_05_difficult/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 6.491,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 21,
+        "imu_initialization_reset_requests": 21,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_05_difficult/orbslam3/run3/run_log.txt",
+          "sha256": "f5718cbdf2c9a318136a6fa0fb5b4c2346572c2de3ecad2d6c4ef556d2cbffd1"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/hortimulti/strawberry02/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 4.927,
+        "tracking_losses": 0,
+        "loop_closures": 1,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/hortimulti/strawberry02/orbslam3/run1/run_log.txt",
+          "sha256": "81155dd40056ae1e688d8a7f213541ae12d1d2eb1f48de81e6bb147947333677"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/hortimulti/strawberry02/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 4.772,
+        "tracking_losses": 0,
+        "loop_closures": 1,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/hortimulti/strawberry02/orbslam3/run2/run_log.txt",
+          "sha256": "c367ece24ade617833f2576e9dde324a023e406fd10b77eb4f86d73d4de97421"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/hortimulti/strawberry02/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 4.747,
+        "tracking_losses": 0,
+        "loop_closures": 1,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/hortimulti/strawberry02/orbslam3/run3/run_log.txt",
+          "sha256": "3ae58a3b610ff5aae14f70aeb3f27ba6c1c2f4df15b7f2d0c2b870b0bcbea517"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/hortimulti/strawberry03/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.211,
+        "tracking_losses": 0,
+        "loop_closures": 4,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/hortimulti/strawberry03/orbslam3/run1/run_log.txt",
+          "sha256": "a183c51a6dc557f7c56692132090eec087203ed97ab25017a10234eddec6a751"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/hortimulti/strawberry03/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.2,
+        "tracking_losses": 0,
+        "loop_closures": 2,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/hortimulti/strawberry03/orbslam3/run2/run_log.txt",
+          "sha256": "2018f4579b1d33f516b007392d0c3d0f394a76ae7b1ba9fabba6d86d136fab15"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/hortimulti/strawberry03/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.188,
+        "tracking_losses": 0,
+        "loop_closures": 2,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/hortimulti/strawberry03/orbslam3/run3/run_log.txt",
+          "sha256": "fc92b1b52c4442b843dec5fd2a71d5c385b838aba0e08ed6c915ceaa341e207a"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/rosariov2/sequence1/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 8.856,
+        "tracking_losses": 0,
+        "loop_closures": 111,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/rosariov2/sequence1/orbslam3/run1/run_log.txt",
+          "sha256": "49c7dd962145960b35ba755191ec44540b091a9e0dd6285093d58e384f0d1c49"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/rosariov2/sequence1/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 8.549,
+        "tracking_losses": 1,
+        "loop_closures": 22,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": 975.278,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 1,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/rosariov2/sequence1/orbslam3/run2/run_log.txt",
+          "sha256": "f8b25e8f59b781e2430fec6219d5ccc51b0ff2163a14cf9ec25a1e99e6648857"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/rosariov2/sequence1/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 8.565,
+        "tracking_losses": 0,
+        "loop_closures": 4,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/rosariov2/sequence1/orbslam3/run3/run_log.txt",
+          "sha256": "d6e7f5755383b39a53c39173657fa2ccbdee61850a743990e45c288e74fb7bbd"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/rosariov2/sequence5/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 16.205,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/rosariov2/sequence5/orbslam3/run1/run_log.txt",
+          "sha256": "6944c4e3058c985ad3ed98ac742f5cff66f16bc0f04b38793ea85cf3ca6d774a"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/rosariov2/sequence5/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 16.115,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/rosariov2/sequence5/orbslam3/run2/run_log.txt",
+          "sha256": "022c1cc3bc83e945cac3d1599b8957520c1a06a3fb58f9b5e4db11c56f6195d4"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/rosariov2/sequence5/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 16.16,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/rosariov2/sequence5/orbslam3/run3/run_log.txt",
+          "sha256": "40b3c82ed2f8f638fd11975fba9c1c3945fde42d290a785b5f477c442843d469"
+        }
+      ]
+    },
+    {
+      "path": "results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.546,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1/run_log.txt",
+          "sha256": "9a162cce22dfdbc0a50901337715ea13604ed223768ebd28b2285671aee88a08"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/euroc_mav/MH_01_easy/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.345,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/orbslam3/run1/run_log.txt",
+          "sha256": "5dc483fedce4ee76ede7a4c0490e96be646cf70bcddeacd3d050fb1af492e310"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/euroc_mav/MH_01_easy/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.284,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 2,
+        "imu_initialization_reset_requests": 2,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/orbslam3/run2/run_log.txt",
+          "sha256": "87e08755b4874c9fe574045848c705918d022cb03329b3165c131baa8881c721"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/euroc_mav/MH_01_easy/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.306,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 2,
+        "imu_initialization_reset_requests": 2,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy/orbslam3/run3/run_log.txt",
+          "sha256": "14863ede703a670d88a444373be3a9b837f21985c939512fc2561dc515835009"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/euroc_mav/MH_03_medium/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.298,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 59,
+        "imu_initialization_reset_requests": 59,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/orbslam3/run1/run_log.txt",
+          "sha256": "f277abd857019d3b64486df3341a93d27351f66982723e5c6ecdfe864a6502a9"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/euroc_mav/MH_03_medium/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.283,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 66,
+        "imu_initialization_reset_requests": 65,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/orbslam3/run2/run_log.txt",
+          "sha256": "eaf9ed99f33f861b483d0107ed0b2355ac652e86c352dedb15bad0600cdd03c3"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/euroc_mav/MH_03_medium/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.265,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 67,
+        "imu_initialization_reset_requests": 67,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_03_medium/orbslam3/run3/run_log.txt",
+          "sha256": "2001e6e6961d19288f4e318f7cb4238f73a36e492d293a872206b3da09b49e0e"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/euroc_mav/MH_05_difficult/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 6.592,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 20,
+        "imu_initialization_reset_requests": 20,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/orbslam3/run1/run_log.txt",
+          "sha256": "6ccdfa0b5e8923858a50e715ec33e9e8791395342273b3eaf8fa8994e426849c"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/euroc_mav/MH_05_difficult/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 6.587,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 20,
+        "imu_initialization_reset_requests": 20,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/orbslam3/run2/run_log.txt",
+          "sha256": "4315fff70cf611356cdee2a7368a9a230060a2c2e7a1f23c8f48d6559d4bd5c1"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/euroc_mav/MH_05_difficult/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 6.41,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 20,
+        "imu_initialization_reset_requests": 20,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_05_difficult/orbslam3/run3/run_log.txt",
+          "sha256": "7e22a171408abdfe65d2f4d4bc30ae42c42833b145d510587ac10eb4bdf8f803"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/hortimulti/strawberry02/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 5.1,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/hortimulti/strawberry02/orbslam3/run1/run_log.txt",
+          "sha256": "b863fdd21345e1fcd3f5a7e2094fea34c2af85b98d78a8ae2d46156059775d8b"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/hortimulti/strawberry02/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 4.798,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/hortimulti/strawberry02/orbslam3/run2/run_log.txt",
+          "sha256": "1910f111cc2f805caa78c55385f6b38d28e7ed1c439df20bb672a7c9b0b6c898"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/hortimulti/strawberry02/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 4.854,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/hortimulti/strawberry02/orbslam3/run3/run_log.txt",
+          "sha256": "9432edef6f3fede20bff97fed427319cdce4e51cb4698a77f1c024162bc449a4"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/hortimulti/strawberry03/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.262,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/hortimulti/strawberry03/orbslam3/run1/run_log.txt",
+          "sha256": "f1e262176b7f060245ec2f4dad7f448340b7480700109a351649ce3a2bfe3250"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/hortimulti/strawberry03/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.242,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/hortimulti/strawberry03/orbslam3/run2/run_log.txt",
+          "sha256": "cfa27159cb3fc2c5e44556ccd76eaad33dd5c7784394c6071f2cb90ff516d0f0"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/hortimulti/strawberry03/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.186,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/hortimulti/strawberry03/orbslam3/run3/run_log.txt",
+          "sha256": "03c64deb4ba9d487732a8f54a06ae16cba2060346077226595d399181a909e64"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 8.701,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run1/run_log.txt",
+          "sha256": "777e2c07af1ea0616c84d2aab9720032b4fe0ace878f4f65f948dfe17186458a"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 8.585,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run2/run_log.txt",
+          "sha256": "8425bca97d195b7cf182c31c8de7ed001d571e522a10b2ec34df22d87fc33cfb"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 8.519,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run3/run_log.txt",
+          "sha256": "97beafa43dd565dbc66dc547e17c942a00472316b0bf94414fad7a2ce4f44e98"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 16.365,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run1/run_log.txt",
+          "sha256": "7dd49a36aa65a8e69a0f07c89c188b831498464c092310749d975d59ef9eb825"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 16.134,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run2/run_log.txt",
+          "sha256": "d0ce820385cc6cfbc8f41e950fe1967e9c6bdb29db3959b29c2552674ee13882"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 16.117,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run3/run_log.txt",
+          "sha256": "0f436c36738469ad17b595186e584218c486738e70c5c5b54e4f384c7d958988"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 1.061,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": null,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures",
+        "log_available": true,
+        "local_tracking_failure_messages": null,
+        "local_mapping_reset_messages": null,
+        "imu_initialization_reset_requests": null,
+        "map_creation_messages": null
+      },
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/run_log.txt",
+          "sha256": "623a346ba1f0a7d0c90c043d10360ef6a8856bfac56768b00bfdd368dab95bd6"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 1.055,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": null,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures",
+        "log_available": true,
+        "local_tracking_failure_messages": null,
+        "local_mapping_reset_messages": null,
+        "imu_initialization_reset_requests": null,
+        "map_creation_messages": null
+      },
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/run_log.txt",
+          "sha256": "4c0bdc3cdf0f5079d15bf840dbd1420ad9eefe4740ead76cf3df5fe5bfe3dd54"
+        }
+      ]
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.355,
+        "tracking_losses": 5,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": 2839.765,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 5,
+        "local_mapping_reset_messages": 96,
+        "imu_initialization_reset_requests": 96,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/run_log.txt",
+          "sha256": "48dbe190ba8c0571338797125701624ea25e62ae454a1657a62664a029253832"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.087,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run1/run_log.txt",
+          "sha256": "41bc603a97791a8d5a7eaea643039efbf05994b900713db99088466f148ab851"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.056,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run2/run_log.txt",
+          "sha256": "4e73530f095ee056d523a2dc4f346f582607bfcdfb4866350e2a9c05fff24292"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.069,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run3/run_log.txt",
+          "sha256": "eff615a8cd37b2fc056fc64fe3bd6ed96edfd8684d712aed214da9277f2e3049"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/euroc_mav/MH_03_medium/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.069,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/euroc_mav/MH_03_medium/orbslam3/run1/run_log.txt",
+          "sha256": "f9bcfd2eeb412998dc6865e5a5c2134207230d2dc37074f70401f9334594b4fc"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/euroc_mav/MH_03_medium/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.087,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/euroc_mav/MH_03_medium/orbslam3/run2/run_log.txt",
+          "sha256": "699df1567f34995ce82db73b568a4a33ff16b6ab1eeafd0353708b54c2e7da17"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/euroc_mav/MH_03_medium/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.066,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/euroc_mav/MH_03_medium/orbslam3/run3/run_log.txt",
+          "sha256": "459786cfea1a6dd9483dad14948346a9dbfd54a65e3d0bbbab18733dcb99e23a"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/euroc_mav/MH_05_difficult/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.08,
+        "tracking_losses": 0,
+        "loop_closures": 1,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/euroc_mav/MH_05_difficult/orbslam3/run1/run_log.txt",
+          "sha256": "5c16f10b0eec6f7274e101e6bf10ef435da684644924297ffc00b4b86a56ef33"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/euroc_mav/MH_05_difficult/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.066,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/euroc_mav/MH_05_difficult/orbslam3/run2/run_log.txt",
+          "sha256": "056621f933759270e8fa9a5dc62597463e5a518ef2e0e32a83b6110749060530"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/euroc_mav/MH_05_difficult/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.033,
+        "tracking_losses": 0,
+        "loop_closures": 1,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/euroc_mav/MH_05_difficult/orbslam3/run3/run_log.txt",
+          "sha256": "ac42d6faa38ade7aac32a74f4f00281334e81b2aae4df8a98555240447908076"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/hortimulti/strawberry02/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.111,
+        "tracking_losses": 63,
+        "loop_closures": 1,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": 568.057,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 63,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 3
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/hortimulti/strawberry02/orbslam3/run1/run_log.txt",
+          "sha256": "47b44a2eb7383159ff7452aa7909c13a0002ffea48f214825dd53de654c4fa66"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/hortimulti/strawberry02/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.025,
+        "tracking_losses": 32,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": 96.092,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 32,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 2
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/hortimulti/strawberry02/orbslam3/run2/run_log.txt",
+          "sha256": "661bf6bf77128bb7daceb82f1c02736be80e07dd7e3858dff64964db3e3929e5"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/hortimulti/strawberry02/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.013,
+        "tracking_losses": 63,
+        "loop_closures": 1,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": 386.306,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 63,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 3
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/hortimulti/strawberry02/orbslam3/run3/run_log.txt",
+          "sha256": "78d0ef0a6eecd1d9c123620caa5b2365c6a6c6b449fb70485466dfbcf7646319"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/hortimulti/strawberry03/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.092,
+        "tracking_losses": 0,
+        "loop_closures": 1,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/hortimulti/strawberry03/orbslam3/run1/run_log.txt",
+          "sha256": "9540b6b28f143c54495290f13401f2e1fec39ad856cb4807913d988aceabead3"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/hortimulti/strawberry03/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.043,
+        "tracking_losses": 0,
+        "loop_closures": 1,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/hortimulti/strawberry03/orbslam3/run2/run_log.txt",
+          "sha256": "5d5d621a41b4230b4475a0dad5110625292755ca4a832c50f42d22dc8a704f49"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/hortimulti/strawberry03/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.022,
+        "tracking_losses": 0,
+        "loop_closures": 1,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/hortimulti/strawberry03/orbslam3/run3/run_log.txt",
+          "sha256": "6b99bce07354de9e4bc0d271964745fc872e9ab32e9507ce17141c289831b34b"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/rosariov2/sequence1/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.076,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/rosariov2/sequence1/orbslam3/run1/run_log.txt",
+          "sha256": "785289120c7967328e3160a732d2d816a0885dbcc7ec8877eab65c8e44702965"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/rosariov2/sequence5/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.141,
+        "tracking_losses": 46,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": 455.268,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 46,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 2
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/rosariov2/sequence5/orbslam3/run1/run_log.txt",
+          "sha256": "8c29dcf6285285c7c8b45f019388861dc70abee22ef36000220cd4483c9e02d3"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/rosariov2/sequence5/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.041,
+        "tracking_losses": 45,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": 680.425,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 45,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 2
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/rosariov2/sequence5/orbslam3/run2/run_log.txt",
+          "sha256": "372a5d2c7fb201d5f5104bf7ac1952c7f0b76a5ea397baf61a4e48f54ec7fc2e"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/rosariov2/sequence5/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.059,
+        "tracking_losses": 1,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": 450.07,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 1,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/rosariov2/sequence5/orbslam3/run3/run_log.txt",
+          "sha256": "a5807a2249b829c10e6305e456fa8e627c92240e9c855461c0b1ec0baeb6d839"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.116,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1/run_log.txt",
+          "sha256": "cd82b3bf62e7500d709c3ec0343ac5b9f9198d6acf1c719340d658eb217746ae"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.159,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run2/run_log.txt",
+          "sha256": "a464f6c67543d73c1db5090520875fc95a7cbae575ebcbb65c26a0254503d116"
+        }
+      ]
+    },
+    {
+      "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.132,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run3/run_log.txt",
+          "sha256": "2a303626a01f48ee8816b675a5f3ab9fab71637245d11dfa8762e7a56298c132"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/euroc_mav/MH_01_easy/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.152,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/euroc_mav/MH_01_easy/orbslam3/run1/run_log.txt",
+          "sha256": "1a39cda3f3c888b3e24dfe28ce579b8ecf71d80cb09ff4612b778844db7bdc2e"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/euroc_mav/MH_01_easy/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.017,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/euroc_mav/MH_01_easy/orbslam3/run2/run_log.txt",
+          "sha256": "fc820b712b20b3a1600fd901dad5fc2242407f5b03747a12e0dd1bc763b19d97"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/euroc_mav/MH_01_easy/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.018,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/euroc_mav/MH_01_easy/orbslam3/run3/run_log.txt",
+          "sha256": "3ead5c8321d65bddafd02cf6cdc0562776696102b0fa077d55fc278b16093ad9"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/euroc_mav/MH_03_medium/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.09,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/euroc_mav/MH_03_medium/orbslam3/run1/run_log.txt",
+          "sha256": "7c88cb3e6a57484abe3521171aea8a8e6b4ce4c43d34a813d1edf10cff095cb2"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/euroc_mav/MH_03_medium/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.085,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/euroc_mav/MH_03_medium/orbslam3/run2/run_log.txt",
+          "sha256": "a6c7f8309f8c58ec3e57cfcc6e54b72216a8e52871d62bbd3729423da46551c2"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/euroc_mav/MH_03_medium/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.048,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/euroc_mav/MH_03_medium/orbslam3/run3/run_log.txt",
+          "sha256": "da45d7e7ec2a776ad49f9c8738d601b646caa3b72a9b664e9dc20083f0769078"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/euroc_mav/MH_05_difficult/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.076,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/euroc_mav/MH_05_difficult/orbslam3/run1/run_log.txt",
+          "sha256": "63225307dbb3de3daa7a05e788e5c536c2c4aed50e79a10b80b82819dc00b935"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/euroc_mav/MH_05_difficult/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.079,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/euroc_mav/MH_05_difficult/orbslam3/run2/run_log.txt",
+          "sha256": "cd4744417e101dbbf8296ec77da6bf27ca158840399b1a39b1e6490dbc3d7ad1"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/euroc_mav/MH_05_difficult/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.082,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/euroc_mav/MH_05_difficult/orbslam3/run3/run_log.txt",
+          "sha256": "71a8d3d24641db3cddce6188c83b646be4bb15507ccb5723fd0df8dedfd2e738"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/hortimulti/strawberry02/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.068,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/hortimulti/strawberry02/orbslam3/run1/run_log.txt",
+          "sha256": "1f28b4a206e554b37302d446dfc9671e25c1d00afd890f368a76214e109b050c"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/hortimulti/strawberry03/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.086,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/hortimulti/strawberry03/orbslam3/run1/run_log.txt",
+          "sha256": "57af2431409115e37585ef5dada0d6051616d55a08f016286b0a6748314ee049"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/hortimulti/strawberry03/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.023,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/hortimulti/strawberry03/orbslam3/run2/run_log.txt",
+          "sha256": "60295a0bf03ae3bd0a580ce50ced5cd6580c09e52a241b343bf4f67cf7e24314"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/hortimulti/strawberry03/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 1.997,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/hortimulti/strawberry03/orbslam3/run3/run_log.txt",
+          "sha256": "eb7742b2ae5940378f9b4274be71f8bd460ce6c98514b7fc7a4def4d472a3845"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/rosariov2/sequence1/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.14,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/rosariov2/sequence1/orbslam3/run1/run_log.txt",
+          "sha256": "c25f048fd6ccb2521febad95b766265775f20de015152a849ff3e5c0a19a2bb6"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/rosariov2/sequence5/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.1,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/rosariov2/sequence5/orbslam3/run1/run_log.txt",
+          "sha256": "ed95d748619a1f81f22ec8145f384cc7072c7586cec15805e03991646818be13"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run1",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.098,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run1/run_log.txt",
+          "sha256": "4345afb9c4ff000b92669b750a6acb982b741d3620525c9354ab609f601a0c0b"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run2",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.163,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run2/run_log.txt",
+          "sha256": "1af4f296c7760ba27a893ffee4908ed80b3c870dc5dc0ce6f7f508b3da205510"
+        }
+      ]
+    },
+    {
+      "path": "results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run3",
+      "observations": {
+        "init_success": true,
+        "init_time_s": 2.084,
+        "tracking_losses": 0,
+        "loop_closures": 0,
+        "map_resets": 0,
+        "output_valid": null,
+        "first_failure_s": null,
+        "log_instrumented": true,
+        "event_semantics": "configured log-pattern matches; absence does not prove no failure; loop matches do not certify accepted/correct closures; ORB tracking_losses includes recoverable local-map failure messages, not unique lost episodes; map_resets counts explicit Tracking resets only; local mapping/init reset messages are separate overlapping observations",
+        "log_available": true,
+        "local_tracking_failure_messages": 0,
+        "local_mapping_reset_messages": 0,
+        "imu_initialization_reset_requests": 0,
+        "map_creation_messages": 1
+      },
+      "evidence": [
+        {
+          "path": "results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run3/run_log.txt",
+          "sha256": "2870a30511e474b25ba9eeabe4f5257bc398d3c19bb98b11f577c175b98351a0"
+        }
+      ]
+    }
+  ]
+}

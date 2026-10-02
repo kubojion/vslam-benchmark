@@ -94,6 +94,43 @@ def read(path):
     return json.loads(path.read_text()) if path.is_file() else {}
 
 
+def cohort_artifacts(provenance, run_dir=None):
+    """Group new receipts by settings, not attempt paths or measured outcomes.
+
+    Historical signatures stay byte-based. Schema 2 is explicitly declared by
+    new runners; every normalized receipt is verified against its saved hash.
+    Raw receipts remain in the evidence inventory and are never rewritten.
+    """
+    semantic = provenance.get('parameters', {}).get('cohort_artifact_semantics') == 2
+    receipts = {'candidate_selection', 'input_clock_policy', 'native_settings_policy',
+                'native_parameter_list.txt', 'native_camera_load.txt'}
+    result = []
+    for artifact in provenance.get('artifacts', []):
+        role = artifact.get('role')
+        digest = artifact.get('snapshot_sha256') or artifact.get('sha256')
+        if semantic and (role in receipts or role == 'native_input_receipt.json'):
+            if run_dir is None or not artifact.get('snapshot'):
+                raise ValueError('saved receipt required for cohort normalization')
+            path = Path(run_dir)/artifact['snapshot']
+            raw = path.read_bytes()
+            if hashlib.sha256(raw).hexdigest() != digest:
+                raise ValueError('changed cohort receipt: '+str(path))
+            if role == 'native_input_receipt.json':
+                # Received/processed frame counts are observations, never
+                # experimental settings or grounds for merging different inputs.
+                continue
+            text = raw.decode()
+            attempt = Path(run_dir).resolve()
+            parts = attempt.parts
+            index = len(parts)-1-list(reversed(parts)).index('results')
+            container_path = '/'+Path(*parts[index:]).as_posix()
+            for prefix in sorted({str(attempt), container_path}, key=len, reverse=True):
+                text = text.replace(prefix, '<attempt>')
+            digest = hashlib.sha256(text.encode()).hexdigest()
+        result.append(dict(role=role, sha256=digest))
+    return sorted(result, key=lambda r: json.dumps(r, sort_keys=True))
+
+
 def cohort_identity(meta, algorithm, *, run_dir=None):
     """Group recorded effective settings, not just similarly named config files.
 
@@ -111,8 +148,7 @@ def cohort_identity(meta, algorithm, *, run_dir=None):
     def ordered(records):
         return sorted(records, key=lambda r: json.dumps(r, sort_keys=True))
     payload = dict(
-        artifacts=ordered([dict(role=a.get('role'), sha256=a.get('snapshot_sha256') or a.get('sha256'))
-                           for a in provenance.get('artifacts', [])]),
+        artifacts=cohort_artifacts(provenance, run_dir),
         sources=ordered([{k: s.get(k) for k in ('role','path','commit','dirty','diff_sha256')}
                          for s in provenance.get('sources', [])]),
         binaries=ordered([{k: b.get(k) for k in ('role','path','sha256')}
@@ -197,7 +233,9 @@ def saved_attempt(repo,relative,stage):
         snapshots=snapshot_records,source_records=meta.get('provenance',{}).get('sources',[]),
         parameters=meta.get('provenance',{}).get('parameters',{}),
         cohort_fingerprint=cohort,cohort_evidence=cohort_evidence,
-        config_fingerprint=hashlib.sha256(json.dumps(sorted((s['role'],s['saved']) for s in snapshot_records),sort_keys=True).encode()).hexdigest() if snapshot_records else None,
+        config_fingerprint=(hashlib.sha256(json.dumps(cohort_artifacts(meta['provenance'],run),sort_keys=True).encode()).hexdigest()
+            if meta.get('provenance',{}).get('parameters',{}).get('cohort_artifact_semantics')==2
+            else hashlib.sha256(json.dumps(sorted((s['role'],s['saved']) for s in snapshot_records),sort_keys=True).encode()).hexdigest() if snapshot_records else None),
         machine_id=meta.get('machine_id'),runtime=meta.get('measurements',{}),
         coverage=value.get('coverage',{}),failure_reason=process.get('failure_reason') or value.get('failure_reason'))
 

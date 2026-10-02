@@ -9,15 +9,97 @@ the broad benchmark audit. The exact authorized objective is preserved in
 
 | Work | Current status | Required evidence |
 |---|---|---|
-| Explicit Rosario candidate selection | Pending | Basalt calibration/settings selected independently; consistent indexed profiles; snapshots of every loaded file; reject bad selections |
-| Rosario native handling | Pending | Bounded diagnostic records of effective calibration, transforms, image transport, timing, first-frame IMU bracketing, export frames/times and shutdown |
+| Explicit Rosario candidate selection | Implemented and tested | `ROSARIO_VIO_PROFILE` selects indexed snapshots; Basalt calibration/settings overrides are separate; conflicting/tampered/missing selections are rejected |
+| Rosario native handling | Bounded checks completed; final reporting and Basalt settings regression pending | Both sequences exercised for all four candidates; corrected Voxel initializer offset verified; Basalt native calibration/settings inspected; OpenVINS online-calibration export scope remains limited |
 | Recording-specific Rosario camera profile | Pending authors | Diagnostic success cannot settle the image/rectification question or select a profile by score |
-| Voxel ZED first 180 seconds | Pending | Predeclared first-window checks, unchanged thresholds, destructor repair, input receipt, initialization outcome, frame/time validation, independent native/export outcomes |
-| Shutdown versus trajectory outcomes | Pending | Individual evidence for complete exports, partial/tracking failure and no usable export; preserved exits; consistent ledger/CSV/TODO semantics |
-| Non-ZED ORB build compatibility | Pending | Historical executable/library/g2o evidence classified compatible/incompatible/unknown; repaired-path short checks; exact affected list and timing estimate |
+| Voxel ZED first 180 seconds | Native check completed; wrapper capture violation retained | Native/player exit 0; initialization at 39.456 s, 1,406 poses; wrapper exit 1 because shared sources changed during that diagnostic. Subsequent short checks verify actual loading fixes; this is not a clean production repetition |
+| Shutdown versus trajectory outcomes | Individual review and reporting implementation prepared | 154 attempts inspected; 79 completed exports with shutdown errors, two partial exports with shutdown errors, five without usable exports. A scale-collapse outcome remains a trajectory failure even when export completed |
+| Non-ZED ORB build compatibility | Historical audit and seven bounded checks completed | 76 historical attempts unknown, none confirmed incompatible/compatible; current reviewed libraries loaded and clean native exit in all seven checks. No blanket rerun authorized |
 | Completed ZED first repetitions | Pending | Review ORB/OKVIS2/OKVIS2-X run10001 effective setup, coverage, references, exits and counters; retain completed attempts |
 | Remaining ZED VIO first repetitions | Pending engineering | New sequential continuation for AirSLAM, Basalt, OpenVINS, and Voxel only if setup verified; immediate evaluation; no repetitions 2/3 or other modes |
 | Final reporting and commit | Pending | TODO/details, focused tests, blockers, reviewed outcomes, executable next list, refreshed identities/preflights, local commit; no push |
+
+## Verified engineering findings
+
+Source checkpoint `3be9197` repairs Voxel initialization's omitted camera–IMU
+offset and the ZED YAML numeric spelling that previously selected ROS's
+`1e-15` fallback instead of the declared `1e-12`. The native v3 dumps now show
+the declared threshold and identical propagation/initialization offsets. These
+are loading repairs, not accuracy tuning. ZED's fixed first-ten-second check
+remains a valid noninitialization outcome: all inputs arrived and both native
+and player exited zero, without a trajectory.
+
+Basalt now receives an attempt-local IMU CSV with the declared offset subtracted
+and an effective native calibration offset of zero. Camera timestamps and all
+measurement values stay unchanged. Both Rosario 60-second checks and the ZED
+10-second check exited cleanly with finite camera-clock exports. GDB factory
+inspection verifies both full transforms, camera types/intrinsics/distortion,
+resolutions, IMU rate and noise vectors against the loaded native calibration.
+The native settings serializer exposes 48 fields; four fields in the requested
+profiles are unsupported by installed release 0.1.7. Their explicit removal from
+the effective input, preservation in provenance, and runtime-hash guard are
+implemented; the final wrapper regression is still required. Ordinary float32
+rounding is distinguished from omitted settings.
+
+The [bounded native review](../results/execution-readiness-20261002/post-repair-native-review.json)
+records all 13 checks and the independent Basalt memory inspection. The
+[180-second review](../results/execution-readiness-20261002/voxel-180-review.json)
+preserves the earlier capture failure. No second 180-second window was selected
+to obtain a favorable result. The nine earlier candidate checks remain in
+`results/execution-readiness-20261002/rosario-native-state.json`.
+
+Voxel's historical EuRoC gaps exactly match its native floating-point 20 Hz
+gate. The last historical ZED image occurs after the final IMU sample and is
+therefore unsupported by Voxel's native buffer gate. These explain coverage
+limits; complete export does not imply every camera frame was tracked. The
+[individual export review](campaigns/export-completion-review-20261002.json)
+preserves native errors and never promotes a shutdown error into S.
+
+ORB's completed ZED run10001 has five recoverable local-tracking failure
+messages, 96 LocalMapping reset messages, 96 IMU-initialization reset requests,
+one map-creation message and zero explicit full Tracking map-reset messages.
+These overlap and are message counts, not unique failure episodes. The
+[log overlays](campaigns/log-observation-review-20261002.json) correct reporting
+without modifying original evaluations.
+
+## Historical ORB exposure and reporting hold
+
+The [exact 76-attempt audit](campaigns/orb-historical-exposure-20261002.json)
+finds saved executable hashes but no historical per-run shared-library/g2o
+identities. Today's incompatible libraries, similar crash symptoms and matching
+scores cannot establish historical compatibility. All 76 remain **unknown**;
+there are no newly confirmed ABI replacements. Previously confirmed setup
+replacements remain required for their original reasons.
+
+This material evidence gap withholds 12 previously green EuRoC ORB cells;
+the current verified protocol total is **69**, down from 81. Original decisions
+are retained in the ledger alongside the new hold; all scores and attempts stay
+preserved. First recover historical dependency/build records if available. A
+proportionate current-path check has already covered both executables, all four
+modes, and the Rosario/Strawberry02 startup cases. It cannot prove historical
+memory safety. The contingency subtotal for replacing all unknown observations
+would be 6.17 hours for 57 estimated attempts plus 19 with unknown runtime; this
+is neither a campaign recommendation nor execution permission.
+
+Future manifest identities/preflights and completed-ZED claim review still need
+refresh. No remaining full ZED first repetition has been launched by this work.
+
+Reporting checkpoint: **283 tests and seven subtests pass** across campaign,
+evaluation and results-browser tests. All five CSVs, the historical-cohort CSV,
+cell reports, tables, figures, browser and TODO/details are reconciled. All 252
+matrix cells retain A/E/S/F counts. The preservation check verifies **5,128
+unchanged historical evidence files**. Reviewed log counters are visible for the
+three completed ZED first attempts while their claim decisions remain blocked.
+Future plans are visibly unready until their changed implementation identities
+and review prerequisites are refreshed; this is not a claim that their earlier
+bounded execution observations failed.
+
+New Basalt/Voxel receipt grouping verifies every saved receipt hash, normalizes
+only attempt-local paths in named configuration receipts, and keeps input-receipt
+counts as outcomes rather than settings. It requires an explicit schema marker;
+historical cohort signatures are preserved. A final bounded Basalt regression
+will verify effective settings and equal cohort identities across two isolated
+identical-input diagnostics before production preparation continues.
 
 ## Preservation and execution boundaries
 

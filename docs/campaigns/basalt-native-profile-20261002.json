@@ -1,0 +1,133 @@
+{
+  "schema": 1,
+  "scope": "Installed Basalt 0.1.7 native configuration serialization at OpticalFlowFactory entry; no tuning and no production estimation",
+  "native_version": "0.1.7",
+  "accepted_keys": [
+    "config.mapper_bow_num_bits",
+    "config.mapper_detection_num_points",
+    "config.mapper_frames_to_match_threshold",
+    "config.mapper_lm_lambda_max",
+    "config.mapper_lm_lambda_min",
+    "config.mapper_max_hamming_distance",
+    "config.mapper_min_matches",
+    "config.mapper_min_track_length",
+    "config.mapper_min_triangulation_dist",
+    "config.mapper_no_factor_weights",
+    "config.mapper_num_frames_to_match",
+    "config.mapper_obs_huber_thresh",
+    "config.mapper_obs_std_dev",
+    "config.mapper_ransac_threshold",
+    "config.mapper_second_best_test_ratio",
+    "config.mapper_use_factors",
+    "config.mapper_use_lm",
+    "config.optical_flow_detection_grid_size",
+    "config.optical_flow_epipolar_error",
+    "config.optical_flow_levels",
+    "config.optical_flow_max_iterations",
+    "config.optical_flow_max_recovered_dist2",
+    "config.optical_flow_pattern",
+    "config.optical_flow_skip_frames",
+    "config.optical_flow_type",
+    "config.vio_debug",
+    "config.vio_enforce_realtime",
+    "config.vio_extended_logging",
+    "config.vio_init_ba_weight",
+    "config.vio_init_bg_weight",
+    "config.vio_init_pose_weight",
+    "config.vio_kf_marg_feature_ratio",
+    "config.vio_linearization_type",
+    "config.vio_lm_lambda_initial",
+    "config.vio_lm_lambda_max",
+    "config.vio_lm_lambda_min",
+    "config.vio_marg_lost_landmarks",
+    "config.vio_max_iterations",
+    "config.vio_max_kfs",
+    "config.vio_max_states",
+    "config.vio_min_frames_after_kf",
+    "config.vio_min_triangulation_dist",
+    "config.vio_new_kf_keypoints_thresh",
+    "config.vio_obs_huber_thresh",
+    "config.vio_obs_std_dev",
+    "config.vio_scale_jacobian",
+    "config.vio_sqrt_marg",
+    "config.vio_use_lm"
+  ],
+  "unsupported_requested_keys": [
+    "config.vio_filter_iteration",
+    "config.vio_lm_landmark_damping_variant",
+    "config.vio_lm_pose_damping_variant",
+    "config.vio_outlier_threshold"
+  ],
+  "policy": "Preserve requested profile; materialize only all 48 verified native keys; reject unexpected or missing keys. Native float fields may round to float32.",
+  "native_binary": {
+    "path": "/home/imoroz/.local/bin/basalt_vio",
+    "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706"
+  },
+  "native_library": {
+    "path": "/home/imoroz/.local/lib/libbasalt.so",
+    "sha256": "c5474db4c904ed6eb7adb83d6952f11bce2bc7571be74fee40638bef97abcc30"
+  },
+  "evidence": [
+    {
+      "path": "results/execution-readiness-20261002/basalt-native-memory/capture.gdb",
+      "sha256": "65f245e4e94c97802b8c72bc542c119667104547d10b48f81345de4b2fe4d87d"
+    },
+    {
+      "path": "results/execution-readiness-20261002/basalt-native-memory/rosario/debugger.log",
+      "sha256": "cde233dff9ff5755e6f7961b82af365fe8e3c320d42b13ce2956ee86c066054f"
+    },
+    {
+      "path": "results/execution-readiness-20261002/basalt-native-memory/rosario/effective-native-settings.json",
+      "sha256": "931af57aac7c3268f5df68194012a0806763bee2a767e17abac6b46e377aa135"
+    },
+    {
+      "path": "results/execution-readiness-20261002/basalt-native-memory/rosario/invocation.json",
+      "sha256": "d27aeb3d74c9008e0e0c0289946f756da494d676d0ca1c792a6de6df4f2f298e"
+    },
+    {
+      "path": "results/execution-readiness-20261002/basalt-native-memory/rosario/native-memory.json",
+      "sha256": "7ea003b56ea520b842ce5b294c6ce506b4f3234c6586901dabfd4a2d812f6f46"
+    },
+    {
+      "path": "results/execution-readiness-20261002/basalt-native-memory/rosario/native-settings-dump.log",
+      "sha256": "1d3a686f4c6757fecbd1045295c67a7eaadaeed03a3b6bf39b97166a46791862"
+    },
+    {
+      "path": "results/execution-readiness-20261002/basalt-native-memory/rosario/settings-review.json",
+      "sha256": "4b07d400a1d4e9680290058ebb87c4c342b55e40032cd792e2b5217c378fa21c"
+    },
+    {
+      "path": "results/execution-readiness-20261002/basalt-native-memory/save-config.cpp",
+      "sha256": "9e7aecceaf3dc4a2c31014707b793bc495aa912b8cf79fa0b2bdc4e1b3a051ca"
+    },
+    {
+      "path": "results/execution-readiness-20261002/basalt-native-memory/save-config.so",
+      "sha256": "b61dd5a6d23398b5227e8a12491b03cdf73daf56adcc00cf4e9440607d0db9c5"
+    },
+    {
+      "path": "results/execution-readiness-20261002/basalt-native-memory/zed/debugger.log",
+      "sha256": "cde233dff9ff5755e6f7961b82af365fe8e3c320d42b13ce2956ee86c066054f"
+    },
+    {
+      "path": "results/execution-readiness-20261002/basalt-native-memory/zed/effective-native-settings.json",
+      "sha256": "931af57aac7c3268f5df68194012a0806763bee2a767e17abac6b46e377aa135"
+    },
+    {
+      "path": "results/execution-readiness-20261002/basalt-native-memory/zed/invocation.json",
+      "sha256": "0f5c05a91fe8487d6f0c4a01e7ce17419f7a7da698e720f455672d0e8cb4860c"
+    },
+    {
+      "path": "results/execution-readiness-20261002/basalt-native-memory/zed/native-memory.json",
+      "sha256": "11a21c80c2da8e0d8d8cb0e29e58e46516b515f894cd7fbc0beeae85dec1c790"
+    },
+    {
+      "path": "results/execution-readiness-20261002/basalt-native-memory/zed/native-settings-dump.log",
+      "sha256": "1d3a686f4c6757fecbd1045295c67a7eaadaeed03a3b6bf39b97166a46791862"
+    },
+    {
+      "path": "results/execution-readiness-20261002/basalt-native-memory/zed/settings-review.json",
+      "sha256": "b396dcfee249aaec1b69c0fb7c835495c7a2f8eedf3ffad42de64061c53989ec"
+    }
+  ],
+  "source_linkage_limit": "Installed release identity is verified; upstream source linkage is not reconstructed from version alone."
+}

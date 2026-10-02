@@ -257,6 +257,8 @@ def test_current_default_runner_selection_never_activates_candidates(algorithm):
         recipe = config_recipe(repo, dict(dataset='rosariov2', sequence=seq, algorithm=algorithm, run_type='vio'))
         assert not recipe['selection_errors']
         assert all('candidates/' not in item['path'] for item in recipe['source_files'])
-        calibration = [item for item in recipe['source_files'] if item['path'].startswith('configs/')]
+        # Requested and materialized roles may refer to the same source file;
+        # default selection must still use exactly the original file set.
+        calibration = {item['path'] for item in recipe['source_files'] if item['path'].startswith('configs/')}
         assert len(calibration) == {'basalt': 2, 'voxel_svio': 1, 'openvins': 3}[algorithm]
         assert not recipe['runtime_materialization_verified']

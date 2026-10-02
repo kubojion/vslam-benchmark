@@ -116,6 +116,9 @@ def run_page(run: dict, page_name: str, file_key: str) -> str:
 <dt>Qualification</dt><dd>{esc(run.get('scientific_status','unreviewed'))}</dd>
 <dt>Experimental protocol</dt><dd>{esc(run.get('protocol_status','unreviewed'))}; cell: {esc(run.get('protocol_state','unreviewed'))}</dd>
 <dt>Observed outcome</dt><dd>{esc(run.get('observed_outcome','unknown'))}</dd>
+<dt>Export review</dt><dd>{esc(run.get('export_outcome_label') or 'unreviewed')}</dd>
+<dt>Log message counts</dt><dd>{esc(json.dumps(run.get('log_observations',{}),sort_keys=True))}</dd>
+<dt>Counter interpretation</dt><dd>{esc(run.get('log_event_semantics') or 'not instrumented')}</dd>
 <dt>Implementation</dt><dd>{esc(run.get('implementation_label','historical'))}</dd>
 <dt>Accepted claim</dt><dd>{esc(run.get('accepted_claim') or 'none')}</dd>
 <dt>Native error log observations</dt><dd>{esc(run.get('native_error_observation_count',0))}</dd>
@@ -161,7 +164,7 @@ def index_page(manifest: dict, page_map: dict[str, str]) -> str:
 <td>{esc(run['run_type'])}</td><td>{esc(run['dataset'])}</td><td>{esc(run['sequence'])}</td>
 <td><a href="runs/{esc(page_map[key])}">{esc(run['algorithm'])}</a></td><td>{esc(run['repeat'])}</td>
 <td class="status-{esc(run['status'])}">{esc(run['status'])}</td>
-<td>{esc(run.get('scientific_status','unreviewed'))}<br>protocol: {esc(run.get('protocol_status','unreviewed'))}<br>{esc(run.get('observed_outcome','unknown'))}</td><td>{esc(membership)}</td><td>{esc(run.get('input_variant','default'))}</td>
+<td>{esc(run.get('scientific_status','unreviewed'))}<br>protocol: {esc(run.get('protocol_status','unreviewed'))}<br>{esc(run.get('observed_outcome','unknown'))}<br>{esc(run.get('export_outcome_label') or '')}</td><td>{esc(membership)}</td><td>{esc(run.get('input_variant','default'))}</td>
 <td class="provenance-{esc(run.get('provenance_status', 'legacy'))}">{esc(run.get('provenance_status', 'legacy'))}</td>
 <td class="measurement-{esc(run.get('measurement_status', 'legacy'))}">{esc(run.get('measurement_status', 'legacy'))}</td><td>{esc(metric(run, 'primary_ate_rmse_m'))} {esc(metric(run,'primary_alignment'))}</td>
 <td>{esc(metric(run, 'ate_se3_rmse'))}</td><td>{esc(metric(run, 'coverage_gap_pct'))}</td><td>{esc(metric(run, 'processing_fps'))}</td><td>{esc(metric(run, 'realtime_factor'))}</td></tr>""")

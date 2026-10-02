@@ -3,27 +3,27 @@
   "inputs": [
     {
       "path": "results/repair-20261001/inventory.json",
-      "sha256": "91018f1a8b2167bd6dcd9179b0cab2d0caa6af5f174c771bfc90afeb1394dc16"
+      "sha256": "93dae1058b44f7f6bbb0a419c1e8ac73a8748bc14ef1efac3cdb9d7da9831beb"
     },
     {
       "path": "benchmark-vo.csv",
-      "sha256": "d8b993d602d796d18e6dac369349d6aac76f2f143aa85b410f3c4c3a959c9e90"
+      "sha256": "b20d934ba5eee4348443ba8017c70584ab2ec0e7b0f090743a0d6bc5cfcc037e"
     },
     {
       "path": "benchmark-vo-lc.csv",
-      "sha256": "f8b8fcab4d9ef8dd55868f563ef3c81ce372a460339efe7e740f94c6a2444f9c"
+      "sha256": "e9b1eea69547455fa1e912b7ec1692cc17bff6798e163a1952307528a9fb85a6"
     },
     {
       "path": "benchmark-vio.csv",
-      "sha256": "08335bd0756a00376c9e21e8b3a10b7f74be73493608a25fffa8bb969b1ea627"
+      "sha256": "6b574f0c114403914308d8a28fec75920cbc0c89ebcf37f56de48c5da619e4ad"
     },
     {
       "path": "benchmark-vio-lc.csv",
-      "sha256": "f5da4d13875316cacd3f2667158d3acf678f4fe8ad9748e7cecdff1b31e5e6a7"
+      "sha256": "f2959682343e6ccfe8aa896273fe0b34f2724151e3c71a229d146a62d7c10387"
     },
     {
       "path": "benchmark-gnss-vio.csv",
-      "sha256": "da52154da12792ac68c70abc6e6b64ff6450a9d0c996b6b8fc79b46aee50f421"
+      "sha256": "a4b5325fffb569ede3dcc290e521adfe5ae5eb6bf28dc8a8ec3e4c58fdc04f3c"
     }
   ],
   "status": "mixed_acceptance_see_per_cell_flags_and_claim_limits",
@@ -37,7 +37,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA1/E0/S0/F1\nX,B,F,M",
+      "annotation": "no score\nA1/E0/S0/F1\nX,B,M",
       "summary": {
         "identity": [
           "vo",
@@ -54,13 +54,14 @@
           "missing": 2
         },
         "acceptance": {
-          "valid_observed_failure": 1,
+          "blocked": 1,
           "not_executed": 2
         },
-        "paper_usable": 1,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+          "historical_orb_loaded_library_abi_unknown",
           "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "retain_failure_in_attempt_denominator"
@@ -75,7 +76,7 @@
               "failed_without_trajectory": 1
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 0,
             "accepted_primary_ate": {
               "n": 0,
               "mean": null,
@@ -108,6 +109,7 @@
           }
         ],
         "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown",
           "missing_repetition"
         ],
         "protocol_state": "blocked",
@@ -117,6 +119,8 @@
         "evaluated_trajectory_count": 0,
         "successful_run_count": 0,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -140,7 +144,6 @@
       "flags": [
         "X",
         "B",
-        "F",
         "M"
       ]
     },
@@ -153,7 +156,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA1/E0/S0/F1\nX,B,F,M",
+      "annotation": "no score\nA1/E0/S0/F1\nX,B,M",
       "summary": {
         "identity": [
           "vo",
@@ -170,13 +173,14 @@
           "missing": 2
         },
         "acceptance": {
-          "valid_observed_failure": 1,
+          "blocked": 1,
           "not_executed": 2
         },
-        "paper_usable": 1,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+          "historical_orb_loaded_library_abi_unknown",
           "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "retain_failure_in_attempt_denominator"
@@ -191,7 +195,7 @@
               "failed_without_trajectory": 1
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 0,
             "accepted_primary_ate": {
               "n": 0,
               "mean": null,
@@ -224,6 +228,7 @@
           }
         ],
         "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown",
           "missing_repetition"
         ],
         "protocol_state": "blocked",
@@ -233,6 +238,8 @@
         "evaluated_trajectory_count": 0,
         "successful_run_count": 0,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -256,7 +263,6 @@
       "flags": [
         "X",
         "B",
-        "F",
         "M"
       ]
     },
@@ -269,7 +275,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA1/E0/S0/F1\nX,B,F,M",
+      "annotation": "no score\nA1/E0/S0/F1\nX,B,M",
       "summary": {
         "identity": [
           "vo",
@@ -286,12 +292,13 @@
           "missing": 2
         },
         "acceptance": {
-          "valid_observed_failure": 1,
+          "blocked": 1,
           "not_executed": 2
         },
-        "paper_usable": 1,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "retain_failure_in_attempt_denominator"
@@ -306,7 +313,7 @@
               "failed_without_trajectory": 1
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 0,
             "accepted_primary_ate": {
               "n": 0,
               "mean": null,
@@ -339,6 +346,7 @@
           }
         ],
         "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown",
           "missing_repetition"
         ],
         "protocol_state": "blocked",
@@ -348,6 +356,8 @@
         "evaluated_trajectory_count": 0,
         "successful_run_count": 0,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -371,7 +381,6 @@
       "flags": [
         "X",
         "B",
-        "F",
         "M"
       ]
     },
@@ -405,6 +414,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -452,6 +462,7 @@
           }
         ],
         "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown",
           "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ],
         "protocol_state": "blocked",
@@ -461,6 +472,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 2,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 1,
+        "shutdown_error_count": 1,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -579,6 +592,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 1,
         "observed_failure_count": 2,
+        "completed_export_shutdown_error_count": 2,
+        "shutdown_error_count": 2,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -614,7 +629,7 @@
         "default"
       ],
       "value": 0.03834526574063272,
-      "annotation": "0.0383\nA3/E3/S3/F0\nV3",
+      "annotation": "0.0383\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vo",
@@ -630,14 +645,15 @@
           "ok": 3
         },
         "acceptance": {
-          "accepted": 3
+          "blocked": 3
         },
-        "paper_usable": 3,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
-        "clean_qualified_n3": true,
+        "clean_qualified_n3": false,
         "cohorts": [
           {
             "cohort": "e19dffda7a067706b9bd15e697195a0076874b207fbeca1303891f222d6b4143",
@@ -646,15 +662,15 @@
             "outcomes": {
               "ok": 3
             },
-            "qualified": 3,
-            "paper_usable": 3,
+            "qualified": 0,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 3,
-              "mean": 0.04098032917433273,
-              "median": 0.03834526574063272,
-              "min": 0.03639005187720557,
-              "max": 0.0482056699051599,
-              "sample_std": 0.006333235888575996
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -681,27 +697,31 @@
             ]
           }
         ],
-        "scientific_blockers": [],
-        "protocol_state": "verified_n3",
-        "protocol_verified_n3": true,
+        "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown"
+        ],
+        "protocol_state": "blocked",
+        "protocol_verified_n3": false,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 3,
+        "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "verified": 3
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "e19dffda7a067706b9bd15e697195a0076874b207fbeca1303891f222d6b4143",
             "attempts": 3,
-            "verified_completed": 3,
-            "missing_to_n3": 0,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vo/euroc_mav/MH_01_easy/orbslam3/run1",
               "results/vo/euroc_mav/MH_01_easy/orbslam3/run2",
@@ -711,7 +731,7 @@
         ]
       },
       "flags": [
-        "V3"
+        "B"
       ]
     },
     {
@@ -723,7 +743,7 @@
         "default"
       ],
       "value": 0.031091109352544215,
-      "annotation": "0.0311\nA3/E3/S2/F1\nV3,X,L",
+      "annotation": "0.0311\nA3/E3/S2/F1\nX,B",
       "summary": {
         "identity": [
           "vo",
@@ -739,12 +759,12 @@
           "ok": 3
         },
         "acceptance": {
-          "accepted": 2,
-          "accepted_with_limitation": 1
+          "blocked": 3
         },
-        "paper_usable": 3,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "saved_accuracy_with_recorded_nonzero_exit_no_clean_success"
         ],
@@ -757,15 +777,15 @@
             "outcomes": {
               "ok": 3
             },
-            "qualified": 2,
-            "paper_usable": 3,
+            "qualified": 0,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 3,
-              "mean": 0.030928171089622862,
-              "median": 0.031091109352544215,
-              "min": 0.025480046395363,
-              "max": 0.03621335752096137,
-              "sample_std": 0.005368510369540729
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
             },
             "nonzero_exits": 1,
             "alignment": "se3",
@@ -792,27 +812,31 @@
             ]
           }
         ],
-        "scientific_blockers": [],
-        "protocol_state": "verified_n3",
-        "protocol_verified_n3": true,
+        "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown"
+        ],
+        "protocol_state": "blocked",
+        "protocol_verified_n3": false,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 2,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 1,
+        "shutdown_error_count": 1,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 3,
-        "verified_failure_count": 1,
+        "protocol_verified_attempts": 0,
+        "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "verified": 3
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "0f0bd4770fab2ed59b08c1744fbb3ade0dd767602c0733d0e5b9a535927670fb",
             "attempts": 3,
-            "verified_completed": 3,
-            "missing_to_n3": 0,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vo/euroc_mav/MH_03_medium/orbslam3/run1",
               "results/vo/euroc_mav/MH_03_medium/orbslam3/run2",
@@ -822,9 +846,8 @@
         ]
       },
       "flags": [
-        "V3",
         "X",
-        "L"
+        "B"
       ]
     },
     {
@@ -836,7 +859,7 @@
         "default"
       ],
       "value": 0.06071870535100594,
-      "annotation": "0.0607\nA3/E3/S3/F0\nV3",
+      "annotation": "0.0607\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vo",
@@ -852,14 +875,15 @@
           "ok": 3
         },
         "acceptance": {
-          "accepted": 3
+          "blocked": 3
         },
-        "paper_usable": 3,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
-        "clean_qualified_n3": true,
+        "clean_qualified_n3": false,
         "cohorts": [
           {
             "cohort": "e19dffda7a067706b9bd15e697195a0076874b207fbeca1303891f222d6b4143",
@@ -868,15 +892,15 @@
             "outcomes": {
               "ok": 3
             },
-            "qualified": 3,
-            "paper_usable": 3,
+            "qualified": 0,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 3,
-              "mean": 0.05873417019495759,
-              "median": 0.06071870535100594,
-              "min": 0.04473245617226956,
-              "max": 0.07075134906159727,
-              "sample_std": 0.013122480010873364
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -903,27 +927,31 @@
             ]
           }
         ],
-        "scientific_blockers": [],
-        "protocol_state": "verified_n3",
-        "protocol_verified_n3": true,
+        "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown"
+        ],
+        "protocol_state": "blocked",
+        "protocol_verified_n3": false,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 3,
+        "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "verified": 3
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "e19dffda7a067706b9bd15e697195a0076874b207fbeca1303891f222d6b4143",
             "attempts": 3,
-            "verified_completed": 3,
-            "missing_to_n3": 0,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vo/euroc_mav/MH_05_difficult/orbslam3/run1",
               "results/vo/euroc_mav/MH_05_difficult/orbslam3/run2",
@@ -933,7 +961,7 @@
         ]
       },
       "flags": [
-        "V3"
+        "B"
       ]
     },
     {
@@ -1023,6 +1051,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -1135,6 +1165,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -1246,6 +1278,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -1357,6 +1391,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -1473,6 +1509,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 3,
@@ -1584,6 +1622,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 3,
@@ -1695,6 +1735,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 3,
@@ -1806,6 +1848,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 3,
@@ -1919,6 +1963,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -2031,6 +2077,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -2142,6 +2190,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -2253,6 +2303,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -2369,6 +2421,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -2479,6 +2533,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -2588,6 +2644,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -2697,6 +2755,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -2809,6 +2869,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -2921,6 +2983,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -3032,6 +3096,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -3143,6 +3209,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -3258,6 +3326,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -3368,6 +3438,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -3477,6 +3549,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -3586,6 +3660,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -3698,6 +3774,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -3811,6 +3889,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -3923,6 +4003,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -4035,6 +4117,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -4152,6 +4236,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -4264,6 +4350,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -4376,6 +4464,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -4488,6 +4578,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -4602,6 +4694,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -4714,6 +4808,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -4825,6 +4921,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -4936,6 +5034,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -5055,6 +5155,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 2,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 1,
@@ -5166,6 +5268,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -5275,6 +5379,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -5384,6 +5490,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -5496,6 +5604,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -5608,6 +5718,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -5719,6 +5831,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -5830,6 +5944,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -5945,6 +6061,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -6055,6 +6173,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -6164,6 +6284,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -6273,6 +6395,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -6385,6 +6509,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -6497,6 +6623,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -6608,6 +6736,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -6719,6 +6849,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -6834,6 +6966,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -6944,6 +7078,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -7053,6 +7189,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -7162,6 +7300,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -7196,7 +7336,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA1/E0/S0/F1\nX,B,F,M",
+      "annotation": "no score\nA1/E0/S0/F1\nX,B,M",
       "summary": {
         "identity": [
           "vo-lc",
@@ -7213,13 +7353,14 @@
           "missing": 2
         },
         "acceptance": {
-          "valid_observed_failure": 1,
+          "blocked": 1,
           "not_executed": 2
         },
-        "paper_usable": 1,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+          "historical_orb_loaded_library_abi_unknown",
           "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "retain_failure_in_attempt_denominator"
@@ -7234,7 +7375,7 @@
               "failed_without_trajectory": 1
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 0,
             "accepted_primary_ate": {
               "n": 0,
               "mean": null,
@@ -7267,6 +7408,7 @@
           }
         ],
         "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown",
           "missing_repetition"
         ],
         "protocol_state": "blocked",
@@ -7276,6 +7418,8 @@
         "evaluated_trajectory_count": 0,
         "successful_run_count": 0,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -7299,7 +7443,6 @@
       "flags": [
         "X",
         "B",
-        "F",
         "M"
       ]
     },
@@ -7334,6 +7477,7 @@
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -7381,6 +7525,7 @@
           }
         ],
         "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown",
           "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ],
         "protocol_state": "blocked",
@@ -7390,6 +7535,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -7446,6 +7593,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -7493,6 +7641,7 @@
           }
         ],
         "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown",
           "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ],
         "protocol_state": "blocked",
@@ -7502,6 +7651,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 1,
         "observed_failure_count": 2,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 2,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -7559,6 +7710,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -7606,6 +7758,7 @@
           }
         ],
         "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown",
           "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ],
         "protocol_state": "blocked",
@@ -7615,6 +7768,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 2,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 1,
+        "shutdown_error_count": 1,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -7772,6 +7927,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 2,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 1,
+        "shutdown_error_count": 1,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -7816,7 +7973,7 @@
         "default"
       ],
       "value": 0.044586099039293815,
-      "annotation": "0.0446\nA3/E3/S2/F1\nV3,X,L",
+      "annotation": "0.0446\nA3/E3/S2/F1\nX,B",
       "summary": {
         "identity": [
           "vo-lc",
@@ -7832,12 +7989,12 @@
           "ok": 3
         },
         "acceptance": {
-          "accepted": 2,
-          "accepted_with_limitation": 1
+          "blocked": 3
         },
-        "paper_usable": 3,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "saved_accuracy_with_recorded_nonzero_exit_no_clean_success"
         ],
@@ -7850,15 +8007,15 @@
             "outcomes": {
               "ok": 3
             },
-            "qualified": 2,
-            "paper_usable": 3,
+            "qualified": 0,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 3,
-              "mean": 0.042355482664787156,
-              "median": 0.044586099039293815,
-              "min": 0.03643199527361612,
-              "max": 0.04604835368145154,
-              "sample_std": 0.005181729857359382
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
             },
             "nonzero_exits": 1,
             "alignment": "se3",
@@ -7885,27 +8042,31 @@
             ]
           }
         ],
-        "scientific_blockers": [],
-        "protocol_state": "verified_n3",
-        "protocol_verified_n3": true,
+        "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown"
+        ],
+        "protocol_state": "blocked",
+        "protocol_verified_n3": false,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 2,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 1,
+        "shutdown_error_count": 1,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 3,
-        "verified_failure_count": 1,
+        "protocol_verified_attempts": 0,
+        "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "verified": 3
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "2fb7a8a1ab2b92230c69f9c42e7da5e311ac3f0079a814fb8405dc8a66d38cd1",
             "attempts": 3,
-            "verified_completed": 3,
-            "missing_to_n3": 0,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run1",
               "results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run2",
@@ -7915,9 +8076,8 @@
         ]
       },
       "flags": [
-        "V3",
         "X",
-        "L"
+        "B"
       ]
     },
     {
@@ -7929,7 +8089,7 @@
         "default"
       ],
       "value": 0.029585947345022356,
-      "annotation": "0.0296\nA3/E3/S2/F1\nV3,X,L",
+      "annotation": "0.0296\nA3/E3/S2/F1\nX,B",
       "summary": {
         "identity": [
           "vo-lc",
@@ -7945,12 +8105,12 @@
           "ok": 3
         },
         "acceptance": {
-          "accepted": 2,
-          "accepted_with_limitation": 1
+          "blocked": 3
         },
-        "paper_usable": 3,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "saved_accuracy_with_recorded_nonzero_exit_no_clean_success"
         ],
@@ -7963,15 +8123,15 @@
             "outcomes": {
               "ok": 3
             },
-            "qualified": 2,
-            "paper_usable": 3,
+            "qualified": 0,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 3,
-              "mean": 0.03130395753885293,
-              "median": 0.029585947345022356,
-              "min": 0.028211734431724346,
-              "max": 0.03611419083981209,
-              "sample_std": 0.004222069822967297
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
             },
             "nonzero_exits": 1,
             "alignment": "se3",
@@ -7998,27 +8158,31 @@
             ]
           }
         ],
-        "scientific_blockers": [],
-        "protocol_state": "verified_n3",
-        "protocol_verified_n3": true,
+        "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown"
+        ],
+        "protocol_state": "blocked",
+        "protocol_verified_n3": false,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 2,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 1,
+        "shutdown_error_count": 1,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 3,
-        "verified_failure_count": 1,
+        "protocol_verified_attempts": 0,
+        "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "verified": 3
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "2fb7a8a1ab2b92230c69f9c42e7da5e311ac3f0079a814fb8405dc8a66d38cd1",
             "attempts": 3,
-            "verified_completed": 3,
-            "missing_to_n3": 0,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vo-lc/euroc_mav/MH_03_medium/orbslam3/run1",
               "results/vo-lc/euroc_mav/MH_03_medium/orbslam3/run2",
@@ -8028,9 +8192,8 @@
         ]
       },
       "flags": [
-        "V3",
         "X",
-        "L"
+        "B"
       ]
     },
     {
@@ -8042,7 +8205,7 @@
         "default"
       ],
       "value": 0.053728812231970506,
-      "annotation": "0.0537\nA3/E3/S2/F1\nV3,X,L",
+      "annotation": "0.0537\nA3/E3/S2/F1\nX,B",
       "summary": {
         "identity": [
           "vo-lc",
@@ -8058,12 +8221,12 @@
           "ok": 3
         },
         "acceptance": {
-          "accepted_with_limitation": 1,
-          "accepted": 2
+          "blocked": 3
         },
-        "paper_usable": 3,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "saved_accuracy_with_recorded_nonzero_exit_no_clean_success"
         ],
@@ -8076,15 +8239,15 @@
             "outcomes": {
               "ok": 3
             },
-            "qualified": 2,
-            "paper_usable": 3,
+            "qualified": 0,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 3,
-              "mean": 0.055126673862316934,
-              "median": 0.053728812231970506,
-              "min": 0.05046033647275242,
-              "max": 0.061190872882227874,
-              "sample_std": 0.0055001468854900286
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
             },
             "nonzero_exits": 1,
             "alignment": "se3",
@@ -8111,27 +8274,31 @@
             ]
           }
         ],
-        "scientific_blockers": [],
-        "protocol_state": "verified_n3",
-        "protocol_verified_n3": true,
+        "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown"
+        ],
+        "protocol_state": "blocked",
+        "protocol_verified_n3": false,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 2,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 1,
+        "shutdown_error_count": 1,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 3,
-        "verified_failure_count": 1,
+        "protocol_verified_attempts": 0,
+        "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "verified": 3
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "2fb7a8a1ab2b92230c69f9c42e7da5e311ac3f0079a814fb8405dc8a66d38cd1",
             "attempts": 3,
-            "verified_completed": 3,
-            "missing_to_n3": 0,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vo-lc/euroc_mav/MH_05_difficult/orbslam3/run1",
               "results/vo-lc/euroc_mav/MH_05_difficult/orbslam3/run2",
@@ -8141,9 +8308,8 @@
         ]
       },
       "flags": [
-        "V3",
         "X",
-        "L"
+        "B"
       ]
     },
     {
@@ -8239,6 +8405,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 2,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -8352,6 +8520,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -8463,6 +8633,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -8574,6 +8746,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -8690,6 +8864,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 3,
@@ -8801,6 +8977,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 3,
@@ -8912,6 +9090,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 3,
@@ -9023,6 +9203,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 3,
@@ -9136,6 +9318,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -9249,6 +9433,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -9361,6 +9547,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -9473,6 +9661,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -9631,6 +9821,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -9751,6 +9943,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -9863,6 +10057,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -9975,6 +10171,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -10089,6 +10287,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -10201,6 +10401,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -10312,6 +10514,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -10423,6 +10627,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -10583,6 +10789,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 1,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 1,
         "verified_failure_count": 0,
@@ -10704,6 +10912,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -10813,6 +11023,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -10922,6 +11134,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -11074,6 +11288,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -11195,6 +11411,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -11306,6 +11524,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -11417,6 +11637,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -11536,6 +11758,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -11647,6 +11871,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -11756,6 +11982,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -11865,6 +12093,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -11977,6 +12207,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -12089,6 +12321,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -12200,6 +12434,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -12311,6 +12547,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -12426,6 +12664,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -12536,6 +12776,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -12645,6 +12887,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -12754,6 +12998,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -12810,6 +13056,7 @@
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -12857,6 +13104,7 @@
           }
         ],
         "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown",
           "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ],
         "protocol_state": "blocked",
@@ -12866,6 +13114,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -12922,6 +13172,7 @@
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -12969,6 +13220,7 @@
           }
         ],
         "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown",
           "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ],
         "protocol_state": "blocked",
@@ -12978,6 +13230,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -13033,6 +13287,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -13080,6 +13335,7 @@
           }
         ],
         "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown",
           "horti_camera_imu_time_offset_uncompensated",
           "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ],
@@ -13090,6 +13346,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -13145,6 +13403,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -13192,6 +13451,7 @@
           }
         ],
         "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown",
           "horti_camera_imu_time_offset_uncompensated",
           "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
         ],
@@ -13202,6 +13462,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -13319,6 +13581,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 1,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -13353,7 +13617,7 @@
         "default"
       ],
       "value": 0.043363822964026556,
-      "annotation": "0.0434\nA3/E3/S3/F0\nV3",
+      "annotation": "0.0434\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -13369,14 +13633,15 @@
           "ok": 3
         },
         "acceptance": {
-          "accepted": 3
+          "blocked": 3
         },
-        "paper_usable": 3,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
-        "clean_qualified_n3": true,
+        "clean_qualified_n3": false,
         "cohorts": [
           {
             "cohort": "12797f1dfaa7df030dba198c3eb8210620d43403e76b042932279f46004494e1",
@@ -13385,15 +13650,15 @@
             "outcomes": {
               "ok": 3
             },
-            "qualified": 3,
-            "paper_usable": 3,
+            "qualified": 0,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 3,
-              "mean": 0.04343420529403433,
-              "median": 0.043363822964026556,
-              "min": 0.03801836343153322,
-              "max": 0.04892042948654321,
-              "sample_std": 0.0054513738012755344
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -13420,27 +13685,31 @@
             ]
           }
         ],
-        "scientific_blockers": [],
-        "protocol_state": "verified_n3",
-        "protocol_verified_n3": true,
+        "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown"
+        ],
+        "protocol_state": "blocked",
+        "protocol_verified_n3": false,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 3,
+        "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "verified": 3
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "12797f1dfaa7df030dba198c3eb8210620d43403e76b042932279f46004494e1",
             "attempts": 3,
-            "verified_completed": 3,
-            "missing_to_n3": 0,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vio/euroc_mav/MH_01_easy/orbslam3/run1",
               "results/vio/euroc_mav/MH_01_easy/orbslam3/run2",
@@ -13450,7 +13719,7 @@
         ]
       },
       "flags": [
-        "V3"
+        "B"
       ]
     },
     {
@@ -13462,7 +13731,7 @@
         "default"
       ],
       "value": 0.029941412594460926,
-      "annotation": "0.0299\nA3/E3/S3/F0\nV3,P,L",
+      "annotation": "0.0299\nA3/E3/S3/F0\nP,B",
       "summary": {
         "identity": [
           "vio",
@@ -13478,13 +13747,13 @@
           "ok": 3
         },
         "acceptance": {
-          "accepted": 2,
-          "accepted_with_limitation": 1
+          "blocked": 3
         },
-        "paper_usable": 3,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "export_coverage_below_95_percent_no_clean_success_tick",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -13496,15 +13765,15 @@
             "outcomes": {
               "ok": 3
             },
-            "qualified": 2,
-            "paper_usable": 3,
+            "qualified": 0,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 3,
-              "mean": 0.029192047366181098,
-              "median": 0.029941412594460926,
-              "min": 0.02757475101777619,
-              "max": 0.03005997848630618,
-              "sample_std": 0.0014018737734190466
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -13531,27 +13800,31 @@
             ]
           }
         ],
-        "scientific_blockers": [],
-        "protocol_state": "verified_n3",
-        "protocol_verified_n3": true,
+        "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown"
+        ],
+        "protocol_state": "blocked",
+        "protocol_verified_n3": false,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 3,
+        "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "verified": 3
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "12797f1dfaa7df030dba198c3eb8210620d43403e76b042932279f46004494e1",
             "attempts": 3,
-            "verified_completed": 3,
-            "missing_to_n3": 0,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vio/euroc_mav/MH_03_medium/orbslam3/run1",
               "results/vio/euroc_mav/MH_03_medium/orbslam3/run2",
@@ -13561,9 +13834,8 @@
         ]
       },
       "flags": [
-        "V3",
         "P",
-        "L"
+        "B"
       ]
     },
     {
@@ -13575,7 +13847,7 @@
         "default"
       ],
       "value": 0.05657008017373439,
-      "annotation": "0.0566\nA3/E3/S3/F0\nV3",
+      "annotation": "0.0566\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -13591,14 +13863,15 @@
           "ok": 3
         },
         "acceptance": {
-          "accepted": 3
+          "blocked": 3
         },
-        "paper_usable": 3,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
-        "clean_qualified_n3": true,
+        "clean_qualified_n3": false,
         "cohorts": [
           {
             "cohort": "12797f1dfaa7df030dba198c3eb8210620d43403e76b042932279f46004494e1",
@@ -13607,15 +13880,15 @@
             "outcomes": {
               "ok": 3
             },
-            "qualified": 3,
-            "paper_usable": 3,
+            "qualified": 0,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 3,
-              "mean": 0.056187052217625696,
-              "median": 0.05657008017373439,
-              "min": 0.0502994796591481,
-              "max": 0.0616915968199946,
-              "sample_std": 0.00570570908502913
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -13642,27 +13915,31 @@
             ]
           }
         ],
-        "scientific_blockers": [],
-        "protocol_state": "verified_n3",
-        "protocol_verified_n3": true,
+        "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown"
+        ],
+        "protocol_state": "blocked",
+        "protocol_verified_n3": false,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 3,
+        "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "verified": 3
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "12797f1dfaa7df030dba198c3eb8210620d43403e76b042932279f46004494e1",
             "attempts": 3,
-            "verified_completed": 3,
-            "missing_to_n3": 0,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vio/euroc_mav/MH_05_difficult/orbslam3/run1",
               "results/vio/euroc_mav/MH_05_difficult/orbslam3/run2",
@@ -13672,7 +13949,7 @@
         ]
       },
       "flags": [
-        "V3"
+        "B"
       ]
     },
     {
@@ -13763,6 +14040,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -13876,6 +14155,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -13987,6 +14268,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -14098,6 +14381,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -14216,6 +14501,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 1,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -14325,6 +14612,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -14434,6 +14723,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -14543,6 +14834,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -14655,6 +14948,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -14768,6 +15063,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -14881,6 +15178,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -14994,6 +15293,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -15113,6 +15414,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 1,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -15224,6 +15527,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -15336,6 +15641,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -15448,6 +15755,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -15562,6 +15871,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -15674,6 +15985,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -15786,6 +16099,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -15898,6 +16213,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -16014,6 +16331,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 1,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -16123,6 +16442,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -16232,6 +16553,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -16341,6 +16664,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -16453,6 +16778,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -16565,6 +16892,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -16677,6 +17006,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -16789,6 +17120,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -16905,6 +17238,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 1,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -17014,6 +17349,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -17123,6 +17460,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -17232,6 +17571,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -17349,6 +17690,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -17467,6 +17810,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -17580,6 +17925,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -17693,6 +18040,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -17814,6 +18163,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -17965,6 +18316,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 2,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 1,
@@ -18126,6 +18479,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 2,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 1,
@@ -18286,6 +18641,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -18409,6 +18766,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -18522,6 +18881,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -18633,6 +18994,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -18744,6 +19107,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -18862,6 +19227,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 1,
+        "shutdown_error_count": 1,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -18973,6 +19340,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 3,
@@ -19085,6 +19454,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 3,
@@ -19196,6 +19567,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
+        "completed_export_shutdown_error_count": 3,
+        "shutdown_error_count": 3,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 3,
@@ -19253,6 +19626,7 @@
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -19300,6 +19674,7 @@
           }
         ],
         "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown",
           "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ],
         "protocol_state": "blocked",
@@ -19309,6 +19684,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -19365,6 +19742,7 @@
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -19412,6 +19790,7 @@
           }
         ],
         "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown",
           "rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved"
         ],
         "protocol_state": "blocked",
@@ -19421,6 +19800,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -19476,6 +19857,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -19523,6 +19905,7 @@
           }
         ],
         "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown",
           "horti_camera_imu_time_offset_uncompensated",
           "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved",
           "orb_horti_rectified_camera_imu_extrinsic"
@@ -19534,6 +19917,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -19589,6 +19974,7 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -19636,6 +20022,7 @@
           }
         ],
         "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown",
           "horti_camera_imu_time_offset_uncompensated",
           "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved",
           "orb_horti_rectified_camera_imu_extrinsic"
@@ -19647,6 +20034,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -19767,6 +20156,8 @@
         "evaluated_trajectory_count": 0,
         "successful_run_count": 0,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -19802,7 +20193,7 @@
         "default"
       ],
       "value": 0.04191312922329298,
-      "annotation": "0.0419\nA3/E3/S3/F0\nV3",
+      "annotation": "0.0419\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio-lc",
@@ -19818,14 +20209,15 @@
           "ok": 3
         },
         "acceptance": {
-          "accepted": 3
+          "blocked": 3
         },
-        "paper_usable": 3,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
-        "clean_qualified_n3": true,
+        "clean_qualified_n3": false,
         "cohorts": [
           {
             "cohort": "8d7d796cd40b271ccd5508b44ea2cd3398df046ade49c489747bc38f543e5902",
@@ -19834,15 +20226,15 @@
             "outcomes": {
               "ok": 3
             },
-            "qualified": 3,
-            "paper_usable": 3,
+            "qualified": 0,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 3,
-              "mean": 0.042118806892225504,
-              "median": 0.04191312922329298,
-              "min": 0.03823086906250517,
-              "max": 0.04621242239087836,
-              "sample_std": 0.003994749787037911
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -19869,27 +20261,31 @@
             ]
           }
         ],
-        "scientific_blockers": [],
-        "protocol_state": "verified_n3",
-        "protocol_verified_n3": true,
+        "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown"
+        ],
+        "protocol_state": "blocked",
+        "protocol_verified_n3": false,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 3,
+        "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "verified": 3
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "8d7d796cd40b271ccd5508b44ea2cd3398df046ade49c489747bc38f543e5902",
             "attempts": 3,
-            "verified_completed": 3,
-            "missing_to_n3": 0,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vio-lc/euroc_mav/MH_01_easy/orbslam3/run1",
               "results/vio-lc/euroc_mav/MH_01_easy/orbslam3/run2",
@@ -19899,7 +20295,7 @@
         ]
       },
       "flags": [
-        "V3"
+        "B"
       ]
     },
     {
@@ -19911,7 +20307,7 @@
         "default"
       ],
       "value": 0.033232132559903683,
-      "annotation": "0.0332\nA3/E3/S3/F0\nV3,P,L",
+      "annotation": "0.0332\nA3/E3/S3/F0\nP,B",
       "summary": {
         "identity": [
           "vio-lc",
@@ -19927,13 +20323,13 @@
           "ok": 3
         },
         "acceptance": {
-          "accepted_with_limitation": 1,
-          "accepted": 2
+          "blocked": 3
         },
-        "paper_usable": 3,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "export_coverage_below_95_percent_no_clean_success_tick",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -19945,15 +20341,15 @@
             "outcomes": {
               "ok": 3
             },
-            "qualified": 2,
-            "paper_usable": 3,
+            "qualified": 0,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 3,
-              "mean": 0.030868156106186102,
-              "median": 0.033232132559903683,
-              "min": 0.026049318834409103,
-              "max": 0.033323016924245524,
-              "sample_std": 0.0041734828957144246
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -19980,27 +20376,31 @@
             ]
           }
         ],
-        "scientific_blockers": [],
-        "protocol_state": "verified_n3",
-        "protocol_verified_n3": true,
+        "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown"
+        ],
+        "protocol_state": "blocked",
+        "protocol_verified_n3": false,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 3,
+        "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "verified": 3
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "8d7d796cd40b271ccd5508b44ea2cd3398df046ade49c489747bc38f543e5902",
             "attempts": 3,
-            "verified_completed": 3,
-            "missing_to_n3": 0,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vio-lc/euroc_mav/MH_03_medium/orbslam3/run1",
               "results/vio-lc/euroc_mav/MH_03_medium/orbslam3/run2",
@@ -20010,9 +20410,8 @@
         ]
       },
       "flags": [
-        "V3",
         "P",
-        "L"
+        "B"
       ]
     },
     {
@@ -20024,7 +20423,7 @@
         "default"
       ],
       "value": 0.05800220188529148,
-      "annotation": "0.058\nA3/E3/S3/F0\nV3",
+      "annotation": "0.058\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio-lc",
@@ -20040,14 +20439,15 @@
           "ok": 3
         },
         "acceptance": {
-          "accepted": 3
+          "blocked": 3
         },
-        "paper_usable": 3,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "historical_orb_loaded_library_abi_unknown",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
-        "clean_qualified_n3": true,
+        "clean_qualified_n3": false,
         "cohorts": [
           {
             "cohort": "8d7d796cd40b271ccd5508b44ea2cd3398df046ade49c489747bc38f543e5902",
@@ -20056,15 +20456,15 @@
             "outcomes": {
               "ok": 3
             },
-            "qualified": 3,
-            "paper_usable": 3,
+            "qualified": 0,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 3,
-              "mean": 0.05745872882184315,
-              "median": 0.05800220188529148,
-              "min": 0.05213661677062217,
-              "max": 0.0622373678096158,
-              "sample_std": 0.005072259369940892
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -20091,27 +20491,31 @@
             ]
           }
         ],
-        "scientific_blockers": [],
-        "protocol_state": "verified_n3",
-        "protocol_verified_n3": true,
+        "scientific_blockers": [
+          "historical_orb_loaded_library_abi_unknown"
+        ],
+        "protocol_state": "blocked",
+        "protocol_verified_n3": false,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 3,
+        "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "verified": 3
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "8d7d796cd40b271ccd5508b44ea2cd3398df046ade49c489747bc38f543e5902",
             "attempts": 3,
-            "verified_completed": 3,
-            "missing_to_n3": 0,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vio-lc/euroc_mav/MH_05_difficult/orbslam3/run1",
               "results/vio-lc/euroc_mav/MH_05_difficult/orbslam3/run2",
@@ -20121,7 +20525,7 @@
         ]
       },
       "flags": [
-        "V3"
+        "B"
       ]
     },
     {
@@ -20211,6 +20615,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -20324,6 +20730,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -20437,6 +20845,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -20550,6 +20960,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -20669,6 +21081,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 1,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -20781,6 +21195,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -20894,6 +21310,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -21014,6 +21432,8 @@
         "evaluated_trajectory_count": 2,
         "successful_run_count": 2,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 1,
@@ -21130,6 +21550,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -21242,6 +21664,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -21354,6 +21778,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -21466,6 +21892,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -21584,6 +22012,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 1,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -21693,6 +22123,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -21802,6 +22234,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -21911,6 +22345,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -22023,6 +22459,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -22135,6 +22573,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -22247,6 +22687,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -22359,6 +22801,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -22477,6 +22921,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 1,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -22586,6 +23032,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -22695,6 +23143,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -22804,6 +23254,8 @@
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
@@ -22918,6 +23370,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -23031,6 +23485,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -23144,6 +23600,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -23257,6 +23715,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -23373,6 +23833,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -23490,6 +23952,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -23606,6 +24070,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -23722,6 +24188,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -23838,6 +24306,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -23954,6 +24424,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -24069,6 +24541,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -24184,6 +24658,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -24300,6 +24776,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -24417,6 +24895,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -24533,6 +25013,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -24649,6 +25131,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -24767,6 +25251,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 1,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -24883,6 +25369,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -24998,6 +25486,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -25113,6 +25603,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -25229,6 +25721,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -25346,6 +25840,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -25462,6 +25958,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -25578,6 +26076,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -25693,6 +26193,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -25805,6 +26307,8 @@
         "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 1,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -25840,35 +26344,35 @@
     },
     {
       "path": "fig_accuracy_vo_default.png",
-      "sha256": "0c0e775c19c50bb78c0740383f6531897bf403efafd9182d8ce4b569b890b58f"
+      "sha256": "7df8f3348be84a101127f1ae328b16da9cf38e41972732c057d593269df5b348"
     },
     {
       "path": "fig_accuracy_vo_default.pdf",
-      "sha256": "73f2a1d1cb6968d2e1ba72add471048978d7b640716be87547ce99724895a105"
+      "sha256": "f1740a9e83e41d35b78891dd713f0973223a6e4c1038358f5d09dfa6a42774ec"
     },
     {
       "path": "fig_accuracy_vo-lc_default.png",
-      "sha256": "50e8b2ba6c36845e42b8cf912ff96c178fe4031ea3da8b9f946d01c11798ef36"
+      "sha256": "755d0b0e5d1f336e06111d42d5b40180865c087cfaff30a78af0ee9ab1094ac4"
     },
     {
       "path": "fig_accuracy_vo-lc_default.pdf",
-      "sha256": "a6ed24aa70920716973021073ab20ec4cf1359c2b15005ed81383a05da802a8a"
+      "sha256": "688fe48c0aba5eebf5f8d249d6e813defd313e2de18f80aa502eaba3a8f211b3"
     },
     {
       "path": "fig_accuracy_vio_default.png",
-      "sha256": "3fd7329e04f15a1a2e81a781bd3240cdc9e0e22440c0f5ad01107df44830f3ff"
+      "sha256": "f9cc6646b2c1328d6049f8c733bb7bf6522dfea8e407b21f03f1712335abfc04"
     },
     {
       "path": "fig_accuracy_vio_default.pdf",
-      "sha256": "195214e98d7d79f03c115a5cb46242347190149183776f47555d5ea86c9ec157"
+      "sha256": "b6557d391b5701fda3dee0ac1eb7fd1a328b542911259c0be24ccc33a972ff81"
     },
     {
       "path": "fig_accuracy_vio-lc_default.png",
-      "sha256": "af6359fdf7191cd51f7279ef67359afc122ecc85e4ecbbbf2006041d963ad21f"
+      "sha256": "385977dce1b61050197bc51b35041a6f7e452bc63367d25a95f4bf5365c91d68"
     },
     {
       "path": "fig_accuracy_vio-lc_default.pdf",
-      "sha256": "79b859164e2c2c9755c9694f62082f5dc8c73b25d7b786bc25a065af6b5356a1"
+      "sha256": "75e05f2094e9caf214d52848713b60e0fe83111598cd748e74b783681157228d"
     },
     {
       "path": "fig_accuracy_gnss-vio_conventional_gps.png",

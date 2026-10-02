@@ -1,9 +1,30 @@
 # vSLAM Benchmark - Progress
 
-> Current protocol status: 81 verified N=3 cells; 256 verified attempts include
-> 41 observed failures. The original 45 clean-qualified cells and non-ZED scores
-> are preserved. [ZED preparation](docs/zed-preparation-20261002.md) updates
-> calibration, reference and claim limits. Dated entries below are historical.
+> Current protocol status: 69 verified N=3 cells. Twelve previously green EuRoC
+> ORB cells are under review because historical library/ABI identities are unknown.
+> Original scores, attempts and decisions remain preserved. See the
+> [active readiness work](docs/execution-readiness-20261002.md); dated entries below
+> describe their respective checkpoints.
+
+## 2026-10-02 — Native handling repairs and historical dependency review
+
+Explicit Rosario candidate selection and full loaded-file snapshots are implemented.
+Nine initial candidate checks and 13 bounded repair checks completed. Voxel's native
+initializer now receives the configured timing offset, and ZED's declared numeric
+threshold loads correctly. Basalt clock normalization preserves input measurements;
+native factory inspection verifies calibration and reveals four unsupported settings,
+now explicitly handled with a final wrapper regression pending.
+
+All seven current ORB checks loaded the reviewed compatible libraries and exited
+cleanly. Historical identities remain unknown for 76 non-ZED attempts; this is
+an evidence hold, not 76 new rerun requests. Individual export review distinguishes
+79 completed exports with shutdown errors from two partial exports with shutdown
+errors and five attempts without usable exports. Failures and original evaluations
+remain unchanged; reviewed log counters are separate overlays.
+
+Completed ZED claim review, final reporting/manifest refresh and the remaining
+authorized first repetitions are still outstanding. No remaining full first
+repetition has been launched by this continuation.
 
 ## 2026-10-02 — Recovered ZED calibration and approved position reference
 

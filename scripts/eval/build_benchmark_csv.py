@@ -55,7 +55,11 @@ COLUMNS = ['dataset', 'seq', 'environment_type', 'algo', 'run_type', 'use_imu', 
  'native_error_observation_count', 'protocol_status', 'protocol_basis', 'protocol_blockers',
  'attempt_completed', 'observed_outcome', 'successful_run', 'observed_failure',
  'protocol_verified_n3', 'protocol_state', 'implementation_label',
- 'reference_version', 'reference_variant', 'trajectory_export_stage']
+ 'reference_version', 'reference_variant', 'trajectory_export_stage',
+ 'export_completion', 'shutdown_error', 'export_outcome_label',
+ 'local_tracking_failure_messages', 'local_mapping_reset_messages',
+ 'imu_initialization_reset_requests', 'map_creation_messages', 'log_event_semantics',
+ 'log_observation_review_path']
 
 
 def get(document,*keys):
@@ -174,6 +178,16 @@ def row_from_attempt(attempt,evaluation,cell,*,repo=REPO,membership='original_n3
     for distance in (10,50,100):
         row[f'drift_{distance}m_pct']=get(ev,'window_drift',f'{distance}m','translation_se3_pct','rmse')
     for key in ('loop_closures','tracking_losses','map_resets','init_success'):row[key]=get(ev,'robustness',key)
+    # Reviewed log corrections are overlays: original numerical evaluations and
+    # their evidence digests remain immutable.
+    log_review=qualification.get('log_observation_review', {})
+    observations=log_review.get('observations', ev.get('robustness', {}))
+    for key in ('loop_closures','tracking_losses','map_resets','init_success',
+                'local_tracking_failure_messages','local_mapping_reset_messages',
+                'imu_initialization_reset_requests','map_creation_messages'):
+        row[key]=observations.get(key)
+    row['log_event_semantics']=observations.get('event_semantics')
+    row['log_observation_review_path']=log_review.get('review_path')
     # Copy only explicitly recorded runtime fields. Output density never becomes
     # processed-image count, and legacy FPS never becomes processing throughput.
     for key in COLUMNS:
@@ -212,9 +226,32 @@ def load_inventory(path,repo=REPO):
 
 def checked_evaluation(attempt, inventory, repo):
     ev=json.loads((repo/attempt['evaluation_path']).read_text()) if attempt['evaluation_path'] else {}
-    if ev and inventory.get('qualification_review') and (ev.get('qualification') != attempt.get('qualification') or
-        ev.get('qualification_provenance') != inventory['qualification_review']):
-        raise ValueError('evaluation qualification disagrees with inventory: '+attempt['path'])
+    if inventory.get('qualification_review'):
+        # A later evidence review must not rewrite the historical evaluation.
+        # Recompute its current qualification from pinned raw evidence/ledger,
+        # then verify the inventory overlay instead of trusting either old or
+        # newly fabricated qualification fields.
+        from qualification_review import review_identity, review_saved
+        from protocol_findings import historical_findings
+        try:
+            identity=review_identity(repo)
+        except (OSError, ValueError, KeyError) as exc:
+            raise ValueError('inventory qualification review is unavailable') from exc
+        if identity != inventory['qualification_review']:
+            raise ValueError('inventory qualification review is stale')
+        run=repo/attempt['path'];meta_path=run/'run_meta.json'
+        meta=json.loads(meta_path.read_text()) if meta_path.is_file() else {}
+        snapshots=[]
+        for item in meta.get('provenance',{}).get('artifacts',[]):
+            if not item.get('snapshot'):continue
+            path=run/item['snapshot']
+            actual=hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else None
+            snapshots.append(dict(role=item['role'], verified=actual is not None and actual==item.get('snapshot_sha256')))
+        relative=attempt['path'].removeprefix('results/')
+        current=review_saved(relative,meta,ev,historical_findings(repo,relative,meta),snapshots,
+                             exists=run.is_dir(),repo=repo)
+        if current != attempt.get('qualification'):
+            raise ValueError('current qualification disagrees with inventory: '+attempt['path'])
     return ev
 
 

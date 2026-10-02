@@ -71,6 +71,13 @@ if [[ -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
     CALIB="$ROSARIO_PROFILE_DIR/calibration.json"
     ESTIMATOR_CFG="$ROSARIO_PROFILE_DIR/vio_config.json"
 fi
+REQUESTED_ESTIMATOR_CFG="$ESTIMATOR_CFG"
+ESTIMATOR_CFG="$OUT_DIR/effective-estimator-settings.json"
+python3 "$WS/scripts/run/_basalt_native_profile.py" "$WS" "$REQUESTED_ESTIMATOR_CFG" \
+    "$ESTIMATOR_CFG" "$BASALT_BIN" "$BASALT_LIBRARY" > "$OUT_DIR/native-settings-policy.json"
+PROFILE_PROV_ARGS+=(--artifact "requested_estimator_config=$REQUESTED_ESTIMATOR_CFG"
+    --artifact "native_settings_policy=$OUT_DIR/native-settings-policy.json"
+    --artifact "native_settings_review=$WS/docs/campaigns/basalt-native-profile-20261002.json")
 NATIVE_SEQ_DIR="$SEQ_DIR"
 REQUESTED_CALIB="$CALIB"
 if [[ "$USE_IMU" == true ]]; then
@@ -88,6 +95,7 @@ source "$WS/scripts/run/_owned_process.sh"
 PROV_ARGS=(
     "${PROFILE_PROV_ARGS[@]}"
     --param "process_isolation=attempt_token"
+    --param "cohort_artifact_semantics=2"
     --artifact "camera_calibration=$CALIB"
     --artifact "estimator_config=$ESTIMATOR_CFG"
     --binary "estimator=$BASALT_BIN"

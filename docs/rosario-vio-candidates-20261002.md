@@ -1,16 +1,16 @@
 # Rosario VIO candidate preparation — 2026-10-02
 
-**Configuration preparation and static review are complete. Execution readiness is
-not verified.** No estimator was launched, no scores changed, and no historical
-attempt was replaced by the preparation. Code, tests and inactive candidates are
-now integrated into `/data/imoroz/vslam-benchmark` on main. The three started ZED
-attempts and their captures finished before integration; their original evidence
-is preserved. This extends the existing review; it does
-not repeat the all-mode audit.
+**Candidate selection is integrated and bounded native checks have run.
+Recording-specific production profile selection remains unresolved.** The
+preparation phase launched no estimator; the subsequent explicitly authorized
+[readiness work](execution-readiness-20261002.md) exercised all four candidates
+on fixed initial windows. Historical attempts and scores remain preserved.
+Candidates stay opt-in and do not replace the default Rosario profiles.
 
 The final destination is `/data/imoroz/vslam-benchmark` on `main`.
 [Integration and validation](rosario-main-integration-20261002.md) reuse the work
-from the separate checkout. Native readiness is still unverified.
+from the separate checkout. Native evidence and remaining gates are tracked
+separately from the unresolved image/rectification choice.
 
 The [validation record](rosario-vio-candidate-validation-20261002.json) identifies
 source hashes, exact historical attempts, existing planned replacement paths,
@@ -23,13 +23,15 @@ All paths below are relative to
 `/data/imoroz/vslam-benchmark/configs/candidates/rosario-vio-20261002/`.
 The bundle's `index.json` hashes every candidate and sets
 `verified_ready_to_run: false` and `activated_in_runners: false`.
+These retained preparation flags mean not activated by default and not approved
+for production. Explicit diagnostic selection is now available in the runners.
 
 | Directory | Sensor calibration | Estimator policy | Status |
 |---|---|---|---|
-| `basalt-kalibr/` | Complete published Kalibr stereo/IMU bundle, full inverted transforms, residual radtan | Preserved historical `vio_config.json` | Prepared; native parser and offset handling unverified |
-| `voxel-kalibr/` | Same Kalibr bundle, both camera transforms and shifts, published IMU noise | Preserved historical non-calibration settings; spatial/intrinsic/time calibration disabled | Prepared; native timing/export/shutdown unverified |
-| `openvins-kalibr/` | Same Kalibr bundle; `T_cam_imu` retained for OpenVINS' inversion-capable parser | Preserved historical estimator settings; spatial/intrinsic disabled, time enabled | Prepared; native image/timestamp/shutdown unverified |
-| `openvins-author/` | Author OpenVINS sensor bundle, including its different extrinsics and time offsets | Author estimator YAML, including spatial/intrinsic/time calibration enabled | Prepared author-configuration reproduction; not a reproduction of published results |
+| `basalt-kalibr/` | Complete published Kalibr stereo/IMU bundle, full inverted transforms, residual radtan | Requested historical `vio_config.json`; four unsupported native keys disclosed | Native calibration and normalized clock verified; final settings-materialization regression pending |
+| `voxel-kalibr/` | Same Kalibr bundle, both camera transforms and shifts, published IMU noise | Preserved historical non-calibration settings; spatial/intrinsic/time calibration disabled | Native loaded values, repaired initializer offset and clean bounded exports verified |
+| `openvins-kalibr/` | Same Kalibr bundle; `T_cam_imu` retained for OpenVINS' inversion-capable parser | Preserved historical estimator settings; spatial/intrinsic disabled, time enabled | Both bounded checks exited cleanly; propagated IMU-clock export must stay distinct from camera-clock output |
+| `openvins-author/` | Author OpenVINS sensor bundle, including its different extrinsics and time offsets | Author estimator YAML, including spatial/intrinsic/time calibration enabled | Both bounded checks exited cleanly; online extrinsics require per-pose calibration for camera-origin scoring; no author-score reproduction claim |
 
 Basalt supplies `calibration.json` and `vio_config.json`; Voxel supplies
 `rosariov2.yaml`; each OpenVINS directory supplies `estimator_config.yaml`,
@@ -145,10 +147,14 @@ for author OpenVINS. It is not silently averaged. Basalt encodes left shift as
 4,098,308 ns, with less than 0.5 ns rounding. Voxel stores both published shifts,
 but its source consumes the left one; online time calibration remains disabled.
 
-**Timing gates remain:** the inspected [upstream Basalt VIO source](https://github.com/VladyslavUsenko/basalt/blob/0f3b2b52c807f70ff4e2973ce253c73329eea7bc/src/vi_estimator/sqrt_keypoint_vio.cpp#L183)
+**Native timing review:** the inspected [upstream Basalt VIO source](https://github.com/VladyslavUsenko/basalt/blob/0f3b2b52c807f70ff4e2973ce253c73329eea7bc/src/vi_estimator/sqrt_keypoint_vio.cpp#L183)
 has camera-offset application commented out. This does not prove what the
-installed binary does; its source linkage and actual offset application must be
-established. A populated JSON field alone is insufficient. Voxel adds its offset
+installed binary does. The runner now explicitly subtracts the declared shift
+from an attempt-local IMU CSV and supplies native offset zero; its original
+inputs stay intact and exports retain camera time. Native factory inspection
+confirms the effective offset and all sensor values. Voxel's original initializer
+silently retained offset zero; the repaired native path now loads the configured
+left-camera offset into both initialization and propagation. Voxel adds its offset
 to native pose timestamps; the runner subtracts the configured fixed offset.
 OpenVINS `/odomimu` is propagated/exported on IMU-message timestamps, while stereo
 updates use camera timestamps. Verify each exported trajectory's time basis
@@ -241,12 +247,14 @@ sequence 1 has 50.258957 ms of initial IMU lead. IMU continues past the final
 image in both sequences. Native initialization/bracketing must handle the sequence
 5 boundary explicitly and log any skipped frame; no dataset was silently trimmed.
 
-Runner-selection inspection confirms that **none selects these candidates**:
-Basalt hardcodes `configs/basalt/rosariov2_calib.json`; `BASALT_CONFIG` overrides
-its estimator settings only. Voxel selects a sequence-specific file, then the
-dataset fallback. OpenVINS selects its fixed dataset config directory. The latter
-two still use the older Rosario native build/image paths; ZED-specific shutdown
-repairs do not automatically establish Rosario readiness.
+Runner selection now accepts `ROSARIO_VIO_PROFILE=basalt-kalibr`,
+`voxel-kalibr`, `openvins-kalibr` or `openvins-author`, matched to the correct
+algorithm. It checks the indexed file hashes and snapshots every loaded profile
+file before execution. Basalt's `BASALT_CALIBRATION` is independent from
+`BASALT_CONFIG`; combining either override with an indexed candidate is rejected.
+Voxel candidates use the reviewed destructor/parameter-loading repair; OpenVINS
+candidates use the shutdown-corrected image. Defaults are unchanged. Native
+diagnostics do not approve any of these profiles for the recorded pixels.
 
 Reproduce preparation and static checks from `/data/imoroz/vslam-benchmark`:
 
@@ -280,18 +288,18 @@ Reproduce preparation and static checks from `/data/imoroz/vslam-benchmark`:
 2. Resolve the recording/projection questions from authoritative evidence, select
    one internally consistent profile and predeclare each cohort's algorithm policy.
    Keep the alternate OpenVINS profile separate if a later ablation is authorized.
-3. Add explicit candidate selection to each future runner and its configuration
-   recipe/provenance capture, or install the approved bundle into its documented
-   default paths after preservation. Basalt needs a calibration selection distinct
-   from its estimator override. Capture hashes of all actually loaded files.
-4. Establish native source/binary linkage, radtan parsing, IMU conventions and
-   timing application. Resolve Basalt's offset path; validate Voxel's fixed-offset
-   export correction and OpenVINS' IMU-clock export/reference association. Select
-   and validate Rosario-compatible shutdown builds/images without changing the
-   running ZED containers. Record first-frame handling for sequence 5.
-5. Obtain authorization for bounded native checks; test loaded values, topic/image
-   dimensions, initialization, output frames/time bases and clean shutdown. Keep
-   any failed checks and their outputs. Static preparation is not this validation.
+3. Explicit selection and loaded-file snapshots are implemented. Finish the
+   final Basalt effective-settings regression and bind the eventually selected
+   profile into its production manifest; defaults must not change implicitly.
+4. Retain the completed native calibration/timing/shutdown evidence and its
+   limits. Basalt's exact upstream build linkage remains distinct from verified
+   loaded values. OpenVINS' propagated IMU clock and online author-profile
+   extrinsics need explicit scoring conventions, including per-pose calibration
+   if camera-origin accuracy is claimed. Keep sequence 5's first-frame IMU gap
+   disclosed; no input was silently trimmed.
+5. The focused continuation already authorizes bounded diagnostics; preserve
+   their completed records and failed outcomes. Any final regression stays
+   separate from production. Native success cannot choose the camera profile.
 6. Regenerate fresh source/input/runtime captures and an execution manifest naming
    the 14 replacements and four missing slots, with non-colliding physical run IDs,
    previous-attempt links and measured runtime estimates where available. Keep all

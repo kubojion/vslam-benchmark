@@ -1,0 +1,21 @@
+{
+  "scope": "intermediate reporting/native-review checkpoint; full active goal remains incomplete",
+  "verified_n3": 69,
+  "tests": "283 passed, 7 subtests passed",
+  "historical_evidence_checked": 5128,
+  "historical_evidence_changed": [],
+  "completed_zed_orb_counters": {
+    "tracking_losses": "5",
+    "map_resets": "0",
+    "local_mapping_reset_messages": "96",
+    "imu_initialization_reset_requests": "96"
+  },
+  "remaining": [
+    "final Basalt materialization/cohort native checks",
+    "complete Rosario/OpenVINS native frame-clock documentation and remaining instrumentation issue",
+    "completed ZED position-claim review and sensitivities",
+    "refresh future manifests/input/runtime/source identities and preflight",
+    "new standalone remaining ZED VIO first-repetition batch with immediate evaluation",
+    "final outcome review and local commits; no push"
+  ]
+}

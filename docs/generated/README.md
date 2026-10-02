@@ -1,9 +1,9 @@
 # Generated results and publication status
 
-Updated after the focused EuRoC campaign, 2026-10-02 local. These outputs now match the root schema-3 CSVs and the
+Updated during the native-readiness review, 2026-10-02 local. These outputs match the root schema-3 CSVs and the
 hash-checked attempt inventory. They combine explicitly accepted, limited and blocked claims, identified in each
 cell; only the stated accepted comparisons are paper-usable. See [qualification](../publication-qualification-20261001.md)
-and [TODO](../../TODO.md). There are 72 protocol-verified EuRoC N=3 cells, including recorded failures; the 45 legacy clean-qualified cells are preserved; see the [current handoff](../acceptance-handoff-20261001.md).
+and [TODO](../../TODO.md). There are 69 protocol-verified N=3 cells: 60 EuRoC and nine ZED, including valid failures. Twelve previously green EuRoC ORB cells are held for unknown historical library/ABI identities; their scores and original decisions are preserved. See the [current readiness review](../execution-readiness-20261002.md).
 
 The EuRoC AirSLAM VIO/VIO-LC comparison uses corrected physical runs4–6, declared before execution. The 18 original affected runs remain in `benchmark-historical-cohorts.csv` and `results/historical-cohorts/`. OpenVINS original/new implementation cohorts remain separate. Protocol ticks require the separate evidence review and include supported sparse outputs and recorded failures. A/E/S/F denotes attempts/evaluations/clean final exports/failures.
 

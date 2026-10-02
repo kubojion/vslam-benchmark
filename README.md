@@ -1,14 +1,14 @@
 # vSLAM Benchmark
 
-> **ZED reference review (2026-10-02): 81 cells have verified protocol N=3.**
-> The nine newly qualified ZED cells support nominal 3D **position** claims, with
-> mounting, RTK-float and clock limitations disclosed. Across all 256 verified
-> attempts, 41 failures remain recorded. Green verifies the stated protocol and
-> cohort, not successful tracking, full coverage or exact reference accuracy.
-> The original 45 clean-qualified cells and non-ZED numerical scores are preserved.
-> See [TODO](TODO.md), [ZED preparation](docs/zed-preparation-20261002.md) and
-> [handoff](docs/acceptance-handoff-20261001.md). Short native validation is separate
-> from production repetition; no full ZED campaign or push is authorized.
+> **Native review in progress (2026-10-02): 69 cells have verified protocol N=3.**
+> Twelve previously green EuRoC ORB cells are held because historical ORB/g2o
+> library identities are unknown; this does not establish incompatibility or
+> request blanket reruns. Scores and original decisions remain preserved.
+> Green verifies three consistently configured attempts, including valid failures.
+> ZED claims remain nominal 3D **position** only, with mounting, RTK-float and
+> clock limits. See [TODO](TODO.md) and [current readiness work](docs/execution-readiness-20261002.md).
+> Only the specifically authorized remaining ZED VIO first repetitions may run
+> after engineering and preflight refresh; no full campaign, repetitions 2/3 or push.
 
 
 
@@ -183,7 +183,7 @@ their original directories and separate reports. Missing runs and failures remai
 explicit. [Tables](docs/generated/tables.md), [counts](docs/generated/verified-claims.md),
 [figures](docs/generated/README.md) and the browser use the same checked inventory.
 
-The [protocol review](docs/protocol-review-20261002.md) and [ZED preparation](docs/zed-preparation-20261002.md) verify **81 N=3 cells**: 72 EuRoC and nine ZED. The original 45 clean-qualified cells remain an unchanged audit subset. The default manifest has 261 reusable observations, 84 required reruns, 81 missing repetitions and 234 blocked cases.
+The [current native review](docs/execution-readiness-20261002.md) retains **69 N=3 cells**: 60 EuRoC and nine ZED. Twelve historical ORB cells previously qualified at the 81-cell checkpoint are now under explicit dependency/ABI review. Their previous decisions and numerical results remain preserved. Future manifests require identity and preflight refresh after the ongoing engineering changes; older category totals are dated snapshots.
 Readiness is per action and requires its recorded native/configuration checks.
 ZED nominal position qualification does not resolve Rosario, Horti or GNSS blockers.
 Older generated reports and figures remain [archived](docs/generated/historical-before-repair-20261001/README.md).

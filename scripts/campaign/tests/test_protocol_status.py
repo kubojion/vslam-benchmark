@@ -34,6 +34,26 @@ def test_native_error_overrides_wrapper_zero_and_preserves_saved_accuracy_scope(
     assert p['attempt_completed'] and not p['successful_run']
 
 
+def test_reviewed_complete_export_shutdown_remains_failure_and_never_clean():
+    a = attempt()
+    a['qualification'].update(native_error_observations=[{'text': 'native terminate'}],
+        export_review={'export_completion': 'complete', 'shutdown_error': True,
+                       'label': 'completed export; shutdown error'})
+    outcome = attempt_protocol(a)
+    assert outcome['observed_outcome'] == 'completed_export_shutdown_error'
+    assert outcome['observed_failure'] and not outcome['successful_run']
+    result = summarize_attempts([a, a, a])
+    assert result['protocol_verified_n3']
+    assert (result['attempt_count'], result['evaluated_trajectory_count'],
+            result['successful_run_count'], result['observed_failure_count']) == (3, 3, 0, 3)
+    assert result['completed_export_shutdown_error_count'] == 3
+    a['numerical_status'] = 'scale_collapse'
+    assert attempt_protocol(a)['observed_outcome'] == 'failure_scale_collapse'
+    a['numerical_status'] = 'ok'
+    a['qualification']['export_review']['export_completion'] = 'partial'
+    assert attempt_protocol(a)['observed_outcome'] == 'failure_with_saved_trajectory'
+
+
 def test_distinct_implementations_remain_one_plus_two_and_unknown_is_not_completion():
     old = attempt()
     patched = dict(old, cohort_fingerprint='patched')

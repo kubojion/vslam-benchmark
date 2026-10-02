@@ -18,7 +18,8 @@ snapshot_rosario_candidate() {
     python3 "$WS/scripts/run/_rosario_profile.py" "$WS" "$ROSARIO_PROFILE_ALGORITHM" \
         "$DATASET" "$SEQ" "$RUN_TYPE" "$ROSARIO_VIO_PROFILE" \
         --snapshot-to "$ROSARIO_PROFILE_DIR" >/dev/null
-    PROFILE_PROV_ARGS=(--artifact "candidate_selection=$ROSARIO_PROFILE_DIR/selection.json"
+    PROFILE_PROV_ARGS=(--param "cohort_artifact_semantics=2"
+        --artifact "candidate_selection=$ROSARIO_PROFILE_DIR/selection.json"
         --param "rosario_vio_profile=$ROSARIO_VIO_PROFILE"
         --param "production_camera_profile_confirmed=false")
 }

@@ -1,7 +1,7 @@
 # TODO status details
 
 Generated presentation of the reviewed inventory; no acceptance decisions or scores are changed.
-Inventory SHA-256: `91018f1a8b2167bd6dcd9179b0cab2d0caa6af5f174c771bfc90afeb1394dc16`. [Matrix legend](../TODO.md#run-combinations-matrix).
+Inventory SHA-256: `93dae1058b44f7f6bbb0a419c1e8ac73a8748bc14ef1efac3cdb9d7da9831beb`. [Matrix legend](../TODO.md#run-combinations-matrix).
 [Source inventory](../results/repair-20261001/inventory.json); [acceptance ledger](campaigns/paper-acceptance-20261001.json); [review definitions](protocol-review-20261002.md).
 
 N counts completed verified attempts. Counts describe the selected physical runs, including
@@ -34,13 +34,68 @@ items; separately verified N=1 and N=2 never become one N=3.
 
 Manifest: [results/repair-20261001/future-n3-manifest.json](../results/repair-20261001/future-n3-manifest.json); SHA-256: `a9d184a13fc518975a21d90e63b5370079c84e7bf9408a2345503921510e21f6`.
 Categories: `blocked=237`, `missing=81`, `required_rerun=81`, `reusable=261`.
-Verified new-attempt readiness: **36**.
+Verified new-attempt readiness: **0**.
+
+Evidence validation errors (readiness is unverified):
+
+- stale or absent evidence: results/repair-20261001/inventory.json
+- stale or absent evidence: configs/voxel_svio/zed2i.yaml
+- stale or absent evidence: scripts/campaign/acceptance_ledger.py
+- stale or absent evidence: scripts/campaign/build_repair_inventory.py
+- stale or absent evidence: scripts/campaign/configuration_recipe.py
+- stale or absent evidence: scripts/campaign/protocol_status.py
+- stale or absent evidence: scripts/campaign/run_future_manifest.py
+- stale or absent evidence: scripts/campaign/tests/test_protocol_status.py
+- stale or absent evidence: scripts/campaign/tests/test_rosario_vio_candidates.py
+- stale or absent evidence: scripts/campaign/tests/test_voxel_wrapper_outcomes.py
+- stale or absent evidence: scripts/campaign/update_todo_matrices.py
+- stale or absent evidence: scripts/eval/_run_observations.py
+- stale or absent evidence: scripts/eval/build_benchmark_csv.py
+- stale or absent evidence: scripts/eval/tests/test_focused_cohorts.py
+- stale or absent evidence: scripts/eval/tests/test_observations_and_segments.py
+- stale or absent evidence: scripts/eval/tests/test_reconciled_exports.py
+- stale or absent evidence: scripts/results/build_manifest.py
+- stale or absent evidence: scripts/results/build_site.py
+- stale or absent evidence: scripts/run/_capture_runtime.py
+- stale or absent evidence: scripts/run/_config_preflight.py
+- stale or absent evidence: scripts/run/run_basalt.sh
+- stale or absent evidence: scripts/run/run_openvins.sh
+- stale or absent evidence: scripts/run/run_orbslam3.sh
+- stale or absent evidence: scripts/run/run_voxel_svio.sh
+- stale or absent evidence: docs/campaigns/paper-acceptance-20261001.json
 
 ### zed-coherent-n3-20261002-main-integration
 
 Manifest: [results/zed-preparation-20261002/campaign/manifest.json](../results/zed-preparation-20261002/campaign/manifest.json); SHA-256: `4f46ab6d35d4a39cf5472db410227da7a5d00cc53fd03bd54398bd6d769e92fe`.
 Categories: `blocked=3`, `cohort_completion=6`, `missing=25`, `required_rerun=14`, `reusable=27`.
-Verified new-attempt readiness: **42**.
+Verified new-attempt readiness: **0**.
+
+Evidence validation errors (readiness is unverified):
+
+- stale or absent evidence: configs/voxel_svio/zed2i.yaml
+- stale or absent evidence: scripts/campaign/acceptance_ledger.py
+- stale or absent evidence: scripts/campaign/build_repair_inventory.py
+- stale or absent evidence: scripts/campaign/configuration_recipe.py
+- stale or absent evidence: scripts/campaign/protocol_status.py
+- stale or absent evidence: scripts/campaign/run_future_manifest.py
+- stale or absent evidence: scripts/campaign/tests/test_protocol_status.py
+- stale or absent evidence: scripts/campaign/tests/test_rosario_vio_candidates.py
+- stale or absent evidence: scripts/campaign/tests/test_voxel_wrapper_outcomes.py
+- stale or absent evidence: scripts/campaign/update_todo_matrices.py
+- stale or absent evidence: scripts/eval/_run_observations.py
+- stale or absent evidence: scripts/eval/build_benchmark_csv.py
+- stale or absent evidence: scripts/eval/tests/test_focused_cohorts.py
+- stale or absent evidence: scripts/eval/tests/test_observations_and_segments.py
+- stale or absent evidence: scripts/eval/tests/test_reconciled_exports.py
+- stale or absent evidence: scripts/results/build_manifest.py
+- stale or absent evidence: scripts/results/build_site.py
+- stale or absent evidence: scripts/run/_capture_runtime.py
+- stale or absent evidence: scripts/run/_config_preflight.py
+- stale or absent evidence: scripts/run/run_basalt.sh
+- stale or absent evidence: scripts/run/run_openvins.sh
+- stale or absent evidence: scripts/run/run_orbslam3.sh
+- stale or absent evidence: scripts/run/run_voxel_svio.sh
+- stale or absent evidence: docs/campaigns/paper-acceptance-20261001.json
 
 The coherent ZED selection replaces its part of the five-mode plan. Counts must not be added.
 
@@ -112,8 +167,8 @@ Selected plan: `future-n3-five-modes`.
 Group `33d4a1107fb8aa4a6b8b28309b0bfa127b100be8fcfa13d6a708c270272dc39a`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: none.
-Review blockers: `missing_repetition`, `rosario_image_projection_baseline_inconsistency`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `missing_repetition`, `rosario_image_projection_baseline_inconsistency`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`.
 Native failure evidence r1: `{"line": 56, "text": "2.186 terminate called after throwing an instance of 'std::bad_alloc'"}`, `{"line": 57, "text": "2.187   what():  std::bad_alloc"}`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
@@ -221,9 +276,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo/rosariov2/sequence1/ov2slam/run1) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vo/rosariov2/sequence1/ov2slam/run2) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vo/rosariov2/sequence1/ov2slam/run3) | blocked | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vo/rosariov2/sequence1/ov2slam/run1) | blocked | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vo/rosariov2/sequence1/ov2slam/run2) | blocked | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vo/rosariov2/sequence1/ov2slam/run3) | blocked | completed_export_shutdown_error | 0 | yes |
 
 Group `828b3abbc8235882c6f463448820d2002cc34e50358a4f28d30a7b39750571e8`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -300,8 +355,8 @@ Selected plan: `future-n3-five-modes`.
 Group `33d4a1107fb8aa4a6b8b28309b0bfa127b100be8fcfa13d6a708c270272dc39a`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: none.
-Review blockers: `missing_repetition`, `rosario_image_projection_baseline_inconsistency`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `missing_repetition`, `rosario_image_projection_baseline_inconsistency`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`.
 Native failure evidence r1: `{"line": 57, "text": "2.241 Segmentation fault (core dumped)"}`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
@@ -409,9 +464,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo/rosariov2/sequence5/ov2slam/run1) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vo/rosariov2/sequence5/ov2slam/run2) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vo/rosariov2/sequence5/ov2slam/run3) | blocked | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vo/rosariov2/sequence5/ov2slam/run1) | blocked | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vo/rosariov2/sequence5/ov2slam/run2) | blocked | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vo/rosariov2/sequence5/ov2slam/run3) | blocked | completed_export_shutdown_error | 0 | yes |
 
 Group `828b3abbc8235882c6f463448820d2002cc34e50358a4f28d30a7b39750571e8`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -488,8 +543,8 @@ Selected plan: `future-n3-five-modes`.
 Group `a97d3710859ffa8efb12f7fa1f02db8a44b5291d70a351cbb1548eb69ebd65f7`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: none.
-Review blockers: `horti_exact_reference_origin_timing_unresolved`, `missing_repetition`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `horti_exact_reference_origin_timing_unresolved`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`.
 Native failure evidence r1: `{"line": 57, "text": "2.191 Segmentation fault (core dumped)"}`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
@@ -597,9 +652,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo/hortimulti/strawberry02/ov2slam/run1) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vo/hortimulti/strawberry02/ov2slam/run2) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vo/hortimulti/strawberry02/ov2slam/run3) | blocked | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vo/hortimulti/strawberry02/ov2slam/run1) | blocked | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vo/hortimulti/strawberry02/ov2slam/run2) | blocked | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vo/hortimulti/strawberry02/ov2slam/run3) | blocked | completed_export_shutdown_error | 0 | yes |
 
 Group `596214197599c7ea1b9187d7ac157514ae110ed3a98d2eaed3a970271c8cfdec`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -670,14 +725,14 @@ Selected plan: `future-n3-five-modes`.
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
 | 1 | [run1](../results/vo/hortimulti/strawberry03/orbslam3/run1) | blocked | success | 0 | yes |
-| 2 | [run2](../results/vo/hortimulti/strawberry03/orbslam3/run2) | blocked | failure_with_saved_trajectory | 139 | yes |
+| 2 | [run2](../results/vo/hortimulti/strawberry03/orbslam3/run2) | blocked | completed_export_shutdown_error | 139 | yes |
 | 3 | [run3](../results/vo/hortimulti/strawberry03/orbslam3/run3) | blocked | success | 0 | yes |
 
 Group `2fb6c3448bac07def910b05d7e7d8a84d45deda6dcb6ad7b6bd1ab368a8280dc`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `horti_exact_reference_origin_timing_unresolved`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 Native failure evidence r2: `{"line": 66, "text": "256.102 Segmentation fault (core dumped)"}`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
@@ -785,9 +840,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo/hortimulti/strawberry03/ov2slam/run1) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vo/hortimulti/strawberry03/ov2slam/run2) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vo/hortimulti/strawberry03/ov2slam/run3) | blocked | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vo/hortimulti/strawberry03/ov2slam/run1) | blocked | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vo/hortimulti/strawberry03/ov2slam/run2) | blocked | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vo/hortimulti/strawberry03/ov2slam/run3) | blocked | completed_export_shutdown_error | 0 | yes |
 
 Group `596214197599c7ea1b9187d7ac157514ae110ed3a98d2eaed3a970271c8cfdec`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -850,22 +905,22 @@ Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_febru
 <a id="vo-euroc-mav-mh-01-easy-orbslam3"></a>
 ## vo/euroc_mav/MH_01_easy/orbslam3
 
-**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
+**A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🟡 next: review (not ready).
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo/euroc_mav/MH_01_easy/orbslam3/run1) | verified | success | 0 | yes |
-| 2 | [run2](../results/vo/euroc_mav/MH_01_easy/orbslam3/run2) | verified | success | 0 | yes |
-| 3 | [run3](../results/vo/euroc_mav/MH_01_easy/orbslam3/run3) | verified | success | 0 | yes |
+| 1 | [run1](../results/vo/euroc_mav/MH_01_easy/orbslam3/run1) | blocked | success | 0 | yes |
+| 2 | [run2](../results/vo/euroc_mav/MH_01_easy/orbslam3/run2) | blocked | success | 0 | yes |
+| 3 | [run3](../results/vo/euroc_mav/MH_01_easy/orbslam3/run3) | blocked | success | 0 | yes |
 
-Group `e19dffda7a067706b9bd15e697195a0076874b207fbeca1303891f222d6b4143`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
+Group `e19dffda7a067706b9bd15e697195a0076874b207fbeca1303891f222d6b4143`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: none.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
@@ -972,9 +1027,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo/euroc_mav/MH_01_easy/ov2slam/run1) | verified | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vo/euroc_mav/MH_01_easy/ov2slam/run2) | verified | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vo/euroc_mav/MH_01_easy/ov2slam/run3) | verified | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vo/euroc_mav/MH_01_easy/ov2slam/run1) | verified | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vo/euroc_mav/MH_01_easy/ov2slam/run2) | verified | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vo/euroc_mav/MH_01_easy/ov2slam/run3) | verified | completed_export_shutdown_error | 0 | yes |
 
 Group `c711a8a07339c763bb1bba9026b207c1c1aa2c3b760014b4cffa2045c9b28ae4`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -1037,22 +1092,22 @@ Prerequisites: none.
 <a id="vo-euroc-mav-mh-03-medium-orbslam3"></a>
 ## vo/euroc_mav/MH_03_medium/orbslam3
 
-**A3/E3/S2/F1**; verified completed groups: 3. Verified N=3: yes.
+**A3/E3/S2/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🟡 next: review (not ready).
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo/euroc_mav/MH_03_medium/orbslam3/run1) | verified | success | 0 | yes |
-| 2 | [run2](../results/vo/euroc_mav/MH_03_medium/orbslam3/run2) | verified | failure_with_saved_trajectory | 139 | yes |
-| 3 | [run3](../results/vo/euroc_mav/MH_03_medium/orbslam3/run3) | verified | success | 0 | yes |
+| 1 | [run1](../results/vo/euroc_mav/MH_03_medium/orbslam3/run1) | blocked | success | 0 | yes |
+| 2 | [run2](../results/vo/euroc_mav/MH_03_medium/orbslam3/run2) | blocked | completed_export_shutdown_error | 139 | yes |
+| 3 | [run3](../results/vo/euroc_mav/MH_03_medium/orbslam3/run3) | blocked | success | 0 | yes |
 
-Group `0f0bd4770fab2ed59b08c1744fbb3ade0dd767602c0733d0e5b9a535927670fb`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
+Group `0f0bd4770fab2ed59b08c1744fbb3ade0dd767602c0733d0e5b9a535927670fb`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: none.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`, `saved_accuracy_with_recorded_nonzero_exit_no_clean_success`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `saved_accuracy_with_recorded_nonzero_exit_no_clean_success`.
 Native failure evidence r2: `{"line": 71, "text": "147.700 Segmentation fault (core dumped)"}`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
@@ -1160,9 +1215,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo/euroc_mav/MH_03_medium/ov2slam/run1) | verified | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vo/euroc_mav/MH_03_medium/ov2slam/run2) | verified | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vo/euroc_mav/MH_03_medium/ov2slam/run3) | verified | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vo/euroc_mav/MH_03_medium/ov2slam/run1) | verified | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vo/euroc_mav/MH_03_medium/ov2slam/run2) | verified | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vo/euroc_mav/MH_03_medium/ov2slam/run3) | verified | completed_export_shutdown_error | 0 | yes |
 
 Group `c711a8a07339c763bb1bba9026b207c1c1aa2c3b760014b4cffa2045c9b28ae4`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -1225,22 +1280,22 @@ Prerequisites: none.
 <a id="vo-euroc-mav-mh-05-difficult-orbslam3"></a>
 ## vo/euroc_mav/MH_05_difficult/orbslam3
 
-**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
+**A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🟡 next: review (not ready).
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo/euroc_mav/MH_05_difficult/orbslam3/run1) | verified | success | 0 | yes |
-| 2 | [run2](../results/vo/euroc_mav/MH_05_difficult/orbslam3/run2) | verified | success | 0 | yes |
-| 3 | [run3](../results/vo/euroc_mav/MH_05_difficult/orbslam3/run3) | verified | success | 0 | yes |
+| 1 | [run1](../results/vo/euroc_mav/MH_05_difficult/orbslam3/run1) | blocked | success | 0 | yes |
+| 2 | [run2](../results/vo/euroc_mav/MH_05_difficult/orbslam3/run2) | blocked | success | 0 | yes |
+| 3 | [run3](../results/vo/euroc_mav/MH_05_difficult/orbslam3/run3) | blocked | success | 0 | yes |
 
-Group `e19dffda7a067706b9bd15e697195a0076874b207fbeca1303891f222d6b4143`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
+Group `e19dffda7a067706b9bd15e697195a0076874b207fbeca1303891f222d6b4143`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: none.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
@@ -1347,9 +1402,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo/euroc_mav/MH_05_difficult/ov2slam/run1) | verified | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vo/euroc_mav/MH_05_difficult/ov2slam/run2) | verified | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vo/euroc_mav/MH_05_difficult/ov2slam/run3) | verified | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vo/euroc_mav/MH_05_difficult/ov2slam/run1) | verified | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vo/euroc_mav/MH_05_difficult/ov2slam/run2) | verified | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vo/euroc_mav/MH_05_difficult/ov2slam/run3) | verified | completed_export_shutdown_error | 0 | yes |
 
 Group `c711a8a07339c763bb1bba9026b207c1c1aa2c3b760014b4cffa2045c9b28ae4`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -1414,13 +1469,13 @@ Prerequisites: none.
 
 **A3/E3/S1/F2**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run1) | invalid_setup | failure_with_saved_trajectory | 139 | yes |
-| 2 | [run2](../results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run2) | invalid_setup | failure_with_saved_trajectory | 139 | yes |
+| 1 | [run1](../results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run1) | invalid_setup | completed_export_shutdown_error | 139 | yes |
+| 2 | [run2](../results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run2) | invalid_setup | completed_export_shutdown_error | 139 | yes |
 | 3 | [run3](../results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run3) | invalid_setup | success | 0 | yes |
 
 Group `b5d255e908662a81d1800e4f74481dfdc2540b8b21f30141916e226cc5f6735a`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
@@ -1431,10 +1486,10 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Native failure evidence r1: `{"line": 66, "text": "5647.331 Segmentation fault (core dumped)"}`.
 Native failure evidence r2: `{"line": 66, "text": "5752.268 Segmentation fault (core dumped)"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-okvis2"></a>
@@ -1551,9 +1606,9 @@ Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run1) | verified | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run2) | verified | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run3) | verified | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run1) | verified | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run2) | verified | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run3) | verified | completed_export_shutdown_error | 0 | yes |
 
 Group `052d85309cf2df535687b2fc6b101901ffe72244d7de9529dc27ed0e8ebc5c5d`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -1639,8 +1694,8 @@ Selected plan: `future-n3-five-modes`.
 Group `f2d011ccb14b9114f9015f1076ffb6b442dc4caf04f0d88dd3cef392acfb049f`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: none.
-Review blockers: `missing_repetition`, `rosario_image_projection_baseline_inconsistency`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `missing_repetition`, `rosario_image_projection_baseline_inconsistency`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`.
 Native failure evidence r1: `{"line": 56, "text": "2.145 terminate called after throwing an instance of 'std::bad_alloc'"}`, `{"line": 57, "text": "2.145   what():  std::bad_alloc"}`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
@@ -1726,9 +1781,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo-lc/rosariov2/sequence1/ov2slam/run1) | blocked | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vo-lc/rosariov2/sequence1/ov2slam/run1) | blocked | completed_export_shutdown_error | 0 | yes |
 | 2 | [run2](../results/vo-lc/rosariov2/sequence1/ov2slam/run2) | blocked | failure_scale_collapse | 0 | yes |
-| 3 | [run3](../results/vo-lc/rosariov2/sequence1/ov2slam/run3) | blocked | failure_with_saved_trajectory | 0 | yes |
+| 3 | [run3](../results/vo-lc/rosariov2/sequence1/ov2slam/run3) | blocked | completed_export_shutdown_error | 0 | yes |
 
 Group `2110daa8b7da8fe88e07c76625f5b58b8017bdbc4e96b7c2051725ebfa8adccc`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -1782,8 +1837,8 @@ Selected plan: `future-n3-five-modes`.
 Group `7b48dc57080e7b413b83255fbe1e87cc96e7be04cf9ed0703060daa7ecaa4e98`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
 Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
@@ -1867,9 +1922,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo-lc/rosariov2/sequence5/ov2slam/run1) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vo-lc/rosariov2/sequence5/ov2slam/run2) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vo-lc/rosariov2/sequence5/ov2slam/run3) | blocked | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vo-lc/rosariov2/sequence5/ov2slam/run1) | blocked | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vo-lc/rosariov2/sequence5/ov2slam/run2) | blocked | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vo-lc/rosariov2/sequence5/ov2slam/run3) | blocked | completed_export_shutdown_error | 0 | yes |
 
 Group `4a1fed12c4f45e9f4b238a2b1d290fdb9ee857e538449dd86088f321aef150d3`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -1923,8 +1978,8 @@ Selected plan: `future-n3-five-modes`.
 Group `5d8b80a466bca1529910dd70011ba6705013ffc80cdb845e6b60dabd5793bf02`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `horti_exact_reference_origin_timing_unresolved`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 Native failure evidence r2: `{"line": 104, "text": "1031.979 Segmentation fault (core dumped)"}`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
@@ -2009,9 +2064,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo-lc/hortimulti/strawberry02/ov2slam/run1) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vo-lc/hortimulti/strawberry02/ov2slam/run2) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vo-lc/hortimulti/strawberry02/ov2slam/run3) | blocked | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vo-lc/hortimulti/strawberry02/ov2slam/run1) | blocked | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vo-lc/hortimulti/strawberry02/ov2slam/run2) | blocked | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vo-lc/hortimulti/strawberry02/ov2slam/run3) | blocked | completed_export_shutdown_error | 0 | yes |
 
 Group `3d44ca34443fb94597e3c8a34ab10f186c2aa2eb9bdf8c66d9cb4f78d938387d`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -2058,15 +2113,15 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo-lc/hortimulti/strawberry03/orbslam3/run1) | blocked | failure_with_saved_trajectory | 139 | yes |
+| 1 | [run1](../results/vo-lc/hortimulti/strawberry03/orbslam3/run1) | blocked | completed_export_shutdown_error | 139 | yes |
 | 2 | [run2](../results/vo-lc/hortimulti/strawberry03/orbslam3/run2) | blocked | success | 0 | yes |
 | 3 | [run3](../results/vo-lc/hortimulti/strawberry03/orbslam3/run3) | blocked | success | 0 | yes |
 
 Group `baaa5530dc964aabb6dd8c8ec731b1a58a2e5a62763558e734fbd2b53f012a74`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `horti_exact_reference_origin_timing_unresolved`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 Native failure evidence r1: `{"line": 71, "text": "272.755 Segmentation fault (core dumped)"}`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
@@ -2151,9 +2206,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo-lc/hortimulti/strawberry03/ov2slam/run1) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vo-lc/hortimulti/strawberry03/ov2slam/run2) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vo-lc/hortimulti/strawberry03/ov2slam/run3) | blocked | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vo-lc/hortimulti/strawberry03/ov2slam/run1) | blocked | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vo-lc/hortimulti/strawberry03/ov2slam/run2) | blocked | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vo-lc/hortimulti/strawberry03/ov2slam/run3) | blocked | completed_export_shutdown_error | 0 | yes |
 
 Group `3d44ca34443fb94597e3c8a34ab10f186c2aa2eb9bdf8c66d9cb4f78d938387d`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -2193,22 +2248,22 @@ Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_febru
 <a id="vo-lc-euroc-mav-mh-01-easy-orbslam3"></a>
 ## vo-lc/euroc_mav/MH_01_easy/orbslam3
 
-**A3/E3/S2/F1**; verified completed groups: 3. Verified N=3: yes.
+**A3/E3/S2/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🟡 next: review (not ready).
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run1) | verified | success | 0 | yes |
-| 2 | [run2](../results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run2) | verified | success | 0 | yes |
-| 3 | [run3](../results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run3) | verified | failure_with_saved_trajectory | 139 | yes |
+| 1 | [run1](../results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run1) | blocked | success | 0 | yes |
+| 2 | [run2](../results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run2) | blocked | success | 0 | yes |
+| 3 | [run3](../results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run3) | blocked | completed_export_shutdown_error | 139 | yes |
 
-Group `2fb7a8a1ab2b92230c69f9c42e7da5e311ac3f0079a814fb8405dc8a66d38cd1`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
+Group `2fb7a8a1ab2b92230c69f9c42e7da5e311ac3f0079a814fb8405dc8a66d38cd1`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: none.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`, `saved_accuracy_with_recorded_nonzero_exit_no_clean_success`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `saved_accuracy_with_recorded_nonzero_exit_no_clean_success`.
 Native failure evidence r3: `{"line": 71, "text": "201.536 Segmentation fault (core dumped)"}`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
@@ -2293,9 +2348,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo-lc/euroc_mav/MH_01_easy/ov2slam/run1) | verified | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vo-lc/euroc_mav/MH_01_easy/ov2slam/run2) | verified | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vo-lc/euroc_mav/MH_01_easy/ov2slam/run3) | verified | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vo-lc/euroc_mav/MH_01_easy/ov2slam/run1) | verified | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vo-lc/euroc_mav/MH_01_easy/ov2slam/run2) | verified | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vo-lc/euroc_mav/MH_01_easy/ov2slam/run3) | verified | completed_export_shutdown_error | 0 | yes |
 
 Group `993143e732f96366d92572be078ad906beb2329831ce54e2bc99c9155a385f80`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -2335,22 +2390,22 @@ Prerequisites: none.
 <a id="vo-lc-euroc-mav-mh-03-medium-orbslam3"></a>
 ## vo-lc/euroc_mav/MH_03_medium/orbslam3
 
-**A3/E3/S2/F1**; verified completed groups: 3. Verified N=3: yes.
+**A3/E3/S2/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🟡 next: review (not ready).
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo-lc/euroc_mav/MH_03_medium/orbslam3/run1) | verified | success | 0 | yes |
-| 2 | [run2](../results/vo-lc/euroc_mav/MH_03_medium/orbslam3/run2) | verified | success | 0 | yes |
-| 3 | [run3](../results/vo-lc/euroc_mav/MH_03_medium/orbslam3/run3) | verified | failure_with_saved_trajectory | 139 | yes |
+| 1 | [run1](../results/vo-lc/euroc_mav/MH_03_medium/orbslam3/run1) | blocked | success | 0 | yes |
+| 2 | [run2](../results/vo-lc/euroc_mav/MH_03_medium/orbslam3/run2) | blocked | success | 0 | yes |
+| 3 | [run3](../results/vo-lc/euroc_mav/MH_03_medium/orbslam3/run3) | blocked | completed_export_shutdown_error | 139 | yes |
 
-Group `2fb7a8a1ab2b92230c69f9c42e7da5e311ac3f0079a814fb8405dc8a66d38cd1`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
+Group `2fb7a8a1ab2b92230c69f9c42e7da5e311ac3f0079a814fb8405dc8a66d38cd1`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: none.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`, `saved_accuracy_with_recorded_nonzero_exit_no_clean_success`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `saved_accuracy_with_recorded_nonzero_exit_no_clean_success`.
 Native failure evidence r3: `{"line": 71, "text": "148.380 Segmentation fault (core dumped)"}`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
@@ -2435,9 +2490,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo-lc/euroc_mav/MH_03_medium/ov2slam/run1) | verified | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vo-lc/euroc_mav/MH_03_medium/ov2slam/run2) | verified | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vo-lc/euroc_mav/MH_03_medium/ov2slam/run3) | verified | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vo-lc/euroc_mav/MH_03_medium/ov2slam/run1) | verified | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vo-lc/euroc_mav/MH_03_medium/ov2slam/run2) | verified | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vo-lc/euroc_mav/MH_03_medium/ov2slam/run3) | verified | completed_export_shutdown_error | 0 | yes |
 
 Group `993143e732f96366d92572be078ad906beb2329831ce54e2bc99c9155a385f80`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -2477,22 +2532,22 @@ Prerequisites: none.
 <a id="vo-lc-euroc-mav-mh-05-difficult-orbslam3"></a>
 ## vo-lc/euroc_mav/MH_05_difficult/orbslam3
 
-**A3/E3/S2/F1**; verified completed groups: 3. Verified N=3: yes.
+**A3/E3/S2/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🟡 next: review (not ready).
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo-lc/euroc_mav/MH_05_difficult/orbslam3/run1) | verified | failure_with_saved_trajectory | 134 | yes |
-| 2 | [run2](../results/vo-lc/euroc_mav/MH_05_difficult/orbslam3/run2) | verified | success | 0 | yes |
-| 3 | [run3](../results/vo-lc/euroc_mav/MH_05_difficult/orbslam3/run3) | verified | success | 0 | yes |
+| 1 | [run1](../results/vo-lc/euroc_mav/MH_05_difficult/orbslam3/run1) | blocked | completed_export_shutdown_error | 134 | yes |
+| 2 | [run2](../results/vo-lc/euroc_mav/MH_05_difficult/orbslam3/run2) | blocked | success | 0 | yes |
+| 3 | [run3](../results/vo-lc/euroc_mav/MH_05_difficult/orbslam3/run3) | blocked | success | 0 | yes |
 
-Group `2fb7a8a1ab2b92230c69f9c42e7da5e311ac3f0079a814fb8405dc8a66d38cd1`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
+Group `2fb7a8a1ab2b92230c69f9c42e7da5e311ac3f0079a814fb8405dc8a66d38cd1`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: none.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`, `saved_accuracy_with_recorded_nonzero_exit_no_clean_success`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `saved_accuracy_with_recorded_nonzero_exit_no_clean_success`.
 Native failure evidence r1: `{"line": 77, "text": "126.067 terminate called without an active exception"}`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
@@ -2577,9 +2632,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run1) | verified | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run2) | verified | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run3) | verified | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run1) | verified | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run2) | verified | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run3) | verified | completed_export_shutdown_error | 0 | yes |
 
 Group `44b82c17735c86e09896facdffc8a2b0d0500c0c850d52636e531e77498fbdec`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -2621,12 +2676,12 @@ Prerequisites: none.
 
 **A3/E3/S2/F1**; verified completed groups: 0+0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1) | invalid_setup | failure_with_saved_trajectory | 139 | yes |
+| 1 | [run1](../results/vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1) | invalid_setup | completed_export_shutdown_error | 139 | yes |
 | 2 | [run2](../results/vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run2) | invalid_setup | success | 0 | yes |
 | 3 | [run3](../results/vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run3) | invalid_setup | success | 0 | yes |
 
@@ -2638,10 +2693,10 @@ Review blockers: `camera_fps_changed_15_to_10`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 Native failure evidence r1: `{"line": 66, "text": "5651.548 Segmentation fault (core dumped)"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-okvis2"></a>
@@ -2649,7 +2704,7 @@ Prerequisites: none.
 
 **A2/E1/S1/F1**; verified completed groups: 1+0. Verified N=3: no.
 
-Cell next-action display: next: new group 3 ready.
+Cell next-action display: next: new group 3 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2666,10 +2721,10 @@ Review blockers: `missing_repetition`, `native_execution_cause_and_usable_export
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `final_ba_disabled`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 Native failure evidence r2: `{"line": 12602, "text": "9388.271 Killed"}`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 blocked; readiness unverified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 blocked; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: `retain_failed_or_interrupted_attempt_and_resolve_execution_cause`.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; checks verified; r2 cohort_completion; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; readiness unverified; r2 cohort_completion; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-okvis2x"></a>
@@ -2677,7 +2732,7 @@ Prerequisites: none.
 
 **A1/E1/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: new group 3 ready.
+Cell next-action display: next: new group 3 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2692,10 +2747,10 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`, `native_execution_cause_unresolved_recovered_causal_prefix_not_final_ba`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recovered_35_second_causal_prefix_not_final_bundle_adjustment`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-airslam"></a>
@@ -2703,7 +2758,7 @@ Prerequisites: none.
 
 **A3/E3/S3/F0**; verified completed groups: 1+2. Verified N=3: no.
 
-Cell next-action display: next: new group 3 ready.
+Cell next-action display: next: new group 3 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2722,7 +2777,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; checks verified; r2 cohort_completion; checks verified; r3 cohort_completion; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; readiness unverified; r2 cohort_completion; readiness unverified; r3 cohort_completion; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-ov2slam"></a>
@@ -2735,9 +2790,9 @@ Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run1) | verified | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run2) | verified | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run3) | verified | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run1) | verified | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run2) | verified | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run3) | verified | completed_export_shutdown_error | 0 | yes |
 
 Group `1baa6d8782baba323818c35fb128c7c20158c6e6444ee1f456ac4646fc2d5a4f`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -2797,8 +2852,8 @@ Selected plan: `future-n3-five-modes`.
 Group `7b8dc8f88be0058ca6516cf9c92f1d7dfab2f08ce39454cc10056ee6b681857c`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
 Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
@@ -2933,9 +2988,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/rosariov2/sequence1/voxel_svio/run1) | invalid_setup | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vio/rosariov2/sequence1/voxel_svio/run2) | invalid_setup | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vio/rosariov2/sequence1/voxel_svio/run3) | invalid_setup | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vio/rosariov2/sequence1/voxel_svio/run1) | invalid_setup | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vio/rosariov2/sequence1/voxel_svio/run2) | invalid_setup | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vio/rosariov2/sequence1/voxel_svio/run3) | invalid_setup | completed_export_shutdown_error | 0 | yes |
 
 Group `31205466e954590679be7dd34a6f3e7cb08bcf38f9f2e0277d7f7e973bf2bc87`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -2968,8 +3023,8 @@ Selected plan: `future-n3-five-modes`.
 Group `7b8dc8f88be0058ca6516cf9c92f1d7dfab2f08ce39454cc10056ee6b681857c`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
 Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
@@ -3104,9 +3159,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/rosariov2/sequence5/voxel_svio/run1) | invalid_setup | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vio/rosariov2/sequence5/voxel_svio/run2) | invalid_setup | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vio/rosariov2/sequence5/voxel_svio/run3) | invalid_setup | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vio/rosariov2/sequence5/voxel_svio/run1) | invalid_setup | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vio/rosariov2/sequence5/voxel_svio/run2) | invalid_setup | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vio/rosariov2/sequence5/voxel_svio/run3) | invalid_setup | completed_export_shutdown_error | 0 | yes |
 
 Group `31205466e954590679be7dd34a6f3e7cb08bcf38f9f2e0277d7f7e973bf2bc87`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -3139,8 +3194,8 @@ Selected plan: `future-n3-five-modes`.
 Group `e4e246ca2f26ad675ca292e67f365ad9b438a524a3876f8ba92dc399c42b40e1`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`.
-Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
@@ -3271,9 +3326,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/hortimulti/strawberry02/voxel_svio/run1) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vio/hortimulti/strawberry02/voxel_svio/run2) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vio/hortimulti/strawberry02/voxel_svio/run3) | blocked | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vio/hortimulti/strawberry02/voxel_svio/run1) | blocked | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vio/hortimulti/strawberry02/voxel_svio/run2) | blocked | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vio/hortimulti/strawberry02/voxel_svio/run3) | blocked | completed_export_shutdown_error | 0 | yes |
 
 Group `615143d25e1c76579b8f4752b4e03c1f05567302e862c0b6d47b1ea8299bd5f3`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -3304,8 +3359,8 @@ Selected plan: `future-n3-five-modes`.
 Group `e4e246ca2f26ad675ca292e67f365ad9b438a524a3876f8ba92dc399c42b40e1`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`.
-Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
@@ -3436,9 +3491,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/hortimulti/strawberry03/voxel_svio/run1) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vio/hortimulti/strawberry03/voxel_svio/run2) | blocked | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vio/hortimulti/strawberry03/voxel_svio/run3) | blocked | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vio/hortimulti/strawberry03/voxel_svio/run1) | blocked | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vio/hortimulti/strawberry03/voxel_svio/run2) | blocked | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vio/hortimulti/strawberry03/voxel_svio/run3) | blocked | completed_export_shutdown_error | 0 | yes |
 
 Group `615143d25e1c76579b8f4752b4e03c1f05567302e862c0b6d47b1ea8299bd5f3`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -3455,22 +3510,22 @@ Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_erro
 <a id="vio-euroc-mav-mh-01-easy-orbslam3"></a>
 ## vio/euroc_mav/MH_01_easy/orbslam3
 
-**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
+**A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🟡 next: review (not ready).
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/euroc_mav/MH_01_easy/orbslam3/run1) | verified | success | 0 | yes |
-| 2 | [run2](../results/vio/euroc_mav/MH_01_easy/orbslam3/run2) | verified | success | 0 | yes |
-| 3 | [run3](../results/vio/euroc_mav/MH_01_easy/orbslam3/run3) | verified | success | 0 | yes |
+| 1 | [run1](../results/vio/euroc_mav/MH_01_easy/orbslam3/run1) | blocked | success | 0 | yes |
+| 2 | [run2](../results/vio/euroc_mav/MH_01_easy/orbslam3/run2) | blocked | success | 0 | yes |
+| 3 | [run3](../results/vio/euroc_mav/MH_01_easy/orbslam3/run3) | blocked | success | 0 | yes |
 
-Group `12797f1dfaa7df030dba198c3eb8210620d43403e76b042932279f46004494e1`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
+Group `12797f1dfaa7df030dba198c3eb8210620d43403e76b042932279f46004494e1`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: none.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
@@ -3602,9 +3657,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/euroc_mav/MH_01_easy/voxel_svio/run1) | verified | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vio/euroc_mav/MH_01_easy/voxel_svio/run2) | verified | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vio/euroc_mav/MH_01_easy/voxel_svio/run3) | verified | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vio/euroc_mav/MH_01_easy/voxel_svio/run1) | verified | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vio/euroc_mav/MH_01_easy/voxel_svio/run2) | verified | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vio/euroc_mav/MH_01_easy/voxel_svio/run3) | verified | completed_export_shutdown_error | 0 | yes |
 
 Group `65cddd59117d4d326b33574821beba012584e232e67c2c37099d6b9149ee3b25`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -3621,22 +3676,22 @@ Prerequisites: none.
 <a id="vio-euroc-mav-mh-03-medium-orbslam3"></a>
 ## vio/euroc_mav/MH_03_medium/orbslam3
 
-**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
+**A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🟡 next: review (not ready).
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/euroc_mav/MH_03_medium/orbslam3/run1) | verified | success | 0 | yes |
-| 2 | [run2](../results/vio/euroc_mav/MH_03_medium/orbslam3/run2) | verified | success | 0 | yes |
-| 3 | [run3](../results/vio/euroc_mav/MH_03_medium/orbslam3/run3) | verified | success | 0 | yes |
+| 1 | [run1](../results/vio/euroc_mav/MH_03_medium/orbslam3/run1) | blocked | success | 0 | yes |
+| 2 | [run2](../results/vio/euroc_mav/MH_03_medium/orbslam3/run2) | blocked | success | 0 | yes |
+| 3 | [run3](../results/vio/euroc_mav/MH_03_medium/orbslam3/run3) | blocked | success | 0 | yes |
 
-Group `12797f1dfaa7df030dba198c3eb8210620d43403e76b042932279f46004494e1`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
+Group `12797f1dfaa7df030dba198c3eb8210620d43403e76b042932279f46004494e1`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: none.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `export_coverage_below_95_percent_no_clean_success_tick`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `export_coverage_below_95_percent_no_clean_success_tick`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
@@ -3768,9 +3823,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/euroc_mav/MH_03_medium/voxel_svio/run1) | verified | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vio/euroc_mav/MH_03_medium/voxel_svio/run2) | verified | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vio/euroc_mav/MH_03_medium/voxel_svio/run3) | verified | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vio/euroc_mav/MH_03_medium/voxel_svio/run1) | verified | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vio/euroc_mav/MH_03_medium/voxel_svio/run2) | verified | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vio/euroc_mav/MH_03_medium/voxel_svio/run3) | verified | completed_export_shutdown_error | 0 | yes |
 
 Group `72ad00dbe0457d282f0633e79d58a18802fc2211da7b1f3000dd8a6f2df40f94`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -3787,22 +3842,22 @@ Prerequisites: none.
 <a id="vio-euroc-mav-mh-05-difficult-orbslam3"></a>
 ## vio/euroc_mav/MH_05_difficult/orbslam3
 
-**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
+**A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🟡 next: review (not ready).
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/euroc_mav/MH_05_difficult/orbslam3/run1) | verified | success | 0 | yes |
-| 2 | [run2](../results/vio/euroc_mav/MH_05_difficult/orbslam3/run2) | verified | success | 0 | yes |
-| 3 | [run3](../results/vio/euroc_mav/MH_05_difficult/orbslam3/run3) | verified | success | 0 | yes |
+| 1 | [run1](../results/vio/euroc_mav/MH_05_difficult/orbslam3/run1) | blocked | success | 0 | yes |
+| 2 | [run2](../results/vio/euroc_mav/MH_05_difficult/orbslam3/run2) | blocked | success | 0 | yes |
+| 3 | [run3](../results/vio/euroc_mav/MH_05_difficult/orbslam3/run3) | blocked | success | 0 | yes |
 
-Group `12797f1dfaa7df030dba198c3eb8210620d43403e76b042932279f46004494e1`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
+Group `12797f1dfaa7df030dba198c3eb8210620d43403e76b042932279f46004494e1`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: none.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
@@ -3933,9 +3988,9 @@ Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/euroc_mav/MH_05_difficult/voxel_svio/run1) | verified | failure_with_saved_trajectory | 0 | yes |
-| 2 | [run2](../results/vio/euroc_mav/MH_05_difficult/voxel_svio/run2) | verified | failure_with_saved_trajectory | 0 | yes |
-| 3 | [run3](../results/vio/euroc_mav/MH_05_difficult/voxel_svio/run3) | verified | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vio/euroc_mav/MH_05_difficult/voxel_svio/run1) | verified | completed_export_shutdown_error | 0 | yes |
+| 2 | [run2](../results/vio/euroc_mav/MH_05_difficult/voxel_svio/run2) | verified | completed_export_shutdown_error | 0 | yes |
+| 3 | [run3](../results/vio/euroc_mav/MH_05_difficult/voxel_svio/run3) | verified | completed_export_shutdown_error | 0 | yes |
 
 Group `d9f7cc63d1cd0b377f417dbc74ad1534079f57b9eb8f4cf90b3fc3b1a6929974`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
 
@@ -3954,7 +4009,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3969,10 +4024,10 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`, `native_build_source_linkage_and_loaded_dependency_closure_unverified`, `zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified`, `zed_reference_orientation_unavailable`, `zed_serial_specific_imu_rotation_and_time_offset_unverified`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic_rerun`.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic_rerun`.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-okvis2"></a>
@@ -3980,7 +4035,7 @@ Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic
 
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3995,10 +4050,10 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`, `native_build_source_linkage_and_loaded_dependency_closure_unverified`, `zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified`, `zed_reference_orientation_unavailable`, `zed_serial_specific_imu_rotation_and_time_offset_unverified`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic_rerun`.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic_rerun`.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-okvis2x"></a>
@@ -4006,7 +4061,7 @@ Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic
 
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4021,10 +4076,10 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`, `native_build_source_linkage_and_loaded_dependency_closure_unverified`, `zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified`, `zed_reference_orientation_unavailable`, `zed_serial_specific_imu_rotation_and_time_offset_unverified`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic_rerun`.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic_rerun`.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-airslam"></a>
@@ -4032,7 +4087,7 @@ Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic
 
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4047,10 +4102,10 @@ Confirmed setup findings: `zed_factory_camera_imu_rotation_omitted`.
 Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-basalt"></a>
@@ -4058,7 +4113,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4073,10 +4128,10 @@ Confirmed setup findings: `zed_factory_camera_imu_rotation_omitted`.
 Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-openvins"></a>
@@ -4084,7 +4139,7 @@ Prerequisites: none.
 
 **A1/E1/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4099,10 +4154,10 @@ Confirmed setup findings: `zed_factory_camera_imu_rotation_omitted`.
 Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `retain_failure_in_attempt_denominator`, `serial_specific_imu_rotation_and_timing_unverified`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-voxel-svio"></a>
@@ -4115,7 +4170,7 @@ Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run1) | invalid_setup | failure_with_saved_trajectory | 0 | yes |
+| 1 | [run1](../results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run1) | invalid_setup | completed_export_shutdown_error | 0 | yes |
 | 2 | [run2](../results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run2) | not_executed | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run3) | not_executed | not_attempted | unknown | no |
 
@@ -4149,8 +4204,8 @@ Selected plan: `future-n3-five-modes`.
 Group `c5eaa79e03fdc75fd88c70c5e747edaca2b3d3308854092cb8033b8142c99125`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
 Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
@@ -4241,8 +4296,8 @@ Selected plan: `future-n3-five-modes`.
 Group `c5eaa79e03fdc75fd88c70c5e747edaca2b3d3308854092cb8033b8142c99125`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
 Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
@@ -4333,8 +4388,8 @@ Selected plan: `future-n3-five-modes`.
 Group `c8fb082f5e74e1529ad692cd01516ae7c253669990776919bb03905bd7527cbe`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`, `orb_horti_rectified_camera_imu_extrinsic`.
-Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `orb_horti_rectified_camera_imu_extrinsic`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `orb_horti_rectified_camera_imu_extrinsic`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `resolve_or_document_claim_limit:orb_horti_rectified_camera_imu_extrinsic`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `validate_rectified_horti_imu_extrinsic_and_run_new_vio_lc_cohort_preserving_raw_frame_attempts`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
@@ -4425,8 +4480,8 @@ Selected plan: `future-n3-five-modes`.
 Group `c8fb082f5e74e1529ad692cd01516ae7c253669990776919bb03905bd7527cbe`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`, `orb_horti_rectified_camera_imu_extrinsic`.
-Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `orb_horti_rectified_camera_imu_extrinsic`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `orb_horti_rectified_camera_imu_extrinsic`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `resolve_or_document_claim_limit:orb_horti_rectified_camera_imu_extrinsic`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `validate_rectified_horti_imu_extrinsic_and_run_new_vio_lc_cohort_preserving_raw_frame_attempts`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
@@ -4503,22 +4558,22 @@ Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_
 <a id="vio-lc-euroc-mav-mh-01-easy-orbslam3"></a>
 ## vio-lc/euroc_mav/MH_01_easy/orbslam3
 
-**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
+**A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🟡 next: review (not ready).
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio-lc/euroc_mav/MH_01_easy/orbslam3/run1) | verified | success | 0 | yes |
-| 2 | [run2](../results/vio-lc/euroc_mav/MH_01_easy/orbslam3/run2) | verified | success | 0 | yes |
-| 3 | [run3](../results/vio-lc/euroc_mav/MH_01_easy/orbslam3/run3) | verified | success | 0 | yes |
+| 1 | [run1](../results/vio-lc/euroc_mav/MH_01_easy/orbslam3/run1) | blocked | success | 0 | yes |
+| 2 | [run2](../results/vio-lc/euroc_mav/MH_01_easy/orbslam3/run2) | blocked | success | 0 | yes |
+| 3 | [run3](../results/vio-lc/euroc_mav/MH_01_easy/orbslam3/run3) | blocked | success | 0 | yes |
 
-Group `8d7d796cd40b271ccd5508b44ea2cd3398df046ade49c489747bc38f543e5902`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
+Group `8d7d796cd40b271ccd5508b44ea2cd3398df046ade49c489747bc38f543e5902`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: none.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
@@ -4595,22 +4650,22 @@ Prerequisites: none.
 <a id="vio-lc-euroc-mav-mh-03-medium-orbslam3"></a>
 ## vio-lc/euroc_mav/MH_03_medium/orbslam3
 
-**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
+**A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🟡 next: review (not ready).
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio-lc/euroc_mav/MH_03_medium/orbslam3/run1) | verified | success | 0 | yes |
-| 2 | [run2](../results/vio-lc/euroc_mav/MH_03_medium/orbslam3/run2) | verified | success | 0 | yes |
-| 3 | [run3](../results/vio-lc/euroc_mav/MH_03_medium/orbslam3/run3) | verified | success | 0 | yes |
+| 1 | [run1](../results/vio-lc/euroc_mav/MH_03_medium/orbslam3/run1) | blocked | success | 0 | yes |
+| 2 | [run2](../results/vio-lc/euroc_mav/MH_03_medium/orbslam3/run2) | blocked | success | 0 | yes |
+| 3 | [run3](../results/vio-lc/euroc_mav/MH_03_medium/orbslam3/run3) | blocked | success | 0 | yes |
 
-Group `8d7d796cd40b271ccd5508b44ea2cd3398df046ade49c489747bc38f543e5902`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
+Group `8d7d796cd40b271ccd5508b44ea2cd3398df046ade49c489747bc38f543e5902`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: none.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `export_coverage_below_95_percent_no_clean_success_tick`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `export_coverage_below_95_percent_no_clean_success_tick`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
@@ -4687,22 +4742,22 @@ Prerequisites: none.
 <a id="vio-lc-euroc-mav-mh-05-difficult-orbslam3"></a>
 ## vio-lc/euroc_mav/MH_05_difficult/orbslam3
 
-**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
+**A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🟡 next: review (not ready).
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio-lc/euroc_mav/MH_05_difficult/orbslam3/run1) | verified | success | 0 | yes |
-| 2 | [run2](../results/vio-lc/euroc_mav/MH_05_difficult/orbslam3/run2) | verified | success | 0 | yes |
-| 3 | [run3](../results/vio-lc/euroc_mav/MH_05_difficult/orbslam3/run3) | verified | success | 0 | yes |
+| 1 | [run1](../results/vio-lc/euroc_mav/MH_05_difficult/orbslam3/run1) | blocked | success | 0 | yes |
+| 2 | [run2](../results/vio-lc/euroc_mav/MH_05_difficult/orbslam3/run2) | blocked | success | 0 | yes |
+| 3 | [run3](../results/vio-lc/euroc_mav/MH_05_difficult/orbslam3/run3) | blocked | success | 0 | yes |
 
-Group `8d7d796cd40b271ccd5508b44ea2cd3398df046ade49c489747bc38f543e5902`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
+Group `8d7d796cd40b271ccd5508b44ea2cd3398df046ade49c489747bc38f543e5902`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: none.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
@@ -4782,7 +4837,7 @@ Prerequisites: none.
 
 **A1/E0/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4798,10 +4853,10 @@ Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `retain_failure_in_attempt_denominator`, `serial_specific_imu_rotation_and_timing_unverified`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 Native failure evidence r1: `{"line": 65, "text": "2.695 Segmentation fault (core dumped)"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-okvis2"></a>
@@ -4809,7 +4864,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4824,10 +4879,10 @@ Confirmed setup findings: `zed_factory_camera_imu_rotation_omitted`.
 Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-okvis2x"></a>
@@ -4835,7 +4890,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4850,10 +4905,10 @@ Confirmed setup findings: `zed_factory_camera_imu_rotation_omitted`.
 Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-airslam"></a>
@@ -4861,7 +4916,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4876,10 +4931,10 @@ Confirmed setup findings: `zed_factory_camera_imu_rotation_omitted`.
 Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="gnss-vio-rosariov2-sequence1-cifasis-gnss-si"></a>

@@ -1,0 +1,64 @@
+{
+  "scope": "one authorized first-180-second diagnostic, preserved despite source-membership finalization rejection",
+  "native_exit": 0,
+  "player_exit": 0,
+  "wrapper_exit": 1,
+  "wrapper_error": "source file membership changed since capture; newly added helper during run, not an estimator failure",
+  "archive_verification": {
+    "entries": 490,
+    "unique_blobs": 482,
+    "archive_verified": true,
+    "live_checkout_verified": false
+  },
+  "initialized": true,
+  "failed_initialization_attempt_messages": 394,
+  "stereo_processed": 1800,
+  "transport": {
+    "camera_frames_expected": 1800,
+    "camera_frames_published": 1800,
+    "camera_read_failures": 0,
+    "gnss_messages_published": 0,
+    "imu_messages_published": 17961,
+    "schema": 1
+  },
+  "export": {
+    "poses": 1406,
+    "first_pose_s": 1783069507.634873,
+    "last_pose_s": 1783069648.107829,
+    "first_pose_after_input_s": 39.4556450843811,
+    "last_pose_before_input_end_s": -4.76837158203125e-07,
+    "strict_timestamps": true,
+    "finite": true,
+    "max_quaternion_norm_error": 5.701713372552319e-07,
+    "native_export_equals_camera_clock_export": true,
+    "configured_offset_s": 0
+  },
+  "calibration_followup": "Same ZED calibration was loaded and natively dumped in field1_readiness10_20261002/voxel_svio/run1; its dump exposes ROS numeric fallback from intended init_dyn_min_rec_cond 1e-12 to 1e-15. Scalar spelling is being repaired without score-based tuning.",
+  "production_qualification": false,
+  "evidence": [
+    {
+      "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run1/trajectory.txt",
+      "sha256": "b0f4a946bc4d7a0b011b1ed7331a46e6f4c0dad5f0a0bea4b1b2259753ab2c51"
+    },
+    {
+      "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run1/native/pose.txt",
+      "sha256": "b0f4a946bc4d7a0b011b1ed7331a46e6f4c0dad5f0a0bea4b1b2259753ab2c51"
+    },
+    {
+      "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run1/processes/node.json",
+      "sha256": "53cceba76e10b90545fc6428ad40bd4448f29b80ab433e7edf186f9f771c9085"
+    },
+    {
+      "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run1/processes/player.json",
+      "sha256": "9b4a0381bcae07254421ad93e8ecac558eb3803c5e969b291ab2b29abb7d97bd"
+    },
+    {
+      "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run1/run_log.txt",
+      "sha256": "488f0e25354dd8a6ee977e22a809bec8882038028bb08e246da7e6711d8b02a6"
+    },
+    {
+      "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run1/transport_stats.json",
+      "sha256": "5e0daffbaf40907bc16e04d531ed0f5cbf0b01e9b10cdf90389cb718e33c736f"
+    }
+  ]
+}

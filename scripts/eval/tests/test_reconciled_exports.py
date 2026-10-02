@@ -8,7 +8,7 @@ import pytest
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'campaign'))
-from build_benchmark_csv import build_rows, csv_text, load_inventory, preserved_write, row_from_attempt
+from build_benchmark_csv import build_rows, checked_evaluation, csv_text, load_inventory, preserved_write, row_from_attempt
 from build_repair_inventory import cohort_identity
 from _aggregate_runs import summarize_cell, write_cells
 from make_report_tables import cell_text, render_tables, main as tables_main
@@ -43,6 +43,45 @@ def test_legacy_processing_assumptions_are_withheld_without_mutating_evidence(tm
     row=row_from_attempt(attempt(),evaluation(runtime=interpreted),None,repo=tmp_path)
     assert row['processed_frames'] is None and row['fps'] is None and row['processing_ms_per_frame'] is None
     assert row['command_input_fps']==20. and 'withheld' in row['measurement_warning']
+
+
+def test_reviewed_log_overlay_preserves_raw_evaluation_and_shutdown_failure(tmp_path):
+    raw = evaluation(robustness={'tracking_losses': 0, 'map_resets': 0})
+    before = copy.deepcopy(raw)
+    q = dict(protocol={'status': 'verified'}, native_error_observations=[{'text': 'terminate'}],
+        export_review={'export_completion': 'complete', 'shutdown_error': True,
+                       'label': 'completed export; shutdown error'},
+        log_observation_review={'review_path': 'review.json', 'observations': {
+            'tracking_losses': 5, 'map_resets': 0, 'local_mapping_reset_messages': 96,
+            'imu_initialization_reset_requests': 96, 'event_semantics': 'message counts'}})
+    row = row_from_attempt(attempt(qualification=q), raw, None, repo=tmp_path)
+    assert raw == before
+    assert row['tracking_losses'] == 5 and row['map_resets'] == 0
+    assert row['local_mapping_reset_messages'] == 96
+    assert row['log_observation_review_path'] == 'review.json'
+    assert row['observed_outcome'] == 'completed_export_shutdown_error'
+    assert row['observed_failure'] and not row['successful_run']
+    summary = summarize_cell([row, row, row])
+    assert summary['observed_failure_count'] == 3
+    assert summary['completed_export_shutdown_error_count'] == 3
+
+
+def test_historical_qualification_can_stay_immutable_but_inventory_cannot_forge_review(tmp_path, monkeypatch):
+    import qualification_review
+    a = attempt(algo='orbslam3')
+    run = tmp_path/a['path']; run.mkdir(parents=True)
+    raw = evaluation(qualification={'status': 'old_decision'}, qualification_provenance={'old': True})
+    path = run/'run_eval.json'; path.write_text(json.dumps(raw)); original = path.read_bytes()
+    current = qualification_review.review_saved(a['path'].removeprefix('results/'), {}, raw, [], [], exists=True, repo=tmp_path)
+    a.update(evaluation_path=str(path.relative_to(tmp_path)), qualification=current)
+    identity = {'schema': 1, 'evidence': []}
+    monkeypatch.setattr(qualification_review, 'review_identity', lambda repo: identity)
+    inventory = {'qualification_review': identity}
+    assert checked_evaluation(a, inventory, tmp_path) == raw
+    assert path.read_bytes() == original
+    a['qualification'] = dict(current, status='accepted')
+    with pytest.raises(ValueError, match='current qualification disagrees'):
+        checked_evaluation(a, inventory, tmp_path)
 
 
 def test_monocular_primary_sparse_unknowns_and_failed_position_diagnostic(tmp_path):

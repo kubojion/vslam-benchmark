@@ -1,0 +1,792 @@
+{
+  "schema": 1,
+  "scope": "Bounded diagnostics only, no production or camera-profile qualification",
+  "source_head": "3be91971df45db8a385e12ddb6294dccc11290dd",
+  "actions": [
+    {
+      "path": "results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run2",
+      "algorithm": "basalt",
+      "mode": "vio",
+      "wrapper_exit": 0,
+      "process": {
+        "accepted_nonzero_exit": false,
+        "exit_code": 0,
+        "failure_reason": null
+      },
+      "source_head": "3be91971df45db8a385e12ddb6294dccc11290dd",
+      "evidence": [
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run2/run_meta.json",
+          "sha256": "eaff7754cbb5ad18e21c78a8a6a1d0a08b71c818f2513680ebd94aa5dee47241"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run2/run_log.txt",
+          "sha256": "b3e103c796d5ccd6295b532e2200abc4135cf81dbbad085bb50d3aeb23623fac"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run2/trajectory.txt",
+          "sha256": "11facaba88fcb942c4d79f3ff2d57db7d8cf482e073c8d882c498f6560691e48"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run2/native-inputs/clock-policy.json",
+          "sha256": "daa25764ae0555e7dad3a1ff9755eb9b08e2b1474302d64a853a925689aa7a8d"
+        }
+      ],
+      "export": {
+        "poses": 862,
+        "finite": true,
+        "strict_times": true,
+        "max_quaternion_norm_error": 2.220446049250313e-16,
+        "max_camera_time_residual_s": 2.384185791015625e-07,
+        "first_camera_index": 0,
+        "last_camera_index": 861,
+        "input_camera_frames": 862
+      },
+      "input_clock_policy": {
+        "schema": 1,
+        "policy": "t_imu_on_camera_clock = original_t_imu - configured_offset_ns",
+        "requested_offset_ns": 4098308,
+        "native_offset_ns": 0,
+        "camera_timestamps_changed": false,
+        "imu_values_changed": false,
+        "input_rows_removed": 0,
+        "imu_samples": 11970,
+        "first_camera_ns": 1703261657094100237,
+        "first_original_imu_ns": 1703261657043841280,
+        "first_effective_imu_ns": 1703261657039742972,
+        "first_frame_has_prior_imu": true,
+        "last_frame_has_following_imu": true,
+        "first_imu_lead_s": 0.054357265,
+        "requested_calibration": {
+          "path": "/data/imoroz/vslam-benchmark/results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run2/configuration-profile/calibration.json",
+          "sha256": "4f79c84ef11b4097060233a3547beb8e8bee5e7e839f497dc2c6544537edb3c0"
+        },
+        "effective_calibration": {
+          "path": "/data/imoroz/vslam-benchmark/results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run2/native-inputs/effective-calibration.json",
+          "sha256": "7faf91576fe7d51b9fc0ed24fd511d8790dedbb48134e2bae4d2192115ab5511"
+        },
+        "original_imu": {
+          "path": "/data/imoroz/vslam-benchmark/datasets/rosariov2/sequence1_readiness60_20261002/mav0/imu0/data.csv",
+          "sha256": "2b498bf4622ebfc776e7a4c93462ee810bf90db80c1b586e746a5082b0e5b11e"
+        },
+        "effective_imu": {
+          "path": "/data/imoroz/vslam-benchmark/results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run2/native-inputs/dataset/mav0/imu0/data.csv",
+          "sha256": "0997f8c85eec59d41a26ffaecd9e858fd1a21f7b99649218ebb1165fce1070cc"
+        },
+        "export_timestamp_convention": "camera clock; no post-export timestamp correction"
+      },
+      "classification": "clock materialization, native execution and camera-clock export verified; four unsupported settings identified separately and materialization repair still needs final runner regression"
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1_readiness60_20261002/voxel_svio/run2",
+      "algorithm": "voxel_svio",
+      "mode": "vio",
+      "wrapper_exit": 0,
+      "process": {
+        "accepted_nonzero_exit": false,
+        "exit_code": 0,
+        "failure_reason": null
+      },
+      "source_head": "3be91971df45db8a385e12ddb6294dccc11290dd",
+      "evidence": [
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/voxel_svio/run2/run_meta.json",
+          "sha256": "2fe0f1c3e704f03ff010ebff67c9cd4a628ba3316f8531a141715caa98263828"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/voxel_svio/run2/run_log.txt",
+          "sha256": "b0cd0a53858ee41b795ca524b1ff4005be048d9ce4d1ecb5e1be2b34b9b8379b"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/voxel_svio/run2/trajectory.txt",
+          "sha256": "f51b2bd68de4535c86fc5bda5f7af60599c345f9496adad04159242ba7e4097c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/voxel_svio/run2/native/parameter_list.txt",
+          "sha256": "ba8de18d1ad565ddafe31b565a5e9e77c9076dc3f3a70fb96bea44c8b6f99486"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/voxel_svio/run2/native/input_receipt.json",
+          "sha256": "40ffce46d47c57c5a0eac5102c2725bebb08afbab93141de3b26d318bbf78394"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1_readiness60_20261002/voxel_svio/run2/native/camera_load.txt",
+          "sha256": "147ae48c8c08d35a196c11c90e8d1d0bbbd59b3d095abff0c0ad5f7aa6ebf830"
+        }
+      ],
+      "export": {
+        "poses": 772,
+        "finite": true,
+        "strict_times": true,
+        "max_quaternion_norm_error": 8.461133579329427e-07,
+        "max_camera_time_residual_s": 7.152557373046875e-07,
+        "first_camera_index": 90,
+        "last_camera_index": 861,
+        "input_camera_frames": 862
+      },
+      "native_offsets": [
+        0.004098308327610102,
+        0.004098308327610102
+      ],
+      "native_init_condition_threshold": 1e-12,
+      "native_input_receipt": {
+        "imu_received": 11970,
+        "stereo_received": 862,
+        "stereo_queued_after_rate_gate": 862,
+        "first_imu_s": 1703261657.0438414,
+        "last_imu_s": 1703261717.0830724,
+        "first_camera_s": 1703261657.0941002,
+        "last_camera_s": 1703261717.0687099,
+        "image_width": 1280,
+        "image_height": 720,
+        "opencv_type": 0
+      },
+      "native_camera_load": "left_time_offset 4.09830832761010240e-03\nright_time_offset 4.11089135880629303e-03\ncommon_stereo_uses_left_time_offset 1\nT_imu_cam_left\n 9.99992235998666268e-01 -3.89814865644165769e-03 -5.76523581858799650e-04 -4.48302780992551088e-03\n 3.89521072827683085e-03  9.99979852551538095e-01 -5.01216763353817298e-03  1.91796992131490485e-02\n 5.96050140906184168e-04  5.00988303822081857e-03  9.99987272817095985e-01  2.75841430370703453e-02\n 0.00000000000000000e+00  0.00000000000000000e+00  0.00000000000000000e+00  1.00000000000000000e+00\nT_imu_cam_right\n 9.99990794986302944e-01 -3.86926981676184766e-03 -1.85437152350804622e-03  4.57569021719679836e-02\n 3.85974327605602798e-03  9.99979476133227352e-01 -5.11367716614668719e-03  1.94074002338373332e-02\n 1.87411966134558576e-03  5.10647269665915997e-03  9.99985205696611090e-01  2.77955633573913896e-02\n 0.00000000000000000e+00  0.00000000000000000e+00  0.00000000000000000e+00  1.00000000000000000e+00\n",
+      "classification": "native handling and clean export verified for this bounded window"
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5_readiness60_20261002/basalt/run2",
+      "algorithm": "basalt",
+      "mode": "vio",
+      "wrapper_exit": 0,
+      "process": {
+        "accepted_nonzero_exit": false,
+        "exit_code": 0,
+        "failure_reason": null
+      },
+      "source_head": "3be91971df45db8a385e12ddb6294dccc11290dd",
+      "evidence": [
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/basalt/run2/run_meta.json",
+          "sha256": "c56e7609bfd4c6af8ef2c49b72b5390b30888ba0cd9ac1fa8ff6bd2f9dd84447"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/basalt/run2/run_log.txt",
+          "sha256": "760d6e32079bc3706038c99bc3ae5828c24e5e8c34f64f8099c142493d5038be"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/basalt/run2/trajectory.txt",
+          "sha256": "013952d69e8c3a3482f5f778f51ed74ca74d6ccf9e6ed2cfa73868ba6098c668"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/basalt/run2/native-inputs/clock-policy.json",
+          "sha256": "97f644b4cb795374b764c11fb7f2c9a044f5a5b15660a3e2cf16b202304cd870"
+        }
+      ],
+      "export": {
+        "poses": 863,
+        "finite": true,
+        "strict_times": true,
+        "max_quaternion_norm_error": 2.220446049250313e-16,
+        "max_camera_time_residual_s": 2.384185791015625e-07,
+        "first_camera_index": 0,
+        "last_camera_index": 862,
+        "input_camera_frames": 863
+      },
+      "input_clock_policy": {
+        "schema": 1,
+        "policy": "t_imu_on_camera_clock = original_t_imu - configured_offset_ns",
+        "requested_offset_ns": 4098308,
+        "native_offset_ns": 0,
+        "camera_timestamps_changed": false,
+        "imu_values_changed": false,
+        "input_rows_removed": 0,
+        "imu_samples": 11938,
+        "first_camera_ns": 1703614215873019218,
+        "first_original_imu_ns": 1703614215882102528,
+        "first_effective_imu_ns": 1703614215878004220,
+        "first_frame_has_prior_imu": false,
+        "last_frame_has_following_imu": true,
+        "first_imu_lead_s": -0.004985002,
+        "requested_calibration": {
+          "path": "/data/imoroz/vslam-benchmark/results/vio/rosariov2/sequence5_readiness60_20261002/basalt/run2/configuration-profile/calibration.json",
+          "sha256": "4f79c84ef11b4097060233a3547beb8e8bee5e7e839f497dc2c6544537edb3c0"
+        },
+        "effective_calibration": {
+          "path": "/data/imoroz/vslam-benchmark/results/vio/rosariov2/sequence5_readiness60_20261002/basalt/run2/native-inputs/effective-calibration.json",
+          "sha256": "7faf91576fe7d51b9fc0ed24fd511d8790dedbb48134e2bae4d2192115ab5511"
+        },
+        "original_imu": {
+          "path": "/data/imoroz/vslam-benchmark/datasets/rosariov2/sequence5_readiness60_20261002/mav0/imu0/data.csv",
+          "sha256": "96c357b5b5886b66253b0c689ef0d5f798ca8cde4cf64fc511dfebc79f26ddf9"
+        },
+        "effective_imu": {
+          "path": "/data/imoroz/vslam-benchmark/results/vio/rosariov2/sequence5_readiness60_20261002/basalt/run2/native-inputs/dataset/mav0/imu0/data.csv",
+          "sha256": "0fe7005bf39e3249ef81a336f86c3257a2f7006916769771f48846545fae6fcd"
+        },
+        "export_timestamp_convention": "camera clock; no post-export timestamp correction"
+      },
+      "classification": "clock materialization, native execution and camera-clock export verified; four unsupported settings identified separately and materialization repair still needs final runner regression"
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5_readiness60_20261002/voxel_svio/run2",
+      "algorithm": "voxel_svio",
+      "mode": "vio",
+      "wrapper_exit": 0,
+      "process": {
+        "accepted_nonzero_exit": false,
+        "exit_code": 0,
+        "failure_reason": null
+      },
+      "source_head": "3be91971df45db8a385e12ddb6294dccc11290dd",
+      "evidence": [
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/voxel_svio/run2/run_meta.json",
+          "sha256": "43831a272d01a383c8622a27f3ebfdc9c2d6e5e4e6d044539cb27f913b055f90"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/voxel_svio/run2/run_log.txt",
+          "sha256": "a1871165daa5b77b33d9f0b82c1d96d3b4639471519c29a0ec4eb53a24206d34"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/voxel_svio/run2/trajectory.txt",
+          "sha256": "79d5ebb65493429b4396448fc54e2da47bb6b55f9e75f881df3c5709258198c2"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/voxel_svio/run2/native/parameter_list.txt",
+          "sha256": "ba8de18d1ad565ddafe31b565a5e9e77c9076dc3f3a70fb96bea44c8b6f99486"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/voxel_svio/run2/native/input_receipt.json",
+          "sha256": "556b2bca9cfd1aa1dbe409a979fc4128e43c7bbe0deced872cf1529748e998e8"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5_readiness60_20261002/voxel_svio/run2/native/camera_load.txt",
+          "sha256": "147ae48c8c08d35a196c11c90e8d1d0bbbd59b3d095abff0c0ad5f7aa6ebf830"
+        }
+      ],
+      "export": {
+        "poses": 684,
+        "finite": true,
+        "strict_times": true,
+        "max_quaternion_norm_error": 8.368353502374859e-07,
+        "max_camera_time_residual_s": 7.152557373046875e-07,
+        "first_camera_index": 179,
+        "last_camera_index": 862,
+        "input_camera_frames": 863
+      },
+      "native_offsets": [
+        0.004098308327610102,
+        0.004098308327610102
+      ],
+      "native_init_condition_threshold": 1e-12,
+      "native_input_receipt": {
+        "imu_received": 11938,
+        "stereo_received": 863,
+        "stereo_queued_after_rate_gate": 863,
+        "first_imu_s": 1703614215.8821025,
+        "last_imu_s": 1703614275.8605824,
+        "first_camera_s": 1703614215.8730192,
+        "last_camera_s": 1703614275.8499568,
+        "image_width": 1280,
+        "image_height": 720,
+        "opencv_type": 0
+      },
+      "native_camera_load": "left_time_offset 4.09830832761010240e-03\nright_time_offset 4.11089135880629303e-03\ncommon_stereo_uses_left_time_offset 1\nT_imu_cam_left\n 9.99992235998666268e-01 -3.89814865644165769e-03 -5.76523581858799650e-04 -4.48302780992551088e-03\n 3.89521072827683085e-03  9.99979852551538095e-01 -5.01216763353817298e-03  1.91796992131490485e-02\n 5.96050140906184168e-04  5.00988303822081857e-03  9.99987272817095985e-01  2.75841430370703453e-02\n 0.00000000000000000e+00  0.00000000000000000e+00  0.00000000000000000e+00  1.00000000000000000e+00\nT_imu_cam_right\n 9.99990794986302944e-01 -3.86926981676184766e-03 -1.85437152350804622e-03  4.57569021719679836e-02\n 3.85974327605602798e-03  9.99979476133227352e-01 -5.11367716614668719e-03  1.94074002338373332e-02\n 1.87411966134558576e-03  5.10647269665915997e-03  9.99985205696611090e-01  2.77955633573913896e-02\n 0.00000000000000000e+00  0.00000000000000000e+00  0.00000000000000000e+00  1.00000000000000000e+00\n",
+      "classification": "native handling and clean export verified for this bounded window"
+    },
+    {
+      "path": "results/vio/zed2i/field1_readiness10_20261002/voxel_svio/run2",
+      "algorithm": "voxel_svio",
+      "mode": "vio",
+      "wrapper_exit": 1,
+      "process": {
+        "accepted_nonzero_exit": false,
+        "exit_code": 1,
+        "failure_reason": "no saved trajectory; player_exit=0 native_exit=0"
+      },
+      "source_head": "3be91971df45db8a385e12ddb6294dccc11290dd",
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/voxel_svio/run2/run_meta.json",
+          "sha256": "9693737e9929909acf9897e1197d3cb0e04664c8502285d6b9a5920871d9ad39"
+        },
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/voxel_svio/run2/run_log.txt",
+          "sha256": "7024a6b267f24b34b90e2fb711273c0d310179b8051fe1b8171b469c924b16f6"
+        },
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/voxel_svio/run2/native/parameter_list.txt",
+          "sha256": "2b67a11c2936dceffc780058ed257f3d069420aeb4bfa0b516d54ec382a1f764"
+        },
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/voxel_svio/run2/native/input_receipt.json",
+          "sha256": "e41b693fe088a44212f123cb6eb157cd5fc2428e0a3f45f5b685bb64bffa726b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/voxel_svio/run2/native/camera_load.txt",
+          "sha256": "661c2a1bd2a45a744d5ed42caf7f3c40f8d89a2be7b21814c667732999a8e44c"
+        }
+      ],
+      "export": null,
+      "native_offsets": [
+        0.0,
+        0.0
+      ],
+      "native_init_condition_threshold": 1e-12,
+      "native_input_receipt": {
+        "imu_received": 974,
+        "stereo_received": 100,
+        "stereo_queued_after_rate_gate": 100,
+        "first_imu_s": 1783069468.3404055,
+        "last_imu_s": 1783069478.1096253,
+        "first_camera_s": 1783069468.1792278,
+        "last_camera_s": 1783069478.0934339,
+        "image_width": 1920,
+        "image_height": 1080,
+        "opencv_type": 0
+      },
+      "native_camera_load": "left_time_offset 0.00000000000000000e+00\nright_time_offset 0.00000000000000000e+00\ncommon_stereo_uses_left_time_offset 1\nT_imu_cam_left\n-7.24344284154253976e-03  8.81396233555460998e-03  9.99934921184247982e-01  2.16882361487217993e-03\n-9.99969341194319017e-01  2.91087936241895022e-03 -7.26935022800381976e-03  2.30463876103123994e-02\n-2.97476170495083016e-03 -9.99956919496677976e-01  8.79260732171576950e-03 -1.30804473926018997e-04\n 0.00000000000000000e+00  0.00000000000000000e+00  0.00000000000000000e+00  1.00000000000000000e+00\nT_imu_cam_right\n-7.24344284154253976e-03  8.81396233555460998e-03  9.99934921184247982e-01  1.30072415057515007e-03\n-9.99969341194319017e-01  2.91087936241895022e-03 -7.26935022800381976e-03 -9.67961884124694943e-02\n-2.97476170495083016e-03 -9.99956919496677976e-01  8.79260732171576950e-03 -4.87318509995803006e-04\n 0.00000000000000000e+00  0.00000000000000000e+00  0.00000000000000000e+00  1.00000000000000000e+00\n",
+      "classification": "valid short-window noninitialization; native and player exited zero; no trajectory"
+    },
+    {
+      "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run1",
+      "algorithm": "basalt",
+      "mode": "vio",
+      "wrapper_exit": 0,
+      "process": {
+        "accepted_nonzero_exit": false,
+        "exit_code": 0,
+        "failure_reason": null
+      },
+      "source_head": "3be91971df45db8a385e12ddb6294dccc11290dd",
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run1/run_meta.json",
+          "sha256": "ac67373e8c341d62e5a3afccb1769c3ea395fc6df17ae067415376df82474884"
+        },
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run1/run_log.txt",
+          "sha256": "32b5a2db1a2148e17dfc6c129d2fcfd4b17b8df5477ebd566d12d995767f9786"
+        },
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run1/trajectory.txt",
+          "sha256": "de085f99cbdfb9ed04af850cfbe9c0f35759fe4897bfe2cea99c1cc60d09be4a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_readiness10_20261002/basalt/run1/native-inputs/clock-policy.json",
+          "sha256": "3540ff45b664dc4a5344aa9cd79b4f5f28a706ff06228bdfc53331bcc150fa1c"
+        }
+      ],
+      "export": {
+        "poses": 100,
+        "finite": true,
+        "strict_times": true,
+        "max_quaternion_norm_error": 2.220446049250313e-16,
+        "max_camera_time_residual_s": 2.384185791015625e-07,
+        "first_camera_index": 0,
+        "last_camera_index": 99,
+        "input_camera_frames": 100
+      },
+      "input_clock_policy": {
+        "schema": 1,
+        "policy": "t_imu_on_camera_clock = original_t_imu - configured_offset_ns",
+        "requested_offset_ns": 0,
+        "native_offset_ns": 0,
+        "camera_timestamps_changed": false,
+        "imu_values_changed": false,
+        "input_rows_removed": 0,
+        "imu_samples": 974,
+        "first_camera_ns": 1783069468179227815,
+        "first_original_imu_ns": 1783069468340405504,
+        "first_effective_imu_ns": 1783069468340405504,
+        "first_frame_has_prior_imu": false,
+        "last_frame_has_following_imu": true,
+        "first_imu_lead_s": -0.161177689,
+        "requested_calibration": {
+          "path": "/data/imoroz/vslam-benchmark/configs/basalt/zed2i_calib.json",
+          "sha256": "d6fb226c9c48045af5dc8df9ab96d6686e56d2acdf649c7755db387be0c2f44b"
+        },
+        "effective_calibration": {
+          "path": "/data/imoroz/vslam-benchmark/results/vio/zed2i/field1_readiness10_20261002/basalt/run1/native-inputs/effective-calibration.json",
+          "sha256": "ee391849f99553610ac07bd48ff15a09bfe902012004d70db643bdad8fb39ffa"
+        },
+        "original_imu": {
+          "path": "/data/imoroz/vslam-benchmark/datasets/zed2i/field1_readiness10_20261002/mav0/imu0/data.csv",
+          "sha256": "1b8df45cba7e9f8c018a8665df84dc3b847592cded0629237503cba91f3c0c7c"
+        },
+        "effective_imu": {
+          "path": "/data/imoroz/vslam-benchmark/results/vio/zed2i/field1_readiness10_20261002/basalt/run1/native-inputs/dataset/mav0/imu0/data.csv",
+          "sha256": "fce9f4216a94d994c18c20efc1f30d5ef5273a2f542083dfd55f6c984f2b3ab2"
+        },
+        "export_timestamp_convention": "camera clock; no post-export timestamp correction"
+      },
+      "classification": "clock materialization, native execution and camera-clock export verified; four unsupported settings identified separately and materialization repair still needs final runner regression"
+    },
+    {
+      "path": "results/vo/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1",
+      "algorithm": "orbslam3",
+      "mode": "vo",
+      "wrapper_exit": 0,
+      "process": {
+        "accepted_nonzero_exit": false,
+        "exit_code": 0,
+        "failure_reason": null
+      },
+      "source_head": "3be91971df45db8a385e12ddb6294dccc11290dd",
+      "evidence": [
+        {
+          "path": "results/vo/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1/run_meta.json",
+          "sha256": "72b2be4516b4f264a79198a7577e9aa0198aa6e0a9eb6a0942a7441194850bec"
+        },
+        {
+          "path": "results/vo/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1/run_log.txt",
+          "sha256": "6d34f5493b59c03dd8694cb348d9a995b0f47d4f7db68b3171c187427353d97d"
+        },
+        {
+          "path": "results/vo/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1/trajectory.txt",
+          "sha256": "49bdffa1e04572e642a6ce90821c7d234592e83f1f07f4d08dc3e416ba1eac99"
+        },
+        {
+          "path": "results/vo/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1/native/loader.3217507",
+          "sha256": "e20f63110cce4ff1aa9101f62e777a7d3d6dc55ab4a1cc09869dc8be2eee666b"
+        }
+      ],
+      "export": {
+        "poses": 600,
+        "finite": true,
+        "strict_times": true,
+        "max_quaternion_norm_error": 1.1447245507056891e-07,
+        "max_camera_time_residual_s": 0.0,
+        "first_camera_index": 0,
+        "last_camera_index": 599,
+        "input_camera_frames": 600
+      },
+      "verified_loaded_libraries": {
+        "/data/imoroz/vslam-benchmark/results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so": true,
+        "/data/imoroz/vslam-benchmark/results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so": true
+      },
+      "classification": "current compatible library path and native clean shutdown verified; historical library exposure remains unknown"
+    },
+    {
+      "path": "results/vo-lc/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1",
+      "algorithm": "orbslam3",
+      "mode": "vo-lc",
+      "wrapper_exit": 0,
+      "process": {
+        "accepted_nonzero_exit": false,
+        "exit_code": 0,
+        "failure_reason": null
+      },
+      "source_head": "3be91971df45db8a385e12ddb6294dccc11290dd",
+      "evidence": [
+        {
+          "path": "results/vo-lc/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1/run_meta.json",
+          "sha256": "695eaca9c56f79b81f0c99a7559a1412391b4b1c9c89c7dff1204d5da37190e8"
+        },
+        {
+          "path": "results/vo-lc/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1/run_log.txt",
+          "sha256": "044da786847d8f1c0f07fa93c191323c0f8a6bd4f4caf7aeaf6380b2fecb46b4"
+        },
+        {
+          "path": "results/vo-lc/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1/trajectory.txt",
+          "sha256": "ec803d8c27147aa4bdfaf61aa40e54f2a4a806f0ec5ce9bb6ed615baf6b8a381"
+        },
+        {
+          "path": "results/vo-lc/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1/native/loader.3219457",
+          "sha256": "ca3a16cd6a176b8874fb842846c31173fa0421970e8c71baeb2177201055329a"
+        }
+      ],
+      "export": {
+        "poses": 600,
+        "finite": true,
+        "strict_times": true,
+        "max_quaternion_norm_error": 1.1124177623500486e-07,
+        "max_camera_time_residual_s": 0.0,
+        "first_camera_index": 0,
+        "last_camera_index": 599,
+        "input_camera_frames": 600
+      },
+      "verified_loaded_libraries": {
+        "/data/imoroz/vslam-benchmark/results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so": true,
+        "/data/imoroz/vslam-benchmark/results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so": true
+      },
+      "classification": "current compatible library path and native clean shutdown verified; historical library exposure remains unknown"
+    },
+    {
+      "path": "results/vio/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1",
+      "algorithm": "orbslam3",
+      "mode": "vio",
+      "wrapper_exit": 0,
+      "process": {
+        "accepted_nonzero_exit": false,
+        "exit_code": 0,
+        "failure_reason": null
+      },
+      "source_head": "3be91971df45db8a385e12ddb6294dccc11290dd",
+      "evidence": [
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1/run_meta.json",
+          "sha256": "f299d3ad71531449fd177e21287d4c39df15a2f831d8ddceb0c8d96b181d70ad"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1/run_log.txt",
+          "sha256": "262ab284fdef6ba09fb17ed8917c4d89dbc4908896c32935409f46d9f59d7499"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1/trajectory.txt",
+          "sha256": "cf22f3c5234ce38ce613f4d9fc7de058c187e98abf2d053a53e9d4732ea0ee79"
+        },
+        {
+          "path": "results/vio/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1/native/loader.3221447",
+          "sha256": "52ebcd6bac1ae4f4d0f56308546c9a0d2228edc6f6f18ac2823952b52ba6bd74"
+        }
+      ],
+      "export": {
+        "poses": 596,
+        "finite": true,
+        "strict_times": true,
+        "max_quaternion_norm_error": 1.0754789614431104e-07,
+        "max_camera_time_residual_s": 0.0,
+        "first_camera_index": 4,
+        "last_camera_index": 599,
+        "input_camera_frames": 600
+      },
+      "verified_loaded_libraries": {
+        "/data/imoroz/vslam-benchmark/results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so": true,
+        "/data/imoroz/vslam-benchmark/results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so": true
+      },
+      "classification": "current compatible library path and native clean shutdown verified; historical library exposure remains unknown"
+    },
+    {
+      "path": "results/vio-lc/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1",
+      "algorithm": "orbslam3",
+      "mode": "vio-lc",
+      "wrapper_exit": 0,
+      "process": {
+        "accepted_nonzero_exit": false,
+        "exit_code": 0,
+        "failure_reason": null
+      },
+      "source_head": "3be91971df45db8a385e12ddb6294dccc11290dd",
+      "evidence": [
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1/run_meta.json",
+          "sha256": "975e663a96fa3d311a81929a2c0d0d22cbbf07ff88e8515dd31ede41e6fb3b6d"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1/run_log.txt",
+          "sha256": "e32ab2f82b8510bcbb709a66e2ae723848eb6f9d5591c6b3d5265db452c241df"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1/trajectory.txt",
+          "sha256": "79fd1619992488420cf46817cce90facd59541c24e421267107179918c6c7d74"
+        },
+        {
+          "path": "results/vio-lc/euroc_mav/MH_01_easy_readiness30_20261002/orbslam3/run1/native/loader.3223351",
+          "sha256": "86f39b34172ad66d9c8a90961d38dfd29977d7522a5b9e766a55597fc252c749"
+        }
+      ],
+      "export": {
+        "poses": 596,
+        "finite": true,
+        "strict_times": true,
+        "max_quaternion_norm_error": 1.1209666084255332e-07,
+        "max_camera_time_residual_s": 0.0,
+        "first_camera_index": 4,
+        "last_camera_index": 599,
+        "input_camera_frames": 600
+      },
+      "verified_loaded_libraries": {
+        "/data/imoroz/vslam-benchmark/results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so": true,
+        "/data/imoroz/vslam-benchmark/results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so": true
+      },
+      "classification": "current compatible library path and native clean shutdown verified; historical library exposure remains unknown"
+    },
+    {
+      "path": "results/vo/rosariov2/sequence1_readiness60_20261002/orbslam3/run1",
+      "algorithm": "orbslam3",
+      "mode": "vo",
+      "wrapper_exit": 0,
+      "process": {
+        "accepted_nonzero_exit": false,
+        "exit_code": 0,
+        "failure_reason": null
+      },
+      "source_head": "3be91971df45db8a385e12ddb6294dccc11290dd",
+      "evidence": [
+        {
+          "path": "results/vo/rosariov2/sequence1_readiness60_20261002/orbslam3/run1/run_meta.json",
+          "sha256": "ae917a5633019762edea4126047820804fe8a729877952d1525b01cc50d9e24b"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1_readiness60_20261002/orbslam3/run1/run_log.txt",
+          "sha256": "de9fcf9de16a6ace868cf8f7fde4d63fe9fb1492615d11f1acb3486df982844f"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1_readiness60_20261002/orbslam3/run1/trajectory.txt",
+          "sha256": "8d632be9be7274264bfebca9c355ddca17ee87e8083ba6fc1387cfe3eba00ab8"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1_readiness60_20261002/orbslam3/run1/native/loader.3225263",
+          "sha256": "0ed06624321466ad817ed34e598c25d6701422c1566878c5ec621afc6453b667"
+        }
+      ],
+      "export": {
+        "poses": 862,
+        "finite": true,
+        "strict_times": true,
+        "max_quaternion_norm_error": 1.0129654048895986e-07,
+        "max_camera_time_residual_s": 0.0,
+        "first_camera_index": 0,
+        "last_camera_index": 861,
+        "input_camera_frames": 862
+      },
+      "verified_loaded_libraries": {
+        "/data/imoroz/vslam-benchmark/results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so": true,
+        "/data/imoroz/vslam-benchmark/results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so": true
+      },
+      "classification": "current compatible library path and native clean shutdown verified; historical library exposure remains unknown"
+    },
+    {
+      "path": "results/vo/rosariov2/sequence5_readiness60_20261002/orbslam3/run1",
+      "algorithm": "orbslam3",
+      "mode": "vo",
+      "wrapper_exit": 0,
+      "process": {
+        "accepted_nonzero_exit": false,
+        "exit_code": 0,
+        "failure_reason": null
+      },
+      "source_head": "3be91971df45db8a385e12ddb6294dccc11290dd",
+      "evidence": [
+        {
+          "path": "results/vo/rosariov2/sequence5_readiness60_20261002/orbslam3/run1/run_meta.json",
+          "sha256": "bf0a0b5f9ddce38e151bd2d052bf22dbf0d2915dd4e5f236fe21fd3296027b7f"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5_readiness60_20261002/orbslam3/run1/run_log.txt",
+          "sha256": "540ff5fc94919ba6dd7fc560f5bc1a9ba6752b1ed6160a8b2477a9d327efcb1d"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5_readiness60_20261002/orbslam3/run1/trajectory.txt",
+          "sha256": "ef602f2f7ec499185c64957ea181bfdab60110a65e10ad994c9b27c014e38726"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5_readiness60_20261002/orbslam3/run1/native/loader.3228156",
+          "sha256": "13b6e6561d8f05f1f48dce0bfacb2edaf4e5e91eaedcbd4d672b68a9c5987220"
+        }
+      ],
+      "export": {
+        "poses": 863,
+        "finite": true,
+        "strict_times": true,
+        "max_quaternion_norm_error": 1.076307647451813e-07,
+        "max_camera_time_residual_s": 0.0,
+        "first_camera_index": 0,
+        "last_camera_index": 862,
+        "input_camera_frames": 863
+      },
+      "verified_loaded_libraries": {
+        "/data/imoroz/vslam-benchmark/results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so": true,
+        "/data/imoroz/vslam-benchmark/results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so": true
+      },
+      "classification": "current compatible library path and native clean shutdown verified; historical library exposure remains unknown"
+    },
+    {
+      "path": "results/vo/hortimulti/strawberry02_readiness30_20261002/orbslam3/run1",
+      "algorithm": "orbslam3",
+      "mode": "vo",
+      "wrapper_exit": 0,
+      "process": {
+        "accepted_nonzero_exit": false,
+        "exit_code": 0,
+        "failure_reason": null
+      },
+      "source_head": "3be91971df45db8a385e12ddb6294dccc11290dd",
+      "evidence": [
+        {
+          "path": "results/vo/hortimulti/strawberry02_readiness30_20261002/orbslam3/run1/run_meta.json",
+          "sha256": "7b90642a49010247146825c0633a25909d9b80c44136a94d6ead490ae321b076"
+        },
+        {
+          "path": "results/vo/hortimulti/strawberry02_readiness30_20261002/orbslam3/run1/run_log.txt",
+          "sha256": "4aaad5ed9fb797d2fc87348f72e4a33fafbd78134838a462a18c0ab993e59e7d"
+        },
+        {
+          "path": "results/vo/hortimulti/strawberry02_readiness30_20261002/orbslam3/run1/trajectory.txt",
+          "sha256": "81b37893050b5266a7159d5078d4aefaf925a0916276434775183cfadf1623a0"
+        },
+        {
+          "path": "results/vo/hortimulti/strawberry02_readiness30_20261002/orbslam3/run1/native/loader.3231096",
+          "sha256": "91b8e336fc781f3c94b92e39fb9c0156457e366a72fe71c01fc70e7a7fbb90e2"
+        }
+      ],
+      "export": {
+        "poses": 301,
+        "finite": true,
+        "strict_times": true,
+        "max_quaternion_norm_error": 9.64479933696083e-08,
+        "max_camera_time_residual_s": 0.0,
+        "first_camera_index": 0,
+        "last_camera_index": 300,
+        "input_camera_frames": 301
+      },
+      "verified_loaded_libraries": {
+        "/data/imoroz/vslam-benchmark/results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so": true,
+        "/data/imoroz/vslam-benchmark/results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so": true
+      },
+      "classification": "current compatible library path and native clean shutdown verified; historical library exposure remains unknown"
+    }
+  ],
+  "basalt_native_calibration_inspection": [
+    {
+      "profile": "rosario",
+      "checks": [
+        "Both full T_imu_cam quaternions and translations match native factory memory exactly.",
+        "Camera variants, intrinsics and all provided distortion coefficients match native memory exactly.",
+        "Resolution, effective zero clock offset, IMU rate and all four noise/random-walk vectors match native memory exactly."
+      ],
+      "layout_basis": "x86-64 factory registers and vector layout checked with GDB and installed Calibration copy-constructor disassembly; upstream pinned header explains field semantics, not release source identity",
+      "radtan_rpmax_actual": [
+        0.0,
+        0.0
+      ],
+      "evidence": [
+        {
+          "path": "results/execution-readiness-20261002/basalt-native-memory/rosario/native-memory.json",
+          "sha256": "7ea003b56ea520b842ce5b294c6ce506b4f3234c6586901dabfd4a2d812f6f46"
+        },
+        {
+          "path": "results/execution-readiness-20261002/basalt-native-memory/rosario/invocation.json",
+          "sha256": "d27aeb3d74c9008e0e0c0289946f756da494d676d0ca1c792a6de6df4f2f298e"
+        },
+        {
+          "path": "results/execution-readiness-20261002/basalt-native-memory/rosario/settings-review.json",
+          "sha256": "4b07d400a1d4e9680290058ebb87c4c342b55e40032cd792e2b5217c378fa21c"
+        }
+      ]
+    },
+    {
+      "profile": "zed",
+      "checks": [
+        "Both full T_imu_cam quaternions and translations match native factory memory exactly.",
+        "Camera variants, intrinsics and all provided distortion coefficients match native memory exactly.",
+        "Resolution, effective zero clock offset, IMU rate and all four noise/random-walk vectors match native memory exactly."
+      ],
+      "layout_basis": "x86-64 factory registers and vector layout checked with GDB and installed Calibration copy-constructor disassembly; upstream pinned header explains field semantics, not release source identity",
+      "radtan_rpmax_actual": null,
+      "evidence": [
+        {
+          "path": "results/execution-readiness-20261002/basalt-native-memory/zed/native-memory.json",
+          "sha256": "11a21c80c2da8e0d8d8cb0e29e58e46516b515f894cd7fbc0beeae85dec1c790"
+        },
+        {
+          "path": "results/execution-readiness-20261002/basalt-native-memory/zed/invocation.json",
+          "sha256": "0f5c05a91fe8487d6f0c4a01e7ce17419f7a7da698e720f455672d0e8cb4860c"
+        },
+        {
+          "path": "results/execution-readiness-20261002/basalt-native-memory/zed/settings-review.json",
+          "sha256": "b396dcfee249aaec1b69c0fb7c835495c7a2f8eedf3ffad42de64061c53989ec"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Rosario recording-specific image/rectification profile remains pending authors.",
+    "First-frame IMU gaps are retained; no interpolation or favorable start-window search.",
+    "Basalt native release/source linkage remains distinct from verified loaded values.",
+    "Final settings-only Basalt materialization repair must pass a final bounded wrapper check.",
+    "The authorized 180-second Voxel diagnostic is a separate record; its wrapper source-capture violation remains disclosed."
+  ]
+}

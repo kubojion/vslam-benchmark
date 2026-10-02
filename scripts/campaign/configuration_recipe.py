@@ -49,7 +49,13 @@ def config_recipe(repo, cell):
             selected('estimator_config',path,orb)
             operations.append('remove both historical LC keys; append one canonical loopClosing integer')
         elif algorithm == 'basalt':
-            selected('estimator_config',select_basalt_config(repo,dataset,mode))
+            from _basalt_native_profile import effective_profile, REVIEW
+            def native_basalt_settings(text):
+                review=json.loads((repo/REVIEW).read_text())
+                return json.dumps(effective_profile(json.loads(text),review),indent=2)+'\n'
+            selected('estimator_config',select_basalt_config(repo,dataset,mode),native_basalt_settings)
+            selected('requested_estimator_config',select_basalt_config(repo,dataset,mode))
+            operations.append('materialize the 48 inspected native Basalt settings; preserve and explicitly list four unsupported requested keys; pin native executable/library hashes')
             def native_basalt_calibration(text):
                 value=json.loads(text)
                 value['value0']['cam_time_offset_ns']=0

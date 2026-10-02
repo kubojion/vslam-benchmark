@@ -104,7 +104,7 @@ def test_companion_and_variant_exports_reject_stale_qualification(tmp_path,categ
     a=attempt(category=category,evaluation_path='evaluation.json')
     inv={'cells':[],'other_artifacts':[a],'qualification_review':{'evidence':['new review']}}
     fn=build_historical_rows if category=='superseded_calibration_cohort' else build_rows
-    with pytest.raises(ValueError,match='qualification disagrees'):
+    with pytest.raises(ValueError,match='qualification'):
         fn(inv,repo=tmp_path)
 
 

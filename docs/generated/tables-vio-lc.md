@@ -36,7 +36,7 @@ remains unknown. Aligned shape ATE does not establish GNSS global accuracy.
 
 | Algorithm (primary alignment) | MH01 | MH03 | MH05 |
 |---|---|---|---|
-| ORB-SLAM3 — SE(3) | 0.04191 (0.03823–0.04621) [score N=3]; A3/E3/S3/F0; coverage ≥99.9%; ✅ Protocol N=3; accepted: 3 | 0.03323 (0.02605–0.03332) [score N=3]; A3/E3/S3/F0; coverage ≥86.3%; ✅ Protocol N=3; accepted: 2, accepted_with_limitation: 1 | 0.058 (0.05214–0.06224) [score N=3]; A3/E3/S3/F0; coverage ≥96.5%; ✅ Protocol N=3; accepted: 3 |
+| ORB-SLAM3 — SE(3) | 0.04191 (0.03823–0.04621) [score N=3]; A3/E3/S3/F0; coverage ≥99.9%; protocol blocked; blocked: 3 | 0.03323 (0.02605–0.03332) [score N=3]; A3/E3/S3/F0; coverage ≥86.3%; protocol blocked; blocked: 3 | 0.058 (0.05214–0.06224) [score N=3]; A3/E3/S3/F0; coverage ≥96.5%; protocol blocked; blocked: 3 |
 | AirSLAM — SE(3) | 0.03876 (0.03876–0.03876) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 3; AirSLAM rectification patch 1e0ad79c28d4 (native build verified) | 0.02445 (0.02432–0.02445) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 3; AirSLAM rectification patch 1e0ad79c28d4 (native build verified) | 0.05311 (0.05301–0.0532) [score N=2]; A3/E2/S2/F1; 1 failed_without_trajectory; 1 nonzero exit; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 2, valid_observed_failure: 1; AirSLAM rectification patch 1e0ad79c28d4 (native build verified) |
 | OKVIS2 — SE(3) | 0.02498 (0.02371–0.02603) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 | 0.03051 (0.02994–0.03104) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 | 0.07319 (0.06125–0.07428) [score N=3]; A3/E3/S3/F0; coverage ≥99.9%; ✅ Protocol N=3; accepted: 3 |
 | OKVIS2-X — SE(3) | 0.01616 (0.01503–0.01873) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 | 0.02454 (0.02435–0.02679) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 | 0.04977 (0.04673–0.0686) [score N=3]; A3/E3/S3/F0; coverage ≥99.9%; ✅ Protocol N=3; accepted: 3 |
@@ -132,4 +132,4 @@ remains unknown. Aligned shape ATE does not establish GNSS global accuracy.
 | AirSLAM | zed2i | default | 1 | 0 |
 | OKVIS2 | zed2i | default | 1 | 1133 |
 | OKVIS2-X | zed2i | default | 1 | 403 |
-| ORB-SLAM3 | zed2i | default | 1 | unknown |
+| ORB-SLAM3 | zed2i | default | 1 | 0 |

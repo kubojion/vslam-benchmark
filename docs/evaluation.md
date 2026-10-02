@@ -1,8 +1,9 @@
 # Evaluation
 
-Status: 2026-10-02, saved ZED re-evaluation and reporting reconciliation. The
-[protocol review](protocol-review-20261002.md) and [ZED preparation](zed-preparation-20261002.md)
-separate validity from success: 81 verified N=3 cells, with all failures retained.
+Status: 2026-10-02, native review and reporting reconciliation in progress. The
+[current readiness review](execution-readiness-20261002.md) retains 69 verified
+N=3 cells; 12 historical EuRoC ORB cells are held for unknown library/ABI exposure.
+Validity remains separate from success, with all failures retained.
 ZED uses the pinned, gap-aware nominal 3D position reference; no rotational metric
 is supported. Other agricultural/GNSS limits and native readiness remain separate.
 Numerical scores alone never grant verification. Short-check exports are diagnostic
@@ -34,6 +35,14 @@ evidence, not proof that missing provenance has been recovered. Unverified legac
 attempts remain separate rather than being pooled by a common `unknown` label.
 Historical Git hashes remain historical after the author rewrite; see the
 [mapping](campaigns/git-author-rewrite-20261001.json).
+
+New runners explicitly declaring `cohort_artifact_semantics=2` normalize only
+attempt-local paths in the named configuration receipts. Input-receipt frame
+counts are outcomes, not settings. Receipt hashes are verified before this
+normalization; all requested/effective settings, input hashes and native loaded
+parameter values remain part of the comparison. Raw receipts and historical
+cohort signatures stay unchanged. This prevents run directory names or measured
+outcomes from falsely splitting otherwise identical repetitions.
 
 ## Evaluation definitions
 
@@ -83,6 +92,25 @@ path-normalized ATE CSV fields are also blank pending a defensible common-suppor
 path definition; old unsupported numbers are not copied forward.
 
 ### Execution, failure and qualification
+
+Current qualification and log-counter corrections are evidence-pinned overlays
+in the acceptance ledger/inventory. Original `run_eval.json` files retain their
+historical qualifications and counters. Report generation replays the current
+review from original evidence and verifies it against the inventory; it does not
+require rewriting those original files to synchronize a later decision.
+
+`completed_export_shutdown_error` means a verified completed export followed by
+a native teardown error. It remains an observed failure (F), never a clean export
+(S). `export_completion`, `shutdown_error` and `export_outcome_label` distinguish
+this from partial exports and absent output. Numerical collapse keeps its own
+failure label even when serialization completed. All native exits remain visible.
+
+ORB `tracking_losses` counts explicit loss/local-tracking-failure messages,
+including recoverable local-map failures; it is not a count of unique episodes.
+Full Tracking reset messages (`map_resets`), LocalMapping reset messages,
+IMU-initialization reset requests and map-creation messages have separate fields.
+The counters overlap and must not be added as independent failures. Zero means
+no matching messages, not proof of uninterrupted tracking.
 
 The CSV separates numerical `run_status`, process exit, artifact presence and
 scientific qualification. `ok` means the saved trajectory could be evaluated under
@@ -153,9 +181,10 @@ inventory, not scientific correctness by itself. Replaced derived files are
 preserved under `results/.derived-history/` before atomic replacement.
 
 After an explicit claim-review change, run `build_repair_inventory.py`,
-`reconcile_qualification.py`, rebuild the inventory, promote with
-`promote_repaired_evaluations.py --apply`, and rebuild the inventory again before
-the CSV/report commands. These steps preserve numerical fields and earlier JSONs.
+then the CSV/report commands. Review-only changes are replayed as overlays;
+do not promote them into immutable historical evaluations. The earlier
+`reconcile_qualification.py`/promotion sequence was used during the original
+evaluation repair and is not the current review-only workflow.
 Then run `update_todo_matrices.py`, `build_acceptance_handoff.py` and
 `build_future_manifest.py`. Changed pinned evidence blocks a prior decision;
 normal regeneration never makes new acceptance decisions automatically.

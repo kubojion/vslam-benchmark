@@ -47,7 +47,10 @@ F = observed failures; U = unknown outcomes, when present.**
 
 Example: **A3/E3/S0/F3** means three attempts, three evaluated trajectories,
 no clean final exports and three observed failures. A failed attempt can still
-produce an evaluable trajectory, so these counts overlap. S does not certify
+produce an evaluable trajectory, so these counts overlap. Verified completed
+exports with shutdown errors remain in F, never S, and are labelled
+`completed export; shutdown error`; other tracking/export failures stay distinct.
+S does not certify
 accuracy or full coverage. `?` means a legacy count is not documented.
 
 **✅ N=3 means three verified attempts under consistent settings, including valid
@@ -80,8 +83,9 @@ fraction; it never makes the entire action group ready.
 Cell links give selected physical run IDs, exits, failure evidence, implementation
 groups, review blockers and claim limits. `missing` counts absent attempts only.
 Sparse keyframes, partial exports and low accuracy alone do not require reruns.
-The 45 legacy clean-qualified cells and all underlying acceptance decisions are
-unchanged. ZED ticks support qualified nominal position claims, with RTK float,
+Historical acceptance decisions and raw evidence are preserved; later evidence
+can put a previously green cell back under review. ZED ticks support qualified
+nominal position claims, with RTK float,
 mounting and clock limits; they do not certify surveyed 6-DoF reference accuracy.
 Readiness comes from the selected reviewed campaign and its unchanged evidence,
 never from N=3 or configuration-file existence. It does not authorize a launch or
@@ -158,7 +162,9 @@ def short_flags(cell, review):
         flags.append('invalid export')
     if any('sparse_keyframe' in s for s in limits):
         flags.append('keyframes')
-    if any('shutdown_error' in s for s in limits):
+    if review.get('completed_export_shutdown_error_count'):
+        flags.append('completed export; shutdown error')
+    elif any('shutdown_error' in s for s in limits):
         flags.append('shutdown error')
     if any('coverage_below' in s for s in limits):
         flags.append('partial')
@@ -169,7 +175,7 @@ def short_flags(cell, review):
     if cell['dataset'] == 'zed2i' and review['evaluated_trajectory_count']:
         flags.append('nominal position')
     if review.get('attempts', {}).get('accepted_with_limitation') and not any(
-            s in flags for s in ('keyframes', 'partial', 'shutdown error', 'offline refinement', 'nominal position')):
+            s in flags for s in ('keyframes', 'partial', 'shutdown error', 'completed export; shutdown error', 'offline refinement', 'nominal position')):
         flags.append('limits')
     if review['missing_attempt_count']:
         flags.append(f"missing {review['missing_attempt_count']}")
