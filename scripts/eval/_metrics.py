@@ -49,7 +49,25 @@ def right_transform(poses, sensor_T_target):
     return a
 
 
-def interpolate_reference(reference, times, max_gap_s=0.5):
+def reference_interval_ids(times, valid_intervals):
+    """Map times to explicitly retained closed intervals; -1 means excluded.
+
+    Intervals describe reference support, not estimator success. They must be
+    ordered and disjoint; even a short excluded hole remains a hard boundary.
+    """
+    intervals = np.asarray(valid_intervals, dtype=float)
+    if intervals.ndim != 2 or intervals.shape[1] != 2 or not len(intervals):
+        raise ValueError('reference support requires nonempty [start, end] intervals')
+    if (not np.isfinite(intervals).all() or np.any(intervals[:, 1] < intervals[:, 0])
+            or np.any(intervals[1:, 0] <= intervals[:-1, 1])):
+        raise ValueError('reference support intervals must be finite, ordered and disjoint')
+    times = np.asarray(times, dtype=float)
+    idx = np.searchsorted(intervals[:, 0], times, side='right') - 1
+    inside = (idx >= 0) & (times <= intervals[np.maximum(idx, 0), 1])
+    return np.where(inside, idx, -1)
+
+
+def interpolate_reference(reference, times, max_gap_s=0.5, valid_intervals=None):
     """Interpolate reference only; never extrapolate or bridge a reference gap.
 
     Exact samples remain valid even if the following reference interval is large.
@@ -63,6 +81,11 @@ def interpolate_reference(reference, times, max_gap_s=0.5):
     exact = np.abs(g[hi, 0] - q) <= 1e-8
     keep = (q >= g[0, 0]) & (q <= g[-1, 0])
     keep &= exact | ((g[hi, 0] - g[lo, 0]) <= max_gap_s)
+    if valid_intervals is not None:
+        query_ids = reference_interval_ids(q, valid_intervals)
+        sample_ids = reference_interval_ids(g[:, 0], valid_intervals)
+        keep &= (query_ids >= 0) & (sample_ids[hi] == query_ids)
+        keep &= exact | (sample_ids[lo] == query_ids)
     result = np.empty((int(keep.sum()), 8))
     result[:, 0] = q[keep]
     for j in range(1, 4):
@@ -153,7 +176,8 @@ def relative_errors(reference, estimate, pairs):
     return translation, rotation, displacement
 
 
-def distance_pairs(reference, distance_m, max_gap_s, relative_tolerance=0.1):
+def distance_pairs(reference, distance_m, max_gap_s, relative_tolerance=0.1,
+                   valid_intervals=None):
     """Overlapping reference-distance windows, first sample at/above each length.
 
     Endpoints must be within 10% of the requested distance. A pair cannot cross
@@ -170,6 +194,9 @@ def distance_pairs(reference, distance_m, max_gap_s, relative_tolerance=0.1):
     i, j = i[keep], j[keep]
     keep = ((cumulative[j] - cumulative[i]) <= distance_m*(1 + relative_tolerance))
     keep &= holes[i] == holes[j]
+    if valid_intervals is not None:
+        ids = reference_interval_ids(g[:, 0], valid_intervals)
+        keep &= (ids[i] >= 0) & (ids[i] == ids[j])
     return np.c_[i[keep], j[keep]]
 
 

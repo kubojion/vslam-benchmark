@@ -131,6 +131,17 @@ def physical_imu_to_camera(ws, dataset, seq, snapshots):
         return physical_euroc_imu_to_camera(ws, seq, snapshots)
     if dataset == 'rosariov2':
         return physical_rosario_imu_to_camera(ws, seq, snapshots)
+    if dataset == 'zed2i':
+        path=Path(ws)/'docs/campaigns/zed-physical-calibration-20261002.json'
+        value=json.loads(path.read_text())
+        if seq not in value['sequences'] or value['serial_number']!=30291010:
+            raise FrameEvidenceError('unreviewed ZED camera serial or recording')
+        snapshots.evidence.append(file_evidence(path,ws))
+        for item in value['evidence']:
+            actual=file_evidence(Path(ws)/item['path'],ws)
+            if actual['sha256']!=item['sha256']:raise FrameEvidenceError('ZED calibration source changed')
+            snapshots.evidence.append(actual)
+        return matrix(value['T_imu_left'])
     raise FrameEvidenceError('independent physical IMU calibration not established')
 
 
@@ -178,7 +189,7 @@ def estimate_transform(ws, dataset, seq, algo, use_imu, snapshots):
         online = cfg.get('camera_parameters', {}).get('online_calibration', {})
         final_ba = cfg.get('estimator_parameters', {}).get('do_final_ba', False)
         source = [f'src/{algo}/okvis_multisensor_processing/src/TrajectoryOutput.cpp']
-        if use_imu and dataset in ('euroc_mav', 'rosariov2'):
+        if use_imu and dataset in ('euroc_mav', 'rosariov2', 'zed2i'):
             return 'physical_imu_sensor', physical_imu_to_camera(ws, dataset, seq, snapshots), source
         if online.get('do_extrinsics') or (final_ba and online.get('do_extrinsics_final_ba')):
             return 'sensor_with_saved_final_calibration', okvis_final_extrinsic(snapshots), source + [f'src/{algo}/okvis_ceres/src/Component.cpp']
@@ -187,7 +198,7 @@ def estimate_transform(ws, dataset, seq, algo, use_imu, snapshots):
         cfg = snapshots.read('camera_calibration')['value0']['T_imu_cam'][0]
         t = rotation_transform(Rotation.from_quat([cfg[k] for k in ('qx', 'qy', 'qz', 'qw')]).as_matrix())
         t[:3, 3] = [cfg[k] for k in ('px', 'py', 'pz')]
-        if use_imu and dataset in ('euroc_mav', 'rosariov2'):
+        if use_imu and dataset in ('euroc_mav', 'rosariov2', 'zed2i'):
             t = physical_imu_to_camera(ws, dataset, seq, snapshots)
         return 'imu_or_virtual_body', matrix(t), ['https://github.com/VladyslavUsenko/basalt/blob/0f3b2b52c807f70ff4e2973ce253c73329eea7bc/src/vio.cpp']
     if algo == 'openvins':
@@ -196,20 +207,20 @@ def estimate_transform(ws, dataset, seq, algo, use_imu, snapshots):
             raise FrameEvidenceError('online camera extrinsics require saved calibration per pose')
         cam = snapshots.read('camera_imu_calibration')['cam0']
         t = matrix(cam['T_imu_cam']) if 'T_imu_cam' in cam else np.linalg.inv(matrix(cam['T_cam_imu']))
-        if dataset in ('euroc_mav', 'rosariov2'):
+        if dataset in ('euroc_mav', 'rosariov2', 'zed2i'):
             t = physical_imu_to_camera(ws, dataset, seq, snapshots)
         return 'imu', t, ['src/open_vins/ov_msckf/src/ros/ROS2Visualizer.cpp', 'src/open_vins/ov_core/src/utils/quat_ops.h']
     if algo == 'voxel_svio':
         cfg = snapshots.read('estimator_config')
         if cfg.get('state_parameter', {}).get('calib_cam_extrinsics', False):
             raise FrameEvidenceError('online camera extrinsics require saved calibration per pose')
-        t = physical_imu_to_camera(ws, dataset, seq, snapshots) if dataset in ('euroc_mav', 'rosariov2') else matrix(cfg['camera_parameter']['T_imu_cam_left'])
+        t = physical_imu_to_camera(ws, dataset, seq, snapshots) if dataset in ('euroc_mav', 'rosariov2', 'zed2i') else matrix(cfg['camera_parameter']['T_imu_cam_left'])
         return 'imu', t, ['src/voxel_svio/src/stereoVio.cpp', 'src/voxel_svio/src/quatOps.cpp']
     if algo == 'orbslam3':
         cfg = snapshots.read('estimator_config')
         source = ['src/ORB_SLAM3/src/System.cc', 'src/ORB_SLAM3/src/Settings.cc']
         if use_imu:
-            t = physical_imu_to_camera(ws, dataset, seq, snapshots) if dataset in ('euroc_mav', 'rosariov2') else matrix(cfg['IMU.T_b_c1'])
+            t = physical_imu_to_camera(ws, dataset, seq, snapshots) if dataset in ('euroc_mav', 'rosariov2', 'zed2i') else matrix(cfg['IMU.T_b_c1'])
             return 'imu_body', t, source
         if cfg['Camera.type'] == 'Rectified':
             return 'left_camera_input_axes', np.eye(4), source

@@ -71,7 +71,7 @@ MODEL_DIR="/root/catkin_ws/src/air_slam/output"
 CONTAINER="air_slam"
 CORRECTED_NATIVE=false
 NATIVE_PREFIX=/root/catkin_ws_rectified_20261001/devel
-if [[ "$DATASET" == "euroc_mav" && "$USE_IMU" == "true" ]]; then
+if [[ ( "$DATASET" == "euroc_mav" || "$DATASET" == "zed2i" ) && "$USE_IMU" == "true" ]]; then
     CORRECTED_NATIVE=true
 fi
 source "$WS/scripts/run/_owned_process.sh"

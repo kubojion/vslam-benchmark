@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "version": "gnss-position-v2-20261002",
+  "dataset": "zed2i",
+  "sequence": "field1_110426_full_10fps_q90",
+  "orientation_valid": false,
+  "nominal_geometry": true,
+  "origin_lat_lon_alt": [
+    52.291369976,
+    16.39219627,
+    120.94820000000001
+  ],
+  "antenna_above_left_camera_m": 1.0,
+  "body_roll_deg": 0.0,
+  "body_pitch_deg": 0.0,
+  "clock_offset_s": 0.0,
+  "heading": "fixed valid RELPOSNED baseline interpolated at robot GPS header times; lateral baseline bias removed",
+  "float_policy": "primary retains RTK float epochs outside approved spikes; fixed_only excludes float and preserves resulting gaps",
+  "approved_rejected_raw_samples": 448,
+  "approved_excursions": 15,
+  "image_span_raw_samples": 23107,
+  "limitations": [
+    "nominal height and level platform; no surveyed full 3D mounting covariance",
+    "position-only reference; identity quaternions are placeholders",
+    "field camera/robot clock offset unmeasured; no correction fitted",
+    "RTK float retained in primary; fixed-only sensitivity is mandatory"
+  ],
+  "evidence": [
+    {
+      "path": "/data/jkobo/rtk-splat/code/rtk-splat/src/rtk_splat/backends/geodetic_gnss.py",
+      "sha256": "7e3f04f9bd82cd6663384b2a0e660d34f5cb78198e12343083b8d9b913554fb0"
+    },
+    {
+      "path": "/data/jkobo/rtk-splat/datasets/field1_0703_full77/segment/observations/gnss.npz",
+      "sha256": "83580c19058945cbc897ee91299717f9681f26ffaeba1e563894acc84ea11884"
+    },
+    {
+      "path": "/data/jkobo/rtk-splat/datasets/field1_0703_full77/segment/observations/heading.npz",
+      "sha256": "5b23b49cf7eecc30004f0280524bc38de020df62d17ea1cb8d4ca0ae8a4c82cb"
+    },
+    {
+      "path": "docs/campaigns/zed-approved-screening-20261002.json",
+      "sha256": "e0a658c7af37e3db1dce068c56bd6d5f00ec9e0e37da0847bfa9369399e85f98"
+    },
+    {
+      "path": "results/zed-preparation-20261002/independent-source-validation.json",
+      "sha256": "7894a33633d584675d40c6ce76a5cfef1316d4a9fbc02eb47c82efb3ea4b72f0"
+    },
+    {
+      "path": "datasets/zed2i/field1_110426_full_10fps_q90/manifest.json",
+      "sha256": "ddad77adbdf873f1715b3fdf8bb84d8cdab72512fc628d8ab0294f1715f062c3"
+    },
+    {
+      "path": "docs/CAMERA_ANTENNA_GEOMETRY_20261002.txt",
+      "sha256": "603bce19e9bf2c8ce3af861b0778939d5bd78e64b81fddc13b079c3897ea0fb4"
+    },
+    {
+      "path": "scripts/data/build_zed_reference.py",
+      "sha256": "ccc96e073a08d82bb634c9d66481f67ed818e51c36bc8714a7cc587a703347f3"
+    },
+    {
+      "path": "scripts/data/_zed_reference.py",
+      "sha256": "d1ff90923177089c7324ea1ed8725a49ffa517288da61e85adddb2241e8c2c50"
+    }
+  ],
+  "variants": {
+    "primary": {
+      "trajectory": {
+        "path": "datasets/zed2i/field1_110426_full_10fps_q90/references/gnss-position-v2-20261002/primary.tum",
+        "sha256": "ba1e076db38e98886dd481ae25b7adf8ce31132f8f03f84ab2e010758dc2e306"
+      },
+      "support": {
+        "path": "datasets/zed2i/field1_110426_full_10fps_q90/references/gnss-position-v2-20261002/primary-support.json",
+        "sha256": "b470046f72a3c596773240e852c0d98e970be2488e12048f7b42bceed8ac5efb"
+      },
+      "retained_samples": 22659,
+      "fixed_samples": 21696,
+      "float_samples": 963
+    },
+    "fixed_only": {
+      "trajectory": {
+        "path": "datasets/zed2i/field1_110426_full_10fps_q90/references/gnss-position-v2-20261002/fixed_only.tum",
+        "sha256": "5a1cac4040614d918750b2c065187038f20c01418e8f27ca9aed43dfd998e0f5"
+      },
+      "support": {
+        "path": "datasets/zed2i/field1_110426_full_10fps_q90/references/gnss-position-v2-20261002/fixed_only-support.json",
+        "sha256": "d3fa2e9678785bf5205e1ccd503aacd6df36af6e85f7f2aa2b3b3f91471a971f"
+      },
+      "retained_samples": 21696,
+      "fixed_samples": 21696,
+      "float_samples": 0
+    }
+  },
+  "construction": {
+    "path": "datasets/zed2i/field1_110426_full_10fps_q90/references/gnss-position-v2-20261002/construction.npz",
+    "sha256": "c7fe145507296c0fed46347add25726f184957a97ebc308338ebedb07a96e8e5"
+  }
+}

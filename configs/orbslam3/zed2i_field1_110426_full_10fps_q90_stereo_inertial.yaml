@@ -1,4 +1,5 @@
 %YAML:1.0
+# Recovered factory rotation: docs/campaigns/zed-physical-calibration-20261002.json.
 # ORB-SLAM3 stereo-inertial (VIO) config for ZED2i field1_110426_full_10fps_q90.
 # Raw IMU samples use zed_imu_link (ROS body: x forward, y left, z up), while
 # the rectified images use zed_left_camera_frame_optical (x right, y down,
@@ -102,16 +103,14 @@ System.LoopClosing: 0
 #------------------------------------------------------------------------------
 # IMU.T_b_c1 = body(IMU) <- cam0 optical.  The ZED SDK reports the IMU origin
 # at [-0.002, -0.023061, 0.000217] m in the left non-optical camera frame.
-# The serial-specific residual rotation (~0.675 deg for SN30291010) was not
-# retained in the bag; identity is used only for that small body-frame term.
 IMU.T_b_c1: !!opencv-matrix
   rows: 4
   cols: 4
   dt: f
-  data: [ 0.0, 0.0, 1.0,  0.002,
-         -1.0, 0.0, 0.0,  0.023061,
-          0.0,-1.0, 0.0, -0.000217,
-          0.0, 0.0, 0.0, 1.0 ]
+  data: [-0.00724344284154254, 0.00881396233555461, 0.999934921184248, 0.00216882361487218,
+          -0.999969341194319, 0.00291087936241895, -0.00726935022800382, 0.0230463876103124,
+          -0.00297476170495083, -0.999956919496678, 0.00879260732171577, -0.000130804473926019,
+          0, 0, 0, 1]
 
 # Common ZED field IMU profile (SN30291010), continuous-time densities.
 IMU.NoiseGyro: 1.9500e-02

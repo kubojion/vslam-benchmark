@@ -49,9 +49,10 @@ def evaluate_arrays(reference, estimate, camera_times, frames, *, monocular=Fals
     sampled, camera_ids, dt = camera_association(e, camera_times, tolerance_s)
     # Keep export availability independent of ground-truth availability.
     observed_times, observed_dt = sampled[:, 0].copy(), dt.copy()
-    reference_at_est, support = interpolate_reference(g, sampled[:, 0], reference_max_gap_s)
+    valid_intervals = frames.get('reference_valid_intervals')
+    reference_at_est, support = interpolate_reference(g, sampled[:, 0], reference_max_gap_s, valid_intervals)
     sampled, camera_ids, dt = sampled[support], camera_ids[support], dt[support]
-    _, camera_support = interpolate_reference(g, camera_times, reference_max_gap_s)
+    _, camera_support = interpolate_reference(g, camera_times, reference_max_gap_s, valid_intervals)
     if frames.get('estimate_transform') is not None:
         t = np.asarray(frames['estimate_transform'])
         if monocular and not np.allclose(t[:3, 3], 0):
@@ -95,6 +96,11 @@ def evaluate_arrays(reference, estimate, camera_times, frames, *, monocular=Fals
     }
     duration = float(camera_times[-1] - camera_times[0])
     gap_threshold = max(0.5, 5 * float(np.median(np.diff(camera_times))))
+    if valid_intervals is not None:
+        out['metric_protocol']['reference_support'] = {
+            'semantics': 'explicit retained closed intervals; no interpolation or windows across exclusions',
+            'valid_intervals': np.asarray(valid_intervals).tolist(),
+        }
     out['metric_protocol']['maximum_estimate_gap_s_for_windows'] = gap_threshold
     out['coverage'] = {
         'semantics': 'observed exported poses, not proof of tracking success',
@@ -147,7 +153,8 @@ def evaluate_arrays(reference, estimate, camera_times, frames, *, monocular=Fals
         out['metric_protocol']['gnss_translation_diagnostic'] = 'first-position translation only; no rotation or scale; global frame unverified'
     path_distance = np.r_[0, np.cumsum(np.linalg.norm(np.diff(reference_at_est[:, 1:4], axis=0), axis=1))]
     for length in (1, 10, 50, 100):
-        pairs = distance_pairs(reference_at_est, length, gap_threshold)
+        pairs = distance_pairs(reference_at_est, length, gap_threshold,
+                               valid_intervals=valid_intervals)
         trans_sim, angle, displacement_sim = relative_errors(reference_at_est, sim_est, pairs)
         trans_se, _, displacement_se = relative_errors(reference_at_est, se_est, pairs)
         distances = path_distance[pairs[:, 1]] - path_distance[pairs[:, 0]] if len(pairs) else np.array([])

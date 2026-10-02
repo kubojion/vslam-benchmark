@@ -12,7 +12,7 @@
 #  - gravity_mag: 9.812           Poznan, Poland (~52.29N) - ZED2i field dataset.
 #  - track_frequency: 10.0         exported benchmark camera rate.
 #  - num_pts: 200                  frozen upstream quality profile.
-#  - histogram_method: HISTOGRAM   keeps default (cheap and robust on IR).
+#  - histogram_method: HISTOGRAM   retains the upstream equalization choice.
 
 verbosity: "INFO"
 

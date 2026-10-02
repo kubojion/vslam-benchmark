@@ -38,6 +38,27 @@ class MetricsTests(unittest.TestCase):
         out, ids, dt = camera_association(a, np.arange(6), .01)
         self.assertEqual(ids.tolist(), [0, 1, 5]); self.assertEqual(len(out), 3)
 
+    def test_explicit_exclusion_is_not_filled_when_shorter_than_gap_threshold(self):
+        a = poses([0, .2, .6, .8], [[0, 0, 0], [1, 0, 0], [3, 0, 0], [4, 0, 0]])
+        intervals = [[0, .2], [.6, .8]]
+        query = [0, .1, .2, .3, .4, .5, .6, .7, .8]
+        out, keep = interpolate_reference(a, query, .5, intervals)
+        self.assertEqual(keep.tolist(), [True, True, True, False, False, False, True, True, True])
+        np.testing.assert_allclose(out[:, 1], [0, .5, 1, 3, 3.5, 4])
+        # An apparently short distance/time window must also respect the mask.
+        self.assertEqual(distance_pairs(a, 2, .5, valid_intervals=intervals).tolist(), [])
+
+    def test_reference_exclusion_applies_even_if_raw_samples_remain(self):
+        a = poses([0, .2, .4, .6, .8])
+        _, keep = interpolate_reference(a, [.2, .3, .4, .5, .6], .5, [[0, .2], [.6, .8]])
+        self.assertEqual(keep.tolist(), [True, False, False, False, True])
+
+    def test_invalid_support_intervals_are_rejected(self):
+        a = poses([0, 1, 2])
+        for intervals in ([], [[1, 0]], [[0, 1], [1, 2]], [[0, float('nan')]]):
+            with self.subTest(intervals=intervals), self.assertRaises(ValueError):
+                interpolate_reference(a, [0, 1], valid_intervals=intervals)
+
     def test_high_rate_export_uses_one_pose_per_camera(self):
         a = poses(np.arange(100)/100)
         out, ids, dt = camera_association(a, np.arange(10)/10)

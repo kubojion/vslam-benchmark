@@ -11,12 +11,13 @@ import tempfile
 
 import numpy as np
 
-from _metrics import interpolate_reference, right_transform, statistics, validate_poses
+from _metrics import interpolate_reference, reference_interval_ids, right_transform, statistics, validate_poses
 from _pose_frames import file_evidence, frame_policy
 from _run_observations import parse_log, parse_resources
 from _run_type import resolve
 from _segment_trajectory import classify, merge_segments, yaw_from_path
 from _trajectory_evaluation import evaluate_arrays, position_only_diagnostic
+from _reference_source import selected_reference
 
 
 def atomic_json(path, value):
@@ -35,7 +36,7 @@ def atomic_json(path, value):
 
 def evaluator_identity():
     files = ['_saved_run.py', '_metrics.py', '_pose_frames.py', '_trajectory_evaluation.py',
-             '_run_observations.py', '_segment_trajectory.py', '_run_type.py']
+             '_run_observations.py', '_segment_trajectory.py', '_run_type.py', '_reference_source.py']
     parent = Path(__file__).resolve().parent
     evidence = [file_evidence(parent/f, parent) for f in files]
     return dict(schema=3, files=evidence,
@@ -49,10 +50,12 @@ def load_reference(path, digest):
 
 
 @lru_cache(maxsize=24)
-def generated_segments(gt_path, gt_digest, times_path, times_digest, transform_json, dataset):
+def generated_segments(gt_path, gt_digest, times_path, times_digest, transform_json, dataset,
+                       support_json='null'):
     reference = load_reference(gt_path, gt_digest)
     times = np.loadtxt(times_path, ndmin=1) / 1e9
-    grid, _ = interpolate_reference(reference, times)
+    intervals=json.loads(support_json)
+    grid, _ = interpolate_reference(reference, times, valid_intervals=intervals)
     if len(grid) < 2:
         return []
     if transform_json != 'null':
@@ -60,7 +63,10 @@ def generated_segments(gt_path, gt_digest, times_path, times_digest, transform_j
     # These are geometric path classes, not human-labelled vehicle manoeuvres.
     # Use path heading for every agricultural reference, since an optical-frame
     # Euler yaw is not the vehicle heading and ZED has no reference orientation.
-    boundaries = np.r_[0, np.flatnonzero(np.diff(grid[:, 0]) > .5)+1, len(grid)]
+    split=np.diff(grid[:,0])>.5
+    if intervals is not None:
+        split |= np.diff(reference_interval_ids(grid[:,0],intervals))!=0
+    boundaries = np.r_[0, np.flatnonzero(split)+1, len(grid)]
     rows = []
     for start, stop in zip(boundaries[:-1], boundaries[1:]):
         chunk = grid[start:stop]
@@ -127,9 +133,20 @@ def evaluate_saved_run(ws, run_dir, *, gt_override=None):
     run_id, _, variant = run_name.removeprefix('run').partition('_')
     ds = ws/'datasets'/dataset/seq
     gt_path, times_path, trajectory = Path(gt_override) if gt_override else ds/'gt_tum.txt', ds/'times.txt', run_dir/'trajectory.txt'
+    selected=selected_reference(ws,dataset,seq) if not gt_override else None
+    if selected:gt_path=selected['path']
     inputs = [file_evidence(p, ws) for p in (gt_path, times_path, trajectory)]
     inputs.extend(file_evidence(p, ws) for p in (meta_path,) if p.exists())
     policy = frame_policy(ws, run_dir, meta, dataset, seq, algo, rt.use_imu)
+    if selected:
+        if dataset!='zed2i' or selected['orientation_valid']:
+            raise ValueError('only the reviewed position-only ZED reference is supported')
+        policy.update(reference_frame='nominal_left_camera_position_enu',
+                      reference_transform=np.eye(4).tolist(),orientation_valid=False,
+                      reference_valid_intervals=selected['valid_intervals'],
+                      reference_version=selected['version'],reference_variant=selected['variant'],
+                      reference_limitations=selected['limitations'])
+        inputs.extend(selected['evidence'])
     if gt_override:
         policy.update(reference_transform=None, orientation_valid=False, common_origin_verified=False,
                       reference_frame='unverified_override')
@@ -210,7 +227,8 @@ def evaluate_saved_run(ws, run_dir, *, gt_override=None):
     if paired.get('se3_errors') is not None:
         # No existence-only segments_auto.csv cache is consumed.
         rows = generated_segments(str(gt_path), inputs[0]['sha256'], str(times_path), inputs[1]['sha256'],
-                                  json.dumps(policy['reference_transform']), dataset)
+                                  json.dumps(policy['reference_transform']), dataset,
+                                  json.dumps(policy.get('reference_valid_intervals')))
         out['agri_segments'] = segment_metrics(paired, rows, algo in ('dpvo', 'droidslam', 'mast3r_slam', 'megasam'))
         out['segment_provenance'] = dict(method='geometric_horizontal_path_heading',
                                         win_path_m=2.0, heading_threshold_deg=10, straight_tolerance_m=.5,

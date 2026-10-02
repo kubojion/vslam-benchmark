@@ -1,8 +1,9 @@
 %YAML:1.0
+# Recovered factory rotation: docs/campaigns/zed-physical-calibration-20261002.json.
 # AirSLAM camera calibration for the ZED2i field1_110426_full_10fps_q90 dataset.
 #
-# Source: ZED2i stereo (SN30291010), 1920x1080 rectified grayscale PNG in
-#   mav0/cam0/data and mav0/cam1/data. Pre-rectified => distortion_type = 0.
+# Source: ZED2i stereo (SN30291010), 1920x1080 rectified color JPEGs, exposed
+#   through .png symlinks and converted to grayscale. distortion_type = 0.
 #
 # Rectified intrinsics (ZED factory):
 #   fx = fy = 1118.6947021484375, cx = 964.8566284179688, cy = 559.3102416992188
@@ -27,20 +28,20 @@ cam0:
   distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
   T_type: 0
   T:
-  - [ 0.0, 0.0, 1.0,  0.002]
-  - [-1.0, 0.0, 0.0,  0.023061]
-  - [ 0.0,-1.0, 0.0, -0.000217]
-  - [0.0, 0.0, 0.0,  1.0]
+  - [-0.00724344284154254, 0.00881396233555461, 0.999934921184248, 0.00216882361487218]
+  - [-0.999969341194319, 0.00291087936241895, -0.00726935022800382, 0.0230463876103124]
+  - [-0.00297476170495083, -0.999956919496678, 0.00879260732171577, -0.000130804473926019]
+  - [0, 0, 0, 1]
 
 cam1:
   intrinsics: [1118.6947, 1118.6947, 964.8566, 559.3102]  # fx fy cx cy
   distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
   T_type: 0
   T:
-  - [ 0.0, 0.0, 1.0,  0.002]
-  - [-1.0, 0.0, 0.0, -0.0967852504]
-  - [ 0.0,-1.0, 0.0, -0.000217]
-  - [0.0, 0.0, 0.0,  1.0]
+  - [-0.00724344284154254, 0.00881396233555461, 0.999934921184248, 0.00130072415057515]
+  - [-0.999969341194319, 0.00291087936241895, -0.00726935022800382, -0.0967961884124695]
+  - [-0.00297476170495083, -0.999956919496678, 0.00879260732171577, -0.000487318509995803]
+  - [0, 0, 0, 1]
 
 # Common ZED field IMU profile, recorded ~100 Hz.
 rate_hz: 100

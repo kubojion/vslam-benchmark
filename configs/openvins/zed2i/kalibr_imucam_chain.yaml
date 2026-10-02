@@ -1,7 +1,8 @@
 %YAML:1.0
+# Recovered factory rotation: docs/campaigns/zed-physical-calibration-20261002.json.
 # OpenVINS imu-cam extrinsics for ZED2i field1_110426_full_10fps_q90.
 #
-# Images are pre-rectified ZED IR (1920x1080, mono8); distortion is zero.
+# Images are pre-rectified ZED color frames (1920x1080), converted to grayscale.
 # Raw IMU samples use zed_imu_link, whereas the images use rectified optical
 # frames. These transforms include the mandatory axis conversion and the
 # ZED2i SDK camera-to-IMU translation. See docs/zed2i-imu-extrinsics.md.
@@ -10,10 +11,10 @@
 
 cam0:
   T_imu_cam:
-    - [0.0, 0.0, 1.0, 0.002]
-    - [-1.0, 0.0, 0.0, 0.023061]
-    - [0.0, -1.0, 0.0, -0.000217]
-    - [0.0, 0.0, 0.0, 1.0]
+    - [-0.00724344284154254, 0.00881396233555461, 0.999934921184248, 0.00216882361487218]
+    - [-0.999969341194319, 0.00291087936241895, -0.00726935022800382, 0.0230463876103124]
+    - [-0.00297476170495083, -0.999956919496678, 0.00879260732171577, -0.000130804473926019]
+    - [0, 0, 0, 1]
   cam_overlaps: [1]
   camera_model: pinhole
   distortion_coeffs: [0.0, 0.0, 0.0, 0.0]
@@ -24,10 +25,10 @@ cam0:
 
 cam1:
   T_imu_cam:
-    - [0.0, 0.0, 1.0, 0.002]
-    - [-1.0, 0.0, 0.0, -0.0967852504]
-    - [0.0, -1.0, 0.0, -0.000217]
-    - [0.0, 0.0, 0.0, 1.0]
+    - [-0.00724344284154254, 0.00881396233555461, 0.999934921184248, 0.00130072415057515]
+    - [-0.999969341194319, 0.00291087936241895, -0.00726935022800382, -0.0967961884124695]
+    - [-0.00297476170495083, -0.999956919496678, 0.00879260732171577, -0.000487318509995803]
+    - [0, 0, 0, 1]
   cam_overlaps: [0]
   camera_model: pinhole
   distortion_coeffs: [0.0, 0.0, 0.0, 0.0]

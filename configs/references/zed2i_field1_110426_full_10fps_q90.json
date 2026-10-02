@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "dataset": "zed2i",
+  "sequence": "field1_110426_full_10fps_q90",
+  "variant": "primary",
+  "reference": {
+    "path": "datasets/zed2i/field1_110426_full_10fps_q90/references/gnss-position-v2-20261002/reference.json",
+    "sha256": "e965f3701dc9ba706c98cf26f481a4e374f6b7b5e54a63a1ca196b0b846f0301"
+  }
+}

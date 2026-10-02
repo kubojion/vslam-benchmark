@@ -1,25 +1,25 @@
 {
     "value0": {
         "_comment": "ZED2i HD1080 rectified stereo. Intrinsics/baseline confirmed from two independent sources: dataset manifest.json camera_info AND the ZED factory calibration for this unit (/usr/local/zed/settings/SN30291010.conf, Baseline=119.844mm). Images are pre-rectified (distortion all zeros).",
-        "_comment_extrinsic": "T_imu_cam maps each rectified optical camera into zed_imu_link. It includes the mandatory ROS-body/optical axis conversion and the ZED2i SDK translation [-0.002, -0.023061, 0.000217] m (IMU origin in the left non-optical camera frame). The serial-specific residual rotation (~0.675 deg for SN30291010) was not retained in the bag, so identity is used only for that small body-frame term. See docs/zed2i-imu-extrinsics.md.",
+        "_comment_extrinsic": "Recovered SN30291010 factory transform, SDK IMAGE -> recorded ROS IMU axes; see docs/zed-preparation-20261002.md. July CameraInfo retained.",
         "T_imu_cam": [
             {
-                "px": 0.002,
-                "py": 0.023061,
-                "pz": -0.000217,
-                "qx": -0.5,
-                "qy": 0.5,
-                "qz": -0.5,
-                "qw": 0.5
+                "px": 0.0021688236148721765,
+                "py": 0.02304638761031235,
+                "pz": -0.0001308044739260186,
+                "qx": 0.49524061588139223,
+                "qy": -0.5003403129076863,
+                "qz": 0.5032705959026513,
+                "qw": -0.5011137704759748
             },
             {
-                "px": 0.002,
-                "py": -0.0967852504,
-                "pz": -0.000217,
-                "qx": -0.5,
-                "qy": 0.5,
-                "qz": -0.5,
-                "qw": 0.5
+                "px": 0.0013007241505751522,
+                "py": -0.09679618841246951,
+                "pz": -0.0004873185099958028,
+                "qx": 0.49524061588139223,
+                "qy": -0.5003403129076863,
+                "qz": 0.5032705959026513,
+                "qw": -0.5011137704759748
             }
         ],
         "intrinsics": [
@@ -79,9 +79,9 @@
         ],
         "imu_update_rate": 100.0,
         "accel_noise_std": [
-            0.180,
-            0.180,
-            0.180
+            0.18,
+            0.18,
+            0.18
         ],
         "gyro_noise_std": [
             0.0195,

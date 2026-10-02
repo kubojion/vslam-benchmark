@@ -2,7 +2,45 @@
 
 Prepared: 2026-10-01. Workspace: `/data/imoroz/vslam-benchmark`.
 
-## Current authorized continuation — protocol validity, 2026-10-02
+## Current authorized continuation — ZED preparation, 2026-10-02
+
+Continue from the completed protocol-reporting checkpoint `9d21135`. Make the
+remaining ZED campaign ready using the supplied serial camera–IMU calibration,
+recording-specific July 3 rectified CameraInfo, documented horizontal mounting
+geometry and the user-authorized nominal 1 m antenna-above-camera separation.
+Create a versioned 3D **position** reference with the approved GNSS spike
+exclusions. Preserve excluded gaps explicitly, disclose RTK float treatment and
+compare fixed-only scoring. Never select calibration, filtering, height, tilt or
+clock corrections to improve SLAM scores.
+
+Preserve old references, trajectories, attempts and evaluations. Re-evaluate
+saved ZED outputs; check height, tilt and clock sensitivity. Correct each
+algorithm's transform convention and update reporting, acceptance decisions and
+the exact remaining run list with runtime estimates. Preserve the TODO matrices
+and distinguish accepted/qualified results, setup reruns and missing repetitions.
+Correctly configured native failures remain observed failures.
+
+Focused tests and **short, isolated execution checks are authorized** by this
+continuation. Full production repetitions/campaigns and pushes remain prohibited.
+The earlier no-estimator restriction is superseded only for these short checks.
+Do not certify execution paths that have not passed their checks. Existing
+algorithm exclusions, historical provenance hashes and all completed non-ZED work
+remain intact. The obsolete maintenance pause stays revoked.
+
+Preservation: `f59854e` checkpoints the supplied geometry document. The verified
+incremental backup is
+`/data/imoroz/vslam-repair-backups/20261002T092232Z-zed-before-preparation`, extending
+the complete protocol-reporting backup. It retains current ZED evaluations,
+metadata, reference files and CSVs before any repair.
+
+Resolved inputs: the earlier inspection folder
+`results/zed-reference-inspection-20261002` contains the recovered SDK calibration
+for S/N 30291010 and the approved screening audit (15 intervals, 448 raw samples).
+Verbatim calibration/screening records are preserved under `docs/campaigns/` and
+in the incremental backup. Their original files remain unchanged. The path
+clarification is no longer needed.
+
+## Completed continuation — protocol validity, 2026-10-02
 
 The focused EuRoC campaign is complete. Continue the completed audit without
 restarting it: separate verified experimental protocol from trajectory success.

@@ -1,0 +1,133 @@
+{
+  "schema": 1,
+  "serial_number": 30291010,
+  "dataset": "zed2i",
+  "sequences": [
+    "field1_110426_full_10fps_q90"
+  ],
+  "convention": "T_A_B maps B coordinates into A; metres; ROS IMU and rectified optical cameras",
+  "derivation": "T_imu_left = Q_IMAGE_to_ROS @ inverse(T_left_imu_SDK_IMAGE); T_imu_right = T_imu_left @ Tx(recorded_baseline)",
+  "Q_IMAGE_to_ROS": [
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      -1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      -1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "T_left_imu_SDK_IMAGE": [
+    [
+      0.9999693411943188,
+      0.002974761704950827,
+      -0.007243442841542535,
+      0.023061001673340797
+    ],
+    [
+      -0.002910879362418949,
+      0.9999569194966774,
+      0.008813962335554607,
+      -0.00021700002253055573
+    ],
+    [
+      0.007269350228003821,
+      -0.008792607321715773,
+      0.9999349211842482,
+      -0.0020000000949949026
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "T_imu_left": [
+    [
+      -0.007243442841542535,
+      0.008813962335554608,
+      0.9999349211842483,
+      0.0021688236148721765
+    ],
+    [
+      -0.9999693411943188,
+      0.002910879362418949,
+      -0.0072693502280038215,
+      0.02304638761031235
+    ],
+    [
+      -0.0029747617049508276,
+      -0.9999569194966776,
+      0.008792607321715773,
+      -0.0001308044739260186
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "T_imu_right": [
+    [
+      -0.007243442841542535,
+      0.008813962335554608,
+      0.9999349211842483,
+      0.0013007241505751522
+    ],
+    [
+      -0.9999693411943188,
+      0.002910879362418949,
+      -0.0072693502280038215,
+      -0.09679618841246951
+    ],
+    [
+      -0.0029747617049508276,
+      -0.9999569194966776,
+      0.008792607321715773,
+      -0.0004873185099958028
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "recorded_baseline_m": 0.11984625036568344,
+  "sdk_rounding_normalization_max_abs": 2.2018266654377783e-08,
+  "residual_rotation_deg": 0.6750691026184888,
+  "image_calibration_policy": "retain July 3 recording CameraInfo; already rectified; no raw-stereo rectification applied",
+  "imu_time_shift_s": 0.0,
+  "limitations": [
+    "factory export recovered October 2 for the same serial; no historical calibration change reported",
+    "hardware-synchronised camera/IMU; field camera-versus-RTK clock offset remains unknown"
+  ],
+  "evidence": [
+    {
+      "path": "docs/campaigns/zed-sdk-calibration-20261002.json",
+      "sha256": "d60a855cfaa37738b27f2a1b5bcecabeed74aa36ed640e60e3b54100859890e8"
+    },
+    {
+      "path": "datasets/zed2i/field1_110426_full_10fps_q90/manifest.json",
+      "sha256": "ddad77adbdf873f1715b3fdf8bb84d8cdab72512fc628d8ab0294f1715f062c3"
+    }
+  ]
+}

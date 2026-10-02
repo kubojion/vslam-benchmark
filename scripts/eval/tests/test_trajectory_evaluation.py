@@ -143,6 +143,16 @@ def test_tolerance_boundary_cannot_make_export_span_exceed_sequence():
     assert out['coverage']['coverage_gap_pct']==100
 
 
+def test_explicit_short_reference_exclusion_keeps_export_denominator():
+    g=curve()
+    intervals=[[0.,4.],[4.2,10.]]
+    out,paired=evaluate_arrays(g,g,g[:,0],frames(reference_valid_intervals=intervals))
+    assert out['coverage']['camera_pose_coverage_pct']==100
+    assert out['n_pairs_ate']==len(g)-3
+    assert not np.any((paired['reference'][:,0]>4)&(paired['reference'][:,0]<4.2))
+    assert out['ate_se3']['rmse']<1e-12
+
+
 def test_nonfinite_sensor_transform_and_camera_grid_are_rejected():
     from _metrics import camera_association
     g=curve();t=np.eye(4);t[0,3]=np.nan

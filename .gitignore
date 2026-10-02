@@ -11,6 +11,7 @@ datasets/**
 !datasets/**/segments_auto.csv
 # Fixed integration subsets are recorded by their campaign recipe and hashes.
 datasets/euroc/MH_01_easy_diag*20261001/
+datasets/zed2i/field1_diag60_20261002/
 obsolete/
 logs/
 docs/private/
