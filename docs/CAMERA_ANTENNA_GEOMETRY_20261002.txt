@@ -1,0 +1,508 @@
+AGROROB: ZED CAMERA, ROBOT AND GNSS ANTENNA GEOMETRY
+Evidence summary dated 2026-10-02
+=================================================
+
+PURPOSE AND EVIDENCE LIMITS
+
+This document collects the geometry information found in local source code,
+archived robot configuration and field-test analysis. It includes the full
+geometry summary given in the conversation, its sources and qualifications.
+
+We have substantial geometry information, but NOT a fully measured,
+uncertainty-qualified 3D camera-antenna calibration. Some numbers are configured
+dimensions, some are inferred from recordings, and some are navigation
+simplifications. No fresh physical survey, live robot TF inspection or robot
+SSH session was performed for this geometry review. No robot code was changed.
+
+Numerical precision in a configuration or matrix is not measurement accuracy.
+The listed files describe the inspected local/archived state, not a guarantee
+that the physical September/October robot mounting has remained unchanged.
+
+
+1. COORDINATE SYSTEMS AND ROBOT REFERENCE POINT
+---------------------------------------------
+
+Robot/body axes:
+  X = forward; Y = left; Z = up.
+
+Left optical camera axes:
+  X = right in the image; Y = down; Z = forward through the lens.
+
+Global ENU axes:
+  X = east; Y = north; Z = up.
+
+These follow ROS REP-103. Source [1]. The bag-derived manifest also explicitly
+records optical and physical rear-axle conventions. Source [16].
+
+Agrorob's base_link reference changes with steering mode:
+
+  CAR: base_link uses the rear-axle reference.
+  4WS: base_link uses the wheelbase centre, 1.50 m forward of the rear axle.
+
+This changes reported coordinates, not the physical sensor mounting. For a
+calibration record, use a fixed physical rear-axle reference and explicitly
+define its vertical origin, rather than relying only on the mode-dependent
+base_link name. Source [2].
+
+Vertical-reference warning: the camera's 1.31 m is documented as above ground,
+while navigation files describe their origin as the rear axle. The inspected
+records do not independently establish a surveyed 3D origin relating ground,
+axle hub height and antenna reference points. Do not silently interpret all
+configured Z values as a measured common physical datum.
+
+
+2. CAMERA AND ANTENNA MOUNTING DIMENSIONS
+---------------------------------------
+
+Using the CAR/rear-axle reference and the existing software conventions:
+
+Item                      Forward X     Left Y          Height Z / qualification
+Front axle                3.00 m        centreline      Wheelbase model
+ZED camera_link           3.18 m        0.00 m          1.31 m; above ground in docs
+Rear antenna/moving base  0.32 m        0.00 m assumed  Software 0.00 m; actual unknown
+Front antenna/rover       approx 1.705 m approx +0.037 m Actual height unknown
+
+The ZED mounting frame is configured 18 cm ahead of the front axle.
+Front antenna X = 0.32 + 1.385 = 1.705 m in the current longitudinal model.
+The approximately 3.7 cm lateral offset is inferred from motion/heading
+analysis, not an independently surveyed coordinate for each antenna.
+
+Primary sources: ZED mount [3], antenna configuration [4].
+
+Other useful robot model dimensions:
+  - Nominal wheelbase: 3.00 m.
+  - Visualization URDF steering-joint longitudinal separation: 2.998 m.
+  - Crop-row model wheel-centre track: 1.80 m (wheel lines at +/-0.90 m).
+  - Crop-row model wheel footprint width: 0.39 m.
+  - Interface2 configured wheel radius: 0.36378 m.
+
+These are model/configuration values, not a new dimensional survey.
+Sources [5], [6], [7].
+
+
+3. LEFT LENS VERSUS ZED MOUNTING FRAME
+------------------------------------
+
+The left optical origin is NOT at zed_camera_link.
+
+Stored internal chain, translations in each parent's axes:
+
+  zed_camera_link -> zed_camera_center:
+    [0.000, 0.000, +0.015] m
+
+  zed_camera_center -> zed_left_camera_frame:
+    [-0.010, +0.060, 0.000] m
+
+  zed_camera_center -> zed_right_camera_frame:
+    [-0.010, -0.060, 0.000] m
+
+  left camera frame -> left optical frame:
+    No translation; axis rotation only.
+
+The static publisher stores the optical rotation quaternion in XYZW order as
+[0.5, -0.5, 0.5, -0.5]. The equivalent optical-to-camera-body rotation matrix is:
+
+  [ 0   0   1 ]
+  [-1   0   0 ]
+  [ 0  -1   0 ]
+
+The mount configuration documents the internal values as observed in the
+July 3 ZED bag TF. This review inspected that documentation and code; it did
+not newly extract the complete TF tree from the original raw camera bag.
+Sources [3], [8], [9].
+
+Using the internal offsets and 20.17 degrees downward pitch gives these
+calculated left optical origin positions in the CAR reference:
+
+  VO zero-yaw model:
+    [3.175785364, 0.060000000, 1.327528173] m
+
+  Newer mapper +0.130281398-degree yaw model:
+    [3.175648945, 0.059990261, 1.327528173] m
+
+These are derived coordinates, NOT measurements accurate to nine decimals.
+The calculation rotates the internal [-0.010, +0.060, +0.015] m offset by the
+mount rotation before adding the mount translation [3.18, 0, 1.31] m.
+
+In 4WS, subtract 1.50 m from the X coordinates. For example, the mounting
+frame becomes [1.68, 0, 1.31] m. Physical camera-to-antenna geometry should not
+change merely because this software reference point changes.
+
+
+4. CAMERA ORIENTATION: PITCH, YAW AND ROLL
+---------------------------------------
+
+PITCH
+
+  Original nominal mount:       24.50 degrees downward.
+  July mosaic correction:      -4.33 degrees.
+  Corrected/configured pitch:   20.17 degrees downward.
+
+The July 10 crop-mosaic analysis compared overlapping near- and far-range
+ground projections. It adjusted pitch/yaw to reduce their disagreement. The
+report describes along-track disagreement reducing from approximately 65 cm
+to 5 cm and lateral disagreement from approximately 4.3 cm to 1.7 cm.
+
+This is useful image-based calibration evidence, not an independent surveyed
+6-DoF calibration with angular covariance. The original experiment used the
+July 3 recording. Its method and interpretation limits are in source [10].
+
+Current VO and VSLAM mount YAML files use 20.17 degrees. Some older README
+text and standalone code defaults still say 24.5 degrees. Loading the intended
+configuration therefore matters. Sources [3], [8], [9], [22].
+
+YAW
+
+  -1.40 degrees:
+    Older mosaic calibration relative to RAW antenna-baseline heading.
+
+  +0.130281398 degrees:
+    Newer mapper's estimate relative to physical robot forward, after removing
+    the inferred antenna-baseline heading bias.
+
+  0 degrees:
+    Current VO mount transform's assumed yaw.
+
+The newer mapper explicitly uses:
+
+  Antenna baseline yaw bias = atan2(0.037, 1.385)
+                           = 1.530281398 degrees.
+
+  Camera yaw relative to robot = -1.40 + 1.530281398
+                               = +0.130281398 degrees.
+
+Therefore -1.40 and +0.13 degrees are NOT interchangeable: their heading
+references differ. Applying both corrections indiscriminately would count
+the same heading effect twice. Source [11] explains the conversion.
+
+ROLL
+
+The current VO mounting transform applies pitch only; its mounting roll and
+yaw are effectively zero. The newer mapper uses the small yaw above and the
+same pitch. An independently measured mounting roll and its uncertainty were
+not found. Source [9].
+
+Dynamic body roll/pitch are distinct from fixed camera mounting angles. A
+correct fixed transform does not, by itself, account for robot tilt on terrain.
+
+
+5. ANTENNA GEOMETRY EVIDENCE AND IMPLEMENTATION LIMITATIONS
+--------------------------------------------------------
+
+Configured antenna separation is 1.385 m. Older defaults containing 1.69 m
+must not be treated as the current measured baseline. Historical baseline
+analysis is available in source [21]; current geometry is in source [4].
+
+The May 13 analysis inferred lateral antenna misalignment from the difference
+between antenna-baseline direction and straight-driving direction. It reports:
+
+  Selected straight-driving samples: 1,315.
+  Baseline-versus-motion angle: +1.55 degrees.
+  Reported 95% interval: +/-0.10 degree.
+  Equivalent front-antenna lateral offset: +3.7 cm (left).
+  Reported 95% interval: +/-0.3 cm.
+
+These are the historical report's estimates, not freshly recomputed confidence
+intervals or a tape measurement locating both antennas independently relative
+to the chassis. They do not include every possible systematic error, including
+body/motion misalignment. Attribution specifically to the FRONT antenna also
+depends on the rear antenna/body reference assumptions. Source [12].
+
+A later May 20 analysis noted that one run was consistent with about +4.3 cm
+instead of +3.7 cm. It did not recommend retuning because of run-to-run
+variability. Source [13].
+
+IMPLEMENTATION INCONSISTENCY
+
+The localization heading calculation uses gps_rover_y_offset_m = 0.037 m.
+However, the antenna TF publisher assigns BOTH antennas the rear antenna's
+Y and Z offsets. Its front-antenna TF does not include the 3.7 cm lateral
+offset used by the heading calculation. With the inspected configuration,
+both antenna TF heights are zero. Sources [2], [4], [23].
+
+Consequently, a navigation TF tree alone is not a complete as-built 3D antenna
+survey, even if localization behaves acceptably in planar operation.
+
+
+6. EXISTING CAMERA-TO-PRIMARY-ANTENNA TRANSFORM
+--------------------------------------------
+
+The AgroMap robot profile contains T_camera_primary_antenna, mapping a point
+expressed in the PRIMARY/REAR ANTENNA frame into the RECTIFIED LEFT OPTICAL
+CAMERA frame:
+
+  p_camera = R_camera_antenna * p_antenna + t_camera_antenna
+
+Stored homogeneous transform (translation units: metres):
+
+  [ 0.002273837398  -0.999997414828   0.000000000000   0.053496825042 ]
+  [-0.344805866506  -0.000784034501  -0.938673691819   2.230807314490 ]
+  [ 0.938671265186   0.002134391345  -0.344806757891  -2.222902965596 ]
+  [ 0                0                0                1              ]
+
+Configured frame names:
+  world:             map
+  camera:            zed_left_optical
+  primary_antenna:   gps_moving_base_phase_center
+  secondary_antenna: gps_rover_phase_center
+
+These names express intended semantics; naming a frame "phase_center" is not
+itself evidence that its reference point was surveyed or antenna phase-centre
+offsets were accounted for.
+
+Declared translation uncertainty:
+  extrinsic_translation_sigma_m = [0.10, 0.10, 0.10] m.
+
+The corresponding example profile describes these as one-sigma uncertainties
+in the optical camera axes. They are declared prior uncertainty, not measured
+calibration residuals or a demonstrated bound on all systematic errors.
+
+Recorded provenance:
+  method: rough tape measurement plus configured mount rotation
+  status: rough prior; never silently treated as calibrated
+
+Source [14], uncertainty description also [24].
+
+IMPORTANT NUMERICAL CROSS-CHECK
+
+I reproduced the stored matrix using:
+  - camera mount [3.18, 0, 1.31] m;
+  - pitch 20.17 degrees and yaw +0.130281398 degrees;
+  - the internal ZED offsets listed above;
+  - rear antenna at [0.32, 0, 0] m.
+
+Its inverse places the camera origin relative to the primary antenna at:
+  [2.855648945, 0.059990261, 1.327528173] m.
+
+The implied lever-arm length is 3.149708047 m.
+
+This approximately 3.150 m lever arm incorporates the ZERO ANTENNA HEIGHT
+assumption. It is NOT independent evidence that the true 3D antenna-to-camera
+distance is 3.150 m. Nor does the matrix provide an independent measurement
+of antenna-frame orientation.
+
+Using a common ground-referenced origin, the body-frame vector from the LEFT
+CAMERA to the REAR ANTENNA would instead be approximately:
+
+  [-2.85565, -0.05999, actual_rear_antenna_height - 1.32753] m.
+
+The missing antenna height directly changes the 3D transform. A horizontal
+camera/antenna displacement alone is not sufficient for full 3D georeferencing.
+
+Related mapping handoff [20] already identifies rough lever geometry and
+missing roll/pitch evidence as unresolved accuracy limitations. A previous
+calibration-only cross-validation did not justify silently introducing a lever
+correction, time offset or stereo scale change.
+
+
+7. STEREO CAMERA INTRINSICS AND BASELINE
+-------------------------------------
+
+Stored RECTIFIED image calibrations:
+
+Recording/configuration     Resolution    fx = fy [pixels]  cx, cy [pixels]
+July 3 / HD1080             1920 x 1080    1118.694702       964.856628, 559.310242
+July 28 / HD720 config      1280 x 720      547.740784       640.817688, 369.464691
+August 27 live capture      1280 x 720      547.619446       640.819458, 369.463379
+
+HD1080 full-precision stored values:
+  fx = fy = 1118.6947021484375
+  cx = 964.8566284179688
+  cy = 559.3102416992188
+
+Stereo baseline from projection calibration:
+  B = 0.1198462504 m (approximately 119.846 mm).
+
+The July 3 right projection matrix records Tx = -134.0713653564453 pixel*m.
+Using B = -Tx/fx gives 0.11984625036568344 m. Source [16].
+
+The internal TF separation is rounded to 0.120 m. Its difference from the
+projection-derived baseline is approximately 0.154 mm; numerical rounding
+is not an independent uncertainty estimate.
+
+HD720 is NOT simply a two-thirds scaling of HD1080. The HD720 configuration
+explicitly records a different/wider-FoV readout. The small difference between
+July and August HD720 values also supports using each recording's own
+CameraInfo rather than assuming an immutable generic file.
+
+The listed D coefficients are zero and rectification matrices are identity
+for the inspected rectified-image records/configuration. This does NOT imply
+the raw physical lenses have zero distortion. Raw-camera calibration must not
+be inferred from already-rectified CameraInfo.
+
+Configured frame rate is 15 Hz; that is a configuration value, not a claim
+about every recording's measured delivery rate.
+
+Sources: HD1080 [15], July 3 camera-info manifest [16], HD720 config [17],
+August 27 actual camera-info capture [18].
+
+
+8. ISAAC SIM GEOMETRY USES A DIFFERENT ORIGIN
+------------------------------------------
+
+Current inspected simulator camera mount:
+  translation:    [1.6611, 0.0, -0.243] m
+  roll/pitch/yaw: [0.0, 20.17, 0.13] degrees
+
+The simulator configuration explains:
+  - rear axle is at X = -1.5189 m relative to its URDF base_link;
+  - simulation base_link settles about 1.553 m above the ground;
+  - camera X = 3.18 - 1.5189 = 1.6611 m;
+  - camera Z = 1.31 - 1.553 = -0.243 m.
+
+These compensate for the simulator chassis origin and assumed settled height.
+They are intended to represent the same rear-axle/ground camera placement,
+not a second independent physical measurement. Do not copy these coordinates
+directly into a physical rear-axle calibration without changing the reference.
+Source [19].
+
+
+9. WHAT IS MISSING FOR DEFENSIBLE FULL-3D CALIBRATION
+--------------------------------------------------
+
+The inspected records did not establish an independent, dated measurement of:
+
+  1. Both antenna reference-point heights and each antenna's chassis XYZ.
+  2. Whether physical measurements refer to antenna housing, mounting/antenna
+     reference point or electrical phase centre, including applicable offsets.
+  3. A surveyed common origin tying ground, rear axle and all sensor frames.
+  4. Camera mounting roll, and defensible uncertainty on mounting pitch/yaw.
+  5. Measurement uncertainty for the 3.18 m, 1.31 m and 0.32 m dimensions.
+  6. A dated record proving these values apply to the unchanged September/
+     October robot mounting.
+  7. A complete validated 6-DoF camera-to-antenna calibration covariance.
+
+The May 13 statistical intervals, the 10 cm mapping prior and the image-based
+pitch/yaw correction are different kinds of evidence. They must not be combined
+or described as if they were one survey-quality calibration certificate.
+
+BOTTOM LINE
+
+We have useful nominal mounting geometry, recorded stereo calibration,
+image-based orientation estimates and a deliberately rough camera-antenna
+prior. The largest gaps for full 3D accuracy are antenna heights/reference
+points, a consistent yaw convention, and defensible uncertainty. The existence
+of a precise-looking matrix or a healthy RTK fix does not close those gaps.
+
+
+10. SOURCE INDEX
+----------------
+
+All local paths below are absolute paths on the reviewed workstation.
+Line numbers refer to the files inspected on 2026-10-02 and may change later.
+Copying this text file alone does not copy the referenced source files or bags.
+
+[1] ROS REP-103: axes, units and frame conventions.
+    https://raw.githubusercontent.com/ros-infrastructure/rep/master/rep-0103.rst
+
+[2] CAR/4WS antenna reference change; TF implementation.
+    /home/jion_kubo/agrorob_ws/src/agrorob_localization/scripts/agrorob_mode_tf_publisher.py
+    Relevant lines: 19-27, 49-60, 115-138.
+
+[3] Current VO camera mount parameters and documented internal offsets.
+    /home/jion_kubo/agrorob_ws/src/agrorob_visual_odometry/config/zed_mount.yaml
+    Relevant lines: 3-35.
+    Matching VSLAM mount file:
+    /home/jion_kubo/agrorob_ws/src/agrorob_vslam/config/zed_mount.yaml
+
+[4] Antenna longitudinal geometry and lateral heading correction parameter.
+    /home/jion_kubo/agrorob_ws/src/agrorob_localization/config/agrorob_localization_params.yaml
+    Relevant lines: 12-21 and 66-76.
+
+[5] Crop-row wheel track and footprint model.
+    /home/jion_kubo/agrorob_ws/src/agrorob_crop_row_detection_zed/config/crop_row_params.yaml
+    Relevant lines: 61 and 100; older camera angles also at lines 32-34.
+
+[6] Interface2 wheel radius.
+    /home/jion_kubo/agrorob_ws/src/agrorob_interface2/config/robot_params.yaml
+    Relevant lines: 5-9.
+
+[7] Visualization URDF steering joint positions.
+    /home/jion_kubo/agrorob_ws/src/agrorob_viz/urdf/agrorob_visualization.urdf
+    Relevant lines: 48, 104, 160, 216.
+
+[8] Static ZED transform publisher, internal offsets and optical quaternion.
+    /home/jion_kubo/agrorob_ws/src/agrorob_visual_odometry/scripts/zed_static_tf_publisher.py
+    Relevant lines: 19-27 and 79-104.
+
+[9] VO body-to-left-optical construction and mode-dependent reference shift.
+    /home/jion_kubo/agrorob_ws/src/agrorob_visual_odometry/src/orbslam3_stereo_node.cpp
+    Relevant lines: 83-116 and 280-310.
+
+[10] July mosaic pitch/yaw self-calibration method and limitations.
+     /home/jion_kubo/agrorob_ws/src/agrorob_crop_row_detection_zed/planning/planning-claude/README.md
+     Relevant lines: 89-112 and 211-221.
+     Associated diagnostic:
+     /home/jion_kubo/agrorob_ws/src/agrorob_crop_row_detection_zed/planning/planning-claude/tools/04_extrinsic_check.py
+
+[11] Explanation of raw-baseline versus physical-body camera yaw.
+     /home/jion_kubo/agrorob_ws/src/agrorob_crop_row_detection_zed/agrorob_crop_row_detection/shadow/rear_pose.py
+     Relevant lines: 20-26 and 43-58.
+     Mapper configuration:
+     /home/jion_kubo/agrorob_ws/src/agrorob_crop_row_detection_zed/config/shadow_crop_row_params.yaml
+     Relevant lines: 63-73.
+     Matching map projection configuration:
+     /home/jion_kubo/agrorob_ws/src/agrorob_crop_row_detection_zed/config/shadow_map_projection_params.yaml
+     Relevant lines: 51-62.
+
+[12] May 13 motion-derived antenna bias analysis and reported confidence intervals.
+     /home/jion_kubo/Desktop/FIELD-TESTS/FIELD-TEST-0513/ANALYSIS/nav2/REPORT_v3_recording_vs_follow.md
+     Relevant lines: 16-35 and 251-259.
+
+[13] May 20 run-to-run variation and possible 4.3 cm offset caveat.
+     /home/jion_kubo/Desktop/FIELD-TESTS/FIELD-TEST-0520/ANALYSIS/rover_y_offset/README.md
+     Relevant lines: 104-119.
+
+[14] Existing explicit camera-to-primary-antenna rough prior.
+     /home/jion_kubo/agrorob_ws/src/AgroMap-4D/rtk_splat/configs/robots/agrorob_zed_dual_rtk.yaml
+     Relevant lines: 1-5 and 41-57.
+
+[15] HD1080 stereo configuration.
+     /home/jion_kubo/agrorob_ws/src/agrorob_visual_odometry/config/zed2i_stereo.yaml
+     Relevant lines: 8-25 and projection matrices below.
+
+[16] July 3 camera-info and sensor-index manifest; older nominal mount chain.
+     /home/jion_kubo/Desktop/FIELD-TESTS/FIELD-TEST-0703/ANALYSIS-SOL/outputs/shadow_sensor_index/manifest.json
+     Relevant lines: 2-100, 102-114 and 123-126.
+     Note: its mount section still uses the older nominal 24.5-degree pitch.
+
+[17] HD720 stereo configuration, extracted from the July 28 recording.
+     /home/jion_kubo/agrorob_ws/src/agrorob_visual_odometry/config/zed2i_stereo_720.yaml
+     Relevant lines: 2-8 and 14-31.
+
+[18] Actual August 27 left CameraInfo capture.
+     /home/jion_kubo/Desktop/FIELD-TESTS/FIELD-TEST-0827/robot_handoff_20260827/prior_handoff/field-test-0827/codex-handoff/results/environment_20260827T081636Z/left_camera_info_once.txt
+     Relevant lines: 1-50.
+
+[19] Isaac Sim mount and explanation of its chassis-origin conversion.
+     /home/jion_kubo/agriverse_ws/IsaacROS/simulation/config/default_config.yaml
+     Relevant lines: 167-197.
+
+[20] Mapping calibration limitations and rough approximately 3.15 m lever prior.
+     /home/jion_kubo/agrorob_ws/src/AgroMap-4D/rtk_splat/docs/operations/FIELD1_SERVER_CODEX_RAW_CALIBRATION_HANDOFF.md
+     Relevant lines: 52-58.
+     Legacy scalar mounting chain:
+     /home/jion_kubo/agrorob_ws/src/AgroMap-4D/rtk_splat/configs/reproductions/field_row_rtk.yaml
+     Relevant lines: 29-50.
+     Geometry composition implementation:
+     /home/jion_kubo/agrorob_ws/src/AgroMap-4D/rtk_splat/src/rtk_splat/core/poses.py
+     Relevant lines: 130-143 and 169-193.
+
+[21] Historical baseline analysis discussing 1.385 m versus the old 1.69 m value.
+     /home/jion_kubo/Desktop/FIELD-TESTS/WARSZAWSKA-TEST-0506/ANALYSIS/PHASE2_FINDINGS.md
+     Relevant lines: 31-62. Treat run statistics as historical analysis, not
+     independent metrology; this review did not recompute that report.
+
+[22] Older README still describing nominal 24.5-degree camera pitch.
+     /home/jion_kubo/agrorob_ws/src/agrorob_vslam/README.md
+     Relevant lines: 179-185.
+
+[23] Heading correction for lateral antenna offset and NED-to-ENU conversion.
+     /home/jion_kubo/agrorob_ws/src/agrorob_localization/src/localization_input_bridge.cpp
+     Relevant lines: 904-927.
+
+[24] Explicit interpretation of the example's translation uncertainty.
+     /home/jion_kubo/agrorob_ws/src/AgroMap-4D/rtk_splat/configs/robots/zed_dual_rtk.example.yaml
+     Relevant lines: 45-62.
+
+END OF GEOMETRY SUMMARY
