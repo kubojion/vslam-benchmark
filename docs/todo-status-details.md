@@ -1,7 +1,7 @@
 # TODO status details
 
 Generated presentation of the reviewed inventory; no acceptance decisions or scores are changed.
-Inventory SHA-256: `1ae640358005f25e140a9951569a6eae8480ea6b3c65e419158bac7a5da01d8e`. [Matrix legend](../TODO.md#run-combinations-matrix).
+Inventory SHA-256: `91018f1a8b2167bd6dcd9179b0cab2d0caa6af5f174c771bfc90afeb1394dc16`. [Matrix legend](../TODO.md#run-combinations-matrix).
 [Source inventory](../results/repair-20261001/inventory.json); [acceptance ledger](campaigns/paper-acceptance-20261001.json); [review definitions](protocol-review-20261002.md).
 
 N counts completed verified attempts. Counts describe the selected physical runs, including
@@ -10,12 +10,8 @@ review alone is not a confirmed rerun requirement. Exact blocker/limit identifie
 are copied from the inventory and its acceptance ledger.
 
 Cell-leading 🟥 marks a confirmed rerun; otherwise 🟨 marks unresolved review.
-
-Rosario candidate preparation is complete; code/config/test integration into
-`/data/imoroz/vslam-benchmark` is pending the active ZED batch and evidence capture.
-See the [main integration handoff](rosario-main-integration-20261002.md).
-Execution remains unverified; integration/static checks cannot remove red markers.
-
+Rosario candidates are integrated into main; native readiness remains unverified.
+See [integration and remaining prerequisites](rosario-main-integration-20261002.md).
 Rerun items use 🔴 for not ready and 🔄 for verified ready; review items use 🟡.
 ✅ N=3 and ✔ N=1/N=2 describe verified groups. Unverified or invalid history
 uses recorded-attempt counts; it never receives a verified repetition label.
@@ -36,15 +32,15 @@ items; separately verified N=1 and N=2 never become one N=3.
 
 ### future-n3-five-modes
 
-Manifest: [results/repair-20261001/future-n3-manifest.json](../results/repair-20261001/future-n3-manifest.json); SHA-256: `00dd1d200f5d0374a22e8bae791440b4098c86226f544329a7ef6a760c36a0d4`.
-Categories: `blocked=234`, `missing=81`, `required_rerun=84`, `reusable=261`.
-Verified new-attempt readiness: **39**.
+Manifest: [results/repair-20261001/future-n3-manifest.json](../results/repair-20261001/future-n3-manifest.json); SHA-256: `a9d184a13fc518975a21d90e63b5370079c84e7bf9408a2345503921510e21f6`.
+Categories: `blocked=237`, `missing=81`, `required_rerun=81`, `reusable=261`.
+Verified new-attempt readiness: **36**.
 
-### zed-coherent-n3-20261002
+### zed-coherent-n3-20261002-main-integration
 
-Manifest: [results/zed-preparation-20261002/campaign/manifest.json](../results/zed-preparation-20261002/campaign/manifest.json); SHA-256: `f74f2a1c91313d04db7007ab2064fe0b8d4a334a6ec0261e29c9203864b41320`.
-Categories: `cohort_completion=6`, `missing=25`, `required_rerun=17`, `reusable=27`.
-Verified new-attempt readiness: **45**.
+Manifest: [results/zed-preparation-20261002/campaign/manifest.json](../results/zed-preparation-20261002/campaign/manifest.json); SHA-256: `4f46ab6d35d4a39cf5472db410227da7a5d00cc53fd03bd54398bd6d769e92fe`.
+Categories: `blocked=3`, `cohort_completion=6`, `missing=25`, `required_rerun=14`, `reusable=27`.
+Verified new-attempt readiness: **42**.
 
 The coherent ZED selection replaces its part of the five-mode plan. Counts must not be added.
 
@@ -66,6 +62,9 @@ and historical N=3 does not become a verified tick.
 - `results/vio/euroc_mav/MH_05_difficult/airslam/run1`: superseded_calibration_cohort; A1/E1/S1/F0; success; exit 0; numerical status ok.
 - `results/vio/euroc_mav/MH_05_difficult/airslam/run2`: superseded_calibration_cohort; A1/E1/S1/F0; success; exit 0; numerical status ok.
 - `results/vio/euroc_mav/MH_05_difficult/airslam/run3`: superseded_calibration_cohort; A1/E1/S1/F0; success; exit 0; numerical status ok.
+- `results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run1`: superseded_calibration_cohort; A1/E1/S1/F0; success; exit 0; numerical status ok.
+- `results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run1`: superseded_calibration_cohort; A1/E1/S1/F0; success; exit 0; numerical status ok.
+- `results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run1`: superseded_calibration_cohort; A1/E0/S0/F1; failure_without_final_trajectory; exit 134; numerical status not evaluated.
 - `results/vio-lc/euroc_mav/MH_01_easy/airslam/run1`: superseded_calibration_cohort; A1/E1/S1/F0; success; exit 0; numerical status ok.
 - `results/vio-lc/euroc_mav/MH_01_easy/airslam/run2`: superseded_calibration_cohort; A1/E1/S1/F0; success; exit 0; numerical status ok.
 - `results/vio-lc/euroc_mav/MH_01_easy/airslam/run3`: superseded_calibration_cohort; A1/E1/S1/F0; success; exit 0; numerical status ok.
@@ -92,6 +91,8 @@ and historical N=3 does not become a verified tick.
 - `results/vo/rosariov2/sequence5/droidslam/run3`: historical_excluded; A1/E1/S0/F0/U1; unknown; exit unknown; numerical status ok.
 
 Superseded AirSLAM runs1–3 remain above; selected corrected runs4–6 are detailed below.
+Displaced ZED run1 histories remain above; the three predeclared completed run10001 attempts
+are selected into their original first logical slots below, with claim review still pending.
 Neither a failure in a selected run nor a failure in the preserved cohort is discarded.
 
 <a id="vo-rosariov2-sequence1-orbslam3"></a>
@@ -1414,7 +1415,7 @@ Prerequisites: none.
 **A3/E3/S1/F2**; verified completed groups: 0. Verified N=3: no.
 
 Cell next-action display: 🔄 rerun ready.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -1433,7 +1434,7 @@ Native failure evidence r2: `{"line": 66, "text": "5752.268 Segmentation fault (
 Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
 Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-okvis2"></a>
@@ -1442,7 +1443,7 @@ Prerequisites: none.
 **A3/E3/S2/F1**; verified completed groups: 3. Verified N=3: yes.
 
 Cell next-action display: no new action required by this plan.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -1459,7 +1460,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-okvis2x"></a>
@@ -1468,7 +1469,7 @@ Prerequisites: none.
 **A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
 Cell next-action display: no new action required by this plan.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -1485,7 +1486,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-airslam"></a>
@@ -1494,7 +1495,7 @@ Prerequisites: none.
 **A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
 Cell next-action display: no new action required by this plan.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -1511,7 +1512,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-basalt"></a>
@@ -1520,7 +1521,7 @@ Prerequisites: none.
 **A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
 Cell next-action display: no new action required by this plan.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -1537,7 +1538,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-ov2slam"></a>
@@ -1546,7 +1547,7 @@ Prerequisites: none.
 **A3/E3/S0/F3**; verified completed groups: 3. Verified N=3: yes.
 
 Cell next-action display: no new action required by this plan.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -1566,7 +1567,7 @@ Native failure evidence r3: `{"line": 338, "text": "terminate called without an 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-dpvo"></a>
@@ -1575,7 +1576,7 @@ Prerequisites: none.
 **A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
 Cell next-action display: no new action required by this plan.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -1592,7 +1593,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-macvo"></a>
@@ -1601,7 +1602,7 @@ Prerequisites: none.
 **A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
 Cell next-action display: no new action required by this plan.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -1618,7 +1619,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence1-orbslam3"></a>
@@ -2621,7 +2622,7 @@ Prerequisites: none.
 **A3/E3/S2/F1**; verified completed groups: 0+0. Verified N=3: no.
 
 Cell next-action display: 🔄 rerun ready.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -2640,7 +2641,7 @@ Native failure evidence r1: `{"line": 66, "text": "5651.548 Segmentation fault (
 Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-okvis2"></a>
@@ -2649,7 +2650,7 @@ Prerequisites: none.
 **A2/E1/S1/F1**; verified completed groups: 1+0. Verified N=3: no.
 
 Cell next-action display: next: new group 3 ready.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -2668,7 +2669,7 @@ Native failure evidence r2: `{"line": 12602, "text": "9388.271 Killed"}`.
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 blocked; readiness unverified; r3 missing; checks verified.
 Prerequisites: `retain_failed_or_interrupted_attempt_and_resolve_execution_cause`.
 
-Future plan `zed-coherent-n3-20261002`: r1 cohort_completion; checks verified; r2 cohort_completion; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; checks verified; r2 cohort_completion; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-okvis2x"></a>
@@ -2677,7 +2678,7 @@ Prerequisites: none.
 **A1/E1/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
 Cell next-action display: next: new group 3 ready.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -2694,7 +2695,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
 
-Future plan `zed-coherent-n3-20261002`: r1 cohort_completion; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-airslam"></a>
@@ -2703,7 +2704,7 @@ Prerequisites: none.
 **A3/E3/S3/F0**; verified completed groups: 1+2. Verified N=3: no.
 
 Cell next-action display: next: new group 3 ready.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -2721,7 +2722,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 cohort_completion; checks verified; r2 cohort_completion; checks verified; r3 cohort_completion; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; checks verified; r2 cohort_completion; checks verified; r3 cohort_completion; checks verified.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-ov2slam"></a>
@@ -2730,7 +2731,7 @@ Prerequisites: none.
 **A3/E3/S0/F3**; verified completed groups: 3. Verified N=3: yes.
 
 Cell next-action display: no new action required by this plan.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -2750,7 +2751,7 @@ Native failure evidence r3: `{"line": 394, "text": "terminate called without an 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-dpvo"></a>
@@ -2759,7 +2760,7 @@ Prerequisites: none.
 **A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
 Cell next-action display: no new action required by this plan.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -2776,7 +2777,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
 
 <a id="vio-rosariov2-sequence1-orbslam3"></a>
@@ -2891,7 +2892,7 @@ Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
 Review blockers: `rosario_identity_camera_imu_extrinsic`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are prepared in the separate review checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
+Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are integrated into this main checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_identity_imu_camera_profile_with_consistent_matched_camera_model`, `resolve_or_document_claim_limit:rosario_identity_camera_imu_extrinsic`, `resolve_or_document_claim_limit:rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`, `use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
@@ -2916,7 +2917,7 @@ Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
 Review blockers: `missing_repetition`, `rosario_identity_camera_imu_extrinsic`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `collapse_under_recorded_reference_diagnostic_not_verified_physical_scale`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`.
 
-Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are prepared in the separate review checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
+Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are integrated into this main checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
 Native failure evidence r1: `{"line": 50, "text": "947.706 terminate called without an active exception"}`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
@@ -2942,7 +2943,7 @@ Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
 Review blockers: `rosario_identity_camera_imu_extrinsic`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are prepared in the separate review checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
+Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are integrated into this main checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
 Native failure evidence r1: `{"line": 202342, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 Native failure evidence r2: `{"line": 203323, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 Native failure evidence r3: `{"line": 201671, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
@@ -3062,7 +3063,7 @@ Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
 Review blockers: `rosario_identity_camera_imu_extrinsic`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are prepared in the separate review checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
+Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are integrated into this main checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_identity_imu_camera_profile_with_consistent_matched_camera_model`, `resolve_or_document_claim_limit:rosario_identity_camera_imu_extrinsic`, `resolve_or_document_claim_limit:rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`, `use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
@@ -3087,7 +3088,7 @@ Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
 Review blockers: `missing_repetition`, `rosario_identity_camera_imu_extrinsic`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `collapse_under_recorded_reference_diagnostic_not_verified_physical_scale`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`.
 
-Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are prepared in the separate review checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
+Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are integrated into this main checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
 Native failure evidence r1: `{"line": 43, "text": "803.783 terminate called without an active exception"}`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
@@ -3113,7 +3114,7 @@ Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
 Review blockers: `rosario_identity_camera_imu_extrinsic`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are prepared in the separate review checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
+Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are integrated into this main checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
 Native failure evidence r1: `{"line": 169774, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 Native failure evidence r2: `{"line": 169493, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 Native failure evidence r3: `{"line": 168992, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
@@ -3951,81 +3952,80 @@ Prerequisites: none.
 <a id="vio-zed2i-field1-110426-full-10fps-q90-orbslam3"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/orbslam3
 
-**A1/E0/S0/F1**; verified completed groups: 0. Verified N=3: no.
+**A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
-Selected plan: `zed-coherent-n3-20261002`.
+Cell next-action display: next: missing 2 ready.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run1) | invalid_setup | failure_without_final_trajectory | 134 | no |
+| 1 | [run10001](../results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001) | blocked | success | 0 | yes |
 | 2 | [run2](../results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run2) | not_executed | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run3) | not_executed | not_attempted | unknown | no |
 
-Group `b470ddc5a30c972a15cf79fc995b5439213522c865f2c0c148d5c8f21432aa9c`: 0 verified / 1 recorded; `run1`.
+Group `fb3369fcbbc58f51cb62243f05c04d858b499af7a1ad8ad4eb76d18d3b7aaead`: 0 verified / 1 recorded; `run10001`.
 
-Confirmed setup findings: `zed_factory_camera_imu_rotation_omitted`.
-Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `retain_failure_in_attempt_denominator`, `serial_specific_imu_rotation_and_timing_unverified`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
-Native failure evidence r1: `{"line": 65, "text": "2.595 terminate called after throwing an instance of 'std::bad_alloc'"}`, `{"line": 66, "text": "2.595   what():  std::bad_alloc"}`.
+Confirmed setup findings: none.
+Review blockers: `missing_repetition`, `native_build_source_linkage_and_loaded_dependency_closure_unverified`, `zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified`, `zed_reference_orientation_unavailable`, `zed_serial_specific_imu_rotation_and_time_offset_unverified`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
-Prerequisites: none.
+Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic_rerun`.
 
-Future plan `zed-coherent-n3-20261002`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
-Prerequisites: none.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic_rerun`.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-okvis2"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/okvis2
 
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
-Selected plan: `zed-coherent-n3-20261002`.
+Cell next-action display: next: missing 2 ready.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run1) | invalid_setup | success | 0 | yes |
+| 1 | [run10001](../results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001) | blocked | success | 0 | yes |
 | 2 | [run2](../results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run2) | not_executed | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run3) | not_executed | not_attempted | unknown | no |
 
-Group `b0c3e7fd9163423f26617c3d979f307c76ccf1898102c2518e9afbfd906b1462`: 0 verified / 1 recorded; `run1`.
+Group `556d5c22cc6822d397806d431566a66334a4edf45a527259b9fadbe38f19cdc3`: 0 verified / 1 recorded; `run10001`.
 
-Confirmed setup findings: `zed_factory_camera_imu_rotation_omitted`.
-Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
+Confirmed setup findings: none.
+Review blockers: `missing_repetition`, `native_build_source_linkage_and_loaded_dependency_closure_unverified`, `zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified`, `zed_reference_orientation_unavailable`, `zed_serial_specific_imu_rotation_and_time_offset_unverified`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
-Prerequisites: none.
+Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic_rerun`.
 
-Future plan `zed-coherent-n3-20261002`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
-Prerequisites: none.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic_rerun`.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-okvis2x"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/okvis2x
 
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
-Selected plan: `zed-coherent-n3-20261002`.
+Cell next-action display: next: missing 2 ready.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run1) | invalid_setup | success | 0 | yes |
+| 1 | [run10001](../results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001) | blocked | success | 0 | yes |
 | 2 | [run2](../results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run2) | not_executed | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run3) | not_executed | not_attempted | unknown | no |
 
-Group `aac99ebc012529d9b5f19ead38c3f00fa335894c162602f13c8e32bb03aeb388`: 0 verified / 1 recorded; `run1`.
+Group `46d99af6f467f6217d19ff9d8ac3799743eb3af24f4c90ee676fcc754d1dcd66`: 0 verified / 1 recorded; `run10001`.
 
-Confirmed setup findings: `zed_factory_camera_imu_rotation_omitted`.
-Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
+Confirmed setup findings: none.
+Review blockers: `missing_repetition`, `native_build_source_linkage_and_loaded_dependency_closure_unverified`, `zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified`, `zed_reference_orientation_unavailable`, `zed_serial_specific_imu_rotation_and_time_offset_unverified`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
-Prerequisites: none.
+Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic_rerun`.
 
-Future plan `zed-coherent-n3-20261002`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
-Prerequisites: none.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: `completed_predeclared_attempt_requires_claim_review_no_automatic_rerun`.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-airslam"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/airslam
@@ -4033,7 +4033,7 @@ Prerequisites: none.
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
 Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -4050,7 +4050,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-basalt"></a>
@@ -4059,7 +4059,7 @@ Prerequisites: none.
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
 Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -4076,7 +4076,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-openvins"></a>
@@ -4085,7 +4085,7 @@ Prerequisites: none.
 **A1/E1/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
 Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -4102,7 +4102,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-voxel-svio"></a>
@@ -4111,7 +4111,7 @@ Prerequisites: none.
 **A1/E1/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
 Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -4129,7 +4129,7 @@ Native failure evidence r1: `{"line": 688971, "text": "terminate called after th
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: `validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort`, `voxel_short_window_no_initialization_or_trajectory_successful_export_not_verified`.
 
-Future plan `zed-coherent-n3-20261002`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: `validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort`, `voxel_short_window_no_initialization_or_trajectory_successful_export_not_verified`.
 
 <a id="vio-lc-rosariov2-sequence1-orbslam3"></a>
@@ -4783,7 +4783,7 @@ Prerequisites: none.
 **A1/E0/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
 Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -4801,7 +4801,7 @@ Native failure evidence r1: `{"line": 65, "text": "2.695 Segmentation fault (cor
 Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-okvis2"></a>
@@ -4810,7 +4810,7 @@ Prerequisites: none.
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
 Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -4827,7 +4827,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-okvis2x"></a>
@@ -4836,7 +4836,7 @@ Prerequisites: none.
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
 Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -4853,7 +4853,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-airslam"></a>
@@ -4862,7 +4862,7 @@ Prerequisites: none.
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
 Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
-Selected plan: `zed-coherent-n3-20261002`.
+Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
@@ -4879,7 +4879,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
 <a id="gnss-vio-rosariov2-sequence1-cifasis-gnss-si"></a>

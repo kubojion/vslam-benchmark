@@ -223,6 +223,10 @@ profile rejection; ROS numeric scalar types; and default runner selection. With
 TODO, acceptance-ledger, protocol-status and repair-plan checks, **70 tests pass**.
 These tests do not instantiate
 Basalt, ROS, Voxel or OpenVINS.
+The subsequent main integration passed **89 focused tests**, adding completed-slot
+preservation, configuration-recipe and source-capture checks. Both full read-only
+campaign preflights also passed; none of these checks establishes Rosario native
+readiness. See [the final integration receipt](rosario-main-integration-20261002.md).
 
 Read-only data validation confirms 13,821 synchronized stereo pairs / 187,362 IMU
 samples for sequence 1 and 11,640 / 158,462 for sequence 5. Both camera CSVs have

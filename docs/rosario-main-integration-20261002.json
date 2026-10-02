@@ -87,7 +87,7 @@
   },
   "remaining_prerequisites_document": "docs/rosario-main-integration-20261002.md",
   "main_goal_file_action": "Relevant integration/formatting section merged into main goal; historical sections retained.",
-  "old_maintenance_pause": "revoked; current pause is a new explicit instruction in this goal",
+  "old_maintenance_pause": "revoked; the separate live-batch integration hold is now satisfied after all started attempts and captures finished",
   "resume_checks": [
     {
       "checked_at": "2026-10-02T13:51:48.848812+00:00",
@@ -422,9 +422,29 @@
       "identical_on_main": false
     }
   ],
-  "integration_status": "files_integrated_source_evidence_refresh_pending",
+  "integration_status": "integration_and_evidence_refresh_complete",
   "integration_checkpoint": "558b8fd",
   "focused_tests_in_main": 89,
   "completed_zed_selection": "configs/campaigns/zed-vio-first-attempts-20261002.json",
-  "backup": "/data/imoroz/vslam-repair-backups/20261002T155907Z-rosario-main-before-integration"
+  "backup": "/data/imoroz/vslam-repair-backups/20261002T155907Z-rosario-main-before-integration",
+  "integration_commit": "03c7c0ec1f73bb3f4d03f019aa55914fcc455e1f",
+  "completed_at": "2026-10-02T16:34:21.680075+00:00",
+  "historical_fields_note": "recorded_at, main_head, validation, batch_observation and resume_checks retain the original handoff observations; final_validation records the completed integration",
+  "final_validation": {
+    "path": "results/rosario-main-integration-20261002/final-validation.json",
+    "sha256": "9e2ea6a33eb392bd83ba5c881a9fa0a35cd7f3ebd23434606af6720f7966a806",
+    "focused_tests_passed": 89,
+    "historical_evidence_files_unchanged": 5107,
+    "all_five_matrix_layouts_preserved": true,
+    "matrix_cells_with_counts": 252,
+    "verified_n3_cells": 81,
+    "source_captures_refreshed": 14,
+    "input_identities_verified": 8,
+    "runtime_identities_verified": 14,
+    "full_read_only_preflights_passed": 2,
+    "estimators_launched": 0,
+    "pushes": 0
+  },
+  "final_reporting_snapshot": "/data/imoroz/vslam-repair-backups/20261002T163421Z-rosario-main-final",
+  "working_tree_reporting_note": "Final generated reporting and handoff edits are preserved in the verified snapshot, without advancing the exact source commit pinned by current implementation captures."
 }

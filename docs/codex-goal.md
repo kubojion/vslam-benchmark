@@ -2,7 +2,7 @@
 
 Prepared: 2026-10-01. Workspace: `/data/imoroz/vslam-benchmark`.
 
-## Current continuation — Rosario/TODO integration into main, 2026-10-02
+## Completed continuation — Rosario/TODO integration into main, 2026-10-02
 
 Make `/data/imoroz/vslam-benchmark` on main the final destination for the reviewed
 Rosario candidates, static validation and TODO presentation. Reuse the completed
@@ -38,6 +38,16 @@ preserving executed plans and completed observations. Do not schedule a complete
 logical slot again merely because its claim review is pending. Final delivery
 must include main paths, actual validation results and exact remaining gates.
 No Rosario experiments, benchmark resumption or push is authorized by this goal.
+
+Completion: checkpoint `558b8fd` preserved the main documentation before changes;
+`03c7c0e` commits the integrated sources. All 89 focused tests and both full
+read-only campaign preflights passed. The final preservation check verifies 5,107
+unchanged historical evidence files, all 252 matrix cells with A/E/S/F, and 81
+unchanged verified N=3 cells. The three completed ZED first repetitions are held
+for review without duplicate execution commands. Rosario's four candidates remain
+inactive and unverified; its 14 replacements, four missing repetitions and native/
+author prerequisites remain explicit. See [the final handoff](rosario-main-integration-20261002.md)
+for the refreshed plans, exact remaining gates and verified final snapshot.
 
 ## Completed continuation — ZED preparation, 2026-10-02
 
@@ -81,12 +91,14 @@ clarification is no longer needed.
 ZED repair deliverables are reconciled in [the validation record](zed-validation-20261002.md)
 and [the exact remaining campaign](zed-campaign-20261002.md). Nine ZED cells now
 have qualified nominal-position protocol N=3; all original outcomes remain.
-The prepared coherent campaign retains 27 observations and names 48 new attempts
+At that preparation checkpoint, the coherent campaign retained 27 observations and named 48 new attempts
 (17 setup replacements, 25 missing, six cohort-completion). Fifteen paths passed
 bounded checks; Voxel initialization/export remains an explicit readiness blocker.
 The known timing proxy subtotal is 70.7 hours for 39 attempts, with nine unknown.
 Repair/audit completion does not authorize production execution or imply that
 these remaining execution/evidence limitations have been fixed.
+The later integration above records three completed first attempts separately;
+the [current campaign](zed-campaign-20261002.md) now names 45 remaining new attempts.
 
 ## Completed continuation — protocol validity, 2026-10-02
 
