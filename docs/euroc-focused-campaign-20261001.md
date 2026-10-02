@@ -1,8 +1,10 @@
 # Focused EuRoC OpenVINS / corrected AirSLAM campaign
 
+> Historical completion checkpoint. Current tick semantics and publisher-thread diagnosis are in [the protocol review](protocol-review-20261002.md) and [diagnostic report](airslam-refinement-diagnostic-20261002.md).
+
 Completed 2026-10-01 UTC (2026-10-02 local). Exactly **six missing OpenVINS VIO repetitions and 18 corrected AirSLAM VIO/VIO-LC repetitions** were executed once. Twenty-three have clean native exits and immediate schema-3 evaluations; one MH05 VIO-LC attempt retains a native refinement SIGSEGV before final export. No accuracy parameters were tuned, no production slot was retried, and no other dataset/algorithm path was run. No push occurred.
 
-**All 45 previously accepted N=3 cells and all historical attempts are preserved.** Completing these runs adds no automatic green ticks: AirSLAM supports sparse-keyframe accuracy, and OpenVINS retains original run1 limitations and its separate implementation cohort. MH05 coverage is disclosed per repetition.
+**All 45 previously accepted N=3 cells and all historical attempts are preserved.** The later [protocol review](protocol-review-20261002.md) supersedes the clean-success tick convention used at this checkpoint. AirSLAM supports sparse-keyframe accuracy; OpenVINS retains original run1 limitations and its separate implementation cohort. MH05 coverage is disclosed per repetition.
 
 ## Fixed scope and evidence
 
@@ -70,4 +72,4 @@ unchanged.
 
 The prior complete backup is `/data/imoroz/vslam-repair-backups/20261001T204310Z-reference-complete`. The verified preproduction backup is `/data/imoroz/vslam-repair-backups/20261001T220304Z-euroc-before-production`: 1,195 independent files and verified root/AirSLAM/OpenVINS Git bundles. Final independent preservation includes the new attempts and reconciled outputs; see its recorded location above. Historical author hashes remain historical and the rewrite mapping is unchanged.
 
-The focused campaign has no remaining execution slots. The MH05 AirSLAM junction-database segfault is a concrete unresolved native issue; its failure remains an outcome, not a request to resample for success. Other native paths still need their own validation; agricultural projection/reference/timing, GNSS and ZED serial/physical-quality prerequisites remain as listed in [the handoff](acceptance-handoff-20261001.md). The field ZED clock offset remains unknown and uncorrected; the benchmark sensitivity check closes it only as a disclosed limitation. No additional run, algorithm expansion, history rewrite or push is authorized.
+The focused campaign has no remaining execution slots. The MH05 AirSLAM native refinement segfault is a concrete unresolved issue; later diagnostics localized a reproduction to its asynchronous map publisher; its failure remains an outcome, not a request to resample for success. Other native paths still need their own validation; agricultural projection/reference/timing, GNSS and ZED serial/physical-quality prerequisites remain as listed in [the handoff](acceptance-handoff-20261001.md). The field ZED clock offset remains unknown and uncorrected; the benchmark sensitivity check closes it only as a disclosed limitation. No additional run, algorithm expansion, history rewrite or push is authorized.

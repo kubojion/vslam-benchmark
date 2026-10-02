@@ -1,11 +1,10 @@
 # Evaluation
 
-Status: 2026-10-01, repair/audit complete; scientific qualification remains blocked. All 593 schema-3 evaluations are promoted to
-their ordinary result paths. Root CSVs, per-cell reports, tables, figures and browser
-are reconciled against `results/repair-20261001/inventory.json`. The
-[qualification review](publication-qualification-20261001.md) identifies specific
-unresolved blockers; numerical evaluation alone never awards an N=3 green tick.
-See [the repair audit](repair-audit-20261001.md) and [the goal](codex-goal.md).
+Status: 2026-10-02, completed repair and focused EuRoC campaign; 622 saved
+evaluations are reconciled. [Protocol review](protocol-review-20261002.md) separates
+experiment validity from success: 72 verified N=3 cells, with failures retained.
+Agricultural/GNSS limitations and native readiness are separate. Numerical scores
+alone never grant verification. See [the handoff](acceptance-handoff-20261001.md).
 
 ## Run types and inventory
 
@@ -98,7 +97,7 @@ do not rank unqualified results. No `any ok` condition creates a green tick.
 The [explicit acceptance ledger](campaigns/paper-acceptance-20261001.json) pins each
 reviewed default observation and numerical content. `paper_usable` includes stated
 limited claims and observed failures; `accuracy_eligible` excludes failure-only
-claims. `paper_ready` describes an accepted repetition, while `clean_qualified_n3`
+claims. `paper_ready` describes an accepted repetition, while `clean_qualified_n3` (legacy audit field)
 additionally requires three consistent, dense, zero-exit repetitions with no native
 fatal log observations. `native_error_observation_count` exposes errors masked by a
 wrapper zero exit. Claim limits and reproducibility disclosures accompany the score;
@@ -181,3 +180,17 @@ explicit acceptance/limitation/blocker labels. Their exact inputs, cell data and
 historical artifacts in the browser and must not be presented as repaired evidence.
 The earlier hand-transcribed/legacy report definitions are preserved in Git and the
 verified pre-repair backup, rather than mixed with this protocol.
+
+## Experimental protocol versus outcome
+
+`protocol_status` is the separately reviewed attempt validity. `protocol_state` and
+`protocol_verified_n3` describe same-cohort cell completeness. `attempt_completed`,
+`observed_outcome`, `successful_run` and `observed_failure` describe execution and
+export outcomes; `implementation_label` exposes the patched/historical distinction.
+`protocol_blockers` remain separate from claim limitations. A/E/S/F in matrices
+counts attempts/evaluated trajectories/clean final exports/observed failures. A
+post-save native failure can support evaluated accuracy and must still count as a
+failure. Sparse keyframes and low coverage do not alone invalidate protocol.
+The old clean-qualified flag retains its old calculation for reproducibility only;
+it does not drive current green ticks. No alignment, metric, parameter or score
+changes were made for this reporting revision.

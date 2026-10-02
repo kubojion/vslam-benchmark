@@ -15,6 +15,7 @@ import statistics
 
 from build_benchmark_csv import REPO, build_rows, build_historical_rows, csv_text, load_inventory, preserved_write
 from _run_type import canonicalize_dataset
+from protocol_status import summarize_protocol
 
 
 def numeric(value):
@@ -71,7 +72,8 @@ def summarize_cell(rows):
                     and not r.get('native_error_observation_count')
                     and numeric(r['coverage_gap_pct']) and r['coverage_gap_pct']>=95 for r in rows)),
                 cohorts=[cohort_summary(group) for _,group in sorted(groups.items())],
-                scientific_blockers=sorted({blocker for r in rows for blocker in json.loads(r['scientific_blockers'])}))
+                scientific_blockers=sorted({blocker for r in rows for blocker in json.loads(r['scientific_blockers'])}),
+                **summarize_protocol([dict(r, evaluated=r['eval_schema']==3) for r in rows]))
 
 
 def number(value):
@@ -84,16 +86,19 @@ def render_report(rows, result):
            'Generated from the hash-checked attempt inventory and schema-3 evaluations.', '',
            f"Planned slots: {result['planned_slots']}; attempted: {result['attempted']}; "
            f"evaluated: {result['evaluated']}. Outcomes: `{json.dumps(result['outcomes'],sort_keys=True)}`.", '',
-           '**N=3 ✅ qualified**' if result['clean_qualified_n3'] else '**Not a qualified clean N=3 cell.**', '',
+           '**✅ Protocol N=3 verified**' if result['protocol_verified_n3'] else '**Protocol: '+result['protocol_state']+'**', '',
+           f"Completed attempts: {result['completed_attempt_count']}; evaluated trajectories: {result['evaluated_trajectory_count']}; "
+           f"clean final exports (successes): {result['successful_run_count']}; observed failures: {result['observed_failure_count']}; "
+           f"unknown outcomes: {result['unknown_outcome_count']}. Protocol ticks include recorded failures and do not certify full tracking or every accuracy claim.", '',
            f"Acceptance decisions: `{json.dumps(result['acceptance'],sort_keys=True)}`; paper-usable observations: {result['paper_usable']}.", '',
            'ATE below describes numerically valid saved trajectories only. Failures and missing '
            'repetitions stay in the denominator; conditional accuracy is not a success rate. '
            'Separate source/configuration/hardware cohorts are never pooled. '
            'Unverified legacy attempts each retain a separate identity.', '',
-           '| Run | Numerical outcome | Exit | Qualification | Primary alignment | ATE RMSE [m] | Dense coverage [%] |',
-           '|---|---|---|---|---|---|---|']
+           '| Run | Protocol / outcome | Implementation | Numerical outcome | Exit | Qualification | Primary alignment | ATE RMSE [m] | Dense coverage [%] |',
+           '|---|---|---|---|---|---|---|---|---|']
     for r in rows:
-        lines.append(f"| {r['run']} | {r['run_status']} | {r['process_exit_code'] if r['process_exit_code'] is not None else 'unknown'} | "
+        lines.append(f"| {r['run']} | {r.get('protocol_status', 'unreviewed')} / {r.get('observed_outcome', 'unknown')} | {r.get('implementation_label', 'historical')} | {r['run_status']} | {r['process_exit_code'] if r['process_exit_code'] is not None else 'unknown'} | "
                      f"{r['scientific_status']} | {r['primary_alignment']} | {number(r['primary_ate_rmse_m'])} | {number(r['coverage_gap_pct'])} |")
     for group in result['cohorts']:
         stats=group['conditional_primary_ate']

@@ -58,7 +58,7 @@ def accuracy_figure(rows, mode, variant):
         fig.colorbar(plotted_image, ax=ax, fraction=.025, pad=.025,
                      label='Conditional median ATE RMSE [m]' if len(algos) >= 3 else 'ATE [m]')
     fig.suptitle(f'{mode.upper()} · input {variant} · conditional median ATE with acceptance flags', fontsize=13)
-    fig.text(.02, .015, 'ok/planned = numerical outcomes. A3: clean accepted N=3; B: blocked; L: limited; F: observed failure; M: missing; U: unreviewed.\n'
+    fig.text(.02, .015, 'A/E/S/F: attempts/evaluations/clean exports/failures. V3: verified protocol N=3; B: blocked; L: limited; F: observed failure; M: missing; U: unreviewed.\n'
              'R: config rerun; X: nonzero exit; P: coverage <95%; K: keyframes. Separate cohorts are not pooled.\n'
              'Failures/missing slots stay in counts. Agricultural reference issues remain; aligned GNSS scores are not global error.\n'
              'EuRoC AirSLAM VIO/VIO-LC: corrected runs4–6; affected runs1–3 retained in the historical-cohort CSV.', fontsize=8)

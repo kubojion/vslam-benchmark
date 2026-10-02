@@ -1,0 +1,120 @@
+From 2f268c44c2be339fefabbb5eb96edc071dcfb3dd Mon Sep 17 00:00:00 2001
+From: kubojion <161458080+kubojion@users.noreply.github.com>
+Date: Fri, 2 Oct 2026 09:57:39 +0200
+Subject: [PATCH] Compose camera extrinsic with rectification and test frame
+ consistency
+
+---
+ CMakeLists.txt                 |  9 ++++-
+ src/camera.cc                  |  8 +++++
+ tests/camera_rectification.cpp | 61 ++++++++++++++++++++++++++++++++++
+ 3 files changed, 77 insertions(+), 1 deletion(-)
+ create mode 100644 tests/camera_rectification.cpp
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index c1dd831..1fd02ec 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -112,4 +112,11 @@ add_executable(relocalization demo/relocalization.cpp)
+ target_link_libraries(relocalization ${PROJECT_NAME}_lib ${catkin_LIBRARIES})
+ 
+ add_executable(test_feature demo/test_feature.cpp)
+-target_link_libraries(test_feature ${PROJECT_NAME}_lib ${catkin_LIBRARIES})
+\ No newline at end of file
++target_link_libraries(test_feature ${PROJECT_NAME}_lib ${catkin_LIBRARIES})
++# Geometry-only regression; no image stream, GPU inference or estimator run.
++if(CATKIN_ENABLE_TESTING)
++  add_executable(test_camera_rectification tests/camera_rectification.cpp)
++  target_link_libraries(test_camera_rectification ${PROJECT_NAME}_lib ${catkin_LIBRARIES})
++  add_test(NAME camera_rectification COMMAND test_camera_rectification
++    ${PROJECT_SOURCE_DIR}/configs/camera/euroc.yaml ${CMAKE_CURRENT_BINARY_DIR})
++endif()
+diff --git a/src/camera.cc b/src/camera.cc
+index 291e589..365e640 100644
+--- a/src/camera.cc
++++ b/src/camera.cc
+@@ -74,6 +74,14 @@ Camera::Camera(const std::string& camera_file){
+           image_size, CV_32F, _mapr1, _mapr2);
+     }
+ 
++    // R0 maps raw left-camera coordinates into the rectified image axes.
++    // Visual poses/landmarks use those rectified axes, so IMU constraints must
++    // use T_body_rectified = T_body_raw * T_raw_rectified as well.
++    Eigen::Matrix3d R_rectified_raw;
++    cv::cv2eigen(R0, R_rectified_raw);
++    _Tbc.block<3, 3>(0, 0) = Tbc0.block<3, 3>(0, 0) * R_rectified_raw.transpose();
++    _Tcb = _Tbc.inverse();
++
+     _bf = std::abs(P1.at<double>(0, 3));
+     _max_x_diff = _bf / _depth_lower_thr;
+     _min_x_diff = _bf / _depth_upper_thr;
+diff --git a/tests/camera_rectification.cpp b/tests/camera_rectification.cpp
+new file mode 100644
+index 0000000..0a4f4a6
+--- /dev/null
++++ b/tests/camera_rectification.cpp
+@@ -0,0 +1,61 @@
++// Frame-consistency regression: the same physical point must map to the same
++// body coordinates whether expressed in raw or rectified left-camera axes.
++#include <filesystem>
++#include <fstream>
++#include <stdexcept>
++#include <Eigen/Geometry>
++#include <opencv2/core/eigen.hpp>
++#include "camera.h"
++
++int main(int argc, char** argv) {
++  if (argc != 3) return 2; // camera example, writable scratch directory
++  auto config = YAML::LoadFile(argv[1]);
++  const cv::Size size(config["image_width"].as<int>(), config["image_height"].as<int>());
++  bool passed = true;
++  for (int model : {0, 1, 2}) {
++    for (int imu : {0, 1}) {
++      config["distortion_type"] = model;
++      config["use_imu"] = imu;
++      auto path = std::filesystem::path(argv[2]) /
++          ("camera-" + std::to_string(model) + "-imu" + std::to_string(imu) + ".yaml");
++      { std::ofstream stream(path); stream << config; }
++      Camera camera(path.string());
++      cv::Mat k0, d0, k1, d1;
++      Eigen::Matrix4d t0, t1;
++      auto n0 = config["cam0"], n1 = config["cam1"];
++      camera.ReadCameraNode(n0, k0, d0, t0);
++      camera.ReadCameraNode(n1, k1, d1, t1);
++      Eigen::Matrix4d rel = t1.inverse() * t0;
++      cv::Mat r, t, r0, r1, p0, p1, q;
++      Eigen::Matrix3d rr = rel.block<3,3>(0,0);
++      Eigen::Vector3d tt = rel.block<3,1>(0,3);
++      cv::eigen2cv(rr, r); cv::eigen2cv(tt, t);
++      Eigen::Matrix3d rect = Eigen::Matrix3d::Identity();
++      if (model == 1) {
++        cv::stereoRectify(k0, d0, k1, d1, size, r, t, r0, r1, p0, p1, q,
++                         cv::CALIB_ZERO_DISPARITY, 0, size);
++        cv::cv2eigen(r0, rect);
++      } else if (model == 2) {
++        cv::fisheye::stereoRectify(k0, d0.rowRange(0,4), k1, d1.rowRange(0,4),
++            size, r, t, r0, r1, p0, p1, q, cv::CALIB_ZERO_DISPARITY, size, 0, 0.8);
++        cv::cv2eigen(r0, rect);
++      }
++      if (model && (rect - Eigen::Matrix3d::Identity()).norm() < 1e-3)
++        throw std::runtime_error("fixture must exercise nonidentity rectification");
++      double error = 0;
++      for (const Eigen::Vector3d& raw : {Eigen::Vector3d(0.2, -0.3, 2.0),
++           Eigen::Vector3d(-0.5, 0.4, 6.0), Eigen::Vector3d(0.1, 0.8, 3.0)}) {
++        Eigen::Vector4d x, y; x << raw, 1; y << rect * raw, 1;
++        error = std::max(error, (t0 * x - camera.CameraToBody() * y).norm());
++      }
++      double inverse = (camera.CameraToBody() * camera.BodyToCamera() - Eigen::Matrix4d::Identity()).norm();
++      double translation = (camera.CameraToBody().block<3,1>(0,3) - t0.block<3,1>(0,3)).norm();
++      bool ok = error < 1e-10 && inverse < 1e-10 && translation == 0;
++      passed = passed && ok;
++      std::cout << "model=" << model << " imu=" << imu << " point_error=" << error
++                << " inverse_error=" << inverse << " translation_error=" << translation
++                << " " << (ok ? "PASS" : "FAIL") << std::endl;
++    }
++  }
++  return passed ? 0 : 1;
++}
+-- 
+2.34.1
+

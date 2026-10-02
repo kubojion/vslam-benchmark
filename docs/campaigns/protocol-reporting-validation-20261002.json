@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "old_evaluation_copies_numerically_unchanged": 11319,
+  "canonical_evaluations_reconciled": 622,
+  "original_raw_files_unchanged": 3471,
+  "focused_raw_evidence_files_unchanged": 608,
+  "legacy_clean_cells_preserved": 45,
+  "protocol_verified_n3_cells": 72,
+  "protocol_verified_attempts": 225,
+  "verified_failures": 34,
+  "all_original_csv_column_rows_unchanged": 684,
+  "main_rows": 666,
+  "historical_rows": 18,
+  "cell_reports": 232,
+  "matrix_layout_and_user_row_order_preserved": true,
+  "browser_records": 716,
+  "browser_pages": 722,
+  "local_links_verified": 17548,
+  "future_categories": {
+    "reusable": 234,
+    "missing": 81,
+    "blocked": 272,
+    "required_rerun": 73
+  },
+  "verified_ready_actions": 0,
+  "new_production_runs": 0,
+  "pushed": false,
+  "tests_passed": 178,
+  "subtests_passed": 3,
+  "checks": {
+    "aggregate": "232 cells/variants; 0 stale",
+    "tables": "0 stale",
+    "figures": "19 outputs; 226 cells/variants; 0 stale",
+    "claims": "byte check passed"
+  },
+  "final_backup": "/data/imoroz/vslam-repair-backups/20261002T081230Z-protocol-reporting-complete",
+  "preservation_checkpoint": "cb014d5"
+}

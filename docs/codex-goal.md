@@ -2,24 +2,45 @@
 
 Prepared: 2026-10-01. Workspace: `/data/imoroz/vslam-benchmark`.
 
-## Current authorized continuation
+## Current authorized continuation — protocol validity, 2026-10-02
 
-Prepare and execute the [focused EuRoC OpenVINS/AirSLAM campaign](euroc-focused-campaign-20261001.md):
-six missing OpenVINS VIO repetitions and 18 corrected AirSLAM VIO/VIO-LC repetitions,
-after short integration checks and inspection of the first full run. Preserve the
-45 accepted cells and every historical attempt. Use new physical attempt IDs,
-evaluate immediately, retain failures and update all exports consistently. This
-explicit authorization supersedes the historical no-estimator clauses below for
-these EuRoC paths only. No push, accuracy tuning or expansion to other paths is
-authorized. The previous repair/reference audit remains completed; do not restart it.
+The focused EuRoC campaign is complete. Continue the completed audit without
+restarting it: separate verified experimental protocol from trajectory success.
+A same-implementation N=3 protocol tick counts three completed attempts, including
+properly recorded failures. Keep attempt, evaluated trajectory, success and failure
+counts distinct. Partial trajectories and native sparse keyframes are supported
+claim scopes, not automatic rerun requirements. Preserve all numerical scores,
+historical attempts, the 45 previously accepted cells and the existing TODO matrices.
+Agricultural calibration/reference blockers remain unless independent evidence closes them.
 
-Completion checkpoint for the current continuation: all 24 fixed EuRoC repetitions
-were executed once and reviewed: 23 final outputs evaluated, one native failure without final output retained. Short/first-full gates,
-source/build identity, configuration equality, saved exports and native shutdown
-were checked. Reporting reconciliation preserves the original 45 accepted cells
-and all historical attempts. [The campaign record](euroc-focused-campaign-20261001.md)
-is the current handoff; remaining limitations are explicit. No further estimation,
-algorithm expansion, history rewrite or push is authorized.
+Investigate the saved AirSLAM MH05 refinement failure using a copied map, logs and
+a debugger. Bounded diagnostics only are authorized; do not execute additional
+production repetitions or replace failed outcomes. Prepare minimal review branches,
+regression checks and descriptions for the AirSLAM rectification fix against current
+upstream and the applicable OpenVINS shutdown report. Preserve exact benchmark
+implementation revisions. Do not push or submit contributions.
+
+Reconcile the ledger, CSVs, tables, figures, browser, TODO and documentation. Report
+protocol-verified N=3 counts, observed failures, missing slots and necessary setup
+reruns separately, with accuracy claim scope and unresolved prerequisites. The
+initial preservation checkpoint is `cb014d5`; the incremental backup is
+`/data/imoroz/vslam-repair-backups/20261002T074823Z-protocol-before-repair`, supplementing
+the complete focused-campaign backup. The old temporary maintenance pause remains
+revoked. Original author/provenance hashes remain historical.
+
+The following sections preserve earlier audit requirements and checkpoints. Where
+they require clean successful outputs for green ticks, this continuation supersedes
+that reporting rule; all scientific calibration/evidence requirements still apply.
+
+Completion checkpoint, 2026-10-02: protocol reporting is reconciled across all five
+modes, with 72 verified N=3 cells and preserved failure/implementation distinctions.
+All numerical results and historical attempts are unchanged. Two bounded saved-map
+diagnostics localized a reproduced AirSLAM fault to its asynchronous publisher;
+the exact cause remains unresolved. AirSLAM PR and OpenVINS report branches are
+prepared locally, with benchmark sources pinned and no push. See
+[validation and preservation](protocol-validation-20261002.md) and
+[the protocol review](protocol-review-20261002.md). No further production execution
+is authorized, and unresolved agricultural/native prerequisites remain explicit.
 
 ## Objective and scope
 

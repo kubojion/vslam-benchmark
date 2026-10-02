@@ -1,0 +1,28 @@
+[
+  {
+    "project": "AirSLAM",
+    "path": "/data/imoroz/vslam-upstream-review-20261002/AirSLAM",
+    "upstream_base": "d1265771026091db97ee8f7a6d80692f0edd5fef",
+    "review_commit": "2f268c44c2be339fefabbb5eb96edc071dcfb3dd",
+    "branch": "fix/rectified-camera-imu-extrinsic",
+    "patch": "docs/upstream/airslam-review.patch",
+    "sha256": "cfe0d9099f3f7095d268a0fba1b407d849902445bab03585cca070a25c6fbc24",
+    "benchmark_source_identical": [
+      "src/camera.cc"
+    ]
+  },
+  {
+    "project": "open_vins",
+    "path": "/data/imoroz/vslam-upstream-review-20261002/open_vins",
+    "upstream_base": "69488123ed9362dd44b6f28e7f4680abbff1442b",
+    "review_commit": "6dcb24118f171cebdcb9af8c4e42a1d528597423",
+    "branch": "fix/ros2-visualizer-shutdown-lifetime",
+    "patch": "docs/upstream/open_vins-review.patch",
+    "sha256": "c99f17bc4d1924b5baf7af25b8d59cf67719e26be04ce91a876e5bf13473cef7",
+    "benchmark_source_identical": [
+      "ov_msckf/src/ros/ROS2Visualizer.cpp",
+      "ov_msckf/src/ros/ROS2Visualizer.h",
+      "ov_msckf/src/run_subscribe_msckf.cpp"
+    ]
+  }
+]

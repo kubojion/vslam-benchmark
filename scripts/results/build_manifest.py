@@ -174,6 +174,13 @@ def reconciled_entry(attempt, row):
     evaluation = read_json(REPO / attempt['evaluation_path']) if attempt.get('evaluation_path') else {}
     entry.update(status=row['run_status'], repeat=int(row['run']), execution_status=row['execution_status'],
                  process_exit_code=row['process_exit_code'], scientific_status=row['scientific_status'],
+                 protocol_status=row.get('protocol_status', 'unreviewed'),
+                 protocol_state=row.get('protocol_state', 'unreviewed'),
+                 protocol_verified_n3=row.get('protocol_verified_n3', False),
+                 protocol_blockers=json.loads(row.get('protocol_blockers') or '[]'),
+                 attempt_completed=row.get('attempt_completed', False),
+                 observed_outcome=row.get('observed_outcome', 'unknown'),
+                 implementation_label=row.get('implementation_label', 'historical'),
                  scientific_blockers=json.loads(row['scientific_blockers']), paper_ready=row['paper_ready'],
                  paper_usable=row.get('paper_usable',False), accepted_claim=row.get('accepted_claim'),
                  native_error_observation_count=row.get('native_error_observation_count',0),

@@ -75,7 +75,7 @@ def test_failure_missing_exit_and_cohort_denominators(tmp_path):
     assert result['cohorts'][0]['conditional_primary_ate']['sample_std'] is None
     assert result['clean_qualified_n3'] is False
     text=cell_text(data)
-    assert '1 scale_collapse' in text and '1 missing' in text and 'eval 2/3' in text and '✅' not in text
+    assert '1 scale_collapse' in text and '1 missing' in text and 'A2/E2/' in text and '✅' not in text
     data=rows(tmp_path)
     for r in data:r['paper_ready']=True
     assert summarize_cell(data)['clean_qualified_n3']
@@ -93,10 +93,10 @@ def test_failure_missing_exit_and_cohort_denominators(tmp_path):
 
 def test_explicit_acceptance_and_native_shutdown_limits_survive_csv_and_reports(tmp_path):
     qualification=dict(status='accepted',blockers=[],paper_usable=True,accuracy_eligible=True,
-        claim='recorded_profile_euroc_final_trajectory_se3_metric_accuracy',claim_limits=[])
+        claim='recorded_profile_euroc_final_trajectory_se3_metric_accuracy',claim_limits=[],protocol={'status':'verified'})
     data=[row_from_attempt(attempt(i,qualification=copy.deepcopy(qualification)),evaluation(),None,repo=tmp_path)
           for i in range(1,4)]
-    assert summarize_cell(data)['clean_qualified_n3'] and '✅ N=3' in cell_text(data)
+    assert summarize_cell(data)['clean_qualified_n3'] and '✅ Protocol N=3' in cell_text(data)
     limited=copy.deepcopy(qualification)
     limited.update(status='accepted_with_limitation',
         claim_limits=['native_shutdown_error_despite_wrapper_exit_zero'],
@@ -186,8 +186,8 @@ def test_figures_do_not_pool_cohorts_or_count_numerical_failure_as_success(tmp_p
     data[1].update(run_status='scale_collapse',primary_ate_rmse_m=10000.)
     data[2].update(process_exit_code=139,coverage_gap_pct=80)
     plotted=plotted_cell(data)
-    assert plotted['value']==1 and '2/3 ok' in plotted['annotation']
-    assert set(plotted['flags'])=={'X','P','U'}
+    assert plotted['value']==1 and 'A3/E3/S1/F2' in plotted['annotation']
+    assert set(plotted['flags'])=={'X','P','U','B'}
     data[2]['cohort']='different'
     assert plotted_cell(data)['value'] is None
     assert 'cohorts' in plotted_cell(data)['flags']

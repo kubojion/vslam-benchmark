@@ -1,14 +1,12 @@
 # vSLAM Benchmark - TODO
 
-> **Focused campaign complete:** six OpenVINS and 18 corrected AirSLAM EuRoC
-> attempts were executed once: 23 final trajectories evaluated, one native VIO-LC failure retained. All 45 previous green
-> N=3 cells are preserved; 73 repetitions have explicit limitations and
-> 10 observed failures remain reusable. The four-mode comparison has **550/600
-> evaluations**; all scopes contain 622. AirSLAM's new inertial cohort remains
-> limited to keyframes; original affected attempts and OpenVINS run1 limitations remain.
-> **N counts evaluations, not accepted successes. The five matrix layouts are unchanged.**
-> See [campaign evidence](docs/euroc-focused-campaign-20261001.md),
-> [current handoff](docs/acceptance-handoff-20261001.md) and [claim criteria](docs/paper-acceptance-20261001.md).
+> **Protocol reporting review:** completed campaign results and numerical scores are preserved.
+> Green ticks now certify three correctly conducted attempts in one implementation cohort,
+> including recorded failures. They do not promise three successful or full-coverage trajectories.
+> The four-mode comparison retains **550/600 evaluations**; all scopes contain 622.
+> See [protocol definitions](docs/protocol-review-20261002.md),
+> [campaign evidence](docs/euroc-focused-campaign-20261001.md) and
+> [current handoff](docs/acceptance-handoff-20261001.md).
 
 ---
 
@@ -20,18 +18,20 @@
 
 ## Run combinations matrix
 
-Legend per cell: ✅ N=3 clean accepted for the stated claim | 🟠 accepted with limitations |
-❌ observed failure retained | 🟡 blocked by specific evidence | ⬜ missing repetitions |
-🔁 required corrected cohort | ➖ excluded / unsupported | 🔧 missing excluded config.
+Legend per cell: ✅ verified protocol N=3 | 🟠 verified attempts in separate cohorts |
+🟡 blocked by configuration/reference or execution evidence | ⬜ repetitions missing |
+🔁 invalid setup requiring corrected execution | ➖ excluded / unsupported | 🔧 missing excluded config.
 
-**N counts schema-3 evaluations, including retained numerical failures**, independently
-of historical COMPLETE markers. `N=0` can contain an accepted observed startup failure.
-`missing r2,r3` means those physical attempts are absent; existing failed/interrupted
-attempts are not missing. Limited claims name sparse exports, partial coverage,
-nonzero exits or native shutdown errors despite wrapper exit 0. A green tick requires
-three accepted, same-cohort, zero-exit, valid trajectories each with ≥95% dense export
-coverage and no observed native fatal error. It does not certify future runner readiness.
-Monocular Sim(3), final-optimization profiles and historical build disclosures remain explicit.
+**A/E/S/F = attempts/evaluated trajectories/clean final exports/observed failures.**
+U marks an unknown outcome. Failure includes a native error after saving, even when
+the wrapper recorded exit0; the saved trajectory can still support limited accuracy.
+Low accuracy, partial trajectories and native keyframes alone do not invalidate an
+experiment. Explicit coverage and claim limits remain in CSVs/reports. Green requires
+three completed verified attempts in the same cohort, including failures; it does
+not certify full tracking, every accuracy claim or future runner readiness.
+Missing physical attempts are labelled separately; failed/interrupted attempts are
+never treated as absent. The original 45 clean-qualified cells remain unchanged
+under their legacy audit field; that field no longer drives protocol ticks.
 
 The future manifest contains **234 reusable observations, 73 required reruns, 81 missing repetitions and 272 blocked cases**. Focused EuRoC OpenVINS/AirSLAM execution
 is validated; no remaining estimator action is automatically authorized or certified
@@ -44,14 +44,14 @@ OpenVINS cells keep original run1 and new runs2–3 in separate implementation c
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | ❌ N=0; observed failure r1; missing r2,r3 | ❌ N=0; observed failure r1; missing r2,r3 | ❌ N=0; observed failure r1; missing r2,r3 | 🟡 N=3; blocked: reference/clock; exit 139 | ✅ N=3 | 🟠 N=3; limited; exit 139 | ✅ N=3 | 🔁 N=3; rerun: FPS; exit 139 |
-| Basalt | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; blocked: reference |
-| MAC-VO | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; blocked: reference |
-| AirSLAM | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | 🟠 N=3; limited; sparse | 🟠 N=3; limited; sparse | 🟠 N=3; limited; sparse | 🟡 N=3; blocked: reference |
-| DPVO | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; blocked: reference |
-| OKVIS2 | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; collapse r2; blocked: reference; observed failure r2 |
-| OKVIS2-X | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; blocked: reference |
-| OV2SLAM | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | 🟠 N=3; limited; native shutdown error | 🟠 N=3; limited; native shutdown error | 🟠 N=3; limited; native shutdown error | 🟡 N=3; blocked: reference |
+| ORB-SLAM3 | 🟡 protocol blocked; A1/E0/S0/F1; observed failure r1; exit run1: 134; missing r2,r3; blocked: calibration/reference | 🟡 protocol blocked; A1/E0/S0/F1; observed failure r1; exit run1: 139; missing r2,r3; blocked: calibration/reference | 🟡 protocol blocked; A1/E0/S0/F1; observed failure r1; exit run1: 139; missing r2,r3; blocked: calibration/reference | 🟡 protocol blocked; A3/E3/S2/F1; blocked: reference/clock; exit run2: 139 | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S2/F1; limited; exit run2: 139 | ✅ Protocol N=3; A3/E3/S3/F0 | 🔁 protocol invalid setup; A3/E3/S1/F2; rerun: FPS; exit run1: 139, run2: 139 |
+| Basalt | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference |
+| MAC-VO | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference |
+| AirSLAM | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | ✅ Protocol N=3; A3/E3/S3/F0; limited; sparse | ✅ Protocol N=3; A3/E3/S3/F0; limited; sparse | ✅ Protocol N=3; A3/E3/S3/F0; limited; sparse | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference |
+| DPVO | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference |
+| OKVIS2 | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | 🟡 protocol blocked; A3/E3/S2/F1; collapse r2; blocked: reference; observed failure r2 |
+| OKVIS2-X | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference |
+| OV2SLAM | 🟡 protocol blocked; A3/E3/S0/F3; blocked: camera model | 🟡 protocol blocked; A3/E3/S0/F3; blocked: camera model | 🟡 protocol blocked; A3/E3/S0/F3; blocked: reference/clock | 🟡 protocol blocked; A3/E3/S0/F3; blocked: reference/clock | ✅ Protocol N=3; A3/E3/S0/F3; limited; native shutdown error | ✅ Protocol N=3; A3/E3/S0/F3; limited; native shutdown error | ✅ Protocol N=3; A3/E3/S0/F3; limited; native shutdown error | 🟡 protocol blocked; A3/E3/S0/F3; blocked: reference |
 | MASt3R-SLAM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | 🔧 config missing; excluded |
 | MegaSaM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | 🔧 config missing; excluded |
 | DROID-SLAM | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=1 historical | 🟡 N=1 historical | 🟡 N=1 historical | ➖ excluded; no run |
@@ -71,17 +71,17 @@ OpenVINS cells keep original run1 and new runs2–3 in separate implementation c
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: time offset | ✅ N=3 | 🟠 N=3; limited; partial coverage | ✅ N=3 | ❌ N=0; observed failure r1; missing r2,r3 |
-| Basalt | 🔁 N=3; rerun: IMU extrinsic | 🔁 N=3; rerun: IMU extrinsic | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
-| OKVIS2 | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: time offset | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
-| OKVIS2-X | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: time offset | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
-| OpenVINS | 🔁 N=1; collapse r1; rerun: IMU extrinsic; exit 134; missing r2,r3 | 🔁 N=1; collapse r1; rerun: IMU extrinsic; exit 134; missing r2,r3 | 🟡 N=1; blocked: reference/clock; exit 134; missing r2,r3 | 🟡 N=1; blocked: reference/clock; exit 134; missing r2,r3 | 🟠 N=3; limited; exit 134; separate cohorts | 🟠 N=3; limited; exit 134; separate cohorts | 🟠 N=3; limited; partial coverage; separate cohorts | ❌ N=1; collapse r1; observed failure r1; missing r2,r3 |
-| AirSLAM | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: time offset | 🟠 N=3; limited; sparse | 🟠 N=3; limited; sparse | 🟠 N=3; limited; sparse | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
-| Voxel-SVIO | 🔁 N=3; rerun: IMU extrinsic | 🔁 N=3; rerun: IMU extrinsic | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | 🟠 N=3; limited; native shutdown error; partial coverage | 🟠 N=3; limited; native shutdown error | 🟠 N=3; limited; native shutdown error | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
+| ORB-SLAM3 | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: time offset | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: time offset | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0; limited; partial coverage | ✅ Protocol N=3; A3/E3/S3/F0 | 🟡 protocol blocked; A1/E0/S0/F1; observed failure r1; exit run1: 134; missing r2,r3; blocked: calibration/reference |
+| Basalt | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: IMU extrinsic | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: IMU extrinsic | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | 🟡 protocol blocked; A1/E1/S1/F0; blocked: reference/IMU; missing r2,r3 |
+| OKVIS2 | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: time offset | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: time offset | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | 🟡 protocol blocked; A1/E1/S1/F0; blocked: reference/IMU; missing r2,r3 |
+| OKVIS2-X | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: time offset | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: time offset | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | 🟡 protocol blocked; A1/E1/S1/F0; blocked: reference/IMU; missing r2,r3 |
+| OpenVINS | 🔁 protocol invalid setup; A1/E1/S0/F1; collapse r1; rerun: IMU extrinsic; exit run1: 134; missing r2,r3 | 🔁 protocol invalid setup; A1/E1/S0/F1; collapse r1; rerun: IMU extrinsic; exit run1: 134; missing r2,r3 | 🟡 protocol blocked; A1/E1/S0/F1; blocked: reference/clock; exit run1: 134; missing r2,r3 | 🟡 protocol blocked; A1/E1/S0/F1; blocked: reference/clock; exit run1: 134; missing r2,r3 | 🟠 protocol separate implementation cohorts; A3/E3/S2/F1; limited; exit run1: 134; historical N=1 + patched N=2; patched r2,r3 exit 0 | 🟠 protocol separate implementation cohorts; A3/E3/S2/F1; limited; exit run1: 134; historical N=1 + patched N=2; patched r2,r3 exit 0 | 🟠 protocol separate implementation cohorts; A3/E3/S3/F0; limited; partial coverage; historical N=1 + patched N=2; patched r2,r3 exit 0 | 🟡 protocol blocked; A1/E1/S0/F1; collapse r1; observed failure r1; missing r2,r3; blocked: calibration/reference |
+| AirSLAM | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: time offset | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: time offset | ✅ Protocol N=3; A3/E3/S3/F0; limited; sparse; patched r4–6 | ✅ Protocol N=3; A3/E3/S3/F0; limited; sparse; patched r4–6 | ✅ Protocol N=3; A3/E3/S3/F0; limited; sparse; patched r4–6 | 🟡 protocol blocked; A1/E1/S1/F0; blocked: reference/IMU; missing r2,r3 |
+| Voxel-SVIO | 🔁 protocol invalid setup; A3/E3/S0/F3; rerun: IMU extrinsic | 🔁 protocol invalid setup; A3/E3/S0/F3; rerun: IMU extrinsic | 🟡 protocol blocked; A3/E3/S0/F3; blocked: reference/clock | 🟡 protocol blocked; A3/E3/S0/F3; blocked: reference/clock | ✅ Protocol N=3; A3/E3/S0/F3; limited; native shutdown error; partial coverage | ✅ Protocol N=3; A3/E3/S0/F3; limited; native shutdown error | ✅ Protocol N=3; A3/E3/S0/F3; limited; native shutdown error | 🟡 protocol blocked; A1/E1/S0/F1; blocked: reference/IMU; missing r2,r3 |
 
 > Horti IMU extraction/rectification corrections exist, but 48 saved inertial attempts
 > still require camera–IMU timing correction (six overlap earlier rectification defects). All seven non-ZED
-> sequences have N=3 for six algorithms; **OpenVINS now has N=3 on EuRoC and N=1 elsewhere**. Six
+> sequences have N=3 for six algorithms; **OpenVINS has three EuRoC attempts split into historical N=1 and patched N=2, and N=1 elsewhere**. Six
 > previously unscored run1 trajectories have repaired evaluations, retaining exit 134.
 > Rosario seq1/seq5 retain catastrophic scale failures; the saved fixed identity
 > IMU/camera calibration is now a confirmed defect, not a valid physical convention. EuRoC recovered trajectories are accepted with exit/coverage limitations; agricultural accuracy remains blocked.
@@ -94,12 +94,12 @@ OpenVINS cells keep original run1 and new runs2–3 in separate implementation c
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| DPV-SLAM | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; blocked: reference |
-| OKVIS2 | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference; missing r3 |
-| OKVIS2-X | 🟡 N=3; blocked: camera model; separate cohorts | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=0; blocked: execution/evidence; missing r2,r3 |
-| ORB-SLAM3 | ❌ N=0; observed failure r1; missing r2,r3 | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock; exit 134,139 | 🟡 N=3; blocked: reference/clock; exit 139 | 🟠 N=3; limited; exit 139 | 🟠 N=3; limited; exit 139 | 🟠 N=3; limited; exit 134 | 🔁 N=3; rerun: FPS; exit 139; separate cohorts |
-| AirSLAM | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | 🟠 N=3; limited; sparse | 🟠 N=3; limited; sparse | 🟠 N=3; limited; sparse | 🟡 N=3; blocked: reference; separate cohorts |
-| OV2SLAM | 🟡 N=3; collapse r2; blocked: camera model; observed failure r2 | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | 🟠 N=3; limited; native shutdown error | 🟠 N=3; limited; native shutdown error | 🟠 N=3; limited; native shutdown error | 🟡 N=3; blocked: reference |
+| DPV-SLAM | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference |
+| OKVIS2 | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | 🟡 protocol blocked; A2/E1/S1/F1; blocked: reference; missing r3 |
+| OKVIS2-X | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model; separate cohorts 2+1 | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | 🟡 protocol blocked; A1/E0/S0/F1; blocked: execution/evidence; exit run1: 141; missing r2,r3 |
+| ORB-SLAM3 | 🟡 protocol blocked; A1/E0/S0/F1; observed failure r1; exit run1: 134; missing r2,r3; blocked: calibration/reference | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S1/F2; blocked: reference/clock; exit run1: 134, run2: 139 | 🟡 protocol blocked; A3/E3/S2/F1; blocked: reference/clock; exit run1: 139 | ✅ Protocol N=3; A3/E3/S2/F1; limited; exit run3: 139 | ✅ Protocol N=3; A3/E3/S2/F1; limited; exit run3: 139 | ✅ Protocol N=3; A3/E3/S2/F1; limited; exit run1: 134 | 🔁 protocol invalid setup; A3/E3/S2/F1; rerun: FPS; exit run1: 139; separate cohorts 1+2 |
+| AirSLAM | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference/clock | ✅ Protocol N=3; A3/E3/S3/F0; limited; sparse | ✅ Protocol N=3; A3/E3/S3/F0; limited; sparse | ✅ Protocol N=3; A3/E3/S3/F0; limited; sparse | 🟡 protocol blocked; A3/E3/S3/F0; blocked: reference; separate cohorts 1+2 |
+| OV2SLAM | 🟡 protocol blocked; A3/E3/S0/F3; collapse r2; blocked: camera model; observed failure r2 | 🟡 protocol blocked; A3/E3/S0/F3; blocked: camera model | 🟡 protocol blocked; A3/E3/S0/F3; blocked: reference/clock | 🟡 protocol blocked; A3/E3/S0/F3; blocked: reference/clock | ✅ Protocol N=3; A3/E3/S0/F3; limited; native shutdown error | ✅ Protocol N=3; A3/E3/S0/F3; limited; native shutdown error | ✅ Protocol N=3; A3/E3/S0/F3; limited; native shutdown error | 🟡 protocol blocked; A3/E3/S0/F3; blocked: reference |
 | MASt3R-SLAM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | 🔧 config missing; excluded |
 
 > **OKVIS2:** all seven non-ZED cells now have N=3 after the September 23 recovery,
@@ -118,10 +118,10 @@ OpenVINS cells keep original run1 and new runs2–3 in separate implementation c
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
-| ORB-SLAM3 | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: rectified IMU; rerun: time offset | 🔁 N=3; rerun: rectified IMU; rerun: time offset | ✅ N=3 | 🟠 N=3; limited; partial coverage | ✅ N=3 | ❌ N=0; observed failure r1; missing r2,r3 |
-| OKVIS2 | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: time offset | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
-| OKVIS2-X | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: time offset | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
-| AirSLAM | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🔁 N=3; rerun: time offset | 🔁 N=3; rerun: time offset | 🟠 N=3; limited; sparse | 🟠 N=3; limited; sparse | ❌ N=2; limited; sparse; observed failure r1 | 🟡 N=1; blocked: reference/IMU; missing r2,r3 |
+| ORB-SLAM3 | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: rectified IMU; rerun: time offset | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: rectified IMU; rerun: time offset | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0; limited; partial coverage | ✅ Protocol N=3; A3/E3/S3/F0 | 🟡 protocol blocked; A1/E0/S0/F1; observed failure r1; exit run1: 139; missing r2,r3; blocked: calibration/reference |
+| OKVIS2 | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: time offset | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: time offset | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | 🟡 protocol blocked; A1/E1/S1/F0; blocked: reference/IMU; missing r2,r3 |
+| OKVIS2-X | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: time offset | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: time offset | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | ✅ Protocol N=3; A3/E3/S3/F0 | 🟡 protocol blocked; A1/E1/S1/F0; blocked: reference/IMU; missing r2,r3 |
+| AirSLAM | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🟡 protocol blocked; A3/E3/S3/F0; blocked: camera model | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: time offset | 🔁 protocol invalid setup; A3/E3/S3/F0; rerun: time offset | ✅ Protocol N=3; A3/E3/S3/F0; limited; sparse; patched r4–6 | ✅ Protocol N=3; A3/E3/S3/F0; limited; sparse; patched r4–6 | ✅ Protocol N=3; A3/E2/S2/F1; limited; sparse; observed failure r4; exit run4: 139; patched r4–6 | 🟡 protocol blocked; A1/E1/S1/F0; blocked: reference/IMU; missing r2,r3 |
 
 > All four methods have N=3 on the seven non-ZED sequences. **ZED configs now exist**:
 > OKVIS2, OKVIS2-X and AirSLAM each have corrected N=1 and need two more repetitions;
@@ -132,11 +132,11 @@ OpenVINS cells keep original run1 and new runs2–3 in separate implementation c
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 |
 |---|---|---|---|---|
-| CIFASIS GNSS-SI | 🔁 N=1; rerun: antenna lever; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 |
-| RTAB-Map | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 |
-| VINS-Fusion | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; invalid trajectory; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 |
-| OpenVINS+GPS | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 | 🟡 N=1; blocked: GNSS evidence; missing r2,r3 |
-| OKVIS2-X (tight) | 🔁 N=1; rerun: antenna lever; missing r2,r3 | 🔁 N=1; rerun: antenna lever; missing r2,r3 | 🔁 N=1; rerun: antenna lever; missing r2,r3 | 🔁 N=1; rerun: antenna lever; missing r2,r3 |
+| CIFASIS GNSS-SI | 🔁 protocol invalid setup; A1/E1/S0/F1; rerun: antenna lever; missing r2,r3 | 🟡 protocol blocked; A1/E1/S0/F0/U1; blocked: GNSS evidence; missing r2,r3 | 🟡 protocol blocked; A1/E1/S0/F0/U1; blocked: GNSS evidence; missing r2,r3 | 🟡 protocol blocked; A1/E1/S0/F0/U1; blocked: GNSS evidence; missing r2,r3 |
+| RTAB-Map | 🟡 protocol blocked; A1/E1/S0/F0/U1; blocked: GNSS evidence; missing r2,r3 | 🟡 protocol blocked; A1/E1/S0/F0/U1; blocked: GNSS evidence; missing r2,r3 | 🟡 protocol blocked; A1/E1/S0/F0/U1; blocked: GNSS evidence; missing r2,r3 | 🟡 protocol blocked; A1/E1/S0/F0/U1; blocked: GNSS evidence; missing r2,r3 |
+| VINS-Fusion | 🟡 protocol blocked; A1/E1/S0/F0/U1; blocked: GNSS evidence; missing r2,r3 | 🟡 protocol blocked; A1/E1/S0/F0/U1; blocked: GNSS evidence; missing r2,r3 | 🟡 protocol blocked; A1/E1/S0/F1; invalid trajectory; blocked: GNSS evidence; missing r2,r3 | 🟡 protocol blocked; A1/E1/S0/F0/U1; blocked: GNSS evidence; missing r2,r3 |
+| OpenVINS+GPS | 🟡 protocol blocked; A1/E1/S0/F0/U1; blocked: GNSS evidence; missing r2,r3 | 🟡 protocol blocked; A1/E1/S0/F0/U1; blocked: GNSS evidence; missing r2,r3 | 🟡 protocol blocked; A1/E1/S0/F0/U1; blocked: GNSS evidence; missing r2,r3 | 🟡 protocol blocked; A1/E1/S0/F0/U1; blocked: GNSS evidence; missing r2,r3 |
+| OKVIS2-X (tight) | 🔁 protocol invalid setup; A1/E1/S0/F0/U1; rerun: antenna lever; missing r2,r3 | 🔁 protocol invalid setup; A1/E1/S0/F0/U1; rerun: antenna lever; missing r2,r3 | 🔁 protocol invalid setup; A1/E1/S0/F0/U1; rerun: antenna lever; missing r2,r3 | 🔁 protocol invalid setup; A1/E1/S0/F0/U1; rerun: antenna lever; missing r2,r3 |
 
 > **Excluded from the executed server N=3 campaign.** These are historical N=1 results
 > from earlier machines, not repeated server measurements. Sixteen default cells have
@@ -168,7 +168,7 @@ OpenVINS cells keep original run1 and new runs2–3 in separate implementation c
 | 6 | Run OpenVINS VIO on rosariov2/seq5 N=3 | `[!]` run1 recovered and evaluated as collapse; confirmed IMU-extrinsic rerun, missing r2/r3, and agricultural prerequisites remain |
 | 7 | MASt3R-SLAM / MegaSaM revisit on the 24 GB server (optional — both OOM'd at 12 GB) | `[ ]` |
 | 8 | ORB-SLAM3 VO-clean LC-off re-runs | `[~]` LC-off configuration implemented; Rosario seq1/seq5 and Horti str02 missing after crashes |
-| 9 | Finish executed N=3 server campaign (no GNSS) | `[~]` 550/600 selected evaluations; 178/200 cells contain three evaluations. 45 cells are clean accepted N=3. Original N=5/GNSS target remains separate. |
+| 9 | Finish executed N=3 server campaign (no GNSS) | `[~]` 550/600 selected evaluations; 178/200 cells contain three evaluations. Protocol counts are in the current handoff; the original 45 clean-qualified cells are preserved. Original N=5/GNSS target remains separate. |
 | 10 | Complete/validate GNSS-VIO N=1 sweep | `[~]` 16 default cells COMPLETE; four VINS-Fusion evaluations unvalidated; server repeats not run |
 | 10b | Re-run OpenVINS+GPS HortiMulti with corrected extrinsics; validate all four rows | `[ ]` not completed by the no-GNSS server campaign |
 | 11 | Normalize EuRoC dataset aliases and result/config paths to `euroc_mav` | `[x]` central shell/Python canonicalization; obsolete aliases removed |
@@ -388,8 +388,8 @@ server runners. Remaining gaps are shown in the matrices above.
 | Rebuild `benchmark-vio.csv` after N=3 runs (Basalt/ORB-SLAM3/OpenVINS) | `[x]` current 168 planned rows; missing repetitions are explicit |
 | Add MASt3R-SLAM to applicable CSVs | `[ ]` deferred scope extension, not a missing N=3 obligation |
 | Generate segment maps for all new Phase 2 sequences | `[ ]` |
-| Final cross-algo ATE plots (VO vs VIO per sequence) | `[~]` all-mode figures label 45 clean EuRoC N=3 cells, limited claims and material agricultural/GNSS blockers |
-| Explicit claim acceptance and stable regeneration | `[x]` evidence-pinned ledger; 45 clean N=3 cells; EuRoC numbers retained, Rosario frame conversion corrected |
+| Final cross-algo ATE plots (VO vs VIO per sequence) | `[~]` all-mode figures label 72 verified protocol N=3 cells, separate A/E/S/F counts, claim limits and agricultural/GNSS blockers |
+| Explicit claim acceptance and stable regeneration | `[x]` evidence-pinned ledger; 72 verified protocol N=3 cells; original 45 clean-qualified cells and all numerical scores preserved |
 | Capture actual native exits and validate repaired execution | `[!]` OV2/Voxel shutdown errors found despite wrapper zero; native diagnostic execution remains unauthorized |
 | Thesis-ready LaTeX table | `[ ]` |
 | Exclude five COMPLETE smoke artifacts from headline discovery | `[x]` explicit campaign membership; all smoke/historical evidence retained |

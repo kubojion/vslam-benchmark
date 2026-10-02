@@ -26,15 +26,15 @@ blocks acceptance; it never silently requalifies a new run. The ledger covers al
 660 selected default slots and retains 18 superseded AirSLAM records, with cell decisions and per-repetition exceptions.
 Historical excluded/smoke outputs and GNSS variants retain their separate scopes.
 
-A green **✅ N=3** requires three explicitly accepted, same-cohort repetitions,
-valid evaluated trajectories, zero recorded exits and at least 95% dense camera
-export coverage in each repetition. It does not mean zero tracking loss or full
-processing instrumentation. Sparse exports, crashes after saving and lower coverage
-remain paper-usable only with their specific limitation and receive no clean tick.
-The 95% gate is a reporting criterion; scores and exact coverage remain visible.
-Genuine failed attempts stay in the denominator and are never replaced merely to
-obtain three successes. An accepted failure supports the observed configured-attempt
-outcome, not a claim that a calibrated algorithm inherently cannot solve that scene.
+The [protocol review](protocol-review-20261002.md) supersedes the old clean-success
+meaning of green ticks. **✅ Protocol N=3** now means three completed, verified,
+same-implementation attempts. A native failure counts as an attempted outcome;
+partial coverage or native keyframes do not invalidate a correctly conducted test.
+Successes, failures and evaluated trajectories are reported separately. Accuracy
+eligibility remains specific to the recorded profile, exported samples and reference
+support. The legacy `clean_qualified_n3` field retains the original 45-cell criterion
+for audit compatibility only; it no longer drives green ticks. No numerical score,
+calibration requirement or failure denominator is changed by this reporting review.
 
 Historical dirty runner bytes and some source-to-binary linkage are unrecoverable
 from recorded digests alone. They remain disclosed reproducibility limitations.

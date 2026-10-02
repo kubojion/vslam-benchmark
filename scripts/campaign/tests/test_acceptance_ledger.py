@@ -43,20 +43,24 @@ def test_changed_log_config_or_numerical_evidence_and_new_defects_block_acceptan
 
 def attempt(status='accepted', outcome='ok', coverage=100):
     return dict(exists=True,evaluated=True,numerical_status=outcome,coverage={'coverage_gap_pct':coverage},
-        process={'exit_code':0},qualification={'status':status,'claim_limits':[]})
+        trajectory_saved=True,cohort_fingerprint='same',process={'exit_code':0},qualification={'status':status,'claim_limits':[], 'protocol':{'status':'verified'}})
 
 
-def test_green_requires_three_accepted_clean_compatible_dense_repetitions():
+def test_protocol_tick_accepts_failures_sparse_partial_but_not_mixed_or_unverified():
     attempts=[attempt() for _ in range(3)]
     cell=dict(run_type='vo',algorithm='okvis2',dataset='euroc_mav',evaluated=3,attempts=attempts)
-    assert render_cell(cell)=='✅ N=3'
-    for status,outcome,coverage in [('accepted_with_limitation','ok',100),
-        ('valid_observed_failure','scale_collapse',100),('accepted','ok',94.9)]:
+    assert '✅ Protocol N=3' in render_cell(cell)
+    for status,outcome,coverage in [('accepted_with_limitation','ok',None),
+        ('valid_observed_failure','scale_collapse',100),('accepted','ok',30)]:
         changed=copy.deepcopy(cell);changed['attempts'][1]=attempt(status,outcome,coverage)
-        assert '✅' not in render_cell(changed)
-    assert not cell_acceptance(attempts,False)['clean_qualified_n3']
+        assert '✅ Protocol N=3' in render_cell(changed)
+    assert not cell_acceptance(attempts,False)['protocol_verified_n3']
     attempts[0]['qualification']['native_error_observations']=[{'line':125,'text':'terminate called'}]
-    assert not cell_acceptance(attempts)['clean_qualified_n3']
+    result=cell_acceptance(attempts)
+    assert result['protocol_verified_n3'] and not result['clean_qualified_n3']
+    assert result['verified_failure_count']==1 and result['successful_run_count']==2
+    attempts[0]['qualification']['protocol']['status']='blocked'
+    assert not cell_acceptance(attempts)['protocol_verified_n3']
 
 
 def test_accepted_native_failure_without_trajectory_is_reused_not_sampled_again():

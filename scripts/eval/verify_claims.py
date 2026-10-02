@@ -13,12 +13,12 @@ def render(rows, inputs):
         'Generated from hash-checked schema-3 evaluations and matching CSVs. These are inventory '
         'facts, not certification of scientific claims. Numerical `ok` is separate from '
         'execution, calibration, reference validity and publication qualification.', '',
-        '| Mode | Planned defaults | Evaluated | Numerical ok | Scale collapse | Invalid trajectory | Nonzero exits | Qualified clean N=3 cells |',
+        '| Mode | Planned defaults | Evaluated | Numerical ok | Scale collapse | Invalid trajectory | Nonzero exits | Protocol-verified N=3 cells |',
         '|---|---:|---:|---:|---:|---:|---:|---:|']
     for mode in RUN_TYPES:
         group = [r for r in rows if r['run_type'] == mode and r['gnss_variant'] == 'default']
         counts = Counter(r['run_status'] for r in group)
-        n3 = sum(s['clean_qualified_n3'] for _, _, s in cells(group))
+        n3 = sum(s['protocol_verified_n3'] for _, _, s in cells(group))
         lines.append(f"| {mode} | {len(group)} | {sum(r['eval_schema'] == 3 for r in group)} | "
             f"{counts['ok']} | {counts['scale_collapse']} | {counts['eval_failed']} | "
             f"{sum(r['process_exit_code'] not in (0, None) for r in group)} | {n3} |")

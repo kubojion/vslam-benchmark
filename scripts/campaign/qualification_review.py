@@ -20,7 +20,8 @@ def _evidence_hash(path, mtime_ns, ctime_ns, size):
 
 def review_identity(repo):
     paths = ['scripts/campaign/qualification_review.py', 'scripts/campaign/protocol_findings.py', REVIEW_DOCUMENT,
-             'scripts/campaign/acceptance_ledger.py']
+             'scripts/campaign/acceptance_ledger.py', 'scripts/campaign/protocol_status.py',
+             'docs/protocol-review-20261002.md']
     paths += [p for p in ('docs/campaigns/horti-time-offset-findings-20261001.json',
                           'docs/campaigns/gnss-lever-findings-20261001.json',
                           'docs/campaigns/reference-sources-20261001.json',

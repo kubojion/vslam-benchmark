@@ -78,10 +78,11 @@ derived from nominal input count divided by wrapper elapsed time.
 A genuine scale collapse, incomplete export or nonzero exit remains an observed
 outcome. Resolving its protocol evidence can make the outcome reusable for failure
 statistics; it cannot turn it into a clean successful repetition. Partial saved
-trajectories can support appropriately scoped analysis. A clean N=3 tick additionally
-requires three qualified, consistent-cohort, valid trajectories, zero exits and at
-least 95% dense export coverage each. This threshold is an explicit reporting gate,
-not proof that every input frame was processed or that tracking was error-free.
+trajectories can support appropriately scoped analysis. The
+[2026-10-02 protocol review](protocol-review-20261002.md) supersedes the old clean
+success tick: green now requires three completed verified same-cohort attempts,
+including recorded failures. The old ≥95%/zero-exit criterion remains only as the
+legacy `clean_qualified_n3` audit field. It no longer governs protocol ticks.
 
 ## Next decisions and execution readiness
 

@@ -22,6 +22,7 @@ REPO=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(REPO/'scripts/campaign'))
 from run_future_manifest import verify_files
 from _run_type import RUN_TYPES
+from protocol_status import attempt_protocol
 
 COLUMNS = ['dataset', 'seq', 'environment_type', 'algo', 'run_type', 'use_imu', 'use_lc', 'run',
  'gnss_variant', 'run_status', 'eval_schema', 'input_fps', 'image_width', 'image_height',
@@ -51,7 +52,9 @@ COLUMNS = ['dataset', 'seq', 'environment_type', 'algo', 'run_type', 'use_imu', 
  'measurement_warning', 'command_time_s', 'command_input_fps', 'command_time_scope',
  'end_to_end_fps_semantics', 'paper_usable', 'accuracy_eligible', 'accepted_claim',
  'claim_limits', 'reproducibility_disclosures', 'cell_acceptance', 'clean_qualified_n3',
- 'native_error_observation_count']
+ 'native_error_observation_count', 'protocol_status', 'protocol_basis', 'protocol_blockers',
+ 'attempt_completed', 'observed_outcome', 'successful_run', 'observed_failure',
+ 'protocol_verified_n3', 'protocol_state', 'implementation_label']
 
 
 def get(document,*keys):
@@ -119,6 +122,12 @@ def row_from_attempt(attempt,evaluation,cell,*,repo=REPO,membership='original_n3
         blockers=blockers+['within_cell_source_binary_parameter_or_hardware_mismatch']
     machine=ev.get('machine',{});process=attempt.get('process',{})
     row=dict.fromkeys(COLUMNS)
+    protocol = attempt_protocol(dict(attempt, evaluated=ev.get("eval_schema")==3, numerical_status=status))
+    protocol['protocol_blockers'] = json.dumps(protocol['protocol_blockers'], separators=(',', ':'))
+    row.update(protocol)
+    row['protocol_verified_n3'] = (cell or {}).get('acceptance', {}).get('protocol_verified_n3', False)
+    row['protocol_state'] = (cell or {}).get('acceptance', {}).get('protocol_state', 'unreviewed')
+    row['implementation_label'] = qualification.get('protocol', {}).get('implementation', 'recorded historical implementation')
     row.update(dataset=ds,seq=seq,algo=algo,run_type=mode,run=run,gnss_variant=variant,
         environment_type='indoor_reference' if ds=='euroc_mav' else 'agricultural',
         use_imu=mode in ('vio','vio-lc','gnss-vio'),use_lc=ev.get('use_lc'),

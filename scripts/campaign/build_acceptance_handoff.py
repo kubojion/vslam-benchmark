@@ -49,7 +49,11 @@ def main():
         purpose='distinct ZED inertial+LC startup/optimizer crash',prerequisite='serial-specific calibration and native crash diagnosis'))
     for d in diagnostics:
         d['focused_execution_validated']=focused and d['cell'] in validated_cells
-    output=dict(schema=1,claim_review='docs/paper-acceptance-20261001.md',categories=dict(counts),
+    protocol_totals={key:sum(c['acceptance'][key] for c in inv['cells']) for key in
+        ('protocol_verified_n3','protocol_verified_attempts','verified_failure_count',
+         'attempt_count','completed_attempt_count','evaluated_trajectory_count',
+         'successful_run_count','observed_failure_count','unknown_outcome_count','missing_attempt_count')}
+    output=dict(schema=2,protocol_totals=protocol_totals,claim_review='docs/paper-acceptance-20261001.md',protocol_review='docs/protocol-review-20261002.md',categories=dict(counts),
         actions=actions,diagnostic_targets=diagnostics,diagnostics_are_not_campaign_repetitions=True,
         execution_authorized=False, completed_focused_campaign=str(proof_path.relative_to(REPO)) if focused else None)
     preserved_write(REPO/'results/acceptance-20261001/handoff.json',json.dumps(output,indent=2)+'\n')
@@ -57,17 +61,28 @@ def main():
         'Generated from the checked inventory. The [claim review](paper-acceptance-20261001.md) defines eligibility, limitations and evidence. '
         'This includes the [matched-session calibration review](reference-review-20261001.md): Rosario frame-dependent metrics were corrected; accepted EuRoC values and original attempts are preserved. '+
         ('**Acceptance review complete; focused EuRoC OpenVINS/AirSLAM execution validated. Other native paths remain unverified.**' if focused else '**Acceptance review complete; native execution remains unverified.**'),'',
-        '| Mode | Clean accepted N=3 cells | Accepted repetitions | Limited repetitions | Observed failures accepted | Required reruns | Missing | Blocked |',
+        '| Mode | Protocol-verified N=3 cells | Accepted accuracy claims | Limited accuracy claims | Failure-only claim observations | Required reruns | Missing | Blocked |',
         '|---|---:|---:|---:|---:|---:|---:|---:|']
     for mode in ('vo','vo-lc','vio','vio-lc','gnss-vio'):
         group=[c for c in inv['cells'] if c['run_type']==mode]
         states=Counter(a['qualification']['status'] for c in group for a in c['attempts'])
-        lines.append(f"| {mode} | {sum(c['acceptance']['clean_qualified_n3'] for c in group)} | "+' | '.join(str(states[s]) for s in ('accepted','accepted_with_limitation','valid_observed_failure','rerun_required','not_executed','blocked'))+' |')
+        lines.append(f"| {mode} | {sum(c['acceptance']['protocol_verified_n3'] for c in group)} | "+' | '.join(str(states[s]) for s in ('accepted','accepted_with_limitation','valid_observed_failure','rerun_required','not_executed','blocked'))+' |')
+    lines+=['','Protocol counts are separate from claim-status counts above. Success means a clean final export; native errors after saving remain failures with potentially usable accuracy.', '',
+        '| Mode | Verified attempts | Verified failures | Attempts | Evaluated | Clean exports | Observed failures | Unknown |',
+        '|---|---:|---:|---:|---:|---:|---:|---:|']
+    for mode in ('vo','vo-lc','vio','vio-lc','gnss-vio'):
+        group=[c for c in inv['cells'] if c['run_type']==mode]
+        lines.append('| '+mode+' | '+' | '.join(str(sum(c['acceptance'][k] for c in group)) for k in
+            ('protocol_verified_attempts','verified_failure_count','attempt_count','evaluated_trajectory_count',
+             'successful_run_count','observed_failure_count','unknown_outcome_count'))+' |')
+    lines+=['', '**OpenVINS cohort completeness:** each EuRoC sequence has historical N=1 plus patched N=2. '+
+        'The selected logical slots are consumed. One additional patched repetition per sequence would complete that implementation cohort, only if separately authorized. '+
+        'These three potential additions are separate from the 81 absent planned slots and are not scheduled here. Old cohorts are not resampled for success.', '']
     lines+=['',f"Future default actions: {counts['reusable']} reusable observations, {counts['required_rerun']} required reruns, {counts['missing']} missing repetitions, {counts['blocked']} blocked. "+
         ('The separately authorized focused EuRoC campaign is complete; its 24 attempts yielded 23 final evaluations and one retained native refinement failure. No other paths were executed and no push occurred.' if focused else 'Retaining an observation does not certify a repaired runner. No new estimator run or push occurred.'), '',
-        '## Clean N=3 cells', '', '| Cell | Accepted claim |','|---|---|']
+        '## Protocol-verified N=3 cells', '', '| Cell | Accepted claim |','|---|---|']
     for c in inv['cells']:
-        if c['acceptance']['clean_qualified_n3']:
+        if c['acceptance']['protocol_verified_n3']:
             lines.append(f"| `{c['key']}` | {c['attempts'][0]['qualification']['claim']} |")
     lines+=['','## Limited results and accepted failures','','| Attempt | Acceptance | Specific limit |','|---|---|---|']
     for a in actions:
@@ -91,9 +106,9 @@ def main():
     lines += [f'| {b} | {n} |' for b,n in sorted(blockers.items())]
     if focused:
         lines+=['','## Completed focused execution','',
-            'The three EuRoC OpenVINS/AirSLAM integration targets and first full gates passed. All six missing OpenVINS repetitions and all 18 corrected AirSLAM slots were consumed once, with immediate evaluation where final output existed and no success-conditioned retries. MH05 VIO-LC run4 has a native junction-database SIGSEGV without final output; runs5–6 succeeded. '
+            'The three EuRoC OpenVINS/AirSLAM integration targets and first full gates passed. All six missing OpenVINS repetitions and all 18 corrected AirSLAM slots were consumed once, with immediate evaluation where final output existed and no success-conditioned retries. MH05 VIO-LC run4 has a native refinement SIGSEGV without final output (later reproduced in the map publisher; exact cause unresolved); runs5–6 succeeded. '
             'See [the focused campaign](euroc-focused-campaign-20261001.md) for source, build, configuration, output and shutdown evidence. '
-            'AirSLAM supports sparse-keyframe accuracy; OpenVINS original run1 limitations and its separate implementation cohort remain. No automatic green tick follows from completing three exports.', '',
+            'AirSLAM supports sparse-keyframe accuracy; OpenVINS original run1 limitations and its separate implementation cohort remain. Protocol ticks include verified failures and supported sparse/partial outputs; OpenVINS implementation cohorts remain N=1 and N=2.', '',
             '## Remaining execution prerequisites','',
             'Resolve the remaining ORB FPS/IMU native loading, OV2SLAM/Voxel shutdown and ORB/OKVIS ZED failures before those paths are certified. Agricultural/GNSS reference, calibration and input blockers remain. No further estimator execution is authorized by this handoff.']
     else:

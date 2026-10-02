@@ -59,8 +59,7 @@ bytes are recoverable by hash under `.evaluation_history/` and the external back
 Rebuilding an inventory verifies input and saved-config hashes. CSV/table/figure
 and browser generators then verify the inventory and reject stale CSVs rather than
 mixing snapshots. Matching published and staged evaluations use the normal result
-path in CSV links. Distinct cohorts and GNSS variants are not pooled. No clean N=3
-tick is inferred from count or one successful repetition.
+path in CSV links. Distinct cohorts and GNSS variants are not pooled. Protocol N=3 requires three completed reviewed same-cohort attempts, including properly recorded failures. Counts alone do not establish protocol validity.
 
 Original backup: `/data/imoroz/vslam-repair-backups/20261001T102654Z-vo-pre-repair/`.
 It contains restoration instructions, verified checksum inventories, Git history,

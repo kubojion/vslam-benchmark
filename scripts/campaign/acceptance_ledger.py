@@ -5,6 +5,7 @@ import hashlib
 import json
 from functools import lru_cache
 from pathlib import Path
+from protocol_status import summarize_attempts
 
 LEDGER = 'docs/campaigns/paper-acceptance-20261001.json'
 DOCUMENT = 'docs/paper-acceptance-20261001.md'
@@ -55,9 +56,11 @@ def reviewed_decision(repo, relative, meta, evaluation, findings, snapshots, exi
         errors.append('reviewed_configuration_no_longer_verified')
     if errors:
         return dict(status='blocked', blockers=sorted(set(errors)), claim_limits=[],
+                    protocol=dict(status='blocked', basis='stale_review', blockers=sorted(set(errors))),
                     reuse_qualified=False, paper_usable=False, accuracy_eligible=False,
                     review='explicit_claim_review_stale', rerun_decision='resolve_changed_evidence_first')
     return dict(status=record['status'], blockers=record['blockers'],
+                protocol=record.get('protocol', dict(status='blocked', basis='no_explicit_protocol_review')),
                 claim_limits=record['claim_limits'], disclosures=record['disclosures'],
                 native_error_observations=record.get('native_error_observations', []),
                 claim=record['claim'], review='explicit_claim_review',
@@ -91,4 +94,5 @@ def cell_acceptance(attempts, consistent=True):
         status = 'accepted' if clean else 'blocked'
     return dict(status=status, attempts=dict(counts), clean_qualified_n3=clean,
                 paper_usable_attempts=sum(counts[s] for s in USABLE),
-                missing_repetitions=missing, verified_ready_to_run=False)
+                missing_repetitions=missing, verified_ready_to_run=False,
+                **summarize_attempts(attempts, consistent))

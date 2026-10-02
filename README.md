@@ -1,13 +1,15 @@
 # vSLAM Benchmark
 
-> **Focused EuRoC campaign complete (2026-10-01 UTC / 2026-10-02 local):** six missing
-> OpenVINS repetitions and 18 corrected AirSLAM repetitions have been executed once,
-> reviewed: 23 final trajectories evaluated and one native VIO-LC failure retained. The four-mode comparison has **550/600 evaluations**;
-> all **45 previously accepted N=3 cells** are preserved. AirSLAM has sparse-keyframe
-> limits; OpenVINS retains its original-run limitations and separate implementation cohort.
-> See [TODO](TODO.md), [focused campaign evidence](docs/euroc-focused-campaign-20261001.md)
-> and [the acceptance handoff](docs/acceptance-handoff-20261001.md). Other native paths
-> and agricultural/GNSS prerequisites remain unresolved. No further runs or push are authorized.
+> **Protocol review (2026-10-02): 72 same-cohort cells have three verified attempts.**
+> Across 225 verified EuRoC attempts, 34 native failures remain recorded; 33 saved
+> trajectories that support conditional accuracy. A green tick verifies protocol,
+> not successful tracking or full coverage. The original 45 clean-qualified cells
+> and all numerical results are preserved. OpenVINS remains historical N=1 plus
+> patched N=2 per EuRoC sequence. See [TODO](TODO.md),
+> [protocol review](docs/protocol-review-20261002.md) and
+> [handoff](docs/acceptance-handoff-20261001.md). Agricultural/GNSS blockers remain.
+> Only bounded saved-map diagnostics were added; no production runs or push.
+
 
 
 | Algorithm | Type | Source |
@@ -17,9 +19,9 @@
 | **OKVIS2-X** | Multi-sensor OKVIS2 extension; VO/VIO/VIO-LC/GNSS capability | [ethz-mrl/OKVIS2-X](https://github.com/ethz-mrl/OKVIS2-X) (cmake build, system deps). Wired in independently of OKVIS2: own source tree, configs, runner and results. |
 | **MAC-VO** | Hybrid (learned uncertainty), stereo VO | [kubojion/MAC-VO @ vslam-benchmark-patches](https://github.com/kubojion/MAC-VO/tree/vslam-benchmark-patches) |
 | **Basalt** | Optimization-based stereo VO / VIO | [VladyslavUsenko/basalt](https://gitlab.com/VladyslavUsenko/basalt) (binary install v0.1.7) |
-| **AirSLAM** | Deep-feature point-line VO / VIO / V-SLAM (TRO 2025) | [kubojion/AirSLAM @ vslam-benchmark-patches](https://github.com/kubojion/AirSLAM/tree/vslam-benchmark-patches) (Docker, ROS Noetic + TensorRT; fork carries the VIO launch files) |
+| **AirSLAM** | Deep-feature point-line VO / VIO / V-SLAM (TRO 2025) | [kubojion/AirSLAM @ vslam-benchmark-patches](https://github.com/kubojion/AirSLAM/tree/vslam-benchmark-patches) (Docker, ROS Noetic + TensorRT; fork carries VIO launch files; corrected inertial results use rectification patch `1e0ad79c28d4`) |
 | **OV2SLAM** | Fully online feature/KLT stereo VO with BA and optional online-BoW LC | [ov2slam/ov2slam](https://github.com/ov2slam/ov2slam) (Docker, ROS 1 Noetic) |
-| **OpenVINS** | MSCKF stereo-IMU filter (VIO only, no LC) | [kubojion/open_vins @ vslam-benchmark-patches](https://github.com/kubojion/open_vins/tree/vslam-benchmark-patches) (Docker, ROS 2 Humble; fork carries Dockerfile.benchmark) |
+| **OpenVINS** | MSCKF stereo-IMU filter (VIO only, no LC) | [kubojion/open_vins @ vslam-benchmark-patches](https://github.com/kubojion/open_vins/tree/vslam-benchmark-patches) (Docker, ROS 2 Humble; fork carries Dockerfile.benchmark; new EuRoC runs use shutdown patch `7a496c53d9ee`) |
 | **Voxel-SVIO** | Voxel-map-augmented stereo MSCKF VIO (RA-L 2025) | [ZikangYuan/voxel_svio](https://github.com/ZikangYuan/voxel_svio) (Docker, ROS 1 Noetic) |
 | **CIFASIS GNSS-SI** | Tightly-coupled GNSS+stereo+inertial SLAM, ORB-SLAM3-based (JFR 2023) | [CIFASIS/gnss-stereo-inertial-fusion](https://github.com/CIFASIS/gnss-stereo-inertial-fusion) (Docker, ROS 1 Noetic) |
 | **RTAB-Map** | Graph-based stereo SLAM with optional IMU + GNSS factors | [introlab/rtabmap_ros](https://github.com/introlab/rtabmap_ros) (apt, ROS 2 Humble) |
@@ -181,8 +183,7 @@ their original directories and separate reports. Missing runs and failures remai
 explicit. [Tables](docs/generated/tables.md), [counts](docs/generated/verified-claims.md),
 [figures](docs/generated/README.md) and the browser use the same checked inventory.
 
-The [claim review](docs/paper-acceptance-20261001.md) preserves **45 clean N=3
-EuRoC cells** for the recorded-profile comparison. There are 234 reusable observations, 73 required reruns, 81 missing repetitions and 272 blocked cases.
+The [protocol review](docs/protocol-review-20261002.md) verifies **72 N=3 EuRoC cells**, including recorded failures. The original 45 clean-qualified cells remain an unchanged audit subset. There are 234 reusable observations, 73 required reruns, 81 missing repetitions and 272 blocked cases.
 The focused EuRoC paths have native execution evidence; this does not certify
 other algorithm/dataset paths or resolve agricultural reference and GNSS blockers.
 Older generated reports and figures remain [archived](docs/generated/historical-before-repair-20261001/README.md).

@@ -2,12 +2,12 @@
 
 Generated from hash-checked schema-3 evaluations and matching CSVs. These are inventory facts, not certification of scientific claims. Numerical `ok` is separate from execution, calibration, reference validity and publication qualification.
 
-| Mode | Planned defaults | Evaluated | Numerical ok | Scale collapse | Invalid trajectory | Nonzero exits | Qualified clean N=3 cells |
+| Mode | Planned defaults | Evaluated | Numerical ok | Scale collapse | Invalid trajectory | Nonzero exits | Protocol-verified N=3 cells |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vo | 192 | 183 | 182 | 1 | 0 | 7 | 17 |
-| vo-lc | 144 | 136 | 135 | 1 | 0 | 9 | 9 |
-| vio | 168 | 145 | 142 | 3 | 0 | 7 | 11 |
-| vio-lc | 96 | 86 | 86 | 0 | 0 | 2 | 8 |
+| vo | 192 | 183 | 182 | 1 | 0 | 7 | 24 |
+| vo-lc | 144 | 136 | 135 | 1 | 0 | 9 | 18 |
+| vio | 168 | 145 | 142 | 3 | 0 | 7 | 18 |
+| vio-lc | 96 | 86 | 86 | 0 | 0 | 2 | 12 |
 | gnss-vio | 60 | 20 | 19 | 0 | 1 | 0 | 0 |
 
 Legacy GNSS variants: 6 separate rows; not included in default repetition counts.
@@ -132,9 +132,9 @@ Scientific statuses among existing headline attempts: accepted=151, accepted_wit
 
 | Source | SHA-256 |
 |---|---|
-| `inventory.json` | `2b55697202e3e83031550c5f3fad07d313ecb0c9b1d06d09044bab3215beafed` |
-| `benchmark-vo.csv` | `281a1d2e577339f57ad1ae173a7986d9a7822a76dd668818e53d1488e93849d1` |
-| `benchmark-vo-lc.csv` | `74837ed0caa431b848e1348d4ad4992dfcf724659d066505889601db8a8a2817` |
-| `benchmark-vio.csv` | `bdc937a097257244e886132948481c72e1b48eefde474dd3783a84643f200816` |
-| `benchmark-vio-lc.csv` | `8298fd060ed996a89a2b87b4a466c220c9dabe3bbed841fef93686f7fcf649e0` |
-| `benchmark-gnss-vio.csv` | `b43cee6493aa173d418fa9fc6a9ac3f241eca175a520e28192faa59ffe050bb6` |
+| `inventory.json` | `1938ae45ec8c86f303fdeafd9d9ff077501eddd302ebbe6ab2c9a60ad87d99e3` |
+| `benchmark-vo.csv` | `cf4f7f65e4971fb59a5845e2fce4c0632ffaf31b8c5484982542be4ecbbdf22c` |
+| `benchmark-vo-lc.csv` | `a6d66622e420682ad7620ff43bd731875cf5ee0730bda0a2d3e6dd88da5a4e50` |
+| `benchmark-vio.csv` | `691163d32444c76e92dc3f14e8d87977e22b506caa3f2db5e8040765dae1dd7d` |
+| `benchmark-vio-lc.csv` | `9037550fce7983d12e00fc145bee855df44063bb7fb3c351de77b1d60b9fb32d` |
+| `benchmark-gnss-vio.csv` | `0228190305646ddf6844ec7abfd74951f6d2bc3b1846663f73df777a920b0ea3` |

@@ -1,0 +1,297 @@
+{
+  "schema": 1,
+  "review_date": "2026-10-02",
+  "diagnostics_not_production": true,
+  "original_failure_retained": true,
+  "production_map_unchanged": true,
+  "diagnostics": [
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-original",
+      "native": "SIGSEGV",
+      "debugger_exit": 0,
+      "fault_thread": "MapMessage publisher",
+      "main_thread": "junction vocabulary clustering",
+      "build": "frozen production bytes"
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-symbols",
+      "native": "exited normally",
+      "debugger_exit": 1,
+      "debugger_exit_reason": "post-exit stack command has no live stack",
+      "build": "separate publisher TU with -g, remaining production objects unchanged",
+      "final_output": "diagnostic only, never promoted or evaluated"
+    }
+  ],
+  "root_cause": "unresolved; unsynchronized publisher Clear is source-supported hypothesis",
+  "airslam_regression": {
+    "upstream_cases_passed": 2,
+    "upstream_cases_failed": 4,
+    "patched_cases_passed": 6,
+    "estimator_executed": false
+  },
+  "evidence": [
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-original/AirSLAM_mapv0.bin",
+      "sha256": "053f2a9c003577767a1e651610346a2461d43850b87b9c379b879a99dad285e2",
+      "bytes": 124582626
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-original/debug.gdb",
+      "sha256": "03518fb8ef9be16cd26b4146ac18f6253c793e77675ce7d798c032daab84e6e0",
+      "bytes": 182
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-original/debugger-exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-original/gdb.log",
+      "sha256": "82769a22c185c909dada17f9c3de7f66f389536d2b9c01de7655f09d5f155433",
+      "bytes": 148797
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-original/inputs.json",
+      "sha256": "d348f8bd5a55370e6b2e65915734d312852bc600f9f0024c3000ea95a7a255d6",
+      "bytes": 2271
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-original/refinement.yaml",
+      "sha256": "11da852b80a911f366cca24250b4885f219d414a72e2ffc002e5b721783c530c",
+      "bytes": 690
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-original/ros/log/be0fc0b2-be35-11f1-b3fd-2217033fec2f/master.log",
+      "sha256": "6e6c520041a4eb4a7d5fc54acc23cdaa735926e2cbe58eeab7e5dc23c552caf2",
+      "bytes": 3545
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-original/ros/log/be0fc0b2-be35-11f1-b3fd-2217033fec2f/roslaunch-e196154a9401-7321.log",
+      "sha256": "b6c8b350195d7bb3d819baae3d86f2971638b5b3a07d11679d39f1f5f379350f",
+      "bytes": 15792
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-original/ros/log/be0fc0b2-be35-11f1-b3fd-2217033fec2f/rosout-1-stdout.log",
+      "sha256": "6cd065779f6670f31370c81a7fb858ecf6ea8621c0b5040762876f025048b95c",
+      "bytes": 200
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-original/ros/log/be0fc0b2-be35-11f1-b3fd-2217033fec2f/rosout.log",
+      "sha256": "1d6c8325a1876673ccbdf74e4e853c55c22dcfa378121f977a796336d55f1579",
+      "bytes": 37
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-original/ros/roscore-47451.pid",
+      "sha256": "c0224e278f4b6877840421aab2ae1b94e811eb5558be1de5b307913aead3a184",
+      "bytes": 4
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-original/roscore.log",
+      "sha256": "3f2b6596de4b55f9d494ea028fbb80cf9d4b5f0d03fae8a8a2bcb0c24588be8d",
+      "bytes": 930
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-original/run.sh",
+      "sha256": "16bf7270d831190eec36db0f868cbb5d58dc8b24fd905b7ffefbe93f3956a706",
+      "bytes": 1260
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-symbols/AirSLAM_mapv0.bin",
+      "sha256": "053f2a9c003577767a1e651610346a2461d43850b87b9c379b879a99dad285e2",
+      "bytes": 124582626
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-symbols/AirSLAM_mapv1.bin",
+      "sha256": "c93934a55a01cb9159ccba1f6bc1c07977a16af9d34ac52a4fadec3f295a6dcc",
+      "bytes": 127976741
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-symbols/debug.gdb",
+      "sha256": "0366e5fc6aaa0ebf542409baaa00400d3245c4cfb3aae7b276d0be896ec5033b",
+      "bytes": 221
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-symbols/debugger-exit.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytes": 2
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-symbols/gdb.log",
+      "sha256": "d2e65b3b2b29ac2e4e1a807ae9a1dedd1506557ea06618c26c8b5f5039bc1f92",
+      "bytes": 1469
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-symbols/inputs.json",
+      "sha256": "3d5b38edba2b08747643e16c430097e3624f00f879704413277a0c056cb4f9f2",
+      "bytes": 2587
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-symbols/refinement.yaml",
+      "sha256": "11da852b80a911f366cca24250b4885f219d414a72e2ffc002e5b721783c530c",
+      "bytes": 690
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-symbols/ros/log/5985071e-be36-11f1-8d13-2217033fec2f/master.log",
+      "sha256": "bf4e94b67260d5970127b6b0472bfdc457ae6c410bd5c2c828487490c76087d2",
+      "bytes": 3545
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-symbols/ros/log/5985071e-be36-11f1-8d13-2217033fec2f/roslaunch-e196154a9401-7497.log",
+      "sha256": "8775a5241350fae8e450d5d5596b76d7bc77c6205ffad0ffdbb110e37233fcfa",
+      "bytes": 15873
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-symbols/ros/log/5985071e-be36-11f1-8d13-2217033fec2f/rosout-1-stdout.log",
+      "sha256": "8bf2ae428c06bf419e72f4e4eb54e9352bb812a66d7d6cb95bef53d5ff8d3b5f",
+      "bytes": 199
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-symbols/ros/log/5985071e-be36-11f1-8d13-2217033fec2f/rosout.log",
+      "sha256": "d5a1896791f807dcc69865b0feb92183cc2a01381138bb5ebc75b6c0e0bfc2d7",
+      "bytes": 37
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-symbols/ros/roscore-51345.pid",
+      "sha256": "fc6177b04a212f55655a2e3f1dfc313c191ff4288d14d7ffd59bdd1448c1fe7f",
+      "bytes": 4
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-symbols/roscore.log",
+      "sha256": "1f94d16cce1cd2ca42493c83c54ae40c939b83e3b1224d299730d7f418fb84f8",
+      "bytes": 929
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-symbols/run.sh",
+      "sha256": "b88f8d4a2c23f4a6018e4f2b466f7e173ece3951cc4a5437ce2a343dbdd0237f",
+      "bytes": 1351
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-refinement-symbols/trajectory_v1.txt",
+      "sha256": "d3bd9fe65658d4f3641061de6f337db52ff0e19570636ae48ee5a97dd0f538a6",
+      "bytes": 20279
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-upstream-regression/camera-0-imu0.yaml",
+      "sha256": "4497803d6318a6c8c8ea1328a92ef04e8d89c739227318daa79eb71eb841b86c",
+      "bytes": 1110
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-upstream-regression/camera-0-imu1.yaml",
+      "sha256": "69e2feff8d47d574cf45d461336ff35fc892172c1318d0d32921026225155f8f",
+      "bytes": 1110
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-upstream-regression/camera-1-imu0.yaml",
+      "sha256": "9fa4f962fc5c2ac3a04d099645937f1bc8362e892b168c669d8da79f5bf427e8",
+      "bytes": 1110
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-upstream-regression/camera-1-imu1.yaml",
+      "sha256": "5a01aa79fecc2443fd78dba72640e3344abcaa75bd14d7022eb521345bab1720",
+      "bytes": 1110
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-upstream-regression/camera-2-imu0.yaml",
+      "sha256": "f82b6348cb5f5d3caf166dab1af1ed30d0c755a823d5455caf9e61c6b8d74e61",
+      "bytes": 1110
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-upstream-regression/camera-2-imu1.yaml",
+      "sha256": "0ac402eef97eb868d0e235248f38d7cf97665af051e842c7e9f4b37c4872d6c3",
+      "bytes": 1110
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-upstream-regression/camera-patched.cc",
+      "sha256": "07fc0d0c3ff840b1228227dac897bcdf9e18ad6e869eb8cc08da6d597d7ae49d",
+      "bytes": 8200
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-upstream-regression/camera-upstream.cc",
+      "sha256": "ead3c40931c9a243430eedcfd3e0cdac6766173eb210b56b2fabec03480c0e85",
+      "bytes": 7791
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-upstream-regression/patched.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-upstream-regression/patched.log",
+      "sha256": "174efd5467a34eaf1536a12512399a062120c42384cde85e1346be930285848a",
+      "bytes": 512
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-upstream-regression/run.sh",
+      "sha256": "5c245139af43e2485558c14b960b66898755edf42dca81fdb33ec5d646f739b7",
+      "bytes": 749
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-upstream-regression/test-patched",
+      "sha256": "7868ee8e0d4132681da09d8ff89ed2d8078dc0aff41d1c56ef574872baea56d9",
+      "bytes": 170096
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-upstream-regression/test-upstream",
+      "sha256": "755d68d0de8d12ceeb50f86ac49efe0ae8411e21a370198ff7d29162d6bca40a",
+      "bytes": 169840
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-upstream-regression/tests/camera_rectification.cpp",
+      "sha256": "0ca4b54bde3aa07adf21cced8305984433c5ce23f70f9fba042c993f8dd46524",
+      "bytes": 2893
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-upstream-regression/upstream.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytes": 2
+    },
+    {
+      "path": "results/protocol-review-20261002/airslam-upstream-regression/upstream.log",
+      "sha256": "1968772e2f2eb214281167bacde944dfe72e7ed0cd6e9e597268d37238457133",
+      "bytes": 506
+    },
+    {
+      "path": "results/protocol-review-20261002/publisher-debug-library/commands.json",
+      "sha256": "370c943a0aeb7e0e9c22e230fd673acfebfebc091f3a3202bf5b180bb22fa1a3",
+      "bytes": 10779
+    },
+    {
+      "path": "results/protocol-review-20261002/publisher-debug-library/libair_slam_lib.so",
+      "sha256": "a0872543840a92324ec8d9728dd9469739e27800fe941ffe91bae4d7f5226d3b",
+      "bytes": 23235832
+    },
+    {
+      "path": "results/protocol-review-20261002/publisher-debug-library/ros_publisher.cc.o",
+      "sha256": "e0a4a70051422e7b81eefa227547787792ecdcf5325e15bc0a583d19d4797e0e",
+      "bytes": 27840232
+    }
+  ],
+  "contributions": [
+    {
+      "project": "AirSLAM",
+      "path": "/data/imoroz/vslam-upstream-review-20261002/AirSLAM",
+      "upstream_base": "d1265771026091db97ee8f7a6d80692f0edd5fef",
+      "review_commit": "2f268c44c2be339fefabbb5eb96edc071dcfb3dd",
+      "branch": "fix/rectified-camera-imu-extrinsic",
+      "patch": "docs/upstream/airslam-review.patch",
+      "sha256": "cfe0d9099f3f7095d268a0fba1b407d849902445bab03585cca070a25c6fbc24",
+      "benchmark_source_identical": [
+        "src/camera.cc"
+      ]
+    },
+    {
+      "project": "open_vins",
+      "path": "/data/imoroz/vslam-upstream-review-20261002/open_vins",
+      "upstream_base": "69488123ed9362dd44b6f28e7f4680abbff1442b",
+      "review_commit": "6dcb24118f171cebdcb9af8c4e42a1d528597423",
+      "branch": "fix/ros2-visualizer-shutdown-lifetime",
+      "patch": "docs/upstream/open_vins-review.patch",
+      "sha256": "c99f17bc4d1924b5baf7af25b8d59cf67719e26be04ce91a876e5bf13473cef7",
+      "benchmark_source_identical": [
+        "ov_msckf/src/ros/ROS2Visualizer.cpp",
+        "ov_msckf/src/ros/ROS2Visualizer.h",
+        "ov_msckf/src/run_subscribe_msckf.cpp"
+      ]
+    }
+  ]
+}

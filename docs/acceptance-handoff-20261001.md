@@ -2,65 +2,105 @@
 
 Generated from the checked inventory. The [claim review](paper-acceptance-20261001.md) defines eligibility, limitations and evidence. This includes the [matched-session calibration review](reference-review-20261001.md): Rosario frame-dependent metrics were corrected; accepted EuRoC values and original attempts are preserved. **Acceptance review complete; focused EuRoC OpenVINS/AirSLAM execution validated. Other native paths remain unverified.**
 
-| Mode | Clean accepted N=3 cells | Accepted repetitions | Limited repetitions | Observed failures accepted | Required reruns | Missing | Blocked |
+| Mode | Protocol-verified N=3 cells | Accepted accuracy claims | Limited accuracy claims | Failure-only claim observations | Required reruns | Missing | Blocked |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vo | 17 | 53 | 19 | 4 | 3 | 6 | 107 |
-| vo-lc | 9 | 33 | 21 | 2 | 3 | 5 | 80 |
-| vio | 11 | 39 | 24 | 2 | 38 | 22 | 43 |
-| vio-lc | 8 | 26 | 9 | 2 | 24 | 8 | 27 |
+| vo | 24 | 53 | 19 | 4 | 3 | 6 | 107 |
+| vo-lc | 18 | 33 | 21 | 2 | 3 | 5 | 80 |
+| vio | 18 | 39 | 24 | 2 | 38 | 22 | 43 |
+| vio-lc | 12 | 26 | 9 | 2 | 24 | 8 | 27 |
 | gnss-vio | 0 | 0 | 0 | 0 | 5 | 40 | 15 |
+
+Protocol counts are separate from claim-status counts above. Success means a clean final export; native errors after saving remain failures with potentially usable accuracy.
+
+| Mode | Verified attempts | Verified failures | Attempts | Evaluated | Clean exports | Observed failures | Unknown |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| vo | 72 | 10 | 186 | 183 | 154 | 32 | 0 |
+| vo-lc | 54 | 12 | 139 | 136 | 105 | 34 | 0 |
+| vio | 63 | 11 | 146 | 145 | 116 | 30 | 0 |
+| vio-lc | 36 | 1 | 88 | 86 | 86 | 2 | 0 |
+| gnss-vio | 0 | 0 | 20 | 20 | 0 | 2 | 18 |
+
+**OpenVINS cohort completeness:** each EuRoC sequence has historical N=1 plus patched N=2. The selected logical slots are consumed. One additional patched repetition per sequence would complete that implementation cohort, only if separately authorized. These three potential additions are separate from the 81 absent planned slots and are not scheduled here. Old cohorts are not resampled for success.
+
 
 Future default actions: 234 reusable observations, 73 required reruns, 81 missing repetitions, 272 blocked. The separately authorized focused EuRoC campaign is complete; its 24 attempts yielded 23 final evaluations and one retained native refinement failure. No other paths were executed and no push occurred.
 
-## Clean N=3 cells
+## Protocol-verified N=3 cells
 
 | Cell | Accepted claim |
 |---|---|
 | `vo/euroc_mav/MH_01_easy/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_01_easy/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_01_easy/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo/euroc_mav/MH_01_easy/airslam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_01_easy/basalt` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo/euroc_mav/MH_01_easy/ov2slam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_01_easy/dpvo` | recorded_profile_euroc_final_trajectory_sim3_monocular_shape |
 | `vo/euroc_mav/MH_01_easy/macvo` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo/euroc_mav/MH_03_medium/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_03_medium/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_03_medium/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo/euroc_mav/MH_03_medium/airslam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_03_medium/basalt` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo/euroc_mav/MH_03_medium/ov2slam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_03_medium/dpvo` | recorded_profile_euroc_final_trajectory_sim3_monocular_shape |
 | `vo/euroc_mav/MH_03_medium/macvo` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_05_difficult/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_05_difficult/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_05_difficult/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo/euroc_mav/MH_05_difficult/airslam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_05_difficult/basalt` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo/euroc_mav/MH_05_difficult/ov2slam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_05_difficult/dpvo` | recorded_profile_euroc_final_trajectory_sim3_monocular_shape |
 | `vo/euroc_mav/MH_05_difficult/macvo` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo-lc/euroc_mav/MH_01_easy/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo-lc/euroc_mav/MH_01_easy/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo-lc/euroc_mav/MH_01_easy/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo-lc/euroc_mav/MH_01_easy/airslam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo-lc/euroc_mav/MH_01_easy/ov2slam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo-lc/euroc_mav/MH_01_easy/dpvo` | recorded_profile_euroc_final_trajectory_sim3_monocular_shape |
+| `vo-lc/euroc_mav/MH_03_medium/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo-lc/euroc_mav/MH_03_medium/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo-lc/euroc_mav/MH_03_medium/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo-lc/euroc_mav/MH_03_medium/airslam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo-lc/euroc_mav/MH_03_medium/ov2slam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo-lc/euroc_mav/MH_03_medium/dpvo` | recorded_profile_euroc_final_trajectory_sim3_monocular_shape |
+| `vo-lc/euroc_mav/MH_05_difficult/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo-lc/euroc_mav/MH_05_difficult/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo-lc/euroc_mav/MH_05_difficult/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo-lc/euroc_mav/MH_05_difficult/airslam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo-lc/euroc_mav/MH_05_difficult/ov2slam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo-lc/euroc_mav/MH_05_difficult/dpvo` | recorded_profile_euroc_final_trajectory_sim3_monocular_shape |
 | `vio/euroc_mav/MH_01_easy/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_01_easy/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_01_easy/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vio/euroc_mav/MH_01_easy/airslam` | recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy |
 | `vio/euroc_mav/MH_01_easy/basalt` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vio/euroc_mav/MH_01_easy/voxel_svio` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vio/euroc_mav/MH_03_medium/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_03_medium/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_03_medium/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vio/euroc_mav/MH_03_medium/airslam` | recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy |
 | `vio/euroc_mav/MH_03_medium/basalt` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vio/euroc_mav/MH_03_medium/voxel_svio` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_05_difficult/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_05_difficult/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_05_difficult/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vio/euroc_mav/MH_05_difficult/airslam` | recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy |
 | `vio/euroc_mav/MH_05_difficult/basalt` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vio/euroc_mav/MH_05_difficult/voxel_svio` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio-lc/euroc_mav/MH_01_easy/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio-lc/euroc_mav/MH_01_easy/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio-lc/euroc_mav/MH_01_easy/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vio-lc/euroc_mav/MH_01_easy/airslam` | recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy |
+| `vio-lc/euroc_mav/MH_03_medium/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio-lc/euroc_mav/MH_03_medium/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio-lc/euroc_mav/MH_03_medium/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vio-lc/euroc_mav/MH_03_medium/airslam` | recorded_profile_euroc_sparse_keyframe_se3_metric_accuracy |
 | `vio-lc/euroc_mav/MH_05_difficult/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio-lc/euroc_mav/MH_05_difficult/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio-lc/euroc_mav/MH_05_difficult/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vio-lc/euroc_mav/MH_05_difficult/airslam` | configured_attempt_native_refinement_failure_under_corrected_euroc_profile |
 
 ## Limited results and accepted failures
 
@@ -256,7 +296,7 @@ Exact affected attempt IDs and evidence are in `results/acceptance-20261001/hand
 
 ## Completed focused execution
 
-The three EuRoC OpenVINS/AirSLAM integration targets and first full gates passed. All six missing OpenVINS repetitions and all 18 corrected AirSLAM slots were consumed once, with immediate evaluation where final output existed and no success-conditioned retries. MH05 VIO-LC run4 has a native junction-database SIGSEGV without final output; runs5–6 succeeded. See [the focused campaign](euroc-focused-campaign-20261001.md) for source, build, configuration, output and shutdown evidence. AirSLAM supports sparse-keyframe accuracy; OpenVINS original run1 limitations and its separate implementation cohort remain. No automatic green tick follows from completing three exports.
+The three EuRoC OpenVINS/AirSLAM integration targets and first full gates passed. All six missing OpenVINS repetitions and all 18 corrected AirSLAM slots were consumed once, with immediate evaluation where final output existed and no success-conditioned retries. MH05 VIO-LC run4 has a native refinement SIGSEGV without final output (later reproduced in the map publisher; exact cause unresolved); runs5–6 succeeded. See [the focused campaign](euroc-focused-campaign-20261001.md) for source, build, configuration, output and shutdown evidence. AirSLAM supports sparse-keyframe accuracy; OpenVINS original run1 limitations and its separate implementation cohort remain. Protocol ticks include verified failures and supported sparse/partial outputs; OpenVINS implementation cohorts remain N=1 and N=2.
 
 ## Remaining execution prerequisites
 

@@ -5,10 +5,12 @@
 Primary ATE RMSE [m]: **SE(3)** for metric stereo/VIO; **Sim(3)** for monocular DPVO.
 Values are conditional on numerically valid saved trajectories, with median
 (min–max) for N≥2 and a single value for N=1. Every cell shows evaluated/planned
-counts and missing/failure outcomes. Distinct recorded cohorts are not pooled.
+counts and missing/failure outcomes. A/E/S/F denote attempts/evaluated trajectories/
+clean final exports/observed failures. Distinct recorded cohorts are not pooled.
 `blocked` means the values are not yet publication qualified; `limited` permits
 only the stated limited claim; `observed failure` retains an adverse outcome. `✅ N=3` requires
-three qualified clean repetitions. No ranking or winner bolding is inferred from
+three completed verified same-cohort attempts, including recorded failures. It does
+not guarantee full coverage or successful tracking. No ranking or winner bolding is inferred from
 partial coverage, unknown coverage, sparse keyframes, or unqualified results.
 
 Dense coverage measures exported poses on the camera timeline, separately from
@@ -25,21 +27,21 @@ remains unknown. Aligned shape ATE does not establish GNSS global accuracy.
 
 | Algorithm (primary alignment) | seq1 | seq5 | str02 | str03 |
 |---|---|---|---|---|
-| OKVIS2-X — SE(3) | 8.633 [score N=1]; eval 1/3; 2 missing; rerun required; coverage ≥100.0%; not_executed: 2, rerun_required: 1 | 7.759 [score N=1]; eval 1/3; 2 missing; rerun required; coverage ≥100.0%; not_executed: 2, rerun_required: 1 | 2.591 [score N=1]; eval 1/3; 2 missing; rerun required; coverage ≥100.0%; not_executed: 2, rerun_required: 1 | 0.6232 [score N=1]; eval 1/3; 2 missing; rerun required; coverage ≥99.9%; not_executed: 2, rerun_required: 1 |
-| VINS-Fusion+GPS — SE(3) | 1.227 [score N=1]; eval 1/3; 2 missing; coverage ≥99.1%; blocked: 1, not_executed: 2 | 0.9289 [score N=1]; eval 1/3; 2 missing; coverage ≥99.6%; blocked: 1, not_executed: 2 | no valid score; eval 1/3; 1 eval_failed, 2 missing; dense coverage unknown; blocked: 1, not_executed: 2 | 2.468 [score N=1]; eval 1/3; 2 missing; coverage ≥98.9%; blocked: 1, not_executed: 2 |
-| RTAB-Map+GPS — SE(3) | 2.309 [score N=1]; eval 1/3; 2 missing; coverage ≥0.0%; blocked: 1, not_executed: 2 | 4.91 [score N=1]; eval 1/3; 2 missing; coverage ≥0.0%; blocked: 1, not_executed: 2 | 6.544 [score N=1]; eval 1/3; 2 missing; coverage ≥0.0%; blocked: 1, not_executed: 2 | 1.828 [score N=1]; eval 1/3; 2 missing; coverage ≥0.0%; blocked: 1, not_executed: 2 |
-| CIFASIS GNSS-SI — SE(3) | 3.691 [score N=1]; eval 1/3; 2 missing; rerun required; coverage ≥99.4%; not_executed: 2, rerun_required: 1 | 2.274 [score N=1]; eval 1/3; 2 missing; coverage ≥98.5%; blocked: 1, not_executed: 2 | 7.156 [score N=1]; eval 1/3; 2 missing; coverage ≥99.1%; blocked: 1, not_executed: 2 | 1.68 [score N=1]; eval 1/3; 2 missing; coverage ≥96.2%; blocked: 1, not_executed: 2 |
-| OpenVINS+GPS — SE(3) | 2.578 [score N=1]; eval 1/3; 2 missing; coverage ≥24.9%; blocked: 1, not_executed: 2 | 4.224 [score N=1]; eval 1/3; 2 missing; coverage ≥16.6%; blocked: 1, not_executed: 2 | 42.93 [score N=1]; eval 1/3; 2 missing; coverage ≥14.5%; blocked: 1, not_executed: 2 | 48.01 [score N=1]; eval 1/3; 2 missing; coverage ≥12.7%; blocked: 1, not_executed: 2 |
+| OKVIS2-X — SE(3) | 8.633 [score N=1]; A1/E1/S0/F0; U1; 2 missing; rerun required; coverage ≥100.0%; protocol invalid_setup; not_executed: 2, rerun_required: 1 | 7.759 [score N=1]; A1/E1/S0/F0; U1; 2 missing; rerun required; coverage ≥100.0%; protocol invalid_setup; not_executed: 2, rerun_required: 1 | 2.591 [score N=1]; A1/E1/S0/F0; U1; 2 missing; rerun required; coverage ≥100.0%; protocol invalid_setup; not_executed: 2, rerun_required: 1 | 0.6232 [score N=1]; A1/E1/S0/F0; U1; 2 missing; rerun required; coverage ≥99.9%; protocol invalid_setup; not_executed: 2, rerun_required: 1 |
+| VINS-Fusion+GPS — SE(3) | 1.227 [score N=1]; A1/E1/S0/F0; U1; 2 missing; coverage ≥99.1%; protocol blocked; blocked: 1, not_executed: 2 | 0.9289 [score N=1]; A1/E1/S0/F0; U1; 2 missing; coverage ≥99.6%; protocol blocked; blocked: 1, not_executed: 2 | no valid score; A1/E1/S0/F1; 1 eval_failed, 2 missing; dense coverage unknown; protocol blocked; blocked: 1, not_executed: 2 | 2.468 [score N=1]; A1/E1/S0/F0; U1; 2 missing; coverage ≥98.9%; protocol blocked; blocked: 1, not_executed: 2 |
+| RTAB-Map+GPS — SE(3) | 2.309 [score N=1]; A1/E1/S0/F0; U1; 2 missing; coverage ≥0.0%; protocol blocked; blocked: 1, not_executed: 2 | 4.91 [score N=1]; A1/E1/S0/F0; U1; 2 missing; coverage ≥0.0%; protocol blocked; blocked: 1, not_executed: 2 | 6.544 [score N=1]; A1/E1/S0/F0; U1; 2 missing; coverage ≥0.0%; protocol blocked; blocked: 1, not_executed: 2 | 1.828 [score N=1]; A1/E1/S0/F0; U1; 2 missing; coverage ≥0.0%; protocol blocked; blocked: 1, not_executed: 2 |
+| CIFASIS GNSS-SI — SE(3) | 3.691 [score N=1]; A1/E1/S0/F1; 2 missing; rerun required; coverage ≥99.4%; protocol invalid_setup; not_executed: 2, rerun_required: 1 | 2.274 [score N=1]; A1/E1/S0/F0; U1; 2 missing; coverage ≥98.5%; protocol blocked; blocked: 1, not_executed: 2 | 7.156 [score N=1]; A1/E1/S0/F0; U1; 2 missing; coverage ≥99.1%; protocol blocked; blocked: 1, not_executed: 2 | 1.68 [score N=1]; A1/E1/S0/F0; U1; 2 missing; coverage ≥96.2%; protocol blocked; blocked: 1, not_executed: 2 |
+| OpenVINS+GPS — SE(3) | 2.578 [score N=1]; A1/E1/S0/F0; U1; 2 missing; coverage ≥24.9%; protocol blocked; blocked: 1, not_executed: 2 | 4.224 [score N=1]; A1/E1/S0/F0; U1; 2 missing; coverage ≥16.6%; protocol blocked; blocked: 1, not_executed: 2 | 42.93 [score N=1]; A1/E1/S0/F0; U1; 2 missing; coverage ≥14.5%; protocol blocked; blocked: 1, not_executed: 2 | 48.01 [score N=1]; A1/E1/S0/F0; U1; 2 missing; coverage ≥12.7%; protocol blocked; blocked: 1, not_executed: 2 |
 
 ## Legacy GNSS input variants (separate experiments)
 
 | Algorithm | Dataset/sequence | Input variant | Result |
 |---|---|---|---|
-| CIFASIS GNSS-SI | rosariov2/sequence5 | conventional_gps | 1.338 [score N=1]; eval 1/1; coverage ≥98.5%; blocked: 1 |
-| OpenVINS+GPS | rosariov2/sequence5 | conventional_gps | 4.744 [score N=1]; eval 1/1; coverage ≥25.6%; blocked: 1 |
-| RTAB-Map+GPS | rosariov2/sequence5 | conventional_gps | 1.772 [score N=1]; eval 1/1; coverage ≥0.0%; blocked: 1 |
-| VINS-Fusion+GPS | rosariov2/sequence5 | conventional_gps | 0.9731 [score N=1]; eval 1/1; coverage ≥99.6%; blocked: 1 |
-| VINS-Fusion+GPS | rosariov2/sequence5 | hybrid_alt | 0.9165 [score N=1]; eval 1/1; coverage ≥99.6%; blocked: 1 |
-| VINS-Fusion+GPS | rosariov2/sequence5 | ppk_full | 11.16 [score N=1]; eval 1/1; coverage ≥99.6%; blocked: 1 |
+| CIFASIS GNSS-SI | rosariov2/sequence5 | conventional_gps | 1.338 [score N=1]; A1/E1/S0/F0; U1; coverage ≥98.5%; protocol blocked; blocked: 1; recorded historical implementation |
+| OpenVINS+GPS | rosariov2/sequence5 | conventional_gps | 4.744 [score N=1]; A1/E1/S0/F0; U1; coverage ≥25.6%; protocol blocked; blocked: 1; recorded historical implementation |
+| RTAB-Map+GPS | rosariov2/sequence5 | conventional_gps | 1.772 [score N=1]; A1/E1/S0/F0; U1; coverage ≥0.0%; protocol blocked; blocked: 1; recorded historical implementation |
+| VINS-Fusion+GPS | rosariov2/sequence5 | conventional_gps | 0.9731 [score N=1]; A1/E1/S0/F0; U1; coverage ≥99.6%; protocol blocked; blocked: 1; recorded historical implementation |
+| VINS-Fusion+GPS | rosariov2/sequence5 | hybrid_alt | 0.9165 [score N=1]; A1/E1/S0/F0; U1; coverage ≥99.6%; protocol blocked; blocked: 1; recorded historical implementation |
+| VINS-Fusion+GPS | rosariov2/sequence5 | ppk_full | 11.16 [score N=1]; A1/E1/S0/F0; U1; coverage ≥99.6%; protocol blocked; blocked: 1; recorded historical implementation |
 
 GNSS global error remains unqualified: historical coordinate origins, antenna lever arms and reference independence are not established. SE(3)/Sim(3) values describe aligned shape. Invalid-orientation trajectories retain failed full-pose status; any recovered position-only diagnostic is separate in the CSV and is not a qualified score.

@@ -14,8 +14,6 @@ def render_cell(cell):
     mode,algo,ds=cell['run_type'],cell['algorithm'],cell['dataset']
     n=cell['evaluated'];flags=[]
     review=cell.get('acceptance') or cell_acceptance(cell['attempts'],cell.get('within_cell_cohort_consistent',True))
-    if review['clean_qualified_n3']:
-        return '✅ N=3'
     states=review['attempts']
     limits={l for a in cell['attempts'] for l in a.get('qualification',{}).get('claim_limits',[])}
     failed=[i+1 for i,a in enumerate(cell['attempts']) if a['numerical_status']=='scale_collapse']
@@ -40,15 +38,25 @@ def render_cell(cell):
     if 'sparse_keyframe_accuracy_only' in limits:flags.append('sparse')
     if 'native_shutdown_error_despite_wrapper_exit_zero' in limits:flags.append('native shutdown error')
     if 'export_coverage_below_95_percent_no_clean_success_tick' in limits:flags.append('partial coverage')
-    failures=[str(i) for i,a in enumerate(cell['attempts'],1) if a.get('qualification',{}).get('status')=='valid_observed_failure']
+    failures=[str(Path(a['path']).name.removeprefix('run')) if a.get('path') else str(i) for i,a in enumerate(cell['attempts'],1) if a.get('qualification',{}).get('status')=='valid_observed_failure']
     if failures:flags.append('observed failure r'+',r'.join(failures))
-    nonzero={a['process'].get('exit_code') for a in cell['attempts'] if a['evaluated'] and a['process'].get('exit_code') not in (0,None)}
-    if nonzero:flags.append('exit '+','.join(map(str,sorted(nonzero))))
+    nonzero=[f"{Path(a['path']).name}: {a['process']['exit_code']}" for a in cell['attempts']
+             if a['process'].get('exit_code') not in (0,None) and a.get('path')]
+    if nonzero:flags.append('exit '+', '.join(nonzero))
     missing=[str(i) for i,a in enumerate(cell['attempts'],1) if not a.get('exists',a.get('evaluated',False))]
     if missing:flags.append('missing r'+',r'.join(missing))
-    if not cell.get('within_cell_cohort_consistent',True):flags.append('separate cohorts')
-    icon='🔁' if states.get('rerun_required') else '🟡' if states.get('blocked') else '❌' if failures else '🟠' if states.get('accepted_with_limitation') else '⬜'
-    return icon+' N='+str(n)+'; '+'; '.join(flags)
+    if not cell.get('within_cell_cohort_consistent',True):
+        flags.append('historical N=1 + patched N=2' if algo=='openvins' and ds=='euroc_mav' else
+                     'separate cohorts '+ '+'.join(str(c['attempts']) for c in review['protocol_cohorts']))
+    if algo=='openvins' and ds=='euroc_mav':flags.append('patched r2,r3 exit 0')
+    if algo=='airslam' and ds=='euroc_mav' and mode in ('vio','vio-lc'):flags.append('patched r4–6')
+    state=review['protocol_state']
+    if state=='blocked' and not any(f.startswith('blocked:') for f in flags):flags.append('blocked: calibration/reference')
+    icon='✅' if review['protocol_verified_n3'] else '🔁' if state=='invalid_setup' else '🟡' if state=='blocked' else '🟠' if state=='separate_implementation_cohorts' else '⬜'
+    label='Protocol N=3' if review['protocol_verified_n3'] else 'protocol '+state.replace('_',' ')
+    counts=f"A{review['attempt_count']}/E{review['evaluated_trajectory_count']}/S{review['successful_run_count']}/F{review['observed_failure_count']}"
+    if review['unknown_outcome_count']:counts+=f"/U{review['unknown_outcome_count']}"
+    return icon+' '+label+'; '+counts+('; '+'; '.join(flags) if flags else '')
 
 
 def update(text,inventory):

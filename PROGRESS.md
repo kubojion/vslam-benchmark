@@ -1,14 +1,33 @@
 # vSLAM Benchmark - Progress
 
-> Current status: focused EuRoC campaign complete, with 550/600 four-mode evaluations
-> and 178 cells containing three evaluations. All 45 prior accepted N=3 cells are preserved.
-> Current counts and limitations are in [TODO](TODO.md) and [the handoff](docs/acceptance-handoff-20261001.md).
-> The dated entries below retain historical checkpoints and are not current totals.
+> Current protocol status: 72 verified N=3 cells; 225 verified attempts include
+> 34 observed native failures. Scores and all 45 previously clean-qualified cells
+> are preserved. [TODO](TODO.md) and [handoff](docs/acceptance-handoff-20261001.md)
+> are current. Dated entries below retain earlier counting and tick conventions.
+
+## 2026-10-02 — Separate protocol validity from algorithm success
+
+The [protocol review](docs/protocol-review-20261002.md) separates attempts, evaluated
+trajectories, clean final exports and observed failures across matrices, CSVs and
+reports. Sparse/partial outputs no longer prevent protocol verification. OpenVINS
+retains separate historical N=1 and patched N=2 cohorts per sequence; the six new
+attempts exited cleanly. The 73 confirmed setup reruns, 81 absent slots and existing
+agricultural/GNSS blockers are unchanged. Three possible additions to reach patched
+OpenVINS N=3 are separate from those absent slots and are not scheduled or authorized.
+
+Two bounded saved-map [AirSLAM diagnostics](docs/airslam-refinement-diagnostic-20261002.md)
+localized the reproduced crash to the asynchronous map publisher; its last junction
+log line was not a root-cause diagnosis. A symbol-bearing diagnostic rebuild
+completed, without replacing the failed production outcome. A publisher-clear race
+is a source-supported hypothesis, not a demonstrated historical cause or fixed bug.
+Prepared local [AirSLAM PR](docs/upstream/airslam-rectification-pr.md) and
+[OpenVINS report](docs/upstream/openvins-shutdown-report.md) against current upstream;
+benchmark implementations remain pinned. No production repetition or push.
 
 ## 2026-10-02 — Focused EuRoC execution and reconciliation
 
 Completed exactly six missing OpenVINS VIO repetitions and 18 corrected AirSLAM
-VIO/VIO-LC repetitions. Native exits and available saved exports are verified; each valid final export was evaluated before the next attempt. MH05 AirSLAM VIO-LC run4 retains a junction-database SIGSEGV without final output; runs5–6 succeeded. AirSLAM remains sparse-keyframe accuracy,
+VIO/VIO-LC repetitions. Native exits and available saved exports are verified; each valid final export was evaluated before the next attempt. MH05 AirSLAM VIO-LC run4 retains a SIGSEGV after the junction-database log line without final output (see later publisher-thread diagnosis); runs5–6 succeeded. AirSLAM remains sparse-keyframe accuracy,
 and original OpenVINS run1 limits and implementation cohorts are retained.
 The original 18 affected AirSLAM results stay in a historical-cohort CSV and reports.
 Current future work: 234 reusable observations, 73 required reruns, 81 missing repetitions and 272 blocked cases. No other
