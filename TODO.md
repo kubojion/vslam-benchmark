@@ -48,13 +48,13 @@ OpenVINS cells keep original run1 and new runs2–3 in separate implementation c
 | Basalt | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; blocked: reference |
 | MAC-VO | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; blocked: reference |
 | AirSLAM | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | 🟠 N=3; limited; sparse | 🟠 N=3; limited; sparse | 🟠 N=3; limited; sparse | 🟡 N=3; blocked: reference |
-| DROID-SLAM | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=1 historical | 🟡 N=1 historical | 🟡 N=1 historical | ➖ excluded; no run |
 | DPVO | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; blocked: reference |
 | OKVIS2 | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; collapse r2; blocked: reference; observed failure r2 |
 | OKVIS2-X | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | ✅ N=3 | ✅ N=3 | ✅ N=3 | 🟡 N=3; blocked: reference |
 | OV2SLAM | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: camera model | 🟡 N=3; blocked: reference/clock | 🟡 N=3; blocked: reference/clock | 🟠 N=3; limited; native shutdown error | 🟠 N=3; limited; native shutdown error | 🟠 N=3; limited; native shutdown error | 🟡 N=3; blocked: reference |
 | MASt3R-SLAM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | 🔧 config missing; excluded |
 | MegaSaM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | ➖ excluded; old OOM | 🔧 config missing; excluded |
+| DROID-SLAM | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=3 historical | 🟡 N=1 historical | 🟡 N=1 historical | 🟡 N=1 historical | ➖ excluded; no run |
 
 > **Remaining:** ORB-SLAM3 Rosario seq1/seq5 and Horti str02 retain observed startup failures
 > (no saved trajectories to recover); r2/r3 remain missing. OKVIS2 ZED run2 is a retained collapse, not an unexecuted repetition.
