@@ -41,6 +41,10 @@ def action_category(cell,attempt,decision):
         return 'required_rerun','camera_fps_changed_15_to_10'
     if not attempt['exists']:
         return 'missing','no_saved_attempt'
+    if cell.get('comparison_membership')=='corrected_zed_first_20261002_pending_claim_review' and attempt.get('logical_repetition')==1:
+        # The final receipt is an observation, even when failed or not yet qualified.
+        # Do not generate another attempt for this already-completed logical slot.
+        return 'blocked','completed_predeclared_attempt_requires_claim_review_no_automatic_rerun'
     if decision.get('fresh_cohort'):
         return 'cohort_completion','complete_predeclared_current_implementation_n3_preserve_all_historical_outcomes'
     qualification=attempt.get('qualification',{})
@@ -107,6 +111,15 @@ def resolved_prerequisites(repo, decision):
 
 def build(repo,inventory,inventory_path,decisions):
     actions=[];target_paths=set()
+    completed_evidence=[]
+    for item in inventory.get('additional_attempt_selections', []):
+        errors=verify_files(repo,[item])
+        if errors:raise ValueError('; '.join(errors))
+        selection=json.loads((repo/item['path']).read_text())
+        completed_evidence.extend([item]+[selection[k] for k in ('source_manifest','batch_selection','pause_record')])
+        for record in selection['completed']:
+            completed_evidence.extend(record['evidence']+[record['attempt_state']])
+    completed_evidence=list({item['path']:item for item in completed_evidence}.values())
     for cell in inventory['cells']:
         key=cell['key'];decision=decisions.get('cells',{}).get(key,{})
         resolved=resolved_prerequisites(repo,decision)
@@ -195,6 +208,7 @@ def build(repo,inventory,inventory_path,decisions):
                     note='Original four-mode 600-attempt campaign plus 20 GNSS default cells at N=3; legacy GNSS experiments remain separate'),
         exclusions=inventory['excluded'],inventory=dict(path=str(inventory_path.relative_to(repo)),sha256=digest(inventory_path)),
         pipeline_files=pipeline_evidence(repo),qualification_review=inventory.get('qualification_review'),actions=actions,
+        completed_attempt_selection_evidence=completed_evidence,
         environment_policy=dict(kind='runner_defaults_only',reject_nonempty=list(UNREVIEWED_OVERRIDES),
             note='An inherited config, playback, input, seed or numerical-runtime override requires a separately reviewed campaign recipe.'),
         retained_gnss_variants=[dict(path=a['path'],status='preserved_separate_experiment',

@@ -1,0 +1,39 @@
+%YAML:1.0
+# OpenVINS IMU chain config for Rosario v2 (ZED + integrated IMU, 200 Hz).
+# Noise values match configs/basalt/rosariov2_calib.json (validated by Basalt
+# and OKVIS2 runs). T_i_b = identity (IMU = body frame).
+
+imu0:
+  T_i_b:
+    - [1.0, 0.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0, 0.0]
+    - [0.0, 0.0, 1.0, 0.0]
+    - [0.0, 0.0, 0.0, 1.0]
+  accelerometer_noise_density: 1.6000e-02   # m / s^2 / sqrt(Hz)
+  accelerometer_random_walk:   1.0000e-03   # m / s^3 / sqrt(Hz)
+  gyroscope_noise_density:     2.8200e-04   # rad / s / sqrt(Hz)
+  gyroscope_random_walk:       1.0000e-04   # rad / s^2 / sqrt(Hz)
+  rostopic: /imu0
+  time_offset: 0.0
+  update_rate: 200.0
+  model: "kalibr"
+  Tw:
+    - [1.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0]
+    - [0.0, 0.0, 1.0]
+  R_IMUtoGYRO:
+    - [1.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0]
+    - [0.0, 0.0, 1.0]
+  Ta:
+    - [1.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0]
+    - [0.0, 0.0, 1.0]
+  R_IMUtoACC:
+    - [1.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0]
+    - [0.0, 0.0, 1.0]
+  Tg:
+    - [0.0, 0.0, 0.0]
+    - [0.0, 0.0, 0.0]
+    - [0.0, 0.0, 0.0]

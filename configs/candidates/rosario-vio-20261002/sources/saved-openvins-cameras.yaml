@@ -1,0 +1,37 @@
+%YAML:1.0
+# OpenVINS imu-cam extrinsics for Rosario v2.
+#
+# Images are pre-rectified ZED IR (1280x720, mono8); distortion is zero.
+# IMU is treated as colocated with cam0 (this is the convention used by the
+# Rosario v2 paper, basalt config, and OKVIS2 config). cam1 is offset by the
+# stereo baseline along +x in the IMU frame.
+#
+# T_imu_cam = (R_CtoI | p_CinI) per OpenVINS docs.
+
+cam0:
+  T_imu_cam:
+    - [1.0, 0.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0, 0.0]
+    - [0.0, 0.0, 1.0, 0.0]
+    - [0.0, 0.0, 0.0, 1.0]
+  cam_overlaps: [1]
+  camera_model: pinhole
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0]
+  distortion_model: radtan
+  intrinsics: [648.8624169653789, 648.8624169653789, 645.0113372802734, 348.24266815185547]
+  resolution: [1280, 720]
+  rostopic: /cam0/image_raw
+
+cam1:
+  T_imu_cam:
+    - [1.0, 0.0, 0.0, 0.0497336941]
+    - [0.0, 1.0, 0.0, 0.0]
+    - [0.0, 0.0, 1.0, 0.0]
+    - [0.0, 0.0, 0.0, 1.0]
+  cam_overlaps: [0]
+  camera_model: pinhole
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0]
+  distortion_model: radtan
+  intrinsics: [648.8624169653789, 648.8624169653789, 645.0113372802734, 348.24266815185547]
+  resolution: [1280, 720]
+  rostopic: /cam1/image_raw

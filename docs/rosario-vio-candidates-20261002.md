@@ -2,16 +2,15 @@
 
 **Configuration preparation and static review are complete. Execution readiness is
 not verified.** No estimator was launched, no scores changed, and no historical
-attempt was replaced. Code, tests and candidates remain in the separate checkout
-`/data/imoroz/vslam-todo-review-20261002`. Only new documentation and TODO details
-are applied to the active checkout. Its ZED batch, pinned inputs and existing
-evidence documents remain untouched. This extends the existing review; it does
+attempt was replaced by the preparation. Code, tests and inactive candidates are
+now integrated into `/data/imoroz/vslam-benchmark` on main. The three started ZED
+attempts and their captures finished before integration; their original evidence
+is preserved. This extends the existing review; it does
 not repeat the all-mode audit.
 
 The final destination is `/data/imoroz/vslam-benchmark` on `main`.
-[Integration is pending](rosario-main-integration-20261002.md) until the active ZED
-batch and its evidence capture finish. The user will resume the paused integration
-goal afterward. The separate checkout is the prepared source, not the final home.
+[Integration and validation](rosario-main-integration-20261002.md) reuse the work
+from the separate checkout. Native readiness is still unverified.
 
 The [validation record](rosario-vio-candidate-validation-20261002.json) identifies
 source hashes, exact historical attempts, existing planned replacement paths,
@@ -21,7 +20,7 @@ sampled data checks and current runner selections. It is a preparation report,
 ## Candidate files and policy
 
 All paths below are relative to
-`/data/imoroz/vslam-todo-review-20261002/configs/candidates/rosario-vio-20261002/`.
+`/data/imoroz/vslam-benchmark/configs/candidates/rosario-vio-20261002/`.
 The bundle's `index.json` hashes every candidate and sets
 `verified_ready_to_run: false` and `activated_in_runners: false`.
 
@@ -245,12 +244,12 @@ dataset fallback. OpenVINS selects its fixed dataset config directory. The latte
 two still use the older Rosario native build/image paths; ZED-specific shutdown
 repairs do not automatically establish Rosario readiness.
 
-Reproduce preparation and static checks from the review checkout:
+Reproduce preparation and static checks from `/data/imoroz/vslam-benchmark`:
 
 ```bash
 /data/imoroz/conda/envs/macvo/bin/python scripts/campaign/prepare_rosario_vio_candidates.py
 /data/imoroz/conda/envs/macvo/bin/python -m pytest -q scripts/campaign/tests/test_rosario_vio_candidates.py
-/data/imoroz/conda/envs/macvo/bin/python scripts/campaign/validate_rosario_vio_candidates.py --evidence-root /data/imoroz/vslam-benchmark --output docs/rosario-vio-candidate-validation-20261002.json
+/data/imoroz/conda/envs/macvo/bin/python scripts/campaign/validate_rosario_vio_candidates.py --evidence-root /data/imoroz/vslam-benchmark --output results/rosario-main-integration-20261002/candidate-validation-current.json
 ```
 
 ## Questions for the dataset authors
@@ -271,8 +270,9 @@ Reproduce preparation and static checks from the review checkout:
 
 ## Exact steps before later reruns
 
-1. Finish the active ZED batch **and its evidence capture** before integrating any
-   candidate/script/test changes into the active checkout. Preserve its results.
+1. Integration prerequisite satisfied: the ZED controller was stopped, the three
+   started attempts and evidence capture finished, and their results were preserved
+   before these files were integrated. The three unstarted actions remain unstarted.
 2. Resolve the recording/projection questions from authoritative evidence, select
    one internally consistent profile and predeclare each cohort's algorithm policy.
    Keep the alternate OpenVINS profile separate if a later ablation is authorized.

@@ -3,20 +3,20 @@
 > **Reporting review:** completed campaign results and numerical scores are preserved.
 > Green ticks now certify three correctly conducted attempts in one implementation cohort,
 > including recorded failures. They do not promise three successful or full-coverage trajectories.
-> The four-mode comparison retains **551/600 evaluations**; new short checks are separate diagnostics.
+> The four-mode comparison retains **552/600 evaluations**; new short checks are separate diagnostics.
 > See [ZED reference/claim limits](docs/zed-preparation-20261002.md),
 > [protocol definitions](docs/protocol-review-20261002.md),
 > [campaign evidence](docs/euroc-focused-campaign-20261001.md) and
 > [current handoff](docs/acceptance-handoff-20261001.md).
 
 Rosario VIO: [candidate configurations and remaining prerequisites](docs/rosario-vio-candidates-20261002.md)
-are prepared separately from the active ZED batch. Execution readiness remains
+are prepared and integrated into this main checkout. Execution readiness remains
 unverified; the 14 confirmed replacements and four missing OpenVINS repetitions
 are distinct. Historical counts and qualification are unchanged.
 
-Final destination: this `main` checkout. [Pending integration](docs/rosario-main-integration-20261002.md)
-is documented; code/config/test changes await completion of the active ZED batch
-and its evidence capture. Preparation is complete; Rosario readiness is unverified.
+Final destination: this `main` checkout. [Integration and validation](docs/rosario-main-integration-20261002.md)
+preserve the completed ZED first attempts without automatically verifying them.
+Preparation/integration is complete; Rosario execution readiness is unverified.
 
 ---
 

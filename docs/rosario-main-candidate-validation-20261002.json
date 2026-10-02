@@ -1,0 +1,3540 @@
+{
+  "checked_at": "2026-10-02T16:00:58.820792+00:00",
+  "scope": "static candidate preparation and preserved evidence only; no native execution or scoring",
+  "main_head": "558b8fd06ed518b55ff3219cbb8751ea38c4cff2",
+  "config_prepared": true,
+  "verified_ready_to_run": false,
+  "candidates_activated": false,
+  "inventory_sha256": "1ae640358005f25e140a9951569a6eae8480ea6b3c65e419158bac7a5da01d8e",
+  "existing_manifest_sha256": "00dd1d200f5d0374a22e8bae791440b4098c86226f544329a7ef6a760c36a0d4",
+  "source_index": {
+    "schema": 1,
+    "author_repo_commit": "82115db620b57a5decb48ffe70b4639f00ce3ec9",
+    "author_repo_url": "https://github.com/CIFASIS/rosariov2",
+    "kalibr_archive_url": "http://fs01.cifasis-conicet.gov.ar:90/~robot_desmalezador/rosariov2/calibration/kalibr_ir_stereo_imu.tar.gz",
+    "evidence_root": "/data/imoroz/vslam-benchmark",
+    "files": [
+      {
+        "file": "kalibr-cameras.yaml",
+        "original_path": "results/reference-review-20261001/author-downloads/rosario-kalibr-aprilgrid_calib_2-camchain-imucam.yaml",
+        "sha256": "76b3309c2b9c56989d8e38d9254259ed4834a20c17cfc1f5771623f610370afb"
+      },
+      {
+        "file": "kalibr-imu.yaml",
+        "original_path": "results/reference-review-20261001/author-downloads/rosario-kalibr-aprilgrid_calib_2-imu.yaml",
+        "sha256": "e6805f2396b4e3f961fa957a2a12434d8625bd597101a6a1ba875be1f852a146"
+      },
+      {
+        "file": "kalibr-results.txt",
+        "original_path": "results/reference-review-20261001/author-downloads/rosario-kalibr-aprilgrid_calib_2-results-imucam.txt",
+        "sha256": "40979a824a836b5fae299b89ee3a167238c16d348646d35c102d3d9d0330ed47"
+      },
+      {
+        "file": "author-openvins-estimator.yaml",
+        "original_path": "results/reference-review-20261001/author-sources/rosariov2/data/evaluation/open-vins_estimator_rosariov2.yaml",
+        "sha256": "38e25a7642353d6cbe273ea6b829a9487b5420aba4697c9301993ffd6cd9e83c"
+      },
+      {
+        "file": "author-openvins-cameras.yaml",
+        "original_path": "results/reference-review-20261001/author-sources/rosariov2/data/evaluation/open-vins_imucam_rosariov2.yaml",
+        "sha256": "28979f44f77019875acf5aa4b09abd377d9b17cb383c4967533f8381fbb9c006"
+      },
+      {
+        "file": "author-openvins-imu.yaml",
+        "original_path": "results/reference-review-20261001/author-sources/rosariov2/data/evaluation/open-vins_imuchain_rosariov2.yaml",
+        "sha256": "746eeed9cf6884578d0f5019bc42c66df0d68b06bdb2466c7c4e1761c79921c4"
+      },
+      {
+        "file": "author-orb.yaml",
+        "original_path": "results/reference-review-20261001/author-sources/rosariov2/data/evaluation/orb-slam3_rosariov2.yaml",
+        "sha256": "a8db699f58ba2c222a644e68cf14063a5adc9acff1b08a49dca557f8c695f284"
+      },
+      {
+        "file": "author-orb.launch",
+        "original_path": "results/reference-review-20261001/author-sources/rosariov2/data/evaluation/orb-slam3_rosariov2.launch",
+        "sha256": "9c666a2f8367c587d6a3507fec718b5844eb802f87f15e5704dbcdec252e2e59"
+      },
+      {
+        "file": "author-openvins.launch",
+        "original_path": "results/reference-review-20261001/author-sources/rosariov2/data/evaluation/open-vins_rosariov2.launch",
+        "sha256": "48b0bb40523f54d25034e9f1990bfc19bd3700e5a49c9a0da66f11358ccce414"
+      },
+      {
+        "file": "saved-basalt-calibration.json",
+        "original_path": "results/vio/rosariov2/sequence1/basalt/run1/provenance/camera_calibration--rosariov2_calib.json",
+        "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d"
+      },
+      {
+        "file": "saved-basalt-estimator.json",
+        "original_path": "results/vio/rosariov2/sequence1/basalt/run1/provenance/estimator_config--vio_config.json",
+        "sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa"
+      },
+      {
+        "file": "saved-voxel.yaml",
+        "original_path": "results/vio/rosariov2/sequence1/voxel_svio/run1/provenance/estimator_config--rosariov2.yaml",
+        "sha256": "4f9a27d350b437bf3e3c5636b4278e39f736e387751c14d0d184b2b0e6d1df0c"
+      },
+      {
+        "file": "saved-openvins-estimator.yaml",
+        "original_path": "results/vio/rosariov2/sequence1/openvins/run1/provenance/estimator_config--estimator_config.yaml",
+        "sha256": "18c1482b3a344495a08330f96de6959db9b1f89503f3fb4724df80f19443e74a"
+      },
+      {
+        "file": "saved-openvins-cameras.yaml",
+        "original_path": "results/vio/rosariov2/sequence1/openvins/run1/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+        "sha256": "408a887ef92567582dc9d8f189093bd816168127f57efed8d63c44481f1a2262"
+      },
+      {
+        "file": "saved-openvins-imu.yaml",
+        "original_path": "results/vio/rosariov2/sequence1/openvins/run1/provenance/imu_calibration--kalibr_imu_chain.yaml",
+        "sha256": "ea6530f2dc604137e92829d54f9c2c3c6f6d1372c18ba8ce15e9f6ac8ee07fad"
+      }
+    ]
+  },
+  "candidate_index": {
+    "schema": 1,
+    "dataset": "rosariov2",
+    "sequences": [
+      "sequence1",
+      "sequence5"
+    ],
+    "mode": "vio",
+    "config_prepared": true,
+    "verified_ready_to_run": false,
+    "activated_in_runners": false,
+    "source_index_sha256": "dac69d3e77c98cd50c44b1be8f6371cf4b9d26501f1390f267c45bb471eb8d21",
+    "files": {
+      "basalt-kalibr/calibration.json": "4f79c84ef11b4097060233a3547beb8e8bee5e7e839f497dc2c6544537edb3c0",
+      "basalt-kalibr/vio_config.json": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa",
+      "openvins-author/estimator_config.yaml": "ff177d04a7801fe0692cfba8bc09eb6d5fa6124c8608fdb86a0249dcdb5df534",
+      "openvins-author/kalibr_imu_chain.yaml": "d233b66f6c21c8050d63fb28a332e6d2a7b843cc0c53c559cfa5a77ae411dac9",
+      "openvins-author/kalibr_imucam_chain.yaml": "15c92b092b1c98e3261eccbcbdd2ef0d328241641ae91ca9ae2dfe0097bce2dd",
+      "openvins-kalibr/estimator_config.yaml": "562d88d04a8f331fdb0e401ede7fee4300adb54d501c34469ddfa42852b17404",
+      "openvins-kalibr/kalibr_imu_chain.yaml": "b33f9494dade05d7714118453e9874b589ded6caba12a11af0ce3e594169b36d",
+      "openvins-kalibr/kalibr_imucam_chain.yaml": "fea0bc25927e194546ab53c975e68eda1be4174489c9f70a3ad8fdcdbf2dd21e",
+      "voxel-kalibr/rosariov2.yaml": "4f162a67abf0b021681e4bd44f98e7487292fe40ad54970981c0e43d7415be0f"
+    },
+    "profiles": {
+      "basalt-kalibr": {
+        "algorithm": "basalt",
+        "source_profile": "published Kalibr sensor bundle; saved benchmark estimator policy",
+        "files": [
+          "basalt-kalibr/calibration.json",
+          "basalt-kalibr/vio_config.json"
+        ],
+        "config_prepared": true,
+        "verified_ready_to_run": false,
+        "activated_in_runners": false,
+        "image_policy": "unchanged saved pixels; published residual radtan; no extra rectification",
+        "time_convention": "t_imu = t_camera + timeshift_cam_imu",
+        "published_timeshifts_s": [
+          0.004098308327610102,
+          0.004110891358806293
+        ],
+        "common_stereo_time_uses_left": true,
+        "unused_right_minus_left_s": 1.2583031196190635e-05,
+        "prerequisites": [
+          "author_confirmation_of_profile_for_sequence1_and_sequence5_pixels",
+          "predeclare_one_profile_per_cohort_without_score_selection",
+          "native_loaded_configuration_and_timestamp_path_validation",
+          "explicit_runner_selection_and_fresh_source_input_capture",
+          "separate_authorization_for_execution",
+          "verify_installed_pinhole_radtan8_parser_and_rpmax",
+          "resolve_actual_camera_time_offset_consumption"
+        ]
+      },
+      "voxel-kalibr": {
+        "algorithm": "voxel_svio",
+        "source_profile": "published Kalibr sensor bundle; saved benchmark estimator policy",
+        "files": [
+          "voxel-kalibr/rosariov2.yaml"
+        ],
+        "config_prepared": true,
+        "verified_ready_to_run": false,
+        "activated_in_runners": false,
+        "image_policy": "unchanged saved pixels; published residual radtan; no extra rectification",
+        "time_convention": "t_imu = t_camera + timeshift_cam_imu",
+        "published_timeshifts_s": [
+          0.004098308327610102,
+          0.004110891358806293
+        ],
+        "common_stereo_time_uses_left": true,
+        "unused_right_minus_left_s": 1.2583031196190635e-05,
+        "prerequisites": [
+          "author_confirmation_of_profile_for_sequence1_and_sequence5_pixels",
+          "predeclare_one_profile_per_cohort_without_score_selection",
+          "native_loaded_configuration_and_timestamp_path_validation",
+          "explicit_runner_selection_and_fresh_source_input_capture",
+          "separate_authorization_for_execution",
+          "verify_fixed_time_offset_export_compensation",
+          "validate_Rosario_native_shutdown_build"
+        ]
+      },
+      "openvins-kalibr": {
+        "algorithm": "openvins",
+        "source_profile": "published Kalibr sensor bundle; saved benchmark estimator policy",
+        "files": [
+          "openvins-kalibr/estimator_config.yaml",
+          "openvins-kalibr/kalibr_imu_chain.yaml",
+          "openvins-kalibr/kalibr_imucam_chain.yaml"
+        ],
+        "config_prepared": true,
+        "verified_ready_to_run": false,
+        "activated_in_runners": false,
+        "image_policy": "unchanged saved pixels; published residual radtan; no extra rectification",
+        "time_convention": "t_imu = t_camera + timeshift_cam_imu",
+        "published_timeshifts_s": [
+          0.004098308327610102,
+          0.004110891358806293
+        ],
+        "common_stereo_time_uses_left": true,
+        "unused_right_minus_left_s": 1.2583031196190635e-05,
+        "prerequisites": [
+          "author_confirmation_of_profile_for_sequence1_and_sequence5_pixels",
+          "predeclare_one_profile_per_cohort_without_score_selection",
+          "native_loaded_configuration_and_timestamp_path_validation",
+          "explicit_runner_selection_and_fresh_source_input_capture",
+          "separate_authorization_for_execution",
+          "validate_Rosario_native_shutdown_image",
+          "verify_odomimu_time_basis_and_reference_association"
+        ]
+      },
+      "openvins-author": {
+        "algorithm": "openvins",
+        "source_profile": "author OpenVINS YAML reproduction; topic/path remapping only",
+        "files": [
+          "openvins-author/estimator_config.yaml",
+          "openvins-author/kalibr_imu_chain.yaml",
+          "openvins-author/kalibr_imucam_chain.yaml"
+        ],
+        "config_prepared": true,
+        "verified_ready_to_run": false,
+        "activated_in_runners": false,
+        "image_policy": "unchanged saved pixels; published residual radtan; no extra rectification",
+        "time_convention": "t_imu = t_camera + timeshift_cam_imu",
+        "published_timeshifts_s": [
+          0.006482764254944565,
+          0.006491480658385266
+        ],
+        "common_stereo_time_uses_left": true,
+        "unused_right_minus_left_s": 8.716403440700744e-06,
+        "prerequisites": [
+          "author_confirmation_of_profile_for_sequence1_and_sequence5_pixels",
+          "predeclare_one_profile_per_cohort_without_score_selection",
+          "native_loaded_configuration_and_timestamp_path_validation",
+          "explicit_runner_selection_and_fresh_source_input_capture",
+          "separate_authorization_for_execution",
+          "validate_Rosario_native_shutdown_image",
+          "verify_odomimu_time_basis_and_reference_association",
+          "author_implementation_and_launch_differences_remain"
+        ]
+      }
+    }
+  },
+  "datasets": {
+    "sequence1": {
+      "stereo_pairs": 13821,
+      "imu_samples": 187362,
+      "csv_hashes": {
+        "datasets/rosariov2/sequence1/mav0/cam0/data.csv": "953a5fb85e007b6deb4cd7f430059a76a2b943fbcc618e5cb3401feb5d2f9426",
+        "datasets/rosariov2/sequence1/mav0/cam1/data.csv": "953a5fb85e007b6deb4cd7f430059a76a2b943fbcc618e5cb3401feb5d2f9426",
+        "datasets/rosariov2/sequence1/mav0/imu0/data.csv": "96fb1644f9199772e52e49ce285b71e66e03f077aeef3813509130df8e62eddd"
+      },
+      "camera_stamps_equal": true,
+      "stamps_strictly_increasing": true,
+      "sampled_pixel_identity": [
+        {
+          "topic": "/realsense/infra1/image_rect_raw",
+          "stamp_ns": 1703261657094100237,
+          "local_path": "datasets/rosariov2/sequence1/mav0/cam0/data/1703261657094100237.png",
+          "sha256": "bd4467d406f416bac5bcf902c236700ca31696ea24bfd9c27283ad4672cd5d44"
+        },
+        {
+          "topic": "/realsense/infra2/image_rect_raw",
+          "stamp_ns": 1703261657094100237,
+          "local_path": "datasets/rosariov2/sequence1/mav0/cam1/data/1703261657094100237.png",
+          "sha256": "bf39393c60f6d2c2b15b6c558d41e1fa00f50c16aa8e754dd2c35a5ffc13b309"
+        },
+        {
+          "topic": "/realsense/infra1/image_rect_raw",
+          "stamp_ns": 1703261657160813808,
+          "local_path": "datasets/rosariov2/sequence1/mav0/cam0/data/1703261657160813808.png",
+          "sha256": "f52613232c994cb5384c3ad53c5fee7b38513fb2b490183192b098a1c707dd76"
+        },
+        {
+          "topic": "/realsense/infra2/image_rect_raw",
+          "stamp_ns": 1703261657160813808,
+          "local_path": "datasets/rosariov2/sequence1/mav0/cam1/data/1703261657160813808.png",
+          "sha256": "13318cb4a35344b4233d8b0aaeb1c14cf81cf4a26189a1a4045ee3b598414b30"
+        }
+      ],
+      "sampled_unrotated_imu": [
+        {
+          "original_stamp_ns": 1703261657043841362,
+          "rounding_ns": -82,
+          "frame": "realsense_imu_optical_frame",
+          "values_unchanged": true
+        },
+        {
+          "original_stamp_ns": 1703261657048833847,
+          "rounding_ns": -55,
+          "frame": "realsense_imu_optical_frame",
+          "values_unchanged": true
+        }
+      ],
+      "image_checks_scope": "four saved images per sequence; reuses original bag-prefix audit",
+      "first_imu_minus_first_camera_s": -0.050258957,
+      "last_imu_minus_last_camera_s": 0.036236012000000005,
+      "imu_covers_camera_start": true,
+      "imu_covers_camera_end": true
+    },
+    "sequence5": {
+      "stereo_pairs": 11640,
+      "imu_samples": 158462,
+      "csv_hashes": {
+        "datasets/rosariov2/sequence5/mav0/cam0/data.csv": "3cae4d296941d07619a02e630b1fdf8b8ef648d927b1c0bb1f6598c02009617a",
+        "datasets/rosariov2/sequence5/mav0/cam1/data.csv": "3cae4d296941d07619a02e630b1fdf8b8ef648d927b1c0bb1f6598c02009617a",
+        "datasets/rosariov2/sequence5/mav0/imu0/data.csv": "8204ef9fafb6e1e6ab23aefed93462d93d9f4c0b4654bd9ac7e09694aef1ddca"
+      },
+      "camera_stamps_equal": true,
+      "stamps_strictly_increasing": true,
+      "sampled_pixel_identity": [
+        {
+          "topic": "/realsense/infra1/image_rect_raw",
+          "stamp_ns": 1703614215873019218,
+          "local_path": "datasets/rosariov2/sequence5/mav0/cam0/data/1703614215873019218.png",
+          "sha256": "1121b10dc56ec1155c545768b0050091db28028e5310bcae2a7f35940dc265ae"
+        },
+        {
+          "topic": "/realsense/infra2/image_rect_raw",
+          "stamp_ns": 1703614215873019218,
+          "local_path": "datasets/rosariov2/sequence5/mav0/cam1/data/1703614215873019218.png",
+          "sha256": "a2f973e1061fc247bb9b689e66238350c1ff53a146d322300ea8e8aff9920f87"
+        },
+        {
+          "topic": "/realsense/infra1/image_rect_raw",
+          "stamp_ns": 1703614215939735174,
+          "local_path": "datasets/rosariov2/sequence5/mav0/cam0/data/1703614215939735174.png",
+          "sha256": "7962be542aaf82def29d55c8e290d5bb70132e2ee0b155fa271b7a17512c2e60"
+        },
+        {
+          "topic": "/realsense/infra2/image_rect_raw",
+          "stamp_ns": 1703614215939735174,
+          "local_path": "datasets/rosariov2/sequence5/mav0/cam1/data/1703614215939735174.png",
+          "sha256": "c5af5cd7f2e3f39f216fcace83c34c64a02774cd7ad316e2e90e354ba11d76a4"
+        }
+      ],
+      "sampled_unrotated_imu": [
+        {
+          "original_stamp_ns": 1703614215882102489,
+          "rounding_ns": 39,
+          "frame": "realsense_imu_optical_frame",
+          "values_unchanged": true
+        },
+        {
+          "original_stamp_ns": 1703614215892086029,
+          "rounding_ns": -13,
+          "frame": "realsense_imu_optical_frame",
+          "values_unchanged": true
+        }
+      ],
+      "image_checks_scope": "four saved images per sequence; reuses original bag-prefix audit",
+      "first_imu_minus_first_camera_s": 0.00908331,
+      "last_imu_minus_last_camera_s": 0.060527368000000005,
+      "imu_covers_camera_start": false,
+      "imu_covers_camera_end": true
+    }
+  },
+  "confirmed_reruns": [
+    {
+      "path": "results/vio/rosariov2/sequence1/basalt/run1",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [
+        "rosario_identity_camera_imu_extrinsic"
+      ],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run1/trajectory.txt",
+          "sha256": "5b39bc1ce0b09eee9791bd3aacd0fa1f165388c39d0a355c713488de9a34db5b"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run1/run_meta.json",
+          "sha256": "94c37c304cdb7082597ed6d03e031726e6c030c25f63cdf0314cfd28ef0eceac"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run1/run_eval.json",
+          "sha256": "680d1852cb4361cb1d1157e9ac68dc1949a90b19a4554368003bb19f22516f6b"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run1/run_log.txt",
+          "sha256": "d5bad24d06cfe103f6a5b1e25a48dcebd219bbd3a69587b805aeaffd28604eb4"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run1/resources.csv",
+          "sha256": "284397528bcfc6e01803a63796571752f25bd3ba940ca332d192f113477183a0"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run1/provenance/camera_calibration--rosariov2_calib.json",
+          "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run1/provenance/estimator_config--vio_config.json",
+          "sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/basalt/run1/run_eval.json",
+          "sha256": "680d1852cb4361cb1d1157e9ac68dc1949a90b19a4554368003bb19f22516f6b"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ],
+      "existing_plan": {
+        "id": "vio/rosariov2/sequence1/basalt/default/r1",
+        "planned_output": "results/vio/rosariov2/sequence1/basalt/run10001",
+        "readiness": {
+          "verified_ready_to_run": false,
+          "static_checks": "pending",
+          "execution_validation": "not_verified_after_repairs"
+        },
+        "runtime_estimate": {
+          "estimate_s": null,
+          "observed_range_s": null,
+          "reason": "no complete comparable same-cell server sample",
+          "sources": []
+        }
+      }
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/basalt/run2",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [
+        "rosario_identity_camera_imu_extrinsic"
+      ],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run2/trajectory.txt",
+          "sha256": "368bf948b4a3988b5cd94693b7c5182e22762ebccf33a571f6ae21221d45e61f"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run2/run_meta.json",
+          "sha256": "11840f82b0f8c0d153b5af37a2215297b16332661b98b3345ebb2f3e92a2105f"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run2/run_eval.json",
+          "sha256": "ed2ec951468e80385391c5008f57326e0117d24662129b5547b8a6111d99c5de"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run2/run_log.txt",
+          "sha256": "53525b5fa2fe3b4a9e83c21ac2f5a0da2914e033930d3432efae556136d3828a"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run2/resources.csv",
+          "sha256": "6866681fa589dda8b7daa2ca0b9d53d2a05325fb45b22dea17b3a42996d633d1"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run2/provenance/camera_calibration--rosariov2_calib.json",
+          "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run2/provenance/estimator_config--vio_config.json",
+          "sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/basalt/run2/run_eval.json",
+          "sha256": "ed2ec951468e80385391c5008f57326e0117d24662129b5547b8a6111d99c5de"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ],
+      "existing_plan": {
+        "id": "vio/rosariov2/sequence1/basalt/default/r2",
+        "planned_output": "results/vio/rosariov2/sequence1/basalt/run10002",
+        "readiness": {
+          "verified_ready_to_run": false,
+          "static_checks": "pending",
+          "execution_validation": "not_verified_after_repairs"
+        },
+        "runtime_estimate": {
+          "estimate_s": null,
+          "observed_range_s": null,
+          "reason": "no complete comparable same-cell server sample",
+          "sources": []
+        }
+      }
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/basalt/run3",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [
+        "rosario_identity_camera_imu_extrinsic"
+      ],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run3/trajectory.txt",
+          "sha256": "4572a2026bd3448065a50302db129861aa4eb91ab417ff33c175ef2eaea469d0"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run3/run_meta.json",
+          "sha256": "757c42c627468d3b84abca3315e45a727fa49607c68c20a635d415581dabaff1"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run3/run_eval.json",
+          "sha256": "337f296686c22181a49b56d13e6e70b39c8456c96f19dbc99c2a0941ac68fc7b"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run3/run_log.txt",
+          "sha256": "ed0ec94cf5cac6157cff7662d5bc6076f320586f5da3f5b22e64fa3b2229470b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run3/resources.csv",
+          "sha256": "47395946055e31be1b64b0401c431b0e84fc70654b42ed11b44cf9374b02fbc7"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run3/provenance/camera_calibration--rosariov2_calib.json",
+          "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/basalt/run3/provenance/estimator_config--vio_config.json",
+          "sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/basalt/run3/run_eval.json",
+          "sha256": "337f296686c22181a49b56d13e6e70b39c8456c96f19dbc99c2a0941ac68fc7b"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ],
+      "existing_plan": {
+        "id": "vio/rosariov2/sequence1/basalt/default/r3",
+        "planned_output": "results/vio/rosariov2/sequence1/basalt/run10003",
+        "readiness": {
+          "verified_ready_to_run": false,
+          "static_checks": "pending",
+          "execution_validation": "not_verified_after_repairs"
+        },
+        "runtime_estimate": {
+          "estimate_s": null,
+          "observed_range_s": null,
+          "reason": "no complete comparable same-cell server sample",
+          "sources": []
+        }
+      }
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/openvins/run1",
+      "observed_outcome": "failure_scale_collapse",
+      "evaluated": true,
+      "exit_code": 134,
+      "findings": [
+        "rosario_identity_camera_imu_extrinsic"
+      ],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/openvins/run1/trajectory.txt",
+          "sha256": "0b661bd2937b759e6ba123d073781ef6bc353bd4a36a8d1266f153c5179ad82a"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/openvins/run1/run_meta.json",
+          "sha256": "5a522d6d3dd97dfeaa4a98b1041f6867733c912bb480569630f6f2b8d046251e"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/openvins/run1/run_eval.json",
+          "sha256": "e9eeafbd842a50d808170851036f56f52f145268b0777423cae5024ba21d99b5"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/openvins/run1/run_log.txt",
+          "sha256": "b5640f2c5c70f20cf30912083cbb34833cdda381cae06c4430ff8bf6c6648152"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/openvins/run1/openvins_node.log",
+          "sha256": "30d813541934f744d9ad8abed0e5e5e9f03af576810654f8beb0d8909988c0cd"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/openvins/run1/resources.csv",
+          "sha256": "3dd6e4042b96d60b6790b8dcdd7f7e44c2c0af3f22296e4920cbb49024f5db52"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/openvins/run1/provenance/estimator_config--estimator_config.yaml",
+          "sha256": "18c1482b3a344495a08330f96de6959db9b1f89503f3fb4724df80f19443e74a"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/openvins/run1/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+          "sha256": "408a887ef92567582dc9d8f189093bd816168127f57efed8d63c44481f1a2262"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/openvins/run1/provenance/imu_calibration--kalibr_imu_chain.yaml",
+          "sha256": "ea6530f2dc604137e92829d54f9c2c3c6f6d1372c18ba8ce15e9f6ac8ee07fad"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/openvins/run1/run_eval.json",
+          "sha256": "e9eeafbd842a50d808170851036f56f52f145268b0777423cae5024ba21d99b5"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "collapse_under_recorded_reference_diagnostic_not_verified_physical_scale",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "retain_failure_in_attempt_denominator"
+      ],
+      "existing_plan": {
+        "id": "vio/rosariov2/sequence1/openvins/default/r1",
+        "planned_output": "results/vio/rosariov2/sequence1/openvins/run10001",
+        "readiness": {
+          "verified_ready_to_run": false,
+          "static_checks": "pending",
+          "execution_validation": "not_verified_after_repairs"
+        },
+        "runtime_estimate": {
+          "estimate_s": null,
+          "observed_range_s": null,
+          "reason": "no complete comparable same-cell server sample",
+          "sources": []
+        }
+      }
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/voxel_svio/run1",
+      "observed_outcome": "failure_with_saved_trajectory",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [
+        "rosario_identity_camera_imu_extrinsic"
+      ],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run1/trajectory.txt",
+          "sha256": "b38da738e7df8bf065a47ae2fdcfda3d7b2239863ae94c98756de2ea2fe00374"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run1/run_meta.json",
+          "sha256": "e38d312e882fd87e8916aef4dc8cc10014f147889b76c7b44b8eb8b51885b981"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run1/run_eval.json",
+          "sha256": "a7aed3a7c42dad01ce5c7b8ee35b7873ed59bbe05a7de0cfd51680691a56d81b"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run1/run_log.txt",
+          "sha256": "dc7f9278a3828a6ae4b6daeb5286c957f73c7edae7ad7be6414f090b1b2d5d6c"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run1/resources.csv",
+          "sha256": "eef3432ba37ed7c53cd75d1040b48f3d1d703f60f24235134dd2bcb2476664cb"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run1/provenance/estimator_config--rosariov2.yaml",
+          "sha256": "4f9a27d350b437bf3e3c5636b4278e39f736e387751c14d0d184b2b0e6d1df0c"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/voxel_svio/run1/run_eval.json",
+          "sha256": "a7aed3a7c42dad01ce5c7b8ee35b7873ed59bbe05a7de0cfd51680691a56d81b"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ],
+      "existing_plan": {
+        "id": "vio/rosariov2/sequence1/voxel_svio/default/r1",
+        "planned_output": "results/vio/rosariov2/sequence1/voxel_svio/run10001",
+        "readiness": {
+          "verified_ready_to_run": false,
+          "static_checks": "pending",
+          "execution_validation": "not_verified_after_repairs"
+        },
+        "runtime_estimate": {
+          "estimate_s": null,
+          "observed_range_s": null,
+          "reason": "no complete comparable same-cell server sample",
+          "sources": []
+        }
+      }
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/voxel_svio/run2",
+      "observed_outcome": "failure_with_saved_trajectory",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [
+        "rosario_identity_camera_imu_extrinsic"
+      ],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run2/trajectory.txt",
+          "sha256": "2fab35016b7e79e1e7feb37322d8b3e3986f98b398b3bd4a020d1614ac9a6638"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run2/run_meta.json",
+          "sha256": "b2af8db3782d3026f745b89fbe744a7ca205f72f0ea936b9582cbbd46c2f207a"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run2/run_eval.json",
+          "sha256": "ebdd4c4b6cb3aafac6e15ffecc1154f02251a7511a4a141502f07890d987a2c1"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run2/run_log.txt",
+          "sha256": "dc287038aa1b4e493954e718884d714abf0ced9acacacbf0f2496607bd10b9b8"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run2/resources.csv",
+          "sha256": "02517210580b27f4d0860c6c323cc22d6b4fe6c0e4eb33ea95c92fea065a9303"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run2/provenance/estimator_config--rosariov2.yaml",
+          "sha256": "4f9a27d350b437bf3e3c5636b4278e39f736e387751c14d0d184b2b0e6d1df0c"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/voxel_svio/run2/run_eval.json",
+          "sha256": "ebdd4c4b6cb3aafac6e15ffecc1154f02251a7511a4a141502f07890d987a2c1"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ],
+      "existing_plan": {
+        "id": "vio/rosariov2/sequence1/voxel_svio/default/r2",
+        "planned_output": "results/vio/rosariov2/sequence1/voxel_svio/run10002",
+        "readiness": {
+          "verified_ready_to_run": false,
+          "static_checks": "pending",
+          "execution_validation": "not_verified_after_repairs"
+        },
+        "runtime_estimate": {
+          "estimate_s": null,
+          "observed_range_s": null,
+          "reason": "no complete comparable same-cell server sample",
+          "sources": []
+        }
+      }
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/voxel_svio/run3",
+      "observed_outcome": "failure_with_saved_trajectory",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [
+        "rosario_identity_camera_imu_extrinsic"
+      ],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run3/trajectory.txt",
+          "sha256": "84be563b805c56f2e32b86a358a0f3e4d41aaafc75658f7137cc47b10cfd09d4"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run3/run_meta.json",
+          "sha256": "22505e1cfdd64f80b6df32e6e39a95ab04bc7c033ec5e4d9bc12126b10dbdf33"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run3/run_eval.json",
+          "sha256": "c0a10a07e5970fe02b2a72660e306f9969572ec3d1de990e7327123b089aa60e"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run3/run_log.txt",
+          "sha256": "1e374b6077fc3710edd64782f0311de9cc42010dd7ca1f40e629ca052d4e9664"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run3/resources.csv",
+          "sha256": "7f64a781c5fd1787e6c8313303213a283fcee9d734f4ba7b63c8ee0f692381b8"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/voxel_svio/run3/provenance/estimator_config--rosariov2.yaml",
+          "sha256": "4f9a27d350b437bf3e3c5636b4278e39f736e387751c14d0d184b2b0e6d1df0c"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/voxel_svio/run3/run_eval.json",
+          "sha256": "c0a10a07e5970fe02b2a72660e306f9969572ec3d1de990e7327123b089aa60e"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ],
+      "existing_plan": {
+        "id": "vio/rosariov2/sequence1/voxel_svio/default/r3",
+        "planned_output": "results/vio/rosariov2/sequence1/voxel_svio/run10003",
+        "readiness": {
+          "verified_ready_to_run": false,
+          "static_checks": "pending",
+          "execution_validation": "not_verified_after_repairs"
+        },
+        "runtime_estimate": {
+          "estimate_s": null,
+          "observed_range_s": null,
+          "reason": "no complete comparable same-cell server sample",
+          "sources": []
+        }
+      }
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/basalt/run1",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [
+        "rosario_identity_camera_imu_extrinsic"
+      ],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run1/trajectory.txt",
+          "sha256": "9ccf4f88d76e1366d21e076691fc9751997d57465d8fae526f5bfff1385d6c16"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run1/run_meta.json",
+          "sha256": "d2fd378c54b514e1ddbad4909dcfce69e65fa9c7f9d82ee1fc7a7c021a97af69"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run1/run_eval.json",
+          "sha256": "ec701ec368f53a82e90f1c290a80828e5b2f10126b738e42b0fc41f4a227a9ed"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run1/run_log.txt",
+          "sha256": "33e302f970a574ff558a3a7adccceaa331d2e963b51a3d6965cec02eb7a96e95"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run1/resources.csv",
+          "sha256": "13c84d6a82d38d52e616bd4f5d29d1726074cefa036f394813334dfd1f0c0d6b"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run1/provenance/camera_calibration--rosariov2_calib.json",
+          "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run1/provenance/estimator_config--vio_config.json",
+          "sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/basalt/run1/run_eval.json",
+          "sha256": "ec701ec368f53a82e90f1c290a80828e5b2f10126b738e42b0fc41f4a227a9ed"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ],
+      "existing_plan": {
+        "id": "vio/rosariov2/sequence5/basalt/default/r1",
+        "planned_output": "results/vio/rosariov2/sequence5/basalt/run10001",
+        "readiness": {
+          "verified_ready_to_run": false,
+          "static_checks": "pending",
+          "execution_validation": "not_verified_after_repairs"
+        },
+        "runtime_estimate": {
+          "estimate_s": null,
+          "observed_range_s": null,
+          "reason": "no complete comparable same-cell server sample",
+          "sources": []
+        }
+      }
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/basalt/run2",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [
+        "rosario_identity_camera_imu_extrinsic"
+      ],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run2/trajectory.txt",
+          "sha256": "8a7eac30bc5bdbda760b1a7243f34ce32980fedb5589b87166bb05e67b8e022a"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run2/run_meta.json",
+          "sha256": "140346a7b64757d3ca8a782d3b22dde7203cda6a4bfa23ca3336f11e4ff4ffe1"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run2/run_eval.json",
+          "sha256": "b6c4d25770cb7c4740b634f8c9291b36aaefb5b17247db4e68e68b991a8775ab"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run2/run_log.txt",
+          "sha256": "ee92489e447097c7b9eaf2e310cdae66887d6798833d301219a4e312d827574c"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run2/resources.csv",
+          "sha256": "3968b1fe39dfbdde54f4e65e596b4a62462106e8a58bf7227ba6333ed7ca07f5"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run2/provenance/camera_calibration--rosariov2_calib.json",
+          "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run2/provenance/estimator_config--vio_config.json",
+          "sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/basalt/run2/run_eval.json",
+          "sha256": "b6c4d25770cb7c4740b634f8c9291b36aaefb5b17247db4e68e68b991a8775ab"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ],
+      "existing_plan": {
+        "id": "vio/rosariov2/sequence5/basalt/default/r2",
+        "planned_output": "results/vio/rosariov2/sequence5/basalt/run10002",
+        "readiness": {
+          "verified_ready_to_run": false,
+          "static_checks": "pending",
+          "execution_validation": "not_verified_after_repairs"
+        },
+        "runtime_estimate": {
+          "estimate_s": null,
+          "observed_range_s": null,
+          "reason": "no complete comparable same-cell server sample",
+          "sources": []
+        }
+      }
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/basalt/run3",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [
+        "rosario_identity_camera_imu_extrinsic"
+      ],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run3/trajectory.txt",
+          "sha256": "631c46e894e1628fb5ffc6fdec002680cdcd237945bafa115396f179e81806ed"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run3/run_meta.json",
+          "sha256": "a71a6a3bcdfefd9e72970ae5d1b009d70c758cbec6c356d9020dafa30ba8c1ad"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run3/run_eval.json",
+          "sha256": "de1cd8dd5c1523885d379d4147ba84d1d68ab8cdeef4b55cf50ba40575eb2fb2"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run3/run_log.txt",
+          "sha256": "72311639e3d4a031304da35462dfbeba786f06ffa2f5d8c7958c892138af4173"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run3/resources.csv",
+          "sha256": "879629558368ac84268e4fe5b649b843a9ae4f4d666652284b07e2642b879f59"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run3/provenance/camera_calibration--rosariov2_calib.json",
+          "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/basalt/run3/provenance/estimator_config--vio_config.json",
+          "sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/basalt/run3/run_eval.json",
+          "sha256": "de1cd8dd5c1523885d379d4147ba84d1d68ab8cdeef4b55cf50ba40575eb2fb2"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ],
+      "existing_plan": {
+        "id": "vio/rosariov2/sequence5/basalt/default/r3",
+        "planned_output": "results/vio/rosariov2/sequence5/basalt/run10003",
+        "readiness": {
+          "verified_ready_to_run": false,
+          "static_checks": "pending",
+          "execution_validation": "not_verified_after_repairs"
+        },
+        "runtime_estimate": {
+          "estimate_s": null,
+          "observed_range_s": null,
+          "reason": "no complete comparable same-cell server sample",
+          "sources": []
+        }
+      }
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/openvins/run1",
+      "observed_outcome": "failure_scale_collapse",
+      "evaluated": true,
+      "exit_code": 134,
+      "findings": [
+        "rosario_identity_camera_imu_extrinsic"
+      ],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/openvins/run1/trajectory.txt",
+          "sha256": "4e60d625d1db6cee2c53b5d93d79f013cd66c18d5d8922a2f5418416e6f56d1b"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/openvins/run1/run_meta.json",
+          "sha256": "08dda4e6c0650fa2b9c644f6641616667a99799ef70e78a92861573327a7bb7a"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/openvins/run1/run_eval.json",
+          "sha256": "18554d1b884f3f9d70c5da0a7fb5c84e25d0b5366a2d1d683b67866e39ac0ab8"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/openvins/run1/run_log.txt",
+          "sha256": "dfcdb0105bb121d86eab6856d5cb7c04eca66366a7ec4f3f4b1adc46a546b72c"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/openvins/run1/openvins_node.log",
+          "sha256": "d63926e23b9e3260f27b1d177c0d0eeff6a2e58a75a3875672b4a73d35393422"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/openvins/run1/resources.csv",
+          "sha256": "2014cb4c4b4dc7f6acba1d3e8cbaba0447a17b11aa49c61f0e1a1ace0aad0ab0"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/openvins/run1/provenance/estimator_config--estimator_config.yaml",
+          "sha256": "18c1482b3a344495a08330f96de6959db9b1f89503f3fb4724df80f19443e74a"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/openvins/run1/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+          "sha256": "408a887ef92567582dc9d8f189093bd816168127f57efed8d63c44481f1a2262"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/openvins/run1/provenance/imu_calibration--kalibr_imu_chain.yaml",
+          "sha256": "ea6530f2dc604137e92829d54f9c2c3c6f6d1372c18ba8ce15e9f6ac8ee07fad"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/openvins/run1/run_eval.json",
+          "sha256": "18554d1b884f3f9d70c5da0a7fb5c84e25d0b5366a2d1d683b67866e39ac0ab8"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "collapse_under_recorded_reference_diagnostic_not_verified_physical_scale",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "retain_failure_in_attempt_denominator"
+      ],
+      "existing_plan": {
+        "id": "vio/rosariov2/sequence5/openvins/default/r1",
+        "planned_output": "results/vio/rosariov2/sequence5/openvins/run10001",
+        "readiness": {
+          "verified_ready_to_run": false,
+          "static_checks": "pending",
+          "execution_validation": "not_verified_after_repairs"
+        },
+        "runtime_estimate": {
+          "estimate_s": null,
+          "observed_range_s": null,
+          "reason": "no complete comparable same-cell server sample",
+          "sources": []
+        }
+      }
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/voxel_svio/run1",
+      "observed_outcome": "failure_with_saved_trajectory",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [
+        "rosario_identity_camera_imu_extrinsic"
+      ],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run1/trajectory.txt",
+          "sha256": "ef7a50ad781d9fb5b0bd6b1f605ae2f77850ac82003cfe6aba3b4ac182517c24"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run1/run_meta.json",
+          "sha256": "22099914a4461f2427e553cc780edec2b78a149baaf40523814bc87090d4d754"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run1/run_eval.json",
+          "sha256": "3c5146ef2b9b940aad23db85f5278e58fda9a199fa27da1748fc10e423f823e6"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run1/run_log.txt",
+          "sha256": "7c1b7a56d7165369e5566b35b96c4038a80d50b4230e008e3f97d2a275588234"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run1/resources.csv",
+          "sha256": "7e1f3776c4c3db3e389835990e0da659de6fd574a5c4e8241b65e940883710b6"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run1/provenance/estimator_config--rosariov2.yaml",
+          "sha256": "4f9a27d350b437bf3e3c5636b4278e39f736e387751c14d0d184b2b0e6d1df0c"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/voxel_svio/run1/run_eval.json",
+          "sha256": "3c5146ef2b9b940aad23db85f5278e58fda9a199fa27da1748fc10e423f823e6"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ],
+      "existing_plan": {
+        "id": "vio/rosariov2/sequence5/voxel_svio/default/r1",
+        "planned_output": "results/vio/rosariov2/sequence5/voxel_svio/run10001",
+        "readiness": {
+          "verified_ready_to_run": false,
+          "static_checks": "pending",
+          "execution_validation": "not_verified_after_repairs"
+        },
+        "runtime_estimate": {
+          "estimate_s": null,
+          "observed_range_s": null,
+          "reason": "no complete comparable same-cell server sample",
+          "sources": []
+        }
+      }
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/voxel_svio/run2",
+      "observed_outcome": "failure_with_saved_trajectory",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [
+        "rosario_identity_camera_imu_extrinsic"
+      ],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run2/trajectory.txt",
+          "sha256": "9b1e1bbee8dcb0882ea0e8248e916c9d541d099e009f28e8fa929718427b254f"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run2/run_meta.json",
+          "sha256": "d80dddd50882a20fe2b1eae7fc1dfabd1f597e0e9a37e7eeb9d33f89a60cb8ac"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run2/run_eval.json",
+          "sha256": "010ed6aef1c37f25b8a211d543b9ede520911991a97786ee42710f368ce5654d"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run2/run_log.txt",
+          "sha256": "00752f3d14fb62d011a6be0c74b16797a716439f3ff36c3f536669932034ce82"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run2/resources.csv",
+          "sha256": "3dd62e4d53efa7022425617e3d45fa66a87dbd70a59b47cd0033c75cc5955bc2"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run2/provenance/estimator_config--rosariov2.yaml",
+          "sha256": "4f9a27d350b437bf3e3c5636b4278e39f736e387751c14d0d184b2b0e6d1df0c"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/voxel_svio/run2/run_eval.json",
+          "sha256": "010ed6aef1c37f25b8a211d543b9ede520911991a97786ee42710f368ce5654d"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ],
+      "existing_plan": {
+        "id": "vio/rosariov2/sequence5/voxel_svio/default/r2",
+        "planned_output": "results/vio/rosariov2/sequence5/voxel_svio/run10002",
+        "readiness": {
+          "verified_ready_to_run": false,
+          "static_checks": "pending",
+          "execution_validation": "not_verified_after_repairs"
+        },
+        "runtime_estimate": {
+          "estimate_s": null,
+          "observed_range_s": null,
+          "reason": "no complete comparable same-cell server sample",
+          "sources": []
+        }
+      }
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/voxel_svio/run3",
+      "observed_outcome": "failure_with_saved_trajectory",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [
+        "rosario_identity_camera_imu_extrinsic"
+      ],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run3/trajectory.txt",
+          "sha256": "c61a802795436b9117916c2767d2b01a1445baa0d2f0497eef7c7195de0e6940"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run3/run_meta.json",
+          "sha256": "a16c133be9fe466def8d48318d19f4c7870441137dd6a669e24f1e32a04c2c3b"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run3/run_eval.json",
+          "sha256": "01a4b01c272781023564aeedddeddff4d788eb38f96a9d4d848155ff0fd540b2"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run3/run_log.txt",
+          "sha256": "19fa4958729f05623d74038ec499c07bb294812da347f6e8350941096ed03a59"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run3/resources.csv",
+          "sha256": "c671e1e87c1f2bbe6214bbecdea8d929e647301c67709d79f152435ca5be13c4"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/voxel_svio/run3/provenance/estimator_config--rosariov2.yaml",
+          "sha256": "4f9a27d350b437bf3e3c5636b4278e39f736e387751c14d0d184b2b0e6d1df0c"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/voxel_svio/run3/run_eval.json",
+          "sha256": "01a4b01c272781023564aeedddeddff4d788eb38f96a9d4d848155ff0fd540b2"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ],
+      "existing_plan": {
+        "id": "vio/rosariov2/sequence5/voxel_svio/default/r3",
+        "planned_output": "results/vio/rosariov2/sequence5/voxel_svio/run10003",
+        "readiness": {
+          "verified_ready_to_run": false,
+          "static_checks": "pending",
+          "execution_validation": "not_verified_after_repairs"
+        },
+        "runtime_estimate": {
+          "estimate_s": null,
+          "observed_range_s": null,
+          "reason": "no complete comparable same-cell server sample",
+          "sources": []
+        }
+      }
+    }
+  ],
+  "missing_repetitions": [
+    {
+      "cell": "vio/rosariov2/sequence1/openvins",
+      "repetition": 2,
+      "absent_historical_path": "results/vio/rosariov2/sequence1/openvins/run2"
+    },
+    {
+      "cell": "vio/rosariov2/sequence1/openvins",
+      "repetition": 3,
+      "absent_historical_path": "results/vio/rosariov2/sequence1/openvins/run3"
+    },
+    {
+      "cell": "vio/rosariov2/sequence5/openvins",
+      "repetition": 2,
+      "absent_historical_path": "results/vio/rosariov2/sequence5/openvins/run2"
+    },
+    {
+      "cell": "vio/rosariov2/sequence5/openvins",
+      "repetition": 3,
+      "absent_historical_path": "results/vio/rosariov2/sequence5/openvins/run3"
+    }
+  ],
+  "camera_review_only": [
+    {
+      "path": "results/vo/rosariov2/sequence1/basalt/run1",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run1/trajectory.txt",
+          "sha256": "14aeda79fa66fcd5e5a893c65e167a134808d655c71e00c980cf6eb0a1434039"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run1/run_meta.json",
+          "sha256": "d7ac1766429e220ae18eee2204193010f18e565d955af524f548f6b489eabe33"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run1/run_eval.json",
+          "sha256": "280ec0c3c3a9a4b6704f8ebf390b83f274363b022b5240ade548a7106b6012ca"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run1/run_log.txt",
+          "sha256": "5d71b248a77b64cf1b3b35bda9e6cb353c4024c706b80215e3c001d432150fec"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run1/resources.csv",
+          "sha256": "645c3a31b3f38d0fc9444600d08340324b22275a75b12e8d2efe6e67ca20efbf"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run1/provenance/camera_calibration--rosariov2_calib.json",
+          "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run1/provenance/estimator_config--vo_config.json",
+          "sha256": "f29940584a55a1217b825012b52b97c1ba6831ee1908cd60d49626526f675476"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vo/rosariov2/sequence1/basalt/run1/run_eval.json",
+          "sha256": "280ec0c3c3a9a4b6704f8ebf390b83f274363b022b5240ade548a7106b6012ca"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vo/rosariov2/sequence1/basalt/run2",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run2/trajectory.txt",
+          "sha256": "8804778bc60db582963961aa4d6e2a199e9a51c48992c726b6eb13889cb29464"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run2/run_meta.json",
+          "sha256": "217a1f854314a0e58f4f0ab1111a0a61d291a60fdf2f16a895e56ee9aa4de021"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run2/run_eval.json",
+          "sha256": "1429abbcfb78f5767b71bdc3139577ff50d6aabecd9cd109bacf635aedc3349b"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run2/run_log.txt",
+          "sha256": "db814f59a231d034402e9c9c01ec3f6589c136a469994f73d06c8081b0491f64"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run2/resources.csv",
+          "sha256": "c4be851d5bda57ec3ae968262467db3d04ac3e75cfd2fc8289602615247643a8"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run2/provenance/camera_calibration--rosariov2_calib.json",
+          "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run2/provenance/estimator_config--vo_config.json",
+          "sha256": "f29940584a55a1217b825012b52b97c1ba6831ee1908cd60d49626526f675476"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vo/rosariov2/sequence1/basalt/run2/run_eval.json",
+          "sha256": "1429abbcfb78f5767b71bdc3139577ff50d6aabecd9cd109bacf635aedc3349b"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vo/rosariov2/sequence1/basalt/run3",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run3/trajectory.txt",
+          "sha256": "3e43aaebf91f41691922b8d90fad9305797a15490dd191069dd698b21e7a374a"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run3/run_meta.json",
+          "sha256": "1705814f1f931d636a2637119ebd1e7e883bb5b21c2a5301c50ef7c7912b75ae"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run3/run_eval.json",
+          "sha256": "20e1da569adf2f19d66d6960379dda5957aedfbf6ccf5a5d2de397db1947dabb"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run3/run_log.txt",
+          "sha256": "8d6966078b18f9e554608383574bda45c35fb31a80bbed1c4ccc8e3e71f9a346"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run3/resources.csv",
+          "sha256": "d644ca7c8fe59224cd6b0147d2639573c27b62d8d534c6d1cb1fc14f2a58ca6c"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run3/provenance/camera_calibration--rosariov2_calib.json",
+          "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence1/basalt/run3/provenance/estimator_config--vo_config.json",
+          "sha256": "f29940584a55a1217b825012b52b97c1ba6831ee1908cd60d49626526f675476"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vo/rosariov2/sequence1/basalt/run3/run_eval.json",
+          "sha256": "20e1da569adf2f19d66d6960379dda5957aedfbf6ccf5a5d2de397db1947dabb"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vo/rosariov2/sequence5/basalt/run1",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run1/trajectory.txt",
+          "sha256": "64ca7aada77164f25b85a41fb86fc98c505cf994f52e5d8255fec6609d49fd80"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run1/run_meta.json",
+          "sha256": "826cbe93b2b3c0169833143d01b6a1827fb0caa8c3bb394bc3b95bde356efe9a"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run1/run_eval.json",
+          "sha256": "1796df9bcd9f2fda55c1e17d2f69bbdfa60a9707e554692c68657faf9ad89b34"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run1/run_log.txt",
+          "sha256": "382cbceb771d3ef4fd33b7f134385cdf3b3bd8bbd51060d1103a4239f7fd3852"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run1/resources.csv",
+          "sha256": "107dfddc44d984152f0095b261918a06c8beb95c7d6eb906af04033ba7277b96"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run1/provenance/camera_calibration--rosariov2_calib.json",
+          "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run1/provenance/estimator_config--vo_config.json",
+          "sha256": "f29940584a55a1217b825012b52b97c1ba6831ee1908cd60d49626526f675476"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vo/rosariov2/sequence5/basalt/run1/run_eval.json",
+          "sha256": "1796df9bcd9f2fda55c1e17d2f69bbdfa60a9707e554692c68657faf9ad89b34"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vo/rosariov2/sequence5/basalt/run2",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run2/trajectory.txt",
+          "sha256": "37103a824731029f10af01eac9ce381a89e63e112c324d306beeaa9a70a6eeeb"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run2/run_meta.json",
+          "sha256": "5c4fe78631d5d0b36289e9582770dea74fcdacc024951050a4c7d25a3d79b7f0"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run2/run_eval.json",
+          "sha256": "b09d1f8dc6456981f935994aa40d0abc947535f5830346ea124e255613d57904"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run2/run_log.txt",
+          "sha256": "87cf6ab4143239db89afe7e118986eafec4d35758626227e51b1bf8027b20417"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run2/resources.csv",
+          "sha256": "a5c909c5c76cde40ec99eb26a2e6bbcbd07afc8df02da54b9200ded41b70d4be"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run2/provenance/camera_calibration--rosariov2_calib.json",
+          "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run2/provenance/estimator_config--vo_config.json",
+          "sha256": "f29940584a55a1217b825012b52b97c1ba6831ee1908cd60d49626526f675476"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vo/rosariov2/sequence5/basalt/run2/run_eval.json",
+          "sha256": "b09d1f8dc6456981f935994aa40d0abc947535f5830346ea124e255613d57904"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vo/rosariov2/sequence5/basalt/run3",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run3/trajectory.txt",
+          "sha256": "fd65dd493efd4103a94a504c52cc5c97c17538946bd3c2da41c3c1466e0cfe59"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run3/run_meta.json",
+          "sha256": "0f01a443aa41d1f1b9a3a6e3c74c745c9ca6de8d5472a5db60208cdde97f522f"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run3/run_eval.json",
+          "sha256": "4f1c63984ad05303aa2bec569a0676b6801bda2012aebeae39ddd75b13ae10ac"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run3/run_log.txt",
+          "sha256": "74baac9cb1812b53ab473774379674ead99605d321f20b8c45f41847dfd0d190"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run3/resources.csv",
+          "sha256": "b07362450a3016c8cb61c63c33cf800ab2d55fef26fc8aa053aeca0dbbc82f11"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run3/provenance/camera_calibration--rosariov2_calib.json",
+          "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vo/rosariov2/sequence5/basalt/run3/provenance/estimator_config--vo_config.json",
+          "sha256": "f29940584a55a1217b825012b52b97c1ba6831ee1908cd60d49626526f675476"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vo/rosariov2/sequence5/basalt/run3/run_eval.json",
+          "sha256": "4f1c63984ad05303aa2bec569a0676b6801bda2012aebeae39ddd75b13ae10ac"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/orbslam3/run1",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run1/trajectory.txt",
+          "sha256": "791d43067fd832eb44c477edafcecae96c4f8d15ec6efc24608a5e994b487a17"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run1/run_meta.json",
+          "sha256": "ae6352238ed0b6fb0ad9051df1242f35d08de54f18a75e55237e37de020db0f9"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run1/run_eval.json",
+          "sha256": "63c92847cbb8112359ed66f8135051e572dff6e682d9c1ab94dc018d99fee61c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run1/run_log.txt",
+          "sha256": "777e2c07af1ea0616c84d2aab9720032b4fe0ace878f4f65f948dfe17186458a"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run1/resources.csv",
+          "sha256": "feedcfa41afe047259fdf7935c682b68797fb4da022cfcca87037450949acc3d"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run1/provenance/estimator_config--orbslam3_cfg_v7gTo2.yaml",
+          "sha256": "371495c23128381633a427f6a638cc2d6bc5d0f26775dd402a8bbba4016446a9"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run1/provenance/estimator_config_source--rosariov2_stereo_inertial.yaml",
+          "sha256": "371495c23128381633a427f6a638cc2d6bc5d0f26775dd402a8bbba4016446a9"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/orbslam3/run1/run_eval.json",
+          "sha256": "63c92847cbb8112359ed66f8135051e572dff6e682d9c1ab94dc018d99fee61c"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/orbslam3/run2",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run2/trajectory.txt",
+          "sha256": "e914e60656761b7427ff992e9a4d750223b7461e134ff7c5ad849bdb5e5eb09a"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run2/run_meta.json",
+          "sha256": "ecc29b3daa6a632253f4499f2216f5766b7c5cfbec3e78d72da18b47be54dd6f"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run2/run_eval.json",
+          "sha256": "c6e705f417ab8138ff7797452f3c119f83222e04787920d621f674481897e6b9"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run2/run_log.txt",
+          "sha256": "8425bca97d195b7cf182c31c8de7ed001d571e522a10b2ec34df22d87fc33cfb"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run2/resources.csv",
+          "sha256": "f4223e404d13ffa08f1f889d38061191ebf5109bb3c4ac65d9605738d70576d4"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run2/provenance/estimator_config--orbslam3_cfg_SijdtF.yaml",
+          "sha256": "371495c23128381633a427f6a638cc2d6bc5d0f26775dd402a8bbba4016446a9"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run2/provenance/estimator_config_source--rosariov2_stereo_inertial.yaml",
+          "sha256": "371495c23128381633a427f6a638cc2d6bc5d0f26775dd402a8bbba4016446a9"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/orbslam3/run2/run_eval.json",
+          "sha256": "c6e705f417ab8138ff7797452f3c119f83222e04787920d621f674481897e6b9"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/orbslam3/run3",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run3/trajectory.txt",
+          "sha256": "de78c7dadfb215e93722308d766ad7bb5664fbb61025a69e513ab3c3484c93e3"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run3/run_meta.json",
+          "sha256": "aa0e435cfb6bb5c36e4dda2acea278191c17cd4883cfaa24f53121b375357892"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run3/run_eval.json",
+          "sha256": "db50094751fe0a9f5586c6c481dbe7a5ae9587d759eae06846ec769cbda5f42b"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run3/run_log.txt",
+          "sha256": "97beafa43dd565dbc66dc547e17c942a00472316b0bf94414fad7a2ce4f44e98"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run3/resources.csv",
+          "sha256": "e1d0f0ddfc244a4f16d8fbf9193de8cfa275a7535e94e2d210280d58eee4714a"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run3/provenance/estimator_config--orbslam3_cfg_LXvysk.yaml",
+          "sha256": "371495c23128381633a427f6a638cc2d6bc5d0f26775dd402a8bbba4016446a9"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/orbslam3/run3/provenance/estimator_config_source--rosariov2_stereo_inertial.yaml",
+          "sha256": "371495c23128381633a427f6a638cc2d6bc5d0f26775dd402a8bbba4016446a9"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/orbslam3/run3/run_eval.json",
+          "sha256": "db50094751fe0a9f5586c6c481dbe7a5ae9587d759eae06846ec769cbda5f42b"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/okvis2/run1",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run1/trajectory.txt",
+          "sha256": "e9c624a29c9d621cb2f43cb6bf7c0a2cd87ff5b256183276d371f12e5b99809c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run1/run_meta.json",
+          "sha256": "a49bc5dcf9d0a13fe0891c762a9df017eaeba89b9c39afed459396265ed0f7c5"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run1/run_eval.json",
+          "sha256": "c6ffba3b503631c15c69293a348da54c2ec4214d92cd0732bfd3fcdbe5504f5e"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run1/run_log.txt",
+          "sha256": "b4754f1339cc4db19b5e6294035988df69ca1bbf9d532370cbc36d8f7bd3824a"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run1/resources.csv",
+          "sha256": "1dc98566bea8e97d661cbbde91c4fb63dcf21c89d51ff667edb5f0b2317a06eb"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run1/provenance/estimator_config--rosariov2_sequence1_vio.yaml",
+          "sha256": "3279f13c5d235f4b3386086c0e929197b694592cd3f9d0299bdca10c2a69edca"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run1/provenance/estimator_config_source--rosariov2_sequence1_vio.yaml",
+          "sha256": "3279f13c5d235f4b3386086c0e929197b694592cd3f9d0299bdca10c2a69edca"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/okvis2/run1/run_eval.json",
+          "sha256": "c6ffba3b503631c15c69293a348da54c2ec4214d92cd0732bfd3fcdbe5504f5e"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/okvis2/run2",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run2/trajectory.txt",
+          "sha256": "d866a170e19c9929970be094bc8aaf31eba9d4a4c3b0f91d6071078a96b7d1d6"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run2/run_meta.json",
+          "sha256": "ad3016eb834a32b8d542d9b6dca7f66a91d9f28e84d3b606df0c5f664fa94d21"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run2/run_eval.json",
+          "sha256": "a3526e762ef6456d85f0c99f133a81791e721ff4bc3301aa3d475de7afd4bf2f"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run2/run_log.txt",
+          "sha256": "b6386fa748f2bb89e34f2fadaac2a652f3ca2d43d5a3c2c8d7fe6e9eda3ec047"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run2/resources.csv",
+          "sha256": "d4849ae8eb41016fa4add4a15cb9854e23a75feda5da09159001d2d6395c4d1c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run2/provenance/estimator_config--rosariov2_sequence1_vio.yaml",
+          "sha256": "3279f13c5d235f4b3386086c0e929197b694592cd3f9d0299bdca10c2a69edca"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run2/provenance/estimator_config_source--rosariov2_sequence1_vio.yaml",
+          "sha256": "3279f13c5d235f4b3386086c0e929197b694592cd3f9d0299bdca10c2a69edca"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/okvis2/run2/run_eval.json",
+          "sha256": "a3526e762ef6456d85f0c99f133a81791e721ff4bc3301aa3d475de7afd4bf2f"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/okvis2/run3",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run3/trajectory.txt",
+          "sha256": "0dcbe235654b5cdbce2ec90f5aa7e2c977a5f3de0570d5deaee397137bbaf658"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run3/run_meta.json",
+          "sha256": "f40937ce221fe844a0da933a0642a560f772901eb1d135bdcd91263f9e449855"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run3/run_eval.json",
+          "sha256": "d644a45482bdfaf3e423017c00816c533c7a0b02e9445def4fa97b100dea1678"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run3/run_log.txt",
+          "sha256": "f97012a13fd97ae450ee534a9f7d6f1a3b27bf18f5f6e53d4946d2622d7a804d"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run3/resources.csv",
+          "sha256": "0bcbc68fd893a836081ac1abd1d19e30fc32e680160708ed48a68d3968393ee4"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run3/provenance/estimator_config--rosariov2_sequence1_vio.yaml",
+          "sha256": "3279f13c5d235f4b3386086c0e929197b694592cd3f9d0299bdca10c2a69edca"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2/run3/provenance/estimator_config_source--rosariov2_sequence1_vio.yaml",
+          "sha256": "3279f13c5d235f4b3386086c0e929197b694592cd3f9d0299bdca10c2a69edca"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/okvis2/run3/run_eval.json",
+          "sha256": "d644a45482bdfaf3e423017c00816c533c7a0b02e9445def4fa97b100dea1678"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/okvis2x/run1",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run1/trajectory.txt",
+          "sha256": "78622f24c192ee8efdaa2143c475a800d885756748cf921c6a03c24beb2df23f"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run1/run_meta.json",
+          "sha256": "7544ff2d2ecaea21362bbc2e5adfcbcc0b425fe4b6180388af3d658059fd68da"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run1/run_eval.json",
+          "sha256": "20a393b79060267737d3e0da059449fab8db6ec50f763f475386b22ebcd11d41"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run1/run_log.txt",
+          "sha256": "7e20a8f7fa110576b1e2896bcba5ef15dd7ab47839547809234deed1b2d46669"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run1/resources.csv",
+          "sha256": "fcd22c751117ac2b5cf6935fe2145a514de55c01837bb0769ea0d6a43fa81c8d"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run1/provenance/estimator_config--rosariov2_sequence1_vio.yaml",
+          "sha256": "88ea228789cf549c437cfb87fcce187231d066fc703e738d1e20eb8c960ff0cd"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/okvis2x/run1/run_eval.json",
+          "sha256": "20a393b79060267737d3e0da059449fab8db6ec50f763f475386b22ebcd11d41"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/okvis2x/run2",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run2/trajectory.txt",
+          "sha256": "1394976c6438ebbd89af6d12d8dc9b6165546236db9fb17d9e9bb6f3ef67f684"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run2/run_meta.json",
+          "sha256": "0c97edfacbbcc961e4086a64e3da42b1ac9b62a396e8dc82c9b0f9dcbc0705ef"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run2/run_eval.json",
+          "sha256": "6fced1bdd575443481857350db7616bf27f96678236a4786da960f02b9d03968"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run2/run_log.txt",
+          "sha256": "fd3bb0a3f9e9239f24700bfafdee280a8ef98839d4f36e7c0266dc61c2954fb7"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run2/resources.csv",
+          "sha256": "11d9f867c3992e413161cae5e44064af34d24addd3086ac58ecf9abdbc32f19c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run2/provenance/estimator_config--rosariov2_sequence1_vio.yaml",
+          "sha256": "88ea228789cf549c437cfb87fcce187231d066fc703e738d1e20eb8c960ff0cd"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/okvis2x/run2/run_eval.json",
+          "sha256": "6fced1bdd575443481857350db7616bf27f96678236a4786da960f02b9d03968"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/okvis2x/run3",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run3/trajectory.txt",
+          "sha256": "f8f66b39d1e226ae2bf871c86cb6e91a413f253d90e42dd7904a84dcd7485aa0"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run3/run_meta.json",
+          "sha256": "d8dc9afde937cca972fe490b8256fd70aaf04e8d6883ccb27d4b8e124440a38a"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run3/run_eval.json",
+          "sha256": "453dc84282660b4db0cb7eebfa3fb77a4a08bf11bfa0633ce00a00276ccee378"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run3/run_log.txt",
+          "sha256": "b66465e38d8bf10cf12a02e66fce3a842daa923b6cdb1c375f0c4e5b25ca99c7"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run3/resources.csv",
+          "sha256": "e118b2721d6100eb1dddb808676729be886fd0f6ec8969d4c78ff44489a46116"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/okvis2x/run3/provenance/estimator_config--rosariov2_sequence1_vio.yaml",
+          "sha256": "88ea228789cf549c437cfb87fcce187231d066fc703e738d1e20eb8c960ff0cd"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/okvis2x/run3/run_eval.json",
+          "sha256": "453dc84282660b4db0cb7eebfa3fb77a4a08bf11bfa0633ce00a00276ccee378"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/airslam/run1",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run1/trajectory.txt",
+          "sha256": "1a73dcdd6971a57a0cce64d13c198592534fdb7c3592f2a1752cc44b03c0fcc4"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run1/run_meta.json",
+          "sha256": "fdc624e6253d78c7573e60d6f95305adb92155359564e85003408a7d623913ba"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run1/run_eval.json",
+          "sha256": "13112b647c327bac19c8b496205a3afcc06a69eff779f15a73127a711ec0118d"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run1/run_log.txt",
+          "sha256": "273993610e5d359bb9dad536e079395b32abe7a45556eed972d8033dddaa9a19"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run1/resources.csv",
+          "sha256": "d7eba0fecdb90e00c1a2bc33b51c8ef840a73e1ca9abcbf8b8e0dbd913b5a702"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run1/provenance/camera_config--rosariov2_camera_vio.yaml",
+          "sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run1/provenance/odometry_config--rosariov2_vio.yaml",
+          "sha256": "44d152e546146eae6ed7efaf15dcfe676015523dd1b6e1de3323d058849cfe2e"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/airslam/run1/run_eval.json",
+          "sha256": "13112b647c327bac19c8b496205a3afcc06a69eff779f15a73127a711ec0118d"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/airslam/run2",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run2/trajectory.txt",
+          "sha256": "cc5bb507736dc128d092c7d77ebeedbe1e6492d331b1f483146ee33354630104"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run2/run_meta.json",
+          "sha256": "57de0b1cc8cbf3d7fb644e3a8c60aa38dc6c1d2583103907c88006c8fe37b276"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run2/run_eval.json",
+          "sha256": "bc3aec122d33c8ff5d3a677661001099d1a499d5ec6aef6737c7580869644c26"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run2/run_log.txt",
+          "sha256": "107ba907c5cd79c2df3665599e6a8bc114190777da8abfc68c3e9f0f2be76b02"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run2/resources.csv",
+          "sha256": "b3b4bbf439669477a152a3defbb5cffd8fa7f0f923f5e88af8d4186e37b8c59a"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run2/provenance/camera_config--rosariov2_camera_vio.yaml",
+          "sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run2/provenance/odometry_config--rosariov2_vio.yaml",
+          "sha256": "44d152e546146eae6ed7efaf15dcfe676015523dd1b6e1de3323d058849cfe2e"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/airslam/run2/run_eval.json",
+          "sha256": "bc3aec122d33c8ff5d3a677661001099d1a499d5ec6aef6737c7580869644c26"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence1/airslam/run3",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run3/trajectory.txt",
+          "sha256": "ec6192c881f9b6bfea4460ecf543162563a91f9069a9a716620036ba37937880"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run3/run_meta.json",
+          "sha256": "caf99ab57a856b1c6283db0ceeeac2b7d2c15b5082221327b9940bff6a2057d6"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run3/run_eval.json",
+          "sha256": "8fb04b8f1b3da42e4357b0ddd3c70a79bcbed823da75f46e18ed77e5608f6d07"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run3/run_log.txt",
+          "sha256": "2b8b6f5386adbe496054327b91f94403a2d8ad39c9db0b8e424b59cf0231f31d"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/gt_tum.txt",
+          "sha256": "6eef4e8ed3f0ce8f62c475c4d0b6b9dcc519177f73778e2cf881e21d3a9aa59b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence1/times.txt",
+          "sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run3/resources.csv",
+          "sha256": "5e329d3e88cdeb1bf5a8c86329011e9309d0f924a0e2a7e038c90ed1e2689255"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run3/provenance/camera_config--rosariov2_camera_vio.yaml",
+          "sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence1/airslam/run3/provenance/odometry_config--rosariov2_vio.yaml",
+          "sha256": "44d152e546146eae6ed7efaf15dcfe676015523dd1b6e1de3323d058849cfe2e"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence1/airslam/run3/run_eval.json",
+          "sha256": "8fb04b8f1b3da42e4357b0ddd3c70a79bcbed823da75f46e18ed77e5608f6d07"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/orbslam3/run1",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run1/trajectory.txt",
+          "sha256": "67ce61ade1c62420a4faaf70b753090000fe7684f7b6bb6f653aa088a293cc9c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run1/run_meta.json",
+          "sha256": "b405578ccf254e363e1d854181591a75e351cad77185fa691339e93300adc5ea"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run1/run_eval.json",
+          "sha256": "7917612431207ef2fa7854854e19d19f0215199dbf7436002cbff6de005827c1"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run1/run_log.txt",
+          "sha256": "7dd49a36aa65a8e69a0f07c89c188b831498464c092310749d975d59ef9eb825"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run1/resources.csv",
+          "sha256": "d9968d8728e61059193ae40e2c66afd49ab03eb7a97b8795102a6d1a58dd2e2b"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run1/provenance/estimator_config--orbslam3_cfg_hivksH.yaml",
+          "sha256": "371495c23128381633a427f6a638cc2d6bc5d0f26775dd402a8bbba4016446a9"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run1/provenance/estimator_config_source--rosariov2_stereo_inertial.yaml",
+          "sha256": "371495c23128381633a427f6a638cc2d6bc5d0f26775dd402a8bbba4016446a9"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/orbslam3/run1/run_eval.json",
+          "sha256": "7917612431207ef2fa7854854e19d19f0215199dbf7436002cbff6de005827c1"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/orbslam3/run2",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run2/trajectory.txt",
+          "sha256": "c2457683f549c9fac1adc23097c60da3395d82cecbfae8b856ba8d17ecbc3448"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run2/run_meta.json",
+          "sha256": "8420a7ce7a6a7d5e843b5575826bd7a32e8bb60c40801ec39c00df38e5f0cefb"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run2/run_eval.json",
+          "sha256": "70640c2ad865ebeb8fcac5cc76ba4a332a513c065cb73907753efffb0f3d83a6"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run2/run_log.txt",
+          "sha256": "d0ce820385cc6cfbc8f41e950fe1967e9c6bdb29db3959b29c2552674ee13882"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run2/resources.csv",
+          "sha256": "521ffd2b584e580a1d9119c92e06562bf259f294da5ecd6f6af38dff1fadbc96"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run2/provenance/estimator_config--orbslam3_cfg_cYRVHE.yaml",
+          "sha256": "371495c23128381633a427f6a638cc2d6bc5d0f26775dd402a8bbba4016446a9"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run2/provenance/estimator_config_source--rosariov2_stereo_inertial.yaml",
+          "sha256": "371495c23128381633a427f6a638cc2d6bc5d0f26775dd402a8bbba4016446a9"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/orbslam3/run2/run_eval.json",
+          "sha256": "70640c2ad865ebeb8fcac5cc76ba4a332a513c065cb73907753efffb0f3d83a6"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/orbslam3/run3",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run3/trajectory.txt",
+          "sha256": "d047eae46e6b376e509bd24ad1439d5217ca084ad145c927e36197cb55e7db9e"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run3/run_meta.json",
+          "sha256": "38d79d26521cb0342696eb12f0792f2bae3a0134ecef041ee98ab53e5b7229db"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run3/run_eval.json",
+          "sha256": "8d63ce381cf72a1cc0934dece716286a33ba7c84a3935aef4cd611705890063b"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run3/run_log.txt",
+          "sha256": "0f436c36738469ad17b595186e584218c486738e70c5c5b54e4f384c7d958988"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run3/resources.csv",
+          "sha256": "7577e270d5296954156149e28b8c2eaf875eb247ec65ccf816c021761a362bf3"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run3/provenance/estimator_config--orbslam3_cfg_CLFu9g.yaml",
+          "sha256": "371495c23128381633a427f6a638cc2d6bc5d0f26775dd402a8bbba4016446a9"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/orbslam3/run3/provenance/estimator_config_source--rosariov2_stereo_inertial.yaml",
+          "sha256": "371495c23128381633a427f6a638cc2d6bc5d0f26775dd402a8bbba4016446a9"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/orbslam3/run3/run_eval.json",
+          "sha256": "8d63ce381cf72a1cc0934dece716286a33ba7c84a3935aef4cd611705890063b"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/okvis2/run1",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run1/trajectory.txt",
+          "sha256": "af29fd07f2b8f9acdbae84ba808650511da8e89789793160ed13472cd3996884"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run1/run_meta.json",
+          "sha256": "50c545190a8171e346a447a82fdf951520c87a57731609a1795abbd9c6211c18"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run1/run_eval.json",
+          "sha256": "cdf2da574e6ea96ab548322470bd844ea6f7b58cfdf008d83a6aea6dd2041036"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run1/run_log.txt",
+          "sha256": "151fd7717c61980a1dd4ee8c204522657a376ccaa37b5321445e2aa6fc2fca0a"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run1/resources.csv",
+          "sha256": "2e1ec6b1ca457085874cce1940977cc8581b463acbe3278d6e2d55a17fba984b"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run1/provenance/estimator_config--rosariov2_sequence5_vio.yaml",
+          "sha256": "f5a451225c2704cc8e1cb2b6e5b852c90a797f79b965c6df51a201ed83f3daba"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run1/provenance/estimator_config_source--rosariov2_sequence5_vio.yaml",
+          "sha256": "f5a451225c2704cc8e1cb2b6e5b852c90a797f79b965c6df51a201ed83f3daba"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/okvis2/run1/run_eval.json",
+          "sha256": "cdf2da574e6ea96ab548322470bd844ea6f7b58cfdf008d83a6aea6dd2041036"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/okvis2/run2",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run2/trajectory.txt",
+          "sha256": "578105663821e883b52ceae79f1ada4fa96188b7c8a5b0f2da778035d67cc335"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run2/run_meta.json",
+          "sha256": "5ba2e06c65fd9e77311663dc05202bacfd7eb859d69d71cc945aaddb5f507f93"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run2/run_eval.json",
+          "sha256": "b343a9e6d587c05ab430784276557640c2641ce98eac8fc032707a1ac4865f5f"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run2/run_log.txt",
+          "sha256": "9fc2455e97c2b608eb06c3be7a5398d51e01c0ed760aedf2bd6a61b53764c4cf"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run2/resources.csv",
+          "sha256": "f09169f3d1efa6f63a3f492b60687a43b35a6d9a153d77917f9f832c18d7094b"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run2/provenance/estimator_config--rosariov2_sequence5_vio.yaml",
+          "sha256": "f5a451225c2704cc8e1cb2b6e5b852c90a797f79b965c6df51a201ed83f3daba"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run2/provenance/estimator_config_source--rosariov2_sequence5_vio.yaml",
+          "sha256": "f5a451225c2704cc8e1cb2b6e5b852c90a797f79b965c6df51a201ed83f3daba"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/okvis2/run2/run_eval.json",
+          "sha256": "b343a9e6d587c05ab430784276557640c2641ce98eac8fc032707a1ac4865f5f"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/okvis2/run3",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run3/trajectory.txt",
+          "sha256": "1bc636b71d41e1b5ff8eac49b133552f608502a0b841fea7bb95dd35fc7c9955"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run3/run_meta.json",
+          "sha256": "a758b9f7126d8da6d19c759e0e4d77347c77775fdae6856ab43366b83232fa9f"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run3/run_eval.json",
+          "sha256": "0fa074c3cdf9d8ee5db2cd43eebc72e47354474446053433674705db4b8094bf"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run3/run_log.txt",
+          "sha256": "d23fcfacd174369759cdd524353543f62ccbe6216bb0a7af09d805418f437e3c"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run3/resources.csv",
+          "sha256": "c8d34f63a5181179575f5fa74757af658c1fe05ca39c1b94ee1b1dde53e50271"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run3/provenance/estimator_config--rosariov2_sequence5_vio.yaml",
+          "sha256": "f5a451225c2704cc8e1cb2b6e5b852c90a797f79b965c6df51a201ed83f3daba"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2/run3/provenance/estimator_config_source--rosariov2_sequence5_vio.yaml",
+          "sha256": "f5a451225c2704cc8e1cb2b6e5b852c90a797f79b965c6df51a201ed83f3daba"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/okvis2/run3/run_eval.json",
+          "sha256": "0fa074c3cdf9d8ee5db2cd43eebc72e47354474446053433674705db4b8094bf"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/okvis2x/run1",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run1/trajectory.txt",
+          "sha256": "3faabb7fd7eff3f0e58be94902b4e2197ac7ea609c0dbd22b98169d0042d174c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run1/run_meta.json",
+          "sha256": "56f84538a5cd4924516807a267eefd6a942f8057f38f6ae492b8c72c13a3ac01"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run1/run_eval.json",
+          "sha256": "1e252edd7700987713ceed91b6ebfe7d8776dbee4fc05445b4813980e336f8bb"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run1/run_log.txt",
+          "sha256": "67d6b6df159edd962f74541926595f2794d9051a414b2483617dcae433359e2b"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run1/resources.csv",
+          "sha256": "931784a6d5fe3e8cb82315ecbf588452b3046a3e2771f686f78c902bbc758dbd"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run1/provenance/estimator_config--rosariov2_sequence5_vio.yaml",
+          "sha256": "f50307c5a4d089bec44ecd6b54b30663728c9e2f6f3ae913287e211d05b1b6d6"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/okvis2x/run1/run_eval.json",
+          "sha256": "1e252edd7700987713ceed91b6ebfe7d8776dbee4fc05445b4813980e336f8bb"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/okvis2x/run2",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run2/trajectory.txt",
+          "sha256": "bc806193b5d2622cb1eb4a11b69a941f460869b646f969be102f4089c926bc44"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run2/run_meta.json",
+          "sha256": "5df57543f7ee0b12b1f9688ffb33e09346fe724889b03321933f4804be02bd20"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run2/run_eval.json",
+          "sha256": "fded09113753cd0f763cd66b45d0830566bdabb2d53e9101d9c12e9feae8c094"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run2/run_log.txt",
+          "sha256": "c6f9ffff6dc810f50d7d3cd85f759fb411d8cfe6af3419e83250266e0e7d4df8"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run2/resources.csv",
+          "sha256": "49d901f30743cf4913ea8fdcd0854f1db8e453b0c73b2f2ae9ef6c6a844f6562"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run2/provenance/estimator_config--rosariov2_sequence5_vio.yaml",
+          "sha256": "f50307c5a4d089bec44ecd6b54b30663728c9e2f6f3ae913287e211d05b1b6d6"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/okvis2x/run2/run_eval.json",
+          "sha256": "fded09113753cd0f763cd66b45d0830566bdabb2d53e9101d9c12e9feae8c094"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/okvis2x/run3",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run3/trajectory.txt",
+          "sha256": "0bf4fee482672691fd50dcb849abdecc25355bb4d33fb4f513d1e01c8b89ec6f"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run3/run_meta.json",
+          "sha256": "b78c4e2501f93e0d3e025613f3c58790e1832cc6a4c7762660a01ace5fce44ef"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run3/run_eval.json",
+          "sha256": "1153fe2474d31f21869102ec7b302cff851629d050e0fd142250bd51d286e42e"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run3/run_log.txt",
+          "sha256": "23d1456429eb280fd4cbda2c45e9d75973977f4edee42a32d5c6b04ecf81a40e"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run3/resources.csv",
+          "sha256": "f774f77223a8c3c4be8db46d41e99a8a8dc4fe2d3a3ced5f4f682c4728d8405f"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/okvis2x/run3/provenance/estimator_config--rosariov2_sequence5_vio.yaml",
+          "sha256": "f50307c5a4d089bec44ecd6b54b30663728c9e2f6f3ae913287e211d05b1b6d6"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/okvis2x/run3/run_eval.json",
+          "sha256": "1153fe2474d31f21869102ec7b302cff851629d050e0fd142250bd51d286e42e"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/airslam/run1",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run1/trajectory.txt",
+          "sha256": "101f7e38ed9d20b35ce7c7fce5c0f6637b7b9780488bf39df13ce04933084b53"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run1/run_meta.json",
+          "sha256": "332a121d1cb1e5d5ecc91d7f9ca523a18517592deedd9785c994692b330977cc"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run1/run_eval.json",
+          "sha256": "366411712663018f1170a310e4ae99d9000918b1dbfb50069525d64646f1b153"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run1/run_log.txt",
+          "sha256": "470814c06bc648fda1bdddfee1acf1fc25f0a522f3816cbfa43d4bc158d8ea4c"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run1/resources.csv",
+          "sha256": "0d95944776d30e55c1c8a92d40b98354090f3a422600cbc382b1ed1d40de8a1d"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run1/provenance/camera_config--rosariov2_camera_vio.yaml",
+          "sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run1/provenance/odometry_config--rosariov2_vio.yaml",
+          "sha256": "44d152e546146eae6ed7efaf15dcfe676015523dd1b6e1de3323d058849cfe2e"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/airslam/run1/run_eval.json",
+          "sha256": "366411712663018f1170a310e4ae99d9000918b1dbfb50069525d64646f1b153"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/airslam/run2",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run2/trajectory.txt",
+          "sha256": "101f7e38ed9d20b35ce7c7fce5c0f6637b7b9780488bf39df13ce04933084b53"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run2/run_meta.json",
+          "sha256": "730f8c1290f83a708b7bc3c7e7ad3ccffcf0e71189b709a402830d34318bba75"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run2/run_eval.json",
+          "sha256": "7f3f723f5964d7360f962a4a00acf8ef987640b8623e8442c0ac4661f43af64f"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run2/run_log.txt",
+          "sha256": "b6776d89dd3943103ed3a20d68b1817ea34ab165e9dfe455401a8c26d70a67c6"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run2/resources.csv",
+          "sha256": "f8faf66074deb4eaebd8e00584ecfa5762b4f443b293dd50645e7e89f08eb6c8"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run2/provenance/camera_config--rosariov2_camera_vio.yaml",
+          "sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run2/provenance/odometry_config--rosariov2_vio.yaml",
+          "sha256": "44d152e546146eae6ed7efaf15dcfe676015523dd1b6e1de3323d058849cfe2e"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/airslam/run2/run_eval.json",
+          "sha256": "7f3f723f5964d7360f962a4a00acf8ef987640b8623e8442c0ac4661f43af64f"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    },
+    {
+      "path": "results/vio/rosariov2/sequence5/airslam/run3",
+      "observed_outcome": "success",
+      "evaluated": true,
+      "exit_code": 0,
+      "findings": [],
+      "historical_artifact_hashes": [
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run3/trajectory.txt",
+          "sha256": "101f7e38ed9d20b35ce7c7fce5c0f6637b7b9780488bf39df13ce04933084b53"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run3/run_meta.json",
+          "sha256": "9006b3db27a5a9d41207dec131d61713d0af1c2e8f0df5be45f2e6894cbb5f95"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run3/run_eval.json",
+          "sha256": "d627b81aef05ab4f2d3856d27e99a52ea739cfceaaaa5a2673d7e49c366b07c1"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run3/run_log.txt",
+          "sha256": "4c3cc72f3eef5be376a0dd5c090c56d098038e933341951030c768a65ee3df97"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/gt_tum.txt",
+          "sha256": "a886d339de70f9ac95cce506e5e21c20ac9ee2a67d3aab9cae74cae788f3baca"
+        },
+        {
+          "path": "datasets/rosariov2/sequence5/times.txt",
+          "sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run3/resources.csv",
+          "sha256": "65246c89688a69b3ed82433abd2a03a6f1475f7c7222b11a770ef1f2b5e7be75"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run3/provenance/camera_config--rosariov2_camera_vio.yaml",
+          "sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3"
+        },
+        {
+          "path": "docs/campaigns/rosario-reference-calibration-20261001.json",
+          "sha256": "a26f9716f69b4f91a2329c42e2e5662335d3f9ca66191cc9fa2f6545834d12af"
+        },
+        {
+          "path": "results/vio/rosariov2/sequence5/airslam/run3/provenance/odometry_config--rosariov2_vio.yaml",
+          "sha256": "44d152e546146eae6ed7efaf15dcfe676015523dd1b6e1de3323d058849cfe2e"
+        },
+        {
+          "path": "results/repair-20261001/evaluations/vio/rosariov2/sequence5/airslam/run3/run_eval.json",
+          "sha256": "d627b81aef05ab4f2d3856d27e99a52ea739cfceaaaa5a2673d7e49c366b07c1"
+        }
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "fused_stereo_imu_ppk_reference_not_independent_ground_truth",
+        "no_measured_processing_rate_or_realtime_deadline_claim"
+      ]
+    }
+  ],
+  "current_runner_selection": {
+    "vio/rosariov2/sequence1/basalt": {
+      "schema": 1,
+      "source_files": [
+        {
+          "role": "estimator_config",
+          "path": "configs/basalt/vio_config.json",
+          "sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa"
+        },
+        {
+          "role": "camera_calibration",
+          "path": "configs/basalt/rosariov2_calib.json",
+          "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d"
+        },
+        {
+          "role": "runner_with_embedded_parameters",
+          "path": "scripts/run/run_basalt.sh",
+          "sha256": "92874e78e48b9154b6f33b8f92ae98dc94dd416280585bb54b0e70b34a721512"
+        }
+      ],
+      "planned_effective_inputs": [
+        {
+          "role": "estimator_config",
+          "normalized_sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa",
+          "substitutions": "unchanged input bytes"
+        },
+        {
+          "role": "camera_calibration",
+          "normalized_sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d",
+          "substitutions": "unchanged input bytes"
+        },
+        {
+          "role": "runner_with_embedded_parameters",
+          "normalized_sha256": "92874e78e48b9154b6f33b8f92ae98dc94dd416280585bb54b0e70b34a721512",
+          "substitutions": "unchanged input bytes"
+        }
+      ],
+      "operations": [],
+      "selection_errors": [],
+      "scope": "default source selection and deterministic materialization identity only",
+      "runtime_materialization_verified": false,
+      "unresolved": [
+        "verify_effective_native_config_after_runtime_materialization",
+        "verify_native_build_source_linkage_and_loaded_runtime_dependency_closure"
+      ],
+      "sha256": "db3e309ea560ddf2aba8c16f13b270f849fbdb8c7f839ac3a944ca1d1027bdff"
+    },
+    "vio/rosariov2/sequence1/openvins": {
+      "schema": 1,
+      "source_files": [
+        {
+          "role": "estimator_config",
+          "path": "configs/openvins/rosariov2/estimator_config.yaml",
+          "sha256": "be9584b4a7bbc5362b854d77d10f903fe2eda860f1e841a322d1ae5ea6974699"
+        },
+        {
+          "role": "imu_calibration",
+          "path": "configs/openvins/rosariov2/kalibr_imu_chain.yaml",
+          "sha256": "ea6530f2dc604137e92829d54f9c2c3c6f6d1372c18ba8ce15e9f6ac8ee07fad"
+        },
+        {
+          "role": "camera_imu_calibration",
+          "path": "configs/openvins/rosariov2/kalibr_imucam_chain.yaml",
+          "sha256": "d7d49900a67cbeb0a2c70888dd2ab8d0d6a158407e2e9a80f14af99b959aeafd"
+        },
+        {
+          "role": "runner_with_embedded_parameters",
+          "path": "scripts/run/run_openvins.sh",
+          "sha256": "2af31baedb0568f765e4abe27f91b5ef42d23341e1bf684dfe9b062cd3de23a6"
+        }
+      ],
+      "planned_effective_inputs": [
+        {
+          "role": "estimator_config",
+          "normalized_sha256": "be9584b4a7bbc5362b854d77d10f903fe2eda860f1e841a322d1ae5ea6974699",
+          "substitutions": "unchanged input bytes"
+        },
+        {
+          "role": "imu_calibration",
+          "normalized_sha256": "ea6530f2dc604137e92829d54f9c2c3c6f6d1372c18ba8ce15e9f6ac8ee07fad",
+          "substitutions": "unchanged input bytes"
+        },
+        {
+          "role": "camera_imu_calibration",
+          "normalized_sha256": "d7d49900a67cbeb0a2c70888dd2ab8d0d6a158407e2e9a80f14af99b959aeafd",
+          "substitutions": "unchanged input bytes"
+        },
+        {
+          "role": "runner_with_embedded_parameters",
+          "normalized_sha256": "2af31baedb0568f765e4abe27f91b5ef42d23341e1bf684dfe9b062cd3de23a6",
+          "substitutions": "unchanged input bytes"
+        }
+      ],
+      "operations": [],
+      "selection_errors": [],
+      "scope": "default source selection and deterministic materialization identity only",
+      "runtime_materialization_verified": false,
+      "unresolved": [
+        "verify_effective_native_config_after_runtime_materialization",
+        "verify_native_build_source_linkage_and_loaded_runtime_dependency_closure"
+      ],
+      "sha256": "5e40f63bd6033abdd1fac1ef8cf19f25b6c9f6db0c38a698bcd714807e8a7fb4"
+    },
+    "vio/rosariov2/sequence1/voxel_svio": {
+      "schema": 1,
+      "source_files": [
+        {
+          "role": "estimator_config",
+          "path": "configs/voxel_svio/rosariov2.yaml",
+          "sha256": "9c12510bb8a65e531eee972f55506ef2d24678405e8b425c94d797d42660d438"
+        },
+        {
+          "role": "runner_with_embedded_parameters",
+          "path": "scripts/run/run_voxel_svio.sh",
+          "sha256": "a2ae4f86cc23605a61cc26f8c00f48a54356292433ac9c966fd03c8d2fb09758"
+        }
+      ],
+      "planned_effective_inputs": [
+        {
+          "role": "estimator_config",
+          "normalized_sha256": "9c12510bb8a65e531eee972f55506ef2d24678405e8b425c94d797d42660d438",
+          "substitutions": "unchanged input bytes"
+        },
+        {
+          "role": "runner_with_embedded_parameters",
+          "normalized_sha256": "a2ae4f86cc23605a61cc26f8c00f48a54356292433ac9c966fd03c8d2fb09758",
+          "substitutions": "unchanged input bytes"
+        }
+      ],
+      "operations": [
+        "ROS output_path := <container_attempt>/native"
+      ],
+      "selection_errors": [],
+      "scope": "default source selection and deterministic materialization identity only",
+      "runtime_materialization_verified": false,
+      "unresolved": [
+        "verify_effective_native_config_after_runtime_materialization",
+        "verify_native_build_source_linkage_and_loaded_runtime_dependency_closure"
+      ],
+      "sha256": "3c32fcde00948e51e0f6e1b90849e309e7fa6c065c32a74e623a58995d089948"
+    },
+    "vio/rosariov2/sequence5/basalt": {
+      "schema": 1,
+      "source_files": [
+        {
+          "role": "estimator_config",
+          "path": "configs/basalt/vio_config.json",
+          "sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa"
+        },
+        {
+          "role": "camera_calibration",
+          "path": "configs/basalt/rosariov2_calib.json",
+          "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d"
+        },
+        {
+          "role": "runner_with_embedded_parameters",
+          "path": "scripts/run/run_basalt.sh",
+          "sha256": "92874e78e48b9154b6f33b8f92ae98dc94dd416280585bb54b0e70b34a721512"
+        }
+      ],
+      "planned_effective_inputs": [
+        {
+          "role": "estimator_config",
+          "normalized_sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa",
+          "substitutions": "unchanged input bytes"
+        },
+        {
+          "role": "camera_calibration",
+          "normalized_sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d",
+          "substitutions": "unchanged input bytes"
+        },
+        {
+          "role": "runner_with_embedded_parameters",
+          "normalized_sha256": "92874e78e48b9154b6f33b8f92ae98dc94dd416280585bb54b0e70b34a721512",
+          "substitutions": "unchanged input bytes"
+        }
+      ],
+      "operations": [],
+      "selection_errors": [],
+      "scope": "default source selection and deterministic materialization identity only",
+      "runtime_materialization_verified": false,
+      "unresolved": [
+        "verify_effective_native_config_after_runtime_materialization",
+        "verify_native_build_source_linkage_and_loaded_runtime_dependency_closure"
+      ],
+      "sha256": "db3e309ea560ddf2aba8c16f13b270f849fbdb8c7f839ac3a944ca1d1027bdff"
+    },
+    "vio/rosariov2/sequence5/openvins": {
+      "schema": 1,
+      "source_files": [
+        {
+          "role": "estimator_config",
+          "path": "configs/openvins/rosariov2/estimator_config.yaml",
+          "sha256": "be9584b4a7bbc5362b854d77d10f903fe2eda860f1e841a322d1ae5ea6974699"
+        },
+        {
+          "role": "imu_calibration",
+          "path": "configs/openvins/rosariov2/kalibr_imu_chain.yaml",
+          "sha256": "ea6530f2dc604137e92829d54f9c2c3c6f6d1372c18ba8ce15e9f6ac8ee07fad"
+        },
+        {
+          "role": "camera_imu_calibration",
+          "path": "configs/openvins/rosariov2/kalibr_imucam_chain.yaml",
+          "sha256": "d7d49900a67cbeb0a2c70888dd2ab8d0d6a158407e2e9a80f14af99b959aeafd"
+        },
+        {
+          "role": "runner_with_embedded_parameters",
+          "path": "scripts/run/run_openvins.sh",
+          "sha256": "2af31baedb0568f765e4abe27f91b5ef42d23341e1bf684dfe9b062cd3de23a6"
+        }
+      ],
+      "planned_effective_inputs": [
+        {
+          "role": "estimator_config",
+          "normalized_sha256": "be9584b4a7bbc5362b854d77d10f903fe2eda860f1e841a322d1ae5ea6974699",
+          "substitutions": "unchanged input bytes"
+        },
+        {
+          "role": "imu_calibration",
+          "normalized_sha256": "ea6530f2dc604137e92829d54f9c2c3c6f6d1372c18ba8ce15e9f6ac8ee07fad",
+          "substitutions": "unchanged input bytes"
+        },
+        {
+          "role": "camera_imu_calibration",
+          "normalized_sha256": "d7d49900a67cbeb0a2c70888dd2ab8d0d6a158407e2e9a80f14af99b959aeafd",
+          "substitutions": "unchanged input bytes"
+        },
+        {
+          "role": "runner_with_embedded_parameters",
+          "normalized_sha256": "2af31baedb0568f765e4abe27f91b5ef42d23341e1bf684dfe9b062cd3de23a6",
+          "substitutions": "unchanged input bytes"
+        }
+      ],
+      "operations": [],
+      "selection_errors": [],
+      "scope": "default source selection and deterministic materialization identity only",
+      "runtime_materialization_verified": false,
+      "unresolved": [
+        "verify_effective_native_config_after_runtime_materialization",
+        "verify_native_build_source_linkage_and_loaded_runtime_dependency_closure"
+      ],
+      "sha256": "5e40f63bd6033abdd1fac1ef8cf19f25b6c9f6db0c38a698bcd714807e8a7fb4"
+    },
+    "vio/rosariov2/sequence5/voxel_svio": {
+      "schema": 1,
+      "source_files": [
+        {
+          "role": "estimator_config",
+          "path": "configs/voxel_svio/rosariov2.yaml",
+          "sha256": "9c12510bb8a65e531eee972f55506ef2d24678405e8b425c94d797d42660d438"
+        },
+        {
+          "role": "runner_with_embedded_parameters",
+          "path": "scripts/run/run_voxel_svio.sh",
+          "sha256": "a2ae4f86cc23605a61cc26f8c00f48a54356292433ac9c966fd03c8d2fb09758"
+        }
+      ],
+      "planned_effective_inputs": [
+        {
+          "role": "estimator_config",
+          "normalized_sha256": "9c12510bb8a65e531eee972f55506ef2d24678405e8b425c94d797d42660d438",
+          "substitutions": "unchanged input bytes"
+        },
+        {
+          "role": "runner_with_embedded_parameters",
+          "normalized_sha256": "a2ae4f86cc23605a61cc26f8c00f48a54356292433ac9c966fd03c8d2fb09758",
+          "substitutions": "unchanged input bytes"
+        }
+      ],
+      "operations": [
+        "ROS output_path := <container_attempt>/native"
+      ],
+      "selection_errors": [],
+      "scope": "default source selection and deterministic materialization identity only",
+      "runtime_materialization_verified": false,
+      "unresolved": [
+        "verify_effective_native_config_after_runtime_materialization",
+        "verify_native_build_source_linkage_and_loaded_runtime_dependency_closure"
+      ],
+      "sha256": "3c32fcde00948e51e0f6e1b90849e309e7fa6c065c32a74e623a58995d089948"
+    }
+  },
+  "native_source_evidence": [
+    {
+      "path": "src/open_vins/ov_msckf/src/core/VioManagerOptions.h",
+      "sha256": "68ceb7fbf67d52e24eab4552ac202ab0299e6dad9cfbcc497a5d4752e13e4aac"
+    },
+    {
+      "path": "src/open_vins/ov_core/src/utils/opencv_yaml_parse.h",
+      "sha256": "33edbdd3675a18484b58405103ca3b63b537d115831be086ebed701d106d974f"
+    },
+    {
+      "path": "src/open_vins/ov_msckf/src/ros/ROS2Visualizer.cpp",
+      "sha256": "539e999a4461cee2a2b9c96a0cbaa8b96a05bfbb7d93796cef5056cdcaab224a"
+    },
+    {
+      "path": "src/voxel_svio/src/stereoVio.cpp",
+      "sha256": "a2646036d6b37b9953b48439e33387f8a3e6e36a6ca4be8464af016391d4923b"
+    },
+    {
+      "path": "scripts/run/run_basalt.sh",
+      "sha256": "92874e78e48b9154b6f33b8f92ae98dc94dd416280585bb54b0e70b34a721512"
+    },
+    {
+      "path": "scripts/run/run_openvins.sh",
+      "sha256": "2af31baedb0568f765e4abe27f91b5ef42d23341e1bf684dfe9b062cd3de23a6"
+    },
+    {
+      "path": "scripts/run/run_voxel_svio.sh",
+      "sha256": "a2ae4f86cc23605a61cc26f8c00f48a54356292433ac9c966fd03c8d2fb09758"
+    },
+    {
+      "path": "scripts/run/openvins_data_player.py",
+      "sha256": "8facae86e315bf666ecf56a4f955d91cea6da8159cb34c2f831842417ad1f55e"
+    },
+    {
+      "path": "scripts/run/voxel_svio_data_player.py",
+      "sha256": "a8599489b195fdb03f7b7be57aaabf69c686d8b0e73820a32f7654a77b4f8139"
+    }
+  ],
+  "upstream_source_evidence": [
+    {
+      "repo": "basalt",
+      "commit": "0f3b2b52c807f70ff4e2973ce253c73329eea7bc",
+      "url": "https://raw.githubusercontent.com/VladyslavUsenko/basalt/0f3b2b52c807f70ff4e2973ce253c73329eea7bc/src/vio.cpp",
+      "path": "review-evidence/rosario-vio-20261002/upstream/basalt-vio.cpp",
+      "sha256": "5680eddb73b220ecc89525ae200a4e95d1507755eb87b8dce16fd9afb7a1563c"
+    },
+    {
+      "repo": "basalt",
+      "commit": "0f3b2b52c807f70ff4e2973ce253c73329eea7bc",
+      "url": "https://raw.githubusercontent.com/VladyslavUsenko/basalt/0f3b2b52c807f70ff4e2973ce253c73329eea7bc/src/vi_estimator/sqrt_keypoint_vio.cpp",
+      "path": "review-evidence/rosario-vio-20261002/upstream/basalt-sqrt_keypoint_vio.cpp",
+      "sha256": "141dc9747dfb60e19e8ab93eab3b5600a6bb95fc249afdd5e15f4d844276c5c9"
+    },
+    {
+      "repo": "basalt-headers",
+      "commit": "b7f915b195c87c8373bf93f97a0710bcdaffd718",
+      "url": "https://raw.githubusercontent.com/VladyslavUsenko/basalt-headers/b7f915b195c87c8373bf93f97a0710bcdaffd718/include/basalt/camera/pinhole_radtan8_camera.hpp",
+      "path": "review-evidence/rosario-vio-20261002/upstream/basalt-headers-pinhole_radtan8_camera.hpp",
+      "sha256": "2b8c837f6f4f11bcaf99a3c887022fb2d70ab65dd6843294e95f1994decb89f6"
+    },
+    {
+      "repo": "basalt-headers",
+      "commit": "b7f915b195c87c8373bf93f97a0710bcdaffd718",
+      "url": "https://raw.githubusercontent.com/VladyslavUsenko/basalt-headers/b7f915b195c87c8373bf93f97a0710bcdaffd718/include/basalt/serialization/headers_serialization.h",
+      "path": "review-evidence/rosario-vio-20261002/upstream/basalt-headers-headers_serialization.h",
+      "sha256": "10efb62473f6eadcb063acc92d26cd956a4a9f1383368b5bae1d7c9feb1216bc"
+    }
+  ],
+  "bag_prefix_evidence_sha256": "19fba0ecbed86ac12537cfb1dd0835f779610dd0bf3a4df0a62d4b4887437ed8",
+  "stereo_geometry": {
+    "kalibr_baseline_m": 0.05024089082502646,
+    "author_orb_bf": 32.27032495,
+    "author_orb_fx": 648.8624169653789,
+    "author_orb_RIGHT_P": [
+      [
+        648.8624169653789,
+        0.0,
+        645.0113372802734,
+        -32.599425851220396
+      ],
+      [
+        0.0,
+        648.8624169653789,
+        348.24266815185547,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ]
+    ],
+    "kalibr_T_imu_cam0": [
+      [
+        0.9999922359986658,
+        -0.003898148656441657,
+        -0.0005765235818587994,
+        -0.004483027809925508
+      ],
+      [
+        0.0038952107282768295,
+        0.999979852551538,
+        -0.00501216763353817,
+        0.01917969921314904
+      ],
+      [
+        0.0005960501409061838,
+        0.005009883038220819,
+        0.9999872728170957,
+        0.02758414303707034
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  }
+}

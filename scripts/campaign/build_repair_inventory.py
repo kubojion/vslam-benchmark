@@ -25,6 +25,48 @@ REPO=Path(__file__).resolve().parents[2]
 MODES=('vo','vo-lc','vio','vio-lc','gnss-vio')
 SERVER='machine-3c9dca59a50f'
 SELECTION='configs/campaigns/euroc-focused-attempts-20261001.json'
+ZED_SELECTION='configs/campaigns/zed-vio-first-attempts-20261002.json'
+
+
+def completed_zed_selections(repo):
+    """Retain predeclared completed slots, including failures, without granting acceptance."""
+    path=repo/ZED_SELECTION
+    if not path.is_file():return {}
+    value=read(path)
+    if value.get('schema')!=1:raise ValueError('unsupported completed ZED selection schema')
+    def checked(item):
+        relative=Path(item['path'])
+        if relative.is_absolute() or '..' in relative.parts:
+            raise ValueError('unsafe completed-selection evidence path')
+        p=repo/relative
+        if not p.is_file() or evidence(p,repo)['sha256']!=item['sha256']:
+            raise ValueError('stale completed-selection evidence: '+str(relative))
+        return p
+    manifest=read(checked(value['source_manifest']))
+    checked(value['batch_selection']);checked(value['pause_record'])
+    selected={};allowed={'orbslam3','okvis2','okvis2x'}
+    for record in value['completed']:
+        key=record['cell'];parts=key.split('/')
+        if (len(parts)!=4 or parts[:3]!=['vio','zed2i','field1_110426_full_10fps_q90']
+                or parts[3] not in allowed or key in selected):
+            raise ValueError('unexpected or duplicate completed ZED cell')
+        if record['repetition']!=1 or record['physical_run_id']!=10001:
+            raise ValueError('selection must retain the predeclared first physical attempt')
+        actions=[a for a in manifest['actions'] if a['id']==record['action_id']]
+        if (len(actions)!=1 or actions[0]['cell']!=key or actions[0]['repetition']!=1
+                or actions[0]['planned_output']!=record['path']
+                or record['path']!=f'results/{key}/run10001'):
+            raise ValueError('completed attempt differs from executed plan')
+        for item in record['evidence']:checked(item)
+        state=read(checked(record['attempt_state']))
+        if state.get('identity')!=dict(cohort=actions[0]['cohort'],repetition=1,physical_run_id=10001):
+            raise ValueError('completed attempt identity differs from executed plan')
+        if state.get('status') not in ('evaluated','evaluated_failure_or_review','no_trajectory','evaluation_failed'):
+            raise ValueError('attempt is not terminal; do not select a live or interrupted capture')
+        selected[key]=[10001,2,3]
+    if len(selected)!=3 or value.get('cells')!=selected:
+        raise ValueError('completed selection must retain all three started cells, regardless of outcome')
+    return selected
 
 
 def selected_attempts(repo):
@@ -190,6 +232,7 @@ def build(repo,stage):
     executed,executed_hash=load_manifest(repo/'logs/server-campaign/quality-final-n3-no-gnss/manifest.json')
     future,future_hash=load_manifest(repo/'configs/campaigns/quality-final.json')
     cells=[];members=set();selections=selected_attempts(repo);superseded=set()
+    zed_selections=completed_zed_selections(repo);selections.update(zed_selections)
     for cell in expand_cells(future):
         key=cell_key(cell);attempts=[]
         ids=selections.get(key,[1,2,3])
@@ -200,7 +243,8 @@ def build(repo,stage):
             attempt['logical_repetition']=repetition
             attempts.append(attempt)
         cells.append(dict(**cell,variant='default',key=key,target_repetitions=3,
-            comparison_membership='corrected_euroc_20261001' if key in selections else None,
+            comparison_membership=('corrected_zed_first_20261002_pending_claim_review' if key in zed_selections
+                else 'corrected_euroc_20261001' if key in selections else None),
             original_campaign_member=cell['algorithm'] in executed['tables'][cell['run_type']],
             attempts=attempts,evaluated=sum(a['evaluated'] for a in attempts),
             outcomes=dict(Counter(a['numerical_status'] for a in attempts if a['evaluated'])),
@@ -226,7 +270,8 @@ def build(repo,stage):
              evaluated_n0=sum(c['evaluated']==0 for c in selected),
              outcomes=dict(sum((Counter(c['outcomes']) for c in selected),Counter())))
     return dict(schema_version=1,audit_status='in_progress',qualification_review=review_identity(repo),
-        attempt_selection=evidence(repo/SELECTION,repo) if selections else None,
+        attempt_selection=evidence(repo/SELECTION,repo) if (repo/SELECTION).is_file() else None,
+        additional_attempt_selections=[evidence(repo/ZED_SELECTION,repo)] if zed_selections else [],
         original_manifest=dict(path='logs/server-campaign/quality-final-n3-no-gnss/manifest.json',sha256=executed_hash),
         scope_source=dict(path='configs/campaigns/quality-final.json',sha256=future_hash,
                           note='algorithm/dataset membership retained; future repeat target is 3, not the historical proposal of 5'),

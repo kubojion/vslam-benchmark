@@ -3,7 +3,7 @@
   "inputs": [
     {
       "path": "results/repair-20261001/inventory.json",
-      "sha256": "1ae640358005f25e140a9951569a6eae8480ea6b3c65e419158bac7a5da01d8e"
+      "sha256": "91018f1a8b2167bd6dcd9179b0cab2d0caa6af5f174c771bfc90afeb1394dc16"
     },
     {
       "path": "benchmark-vo.csv",
@@ -15,7 +15,7 @@
     },
     {
       "path": "benchmark-vio.csv",
-      "sha256": "51fd2f26511ad98f43fc88b3814cec921fdbf58f8da2364dcc21ecc7aa0ab007"
+      "sha256": "08335bd0756a00376c9e21e8b3a10b7f74be73493608a25fffa8bb969b1ea627"
     },
     {
       "path": "benchmark-vio-lc.csv",
@@ -13235,8 +13235,8 @@
         "orbslam3",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA1/E0/S0/F1\nR,X,M",
+      "value": 0.297133343827959,
+      "annotation": "0.297\nA1/E1/S1/F0\nB,M",
       "summary": {
         "identity": [
           "vio",
@@ -13247,36 +13247,30 @@
         ],
         "planned_slots": 3,
         "attempted": 1,
-        "evaluated": 0,
+        "evaluated": 1,
         "outcomes": {
-          "failed_without_trajectory": 1,
-          "missing": 2
+          "missing": 2,
+          "ok": 1
         },
         "acceptance": {
-          "rerun_required": 1,
-          "not_executed": 2
+          "not_executed": 2,
+          "blocked": 1
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
-          "historical_profile_accuracy_not_bitwise_build_reproduction",
-          "no_measured_processing_rate_or_realtime_deadline_claim",
-          "no_rotation_or_full_relative_pose_accuracy_claim",
-          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
-          "retain_failure_in_attempt_denominator",
-          "serial_specific_imu_rotation_and_timing_unverified",
-          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
-          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
+          "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+          "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "b470ddc5a30c972a15cf79fc995b5439213522c865f2c0c148d5c8f21432aa9c",
+            "cohort": "fb3369fcbbc58f51cb62243f05c04d858b499af7a1ad8ad4eb76d18d3b7aaead",
             "planned_members": 1,
-            "evaluated": 0,
+            "evaluated": 1,
             "outcomes": {
-              "failed_without_trajectory": 1
+              "ok": 1
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -13288,63 +13282,65 @@
               "max": null,
               "sample_std": null
             },
-            "nonzero_exits": 1,
+            "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
+              "n": 1,
+              "mean": 0.297133343827959,
+              "median": 0.297133343827959,
+              "min": 0.297133343827959,
+              "max": 0.297133343827959,
               "sample_std": null
             },
             "dense_coverage_pct": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
+              "n": 1,
+              "mean": 99.992761412067,
+              "median": 99.992761412067,
+              "min": 99.992761412067,
+              "max": 99.992761412067,
               "sample_std": null
             },
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run1"
+              "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001"
             ]
           }
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_factory_camera_imu_rotation_omitted"
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+          "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
+          "zed_reference_orientation_unavailable",
+          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
         ],
-        "protocol_state": "invalid_setup",
+        "protocol_state": "blocked",
         "protocol_verified_n3": false,
         "attempt_count": 1,
         "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 0,
-        "successful_run_count": 0,
-        "observed_failure_count": 1,
+        "evaluated_trajectory_count": 1,
+        "successful_run_count": 1,
+        "observed_failure_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "invalid_setup": 1,
-          "not_executed": 2
+          "not_executed": 2,
+          "blocked": 1
         },
         "protocol_cohorts": [
           {
-            "cohort": "b470ddc5a30c972a15cf79fc995b5439213522c865f2c0c148d5c8f21432aa9c",
+            "cohort": "fb3369fcbbc58f51cb62243f05c04d858b499af7a1ad8ad4eb76d18d3b7aaead",
             "attempts": 1,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run1"
+              "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001"
             ]
           }
         ]
       },
       "flags": [
-        "R",
-        "X",
+        "B",
         "M"
       ]
     },
@@ -15935,8 +15931,8 @@
         "okvis2",
         "default"
       ],
-      "value": 0.4890016677591004,
-      "annotation": "0.489\nA1/E1/S1/F0\nR,M",
+      "value": 0.5282366000851598,
+      "annotation": "0.528\nA1/E1/S1/F0\nB,M",
       "summary": {
         "identity": [
           "vio",
@@ -15949,28 +15945,23 @@
         "attempted": 1,
         "evaluated": 1,
         "outcomes": {
-          "ok": 1,
-          "missing": 2
+          "missing": 2,
+          "ok": 1
         },
         "acceptance": {
-          "rerun_required": 1,
-          "not_executed": 2
+          "not_executed": 2,
+          "blocked": 1
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
-          "historical_profile_accuracy_not_bitwise_build_reproduction",
-          "no_measured_processing_rate_or_realtime_deadline_claim",
-          "no_rotation_or_full_relative_pose_accuracy_claim",
-          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
-          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
-          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
+          "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "b0c3e7fd9163423f26617c3d979f307c76ccf1898102c2518e9afbfd906b1462",
+            "cohort": "556d5c22cc6822d397806d431566a66334a4edf45a527259b9fadbe38f19cdc3",
             "planned_members": 1,
             "evaluated": 1,
             "outcomes": {
@@ -15990,10 +15981,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 0.4890016677591004,
-              "median": 0.4890016677591004,
-              "min": 0.4890016677591004,
-              "max": 0.4890016677591004,
+              "mean": 0.5282366000851598,
+              "median": 0.5282366000851598,
+              "min": 0.5282366000851598,
+              "max": 0.5282366000851598,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -16005,15 +15996,18 @@
               "sample_std": null
             },
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run1"
+              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001"
             ]
           }
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_factory_camera_imu_rotation_omitted"
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+          "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
+          "zed_reference_orientation_unavailable",
+          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
         ],
-        "protocol_state": "invalid_setup",
+        "protocol_state": "blocked",
         "protocol_verified_n3": false,
         "attempt_count": 1,
         "completed_attempt_count": 1,
@@ -16025,23 +16019,23 @@
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "invalid_setup": 1,
-          "not_executed": 2
+          "not_executed": 2,
+          "blocked": 1
         },
         "protocol_cohorts": [
           {
-            "cohort": "b0c3e7fd9163423f26617c3d979f307c76ccf1898102c2518e9afbfd906b1462",
+            "cohort": "556d5c22cc6822d397806d431566a66334a4edf45a527259b9fadbe38f19cdc3",
             "attempts": 1,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run1"
+              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001"
             ]
           }
         ]
       },
       "flags": [
-        "R",
+        "B",
         "M"
       ]
     },
@@ -16828,8 +16822,8 @@
         "okvis2x",
         "default"
       ],
-      "value": 0.47569270832977023,
-      "annotation": "0.476\nA1/E1/S1/F0\nR,M",
+      "value": 0.42422875799330645,
+      "annotation": "0.424\nA1/E1/S1/F0\nB,M",
       "summary": {
         "identity": [
           "vio",
@@ -16842,28 +16836,23 @@
         "attempted": 1,
         "evaluated": 1,
         "outcomes": {
-          "ok": 1,
-          "missing": 2
+          "missing": 2,
+          "ok": 1
         },
         "acceptance": {
-          "rerun_required": 1,
-          "not_executed": 2
+          "not_executed": 2,
+          "blocked": 1
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
-          "historical_profile_accuracy_not_bitwise_build_reproduction",
-          "no_measured_processing_rate_or_realtime_deadline_claim",
-          "no_rotation_or_full_relative_pose_accuracy_claim",
-          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
-          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
-          "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
+          "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "aac99ebc012529d9b5f19ead38c3f00fa335894c162602f13c8e32bb03aeb388",
+            "cohort": "46d99af6f467f6217d19ff9d8ac3799743eb3af24f4c90ee676fcc754d1dcd66",
             "planned_members": 1,
             "evaluated": 1,
             "outcomes": {
@@ -16883,10 +16872,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 0.47569270832977023,
-              "median": 0.47569270832977023,
-              "min": 0.47569270832977023,
-              "max": 0.47569270832977023,
+              "mean": 0.42422875799330645,
+              "median": 0.42422875799330645,
+              "min": 0.42422875799330645,
+              "max": 0.42422875799330645,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -16898,15 +16887,18 @@
               "sample_std": null
             },
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run1"
+              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001"
             ]
           }
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_factory_camera_imu_rotation_omitted"
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+          "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
+          "zed_reference_orientation_unavailable",
+          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
         ],
-        "protocol_state": "invalid_setup",
+        "protocol_state": "blocked",
         "protocol_verified_n3": false,
         "attempt_count": 1,
         "completed_attempt_count": 1,
@@ -16918,23 +16910,23 @@
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "invalid_setup": 1,
-          "not_executed": 2
+          "not_executed": 2,
+          "blocked": 1
         },
         "protocol_cohorts": [
           {
-            "cohort": "aac99ebc012529d9b5f19ead38c3f00fa335894c162602f13c8e32bb03aeb388",
+            "cohort": "46d99af6f467f6217d19ff9d8ac3799743eb3af24f4c90ee676fcc754d1dcd66",
             "attempts": 1,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run1"
+              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001"
             ]
           }
         ]
       },
       "flags": [
-        "R",
+        "B",
         "M"
       ]
     },
@@ -25840,11 +25832,11 @@
   "figures": [
     {
       "path": "fig_campaign_outcomes.png",
-      "sha256": "8d404839ac1e26365b6318b6dff03fc457e1bab6521d3ccac2aa42e0349ec5ea"
+      "sha256": "7dbd86e977fe215e58fc85add980bb04b0ff67afc1638d94c0553632dbbaa7e1"
     },
     {
       "path": "fig_campaign_outcomes.pdf",
-      "sha256": "bf9cf4a1e97bbc0dfc508629c3cc523afeb461495d859265145938c73b80ae5c"
+      "sha256": "c71c4b5bfc79f0baba76ef4088c360578211fb687a797aa1b696dd21e8658509"
     },
     {
       "path": "fig_accuracy_vo_default.png",
@@ -25864,11 +25856,11 @@
     },
     {
       "path": "fig_accuracy_vio_default.png",
-      "sha256": "25dff466c35fbb6971143be0f5e0edcf0d3b3f0c3888c7eb1f20ed9e417d8925"
+      "sha256": "3fd7329e04f15a1a2e81a781bd3240cdc9e0e22440c0f5ad01107df44830f3ff"
     },
     {
       "path": "fig_accuracy_vio_default.pdf",
-      "sha256": "09c92ccb271c9c8ff5887328e3dbf05343588d49052e7f00cd5dfdfb6f3e0a6d"
+      "sha256": "195214e98d7d79f03c115a5cb46242347190149183776f47555d5ea86c9ec157"
     },
     {
       "path": "fig_accuracy_vio-lc_default.png",

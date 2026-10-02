@@ -2,7 +2,44 @@
 
 Prepared: 2026-10-01. Workspace: `/data/imoroz/vslam-benchmark`.
 
-## Current authorized continuation — ZED preparation, 2026-10-02
+## Current continuation — Rosario/TODO integration into main, 2026-10-02
+
+Make `/data/imoroz/vslam-benchmark` on main the final destination for the reviewed
+Rosario candidates, static validation and TODO presentation. Reuse the completed
+work in `/data/imoroz/vslam-todo-review-20261002`; do not repeat the calibration
+audit or create another review checkout. Merge committed and uncommitted changes
+selectively, preserving newer main edits, all results and historical provenance.
+
+Retain all five matrices and **A/E/S/F in every cell**, with U where present:
+A = recorded attempts; E = trajectories evaluated; S = clean final exports;
+F = observed failures; U = unknown outcomes. A3/E3/S0/F3 means three attempts,
+three evaluated trajectories, no clean exports and three observed failures.
+Counts overlap because a failed attempt can leave an evaluable trajectory.
+**✅ N=3 means three verified attempts under consistent settings, including valid
+observed failures—not necessarily three successful runs.** Keep the compact
+formatting, selected-run links, separate implementation groups, red confirmed
+reruns and yellow unresolved review. 🔴 becomes 🔄 only with verified readiness.
+
+The live-batch integration hold was observed and the requested pauses recorded in
+[the handoff](rosario-main-integration-20261002.md). On resume, the controller and
+all started native/evaluation/capture processes were confirmed stopped. Three
+started ZED first repetitions have final records; three actions were never
+started. Preserve both facts and never relaunch the original one-shot controller.
+That integration hold is now satisfied; the old authorship pause remains revoked.
+
+Integrate the four inactive Rosario profile bundles and their focused tests;
+merge the main goal rather than replace its historical sections. Keep author
+questions explicit and distinguish 14 required replacements, four absent
+OpenVINS repetitions and camera-review-only histories. Preparation, integration
+and static validation do not establish native execution readiness.
+
+Run focused tests from main and refresh affected future source/manifest evidence,
+preserving executed plans and completed observations. Do not schedule a completed
+logical slot again merely because its claim review is pending. Final delivery
+must include main paths, actual validation results and exact remaining gates.
+No Rosario experiments, benchmark resumption or push is authorized by this goal.
+
+## Completed continuation — ZED preparation, 2026-10-02
 
 Continue from the completed protocol-reporting checkpoint `9d21135`. Make the
 remaining ZED campaign ready using the supplied serial camera–IMU calibration,

@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "author_repo_commit": "82115db620b57a5decb48ffe70b4639f00ce3ec9",
+  "author_repo_url": "https://github.com/CIFASIS/rosariov2",
+  "kalibr_archive_url": "http://fs01.cifasis-conicet.gov.ar:90/~robot_desmalezador/rosariov2/calibration/kalibr_ir_stereo_imu.tar.gz",
+  "evidence_root": "/data/imoroz/vslam-benchmark",
+  "files": [
+    {
+      "file": "kalibr-cameras.yaml",
+      "original_path": "results/reference-review-20261001/author-downloads/rosario-kalibr-aprilgrid_calib_2-camchain-imucam.yaml",
+      "sha256": "76b3309c2b9c56989d8e38d9254259ed4834a20c17cfc1f5771623f610370afb"
+    },
+    {
+      "file": "kalibr-imu.yaml",
+      "original_path": "results/reference-review-20261001/author-downloads/rosario-kalibr-aprilgrid_calib_2-imu.yaml",
+      "sha256": "e6805f2396b4e3f961fa957a2a12434d8625bd597101a6a1ba875be1f852a146"
+    },
+    {
+      "file": "kalibr-results.txt",
+      "original_path": "results/reference-review-20261001/author-downloads/rosario-kalibr-aprilgrid_calib_2-results-imucam.txt",
+      "sha256": "40979a824a836b5fae299b89ee3a167238c16d348646d35c102d3d9d0330ed47"
+    },
+    {
+      "file": "author-openvins-estimator.yaml",
+      "original_path": "results/reference-review-20261001/author-sources/rosariov2/data/evaluation/open-vins_estimator_rosariov2.yaml",
+      "sha256": "38e25a7642353d6cbe273ea6b829a9487b5420aba4697c9301993ffd6cd9e83c"
+    },
+    {
+      "file": "author-openvins-cameras.yaml",
+      "original_path": "results/reference-review-20261001/author-sources/rosariov2/data/evaluation/open-vins_imucam_rosariov2.yaml",
+      "sha256": "28979f44f77019875acf5aa4b09abd377d9b17cb383c4967533f8381fbb9c006"
+    },
+    {
+      "file": "author-openvins-imu.yaml",
+      "original_path": "results/reference-review-20261001/author-sources/rosariov2/data/evaluation/open-vins_imuchain_rosariov2.yaml",
+      "sha256": "746eeed9cf6884578d0f5019bc42c66df0d68b06bdb2466c7c4e1761c79921c4"
+    },
+    {
+      "file": "author-orb.yaml",
+      "original_path": "results/reference-review-20261001/author-sources/rosariov2/data/evaluation/orb-slam3_rosariov2.yaml",
+      "sha256": "a8db699f58ba2c222a644e68cf14063a5adc9acff1b08a49dca557f8c695f284"
+    },
+    {
+      "file": "author-orb.launch",
+      "original_path": "results/reference-review-20261001/author-sources/rosariov2/data/evaluation/orb-slam3_rosariov2.launch",
+      "sha256": "9c666a2f8367c587d6a3507fec718b5844eb802f87f15e5704dbcdec252e2e59"
+    },
+    {
+      "file": "author-openvins.launch",
+      "original_path": "results/reference-review-20261001/author-sources/rosariov2/data/evaluation/open-vins_rosariov2.launch",
+      "sha256": "48b0bb40523f54d25034e9f1990bfc19bd3700e5a49c9a0da66f11358ccce414"
+    },
+    {
+      "file": "saved-basalt-calibration.json",
+      "original_path": "results/vio/rosariov2/sequence1/basalt/run1/provenance/camera_calibration--rosariov2_calib.json",
+      "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d"
+    },
+    {
+      "file": "saved-basalt-estimator.json",
+      "original_path": "results/vio/rosariov2/sequence1/basalt/run1/provenance/estimator_config--vio_config.json",
+      "sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa"
+    },
+    {
+      "file": "saved-voxel.yaml",
+      "original_path": "results/vio/rosariov2/sequence1/voxel_svio/run1/provenance/estimator_config--rosariov2.yaml",
+      "sha256": "4f9a27d350b437bf3e3c5636b4278e39f736e387751c14d0d184b2b0e6d1df0c"
+    },
+    {
+      "file": "saved-openvins-estimator.yaml",
+      "original_path": "results/vio/rosariov2/sequence1/openvins/run1/provenance/estimator_config--estimator_config.yaml",
+      "sha256": "18c1482b3a344495a08330f96de6959db9b1f89503f3fb4724df80f19443e74a"
+    },
+    {
+      "file": "saved-openvins-cameras.yaml",
+      "original_path": "results/vio/rosariov2/sequence1/openvins/run1/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+      "sha256": "408a887ef92567582dc9d8f189093bd816168127f57efed8d63c44481f1a2262"
+    },
+    {
+      "file": "saved-openvins-imu.yaml",
+      "original_path": "results/vio/rosariov2/sequence1/openvins/run1/provenance/imu_calibration--kalibr_imu_chain.yaml",
+      "sha256": "ea6530f2dc604137e92829d54f9c2c3c6f6d1372c18ba8ce15e9f6ac8ee07fad"
+    }
+  ]
+}

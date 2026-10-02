@@ -1,0 +1,101 @@
+# CANDIDATE ONLY: see index.json and docs/rosario-vio-candidates-20261002.md.
+# Published calibration; no extra image rectification; not approved for execution.
+common:
+  image_left_topic: /cam0/image_raw
+  image_right_topic: /cam1/image_raw
+  imu_topic: /imu0
+state_parameter:
+  use_fej: true
+  calib_cam_extrinsics: false
+  calib_cam_intrinsics: false
+  calib_cam_timeoffset: false
+  calib_imu_intrinsics: false
+  calib_imu_g_sensitivity: false
+  imu_intrinsics_model: kalibr
+  max_clones: 11
+  max_slam: 100
+  max_slam_in_update: 100
+  max_msckf_in_update: 100
+initializer_parameter:
+  init_window_time: 2.0
+  init_imu_thresh: 1.5
+  init_max_disparity: 10.0
+  init_max_features: 50
+  init_dyn_use: true
+  init_dyn_mle_opt_calib: false
+  init_dyn_mle_max_iter: 50
+  init_dyn_mle_max_time: 0.05
+  init_dyn_mle_max_threads: 6
+  init_dyn_num_pose: 6
+  init_dyn_min_deg: 10.0
+  init_dyn_inflation_ori: 10
+  init_dyn_inflation_vel: 100
+  init_dyn_inflation_bg: 10
+  init_dyn_inflation_ba: 100
+  init_dyn_min_rec_cond: 1.0e-12
+  init_dyn_bias_g: [0.0, 0.0, 0.0]
+  init_dyn_bias_a: [0.0, 0.0, 0.0]
+  gravity_mag: 9.7958
+  downsample_cameras: false
+imu_parameter:
+  accelerometer_noise_density: 0.0009943860019903928
+  accelerometer_random_walk: 4.750972547867261e-05
+  gyroscope_noise_density: 0.00023249699924838475
+  gyroscope_random_walk: 1.8236185367375672e-06
+  sigma_pix: 1.0
+  Tw: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+  Ta: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+  R_acc_imu: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+  R_gyr_imu: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+  Tg: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+camera_parameter:
+  timeshift_cam_imu_left: 0.004098308327610102
+  timeshift_cam_imu_right: 0.004110891358806293
+  distortion_model_left: radtan
+  distortion_model_right: radtan
+  intrinsics_left: [645.4064992830425, 648.5756187194387, 648.7339043686679, 349.03769150591853]
+  intrinsics_right: [645.9158469761354, 649.1492152113191, 647.7810357771295, 348.7846008503252]
+  distortion_coeffs_left: [0.0008368252004208706, -0.0010662834505401491, -0.0005232293953624633, 0.00042863685319859406]
+  distortion_coeffs_right: [0.0005313293181523295, -0.0005556448379554267, -0.0005263985557901516, 4.98720460662138e-05]
+  resolution_left: [1280, 720]
+  resolution_right: [1280, 720]
+  T_imu_cam_left: [0.9999922359986663, -0.0038981486564416577, -0.0005765235818587996, -0.004483027809925511, 0.003895210728276831, 0.9999798525515381, -0.005012167633538173,
+    0.01917969921314905, 0.0005960501409061842, 0.005009883038220819, 0.999987272817096, 0.027584143037070345, 0.0, 0.0, 0.0, 1.0]
+  T_imu_cam_right: [0.9999907949863029, -0.0038692698167618477, -0.0018543715235080462, 0.045756902171967984, 0.003859743276056028, 0.9999794761332274, -0.005113677166146687,
+    0.019407400233837333, 0.0018741196613455858, 0.00510647269665916, 0.9999852056966111, 0.02779556335739139, 0.0, 0.0, 0.0, 1.0]
+odometry_parameter:
+  use_mask: false
+  use_huber: false
+  use_keyframe: true
+  dt_slam_delay: 1
+  up_msckf_sigma_px: 1
+  up_msckf_chi2_multipler: 1
+  up_slam_sigma_px: 1
+  up_slam_chi2_multipler: 1
+  downsample_cameras: false
+  num_pts: 500
+  fast_threshold: 20
+  patch_size_x: 5
+  patch_size_y: 5
+  min_px_dist: 10
+  histogram_method: histogram
+  track_frequency: 20.0
+feature_parameter:
+  refine_features: true
+  max_runs: 5
+  init_lamda: 0.001
+  max_lamda: 10000000000.0
+  min_dx: 1.0e-06
+  min_dcost: 1.0e-06
+  lam_mult: 10.0
+  min_dist: 0.1
+  max_dist: 60.0
+  max_baseline: 40.0
+  max_cond_number: 10000.0
+  keyframe_parallax: 20
+voxel_parameter:
+  voxel_size: 0.3
+  use_all_points: false
+  max_num_points_in_voxel: 5
+  min_distance_points: 0.0
+  nb_voxels_visited: 2

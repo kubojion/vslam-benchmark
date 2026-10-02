@@ -1,0 +1,30 @@
+[
+  {
+    "repo": "basalt",
+    "commit": "0f3b2b52c807f70ff4e2973ce253c73329eea7bc",
+    "url": "https://raw.githubusercontent.com/VladyslavUsenko/basalt/0f3b2b52c807f70ff4e2973ce253c73329eea7bc/src/vio.cpp",
+    "path": "review-evidence/rosario-vio-20261002/upstream/basalt-vio.cpp",
+    "sha256": "5680eddb73b220ecc89525ae200a4e95d1507755eb87b8dce16fd9afb7a1563c"
+  },
+  {
+    "repo": "basalt",
+    "commit": "0f3b2b52c807f70ff4e2973ce253c73329eea7bc",
+    "url": "https://raw.githubusercontent.com/VladyslavUsenko/basalt/0f3b2b52c807f70ff4e2973ce253c73329eea7bc/src/vi_estimator/sqrt_keypoint_vio.cpp",
+    "path": "review-evidence/rosario-vio-20261002/upstream/basalt-sqrt_keypoint_vio.cpp",
+    "sha256": "141dc9747dfb60e19e8ab93eab3b5600a6bb95fc249afdd5e15f4d844276c5c9"
+  },
+  {
+    "repo": "basalt-headers",
+    "commit": "b7f915b195c87c8373bf93f97a0710bcdaffd718",
+    "url": "https://raw.githubusercontent.com/VladyslavUsenko/basalt-headers/b7f915b195c87c8373bf93f97a0710bcdaffd718/include/basalt/camera/pinhole_radtan8_camera.hpp",
+    "path": "review-evidence/rosario-vio-20261002/upstream/basalt-headers-pinhole_radtan8_camera.hpp",
+    "sha256": "2b8c837f6f4f11bcaf99a3c887022fb2d70ab65dd6843294e95f1994decb89f6"
+  },
+  {
+    "repo": "basalt-headers",
+    "commit": "b7f915b195c87c8373bf93f97a0710bcdaffd718",
+    "url": "https://raw.githubusercontent.com/VladyslavUsenko/basalt-headers/b7f915b195c87c8373bf93f97a0710bcdaffd718/include/basalt/serialization/headers_serialization.h",
+    "path": "review-evidence/rosario-vio-20261002/upstream/basalt-headers-headers_serialization.h",
+    "sha256": "10efb62473f6eadcb063acc92d26cd956a4a9f1383368b5bae1d7c9feb1216bc"
+  }
+]

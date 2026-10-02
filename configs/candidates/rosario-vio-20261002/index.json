@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "dataset": "rosariov2",
+  "sequences": [
+    "sequence1",
+    "sequence5"
+  ],
+  "mode": "vio",
+  "config_prepared": true,
+  "verified_ready_to_run": false,
+  "activated_in_runners": false,
+  "source_index_sha256": "dac69d3e77c98cd50c44b1be8f6371cf4b9d26501f1390f267c45bb471eb8d21",
+  "files": {
+    "basalt-kalibr/calibration.json": "4f79c84ef11b4097060233a3547beb8e8bee5e7e839f497dc2c6544537edb3c0",
+    "basalt-kalibr/vio_config.json": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa",
+    "openvins-author/estimator_config.yaml": "ff177d04a7801fe0692cfba8bc09eb6d5fa6124c8608fdb86a0249dcdb5df534",
+    "openvins-author/kalibr_imu_chain.yaml": "d233b66f6c21c8050d63fb28a332e6d2a7b843cc0c53c559cfa5a77ae411dac9",
+    "openvins-author/kalibr_imucam_chain.yaml": "15c92b092b1c98e3261eccbcbdd2ef0d328241641ae91ca9ae2dfe0097bce2dd",
+    "openvins-kalibr/estimator_config.yaml": "562d88d04a8f331fdb0e401ede7fee4300adb54d501c34469ddfa42852b17404",
+    "openvins-kalibr/kalibr_imu_chain.yaml": "b33f9494dade05d7714118453e9874b589ded6caba12a11af0ce3e594169b36d",
+    "openvins-kalibr/kalibr_imucam_chain.yaml": "fea0bc25927e194546ab53c975e68eda1be4174489c9f70a3ad8fdcdbf2dd21e",
+    "voxel-kalibr/rosariov2.yaml": "4f162a67abf0b021681e4bd44f98e7487292fe40ad54970981c0e43d7415be0f"
+  },
+  "profiles": {
+    "basalt-kalibr": {
+      "algorithm": "basalt",
+      "source_profile": "published Kalibr sensor bundle; saved benchmark estimator policy",
+      "files": [
+        "basalt-kalibr/calibration.json",
+        "basalt-kalibr/vio_config.json"
+      ],
+      "config_prepared": true,
+      "verified_ready_to_run": false,
+      "activated_in_runners": false,
+      "image_policy": "unchanged saved pixels; published residual radtan; no extra rectification",
+      "time_convention": "t_imu = t_camera + timeshift_cam_imu",
+      "published_timeshifts_s": [
+        0.004098308327610102,
+        0.004110891358806293
+      ],
+      "common_stereo_time_uses_left": true,
+      "unused_right_minus_left_s": 1.2583031196190635e-05,
+      "prerequisites": [
+        "author_confirmation_of_profile_for_sequence1_and_sequence5_pixels",
+        "predeclare_one_profile_per_cohort_without_score_selection",
+        "native_loaded_configuration_and_timestamp_path_validation",
+        "explicit_runner_selection_and_fresh_source_input_capture",
+        "separate_authorization_for_execution",
+        "verify_installed_pinhole_radtan8_parser_and_rpmax",
+        "resolve_actual_camera_time_offset_consumption"
+      ]
+    },
+    "voxel-kalibr": {
+      "algorithm": "voxel_svio",
+      "source_profile": "published Kalibr sensor bundle; saved benchmark estimator policy",
+      "files": [
+        "voxel-kalibr/rosariov2.yaml"
+      ],
+      "config_prepared": true,
+      "verified_ready_to_run": false,
+      "activated_in_runners": false,
+      "image_policy": "unchanged saved pixels; published residual radtan; no extra rectification",
+      "time_convention": "t_imu = t_camera + timeshift_cam_imu",
+      "published_timeshifts_s": [
+        0.004098308327610102,
+        0.004110891358806293
+      ],
+      "common_stereo_time_uses_left": true,
+      "unused_right_minus_left_s": 1.2583031196190635e-05,
+      "prerequisites": [
+        "author_confirmation_of_profile_for_sequence1_and_sequence5_pixels",
+        "predeclare_one_profile_per_cohort_without_score_selection",
+        "native_loaded_configuration_and_timestamp_path_validation",
+        "explicit_runner_selection_and_fresh_source_input_capture",
+        "separate_authorization_for_execution",
+        "verify_fixed_time_offset_export_compensation",
+        "validate_Rosario_native_shutdown_build"
+      ]
+    },
+    "openvins-kalibr": {
+      "algorithm": "openvins",
+      "source_profile": "published Kalibr sensor bundle; saved benchmark estimator policy",
+      "files": [
+        "openvins-kalibr/estimator_config.yaml",
+        "openvins-kalibr/kalibr_imu_chain.yaml",
+        "openvins-kalibr/kalibr_imucam_chain.yaml"
+      ],
+      "config_prepared": true,
+      "verified_ready_to_run": false,
+      "activated_in_runners": false,
+      "image_policy": "unchanged saved pixels; published residual radtan; no extra rectification",
+      "time_convention": "t_imu = t_camera + timeshift_cam_imu",
+      "published_timeshifts_s": [
+        0.004098308327610102,
+        0.004110891358806293
+      ],
+      "common_stereo_time_uses_left": true,
+      "unused_right_minus_left_s": 1.2583031196190635e-05,
+      "prerequisites": [
+        "author_confirmation_of_profile_for_sequence1_and_sequence5_pixels",
+        "predeclare_one_profile_per_cohort_without_score_selection",
+        "native_loaded_configuration_and_timestamp_path_validation",
+        "explicit_runner_selection_and_fresh_source_input_capture",
+        "separate_authorization_for_execution",
+        "validate_Rosario_native_shutdown_image",
+        "verify_odomimu_time_basis_and_reference_association"
+      ]
+    },
+    "openvins-author": {
+      "algorithm": "openvins",
+      "source_profile": "author OpenVINS YAML reproduction; topic/path remapping only",
+      "files": [
+        "openvins-author/estimator_config.yaml",
+        "openvins-author/kalibr_imu_chain.yaml",
+        "openvins-author/kalibr_imucam_chain.yaml"
+      ],
+      "config_prepared": true,
+      "verified_ready_to_run": false,
+      "activated_in_runners": false,
+      "image_policy": "unchanged saved pixels; published residual radtan; no extra rectification",
+      "time_convention": "t_imu = t_camera + timeshift_cam_imu",
+      "published_timeshifts_s": [
+        0.006482764254944565,
+        0.006491480658385266
+      ],
+      "common_stereo_time_uses_left": true,
+      "unused_right_minus_left_s": 8.716403440700744e-06,
+      "prerequisites": [
+        "author_confirmation_of_profile_for_sequence1_and_sequence5_pixels",
+        "predeclare_one_profile_per_cohort_without_score_selection",
+        "native_loaded_configuration_and_timestamp_path_validation",
+        "explicit_runner_selection_and_fresh_source_input_capture",
+        "separate_authorization_for_execution",
+        "validate_Rosario_native_shutdown_image",
+        "verify_odomimu_time_basis_and_reference_association",
+        "author_implementation_and_launch_differences_remain"
+      ]
+    }
+  }
+}

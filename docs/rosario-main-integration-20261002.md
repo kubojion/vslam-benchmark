@@ -1,128 +1,85 @@
-# Rosario/TODO integration into main — pending ZED completion
+# Rosario/TODO integration into main — 2026-10-02
 
-**Final destination:** `/data/imoroz/vslam-benchmark`, branch `main`.
-Reuse `/data/imoroz/vslam-todo-review-20261002`; create no further checkout and
-repeat no calibration audit. Candidate preparation is complete; integration and
-Rosario execution readiness are distinct and remain incomplete.
+**Files are integrated into `/data/imoroz/vslam-benchmark` on main. Rosario
+execution readiness remains unverified.** The review checkout was reused; no new
+checkout, estimator run or push was made. Candidate profiles remain inactive.
+The final evidence-refresh receipt is stored under
+`results/rosario-main-integration-20261002/`.
 
-The user explicitly instructed this continuation to update documentation and
-**pause the Codex goal** if the ZED batch or its evidence capture is running.
-The initial process check found controller **PID 1519727** live, elapsed
-**02:12:39**, running
-`logs/zed-vio-first-20261002-launch2/batch.py`. The batch remains untouched.
-After recording this handoff, pause this goal and do not keep polling. The user
-will resume it after ZED finishes. This is a new, explicit integration pause;
-the old authorship-maintenance pause remains revoked.
+## What was integrated
 
-Resume check (2026-10-02T14:54:24.246457+00:00): controller PID 1519727 is still live, elapsed
-03:24:05. Integration remains pending. The goal is paused per the explicit user
-instruction; batch execution and campaign inputs are untouched. Earlier checks
-are preserved in the companion JSON. No further polling is scheduled.
+The committed review change `18dc9d9` and its uncommitted refinements were reviewed
+together. Thirty-eight individually hash-checked code/config/test/evidence files
+were merged, including the acceptance-test change and five upstream-evidence files
+that the earlier standalone patch omitted. The existing main goal was extended,
+not replaced. Newer main notes and colleagues' unrelated files were preserved.
 
-## Already present in main
+- Four candidate bundles: `configs/candidates/rosario-vio-20261002/`.
+- Preparation and verification: `scripts/campaign/prepare_rosario_vio_candidates.py`
+  and `scripts/campaign/validate_rosario_vio_candidates.py`.
+- TODO generator and formatting/acceptance tests, with counts and valid failures
+  preserved. Candidate notes now name main as their location.
+- The validator's pinned Basalt source evidence under
+  `review-evidence/rosario-vio-20261002/upstream/`.
+- Receipt-backed selection of completed ZED first attempts, and planner checks
+  preventing those logical slots from being scheduled again while review is pending.
 
-These four files were byte-identical to the review checkout at the start of this
-continuation. The first three now also link this main-destination handoff; those
-new main edits must survive later integration.
+See [candidate configurations and author questions](rosario-vio-candidates-20261002.md),
+[main candidate validation](rosario-main-candidate-validation-20261002.json), and
+[the source/integration inventory](rosario-main-integration-20261002.json).
 
-| File | Applied state |
-|---|---|
-| `TODO.md` | Five matrices, unchanged A/E/S/F/U counts and red/yellow/readiness markers; failure-inclusive N=3 legend; Rosario preparation notice |
-| `docs/todo-status-details.md` | Exact historical attempts, failure evidence and six Rosario candidate-preparation notes; execution remains unverified |
-| `docs/rosario-vio-candidates-20261002.md` | Calibration comparison, four prepared profiles, 14 replacements, four missing slots, author questions and native prerequisites |
-| `docs/rosario-vio-candidate-validation-20261002.json` | Historical preparation evidence; not a launch manifest or verification of integration into main |
+## ZED state and preservation
 
-Main HEAD observed: `1458a9c3caeca35926d2ac53293055f5162df4d4`.
-The previous **70 passing checks ran in the review checkout**, not against an
-integrated main tree. No red marker is removed on that basis. The main goal file
-is still evidence-pinned and has not been replaced.
+The controller PID 1519727 was deliberately stopped by the separate batch operator;
+its original `status.json` still says running and is retained as historical evidence.
+`pause-after-current.json` documents that intervention. The ORB-SLAM3, OKVIS2 and
+OKVIS2-X run10001 wrappers, native estimators, evaluation and capture processes
+subsequently finished. Their final attempt states are `evaluated`, with native exit
+0. The AirSLAM, OpenVINS and Voxel first actions were never started by that batch.
+No batch was restarted or stopped by this integration.
 
-## Pending committed and uncommitted work
+The three completed attempts retain their blocked claim-review status; completion
+is not publication qualification. Their first logical slots have no new estimator
+command. The original run1 histories are preserved separately, including their
+failures and missing exports. Only these three selected cells changed; the other
+217 cells and all 85 pre-existing additional artifacts are unchanged. The total of
+81 verified N=3 cells remains unchanged. The four-mode selected evaluation count
+is now 552/600; raw historical trajectories, metadata, evaluations and hashes remain
+unchanged. CSVs, tables and figures are reconciled from saved results, not reruns.
 
-Review HEAD: `18dc9d9374755b24e1b1c23a2f0b62a9b2b7d6a9`.
-Review commit `18dc9d9` changes six files; uncommitted work further refines five
-tracked files and adds the Rosario candidates/scripts/tests/evidence. Review the
-**combined final contents**, not only the uncommitted diff or only the commit.
+The executed manifest is preserved at
+`results/rosario-main-integration-20261002/executed-zed-manifest.json`; final receipt
+selection is `configs/campaigns/zed-vio-first-attempts-20261002.json`. Refreshed future
+plans are distinct from that executed snapshot. The ZED future plan uses a new
+campaign identity so the stopped controller's state cannot be silently reused.
 
-| Pending component | Integration scope |
-|---|---|
-| TODO generator | Merge final `scripts/campaign/update_todo_matrices.py`; preserve the newer main documentation and current batch outcomes |
-| Reporting tests | Add final `scripts/campaign/tests/test_todo_presentation.py`; also merge the two committed assertion changes in `test_acceptance_ledger.py` from `✅ Protocol N=3` to `✅ N=3` |
-| Candidate preparation | Add `scripts/campaign/prepare_rosario_vio_candidates.py` and all 27 files under `configs/candidates/rosario-vio-20261002/` |
-| Candidate verification | Add `scripts/campaign/validate_rosario_vio_candidates.py` and `scripts/campaign/tests/test_rosario_vio_candidates.py` |
-| Validator dependency | Copy only the four pinned Basalt source excerpts and `sources.json` under `review-evidence/rosario-vio-20261002/upstream/`; the validator currently requires these relative paths |
-| Goal/documentation | Merge the relevant preparation/formatting/integration sections into main's existing goal; retain other continuations and historical provenance. Update current-location statements to main after integration |
+Before changes, **5,166 files** were copied and verified in
+`/data/imoroz/vslam-repair-backups/20261002T155907Z-rosario-main-before-integration`.
+Final attempt-state files were also copied and checked. Checkpoint `558b8fd` preserves
+the main documentation before integration. The initial handoff and source hashes
+remain in that backup/checkpoint and the integration inventory. Historical provenance
+identifiers were not rewritten.
 
-The [file inventory](rosario-main-integration-20261002.json) gives all **38 pending
-code/config/test/evidence paths**, source hashes, and destination state. It also
-records the documentation state before this handoff. Revalidate hashes and
-concurrent edits at resume; do not treat this inventory as overwrite permission.
+## Validation and remaining prerequisites
 
-The existing review artifact
-`review-evidence/rosario-vio-20261002/candidate-and-todo-code.patch`
-is **incomplete as a standalone integration package**: its 32-file list omits
-the committed acceptance-test update and the five upstream-evidence dependency
-files. Its previous apply check proves applicability of those hunks only.
-Do not blindly apply it, cherry-pick the whole review commit, or copy the entire
-review directory. Keep the historical preparation/preservation records intact.
+**89 focused tests pass in main**: candidate parsing/geometry/timing and isolation;
+TODO formatting and failure counts; acceptance/protocol behavior; completed-slot
+selection including failed outcomes and stale receipts; configuration recipes;
+and exact source capture. No test invokes a real estimator. Main data validation
+retains the original 14 Rosario replacements, four missing OpenVINS repetitions
+and 30 adjacent camera-review-only histories.
 
-## Steps after the user resumes this goal
+Future source captures and both campaign manifests must be refreshed after the
+integration source commit. The final integration receipt records their actual
+validation, current-source checks and preservation results. A passing structural
+preflight is not native readiness. Completed ZED outputs await explicit claim and
+cohort review; saved automatic blocker lists are retained rather than silently
+promoted or interpreted as new setup defects.
 
-1. Re-read both Git statuses/history. Confirm the saved controller has terminated
-   and identify any remaining runner, evaluator or evidence-capture processes
-   belonging to that batch. Inspect terminal receipts and final captures. An old
-   lock or status file alone is insufficient. If any owned work is still live,
-   retain the documentation-only restriction and the requested pause behavior.
-   Do not restart or stop the benchmark to make integration possible.
-2. Preserve the completed ZED outputs, executed manifest/selection and source/input
-   captures before changing files or refreshing evidence. Keep run IDs, failures,
-   evaluations and original provenance hashes. Leave colleagues' unrelated edits
-   and repositories untouched; use current main as the destination.
-3. Review `git diff 1458a9c..18dc9d9`, the current uncommitted diff and the 38-path
-   inventory together. Merge only the reviewed files into main. Keep the four
-   already-applied documents, merge newer annotations, and add current integration
-   status to the existing goal rather than replacing it with the review copy.
-   Update the generator's candidate note: it must no longer describe the final
-   files as remaining in a separate checkout. Preserve matrix shape, counts,
-   valid failures, excluded algorithms and all unresolved readiness markers.
-4. Keep all four candidate profiles **inactive**. Default runner configuration
-   selection must remain unchanged; no configuration-file existence, static test,
-   or integration success may set `verified_ready_to_run` true. Retain 14 confirmed
-   replacements and four missing OpenVINS repetitions separately. Author questions,
-   Basalt offset/parser checks, Voxel shutdown/time conversion and OpenVINS native
-   image/time/frame checks remain explicit. No Rosario estimator execution is
-   authorized by this goal.
-5. From main, run the same focused pytest selection: candidate, TODO-presentation,
-   acceptance-ledger, protocol-status and repair-plan tests. Verify candidate source
-   hashes and deterministic generation; run `validate_rosario_vio_candidates.py`
-   with `--evidence-root /data/imoroz/vslam-benchmark` and a **new integration
-   validation report path**. The old preparation report remains historical evidence.
-   Confirm candidate inspection rejects readiness, runners still select their
-   existing defaults, and protected trajectories/evaluations/CSVs are unchanged.
-6. Refresh affected **future** campaign evidence after preserving its old versions.
-   Source capture and `pipeline_files` cover `scripts` and `configs`, so adding
-   candidates and reporting tests affects shared workspace identities for all
-   algorithms, not only Rosario. Reconcile newly finished ZED attempts first so
-   they are not scheduled again. Use `build_execution_assets.py --sources --refresh`
-   for reviewed current captures; verify unchanged inputs/runtime and refresh them
-   only if their evidence actually changed. Rebuild the future manifests with
-   `build_future_manifest.py` and the applicable ZED builder, keeping executed
-   manifests archived and original historical captures immutable. Do not hand-edit
-   hashes, rewrite original run records, or widen readiness flags.
-7. The current `build_zed_manifest.py` hardcodes the old category totals
-   (27 reusable, 17 replacements, 25 missing, six cohort completions). After the
-   running batch, review that selection against actual completed attempts before
-   regeneration; do not force new evidence into old totals or silently overwrite
-   the executed plan. This is a reconciliation prerequisite, not permission to
-   repeat the campaign. Regenerate TODO/details from the reconciled inventory and
-   validate source/input/manifest pins with read-only preflight. A blocked Rosario
-   readiness result is expected until its genuine prerequisites are met.
-8. Finish with integrated main paths, the actual main-tree test results, preservation
-   checks and exact remaining prerequisites. Record the integration in Git only
-   after re-reading current status/history and selecting the reviewed files.
-   No push is authorized. Change 🔴 to 🔄 only for independently verified readiness;
-   this integration itself cannot establish native readiness.
-
-No source/config/test integration, campaign evidence refresh, estimator launch,
-commit or push occurs while the batch is live. No further polling is needed in
-this paused continuation.
+Rosario still needs author confirmation of the matching projection/baseline and
+published calibration bundle, selection of the intended profile before execution,
+Basalt parser/offset-consumption validation, Voxel timing/export/shutdown checks,
+and OpenVINS native image/time/frame checks. The calibrated candidates are prepared;
+default runners continue to select their existing configurations. No Rosario
+experiment is authorized. Red Rosario rerun/readiness markers remain red; no
+static test or integration step turns them into verified-ready markers.

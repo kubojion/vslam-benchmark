@@ -55,7 +55,68 @@
       "new_main_handoff_edits_to_preserve": false
     }
   ],
-  "pending_integration_files": [
+  "preparation_complete": true,
+  "integrated_into_main": true,
+  "rosario_execution_ready": false,
+  "existing_patch": {
+    "path": "/data/imoroz/vslam-todo-review-20261002/review-evidence/rosario-vio-20261002/candidate-and-todo-code.patch",
+    "sha256": "f23c0c9f4ad6e1692f0bcde27d0633e66f71cba146e810658e85c2ff9e41f547",
+    "complete_standalone_package": false,
+    "omitted_paths": [
+      "scripts/campaign/tests/test_acceptance_ledger.py",
+      "review-evidence/rosario-vio-20261002/upstream/basalt-headers-headers_serialization.h",
+      "review-evidence/rosario-vio-20261002/upstream/basalt-headers-pinhole_radtan8_camera.hpp",
+      "review-evidence/rosario-vio-20261002/upstream/basalt-sqrt_keypoint_vio.cpp",
+      "review-evidence/rosario-vio-20261002/upstream/basalt-vio.cpp",
+      "review-evidence/rosario-vio-20261002/upstream/sources.json"
+    ]
+  },
+  "validation": {
+    "prior_tests": {
+      "candidate": 31,
+      "reporting_acceptance": 39,
+      "scope": "review checkout, previous preparation; no new main integration test claim"
+    },
+    "matrix_contents_unchanged": true,
+    "protected_files_unchanged": 1636,
+    "main_head_unchanged": true,
+    "campaign_inputs_refreshed": false,
+    "estimators_launched": 0,
+    "commits_created": 0,
+    "pushes": 0
+  },
+  "remaining_prerequisites_document": "docs/rosario-main-integration-20261002.md",
+  "main_goal_file_action": "Relevant integration/formatting section merged into main goal; historical sections retained.",
+  "old_maintenance_pause": "revoked; current pause is a new explicit instruction in this goal",
+  "resume_checks": [
+    {
+      "checked_at": "2026-10-02T13:51:48.848812+00:00",
+      "pid": 1519727,
+      "elapsed": "02:21:21",
+      "state": "controller confirmed live by ps on goal resume",
+      "action": "documentation-only update; pause goal again per explicit objective; no further polling",
+      "integration_performed": false
+    },
+    {
+      "checked_at": "2026-10-02T13:55:00.950466+00:00",
+      "pid": 1519727,
+      "elapsed": "02:24:34",
+      "state": "controller confirmed live by ps on goal resume",
+      "classification": "verified wait",
+      "action": "pause per explicit objective; no further polling",
+      "integration_performed": false
+    },
+    {
+      "checked_at": "2026-10-02T14:54:24.246457+00:00",
+      "pid": 1519727,
+      "elapsed": "03:24:05",
+      "state": "controller confirmed live by ps on goal resume",
+      "classification": "verified wait",
+      "action": "pause per explicit objective; no further polling",
+      "integration_performed": false
+    }
+  ],
+  "integration_source_files": [
     {
       "path": "scripts/campaign/update_todo_matrices.py",
       "review_sha256": "ac54bca0c3fe5922c800bbb976ff1b1243970b202013d838ea3e1249f76eb26f",
@@ -361,65 +422,9 @@
       "identical_on_main": false
     }
   ],
-  "preparation_complete": true,
-  "integrated_into_main": false,
-  "rosario_execution_ready": false,
-  "existing_patch": {
-    "path": "/data/imoroz/vslam-todo-review-20261002/review-evidence/rosario-vio-20261002/candidate-and-todo-code.patch",
-    "sha256": "f23c0c9f4ad6e1692f0bcde27d0633e66f71cba146e810658e85c2ff9e41f547",
-    "complete_standalone_package": false,
-    "omitted_paths": [
-      "scripts/campaign/tests/test_acceptance_ledger.py",
-      "review-evidence/rosario-vio-20261002/upstream/basalt-headers-headers_serialization.h",
-      "review-evidence/rosario-vio-20261002/upstream/basalt-headers-pinhole_radtan8_camera.hpp",
-      "review-evidence/rosario-vio-20261002/upstream/basalt-sqrt_keypoint_vio.cpp",
-      "review-evidence/rosario-vio-20261002/upstream/basalt-vio.cpp",
-      "review-evidence/rosario-vio-20261002/upstream/sources.json"
-    ]
-  },
-  "validation": {
-    "prior_tests": {
-      "candidate": 31,
-      "reporting_acceptance": 39,
-      "scope": "review checkout, previous preparation; no new main integration test claim"
-    },
-    "matrix_contents_unchanged": true,
-    "protected_files_unchanged": 1636,
-    "main_head_unchanged": true,
-    "campaign_inputs_refreshed": false,
-    "estimators_launched": 0,
-    "commits_created": 0,
-    "pushes": 0
-  },
-  "remaining_prerequisites_document": "docs/rosario-main-integration-20261002.md",
-  "main_goal_file_action": "keep pinned main goal unchanged while ZED runs; merge relevant sections after resume, never replace entire document",
-  "old_maintenance_pause": "revoked; current pause is a new explicit instruction in this goal",
-  "resume_checks": [
-    {
-      "checked_at": "2026-10-02T13:51:48.848812+00:00",
-      "pid": 1519727,
-      "elapsed": "02:21:21",
-      "state": "controller confirmed live by ps on goal resume",
-      "action": "documentation-only update; pause goal again per explicit objective; no further polling",
-      "integration_performed": false
-    },
-    {
-      "checked_at": "2026-10-02T13:55:00.950466+00:00",
-      "pid": 1519727,
-      "elapsed": "02:24:34",
-      "state": "controller confirmed live by ps on goal resume",
-      "classification": "verified wait",
-      "action": "pause per explicit objective; no further polling",
-      "integration_performed": false
-    },
-    {
-      "checked_at": "2026-10-02T14:54:24.246457+00:00",
-      "pid": 1519727,
-      "elapsed": "03:24:05",
-      "state": "controller confirmed live by ps on goal resume",
-      "classification": "verified wait",
-      "action": "pause per explicit objective; no further polling",
-      "integration_performed": false
-    }
-  ]
+  "integration_status": "files_integrated_source_evidence_refresh_pending",
+  "integration_checkpoint": "558b8fd",
+  "focused_tests_in_main": 89,
+  "completed_zed_selection": "configs/campaigns/zed-vio-first-attempts-20261002.json",
+  "backup": "/data/imoroz/vslam-repair-backups/20261002T155907Z-rosario-main-before-integration"
 }

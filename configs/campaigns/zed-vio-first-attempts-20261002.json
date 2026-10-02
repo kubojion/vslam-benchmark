@@ -1,0 +1,304 @@
+{
+  "schema": 1,
+  "policy": "Select completed predeclared first repetitions regardless of outcome; qualification remains blocked until reviewed; preserve displaced historical attempts. Never infer execution readiness from completion.",
+  "source_manifest": {
+    "path": "results/rosario-main-integration-20261002/executed-zed-manifest.json",
+    "sha256": "f74f2a1c91313d04db7007ab2064fe0b8d4a334a6ec0261e29c9203864b41320"
+  },
+  "batch_selection": {
+    "path": "logs/zed-vio-first-20261002-launch2/selection.json",
+    "sha256": "033958082b8d6414c0afe37579932d31e8028fad5c53846db90e0cf54c232e07"
+  },
+  "pause_record": {
+    "path": "logs/zed-vio-first-20261002-launch2/pause-after-current.json",
+    "sha256": "e7651bec54fd5bca915920c9d92a0d38c6535f0925677a06f64f180a6dff83ce"
+  },
+  "cells": {
+    "vio/zed2i/field1_110426_full_10fps_q90/orbslam3": [
+      10001,
+      2,
+      3
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/okvis2": [
+      10001,
+      2,
+      3
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/okvis2x": [
+      10001,
+      2,
+      3
+    ]
+  },
+  "completed": [
+    {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/orbslam3",
+      "repetition": 1,
+      "physical_run_id": 10001,
+      "action_id": "vio/zed2i/field1_110426_full_10fps_q90/orbslam3/default/r1",
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001",
+      "attempt_state": {
+        "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__orbslam3/run10001.json",
+        "sha256": "4b6d91b96d26e8cce48adbc99e1166fc4d9f532108151b96a449cb3d014f00ee"
+      },
+      "cohort": "zed-current-n3-4da2d3aff4a8",
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/keyframes.txt",
+          "sha256": "a15669e1b4a3f3b38a1e65ce51337dec0f372f16ee00775e90fa469069e4a382"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/processes/estimator.json",
+          "sha256": "b6126ca8dba7c402b3149c9d2a64335bd05150fca8c815c908f2c5d18e17d91d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/provenance/estimator_config--orbslam3_cfg_WRQEEC.yaml",
+          "sha256": "f2a0872e62f644414ee6ecfb5ae0eba421f60bf9416d1ef94a04044128e6161f"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/provenance/estimator_config_source--zed2i_field1_110426_full_10fps_q90_stereo_inertial.yaml",
+          "sha256": "0fb9901b2788b3bfb178d9373ac9f220651bb45f66c1357ea4fc46f46ff0e12e"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+          "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/provenance/implementation.json",
+          "sha256": "3962d01595e76bc5825aa889f3c9453d9ac14504be718f596df52eb434cdcc17"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/provenance/runtime-assets.json",
+          "sha256": "b52e7a3b60caec449b511c964cf6178a2870b080a097c02d3b0eecc8d34fd532"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/resources.csv",
+          "sha256": "ce6707808d244c0b6d5c13874c5aa9c4e464faf007d14daf4ab6aeddbaf21109"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/run_eval.json",
+          "sha256": "f0edca6e299e27e34ccf2228828c7cb37bdb1638864d048b4f16fd6644a002c0"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/run_log.txt",
+          "sha256": "48dbe190ba8c0571338797125701624ea25e62ae454a1657a62664a029253832"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/run_meta.json",
+          "sha256": "2d861048f26490ad6c8a6a92f1d314e100b40f15773a7cee01a780194df23437"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/trajectory.txt",
+          "sha256": "3e33edb317982d6b5ccfcb9d48e8feeb9b14d9bbc6f54d9e668db417b4cc96d5"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/trajectory_filter.json",
+          "sha256": "8abd20e6c2e945a5cd14ba040844abf33f69aab00a111bf5e7c7256a3bdabfe5"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001/trajectory_raw_ns.txt",
+          "sha256": "4b5d6aa91eb2170e25c0c9996202be12e0a921758a1feb012947715403232f39"
+        },
+        {
+          "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__orbslam3/run10001.json",
+          "sha256": "4b6d91b96d26e8cce48adbc99e1166fc4d9f532108151b96a449cb3d014f00ee"
+        }
+      ],
+      "status": "completed_claim_review_pending"
+    },
+    {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/okvis2",
+      "repetition": 1,
+      "physical_run_id": 10001,
+      "action_id": "vio/zed2i/field1_110426_full_10fps_q90/okvis2/default/r1",
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001",
+      "attempt_state": {
+        "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__okvis2/run10001.json",
+        "sha256": "07a177edadc30d50cc17886707b616a0cf323488341c3fc56857c861a08edcb4"
+      },
+      "cohort": "zed-current-n3-51cab4f3333a",
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/okvis2_final_trajectory.csv",
+          "sha256": "ba59679e10398dc846881c0576d58702c2b931c3469479af5176b3cf62391111"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/okvis2_raw_trajectory.csv",
+          "sha256": "4a93630c4a0fbbfb049c68ee4c715a5d5d1c077afa276936350523cdcae06d08"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/processes/estimator.json",
+          "sha256": "28c15b8531496a3ca2c40d474ffcb416e94092ba0de32723bade10dd1a56063c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/provenance/estimator_config--zed2i_field1_110426_full_10fps_q90_vio.yaml",
+          "sha256": "ea6a93c363ae2e44d871bf6c6c662034de30725544d576f73730266c83fcb818"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/provenance/estimator_config_source--zed2i_field1_110426_full_10fps_q90_vio.yaml",
+          "sha256": "ea6a93c363ae2e44d871bf6c6c662034de30725544d576f73730266c83fcb818"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/provenance/implementation.json",
+          "sha256": "e73715513f63440a304a8ff1a05fdad8b5d2bb61581d3bf7a5b4cac33472e232"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/provenance/runtime-assets.json",
+          "sha256": "bca130d6615faa1adb676edbe68b601deedb487b4439c6461321f9cd8b49a9ab"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/resources.csv",
+          "sha256": "2a097e90d98896d7de757520de19490d2454fe6d988df6a2f349be594c723a2d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/run_eval.json",
+          "sha256": "346614aa345e86db6a517ff75ee7a990e218d9ee0901ae435cf991e1cd674a22"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/run_log.txt",
+          "sha256": "623a346ba1f0a7d0c90c043d10360ef6a8856bfac56768b00bfdd368dab95bd6"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/run_meta.json",
+          "sha256": "8d85835cdbb75baf4e73079bfeec9eecc358d8aba778080b94aa02b7a8a32401"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001/trajectory.txt",
+          "sha256": "28af214d975cb9b44b9499aa41e75a278032ba3258322b7e1cdb9056ca3a0ffa"
+        },
+        {
+          "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__okvis2/run10001.json",
+          "sha256": "07a177edadc30d50cc17886707b616a0cf323488341c3fc56857c861a08edcb4"
+        }
+      ],
+      "status": "completed_claim_review_pending"
+    },
+    {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/okvis2x",
+      "repetition": 1,
+      "physical_run_id": 10001,
+      "action_id": "vio/zed2i/field1_110426_full_10fps_q90/okvis2x/default/r1",
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001",
+      "attempt_state": {
+        "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__okvis2x/run10001.json",
+        "sha256": "3ec5faa80f79e5e14b64d1178eb8a2b77afb17bd150f80befc7cc96062da880f"
+      },
+      "cohort": "zed-current-n3-63baef9491f6",
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/okvis2-vio-final-ba_trajectory.csv",
+          "sha256": "014358f77516b889840beaae25e324f362f97d81c1415493197cc6d530797d29"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/okvis2-vio-final_trajectory.csv",
+          "sha256": "014358f77516b889840beaae25e324f362f97d81c1415493197cc6d530797d29"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/okvis2-vio_trajectory.csv",
+          "sha256": "8a5ced37aeec15e201975d8dd6bfbcd5f44a2c88bfb64a10c9e719488020f16c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/processes/estimator.json",
+          "sha256": "6220676180e43fc14de33bec666875537741c95108635133ca96dcb6ca38efd9"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/provenance/estimator_config--zed2i_field1_110426_full_10fps_q90_vio.yaml",
+          "sha256": "b366bb32e4b68cf18a589ddc8991e7c3384d6b25d6cb887f418c55ad298ecdf9"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/provenance/implementation.json",
+          "sha256": "369eb06a81115409f427c5431f3423d881ceecbc2460973c0dc7ef0714705738"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/provenance/runtime-assets.json",
+          "sha256": "c0c81fe3c26cd159c687dc1141624aa5ca46ea817c4256ee06b3eac885708970"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/resources.csv",
+          "sha256": "caa8ee713ef442ae979711d308af3630c19fef22bfda904e3b21003d6d68026b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/run_eval.json",
+          "sha256": "f4e0dd0fa5f4cf8b12bc4d904f0145bbff525e72ccad1c1624c13c16482d6f1f"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/run_log.txt",
+          "sha256": "4c0bdc3cdf0f5079d15bf840dbd1420ad9eefe4740ead76cf3df5fe5bfe3dd54"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/run_meta.json",
+          "sha256": "7fbde2ad0f2bf100cc17703bee8c3a93349b946f25c1fe9f05ec71fd417c04cb"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001/trajectory.txt",
+          "sha256": "f3b4db98314f2d9d85aae56352030fac2bbbe4aa661a9c843c5c60e5b576a08f"
+        },
+        {
+          "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__okvis2x/run10001.json",
+          "sha256": "3ec5faa80f79e5e14b64d1178eb8a2b77afb17bd150f80befc7cc96062da880f"
+        }
+      ],
+      "status": "completed_claim_review_pending"
+    }
+  ]
+}
