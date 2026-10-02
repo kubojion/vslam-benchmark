@@ -107,6 +107,7 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
             paths.append('/root/catkin_ws_rectified_20261001/devel/lib')
         if algorithm=='voxel_svio':
             paths.append('/root/catkin_ws_shutdown_20261002/devel/lib')
+            paths.append('/root/vslam_voxel_audit_20261002_v2')
         if algorithm=='cifasis_gnss_si':paths = ['/root/catkin_ws/src/gnss-stereo-inertial-fusion/lib',
             '/root/catkin_ws/src/gnss-stereo-inertial-fusion/Examples/ROS/GNSS_SI/GNSS_Stereo_Inertial',
             '/root/catkin_ws/src/gnss-stereo-inertial-fusion/Vocabulary/ORBvoc.txt']

@@ -15,6 +15,7 @@ def test_native_failure_cannot_be_hidden_by_trajectory(tmp_path, node_exit, play
     root = Path(__file__).resolve().parents[3]
     scripts = tmp_path/'scripts/run'; scripts.mkdir(parents=True)
     shutil.copy2(root/'scripts/run/run_voxel_svio.sh', scripts/'run_voxel_svio.sh')
+    shutil.copy2(root/'scripts/run/_rosario_profile.sh', scripts/'_rosario_profile.sh')
     (tmp_path/'configs/voxel_svio').mkdir(parents=True)
     (tmp_path/'configs/voxel_svio/test.yaml').write_text('timeshift_cam_imu_left: 0.0\n')
     for name in ('cam0/data','cam1/data','imu0'):

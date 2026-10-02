@@ -33,13 +33,20 @@ case "$RUN_TYPE" in
         echo "[openvins] run_type='$RUN_TYPE' not supported - OpenVINS is VIO only (no VO mode, no built-in LC)" >&2
         exit 2 ;;
 esac
+source "$WS/scripts/run/_rosario_profile.sh"
+check_rosario_candidate openvins
 
 SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 CFG_DIR="$WS/configs/openvins/$DATASET"
+if [[ -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
+    CFG_DIR="$WS/configs/candidates/rosario-vio-20261002/$ROSARIO_VIO_PROFILE"
+fi
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/openvins/run${RUN_ID}"
 LOG_GLOBAL="$WS/logs/${DATASET}_${SEQ}_openvins_${RUN_TYPE}_run${RUN_ID}.log"
 OPENVINS_IMAGE=openvins:humble
-if [[ "$DATASET" == euroc_mav || "$DATASET" == zed2i ]]; then OPENVINS_IMAGE=openvins:humble-shutdown-20261001; fi
+OPENVINS_VERBOSITY=INFO
+if [[ -n "${ROSARIO_VIO_PROFILE:-}" ]]; then OPENVINS_VERBOSITY=DEBUG; fi
+if [[ "$DATASET" == euroc_mav || "$DATASET" == zed2i || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then OPENVINS_IMAGE=openvins:humble-shutdown-20261001; fi
 
 [[ -d "$CFG_DIR" ]] || { echo "[openvins] missing config dir: $CFG_DIR" >&2; exit 2; }
 [[ -f "$CFG_DIR/estimator_config.yaml" ]] || { echo "[openvins] missing $CFG_DIR/estimator_config.yaml" >&2; exit 2; }
@@ -56,6 +63,12 @@ fi
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
+snapshot_rosario_candidate
+if [[ -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
+    CFG_DIR="$ROSARIO_PROFILE_DIR"
+fi
+CFG_REL=$(realpath --relative-to="$WS" "$CFG_DIR")
+[[ "$CFG_REL" != ../* ]] || { echo '[openvins] selected config must be within workspace' >&2; exit 2; }
 CONTAINER=""
 source "$WS/scripts/run/_owned_process.sh"
 owned_ros2_domain
@@ -131,8 +144,8 @@ docker run --rm \
         # segfault and forward a second SIGINT during attempt cleanup.
         owned_run node /colcon_ws/install/lib/ov_msckf/run_subscribe_msckf \
             --ros-args -r __ns:=/ov_msckf \
-            -p config_path:=/ws/configs/openvins/$DATASET/estimator_config.yaml \
-            -p use_stereo:=true -p max_cameras:=2 -p verbosity:=INFO \
+            -p config_path:=/ws/$CFG_REL/estimator_config.yaml \
+            -p use_stereo:=true -p max_cameras:=2 -p verbosity:=$OPENVINS_VERBOSITY \
             -p save_total_state:=false \
             > /ws/${OUT_REL}/openvins_node.log 2>&1 &
         OV_PID=\$!
@@ -162,12 +175,14 @@ finish_resource_window "$OUT_DIR" "$MONPID"
 MONPID=""
 
 PROV_ARGS=(
+    "${PROFILE_PROV_ARGS[@]}"
     --artifact "estimator_config=$CFG_DIR/estimator_config.yaml"
     --artifact "imu_calibration=$CFG_DIR/kalibr_imu_chain.yaml"
     --artifact "camera_imu_calibration=$CFG_DIR/kalibr_imucam_chain.yaml"
     --source "algorithm=$WS/src/open_vins"
     --param "process_isolation=attempt_token_private_ros2_domain"
     --param "playback_rate=${OPENVINS_RATE:-1.0}"
+    --param "native_verbosity=$OPENVINS_VERBOSITY"
     --container-image "$OPENVINS_IMAGE"
 )
 if (( OPENVINS_RC != 0 )); then

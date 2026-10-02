@@ -27,7 +27,7 @@ resolve_run_type "$RUN_TYPE"
 SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/basalt/run${RUN_ID}"
 LOG_GLOBAL="$WS/logs/${DATASET}_${SEQ}_basalt_${RUN_TYPE}_run${RUN_ID}.log"
-CALIB="$WS/configs/basalt/${DATASET}_calib.json"
+CALIB="${BASALT_CALIBRATION:-$WS/configs/basalt/${DATASET}_calib.json}"
 case "$RUN_TYPE" in
     vo|vio) ;;
     *)
@@ -35,11 +35,18 @@ case "$RUN_TYPE" in
         exit 2
         ;;
 esac
+source "$WS/scripts/run/_rosario_profile.sh"
+check_rosario_candidate basalt
 
 # Rosario's 49.7 mm baseline needs the recorded 30 mm VO triangulation gate.
 # Other datasets retain the upstream 50 mm gate; do not change them implicitly.
-CONFIG_ARGS=(basalt "$WS" "$DATASET" "$SEQ" "$RUN_TYPE")
+CONFIG_ARGS=(basalt "$WS" "$DATASET" "$SEQ" "$RUN_TYPE" --calibration "$CALIB")
 [[ -n "${BASALT_CONFIG:-}" ]] && CONFIG_ARGS+=(--override "$BASALT_CONFIG")
+if [[ -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
+    CALIB="$WS/configs/candidates/rosario-vio-20261002/$ROSARIO_VIO_PROFILE/calibration.json"
+    CONFIG_ARGS=(basalt "$WS" "$DATASET" "$SEQ" "$RUN_TYPE" --calibration "$CALIB"
+        --override "$WS/configs/candidates/rosario-vio-20261002/$ROSARIO_VIO_PROFILE/vio_config.json")
+fi
 ESTIMATOR_CFG=$(python3 "$WS/scripts/run/_config_preflight.py" "${CONFIG_ARGS[@]}")
 
 # ── PATH: source Basalt env to ensure basalt_vio is available ────────────────
@@ -55,10 +62,16 @@ BASALT_BIN=$(command -v basalt_vio)
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
+snapshot_rosario_candidate
+if [[ -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
+    CALIB="$ROSARIO_PROFILE_DIR/calibration.json"
+    ESTIMATOR_CFG="$ROSARIO_PROFILE_DIR/vio_config.json"
+fi
 CONTAINER=""
 source "$WS/scripts/run/_owned_process.sh"
 
 PROV_ARGS=(
+    "${PROFILE_PROV_ARGS[@]}"
     --param "process_isolation=attempt_token"
     --artifact "camera_calibration=$CALIB"
     --artifact "estimator_config=$ESTIMATOR_CFG"

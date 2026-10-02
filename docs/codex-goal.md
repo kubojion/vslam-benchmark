@@ -2,6 +2,25 @@
 
 Prepared: 2026-10-01. Workspace: `/data/imoroz/vslam-benchmark`.
 
+## Current continuation — focused execution readiness, 2026-10-02
+
+Continue from `03c7c0e`, with final reporting checkpointed as `0fa0066`.
+Complete the [focused readiness plan](execution-readiness-20261002.md): explicit
+Rosario candidate selection and bounded native validation; the fixed first
+180-second Voxel ZED diagnostic; evidence-based separation of shutdown errors
+from trajectory failures; non-ZED ORB historical ABI/build review and short
+repaired-path checks; review the three completed ZED run10001 attempts.
+
+Then, after shared engineering changes and identity/preflight refresh, run only
+the remaining ZED VIO first repetitions for AirSLAM, Basalt and OpenVINS, plus
+Voxel if its execution setup is verified. Use a new standalone sequential batch,
+skip completed attempts and evaluate each outcome immediately. No automatic
+repetitions 2/3, other modes, blanket ORB reruns or pushes. Commit completed work.
+Keep historical records immutable and genuine failures visible. Recording-specific
+Rosario profile selection remains pending the authors; native diagnostic success
+cannot resolve that uncertainty. The prior no-estimator restriction is superseded
+only by these explicitly authorized diagnostics and first repetitions.
+
 ## Completed continuation — Rosario/TODO integration into main, 2026-10-02
 
 Make `/data/imoroz/vslam-benchmark` on main the final destination for the reviewed

@@ -69,22 +69,22 @@ def basalt_baseline(calibration):
 
 def validate_basalt(config, calibration, mode):
     values = json.loads(Path(config).read_text())['value0']
+    baseline = basalt_baseline(calibration)
     if values.get('config.vio_enforce_realtime') is not False:
         raise ValueError('quality profile must disable Basalt real-time frame dropping')
     if mode == 'vo':
         threshold = float(values['config.vio_min_triangulation_dist'])
-        baseline = basalt_baseline(calibration)
         if not math.isfinite(threshold) or threshold <= 0 or threshold >= baseline:
             raise ValueError(f'VO triangulation gate {threshold:g} m must be positive and below stereo baseline {baseline:.9g} m')
 
 
-def select_basalt_config(repo, dataset, mode, override=None):
+def select_basalt_config(repo, dataset, mode, override=None, calibration=None):
     if mode not in ('vo', 'vio'):
         raise ValueError('Basalt supports vo/vio only')
     root = Path(repo)/'configs/basalt'
     name = 'rosariov2_vo_config.json' if dataset == 'rosariov2' and mode == 'vo' else f'{mode}_config.json'
     config = Path(override) if override else root/name
-    validate_basalt(config, root/f'{dataset}_calib.json', mode)
+    validate_basalt(config, Path(calibration) if calibration else root/f'{dataset}_calib.json', mode)
     return config
 
 
@@ -96,10 +96,11 @@ def main():
     parser.add_argument('sequence')
     parser.add_argument('mode')
     parser.add_argument('--override')
+    parser.add_argument('--calibration', help='Basalt camera calibration, independent of estimator --override')
     args = parser.parse_args()
     try:
         path = (select_orb_config(args.repo, args.dataset, args.sequence, args.mode, args.override)
-                if args.algorithm == 'orbslam3' else select_basalt_config(args.repo, args.dataset, args.mode, args.override))
+                if args.algorithm == 'orbslam3' else select_basalt_config(args.repo, args.dataset, args.mode, args.override, args.calibration))
     except (ValueError, KeyError, OSError) as exc:
         parser.error(str(exc))
     print(path)

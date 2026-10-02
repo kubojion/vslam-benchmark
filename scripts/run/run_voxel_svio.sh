@@ -35,6 +35,8 @@ if [[ "$RUN_TYPE" != "vio" ]]; then
     echo "[voxel_svio] only run_type=vio is supported (no VO, no LC)" >&2
     exit 2
 fi
+source "$WS/scripts/run/_rosario_profile.sh"
+check_rosario_candidate voxel_svio
 
 SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/voxel_svio/run${RUN_ID}"
@@ -42,8 +44,12 @@ LOG="$WS/logs/${DATASET}_${SEQ}_voxel_svio_${RUN_TYPE}_run${RUN_ID}.log"
 
 CONTAINER="voxel_svio"
 VOXEL_PREFIX=/root/catkin_ws/devel
-if [[ "$DATASET" == zed2i ]]; then
+if [[ "$DATASET" == zed2i || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
     VOXEL_PREFIX=/root/catkin_ws_shutdown_20261002/devel
+fi
+VOXEL_BIN="$VOXEL_PREFIX/lib/voxel_svio/vio_node"
+if [[ "$DATASET" == zed2i || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
+    VOXEL_BIN=/root/vslam_voxel_audit_20261002_v2/vio_node
 fi
 source "$WS/scripts/run/_owned_process.sh"
 OUT_CONT="/results/$RUN_TYPE/$DATASET/$SEQ/voxel_svio/run${RUN_ID}"
@@ -51,7 +57,9 @@ OUT_CONT="/results/$RUN_TYPE/$DATASET/$SEQ/voxel_svio/run${RUN_ID}"
 # Per-sequence config first, then per-dataset fallback.
 CFG_HOST_SEQ="$WS/configs/voxel_svio/${DATASET}_${SEQ}.yaml"
 CFG_HOST_DSET="$WS/configs/voxel_svio/${DATASET}.yaml"
-if [[ -f "$CFG_HOST_SEQ" ]]; then
+if [[ -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
+    CFG_HOST="$WS/configs/candidates/rosario-vio-20261002/$ROSARIO_VIO_PROFILE/rosariov2.yaml"
+elif [[ -f "$CFG_HOST_SEQ" ]]; then
     CFG_HOST="$CFG_HOST_SEQ"
 elif [[ -f "$CFG_HOST_DSET" ]]; then
     CFG_HOST="$CFG_HOST_DSET"
@@ -68,19 +76,27 @@ CFG_CONT="/benchmark_configs/voxel_svio/$(basename "$CFG_HOST")"
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
+snapshot_rosario_candidate
+if [[ -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
+    CFG_HOST="$ROSARIO_PROFILE_DIR/rosariov2.yaml"
+    CFG_CONT="$OUT_CONT/configuration-profile/rosariov2.yaml"
+fi
 echo "[voxel_svio] $DATASET/$SEQ run=${RUN_ID} -> $OUT_DIR" | tee "$LOG"
 PROV_ARGS=(
+    "${PROFILE_PROV_ARGS[@]}"
     --artifact "estimator_config=$CFG_HOST"
     --source "algorithm=$WS/src/voxel_svio"
     --param "process_isolation=attempt_token_private_ros_master"
     --param "playback_rate=1.0"
     --param "native_prefix=$VOXEL_PREFIX"
+    --param "native_executable=$VOXEL_BIN"
     --param "abort_backtrace_diagnostic=${VOXEL_SVIO_BACKTRACE:-0}"
     --container "$CONTAINER"
 )
-if [[ "$DATASET" == zed2i ]]; then
+if [[ "$DATASET" == zed2i || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
     PROV_ARGS+=(--artifact "shutdown_source_patch=$WS/docs/upstream/voxel-svio-subscriber-lifetime.patch"
-        --artifact "native_build_review=$WS/docs/campaigns/voxel-zed-shutdown-build-20261002.json")
+        --artifact "native_build_review=$WS/docs/campaigns/voxel-zed-shutdown-build-20261002.json"
+        --artifact "parameter_audit_build=$WS/docs/campaigns/voxel-parameter-audit-build-20261002.json")
 fi
 
 # ---- Ensure Docker container is running -----------------------------------
@@ -143,9 +159,9 @@ done
 # Use a local launch wrapper that loads our config (the upstream launch file
 # loads its bundled config/euroc.yaml). We pass the config path via rosparam
 # load on the command line instead.
-NODE_COMMAND="exec $VOXEL_PREFIX/lib/voxel_svio/vio_node"
+NODE_COMMAND="exec $VOXEL_BIN"
 if [[ "${VOXEL_SVIO_BACKTRACE:-0}" == 1 ]]; then
-    NODE_COMMAND="exec env LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so SEGFAULT_SIGNALS=abrt $VOXEL_PREFIX/lib/voxel_svio/vio_node"
+    NODE_COMMAND="exec env LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so SEGFAULT_SIGNALS=abrt $VOXEL_BIN"
 fi
 owned_run node bash -c "
     export ROS_MASTER_URI='$ROS_MASTER_URI'
@@ -154,6 +170,7 @@ owned_run node bash -c "
     source $VOXEL_PREFIX/setup.bash &&
     rosparam load $CFG_CONT &&
     rosparam set /output_path '$OUT_CONT/native' &&
+    rosparam dump '$OUT_CONT/effective_ros_parameters.yaml' &&
     $NODE_COMMAND
 " >> "$LOG" 2>&1 &
 NODE_PID=$!
@@ -189,6 +206,11 @@ cp "$LOG" "$OUT_DIR/run_log.txt"
 
 # ---- Collect trajectory ---------------------------------------------------
 POSE_HOST="$OUT_DIR/native/pose.txt"
+for report in parameter_list.txt camera_load.txt input_receipt.json; do
+    if [[ -f "$OUT_DIR/native/$report" ]]; then
+        PROV_ARGS+=(--artifact "native_$report=$OUT_DIR/native/$report")
+    fi
+done
 if [[ ! -s "$POSE_HOST" ]]; then
     FAILURE_RC=$NODE_RC
     (( FAILURE_RC != 0 )) || FAILURE_RC=$PLAYER_RC
