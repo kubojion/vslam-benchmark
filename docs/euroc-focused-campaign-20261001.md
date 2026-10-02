@@ -1,5 +1,9 @@
 # Focused EuRoC OpenVINS / corrected AirSLAM campaign
 
+> Historical checkpoint. Later [ZED preparation](zed-preparation-20261002.md)
+> supersedes its ZED calibration/reference blockers and current aggregate counts.
+> Original observations, provenance hashes and non-ZED decisions remain preserved.
+
 > Historical completion checkpoint. Current tick semantics and publisher-thread diagnosis are in [the protocol review](protocol-review-20261002.md) and [diagnostic report](airslam-refinement-diagnostic-20261002.md).
 
 Completed 2026-10-01 UTC (2026-10-02 local). Exactly **six missing OpenVINS VIO repetitions and 18 corrected AirSLAM VIO/VIO-LC repetitions** were executed once. Twenty-three have clean native exits and immediate schema-3 evaluations; one MH05 VIO-LC attempt retains a native refinement SIGSEGV before final export. No accuracy parameters were tuned, no production slot was retried, and no other dataset/algorithm path was run. No push occurred.

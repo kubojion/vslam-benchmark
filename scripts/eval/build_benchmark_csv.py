@@ -54,7 +54,8 @@ COLUMNS = ['dataset', 'seq', 'environment_type', 'algo', 'run_type', 'use_imu', 
  'claim_limits', 'reproducibility_disclosures', 'cell_acceptance', 'clean_qualified_n3',
  'native_error_observation_count', 'protocol_status', 'protocol_basis', 'protocol_blockers',
  'attempt_completed', 'observed_outcome', 'successful_run', 'observed_failure',
- 'protocol_verified_n3', 'protocol_state', 'implementation_label']
+ 'protocol_verified_n3', 'protocol_state', 'implementation_label',
+ 'reference_version', 'reference_variant', 'trajectory_export_stage']
 
 
 def get(document,*keys):
@@ -146,6 +147,9 @@ def row_from_attempt(attempt,evaluation,cell,*,repo=REPO,membership='original_n3
         cell_acceptance=(cell or {}).get('acceptance',{}).get('status'),
         clean_qualified_n3=(cell or {}).get('acceptance',{}).get('clean_qualified_n3',False),
         primary_alignment=alignment,primary_ate_rmse_m=get(ev,'ate' if alignment=='sim3' else 'ate_se3','rmse'),
+        reference_version=get(ev,'pose_frames','reference_version'),
+        reference_variant=get(ev,'pose_frames','reference_variant'),
+        trajectory_export_stage=get(ev,'pose_frames','trajectory_export_stage'),
         position_metric_validity=get(ev,'metric_validity','position'),
         orientation_metrics_available=bool(get(ev,'pose_frames','orientation_valid') and get(ev,'pose_frames','common_origin_verified')) if ev else None,
         export_kind=cov.get('export_kind'),coverage_gap_pct=cov.get('coverage_gap_pct'),

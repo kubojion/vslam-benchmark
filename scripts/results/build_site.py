@@ -130,6 +130,9 @@ def run_page(run: dict, page_name: str, file_key: str) -> str:
 <dt>Sim3 ATE RMSE</dt><dd>{esc(metric(run, 'ate_rmse'))}</dd>
 <dt>SE3 ATE RMSE</dt><dd>{esc(metric(run, 'ate_se3_rmse'))}</dd>
 <dt>Export type</dt><dd>{esc(metric(run, 'export_kind'))}</dd>
+<dt>Export stage</dt><dd>{esc(run.get('trajectory_export_stage') or 'unrecorded')}</dd>
+<dt>Reference version</dt><dd>{esc(run.get('reference_version') or 'legacy recording reference')}</dd>
+<dt>Reference variant</dt><dd>{esc(run.get('reference_variant') or 'default')}</dd>
 <dt>Dense coverage [%]</dt><dd>{esc(metric(run, 'coverage_gap_pct')) or 'unknown'}</dd>
 <dt>Camera pose coverage [%]</dt><dd>{esc(metric(run, 'camera_pose_coverage_pct')) or 'unknown'}</dd>
 <dt>Reference paired [%]</dt><dd>{esc(metric(run, 'reference_pairs_pct_of_input')) or 'unknown'}</dd>
@@ -153,7 +156,7 @@ def index_page(manifest: dict, page_map: dict[str, str]) -> str:
     for run in manifest.get("runs", []):
         key = run["path"]
         membership=run.get('campaign_membership','unknown')
-        headline=membership in ('original_n3_campaign','gnss_default_future_n3','legacy_gnss_variant')
+        headline=membership in ('original_n3_campaign','corrected_euroc_20261001','gnss_default_future_n3','legacy_gnss_variant')
         rows.append(f"""<tr data-headline="{'yes' if headline else 'no'}" data-type="{esc(run['run_type'])}" data-search="{esc(' '.join(str(run.get(k, '')) for k in ('dataset','sequence','algorithm','status','scientific_status','campaign_membership','input_variant')).lower())}">
 <td>{esc(run['run_type'])}</td><td>{esc(run['dataset'])}</td><td>{esc(run['sequence'])}</td>
 <td><a href="runs/{esc(page_map[key])}">{esc(run['algorithm'])}</a></td><td>{esc(run['repeat'])}</td>

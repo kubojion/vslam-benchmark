@@ -66,3 +66,28 @@ def test_geodetic_altitude_and_origin_axes():
     np.testing.assert_allclose(xyz[0],0)
     np.testing.assert_allclose(xyz[1],[0,0,1],atol=1e-9)
     assert xyz[2,0]>1 and abs(xyz[2,1])<1e-12
+
+
+def test_diagnostic_parent_reference_requires_exact_pinned_prefix(tmp_path):
+    import hashlib
+    sys.path.insert(0,str(ROOT/'scripts/eval'))
+    from _reference_source import selected_reference
+    def put(name,text):
+        p=tmp_path/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
+        return dict(path=name,sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+    parent=put('datasets/zed2i/full/times.txt','100\n200\n300\n')
+    subset=put('datasets/zed2i/diag/times.txt','100\n200\n')
+    trajectory=put('ref.tum','1 0 0 0 0 0 0 1\n')
+    support=put('support.json',json.dumps(dict(valid_intervals=[[1,2]])))
+    reference=put('ref.json',json.dumps(dict(dataset='zed2i',sequence='full',version='test',
+        variants={'primary':dict(trajectory=trajectory,support=support)},limitations=[],
+        orientation_valid=False,nominal_geometry={})))
+    cfg=dict(schema=1,dataset='zed2i',sequence='diag',diagnostic_parent_sequence='full',
+        diagnostic_only=True,subset_times=subset,parent_times=parent,reference=reference,variant='primary')
+    selector=tmp_path/'configs/references/zed2i_diag.json'
+    put(str(selector.relative_to(tmp_path)),json.dumps(cfg))
+    assert selected_reference(tmp_path,'zed2i','diag')['physical_sequence']=='full'
+    cfg['subset_times']=put('datasets/zed2i/diag/times.txt','100\n300\n')
+    selector.write_text(json.dumps(cfg))
+    with pytest.raises(ValueError,match='exact parent prefix'):
+        selected_reference(tmp_path,'zed2i','diag')

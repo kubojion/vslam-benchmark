@@ -1,9 +1,25 @@
 # vSLAM Benchmark - Progress
 
-> Current protocol status: 72 verified N=3 cells; 225 verified attempts include
-> 34 observed native failures. Scores and all 45 previously clean-qualified cells
-> are preserved. [TODO](TODO.md) and [handoff](docs/acceptance-handoff-20261001.md)
-> are current. Dated entries below retain earlier counting and tick conventions.
+> Current protocol status: 81 verified N=3 cells; 256 verified attempts include
+> 41 observed failures. The original 45 clean-qualified cells and non-ZED scores
+> are preserved. [ZED preparation](docs/zed-preparation-20261002.md) updates
+> calibration, reference and claim limits. Dated entries below are historical.
+
+## 2026-10-02 — Recovered ZED calibration and approved position reference
+
+Applied camera 30291010's full factory transform in every applicable algorithm's
+convention, preserving July image calibration and estimator settings. Created an
+immutable nominal 3D position reference with exactly the approved 448/23,160 GNSS
+spike exclusions and explicit gaps. RTK float remains in the primary reference;
+fixed-only, height, tilt and timestamp sensitivity cover 46 saved exports plus the recovered OKVIS2-X causal prefix (47 total).
+
+Nine ZED cells now have qualified protocol N=3; 31 existing observations are usable
+with claim limits, including collapse and native shutdown failures. Eleven old
+inertial attempts omitted the factory rotation and need corrected estimation.
+Six ORB visual attempts retain their input-rate defect. Twenty-five ZED repetitions
+are missing; two existing VO-LC attempts remain blocked and AirSLAM VO-LC's N=1/N=2
+cohorts remain separate. The [preparation record](docs/zed-preparation-20261002.md)
+records 15 passed native paths and Voxel's remaining initialization/export limit. The coherent ZED N=3 plan has 48 new attempts, including six separately labelled cohort-completion attempts; none were launched.
 
 ## 2026-10-02 — Separate protocol validity from algorithm success
 

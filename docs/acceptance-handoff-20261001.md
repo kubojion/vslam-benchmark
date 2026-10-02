@@ -1,21 +1,21 @@
 # Acceptance handoff — 2026-10-01
 
-Generated from the checked inventory. The [claim review](paper-acceptance-20261001.md) defines eligibility, limitations and evidence. This includes the [matched-session calibration review](reference-review-20261001.md): Rosario frame-dependent metrics were corrected; accepted EuRoC values and original attempts are preserved. **Acceptance review complete; focused EuRoC OpenVINS/AirSLAM execution validated. Other native paths remain unverified.**
+Generated from the checked inventory. The [claim review](paper-acceptance-20261001.md) defines eligibility, limitations and evidence. This includes the [matched-session calibration review](reference-review-20261001.md): Rosario frame-dependent metrics were corrected; accepted EuRoC values and original attempts are preserved. **Acceptance review complete; focused EuRoC OpenVINS/AirSLAM execution validated. ZED short-check readiness is recorded separately below.**
 
 | Mode | Protocol-verified N=3 cells | Accepted accuracy claims | Limited accuracy claims | Failure-only claim observations | Required reruns | Missing | Blocked |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vo | 24 | 53 | 19 | 4 | 3 | 6 | 107 |
-| vo-lc | 18 | 33 | 21 | 2 | 3 | 5 | 80 |
-| vio | 18 | 39 | 24 | 2 | 38 | 22 | 43 |
-| vio-lc | 12 | 26 | 9 | 2 | 24 | 8 | 27 |
+| vo | 31 | 53 | 39 | 4 | 3 | 6 | 87 |
+| vo-lc | 20 | 33 | 31 | 2 | 3 | 5 | 70 |
+| vio | 18 | 39 | 24 | 0 | 45 | 22 | 38 |
+| vio-lc | 12 | 26 | 9 | 1 | 28 | 8 | 24 |
 | gnss-vio | 0 | 0 | 0 | 0 | 5 | 40 | 15 |
 
 Protocol counts are separate from claim-status counts above. Success means a clean final export; native errors after saving remain failures with potentially usable accuracy.
 
 | Mode | Verified attempts | Verified failures | Attempts | Evaluated | Clean exports | Observed failures | Unknown |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vo | 72 | 10 | 186 | 183 | 154 | 32 | 0 |
-| vo-lc | 54 | 12 | 139 | 136 | 105 | 34 | 0 |
+| vo | 93 | 14 | 186 | 183 | 154 | 32 | 0 |
+| vo-lc | 64 | 15 | 139 | 137 | 105 | 34 | 0 |
 | vio | 63 | 11 | 146 | 145 | 116 | 30 | 0 |
 | vio-lc | 36 | 1 | 88 | 86 | 86 | 2 | 0 |
 | gnss-vio | 0 | 0 | 20 | 20 | 0 | 2 | 18 |
@@ -23,7 +23,7 @@ Protocol counts are separate from claim-status counts above. Success means a cle
 **OpenVINS cohort completeness:** each EuRoC sequence has historical N=1 plus patched N=2. The selected logical slots are consumed. One additional patched repetition per sequence would complete that implementation cohort, only if separately authorized. These three potential additions are separate from the 81 absent planned slots and are not scheduled here. Old cohorts are not resampled for success.
 
 
-Future default actions: 234 reusable observations, 73 required reruns, 81 missing repetitions, 272 blocked. The separately authorized focused EuRoC campaign is complete; its 24 attempts yielded 23 final evaluations and one retained native refinement failure. No other paths were executed and no push occurred.
+Future default actions: 261 reusable observations, 84 required reruns, 81 missing repetitions, 234 blocked. The separately authorized focused EuRoC campaign is complete; its 24 attempts yielded 23 final evaluations and one retained native refinement failure. The later ZED preparation used bounded diagnostics only; no ZED production repetitions or push occurred.
 
 ## Protocol-verified N=3 cells
 
@@ -53,6 +53,13 @@ Future default actions: 234 reusable observations, 73 required reruns, 81 missin
 | `vo/euroc_mav/MH_05_difficult/ov2slam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_05_difficult/dpvo` | recorded_profile_euroc_final_trajectory_sim3_monocular_shape |
 | `vo/euroc_mav/MH_05_difficult/macvo` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo/zed2i/field1_110426_full_10fps_q90/okvis2` | nominal_zed_se3_final_position_accuracy |
+| `vo/zed2i/field1_110426_full_10fps_q90/okvis2x` | nominal_zed_se3_final_position_accuracy |
+| `vo/zed2i/field1_110426_full_10fps_q90/airslam` | nominal_zed_se3_final_position_accuracy |
+| `vo/zed2i/field1_110426_full_10fps_q90/basalt` | nominal_zed_se3_final_position_accuracy |
+| `vo/zed2i/field1_110426_full_10fps_q90/ov2slam` | nominal_zed_se3_final_position_accuracy |
+| `vo/zed2i/field1_110426_full_10fps_q90/dpvo` | nominal_zed_sim3_monocular_position_shape |
+| `vo/zed2i/field1_110426_full_10fps_q90/macvo` | nominal_zed_se3_final_position_accuracy |
 | `vo-lc/euroc_mav/MH_01_easy/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo-lc/euroc_mav/MH_01_easy/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo-lc/euroc_mav/MH_01_easy/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
@@ -71,6 +78,8 @@ Future default actions: 234 reusable observations, 73 required reruns, 81 missin
 | `vo-lc/euroc_mav/MH_05_difficult/airslam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo-lc/euroc_mav/MH_05_difficult/ov2slam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo-lc/euroc_mav/MH_05_difficult/dpvo` | recorded_profile_euroc_final_trajectory_sim3_monocular_shape |
+| `vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam` | nominal_zed_se3_final_position_accuracy |
+| `vo-lc/zed2i/field1_110426_full_10fps_q90/dpvo` | nominal_zed_sim3_monocular_position_shape |
 | `vio/euroc_mav/MH_01_easy/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_01_easy/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_01_easy/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
@@ -128,7 +137,27 @@ Future default actions: 234 reusable observations, 73 required reruns, 81 missin
 | `results/vo/euroc_mav/MH_05_difficult/ov2slam/run1` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
 | `results/vo/euroc_mav/MH_05_difficult/ov2slam/run2` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
 | `results/vo/euroc_mav/MH_05_difficult/ov2slam/run3` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
-| `results/vo/zed2i/field1_110426_full_10fps_q90/okvis2/run2` | valid_observed_failure | collapse_under_recorded_reference_diagnostic_not_verified_physical_scale; no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim; retain_failure_in_attempt_denominator; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/okvis2/run1` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/okvis2/run2` | valid_observed_failure | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; retain_failure_in_attempt_denominator; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/okvis2/run3` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/okvis2x/run1` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/okvis2x/run2` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/okvis2x/run3` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/airslam/run1` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; native_sparse_keyframe_accuracy_not_dense_tracking; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/airslam/run2` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; native_sparse_keyframe_accuracy_not_dense_tracking; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/airslam/run3` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; native_sparse_keyframe_accuracy_not_dense_tracking; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/basalt/run1` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/basalt/run2` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/basalt/run3` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run1` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; native_shutdown_error_despite_wrapper_exit_zero_retain_failure_count; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run2` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; native_shutdown_error_despite_wrapper_exit_zero_retain_failure_count; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run3` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; native_shutdown_error_despite_wrapper_exit_zero_retain_failure_count; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/dpvo/run1` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/dpvo/run2` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/dpvo/run3` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/macvo/run1` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; official_performant_profile_not_paper_reproduction_profile; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/macvo/run2` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; official_performant_profile_not_paper_reproduction_profile; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/macvo/run3` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; official_performant_profile_not_paper_reproduction_profile; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
 | `results/vo-lc/rosariov2/sequence1/orbslam3/run1` | valid_observed_failure | fused_stereo_imu_ppk_reference_not_independent_ground_truth; no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim; retain_failure_in_attempt_denominator |
 | `results/vo-lc/rosariov2/sequence1/ov2slam/run2` | valid_observed_failure | collapse_under_recorded_reference_diagnostic_not_verified_physical_scale; fused_stereo_imu_ppk_reference_not_independent_ground_truth; no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim; retain_failure_in_attempt_denominator |
 | `results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run3` | accepted_with_limitation | saved_accuracy_with_recorded_nonzero_exit_no_clean_success |
@@ -152,6 +181,16 @@ Future default actions: 234 reusable observations, 73 required reruns, 81 missin
 | `results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run1` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
 | `results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run2` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
 | `results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run3` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
+| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run1` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; final_ba_disabled; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; native_sparse_keyframe_accuracy_not_dense_tracking; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; separate_historical_n1_and_n2_workspace_cohorts_no_pooled_n3; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; native_sparse_keyframe_accuracy_not_dense_tracking; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; separate_historical_n1_and_n2_workspace_cohorts_no_pooled_n3; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; native_sparse_keyframe_accuracy_not_dense_tracking; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; separate_historical_n1_and_n2_workspace_cohorts_no_pooled_n3; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run1` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; native_shutdown_error_despite_wrapper_exit_zero_retain_failure_count; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run2` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; native_shutdown_error_despite_wrapper_exit_zero_retain_failure_count; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run3` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; native_shutdown_error_despite_wrapper_exit_zero_retain_failure_count; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/dpvo/run1` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/dpvo/run2` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
+| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/dpvo/run3` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
 | `results/vio/euroc_mav/MH_01_easy/airslam/run4` | accepted_with_limitation | sparse_keyframe_accuracy_only |
 | `results/vio/euroc_mav/MH_01_easy/airslam/run5` | accepted_with_limitation | sparse_keyframe_accuracy_only |
 | `results/vio/euroc_mav/MH_01_easy/airslam/run6` | accepted_with_limitation | sparse_keyframe_accuracy_only |
@@ -176,8 +215,6 @@ Future default actions: 234 reusable observations, 73 required reruns, 81 missin
 | `results/vio/euroc_mav/MH_05_difficult/voxel_svio/run1` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
 | `results/vio/euroc_mav/MH_05_difficult/voxel_svio/run2` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
 | `results/vio/euroc_mav/MH_05_difficult/voxel_svio/run3` | accepted_with_limitation | native_shutdown_error_despite_wrapper_exit_zero |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | valid_observed_failure | no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim; retain_failure_in_attempt_denominator; serial_specific_imu_rotation_and_timing_unverified; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run1` | valid_observed_failure | collapse_under_recorded_reference_diagnostic_not_verified_physical_scale; no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim; retain_failure_in_attempt_denominator; serial_specific_imu_rotation_and_timing_unverified; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
 | `results/vio-lc/euroc_mav/MH_01_easy/airslam/run4` | accepted_with_limitation | sparse_keyframe_accuracy_only; final_offline_map_refinement_accuracy_not_causal_online_trajectory |
 | `results/vio-lc/euroc_mav/MH_01_easy/airslam/run5` | accepted_with_limitation | sparse_keyframe_accuracy_only; final_offline_map_refinement_accuracy_not_causal_online_trajectory |
 | `results/vio-lc/euroc_mav/MH_01_easy/airslam/run6` | accepted_with_limitation | sparse_keyframe_accuracy_only; final_offline_map_refinement_accuracy_not_causal_online_trajectory |
@@ -188,11 +225,10 @@ Future default actions: 234 reusable observations, 73 required reruns, 81 missin
 | `results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4` | valid_observed_failure | retain_failure_in_attempt_denominator; no_final_vio_lc_trajectory_no_accuracy_claim; intermediate_odometry_is_diagnostic_only; native_junction_database_segfault_root_cause_unresolved |
 | `results/vio-lc/euroc_mav/MH_05_difficult/airslam/run5` | accepted_with_limitation | sparse_keyframe_accuracy_only; final_offline_map_refinement_accuracy_not_causal_online_trajectory |
 | `results/vio-lc/euroc_mav/MH_05_difficult/airslam/run6` | accepted_with_limitation | sparse_keyframe_accuracy_only; final_offline_map_refinement_accuracy_not_causal_online_trajectory |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | valid_observed_failure | no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim; retain_failure_in_attempt_denominator; serial_specific_imu_rotation_and_timing_unverified; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
 
 ## Exact required reruns
 
-There are 73 remaining distinct confirmed cases after the current cohort selection. Superseded affected AirSLAM attempts remain in their original directories and the historical-cohort CSV. Preserve every original attempt and use a new physical ID/cohort.
+There are 84 remaining distinct confirmed cases after the current cohort selection. Superseded affected AirSLAM attempts remain in their original directories and the historical-cohort CSV. Preserve every original attempt and use a new physical ID/cohort.
 
 | Cell | Logical repetitions | Concrete defect |
 |---|---|---|
@@ -212,6 +248,13 @@ There are 73 remaining distinct confirmed cases after the current cohort selecti
 | `vio/hortimulti/strawberry03/okvis2` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
 | `vio/hortimulti/strawberry03/okvis2x` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
 | `vio/hortimulti/strawberry03/airslam` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
+| `vio/zed2i/field1_110426_full_10fps_q90/orbslam3` | r1 | zed_factory_camera_imu_rotation_omitted |
+| `vio/zed2i/field1_110426_full_10fps_q90/okvis2` | r1 | zed_factory_camera_imu_rotation_omitted |
+| `vio/zed2i/field1_110426_full_10fps_q90/okvis2x` | r1 | zed_factory_camera_imu_rotation_omitted |
+| `vio/zed2i/field1_110426_full_10fps_q90/airslam` | r1 | zed_factory_camera_imu_rotation_omitted |
+| `vio/zed2i/field1_110426_full_10fps_q90/basalt` | r1 | zed_factory_camera_imu_rotation_omitted |
+| `vio/zed2i/field1_110426_full_10fps_q90/openvins` | r1 | zed_factory_camera_imu_rotation_omitted |
+| `vio/zed2i/field1_110426_full_10fps_q90/voxel_svio` | r1 | zed_factory_camera_imu_rotation_omitted |
 | `vio-lc/hortimulti/strawberry02/orbslam3` | r1, r2, r3 | orb_horti_rectified_camera_imu_extrinsic;horti_camera_imu_time_offset_uncompensated |
 | `vio-lc/hortimulti/strawberry02/okvis2` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
 | `vio-lc/hortimulti/strawberry02/okvis2x` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
@@ -220,6 +263,10 @@ There are 73 remaining distinct confirmed cases after the current cohort selecti
 | `vio-lc/hortimulti/strawberry03/okvis2` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
 | `vio-lc/hortimulti/strawberry03/okvis2x` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
 | `vio-lc/hortimulti/strawberry03/airslam` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3` | r1 | zed_factory_camera_imu_rotation_omitted |
+| `vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2` | r1 | zed_factory_camera_imu_rotation_omitted |
+| `vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x` | r1 | zed_factory_camera_imu_rotation_omitted |
+| `vio-lc/zed2i/field1_110426_full_10fps_q90/airslam` | r1 | zed_factory_camera_imu_rotation_omitted |
 | `gnss-vio/rosariov2/sequence1/cifasis_gnss_si` | r1 | rosario_v1_antenna_lever_arm_used_on_v2 |
 | `gnss-vio/rosariov2/sequence1/okvis2x` | r1 | gnss_zero_antenna_lever_arm_in_native_log |
 | `gnss-vio/rosariov2/sequence5/okvis2x` | r1 | gnss_zero_antenna_lever_arm_in_native_log |
@@ -286,13 +333,11 @@ Exact affected attempt IDs and evidence are in `results/acceptance-20261001/hand
 | estimate_frame_unverified: output frame not established for vins_fusion_gps | 4 |
 | gnss_reference_independence_and_global_frame_not_established | 15 |
 | historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified | 15 |
-| historical_workspace_digest_differs_keep_cohorts_separate | 6 |
+| historical_workspace_digest_differs_keep_cohorts_separate | 3 |
 | horti_february_reference_generation_origin_and_timestamp_linkage_unresolved | 103 |
-| native_execution_cause_and_usable_export_missing | 2 |
+| native_execution_cause_and_usable_export_missing | 1 |
+| native_execution_cause_unresolved_recovered_causal_prefix_not_final_ba | 1 |
 | rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved | 129 |
-| zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved | 40 |
-| zed_reference_orientation_unavailable | 38 |
-| zed_serial_specific_imu_rotation_and_time_offset_unverified | 8 |
 
 ## Completed focused execution
 
@@ -300,7 +345,9 @@ The three EuRoC OpenVINS/AirSLAM integration targets and first full gates passed
 
 ## Remaining execution prerequisites
 
-Resolve the remaining ORB FPS/IMU native loading, OV2SLAM/Voxel shutdown and ORB/OKVIS ZED failures before those paths are certified. Agricultural/GNSS reference, calibration and input blockers remain. No further estimator execution is authorized by this handoff.
+The [ZED preparation](zed-preparation-20261002.md) validates 15 repaired algorithm/mode paths on a fixed 60-second input, including all four ORB modes. Voxel shutdown/failure reporting is verified, but initialization and successful trajectory export remain unverified. The non-ZED ORB build and OV2SLAM shutdown issues remain prerequisites. Rosario/HortiMulti/GNSS calibration/reference blockers are unchanged. Historical OKVIS interruptions remain unresolved outcomes. No production execution is authorized by this handoff.
+
+**ZED cohort plan:** retain nine complete N=3 cells (27 observations). The remaining sixteen cells need 48 new attempts: 17 setup replacements, 25 missing slots and six separately labelled cohort-completion attempts. The latter preserve historical outcomes and are not confirmed parameter defects. Use the alternative `results/zed-preparation-20261002/campaign/manifest.json`; do not execute it in addition to the overlapping all-mode plan. See the ZED report for bounded readiness and timing proxies.
 
 The following representatives cover the other algorithm/mode branches; a validated EuRoC path does not certify another dataset.
 
@@ -319,27 +366,27 @@ The following representatives cover the other algorithm/mode branches; a validat
 | `vio/euroc_mav/MH_01_easy/okvis2` | deferred | 208.2 |
 | `vio-lc/euroc_mav/MH_01_easy/okvis2` | deferred | 231.2 |
 | `vo/euroc_mav/MH_01_easy/okvis2` | deferred | 229.8 |
-| `vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2` | deferred | 22199.5 |
+| `vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2` | ZED short check passed | 22199.5 |
 | `gnss-vio/rosariov2/sequence1/okvis2x` | deferred | unknown |
 | `vio/euroc_mav/MH_01_easy/okvis2x` | deferred | 203.5 |
 | `vio-lc/euroc_mav/MH_01_easy/okvis2x` | deferred | 228.3 |
 | `vo/euroc_mav/MH_01_easy/okvis2x` | deferred | 220.2 |
-| `vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x` | deferred | unknown |
+| `vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x` | ZED short check passed | unknown |
 | `vio/euroc_mav/MH_01_easy/openvins` | focused campaign validated | 191.8 |
 | `gnss-vio/rosariov2/sequence1/openvins_gps` | deferred | unknown |
-| `vio/zed2i/field1_110426_full_10fps_q90/orbslam3` | deferred | unknown |
+| `vio/zed2i/field1_110426_full_10fps_q90/orbslam3` | ZED short check passed | unknown |
 | `vio-lc/hortimulti/strawberry02/orbslam3` | deferred | unknown |
-| `vo/zed2i/field1_110426_full_10fps_q90/orbslam3` | deferred | unknown |
-| `vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3` | deferred | unknown |
+| `vo/zed2i/field1_110426_full_10fps_q90/orbslam3` | ZED short check passed | unknown |
+| `vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3` | ZED short check passed | unknown |
 | `vo/euroc_mav/MH_01_easy/ov2slam` | deferred | unknown |
 | `vo-lc/euroc_mav/MH_01_easy/ov2slam` | deferred | unknown |
 | `gnss-vio/rosariov2/sequence1/rtabmap_gps` | deferred | unknown |
 | `gnss-vio/rosariov2/sequence1/vins_fusion_gps` | deferred | unknown |
 | `vio/euroc_mav/MH_03_medium/voxel_svio` | deferred | unknown |
-| `vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3` | deferred | unknown |
+| `vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3` | ZED short check passed | unknown |
 
-The timing subtotal is 24.1 serialized hours for 11 of the 154 required/missing actions; 143 have no comparable complete same-cell timing. It excludes native-error samples, diagnostics, unresolved blocked cases and evaluation/capture overhead. No total-campaign runtime is justified.
+The timing subtotal is 6.2 serialized hours for 1 of the 165 required/missing actions; 164 have no comparable complete same-cell timing. It excludes native-error samples, diagnostics, unresolved blocked cases and evaluation/capture overhead. No total-campaign runtime is justified.
 
 ## Reproduction and preservation
 
-Regenerate inventory, reconcile qualification, promote checked evaluations, then regenerate CSVs, TODO, reports and this handoff. Rosario evaluation now uses the matched physical IMU-to-camera transform; other numerical fields are unchanged. Review decisions fail closed if pinned evidence changes. Run `build_future_manifest.py` after source/input/asset refresh; ordinary validation is read-only and is not readiness approval. The historical authorship mapping and all original provenance hashes remain intact. The obsolete temporary pause remains explicitly revoked.
+Regenerate inventory, reconcile qualification, promote checked evaluations, then regenerate CSVs, TODO, reports and this handoff. Rosario evaluation uses the matched physical IMU-to-camera transform. The later ZED review uses the versioned nominal 3D position reference and recovered factory extrinsics; non-ZED numerical scores remain unchanged. Review decisions fail closed if pinned evidence changes. Run `build_future_manifest.py` after source/input/asset refresh; ordinary validation is read-only and is not readiness approval. The historical authorship mapping and all original provenance hashes remain intact. The obsolete temporary pause remains explicitly revoked.

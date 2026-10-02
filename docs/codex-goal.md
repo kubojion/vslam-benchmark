@@ -31,7 +31,8 @@ Preservation: `f59854e` checkpoints the supplied geometry document. The verified
 incremental backup is
 `/data/imoroz/vslam-repair-backups/20261002T092232Z-zed-before-preparation`, extending
 the complete protocol-reporting backup. It retains current ZED evaluations,
-metadata, reference files and CSVs before any repair.
+metadata and reference files before repair. Unchanged root CSVs are preserved
+in the preceding complete protocol-reporting backup.
 
 Resolved inputs: the earlier inspection folder
 `results/zed-reference-inspection-20261002` contains the recovered SDK calibration
@@ -39,6 +40,16 @@ for S/N 30291010 and the approved screening audit (15 intervals, 448 raw samples
 Verbatim calibration/screening records are preserved under `docs/campaigns/` and
 in the incremental backup. Their original files remain unchanged. The path
 clarification is no longer needed.
+
+ZED repair deliverables are reconciled in [the validation record](zed-validation-20261002.md)
+and [the exact remaining campaign](zed-campaign-20261002.md). Nine ZED cells now
+have qualified nominal-position protocol N=3; all original outcomes remain.
+The prepared coherent campaign retains 27 observations and names 48 new attempts
+(17 setup replacements, 25 missing, six cohort-completion). Fifteen paths passed
+bounded checks; Voxel initialization/export remains an explicit readiness blocker.
+The known timing proxy subtotal is 70.7 hours for 39 attempts, with nine unknown.
+Repair/audit completion does not authorize production execution or imply that
+these remaining execution/evidence limitations have been fixed.
 
 ## Completed continuation — protocol validity, 2026-10-02
 

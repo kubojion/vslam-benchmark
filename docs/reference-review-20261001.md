@@ -1,5 +1,9 @@
 # Agricultural reference and calibration review — 2026-10-01
 
+> Historical checkpoint. Later [ZED preparation](zed-preparation-20261002.md)
+> supersedes its ZED calibration/reference blockers and current aggregate counts.
+> Original observations, provenance hashes and non-ZED decisions remain preserved.
+
 This extends acceptance checkpoint `e0ee49b`. The matched-session audit is complete
 within its no-estimation scope; unresolved physical/reference questions remain
 explicit. **This is not verified readiness to run.** Existing accepted EuRoC

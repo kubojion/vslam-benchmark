@@ -1,14 +1,14 @@
 # vSLAM Benchmark
 
-> **Protocol review (2026-10-02): 72 same-cohort cells have three verified attempts.**
-> Across 225 verified EuRoC attempts, 34 native failures remain recorded; 33 saved
-> trajectories that support conditional accuracy. A green tick verifies protocol,
-> not successful tracking or full coverage. The original 45 clean-qualified cells
-> and all numerical results are preserved. OpenVINS remains historical N=1 plus
-> patched N=2 per EuRoC sequence. See [TODO](TODO.md),
-> [protocol review](docs/protocol-review-20261002.md) and
-> [handoff](docs/acceptance-handoff-20261001.md). Agricultural/GNSS blockers remain.
-> Only bounded saved-map diagnostics were added; no production runs or push.
+> **ZED reference review (2026-10-02): 81 cells have verified protocol N=3.**
+> The nine newly qualified ZED cells support nominal 3D **position** claims, with
+> mounting, RTK-float and clock limitations disclosed. Across all 256 verified
+> attempts, 41 failures remain recorded. Green verifies the stated protocol and
+> cohort, not successful tracking, full coverage or exact reference accuracy.
+> The original 45 clean-qualified cells and non-ZED numerical scores are preserved.
+> See [TODO](TODO.md), [ZED preparation](docs/zed-preparation-20261002.md) and
+> [handoff](docs/acceptance-handoff-20261001.md). Short native validation is separate
+> from production repetition; no full ZED campaign or push is authorized.
 
 
 
@@ -172,7 +172,7 @@ bash scripts/results/serve_site.sh 8080
 
 Current numerical and execution status is documented in [TODO](TODO.md) and
 [the focused campaign](docs/euroc-focused-campaign-20261001.md). The four-mode
-comparison has 550/600 evaluated repetitions, including retained collapses. Across
+comparison has 551/600 evaluated repetitions, including retained collapses. Across
 all scopes, 622 evaluations are reconciled. The original 593 numerical
 evaluations and all historical attempts remain intact.
 
@@ -183,9 +183,9 @@ their original directories and separate reports. Missing runs and failures remai
 explicit. [Tables](docs/generated/tables.md), [counts](docs/generated/verified-claims.md),
 [figures](docs/generated/README.md) and the browser use the same checked inventory.
 
-The [protocol review](docs/protocol-review-20261002.md) verifies **72 N=3 EuRoC cells**, including recorded failures. The original 45 clean-qualified cells remain an unchanged audit subset. There are 234 reusable observations, 73 required reruns, 81 missing repetitions and 272 blocked cases.
-The focused EuRoC paths have native execution evidence; this does not certify
-other algorithm/dataset paths or resolve agricultural reference and GNSS blockers.
+The [protocol review](docs/protocol-review-20261002.md) and [ZED preparation](docs/zed-preparation-20261002.md) verify **81 N=3 cells**: 72 EuRoC and nine ZED. The original 45 clean-qualified cells remain an unchanged audit subset. The default manifest has 261 reusable observations, 84 required reruns, 81 missing repetitions and 234 blocked cases.
+Readiness is per action and requires its recorded native/configuration checks.
+ZED nominal position qualification does not resolve Rosario, Horti or GNSS blockers.
 Older generated reports and figures remain [archived](docs/generated/historical-before-repair-20261001/README.md).
 
 The historical observations in [PROGRESS.md](PROGRESS.md) require reassessment against the

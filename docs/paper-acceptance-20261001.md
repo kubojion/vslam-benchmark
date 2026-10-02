@@ -3,7 +3,9 @@
 This review supersedes the blanket historical-provenance hold in the earlier
 [repair handoff](repair-handoff-20261001.md). It accepts specific claims supported
 by saved evidence. It does not certify exact historical rebuilds, optimal tuning,
-real-time operation, agricultural reference accuracy, or readiness of untested runner paths.
+real-time operation, surveyed agricultural reference accuracy, or readiness of untested runner paths.
+The [ZED continuation](zed-preparation-20261002.md) adds qualified nominal position
+claims and supersedes the earlier unresolved-ZED-calibration disposition below.
 The initial review ran no estimator. The separately authorized [focused campaign](euroc-focused-campaign-20261001.md) subsequently consumed 24 EuRoC slots: 23 final trajectories were evaluated immediately and one native refinement failure without final output was retained. The earlier [matched-session reference review](reference-review-20261001.md)
 corrects Rosario evaluation and future timing/GNSS calibration settings; saved run
 parameters and the accepted EuRoC numerical values remain unchanged.
@@ -16,7 +18,9 @@ coverage, process exits and all attempted outcomes. It is not a reproduction of
 each algorithm's paper or an identical-compute/identical-feature-budget contest.
 Metric stereo/VIO uses SE(3); monocular DPVO/DPV-SLAM uses a separate Sim(3) shape
 comparison. LC tables include the recorded final optimization policy. These
-control results alone do not establish agricultural performance.
+control results alone do not establish agricultural performance. The ZED extension
+adds recorded-profile position accuracy under the independently frozen nominal
+3D GNSS reference, with mounting/clock/float limitations and no orientation claims.
 
 Each explicit decision in [the ledger](campaigns/paper-acceptance-20261001.json)
 pins original logs/configs/trajectories, evaluation inputs and the numerical
@@ -104,10 +108,12 @@ as observed configured-attempt failures only. `bad_alloc`, segmentation faults
 and optimizer assertions do not establish OOM, insufficient GPU power or a
 sensor-excitation root cause. Five retained collapse outcomes remain visible. The two OpenVINS Rosario collapses
 now have confirmed identity-extrinsic defects and require corrected estimation;
-three other collapses remain accepted diagnostic failure observations. Physical
-agricultural accuracy is withheld; no failure has been erased.
+three other collapses remain accepted diagnostic failure observations. Rosario/Horti physical accuracy remains withheld. ZED now has qualified nominal
+position claims. Its two historical ORB inertial failures and OpenVINS collapse
+remain recorded but require corrected estimation because their saved configurations
+omitted the recovered factory rotation; no failure has been erased.
 OKVIS2 ZED VO-LC r2 ended with `Killed` and lacks metadata/output; OKVIS2-X ZED
-VO-LC r1 has exit 141 and no usable final trajectory. Their execution causes remain
+VO-LC r1 has exit 141; its 354-pose causal prefix is now evaluated, with final BA absent. Their execution causes remain
 blocked, not certified algorithm failures or invented missing executions.
 
 Three agricultural cells have differing historical workspace digests although
@@ -120,17 +126,20 @@ The [matched-session review](reference-review-20261001.md) resolves Rosario's
 physical IMU-to-camera reference chain and repairs evaluation, but finds a shared
 image/projection/baseline inconsistency. Horti's February calibration and reference
 rows match; the exact generation-origin and timestamp linkage remains unresolved.
-ZED original bags and the physical longitudinal lever are verified; 3D/quality
-policy and serial calibration remain unresolved. Its unmeasured camera/RTK clock
-is a disclosed limitation after the requested sensitivity check, not a blocker. GNSS still requires historical inputs, covariance, selected
+ZED source bags, full factory transform, nominal 1 m mounting geometry and the
+approved GNSS spike mask are now verified/pinned. The 3D position claim remains
+qualified by unmeasured terrain tilt, mounting uncertainty and retained RTK float.
+Its unknown field camera/RTK clock is a disclosed sensitivity-tested limitation. GNSS still requires historical inputs, covariance, selected
 antenna and fusion-output evidence. More repetitions cannot establish these facts.
 
-There are now **73 remaining required reruns**, after completing the 18
-corrected AirSLAM cases. The 81 missing slots remain separate from existing failed
-or interrupted attempts. 234 observations are reusable for their recorded claims;
-272 cases retain material blockers. The focused EuRoC native paths passed short,
-first-full and repeated execution checks. This does not certify other paths. No
-additional estimator execution is authorized by this review.
+There are now **84 required setup reruns**, including 11 newly identified ZED
+factory-transform omissions. The 81 missing slots remain separate from existing
+failed/interrupted attempts. 261 observations are reusable for their recorded
+claims; 234 cases retain material blockers. This is a slot disposition, not proof
+that mixed historical cohorts complete N=3; see the separate cohort-completion cases. The focused EuRoC native paths passed short,
+first-full and repeated execution checks. The separately authorized ZED continuation adds fixed-window checks and isolated
+native repairs, whose readiness evidence is recorded separately. No full ZED
+production campaign is authorized.
 
 New cohort grouping uses verified source-tree and runtime content, excluding only
 capture-receipt timestamps/durations. Historical cohort hashes are unchanged.

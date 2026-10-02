@@ -137,7 +137,10 @@ def evaluate_saved_run(ws, run_dir, *, gt_override=None):
     if selected:gt_path=selected['path']
     inputs = [file_evidence(p, ws) for p in (gt_path, times_path, trajectory)]
     inputs.extend(file_evidence(p, ws) for p in (meta_path,) if p.exists())
-    policy = frame_policy(ws, run_dir, meta, dataset, seq, algo, rt.use_imu)
+    physical_sequence=selected.get('physical_sequence',seq) if selected else seq
+    policy = frame_policy(ws, run_dir, meta, dataset, physical_sequence, algo, rt.use_imu)
+    if physical_sequence!=seq:
+        policy['diagnostic_parent_sequence']=physical_sequence
     if selected:
         if dataset!='zed2i' or selected['orientation_valid']:
             raise ValueError('only the reviewed position-only ZED reference is supported')

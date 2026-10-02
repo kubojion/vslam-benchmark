@@ -1,5 +1,9 @@
 # Matched-session review validation — 2026-10-01
 
+> Historical checkpoint. Later [ZED preparation](zed-preparation-20261002.md)
+> supersedes its ZED calibration/reference blockers and current aggregate counts.
+> Original observations, provenance hashes and non-ZED decisions remain preserved.
+
 > Historical checkpoint. Current focused EuRoC execution, counts and remaining limitations are in
 > [the campaign record](euroc-focused-campaign-20261001.md) and [current handoff](acceptance-handoff-20261001.md).
 

@@ -4,15 +4,15 @@ Generated from hash-checked schema-3 evaluations and matching CSVs. These are in
 
 | Mode | Planned defaults | Evaluated | Numerical ok | Scale collapse | Invalid trajectory | Nonzero exits | Protocol-verified N=3 cells |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vo | 192 | 183 | 182 | 1 | 0 | 7 | 24 |
-| vo-lc | 144 | 136 | 135 | 1 | 0 | 9 | 18 |
+| vo | 192 | 183 | 182 | 1 | 0 | 7 | 31 |
+| vo-lc | 144 | 137 | 136 | 1 | 0 | 9 | 20 |
 | vio | 168 | 145 | 142 | 3 | 0 | 7 | 18 |
 | vio-lc | 96 | 86 | 86 | 0 | 0 | 2 | 12 |
 | gnss-vio | 60 | 20 | 19 | 0 | 1 | 0 | 0 |
 
 Legacy GNSS variants: 6 separate rows; not included in default repetition counts.
 
-Scientific statuses among existing headline attempts: accepted=151, accepted_with_limitation=73, blocked=278, rerun_required=73, valid_observed_failure=10.
+Scientific statuses among existing headline attempts: accepted=151, accepted_with_limitation=103, blocked=240, rerun_required=84, valid_observed_failure=7.
 
 ## Retained adverse outcomes
 
@@ -47,11 +47,11 @@ Scientific statuses among existing headline attempts: accepted=151, accepted_wit
 | `results/vio/rosariov2/sequence5/voxel_svio/run1` | ok | 0 | rerun_required |
 | `results/vio/rosariov2/sequence5/voxel_svio/run2` | ok | 0 | rerun_required |
 | `results/vio/rosariov2/sequence5/voxel_svio/run3` | ok | 0 | rerun_required |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run1` | scale_collapse | 0 | valid_observed_failure |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | failed_without_trajectory | 134 | valid_observed_failure |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run1` | ok | 0 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run1` | scale_collapse | 0 | rerun_required |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | failed_without_trajectory | 134 | rerun_required |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run1` | ok | 0 | rerun_required |
 | `results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4` | failed_without_trajectory | 139 | valid_observed_failure |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | failed_without_trajectory | 139 | valid_observed_failure |
+| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | failed_without_trajectory | 139 | rerun_required |
 | `results/vo/euroc_mav/MH_01_easy/ov2slam/run1` | ok | 0 | accepted_with_limitation |
 | `results/vo/euroc_mav/MH_01_easy/ov2slam/run2` | ok | 0 | accepted_with_limitation |
 | `results/vo/euroc_mav/MH_01_easy/ov2slam/run3` | ok | 0 | accepted_with_limitation |
@@ -81,9 +81,9 @@ Scientific statuses among existing headline attempts: accepted=151, accepted_wit
 | `results/vo/zed2i/field1_110426_full_10fps_q90/okvis2/run2` | scale_collapse | 0 | valid_observed_failure |
 | `results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | ok | 139 | rerun_required |
 | `results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run2` | ok | 139 | rerun_required |
-| `results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run1` | ok | 0 | blocked |
-| `results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run2` | ok | 0 | blocked |
-| `results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run3` | ok | 0 | blocked |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run1` | ok | 0 | accepted_with_limitation |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run2` | ok | 0 | accepted_with_limitation |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run3` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run3` | ok | 139 | accepted_with_limitation |
 | `results/vo-lc/euroc_mav/MH_01_easy/ov2slam/run1` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/euroc_mav/MH_01_easy/ov2slam/run2` | ok | 0 | accepted_with_limitation |
@@ -113,11 +113,11 @@ Scientific statuses among existing headline attempts: accepted=151, accepted_wit
 | `results/vo-lc/rosariov2/sequence5/ov2slam/run2` | ok | 0 | blocked |
 | `results/vo-lc/rosariov2/sequence5/ov2slam/run3` | ok | 0 | blocked |
 | `results/vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run2` | incomplete | unknown | blocked |
-| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run1` | failed_without_trajectory | 141 | blocked |
+| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run1` | ok | 141 | blocked |
 | `results/vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | ok | 139 | rerun_required |
-| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run1` | ok | 0 | blocked |
-| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run2` | ok | 0 | blocked |
-| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run3` | ok | 0 | blocked |
+| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run1` | ok | 0 | accepted_with_limitation |
+| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run2` | ok | 0 | accepted_with_limitation |
+| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run3` | ok | 0 | accepted_with_limitation |
 
 ## Claim boundaries
 
@@ -132,9 +132,9 @@ Scientific statuses among existing headline attempts: accepted=151, accepted_wit
 
 | Source | SHA-256 |
 |---|---|
-| `inventory.json` | `1938ae45ec8c86f303fdeafd9d9ff077501eddd302ebbe6ab2c9a60ad87d99e3` |
-| `benchmark-vo.csv` | `cf4f7f65e4971fb59a5845e2fce4c0632ffaf31b8c5484982542be4ecbbdf22c` |
-| `benchmark-vo-lc.csv` | `a6d66622e420682ad7620ff43bd731875cf5ee0730bda0a2d3e6dd88da5a4e50` |
-| `benchmark-vio.csv` | `691163d32444c76e92dc3f14e8d87977e22b506caa3f2db5e8040765dae1dd7d` |
-| `benchmark-vio-lc.csv` | `9037550fce7983d12e00fc145bee855df44063bb7fb3c351de77b1d60b9fb32d` |
-| `benchmark-gnss-vio.csv` | `0228190305646ddf6844ec7abfd74951f6d2bc3b1846663f73df777a920b0ea3` |
+| `inventory.json` | `1ae640358005f25e140a9951569a6eae8480ea6b3c65e419158bac7a5da01d8e` |
+| `benchmark-vo.csv` | `d8b993d602d796d18e6dac369349d6aac76f2f143aa85b410f3c4c3a959c9e90` |
+| `benchmark-vo-lc.csv` | `f8b8fcab4d9ef8dd55868f563ef3c81ce372a460339efe7e740f94c6a2444f9c` |
+| `benchmark-vio.csv` | `51fd2f26511ad98f43fc88b3814cec921fdbf58f8da2364dcc21ecc7aa0ab007` |
+| `benchmark-vio-lc.csv` | `f5da4d13875316cacd3f2667158d3acf678f4fe8ad9748e7cecdff1b31e5e6a7` |
+| `benchmark-gnss-vio.csv` | `da52154da12792ac68c70abc6e6b64ff6450a9d0c996b6b8fc79b46aee50f421` |

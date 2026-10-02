@@ -21,7 +21,7 @@ from prepare_cell import component
 REPO=Path(__file__).resolve().parents[2]
 MODES={'vo','vo-lc','vio','vio-lc','gnss-vio'}
 EXCLUDED={'droidslam','mast3r_slam','megasam'}
-CATEGORIES={'reusable','required_rerun','missing','blocked'}
+CATEGORIES={'reusable','required_rerun','missing','blocked','cohort_completion'}
 UNREVIEWED_OVERRIDES=(
     'BASALT_CONFIG','ORBSLAM3_CONFIG','ORBSLAM3_GDB','VOXEL_SVIO_BACKTRACE','OKVIS2_CONFIG','OKVIS2X_CONFIG',
     'OKVIS_INTERACTIVE','OV2SLAM_CONFIG','OV2SLAM_PLAYBACK_RATE','OV2SLAM_FINISH_TIMEOUT',
@@ -104,7 +104,7 @@ def validate(repo,manifest,*,check_files=True):
                 errors.append('ready action has unresolved configuration selection errors')
         if category=='reusable' and (action.get('prerequisites') or not action.get('review_evidence')):
             errors.append('reusable action lacks completed qualification evidence')
-        if category in ('missing','required_rerun'):
+        if category in ('missing','required_rerun','cohort_completion'):
             path=Path(action.get('planned_output') or '')
             base=Path('results')/action['cell']
             if path.parent!=base or not path.name.startswith('run') or not path.name[3:].isdigit():

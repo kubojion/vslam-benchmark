@@ -3,27 +3,27 @@
   "inputs": [
     {
       "path": "results/repair-20261001/inventory.json",
-      "sha256": "1938ae45ec8c86f303fdeafd9d9ff077501eddd302ebbe6ab2c9a60ad87d99e3"
+      "sha256": "1ae640358005f25e140a9951569a6eae8480ea6b3c65e419158bac7a5da01d8e"
     },
     {
       "path": "benchmark-vo.csv",
-      "sha256": "cf4f7f65e4971fb59a5845e2fce4c0632ffaf31b8c5484982542be4ecbbdf22c"
+      "sha256": "d8b993d602d796d18e6dac369349d6aac76f2f143aa85b410f3c4c3a959c9e90"
     },
     {
       "path": "benchmark-vo-lc.csv",
-      "sha256": "a6d66622e420682ad7620ff43bd731875cf5ee0730bda0a2d3e6dd88da5a4e50"
+      "sha256": "f8b8fcab4d9ef8dd55868f563ef3c81ce372a460339efe7e740f94c6a2444f9c"
     },
     {
       "path": "benchmark-vio.csv",
-      "sha256": "691163d32444c76e92dc3f14e8d87977e22b506caa3f2db5e8040765dae1dd7d"
+      "sha256": "51fd2f26511ad98f43fc88b3814cec921fdbf58f8da2364dcc21ecc7aa0ab007"
     },
     {
       "path": "benchmark-vio-lc.csv",
-      "sha256": "9037550fce7983d12e00fc145bee855df44063bb7fb3c351de77b1d60b9fb32d"
+      "sha256": "f5da4d13875316cacd3f2667158d3acf678f4fe8ad9748e7cecdff1b31e5e6a7"
     },
     {
       "path": "benchmark-gnss-vio.csv",
-      "sha256": "0228190305646ddf6844ec7abfd74951f6d2bc3b1846663f73df777a920b0ea3"
+      "sha256": "da52154da12792ac68c70abc6e6b64ff6450a9d0c996b6b8fc79b46aee50f421"
     }
   ],
   "status": "mixed_acceptance_see_per_cell_flags_and_claim_limits",
@@ -495,8 +495,8 @@
         "orbslam3",
         "default"
       ],
-      "value": 0.24142449772307253,
-      "annotation": "0.241\nA3/E3/S1/F2\nR,X",
+      "value": 0.23637820736621173,
+      "annotation": "0.236\nA3/E3/S1/F2\nR,X",
       "summary": {
         "identity": [
           "vo",
@@ -517,7 +517,12 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -543,11 +548,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.24731567220373243,
-              "median": 0.24142449772307253,
-              "min": 0.23833290359878875,
-              "max": 0.262189615289336,
-              "sample_std": 0.012973631941081764
+              "mean": 0.24257622675775292,
+              "median": 0.23637820736621173,
+              "min": 0.23398372515181845,
+              "max": 0.2573667477552286,
+              "sample_std": 0.012864797697645234
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -565,8 +570,7 @@
           }
         ],
         "scientific_blockers": [
-          "camera_fps_changed_15_to_10",
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved"
+          "camera_fps_changed_15_to_10"
         ],
         "protocol_state": "invalid_setup",
         "protocol_verified_n3": false,
@@ -1386,8 +1390,8 @@
         "ov2slam",
         "default"
       ],
-      "value": 0.41666954401937517,
-      "annotation": "0.417\nA3/E3/S0/F3\nB",
+      "value": 0.4140450473782035,
+      "annotation": "0.414\nA3/E3/S0/F3\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -1403,12 +1407,18 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
+          "native_shutdown_error_despite_wrapper_exit_zero_retain_failure_count",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -1421,24 +1431,24 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.4074791605141721,
+              "median": 0.4140450473782035,
+              "min": 0.39104981255673665,
+              "max": 0.4173426216075762,
+              "sample_std": 0.014323445977816315
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.41012082721303983,
-              "median": 0.41666954401937517,
-              "min": 0.39379527561539907,
-              "max": 0.4198976620043453,
-              "sample_std": 0.014230176128799163
+              "mean": 0.4074791605141721,
+              "median": 0.4140450473782035,
+              "min": 0.39104981255673665,
+              "max": 0.4173426216075762,
+              "sample_std": 0.014323445977816315
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -1455,30 +1465,27 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
-        "verified_failure_count": 0,
+        "protocol_verified_attempts": 3,
+        "verified_failure_count": 3,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "052d85309cf2df535687b2fc6b101901ffe72244d7de9529dc27ed0e8ebc5c5d",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run1",
               "results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run2",
@@ -1488,7 +1495,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -2278,8 +2286,8 @@
         "macvo",
         "default"
       ],
-      "value": 6.768555773423315,
-      "annotation": "6.77\nA3/E3/S3/F0\nB",
+      "value": 6.777374958056287,
+      "annotation": "6.78\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -2295,12 +2303,18 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "official_performant_profile_not_paper_reproduction_profile",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -2313,24 +2327,24 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 6.7832229116847325,
+              "median": 6.777374958056287,
+              "min": 6.6968041609138185,
+              "max": 6.875489616084092,
+              "sample_std": 0.08948615475917103
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 6.7748751623167145,
-              "median": 6.768555773423315,
-              "min": 6.6892771095489145,
-              "max": 6.866792603977915,
-              "sample_std": 0.08892631049123002
+              "mean": 6.7832229116847325,
+              "median": 6.777374958056287,
+              "min": 6.6968041609138185,
+              "max": 6.875489616084092,
+              "sample_std": 0.08948615475917103
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -2347,30 +2361,27 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "d238443431c551c07629a6397b58ca51cf56992f17491f85f1c831c5b5db2b4c",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/zed2i/field1_110426_full_10fps_q90/macvo/run1",
               "results/vo/zed2i/field1_110426_full_10fps_q90/macvo/run2",
@@ -2380,7 +2391,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -3164,8 +3176,8 @@
         "basalt",
         "default"
       ],
-      "value": 0.48736811428487603,
-      "annotation": "0.487\nA3/E3/S3/F0\nB",
+      "value": 0.4897633302027059,
+      "annotation": "0.49\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -3181,12 +3193,17 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -3199,24 +3216,24 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.4907499240227314,
+              "median": 0.4897633302027059,
+              "min": 0.48573720407579984,
+              "max": 0.4967492377896884,
+              "sample_std": 0.005571915931996711
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.488157519562123,
-              "median": 0.48736811428487603,
-              "min": 0.48312476819198136,
-              "max": 0.49397967620951155,
-              "sample_std": 0.005470340714806467
+              "mean": 0.4907499240227314,
+              "median": 0.4897633302027059,
+              "min": 0.48573720407579984,
+              "max": 0.4967492377896884,
+              "sample_std": 0.005571915931996711
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -3233,30 +3250,27 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "6ae59b2062ac01b855ea3713ca6d3b5b96c045993a2ccdcab63668c79f44ee6f",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/zed2i/field1_110426_full_10fps_q90/basalt/run1",
               "results/vo/zed2i/field1_110426_full_10fps_q90/basalt/run2",
@@ -3266,7 +3280,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -4054,8 +4069,8 @@
         "airslam",
         "default"
       ],
-      "value": 3.6206693953178095,
-      "annotation": "3.62\nA3/E3/S3/F0\nK,B",
+      "value": 3.642115197575609,
+      "annotation": "3.64\nA3/E3/S3/F0\nV3,K,L",
       "summary": {
         "identity": [
           "vo",
@@ -4071,12 +4086,18 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
+          "native_sparse_keyframe_accuracy_not_dense_tracking",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -4089,24 +4110,24 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 3.6436680203248546,
+              "median": 3.642115197575609,
+              "min": 3.6248073815254767,
+              "max": 3.6640814818734784,
+              "sample_std": 0.019683043042277738
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 3.6226871203800557,
-              "median": 3.6206693953178095,
-              "min": 3.603142534644583,
-              "max": 3.6442494311777747,
-              "sample_std": 0.020627594296663526
+              "mean": 3.6436680203248546,
+              "median": 3.642115197575609,
+              "min": 3.6248073815254767,
+              "max": 3.6640814818734784,
+              "sample_std": 0.019683043042277738
             },
             "dense_coverage_pct": {
               "n": 0,
@@ -4123,30 +4144,27 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "0eb34700132fededea0c165fba13c8c8492fc027d4e15a129b254cded45b82af",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/zed2i/field1_110426_full_10fps_q90/airslam/run1",
               "results/vo/zed2i/field1_110426_full_10fps_q90/airslam/run2",
@@ -4156,8 +4174,9 @@
         ]
       },
       "flags": [
+        "V3",
         "K",
-        "B"
+        "L"
       ]
     },
     {
@@ -4950,8 +4969,8 @@
         "okvis2",
         "default"
       ],
-      "value": 3.727355051066347,
-      "annotation": "3.73\nA3/E3/S2/F1\nB,F",
+      "value": 3.7345551570225783,
+      "annotation": "3.73\nA3/E3/S2/F1\nV3,L,F",
       "summary": {
         "identity": [
           "vo",
@@ -4968,16 +4987,19 @@
           "scale_collapse": 1
         },
         "acceptance": {
-          "blocked": 2,
+          "accepted_with_limitation": 2,
           "valid_observed_failure": 1
         },
-        "paper_usable": 1,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "collapse_under_recorded_reference_diagnostic_not_verified_physical_scale",
-          "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
           "retain_failure_in_attempt_denominator",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -4991,24 +5013,24 @@
               "scale_collapse": 1
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 2,
+              "mean": 3.7345551570225783,
+              "median": 3.7345551570225783,
+              "min": 3.700494349852372,
+              "max": 3.7686159641927843,
+              "sample_std": 0.04816925544548038
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 2,
-              "mean": 3.727355051066347,
-              "median": 3.727355051066347,
-              "min": 3.6923098691770555,
-              "max": 3.762400232955638,
-              "sample_std": 0.04956137152366755
+              "mean": 3.7345551570225783,
+              "median": 3.7345551570225783,
+              "min": 3.700494349852372,
+              "max": 3.7686159641927843,
+              "sample_std": 0.04816925544548038
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -5025,30 +5047,27 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 2,
         "observed_failure_count": 1,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
-        "verified_failure_count": 0,
+        "protocol_verified_attempts": 3,
+        "verified_failure_count": 1,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "553085faf41e2027f0e1654c23e5229860b7a14c3b54f1ed2cbc1d93a4244d6e",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/zed2i/field1_110426_full_10fps_q90/okvis2/run1",
               "results/vo/zed2i/field1_110426_full_10fps_q90/okvis2/run2",
@@ -5058,7 +5077,8 @@
         ]
       },
       "flags": [
-        "B",
+        "V3",
+        "L",
         "F"
       ]
     },
@@ -5843,8 +5863,8 @@
         "okvis2x",
         "default"
       ],
-      "value": 1.7826446730519514,
-      "annotation": "1.78\nA3/E3/S3/F0\nB",
+      "value": 1.788893424174221,
+      "annotation": "1.79\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -5860,12 +5880,17 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -5878,24 +5903,24 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 1.7525640020412812,
+              "median": 1.788893424174221,
+              "min": 1.6363772372911585,
+              "max": 1.8324213446584638,
+              "sample_std": 0.10294752640421184
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 1.7461386783298953,
-              "median": 1.7826446730519514,
-              "min": 1.6298098662967992,
-              "max": 1.8259614956409356,
-              "sample_std": 0.10304552955647783
+              "mean": 1.7525640020412812,
+              "median": 1.788893424174221,
+              "min": 1.6363772372911585,
+              "max": 1.8324213446584638,
+              "sample_std": 0.10294752640421184
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -5912,30 +5937,27 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "e35849633f0deebaf9403f2f15443b61b15c881002b0d69c5d92dd1432c6c19b",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/zed2i/field1_110426_full_10fps_q90/okvis2x/run1",
               "results/vo/zed2i/field1_110426_full_10fps_q90/okvis2x/run2",
@@ -5945,7 +5967,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -6729,8 +6752,8 @@
         "dpvo",
         "default"
       ],
-      "value": 1.3875886376279156,
-      "annotation": "1.39\nA3/E3/S3/F0\nB",
+      "value": 1.3922478513052485,
+      "annotation": "1.39\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -6746,12 +6769,17 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -6764,24 +6792,24 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 1.417447600695321,
+              "median": 1.3922478513052485,
+              "min": 1.305098151313395,
+              "max": 1.554996799467319,
+              "sample_std": 0.12684086137472228
             },
             "nonzero_exits": 0,
             "alignment": "sim3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 1.411713154072667,
-              "median": 1.3875886376279156,
-              "min": 1.3013781190608258,
-              "max": 1.5461727055292598,
-              "sample_std": 0.12416759485200925
+              "mean": 1.417447600695321,
+              "median": 1.3922478513052485,
+              "min": 1.305098151313395,
+              "max": 1.554996799467319,
+              "sample_std": 0.12684086137472228
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -6798,30 +6826,27 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "f970f0e10e115385c0fa47b5247cb2c7d2b50244a33e1730cec759c656456d39",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/zed2i/field1_110426_full_10fps_q90/dpvo/run1",
               "results/vo/zed2i/field1_110426_full_10fps_q90/dpvo/run2",
@@ -6831,7 +6856,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -7645,7 +7671,12 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -7671,10 +7702,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 0.2964721109626397,
-              "median": 0.2964721109626397,
-              "min": 0.2964721109626397,
-              "max": 0.2964721109626397,
+              "mean": 0.29210776311305275,
+              "median": 0.29210776311305275,
+              "min": 0.29210776311305275,
+              "max": 0.29210776311305275,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -7710,11 +7741,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 2,
-              "mean": 0.24369521902516306,
-              "median": 0.24369521902516306,
-              "min": 0.24111469697755647,
-              "max": 0.24627574107276962,
-              "sample_std": 0.0036494092777280057
+              "mean": 0.2392145934887273,
+              "median": 0.2392145934887273,
+              "min": 0.23611220179775422,
+              "max": 0.24231698517970038,
+              "sample_std": 0.00438744440516773
             },
             "dense_coverage_pct": {
               "n": 2,
@@ -7732,8 +7763,7 @@
         ],
         "scientific_blockers": [
           "camera_fps_changed_15_to_10",
-          "within_cell_source_binary_parameter_or_hardware_mismatch",
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved"
+          "within_cell_source_binary_parameter_or_hardware_mismatch"
         ],
         "protocol_state": "invalid_setup",
         "protocol_verified_n3": false,
@@ -8577,8 +8607,8 @@
         "ov2slam",
         "default"
       ],
-      "value": 0.7878150548762072,
-      "annotation": "0.788\nA3/E3/S0/F3\nB",
+      "value": 0.7954674240671596,
+      "annotation": "0.795\nA3/E3/S0/F3\nV3,L",
       "summary": {
         "identity": [
           "vo-lc",
@@ -8594,12 +8624,18 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
+          "native_shutdown_error_despite_wrapper_exit_zero_retain_failure_count",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -8612,24 +8648,24 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 2.8056697330352165,
+              "median": 0.7954674240671596,
+              "min": 0.750701125629883,
+              "max": 6.870840649408606,
+              "sample_std": 3.520612438179612
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 2.779387443523267,
-              "median": 0.7878150548762072,
-              "min": 0.7474652472726923,
-              "max": 6.8028820284209015,
-              "sample_std": 3.484506928213639
+              "mean": 2.8056697330352165,
+              "median": 0.7954674240671596,
+              "min": 0.750701125629883,
+              "max": 6.870840649408606,
+              "sample_std": 3.520612438179612
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -8646,30 +8682,27 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
         "observed_failure_count": 3,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
-        "verified_failure_count": 0,
+        "protocol_verified_attempts": 3,
+        "verified_failure_count": 3,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "1baa6d8782baba323818c35fb128c7c20158c6e6444ee1f456ac4646fc2d5a4f",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run1",
               "results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run2",
@@ -8679,7 +8712,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -9474,7 +9508,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,K,B",
+      "annotation": "no score\nA3/E3/S3/F0\ncohorts,K,L",
       "summary": {
         "identity": [
           "vo-lc",
@@ -9490,12 +9524,19 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
+          "native_sparse_keyframe_accuracy_not_dense_tracking",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "separate_historical_n1_and_n2_workspace_cohorts_no_pooled_n3",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -9508,23 +9549,23 @@
               "ok": 1
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 1,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
+              "n": 1,
+              "mean": 6.7096868506286915,
+              "median": 6.7096868506286915,
+              "min": 6.7096868506286915,
+              "max": 6.7096868506286915,
               "sample_std": null
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 6.64798350675147,
-              "median": 6.64798350675147,
-              "min": 6.64798350675147,
-              "max": 6.64798350675147,
+              "mean": 6.7096868506286915,
+              "median": 6.7096868506286915,
+              "min": 6.7096868506286915,
+              "max": 6.7096868506286915,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -9547,24 +9588,24 @@
               "ok": 2
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 2,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 2,
+              "mean": 5.275549719196285,
+              "median": 5.275549719196285,
+              "min": 4.227290635846092,
+              "max": 6.323808802546476,
+              "sample_std": 1.48246221255463
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 2,
-              "mean": 5.25496129856452,
-              "median": 5.25496129856452,
-              "min": 4.233714932718556,
-              "max": 6.276207664410484,
-              "sample_std": 1.4442604611035983
+              "mean": 5.275549719196285,
+              "median": 5.275549719196285,
+              "min": 4.227290635846092,
+              "max": 6.323808802546476,
+              "sample_std": 1.48246221255463
             },
             "dense_coverage_pct": {
               "n": 0,
@@ -9581,12 +9622,9 @@
           }
         ],
         "scientific_blockers": [
-          "historical_workspace_digest_differs_keep_cohorts_separate",
-          "within_cell_source_binary_parameter_or_hardware_mismatch",
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable"
+          "within_cell_source_binary_parameter_or_hardware_mismatch"
         ],
-        "protocol_state": "blocked",
+        "protocol_state": "separate_implementation_cohorts",
         "protocol_verified_n3": false,
         "attempt_count": 3,
         "completed_attempt_count": 3,
@@ -9594,18 +9632,18 @@
         "successful_run_count": 3,
         "observed_failure_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "166d9d1eb78dde4fa87a7bc36baf72d87b7a59c6b1f25b8b603157ddfe832dd6",
             "attempts": 1,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 1,
+            "missing_to_n3": 2,
             "run_paths": [
               "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3"
             ]
@@ -9613,8 +9651,8 @@
           {
             "cohort": "231be16dffe85468b65935fc49213abbeb06d17c27e8891599dd09eaca00e04e",
             "attempts": 2,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 2,
+            "missing_to_n3": 1,
             "run_paths": [
               "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1",
               "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2"
@@ -9625,7 +9663,7 @@
       "flags": [
         "cohorts",
         "K",
-        "B"
+        "L"
       ]
     },
     {
@@ -10419,7 +10457,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA2/E1/S1/F1\ncohorts,B,M",
+      "annotation": "no score\nA2/E1/S1/F1\ncohorts,B,L,M",
       "summary": {
         "identity": [
           "vo-lc",
@@ -10437,13 +10475,20 @@
           "missing": 1
         },
         "acceptance": {
-          "blocked": 2,
+          "accepted_with_limitation": 1,
+          "blocked": 1,
           "not_executed": 1
         },
-        "paper_usable": 0,
+        "paper_usable": 1,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "final_ba_disabled",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -10456,23 +10501,23 @@
               "ok": 1
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 1,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
+              "n": 1,
+              "mean": 0.7295108817880214,
+              "median": 0.7295108817880214,
+              "min": 0.7295108817880214,
+              "max": 0.7295108817880214,
               "sample_std": null
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 0.7199563092657483,
-              "median": 0.7199563092657483,
-              "min": 0.7199563092657483,
-              "max": 0.7199563092657483,
+              "mean": 0.7295108817880214,
+              "median": 0.7295108817880214,
+              "min": 0.7295108817880214,
+              "max": 0.7295108817880214,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -10529,9 +10574,7 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "native_execution_cause_and_usable_export_missing",
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable"
+          "native_execution_cause_and_usable_export_missing"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
@@ -10541,19 +10584,20 @@
         "successful_run_count": 1,
         "observed_failure_count": 1,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 1,
         "verified_failure_count": 0,
         "missing_attempt_count": 1,
         "protocol_status_counts": {
-          "blocked": 2,
+          "verified": 1,
+          "blocked": 1,
           "not_executed": 1
         },
         "protocol_cohorts": [
           {
             "cohort": "0adc87005c0fa3dc15449c46d7974f45203e6fb6b12cb54a319a4c37d4ebf6fa",
             "attempts": 1,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 1,
+            "missing_to_n3": 2,
             "run_paths": [
               "results/vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run1"
             ]
@@ -10572,6 +10616,7 @@
       "flags": [
         "cohorts",
         "B",
+        "L",
         "M"
       ]
     },
@@ -11405,8 +11450,8 @@
         "okvis2x",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA1/E0/S0/F1\nX,B,M",
+      "value": 0.04349845891056524,
+      "annotation": "0.0435\nA1/E1/S0/F1\nX,P,B,M",
       "summary": {
         "identity": [
           "vo-lc",
@@ -11417,9 +11462,9 @@
         ],
         "planned_slots": 3,
         "attempted": 1,
-        "evaluated": 0,
+        "evaluated": 1,
         "outcomes": {
-          "failed_without_trajectory": 1,
+          "ok": 1,
           "missing": 2
         },
         "acceptance": {
@@ -11429,7 +11474,13 @@
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "recovered_35_second_causal_prefix_not_final_bundle_adjustment",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -11437,9 +11488,9 @@
           {
             "cohort": "d61d6b79e4d0101a848fe2059474da38ee040b5d05b514d99216f16bbc52b47f",
             "planned_members": 1,
-            "evaluated": 0,
+            "evaluated": 1,
             "outcomes": {
-              "failed_without_trajectory": 1
+              "ok": 1
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -11454,19 +11505,19 @@
             "nonzero_exits": 1,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
+              "n": 1,
+              "mean": 0.04349845891056524,
+              "median": 0.04349845891056524,
+              "min": 0.04349845891056524,
+              "max": 0.04349845891056524,
               "sample_std": null
             },
             "dense_coverage_pct": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
+              "n": 1,
+              "mean": 0.7626148238615544,
+              "median": 0.7626148238615544,
+              "min": 0.7626148238615544,
+              "max": 0.7626148238615544,
               "sample_std": null
             },
             "run_paths": [
@@ -11476,14 +11527,13 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "native_execution_cause_and_usable_export_missing",
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved"
+          "native_execution_cause_unresolved_recovered_causal_prefix_not_final_ba"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
         "attempt_count": 1,
         "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 0,
+        "evaluated_trajectory_count": 1,
         "successful_run_count": 0,
         "observed_failure_count": 1,
         "unknown_outcome_count": 0,
@@ -11508,6 +11558,7 @@
       },
       "flags": [
         "X",
+        "P",
         "B",
         "M"
       ]
@@ -12293,8 +12344,8 @@
         "dpvo",
         "default"
       ],
-      "value": 1.9618283661731608,
-      "annotation": "1.96\nA3/E3/S3/F0\nB",
+      "value": 1.9757460353735339,
+      "annotation": "1.98\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo-lc",
@@ -12310,12 +12361,17 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -12328,24 +12384,24 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 2.0587191165986494,
+              "median": 1.9757460353735339,
+              "min": 1.7144581180140035,
+              "max": 2.4859531964084107,
+              "sample_std": 0.3923831840850094
             },
             "nonzero_exits": 0,
             "alignment": "sim3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 2.045641406264119,
-              "median": 1.9618283661731608,
-              "min": 1.7033502944101009,
-              "max": 2.4717455582090957,
-              "sample_std": 0.3909939764550704
+              "mean": 2.0587191165986494,
+              "median": 1.9757460353735339,
+              "min": 1.7144581180140035,
+              "max": 2.4859531964084107,
+              "sample_std": 0.3923831840850094
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -12362,30 +12418,27 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
         "successful_run_count": 3,
         "observed_failure_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "436c8393382803d40f9d467f150ea76bd6583b3218aa32572ea90e7428e74c6f",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo-lc/zed2i/field1_110426_full_10fps_q90/dpvo/run1",
               "results/vo-lc/zed2i/field1_110426_full_10fps_q90/dpvo/run2",
@@ -12395,7 +12448,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -13182,7 +13236,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA1/E0/S0/F1\nX,B,F,M",
+      "annotation": "no score\nA1/E0/S0/F1\nR,X,M",
       "summary": {
         "identity": [
           "vio",
@@ -13199,16 +13253,20 @@
           "missing": 2
         },
         "acceptance": {
-          "valid_observed_failure": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
-        "paper_usable": 1,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
           "retain_failure_in_attempt_denominator",
           "serial_specific_imu_rotation_and_timing_unverified",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -13221,7 +13279,7 @@
               "failed_without_trajectory": 1
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 0,
             "accepted_primary_ate": {
               "n": 0,
               "mean": null,
@@ -13254,9 +13312,10 @@
           }
         ],
         "scientific_blockers": [
-          "missing_repetition"
+          "missing_repetition",
+          "zed_factory_camera_imu_rotation_omitted"
         ],
-        "protocol_state": "blocked",
+        "protocol_state": "invalid_setup",
         "protocol_verified_n3": false,
         "attempt_count": 1,
         "completed_attempt_count": 1,
@@ -13268,7 +13327,7 @@
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 1,
+          "invalid_setup": 1,
           "not_executed": 2
         },
         "protocol_cohorts": [
@@ -13284,9 +13343,8 @@
         ]
       },
       "flags": [
+        "R",
         "X",
-        "B",
-        "F",
         "M"
       ]
     },
@@ -14077,8 +14135,8 @@
         "basalt",
         "default"
       ],
-      "value": 0.4300481373971644,
-      "annotation": "0.43\nA1/E1/S1/F0\nB,M",
+      "value": 0.43175407512482505,
+      "annotation": "0.432\nA1/E1/S1/F0\nR,M",
       "summary": {
         "identity": [
           "vio",
@@ -14095,13 +14153,18 @@
           "missing": 2
         },
         "acceptance": {
-          "blocked": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -14127,10 +14190,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 0.4300481373971644,
-              "median": 0.4300481373971644,
-              "min": 0.4300481373971644,
-              "max": 0.4300481373971644,
+              "mean": 0.43175407512482505,
+              "median": 0.43175407512482505,
+              "min": 0.43175407512482505,
+              "max": 0.43175407512482505,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -14148,11 +14211,9 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable",
-          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
+          "zed_factory_camera_imu_rotation_omitted"
         ],
-        "protocol_state": "blocked",
+        "protocol_state": "invalid_setup",
         "protocol_verified_n3": false,
         "attempt_count": 1,
         "completed_attempt_count": 1,
@@ -14164,7 +14225,7 @@
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 1,
+          "invalid_setup": 1,
           "not_executed": 2
         },
         "protocol_cohorts": [
@@ -14180,7 +14241,7 @@
         ]
       },
       "flags": [
-        "B",
+        "R",
         "M"
       ]
     },
@@ -14971,8 +15032,8 @@
         "airslam",
         "default"
       ],
-      "value": 3.3259854014940893,
-      "annotation": "3.33\nA1/E1/S1/F0\nK,B,M",
+      "value": 3.344046075475125,
+      "annotation": "3.34\nA1/E1/S1/F0\nK,R,M",
       "summary": {
         "identity": [
           "vio",
@@ -14989,13 +15050,18 @@
           "missing": 2
         },
         "acceptance": {
-          "blocked": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -15021,10 +15087,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 3.3259854014940893,
-              "median": 3.3259854014940893,
-              "min": 3.3259854014940893,
-              "max": 3.3259854014940893,
+              "mean": 3.344046075475125,
+              "median": 3.344046075475125,
+              "min": 3.344046075475125,
+              "max": 3.344046075475125,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -15042,11 +15108,9 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable",
-          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
+          "zed_factory_camera_imu_rotation_omitted"
         ],
-        "protocol_state": "blocked",
+        "protocol_state": "invalid_setup",
         "protocol_verified_n3": false,
         "attempt_count": 1,
         "completed_attempt_count": 1,
@@ -15058,7 +15122,7 @@
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 1,
+          "invalid_setup": 1,
           "not_executed": 2
         },
         "protocol_cohorts": [
@@ -15075,7 +15139,7 @@
       },
       "flags": [
         "K",
-        "B",
+        "R",
         "M"
       ]
     },
@@ -15871,8 +15935,8 @@
         "okvis2",
         "default"
       ],
-      "value": 0.4818259382265473,
-      "annotation": "0.482\nA1/E1/S1/F0\nB,M",
+      "value": 0.4890016677591004,
+      "annotation": "0.489\nA1/E1/S1/F0\nR,M",
       "summary": {
         "identity": [
           "vio",
@@ -15889,13 +15953,18 @@
           "missing": 2
         },
         "acceptance": {
-          "blocked": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -15921,10 +15990,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 0.4818259382265473,
-              "median": 0.4818259382265473,
-              "min": 0.4818259382265473,
-              "max": 0.4818259382265473,
+              "mean": 0.4890016677591004,
+              "median": 0.4890016677591004,
+              "min": 0.4890016677591004,
+              "max": 0.4890016677591004,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -15942,11 +16011,9 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable",
-          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
+          "zed_factory_camera_imu_rotation_omitted"
         ],
-        "protocol_state": "blocked",
+        "protocol_state": "invalid_setup",
         "protocol_verified_n3": false,
         "attempt_count": 1,
         "completed_attempt_count": 1,
@@ -15958,7 +16025,7 @@
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 1,
+          "invalid_setup": 1,
           "not_executed": 2
         },
         "protocol_cohorts": [
@@ -15974,7 +16041,7 @@
         ]
       },
       "flags": [
-        "B",
+        "R",
         "M"
       ]
     },
@@ -16761,8 +16828,8 @@
         "okvis2x",
         "default"
       ],
-      "value": 0.46961747075357985,
-      "annotation": "0.47\nA1/E1/S1/F0\nB,M",
+      "value": 0.47569270832977023,
+      "annotation": "0.476\nA1/E1/S1/F0\nR,M",
       "summary": {
         "identity": [
           "vio",
@@ -16779,13 +16846,18 @@
           "missing": 2
         },
         "acceptance": {
-          "blocked": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -16811,10 +16883,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 0.46961747075357985,
-              "median": 0.46961747075357985,
-              "min": 0.46961747075357985,
-              "max": 0.46961747075357985,
+              "mean": 0.47569270832977023,
+              "median": 0.47569270832977023,
+              "min": 0.47569270832977023,
+              "max": 0.47569270832977023,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -16832,11 +16904,9 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable",
-          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
+          "zed_factory_camera_imu_rotation_omitted"
         ],
-        "protocol_state": "blocked",
+        "protocol_state": "invalid_setup",
         "protocol_verified_n3": false,
         "attempt_count": 1,
         "completed_attempt_count": 1,
@@ -16848,7 +16918,7 @@
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 1,
+          "invalid_setup": 1,
           "not_executed": 2
         },
         "protocol_cohorts": [
@@ -16864,7 +16934,7 @@
         ]
       },
       "flags": [
-        "B",
+        "R",
         "M"
       ]
     },
@@ -17666,7 +17736,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA1/E1/S0/F1\nB,F,M",
+      "annotation": "no score\nA1/E1/S0/F1\nR,M",
       "summary": {
         "identity": [
           "vio",
@@ -17683,17 +17753,20 @@
           "missing": 2
         },
         "acceptance": {
-          "valid_observed_failure": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
-        "paper_usable": 1,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "collapse_under_recorded_reference_diagnostic_not_verified_physical_scale",
-          "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
           "retain_failure_in_attempt_denominator",
           "serial_specific_imu_rotation_and_timing_unverified",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -17706,7 +17779,7 @@
               "scale_collapse": 1
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 0,
             "accepted_primary_ate": {
               "n": 0,
               "mean": null,
@@ -17739,9 +17812,10 @@
           }
         ],
         "scientific_blockers": [
-          "missing_repetition"
+          "missing_repetition",
+          "zed_factory_camera_imu_rotation_omitted"
         ],
-        "protocol_state": "blocked",
+        "protocol_state": "invalid_setup",
         "protocol_verified_n3": false,
         "attempt_count": 1,
         "completed_attempt_count": 1,
@@ -17753,7 +17827,7 @@
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 1,
+          "invalid_setup": 1,
           "not_executed": 2
         },
         "protocol_cohorts": [
@@ -17769,8 +17843,7 @@
         ]
       },
       "flags": [
-        "B",
-        "F",
+        "R",
         "M"
       ]
     },
@@ -18712,8 +18785,8 @@
         "voxel_svio",
         "default"
       ],
-      "value": 1.1345697242769146,
-      "annotation": "1.13\nA1/E1/S0/F1\nB,M",
+      "value": 1.137821118032843,
+      "annotation": "1.14\nA1/E1/S0/F1\nR,M",
       "summary": {
         "identity": [
           "vio",
@@ -18730,13 +18803,18 @@
           "missing": 2
         },
         "acceptance": {
-          "blocked": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -18762,10 +18840,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 1.1345697242769146,
-              "median": 1.1345697242769146,
-              "min": 1.1345697242769146,
-              "max": 1.1345697242769146,
+              "mean": 1.137821118032843,
+              "median": 1.137821118032843,
+              "min": 1.137821118032843,
+              "max": 1.137821118032843,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -18783,11 +18861,9 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable",
-          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
+          "zed_factory_camera_imu_rotation_omitted"
         ],
-        "protocol_state": "blocked",
+        "protocol_state": "invalid_setup",
         "protocol_verified_n3": false,
         "attempt_count": 1,
         "completed_attempt_count": 1,
@@ -18799,7 +18875,7 @@
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 1,
+          "invalid_setup": 1,
           "not_executed": 2
         },
         "protocol_cohorts": [
@@ -18815,7 +18891,7 @@
         ]
       },
       "flags": [
-        "B",
+        "R",
         "M"
       ]
     },
@@ -19613,7 +19689,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA1/E0/S0/F1\nX,B,F,M",
+      "annotation": "no score\nA1/E0/S0/F1\nR,X,M",
       "summary": {
         "identity": [
           "vio-lc",
@@ -19630,16 +19706,20 @@
           "missing": 2
         },
         "acceptance": {
-          "valid_observed_failure": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
-        "paper_usable": 1,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
           "retain_failure_in_attempt_denominator",
           "serial_specific_imu_rotation_and_timing_unverified",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -19652,7 +19732,7 @@
               "failed_without_trajectory": 1
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 0,
             "accepted_primary_ate": {
               "n": 0,
               "mean": null,
@@ -19685,9 +19765,10 @@
           }
         ],
         "scientific_blockers": [
-          "missing_repetition"
+          "missing_repetition",
+          "zed_factory_camera_imu_rotation_omitted"
         ],
-        "protocol_state": "blocked",
+        "protocol_state": "invalid_setup",
         "protocol_verified_n3": false,
         "attempt_count": 1,
         "completed_attempt_count": 1,
@@ -19699,7 +19780,7 @@
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 1,
+          "invalid_setup": 1,
           "not_executed": 2
         },
         "protocol_cohorts": [
@@ -19715,9 +19796,8 @@
         ]
       },
       "flags": [
+        "R",
         "X",
-        "B",
-        "F",
         "M"
       ]
     },
@@ -20512,8 +20592,8 @@
         "airslam",
         "default"
       ],
-      "value": 3.3462738657476363,
-      "annotation": "3.35\nA1/E1/S1/F0\nK,B,M",
+      "value": 3.3223673193495373,
+      "annotation": "3.32\nA1/E1/S1/F0\nK,R,M",
       "summary": {
         "identity": [
           "vio-lc",
@@ -20530,13 +20610,18 @@
           "missing": 2
         },
         "acceptance": {
-          "blocked": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -20562,10 +20647,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 3.3462738657476363,
-              "median": 3.3462738657476363,
-              "min": 3.3462738657476363,
-              "max": 3.3462738657476363,
+              "mean": 3.3223673193495373,
+              "median": 3.3223673193495373,
+              "min": 3.3223673193495373,
+              "max": 3.3223673193495373,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -20583,11 +20668,9 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable",
-          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
+          "zed_factory_camera_imu_rotation_omitted"
         ],
-        "protocol_state": "blocked",
+        "protocol_state": "invalid_setup",
         "protocol_verified_n3": false,
         "attempt_count": 1,
         "completed_attempt_count": 1,
@@ -20599,7 +20682,7 @@
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 1,
+          "invalid_setup": 1,
           "not_executed": 2
         },
         "protocol_cohorts": [
@@ -20616,7 +20699,7 @@
       },
       "flags": [
         "K",
-        "B",
+        "R",
         "M"
       ]
     },
@@ -21424,8 +21507,8 @@
         "okvis2",
         "default"
       ],
-      "value": 0.3330503670398122,
-      "annotation": "0.333\nA1/E1/S1/F0\nB,M",
+      "value": 0.3373480093285496,
+      "annotation": "0.337\nA1/E1/S1/F0\nR,M",
       "summary": {
         "identity": [
           "vio-lc",
@@ -21442,13 +21525,18 @@
           "missing": 2
         },
         "acceptance": {
-          "blocked": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -21474,10 +21562,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 0.3330503670398122,
-              "median": 0.3330503670398122,
-              "min": 0.3330503670398122,
-              "max": 0.3330503670398122,
+              "mean": 0.3373480093285496,
+              "median": 0.3373480093285496,
+              "min": 0.3373480093285496,
+              "max": 0.3373480093285496,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -21495,11 +21583,9 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable",
-          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
+          "zed_factory_camera_imu_rotation_omitted"
         ],
-        "protocol_state": "blocked",
+        "protocol_state": "invalid_setup",
         "protocol_verified_n3": false,
         "attempt_count": 1,
         "completed_attempt_count": 1,
@@ -21511,7 +21597,7 @@
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 1,
+          "invalid_setup": 1,
           "not_executed": 2
         },
         "protocol_cohorts": [
@@ -21527,7 +21613,7 @@
         ]
       },
       "flags": [
-        "B",
+        "R",
         "M"
       ]
     },
@@ -22314,8 +22400,8 @@
         "okvis2x",
         "default"
       ],
-      "value": 0.32643054636801144,
-      "annotation": "0.326\nA1/E1/S1/F0\nB,M",
+      "value": 0.3306078750511846,
+      "annotation": "0.331\nA1/E1/S1/F0\nR,M",
       "summary": {
         "identity": [
           "vio-lc",
@@ -22332,13 +22418,18 @@
           "missing": 2
         },
         "acceptance": {
-          "blocked": 1,
+          "rerun_required": 1,
           "not_executed": 2
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+          "historical_profile_accuracy_not_bitwise_build_reproduction",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity",
           "zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity"
         ],
         "clean_qualified_n3": false,
@@ -22364,10 +22455,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 0.32643054636801144,
-              "median": 0.32643054636801144,
-              "min": 0.32643054636801144,
-              "max": 0.32643054636801144,
+              "mean": 0.3306078750511846,
+              "median": 0.3306078750511846,
+              "min": 0.3306078750511846,
+              "max": 0.3306078750511846,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -22385,11 +22476,9 @@
         ],
         "scientific_blockers": [
           "missing_repetition",
-          "zed_gnss_quality_support_and_3d_reference_uncertainty_unresolved",
-          "zed_reference_orientation_unavailable",
-          "zed_serial_specific_imu_rotation_and_time_offset_unverified"
+          "zed_factory_camera_imu_rotation_omitted"
         ],
-        "protocol_state": "blocked",
+        "protocol_state": "invalid_setup",
         "protocol_verified_n3": false,
         "attempt_count": 1,
         "completed_attempt_count": 1,
@@ -22401,7 +22490,7 @@
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 1,
+          "invalid_setup": 1,
           "not_executed": 2
         },
         "protocol_cohorts": [
@@ -22417,7 +22506,7 @@
         ]
       },
       "flags": [
-        "B",
+        "R",
         "M"
       ]
     },
@@ -25751,43 +25840,43 @@
   "figures": [
     {
       "path": "fig_campaign_outcomes.png",
-      "sha256": "29ec5af3dd9e1171528d5d9f6697f13afe96e98d541ac16eb2424664c846ae78"
+      "sha256": "8d404839ac1e26365b6318b6dff03fc457e1bab6521d3ccac2aa42e0349ec5ea"
     },
     {
       "path": "fig_campaign_outcomes.pdf",
-      "sha256": "09ddb8c6cfccf645b7c53ceea8fc59564a541c8d16694587fa93483268eb3ba6"
+      "sha256": "bf9cf4a1e97bbc0dfc508629c3cc523afeb461495d859265145938c73b80ae5c"
     },
     {
       "path": "fig_accuracy_vo_default.png",
-      "sha256": "d66ffcd23491f0094c0a30b9a5e8c077f907b6efa38a01ec2940e452648207b5"
+      "sha256": "0c0e775c19c50bb78c0740383f6531897bf403efafd9182d8ce4b569b890b58f"
     },
     {
       "path": "fig_accuracy_vo_default.pdf",
-      "sha256": "88ac6a24d92da3765cd1ebc7b15202d94c5664862f2cecb9d1531f0fe289f97e"
+      "sha256": "73f2a1d1cb6968d2e1ba72add471048978d7b640716be87547ce99724895a105"
     },
     {
       "path": "fig_accuracy_vo-lc_default.png",
-      "sha256": "bcc4fd49ebffd59a962e239cd3f8c2326c9cc08b89b113fb8f39cc58d9bf66e8"
+      "sha256": "50e8b2ba6c36845e42b8cf912ff96c178fe4031ea3da8b9f946d01c11798ef36"
     },
     {
       "path": "fig_accuracy_vo-lc_default.pdf",
-      "sha256": "cdb813f8812be728d7c3c646bb6ae758102fb36a1a21ce4c36a3615ed7c27b96"
+      "sha256": "a6ed24aa70920716973021073ab20ec4cf1359c2b15005ed81383a05da802a8a"
     },
     {
       "path": "fig_accuracy_vio_default.png",
-      "sha256": "1bd9d3ab765c2e7b3b95b7f515f95c8e9cd27e582ff71343ab1108d9d0ccb55c"
+      "sha256": "25dff466c35fbb6971143be0f5e0edcf0d3b3f0c3888c7eb1f20ed9e417d8925"
     },
     {
       "path": "fig_accuracy_vio_default.pdf",
-      "sha256": "c5d04a3c0c374fc487bc8c278c7d124282e1ebc07b627eddd00bb2f3032a28d2"
+      "sha256": "09c92ccb271c9c8ff5887328e3dbf05343588d49052e7f00cd5dfdfb6f3e0a6d"
     },
     {
       "path": "fig_accuracy_vio-lc_default.png",
-      "sha256": "5d8e136bc1f648df1981e9a762288d4f8647276dd95cb79bb7535730d6bf4aef"
+      "sha256": "af6359fdf7191cd51f7279ef67359afc122ecc85e4ecbbbf2006041d963ad21f"
     },
     {
       "path": "fig_accuracy_vio-lc_default.pdf",
-      "sha256": "f5d431cb45865b447483bbe9da43e6ae473b8c254175efb3adde2dbca80e2732"
+      "sha256": "79b859164e2c2c9755c9694f62082f5dc8c73b25d7b786bc25a065af6b5356a1"
     },
     {
       "path": "fig_accuracy_gnss-vio_conventional_gps.png",

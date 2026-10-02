@@ -1,14 +1,18 @@
 # ZED calibration and reference preparation — 2026-10-02
 
-Work in progress. The calibration and versioned position reference are prepared;
-saved-result reconciliation and short native checks are still pending. This does
-not yet certify the remaining campaign ready. No full repetitions are authorized.
+Calibration, the versioned reference and saved-trajectory sensitivity checks are
+complete. Fifteen applicable native paths passed bounded execution checks; Voxel
+initialization/export remains unverified. See the [validation record](zed-validation-20261002.md)
+and [exact campaign plan](zed-campaign-20261002.md) for reporting checks, preservation,
+remaining attempts and runtime estimates. No full repetitions are authorized.
 
 ## Preserved evidence
 
 Checkpoint `f59854e` preserves the supplied mounting document. Current evaluations,
-metadata, references, CSVs and the complete earlier inspection folder are backed up
+metadata, references and the complete earlier inspection folder are backed up
 under `/data/imoroz/vslam-repair-backups/20261002T092232Z-zed-before-preparation`.
+Unchanged root CSVs are in the preceding complete backup,
+`/data/imoroz/vslam-repair-backups/20261002T081230Z-protocol-reporting-complete`.
 Original bags under `/data/imoroz/vslam-source-records/zed2i-20260703` remain read-only.
 Historical provenance hashes and prior attempts are unchanged.
 
@@ -113,11 +117,129 @@ trajectory; compare pair counts and report changes as sensitivity, not proof tha
 float epochs are unbiased. Constant attitude perturbations do not bound arbitrary
 terrain motion. These mounting and timing limitations remain disclosed.
 
+### Completed sensitivity results
+
+The initial 46 saved ZED exports were evaluated against 18 frozen scenarios; none selected
+the primary calibration/reference. Results and pair counts are retained in
+`results/zed-preparation-20261002/sensitivity.json`. Across numerically valid
+outputs, fixed-only scoring changed SE(3) ATE by at most 0.1703 m. Clock query
+shifts of ±0.1 s changed it by at most 0.00233 m; ±0.5 s by at most 0.0124 m.
+The primary offset remains zero. DPVO's publishable headline remains Sim(3) shape
+accuracy; its SE(3) sensitivity is only a diagnostic.
+
+Height changes of ±0.5 m disappear under rigid alignment, to numerical precision;
+that does not validate the nominal height. Constant roll/pitch scenarios changed
+SE(3) ATE by at most 0.118 m. Their instantaneous lever displacement reached
+0.527 m for 10-degree pitch, showing why small aligned-ATE changes do not certify
+the mounting geometry. The baseline-derived-pitch diagnostic changed ATE by at
+most 0.0044 m. Arbitrary terrain roll/pitch is not bounded by these scenarios.
+
+## Saved-result claim decisions
+
+The approved mask and independently documented mounting model support **qualified
+nominal 3D position** claims on retained reference support. Identity reference
+quaternions do not support rotation or full relative-pose claims. Verified saved
+VO/VO-LC profiles can therefore be retained with these limits and existing
+execution/configuration evidence. Sparse AirSLAM keyframes remain sparse; DPVO
+remains monocular Sim(3); the MAC-VO performant profile remains disclosed.
+OKVIS2 VO repetition 2 remains a scale-collapse observation in the denominator.
+OV2SLAM's six saved ZED exports retain their native shutdown-error observations;
+the wrapper's zero exit is not evidence of clean native completion.
+
+AirSLAM VO-LC's historical N=1 and N=2 workspace cohorts support individually
+qualified observations, but cannot be pooled into one verified N=3 cohort.
+OKVIS2 VO-LC's interrupted attempt still has no saved trajectory. OKVIS2-X VO-LC
+exit 141 left 354 causal poses spanning 35.30249 s. These are now recovered by an
+exact, hash-pinned CSV-to-TUM conversion, using the saved initial extrinsic because
+online extrinsic optimization was disabled. They are **not final bundle-adjusted
+poses**. The recovered prefix has 352 supported pairs and SE(3) ATE 0.04350 m;
+its short duration and unexplained execution prevent a qualified completed-trial
+claim. Its separate 18-scenario sensitivity record supplements the original 46;
+clock changes are at most 0.00064 m (±0.1 s) and 0.00393 m (±0.5 s). The original
+CSV, metadata, exit 141 and missing final BA remain unchanged. A passing short
+check cannot retrospectively establish either historical outcome as complete.
+
+All 11 historical inertial run-1 attempts omitted the recovered factory rotation.
+Their calibration snapshots and source identities are pinned in
+`docs/campaigns/zed-calibration-findings-20261002.json`. Re-evaluation can correct
+exported frames but cannot repair the preceding fusion. Retain those results and
+native failures as the old configuration cohort; require corrected-cohort estimation.
+The six historical ORB VO/VO-LC repetitions retain the separate 15-versus-10 Hz
+configuration finding. No existing native failure is silently replaced.
+
+## Native defects isolated during this preparation
+
+The existing ORB library was built without `-march=native` (16-byte Eigen
+alignment), but its bundled Release g2o was built with it (32-byte alignment).
+The same public `VertexSE3Expmap` is 272 versus 288 bytes; a pose edge is 304
+versus 320 bytes. A graph-allocation/destruction fixture segfaults against the old
+library and passes against the compatible build. The short ZED trace places the
+initial failure in g2o pose optimization. This establishes a current build
+incompatibility; it does not establish the cause of every historical ORB crash
+whose loaded g2o bytes were not recorded.
+
+The compatible library processed the full 600-image diagnostic and saved its
+trajectory, exposing a second fault. GDB then showed `Viewer::Run` inside
+OpenCV/TBB while the main thread was running exit/library-unload handlers.
+`System::Shutdown` had worker waits commented out. The isolated repair requests
+viewer shutdown, joins local mapping and loop closing, waits for any recorded
+in-progress global BA, then joins the viewer before export/exit. No image, feature,
+solver or initialization settings changed. The original library remains intact.
+The build/retained object identities and source patch are in
+[camera-run native build evidence](campaigns/orb-zed-g2o-build-20261002.json).
+
+Voxel's native abort backtrace reaches `message_filters::Signal1::removeCallback`
+while destroying its stereo synchronizer. Members were destroyed in reverse order,
+so subscriber signals disappeared first. The isolated destructor patch clears
+synchronizers before subscribers. The original source checkout and executable are
+unchanged; the ZED runner selects a separate build prefix. See
+[Voxel build evidence](campaigns/voxel-zed-shutdown-build-20261002.json).
+The wrapper now saves native/player exits, log and failed metadata even when no
+trajectory exists, and cannot report success merely because a pose file exists.
+
+The fixed first-60-second Voxel window logs insufficient initialization excitation
+and no trajectory. That is separate from the shutdown defect; no initialization
+threshold or test window was tuned. Its first repaired check ended with native
+exit zero, but metadata publication was correctly rejected because unrelated
+benchmark source files changed during the check. That diagnostic is preserved and
+is not a clean wrapper validation. The final short-check batch freezes code at
+`2efd79f` and records fresh diagnostic identities. Full production repetitions
+remain prohibited.
+
 ## Execution boundary
 
 Short isolated checks are authorized only after static validation. Use separate
 diagnostic sequence/output identities, fixed input windows and bounded process
 lifetimes. Do not replace production attempts or turn an expected early stop into
 a successful full run. No repeated search for favorable settings is authorized.
-Short-check outcomes, exact remaining attempts, estimates and publication decisions
-will be recorded here after validation. Existing algorithm exclusions remain.
+The final fixed-window checks passed for ORB VO, VO-LC, VIO and VIO-LC; OKVIS2
+and OKVIS2-X VO-LC; and AirSLAM VO-LC. The initial checks had already passed for
+Basalt, OKVIS2, OKVIS2-X, AirSLAM and OpenVINS VIO, plus OKVIS2, OKVIS2-X and
+AirSLAM VIO-LC. That is **15 distinct successful paths**. Voxel's final check
+recorded native/player exit zero and wrapper exit one for no initialization/export:
+shutdown and failure capture are repaired, successful export remains unverified.
+All diagnostic attempts, including failed/debugger/intermediate checks, remain
+separate from production counts. No test window or initialization threshold was
+changed to seek success. Diagnostic evaluation now explicitly binds its exact
+600-image timestamp prefix to the parent recording's physical calibration and
+versioned reference; it is never treated as a new production sequence.
+
+The existing nine ZED protocol-verified N=3 cells retain 27 observations. Four
+additional qualified historical observations remain individually usable, including
+the separate AirSLAM VO-LC cohorts. To finish coherent N=3 across all 25 ZED cells,
+the other 16 cells need **48 new attempts**: 17 setup replacements, 25 missing
+slots and six cohort-completion attempts. The six comprise two OKVIS2 VO-LC, one
+OKVIS2-X VO-LC and three AirSLAM VO-LC slots needed for fresh, consistent cohorts;
+they are not six additional proven configuration defects. Historical interruptions,
+partial exports and previously qualified observations remain in the evidence.
+
+`results/zed-preparation-20261002/campaign/manifest.json` is an executable prepared
+selection with unique new physical IDs, immediate evaluation and guarded resumption.
+It is an alternative to the overlapping ZED portion of the all-mode manifest,
+**not an additional campaign to execute on top of that plan**. Fifteen new N=3
+cells (45 attempts) have bounded execution evidence; Voxel's three attempts retain
+an explicit readiness blocker. First authorized full repetitions must be evaluated
+as production gates; short checks do not certify full-sequence stability or timing.
+Existing algorithm exclusions remain. The non-ZED ORB runners still select their
+original library path and require separate ABI/shutdown validation; this ZED repair
+must not be generalized to those untested paths.

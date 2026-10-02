@@ -1,10 +1,12 @@
 # Evaluation
 
-Status: 2026-10-02, completed repair and focused EuRoC campaign; 622 saved
-evaluations are reconciled. [Protocol review](protocol-review-20261002.md) separates
-experiment validity from success: 72 verified N=3 cells, with failures retained.
-Agricultural/GNSS limitations and native readiness are separate. Numerical scores
-alone never grant verification. See [the handoff](acceptance-handoff-20261001.md).
+Status: 2026-10-02, saved ZED re-evaluation and reporting reconciliation. The
+[protocol review](protocol-review-20261002.md) and [ZED preparation](zed-preparation-20261002.md)
+separate validity from success: 81 verified N=3 cells, with all failures retained.
+ZED uses the pinned, gap-aware nominal 3D position reference; no rotational metric
+is supported. Other agricultural/GNSS limits and native readiness remain separate.
+Numerical scores alone never grant verification. Short-check exports are diagnostic
+artifacts and do not fill production repetition slots.
 
 ## Run types and inventory
 

@@ -9,6 +9,16 @@ import pytest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from build_future_manifest import action_category, qualification_prerequisites, resolved_prerequisites
 from build_repair_inventory import runtime_estimate
+
+
+def test_fresh_cohort_is_separate_from_confirmed_defect_and_missing():
+    cell = dict(algorithm='airslam', dataset='zed2i', run_type='vo-lc')
+    decision = dict(fresh_cohort=True)
+    attempt = dict(exists=True, qualification={'reuse_qualified': True})
+    assert action_category(cell, attempt, decision)[0] == 'cohort_completion'
+    assert action_category(cell, dict(attempt, exists=False), decision)[0] == 'missing'
+    invalid = dict(attempt, confirmed_protocol_findings=[{'code': 'calibration_defect'}])
+    assert action_category(cell, invalid, decision)[0] == 'required_rerun'
 from run_future_manifest import validate,execute,check_execution_environment,UNREVIEWED_OVERRIDES
 from update_todo_matrices import update
 

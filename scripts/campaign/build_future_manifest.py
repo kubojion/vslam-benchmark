@@ -41,6 +41,8 @@ def action_category(cell,attempt,decision):
         return 'required_rerun','camera_fps_changed_15_to_10'
     if not attempt['exists']:
         return 'missing','no_saved_attempt'
+    if decision.get('fresh_cohort'):
+        return 'cohort_completion','complete_predeclared_current_implementation_n3_preserve_all_historical_outcomes'
     qualification=attempt.get('qualification',{})
     if (qualification.get('reuse_qualified') and
         (qualification.get('review')=='explicit_claim_review' or decision.get('reuse_qualified')) and
@@ -149,6 +151,8 @@ def build(repo,inventory,inventory_path,decisions):
                 prerequisites.append('resolve_recorded_source_binary_parameter_or_hardware_cohort_difference')
             if cell['algorithm'] in ('ov2slam','voxel_svio'):
                 prerequisites.append('capture_native_exit_separately_and_diagnose_logged_shutdown_errors')
+            if cell['algorithm']=='orbslam3' and cell['dataset']!='zed2i':
+                prerequisites.append('validate_non_zed_orb_eigen_abi_and_shutdown_native_build')
             prerequisites=[p for p in prerequisites if p not in resolved]
             review_evidence=list(decision.get('evidence',[]))
             for resolution in decision.get('resolved_prerequisites', []):
@@ -166,7 +170,7 @@ def build(repo,inventory,inventory_path,decisions):
             cohort='repair-n3-'+hashlib.sha256(key.encode()).hexdigest()[:12]
             command=['python3','scripts/campaign/run_repetitions.py',cell['dataset'],cell['sequence'],cell['algorithm'],'3',cell['run_type'],
                      '--run-id',str(run_id),'--repetition',str(repetition),'--cohort',cohort]
-            run_required=category in ('missing','required_rerun')
+            run_required=category in ('missing','required_rerun','cohort_completion')
             ready=bool(decision.get('execution_verified') and decision.get('static_verified') and
                        decision.get('evidence')) and not prerequisites and run_required
             runtime=cell['runtime_estimate'] if run_required else dict(estimate_s=0 if category=='reusable' else None,
@@ -184,7 +188,7 @@ def build(repo,inventory,inventory_path,decisions):
                 readiness=dict(verified_ready_to_run=ready,static_checks='verified' if decision.get('static_verified') else 'pending',
                     execution_validation='verified' if decision.get('execution_verified') else 'not_verified_after_repairs'),
                 review_evidence=review_evidence))
-    estimates=[a['runtime_estimate'].get('estimate_s') for a in actions if a['category'] in ('missing','required_rerun')]
+    estimates=[a['runtime_estimate'].get('estimate_s') for a in actions if a['category'] in ('missing','required_rerun','cohort_completion')]
     return dict(schema_version=2,configuration_recipe_schema=1,input_identity_schema=1,runtime_identity_schema=1,
         implementation_capture_schema=1,campaign_id='future-n3-five-modes',audit_status='in_progress',
         target=dict(default_cells=len(inventory['cells']),repetitions=3,logical_repetitions=len(actions),

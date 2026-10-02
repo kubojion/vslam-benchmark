@@ -189,6 +189,8 @@ def reconciled_entry(attempt, row):
                  campaign_membership=row['campaign_membership'], cohort=row['cohort'],
                  input_variant=row['gnss_variant'], attempt_exists=row['attempt_exists'],
                  trajectory_saved=row['trajectory_saved'], metrics=metric_summary(evaluation),
+                 reference_version=row.get('reference_version'), reference_variant=row.get('reference_variant'),
+                 trajectory_export_stage=row.get('trajectory_export_stage'),
                  evaluation_path=attempt.get('evaluation_path'),
                  evaluation_sha256=sha256(REPO / attempt['evaluation_path']) if attempt.get('evaluation_path') else None,
                  historical_complete_marker=attempt.get('historical_complete',False))

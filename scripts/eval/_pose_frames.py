@@ -52,6 +52,7 @@ class Snapshots:
         self.run_dir, self.ws = Path(run_dir), Path(ws)
         self.artifacts = meta.get('provenance', {}).get('artifacts', [])
         self.evidence = []
+        self.export_stage = 'recorded_estimator_export'
 
     def read(self, role):
         items = [a for a in self.artifacts if a.get('role') == role and a.get('snapshot')]
@@ -182,6 +183,43 @@ def okvis_final_extrinsic(snapshots):
     return matrix(matrices[0])
 
 
+def verified_okvis_causal_recovery(snapshots, cfg):
+    """Accept only an exact, hash-pinned causal CSV conversion, never final BA.
+
+    Without per-pose extrinsics, online extrinsic calibration is unsupported.
+    Configured final BA does not change poses exported before that stage ran.
+    """
+    receipt = snapshots.run_dir / 'trajectory_recovery.json'
+    if not receipt.is_file():
+        return False
+    value = json.loads(receipt.read_text())
+    if (value.get('schema') != 1 or value.get('stage') != 'recovered_causal_prefix'
+            or value.get('native_csv') != 'okvis2-slam_trajectory.csv'):
+        raise FrameEvidenceError('unsupported OKVIS recovery receipt')
+    if cfg.get('camera_parameters', {}).get('online_calibration', {}).get('do_extrinsics', True):
+        raise FrameEvidenceError('causal recovery with online extrinsic calibration is unsupported')
+    expected = {value['native_csv'], 'trajectory.txt', 'run_meta.json'}
+    evidence = value.get('evidence', [])
+    if {e.get('path') for e in evidence} != expected or len(evidence) != len(expected):
+        raise FrameEvidenceError('incomplete causal recovery evidence')
+    for item in evidence:
+        actual = file_evidence(snapshots.run_dir / item['path'], snapshots.ws)
+        if actual['sha256'] != item.get('sha256'):
+            raise FrameEvidenceError('causal recovery evidence hash mismatch')
+        snapshots.evidence.append(actual)
+    selected = np.loadtxt(snapshots.run_dir / 'trajectory.txt', ndmin=2)
+    original = np.loadtxt(snapshots.run_dir / value['native_csv'], delimiter=',',
+                          skiprows=1, usecols=range(8), ndmin=2)
+    original[:, 0] /= 1e9
+    if (selected.shape != original.shape or len(selected) != value.get('poses')
+            or not np.isfinite(original).all()
+            or not np.allclose(selected, original, atol=5e-7, rtol=0)):
+        raise FrameEvidenceError('causal recovery does not match every native pose')
+    snapshots.evidence.append(file_evidence(receipt, snapshots.ws))
+    snapshots.export_stage = 'recovered_causal_prefix'
+    return True
+
+
 def estimate_transform(ws, dataset, seq, algo, use_imu, snapshots):
     """Return output-frame name, T_output_left and source locations reviewed."""
     if algo in ('okvis2', 'okvis2x'):
@@ -189,8 +227,11 @@ def estimate_transform(ws, dataset, seq, algo, use_imu, snapshots):
         online = cfg.get('camera_parameters', {}).get('online_calibration', {})
         final_ba = cfg.get('estimator_parameters', {}).get('do_final_ba', False)
         source = [f'src/{algo}/okvis_multisensor_processing/src/TrajectoryOutput.cpp']
+        recovered = verified_okvis_causal_recovery(snapshots, cfg)
         if use_imu and dataset in ('euroc_mav', 'rosariov2', 'zed2i'):
             return 'physical_imu_sensor', physical_imu_to_camera(ws, dataset, seq, snapshots), source
+        if recovered:
+            return 'sensor_with_saved_initial_calibration_causal_prefix', matrix(cfg['cameras'][0]['T_SC']), source
         if online.get('do_extrinsics') or (final_ba and online.get('do_extrinsics_final_ba')):
             return 'sensor_with_saved_final_calibration', okvis_final_extrinsic(snapshots), source + [f'src/{algo}/okvis_ceres/src/Component.cpp']
         return 'imu_sensor', matrix(cfg['cameras'][0]['T_SC']), source
@@ -318,4 +359,5 @@ def frame_policy(ws, run_dir, meta, dataset, seq, algo, use_imu):
         policy['blockers'].append('reference_frame_unverified')
     policy['orientation_valid'] &= policy['estimate_transform'] is not None
     policy['evidence'].extend(snapshots.evidence)
+    policy['trajectory_export_stage'] = snapshots.export_stage
     return policy

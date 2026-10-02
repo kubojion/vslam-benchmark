@@ -1,5 +1,9 @@
 # Protocol validity and observed outcomes — 2026-10-02
 
+> Historical checkpoint. Later [ZED preparation](zed-preparation-20261002.md)
+> supersedes its ZED calibration/reference blockers and current aggregate counts.
+> Original observations, provenance hashes and non-ZED decisions remain preserved.
+
 This continuation preserves the completed audits and fixed EuRoC campaign. It
 changes reporting semantics, not numerical scores, estimator settings or trial
 selection. The evidence-pinned acceptance ledger now records a separate per-attempt

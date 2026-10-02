@@ -1,5 +1,9 @@
 # Protocol reporting validation — 2026-10-02
 
+> Historical checkpoint. Later [ZED preparation](zed-preparation-20261002.md)
+> supersedes its ZED calibration/reference blockers and current aggregate counts.
+> Original observations, provenance hashes and non-ZED decisions remain preserved.
+
 The reporting/audit continuation is complete. Existing results and implementation
 identities are preserved. See [the protocol review](protocol-review-20261002.md)
 for counts, claim scopes and unresolved prerequisites. This does not certify

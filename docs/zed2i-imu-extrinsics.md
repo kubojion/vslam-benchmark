@@ -1,134 +1,66 @@
 # ZED2i camera–IMU extrinsics
 
-## Original-record verification, 2026-10-01
+## Current calibration — 2026-10-02
 
-The [matched-session review](reference-review-20261001.md) independently verifies
-the supplied July 3 robot bag and camera-laptop GPS/TF extract. It establishes the
-physical 2.86 m longitudinal lever and quantifies the approximately 16.4 mm residual
-from the antenna-heading/left-camera offsets. Clock alignment is a disclosed limitation after the requested sensitivity check;
-reference 3D/quality policy and per-serial camera/IMU rotation remain unresolved. The latter is absent
-from all supplied recordings and requires camera S/N 30291010 on the SDK. The
-axis-convention correction below remains a nominal profile, not a per-serial
-calibration certificate. Read-only original paths/hashes are in
-[the source index](campaigns/zed-source-records-20261001.json).
+The per-serial SDK matrix for camera **30291010** has been recovered. Its original
+[IMAGE-coordinate export](campaigns/zed-sdk-calibration-20261002.json), metres,
+firmware and SDK version are preserved. Use the full matrix; the axis-only
+September profile is superseded for future inertial estimation.
 
-## Applied calibration
-
-The benchmark ZED2i (S/N 30291010) exports rectified images in
-`zed_left_camera_frame_optical` / `zed_right_camera_frame_optical`, but
-`imu.csv` is copied from `/zed/zed_node/imu/data_raw`, whose frame is
-`zed_imu_link`. These are not the same coordinate convention:
-
-- `zed_imu_link` / non-optical camera: x forward, y left, z up;
-- optical camera: x right, y down, z forward.
-
-Ignoring that difference made every previous ZED VIO configuration wrong by a
-90-degree axis permutation. The common camera-to-IMU rotation now used by all
-ZED VIO configurations is
+`T_A_B` maps B coordinates into A. Stereolabs defines its SDK matrix as IMU to
+left camera. With `Q = [[0,0,1],[-1,0,0],[0,-1,0]]`, mapping IMAGE axes to the
+ROS forward/left/up IMU convention, the benchmark uses
+`T_imu_left = diag(Q,1) * inverse(T_left_imu_SDK_IMAGE)`:
 
 ```text
-R_imu_cam = [ 0  0  1
-             -1  0  0
-              0 -1  0 ]
+-0.00724344284   0.00881396234   0.99993492118   0.002168823615
+-0.99996934119   0.00291087936  -0.00726935023   0.023046387610
+-0.00297476170  -0.99995691950   0.00879260732  -0.000130804474
+ 0               0               0               1
 ```
 
-The ZED SDK translation for a ZED2i is the IMU origin in the left non-optical
-camera frame:
+The right-camera transform is `T_imu_left * Tx(0.11984625036568344)`.
+The [derivation record](campaigns/zed-physical-calibration-20261002.json) contains
+full precision and each algorithm's convention. The factory residual rotation is
+0.675069 degrees. Projection of the supplied float32 matrix onto SO(3) removes only
+rounding error. The later SDK image intrinsics/raw stereo rotation do not replace
+the July recording's rectified CameraInfo.
 
-```text
-p_imu_in_left = [-0.002, -0.023061, 0.000217] m
-```
+`scripts/data/prepare_zed_calibration.py` verifies the eight applicable configuration
+files for ORB-SLAM3, Basalt, OKVIS2, OKVIS2-X, AirSLAM, OpenVINS and Voxel-SVIO.
+`--apply` changes only reviewed extrinsics. Noise, time offset, initialization and
+feature/solver settings remain unchanged. Basalt shares its calibration with VO;
+old VO exports must still use their preserved virtual-frame calibration snapshots.
 
-After inversion and conversion to the optical camera convention, the two
-camera-to-IMU transforms used by the estimators are:
+## Historical cohorts and time
 
-```text
-T_imu_cam0 = [ 0  0  1   0.002
-              -1  0  0   0.023061
-               0 -1  0  -0.000217
-               0  0  0   1 ]
+Before September's correction, some configurations confused optical camera axes
+with ROS IMU axes. The September profile corrected that permutation but used an
+identity **residual** rotation. Eleven current historical inertial run-1 attempts
+used that incomplete calibration. Preserve their trajectories, scores and failures;
+a corrected output transform cannot repair the preceding fusion. Those attempts
+need a separate corrected estimation cohort, alongside the missing repetitions.
+See the [evidence-pinned findings](campaigns/zed-calibration-findings-20261002.json).
 
-T_imu_cam1 = [ 0  0  1   0.002
-              -1  0  0  -0.0967852504
-               0 -1  0  -0.000217
-               0  0  0   1 ]
-```
+Camera and IMU share the ZED timestamp domain; the configured camera–IMU offset
+remains zero. No offset is fitted to this field trajectory. The previously quoted
++0.10 s camera-laptop/robot offset belongs to a **different hangar recording** and
+must not be applied to the field reference. The field clock offset remains unknown,
+with the reproduced sensitivity disclosed in the preparation report.
 
-The right-camera translation is composed using the measured rectified baseline
-of 0.1198462504 m; it is not inserted along an IMU axis directly.
+## Reference and validation
 
-This calibration is applied to ORB-SLAM3, Basalt, OKVIS2, OKVIS2-X, AirSLAM,
-OpenVINS, and Voxel-SVIO. Their field names differ, but all represent the same
-camera-optical-to-IMU transform. VO-only configurations are intentionally left
-camera-centred because they do not consume IMU samples.
+The approved nominal 1 m height, documented horizontal geometry and exact GNSS
+spike mask now define a versioned position reference. RTK float remains in the
+primary reference; excluded intervals are not interpolated. Identity quaternions
+are placeholders and cannot support rotational accuracy claims.
 
-## Remaining serial-specific term
+See [ZED preparation](zed-preparation-20261002.md) for reference hashes, sensitivity,
+saved-result qualification, short execution checks and remaining runs. Native
+execution readiness is separate from a correctly parsed calibration. The newly
+reproduced ORB g2o ABI incompatibility and Voxel shutdown-lifetime defect are tracked
+there; historical outcomes have not been silently relabelled as repaired runs.
 
-Stereolabs factory-calibrates a small camera-to-IMU rotation per serial number.
-The earlier SDK query for S/N 30291010 recorded its magnitude (about 0.675
-degrees) but not the matrix. Neither available ROS bag contains the SDK
-`left_cam_imu_transform` topic, and the light bag contains no images. The
-truncated image bag has a malformed SQLite database. The server also has no
-connected ZED or ZED SDK from which to query the value again.
-
-Consequently, the configuration uses identity only for this residual
-non-optical-camera-to-IMU rotation. It does **not** use identity between the
-optical camera and IMU. Recovering the final sub-degree term requires either:
-
-1. reconnecting S/N 30291010 and saving `camera_imu_transform` from the ZED SDK;
-2. locating an original ZED wrapper startup log or recording containing
-   `/zed/zed_node/left_cam_imu_transform`; or
-3. making a new, well-excited stereo+IMU calibration recording and running a
-   camera–IMU calibrator.
-
-The long field sequence cannot reliably identify this residual because its
-rotation is overwhelmingly planar. Gyro-versus-stereo-VO fits were rank-poor
-and varied by several degrees across otherwise equivalent ORB-SLAM3 runs, so
-using their fitted matrices would be less defensible than keeping the residual
-at identity.
-
-## Time offset
-
-Camera and IMU timestamps originate from the same ZED hardware clock. No
-defensible non-zero offset can be identified from the under-excited field
-trajectory, so the camera–IMU time offset remains 0 seconds. This is unrelated
-to the documented 0.10-second camera-computer/robot-computer offset used when
-combining the ZED recording with the separate RTK bag.
-
-## Validation and result status
-
-All seven estimator configurations parse with their declared transforms. The
-rotations are orthonormal with determinant +1, and composing the two camera
-transforms recovers the measured 0.1198462504 m rectified baseline. Basalt also
-accepted the calibration and initialized its filter on the full sequence;
-OKVIS2 loaded both transforms and initialized.
-
-ORB-SLAM3 now passes the earlier first-frame failure and creates its initial
-359-point map, but it still crashes in `g2o::VertexSE3Expmap::oplusImpl`
-immediately afterward. That is a remaining ORB-SLAM3 runtime defect, not a
-configuration-parser or coordinate-frame error.
-
-**Status checked 2026-10-01:** the September 16 `zed2i-imu-recalibration-n1`
-campaign has replaced the old IMU artifacts in nine cells with corrected N=1
-results: VIO for Basalt, OKVIS2, OKVIS2-X, AirSLAM, OpenVINS and Voxel-SVIO;
-VIO-LC for OKVIS2, OKVIS2-X and AirSLAM. Eight are `ok`; OpenVINS VIO is a
-recorded scale collapse. ORB-SLAM3 VIO and VIO-LC have no complete evaluated
-result. All nine completed cells still need their remaining N=3 repetitions.
-See [the current audit](campaigns/server-status-20261001.md).
-
-Any retained pre-correction IMU results are a separate historical cohort.
-VO/VO-LC do not use IMU measurements, but shared calibration edits can still
-change pose-frame handling: Basalt ZED VO retains the earlier calibration
-snapshot and needs an equivalence/configuration review. Do not infer that
-all VO artifacts match the present shared calibration file.
-
-## Sources
-
-- [Stereolabs ROS wrapper discussion: the transform is relative to the left camera and unique per serial](https://github.com/stereolabs/zed-ros-wrapper/issues/611)
-- [Stereolabs ZED2i wrapper output showing the model translation and a per-unit rotation](https://github.com/stereolabs/zed-ros2-wrapper/issues/83)
-- [ZED wrapper output showing the translation at full logged precision](https://github.com/stereolabs/zed-ros2-wrapper/issues/282)
-- The bag's `/zed/zed_description` URDF, generated from the official
-  `zed_description` package, defines the optical-frame rotation as
-  `rpy="-pi/2 0 -pi/2"`.
-- `datasets/zed2i/field1_110426_full_10fps_q90/manifest.json` records the image
-  frame IDs and the 0.1198462504 m rectified baseline.
+Sources: [Stereolabs SDK transform definition](https://www.stereolabs.com/docs/api/structsl_1_1SensorsConfiguration.html),
+[pinned ROS wrapper](https://github.com/stereolabs/zed-ros2-wrapper/blob/cce25d32f88362b50f3aec08876519487be724c3/zed_components/src/zed_camera/src/zed_camera_component_main.cpp),
+[read-only recording source index](campaigns/zed-source-records-20261001.json).

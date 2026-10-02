@@ -10,7 +10,7 @@ from scipy.spatial.transform import Rotation
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from _pose_frames import (FrameEvidenceError, Snapshots, matrix, okvis_final_extrinsic,
                           read_yaml, rectified_to_raw, physical_rosario_imu_to_camera,
-                          estimate_transform)
+                          estimate_transform, verified_okvis_causal_recovery)
 
 
 def test_saved_config_hash_is_required(tmp_path):
@@ -84,3 +84,33 @@ def test_physical_rosario_frame_is_independent_of_wrong_estimator_extrinsic(tmp_
     assert any(e['path'] == str(path.relative_to(tmp_path)) for e in snapshots.evidence)
     with pytest.raises(FrameEvidenceError, match='recording'):
         physical_rosario_imu_to_camera(tmp_path, 'unreviewed_sequence', snapshots)
+
+
+def test_causal_recovery_requires_exact_native_export_and_fixed_online_extrinsic(tmp_path):
+    csv = tmp_path/'okvis2-slam_trajectory.csv'
+    csv.write_text('header\n1000000000,0,0,0,0,0,0,1\n2000000000,1,0,0,0,0,0,1\n')
+    selected = tmp_path/'trajectory.txt'
+    selected.write_text('1 0 0 0 0 0 0 1\n2 1 0 0 0 0 0 1\n')
+    meta = tmp_path/'run_meta.json'; meta.write_text('{}')
+    receipt = tmp_path/'trajectory_recovery.json'
+    value = dict(schema=1, stage='recovered_causal_prefix', native_csv=csv.name, poses=2,
+                 evidence=[dict(path=p.name, sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+                           for p in (csv, selected, meta)])
+    receipt.write_text(json.dumps(value))
+    cfg = dict(camera_parameters={'online_calibration': {'do_extrinsics': False,
+                                                        'do_extrinsics_final_ba': True}},
+               estimator_parameters={'do_final_ba': True})
+    snapshots = Snapshots(tmp_path, {}, tmp_path)
+    assert verified_okvis_causal_recovery(snapshots, cfg)
+    assert snapshots.export_stage == 'recovered_causal_prefix'
+    cfg['camera_parameters']['online_calibration']['do_extrinsics'] = True
+    with pytest.raises(FrameEvidenceError, match='online extrinsic'):
+        verified_okvis_causal_recovery(snapshots, cfg)
+    cfg['camera_parameters']['online_calibration']['do_extrinsics'] = False
+    selected.write_text('1 0 0 0 0 0 0 1\n2 9 0 0 0 0 0 1\n')
+    with pytest.raises(FrameEvidenceError, match='hash mismatch'):
+        verified_okvis_causal_recovery(snapshots, cfg)
+    value['evidence'][1]['sha256'] = hashlib.sha256(selected.read_bytes()).hexdigest()
+    receipt.write_text(json.dumps(value))
+    with pytest.raises(FrameEvidenceError, match='every native pose'):
+        verified_okvis_causal_recovery(snapshots, cfg)

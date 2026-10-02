@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "dataset": "zed2i",
+  "sequence": "field1_diag60_20261002",
+  "variant": "primary",
+  "reference": {
+    "path": "datasets/zed2i/field1_110426_full_10fps_q90/references/gnss-position-v2-20261002/reference.json",
+    "sha256": "e965f3701dc9ba706c98cf26f481a4e374f6b7b5e54a63a1ca196b0b846f0301"
+  },
+  "diagnostic_parent_sequence": "field1_110426_full_10fps_q90",
+  "diagnostic_only": true,
+  "subset_times": {
+    "path": "datasets/zed2i/field1_diag60_20261002/times.txt",
+    "sha256": "523fea32d1b18a85a2602aaa685ce4962f9731d5b26985fe437e50bdefc59af2"
+  },
+  "parent_times": {
+    "path": "datasets/zed2i/field1_110426_full_10fps_q90/times.txt",
+    "sha256": "7dda00e487f4c8ced3d08ca6fd3df2c1037eb8f572feca24158f168c5ed1d288"
+  }
+}
