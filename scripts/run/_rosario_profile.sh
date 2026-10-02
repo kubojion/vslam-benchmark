@@ -2,7 +2,7 @@
 # Default runner profiles remain unchanged when ROSARIO_VIO_PROFILE is absent.
 check_rosario_candidate() {
     ROSARIO_PROFILE_ALGORITHM=$1
-    PROFILE_PROV_ARGS=()
+    PROFILE_PROV_ARGS=(--param "cohort_artifact_semantics=2")
     [[ -n "${ROSARIO_VIO_PROFILE:-}" ]] || return 0
     if [[ -n "${BASALT_CONFIG:-}${BASALT_CALIBRATION:-}" ]]; then
         echo 'indexed Rosario profiles cannot be mixed with Basalt overrides' >&2

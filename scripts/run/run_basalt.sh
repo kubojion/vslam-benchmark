@@ -95,7 +95,6 @@ source "$WS/scripts/run/_owned_process.sh"
 PROV_ARGS=(
     "${PROFILE_PROV_ARGS[@]}"
     --param "process_isolation=attempt_token"
-    --param "cohort_artifact_semantics=2"
     --artifact "camera_calibration=$CALIB"
     --artifact "estimator_config=$ESTIMATOR_CFG"
     --binary "estimator=$BASALT_BIN"

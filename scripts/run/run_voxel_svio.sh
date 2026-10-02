@@ -87,7 +87,6 @@ PROV_ARGS=(
     --artifact "estimator_config=$CFG_HOST"
     --source "algorithm=$WS/src/voxel_svio"
     --param "process_isolation=attempt_token_private_ros_master"
-    --param "cohort_artifact_semantics=2"
     --param "playback_rate=1.0"
     --param "native_prefix=$VOXEL_PREFIX"
     --param "native_executable=$VOXEL_BIN"
