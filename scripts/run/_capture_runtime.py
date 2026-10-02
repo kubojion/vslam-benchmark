@@ -72,10 +72,19 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
         for p in sorted((repo/'src'/algorithm/'build').rglob('*.so*')):
             if p.is_file():host(p.relative_to(repo))
     elif algorithm=='basalt':
-        binary=shutil.which('basalt_vio')
+        # run_basalt.sh sources the installer environment before its own capture.
+        # Resolve identically here so the campaign identity and the launch
+        # preflight do not depend on the caller's PATH or LD_LIBRARY_PATH.
+        environment=dict(os.environ)
+        if (Path.home()/'.basalt/env').is_file():
+            for key,folder in (('PATH','bin'),('LD_LIBRARY_PATH','lib')):
+                local=str(Path.home()/'.local'/folder)
+                parts=[x for x in environment.get(key,'').split(':') if x]
+                if local not in parts:environment[key]=':'.join([local]+parts)
+        binary=shutil.which('basalt_vio',path=environment.get('PATH'))
         host(binary or 'missing-basalt_vio')
         if binary:
-            dependencies=subprocess.check_output(['ldd',binary],text=True,timeout=30)
+            dependencies=subprocess.check_output(['ldd',binary],text=True,timeout=30,env=environment)
             libraries=[line.split()[2] for line in dependencies.splitlines()
                        if line.strip().startswith('libbasalt.so => /')]
             if len(libraries)!=1:missing.append('unresolved_basalt_shared_library')
