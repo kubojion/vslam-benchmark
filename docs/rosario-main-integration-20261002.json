@@ -1,0 +1,425 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-10-02T13:48:53.003678+00:00",
+  "final_destination": "/data/imoroz/vslam-benchmark",
+  "destination_branch": "main",
+  "main_head": "1458a9c3caeca35926d2ac53293055f5162df4d4",
+  "review_checkout": "/data/imoroz/vslam-todo-review-20261002",
+  "review_head": "18dc9d9374755b24e1b1c23a2f0b62a9b2b7d6a9",
+  "goal_objective_attachment": "/home/imoroz/.codex/attachments/99b05f2a-04a7-4585-bc2d-30a25a341129/pasted-text-1.txt",
+  "batch_observation": {
+    "pid": 1519727,
+    "elapsed_at_initial_ps": "02:12:39",
+    "command": "/data/imoroz/conda/envs/macvo/bin/python -u logs/zed-vio-first-20261002-launch2/batch.py",
+    "state": "confirmed live at start of this continuation",
+    "policy": "pause Codex goal after documentation; do not poll or stop batch"
+  },
+  "committed_review_paths": [
+    "TODO.md",
+    "docs/codex-goal.md",
+    "docs/todo-status-details.md",
+    "scripts/campaign/tests/test_acceptance_ledger.py",
+    "scripts/campaign/tests/test_todo_presentation.py",
+    "scripts/campaign/update_todo_matrices.py"
+  ],
+  "uncommitted_tracked_review_paths": [
+    "TODO.md",
+    "docs/codex-goal.md",
+    "docs/todo-status-details.md",
+    "scripts/campaign/tests/test_todo_presentation.py",
+    "scripts/campaign/update_todo_matrices.py"
+  ],
+  "already_copied_documentation": [
+    {
+      "path": "TODO.md",
+      "sha256_before_handoff": "7298a3fe820c80568d6280e632ae55f3739314d5d135d340f09eeca09e11567e",
+      "sha256_after_handoff": "e33af08b976f49942a23ac2b083a7b284e5b2ca028477695c20c4d802a109672",
+      "new_main_handoff_edits_to_preserve": true
+    },
+    {
+      "path": "docs/todo-status-details.md",
+      "sha256_before_handoff": "d534070d7771dab5a0498756de2de4f26e276cdb98f69bb17ec9d06a705b17da",
+      "sha256_after_handoff": "d886bb71147645e5e420d40a6c1bdbb3399d77a3cbb422fe1adba496b3e95722",
+      "new_main_handoff_edits_to_preserve": true
+    },
+    {
+      "path": "docs/rosario-vio-candidates-20261002.md",
+      "sha256_before_handoff": "9c7fda8836949a1a5bf3720d4fb2fd4f9302fc24e8d7db23e901195263bae4c8",
+      "sha256_after_handoff": "744bdeec54a06a401d2a50c499144102faa77e95865d96ed8e5f00e529ee23ec",
+      "new_main_handoff_edits_to_preserve": true
+    },
+    {
+      "path": "docs/rosario-vio-candidate-validation-20261002.json",
+      "sha256_before_handoff": "a5e300e5f86f6485d82afd55d4e99100c819c0a147031d7b2f045992cfe7dbb2",
+      "sha256_after_handoff": "a5e300e5f86f6485d82afd55d4e99100c819c0a147031d7b2f045992cfe7dbb2",
+      "new_main_handoff_edits_to_preserve": false
+    }
+  ],
+  "pending_integration_files": [
+    {
+      "path": "scripts/campaign/update_todo_matrices.py",
+      "review_sha256": "ac54bca0c3fe5922c800bbb976ff1b1243970b202013d838ea3e1249f76eb26f",
+      "main_exists": true,
+      "main_sha256": "a8bda87240893d5b6330d8f9a46fdf1932d6faefebcdc3637b8fc296890e32cd",
+      "needs_merge": true,
+      "identical_on_main": false
+    },
+    {
+      "path": "scripts/campaign/tests/test_todo_presentation.py",
+      "review_sha256": "027a0eb05b23eb8dcc2fce8d7f9f725ccc8b1e3f84eb6d5c429130d9aaa58b26",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "scripts/campaign/prepare_rosario_vio_candidates.py",
+      "review_sha256": "26bf6da7eed59e4e2a5874b863b9c7c25cf31a691c838a7e31b50d3f936e190f",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "scripts/campaign/validate_rosario_vio_candidates.py",
+      "review_sha256": "b3276387cc423ceab283234bb92c36cea0e328c61a1c09d83f0ccd1b5a19b95f",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "scripts/campaign/tests/test_rosario_vio_candidates.py",
+      "review_sha256": "a62fa810db4f9ece545b35b8688510ea6af1cac79d83a1b9fbf950fb16cf74dd",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/README.md",
+      "review_sha256": "ff4e12201dd0eab2f73581983ac83d394896b487c29d696d750e36f41d4a13c4",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/basalt-kalibr/calibration.json",
+      "review_sha256": "4f79c84ef11b4097060233a3547beb8e8bee5e7e839f497dc2c6544537edb3c0",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/basalt-kalibr/vio_config.json",
+      "review_sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/index.json",
+      "review_sha256": "c227bb6bbb7d295ed0bb611acc7f59690404b94990d63da4d9fbece56d76a9d6",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/openvins-author/estimator_config.yaml",
+      "review_sha256": "ff177d04a7801fe0692cfba8bc09eb6d5fa6124c8608fdb86a0249dcdb5df534",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/openvins-author/kalibr_imu_chain.yaml",
+      "review_sha256": "d233b66f6c21c8050d63fb28a332e6d2a7b843cc0c53c559cfa5a77ae411dac9",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/openvins-author/kalibr_imucam_chain.yaml",
+      "review_sha256": "15c92b092b1c98e3261eccbcbdd2ef0d328241641ae91ca9ae2dfe0097bce2dd",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/openvins-kalibr/estimator_config.yaml",
+      "review_sha256": "562d88d04a8f331fdb0e401ede7fee4300adb54d501c34469ddfa42852b17404",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/openvins-kalibr/kalibr_imu_chain.yaml",
+      "review_sha256": "b33f9494dade05d7714118453e9874b589ded6caba12a11af0ce3e594169b36d",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/openvins-kalibr/kalibr_imucam_chain.yaml",
+      "review_sha256": "fea0bc25927e194546ab53c975e68eda1be4174489c9f70a3ad8fdcdbf2dd21e",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/sources/author-openvins-cameras.yaml",
+      "review_sha256": "28979f44f77019875acf5aa4b09abd377d9b17cb383c4967533f8381fbb9c006",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/sources/author-openvins-estimator.yaml",
+      "review_sha256": "38e25a7642353d6cbe273ea6b829a9487b5420aba4697c9301993ffd6cd9e83c",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/sources/author-openvins-imu.yaml",
+      "review_sha256": "746eeed9cf6884578d0f5019bc42c66df0d68b06bdb2466c7c4e1761c79921c4",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/sources/author-openvins.launch",
+      "review_sha256": "48b0bb40523f54d25034e9f1990bfc19bd3700e5a49c9a0da66f11358ccce414",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/sources/author-orb.launch",
+      "review_sha256": "9c666a2f8367c587d6a3507fec718b5844eb802f87f15e5704dbcdec252e2e59",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/sources/author-orb.yaml",
+      "review_sha256": "a8db699f58ba2c222a644e68cf14063a5adc9acff1b08a49dca557f8c695f284",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/sources/index.json",
+      "review_sha256": "dac69d3e77c98cd50c44b1be8f6371cf4b9d26501f1390f267c45bb471eb8d21",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/sources/kalibr-cameras.yaml",
+      "review_sha256": "76b3309c2b9c56989d8e38d9254259ed4834a20c17cfc1f5771623f610370afb",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/sources/kalibr-imu.yaml",
+      "review_sha256": "e6805f2396b4e3f961fa957a2a12434d8625bd597101a6a1ba875be1f852a146",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/sources/kalibr-results.txt",
+      "review_sha256": "40979a824a836b5fae299b89ee3a167238c16d348646d35c102d3d9d0330ed47",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/sources/saved-basalt-calibration.json",
+      "review_sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/sources/saved-basalt-estimator.json",
+      "review_sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/sources/saved-openvins-cameras.yaml",
+      "review_sha256": "408a887ef92567582dc9d8f189093bd816168127f57efed8d63c44481f1a2262",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/sources/saved-openvins-estimator.yaml",
+      "review_sha256": "18c1482b3a344495a08330f96de6959db9b1f89503f3fb4724df80f19443e74a",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/sources/saved-openvins-imu.yaml",
+      "review_sha256": "ea6530f2dc604137e92829d54f9c2c3c6f6d1372c18ba8ce15e9f6ac8ee07fad",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/sources/saved-voxel.yaml",
+      "review_sha256": "4f9a27d350b437bf3e3c5636b4278e39f736e387751c14d0d184b2b0e6d1df0c",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "configs/candidates/rosario-vio-20261002/voxel-kalibr/rosariov2.yaml",
+      "review_sha256": "4f162a67abf0b021681e4bd44f98e7487292fe40ad54970981c0e43d7415be0f",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "scripts/campaign/tests/test_acceptance_ledger.py",
+      "review_sha256": "e8657175534a3cabb30762564cd1a93a5d1370d958c957eecef99c05291ed88d",
+      "main_exists": true,
+      "main_sha256": "9841f2c7bbbf1c487f770e2bbefb1926196fe78012129b1ef975e1fd837d28fa",
+      "needs_merge": true,
+      "identical_on_main": false
+    },
+    {
+      "path": "review-evidence/rosario-vio-20261002/upstream/basalt-headers-headers_serialization.h",
+      "review_sha256": "10efb62473f6eadcb063acc92d26cd956a4a9f1383368b5bae1d7c9feb1216bc",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "review-evidence/rosario-vio-20261002/upstream/basalt-headers-pinhole_radtan8_camera.hpp",
+      "review_sha256": "2b8c837f6f4f11bcaf99a3c887022fb2d70ab65dd6843294e95f1994decb89f6",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "review-evidence/rosario-vio-20261002/upstream/basalt-sqrt_keypoint_vio.cpp",
+      "review_sha256": "141dc9747dfb60e19e8ab93eab3b5600a6bb95fc249afdd5e15f4d844276c5c9",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "review-evidence/rosario-vio-20261002/upstream/basalt-vio.cpp",
+      "review_sha256": "5680eddb73b220ecc89525ae200a4e95d1507755eb87b8dce16fd9afb7a1563c",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    },
+    {
+      "path": "review-evidence/rosario-vio-20261002/upstream/sources.json",
+      "review_sha256": "2fb8ae9b5b14c396a63057efafe7743c42832067d7a2c8f4ee9341ac7a1a0b47",
+      "main_exists": false,
+      "main_sha256": null,
+      "needs_merge": false,
+      "identical_on_main": false
+    }
+  ],
+  "preparation_complete": true,
+  "integrated_into_main": false,
+  "rosario_execution_ready": false,
+  "existing_patch": {
+    "path": "/data/imoroz/vslam-todo-review-20261002/review-evidence/rosario-vio-20261002/candidate-and-todo-code.patch",
+    "sha256": "f23c0c9f4ad6e1692f0bcde27d0633e66f71cba146e810658e85c2ff9e41f547",
+    "complete_standalone_package": false,
+    "omitted_paths": [
+      "scripts/campaign/tests/test_acceptance_ledger.py",
+      "review-evidence/rosario-vio-20261002/upstream/basalt-headers-headers_serialization.h",
+      "review-evidence/rosario-vio-20261002/upstream/basalt-headers-pinhole_radtan8_camera.hpp",
+      "review-evidence/rosario-vio-20261002/upstream/basalt-sqrt_keypoint_vio.cpp",
+      "review-evidence/rosario-vio-20261002/upstream/basalt-vio.cpp",
+      "review-evidence/rosario-vio-20261002/upstream/sources.json"
+    ]
+  },
+  "validation": {
+    "prior_tests": {
+      "candidate": 31,
+      "reporting_acceptance": 39,
+      "scope": "review checkout, previous preparation; no new main integration test claim"
+    },
+    "matrix_contents_unchanged": true,
+    "protected_files_unchanged": 1636,
+    "main_head_unchanged": true,
+    "campaign_inputs_refreshed": false,
+    "estimators_launched": 0,
+    "commits_created": 0,
+    "pushes": 0
+  },
+  "remaining_prerequisites_document": "docs/rosario-main-integration-20261002.md",
+  "main_goal_file_action": "keep pinned main goal unchanged while ZED runs; merge relevant sections after resume, never replace entire document",
+  "old_maintenance_pause": "revoked; current pause is a new explicit instruction in this goal",
+  "resume_checks": [
+    {
+      "checked_at": "2026-10-02T13:51:48.848812+00:00",
+      "pid": 1519727,
+      "elapsed": "02:21:21",
+      "state": "controller confirmed live by ps on goal resume",
+      "action": "documentation-only update; pause goal again per explicit objective; no further polling",
+      "integration_performed": false
+    },
+    {
+      "checked_at": "2026-10-02T13:55:00.950466+00:00",
+      "pid": 1519727,
+      "elapsed": "02:24:34",
+      "state": "controller confirmed live by ps on goal resume",
+      "classification": "verified wait",
+      "action": "pause per explicit objective; no further polling",
+      "integration_performed": false
+    },
+    {
+      "checked_at": "2026-10-02T14:54:24.246457+00:00",
+      "pid": 1519727,
+      "elapsed": "03:24:05",
+      "state": "controller confirmed live by ps on goal resume",
+      "classification": "verified wait",
+      "action": "pause per explicit objective; no further polling",
+      "integration_performed": false
+    }
+  ]
+}
