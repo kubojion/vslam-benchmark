@@ -49,11 +49,11 @@ def attempt(status='accepted', outcome='ok', coverage=100):
 def test_protocol_tick_accepts_failures_sparse_partial_but_not_mixed_or_unverified():
     attempts=[attempt() for _ in range(3)]
     cell=dict(run_type='vo',algorithm='okvis2',dataset='euroc_mav',evaluated=3,attempts=attempts)
-    assert '✅ Protocol N=3' in render_cell(cell)
+    assert '✅ N=3' in render_cell(cell)
     for status,outcome,coverage in [('accepted_with_limitation','ok',None),
         ('valid_observed_failure','scale_collapse',100),('accepted','ok',30)]:
         changed=copy.deepcopy(cell);changed['attempts'][1]=attempt(status,outcome,coverage)
-        assert '✅ Protocol N=3' in render_cell(changed)
+        assert '✅ N=3' in render_cell(changed)
     assert not cell_acceptance(attempts,False)['protocol_verified_n3']
     attempts[0]['qualification']['native_error_observations']=[{'line':125,'text':'terminate called'}]
     result=cell_acceptance(attempts)

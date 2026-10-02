@@ -2,7 +2,43 @@
 
 Prepared: 2026-10-01. Workspace: `/data/imoroz/vslam-benchmark`.
 
-## Current authorized continuation — ZED preparation, 2026-10-02
+## Current authorized continuation — TODO presentation, 2026-10-02
+
+Preserve the completed repair work. This continuation changes presentation only,
+in an isolated checkout at `/data/imoroz/vslam-todo-review-20261002`, based on
+`1458a9c`. The active ZED batch and its evidence capture own the running checkout;
+do not change its pinned generator/tests, results, configurations, manifests or
+builds. Launch no experiments, regenerate no production results, and do not push.
+The old temporary maintenance pause remains revoked.
+
+Retain all five TODO matrices, their row/column order, existing exclusions and
+underlying acceptance decisions. Keep **A/E/S/F in every cell**, with U when an
+outcome is unknown. This supersedes the earlier instruction to remove those
+counts. Place this definition and example above the matrices:
+
+- A = recorded attempts; E = trajectories evaluated; S = clean final exports;
+  F = observed failures; U = unknown outcomes, when present.
+- A3/E3/S0/F3 means three attempts, three evaluated trajectories, no clean final
+  exports and three observed failures. These counts overlap: a failed attempt
+  can still produce an evaluable trajectory.
+- ✅ N=3 means three verified attempts under consistent settings, including valid
+  observed failures—not necessarily three successful runs.
+
+Remove “protocol” from cells. Use compact labels and linked details for failures,
+selected physical attempts, material limitations and unresolved review. Separate
+verified repetition counts, reference/evaluation review, confirmed setup reruns
+and future execution readiness. Never promote blocked evidence, pool separate
+implementation groups, hide failures in selected runs, or infer readiness from
+configuration-file existence. Preserve historical provenance hashes.
+
+Update the generator and relevant status tests. Deliver a complete TODO preview,
+linked evidence details and a reviewable patch. Finish this continuation with
+those isolated deliverables; application to the main checkout is conditional on
+the active ZED batch **and its evidence capture** having finished. Do not change
+running campaign pins to accommodate this presentation patch. Later application
+requires refreshed evidence before a subsequent launch.
+
+## Completed continuation — ZED preparation, 2026-10-02
 
 Continue from the completed protocol-reporting checkpoint `9d21135`. Make the
 remaining ZED campaign ready using the supplied serial camera–IMU calibration,
