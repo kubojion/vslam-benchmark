@@ -50,9 +50,27 @@ def native_gnss_findings(repo, relative):
     return [{key: record[key] for key in ('code', 'disposition', 'prerequisite', 'evidence')}]
 
 
+def user_rerun_decisions(repo, relative, meta):
+    """Replacements the user decided (ORB-SLAM3 libraries outside ZED, OpenVINS EuRoC VIO).
+
+    A record applies only to its own attempt path with the binaries saved at the time, so
+    replacement attempts (new physical run IDs) never inherit it.
+    """
+    review = Path(repo) / 'docs/campaigns/user-rerun-decisions-20261003.json'
+    if not review.is_file():
+        return []
+    record = json.loads(review.read_text())
+    pinned = record.get('attempts', {}).get(relative)
+    if not pinned or meta.get('provenance', {}).get('binaries') != pinned['binaries']:
+        return []
+    decision = record['decisions'][pinned['decision']]
+    return [{key: decision[key] for key in ('code', 'disposition', 'prerequisite', 'evidence')}]
+
+
 def historical_findings(repo,relative,meta):
     mode,ds,seq,algo,_=Path(relative).parts
     issues = native_gnss_findings(repo, relative)
+    issues += user_rerun_decisions(repo, relative, meta)
     records=meta.get('provenance',{}).get('artifacts',[])
     zed_review=Path(repo)/'docs/campaigns/zed-calibration-findings-20261002.json'
     if ds=='zed2i' and mode in ('vio','vio-lc') and zed_review.is_file():

@@ -63,8 +63,8 @@ Counts are physical runs to execute; failures stay in the denominator as before.
 | ZED VIO repetitions 2–3: ORB-SLAM3, OKVIS2, OKVIS2-X | 3 | 6 | Running in the 3 October ZED batch |
 | ZED factory camera–IMU rotation: AirSLAM, OKVIS2, OKVIS2-X, ORB-SLAM3 VIO-LC | 4 | 12 | Confirmed, in main's ZED plan |
 | ORB-SLAM3 ZED VO and VO-LC (camera rate 15 → 10 Hz) | 2 | 6 | Confirmed, in main's ZED plan |
-| ORB-SLAM3 outside ZED: every historical run used the mismatched ORB-SLAM3/g2o libraries (EuRoC, Rosario, HortiMulti; VO, VO-LC, VIO, VIO-LC) | 24 more (28 incl. the 4 HortiMulti cells above) | 72 | Fix exists in the runner for all datasets; replacements **not yet in main's plans** |
-| OpenVINS EuRoC VIO: three runs split over two implementation groups | 3 | 9 | Not yet in main's plans |
+| ORB-SLAM3 outside ZED (EuRoC, Rosario, HortiMulti; VO, VO-LC, VIO, VIO-LC): the installed ORB-SLAM3/g2o libraries were shown ABI-incompatible, and the historical runs saved only the executable hash, so which libraries they loaded cannot be established (all 76 recorded attempts "unknown" in `docs/campaigns/orb-historical-exposure-20261002.json`) | 24 more (28 incl. the 4 HortiMulti cells above) | 72 | **Decided 3 October: replace all.** Recorded per attempt in `docs/campaigns/user-rerun-decisions-20261003.json`; the runner's compatible build is used for the new runs |
+| OpenVINS EuRoC VIO: run1 and run2/run3 belong to different implementation groups in all three cells | 3 | 9 | **Decided 3 October: three new repetitions per cell.** Recorded in the same file |
 
 Missing repetitions that are not reruns (for example OpenVINS HortiMulti VIO r2–r3, ZED
 VO-LC group completions) stay as listed in main's plans.
