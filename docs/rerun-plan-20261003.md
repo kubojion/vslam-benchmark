@@ -19,6 +19,7 @@ matrices understate the AirSLAM, Voxel-SVIO and Basalt cells listed in section 2
 | Rosario camera–IMU transform | The authors' published Kalibr result, **0.365° and 33.9 mm**, for every algorithm, OpenVINS included. |
 | Rosario camera–IMU time offset | 0, as in every existing Rosario row and the authors' ORB-SLAM3 setup (ORB-SLAM3 has no offset parameter). Kalibr's 4.1 ms is disclosed, not applied. |
 | AirSLAM saves keyframes only | How AirSLAM works; reported with a disclosure, not a defect. |
+| OKVIS2-X VO-LC and VIO-LC: the final adjustment also optimises the camera extrinsics (`do_extrinsics_final_ba: true`; the authors' EuRoC config keeps it off) | **Kept as run; does not invalidate any run.** Disclosed as a configuration difference (main already attaches the claim limit `final_ba_enabled_with_extrinsic_optimization` to these cells). This also answers the planning item "freeze and label the final bundle adjustment and extrinsic optimisation policy". Earlier analysis found the stereo baseline shrinks by 1–9 % in the final adjustment and per-run scale error tracks it; worth stating next to the OKVIS2-X loop-closure numbers. Can be revisited later. |
 | Results that fail because of the algorithm | Kept in the tables as measured outcomes. |
 
 ### Where 0.37° and 0.94° come from
@@ -64,7 +65,6 @@ Counts are physical runs to execute; failures stay in the denominator as before.
 | ORB-SLAM3 ZED VO and VO-LC (camera rate 15 → 10 Hz) | 2 | 6 | Confirmed, in main's ZED plan |
 | ORB-SLAM3 outside ZED: every historical run used the mismatched ORB-SLAM3/g2o libraries (EuRoC, Rosario, HortiMulti; VO, VO-LC, VIO, VIO-LC) | 24 more (28 incl. the 4 HortiMulti cells above) | 72 | Fix exists in the runner for all datasets; replacements **not yet in main's plans** |
 | OpenVINS EuRoC VIO: three runs split over two implementation groups | 3 | 9 | Not yet in main's plans |
-| OKVIS2-X VO-LC and VIO-LC: final adjustment also optimises the camera extrinsics (upstream: off); baseline shrinks 1–9 %, scale error tracks it | 16 | 48 (about 20 h) | **Recommended, awaiting decision** |
 
 Missing repetitions that are not reruns (for example OpenVINS HortiMulti VIO r2–r3, ZED
 VO-LC group completions) stay as listed in main's plans.
@@ -97,10 +97,10 @@ camera model and timing. The Rosario reruns need profiles with: the ORB-SLAM3 ca
 | Mode | Waiting only on the claim review (were yellow for "camera model") | Need reruns |
 |---|---|---|
 | VO | Basalt, MAC-VO, AirSLAM, DPVO, OKVIS2, OKVIS2-X, OV2SLAM (14 cells) | ORB-SLAM3 (libraries) |
-| VO-LC | DPV-SLAM, OKVIS2, AirSLAM, OV2SLAM (8 cells); OKVIS2-X (2 cells) depends on the final-adjustment decision, seq1 also has two implementation groups | ORB-SLAM3 (libraries) |
+| VO-LC | DPV-SLAM, OKVIS2, OKVIS2-X, AirSLAM, OV2SLAM (10 cells); OKVIS2-X seq1 also has its runs in two implementation groups | ORB-SLAM3 (libraries) |
 | VIO | OKVIS2, OKVIS2-X (4 cells) | Basalt, OpenVINS, Voxel-SVIO, AirSLAM (identity transform); ORB-SLAM3 (libraries) |
-| VIO-LC | OKVIS2 (2 cells); OKVIS2-X (2 cells) depends on the final-adjustment decision | AirSLAM (identity transform); ORB-SLAM3 (libraries) |
+| VIO-LC | OKVIS2, OKVIS2-X (4 cells) | AirSLAM (identity transform); ORB-SLAM3 (libraries) |
 
-So, with the camera model and 0.365° accepted, 28 to 32 Rosario cells outside ORB-SLAM3
-can become ✅ after the claim review; the 10 inertial cells that used the identity
-transform need their reruns first.
+So, with the camera model and 0.365° accepted, 32 Rosario cells outside ORB-SLAM3 can
+become ✅ after the claim review; the 10 inertial cells that used the identity transform
+need their reruns first.
