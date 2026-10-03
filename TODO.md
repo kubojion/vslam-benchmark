@@ -257,6 +257,7 @@ implementation update needs reviewed campaign pins before another launch.
 | 20 | Complete corrected ZED VIO/VIO-LC N=3 | `[~]` 11 original inertial attempts require recovered factory calibration; prepare 33 new attempts, including missing slots; Voxel export readiness remains blocked |
 | 21 | Freeze Basalt VO configuration cohort | `[x]` saved threshold policy reviewed and retained; ZED future shared calibration updated, historical VO frames use saved configs; Rosario camera-model prerequisite remains |
 | 22 | Preserve/evaluate interrupted outputs and reconcile stale state | `[x]` saved exports and stale state reconciled; OKVIS2-X ZED causal prefix recovered; unresolved historical exits retained |
+| 24 | Corrections and rerun list of 3 October: AirSLAM Rosario identity extrinsic, Voxel-SVIO HortiMulti initializer offset, Basalt HortiMulti IMU noise; Rosario decisions (authors' camera model, 0.365° Kalibr transform, zero offset) | `[x]` recorded in [`docs/rerun-plan-20261003.md`](docs/rerun-plan-20261003.md); reruns `[ ]` |
 | 23 | Repair metric/reporting issues and exclude five smoke runs from headline discovery | `[x]` schema-3 metrics, per-attempt qualification, CSVs/reports and smoke separation reconciled; see current validation |
 
 ---

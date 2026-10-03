@@ -41,6 +41,8 @@ RERUN_LABELS = {
     'gnss_zero_antenna_lever_arm_in_native_log': 'antenna lever',
     'rosario_v1_antenna_lever_arm_used_on_v2': 'antenna lever',
     'camera_fps_changed_15_to_10': 'FPS',
+    'horti_voxel_initializer_camera_imu_offset_omitted': 'IMU timing',
+    'basalt_horti_undocumented_imu_noise': 'IMU noise',
 }
 LEGEND = """<!-- todo-matrix-legend:start -->
 **A = recorded attempts; E = trajectories evaluated; S = clean final exports;

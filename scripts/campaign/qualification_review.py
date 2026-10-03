@@ -25,6 +25,7 @@ def review_identity(repo):
     paths += [p for p in ('docs/campaigns/horti-time-offset-findings-20261001.json',
                           'docs/campaigns/zed-calibration-findings-20261002.json',
                           'docs/campaigns/gnss-lever-findings-20261001.json',
+                          'docs/campaigns/rerun-findings-20261003.json',
                           'docs/campaigns/reference-sources-20261001.json',
                           'docs/reference-review-20261001.md') if (repo/p).is_file()]
     paths += [p for p in (LEDGER, DOCUMENT) if (repo/p).is_file()]

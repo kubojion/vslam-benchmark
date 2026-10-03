@@ -1,0 +1,434 @@
+{
+  "schema": 1,
+  "status": "reviewed_estimator_input_defect",
+  "review_date": "2026-10-03",
+  "scope": "Attempts omitted from the earlier reviewed findings. Each record pins one attempt's saved configuration snapshot and algorithm source, so a later attempt never inherits the finding.",
+  "attempts": {
+    "vio-lc/rosariov2/sequence1/airslam/run1": {
+      "code": "rosario_identity_camera_imu_extrinsic",
+      "disposition": "required_rerun",
+      "prerequisite": "use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/reference-review-20261001.md"
+      ],
+      "explanation": "Saved AirSLAM Rosario camera file sets T_body_cam0 to identity (comment: cam0 IS the body frame); AirSLAM links IMU and camera poses through it (src/airslam/src/frame.cc). Same defect as the Basalt/OpenVINS/Voxel-SVIO attempts; omitted from the 2026-10-01 list.",
+      "role": "camera_config",
+      "config_sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      }
+    },
+    "vio-lc/rosariov2/sequence1/airslam/run2": {
+      "code": "rosario_identity_camera_imu_extrinsic",
+      "disposition": "required_rerun",
+      "prerequisite": "use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/reference-review-20261001.md"
+      ],
+      "explanation": "Saved AirSLAM Rosario camera file sets T_body_cam0 to identity (comment: cam0 IS the body frame); AirSLAM links IMU and camera poses through it (src/airslam/src/frame.cc). Same defect as the Basalt/OpenVINS/Voxel-SVIO attempts; omitted from the 2026-10-01 list.",
+      "role": "camera_config",
+      "config_sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      }
+    },
+    "vio-lc/rosariov2/sequence1/airslam/run3": {
+      "code": "rosario_identity_camera_imu_extrinsic",
+      "disposition": "required_rerun",
+      "prerequisite": "use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/reference-review-20261001.md"
+      ],
+      "explanation": "Saved AirSLAM Rosario camera file sets T_body_cam0 to identity (comment: cam0 IS the body frame); AirSLAM links IMU and camera poses through it (src/airslam/src/frame.cc). Same defect as the Basalt/OpenVINS/Voxel-SVIO attempts; omitted from the 2026-10-01 list.",
+      "role": "camera_config",
+      "config_sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      }
+    },
+    "vio-lc/rosariov2/sequence5/airslam/run1": {
+      "code": "rosario_identity_camera_imu_extrinsic",
+      "disposition": "required_rerun",
+      "prerequisite": "use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/reference-review-20261001.md"
+      ],
+      "explanation": "Saved AirSLAM Rosario camera file sets T_body_cam0 to identity (comment: cam0 IS the body frame); AirSLAM links IMU and camera poses through it (src/airslam/src/frame.cc). Same defect as the Basalt/OpenVINS/Voxel-SVIO attempts; omitted from the 2026-10-01 list.",
+      "role": "camera_config",
+      "config_sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      }
+    },
+    "vio-lc/rosariov2/sequence5/airslam/run2": {
+      "code": "rosario_identity_camera_imu_extrinsic",
+      "disposition": "required_rerun",
+      "prerequisite": "use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/reference-review-20261001.md"
+      ],
+      "explanation": "Saved AirSLAM Rosario camera file sets T_body_cam0 to identity (comment: cam0 IS the body frame); AirSLAM links IMU and camera poses through it (src/airslam/src/frame.cc). Same defect as the Basalt/OpenVINS/Voxel-SVIO attempts; omitted from the 2026-10-01 list.",
+      "role": "camera_config",
+      "config_sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      }
+    },
+    "vio-lc/rosariov2/sequence5/airslam/run3": {
+      "code": "rosario_identity_camera_imu_extrinsic",
+      "disposition": "required_rerun",
+      "prerequisite": "use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/reference-review-20261001.md"
+      ],
+      "explanation": "Saved AirSLAM Rosario camera file sets T_body_cam0 to identity (comment: cam0 IS the body frame); AirSLAM links IMU and camera poses through it (src/airslam/src/frame.cc). Same defect as the Basalt/OpenVINS/Voxel-SVIO attempts; omitted from the 2026-10-01 list.",
+      "role": "camera_config",
+      "config_sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      }
+    },
+    "vio/hortimulti/strawberry02/basalt/run1": {
+      "code": "basalt_horti_undocumented_imu_noise",
+      "disposition": "required_rerun",
+      "prerequisite": "replace_leftover_imu_noise_with_documented_horti_profile_and_rerun_with_explicit_input_clock",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/okvis-imu-noise-derivation.md",
+        "docs/author-quality-config-audit.md"
+      ],
+      "explanation": "Saved Basalt HortiMulti calibration uses accel/gyro noise 0.5/0.006 from a July tuning commit (388767c) with no recorded basis; the documented HortiMulti profile is 0.110/0.0035. The same rerun also settles the unresolved native time-offset question, because the current runner applies the offset to the IMU input.",
+      "role": "camera_calibration",
+      "config_sha256": "e834983e2243a2d00c09aab77d42075888a88c673c01d42972d39ef089fa17f4",
+      "algorithm_source": {}
+    },
+    "vio/hortimulti/strawberry02/basalt/run2": {
+      "code": "basalt_horti_undocumented_imu_noise",
+      "disposition": "required_rerun",
+      "prerequisite": "replace_leftover_imu_noise_with_documented_horti_profile_and_rerun_with_explicit_input_clock",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/okvis-imu-noise-derivation.md",
+        "docs/author-quality-config-audit.md"
+      ],
+      "explanation": "Saved Basalt HortiMulti calibration uses accel/gyro noise 0.5/0.006 from a July tuning commit (388767c) with no recorded basis; the documented HortiMulti profile is 0.110/0.0035. The same rerun also settles the unresolved native time-offset question, because the current runner applies the offset to the IMU input.",
+      "role": "camera_calibration",
+      "config_sha256": "e834983e2243a2d00c09aab77d42075888a88c673c01d42972d39ef089fa17f4",
+      "algorithm_source": {}
+    },
+    "vio/hortimulti/strawberry02/basalt/run3": {
+      "code": "basalt_horti_undocumented_imu_noise",
+      "disposition": "required_rerun",
+      "prerequisite": "replace_leftover_imu_noise_with_documented_horti_profile_and_rerun_with_explicit_input_clock",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/okvis-imu-noise-derivation.md",
+        "docs/author-quality-config-audit.md"
+      ],
+      "explanation": "Saved Basalt HortiMulti calibration uses accel/gyro noise 0.5/0.006 from a July tuning commit (388767c) with no recorded basis; the documented HortiMulti profile is 0.110/0.0035. The same rerun also settles the unresolved native time-offset question, because the current runner applies the offset to the IMU input.",
+      "role": "camera_calibration",
+      "config_sha256": "e834983e2243a2d00c09aab77d42075888a88c673c01d42972d39ef089fa17f4",
+      "algorithm_source": {}
+    },
+    "vio/hortimulti/strawberry02/voxel_svio/run1": {
+      "code": "horti_voxel_initializer_camera_imu_offset_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "rerun_with_repaired_voxel_initializer_that_loads_the_declared_9p160379ms_offset_preserve_original_attempts",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/execution-readiness-20261002.md"
+      ],
+      "explanation": "Attempts from 2026-09-11 ran Voxel-SVIO's original initializer, which the 2026-10-02 native review showed keeps offset zero although the config declares 9.160379 ms; propagation used the offset. Repaired in checkpoint 3be9197, after these attempts.",
+      "role": "estimator_config",
+      "config_sha256": "795dd28e0fd74eafe34580d538e09fe8a9643c142bb69ce8bef47c8afee44aa1",
+      "algorithm_source": {
+        "commit": "eac6b87d0f925b96ddd5c5c6b0dcda3d36c7ab5f",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/voxel_svio",
+        "role": "algorithm"
+      }
+    },
+    "vio/hortimulti/strawberry02/voxel_svio/run2": {
+      "code": "horti_voxel_initializer_camera_imu_offset_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "rerun_with_repaired_voxel_initializer_that_loads_the_declared_9p160379ms_offset_preserve_original_attempts",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/execution-readiness-20261002.md"
+      ],
+      "explanation": "Attempts from 2026-09-11 ran Voxel-SVIO's original initializer, which the 2026-10-02 native review showed keeps offset zero although the config declares 9.160379 ms; propagation used the offset. Repaired in checkpoint 3be9197, after these attempts.",
+      "role": "estimator_config",
+      "config_sha256": "795dd28e0fd74eafe34580d538e09fe8a9643c142bb69ce8bef47c8afee44aa1",
+      "algorithm_source": {
+        "commit": "eac6b87d0f925b96ddd5c5c6b0dcda3d36c7ab5f",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/voxel_svio",
+        "role": "algorithm"
+      }
+    },
+    "vio/hortimulti/strawberry02/voxel_svio/run3": {
+      "code": "horti_voxel_initializer_camera_imu_offset_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "rerun_with_repaired_voxel_initializer_that_loads_the_declared_9p160379ms_offset_preserve_original_attempts",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/execution-readiness-20261002.md"
+      ],
+      "explanation": "Attempts from 2026-09-11 ran Voxel-SVIO's original initializer, which the 2026-10-02 native review showed keeps offset zero although the config declares 9.160379 ms; propagation used the offset. Repaired in checkpoint 3be9197, after these attempts.",
+      "role": "estimator_config",
+      "config_sha256": "795dd28e0fd74eafe34580d538e09fe8a9643c142bb69ce8bef47c8afee44aa1",
+      "algorithm_source": {
+        "commit": "eac6b87d0f925b96ddd5c5c6b0dcda3d36c7ab5f",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/voxel_svio",
+        "role": "algorithm"
+      }
+    },
+    "vio/hortimulti/strawberry03/basalt/run1": {
+      "code": "basalt_horti_undocumented_imu_noise",
+      "disposition": "required_rerun",
+      "prerequisite": "replace_leftover_imu_noise_with_documented_horti_profile_and_rerun_with_explicit_input_clock",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/okvis-imu-noise-derivation.md",
+        "docs/author-quality-config-audit.md"
+      ],
+      "explanation": "Saved Basalt HortiMulti calibration uses accel/gyro noise 0.5/0.006 from a July tuning commit (388767c) with no recorded basis; the documented HortiMulti profile is 0.110/0.0035. The same rerun also settles the unresolved native time-offset question, because the current runner applies the offset to the IMU input.",
+      "role": "camera_calibration",
+      "config_sha256": "e834983e2243a2d00c09aab77d42075888a88c673c01d42972d39ef089fa17f4",
+      "algorithm_source": {}
+    },
+    "vio/hortimulti/strawberry03/basalt/run2": {
+      "code": "basalt_horti_undocumented_imu_noise",
+      "disposition": "required_rerun",
+      "prerequisite": "replace_leftover_imu_noise_with_documented_horti_profile_and_rerun_with_explicit_input_clock",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/okvis-imu-noise-derivation.md",
+        "docs/author-quality-config-audit.md"
+      ],
+      "explanation": "Saved Basalt HortiMulti calibration uses accel/gyro noise 0.5/0.006 from a July tuning commit (388767c) with no recorded basis; the documented HortiMulti profile is 0.110/0.0035. The same rerun also settles the unresolved native time-offset question, because the current runner applies the offset to the IMU input.",
+      "role": "camera_calibration",
+      "config_sha256": "e834983e2243a2d00c09aab77d42075888a88c673c01d42972d39ef089fa17f4",
+      "algorithm_source": {}
+    },
+    "vio/hortimulti/strawberry03/basalt/run3": {
+      "code": "basalt_horti_undocumented_imu_noise",
+      "disposition": "required_rerun",
+      "prerequisite": "replace_leftover_imu_noise_with_documented_horti_profile_and_rerun_with_explicit_input_clock",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/okvis-imu-noise-derivation.md",
+        "docs/author-quality-config-audit.md"
+      ],
+      "explanation": "Saved Basalt HortiMulti calibration uses accel/gyro noise 0.5/0.006 from a July tuning commit (388767c) with no recorded basis; the documented HortiMulti profile is 0.110/0.0035. The same rerun also settles the unresolved native time-offset question, because the current runner applies the offset to the IMU input.",
+      "role": "camera_calibration",
+      "config_sha256": "e834983e2243a2d00c09aab77d42075888a88c673c01d42972d39ef089fa17f4",
+      "algorithm_source": {}
+    },
+    "vio/hortimulti/strawberry03/voxel_svio/run1": {
+      "code": "horti_voxel_initializer_camera_imu_offset_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "rerun_with_repaired_voxel_initializer_that_loads_the_declared_9p160379ms_offset_preserve_original_attempts",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/execution-readiness-20261002.md"
+      ],
+      "explanation": "Attempts from 2026-09-11 ran Voxel-SVIO's original initializer, which the 2026-10-02 native review showed keeps offset zero although the config declares 9.160379 ms; propagation used the offset. Repaired in checkpoint 3be9197, after these attempts.",
+      "role": "estimator_config",
+      "config_sha256": "795dd28e0fd74eafe34580d538e09fe8a9643c142bb69ce8bef47c8afee44aa1",
+      "algorithm_source": {
+        "commit": "eac6b87d0f925b96ddd5c5c6b0dcda3d36c7ab5f",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/voxel_svio",
+        "role": "algorithm"
+      }
+    },
+    "vio/hortimulti/strawberry03/voxel_svio/run2": {
+      "code": "horti_voxel_initializer_camera_imu_offset_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "rerun_with_repaired_voxel_initializer_that_loads_the_declared_9p160379ms_offset_preserve_original_attempts",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/execution-readiness-20261002.md"
+      ],
+      "explanation": "Attempts from 2026-09-11 ran Voxel-SVIO's original initializer, which the 2026-10-02 native review showed keeps offset zero although the config declares 9.160379 ms; propagation used the offset. Repaired in checkpoint 3be9197, after these attempts.",
+      "role": "estimator_config",
+      "config_sha256": "795dd28e0fd74eafe34580d538e09fe8a9643c142bb69ce8bef47c8afee44aa1",
+      "algorithm_source": {
+        "commit": "eac6b87d0f925b96ddd5c5c6b0dcda3d36c7ab5f",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/voxel_svio",
+        "role": "algorithm"
+      }
+    },
+    "vio/hortimulti/strawberry03/voxel_svio/run3": {
+      "code": "horti_voxel_initializer_camera_imu_offset_omitted",
+      "disposition": "required_rerun",
+      "prerequisite": "rerun_with_repaired_voxel_initializer_that_loads_the_declared_9p160379ms_offset_preserve_original_attempts",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/execution-readiness-20261002.md"
+      ],
+      "explanation": "Attempts from 2026-09-11 ran Voxel-SVIO's original initializer, which the 2026-10-02 native review showed keeps offset zero although the config declares 9.160379 ms; propagation used the offset. Repaired in checkpoint 3be9197, after these attempts.",
+      "role": "estimator_config",
+      "config_sha256": "795dd28e0fd74eafe34580d538e09fe8a9643c142bb69ce8bef47c8afee44aa1",
+      "algorithm_source": {
+        "commit": "eac6b87d0f925b96ddd5c5c6b0dcda3d36c7ab5f",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/voxel_svio",
+        "role": "algorithm"
+      }
+    },
+    "vio/rosariov2/sequence1/airslam/run1": {
+      "code": "rosario_identity_camera_imu_extrinsic",
+      "disposition": "required_rerun",
+      "prerequisite": "use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/reference-review-20261001.md"
+      ],
+      "explanation": "Saved AirSLAM Rosario camera file sets T_body_cam0 to identity (comment: cam0 IS the body frame); AirSLAM links IMU and camera poses through it (src/airslam/src/frame.cc). Same defect as the Basalt/OpenVINS/Voxel-SVIO attempts; omitted from the 2026-10-01 list.",
+      "role": "camera_config",
+      "config_sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      }
+    },
+    "vio/rosariov2/sequence1/airslam/run2": {
+      "code": "rosario_identity_camera_imu_extrinsic",
+      "disposition": "required_rerun",
+      "prerequisite": "use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/reference-review-20261001.md"
+      ],
+      "explanation": "Saved AirSLAM Rosario camera file sets T_body_cam0 to identity (comment: cam0 IS the body frame); AirSLAM links IMU and camera poses through it (src/airslam/src/frame.cc). Same defect as the Basalt/OpenVINS/Voxel-SVIO attempts; omitted from the 2026-10-01 list.",
+      "role": "camera_config",
+      "config_sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      }
+    },
+    "vio/rosariov2/sequence1/airslam/run3": {
+      "code": "rosario_identity_camera_imu_extrinsic",
+      "disposition": "required_rerun",
+      "prerequisite": "use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/reference-review-20261001.md"
+      ],
+      "explanation": "Saved AirSLAM Rosario camera file sets T_body_cam0 to identity (comment: cam0 IS the body frame); AirSLAM links IMU and camera poses through it (src/airslam/src/frame.cc). Same defect as the Basalt/OpenVINS/Voxel-SVIO attempts; omitted from the 2026-10-01 list.",
+      "role": "camera_config",
+      "config_sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      }
+    },
+    "vio/rosariov2/sequence5/airslam/run1": {
+      "code": "rosario_identity_camera_imu_extrinsic",
+      "disposition": "required_rerun",
+      "prerequisite": "use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/reference-review-20261001.md"
+      ],
+      "explanation": "Saved AirSLAM Rosario camera file sets T_body_cam0 to identity (comment: cam0 IS the body frame); AirSLAM links IMU and camera poses through it (src/airslam/src/frame.cc). Same defect as the Basalt/OpenVINS/Voxel-SVIO attempts; omitted from the 2026-10-01 list.",
+      "role": "camera_config",
+      "config_sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      }
+    },
+    "vio/rosariov2/sequence5/airslam/run2": {
+      "code": "rosario_identity_camera_imu_extrinsic",
+      "disposition": "required_rerun",
+      "prerequisite": "use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/reference-review-20261001.md"
+      ],
+      "explanation": "Saved AirSLAM Rosario camera file sets T_body_cam0 to identity (comment: cam0 IS the body frame); AirSLAM links IMU and camera poses through it (src/airslam/src/frame.cc). Same defect as the Basalt/OpenVINS/Voxel-SVIO attempts; omitted from the 2026-10-01 list.",
+      "role": "camera_config",
+      "config_sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      }
+    },
+    "vio/rosariov2/sequence5/airslam/run3": {
+      "code": "rosario_identity_camera_imu_extrinsic",
+      "disposition": "required_rerun",
+      "prerequisite": "use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt",
+      "evidence": [
+        "docs/rerun-plan-20261003.md",
+        "docs/reference-review-20261001.md"
+      ],
+      "explanation": "Saved AirSLAM Rosario camera file sets T_body_cam0 to identity (comment: cam0 IS the body frame); AirSLAM links IMU and camera poses through it (src/airslam/src/frame.cc). Same defect as the Basalt/OpenVINS/Voxel-SVIO attempts; omitted from the 2026-10-01 list.",
+      "role": "camera_config",
+      "config_sha256": "248403cd003d29968faf9e2da48dfc224edc61be7bafc73d1c643315190d15e3",
+      "algorithm_source": {
+        "commit": "1b70ff63ea5f7c5654a4ec986abc59c838793208",
+        "diff_sha256": null,
+        "dirty": false,
+        "path": "src/airslam",
+        "role": "algorithm"
+      }
+    }
+  }
+}

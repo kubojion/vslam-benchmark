@@ -101,6 +101,17 @@ def historical_findings(repo,relative,meta):
         issues.append(dict(code='airslam_rectified_camera_imu_extrinsic',disposition='required_rerun',
             prerequisite='apply_reviewed_rectification_patch_build_record_binary_hashes_and_validate_fusion_before_corrected_cohort',
             evidence=['docs/airslam-rectification-audit.md','scripts/patches/airslam-rectified-imu-extrinsic.patch']))
+    # Later reviewed records for attempts the lists above missed (AirSLAM Rosario
+    # identity extrinsic, Voxel HortiMulti initializer offset, Basalt HortiMulti noise).
+    later = Path(repo) / 'docs/campaigns/rerun-findings-20261003.json'
+    if later.is_file():
+        reviewed = json.loads(later.read_text()).get('attempts', {}).get(relative)
+        if reviewed:
+            calibration = verified_snapshot(repo, relative, records, reviewed['role'])
+            if (calibration and calibration[1] == reviewed['config_sha256']
+                    and source == reviewed['algorithm_source']):
+                issues.append({key: reviewed[key] for key in
+                               ('code', 'disposition', 'prerequisite', 'evidence')})
     time_review = Path(repo) / 'docs/campaigns/horti-time-offset-findings-20261001.json'
     if ds == 'hortimulti' and time_review.is_file():
         reviewed = json.loads(time_review.read_text()).get('attempts', {}).get(relative)

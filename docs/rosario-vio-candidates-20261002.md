@@ -215,6 +215,8 @@ caused each crash or export problem. Its presence independently invalidates the
 experimental setup. By contrast, **24 nearby VIO attempts** (ORB-SLAM3, AirSLAM,
 OKVIS2 and OKVIS2-X; two sequences × three repetitions) and **six Basalt VO
 attempts** remain camera-review cases, not newly confirmed estimator reruns.
+
+> **Correction (3 October 2026):** the six AirSLAM attempts among these use an identity camera–IMU transform and are required reruns like Basalt/OpenVINS/Voxel-SVIO. The candidate bundles use the Kalibr camera model and time shift; the 3 October decision keeps the authors' ORB-SLAM3 camera model and zero offset for all Rosario rows, so the replacements need profiles built from that decision. See [the rerun plan](rerun-plan-20261003.md).
 Their eventual reuse depends on resolving the projection review. Other original
 reference/claim limitations, including the fused reference's non-independence,
 remain in force.
