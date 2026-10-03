@@ -45,3 +45,6 @@
 [submodule "src/ov2slam"]
 	path = src/ov2slam
 	url = https://github.com/ov2slam/ov2slam.git
+[submodule "src/cuvslam"]
+	path = src/cuvslam
+	url = https://github.com/nvidia-isaac/cuVSLAM.git

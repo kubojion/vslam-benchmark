@@ -1,0 +1,33 @@
+{
+  "_comment": [
+    "Estimator settings for cuVSLAM 17.0.0, identical for every dataset and run type.",
+    "Calibration is not here: it comes from configs/sensors/<dataset>.json.",
+    "odometry: library defaults (multicam_mode Precision, use_motion_model true, use_denoising false,",
+    "  max_frame_delta_s 1.0) except async_sba=false. The sequences are fed as fast as the estimator",
+    "  accepts them, so bundle adjustment must run in the tracking thread; with the background thread",
+    "  the result would depend on how fast frames are pushed (upstream offline examples do the same).",
+    "slam: library defaults except sync_mode=true (same reason: loop closure and pose-graph",
+    "  optimisation run inside track() instead of a background thread that offline feeding outruns)."
+  ],
+  "verbosity": 1,
+  "odometry": {
+    "multicam_mode": "Precision",
+    "use_gpu": true,
+    "async_sba": false,
+    "use_motion_model": true,
+    "use_denoising": false,
+    "max_frame_delta_s": 1.0
+  },
+  "slam": {
+    "use_gpu": true,
+    "sync_mode": true,
+    "enable_reading_internals": false,
+    "planar_constraints": false,
+    "gt_align_mode": false,
+    "map_cell_size": 0.0,
+    "max_landmarks_distance": 100.0,
+    "max_map_size": 300,
+    "throttling_time_ms": 0,
+    "retention_time_ms": 5000
+  }
+}
