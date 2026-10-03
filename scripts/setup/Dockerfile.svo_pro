@@ -1,0 +1,33 @@
+# SVO Pro (rpg_svo_pro_open) on ROS Noetic, following the upstream README:
+# front-end + sliding-window Ceres back-end + loop closure / pose graph (build type 1,
+# without the optional iSAM2 global map). Build context is the pinned checkout:
+#   docker build -f scripts/setup/Dockerfile.svo_pro -t vslam_svo_pro:noetic src/svo_pro
+FROM ros:noetic-perception
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential git cmake wget unzip autoconf automake libtool \
+        python3-catkin-tools python3-vcstool python3-osrf-pycommon \
+        libglew-dev libopencv-dev libyaml-cpp-dev \
+        libblas-dev liblapack-dev libsuitesparse-dev libeigen3-dev \
+        ros-noetic-tf ros-noetic-tf-conversions ros-noetic-eigen-conversions \
+        ros-noetic-pcl-ros ros-noetic-cv-bridge ros-noetic-image-transport \
+    && rm -rf /var/lib/apt/lists/*
+
+# Upstream and some of its dependencies fetch sources through ssh URLs.
+RUN git config --global url."https://github.com/".insteadOf "git@github.com:"
+
+WORKDIR /svo_ws
+RUN catkin config --init --mkdirs --extend /opt/ros/noetic \
+        --cmake-args -DCMAKE_BUILD_TYPE=Release -DEIGEN3_INCLUDE_DIR=/usr/include/eigen3
+COPY . /svo_ws/src/rpg_svo_pro_open
+# Upstream lists its dependencies by ssh URL and branch name; use https and record the
+# exact commits that were built in /svo_ws/dependencies.exact.yaml.
+RUN cd src \
+    && sed 's#git@github.com:#https://github.com/#' rpg_svo_pro_open/dependencies.yaml > /tmp/dependencies.yaml \
+    && vcs import < /tmp/dependencies.yaml \
+    && vcs export --exact . > /svo_ws/dependencies.exact.yaml \
+    && touch minkindr/minkindr_python/CATKIN_IGNORE \
+    && touch rpg_svo_pro_open/rqt_svo/CATKIN_IGNORE \
+    && cd rpg_svo_pro_open/svo_online_loopclosing/vocabularies && ./download_voc.sh
+RUN catkin build -j"$(nproc)" --no-status svo_ros

@@ -51,3 +51,6 @@
 [submodule "src/dsol"]
 	path = src/dsol
 	url = https://github.com/versatran01/dsol.git
+[submodule "src/svo_pro"]
+	path = src/svo_pro
+	url = https://github.com/uzh-rpg/rpg_svo_pro_open.git

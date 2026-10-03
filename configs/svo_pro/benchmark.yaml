@@ -1,0 +1,20 @@
+# SVO Pro settings for the benchmark, identical for every dataset.
+# Loaded on top of upstream svo_ros/param/vio_stereo.yaml (the authors' stereo
+# visual-inertial parameter file, used unchanged as the base for every run type).
+#
+# Applied by scripts/run/_svo_pro_stage.py in this order:
+#   1. upstream vio_stereo.yaml
+#   2. "all" below
+#   3. image-size rule for the five settings upstream marks as size dependent
+#      (grid_size, n_pyr_levels, img_align_max_level, poseoptim_thresh, init_min_disparity):
+#      upstream values at 752 px width, scaled by width/752, never below upstream
+#   4. run type: vo     = front end only (use_imu, use_ceres_backend, runlc off; gyro priors 0)
+#                vio    = front end + sliding-window back end, loop closing off
+#                vio-lc = the same with loop closing on (upstream default)
+# Calibration and IMU noise are not here; they are written into the run's calib.yaml
+# from configs/sensors/<dataset>.json.
+all:
+  # The authors' offline benchmark files (svo_benchmarking/experiments/exp_euroc_*_stereo.yaml)
+  # remove the live-operation time limit of the back end; the offline node waits for the
+  # back end after every frame, so results do not depend on machine speed.
+  ceres_max_iteration_time: -1.0
