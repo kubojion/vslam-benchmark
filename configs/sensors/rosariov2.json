@@ -98,7 +98,7 @@
     },
     {
       "path": "configs/basalt/rosariov2_calib.json",
-      "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d",
+      "sha256": "b3575adb5f0cfca84da714282b13b69c7fecf0446c51c4b5252f6e464f5dbac8",
       "fields": "camera_imu_time_offset_s (cam_time_offset_ns)"
     }
   ]
