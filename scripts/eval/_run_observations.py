@@ -52,6 +52,34 @@ LOG_PATTERNS = {
         "loop_closure":    re.compile(r"Loop closure detected|loop detected"),
         "map_reset":       None,
     },
+    "cuvslam": {
+        # Printed by scripts/run/_cuvslam_track.py from the tracker's own state.
+        "init_success":    None,
+        "tracking_loss":   re.compile(r"\[cuvslam\] no pose at frame"),
+        "loop_closure":    re.compile(r"\[cuvslam\] loop closure at frame"),
+        "map_reset":       None,
+    },
+    "dsol": {
+        # The only failure message is also printed for the first frame.
+        "init_success":    None,
+        "tracking_loss":   None,
+        "loop_closure":    None,
+        "map_reset":       None,
+    },
+    "svo_pro": {
+        # Logged at --v=0 without distinct loss or loop messages; per-frame tracking
+        # state is in native/status.txt.
+        "init_success":    None,
+        "tracking_loss":   None,
+        "loop_closure":    None,
+        "map_reset":       None,
+    },
+    "mast3r_fusion": {
+        "init_success":    None,
+        "tracking_loss":   None,
+        "loop_closure":    None,
+        "map_reset":       None,
+    },
     "ov2slam": {
         "init_success":    None,
         "tracking_loss":   re.compile(r"RESET REQUIRED"),

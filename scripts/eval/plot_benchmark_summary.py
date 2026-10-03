@@ -29,6 +29,10 @@ from _run_type import resolve as resolve_run_type  # noqa: E402
 
 
 ALGO_COLOUR = {
+    "cuvslam": "#31a354",
+    "svo_pro": "#e6550d",
+    "dsol": "#3182bd",
+    "mast3r_fusion": "#756bb1",
     "orbslam3": "#2ca02c",
     "macvo": "#ff7f0e",
     "basalt": "#d62728",
@@ -47,6 +51,10 @@ ALGO_COLOUR = {
     "openvins_gps": "#ff9896",
 }
 ALGO_LABEL = {
+    "cuvslam": "cuVSLAM",
+    "svo_pro": "SVO Pro",
+    "dsol": "DSOL",
+    "mast3r_fusion": "MASt3R-Fusion",
     "orbslam3": "ORB-SLAM3",
     "macvo": "MAC-VO",
     "basalt": "Basalt",
@@ -68,7 +76,7 @@ ALGO_ORDER = [
     "orbslam3", "macvo", "basalt", "airslam", "ov2slam",
     "mast3r_slam", "megasam", "dpvo", "okvis2", "okvis2x",
     "openvins", "voxel_svio", "cifasis_gnss_si", "vins_fusion_gps",
-    "rtabmap_gps", "openvins_gps",
+    "rtabmap_gps", "openvins_gps", "cuvslam", "svo_pro", "dsol", "mast3r_fusion",
 ]
 
 DATASET_ALIASES = {"euroc": "euroc_mav", "EuRoC-MAV": "euroc_mav"}

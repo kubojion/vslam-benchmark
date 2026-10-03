@@ -106,6 +106,16 @@ def review_saved(relative, meta, evaluation, findings, snapshots, *, exists, rep
         limitations.append('official_performant_profile_not_paper_reproduction_profile')
     if algorithm == 'dpvo':
         limitations.append('monocular_sim3_shape_only_not_metric_stereo_ranking')
+    if algorithm == 'svo_pro':
+        limitations.append('authors_export_starts_after_keyframe_window_fills')
+        if mode == 'vio-lc':
+            limitations.append('loop_corrections_applied_forward_not_retroactively')
+    if algorithm == 'mast3r_fusion':
+        limitations.append('single_camera_with_imu_scale_from_imu_and_learned_depth')
+        if mode == 'vio-lc':
+            limitations.append('keyframe_only_globally_optimised_trajectory')
+    if algorithm == 'dsol':
+        limitations.append('constant_velocity_motion_prior_without_gyroscope')
     if mode == 'gnss-vio':
         blockers.extend(['historical_gnss_input_covariance_antenna_and_fusion_output_unverified',
                          'gnss_reference_independence_and_global_frame_not_established'])

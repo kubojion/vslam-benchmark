@@ -3,39 +3,109 @@
   "campaign_id": "quality-final-n5",
   "description": "Single-configuration, quality-only benchmark campaign",
   "repeats": 5,
-  "expected_cells": 220,
-  "expected_executions": 1100,
+  "expected_cells": 300,
+  "expected_executions": 1500,
   "sequences": [
-    {"dataset": "rosariov2", "sequence": "sequence1"},
-    {"dataset": "rosariov2", "sequence": "sequence5"},
-    {"dataset": "hortimulti", "sequence": "strawberry02"},
-    {"dataset": "hortimulti", "sequence": "strawberry03"},
-    {"dataset": "euroc_mav", "sequence": "MH_01_easy"},
-    {"dataset": "euroc_mav", "sequence": "MH_03_medium"},
-    {"dataset": "euroc_mav", "sequence": "MH_05_difficult"},
-    {"dataset": "zed2i", "sequence": "field1_110426_full_10fps_q90"}
+    {
+      "dataset": "rosariov2",
+      "sequence": "sequence1"
+    },
+    {
+      "dataset": "rosariov2",
+      "sequence": "sequence5"
+    },
+    {
+      "dataset": "hortimulti",
+      "sequence": "strawberry02"
+    },
+    {
+      "dataset": "hortimulti",
+      "sequence": "strawberry03"
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_01_easy"
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_03_medium"
+    },
+    {
+      "dataset": "euroc_mav",
+      "sequence": "MH_05_difficult"
+    },
+    {
+      "dataset": "zed2i",
+      "sequence": "field1_110426_full_10fps_q90"
+    }
   ],
   "gnss_sequences": [
-    {"dataset": "rosariov2", "sequence": "sequence1"},
-    {"dataset": "rosariov2", "sequence": "sequence5"},
-    {"dataset": "hortimulti", "sequence": "strawberry02"},
-    {"dataset": "hortimulti", "sequence": "strawberry03"}
+    {
+      "dataset": "rosariov2",
+      "sequence": "sequence1"
+    },
+    {
+      "dataset": "rosariov2",
+      "sequence": "sequence5"
+    },
+    {
+      "dataset": "hortimulti",
+      "sequence": "strawberry02"
+    },
+    {
+      "dataset": "hortimulti",
+      "sequence": "strawberry03"
+    }
   ],
   "tables": {
     "vo": [
-      "orbslam3", "okvis2", "okvis2x", "airslam", "basalt", "ov2slam",
-      "dpvo", "macvo"
+      "orbslam3",
+      "okvis2",
+      "okvis2x",
+      "airslam",
+      "basalt",
+      "ov2slam",
+      "dpvo",
+      "macvo",
+      "cuvslam",
+      "svo_pro",
+      "dsol"
     ],
     "vo-lc": [
-      "orbslam3", "okvis2", "okvis2x", "airslam", "ov2slam", "dpvo"
+      "orbslam3",
+      "okvis2",
+      "okvis2x",
+      "airslam",
+      "ov2slam",
+      "dpvo",
+      "cuvslam"
     ],
     "vio": [
-      "orbslam3", "okvis2", "okvis2x", "airslam", "basalt", "openvins",
-      "voxel_svio"
+      "orbslam3",
+      "okvis2",
+      "okvis2x",
+      "airslam",
+      "basalt",
+      "openvins",
+      "voxel_svio",
+      "cuvslam",
+      "svo_pro",
+      "mast3r_fusion"
     ],
-    "vio-lc": ["orbslam3", "okvis2", "okvis2x", "airslam"],
+    "vio-lc": [
+      "orbslam3",
+      "okvis2",
+      "okvis2x",
+      "airslam",
+      "cuvslam",
+      "svo_pro",
+      "mast3r_fusion"
+    ],
     "gnss-vio": [
-      "cifasis_gnss_si", "okvis2x", "openvins_gps", "rtabmap_gps",
+      "cifasis_gnss_si",
+      "okvis2x",
+      "openvins_gps",
+      "rtabmap_gps",
       "vins_fusion_gps"
     ]
   },

@@ -36,6 +36,10 @@ def author_path(algo, mode, role):
         ('airslam', 'map_refinement_config'): 'src/airslam/configs/map_refinement/mr_euroc.yaml',
         ('dpvo', 'algorithm_config'): 'src/DPVO/config/default.yaml',
         ('macvo', 'odometry_config'): 'src/MAC-VO/Config/Experiment/MACVO/MACVO_Performant.yaml',
+        ('dsol', 'algorithm_config'): 'src/dsol/config/dsol_tta.yaml',
+        ('dsol', 'algorithm_defaults'): 'src/dsol/config/dsol.yaml',
+        ('svo_pro', 'algorithm_defaults'): 'src/svo_pro/svo_ros/param/vio_stereo.yaml',
+        ('mast3r_fusion', 'algorithm_defaults'): 'src/mast3r_fusion/config/base_euroc.yaml',
     }.get((algo, role))
 
 

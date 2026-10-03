@@ -74,6 +74,11 @@ mkdir "$OUT_DIR/native"
 python3 "$WS/scripts/run/_dsol_stage.py" merge-config --base "$BASE_CFG" --override "$ALGO_CFG" \
     --out "$OUT_DIR/dsol_effective_config.yaml"
 cp "$STAGE/calib.txt" "$OUT_DIR/native/calib.txt"
+python3 -c "
+import json, sys
+record = json.load(open(sys.argv[1]))
+record.pop('timestamps_ns')
+json.dump(record, open(sys.argv[2], 'w'), indent=2)" "$STAGE/stage.json" "$OUT_DIR/dsol_stage_record.json"
 echo "[dsol] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG" "$OUT_DIR/run_log.txt"
 
 RUN_CONTAINER="vslam_dsol_${DATASET}_${SEQ}_${RUN_ID}_$$"
@@ -102,6 +107,7 @@ PROV_ARGS=(
     --artifact "algorithm_defaults=$BASE_CFG"
     --artifact "effective_config=$OUT_DIR/dsol_effective_config.yaml"
     --artifact "stage_calibration=$OUT_DIR/native/calib.txt"
+    --artifact "stage_record=$OUT_DIR/dsol_stage_record.json"
     --source "algorithm=$REPO"
     --param "process_isolation=attempt_token_private_ros1_master"
     --param "output_frame=cam0_left_optical"

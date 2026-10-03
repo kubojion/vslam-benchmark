@@ -110,6 +110,29 @@ def config_recipe(repo, cell):
             selected('preprocess_config',repo/'src/MAC-VO/Config/Experiment/Common/Preprocess.yaml')
             selected('dataset_config',root/'macvo'/f'{dataset}_{sequence}.yaml',lambda text:text.replace('__WS__','<repo>'))
             operations.append('override experiment Data using dataset config; viewer off; matmul_precision=medium; resultRoot=<attempt>/native')
+        elif algorithm in ('cuvslam','dsol','svo_pro','mast3r_fusion'):
+            selected('camera_calibration',root/'sensors'/f'{dataset}.json')
+            if algorithm=='cuvslam':
+                selected('algorithm_config',root/'cuvslam/default.json')
+                operations.append('odometry mode and SLAM from run type; rectified_stereo_camera from the sensor profile; '
+                                  'IMU timestamps moved onto the camera clock by the profile offset')
+            elif algorithm=='dsol':
+                selected('algorithm_config',root/'dsol/benchmark.yaml')
+                selected('algorithm_defaults',repo/'src/dsol/config/dsol.yaml')
+                operations.append('override merged onto upstream defaults key by key; EuRoC images rectified (alpha=0) '
+                                  'and other datasets linked, before the timed window')
+            elif algorithm=='svo_pro':
+                selected('algorithm_config',root/'svo_pro/benchmark.yaml')
+                selected('algorithm_defaults',repo/'src/svo_pro/svo_ros/param/vio_stereo.yaml')
+                selected('imu_noise_source',repo/'src/svo_pro/svo_ros/param/calib/euroc_stereo.yaml' if dataset=='euroc_mav'
+                         else root/'okvis2'/f'{dataset}_{sequence}_vio.yaml')
+                operations.append('image-width rule for five size-dependent settings; run-type switches; inertial runs '
+                                  'limited to frames with IMU samples on both sides')
+            else:
+                selected('algorithm_config',root/'mast3r_fusion/benchmark.yaml')
+                selected('algorithm_defaults',repo/'src/mast3r_fusion/config/base_euroc.yaml')
+                operations.append('subsample=floor(camera rate/10); IMU noise from the sensor profile except EuRoC; '
+                                  'seed=1000+physical_run_id; VIO-LC adds loop detection and global optimisation')
         else:
             errors.append('unsupported_recipe_algorithm:'+algorithm)
     except (OSError,ValueError,KeyError) as exc:

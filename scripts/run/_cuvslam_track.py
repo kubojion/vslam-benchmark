@@ -204,6 +204,7 @@ def main():
                     slam_live.append(tum(stamp, slam_pose))
             else:
                 lost += 1
+                print(f'[cuvslam] no pose at frame {index} t={stamp / 1e9:.3f}', flush=True)
             if use_slam:
                 metrics = tracker.get_slam_metrics()
                 if metrics is not None and metrics.lc_status and metrics.timestamp_ns != last_lc_stamp:

@@ -37,7 +37,10 @@ NATIVE_BINARIES = {
     "okvis2x": ("src/okvis2x/build/okvis_app_synchronous",),
 }
 PATH_BINARIES = {"basalt": "basalt_vio"}
-CONDA_ENVS = {"dpvo": "dpvo", "macvo": "macvo"}
+CONDA_ENVS = {"dpvo": "dpvo", "macvo": "macvo", "cuvslam": "cuvslam", "mast3r_fusion": "mast3r_fusion",
+              # DSOL and SVO Pro run in images; their host-side preparation uses this env.
+              "dsol": "cuvslam", "svo_pro": "cuvslam"}
+IMAGES = {"dsol": "vslam_dsol:noetic", "svo_pro": "vslam_svo_pro:noetic"}
 CONTAINERS = {
     "airslam": "air_slam",
     "ov2slam": "ov2slam",
@@ -240,6 +243,25 @@ def config_groups(cell: dict[str, str]) -> list[tuple[str, tuple[Path, ...]]]:
         require("Voxel-SVIO profile",
                 f"configs/voxel_svio/{dataset}_{sequence}.yaml",
                 f"configs/voxel_svio/{dataset}.yaml")
+    elif algorithm in {"cuvslam", "dsol", "svo_pro", "mast3r_fusion"}:
+        require("Shared sensor profile", f"configs/sensors/{dataset}.json")
+        if algorithm == "cuvslam":
+            require("cuVSLAM settings", "configs/cuvslam/default.json")
+        elif algorithm == "dsol":
+            require("DSOL settings", "configs/dsol/benchmark.yaml")
+            require("DSOL upstream defaults", "src/dsol/config/dsol.yaml")
+        elif algorithm == "svo_pro":
+            require("SVO Pro settings", "configs/svo_pro/benchmark.yaml")
+            require("SVO Pro upstream parameters", "src/svo_pro/svo_ros/param/vio_stereo.yaml")
+            if dataset == "euroc_mav":
+                require("SVO Pro IMU noise", "src/svo_pro/svo_ros/param/calib/euroc_stereo.yaml")
+            else:
+                require("SVO Pro IMU noise (OKVIS2 profile)", f"configs/okvis2/{dataset}_{sequence}_vio.yaml")
+        else:
+            require("MASt3R-Fusion settings", "configs/mast3r_fusion/benchmark.yaml")
+            require("MASt3R-Fusion upstream parameters", "src/mast3r_fusion/config/base_euroc.yaml")
+            require("MASt3R model",
+                    "third_party/mast3r-fusion-checkpoints/MASt3R_ViTLarge_BaseDecoder_512_catmlpdpt_metric.pth")
     elif algorithm == "cifasis_gnss_si":
         require("CIFASIS GNSS-SI profile",
                 f"configs/cifasis_gnss_si/{dataset}_{sequence}.yaml",
@@ -322,6 +344,13 @@ def preflight(
             for algorithm, container in CONTAINERS.items():
                 if algorithm in algorithms and container not in running:
                     errors.append(f"container is not running for {algorithm}: {container}")
+
+    if any(a in IMAGES for a in algorithms):
+        images = set(run_output(["docker", "image", "ls", "--format", "{{.Repository}}:{{.Tag}}"],
+                                check=True).splitlines())
+        for algorithm, image in IMAGES.items():
+            if algorithm in algorithms and image not in images:
+                errors.append(f"Docker image is missing for {algorithm}: {image}")
 
     if any(a in {"openvins", "openvins_gps"} for a in algorithms):
         images = run_output(["docker", "image", "ls", "--format", "{{.Repository}}:{{.Tag}}"], check=True)

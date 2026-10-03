@@ -21,7 +21,8 @@ NAMES = {'ORB-SLAM3': 'orbslam3', 'Basalt': 'basalt', 'MAC-VO': 'macvo',
          'OKVIS2-X': 'okvis2x', 'OV2SLAM': 'ov2slam', 'OpenVINS': 'openvins',
          'Voxel-SVIO': 'voxel_svio', 'CIFASIS GNSS-SI': 'cifasis_gnss_si',
          'RTAB-Map': 'rtabmap_gps', 'VINS-Fusion': 'vins_fusion_gps',
-         'OpenVINS+GPS': 'openvins_gps', 'OKVIS2-X (tight)': 'okvis2x'}
+         'OpenVINS+GPS': 'openvins_gps', 'OKVIS2-X (tight)': 'okvis2x',
+         'cuVSLAM': 'cuvslam', 'SVO Pro': 'svo_pro', 'DSOL': 'dsol', 'MASt3R-Fusion': 'mast3r_fusion'}
 EXCLUDED = {'MASt3R-SLAM': 'mast3r_slam', 'MegaSaM': 'megasam', 'DROID-SLAM': 'droidslam'}
 SEQUENCES = [('rosariov2', 'sequence1'), ('rosariov2', 'sequence5'),
              ('hortimulti', 'strawberry02'), ('hortimulti', 'strawberry03'),

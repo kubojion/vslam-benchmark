@@ -40,6 +40,10 @@ from _run_type import canonicalize_dataset, resolve as resolve_run_type  # noqa:
 # Colour palette - consistent across all plots
 # ---------------------------------------------------------------------------
 ALGO_COLOUR = {
+    "cuvslam": "#31a354",
+    "svo_pro": "#e6550d",
+    "dsol": "#3182bd",
+    "mast3r_fusion": "#756bb1",
     "orbslam3":        "#2ca02c",   # green
     "macvo":           "#ff7f0e",   # orange
     "basalt":          "#d62728",   # red
@@ -67,6 +71,10 @@ ALGO_COLOUR = {
     "voxel_svio":      "#7b4173",   # dark magenta
 }
 ALGO_LABEL = {
+    "cuvslam": "cuVSLAM",
+    "svo_pro": "SVO Pro",
+    "dsol": "DSOL",
+    "mast3r_fusion": "MASt3R-Fusion",
     "orbslam3":        "ORB-SLAM3",
     "macvo":           "MAC-VO",
     "basalt":          "Basalt",
@@ -529,7 +537,7 @@ def main():
                     default="orbslam3,macvo,basalt,airslam,ov2slam,mast3r_slam,"
                             "megasam,dpvo,okvis2,okvis2x,openvins,voxel_svio,"
                             "cifasis_gnss_si,vins_fusion_gps,rtabmap_gps,"
-                            "openvins_gps")
+                            "openvins_gps,cuvslam,svo_pro,dsol,mast3r_fusion")
     ap.add_argument("--type", dest="run_type", default="vo",
                     choices=["vo", "vo-lc", "vio", "vio-lc", "gnss-vio"],
                     help="Which results tree to read (default: vo)")

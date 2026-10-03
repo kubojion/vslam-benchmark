@@ -99,7 +99,7 @@ import sys, time
 t0 = time.time()
 for line in sys.stdin:
     sys.stdout.write(f'{time.time()-t0:.3f} {line}'); sys.stdout.flush()
-" | tee -a "$OUT_DIR/run_log.txt" "$LOG" | grep --line-buffered -v -e 'loop closure at' -e '^[0-9.]* \[cuvslam\] {'
+" | tee -a "$OUT_DIR/run_log.txt" "$LOG" | grep --line-buffered -v -e 'loop closure at' -e 'no pose at frame' -e '^[0-9.]* \[cuvslam\] {'
 CUV_RC=${PIPESTATUS[0]}
 set -e
 END=$(date +%s.%N)

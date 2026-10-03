@@ -83,6 +83,28 @@ REQUIREMENTS: dict[str, Requirement] = {
         artifacts=frozenset({"estimator_config", "camera0_config", "camera1_config"}),
         parameters=frozenset({"playback_rate", "gnss_variant"}), container=True,
     ),
+    "cuvslam": Requirement(
+        artifacts=frozenset({"camera_calibration", "algorithm_config", "effective_config"}),
+        parameters=frozenset({"loop_closure", "use_imu", "output_frame", "feed"}), environment=True,
+    ),
+    "dsol": Requirement(
+        artifacts=frozenset({"camera_calibration", "algorithm_config", "algorithm_defaults",
+                             "effective_config", "stage_calibration", "stage_record"}),
+        parameters=frozenset({"output_frame", "motion_model", "tbb", "freq", "image_preparation"}),
+        container=True,
+    ),
+    "mast3r_fusion": Requirement(
+        artifacts=frozenset({"camera_calibration", "algorithm_config", "algorithm_defaults",
+                             "effective_config", "camera_imu_calibration"}),
+        parameters=frozenset({"loop_closure", "use_imu", "output_frame", "trajectory_source"}),
+        environment=True,
+    ),
+    "svo_pro": Requirement(
+        artifacts=frozenset({"camera_calibration", "imu_noise_source", "algorithm_config",
+                             "algorithm_defaults", "effective_config", "camera_imu_calibration"}),
+        parameters=frozenset({"loop_closure", "use_imu", "output_frame", "feed", "time_limit_s"}),
+        container=True,
+    ),
     "voxel_svio": Requirement(
         artifacts=frozenset({"estimator_config"}),
         parameters=frozenset({"playback_rate"}), container=True,

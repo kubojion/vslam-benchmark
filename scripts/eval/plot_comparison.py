@@ -96,11 +96,13 @@ def main():
         "dpvo": "#9C27B0", "droidslam": "#795548", "airslam": "#00BCD4",
         "okvis2": "#FF9800", "okvis2x": "#FFC107", "ov2slam": "#E91E63",
         "openvins": "#3F51B5", "voxel_svio": "#8BC34A",
+        "cuvslam": "#31a354", "svo_pro": "#e6550d", "dsol": "#3182bd", "mast3r_fusion": "#756bb1",
     }
     LABEL = {"orbslam3": "ORB-SLAM3", "macvo": "MAC-VO", "basalt": "Basalt",
              "dpvo": "DPVO", "droidslam": "DROID-SLAM", "airslam": "AirSLAM",
              "okvis2": "OKVIS2", "okvis2x": "OKVIS2-X", "ov2slam": "OV2SLAM",
-             "openvins": "OpenVINS", "voxel_svio": "Voxel-SVIO"}
+             "openvins": "OpenVINS", "voxel_svio": "Voxel-SVIO", "cuvslam": "cuVSLAM",
+             "svo_pro": "SVO Pro", "dsol": "DSOL", "mast3r_fusion": "MASt3R-Fusion"}
     ALGOS = {}
     for algo_dir in sorted(base.glob("*")):
         if not algo_dir.is_dir() or algo_dir.name == "plots":

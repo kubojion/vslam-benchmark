@@ -115,12 +115,6 @@ t0 = time.time()
 for line in sys.stdin:
     sys.stdout.write(f'{time.time()-t0:.3f} {line}'); sys.stdout.flush()
 "; }
-fail() {
-    finish_resource_window "$OUT_DIR" "$MONPID"; MONPID=""
-    record_failed_run_meta "$OUT_DIR/run_meta.json" mast3r_fusion "$DATASET" "$SEQ" \
-        "$RUN_ID" "$RUN_TYPE" "$1" "$2" "${PROV_ARGS[@]}"
-    echo "[mast3r_fusion] ERROR: $2" | tee -a "$LOG"; exit "$1"
-}
 
 # Thread counts as in the authors' batch scripts. No bytecode files: they would appear
 # inside the source checkout during the run and change the captured implementation.
@@ -130,6 +124,13 @@ SAVE_H5=(); [[ "$RUN_TYPE" == "vio-lc" ]] && SAVE_H5=(--save_h5)
 cd "$NATIVE"
 START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
+# Stop sampling, record the failed attempt and exit (defined after the window opens).
+fail() {
+    finish_resource_window "$OUT_DIR" "$MONPID"; MONPID=""
+    record_failed_run_meta "$OUT_DIR/run_meta.json" mast3r_fusion "$DATASET" "$SEQ" \
+        "$RUN_ID" "$RUN_TYPE" "$1" "$2" "${PROV_ARGS[@]}"
+    echo "[mast3r_fusion] ERROR: $2" | tee -a "$LOG"; exit "$1"
+}
 set +e
 owned_run estimator python3 "$WS/scripts/run/_seeded_python.py" "$SEED" "$REPO/main.py" \
     --dataset "$STAGE" --config "$OUT_DIR/mast3r_fusion_config.yaml" --calib "$STAGE/intrinsics.yaml" \

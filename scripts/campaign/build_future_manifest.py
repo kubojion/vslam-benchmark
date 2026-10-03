@@ -97,6 +97,10 @@ def qualification_prerequisites(cell,attempt,decision):
         result.append('declare_three_frame_lc_window_variant_versus_five_frame_other_rigs')
     if algo in ('okvis2','okvis2x') and mode in ('vo-lc','vio-lc'):
         result.append('freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy')
+    if algo=='svo_pro':
+        result.append('declare_window_gated_export_start'+('_and_forward_only_loop_correction' if mode=='vio-lc' else ''))
+    if algo=='mast3r_fusion' and mode=='vio-lc':
+        result.append('declare_keyframe_only_global_trajectory_claim')
     if attempt.get('process',{}).get('exit_code') not in (None,0):
         result.append('retain_nonzero_exit_and_review_saved_native_failure_evidence')
     return result

@@ -31,6 +31,7 @@ ALGO_LABEL = {
     "basalt": "Basalt", "airslam": "AirSLAM", "okvis2": "OKVIS2",
     "okvis2x": "OKVIS2-X", "openvins": "OpenVINS", "voxel_svio": "Voxel-SVIO",
     "dpvo": "DPVO (mono)", "droidslam": "DROID-SLAM",
+    "cuvslam": "cuVSLAM", "svo_pro": "SVO Pro", "dsol": "DSOL", "mast3r_fusion": "MASt3R-Fusion",
     "vins_fusion_gps": "VINS-Fusion+GPS", "rtabmap_gps": "RTAB-Map+GPS",
     "cifasis_gnss_si": "CIFASIS GNSS-SI", "openvins_gps": "OpenVINS+GPS",
 }

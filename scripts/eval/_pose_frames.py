@@ -315,6 +315,40 @@ def estimate_transform(ws, dataset, seq, algo, use_imu, snapshots):
         # Saved P = (B_C NED2EDN) P_NED (B_C NED2EDN)^-1.
         # P B_C Rrect is a raw-optical camera pose, up to a constant world gauge.
         return 'conjugated_camera_pose', ts[0] @ r, source
+    if algo == 'cuvslam':
+        # The rig is placed at cam0 (rig_from_camera = identity); exported poses are
+        # world_from_rig, i.e. the left camera in its input axes. Raw EuRoC images are
+        # handled with cuVSLAM's own distortion model, which does not rotate the axes.
+        cfg = snapshots.read('effective_config')
+        if cfg.get('rig_origin') != 'cam0':
+            raise FrameEvidenceError('cuVSLAM rig origin is not the left camera')
+        return 'left_camera_input_axes', np.eye(4), ['scripts/run/_cuvslam_track.py',
+                                                     'src/cuvslam/python/cuvslam/pycuvslam.pyi']
+    if algo == 'dsol':
+        # DSOL estimates the rectified left camera; the export multiplies the saved
+        # rectification rotation back in, so trajectory.txt holds the input left camera.
+        stage = snapshots.read('stage_record')
+        expected = 'rectified_here_stereoRectify_alpha0_bilinear' if dataset == 'euroc_mav' else 'symlink_original_images'
+        if stage.get('mode') != expected:
+            raise FrameEvidenceError('unreviewed DSOL image preparation')
+        return 'left_camera_input_axes_after_inverse_rectification', np.eye(4), [
+            'scripts/run/_dsol_stage.py', 'src/dsol/sv/dsol/node_data.cpp']
+    if algo == 'svo_pro':
+        # svo_benchmark writes T_W_B; B is the body frame of the saved calib.yaml
+        # (T_B_C per camera). As for the other IMU-output rows, inertial runs use the
+        # independent physical calibration where one is established.
+        calib = snapshots.read('camera_imu_calibration')
+        t = matrix(np.asarray(calib['cameras'][0]['T_B_C']['data'], dtype=float).reshape(4, 4))
+        source = ['src/svo_pro/svo_ros/src/benchmark_node.cpp', 'scripts/run/_svo_pro_stage.py']
+        if use_imu and dataset in ('euroc_mav', 'rosariov2', 'zed2i'):
+            return 'imu_body', physical_imu_to_camera(ws, dataset, seq, snapshots), source
+        return 'imu_body_from_saved_calibration', t, source
+    if algo == 'mast3r_fusion':
+        # Real-time states.T_WC and globally optimised wTc are camera poses; raw EuRoC
+        # images are undistorted without changing the optical axes (monocular, cam0).
+        snapshots.read('effective_config')
+        return 'left_camera_input_axes', np.eye(4), ['src/mast3r_fusion/main.py',
+                                                     'src/mast3r_fusion/main_global_optimization.py']
     raise FrameEvidenceError(f'output frame not established for {algo}')
 
 

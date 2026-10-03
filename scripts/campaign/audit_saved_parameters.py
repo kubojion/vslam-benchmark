@@ -103,6 +103,22 @@ def mode_checks(algorithm,mode,documents,parameters):
         expect('ground_truth_disabled',documents.get('effective_dataset_config',{}).get('args.gt_pose'),False)
     elif algorithm in ('openvins','voxel_svio'):
         expect('mode',mode,'vio')
+    elif algorithm=='cuvslam':
+        effective=documents.get('effective_config',{})
+        expect('odometry.odometry_mode',effective.get('odometry.odometry_mode'),'Inertial' if imu else 'Multicamera')
+        expect('slam_enabled','slam.sync_mode' in effective if effective else None,lc)
+        expect('odometry.async_sba',effective.get('odometry.async_sba'),False)
+    elif algorithm=='dsol':
+        expect('mode',mode,'vo')
+    elif algorithm=='svo_pro':
+        effective=documents.get('effective_config',{})
+        expect('use_imu',effective.get('use_imu'),imu)
+        expect('use_ceres_backend',effective.get('use_ceres_backend'),imu)
+        expect('runlc',effective.get('runlc'),lc)
+        expect('ceres_max_iteration_time',effective.get('ceres_max_iteration_time'),-1.0)
+    elif algorithm=='mast3r_fusion':
+        expect('mode_uses_imu',imu,True)
+        expect('recorded_loop_closure',parameters.get('loop_closure'),lc)
     return checks
 
 
@@ -126,6 +142,10 @@ def selected_parameters(algorithm,documents):
                 include=key.startswith(('state_parameter.','initializer_parameter.','odometry_parameter.','feature_parameter.','voxel_parameter.'))
             elif algorithm=='dpvo':include=role=='algorithm_config'
             elif algorithm=='macvo':include=role=='odometry_config' and not key.startswith(('Data.','Preprocess.'))
+            elif algorithm=='cuvslam':include=role=='effective_config' and key.startswith(('odometry.','slam.'))
+            elif algorithm in ('dsol','mast3r_fusion'):include=role=='effective_config'
+            elif algorithm=='svo_pro':
+                include=role=='effective_config' and key not in ('dataset_directory','calib_file','trace_dir')
             if include:result[f'{role}:{key}']=value
     return result
 
