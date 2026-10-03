@@ -184,6 +184,11 @@ def short_flags(cell, review):
         flags.append(f"missing {review['missing_attempt_count']}")
     if len(review['protocol_cohorts']) > 1 or not cell.get('within_cell_cohort_consistent', True):
         flags.append('separate groups')
+    pooling = cell.get('cohort_pooling') or {}
+    if pooling.get('status') == 'pooled':
+        flags.append(f"spans {len(pooling['workspace_commits'])} commits (receipts identical)")
+    elif pooling.get('status') == 'refused':
+        flags.append('pooling refused')
     selected = [run_label(a, i) for i, a in enumerate(attempts, 1)]
     if selected != [f'r{i}' for i in range(1, len(attempts) + 1)]:
         flags.append('selected ' + ','.join(selected))

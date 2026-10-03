@@ -192,6 +192,58 @@ def cohort_identity(meta, algorithm, *, run_dir=None):
     return digest, payload
 
 
+POOLING='configs/campaigns/zed-vio-cohort-pooling-20261003.json'
+
+
+def pooled_cohort(repo, key, attempts):
+    """Pool one listed cell across workspace commits only when its receipts allow it.
+
+    The reviewed record names the cell, its physical runs and any diagnostic parameter
+    that may be absent in older runs at its default value. Everything else recorded for
+    the estimate must be byte-identical: effective configuration, binaries, runtime
+    assets, algorithm source tree, parameters, environment, container and machine. Only
+    the workspace commit and the scripts/configs tree may differ. A mismatch refuses
+    pooling (separate groups stay separate) and records why.
+    """
+    path=repo/POOLING
+    if not path.is_file():return None
+    record=read(path)
+    if record.get('schema')!=1:raise ValueError('unsupported cohort pooling schema')
+    spec=record['cells'].get(key)
+    if not spec:return None
+    expected=[f'results/{key}/run{i}' for i in spec['runs']]
+    def refused(reason):
+        return dict(status='refused',reason=reason,record=evidence(path,repo),runs=expected)
+    if [a['path'] for a in attempts]!=expected:
+        return refused('selected attempts differ from the pooling record')
+    reduced=[];commits=set()
+    for a in attempts:
+        payload=dict(a.get('cohort_evidence') or {})
+        if not payload:return refused('missing cohort receipt: '+a['path'])
+        commits.add((payload.pop('workspace',None) or {}).get('commit'))
+        payload.pop('implementation_content_sha256',None)
+        parameters=dict(payload.get('parameters',{}))
+        for name,default in spec.get('ignored_parameters',{}).items():
+            if parameters.pop(name,default)!=default:
+                return refused(f'{name} differs from its default in {a["path"]}')
+        payload['parameters']=parameters
+        meta=read(repo/a['path']/'run_meta.json')
+        capture=meta.get('provenance',{}).get('implementation_capture') or {}
+        snapshot=repo/a['path']/capture.get('snapshot','')
+        if not capture or not snapshot.is_file() or hashlib.sha256(snapshot.read_bytes()).hexdigest()!=capture.get('snapshot_sha256'):
+            return refused('missing or changed implementation capture: '+a['path'])
+        payload['algorithm_trees']=[t for t in read(snapshot)['trees'] if t.get('role')=='algorithm']
+        if not payload['algorithm_trees']:return refused('no algorithm source tree in '+a['path'])
+        reduced.append(payload)
+    if any(r!=reduced[0] for r in reduced[1:]):
+        return refused('algorithm-relevant receipts differ between the listed runs')
+    cohort='pooled-'+hashlib.sha256(json.dumps(reduced[0],sort_keys=True,separators=(',',':')).encode()).hexdigest()
+    return dict(status='pooled',cohort=cohort,record=evidence(path,repo),runs=expected,
+                workspace_commits=sorted(c for c in commits if c),
+                recorded_cohorts=[a['cohort_fingerprint'] for a in attempts],
+                ignored_parameters=spec.get('ignored_parameters',{}))
+
+
 def saved_attempt(repo,relative,stage):
     run=repo/'results'/relative;meta=read(run/'run_meta.json')
     staged=stage/'evaluations'/relative/'run_eval.json'
@@ -280,7 +332,12 @@ def build(repo,stage):
             attempt=saved_attempt(repo,relative,stage)
             attempt['logical_repetition']=repetition
             attempts.append(attempt)
-        cells.append(dict(**cell,variant='default',key=key,target_repetitions=3,
+        pooling=pooled_cohort(repo,key,attempts)
+        if pooling and pooling['status']=='pooled':
+            for attempt in attempts:
+                attempt['recorded_cohort_fingerprint']=attempt['cohort_fingerprint']
+                attempt['cohort_fingerprint']=pooling['cohort']
+        cells.append(dict(**cell,variant='default',key=key,target_repetitions=3,cohort_pooling=pooling,
             comparison_membership=('corrected_zed_first_20261002' if key in zed_selections
                 else 'corrected_euroc_20261001' if key in selections else None),
             original_campaign_member=cell['algorithm'] in executed['tables'][cell['run_type']],

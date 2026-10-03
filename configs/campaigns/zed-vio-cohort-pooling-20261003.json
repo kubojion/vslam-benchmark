@@ -1,0 +1,36 @@
+{
+ "schema": 1,
+ "decided": "2026-10-03",
+ "decided_by": "user (relayed by the vslam-server-runner session), recorded by Claude",
+ "policy": "Pool a listed cell across workspace commits only if every algorithm-relevant receipt is byte-identical (effective configuration, binaries, runtime assets, algorithm source tree, parameters, environment, container, machine). Only the workspace commit and the scripts/configs tree may differ; a listed diagnostic parameter may be absent in older runs at its default. Checked automatically by scripts/campaign/build_repair_inventory.py (pooled_cohort); a mismatch keeps separate groups.",
+ "reviewed_differences": {
+  "workspace": "1458a9c (first ZED VIO batch, run10001) vs 7c3834e (2026-10-03 batch, run10003/run10004): 68 scripts/configs paths differ, none of them OKVIS2/OKVIS2-X runner or config files.",
+  "orbslam3": "scripts/run/run_orbslam3.sh: the compatible ORB/g2o runtime selection, previously ZED-only, became unconditional (identical hash-checked libraries for ZED); new library_trace_diagnostic flag, 0 by default."
+ },
+ "cells": {
+  "vio/zed2i/field1_110426_full_10fps_q90/orbslam3": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ],
+   "ignored_parameters": {
+    "library_trace_diagnostic": 0
+   }
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/okvis2": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ]
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/okvis2x": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ]
+  }
+ }
+}
