@@ -75,3 +75,11 @@ src/DPVO/saved_trajectories/
 # okvis final-BA debug plots written to CWD / run dirs
 /fullBa.png
 /okvis2_final_ba.png
+
+# New-algorithm assets (installed by scripts/build/*)
+third_party/wheels/
+third_party/gtsam-mast3r-fusion/
+third_party/gtsam-mast3r-fusion.commit
+third_party/mast3r-fusion-checkpoints/
+third_party/mast3r-fusion-checkpoints.sha256
+src/svo_pro_gps/
