@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "dataset": "rosariov2",
+  "image": {
+    "width": 1280,
+    "height": 720,
+    "fps": 15.0
+  },
+  "rectified_input": true,
+  "cameras": [
+    {
+      "name": "cam0",
+      "fx": 648.8624169653789,
+      "fy": 648.8624169653789,
+      "cx": 645.0113372802734,
+      "cy": 348.24266815185547,
+      "distortion_model": "none",
+      "distortion": []
+    },
+    {
+      "name": "cam1",
+      "fx": 648.8624169653789,
+      "fy": 648.8624169653789,
+      "cx": 645.0113372802734,
+      "cy": 348.24266815185547,
+      "distortion_model": "none",
+      "distortion": []
+    }
+  ],
+  "T_cam0_cam1": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0497336941
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "baseline_m": 0.0497336941,
+  "imu": {
+    "T_imu_cam0": [
+      [
+        0.999992,
+        -0.003898,
+        -0.000576,
+        -0.004483
+      ],
+      [
+        0.003895,
+        0.999979,
+        -0.005012,
+        0.019179
+      ],
+      [
+        0.000596,
+        0.005009,
+        0.999987,
+        0.027584
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "gyroscope_noise_density": 0.0002324,
+    "accelerometer_noise_density": 0.0009943,
+    "gyroscope_random_walk": 1.823e-06,
+    "accelerometer_random_walk": 4.75e-05,
+    "frequency_hz": 200.0
+  },
+  "camera_imu_time_offset_s": 0.0,
+  "time_offset_convention": "t_imu = t_camera + camera_imu_time_offset_s",
+  "frames": "cam0 is the rig origin; T_cam0_cam1 is the pose of cam1 in cam0; T_imu_cam0 maps cam0 coordinates into the IMU frame",
+  "sources": [
+    {
+      "path": "configs/orbslam3/rosariov2_stereo_inertial.yaml",
+      "sha256": "371495c23128381633a427f6a638cc2d6bc5d0f26775dd402a8bbba4016446a9",
+      "fields": "camera model, baseline or stereo transform, T_imu_cam0, IMU noise, rate"
+    },
+    {
+      "path": "configs/basalt/rosariov2_calib.json",
+      "sha256": "6ce7c0d5197e604f07e3866fe1845ef46607f0e5b74baf974e587ecc0c2e6d2d",
+      "fields": "camera_imu_time_offset_s (cam_time_offset_ns)"
+    }
+  ]
+}

@@ -8,6 +8,7 @@ match the source checkout; runtime dependency resolution still needs validation.
 from __future__ import annotations
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -95,6 +96,15 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
     elif algorithm=='macvo':
         host('src/MAC-VO/Model/MACVO_FrontendCov.pth')
         for p in sorted((repo/'src/MAC-VO').rglob('*.so')):host(p.relative_to(repo))
+    elif algorithm=='cuvslam':
+        # Prebuilt wheel: the estimator is the native library inside the active Python
+        # environment, not a build of src/cuvslam. Hash the wheel and what is installed.
+        for p in sorted((repo/'third_party/wheels').glob('cuvslam-*.whl')):host(p.relative_to(repo))
+        spec=importlib.util.find_spec('cuvslam')
+        if spec is None or not spec.submodule_search_locations:missing.append('cuvslam_not_importable')
+        else:
+            package=Path(list(spec.submodule_search_locations)[0])
+            for p in sorted(package.glob('*.so'))+sorted(package.glob('*.py')):host(p)
     elif algorithm=='airslam':
         for p in ['superpoint_lightglue.onnx']+[f'superpoint_lightglue_{ds}.engine' for ds in ('euroc_mav','hortimulti','rosariov2','zed2i')]:
             host('src/airslam/output/'+p)
@@ -107,6 +117,26 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
             corrected=inspect(['image','inspect','openvins:humble-shutdown-20261001'])
             container['corrected_euroc_image']={'image':'openvins:humble-shutdown-20261001',
                                               'image_id':corrected['Id']}
+    elif algorithm=='mast3r_fusion':
+        for p in sorted((repo/'third_party/mast3r-fusion-checkpoints').glob('MASt3R_*')):host(p.relative_to(repo))
+        host('third_party/gtsam-mast3r-fusion.commit')
+        for p in sorted((repo/'src/mast3r_fusion').rglob('*.so')):host(p.relative_to(repo))
+        # The modified GTSAM is installed into the active Python environment.
+        spec=importlib.util.find_spec('gtsam')
+        if spec is None or not spec.submodule_search_locations:missing.append('gtsam_not_importable')
+        else:
+            for p in sorted(Path(list(spec.submodule_search_locations)[0]).glob('*.so')):host(p)
+    elif algorithm=='dsol':
+        info=inspect(['image','inspect',os.environ.get('DSOL_IMAGE','vslam_dsol:noetic')])
+        container=dict(kind='ephemeral_image',image_id=info['Id'],image=os.environ.get('DSOL_IMAGE','vslam_dsol:noetic'),
+                       estimator_prefix='/catkin_ws/devel',build_bytes_covered_by_immutable_image=True,
+                       note='runner mounts /ws and the prepared image directories, not /catkin_ws')
+    elif algorithm=='svo_pro':
+        info=inspect(['image','inspect',os.environ.get('SVO_PRO_IMAGE','vslam_svo_pro:noetic')])
+        container=dict(kind='ephemeral_image',image_id=info['Id'],image=os.environ.get('SVO_PRO_IMAGE','vslam_svo_pro:noetic'),
+                       estimator_prefix='/svo_ws/devel',build_bytes_covered_by_immutable_image=True,
+                       note='runner mounts /ws and the original image directories, not /svo_ws; '
+                            'dependency commits are in the image at /svo_ws/dependencies.exact.yaml')
     elif algorithm in CONTAINERS:
         name=CONTAINERS[algorithm];info=inspect(['inspect',name])
         mounts=[]

@@ -23,6 +23,8 @@ SOURCES = {
     'openvins_gps':'open_vins', 'voxel_svio':'voxel_svio', 'dpvo':'DPVO',
     'macvo':'MAC-VO', 'cifasis_gnss_si':'cifasis_gnss_si', 'vins_fusion_gps':'VINS-Fusion',
     'basalt':None, 'rtabmap_gps':None,
+    'cuvslam':'cuvslam', 'dsol':'dsol', 'svo_pro':'svo_pro',
+    'mast3r_fusion':'mast3r_fusion',
 }
 
 

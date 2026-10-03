@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "dataset": "zed2i",
+  "image": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 10.0
+  },
+  "rectified_input": true,
+  "cameras": [
+    {
+      "name": "cam0",
+      "fx": 1118.6947021484375,
+      "fy": 1118.6947021484375,
+      "cx": 964.8566284179688,
+      "cy": 559.3102416992188,
+      "distortion_model": "none",
+      "distortion": []
+    },
+    {
+      "name": "cam1",
+      "fx": 1118.6947021484375,
+      "fy": 1118.6947021484375,
+      "cx": 964.8566284179688,
+      "cy": 559.3102416992188,
+      "distortion_model": "none",
+      "distortion": []
+    }
+  ],
+  "T_cam0_cam1": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.1198462504
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "baseline_m": 0.1198462504,
+  "imu": {
+    "T_imu_cam0": [
+      [
+        -0.007243443,
+        0.008813962,
+        0.9999349,
+        0.0021688235
+      ],
+      [
+        -0.99996936,
+        0.0029108794,
+        -0.0072693503,
+        0.023046387
+      ],
+      [
+        -0.0029747616,
+        -0.9999569,
+        0.008792607,
+        -0.00013080447
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "gyroscope_noise_density": 0.0195,
+    "accelerometer_noise_density": 0.18,
+    "gyroscope_random_walk": 0.0007400196,
+    "accelerometer_random_walk": 0.0202,
+    "frequency_hz": 100.0
+  },
+  "camera_imu_time_offset_s": 0.0,
+  "time_offset_convention": "t_imu = t_camera + camera_imu_time_offset_s",
+  "frames": "cam0 is the rig origin; T_cam0_cam1 is the pose of cam1 in cam0; T_imu_cam0 maps cam0 coordinates into the IMU frame",
+  "sources": [
+    {
+      "path": "configs/orbslam3/zed2i_field1_110426_full_10fps_q90_stereo_inertial.yaml",
+      "sha256": "0fb9901b2788b3bfb178d9373ac9f220651bb45f66c1357ea4fc46f46ff0e12e",
+      "fields": "camera model, baseline or stereo transform, T_imu_cam0, IMU noise, rate"
+    },
+    {
+      "path": "configs/basalt/zed2i_calib.json",
+      "sha256": "d6fb226c9c48045af5dc8df9ab96d6686e56d2acdf649c7755db387be0c2f44b",
+      "fields": "camera_imu_time_offset_s (cam_time_offset_ns)"
+    }
+  ]
+}
