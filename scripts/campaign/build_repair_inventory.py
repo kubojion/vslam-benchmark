@@ -69,6 +69,62 @@ def completed_zed_selections(repo):
     return selected
 
 
+BATCH_SELECTIONS=('configs/campaigns/zed-vio-n3-attempts-20261003.json',)
+TERMINAL=('evaluated','evaluated_failure_or_review','no_trajectory','evaluation_failed')
+
+
+def completed_batch_selections(repo, earlier):
+    """Select the terminal attempts of a completed later batch, regardless of outcome.
+
+    Every repetition listed for a cell is either an attempt of this batch (checked
+    against the frozen executed plan, the batch status and its attempt state) or the
+    same physical attempt an earlier verified selection already chose.
+    """
+    selected={}
+    for name in BATCH_SELECTIONS:
+        path=repo/name
+        if not path.is_file():continue
+        value=read(path)
+        if value.get('schema')!=1:raise ValueError('unsupported batch selection schema')
+        def checked(item):
+            relative=Path(item['path'])
+            if relative.is_absolute() or '..' in relative.parts:
+                raise ValueError('unsafe batch-selection evidence path')
+            p=repo/relative
+            if not p.is_file() or evidence(p,repo)['sha256']!=item['sha256']:
+                raise ValueError('stale batch-selection evidence: '+str(relative))
+            return p
+        manifest=read(checked(value['source_manifest']))
+        status=read(checked(value['batch_status']))
+        finished={str(a.get('output','')).split('/results/',1)[-1]:a for a in status['attempts'] if a.get('status')=='finished'}
+        records={(r['cell'],r['repetition']):r for r in value['completed']}
+        if len(records)!=len(value['completed']):raise ValueError('duplicate batch-selection record')
+        for key,ids in value['cells'].items():
+            if key in selected or len(ids)!=3:raise ValueError('batch selection must list three repetitions once per cell')
+            for repetition,run_id in enumerate(ids,1):
+                record=records.pop((key,repetition),None)
+                if record is None:
+                    if earlier.get(key,[None]*3)[repetition-1]!=run_id:
+                        raise ValueError(f'{key} r{repetition}: neither in this batch nor previously selected')
+                    continue
+                if record['physical_run_id']!=run_id or record['path']!=f'results/{key}/run{run_id}':
+                    raise ValueError('batch record differs from its cell listing: '+key)
+                actions=[a for a in manifest['actions'] if a['id']==record['action_id']]
+                if (len(actions)!=1 or actions[0]['cell']!=key or actions[0]['repetition']!=repetition
+                        or actions[0]['planned_output']!=record['path']):
+                    raise ValueError('completed attempt differs from executed plan: '+record['action_id'])
+                if record['path'].removeprefix('results/') not in finished:
+                    raise ValueError('batch status does not list a finished attempt at '+record['path'])
+                state=read(checked(record['attempt_state']))
+                if state.get('identity')!=dict(cohort=actions[0]['cohort'],repetition=repetition,physical_run_id=run_id):
+                    raise ValueError('completed attempt identity differs from executed plan: '+record['path'])
+                if state.get('status') not in TERMINAL:
+                    raise ValueError('attempt is not terminal; do not select a live or interrupted capture')
+            selected[key]=list(ids)
+        if records:raise ValueError('batch records without a cell listing: '+', '.join(r['path'] for r in records.values()))
+    return selected
+
+
 def selected_attempts(repo):
     path=repo/SELECTION
     if not path.is_file():return {}
@@ -323,6 +379,7 @@ def build(repo,stage):
     future,future_hash=load_manifest(repo/'configs/campaigns/quality-final.json')
     cells=[];members=set();selections=selected_attempts(repo);superseded=set()
     zed_selections=completed_zed_selections(repo);selections.update(zed_selections)
+    batch_selections=completed_batch_selections(repo,zed_selections);selections.update(batch_selections)
     for cell in expand_cells(future):
         key=cell_key(cell);attempts=[]
         ids=selections.get(key,[1,2,3])
@@ -338,7 +395,8 @@ def build(repo,stage):
                 attempt['recorded_cohort_fingerprint']=attempt['cohort_fingerprint']
                 attempt['cohort_fingerprint']=pooling['cohort']
         cells.append(dict(**cell,variant='default',key=key,target_repetitions=3,cohort_pooling=pooling,
-            comparison_membership=('corrected_zed_first_20261002' if key in zed_selections
+            comparison_membership=('zed_vio_n3_20261003' if key in batch_selections else
+                'corrected_zed_first_20261002' if key in zed_selections
                 else 'corrected_euroc_20261001' if key in selections else None),
             original_campaign_member=cell['algorithm'] in executed['tables'][cell['run_type']],
             attempts=attempts,evaluated=sum(a['evaluated'] for a in attempts),
@@ -366,7 +424,8 @@ def build(repo,stage):
              outcomes=dict(sum((Counter(c['outcomes']) for c in selected),Counter())))
     return dict(schema_version=1,audit_status='in_progress',qualification_review=review_identity(repo),
         attempt_selection=evidence(repo/SELECTION,repo) if (repo/SELECTION).is_file() else None,
-        additional_attempt_selections=[evidence(repo/ZED_SELECTION,repo)] if zed_selections else [],
+        additional_attempt_selections=([evidence(repo/ZED_SELECTION,repo)] if zed_selections else [])
+            +[evidence(repo/name,repo) for name in BATCH_SELECTIONS if batch_selections and (repo/name).is_file()],
         original_manifest=dict(path='logs/server-campaign/quality-final-n3-no-gnss/manifest.json',sha256=executed_hash),
         scope_source=dict(path='configs/campaigns/quality-final.json',sha256=future_hash,
                           note='algorithm/dataset membership retained; future repeat target is 3, not the historical proposal of 5'),
