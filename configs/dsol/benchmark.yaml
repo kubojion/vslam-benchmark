@@ -1,0 +1,26 @@
+# DSOL estimator settings for the benchmark, identical for every dataset.
+# Loaded on top of upstream config/dsol.yaml (the defaults). This is upstream
+# config/dsol_tta.yaml (the authors' TartanAir profile) unchanged: of the three
+# profiles the authors ship it is the only one meant for mixed near/far scenes;
+# dsol_kit.yaml assumes nothing closer than 4 m (KITTI driving) and dsol_d455.yaml
+# initialises depth from an RGB-D sensor the benchmark does not have.
+# Calibration is not here: fx fy cx cy baseline come from configs/sensors/<dataset>.json.
+odom:
+  marg: false
+  num_kfs: 4
+  num_levels: 4
+  vis_min_depth: 0.5
+  reinit: true
+  init_depth: false
+  init_stereo: true
+  init_align: true
+select:
+  min_grad: 4
+stereo:
+  min_depth: 0.5
+align:
+  affine: false
+  stereo: false
+adjust:
+  affine: false
+  stereo: true

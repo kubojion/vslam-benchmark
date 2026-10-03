@@ -1,0 +1,41 @@
+# DSOL (Direct Sparse Odometry Lite) on ROS Noetic, following the upstream CI recipe
+# (.github/workflows/build.yaml at 2b059e6~1): same dependency versions, Release build.
+# Build context is the pinned src/dsol checkout:
+#   docker build -f scripts/setup/Dockerfile.dsol -t vslam_dsol:noetic src/dsol
+FROM ros:noetic-perception
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential git cmake libeigen3-dev libtbb-dev libgtest-dev libboost-dev \
+        python3-catkin-tools ros-noetic-tf2-ros ros-noetic-tf2-eigen ros-noetic-cv-bridge \
+        ros-noetic-image-transport ros-noetic-nav-msgs ros-noetic-visualization-msgs \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /deps
+RUN git clone -q --depth 1 --branch v0.6.0 https://github.com/google/glog.git \
+    && cmake -S glog -B glog/build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 -DBUILD_TESTING=OFF \
+    && cmake --build glog/build -j"$(nproc)" --target install
+RUN git clone -q --depth 1 --branch 8.1.0 https://github.com/fmtlib/fmt.git \
+    && cmake -S fmt -B fmt/build -DCMAKE_BUILD_TYPE=Release -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE \
+             -DCMAKE_CXX_STANDARD=17 -DFMT_TEST=False \
+    && cmake --build fmt/build -j"$(nproc)" --target install
+RUN git clone -q --depth 1 --branch 20220623.0 https://github.com/abseil/abseil-cpp.git \
+    && cmake -S abseil-cpp -B abseil-cpp/build -DCMAKE_BUILD_TYPE=Release -DABSL_BUILD_TESTING=OFF \
+             -DCMAKE_CXX_STANDARD=17 -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+    && cmake --build abseil-cpp/build -j"$(nproc)" --target install
+RUN git clone -q https://github.com/strasdat/Sophus.git \
+    && git -C Sophus checkout -q 785fef3 \
+    && cmake -S Sophus -B Sophus/build -DBUILD_SOPHUS_TESTS=OFF -DBUILD_SOPHUS_EXAMPLES=OFF -DCMAKE_CXX_STANDARD=17 \
+    && cmake --build Sophus/build --target install
+RUN git clone -q --depth 1 --branch v1.6.2 https://github.com/google/benchmark.git \
+    && cmake -S benchmark -B benchmark/build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 \
+             -DBENCHMARK_DOWNLOAD_DEPENDENCIES=on -DBENCHMARK_ENABLE_GTEST_TESTS=OFF \
+    && cmake --build benchmark/build -j"$(nproc)" --target install
+
+COPY . /catkin_ws/src/dsol
+WORKDIR /catkin_ws
+RUN . /opt/ros/noetic/setup.sh && catkin init \
+    && catkin build -j"$(nproc)" --no-status -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17
+RUN printf '#!/bin/bash\nsource /opt/ros/noetic/setup.bash\nsource /catkin_ws/devel/setup.bash\nexec "$@"\n' > /entrypoint.sh \
+    && chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
