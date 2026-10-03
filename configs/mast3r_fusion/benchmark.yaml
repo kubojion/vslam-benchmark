@@ -1,0 +1,14 @@
+# MASt3R-Fusion settings for the benchmark, identical for every dataset.
+# Loaded on top of upstream config/base_euroc.yaml (the authors' EuRoC parameter file).
+#
+# Applied by scripts/run/_mast3r_fusion_stage.py:
+#   1. upstream base_euroc.yaml
+#   2. "all" below (section by section) - currently empty: the upstream file is used as is
+#   3. dataset.subsample = floor(camera rate / 10), at least 1 (the authors run at 10 Hz)
+#   4. IMU noise [accel density, gyro density, accel bias walk, gyro bias walk] from
+#      configs/sensors/<dataset>.json, except for the datasets listed under
+#      keep_upstream_imu_noise, where the authors' own values stay.
+# Camera model and camera-IMU transform are written per run from the sensor profile.
+all: {}
+keep_upstream_imu_noise:
+  - euroc_mav

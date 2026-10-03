@@ -54,3 +54,6 @@
 [submodule "src/svo_pro"]
 	path = src/svo_pro
 	url = https://github.com/uzh-rpg/rpg_svo_pro_open.git
+[submodule "src/mast3r_fusion"]
+	path = src/mast3r_fusion
+	url = https://github.com/GREAT-WHU/MASt3R-Fusion.git
