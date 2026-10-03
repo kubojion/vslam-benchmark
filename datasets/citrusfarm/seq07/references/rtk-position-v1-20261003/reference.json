@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "version": "rtk-position-v1-20261003",
+  "dataset": "citrusfarm",
+  "sequence": "seq07",
+  "source_sequence": "07_14B_Jackal",
+  "orientation_valid": false,
+  "nominal_geometry": true,
+  "point": "ZED2i left camera (rectified optical centre)",
+  "lever_antenna_minus_camera_base_m": [
+    -0.419759,
+    -0.070348,
+    0.313307
+  ],
+  "heading": "direction of travel of the antenna track, chord over +-0.5 m of path (max 3.0 s); forward-only driving checked on the wheel odometry",
+  "attitude": "level platform assumed (single antenna)",
+  "clock_offset_s": 0.0,
+  "retained_samples": 10060,
+  "total_samples": 10139,
+  "authors_timestamp_spacing_s": {
+    "median": 0.10017645359039307,
+    "min": 0.011780500411987305,
+    "max": 0.1910865306854248
+  },
+  "limitations": [
+    "position-only reference; identity quaternions are placeholders",
+    "single-antenna heading from the path and a level platform: lever errors of a few centimetres at 0.43 m horizontal lever, mostly in turns and with roll/pitch rocking",
+    "authors timestamps are host arrival times at 10 Hz (spacing 0.01-0.19 s); no time correction fitted, so a few centimetres of along-track error remain",
+    "lever arm combines CAD values (antenna, base_link) with calibrated LiDAR-camera and camera-camera transforms; no surveyed mounting covariance"
+  ],
+  "evidence": [
+    {
+      "path": "datasets/citrusfarm/seq07/gt_antenna_tum.txt",
+      "sha256": "605d8c916776e000a98901552d85605370561a5060c581055092738ed83e1d67"
+    },
+    {
+      "path": "datasets/citrusfarm/seq07/manifest.json",
+      "sha256": "467723e0e17cb4fd92b7a5e063820c929b806afe8418b0c49c711ccccad91be3"
+    },
+    {
+      "path": "scripts/data/build_citrusfarm_reference.py",
+      "sha256": "00fdd48735b5542e1de1e8b91a7e4a47f298deb554539f1b30387a5f3ed0efb2"
+    },
+    {
+      "path": "configs/sensors/sources/citrusfarm/01-multi-cam-report.txt",
+      "sha256": "221a767ef4c3add968d2ac72f10677c0f52d926e277ce68d84e65c0b1e25a7fe"
+    },
+    {
+      "path": "configs/sensors/sources/citrusfarm/01-multi-cam-result.yaml",
+      "sha256": "e903a94947658fc701077a191cfd7df74e03b8e9411949cc653cdd9208cf5cfe"
+    },
+    {
+      "path": "configs/sensors/sources/citrusfarm/02-imu-cam-report.txt",
+      "sha256": "8386f784da4ae0df18871696f8d50f5443d55c98a11faa4e5ce1e7200b7e57b1"
+    },
+    {
+      "path": "configs/sensors/sources/citrusfarm/02-imu-cam-result.yaml",
+      "sha256": "894d314285aa0e37b52cf0c6f6148c6c17bdbb7f6cb481512f1340e0307f534a"
+    },
+    {
+      "path": "configs/sensors/sources/citrusfarm/02-imu-intrinsics.yaml",
+      "sha256": "a80eb01b5db5126f57ae99e77cf334952cec781ffa4510e3a4cb3d954b02cc84"
+    },
+    {
+      "path": "configs/sensors/sources/citrusfarm/03-lidar-cam-result.txt",
+      "sha256": "9d2274b18f6f0739031f7f145b2b05784068150cc87283abbd85f89f0eb4c334"
+    },
+    {
+      "path": "configs/sensors/sources/citrusfarm/04-lidar-gps-result.txt",
+      "sha256": "df2ccdcb23c966d345cae496390f8fdd40941051800322b9cc951623ec1a7e51"
+    },
+    {
+      "path": "configs/sensors/sources/citrusfarm/05-baselink-lidar-result.txt",
+      "sha256": "de3fb49ed489ff865bcd93440c775e2559806cf3bd13874422897656dc95c2cb"
+    },
+    {
+      "path": "configs/sensors/sources/citrusfarm/index.json",
+      "sha256": "35955b77664f384c459433569f881fe0c39cd9e47536e015cb21b17d82c5e636"
+    }
+  ],
+  "variants": {
+    "primary": {
+      "trajectory": {
+        "path": "datasets/citrusfarm/seq07/references/rtk-position-v1-20261003/primary.tum",
+        "sha256": "a707c79573e353790b33d2a93c92354257ca71cf52d2ee8ed74ceeee577c17a9"
+      },
+      "support": {
+        "path": "datasets/citrusfarm/seq07/references/rtk-position-v1-20261003/primary-support.json",
+        "sha256": "23c61286b9a9ca3f3ae1cb1a34b29d0debb32703db46f425f614d2dc388bda6b"
+      },
+      "retained_samples": 10060
+    }
+  },
+  "construction": {
+    "path": "datasets/citrusfarm/seq07/references/rtk-position-v1-20261003/construction.npz",
+    "sha256": "24b322dd7ecbadf6a07b477d68fc2bcaec9e8dc833f9b925870e44b8583d9d15"
+  }
+}

@@ -15,7 +15,7 @@ import pytest
 import yaml
 
 REPO = Path(__file__).resolve().parents[3]
-DATASETS = ('euroc_mav', 'rosariov2', 'hortimulti', 'zed2i')
+DATASETS = ('euroc_mav', 'rosariov2', 'hortimulti', 'zed2i', 'citrusfarm')
 
 
 def load(name):

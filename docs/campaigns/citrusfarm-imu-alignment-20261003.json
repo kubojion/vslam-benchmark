@@ -1,0 +1,30 @@
+{
+ "schema": 1,
+ "tool": "scripts/data/citrusfarm_imu_alignment.py",
+ "sequences": {
+  "seq04": {
+   "measured_offset_s": 0.004965,
+   "correlation": 0.9963,
+   "per_60s_offset_ms": {
+    "median": 4.42,
+    "min": 1.37,
+    "max": 9.14
+   },
+   "offset_after_shift_s": 0.0,
+   "gyro_rotation_vs_kalibr_chain_deg": 0.323,
+   "rotation_fit_residual_rad_s_rms": 0.0157
+  },
+  "seq07": {
+   "measured_offset_s": -0.021985,
+   "correlation": 0.9897,
+   "per_60s_offset_ms": {
+    "median": -21.12,
+    "min": -33.13,
+    "max": -16.36
+   },
+   "offset_after_shift_s": -0.0,
+   "gyro_rotation_vs_kalibr_chain_deg": 0.293,
+   "rotation_fit_residual_rad_s_rms": 0.02386
+  }
+ }
+}

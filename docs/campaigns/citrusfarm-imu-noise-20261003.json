@@ -1,0 +1,92 @@
+{
+ "datasets": {
+  "citrusfarm": {
+   "recommended": {
+    "sigma_a_c": 0.05,
+    "sigma_aw_c": 6.706087584689249e-06,
+    "sigma_g_c": 0.003,
+    "sigma_gw_c": 3.5636559575381104e-06
+   },
+   "sequences": {
+    "seq04": {
+     "gyro_bias_rad_s": [
+      -0.0011885417878513783,
+      -0.0002443802432086664,
+      -0.0012837000340943886
+     ],
+     "operational_density_q95": {
+      "accel_m_s2_sqrt_hz": [
+       0.02552732974991316,
+       0.04409986195663594,
+       0.04049468344714072
+      ],
+      "gyro_rad_s_sqrt_hz": [
+       0.002504472358137435,
+       0.002083075337701649,
+       0.0011358076956026171
+      ]
+     },
+     "path": "datasets/citrusfarm/seq04/mav0/imu0/data.csv",
+     "sample_rate_hz": 200.0133208871711,
+     "stationary_density": {
+      "accel_m_s2_sqrt_hz": [
+       0.0003756584422300161,
+       0.00030875956589364366,
+       0.00021276786350094243
+      ],
+      "gyro_rad_s_sqrt_hz": [
+       6.200963648601147e-05,
+       6.29403248694602e-05,
+       6.641915360418965e-05
+      ]
+     },
+     "stationary_path": "datasets/citrusfarm/seq04/mav0/imu0/data.csv",
+     "stationary_sample_rate_hz": 200.0133208871711,
+     "stationary_samples": 601,
+     "stationary_seconds": 3.0,
+     "stationary_start_seconds": 0.0
+    },
+    "seq07": {
+     "gyro_bias_rad_s": [
+      -0.0011755745220504838,
+      5.748786015216577e-05,
+      -0.001230127947642166
+     ],
+     "operational_density_q95": {
+      "accel_m_s2_sqrt_hz": [
+       0.023751543943921524,
+       0.04301708858601724,
+       0.035984214610984555
+      ],
+      "gyro_rad_s_sqrt_hz": [
+       0.002176020722798228,
+       0.0018214135358519748,
+       0.0009744205310781152
+      ]
+     },
+     "path": "datasets/citrusfarm/seq07/mav0/imu0/data.csv",
+     "sample_rate_hz": 200.01360092486289,
+     "stationary_density": {
+      "accel_m_s2_sqrt_hz": [
+       0.0002998782312274904,
+       0.00033041974906548416,
+       0.00018505873309392274
+      ],
+      "gyro_rad_s_sqrt_hz": [
+       5.689563825830273e-05,
+       6.315492313330242e-05,
+       6.284714289062581e-05
+      ]
+     },
+     "stationary_path": "datasets/citrusfarm/seq07/mav0/imu0/data.csv",
+     "stationary_sample_rate_hz": 200.01360092486289,
+     "stationary_samples": 401,
+     "stationary_seconds": 2.0,
+     "stationary_start_seconds": 0.0
+    }
+   }
+  }
+ },
+ "method": "1 s robust first-difference density, q95 envelope",
+ "note": "scripts/analysis/derive_okvis_imu_noise.py --datasets citrusfarm, on the extracted (camera-clock) MicroStrain files"
+}

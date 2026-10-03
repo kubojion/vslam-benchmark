@@ -1,0 +1,80 @@
+{
+ "schema": 1,
+ "dataset": "citrusfarm",
+ "sequences": [
+  "seq04",
+  "seq07"
+ ],
+ "T_imu_left": [
+  [
+   -0.02346529509,
+   0.003427464395,
+   -0.999718776664,
+   -0.172356736462
+  ],
+  [
+   0.999722472445,
+   0.002168597041,
+   -0.023457946957,
+   -0.061007465931
+  ],
+  [
+   0.002087585903,
+   -0.999991774804,
+   -0.003477399948,
+   -0.081450715984
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "frames": "T_imu_left maps ZED left rectified optical coordinates into the MicroStrain 3DM-GX5 frame",
+ "source": "inverse of the authors' Kalibr chain: 02-imu-cam-result (MicroStrain -> Blackfly) and 01-multi-cam-result cam1 (Blackfly -> rectified ZED left)",
+ "independent_checks": {
+  "seq04": {
+   "camera_clock_shift_s": 0.004965349,
+   "measurement": "MicroStrain vs ZED IMU gyro cross-correlation and rotation fit (scripts/data/citrusfarm_imu_alignment.py)",
+   "measured_offset_s": 0.004965,
+   "correlation": 0.9963,
+   "per_60s_offset_ms": {
+    "median": 4.42,
+    "min": 1.37,
+    "max": 9.14
+   },
+   "offset_after_shift_s": 0.0,
+   "gyro_rotation_vs_kalibr_chain_deg": 0.323,
+   "rotation_fit_residual_rad_s_rms": 0.0157
+  },
+  "seq07": {
+   "camera_clock_shift_s": -0.021984935,
+   "measurement": "MicroStrain vs ZED IMU gyro cross-correlation and rotation fit (scripts/data/citrusfarm_imu_alignment.py)",
+   "measured_offset_s": -0.021985,
+   "correlation": 0.9897,
+   "per_60s_offset_ms": {
+    "median": -21.12,
+    "min": -33.13,
+    "max": -16.36
+   },
+   "offset_after_shift_s": -0.0,
+   "gyro_rotation_vs_kalibr_chain_deg": 0.293,
+   "rotation_fit_residual_rad_s_rms": 0.02386
+  }
+ },
+ "evidence": [
+  {
+   "path": "configs/sensors/sources/citrusfarm/01-multi-cam-result.yaml",
+   "sha256": "e903a94947658fc701077a191cfd7df74e03b8e9411949cc653cdd9208cf5cfe"
+  },
+  {
+   "path": "configs/sensors/sources/citrusfarm/02-imu-cam-result.yaml",
+   "sha256": "894d314285aa0e37b52cf0c6f6148c6c17bdbb7f6cb481512f1340e0307f534a"
+  },
+  {
+   "path": "configs/sensors/sources/citrusfarm/index.json",
+   "sha256": "35955b77664f384c459433569f881fe0c39cd9e47536e015cb21b17d82c5e636"
+  }
+ ]
+}

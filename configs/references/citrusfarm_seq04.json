@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "dataset": "citrusfarm",
+  "sequence": "seq04",
+  "variant": "primary",
+  "reference": {
+    "path": "datasets/citrusfarm/seq04/references/rtk-position-v1-20261003/reference.json",
+    "sha256": "c2ecba6307dfc0446d8a75d7d3c7c807648c437c610b2eabf1be0b0084f8840e"
+  }
+}

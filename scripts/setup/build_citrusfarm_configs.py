@@ -323,8 +323,32 @@ def macvo(v):
               f"    cx: {num(v['cx'])}\n    cy: {num(v['cy'])}\n")
 
 
+def physical_record(v):
+    """Reviewed physical calibration the evaluator uses for inertial outputs (_pose_frames.py)."""
+    import hashlib
+    def evidence(path):
+        return dict(path=str(path.relative_to(ROOT)), sha256=hashlib.sha256(path.read_bytes()).hexdigest())
+    checks = {}
+    for seq in SEQUENCES:
+        manifest = json.loads((ROOT / 'datasets/citrusfarm' / seq / 'manifest.json').read_text())['imu']
+        checks[seq] = dict(camera_clock_shift_s=manifest['camera_clock_shift_s'],
+                           measurement='MicroStrain vs ZED IMU gyro cross-correlation and rotation fit '
+                                       '(scripts/data/citrusfarm_imu_alignment.py)')
+    for seq, values in v.get('alignment', {}).get('sequences', {}).items():
+        checks[seq].update(values)
+    record = dict(
+        schema=1, dataset='citrusfarm', sequences=list(SEQUENCES),
+        T_imu_left=v['t_imu_cam0'].round(12).tolist(),
+        frames='T_imu_left maps ZED left rectified optical coordinates into the MicroStrain 3DM-GX5 frame',
+        source="inverse of the authors' Kalibr chain: 02-imu-cam-result (MicroStrain -> Blackfly) and "
+               '01-multi-cam-result cam1 (Blackfly -> rectified ZED left)',
+        independent_checks=checks,
+        evidence=[evidence(SOURCES / name) for name in ('01-multi-cam-result.yaml', '02-imu-cam-result.yaml', 'index.json')])
+    write(ROOT / 'docs/campaigns/citrusfarm-physical-calibration-20261003.json', json.dumps(record, indent=1) + '\n')
+
+
 WRITERS = dict(orbslam3=orbslam3, basalt=basalt, airslam=airslam, ov2slam=ov2slam, voxel_svio=voxel_svio,
-               openvins=openvins, dpvo=dpvo, macvo=macvo,
+               openvins=openvins, dpvo=dpvo, macvo=macvo, physical_record=physical_record,
                okvis2=lambda v: okvis(v, 'okvis2', ('vio', 'vo', 'vo_lc')),
                okvis2x=lambda v: okvis(v, 'okvis2x', ('vio', 'vio_lc', 'vo', 'vo_lc')))
 
@@ -333,12 +357,16 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     ap.add_argument('--envelope', type=Path, required=True,
                     help='JSON from derive_okvis_imu_noise.py --datasets citrusfarm')
+    ap.add_argument('--alignment', type=Path,
+                    help='JSON with the per-sequence alignment results to quote in the physical calibration record')
     ap.add_argument('--only', nargs='+', choices=sorted(WRITERS), default=sorted(WRITERS))
     args = ap.parse_args()
     report = json.loads(args.envelope.read_text())
     envelope = report['datasets']['citrusfarm']['recommended']
     v = values(envelope)
     v['sequences'] = report['datasets']['citrusfarm']['sequences']
+    if args.alignment:
+        v['alignment'] = json.loads(args.alignment.read_text())
     for name in args.only:
         WRITERS[name](v)
 

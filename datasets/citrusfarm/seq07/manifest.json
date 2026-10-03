@@ -1,0 +1,375 @@
+{
+ "dataset": "citrusfarm",
+ "sequence": "seq07",
+ "source_sequence": "07_14B_Jackal",
+ "source": "https://ucr-robotics.github.io/Citrus-Farm-Dataset/ (AWS s3://ucr-robotics/citrus-farm-dataset)",
+ "inputs": [
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-31-20_0.bag",
+   "md5": "85fd78db215346a540888292442b2e30"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-31-49_1.bag",
+   "md5": "1e3e5640cdcf62d4a1cb84d13ece592d"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-32-17_2.bag",
+   "md5": "353d213f2740ce47ece785ab0dd885a9"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-32-46_3.bag",
+   "md5": "c0f690a744a562306a151ee13946552e"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-33-15_4.bag",
+   "md5": "91c78c61f2bf3459ff9c6eecd20f8176"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-33-44_5.bag",
+   "md5": "0c8f5243d8afcb28f761e3994f7fcade"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-34-13_6.bag",
+   "md5": "42426d4ddc67c515e7113fbf6a639077"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-34-41_7.bag",
+   "md5": "9b774dd5879a75bbdedf24cd298861c9"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-35-10_8.bag",
+   "md5": "16d011ce74f13d96af7b1dce2fd3933b"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-35-39_9.bag",
+   "md5": "9ffc5903698607144173cf25ab4f0414"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-36-08_10.bag",
+   "md5": "260511e425554e70544057b25dfc131b"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-36-37_11.bag",
+   "md5": "c81f6fc72431027ab335625662577db7"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-37-05_12.bag",
+   "md5": "ae5753a4ffd7e27a5c6b67d74e76361d"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-37-34_13.bag",
+   "md5": "15e950f72b363bfb38438cd09e9e88a3"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-38-03_14.bag",
+   "md5": "4cf990831a0053059a77607d0d78a4ac"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-38-32_15.bag",
+   "md5": "0c542fede5cf5dd975e455e70f282b83"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-39-01_16.bag",
+   "md5": "7cf711e13fa220f115f1dc027dd90695"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-39-30_17.bag",
+   "md5": "2e157d95bd665131bcff5bd7a866dcb2"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-39-58_18.bag",
+   "md5": "2298d429d349d725df32091699519328"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-40-27_19.bag",
+   "md5": "a76886618bb4493517736322c2133b0e"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-40-56_20.bag",
+   "md5": "d4feb0a3255ffa59366f96d8b230377d"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-41-25_21.bag",
+   "md5": "687fc238935d85159f7a70ca5a6df73c"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-41-53_22.bag",
+   "md5": "478ab9a2ebae8a81e96739554890b022"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-42-22_23.bag",
+   "md5": "3426d82b46b89b011d3e75fb2c2a9553"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-42-51_24.bag",
+   "md5": "d35e0fd6b8a71fafa988e77c819fb42c"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-43-20_25.bag",
+   "md5": "f7dbbd67a1652668a39c397d1ea48120"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-43-49_26.bag",
+   "md5": "4d4b1e6a427e14f3b4d333d0aabc56fa"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-44-17_27.bag",
+   "md5": "53955e119051fafc018f8d23a8f0b7a2"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-44-46_28.bag",
+   "md5": "abccfa9f7130fb43adf44fa428660276"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-45-15_29.bag",
+   "md5": "85a0074bbb8c23afd1bfc9ab295d1c2d"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-45-44_30.bag",
+   "md5": "86bc4333bcfdd461c2997bddcdbf04d7"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-46-13_31.bag",
+   "md5": "8aa1d8e2dbdae86dbc30a35cb82e4b66"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-46-42_32.bag",
+   "md5": "41f7413c068084458096efb9d2d12b22"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-47-10_33.bag",
+   "md5": "2c57ca85cc21fd5c1bdc6ae36dc5a188"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-47-39_34.bag",
+   "md5": "530b1b6b6c7bbced97f267eec9120f57"
+  },
+  {
+   "path": "07_14B_Jackal/zed_2023-07-16-18-48-08_35.bag",
+   "md5": "44cb328a41d26b3a63dba05e96543bdc"
+  },
+  {
+   "path": "07_14B_Jackal/base_2023-07-16-18-31-20_0.bag",
+   "md5": "968a0329629537d4f5180de03710201b"
+  },
+  {
+   "path": "07_14B_Jackal/base_2023-07-16-18-39-54_1.bag",
+   "md5": "f06743be41bf7f827a59425e51de5843"
+  },
+  {
+   "path": "ground_truth/07_14B_Jackal/gt.csv",
+   "md5": "8fa8164bc49b57aa363eb209208dece7"
+  }
+ ],
+ "topics": {
+  "left": "/zed2i/zed_node/left/image_rect_color",
+  "right": "/zed2i/zed_node/right/image_rect_color",
+  "imu": "/microstrain/imu/data",
+  "camera_clock_imu": "/zed2i/zed_node/imu/data"
+ },
+ "images": {
+  "format": "png",
+  "colour": "rgb (bgra8 alpha dropped, pixels unchanged)",
+  "rectification": "ZED driver factory rectification (image_rect_color)",
+  "stereo_pairs": 10136,
+  "unpaired_or_outside_imu_span_removed": 1,
+  "timing": {
+   "count": 10136,
+   "first_ns": 1689557480292233848,
+   "last_ns": 1689558493823798848,
+   "median_dt_s": 0.1,
+   "min_dt_s": 0.032904,
+   "max_dt_s": 0.23358900000000002,
+   "non_increasing": 0,
+   "gaps_over_1p5_nominal": 3
+  }
+ },
+ "imu": {
+  "stamps": "sample-index re-stamping: linear fit on the sample index plus the minimum-latency envelope of the host stamps; samples and their order unchanged",
+  "restamping": {
+   "period_s": 0.004999657461511919,
+   "samples": 202812,
+   "rate_hz": 200.0147931911872,
+   "arrival_latency_above_minimum_ms": {
+    "median": 4.417,
+    "p99": 10.926,
+    "max": 31.04
+   },
+   "envelope_ms": {
+    "min": -4.795,
+    "max": -3.92,
+    "largest_step": 0.708
+   },
+   "window_s": 10.0,
+   "envelope_percentile": 0.0
+  },
+  "original_stamps": "sources/microstrain_raw.csv",
+  "authors_filter_stamps": "sources/microstrain_authors_filter.csv (imu_filter.py, started at the first stamp)",
+  "raw_timing": {
+   "count": 202812,
+   "first_ns": 1689557480012000000,
+   "last_ns": 1689558493992000000,
+   "median_dt_s": 0.005,
+   "min_dt_s": 0.0,
+   "max_dt_s": 0.032,
+   "non_increasing": 34799,
+   "gaps_over_1p5_nominal": 34492
+  },
+  "restamped_timing": {
+   "count": 202812,
+   "first_ns": 1689557480002416869,
+   "last_ns": 1689558493987723571,
+   "median_dt_s": 0.00499966,
+   "min_dt_s": 0.004999303,
+   "max_dt_s": 0.004999964,
+   "non_increasing": 0,
+   "gaps_over_1p5_nominal": 0
+  },
+  "authors_filter_timing": {
+   "count": 202812,
+   "first_ns": 1689557480012000000,
+   "last_ns": 1689558493991810816,
+   "median_dt_s": 0.005071104,
+   "min_dt_s": 0.0020052480000000003,
+   "max_dt_s": 0.012686592,
+   "non_increasing": 0,
+   "gaps_over_1p5_nominal": 455
+  },
+  "restamped_minus_raw_ms": {
+   "p1": -10.926,
+   "median": -4.417,
+   "p99": -0.374
+  },
+  "authors_filter_minus_restamped_ms": {
+   "p1": 3.031,
+   "median": 4.393,
+   "p99": 7.13
+  },
+  "camera_clock_shift_s": -0.021984935,
+  "camera_clock": "mav0/imu0/data.csv stamps = re-stamped host stamps - camera_clock_shift_s (offset measured against the ZED IMU on this sequence); host-clock copy in sources/microstrain_host_clock.csv; estimators use a zero time offset",
+  "alignment_report": "sources/imu_alignment.json"
+ },
+ "zed_imu": {
+  "timing": {
+   "count": 191604,
+   "first_ns": 1689557480240900300,
+   "last_ns": 1689558493991994900,
+   "median_dt_s": 0.005050000000000001,
+   "min_dt_s": 0.00252,
+   "max_dt_s": 0.045450000000000004,
+   "non_increasing": 0,
+   "gaps_over_1p5_nominal": 27461
+  },
+  "use": "camera-IMU time offset measurement only"
+ },
+ "camera_info": {
+  "left": {
+   "width": 1280,
+   "height": 720,
+   "distortion_model": "plumb_bob",
+   "frame_id": "zed2i_left_camera_optical_frame",
+   "d": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "k": [
+    524.9387817382812,
+    0.0,
+    648.5057983398438,
+    0.0,
+    524.9387817382812,
+    357.3872375488281,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "r": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "p": [
+    524.9387817382812,
+    0.0,
+    648.5057983398438,
+    0.0,
+    0.0,
+    524.9387817382812,
+    357.3872375488281,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "stamp_ns": 1689557480192175848
+  },
+  "right": {
+   "width": 1280,
+   "height": 720,
+   "distortion_model": "plumb_bob",
+   "frame_id": "zed2i_right_camera_optical_frame",
+   "d": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "k": [
+    524.9387817382812,
+    0.0,
+    648.5057983398438,
+    0.0,
+    524.9387817382812,
+    357.3872375488281,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "r": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "p": [
+    524.9387817382812,
+    0.0,
+    648.5057983398438,
+    -62.932373046875,
+    0.0,
+    524.9387817382812,
+    357.3872375488281,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0
+   ],
+   "stamp_ns": 1689557480192175848
+  }
+ },
+ "ground_truth": {
+  "file": "gt_antenna_tum.txt",
+  "source": "ground_truth/07_14B_Jackal/gt.csv",
+  "samples": 10139,
+  "point": "GNSS antenna (SwiftNav Duro), position only; quaternions are placeholders"
+ },
+ "margin_ns": 50000000,
+ "max_frames": 0
+}

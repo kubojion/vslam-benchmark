@@ -58,7 +58,7 @@ imu_parameters:
     sigma_gw_c: 3.563656e-06  # authors Allan gyro bias random walk
     sigma_aw_c: 6.706088e-06  # authors Allan accel bias random walk
     g: 9.796  # Riverside, CA (~34 deg N)
-    g0: [-0.001188541788, -0.000244380243, -0.001283700034]  # stationary gyro bias at the start of seq07
+    g0: [-0.001175574522, 5.748786e-05, -0.001230127948]  # stationary gyro bias at the start of seq07
     a0: [ 0.0, 0.0, 0.0 ]
     s_a: [ 1.0, 1.0, 1.0 ]
     T_BS:
