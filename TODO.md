@@ -419,6 +419,21 @@ server runners. Remaining gaps are shown in the matrices above.
 | DPV-SLAM VO-LC N=1 on all 8 sequences | `[x]` now N=3 on all eight |
 | Keep DPV-SLAM out of true VIO-LC bucket | `[x]` moved out of `results-vio-lc/` |
 
+### cuVSLAM, SVO Pro, DSOL, MASt3R-Fusion (added October 2026)
+
+Setup, pilots and parameter sources: `docs/claude-new-algorithms-setup-20261003.md`.
+All four take their calibration from `configs/sensors/<dataset>.json`.
+
+| Task | Status |
+|---|---|
+| cuVSLAM 17.0.0: runner, settings, provenance, evaluator frame (VO, VO-LC, VIO, VIO-LC) | `[x]` one pilot run per mode on EuRoC, HortiMulti, Rosario and ZED |
+| SVO Pro: image, runner, settings, provenance, evaluator frame (VO, VIO, VIO-LC) | `[x]` one pilot run per mode on EuRoC, HortiMulti, Rosario and ZED |
+| DSOL: image, runner, settings, provenance, evaluator frame (VO) | `[x]` pilots on EuRoC, HortiMulti, Rosario and ZED |
+| MASt3R-Fusion: environment, runner, settings, provenance, evaluator frame (VIO, VIO-LC) | `[x]` pilots on EuRoC, HortiMulti and Rosario; ZED not piloted |
+| N=3 production runs for the 80 new cells | `[ ]` |
+| Claim reviews in the acceptance ledger for the new cells | `[ ]` after the N=3 runs |
+| GNSS-VIO for SVO Pro (`rpg_svo_pro_gps`) and MASt3R-Fusion | `[ ]` not set up |
+
 ### VO-LC Candidates
 
 | Task | Status |
@@ -482,9 +497,7 @@ server runners. Remaining gaps are shown in the matrices above.
 | DROID-SLAM | Historical exclusion retained. Original attribution is documented in the audit; saved results are under `results/vo/`, outside campaign comparisons. |
 | Stella-VSLAM | "Mostly reimplementation of ORB-SLAM3, adds nothing" (supervisor). |
 | VINS-Fusion | Overlaps Basalt + OpenVINS; ROS1 only. |
-| SVO Pro Open | ROS1 Melodic only; frozen toolchain. |
 | DSO / Stereo-DSO | Misaligned with stereo-IMU direction. |
-| cuVSLAM | Closed-source (NVIDIA). Cite KITTI numbers only. |
 | Kimera-VIO | Overlaps OpenVINS. |
 | MegaSaM | Excluded from the current and future campaign manifest; old memory failures do not establish a 4090 limit. |
 
