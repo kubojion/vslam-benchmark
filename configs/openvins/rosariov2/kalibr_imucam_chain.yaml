@@ -2,17 +2,18 @@
 # OpenVINS imu-cam extrinsics for Rosario v2.
 #
 # Images are recorded rectified RealSense IR (1280x720, mono8); distortion is zero.
-# BLOCKED historical identity profile: the physical IMU is not colocated.
-# Replace jointly with the matched image/projection/stereo model before VIO.
-# See docs/reference-review-20261001.md; this profile is not validated.
+# Kalibr camera-IMU result published by the Rosario v2 authors (infra1 -> IMU, 0.365 deg, 33.9 mm;
+# paper Table 8, URDF, their ORB-SLAM3 config); values from configs/sensors/rosariov2.json,
+# rotation projected onto SO(3). Decision 2026-10-03: same transform for every algorithm.
+# Camera model unchanged (authors ORB-SLAM3 profile), time offset 0, IMU noise unchanged.
 #
 # T_imu_cam = (R_CtoI | p_CinI) per OpenVINS docs.
 
 cam0:
   T_imu_cam:
-    - [1.0, 0.0, 0.0, 0.0]
-    - [0.0, 1.0, 0.0, 0.0]
-    - [0.0, 0.0, 1.0, 0.0]
+    - [0.999992236855, -0.003897970925, -0.000576239109, -0.004483]
+    - [0.003895034736, 0.999979855857, -0.005011644997, 0.019179]
+    - [0.000595762747, 0.005009361619, 0.999987275601, 0.027584]
     - [0.0, 0.0, 0.0, 1.0]
   cam_overlaps: [1]
   camera_model: pinhole
@@ -24,9 +25,9 @@ cam0:
 
 cam1:
   T_imu_cam:
-    - [1.0, 0.0, 0.0, 0.0497336941]
-    - [0.0, 1.0, 0.0, 0.0]
-    - [0.0, 0.0, 1.0, 0.0]
+    - [0.999992236855, -0.003897970925, -0.000576239109, 0.04525030801]
+    - [0.003895034736, 0.999979855857, -0.005011644997, 0.019372714466]
+    - [0.000595762747, 0.005009361619, 0.999987275601, 0.027613629482]
     - [0.0, 0.0, 0.0, 1.0]
   cam_overlaps: [0]
   camera_model: pinhole

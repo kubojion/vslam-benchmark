@@ -11,10 +11,13 @@
 #   fx = fy = 648.8624169653789,  cx = 645.0113372802734,  cy = 348.24266815185547
 #   baseline = 0.0497336941 m
 #
-# T convention (T_type: 0 = EuRoC Tbc): transform from body frame (= cam0) to camera.
-#   cam0: identity (cam0 IS the body frame).
-#   cam1: right camera is displaced +baseline along body x-axis, so
-#         T_bc1 has translation -baseline in x.
+# T convention (T_type: 0, src/airslam/src/camera.cc): T is T_bc, the camera pose in the
+# IMU body frame (as EuRoC T_BS). AirSLAM uses cam0 T for IMU-camera fusion and only
+# |x| of the cam0-cam1 offset for the stereo baseline.
+# Kalibr camera-IMU result published by the Rosario v2 authors (infra1 -> IMU, 0.365 deg, 33.9 mm;
+# paper Table 8, URDF, their ORB-SLAM3 config); values from configs/sensors/rosariov2.json,
+# rotation projected onto SO(3). Decision 2026-10-03: same transform for every algorithm.
+# Camera model unchanged (authors ORB-SLAM3 profile), time offset 0, IMU noise unchanged.
 
 image_height: 720
 image_width: 1280
@@ -32,24 +35,23 @@ cam0:
   distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
   T_type: 0           # EuRoC format, T is Tbc (camera -> body)
   T:
-  - [1.0, 0.0, 0.0,  0.0]
-  - [0.0, 1.0, 0.0,  0.0]
-  - [0.0, 0.0, 1.0,  0.0]
-  - [0.0, 0.0, 0.0,  1.0]
+  - [0.999992236855, -0.003897970925, -0.000576239109, -0.004483]
+  - [0.003895034736, 0.999979855857, -0.005011644997, 0.019179]
+  - [0.000595762747, 0.005009361619, 0.999987275601, 0.027584]
+  - [0.0, 0.0, 0.0, 1.0]
 
 cam1:
   intrinsics: [648.8624, 648.8624, 645.0113, 348.2427]  # fx fy cx cy
   distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
   T_type: 0
   T:
-  - [1.0, 0.0, 0.0, -0.0497336941]
-  - [0.0, 1.0, 0.0,  0.0]
-  - [0.0, 0.0, 1.0,  0.0]
-  - [0.0, 0.0, 0.0,  1.0]
+  - [0.999992236855, -0.003897970925, -0.000576239109, 0.04525030801]
+  - [0.003895034736, 0.999979855857, -0.005011644997, 0.019372714466]
+  - [0.000595762747, 0.005009361619, 0.999987275601, 0.027613629482]
+  - [0.0, 0.0, 0.0, 1.0]
 
 # IMU (Rosario v2: ZED integrated IMU, 200 Hz)
 # Noise from configs/basalt/rosariov2_calib.json and OKVIS2 reference.
-# T_cam_imu for cam0 is identity (ZED IMU is co-located with cam0 body frame).
 rate_hz: 200
 gyroscope_noise_density:     2.8200e-04   # rad/s/sqrt(Hz)
 gyroscope_random_walk:       1.0000e-04   # rad/s^2/sqrt(Hz)

@@ -78,8 +78,18 @@ time shift. Every other Rosario row uses the authors' ORB-SLAM3 camera model and
 Rerunning with those bundles would make the replacement rows differ from all other rows in
 camera model and timing. The Rosario reruns need profiles with: the ORB-SLAM3 camera model
 (fx = fy = 648.862 px, baseline 0.0497337 m, no distortion), the Kalibr camera–IMU transform
-(0.365°, 33.9 mm), time offset 0, and the published IMU noise. This is exactly
-`configs/sensors/rosariov2.json` on the `new-algorithms` branch.
+(0.365°, 33.9 mm) and time offset 0, as in `configs/sensors/rosariov2.json`.
+
+**Written 3 October.** The default runner configs now carry exactly this:
+`configs/basalt/rosariov2_calib.json`, `configs/openvins/rosariov2/kalibr_imucam_chain.yaml`,
+`configs/voxel_svio/rosariov2.yaml` and `configs/airslam/rosariov2_camera_vio.yaml`, checked
+against the profile by `scripts/campaign/tests/test_rosario_vio_profiles.py`. Only the
+camera–IMU transform changed. IMU noise stays as each algorithm already used it, so the
+rerun isolates the transform fix. Noise differs between algorithms on Rosario and is a
+disclosure item: ORB-SLAM3 uses the published Allan values (gyro 2.3e-4, accel 9.9e-4),
+OKVIS2/OKVIS2-X a recording-derived envelope (1.5e-3, 7.0e-2), and Basalt, OpenVINS,
+Voxel-SVIO and AirSLAM Basalt's EuRoC values (2.82e-4, 1.6e-2). The Codex candidate bundles
+are not used.
 
 ## 4. Cells that need a review decision, not runs
 
