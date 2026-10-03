@@ -8,10 +8,10 @@ algorithm is configured, what the first pilot runs gave, and what is still open.
 branch `new-algorithms` (off `3cee23b`). Nothing is committed and the main checkout was not
 touched. Datasets are links into the main checkout.
 
-**Status in one line:** all four algorithms are installed and run end to end through
-runners of the usual form, on all four datasets where piloted. They are **not** yet in the
-evaluator, the tables or the campaign manifest, no N=3 run exists, and the GNSS run types
-are not wired up.
+**Status in one line:** all four algorithms are installed, run end to end through runners
+of the usual form, and are registered in main's evaluation, campaign and reporting tools
+(branch `new-algorithms`, not yet merged into main). No N=3 run exists and the GNSS run
+types are not wired up.
 
 ## 1. What runs
 
@@ -190,9 +190,20 @@ The questions as they were put:
   MASt3R-Fusion (`--enable_gnss`). SVO Pro's GNSS version has no offline runner: it needs the
   live node, a player publishing positions in a local frame, the antenna lever arm and an
   initial heading. I left both until the GNSS input protocol of the main campaign is settled.
-- **Evaluator, tables, manifest.** The algorithms are not registered in
-  `scripts/eval/_pose_frames.py`, the inventory/manifest builders or the TODO generator.
-  Output frames to register: cuVSLAM, DSOL, MASt3R-Fusion = left camera; SVO Pro = IMU.
+- **Evaluator, tables, campaign tools: done on the branch (3 October).** Registered in the
+  evaluator's output frames and log observations, the provenance contracts, the campaign
+  executor's prerequisite checks, configuration recipes, saved-parameter and author-default
+  audits, default claim limits and planning prerequisites, the reviewed-override list, the
+  campaign scope (`configs/campaigns/quality-final.json`, 220 → 300 cells), report labels,
+  plot colours and the TODO matrices. Checked: the pilot runs evaluate with main's evaluator
+  (same ATE as the pilot script), pass main's per-run validator, the executor's preflight
+  reports no error for the 80 new cells, all 80 configuration recipes resolve, and the TODO
+  rows render. All test suites pass except two that also fail on main's own code in the
+  separate checkout (missing ORB vocabulary file, older numpy there).
+- **Still to do inside main after the merge:** rebuild the campaign inventory, planning
+  manifest and TODO matrices there (they need main's full run history), then the N=3 runs,
+  then a claim review per attempt in the acceptance ledger — the same review every existing
+  run went through before it could get a tick.
 - **N=3 production runs.** Rough machine time for three repetitions of everything set up:
   cuVSLAM 1–2 h, DSOL about 1.5 h, SVO Pro about 5 h, MASt3R-Fusion about 15–20 h
   (dominated by ZED).
