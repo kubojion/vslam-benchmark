@@ -44,11 +44,13 @@ LOG="$WS/logs/${DATASET}_${SEQ}_voxel_svio_${RUN_TYPE}_run${RUN_ID}.log"
 
 CONTAINER="voxel_svio"
 VOXEL_PREFIX=/root/catkin_ws/devel
-if [[ "$DATASET" == zed2i || "$DATASET" == citrusfarm || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
+# Repaired build (shutdown, initializer offset) wherever the reviewed configuration is current;
+# Rosario since its decided configuration became the default (3 October 2026).
+if [[ "$DATASET" == zed2i || "$DATASET" == citrusfarm || "$DATASET" == rosariov2 || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
     VOXEL_PREFIX=/root/catkin_ws_shutdown_20261002/devel
 fi
 VOXEL_BIN="$VOXEL_PREFIX/lib/voxel_svio/vio_node"
-if [[ "$DATASET" == zed2i || "$DATASET" == citrusfarm || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
+if [[ "$DATASET" == zed2i || "$DATASET" == citrusfarm || "$DATASET" == rosariov2 || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
     VOXEL_BIN=/root/vslam_voxel_audit_20261002_v3/vio_node
 fi
 source "$WS/scripts/run/_owned_process.sh"
@@ -93,7 +95,7 @@ PROV_ARGS=(
     --param "abort_backtrace_diagnostic=${VOXEL_SVIO_BACKTRACE:-0}"
     --container "$CONTAINER"
 )
-if [[ "$DATASET" == zed2i || "$DATASET" == citrusfarm || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
+if [[ "$DATASET" == zed2i || "$DATASET" == citrusfarm || "$DATASET" == rosariov2 || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
     PROV_ARGS+=(--artifact "shutdown_source_patch=$WS/docs/upstream/voxel-svio-subscriber-lifetime.patch"
         --artifact "native_build_review=$WS/docs/campaigns/voxel-zed-shutdown-build-20261002.json"
         --artifact "parameter_audit_build=$WS/docs/campaigns/voxel-parameter-audit-build-20261002-v3.json")

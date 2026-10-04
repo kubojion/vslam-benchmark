@@ -45,8 +45,9 @@ OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/openvins/run${RUN_ID}"
 LOG_GLOBAL="$WS/logs/${DATASET}_${SEQ}_openvins_${RUN_TYPE}_run${RUN_ID}.log"
 OPENVINS_IMAGE=openvins:humble
 OPENVINS_VERBOSITY=INFO
+# Shutdown-repaired image; Rosario since its decided configuration became the default (3 October 2026).
 if [[ -n "${ROSARIO_VIO_PROFILE:-}" ]]; then OPENVINS_VERBOSITY=DEBUG; fi
-if [[ "$DATASET" == euroc_mav || "$DATASET" == zed2i || "$DATASET" == citrusfarm || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then OPENVINS_IMAGE=openvins:humble-shutdown-20261001; fi
+if [[ "$DATASET" == euroc_mav || "$DATASET" == zed2i || "$DATASET" == citrusfarm || "$DATASET" == rosariov2 || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then OPENVINS_IMAGE=openvins:humble-shutdown-20261001; fi
 
 [[ -d "$CFG_DIR" ]] || { echo "[openvins] missing config dir: $CFG_DIR" >&2; exit 2; }
 [[ -f "$CFG_DIR/estimator_config.yaml" ]] || { echo "[openvins] missing $CFG_DIR/estimator_config.yaml" >&2; exit 2; }
