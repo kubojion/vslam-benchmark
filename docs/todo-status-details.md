@@ -1,7 +1,7 @@
 # TODO status details
 
 Generated presentation of the reviewed inventory; no acceptance decisions or scores are changed.
-Inventory SHA-256: `b662717f3f5ffe41ef9ff1e3eaef4917a6112c360e5af15d46833b45bbd240b3`. [Matrix legend](../TODO.md#run-combinations-matrix).
+Inventory SHA-256: `b932b69efb9734862afb87ddf7ae4e46b639bcccda816e12b7fc320641104b07`. [Matrix legend](../TODO.md#run-combinations-matrix).
 [Source inventory](../results/repair-20261001/inventory.json); [acceptance ledger](campaigns/paper-acceptance-20261001.json); [review definitions](protocol-review-20261002.md).
 
 N counts completed verified attempts. Counts describe the selected physical runs, including
@@ -32,62 +32,15 @@ items; separately verified N=1 and N=2 never become one N=3.
 
 ### future-n3-five-modes
 
-Manifest: [results/repair-20261001/future-n3-manifest.json](../results/repair-20261001/future-n3-manifest.json); SHA-256: `fd2e9ac17db5fb3120ecf025fe609b2dbdaec139684e6ed8c9afefc871fe4780`.
-Categories: `blocked=419`, `missing=517`, `required_rerun=174`.
-Verified new-attempt readiness: **0**.
-
-Evidence validation errors (readiness is unverified):
-
-- stale or absent evidence: results/repair-20261001/inventory.json
-- stale or absent evidence: configs/airslam/citrusfarm_camera_vio.yaml
-- stale or absent evidence: configs/openvins/citrusfarm/kalibr_imu_chain.yaml
-- stale or absent evidence: configs/orbslam3/citrusfarm_stereo_inertial.yaml
-- stale or absent evidence: configs/orbslam3/citrusfarm_stereo_inertial_lc.yaml
-- stale or absent evidence: configs/sensors/citrusfarm.json
-- stale or absent evidence: configs/voxel_svio/citrusfarm.yaml
-- stale or absent evidence: scripts/campaign/build_future_manifest.py
-- stale or absent evidence: scripts/campaign/tests/test_citrusfarm_setup.py
-- stale or absent evidence: scripts/campaign/tests/test_repair_plan.py
-- stale or absent evidence: scripts/campaign/update_todo_matrices.py
-- stale or absent evidence: scripts/eval/_macvo_to_tum.py
-- stale or absent evidence: scripts/run/_capture_runtime.py
-- stale or absent evidence: scripts/run/run_cuvslam.sh
-- stale or absent evidence: scripts/run/run_dpvo.sh
-- stale or absent evidence: scripts/run/run_dsol.sh
-- stale or absent evidence: scripts/run/run_mast3r_fusion.sh
-- stale or absent evidence: scripts/run/run_svo_pro.sh
-- stale or absent evidence: scripts/setup/build_citrusfarm_configs.py
-- stale or absent evidence: docs/reference-review-20261001.md
-- stale or absent evidence: docs/campaigns/paper-acceptance-20261001.json
+Manifest: [results/repair-20261001/future-n3-manifest.json](../results/repair-20261001/future-n3-manifest.json); SHA-256: `7151b3a6fdafbfb2faf1090cd62a389b44f836acb6f4174af150e7a10eff4e26`.
+Categories: `blocked=94`, `missing=517`, `required_rerun=177`, `reusable=322`.
+Verified new-attempt readiness: **513**.
 
 ### zed-coherent-n3-20261002-main-integration
 
-Manifest: [results/zed-preparation-20261002/campaign/manifest.json](../results/zed-preparation-20261002/campaign/manifest.json); SHA-256: `59b60bd42077594e3f4fc4b59ce4a7c1fe4bd48386ccbaf345b7cf5e6959d781`.
-Categories: `blocked=48`, `cohort_completion=6`, `missing=41`, `required_rerun=10`.
-Verified new-attempt readiness: **0**.
-
-Evidence validation errors (readiness is unverified):
-
-- stale or absent evidence: configs/airslam/citrusfarm_camera_vio.yaml
-- stale or absent evidence: configs/openvins/citrusfarm/kalibr_imu_chain.yaml
-- stale or absent evidence: configs/orbslam3/citrusfarm_stereo_inertial.yaml
-- stale or absent evidence: configs/orbslam3/citrusfarm_stereo_inertial_lc.yaml
-- stale or absent evidence: configs/sensors/citrusfarm.json
-- stale or absent evidence: configs/voxel_svio/citrusfarm.yaml
-- stale or absent evidence: scripts/campaign/build_future_manifest.py
-- stale or absent evidence: scripts/campaign/tests/test_citrusfarm_setup.py
-- stale or absent evidence: scripts/campaign/tests/test_repair_plan.py
-- stale or absent evidence: scripts/campaign/update_todo_matrices.py
-- stale or absent evidence: scripts/eval/_macvo_to_tum.py
-- stale or absent evidence: scripts/run/_capture_runtime.py
-- stale or absent evidence: scripts/run/run_cuvslam.sh
-- stale or absent evidence: scripts/run/run_dpvo.sh
-- stale or absent evidence: scripts/run/run_dsol.sh
-- stale or absent evidence: scripts/run/run_mast3r_fusion.sh
-- stale or absent evidence: scripts/run/run_svo_pro.sh
-- stale or absent evidence: scripts/setup/build_citrusfarm_configs.py
-- stale or absent evidence: docs/reference-review-20261001.md
-- stale or absent evidence: docs/campaigns/paper-acceptance-20261001.json
+Manifest: [results/zed-preparation-20261002/campaign/manifest.json](../results/zed-preparation-20261002/campaign/manifest.json); SHA-256: `a53634b9e7993dfaba238a05a402d11aa2f74a67849f0cdeaea1c27b150e4cef`.
+Categories: `cohort_completion=3`, `missing=41`, `required_rerun=13`, `reusable=48`.
+Verified new-attempt readiness: **57**.
 
 The coherent ZED selection replaces its part of the five-mode plan. Counts must not be added.
 
@@ -151,7 +104,7 @@ Neither a failure in a selected run nor a failure in the preserved cohort is dis
 
 **A1/E0/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
+Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -163,12 +116,12 @@ Selected plan: `future-n3-five-modes`.
 Group `33d4a1107fb8aa4a6b8b28309b0bfa127b100be8fcfa13d6a708c270272dc39a`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: `historical_orb_library_identity_unverified`.
-Review blockers: `historical_orb_loaded_library_abi_unknown`, `missing_repetition`, `rosario_image_projection_baseline_inconsistency`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 Native failure evidence r1: `{"line": 56, "text": "2.186 terminate called after throwing an instance of 'std::bad_alloc'"}`, `{"line": 57, "text": "2.187   what():  std::bad_alloc"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence1-okvis2"></a>
 ## vo/rosariov2/sequence1/okvis2
@@ -190,8 +143,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence1-okvis2x"></a>
 ## vo/rosariov2/sequence1/okvis2x
@@ -213,8 +166,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence1-airslam"></a>
 ## vo/rosariov2/sequence1/airslam
@@ -236,8 +189,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence1-basalt"></a>
 ## vo/rosariov2/sequence1/basalt
@@ -259,8 +212,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence1-ov2slam"></a>
 ## vo/rosariov2/sequence1/ov2slam
@@ -285,8 +238,8 @@ Native failure evidence r1: `{"line": 176, "text": "terminate called without an 
 Native failure evidence r2: `{"line": 176, "text": "terminate called without an active exception"}`.
 Native failure evidence r3: `{"line": 176, "text": "terminate called without an active exception"}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence1-dpvo"></a>
 ## vo/rosariov2/sequence1/dpvo
@@ -308,8 +261,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence1-macvo"></a>
 ## vo/rosariov2/sequence1/macvo
@@ -331,15 +284,15 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence1-cuvslam"></a>
 ## vo/rosariov2/sequence1/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -353,15 +306,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence1-svo-pro"></a>
 ## vo/rosariov2/sequence1/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -375,15 +328,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence1-dsol"></a>
 ## vo/rosariov2/sequence1/dsol
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -397,15 +350,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence5-orbslam3"></a>
 ## vo/rosariov2/sequence5/orbslam3
 
 **A1/E0/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
+Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -417,12 +370,12 @@ Selected plan: `future-n3-five-modes`.
 Group `33d4a1107fb8aa4a6b8b28309b0bfa127b100be8fcfa13d6a708c270272dc39a`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: `historical_orb_library_identity_unverified`.
-Review blockers: `historical_orb_loaded_library_abi_unknown`, `missing_repetition`, `rosario_image_projection_baseline_inconsistency`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 Native failure evidence r1: `{"line": 57, "text": "2.241 Segmentation fault (core dumped)"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence5-okvis2"></a>
 ## vo/rosariov2/sequence5/okvis2
@@ -444,8 +397,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence5-okvis2x"></a>
 ## vo/rosariov2/sequence5/okvis2x
@@ -467,8 +420,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence5-airslam"></a>
 ## vo/rosariov2/sequence5/airslam
@@ -490,8 +443,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence5-basalt"></a>
 ## vo/rosariov2/sequence5/basalt
@@ -513,8 +466,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence5-ov2slam"></a>
 ## vo/rosariov2/sequence5/ov2slam
@@ -539,8 +492,8 @@ Native failure evidence r1: `{"line": 165, "text": "terminate called without an 
 Native failure evidence r2: `{"line": 165, "text": "terminate called without an active exception"}`.
 Native failure evidence r3: `{"line": 165, "text": "terminate called without an active exception"}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence5-dpvo"></a>
 ## vo/rosariov2/sequence5/dpvo
@@ -562,8 +515,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence5-macvo"></a>
 ## vo/rosariov2/sequence5/macvo
@@ -585,15 +538,15 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence5-cuvslam"></a>
 ## vo/rosariov2/sequence5/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -607,15 +560,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence5-svo-pro"></a>
 ## vo/rosariov2/sequence5/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -629,15 +582,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-rosariov2-sequence5-dsol"></a>
 ## vo/rosariov2/sequence5/dsol
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -651,8 +604,8 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-hortimulti-strawberry02-orbslam3"></a>
 ## vo/hortimulti/strawberry02/orbslam3
@@ -676,7 +629,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Native failure evidence r1: `{"line": 57, "text": "2.191 Segmentation fault (core dumped)"}`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:historical_orb_loaded_library_abi_unknown`, `resolve_or_document_claim_limit:missing_repetition`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-hortimulti-strawberry02-okvis2"></a>
 ## vo/hortimulti/strawberry02/okvis2
@@ -699,7 +652,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-hortimulti-strawberry02-okvis2x"></a>
 ## vo/hortimulti/strawberry02/okvis2x
@@ -722,7 +675,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-hortimulti-strawberry02-airslam"></a>
 ## vo/hortimulti/strawberry02/airslam
@@ -745,7 +698,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-hortimulti-strawberry02-basalt"></a>
 ## vo/hortimulti/strawberry02/basalt
@@ -768,7 +721,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-hortimulti-strawberry02-ov2slam"></a>
 ## vo/hortimulti/strawberry02/ov2slam
@@ -794,7 +747,7 @@ Native failure evidence r2: `{"line": 154, "text": "terminate called without an 
 Native failure evidence r3: `{"line": 154, "text": "terminate called without an active exception"}`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-hortimulti-strawberry02-dpvo"></a>
 ## vo/hortimulti/strawberry02/dpvo
@@ -817,7 +770,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-hortimulti-strawberry02-macvo"></a>
 ## vo/hortimulti/strawberry02/macvo
@@ -840,7 +793,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-hortimulti-strawberry02-cuvslam"></a>
 ## vo/hortimulti/strawberry02/cuvslam
@@ -862,7 +815,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vo-hortimulti-strawberry02-svo-pro"></a>
 ## vo/hortimulti/strawberry02/svo_pro
@@ -884,7 +837,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `declare_window_gated_export_start`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vo-hortimulti-strawberry02-dsol"></a>
 ## vo/hortimulti/strawberry02/dsol
@@ -906,7 +859,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vo-hortimulti-strawberry03-orbslam3"></a>
 ## vo/hortimulti/strawberry03/orbslam3
@@ -930,7 +883,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Native failure evidence r2: `{"line": 66, "text": "256.102 Segmentation fault (core dumped)"}`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:historical_orb_loaded_library_abi_unknown`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-hortimulti-strawberry03-okvis2"></a>
 ## vo/hortimulti/strawberry03/okvis2
@@ -953,7 +906,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-hortimulti-strawberry03-okvis2x"></a>
 ## vo/hortimulti/strawberry03/okvis2x
@@ -976,7 +929,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-hortimulti-strawberry03-airslam"></a>
 ## vo/hortimulti/strawberry03/airslam
@@ -999,7 +952,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-hortimulti-strawberry03-basalt"></a>
 ## vo/hortimulti/strawberry03/basalt
@@ -1022,7 +975,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-hortimulti-strawberry03-ov2slam"></a>
 ## vo/hortimulti/strawberry03/ov2slam
@@ -1048,7 +1001,7 @@ Native failure evidence r2: `{"line": 119, "text": "terminate called without an 
 Native failure evidence r3: `{"line": 119, "text": "terminate called without an active exception"}`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-hortimulti-strawberry03-dpvo"></a>
 ## vo/hortimulti/strawberry03/dpvo
@@ -1071,7 +1024,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-hortimulti-strawberry03-macvo"></a>
 ## vo/hortimulti/strawberry03/macvo
@@ -1094,7 +1047,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-hortimulti-strawberry03-cuvslam"></a>
 ## vo/hortimulti/strawberry03/cuvslam
@@ -1116,7 +1069,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vo-hortimulti-strawberry03-svo-pro"></a>
 ## vo/hortimulti/strawberry03/svo_pro
@@ -1138,7 +1091,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `declare_window_gated_export_start`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vo-hortimulti-strawberry03-dsol"></a>
 ## vo/hortimulti/strawberry03/dsol
@@ -1160,14 +1113,14 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vo-euroc-mav-mh-01-easy-orbslam3"></a>
 ## vo/euroc_mav/MH_01_easy/orbslam3
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1182,8 +1135,8 @@ Confirmed setup findings: `historical_orb_library_identity_unverified`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-01-easy-okvis2"></a>
 ## vo/euroc_mav/MH_01_easy/okvis2
@@ -1205,8 +1158,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-01-easy-okvis2x"></a>
 ## vo/euroc_mav/MH_01_easy/okvis2x
@@ -1228,8 +1181,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-01-easy-airslam"></a>
 ## vo/euroc_mav/MH_01_easy/airslam
@@ -1251,8 +1204,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`, `sparse_keyframe_accuracy_only`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-01-easy-basalt"></a>
 ## vo/euroc_mav/MH_01_easy/basalt
@@ -1274,8 +1227,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-01-easy-ov2slam"></a>
 ## vo/euroc_mav/MH_01_easy/ov2slam
@@ -1300,8 +1253,8 @@ Native failure evidence r1: `{"line": 125, "text": "terminate called without an 
 Native failure evidence r2: `{"line": 125, "text": "terminate called without an active exception"}`.
 Native failure evidence r3: `{"line": 125, "text": "terminate called without an active exception"}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-01-easy-dpvo"></a>
 ## vo/euroc_mav/MH_01_easy/dpvo
@@ -1323,8 +1276,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-01-easy-macvo"></a>
 ## vo/euroc_mav/MH_01_easy/macvo
@@ -1346,15 +1299,15 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-01-easy-cuvslam"></a>
 ## vo/euroc_mav/MH_01_easy/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1368,15 +1321,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-01-easy-svo-pro"></a>
 ## vo/euroc_mav/MH_01_easy/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1390,15 +1343,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-01-easy-dsol"></a>
 ## vo/euroc_mav/MH_01_easy/dsol
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1412,15 +1365,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-03-medium-orbslam3"></a>
 ## vo/euroc_mav/MH_03_medium/orbslam3
 
 **A3/E3/S2/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1436,8 +1389,8 @@ Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `saved_accuracy_with_recorded_nonzero_exit_no_clean_success`.
 Native failure evidence r2: `{"line": 71, "text": "147.700 Segmentation fault (core dumped)"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-03-medium-okvis2"></a>
 ## vo/euroc_mav/MH_03_medium/okvis2
@@ -1459,8 +1412,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-03-medium-okvis2x"></a>
 ## vo/euroc_mav/MH_03_medium/okvis2x
@@ -1482,8 +1435,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-03-medium-airslam"></a>
 ## vo/euroc_mav/MH_03_medium/airslam
@@ -1505,8 +1458,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`, `sparse_keyframe_accuracy_only`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-03-medium-basalt"></a>
 ## vo/euroc_mav/MH_03_medium/basalt
@@ -1528,8 +1481,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-03-medium-ov2slam"></a>
 ## vo/euroc_mav/MH_03_medium/ov2slam
@@ -1554,8 +1507,8 @@ Native failure evidence r1: `{"line": 120, "text": "terminate called without an 
 Native failure evidence r2: `{"line": 120, "text": "terminate called without an active exception"}`.
 Native failure evidence r3: `{"line": 120, "text": "terminate called without an active exception"}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-03-medium-dpvo"></a>
 ## vo/euroc_mav/MH_03_medium/dpvo
@@ -1577,8 +1530,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-03-medium-macvo"></a>
 ## vo/euroc_mav/MH_03_medium/macvo
@@ -1600,15 +1553,15 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-03-medium-cuvslam"></a>
 ## vo/euroc_mav/MH_03_medium/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1622,15 +1575,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-03-medium-svo-pro"></a>
 ## vo/euroc_mav/MH_03_medium/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1644,15 +1597,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-03-medium-dsol"></a>
 ## vo/euroc_mav/MH_03_medium/dsol
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1666,15 +1619,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-05-difficult-orbslam3"></a>
 ## vo/euroc_mav/MH_05_difficult/orbslam3
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1689,8 +1642,8 @@ Confirmed setup findings: `historical_orb_library_identity_unverified`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-05-difficult-okvis2"></a>
 ## vo/euroc_mav/MH_05_difficult/okvis2
@@ -1712,8 +1665,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-05-difficult-okvis2x"></a>
 ## vo/euroc_mav/MH_05_difficult/okvis2x
@@ -1735,8 +1688,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-05-difficult-airslam"></a>
 ## vo/euroc_mav/MH_05_difficult/airslam
@@ -1758,8 +1711,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`, `sparse_keyframe_accuracy_only`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-05-difficult-basalt"></a>
 ## vo/euroc_mav/MH_05_difficult/basalt
@@ -1781,8 +1734,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-05-difficult-ov2slam"></a>
 ## vo/euroc_mav/MH_05_difficult/ov2slam
@@ -1807,8 +1760,8 @@ Native failure evidence r1: `{"line": 118, "text": "terminate called without an 
 Native failure evidence r2: `{"line": 118, "text": "terminate called without an active exception"}`.
 Native failure evidence r3: `{"line": 118, "text": "terminate called without an active exception"}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-05-difficult-dpvo"></a>
 ## vo/euroc_mav/MH_05_difficult/dpvo
@@ -1830,8 +1783,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-05-difficult-macvo"></a>
 ## vo/euroc_mav/MH_05_difficult/macvo
@@ -1853,15 +1806,15 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-05-difficult-cuvslam"></a>
 ## vo/euroc_mav/MH_05_difficult/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1875,15 +1828,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-05-difficult-svo-pro"></a>
 ## vo/euroc_mav/MH_05_difficult/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1897,15 +1850,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-euroc-mav-mh-05-difficult-dsol"></a>
 ## vo/euroc_mav/MH_05_difficult/dsol
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1919,15 +1872,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-orbslam3"></a>
 ## vo/zed2i/field1_110426_full_10fps_q90/orbslam3
 
 **A3/E3/S1/F2**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1944,10 +1897,10 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Native failure evidence r1: `{"line": 66, "text": "5647.331 Segmentation fault (core dumped)"}`.
 Native failure evidence r2: `{"line": 66, "text": "5752.268 Segmentation fault (core dumped)"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
 Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-okvis2"></a>
@@ -1970,11 +1923,11 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `retain_failure_in_attempt_denominator`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-okvis2x"></a>
 ## vo/zed2i/field1_110426_full_10fps_q90/okvis2x
@@ -1996,11 +1949,11 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-airslam"></a>
 ## vo/zed2i/field1_110426_full_10fps_q90/airslam
@@ -2022,11 +1975,11 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `native_sparse_keyframe_accuracy_not_dense_tracking`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-basalt"></a>
 ## vo/zed2i/field1_110426_full_10fps_q90/basalt
@@ -2048,11 +2001,11 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-ov2slam"></a>
 ## vo/zed2i/field1_110426_full_10fps_q90/ov2slam
@@ -2077,11 +2030,11 @@ Native failure evidence r1: `{"line": 338, "text": "terminate called without an 
 Native failure evidence r2: `{"line": 338, "text": "terminate called without an active exception"}`.
 Native failure evidence r3: `{"line": 338, "text": "terminate called without an active exception"}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-dpvo"></a>
 ## vo/zed2i/field1_110426_full_10fps_q90/dpvo
@@ -2103,11 +2056,11 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-macvo"></a>
 ## vo/zed2i/field1_110426_full_10fps_q90/macvo
@@ -2129,18 +2082,18 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `official_performant_profile_not_paper_reproduction_profile`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-cuvslam"></a>
 ## vo/zed2i/field1_110426_full_10fps_q90/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2154,18 +2107,18 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-svo-pro"></a>
 ## vo/zed2i/field1_110426_full_10fps_q90/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2179,18 +2132,18 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `resolve_or_document_claim_limit:missing_repetition`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `resolve_or_document_claim_limit:missing_repetition`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-dsol"></a>
 ## vo/zed2i/field1_110426_full_10fps_q90/dsol
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2204,18 +2157,18 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-orbslam3"></a>
 ## vo/citrusfarm/seq04/orbslam3
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2229,15 +2182,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-okvis2"></a>
 ## vo/citrusfarm/seq04/okvis2
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2251,15 +2204,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-okvis2x"></a>
 ## vo/citrusfarm/seq04/okvis2x
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2273,15 +2226,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-airslam"></a>
 ## vo/citrusfarm/seq04/airslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2295,15 +2248,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-basalt"></a>
 ## vo/citrusfarm/seq04/basalt
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2317,15 +2270,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-ov2slam"></a>
 ## vo/citrusfarm/seq04/ov2slam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2339,15 +2292,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-dpvo"></a>
 ## vo/citrusfarm/seq04/dpvo
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2361,15 +2314,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-macvo"></a>
 ## vo/citrusfarm/seq04/macvo
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2383,15 +2336,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-cuvslam"></a>
 ## vo/citrusfarm/seq04/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2405,15 +2358,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-svo-pro"></a>
 ## vo/citrusfarm/seq04/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2427,15 +2380,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-dsol"></a>
 ## vo/citrusfarm/seq04/dsol
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2449,15 +2402,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-orbslam3"></a>
 ## vo/citrusfarm/seq07/orbslam3
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2471,15 +2424,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-okvis2"></a>
 ## vo/citrusfarm/seq07/okvis2
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2493,15 +2446,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-okvis2x"></a>
 ## vo/citrusfarm/seq07/okvis2x
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2515,15 +2468,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-airslam"></a>
 ## vo/citrusfarm/seq07/airslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2537,15 +2490,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-basalt"></a>
 ## vo/citrusfarm/seq07/basalt
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2559,15 +2512,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-ov2slam"></a>
 ## vo/citrusfarm/seq07/ov2slam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2581,15 +2534,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-dpvo"></a>
 ## vo/citrusfarm/seq07/dpvo
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2603,15 +2556,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-macvo"></a>
 ## vo/citrusfarm/seq07/macvo
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2625,15 +2578,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-cuvslam"></a>
 ## vo/citrusfarm/seq07/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2647,15 +2600,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-svo-pro"></a>
 ## vo/citrusfarm/seq07/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2669,15 +2622,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-dsol"></a>
 ## vo/citrusfarm/seq07/dsol
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2691,15 +2644,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence1-orbslam3"></a>
 ## vo-lc/rosariov2/sequence1/orbslam3
 
 **A1/E0/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
+Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2711,12 +2664,12 @@ Selected plan: `future-n3-five-modes`.
 Group `f2d011ccb14b9114f9015f1076ffb6b442dc4caf04f0d88dd3cef392acfb049f`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: `historical_orb_library_identity_unverified`.
-Review blockers: `historical_orb_loaded_library_abi_unknown`, `missing_repetition`, `rosario_image_projection_baseline_inconsistency`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 Native failure evidence r1: `{"line": 56, "text": "2.145 terminate called after throwing an instance of 'std::bad_alloc'"}`, `{"line": 57, "text": "2.145   what():  std::bad_alloc"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence1-okvis2"></a>
 ## vo-lc/rosariov2/sequence1/okvis2
@@ -2738,8 +2691,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence1-okvis2x"></a>
 ## vo-lc/rosariov2/sequence1/okvis2x
@@ -2759,11 +2712,11 @@ Group `14b263872f323f0bb6d0a64b0bdf3ca65669394b8c5b4e0484b045df5d5df3f7`: 0 veri
 Group `a48281653d63a5be844549d31a19ad516c7fc502fecca34db8a36be0f97b4ffe`: 0 verified / 1 recorded; `run3`.
 
 Confirmed setup findings: none.
-Review blockers: `historical_workspace_digest_differs_keep_cohorts_separate`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_workspace_digest_differs_keep_cohorts_separate`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `resolve_recorded_source_binary_parameter_or_hardware_cohort_difference`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:historical_workspace_digest_differs_keep_cohorts_separate`, `resolve_recorded_source_binary_parameter_or_hardware_cohort_difference`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-lc-rosariov2-sequence1-airslam"></a>
 ## vo-lc/rosariov2/sequence1/airslam
@@ -2785,13 +2738,13 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence1-ov2slam"></a>
 ## vo-lc/rosariov2/sequence1/ov2slam
 
-**A3/E3/S0/F3**; verified completed groups: 2. Verified N=3: no.
+**A3/E3/S0/F3**; verified completed groups: 3. Verified N=3: yes.
 
 Cell next-action display: no new action required by this plan.
 Selected plan: `future-n3-five-modes`.
@@ -2799,20 +2752,20 @@ Selected plan: `future-n3-five-modes`.
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
 | 1 | [run1](../results/vo-lc/rosariov2/sequence1/ov2slam/run1) | verified | completed_export_shutdown_error | 0 | yes |
-| 2 | [run2](../results/vo-lc/rosariov2/sequence1/ov2slam/run2) | blocked | failure_scale_collapse | 0 | yes |
+| 2 | [run2](../results/vo-lc/rosariov2/sequence1/ov2slam/run2) | verified | failure_scale_collapse | 0 | yes |
 | 3 | [run3](../results/vo-lc/rosariov2/sequence1/ov2slam/run3) | verified | completed_export_shutdown_error | 0 | yes |
 
-Group `2110daa8b7da8fe88e07c76625f5b58b8017bdbc4e96b7c2051725ebfa8adccc`: 2 verified / 3 recorded; `run1`, `run2`, `run3`.
+Group `2110daa8b7da8fe88e07c76625f5b58b8017bdbc4e96b7c2051725ebfa8adccc`: 3 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: none.
-Review blockers: `rosario_image_projection_baseline_inconsistency`.
+Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `collapse_under_recorded_reference_diagnostic_not_verified_physical_scale`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 Native failure evidence r1: `{"line": 270, "text": "terminate called without an active exception"}`.
 Native failure evidence r2: `{"line": 222, "text": "terminate called without an active exception"}`.
 Native failure evidence r3: `{"line": 269, "text": "terminate called without an active exception"}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence1-dpvo"></a>
 ## vo-lc/rosariov2/sequence1/dpvo
@@ -2834,15 +2787,15 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence1-cuvslam"></a>
 ## vo-lc/rosariov2/sequence1/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2856,15 +2809,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence5-orbslam3"></a>
 ## vo-lc/rosariov2/sequence5/orbslam3
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2876,11 +2829,11 @@ Selected plan: `future-n3-five-modes`.
 Group `7b48dc57080e7b413b83255fbe1e87cc96e7be04cf9ed0703060daa7ecaa4e98`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `historical_orb_library_identity_unverified`.
-Review blockers: `historical_orb_loaded_library_abi_unknown`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence5-okvis2"></a>
 ## vo-lc/rosariov2/sequence5/okvis2
@@ -2902,8 +2855,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence5-okvis2x"></a>
 ## vo-lc/rosariov2/sequence5/okvis2x
@@ -2925,8 +2878,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence5-airslam"></a>
 ## vo-lc/rosariov2/sequence5/airslam
@@ -2948,8 +2901,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence5-ov2slam"></a>
 ## vo-lc/rosariov2/sequence5/ov2slam
@@ -2974,8 +2927,8 @@ Native failure evidence r1: `{"line": 181, "text": "terminate called without an 
 Native failure evidence r2: `{"line": 184, "text": "terminate called without an active exception"}`.
 Native failure evidence r3: `{"line": 181, "text": "terminate called without an active exception"}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence5-dpvo"></a>
 ## vo-lc/rosariov2/sequence5/dpvo
@@ -2997,15 +2950,15 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence5-cuvslam"></a>
 ## vo-lc/rosariov2/sequence5/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3019,8 +2972,8 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-hortimulti-strawberry02-orbslam3"></a>
 ## vo-lc/hortimulti/strawberry02/orbslam3
@@ -3044,7 +2997,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Native failure evidence r2: `{"line": 104, "text": "1031.979 Segmentation fault (core dumped)"}`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:historical_orb_loaded_library_abi_unknown`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-lc-hortimulti-strawberry02-okvis2"></a>
 ## vo-lc/hortimulti/strawberry02/okvis2
@@ -3067,7 +3020,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-lc-hortimulti-strawberry02-okvis2x"></a>
 ## vo-lc/hortimulti/strawberry02/okvis2x
@@ -3090,7 +3043,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-lc-hortimulti-strawberry02-airslam"></a>
 ## vo-lc/hortimulti/strawberry02/airslam
@@ -3113,7 +3066,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-lc-hortimulti-strawberry02-ov2slam"></a>
 ## vo-lc/hortimulti/strawberry02/ov2slam
@@ -3139,7 +3092,7 @@ Native failure evidence r2: `{"line": 158, "text": "terminate called without an 
 Native failure evidence r3: `{"line": 158, "text": "terminate called without an active exception"}`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-lc-hortimulti-strawberry02-dpvo"></a>
 ## vo-lc/hortimulti/strawberry02/dpvo
@@ -3162,7 +3115,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-lc-hortimulti-strawberry02-cuvslam"></a>
 ## vo-lc/hortimulti/strawberry02/cuvslam
@@ -3184,7 +3137,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vo-lc-hortimulti-strawberry03-orbslam3"></a>
 ## vo-lc/hortimulti/strawberry03/orbslam3
@@ -3208,7 +3161,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Native failure evidence r1: `{"line": 71, "text": "272.755 Segmentation fault (core dumped)"}`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:historical_orb_loaded_library_abi_unknown`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-lc-hortimulti-strawberry03-okvis2"></a>
 ## vo-lc/hortimulti/strawberry03/okvis2
@@ -3231,7 +3184,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-lc-hortimulti-strawberry03-okvis2x"></a>
 ## vo-lc/hortimulti/strawberry03/okvis2x
@@ -3254,7 +3207,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-lc-hortimulti-strawberry03-airslam"></a>
 ## vo-lc/hortimulti/strawberry03/airslam
@@ -3277,7 +3230,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-lc-hortimulti-strawberry03-ov2slam"></a>
 ## vo-lc/hortimulti/strawberry03/ov2slam
@@ -3303,7 +3256,7 @@ Native failure evidence r2: `{"line": 187, "text": "terminate called without an 
 Native failure evidence r3: `{"line": 195, "text": "terminate called without an active exception"}`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-lc-hortimulti-strawberry03-dpvo"></a>
 ## vo-lc/hortimulti/strawberry03/dpvo
@@ -3326,7 +3279,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vo-lc-hortimulti-strawberry03-cuvslam"></a>
 ## vo-lc/hortimulti/strawberry03/cuvslam
@@ -3348,14 +3301,14 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vo-lc-euroc-mav-mh-01-easy-orbslam3"></a>
 ## vo-lc/euroc_mav/MH_01_easy/orbslam3
 
 **A3/E3/S2/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3371,8 +3324,8 @@ Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `saved_accuracy_with_recorded_nonzero_exit_no_clean_success`.
 Native failure evidence r3: `{"line": 71, "text": "201.536 Segmentation fault (core dumped)"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-01-easy-okvis2"></a>
 ## vo-lc/euroc_mav/MH_01_easy/okvis2
@@ -3394,8 +3347,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-01-easy-okvis2x"></a>
 ## vo-lc/euroc_mav/MH_01_easy/okvis2x
@@ -3417,8 +3370,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-01-easy-airslam"></a>
 ## vo-lc/euroc_mav/MH_01_easy/airslam
@@ -3440,8 +3393,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`, `sparse_keyframe_accuracy_only`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-01-easy-ov2slam"></a>
 ## vo-lc/euroc_mav/MH_01_easy/ov2slam
@@ -3466,8 +3419,8 @@ Native failure evidence r1: `{"line": 163, "text": "terminate called without an 
 Native failure evidence r2: `{"line": 167, "text": "terminate called without an active exception"}`.
 Native failure evidence r3: `{"line": 145, "text": "terminate called without an active exception"}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-01-easy-dpvo"></a>
 ## vo-lc/euroc_mav/MH_01_easy/dpvo
@@ -3489,15 +3442,15 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-01-easy-cuvslam"></a>
 ## vo-lc/euroc_mav/MH_01_easy/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3511,15 +3464,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-03-medium-orbslam3"></a>
 ## vo-lc/euroc_mav/MH_03_medium/orbslam3
 
 **A3/E3/S2/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3535,8 +3488,8 @@ Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `saved_accuracy_with_recorded_nonzero_exit_no_clean_success`.
 Native failure evidence r3: `{"line": 71, "text": "148.380 Segmentation fault (core dumped)"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-03-medium-okvis2"></a>
 ## vo-lc/euroc_mav/MH_03_medium/okvis2
@@ -3558,8 +3511,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-03-medium-okvis2x"></a>
 ## vo-lc/euroc_mav/MH_03_medium/okvis2x
@@ -3581,8 +3534,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-03-medium-airslam"></a>
 ## vo-lc/euroc_mav/MH_03_medium/airslam
@@ -3604,8 +3557,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`, `sparse_keyframe_accuracy_only`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-03-medium-ov2slam"></a>
 ## vo-lc/euroc_mav/MH_03_medium/ov2slam
@@ -3630,8 +3583,8 @@ Native failure evidence r1: `{"line": 170, "text": "terminate called without an 
 Native failure evidence r2: `{"line": 156, "text": "terminate called without an active exception"}`.
 Native failure evidence r3: `{"line": 164, "text": "terminate called without an active exception"}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-03-medium-dpvo"></a>
 ## vo-lc/euroc_mav/MH_03_medium/dpvo
@@ -3653,15 +3606,15 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-03-medium-cuvslam"></a>
 ## vo-lc/euroc_mav/MH_03_medium/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3675,15 +3628,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-05-difficult-orbslam3"></a>
 ## vo-lc/euroc_mav/MH_05_difficult/orbslam3
 
 **A3/E3/S2/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3699,8 +3652,8 @@ Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `saved_accuracy_with_recorded_nonzero_exit_no_clean_success`.
 Native failure evidence r1: `{"line": 77, "text": "126.067 terminate called without an active exception"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-05-difficult-okvis2"></a>
 ## vo-lc/euroc_mav/MH_05_difficult/okvis2
@@ -3722,8 +3675,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-05-difficult-okvis2x"></a>
 ## vo-lc/euroc_mav/MH_05_difficult/okvis2x
@@ -3745,8 +3698,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-05-difficult-airslam"></a>
 ## vo-lc/euroc_mav/MH_05_difficult/airslam
@@ -3768,8 +3721,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`, `sparse_keyframe_accuracy_only`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-05-difficult-ov2slam"></a>
 ## vo-lc/euroc_mav/MH_05_difficult/ov2slam
@@ -3794,8 +3747,8 @@ Native failure evidence r1: `{"line": 137, "text": "terminate called without an 
 Native failure evidence r2: `{"line": 134, "text": "terminate called without an active exception"}`.
 Native failure evidence r3: `{"line": 136, "text": "terminate called without an active exception"}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-05-difficult-dpvo"></a>
 ## vo-lc/euroc_mav/MH_05_difficult/dpvo
@@ -3817,15 +3770,15 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-05-difficult-cuvslam"></a>
 ## vo-lc/euroc_mav/MH_05_difficult/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3839,15 +3792,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-orbslam3"></a>
 ## vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3
 
 **A3/E3/S2/F1**; verified completed groups: 0+0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3864,10 +3817,10 @@ Review blockers: `camera_fps_changed_15_to_10`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 Native failure evidence r1: `{"line": 66, "text": "5651.548 Segmentation fault (core dumped)"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-okvis2"></a>
@@ -3875,7 +3828,7 @@ Prerequisites: none.
 
 **A2/E1/S1/F1**; verified completed groups: 1+0. Verified N=3: no.
 
-Cell next-action display: next: new group 3 not ready.
+Cell next-action display: next: new group 3 ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3892,10 +3845,10 @@ Review blockers: `missing_repetition`, `native_execution_cause_and_usable_export
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `final_ba_disabled`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 Native failure evidence r2: `{"line": 12602, "text": "9388.271 Killed"}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `retain_failed_or_interrupted_attempt_and_resolve_execution_cause`, `saved_result_has_unresolved_scientific_evidence`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 blocked; readiness unverified; r3 missing; checks verified.
+Prerequisites: `retain_failed_or_interrupted_attempt_and_resolve_execution_cause`.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; readiness unverified; r2 cohort_completion; readiness unverified; r3 missing; readiness unverified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; checks verified; r2 cohort_completion; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-okvis2x"></a>
@@ -3903,7 +3856,7 @@ Prerequisites: none.
 
 **A1/E1/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: new group 3 not ready.
+Cell next-action display: next: new group 3 ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3918,10 +3871,10 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`, `native_execution_cause_unresolved_recovered_causal_prefix_not_final_ba`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recovered_35_second_causal_prefix_not_final_bundle_adjustment`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
+Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-airslam"></a>
@@ -3929,7 +3882,7 @@ Prerequisites: none.
 
 **A3/E3/S3/F0**; verified completed groups: 0+0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready; next: new group 3 not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3945,11 +3898,11 @@ Confirmed setup findings: `airslam_zed_vo_lc_split_workspace_groups`.
 Review blockers: `confirmed_estimator_defect_prevents_acceptance`.
 Claim limits: none.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `bounded_recheck_not_passed_review_required`, `saved_result_has_unresolved_scientific_evidence`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; readiness unverified; r2 cohort_completion; readiness unverified; r3 cohort_completion; readiness unverified.
-Prerequisites: `bounded_recheck_not_passed_review_required`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-ov2slam"></a>
 ## vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam
@@ -3974,11 +3927,11 @@ Native failure evidence r1: `{"line": 409, "text": "terminate called without an 
 Native failure evidence r2: `{"line": 391, "text": "terminate called without an active exception"}`.
 Native failure evidence r3: `{"line": 394, "text": "terminate called without an active exception"}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-dpvo"></a>
 ## vo-lc/zed2i/field1_110426_full_10fps_q90/dpvo
@@ -4000,18 +3953,18 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-cuvslam"></a>
 ## vo-lc/zed2i/field1_110426_full_10fps_q90/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4025,18 +3978,18 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq04-orbslam3"></a>
 ## vo-lc/citrusfarm/seq04/orbslam3
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4050,15 +4003,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq04-okvis2"></a>
 ## vo-lc/citrusfarm/seq04/okvis2
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4072,15 +4025,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq04-okvis2x"></a>
 ## vo-lc/citrusfarm/seq04/okvis2x
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4094,15 +4047,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq04-airslam"></a>
 ## vo-lc/citrusfarm/seq04/airslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4116,15 +4069,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq04-ov2slam"></a>
 ## vo-lc/citrusfarm/seq04/ov2slam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4138,15 +4091,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq04-dpvo"></a>
 ## vo-lc/citrusfarm/seq04/dpvo
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4160,15 +4113,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq04-cuvslam"></a>
 ## vo-lc/citrusfarm/seq04/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4182,15 +4135,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq07-orbslam3"></a>
 ## vo-lc/citrusfarm/seq07/orbslam3
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4204,15 +4157,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq07-okvis2"></a>
 ## vo-lc/citrusfarm/seq07/okvis2
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4226,15 +4179,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq07-okvis2x"></a>
 ## vo-lc/citrusfarm/seq07/okvis2x
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4248,15 +4201,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq07-airslam"></a>
 ## vo-lc/citrusfarm/seq07/airslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4270,15 +4223,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq07-ov2slam"></a>
 ## vo-lc/citrusfarm/seq07/ov2slam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4292,15 +4245,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq07-dpvo"></a>
 ## vo-lc/citrusfarm/seq07/dpvo
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4314,15 +4267,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq07-cuvslam"></a>
 ## vo-lc/citrusfarm/seq07/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4336,15 +4289,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence1-orbslam3"></a>
 ## vio/rosariov2/sequence1/orbslam3
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4356,11 +4309,11 @@ Selected plan: `future-n3-five-modes`.
 Group `7b8dc8f88be0058ca6516cf9c92f1d7dfab2f08ce39454cc10056ee6b681857c`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `historical_orb_library_identity_unverified`.
-Review blockers: `historical_orb_loaded_library_abi_unknown`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence1-okvis2"></a>
 ## vio/rosariov2/sequence1/okvis2
@@ -4382,8 +4335,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence1-okvis2x"></a>
 ## vio/rosariov2/sequence1/okvis2x
@@ -4405,40 +4358,40 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence1-airslam"></a>
 ## vio/rosariov2/sequence1/airslam
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/rosariov2/sequence1/airslam/run1) | blocked | success | 0 | yes |
-| 2 | [run2](../results/vio/rosariov2/sequence1/airslam/run2) | blocked | success | 0 | yes |
-| 3 | [run3](../results/vio/rosariov2/sequence1/airslam/run3) | blocked | success | 0 | yes |
+| 1 | [run1](../results/vio/rosariov2/sequence1/airslam/run1) | invalid_setup | success | 0 | yes |
+| 2 | [run2](../results/vio/rosariov2/sequence1/airslam/run2) | invalid_setup | success | 0 | yes |
+| 3 | [run3](../results/vio/rosariov2/sequence1/airslam/run3) | invalid_setup | success | 0 | yes |
 
 Group `b061ffff200339a8810568a4cdc824910d8adec98d29d1969a122167c546d7ea`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
-Review blockers: `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `rosario_identity_camera_imu_extrinsic`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are integrated into this main checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence1-basalt"></a>
 ## vio/rosariov2/sequence1/basalt
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4450,20 +4403,20 @@ Selected plan: `future-n3-five-modes`.
 Group `0002c7e0146605a3dd63daf88512b219b688b15bc668029b1087f83f920e1942`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
-Review blockers: `rosario_identity_camera_imu_extrinsic`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `rosario_identity_camera_imu_extrinsic`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are integrated into this main checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_identity_imu_camera_profile_with_consistent_matched_camera_model`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence1-openvins"></a>
 ## vio/rosariov2/sequence1/openvins
 
 **A1/E1/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
+Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4475,21 +4428,21 @@ Selected plan: `future-n3-five-modes`.
 Group `a4a2383818ed493366218586a7707439f6cf7da26598fe04c9f310af132034a3`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
-Review blockers: `missing_repetition`, `rosario_identity_camera_imu_extrinsic`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `collapse_under_recorded_reference_diagnostic_not_verified_physical_scale`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`.
+Review blockers: `missing_repetition`, `rosario_identity_camera_imu_extrinsic`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `collapse_under_recorded_reference_diagnostic_not_verified_physical_scale`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are integrated into this main checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
 Native failure evidence r1: `{"line": 50, "text": "947.706 terminate called without an active exception"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_identity_imu_camera_profile_with_consistent_matched_camera_model`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence1-voxel-svio"></a>
 ## vio/rosariov2/sequence1/voxel_svio
 
 **A3/E3/S0/F3**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4501,23 +4454,23 @@ Selected plan: `future-n3-five-modes`.
 Group `31205466e954590679be7dd34a6f3e7cb08bcf38f9f2e0277d7f7e973bf2bc87`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
-Review blockers: `rosario_identity_camera_imu_extrinsic`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `rosario_identity_camera_imu_extrinsic`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are integrated into this main checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
 Native failure evidence r1: `{"line": 202342, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 Native failure evidence r2: `{"line": 203323, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 Native failure evidence r3: `{"line": 201671, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_identity_imu_camera_profile_with_consistent_matched_camera_model`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence1-cuvslam"></a>
 ## vio/rosariov2/sequence1/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4531,15 +4484,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence1-svo-pro"></a>
 ## vio/rosariov2/sequence1/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4553,15 +4506,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence1-mast3r-fusion"></a>
 ## vio/rosariov2/sequence1/mast3r_fusion
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4575,15 +4528,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `gtsam_not_importable`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence5-orbslam3"></a>
 ## vio/rosariov2/sequence5/orbslam3
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4595,11 +4548,11 @@ Selected plan: `future-n3-five-modes`.
 Group `7b8dc8f88be0058ca6516cf9c92f1d7dfab2f08ce39454cc10056ee6b681857c`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `historical_orb_library_identity_unverified`.
-Review blockers: `historical_orb_loaded_library_abi_unknown`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence5-okvis2"></a>
 ## vio/rosariov2/sequence5/okvis2
@@ -4621,8 +4574,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence5-okvis2x"></a>
 ## vio/rosariov2/sequence5/okvis2x
@@ -4644,40 +4597,40 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence5-airslam"></a>
 ## vio/rosariov2/sequence5/airslam
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/rosariov2/sequence5/airslam/run1) | blocked | success | 0 | yes |
-| 2 | [run2](../results/vio/rosariov2/sequence5/airslam/run2) | blocked | success | 0 | yes |
-| 3 | [run3](../results/vio/rosariov2/sequence5/airslam/run3) | blocked | success | 0 | yes |
+| 1 | [run1](../results/vio/rosariov2/sequence5/airslam/run1) | invalid_setup | success | 0 | yes |
+| 2 | [run2](../results/vio/rosariov2/sequence5/airslam/run2) | invalid_setup | success | 0 | yes |
+| 3 | [run3](../results/vio/rosariov2/sequence5/airslam/run3) | invalid_setup | success | 0 | yes |
 
 Group `b061ffff200339a8810568a4cdc824910d8adec98d29d1969a122167c546d7ea`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
-Review blockers: `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `rosario_identity_camera_imu_extrinsic`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are integrated into this main checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence5-basalt"></a>
 ## vio/rosariov2/sequence5/basalt
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4689,20 +4642,20 @@ Selected plan: `future-n3-five-modes`.
 Group `0002c7e0146605a3dd63daf88512b219b688b15bc668029b1087f83f920e1942`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
-Review blockers: `rosario_identity_camera_imu_extrinsic`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `rosario_identity_camera_imu_extrinsic`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are integrated into this main checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_identity_imu_camera_profile_with_consistent_matched_camera_model`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence5-openvins"></a>
 ## vio/rosariov2/sequence5/openvins
 
 **A1/E1/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
+Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4714,21 +4667,21 @@ Selected plan: `future-n3-five-modes`.
 Group `a4a2383818ed493366218586a7707439f6cf7da26598fe04c9f310af132034a3`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
-Review blockers: `missing_repetition`, `rosario_identity_camera_imu_extrinsic`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `collapse_under_recorded_reference_diagnostic_not_verified_physical_scale`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`.
+Review blockers: `missing_repetition`, `rosario_identity_camera_imu_extrinsic`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `collapse_under_recorded_reference_diagnostic_not_verified_physical_scale`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are integrated into this main checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
 Native failure evidence r1: `{"line": 43, "text": "803.783 terminate called without an active exception"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_identity_imu_camera_profile_with_consistent_matched_camera_model`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence5-voxel-svio"></a>
 ## vio/rosariov2/sequence5/voxel_svio
 
 **A3/E3/S0/F3**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4740,23 +4693,23 @@ Selected plan: `future-n3-five-modes`.
 Group `31205466e954590679be7dd34a6f3e7cb08bcf38f9f2e0277d7f7e973bf2bc87`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
-Review blockers: `rosario_identity_camera_imu_extrinsic`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `rosario_identity_camera_imu_extrinsic`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Candidate preparation (2026-10-02): [published-profile candidates and remaining prerequisites](rosario-vio-candidates-20261002.md) are integrated into this main checkout. **Execution remains unverified; historical validity is unchanged.** The 14 confirmed replacements across these six cells remain red; four absent OpenVINS repetitions remain missing, not failed.
 Native failure evidence r1: `{"line": 169774, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 Native failure evidence r2: `{"line": 169493, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 Native failure evidence r3: `{"line": 168992, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_identity_imu_camera_profile_with_consistent_matched_camera_model`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence5-cuvslam"></a>
 ## vio/rosariov2/sequence5/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4770,15 +4723,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence5-svo-pro"></a>
 ## vio/rosariov2/sequence5/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4792,15 +4745,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-rosariov2-sequence5-mast3r-fusion"></a>
 ## vio/rosariov2/sequence5/mast3r_fusion
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4814,8 +4767,8 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `gtsam_not_importable`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-hortimulti-strawberry02-orbslam3"></a>
 ## vio/hortimulti/strawberry02/orbslam3
@@ -4838,7 +4791,7 @@ Review blockers: `historical_orb_loaded_library_abi_unknown`, `horti_camera_imu_
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:historical_orb_loaded_library_abi_unknown`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-hortimulti-strawberry02-okvis2"></a>
 ## vio/hortimulti/strawberry02/okvis2
@@ -4861,7 +4814,7 @@ Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_r
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-hortimulti-strawberry02-okvis2x"></a>
 ## vio/hortimulti/strawberry02/okvis2x
@@ -4884,7 +4837,7 @@ Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_r
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-hortimulti-strawberry02-airslam"></a>
 ## vio/hortimulti/strawberry02/airslam
@@ -4907,7 +4860,7 @@ Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_r
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-hortimulti-strawberry02-basalt"></a>
 ## vio/hortimulti/strawberry02/basalt
@@ -4930,7 +4883,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_leftover_imu_noise_with_documented_horti_profile_and_rerun_with_explicit_input_clock`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_leftover_imu_noise_with_documented_horti_profile_and_rerun_with_explicit_input_clock`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-hortimulti-strawberry02-openvins"></a>
 ## vio/hortimulti/strawberry02/openvins
@@ -4954,7 +4907,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Native failure evidence r1: `{"line": 48, "text": "959.571 terminate called without an active exception"}`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `resolve_or_document_claim_limit:missing_repetition`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-hortimulti-strawberry02-voxel-svio"></a>
 ## vio/hortimulti/strawberry02/voxel_svio
@@ -4980,7 +4933,7 @@ Native failure evidence r2: `{"line": 142169, "text": "terminate called after th
 Native failure evidence r3: `{"line": 140768, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `rerun_with_repaired_voxel_initializer_that_loads_the_declared_9p160379ms_offset_preserve_original_attempts`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `rerun_with_repaired_voxel_initializer_that_loads_the_declared_9p160379ms_offset_preserve_original_attempts`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-hortimulti-strawberry02-cuvslam"></a>
 ## vio/hortimulti/strawberry02/cuvslam
@@ -5002,7 +4955,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vio-hortimulti-strawberry02-svo-pro"></a>
 ## vio/hortimulti/strawberry02/svo_pro
@@ -5024,7 +4977,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `declare_window_gated_export_start`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vio-hortimulti-strawberry02-mast3r-fusion"></a>
 ## vio/hortimulti/strawberry02/mast3r_fusion
@@ -5046,7 +4999,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `gtsam_not_importable`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vio-hortimulti-strawberry03-orbslam3"></a>
 ## vio/hortimulti/strawberry03/orbslam3
@@ -5069,7 +5022,7 @@ Review blockers: `historical_orb_loaded_library_abi_unknown`, `horti_camera_imu_
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:historical_orb_loaded_library_abi_unknown`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-hortimulti-strawberry03-okvis2"></a>
 ## vio/hortimulti/strawberry03/okvis2
@@ -5092,7 +5045,7 @@ Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_r
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-hortimulti-strawberry03-okvis2x"></a>
 ## vio/hortimulti/strawberry03/okvis2x
@@ -5115,7 +5068,7 @@ Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_r
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-hortimulti-strawberry03-airslam"></a>
 ## vio/hortimulti/strawberry03/airslam
@@ -5138,7 +5091,7 @@ Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_r
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-hortimulti-strawberry03-basalt"></a>
 ## vio/hortimulti/strawberry03/basalt
@@ -5161,7 +5114,7 @@ Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_februa
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_leftover_imu_noise_with_documented_horti_profile_and_rerun_with_explicit_input_clock`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_leftover_imu_noise_with_documented_horti_profile_and_rerun_with_explicit_input_clock`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-hortimulti-strawberry03-openvins"></a>
 ## vio/hortimulti/strawberry03/openvins
@@ -5185,7 +5138,7 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Native failure evidence r1: `{"line": 17, "text": "249.021 terminate called without an active exception"}`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `resolve_or_document_claim_limit:missing_repetition`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-hortimulti-strawberry03-voxel-svio"></a>
 ## vio/hortimulti/strawberry03/voxel_svio
@@ -5211,7 +5164,7 @@ Native failure evidence r2: `{"line": 36139, "text": "terminate called after thr
 Native failure evidence r3: `{"line": 36165, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `rerun_with_repaired_voxel_initializer_that_loads_the_declared_9p160379ms_offset_preserve_original_attempts`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `rerun_with_repaired_voxel_initializer_that_loads_the_declared_9p160379ms_offset_preserve_original_attempts`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-hortimulti-strawberry03-cuvslam"></a>
 ## vio/hortimulti/strawberry03/cuvslam
@@ -5233,7 +5186,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vio-hortimulti-strawberry03-svo-pro"></a>
 ## vio/hortimulti/strawberry03/svo_pro
@@ -5255,7 +5208,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `declare_window_gated_export_start`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vio-hortimulti-strawberry03-mast3r-fusion"></a>
 ## vio/hortimulti/strawberry03/mast3r_fusion
@@ -5277,14 +5230,14 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `gtsam_not_importable`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vio-euroc-mav-mh-01-easy-orbslam3"></a>
 ## vio/euroc_mav/MH_01_easy/orbslam3
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5299,8 +5252,8 @@ Confirmed setup findings: `historical_orb_library_identity_unverified`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-01-easy-okvis2"></a>
 ## vio/euroc_mav/MH_01_easy/okvis2
@@ -5322,8 +5275,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-01-easy-okvis2x"></a>
 ## vio/euroc_mav/MH_01_easy/okvis2x
@@ -5345,8 +5298,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-01-easy-airslam"></a>
 ## vio/euroc_mav/MH_01_easy/airslam
@@ -5368,8 +5321,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`, `sparse_keyframe_accuracy_only`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-01-easy-basalt"></a>
 ## vio/euroc_mav/MH_01_easy/basalt
@@ -5391,15 +5344,15 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-01-easy-openvins"></a>
 ## vio/euroc_mav/MH_01_easy/openvins
 
 **A3/E3/S2/F1**; verified completed groups: 0+0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5415,8 +5368,8 @@ Confirmed setup findings: `openvins_euroc_vio_split_implementation_groups`.
 Review blockers: `confirmed_estimator_defect_prevents_acceptance`.
 Claim limits: none.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `rerun_all_three_repetitions_in_one_recorded_implementation_group`, `resolve_or_document_claim_limit:confirmed_estimator_defect_prevents_acceptance`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `resolve_recorded_source_binary_parameter_or_hardware_cohort_difference`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-01-easy-voxel-svio"></a>
 ## vio/euroc_mav/MH_01_easy/voxel_svio
@@ -5441,15 +5394,15 @@ Native failure evidence r1: `{"line": 43351, "text": "terminate called after thr
 Native failure evidence r2: `{"line": 43337, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 Native failure evidence r3: `{"line": 43346, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-01-easy-cuvslam"></a>
 ## vio/euroc_mav/MH_01_easy/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5463,15 +5416,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-01-easy-svo-pro"></a>
 ## vio/euroc_mav/MH_01_easy/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5485,15 +5438,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-01-easy-mast3r-fusion"></a>
 ## vio/euroc_mav/MH_01_easy/mast3r_fusion
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5507,15 +5460,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `gtsam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-03-medium-orbslam3"></a>
 ## vio/euroc_mav/MH_03_medium/orbslam3
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5530,8 +5483,8 @@ Confirmed setup findings: `historical_orb_library_identity_unverified`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `export_coverage_below_95_percent_no_clean_success_tick`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-03-medium-okvis2"></a>
 ## vio/euroc_mav/MH_03_medium/okvis2
@@ -5553,8 +5506,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-03-medium-okvis2x"></a>
 ## vio/euroc_mav/MH_03_medium/okvis2x
@@ -5576,8 +5529,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-03-medium-airslam"></a>
 ## vio/euroc_mav/MH_03_medium/airslam
@@ -5599,8 +5552,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`, `sparse_keyframe_accuracy_only`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-03-medium-basalt"></a>
 ## vio/euroc_mav/MH_03_medium/basalt
@@ -5622,15 +5575,15 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-03-medium-openvins"></a>
 ## vio/euroc_mav/MH_03_medium/openvins
 
 **A3/E3/S2/F1**; verified completed groups: 0+0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5646,8 +5599,8 @@ Confirmed setup findings: `openvins_euroc_vio_split_implementation_groups`.
 Review blockers: `confirmed_estimator_defect_prevents_acceptance`.
 Claim limits: none.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `rerun_all_three_repetitions_in_one_recorded_implementation_group`, `resolve_or_document_claim_limit:confirmed_estimator_defect_prevents_acceptance`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `resolve_recorded_source_binary_parameter_or_hardware_cohort_difference`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-03-medium-voxel-svio"></a>
 ## vio/euroc_mav/MH_03_medium/voxel_svio
@@ -5672,15 +5625,15 @@ Native failure evidence r1: `{"line": 31896, "text": "terminate called after thr
 Native failure evidence r2: `{"line": 31865, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 Native failure evidence r3: `{"line": 31868, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-03-medium-cuvslam"></a>
 ## vio/euroc_mav/MH_03_medium/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5694,15 +5647,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-03-medium-svo-pro"></a>
 ## vio/euroc_mav/MH_03_medium/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5716,15 +5669,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-03-medium-mast3r-fusion"></a>
 ## vio/euroc_mav/MH_03_medium/mast3r_fusion
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5738,15 +5691,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `gtsam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-05-difficult-orbslam3"></a>
 ## vio/euroc_mav/MH_05_difficult/orbslam3
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5761,8 +5714,8 @@ Confirmed setup findings: `historical_orb_library_identity_unverified`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-05-difficult-okvis2"></a>
 ## vio/euroc_mav/MH_05_difficult/okvis2
@@ -5784,8 +5737,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-05-difficult-okvis2x"></a>
 ## vio/euroc_mav/MH_05_difficult/okvis2x
@@ -5807,8 +5760,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-05-difficult-airslam"></a>
 ## vio/euroc_mav/MH_05_difficult/airslam
@@ -5830,8 +5783,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`, `sparse_keyframe_accuracy_only`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-05-difficult-basalt"></a>
 ## vio/euroc_mav/MH_05_difficult/basalt
@@ -5853,15 +5806,15 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-05-difficult-openvins"></a>
 ## vio/euroc_mav/MH_05_difficult/openvins
 
 **A3/E3/S3/F0**; verified completed groups: 0+0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5877,8 +5830,8 @@ Confirmed setup findings: `openvins_euroc_vio_split_implementation_groups`.
 Review blockers: `confirmed_estimator_defect_prevents_acceptance`.
 Claim limits: none.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `rerun_all_three_repetitions_in_one_recorded_implementation_group`, `resolve_or_document_claim_limit:confirmed_estimator_defect_prevents_acceptance`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `resolve_recorded_source_binary_parameter_or_hardware_cohort_difference`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-05-difficult-voxel-svio"></a>
 ## vio/euroc_mav/MH_05_difficult/voxel_svio
@@ -5903,15 +5856,15 @@ Native failure evidence r1: `{"line": 26517, "text": "terminate called after thr
 Native failure evidence r2: `{"line": 26539, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 Native failure evidence r3: `{"line": 26573, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-05-difficult-cuvslam"></a>
 ## vio/euroc_mav/MH_05_difficult/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5925,15 +5878,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-05-difficult-svo-pro"></a>
 ## vio/euroc_mav/MH_05_difficult/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5947,15 +5900,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-euroc-mav-mh-05-difficult-mast3r-fusion"></a>
 ## vio/euroc_mav/MH_05_difficult/mast3r_fusion
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5969,8 +5922,8 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `gtsam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-orbslam3"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/orbslam3
@@ -5992,11 +5945,11 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-okvis2"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/okvis2
@@ -6018,11 +5971,11 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-okvis2x"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/okvis2x
@@ -6044,11 +5997,11 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-airslam"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/airslam
@@ -6070,11 +6023,11 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `native_sparse_keyframe_accuracy_not_dense_tracking`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-basalt"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/basalt
@@ -6096,11 +6049,11 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-openvins"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/openvins
@@ -6125,11 +6078,11 @@ Native failure evidence r10001: `"estimator container exited 139"`, `"estimator 
 Native failure evidence r10002: `"estimator container exited 139"`, `"estimator stopped publishing 740 s into the 4628 s sequence (72938 poses) while the player delivered every camera pair and IMU sample"`, `"scale collapse before stopping (Sim3 scale 0.0010): estimate diverged"`.
 Native failure evidence r10003: `"estimator container exited 139"`, `"estimator stopped publishing 71 s into the 4628 s sequence (6261 poses) while the player delivered every camera pair and IMU sample"`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-voxel-svio"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/voxel_svio
@@ -6151,18 +6104,18 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-cuvslam"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6176,18 +6129,18 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `resolve_serial_specific_imu_rotation_and_time_offset_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `resolve_serial_specific_imu_rotation_and_time_offset_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-svo-pro"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6201,18 +6154,18 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `resolve_or_document_claim_limit:missing_repetition`, `resolve_serial_specific_imu_rotation_and_time_offset_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `resolve_or_document_claim_limit:missing_repetition`, `resolve_serial_specific_imu_rotation_and_time_offset_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-mast3r-fusion"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6226,18 +6179,18 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `gtsam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `resolve_serial_specific_imu_rotation_and_time_offset_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `gtsam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `resolve_serial_specific_imu_rotation_and_time_offset_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-orbslam3"></a>
 ## vio/citrusfarm/seq04/orbslam3
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6251,15 +6204,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-okvis2"></a>
 ## vio/citrusfarm/seq04/okvis2
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6273,15 +6226,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-okvis2x"></a>
 ## vio/citrusfarm/seq04/okvis2x
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6295,15 +6248,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-airslam"></a>
 ## vio/citrusfarm/seq04/airslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6317,15 +6270,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-basalt"></a>
 ## vio/citrusfarm/seq04/basalt
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6339,15 +6292,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-openvins"></a>
 ## vio/citrusfarm/seq04/openvins
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6361,15 +6314,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-voxel-svio"></a>
 ## vio/citrusfarm/seq04/voxel_svio
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6383,15 +6336,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-cuvslam"></a>
 ## vio/citrusfarm/seq04/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6405,15 +6358,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-svo-pro"></a>
 ## vio/citrusfarm/seq04/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6427,15 +6380,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-mast3r-fusion"></a>
 ## vio/citrusfarm/seq04/mast3r_fusion
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6449,15 +6402,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `gtsam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-orbslam3"></a>
 ## vio/citrusfarm/seq07/orbslam3
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6471,15 +6424,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-okvis2"></a>
 ## vio/citrusfarm/seq07/okvis2
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6493,15 +6446,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-okvis2x"></a>
 ## vio/citrusfarm/seq07/okvis2x
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6515,15 +6468,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-airslam"></a>
 ## vio/citrusfarm/seq07/airslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6537,15 +6490,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-basalt"></a>
 ## vio/citrusfarm/seq07/basalt
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6559,15 +6512,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-openvins"></a>
 ## vio/citrusfarm/seq07/openvins
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6581,15 +6534,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-voxel-svio"></a>
 ## vio/citrusfarm/seq07/voxel_svio
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6603,15 +6556,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-cuvslam"></a>
 ## vio/citrusfarm/seq07/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6625,15 +6578,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-svo-pro"></a>
 ## vio/citrusfarm/seq07/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6647,15 +6600,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-mast3r-fusion"></a>
 ## vio/citrusfarm/seq07/mast3r_fusion
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6669,15 +6622,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `gtsam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence1-orbslam3"></a>
 ## vio-lc/rosariov2/sequence1/orbslam3
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6689,11 +6642,11 @@ Selected plan: `future-n3-five-modes`.
 Group `c5eaa79e03fdc75fd88c70c5e747edaca2b3d3308854092cb8033b8142c99125`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `historical_orb_library_identity_unverified`.
-Review blockers: `historical_orb_loaded_library_abi_unknown`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence1-okvis2"></a>
 ## vio-lc/rosariov2/sequence1/okvis2
@@ -6715,8 +6668,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence1-okvis2x"></a>
 ## vio-lc/rosariov2/sequence1/okvis2x
@@ -6738,38 +6691,38 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence1-airslam"></a>
 ## vio-lc/rosariov2/sequence1/airslam
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio-lc/rosariov2/sequence1/airslam/run1) | blocked | success | 0 | yes |
-| 2 | [run2](../results/vio-lc/rosariov2/sequence1/airslam/run2) | blocked | success | 0 | yes |
-| 3 | [run3](../results/vio-lc/rosariov2/sequence1/airslam/run3) | blocked | success | 0 | yes |
+| 1 | [run1](../results/vio-lc/rosariov2/sequence1/airslam/run1) | invalid_setup | success | 0 | yes |
+| 2 | [run2](../results/vio-lc/rosariov2/sequence1/airslam/run2) | invalid_setup | success | 0 | yes |
+| 3 | [run3](../results/vio-lc/rosariov2/sequence1/airslam/run3) | invalid_setup | success | 0 | yes |
 
 Group `f4d572cca81d2f7e538479040f16f4c851d3faaa7853f50fcf7deb9cd402c9f1`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
-Review blockers: `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `rosario_identity_camera_imu_extrinsic`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence1-cuvslam"></a>
 ## vio-lc/rosariov2/sequence1/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6783,15 +6736,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence1-svo-pro"></a>
 ## vio-lc/rosariov2/sequence1/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6805,15 +6758,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start_and_forward_only_loop_correction`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence1-mast3r-fusion"></a>
 ## vio-lc/rosariov2/sequence1/mast3r_fusion
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6827,15 +6780,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_keyframe_only_global_trajectory_claim`, `gtsam_not_importable`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence5-orbslam3"></a>
 ## vio-lc/rosariov2/sequence5/orbslam3
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6847,11 +6800,11 @@ Selected plan: `future-n3-five-modes`.
 Group `c5eaa79e03fdc75fd88c70c5e747edaca2b3d3308854092cb8033b8142c99125`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `historical_orb_library_identity_unverified`.
-Review blockers: `historical_orb_loaded_library_abi_unknown`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `historical_orb_loaded_library_abi_unknown`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence5-okvis2"></a>
 ## vio-lc/rosariov2/sequence5/okvis2
@@ -6873,8 +6826,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence5-okvis2x"></a>
 ## vio-lc/rosariov2/sequence5/okvis2x
@@ -6896,38 +6849,38 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence5-airslam"></a>
 ## vio-lc/rosariov2/sequence5/airslam
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio-lc/rosariov2/sequence5/airslam/run1) | blocked | success | 0 | yes |
-| 2 | [run2](../results/vio-lc/rosariov2/sequence5/airslam/run2) | blocked | success | 0 | yes |
-| 3 | [run3](../results/vio-lc/rosariov2/sequence5/airslam/run3) | blocked | success | 0 | yes |
+| 1 | [run1](../results/vio-lc/rosariov2/sequence5/airslam/run1) | invalid_setup | success | 0 | yes |
+| 2 | [run2](../results/vio-lc/rosariov2/sequence5/airslam/run2) | invalid_setup | success | 0 | yes |
+| 3 | [run3](../results/vio-lc/rosariov2/sequence5/airslam/run3) | invalid_setup | success | 0 | yes |
 
 Group `f4d572cca81d2f7e538479040f16f4c851d3faaa7853f50fcf7deb9cd402c9f1`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
 Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
-Review blockers: `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `rosario_identity_camera_imu_extrinsic`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `use_matched_rosario_camera_imu_calibration_and_consistent_image_projection_before_new_inertial_attempt`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence5-cuvslam"></a>
 ## vio-lc/rosariov2/sequence5/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6941,15 +6894,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence5-svo-pro"></a>
 ## vio-lc/rosariov2/sequence5/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6963,15 +6916,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start_and_forward_only_loop_correction`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence5-mast3r-fusion"></a>
 ## vio-lc/rosariov2/sequence5/mast3r_fusion
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6985,8 +6938,8 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_keyframe_only_global_trajectory_claim`, `gtsam_not_importable`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-hortimulti-strawberry02-orbslam3"></a>
 ## vio-lc/hortimulti/strawberry02/orbslam3
@@ -7009,7 +6962,7 @@ Review blockers: `historical_orb_loaded_library_abi_unknown`, `horti_camera_imu_
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `validate_rectified_horti_imu_extrinsic_and_run_new_vio_lc_cohort_preserving_raw_frame_attempts`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:historical_orb_loaded_library_abi_unknown`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `resolve_or_document_claim_limit:orb_horti_rectified_camera_imu_extrinsic`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `validate_rectified_horti_imu_extrinsic_and_run_new_vio_lc_cohort_preserving_raw_frame_attempts`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-lc-hortimulti-strawberry02-okvis2"></a>
 ## vio-lc/hortimulti/strawberry02/okvis2
@@ -7032,7 +6985,7 @@ Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_r
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-lc-hortimulti-strawberry02-okvis2x"></a>
 ## vio-lc/hortimulti/strawberry02/okvis2x
@@ -7055,7 +7008,7 @@ Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_r
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-lc-hortimulti-strawberry02-airslam"></a>
 ## vio-lc/hortimulti/strawberry02/airslam
@@ -7078,7 +7031,7 @@ Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_r
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-lc-hortimulti-strawberry02-cuvslam"></a>
 ## vio-lc/hortimulti/strawberry02/cuvslam
@@ -7100,7 +7053,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vio-lc-hortimulti-strawberry02-svo-pro"></a>
 ## vio-lc/hortimulti/strawberry02/svo_pro
@@ -7122,7 +7075,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start_and_forward_only_loop_correction`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `declare_window_gated_export_start_and_forward_only_loop_correction`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vio-lc-hortimulti-strawberry02-mast3r-fusion"></a>
 ## vio-lc/hortimulti/strawberry02/mast3r_fusion
@@ -7144,7 +7097,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_keyframe_only_global_trajectory_claim`, `gtsam_not_importable`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `declare_keyframe_only_global_trajectory_claim`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vio-lc-hortimulti-strawberry03-orbslam3"></a>
 ## vio-lc/hortimulti/strawberry03/orbslam3
@@ -7167,7 +7120,7 @@ Review blockers: `historical_orb_loaded_library_abi_unknown`, `horti_camera_imu_
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `validate_rectified_horti_imu_extrinsic_and_run_new_vio_lc_cohort_preserving_raw_frame_attempts`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:historical_orb_loaded_library_abi_unknown`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `resolve_or_document_claim_limit:orb_horti_rectified_camera_imu_extrinsic`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `validate_rectified_horti_imu_extrinsic_and_run_new_vio_lc_cohort_preserving_raw_frame_attempts`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-lc-hortimulti-strawberry03-okvis2"></a>
 ## vio-lc/hortimulti/strawberry03/okvis2
@@ -7190,7 +7143,7 @@ Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_r
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-lc-hortimulti-strawberry03-okvis2x"></a>
 ## vio-lc/hortimulti/strawberry03/okvis2x
@@ -7213,7 +7166,7 @@ Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_r
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-lc-hortimulti-strawberry03-airslam"></a>
 ## vio-lc/hortimulti/strawberry03/airslam
@@ -7236,7 +7189,7 @@ Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_r
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `apply_published_positive_9p160379ms_camera_to_imu_time_relation_in_estimator_inputs_preserve_original_attempts`, `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:horti_camera_imu_time_offset_uncompensated`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
 
 <a id="vio-lc-hortimulti-strawberry03-cuvslam"></a>
 ## vio-lc/hortimulti/strawberry03/cuvslam
@@ -7258,7 +7211,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vio-lc-hortimulti-strawberry03-svo-pro"></a>
 ## vio-lc/hortimulti/strawberry03/svo_pro
@@ -7280,7 +7233,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start_and_forward_only_loop_correction`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `declare_window_gated_export_start_and_forward_only_loop_correction`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vio-lc-hortimulti-strawberry03-mast3r-fusion"></a>
 ## vio-lc/hortimulti/strawberry03/mast3r_fusion
@@ -7302,14 +7255,14 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_keyframe_only_global_trajectory_claim`, `gtsam_not_importable`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Prerequisites: `declare_keyframe_only_global_trajectory_claim`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:missing_repetition`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`.
 
 <a id="vio-lc-euroc-mav-mh-01-easy-orbslam3"></a>
 ## vio-lc/euroc_mav/MH_01_easy/orbslam3
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7324,8 +7277,8 @@ Confirmed setup findings: `historical_orb_library_identity_unverified`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-01-easy-okvis2"></a>
 ## vio-lc/euroc_mav/MH_01_easy/okvis2
@@ -7347,8 +7300,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-01-easy-okvis2x"></a>
 ## vio-lc/euroc_mav/MH_01_easy/okvis2x
@@ -7370,8 +7323,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-01-easy-airslam"></a>
 ## vio-lc/euroc_mav/MH_01_easy/airslam
@@ -7393,15 +7346,15 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `final_offline_map_refinement_accuracy_not_causal_online_trajectory`, `no_measured_processing_rate_or_realtime_deadline_claim`, `sparse_keyframe_accuracy_only`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-01-easy-cuvslam"></a>
 ## vio-lc/euroc_mav/MH_01_easy/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7415,15 +7368,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-01-easy-svo-pro"></a>
 ## vio-lc/euroc_mav/MH_01_easy/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7437,15 +7390,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start_and_forward_only_loop_correction`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-01-easy-mast3r-fusion"></a>
 ## vio-lc/euroc_mav/MH_01_easy/mast3r_fusion
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7459,15 +7412,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_keyframe_only_global_trajectory_claim`, `gtsam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-03-medium-orbslam3"></a>
 ## vio-lc/euroc_mav/MH_03_medium/orbslam3
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7482,8 +7435,8 @@ Confirmed setup findings: `historical_orb_library_identity_unverified`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `export_coverage_below_95_percent_no_clean_success_tick`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-03-medium-okvis2"></a>
 ## vio-lc/euroc_mav/MH_03_medium/okvis2
@@ -7505,8 +7458,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-03-medium-okvis2x"></a>
 ## vio-lc/euroc_mav/MH_03_medium/okvis2x
@@ -7528,8 +7481,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-03-medium-airslam"></a>
 ## vio-lc/euroc_mav/MH_03_medium/airslam
@@ -7551,15 +7504,15 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `final_offline_map_refinement_accuracy_not_causal_online_trajectory`, `no_measured_processing_rate_or_realtime_deadline_claim`, `sparse_keyframe_accuracy_only`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-03-medium-cuvslam"></a>
 ## vio-lc/euroc_mav/MH_03_medium/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7573,15 +7526,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-03-medium-svo-pro"></a>
 ## vio-lc/euroc_mav/MH_03_medium/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7595,15 +7548,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start_and_forward_only_loop_correction`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-03-medium-mast3r-fusion"></a>
 ## vio-lc/euroc_mav/MH_03_medium/mast3r_fusion
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7617,15 +7570,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_keyframe_only_global_trajectory_claim`, `gtsam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-05-difficult-orbslam3"></a>
 ## vio-lc/euroc_mav/MH_05_difficult/orbslam3
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready.
+Cell next-action display: 🔄 rerun ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7640,8 +7593,8 @@ Confirmed setup findings: `historical_orb_library_identity_unverified`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `keep_original_invalid_configuration_cohort_separate`, `replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-05-difficult-okvis2"></a>
 ## vio-lc/euroc_mav/MH_05_difficult/okvis2
@@ -7663,8 +7616,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-05-difficult-okvis2x"></a>
 ## vio-lc/euroc_mav/MH_05_difficult/okvis2x
@@ -7686,8 +7639,8 @@ Confirmed setup findings: none.
 Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-05-difficult-airslam"></a>
 ## vio-lc/euroc_mav/MH_05_difficult/airslam
@@ -7710,15 +7663,15 @@ Review blockers: none.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `final_offline_map_refinement_accuracy_not_causal_online_trajectory`, `intermediate_odometry_is_diagnostic_only`, `native_junction_database_segfault_root_cause_unresolved`, `no_final_vio_lc_trajectory_no_accuracy_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`, `sparse_keyframe_accuracy_only`.
 Native failure evidence r4: `{"last_log_message": "Build junction database...", "native_exit": -11, "root_cause": "not established; no final trajectory saved; no forced signal requested", "stage": "refinement", "wrapper_exit": 139}`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 blocked; readiness unverified; r3 blocked; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `retain_failed_or_interrupted_attempt_and_resolve_execution_cause`, `retain_nonzero_exit_and_review_saved_native_failure_evidence`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-05-difficult-cuvslam"></a>
 ## vio-lc/euroc_mav/MH_05_difficult/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7732,15 +7685,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-05-difficult-svo-pro"></a>
 ## vio-lc/euroc_mav/MH_05_difficult/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7754,15 +7707,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start_and_forward_only_loop_correction`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-05-difficult-mast3r-fusion"></a>
 ## vio-lc/euroc_mav/MH_05_difficult/mast3r_fusion
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7776,15 +7729,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_keyframe_only_global_trajectory_claim`, `gtsam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-orbslam3"></a>
 ## vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3
 
 **A1/E0/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
+Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7800,10 +7753,10 @@ Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `retain_failure_in_attempt_denominator`, `serial_specific_imu_rotation_and_timing_unverified`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 Native failure evidence r1: `{"line": 65, "text": "2.695 Segmentation fault (core dumped)"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-okvis2"></a>
@@ -7811,7 +7764,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
+Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7826,10 +7779,10 @@ Confirmed setup findings: `zed_factory_camera_imu_rotation_omitted`.
 Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-okvis2x"></a>
@@ -7837,7 +7790,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
+Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7852,10 +7805,10 @@ Confirmed setup findings: `zed_factory_camera_imu_rotation_omitted`.
 Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-airslam"></a>
@@ -7863,7 +7816,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
+Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7878,10 +7831,10 @@ Confirmed setup findings: `zed_factory_camera_imu_rotation_omitted`.
 Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
+Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-cuvslam"></a>
@@ -7889,7 +7842,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7903,18 +7856,18 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `resolve_serial_specific_imu_rotation_and_time_offset_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `resolve_serial_specific_imu_rotation_and_time_offset_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-svo-pro"></a>
 ## vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7928,18 +7881,18 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start_and_forward_only_loop_correction`, `resolve_or_document_claim_limit:missing_repetition`, `resolve_serial_specific_imu_rotation_and_time_offset_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start_and_forward_only_loop_correction`, `resolve_or_document_claim_limit:missing_repetition`, `resolve_serial_specific_imu_rotation_and_time_offset_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-mast3r-fusion"></a>
 ## vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7953,18 +7906,18 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_keyframe_only_global_trajectory_claim`, `gtsam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `resolve_serial_specific_imu_rotation_and_time_offset_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_keyframe_only_global_trajectory_claim`, `gtsam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `resolve_serial_specific_imu_rotation_and_time_offset_evidence`, `settle_zed_quality_support_and_horizontal_vs_3d_reference_claim_disclose_unmeasured_clock`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq04-orbslam3"></a>
 ## vio-lc/citrusfarm/seq04/orbslam3
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7978,15 +7931,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq04-okvis2"></a>
 ## vio-lc/citrusfarm/seq04/okvis2
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8000,15 +7953,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq04-okvis2x"></a>
 ## vio-lc/citrusfarm/seq04/okvis2x
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8022,15 +7975,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq04-airslam"></a>
 ## vio-lc/citrusfarm/seq04/airslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8044,15 +7997,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq04-cuvslam"></a>
 ## vio-lc/citrusfarm/seq04/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8066,15 +8019,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq04-svo-pro"></a>
 ## vio-lc/citrusfarm/seq04/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8088,15 +8041,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start_and_forward_only_loop_correction`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq04-mast3r-fusion"></a>
 ## vio-lc/citrusfarm/seq04/mast3r_fusion
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8110,15 +8063,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_keyframe_only_global_trajectory_claim`, `gtsam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq07-orbslam3"></a>
 ## vio-lc/citrusfarm/seq07/orbslam3
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8132,15 +8085,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `validate_non_zed_orb_eigen_abi_and_shutdown_native_build`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq07-okvis2"></a>
 ## vio-lc/citrusfarm/seq07/okvis2
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8154,15 +8107,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq07-okvis2x"></a>
 ## vio-lc/citrusfarm/seq07/okvis2x
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8176,15 +8129,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `freeze_and_label_final_bundle_adjustment_and_extrinsic_optimization_policy`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq07-airslam"></a>
 ## vio-lc/citrusfarm/seq07/airslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8198,15 +8151,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_sparse_keyframe_claim_or_validate_dense_export_before_dense_comparison`, `document_remaining_rig_specific_algorithm_settings_from_saved_parameter_review`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq07-cuvslam"></a>
 ## vio-lc/citrusfarm/seq07/cuvslam
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8220,15 +8173,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `cuvslam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq07-svo-pro"></a>
 ## vio-lc/citrusfarm/seq07/svo_pro
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8242,15 +8195,15 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_window_gated_export_start_and_forward_only_loop_correction`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq07-mast3r-fusion"></a>
 ## vio-lc/citrusfarm/seq07/mast3r_fusion
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 not ready.
+Cell next-action display: next: missing 3 ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8264,8 +8217,8 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `declare_keyframe_only_global_trajectory_claim`, `gtsam_not_importable`, `resolve_or_document_claim_limit:missing_repetition`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
+Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Prerequisites: none.
 
 <a id="gnss-vio-rosariov2-sequence1-cifasis-gnss-si"></a>
 ## gnss-vio/rosariov2/sequence1/cifasis_gnss_si
@@ -8284,12 +8237,12 @@ Selected plan: `future-n3-five-modes`.
 Group `unverified:results/gnss-vio/rosariov2/sequence1/cifasis_gnss_si/run1`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: `rosario_v1_antenna_lever_arm_used_on_v2`.
-Review blockers: `estimate_frame_unverified: output frame not established for cifasis_gnss_si`, `gnss_reference_independence_and_global_frame_not_established`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`, `rosario_v1_antenna_lever_arm_used_on_v2`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `estimate_frame_unverified: output frame not established for cifasis_gnss_si`, `gnss_reference_independence_and_global_frame_not_established`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`, `rosario_v1_antenna_lever_arm_used_on_v2`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 Native failure evidence r1: `{"line": 287, "text": "terminate called without an active exception"}`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `use_dataset_session_specific_imu_to_selected_gnss_antenna_transform_and_verify_native_loaded_values`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:estimate_frame_unverified: output frame not established for cifasis_gnss_si`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:missing_repetition`, `resolve_or_document_claim_limit:rosario_v1_antenna_lever_arm_used_on_v2`, `use_dataset_session_specific_imu_to_selected_gnss_antenna_transform_and_verify_native_loaded_values`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-rosariov2-sequence1-okvis2x"></a>
 ## gnss-vio/rosariov2/sequence1/okvis2x
@@ -8308,11 +8261,11 @@ Selected plan: `future-n3-five-modes`.
 Group `unverified:results/gnss-vio/rosariov2/sequence1/okvis2x/run1`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: `gnss_zero_antenna_lever_arm_in_native_log`.
-Review blockers: `estimate_frame_unverified: expected one saved estimator_config, found 0`, `gnss_reference_independence_and_global_frame_not_established`, `gnss_zero_antenna_lever_arm_in_native_log`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `estimate_frame_unverified: expected one saved estimator_config, found 0`, `gnss_reference_independence_and_global_frame_not_established`, `gnss_zero_antenna_lever_arm_in_native_log`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `use_dataset_session_specific_imu_to_selected_gnss_antenna_transform_and_verify_native_loaded_values`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:estimate_frame_unverified: expected one saved estimator_config, found 0`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:gnss_zero_antenna_lever_arm_in_native_log`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:missing_repetition`, `use_dataset_session_specific_imu_to_selected_gnss_antenna_transform_and_verify_native_loaded_values`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-rosariov2-sequence1-openvins-gps"></a>
 ## gnss-vio/rosariov2/sequence1/openvins_gps
@@ -8331,11 +8284,11 @@ Selected plan: `future-n3-five-modes`.
 Group `unverified:results/gnss-vio/rosariov2/sequence1/openvins_gps/run1`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: none.
-Review blockers: `estimate_frame_unverified: output frame not established for openvins_gps`, `gnss_reference_independence_and_global_frame_not_established`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `estimate_frame_unverified: output frame not established for openvins_gps`, `gnss_reference_independence_and_global_frame_not_established`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_identity_imu_camera_profile_with_consistent_matched_camera_model`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_enu_heading_initialization_and_imu_body_alias`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_identity_imu_camera_profile_with_consistent_matched_camera_model`, `resolve_or_document_claim_limit:estimate_frame_unverified: output frame not established for openvins_gps`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:missing_repetition`, `saved_result_has_unresolved_scientific_evidence`, `validate_enu_heading_initialization_and_imu_body_alias`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-rosariov2-sequence1-rtabmap-gps"></a>
 ## gnss-vio/rosariov2/sequence1/rtabmap_gps
@@ -8354,11 +8307,11 @@ Selected plan: `future-n3-five-modes`.
 Group `unverified:results/gnss-vio/rosariov2/sequence1/rtabmap_gps/run1`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: none.
-Review blockers: `estimate_frame_unverified: output frame not established for rtabmap_gps`, `gnss_reference_independence_and_global_frame_not_established`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `estimate_frame_unverified: output frame not established for rtabmap_gps`, `gnss_reference_independence_and_global_frame_not_established`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:estimate_frame_unverified: output frame not established for rtabmap_gps`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:missing_repetition`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-rosariov2-sequence1-vins-fusion-gps"></a>
 ## gnss-vio/rosariov2/sequence1/vins_fusion_gps
@@ -8377,11 +8330,11 @@ Selected plan: `future-n3-five-modes`.
 Group `unverified:results/gnss-vio/rosariov2/sequence1/vins_fusion_gps/run1`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: none.
-Review blockers: `estimate_frame_unverified: output frame not established for vins_fusion_gps`, `gnss_reference_independence_and_global_frame_not_established`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `estimate_frame_unverified: output frame not established for vins_fusion_gps`, `gnss_reference_independence_and_global_frame_not_established`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `implement_and_validate_antenna_lever_in_global_position_factor`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `implement_and_validate_antenna_lever_in_global_position_factor`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:estimate_frame_unverified: output frame not established for vins_fusion_gps`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:missing_repetition`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-rosariov2-sequence5-cifasis-gnss-si"></a>
 ## gnss-vio/rosariov2/sequence5/cifasis_gnss_si
@@ -8400,11 +8353,11 @@ Selected plan: `future-n3-five-modes`.
 Group `unverified:results/gnss-vio/rosariov2/sequence5/cifasis_gnss_si/run1`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: none.
-Review blockers: `estimate_frame_unverified: output frame not established for cifasis_gnss_si`, `gnss_reference_independence_and_global_frame_not_established`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `estimate_frame_unverified: output frame not established for cifasis_gnss_si`, `gnss_reference_independence_and_global_frame_not_established`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:estimate_frame_unverified: output frame not established for cifasis_gnss_si`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:missing_repetition`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-rosariov2-sequence5-okvis2x"></a>
 ## gnss-vio/rosariov2/sequence5/okvis2x
@@ -8423,11 +8376,11 @@ Selected plan: `future-n3-five-modes`.
 Group `unverified:results/gnss-vio/rosariov2/sequence5/okvis2x/run1`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: `gnss_zero_antenna_lever_arm_in_native_log`.
-Review blockers: `estimate_frame_unverified: expected one saved estimator_config, found 0`, `gnss_reference_independence_and_global_frame_not_established`, `gnss_zero_antenna_lever_arm_in_native_log`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `estimate_frame_unverified: expected one saved estimator_config, found 0`, `gnss_reference_independence_and_global_frame_not_established`, `gnss_zero_antenna_lever_arm_in_native_log`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `use_dataset_session_specific_imu_to_selected_gnss_antenna_transform_and_verify_native_loaded_values`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:estimate_frame_unverified: expected one saved estimator_config, found 0`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:gnss_zero_antenna_lever_arm_in_native_log`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:missing_repetition`, `use_dataset_session_specific_imu_to_selected_gnss_antenna_transform_and_verify_native_loaded_values`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-rosariov2-sequence5-openvins-gps"></a>
 ## gnss-vio/rosariov2/sequence5/openvins_gps
@@ -8446,11 +8399,11 @@ Selected plan: `future-n3-five-modes`.
 Group `unverified:results/gnss-vio/rosariov2/sequence5/openvins_gps/run1`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: none.
-Review blockers: `estimate_frame_unverified: output frame not established for openvins_gps`, `gnss_reference_independence_and_global_frame_not_established`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `estimate_frame_unverified: output frame not established for openvins_gps`, `gnss_reference_independence_and_global_frame_not_established`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_identity_imu_camera_profile_with_consistent_matched_camera_model`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_enu_heading_initialization_and_imu_body_alias`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `replace_identity_imu_camera_profile_with_consistent_matched_camera_model`, `resolve_or_document_claim_limit:estimate_frame_unverified: output frame not established for openvins_gps`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:missing_repetition`, `saved_result_has_unresolved_scientific_evidence`, `validate_enu_heading_initialization_and_imu_body_alias`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-rosariov2-sequence5-rtabmap-gps"></a>
 ## gnss-vio/rosariov2/sequence5/rtabmap_gps
@@ -8469,11 +8422,11 @@ Selected plan: `future-n3-five-modes`.
 Group `unverified:results/gnss-vio/rosariov2/sequence5/rtabmap_gps/run1`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: none.
-Review blockers: `estimate_frame_unverified: output frame not established for rtabmap_gps`, `gnss_reference_independence_and_global_frame_not_established`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `estimate_frame_unverified: output frame not established for rtabmap_gps`, `gnss_reference_independence_and_global_frame_not_established`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:estimate_frame_unverified: output frame not established for rtabmap_gps`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:missing_repetition`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-rosariov2-sequence5-vins-fusion-gps"></a>
 ## gnss-vio/rosariov2/sequence5/vins_fusion_gps
@@ -8492,11 +8445,11 @@ Selected plan: `future-n3-five-modes`.
 Group `unverified:results/gnss-vio/rosariov2/sequence5/vins_fusion_gps/run1`: 0 verified / 1 recorded; `run1`.
 
 Confirmed setup findings: none.
-Review blockers: `estimate_frame_unverified: output frame not established for vins_fusion_gps`, `gnss_reference_independence_and_global_frame_not_established`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`, `rosario_image_projection_baseline_inconsistency`, `rosario_unchanged_images_virtual_projection_and_baseline_consistency_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`.
+Review blockers: `estimate_frame_unverified: output frame not established for vins_fusion_gps`, `gnss_reference_independence_and_global_frame_not_established`, `historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `implement_and_validate_antenna_lever_in_global_position_factor`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `implement_and_validate_antenna_lever_in_global_position_factor`, `reconcile_unchanged_recorded_images_with_author_virtual_projection_and_baseline`, `resolve_or_document_claim_limit:estimate_frame_unverified: output frame not established for vins_fusion_gps`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:missing_repetition`, `saved_result_has_unresolved_scientific_evidence`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-hortimulti-strawberry02-cifasis-gnss-si"></a>
 ## gnss-vio/hortimulti/strawberry02/cifasis_gnss_si
@@ -8519,7 +8472,7 @@ Review blockers: `estimate_frame_unverified: output frame not established for ci
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:estimate_frame_unverified: output frame not established for cifasis_gnss_si`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `resolve_or_document_claim_limit:missing_repetition`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-hortimulti-strawberry02-okvis2x"></a>
 ## gnss-vio/hortimulti/strawberry02/okvis2x
@@ -8542,7 +8495,7 @@ Review blockers: `estimate_frame_unverified: expected one saved estimator_config
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `use_dataset_session_specific_imu_to_selected_gnss_antenna_transform_and_verify_native_loaded_values`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:estimate_frame_unverified: expected one saved estimator_config, found 0`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:gnss_zero_antenna_lever_arm_in_native_log`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `resolve_or_document_claim_limit:missing_repetition`, `use_dataset_session_specific_imu_to_selected_gnss_antenna_transform_and_verify_native_loaded_values`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-hortimulti-strawberry02-openvins-gps"></a>
 ## gnss-vio/hortimulti/strawberry02/openvins_gps
@@ -8565,7 +8518,7 @@ Review blockers: `estimate_frame_unverified: output frame not established for op
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_enu_heading_initialization_and_imu_body_alias`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:estimate_frame_unverified: output frame not established for openvins_gps`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `resolve_or_document_claim_limit:missing_repetition`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_enu_heading_initialization_and_imu_body_alias`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-hortimulti-strawberry02-rtabmap-gps"></a>
 ## gnss-vio/hortimulti/strawberry02/rtabmap_gps
@@ -8588,7 +8541,7 @@ Review blockers: `estimate_frame_unverified: output frame not established for rt
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:estimate_frame_unverified: output frame not established for rtabmap_gps`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `resolve_or_document_claim_limit:missing_repetition`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-hortimulti-strawberry02-vins-fusion-gps"></a>
 ## gnss-vio/hortimulti/strawberry02/vins_fusion_gps
@@ -8611,7 +8564,7 @@ Review blockers: `estimate_frame_unverified: output frame not established for vi
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `implement_and_validate_antenna_lever_in_global_position_factor`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `implement_and_validate_antenna_lever_in_global_position_factor`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:estimate_frame_unverified: output frame not established for vins_fusion_gps`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `resolve_or_document_claim_limit:missing_repetition`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-hortimulti-strawberry03-cifasis-gnss-si"></a>
 ## gnss-vio/hortimulti/strawberry03/cifasis_gnss_si
@@ -8634,7 +8587,7 @@ Review blockers: `estimate_frame_unverified: output frame not established for ci
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:estimate_frame_unverified: output frame not established for cifasis_gnss_si`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `resolve_or_document_claim_limit:missing_repetition`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-hortimulti-strawberry03-okvis2x"></a>
 ## gnss-vio/hortimulti/strawberry03/okvis2x
@@ -8657,7 +8610,7 @@ Review blockers: `estimate_frame_unverified: expected one saved estimator_config
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `use_dataset_session_specific_imu_to_selected_gnss_antenna_transform_and_verify_native_loaded_values`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:estimate_frame_unverified: expected one saved estimator_config, found 0`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:gnss_zero_antenna_lever_arm_in_native_log`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `resolve_or_document_claim_limit:missing_repetition`, `use_dataset_session_specific_imu_to_selected_gnss_antenna_transform_and_verify_native_loaded_values`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-hortimulti-strawberry03-openvins-gps"></a>
 ## gnss-vio/hortimulti/strawberry03/openvins_gps
@@ -8680,7 +8633,7 @@ Review blockers: `estimate_frame_unverified: output frame not established for op
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_enu_heading_initialization_and_imu_body_alias`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:estimate_frame_unverified: output frame not established for openvins_gps`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `resolve_or_document_claim_limit:missing_repetition`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `validate_enu_heading_initialization_and_imu_body_alias`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-hortimulti-strawberry03-rtabmap-gps"></a>
 ## gnss-vio/hortimulti/strawberry03/rtabmap_gps
@@ -8703,7 +8656,7 @@ Review blockers: `estimate_frame_unverified: output frame not established for rt
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:estimate_frame_unverified: output frame not established for rtabmap_gps`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `resolve_or_document_claim_limit:missing_repetition`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
 
 <a id="gnss-vio-hortimulti-strawberry03-vins-fusion-gps"></a>
 ## gnss-vio/hortimulti/strawberry03/vins_fusion_gps
@@ -8726,4 +8679,4 @@ Review blockers: `estimate_frame_unverified: output frame not established for vi
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
-Prerequisites: `complete_cell_configuration_input_and_claim_review`, `implement_and_validate_antenna_lever_in_global_position_factor`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:reviewed_evidence_changed:docs/reference-review-20261001.md`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
+Prerequisites: `complete_cell_configuration_input_and_claim_review`, `implement_and_validate_antenna_lever_in_global_position_factor`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `resolve_or_document_claim_limit:estimate_frame_unverified: output frame not established for vins_fusion_gps`, `resolve_or_document_claim_limit:gnss_reference_independence_and_global_frame_not_established`, `resolve_or_document_claim_limit:historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `resolve_or_document_claim_limit:missing_repetition`, `saved_result_has_unresolved_scientific_evidence`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_gnss_input_variant_covariance_and_antenna_frame`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`, `verify_reference_independence_and_fusion_output`.
