@@ -2,31 +2,31 @@
 
 Prepared only; no production execution is authorized. This replaces the overlapping ZED selection in the all-mode manifest. Do not execute both plans.
 
-Retain 0 qualified observations. Preserve 0 completed predeclared attempts pending claim review, without scheduling their first slots again. Prepare 57 remaining attempts: **10 setup replacements, 41 missing slots and 6 cohort-completion attempts**. All displaced history and failures remain preserved.
+Retain 48 qualified observations. Preserve 0 completed predeclared attempts pending claim review, without scheduling their first slots again. Prepare 57 remaining attempts: **13 setup replacements, 41 missing slots and 3 cohort-completion attempts**. All displaced history and failures remain preserved.
 
-**Readiness:** 24/57 remaining attempts have reviewed bounded execution checks and no unresolved plan prerequisites. Others retain their listed blockers. Voxel initialization/export and any mixed-cohort questions remain explicit. A short check does not certify full-sequence stability; completed outputs do not automatically pass claim review.
+**Readiness:** 57/57 remaining attempts have reviewed bounded execution checks and no unresolved plan prerequisites. Others retain their listed blockers. Voxel initialization/export and any mixed-cohort questions remain explicit. A short check does not certify full-sequence stability; completed outputs do not automatically pass claim review.
 
 | Mode | Algorithm | New physical IDs | Logical slot reasons (r1 / r2 / r3) | Bounded readiness | Cost proxy per attempt |
 |---|---|---|---|---|---:|
 | vo | orbslam3 | run10001, run10002, run10003 | required_rerun / required_rerun / required_rerun | 3/3 checked; see prerequisites | 1.57 h |
-| vo | cuvslam | run10001, run10002, run10003 | missing / missing / missing | 0/3 checked; see prerequisites | unknown |
-| vo | svo_pro | run10001, run10002, run10003 | missing / missing / missing | 0/3 checked; see prerequisites | unknown |
-| vo | dsol | run10001, run10002, run10003 | missing / missing / missing | 0/3 checked; see prerequisites | unknown |
+| vo | cuvslam | run10001, run10002, run10003 | missing / missing / missing | 3/3 checked; see prerequisites | unknown |
+| vo | svo_pro | run10001, run10002, run10003 | missing / missing / missing | 3/3 checked; see prerequisites | unknown |
+| vo | dsol | run10001, run10002, run10003 | missing / missing / missing | 3/3 checked; see prerequisites | unknown |
 | vo-lc | orbslam3 | run10001, run10002, run10003 | required_rerun / required_rerun / required_rerun | 3/3 checked; see prerequisites | 1.59 h |
 | vo-lc | okvis2 | run10001, run10002, run10003 | cohort_completion / cohort_completion / missing | 3/3 checked; see prerequisites | 6.17 h |
 | vo-lc | okvis2x | run10001, run10002, run10003 | cohort_completion / missing / missing | 3/3 checked; see prerequisites | unknown |
-| vo-lc | airslam | run10001, run10002, run10003 | cohort_completion / cohort_completion / cohort_completion | 0/3 checked; see prerequisites | 1.30 h |
-| vo-lc | cuvslam | run10001, run10002, run10003 | missing / missing / missing | 0/3 checked; see prerequisites | unknown |
-| vio | cuvslam | run10001, run10002, run10003 | missing / missing / missing | 0/3 checked; see prerequisites | unknown |
-| vio | svo_pro | run10001, run10002, run10003 | missing / missing / missing | 0/3 checked; see prerequisites | unknown |
-| vio | mast3r_fusion | run10001, run10002, run10003 | missing / missing / missing | 0/3 checked; see prerequisites | unknown |
+| vo-lc | airslam | run10001, run10002, run10003 | required_rerun / required_rerun / required_rerun | 3/3 checked; see prerequisites | 1.30 h |
+| vo-lc | cuvslam | run10001, run10002, run10003 | missing / missing / missing | 3/3 checked; see prerequisites | unknown |
+| vio | cuvslam | run10001, run10002, run10003 | missing / missing / missing | 3/3 checked; see prerequisites | unknown |
+| vio | svo_pro | run10001, run10002, run10003 | missing / missing / missing | 3/3 checked; see prerequisites | unknown |
+| vio | mast3r_fusion | run10001, run10002, run10003 | missing / missing / missing | 3/3 checked; see prerequisites | unknown |
 | vio-lc | orbslam3 | run10001, run10002, run10003 | required_rerun / missing / missing | 3/3 checked; see prerequisites | unknown |
 | vio-lc | okvis2 | run10001, run10002, run10003 | required_rerun / missing / missing | 3/3 checked; see prerequisites | 2.69 h |
 | vio-lc | okvis2x | run10001, run10002, run10003 | required_rerun / missing / missing | 3/3 checked; see prerequisites | 3.38 h |
 | vio-lc | airslam | run10001, run10002, run10003 | required_rerun / missing / missing | 3/3 checked; see prerequisites | 1.14 h |
-| vio-lc | cuvslam | run10001, run10002, run10003 | missing / missing / missing | 0/3 checked; see prerequisites | unknown |
-| vio-lc | svo_pro | run10001, run10002, run10003 | missing / missing / missing | 0/3 checked; see prerequisites | unknown |
-| vio-lc | mast3r_fusion | run10001, run10002, run10003 | missing / missing / missing | 0/3 checked; see prerequisites | unknown |
+| vio-lc | cuvslam | run10001, run10002, run10003 | missing / missing / missing | 3/3 checked; see prerequisites | unknown |
+| vio-lc | svo_pro | run10001, run10002, run10003 | missing / missing / missing | 3/3 checked; see prerequisites | unknown |
+| vio-lc | mast3r_fusion | run10001, run10002, run10003 | missing / missing / missing | 3/3 checked; see prerequisites | unknown |
 
 The indicative serialized cost subtotal is **53.5 hours for 21 attempts**; 36 have no defensible complete historical proxy. This includes blocked attempts where a proxy exists. It is not a full-campaign runtime estimate. Paced ORB/OpenVINS/Voxel inputs alone take approximately 77.2 minutes per complete attempt; optimization, startup, capture and evaluation add time.
 
@@ -38,6 +38,22 @@ The six cohort-completion attempts comprise two OKVIS2 VO-LC, one OKVIS2-X VO-LC
 
 | Cell | Retained physical attempts |
 |---|---|
+| `vo/zed2i/field1_110426_full_10fps_q90/okvis2` | run1, run2, run3 |
+| `vo/zed2i/field1_110426_full_10fps_q90/okvis2x` | run1, run2, run3 |
+| `vo/zed2i/field1_110426_full_10fps_q90/airslam` | run1, run2, run3 |
+| `vo/zed2i/field1_110426_full_10fps_q90/basalt` | run1, run2, run3 |
+| `vo/zed2i/field1_110426_full_10fps_q90/ov2slam` | run1, run2, run3 |
+| `vo/zed2i/field1_110426_full_10fps_q90/dpvo` | run1, run2, run3 |
+| `vo/zed2i/field1_110426_full_10fps_q90/macvo` | run1, run2, run3 |
+| `vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam` | run1, run2, run3 |
+| `vo-lc/zed2i/field1_110426_full_10fps_q90/dpvo` | run1, run2, run3 |
+| `vio/zed2i/field1_110426_full_10fps_q90/orbslam3` | run10001, run10003, run10004 |
+| `vio/zed2i/field1_110426_full_10fps_q90/okvis2` | run10001, run10003, run10004 |
+| `vio/zed2i/field1_110426_full_10fps_q90/okvis2x` | run10001, run10003, run10004 |
+| `vio/zed2i/field1_110426_full_10fps_q90/airslam` | run10001, run10002, run10003 |
+| `vio/zed2i/field1_110426_full_10fps_q90/basalt` | run10001, run10002, run10003 |
+| `vio/zed2i/field1_110426_full_10fps_q90/openvins` | run10001, run10002, run10003 |
+| `vio/zed2i/field1_110426_full_10fps_q90/voxel_svio` | run10001, run10002, run10003 |
 
 ## Completed first repetitions awaiting claim review
 
