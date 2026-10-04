@@ -57,7 +57,7 @@ else
     IMU_FILE="$WS/configs/okvis2/${DATASET}_${SEQ}_vio.yaml"; IMU_SRC="okvis2:$IMU_FILE"
 fi
 
-[[ -d "$REPO/.git" ]] || { echo "[svo_pro] ERROR: source checkout missing at $REPO (run scripts/build/build_svo_pro.sh)" >&2; exit 2; }
+[[ -e "$REPO/.git" ]] || { echo "[svo_pro] ERROR: source checkout missing at $REPO (run scripts/build/build_svo_pro.sh)" >&2; exit 2; }
 for f in "$SENSOR" "$ALGO_CFG" "$BASE_CFG" "$IMU_FILE"; do
     [[ -f "$f" ]] || { echo "[svo_pro] ERROR: missing $f" >&2; exit 2; }
 done

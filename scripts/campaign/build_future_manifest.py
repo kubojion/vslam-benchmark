@@ -249,6 +249,13 @@ def main():
                     help='repair handoff status only; never changes action readiness')
     args=ap.parse_args();path=args.inventory.resolve();inventory=json.loads(path.read_text())
     decisions=json.loads(args.decisions.read_text()) if args.decisions else {}
+    # Later readiness reviews cover cells outside the ZED review (CitrusFarm pilots,
+    # 2026-10-04). A cell is decided in exactly one review.
+    for extra in sorted((REPO/'docs/campaigns').glob('readiness-review-2026*.json')):
+        cells=json.loads(extra.read_text())['cells']
+        overlap=set(cells)&set(decisions.get('cells',{}))
+        if overlap:raise ValueError(f'{extra.name} repeats reviewed cells: {sorted(overlap)[:3]}')
+        decisions.setdefault('cells',{}).update(cells)
     result=build(REPO,inventory,path,decisions)
     result['audit_status']=args.audit_status
     atomic_json(args.output,result)

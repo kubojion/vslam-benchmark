@@ -58,8 +58,12 @@ def convert(sandbox, times_file, loader, *, left=None, right=None, image_format=
 
 def select_sandbox(results_root, dataset_config, odometry_config, newer_than):
     import yaml
+
+    class Lenient(yaml.SafeLoader):
+        """Only Odometry.name is read; MAC-VO's own !include tags are left unresolved."""
+    Lenient.add_multi_constructor('!', lambda loader, suffix, node: None)
     data = yaml.safe_load(Path(dataset_config).read_text())
-    odom = yaml.safe_load(Path(odometry_config).read_text())
+    odom = yaml.load(Path(odometry_config).read_text(), Loader=Lenient)
     project = odom['Odometry']['name']+'@'+data['name']
     # A freshly created directory alone may contain no poses after an error.
     candidates = [p.parent for p in (Path(results_root)/project).glob('*/poses.npy')

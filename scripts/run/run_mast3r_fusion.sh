@@ -49,7 +49,7 @@ CONDA_ENV="${MAST3R_FUSION_CONDA_ENV:-mast3r_fusion}"
 SEED="${MAST3R_FUSION_SEED:-$((1000 + RUN_ID))}"
 GPU_ID="${MAST3R_FUSION_GPU:-0}"
 
-[[ -d "$REPO/.git" ]] || { echo "[mast3r_fusion] ERROR: source checkout missing at $REPO (run scripts/build/setup_mast3r_fusion_env.sh)" >&2; exit 2; }
+[[ -e "$REPO/.git" ]] || { echo "[mast3r_fusion] ERROR: source checkout missing at $REPO (run scripts/build/setup_mast3r_fusion_env.sh)" >&2; exit 2; }
 for f in "$SENSOR" "$ALGO_CFG" "$BASE_CFG" "$CKPT/MASt3R_ViTLarge_BaseDecoder_512_catmlpdpt_metric.pth"; do
     [[ -f "$f" ]] || { echo "[mast3r_fusion] ERROR: missing $f" >&2; exit 2; }
 done

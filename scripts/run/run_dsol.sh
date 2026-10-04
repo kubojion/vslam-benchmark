@@ -41,7 +41,7 @@ BASE_CFG="$REPO/config/dsol.yaml"
 DSOL_IMAGE="${DSOL_IMAGE:-vslam_dsol:noetic}"
 PREP_ENV="${DSOL_PREP_CONDA_ENV:-cuvslam}"   # host python with cv2, numpy, scipy, yaml
 
-[[ -d "$REPO/.git" ]] || { echo "[dsol] ERROR: source checkout missing at $REPO (run scripts/build/build_dsol.sh)" >&2; exit 2; }
+[[ -e "$REPO/.git" ]] || { echo "[dsol] ERROR: source checkout missing at $REPO (run scripts/build/build_dsol.sh)" >&2; exit 2; }
 [[ -f "$SENSOR" ]] || { echo "[dsol] ERROR: no sensor profile at $SENSOR" >&2; exit 2; }
 [[ -f "$ALGO_CFG" && -f "$BASE_CFG" ]] || { echo "[dsol] ERROR: missing $ALGO_CFG or $BASE_CFG" >&2; exit 2; }
 docker image inspect "$DSOL_IMAGE" >/dev/null 2>&1 \

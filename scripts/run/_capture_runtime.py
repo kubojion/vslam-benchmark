@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tarfile
 
 from _capture_implementation import SOURCES, digest_file
@@ -22,6 +23,27 @@ from _capture_inputs import digest
 CONTAINERS={'airslam':'air_slam','ov2slam':'ov2slam','voxel_svio':'voxel_svio',
             'cifasis_gnss_si':'cifasis_gnss_si','vins_fusion_gps':'vins_fusion'}
 
+
+
+# Runs capture their runtime inside the algorithm's own conda env; asset preparation
+# (build_execution_assets.py) runs in another env and asks that env's interpreter where
+# the package is installed. Both then hash the same installed files.
+ALGORITHM_ENVS = {'cuvslam': os.environ.get('CUVSLAM_CONDA_ENV', 'cuvslam'),
+                  'mast3r_fusion': os.environ.get('MAST3R_FUSION_CONDA_ENV', 'mast3r_fusion')}
+
+
+def package_dir(module, algorithm):
+    """Installed folder of a package, from this interpreter or the algorithm's env (no import)."""
+    spec = importlib.util.find_spec(module)
+    if spec is not None and spec.submodule_search_locations:
+        return Path(list(spec.submodule_search_locations)[0])
+    python = Path(sys.prefix).parent / ALGORITHM_ENVS[algorithm] / 'bin/python'
+    if not python.is_file():
+        return None
+    probe = ('import importlib.util,sys;s=importlib.util.find_spec(sys.argv[1]);'
+             'print(list(s.submodule_search_locations)[0] if s and s.submodule_search_locations else "")')
+    out = subprocess.run([str(python), '-c', probe, module], capture_output=True, text=True)
+    return Path(out.stdout.strip()) if out.returncode == 0 and out.stdout.strip() else None
 
 def container_tree(container,path):
     process=subprocess.Popen(['docker','cp','-L',f'{container}:{path}','-'],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
@@ -100,10 +122,9 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
         # Prebuilt wheel: the estimator is the native library inside the active Python
         # environment, not a build of src/cuvslam. Hash the wheel and what is installed.
         for p in sorted((repo/'third_party/wheels').glob('cuvslam-*.whl')):host(p.relative_to(repo))
-        spec=importlib.util.find_spec('cuvslam')
-        if spec is None or not spec.submodule_search_locations:missing.append('cuvslam_not_importable')
+        package=package_dir('cuvslam','cuvslam')
+        if package is None:missing.append('cuvslam_not_importable')
         else:
-            package=Path(list(spec.submodule_search_locations)[0])
             for p in sorted(package.glob('*.so'))+sorted(package.glob('*.py')):host(p)
     elif algorithm=='airslam':
         for p in ['superpoint_lightglue.onnx']+[f'superpoint_lightglue_{ds}.engine' for ds in ('euroc_mav','hortimulti','rosariov2','zed2i','citrusfarm')]:
@@ -122,10 +143,10 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
         host('third_party/gtsam-mast3r-fusion.commit')
         for p in sorted((repo/'src/mast3r_fusion').rglob('*.so')):host(p.relative_to(repo))
         # The modified GTSAM is installed into the active Python environment.
-        spec=importlib.util.find_spec('gtsam')
-        if spec is None or not spec.submodule_search_locations:missing.append('gtsam_not_importable')
+        package=package_dir('gtsam','mast3r_fusion')
+        if package is None:missing.append('gtsam_not_importable')
         else:
-            for p in sorted(Path(list(spec.submodule_search_locations)[0]).glob('*.so')):host(p)
+            for p in sorted(package.glob('*.so')):host(p)
     elif algorithm=='dsol':
         info=inspect(['image','inspect',os.environ.get('DSOL_IMAGE','vslam_dsol:noetic')])
         container=dict(kind='ephemeral_image',image_id=info['Id'],image=os.environ.get('DSOL_IMAGE','vslam_dsol:noetic'),

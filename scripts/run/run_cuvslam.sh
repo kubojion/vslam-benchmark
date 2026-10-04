@@ -43,7 +43,7 @@ ALGO_CFG="${CUVSLAM_CONFIG:-$WS/configs/cuvslam/default.json}"
 CONDA_ENV="${CUVSLAM_CONDA_ENV:-cuvslam}"
 CUDA_LIB="${CUVSLAM_CUDA_LIB:-/usr/local/cuda-12.4/lib64}"
 
-[[ -d "$REPO/.git" ]] || { echo "[cuvslam] ERROR: source checkout missing at $REPO (run scripts/build/setup_cuvslam_env.sh)" >&2; exit 2; }
+[[ -e "$REPO/.git" ]] || { echo "[cuvslam] ERROR: source checkout missing at $REPO (run scripts/build/setup_cuvslam_env.sh)" >&2; exit 2; }
 [[ -f "$SENSOR" ]] || { echo "[cuvslam] ERROR: no sensor profile at $SENSOR (run scripts/setup/build_sensor_profiles.py)" >&2; exit 2; }
 [[ -f "$ALGO_CFG" ]] || { echo "[cuvslam] ERROR: no config at $ALGO_CFG" >&2; exit 2; }
 [[ -d "$CUDA_LIB" ]] || { echo "[cuvslam] ERROR: CUDA 12 runtime not found at $CUDA_LIB" >&2; exit 2; }
