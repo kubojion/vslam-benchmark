@@ -5,6 +5,7 @@ drifts from the authors' Kalibr chain (configs/sensors/sources/citrusfarm), or w
 sequence's recorded camera model or clock shift disagrees with what the configs assume.
 """
 import json
+import re
 from pathlib import Path
 
 import numpy as np
@@ -69,9 +70,30 @@ def test_inertial_configs_carry_the_profile():
     check(*(np.array(voxel[f'T_imu_cam_{s}'], dtype=float).reshape(4, 4) for s in ('left', 'right')))
     assert voxel['timeshift_cam_imu_left'] == voxel['timeshift_cam_imu_right'] == 0.0
     imu = opencv_yaml(REPO / 'configs/openvins/citrusfarm/kalibr_imu_chain.yaml')['imu0']
-    allan = yaml.safe_load((SOURCES / 'microstrain_gx5.yaml').read_text())
-    assert imu['gyroscope_noise_density'] == pytest.approx(allan['gyroscope_noise_density'], rel=1e-6)
     assert imu['update_rate'] == 200.0 and imu['time_offset'] == 0.0
+
+
+def test_every_inertial_estimator_uses_the_one_citrusfarm_imu_profile():
+    """Recording-derived densities with the authors' Allan random walks, as for ZED2i (decided 2026-10-04)."""
+    noise = json.loads((REPO / 'docs/campaigns/citrusfarm-imu-noise-20261003.json').read_text())['datasets']['citrusfarm']['recommended']
+    allan = yaml.safe_load((SOURCES / 'microstrain_gx5.yaml').read_text())
+    assert (noise['sigma_gw_c'], noise['sigma_aw_c']) == (allan['gyroscope_random_walk'], allan['accelerometer_random_walk'])
+    expected = (noise['sigma_g_c'], noise['sigma_a_c'], noise['sigma_gw_c'], noise['sigma_aw_c'])
+    kalibr = ('gyroscope_noise_density', 'accelerometer_noise_density', 'gyroscope_random_walk', 'accelerometer_random_walk')
+    found = {'sensor profile': [PROFILE['imu'][k] for k in kalibr]}
+    for name in ('citrusfarm_stereo_inertial', 'citrusfarm_stereo_inertial_lc'):
+        text = (REPO / f'configs/orbslam3/{name}.yaml').read_text()   # !!opencv-matrix: read the scalars directly
+        found[name] = [float(re.search(rf'(?m)^{re.escape(k)}:\s*([0-9.eE+-]+)', text).group(1))
+                       for k in ('IMU.NoiseGyro', 'IMU.NoiseAcc', 'IMU.GyroWalk', 'IMU.AccWalk')]
+    found['openvins'] = [opencv_yaml(REPO / 'configs/openvins/citrusfarm/kalibr_imu_chain.yaml')['imu0'][k] for k in kalibr]
+    voxel = yaml.safe_load((REPO / 'configs/voxel_svio/citrusfarm.yaml').read_text())['imu_parameter']
+    found['voxel_svio'] = [voxel[k] for k in kalibr]
+    airslam = opencv_yaml(REPO / 'configs/airslam/citrusfarm_camera_vio.yaml')
+    found['airslam'] = [airslam[k] for k in kalibr]
+    basalt = json.loads((REPO / 'configs/basalt/citrusfarm_calib.json').read_text())['value0']
+    found['basalt'] = [basalt[k][0] for k in ('gyro_noise_std', 'accel_noise_std', 'gyro_bias_std', 'accel_bias_std')]
+    for name, values in found.items():
+        assert values == pytest.approx(expected, rel=1e-6), name
 
 
 @pytest.mark.parametrize('sequence', SEQUENCES)

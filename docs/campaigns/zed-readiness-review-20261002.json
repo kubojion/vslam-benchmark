@@ -1499,7 +1499,7 @@
       "review_complete": true,
       "effective_configuration_verified": true,
       "static_verified": true,
-      "execution_verified": false,
+      "execution_verified": true,
       "historical_cohort_preserved": true,
       "evidence": [
         {
@@ -1557,6 +1557,66 @@
         {
           "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/map_refinement_config--zed2i_mr.yaml",
           "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
+        },
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/run_meta.json",
+          "sha256": "66637c0e34ec3631e4c42db2c4c50f78d9d4e43f18d40edbc0e29764153aca4d"
+        },
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/run_log.txt",
+          "sha256": "ced5551b9f5ef50823ede466e984955e3ad53d34dd75c2b3600d0081b843c31d"
+        },
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/trajectory.txt",
+          "sha256": "67ee8e772562145378d4c74d5823aaae560ccb26310e2db0d21663262ac1406e"
+        },
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/trajectory_v0.txt",
+          "sha256": "0b15c7047c0cd589f63a01b96ffbebeb4176324c7538d61f5c9bd3180759631b"
+        },
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/run_eval.json",
+          "sha256": "544b79b7d20cd90b41c59e9f0c911e708565f11a3754080ea8f160cda87c0008"
+        },
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/run_meta.json",
+          "sha256": "e4ff03f8ea47991f4d0b6ae56eeb093cdb2ba9e5ba8fd9a1968d458ced7866f8"
+        },
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/run_log.txt",
+          "sha256": "1c39739921ee62d7a94125a2bcd0b8eba0de1da29b934da071d4aed1c7218265"
+        },
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/trajectory.txt",
+          "sha256": "8704166e2547aa48c29fcfc3ad61e9139a847b23d511b23f99c794b76c5b7672"
+        },
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/trajectory_v0.txt",
+          "sha256": "e491eb1afc432a94e486f31d6d4aee92e0fd457c32e06602d7fc929ed1bfb072"
+        },
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/run_eval.json",
+          "sha256": "16216a95056a51c0fa81fa602dc75e13ebafc1699d38b40c90ad23307b4733e6"
+        },
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/run_meta.json",
+          "sha256": "529b8a7c090ce117efec50d7b6bcc0cbb64acef5942a32ad89926bf824b150d7"
+        },
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/run_log.txt",
+          "sha256": "30b742ac6fdfc8b8f7a8b176ffc25f61351a90a9c927386a7c57c6e4341bac5d"
+        },
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/trajectory.txt",
+          "sha256": "2639300d9f6c265459b59d3441aebedcc9de8479f88d1d86717ec4e7a7de0483"
+        },
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/trajectory_v0.txt",
+          "sha256": "929c1957985c3c1594862fd443bdacc812ae0c66370cdd55a1953f3a381b1c0c"
+        },
+        {
+          "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/run_eval.json",
+          "sha256": "16f3dc22593298ee2fede4ed2985b5f0c3d74f14faafd504b137f266984e76b5"
         }
       ],
       "resolved_prerequisites": [
@@ -1618,6 +1678,66 @@
             {
               "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/map_refinement_config--zed2i_mr.yaml",
               "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/run_meta.json",
+              "sha256": "66637c0e34ec3631e4c42db2c4c50f78d9d4e43f18d40edbc0e29764153aca4d"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/run_log.txt",
+              "sha256": "ced5551b9f5ef50823ede466e984955e3ad53d34dd75c2b3600d0081b843c31d"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/trajectory.txt",
+              "sha256": "67ee8e772562145378d4c74d5823aaae560ccb26310e2db0d21663262ac1406e"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/trajectory_v0.txt",
+              "sha256": "0b15c7047c0cd589f63a01b96ffbebeb4176324c7538d61f5c9bd3180759631b"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/run_eval.json",
+              "sha256": "544b79b7d20cd90b41c59e9f0c911e708565f11a3754080ea8f160cda87c0008"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/run_meta.json",
+              "sha256": "e4ff03f8ea47991f4d0b6ae56eeb093cdb2ba9e5ba8fd9a1968d458ced7866f8"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/run_log.txt",
+              "sha256": "1c39739921ee62d7a94125a2bcd0b8eba0de1da29b934da071d4aed1c7218265"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/trajectory.txt",
+              "sha256": "8704166e2547aa48c29fcfc3ad61e9139a847b23d511b23f99c794b76c5b7672"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/trajectory_v0.txt",
+              "sha256": "e491eb1afc432a94e486f31d6d4aee92e0fd457c32e06602d7fc929ed1bfb072"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/run_eval.json",
+              "sha256": "16216a95056a51c0fa81fa602dc75e13ebafc1699d38b40c90ad23307b4733e6"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/run_meta.json",
+              "sha256": "529b8a7c090ce117efec50d7b6bcc0cbb64acef5942a32ad89926bf824b150d7"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/run_log.txt",
+              "sha256": "30b742ac6fdfc8b8f7a8b176ffc25f61351a90a9c927386a7c57c6e4341bac5d"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/trajectory.txt",
+              "sha256": "2639300d9f6c265459b59d3441aebedcc9de8479f88d1d86717ec4e7a7de0483"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/trajectory_v0.txt",
+              "sha256": "929c1957985c3c1594862fd443bdacc812ae0c66370cdd55a1953f3a381b1c0c"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/run_eval.json",
+              "sha256": "16f3dc22593298ee2fede4ed2985b5f0c3d74f14faafd504b137f266984e76b5"
             }
           ]
         },
@@ -1679,6 +1799,66 @@
             {
               "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/map_refinement_config--zed2i_mr.yaml",
               "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/run_meta.json",
+              "sha256": "66637c0e34ec3631e4c42db2c4c50f78d9d4e43f18d40edbc0e29764153aca4d"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/run_log.txt",
+              "sha256": "ced5551b9f5ef50823ede466e984955e3ad53d34dd75c2b3600d0081b843c31d"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/trajectory.txt",
+              "sha256": "67ee8e772562145378d4c74d5823aaae560ccb26310e2db0d21663262ac1406e"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/trajectory_v0.txt",
+              "sha256": "0b15c7047c0cd589f63a01b96ffbebeb4176324c7538d61f5c9bd3180759631b"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/run_eval.json",
+              "sha256": "544b79b7d20cd90b41c59e9f0c911e708565f11a3754080ea8f160cda87c0008"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/run_meta.json",
+              "sha256": "e4ff03f8ea47991f4d0b6ae56eeb093cdb2ba9e5ba8fd9a1968d458ced7866f8"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/run_log.txt",
+              "sha256": "1c39739921ee62d7a94125a2bcd0b8eba0de1da29b934da071d4aed1c7218265"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/trajectory.txt",
+              "sha256": "8704166e2547aa48c29fcfc3ad61e9139a847b23d511b23f99c794b76c5b7672"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/trajectory_v0.txt",
+              "sha256": "e491eb1afc432a94e486f31d6d4aee92e0fd457c32e06602d7fc929ed1bfb072"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/run_eval.json",
+              "sha256": "16216a95056a51c0fa81fa602dc75e13ebafc1699d38b40c90ad23307b4733e6"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/run_meta.json",
+              "sha256": "529b8a7c090ce117efec50d7b6bcc0cbb64acef5942a32ad89926bf824b150d7"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/run_log.txt",
+              "sha256": "30b742ac6fdfc8b8f7a8b176ffc25f61351a90a9c927386a7c57c6e4341bac5d"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/trajectory.txt",
+              "sha256": "2639300d9f6c265459b59d3441aebedcc9de8479f88d1d86717ec4e7a7de0483"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/trajectory_v0.txt",
+              "sha256": "929c1957985c3c1594862fd443bdacc812ae0c66370cdd55a1953f3a381b1c0c"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/run_eval.json",
+              "sha256": "16f3dc22593298ee2fede4ed2985b5f0c3d74f14faafd504b137f266984e76b5"
             }
           ]
         },
@@ -1740,6 +1920,66 @@
             {
               "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/map_refinement_config--zed2i_mr.yaml",
               "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/run_meta.json",
+              "sha256": "66637c0e34ec3631e4c42db2c4c50f78d9d4e43f18d40edbc0e29764153aca4d"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/run_log.txt",
+              "sha256": "ced5551b9f5ef50823ede466e984955e3ad53d34dd75c2b3600d0081b843c31d"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/trajectory.txt",
+              "sha256": "67ee8e772562145378d4c74d5823aaae560ccb26310e2db0d21663262ac1406e"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/trajectory_v0.txt",
+              "sha256": "0b15c7047c0cd589f63a01b96ffbebeb4176324c7538d61f5c9bd3180759631b"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/run_eval.json",
+              "sha256": "544b79b7d20cd90b41c59e9f0c911e708565f11a3754080ea8f160cda87c0008"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/run_meta.json",
+              "sha256": "e4ff03f8ea47991f4d0b6ae56eeb093cdb2ba9e5ba8fd9a1968d458ced7866f8"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/run_log.txt",
+              "sha256": "1c39739921ee62d7a94125a2bcd0b8eba0de1da29b934da071d4aed1c7218265"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/trajectory.txt",
+              "sha256": "8704166e2547aa48c29fcfc3ad61e9139a847b23d511b23f99c794b76c5b7672"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/trajectory_v0.txt",
+              "sha256": "e491eb1afc432a94e486f31d6d4aee92e0fd457c32e06602d7fc929ed1bfb072"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/run_eval.json",
+              "sha256": "16216a95056a51c0fa81fa602dc75e13ebafc1699d38b40c90ad23307b4733e6"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/run_meta.json",
+              "sha256": "529b8a7c090ce117efec50d7b6bcc0cbb64acef5942a32ad89926bf824b150d7"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/run_log.txt",
+              "sha256": "30b742ac6fdfc8b8f7a8b176ffc25f61351a90a9c927386a7c57c6e4341bac5d"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/trajectory.txt",
+              "sha256": "2639300d9f6c265459b59d3441aebedcc9de8479f88d1d86717ec4e7a7de0483"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/trajectory_v0.txt",
+              "sha256": "929c1957985c3c1594862fd443bdacc812ae0c66370cdd55a1953f3a381b1c0c"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/run_eval.json",
+              "sha256": "16f3dc22593298ee2fede4ed2985b5f0c3d74f14faafd504b137f266984e76b5"
             }
           ]
         },
@@ -1801,15 +2041,73 @@
             {
               "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/map_refinement_config--zed2i_mr.yaml",
               "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/run_meta.json",
+              "sha256": "66637c0e34ec3631e4c42db2c4c50f78d9d4e43f18d40edbc0e29764153aca4d"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/run_log.txt",
+              "sha256": "ced5551b9f5ef50823ede466e984955e3ad53d34dd75c2b3600d0081b843c31d"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/trajectory.txt",
+              "sha256": "67ee8e772562145378d4c74d5823aaae560ccb26310e2db0d21663262ac1406e"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/trajectory_v0.txt",
+              "sha256": "0b15c7047c0cd589f63a01b96ffbebeb4176324c7538d61f5c9bd3180759631b"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1/run_eval.json",
+              "sha256": "544b79b7d20cd90b41c59e9f0c911e708565f11a3754080ea8f160cda87c0008"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/run_meta.json",
+              "sha256": "e4ff03f8ea47991f4d0b6ae56eeb093cdb2ba9e5ba8fd9a1968d458ced7866f8"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/run_log.txt",
+              "sha256": "1c39739921ee62d7a94125a2bcd0b8eba0de1da29b934da071d4aed1c7218265"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/trajectory.txt",
+              "sha256": "8704166e2547aa48c29fcfc3ad61e9139a847b23d511b23f99c794b76c5b7672"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/trajectory_v0.txt",
+              "sha256": "e491eb1afc432a94e486f31d6d4aee92e0fd457c32e06602d7fc929ed1bfb072"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2/run_eval.json",
+              "sha256": "16216a95056a51c0fa81fa602dc75e13ebafc1699d38b40c90ad23307b4733e6"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/run_meta.json",
+              "sha256": "529b8a7c090ce117efec50d7b6bcc0cbb64acef5942a32ad89926bf824b150d7"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/run_log.txt",
+              "sha256": "30b742ac6fdfc8b8f7a8b176ffc25f61351a90a9c927386a7c57c6e4341bac5d"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/trajectory.txt",
+              "sha256": "2639300d9f6c265459b59d3441aebedcc9de8479f88d1d86717ec4e7a7de0483"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/trajectory_v0.txt",
+              "sha256": "929c1957985c3c1594862fd443bdacc812ae0c66370cdd55a1953f3a381b1c0c"
+            },
+            {
+              "path": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3/run_eval.json",
+              "sha256": "16f3dc22593298ee2fede4ed2985b5f0c3d74f14faafd504b137f266984e76b5"
             }
           ]
         }
       ],
-      "blockers": [
-        "bounded_recheck_not_passed_review_required"
-      ],
+      "blockers": [],
       "diagnostic_attempt": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3",
-      "diagnostic_scope": "bounded recheck did not pass; see recorded exits and log",
+      "diagnostic_scope": "60 s bounded check: VO stage completed with the current setup; map refinement then crashed (exit -11) after a Cholesky failure in global optimisation of a 22-keyframe, loop-free map. Execution verified from the three full-length attempts, whose map refinement completed (222/347/351 loop pairs) with the same image, odometry and map-refinement configs, a camera config differing only in a comment, and AirSLAM source differing only by 1e0ad79 (camera.cc camera-to-body composition, VIO path). Reviewed 2026-10-04 with the user decision to rerun the cell.",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 4685.578447818756,

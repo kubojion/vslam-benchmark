@@ -81,8 +81,8 @@
         1.0
       ]
     ],
-    "gyroscope_noise_density": 0.000104266546,
-    "accelerometer_noise_density": 0.000227684677,
+    "gyroscope_noise_density": 0.003,
+    "accelerometer_noise_density": 0.05,
     "gyroscope_random_walk": 3.563656e-06,
     "accelerometer_random_walk": 6.706088e-06,
     "frequency_hz": 200.0
@@ -93,7 +93,7 @@
   "sources": [
     {
       "path": "configs/orbslam3/citrusfarm_stereo_inertial.yaml",
-      "sha256": "7b79e2ea6ca74a13fdc17fa592e7dfa7a8982097cedc3a7ea2b730a32858d64a",
+      "sha256": "f5c5a1b6a9c4c193e32a06eefbdc9ebc53a7c3e78bb2c98b961ca08e8001f14a",
       "fields": "camera model, baseline or stereo transform, T_imu_cam0, IMU noise, rate"
     },
     {

@@ -108,9 +108,9 @@ IMU.T_b_c1: !!opencv-matrix
           0.002087585903, -0.999991774804, -0.003477399948, -0.081450715984,
           0.0, 0.0, 0.0, 1.0]
 
-# Authors Allan analysis of the MicroStrain (microstrain_gx5.yaml), continuous-time densities.
-IMU.NoiseGyro: 0.000104266546
-IMU.NoiseAcc:  0.000227684677
+# CitrusFarm IMU profile (all estimators): recording-derived densities, authors Allan random walks.
+IMU.NoiseGyro: 0.003
+IMU.NoiseAcc:  0.05
 IMU.GyroWalk:  3.563656e-06
 IMU.AccWalk:   6.706088e-06
 IMU.Frequency: 200.0

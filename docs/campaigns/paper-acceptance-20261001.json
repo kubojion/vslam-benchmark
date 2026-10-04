@@ -63995,13 +63995,13 @@
     "vo-lc/zed2i/field1_110426_full_10fps_q90/airslam": {
       "status": "blocked",
       "attempts": {
-        "accepted_with_limitation": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 3,
+      "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "separate_implementation_cohorts",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
@@ -64011,18 +64011,18 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 3,
+      "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "verified": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
           "cohort": "166d9d1eb78dde4fa87a7bc36baf72d87b7a59c6b1f25b8b603157ddfe832dd6",
           "attempts": 1,
-          "verified_completed": 1,
-          "missing_to_n3": 2,
+          "verified_completed": 0,
+          "missing_to_n3": null,
           "run_paths": [
             "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3"
           ]
@@ -64030,8 +64030,8 @@
         {
           "cohort": "231be16dffe85468b65935fc49213abbeb06d17c27e8891599dd09eaca00e04e",
           "attempts": 2,
-          "verified_completed": 2,
-          "missing_to_n3": 1,
+          "verified_completed": 0,
+          "missing_to_n3": null,
           "run_paths": [
             "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1",
             "results/vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2"

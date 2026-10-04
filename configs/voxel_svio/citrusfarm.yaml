@@ -43,11 +43,11 @@ initializer_parameter:
     gravity_mag: 9.796           # Riverside, CA (~34 deg N)
     downsample_cameras: false
 
-# MicroStrain 3DM-GX5 (CitrusFarm), authors Allan values (HortiMulti policy).
+# MicroStrain 3DM-GX5 (CitrusFarm profile): recording-derived densities, authors Allan random walks.
 imu_parameter:
-    accelerometer_noise_density: 0.000227684677
+    accelerometer_noise_density: 0.05
     accelerometer_random_walk:   6.706088e-06
-    gyroscope_noise_density:     0.000104266546
+    gyroscope_noise_density:     0.003
     gyroscope_random_walk:       3.563656e-06
     sigma_pix: 1.0
     Tw: [ 1.0, 0.0, 0.0,

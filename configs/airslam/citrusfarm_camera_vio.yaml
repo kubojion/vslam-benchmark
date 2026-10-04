@@ -5,7 +5,7 @@
 # scripts/setup/build_citrusfarm_configs.py from configs/airslam/zed2i_camera_vio.yaml; only sensor values differ.
 # T_type 0 (src/airslam/src/camera.cc): T is T_bc, the camera pose in the IMU body frame;
 # here the inverse of the authors Kalibr chain MicroStrain -> Blackfly -> ZED left.
-# IMU noise: authors Allan values (HortiMulti policy, same MicroStrain model).
+# IMU noise: CitrusFarm profile (recording-derived densities, authors Allan random walks).
 
 image_height: 720
 image_width: 1280
@@ -38,8 +38,8 @@ cam1:
   - [0.0, 0.0, 0.0, 1.0]
 
 rate_hz: 200
-gyroscope_noise_density:     0.000104266546
+gyroscope_noise_density:     0.003
 gyroscope_random_walk:       3.563656e-06
-accelerometer_noise_density: 0.000227684677
+accelerometer_noise_density: 0.05
 accelerometer_random_walk:   6.706088e-06
 g_value: 9.796  # Riverside, CA (~34 deg N)

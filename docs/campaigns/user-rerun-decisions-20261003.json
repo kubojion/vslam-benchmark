@@ -1,909 +1,933 @@
 {
- "schema": 1,
- "decided": "2026-10-03",
- "decided_by": "user (project lead), recorded by Claude",
- "scope": "Attempts the user decided to replace by new N=3 runs. Each record pins one attempt path and its recorded binaries; replacement runs get new physical run IDs and never inherit a finding. Original folders are kept.",
- "decisions": {
-  "orb_non_zed_library_replacement": {
-   "code": "historical_orb_library_identity_unverified",
-   "disposition": "required_rerun",
-   "prerequisite": "replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate",
-   "evidence": [
-    "docs/campaigns/orb-historical-exposure-20261002.json",
-    "docs/campaigns/orb-zed-g2o-build-20261002.json",
-    "docs/rerun-plan-20261003.md"
-   ],
-   "explanation": "The installed ORB-SLAM3/g2o libraries were shown ABI-incompatible (2026-10-02). Historical non-ZED attempts saved only the executable hash, so the loaded libraries cannot be established (exposure review: 76 attempts, all unknown). Decision: replace every such attempt with the compatible build the runner now uses, rather than keep results of unknown binary identity."
+  "schema": 1,
+  "decided": "2026-10-03",
+  "decided_by": "user (project lead), recorded by Claude",
+  "scope": "Attempts the user decided to replace by new N=3 runs. Each record pins one attempt path and its recorded binaries; replacement runs get new physical run IDs and never inherit a finding. Original folders are kept.",
+  "decisions": {
+    "orb_non_zed_library_replacement": {
+      "code": "historical_orb_library_identity_unverified",
+      "disposition": "required_rerun",
+      "prerequisite": "replace_with_recorded_compatible_orb_g2o_build_keeping_historical_attempts_separate",
+      "evidence": [
+        "docs/campaigns/orb-historical-exposure-20261002.json",
+        "docs/campaigns/orb-zed-g2o-build-20261002.json",
+        "docs/rerun-plan-20261003.md"
+      ],
+      "explanation": "The installed ORB-SLAM3/g2o libraries were shown ABI-incompatible (2026-10-02). Historical non-ZED attempts saved only the executable hash, so the loaded libraries cannot be established (exposure review: 76 attempts, all unknown). Decision: replace every such attempt with the compatible build the runner now uses, rather than keep results of unknown binary identity."
+    },
+    "openvins_euroc_vio_single_group": {
+      "code": "openvins_euroc_vio_split_implementation_groups",
+      "disposition": "required_rerun",
+      "prerequisite": "rerun_all_three_repetitions_in_one_recorded_implementation_group",
+      "evidence": [
+        "results/repair-20261001/inventory.json",
+        "docs/rerun-plan-20261003.md"
+      ],
+      "explanation": "In each EuRoC VIO cell run1 belongs to a different recorded implementation group than run2/run3 (within_cell_cohort_consistent false). Decision: three new repetitions in one group per cell."
+    },
+    "airslam_zed_vo_lc_single_group": {
+      "code": "airslam_zed_vo_lc_split_workspace_groups",
+      "disposition": "required_rerun",
+      "prerequisite": "rerun_all_three_repetitions_in_one_recorded_implementation_group",
+      "evidence": [
+        "results/repair-20261001/inventory.json",
+        "results/execution-readiness-20261002/zed-recheck-v4-00-airslam-vo-lc.log"
+      ],
+      "decided": "2026-10-04",
+      "explanation": "run1/run2 and run3 belong to different recorded workspace groups (same commit 5b4b6e5c85, configs and image; the uncommitted working-tree diff at run time was not saved, so the groups cannot be shown equivalent). Decision (user, 2026-10-04): three new repetitions in one group."
+    }
   },
-  "openvins_euroc_vio_single_group": {
-   "code": "openvins_euroc_vio_split_implementation_groups",
-   "disposition": "required_rerun",
-   "prerequisite": "rerun_all_three_repetitions_in_one_recorded_implementation_group",
-   "evidence": [
-    "results/repair-20261001/inventory.json",
-    "docs/rerun-plan-20261003.md"
-   ],
-   "explanation": "In each EuRoC VIO cell run1 belongs to a different recorded implementation group than run2/run3 (within_cell_cohort_consistent false). Decision: three new repetitions in one group per cell."
+  "counts": {
+    "orb_non_zed_library_replacement": 76,
+    "openvins_euroc_vio_single_group": 9,
+    "orb_cells": 28,
+    "missing_run_meta": 0,
+    "airslam_zed_vo_lc_single_group": 3
+  },
+  "attempts": {
+    "vio-lc/euroc_mav/MH_01_easy/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/euroc_mav/MH_01_easy/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/euroc_mav/MH_01_easy/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/euroc_mav/MH_03_medium/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/euroc_mav/MH_03_medium/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/euroc_mav/MH_03_medium/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/euroc_mav/MH_05_difficult/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/euroc_mav/MH_05_difficult/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/euroc_mav/MH_05_difficult/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/hortimulti/strawberry03/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/hortimulti/strawberry03/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/hortimulti/strawberry03/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/rosariov2/sequence1/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/rosariov2/sequence1/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/rosariov2/sequence1/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/rosariov2/sequence5/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/rosariov2/sequence5/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio-lc/rosariov2/sequence5/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/euroc_mav/MH_01_easy/openvins/run1": {
+      "decision": "openvins_euroc_vio_single_group",
+      "binaries": []
+    },
+    "vio/euroc_mav/MH_01_easy/openvins/run2": {
+      "decision": "openvins_euroc_vio_single_group",
+      "binaries": []
+    },
+    "vio/euroc_mav/MH_01_easy/openvins/run3": {
+      "decision": "openvins_euroc_vio_single_group",
+      "binaries": []
+    },
+    "vio/euroc_mav/MH_01_easy/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/euroc_mav/MH_01_easy/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/euroc_mav/MH_01_easy/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/euroc_mav/MH_03_medium/openvins/run1": {
+      "decision": "openvins_euroc_vio_single_group",
+      "binaries": []
+    },
+    "vio/euroc_mav/MH_03_medium/openvins/run2": {
+      "decision": "openvins_euroc_vio_single_group",
+      "binaries": []
+    },
+    "vio/euroc_mav/MH_03_medium/openvins/run3": {
+      "decision": "openvins_euroc_vio_single_group",
+      "binaries": []
+    },
+    "vio/euroc_mav/MH_03_medium/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/euroc_mav/MH_03_medium/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/euroc_mav/MH_03_medium/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/euroc_mav/MH_05_difficult/openvins/run1": {
+      "decision": "openvins_euroc_vio_single_group",
+      "binaries": []
+    },
+    "vio/euroc_mav/MH_05_difficult/openvins/run2": {
+      "decision": "openvins_euroc_vio_single_group",
+      "binaries": []
+    },
+    "vio/euroc_mav/MH_05_difficult/openvins/run3": {
+      "decision": "openvins_euroc_vio_single_group",
+      "binaries": []
+    },
+    "vio/euroc_mav/MH_05_difficult/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/euroc_mav/MH_05_difficult/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/euroc_mav/MH_05_difficult/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/hortimulti/strawberry02/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/hortimulti/strawberry02/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/hortimulti/strawberry02/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/hortimulti/strawberry03/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/hortimulti/strawberry03/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/hortimulti/strawberry03/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/rosariov2/sequence1/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/rosariov2/sequence1/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/rosariov2/sequence1/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/rosariov2/sequence5/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/rosariov2/sequence5/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vio/rosariov2/sequence5/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+          "role": "estimator",
+          "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+          "size_bytes": 71872
+        }
+      ]
+    },
+    "vo-lc/euroc_mav/MH_01_easy/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/euroc_mav/MH_01_easy/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/euroc_mav/MH_01_easy/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/euroc_mav/MH_03_medium/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/euroc_mav/MH_03_medium/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/euroc_mav/MH_03_medium/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/euroc_mav/MH_05_difficult/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/euroc_mav/MH_05_difficult/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/euroc_mav/MH_05_difficult/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/hortimulti/strawberry02/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/hortimulti/strawberry02/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/hortimulti/strawberry02/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/hortimulti/strawberry03/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/hortimulti/strawberry03/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/hortimulti/strawberry03/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/rosariov2/sequence1/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/rosariov2/sequence5/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/rosariov2/sequence5/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/rosariov2/sequence5/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo/euroc_mav/MH_01_easy/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo/euroc_mav/MH_01_easy/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo/euroc_mav/MH_01_easy/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo/euroc_mav/MH_03_medium/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo/euroc_mav/MH_03_medium/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo/euroc_mav/MH_03_medium/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo/euroc_mav/MH_05_difficult/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo/euroc_mav/MH_05_difficult/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo/euroc_mav/MH_05_difficult/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo/hortimulti/strawberry02/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo/hortimulti/strawberry03/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo/hortimulti/strawberry03/orbslam3/run2": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo/hortimulti/strawberry03/orbslam3/run3": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo/rosariov2/sequence1/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo/rosariov2/sequence5/orbslam3/run1": {
+      "decision": "orb_non_zed_library_replacement",
+      "binaries": [
+        {
+          "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+          "role": "estimator",
+          "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+          "size_bytes": 57984
+        }
+      ]
+    },
+    "vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run1": {
+      "decision": "airslam_zed_vo_lc_single_group",
+      "binaries": []
+    },
+    "vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run2": {
+      "decision": "airslam_zed_vo_lc_single_group",
+      "binaries": []
+    },
+    "vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run3": {
+      "decision": "airslam_zed_vo_lc_single_group",
+      "binaries": []
+    }
   }
- },
- "counts": {
-  "orb_non_zed_library_replacement": 76,
-  "openvins_euroc_vio_single_group": 9,
-  "orb_cells": 28,
-  "missing_run_meta": 0
- },
- "attempts": {
-  "vio-lc/euroc_mav/MH_01_easy/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/euroc_mav/MH_01_easy/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/euroc_mav/MH_01_easy/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/euroc_mav/MH_03_medium/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/euroc_mav/MH_03_medium/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/euroc_mav/MH_03_medium/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/euroc_mav/MH_05_difficult/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/euroc_mav/MH_05_difficult/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/euroc_mav/MH_05_difficult/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/hortimulti/strawberry02/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/hortimulti/strawberry02/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/hortimulti/strawberry02/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/hortimulti/strawberry03/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/hortimulti/strawberry03/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/hortimulti/strawberry03/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/rosariov2/sequence1/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/rosariov2/sequence1/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/rosariov2/sequence1/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/rosariov2/sequence5/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/rosariov2/sequence5/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio-lc/rosariov2/sequence5/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/euroc_mav/MH_01_easy/openvins/run1": {
-   "decision": "openvins_euroc_vio_single_group",
-   "binaries": []
-  },
-  "vio/euroc_mav/MH_01_easy/openvins/run2": {
-   "decision": "openvins_euroc_vio_single_group",
-   "binaries": []
-  },
-  "vio/euroc_mav/MH_01_easy/openvins/run3": {
-   "decision": "openvins_euroc_vio_single_group",
-   "binaries": []
-  },
-  "vio/euroc_mav/MH_01_easy/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/euroc_mav/MH_01_easy/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/euroc_mav/MH_01_easy/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/euroc_mav/MH_03_medium/openvins/run1": {
-   "decision": "openvins_euroc_vio_single_group",
-   "binaries": []
-  },
-  "vio/euroc_mav/MH_03_medium/openvins/run2": {
-   "decision": "openvins_euroc_vio_single_group",
-   "binaries": []
-  },
-  "vio/euroc_mav/MH_03_medium/openvins/run3": {
-   "decision": "openvins_euroc_vio_single_group",
-   "binaries": []
-  },
-  "vio/euroc_mav/MH_03_medium/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/euroc_mav/MH_03_medium/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/euroc_mav/MH_03_medium/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/euroc_mav/MH_05_difficult/openvins/run1": {
-   "decision": "openvins_euroc_vio_single_group",
-   "binaries": []
-  },
-  "vio/euroc_mav/MH_05_difficult/openvins/run2": {
-   "decision": "openvins_euroc_vio_single_group",
-   "binaries": []
-  },
-  "vio/euroc_mav/MH_05_difficult/openvins/run3": {
-   "decision": "openvins_euroc_vio_single_group",
-   "binaries": []
-  },
-  "vio/euroc_mav/MH_05_difficult/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/euroc_mav/MH_05_difficult/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/euroc_mav/MH_05_difficult/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/hortimulti/strawberry02/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/hortimulti/strawberry02/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/hortimulti/strawberry02/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/hortimulti/strawberry03/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/hortimulti/strawberry03/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/hortimulti/strawberry03/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/rosariov2/sequence1/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/rosariov2/sequence1/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/rosariov2/sequence1/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/rosariov2/sequence5/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/rosariov2/sequence5/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vio/rosariov2/sequence5/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
-     "role": "estimator",
-     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
-     "size_bytes": 71872
-    }
-   ]
-  },
-  "vo-lc/euroc_mav/MH_01_easy/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/euroc_mav/MH_01_easy/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/euroc_mav/MH_01_easy/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/euroc_mav/MH_03_medium/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/euroc_mav/MH_03_medium/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/euroc_mav/MH_03_medium/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/euroc_mav/MH_05_difficult/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/euroc_mav/MH_05_difficult/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/euroc_mav/MH_05_difficult/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/hortimulti/strawberry02/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/hortimulti/strawberry02/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/hortimulti/strawberry02/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/hortimulti/strawberry03/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/hortimulti/strawberry03/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/hortimulti/strawberry03/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/rosariov2/sequence1/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/rosariov2/sequence5/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/rosariov2/sequence5/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo-lc/rosariov2/sequence5/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo/euroc_mav/MH_01_easy/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo/euroc_mav/MH_01_easy/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo/euroc_mav/MH_01_easy/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo/euroc_mav/MH_03_medium/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo/euroc_mav/MH_03_medium/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo/euroc_mav/MH_03_medium/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo/euroc_mav/MH_05_difficult/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo/euroc_mav/MH_05_difficult/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo/euroc_mav/MH_05_difficult/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo/hortimulti/strawberry02/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo/hortimulti/strawberry03/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo/hortimulti/strawberry03/orbslam3/run2": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo/hortimulti/strawberry03/orbslam3/run3": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo/rosariov2/sequence1/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  },
-  "vo/rosariov2/sequence5/orbslam3/run1": {
-   "decision": "orb_non_zed_library_replacement",
-   "binaries": [
-    {
-     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
-     "role": "estimator",
-     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
-     "size_bytes": 57984
-    }
-   ]
-  }
- }
 }

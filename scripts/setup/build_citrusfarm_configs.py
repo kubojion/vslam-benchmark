@@ -12,11 +12,13 @@ from that estimator's ZED2i config and only sensor values are replaced:
              MicroStrain -> Blackfly -> ZED left (checked against the ZED IMU's gyro: 0.3 deg)
   clock      the extracted IMU stamps are already on the camera clock (measured offset
              removed at preparation), so every time offset here is 0
-  imu noise  the policy of HortiMulti, which uses the same IMU model: the authors' Allan
-             values (configs/sensors/sources/citrusfarm/microstrain_gx5.yaml) for ORB-SLAM3,
-             OpenVINS, Voxel-SVIO and AirSLAM; the recording-derived envelope
-             (scripts/analysis/derive_okvis_imu_noise.py --datasets citrusfarm) with the Allan
-             random walks for OKVIS2, OKVIS2-X and Basalt
+  imu noise  one profile for every estimator, as for ZED2i (user decision 2026-10-04): the
+             recording-derived densities (scripts/analysis/derive_okvis_imu_noise.py --datasets
+             citrusfarm; gyro 0.003, accel 0.05) with the authors' Allan random walks
+             (configs/sensors/sources/citrusfarm/microstrain_gx5.yaml). The authors' Allan
+             densities (gyro 1.04e-4, accel 2.28e-4) describe the IMU at rest; on this vibrating
+             platform the first pilots of OpenVINS, Voxel-SVIO and AirSLAM diverged with them.
+             The sensor profile (cuVSLAM, MASt3R-Fusion) is derived from the ORB-SLAM3 file.
   gravity    9.796 m/s^2 (Riverside, CA, 34 deg N, ~300 m)
 
 Outputs are written next to the ZED2i files with `citrusfarm` in place of `zed2i` (and
@@ -50,10 +52,12 @@ def values(envelope):
     t_cam0_cam1 = np.eye(4)
     t_cam0_cam1[0, 3] = baseline
     allan = yaml.safe_load((SOURCES / 'microstrain_gx5.yaml').read_text())
+    # The envelope keeps the authors' random walks; only the densities come from the recording.
+    assert (envelope['sigma_gw_c'], envelope['sigma_aw_c']) == (allan['gyroscope_random_walk'], allan['accelerometer_random_walk'])
     return dict(fx=k[0], fy=k[4], cx=k[2], cy=k[5], width=info['left']['width'], height=info['left']['height'],
                 baseline=baseline, t_imu_cam0=t_imu_cam0, t_imu_cam1=t_imu_cam0 @ t_cam0_cam1,
-                allan=dict(gyro_nd=allan['gyroscope_noise_density'], acc_nd=allan['accelerometer_noise_density'],
-                           gyro_rw=allan['gyroscope_random_walk'], acc_rw=allan['accelerometer_random_walk']),
+                imu=dict(gyro_nd=envelope['sigma_g_c'], acc_nd=envelope['sigma_a_c'],
+                         gyro_rw=envelope['sigma_gw_c'], acc_rw=envelope['sigma_aw_c']),
                 envelope=envelope, rate=200.0)
 
 
@@ -108,8 +112,8 @@ def orbslam3(v):
             text = re.sub(r'# IMU\.T_b_c1 = body\(IMU\) <- cam0 optical\.[^\n]*\n(#[^\n]*\n)*',
                           '# IMU.T_b_c1 = MicroStrain <- ZED left optical: inverse of the authors Kalibr chain\n'
                           '# (MicroStrain -> Blackfly 02-imu-cam-result, Blackfly -> ZED left 01-multi-cam-result).\n', text)
-            text = re.sub(r'# Common ZED field IMU profile[^\n]*\n', '# Authors Allan analysis of the MicroStrain (microstrain_gx5.yaml), continuous-time densities.\n', text)
-            a = v['allan']
+            text = re.sub(r'# Common ZED field IMU profile[^\n]*\n', '# CitrusFarm IMU profile (all estimators): recording-derived densities, authors Allan random walks.\n', text)
+            a = v['imu']
             for key, value in (('IMU.NoiseGyro', a['gyro_nd']), ('IMU.NoiseAcc', a['acc_nd']),
                                ('IMU.GyroWalk', a['gyro_rw']), ('IMU.AccWalk', a['acc_rw']), ('IMU.Frequency', v['rate'])):
                 text, n = re.subn(rf'(?m)^({re.escape(key)}:\s*).*$', lambda m: m.group(1) + num(value), text)
@@ -193,7 +197,7 @@ def opencv_rows(t, indent='  '):
 
 
 def airslam(v):
-    a = v['allan']
+    a = v['imu']
     for mode in ('vio', 'vo', 'vo_lc', 'mr'):
         template = ROOT / 'configs/airslam' / f'zed2i_{mode}.yaml'
         text = template.read_text()
@@ -208,7 +212,7 @@ def airslam(v):
         text = template.read_text()
         intro = ('# T_type 0 (src/airslam/src/camera.cc): T is T_bc, the camera pose in the IMU body frame;\n'
                  '# here the inverse of the authors Kalibr chain MicroStrain -> Blackfly -> ZED left.\n'
-                 '# IMU noise: authors Allan values (HortiMulti policy, same MicroStrain model).\n') if inertial else \
+                 '# IMU noise: CitrusFarm profile (recording-derived densities, authors Allan random walks).\n') if inertial else \
                 ('# VO mode (use_imu: 0): body = cam0; cam1 is the right camera at +baseline. AirSLAM uses only\n'
                  '# |x| of the cam0-cam1 offset as the stereo baseline.\n')
         text = re.sub(r'(?s)\A%YAML:1.0\n(#[^\n]*\n|\s*\n)+', '%YAML:1.0\n# AirSLAM camera file (' + mode.upper()
@@ -254,7 +258,7 @@ def ov2slam(v):
 def voxel_svio(v):
     template = ROOT / 'configs/voxel_svio/zed2i.yaml'
     text = template.read_text()
-    a = v['allan']
+    a = v['imu']
     text = replace_keys(text, (('gravity_mag', f'{GRAVITY}           # Riverside, CA (~34 deg N)'),
                                ('accelerometer_noise_density', num(a['acc_nd'])),
                                ('accelerometer_random_walk', num(a['acc_rw'])),
@@ -271,7 +275,7 @@ def voxel_svio(v):
         text, n = re.subn(rf'(    T_imu_cam_{side}: +\[)[^\]]*\]', lambda m: m.group(1) + flat + ']', text)
         assert n == 1, (template, side)
     text, n = re.subn(r'(?m)^# ZED2i field1 IMU\.[^\n]*\n(#[^\n]*\n)*',
-                      '# MicroStrain 3DM-GX5 (CitrusFarm), authors Allan values (HortiMulti policy).\n', text)
+                      '# MicroStrain 3DM-GX5 (CitrusFarm profile): recording-derived densities, authors Allan random walks.\n', text)
     assert n == 1, (template, 'imu comment')
     text, n = re.subn(r'(?m)^# ZED2i rectified optical cameras\.[^\n]*\n(#[^\n]*\n)*',
                       '# ZED2i factory-rectified cameras; T_imu_cam = inverse of the authors Kalibr chain\n'
@@ -282,7 +286,7 @@ def voxel_svio(v):
 
 
 def openvins(v):
-    a = v['allan']
+    a = v['imu']
     src = ROOT / 'configs/openvins/zed2i'
     text = (src / 'estimator_config.yaml').read_text()
     text = replace_keys(text, (('gravity_mag', GRAVITY),), src / 'estimator_config.yaml')
@@ -295,7 +299,8 @@ def openvins(v):
                              ('gyroscope_noise_density', num(a['gyro_nd'])), ('gyroscope_random_walk', num(a['gyro_rw'])),
                              ('update_rate', v['rate']), ('time_offset', '0.0')), src / 'kalibr_imu_chain.yaml')
     imu = re.sub(r'(?s)\A%YAML:1.0\n(#[^\n]*\n)*', '%YAML:1.0\n' + HEADER.format(template='configs/openvins/zed2i/kalibr_imu_chain.yaml')
-                 + '# MicroStrain 3DM-GX5, authors Allan values (HortiMulti policy); stamps on the camera clock.\n', imu)
+                 + '# MicroStrain 3DM-GX5, CitrusFarm profile (recording-derived densities, authors Allan random walks);\n'
+                 + '# stamps on the camera clock.\n', imu)
     write(ROOT / 'configs/openvins/citrusfarm/kalibr_imu_chain.yaml', imu)
     cam = (src / 'kalibr_imucam_chain.yaml').read_text()
     poses = [v['t_imu_cam0'], v['t_imu_cam1']]
