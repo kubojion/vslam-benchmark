@@ -33,6 +33,14 @@ case "$RUN_TYPE" in
     vio-lc) echo "[dpvo] ERROR: DPV-SLAM is visual-only LC; use run_type=vo-lc, not vio-lc" >&2; exit 2 ;;
     *)      echo "[dpvo] ERROR: run_type must be vo (DPVO) or vo-lc (DPV-SLAM)" >&2; exit 2 ;;
 esac
+# DPVO stores every keyframe in a fixed buffer (BUFFER_SIZE, default 4096) and stops when
+# it is full. CitrusFarm seq04 overflows it (low, vibrating platform: many keyframes); the
+# other datasets fit, so they keep the default. Capacity only: no estimate changes while it fits.
+BUFFER_PARAM=()
+if [[ "$DATASET" == "citrusfarm" ]]; then
+    DPVO_OPTS+=(BUFFER_SIZE 8192)
+    BUFFER_PARAM=(--param "buffer_size=8192")
+fi
 
 REPO="$WS/src/DPVO"
 SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
@@ -120,7 +128,7 @@ PROV_ARGS=(
     --artifact "model=$NET"
     --source "algorithm=$REPO"
     --param "stride=$STRIDE" --param "skip=$SKIP"
-    --param "loop_closure=$USE_LC" --param "classic_loop_closure=false" --seed "$SEED"
+    --param "loop_closure=$USE_LC" --param "classic_loop_closure=false" "${BUFFER_PARAM[@]}" --seed "$SEED"
     --conda-env dpvo
 )
 

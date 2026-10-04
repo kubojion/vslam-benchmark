@@ -121,9 +121,7 @@ camera–IMU transforms despite raw unrotated IMU samples and independently cali
 nonidentity geometry. OpenVINS spatial calibration was explicitly disabled; time
 calibration cannot repair that. Basalt/Voxel identity profiles likewise cannot be
 justified by calling the IMU a virtual camera body. Their joint camera-profile
-replacement is still a production prerequisite.
-
-> **Correction (3 October 2026):** AirSLAM's Rosario VIO and VIO-LC attempts (12) have the same identity camera–IMU transform and are now recorded as required reruns; Voxel-SVIO's historical HortiMulti attempts ran the initializer that ignored the declared 9.16 ms offset (found 2 October) and are now required reruns. See [the rerun plan](rerun-plan-20261003.md). False colocation comments are
+replacement is still a production prerequisite. False colocation comments are
 corrected; those future profiles are explicitly blocked pending a consistent model.
 
 ## Horti: timing defect and reference-origin uncertainty

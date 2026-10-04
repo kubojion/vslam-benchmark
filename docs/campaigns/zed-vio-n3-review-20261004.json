@@ -1,0 +1,2713 @@
+{
+  "schema": 1,
+  "scope": "The 18 selected attempts of the 2026-10-03 ZED VIO N=3 batch; no estimator execution",
+  "selection": {
+    "path": "configs/campaigns/zed-vio-n3-attempts-20261003.json",
+    "sha256": "c965a113ca3e9eebb828dc6ca80fae8c4901a477411ec2576477872dde3ccf7d"
+  },
+  "runs": [
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001",
+      "algorithm": "airslam",
+      "repetition": 1,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 2720,
+      "export_time_coverage": 0.9986,
+      "process_exit": 0,
+      "run_status": "ok",
+      "scale_factor": 0.9727837267224726,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 3.48125988019653,
+          "n_pairs": 2654,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 3.4869268359241046,
+          "n_pairs": 2539,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 3.481594442763297,
+          "n_pairs": 2654,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 3.4809660470696095,
+          "n_pairs": 2653,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.0003345625667670049,
+      "native_error_observations": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "native_sparse_keyframe_accuracy_not_dense_tracking",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/AirSLAM_mapv0.bin",
+          "sha256": "f470fc77b84f44134c4f76c0752a74563fbfb9f5b98bd451053f7b6d64ddb53b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/processes/master.json",
+          "sha256": "b8666a92f27cdcd58dcd1ac1b7e033248df6963802d77782d6ef2b27a31d027c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/processes/master.stops.jsonl",
+          "sha256": "50fe21e2ac04c8da22e289179daafb60aa3c13a08f7c267d4e5b815f04ad738e"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/processes/odometry.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/processes/odometry.json",
+          "sha256": "4b0bc227560b84dc4e29736fe8f6f275986d2be7483b0a33677832bd7be5cb47"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/provenance/camera_config--zed2i_camera_vio.yaml",
+          "sha256": "decea6e163d44b5a7b6846d8bbc8676a5a8390f8d41709d2693fe1bac51c64ad"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/provenance/implementation.json",
+          "sha256": "afa3f1411aa26444ccf5e24c9d2ec3e5ab457a611e44011167a543e9db5209ff"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/provenance/odometry_config--zed2i_vio.yaml",
+          "sha256": "fcd70cfc0ebb5bbf05cc2abe52795598ffcb30c4a1b2e3a3c75d1d476189e05d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/ros_master_uri.txt",
+          "sha256": "e6ba4d4990e4dc3d23f09982ca4ce782bd6cbb8c59cba7bfba4b46c9ddfea87c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/roscore.log",
+          "sha256": "89565a40cc189df89a02daac32c8b87ae9660af11ea55c830211f0eafc3fe042"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/run_eval.json",
+          "sha256": "806b265f68cb4fd0d4482ea61002e0c2de8399d64d79695d1700b523211335ea"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/run_log.txt",
+          "sha256": "f4347efad33cd8c4abbaa2dc76299e9a08ca8c192a68d8832b3649444ca61620"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/run_meta.json",
+          "sha256": "19ead26ad2b5abaae8fed9dd7f76f1a95e47138b69ee1c011558456b334424f8"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/trajectory.txt",
+          "sha256": "9a11fbdd8bd1075d101c09152668eafd73af985c069344cf27ed3717c3ac380b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001/trajectory_v0.txt",
+          "sha256": "9a11fbdd8bd1075d101c09152668eafd73af985c069344cf27ed3717c3ac380b"
+        }
+      ],
+      "evaluation_sha256": "6081e57be22997700e417df51d4b93d438f51164e6488c4f96a377a6f6273bfd"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002",
+      "algorithm": "airslam",
+      "repetition": 2,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 2720,
+      "export_time_coverage": 0.9986,
+      "process_exit": 0,
+      "run_status": "ok",
+      "scale_factor": 0.9692387760291766,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 3.8027169261652705,
+          "n_pairs": 2654,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 3.809856858201778,
+          "n_pairs": 2539,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 3.8031509770046337,
+          "n_pairs": 2654,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 3.8023924535253073,
+          "n_pairs": 2653,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.0004340508393632092,
+      "native_error_observations": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "native_sparse_keyframe_accuracy_not_dense_tracking",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/AirSLAM_mapv0.bin",
+          "sha256": "1b0bf0e788253ed1b73f6dc28474969165aacb83e06b6b59c9944172a10dc6f0"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/processes/master.json",
+          "sha256": "2b9e9f4c826b11ee8f21d47a4a26d028fbaa90de5504d8b16fd1c4088b3c76b3"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/processes/master.stops.jsonl",
+          "sha256": "d9c0b1458e0cabb185e9247a90c38f9e4a4e5692865c2475b9d933a4a90f2a81"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/processes/odometry.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/processes/odometry.json",
+          "sha256": "80da4cee40b628f2e517660f4f0e09c2e5a12c8a190dca44ac6533b8c3c2595a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/provenance/camera_config--zed2i_camera_vio.yaml",
+          "sha256": "decea6e163d44b5a7b6846d8bbc8676a5a8390f8d41709d2693fe1bac51c64ad"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/provenance/implementation.json",
+          "sha256": "3108292f7f3fee544bc52905e215814c871fc8a62b27e3d52ae3b9444d5da8f8"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/provenance/odometry_config--zed2i_vio.yaml",
+          "sha256": "fcd70cfc0ebb5bbf05cc2abe52795598ffcb30c4a1b2e3a3c75d1d476189e05d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/ros_master_uri.txt",
+          "sha256": "0be6bdf2fc1564e025c3aa314d724cec18636271dfcfee59e3dec6fd9273627a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/roscore.log",
+          "sha256": "45ce5d10150b3e5f6faea1b53863b0ed26202b55165385c57b328ed15b403a6f"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/run_eval.json",
+          "sha256": "31442ba8979e25900d2835f67a8860eedf5243c74c1105022070355d7351dfe8"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/run_log.txt",
+          "sha256": "287f21647b2125d8004990619f4fdbd3b79324211afd356810a8ade1b5f25249"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/run_meta.json",
+          "sha256": "60338f1ec7b7d3cb560445ed24cac785e60d38e7f1f9dbea83d633ee99f4bd26"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/trajectory.txt",
+          "sha256": "721f4ec9c7dd3de01b63003419a7d8f32cea8e2153ec747a1eb6edec026729f2"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002/trajectory_v0.txt",
+          "sha256": "721f4ec9c7dd3de01b63003419a7d8f32cea8e2153ec747a1eb6edec026729f2"
+        }
+      ],
+      "evaluation_sha256": "ee76d5a0dcc4a9230161d62fc43c5d9e7c202d5babafd9964889c54b787b2ff7"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003",
+      "algorithm": "airslam",
+      "repetition": 3,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 2720,
+      "export_time_coverage": 0.9986,
+      "process_exit": 0,
+      "run_status": "ok",
+      "scale_factor": 0.9733796711657953,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 3.4501124182084077,
+          "n_pairs": 2654,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 3.453451526622278,
+          "n_pairs": 2539,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 3.4504797690217743,
+          "n_pairs": 2654,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 3.4498207970280563,
+          "n_pairs": 2653,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.0003673508133665848,
+      "native_error_observations": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "native_sparse_keyframe_accuracy_not_dense_tracking",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/AirSLAM_mapv0.bin",
+          "sha256": "85fa2898429ff0fc8133dbaa2a9d5cdf0877479fe66e193a665cf414a5e0b18b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/processes/master.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/processes/master.json",
+          "sha256": "819084fae6d9bba164edf379d1b83eef93ecd326df50a103981bdd0acc795a5d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/processes/master.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/processes/master.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/processes/master.stops.jsonl",
+          "sha256": "ffb795549ebb1c11900408bd7598ab84a1f8d204c82043d614934446e747f373"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/processes/odometry.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/processes/odometry.json",
+          "sha256": "4b4f0735de1fe1505af4cdd3ee9c1cd1c065496f2d9b5a3dc3d793359d101d33"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/processes/odometry.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/processes/odometry.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/provenance/camera_config--zed2i_camera_vio.yaml",
+          "sha256": "decea6e163d44b5a7b6846d8bbc8676a5a8390f8d41709d2693fe1bac51c64ad"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/provenance/implementation.json",
+          "sha256": "96e486db3f0304d347503a707b6cd2c25961ff7c70a0503dfc311b5b1d26f656"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/provenance/odometry_config--zed2i_vio.yaml",
+          "sha256": "fcd70cfc0ebb5bbf05cc2abe52795598ffcb30c4a1b2e3a3c75d1d476189e05d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/provenance/runtime-assets.json",
+          "sha256": "a3ac6ba4bbf34f99e043875429cc69d4ef111608de7c8abbb2faf26d1148c922"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/ros_master_uri.txt",
+          "sha256": "c0f3aa6981a2a8d47d8d35b1cc888c5cd83f032898458044666d805494f27638"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/roscore.log",
+          "sha256": "1867ebf654edb8cd1b1906155c68d5150ddcfea0c1cab8d47718e4a21ea686ca"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/run_eval.json",
+          "sha256": "c3fc2c64198cf37f246cc2aebcb78a1bce7f6c7dda5c4cc001c27c3b4ab1e720"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/run_log.txt",
+          "sha256": "8760bb368f50d24551e7c418ad7a929b38a425c9cebd8c906dbc854590bfa253"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/run_meta.json",
+          "sha256": "af2fcda1026a44af8ca1f46df27de1f8692b59b1a9597ce7471e6355dcdfa341"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/trajectory.txt",
+          "sha256": "c2385c8db1cc98fea0c6a4ef340cb12b3dfc459fab2f3791adc2d29eae718140"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003/trajectory_v0.txt",
+          "sha256": "c2385c8db1cc98fea0c6a4ef340cb12b3dfc459fab2f3791adc2d29eae718140"
+        }
+      ],
+      "evaluation_sha256": "b03cb838bfcd6d9456d55cfb4859e8b6becdf9e736b74e05d10989b2c8c825f0"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001",
+      "algorithm": "basalt",
+      "repetition": 1,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 46282,
+      "export_time_coverage": 1.0,
+      "process_exit": 0,
+      "run_status": "ok",
+      "scale_factor": 0.9899696136298035,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 0.4813352723490297,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 0.48978298197213327,
+          "n_pairs": 43090,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 0.48224842642138493,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 0.4805678499882964,
+          "n_pairs": 45282,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.00091315407235526,
+      "native_error_observations": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/effective-estimator-settings.json",
+          "sha256": "519e0f070d7177c71ca90d7599492b87ce19fe5852943cdb04084185d647291c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/input-clock-preparation.json",
+          "sha256": "76132607599118721e95ea6744ea13f4231e59f7e14a659ff24067e74f605e71"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/native-inputs/clock-policy.json",
+          "sha256": "76132607599118721e95ea6744ea13f4231e59f7e14a659ff24067e74f605e71"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/native-inputs/dataset/mav0/imu0/data.csv",
+          "sha256": "933bfae9402744356e77a5c43f7aa51f7f99f32a627288deebff91f087836d0d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/native-inputs/effective-calibration.json",
+          "sha256": "ee391849f99553610ac07bd48ff15a09bfe902012004d70db643bdad8fb39ffa"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/native-settings-policy.json",
+          "sha256": "87e97ea340759f6633626736cc93970771076bc53011eb6dfad15e5b0410e683"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/processes/estimator.json",
+          "sha256": "fae330c1a12543ac5e7d5343add7db02a0aa40f10fc3c57efe368caed7868761"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/provenance/camera_calibration--effective-calibration.json",
+          "sha256": "ee391849f99553610ac07bd48ff15a09bfe902012004d70db643bdad8fb39ffa"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/provenance/estimator_config--effective-estimator-settings.json",
+          "sha256": "519e0f070d7177c71ca90d7599492b87ce19fe5852943cdb04084185d647291c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/provenance/implementation.json",
+          "sha256": "6ba66d6f4cbaed999a99f5fd5bc77d859bf1c56455f0cc5e272246134681d310"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/provenance/input_clock_policy--clock-policy.json",
+          "sha256": "4ee1e60451773591fda03c7035d11f1ee8c44a87db43e6c2dab71ae5431569c1"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/provenance/native_settings_policy--native-settings-policy.json",
+          "sha256": "eafd9e22e2e4bc0d3d5c5cf7d4e3cf58189e9e373787184b333908a2ef20b0d6"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/provenance/native_settings_review--basalt-native-profile-20261002.json",
+          "sha256": "17af08ca7c2b10e8b24d1689225f5bb362547decd0df417a64ff75d0ccdf7226"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/provenance/requested_camera_calibration--zed2i_calib.json",
+          "sha256": "d6fb226c9c48045af5dc8df9ab96d6686e56d2acdf649c7755db387be0c2f44b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/provenance/requested_estimator_config--vio_config.json",
+          "sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/provenance/runtime-assets.json",
+          "sha256": "8c2242849aa9bc13b085c7e804513dbc0274d618635dead807ea8f7d5312d839"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/run_eval.json",
+          "sha256": "35d02abd2e62c2de4482d2a99e74de7d421eef6a9839cebfd236ef33c826d9e8"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/run_log.txt",
+          "sha256": "5dc832c4b7289378e63f28f47508ea1c0b28cad25a71539fcc3e3cd595513478"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/run_meta.json",
+          "sha256": "407dbe268ae401f57c156649a2eb707605da57d74901d1c3f8ed99e551705223"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/stats_all.ubjson",
+          "sha256": "0f84a4a62542f0b2742dbd595473f5d7253ae8ca77928588575da513af16893e"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/stats_sums.ubjson",
+          "sha256": "0f33e03cefff9e896db2a5b283f802736406a28a771d52c4e56e3aea516f9ab0"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/stats_vio.ubjson",
+          "sha256": "f2310997e950e62f0012e5a727bdaab8a0b5cad0bacc6d34af50177efc8c6a4c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001/trajectory.txt",
+          "sha256": "4f3d25a6033a34ab890076b74a102848087ab3ce69645b3e969e85001fd3aa38"
+        }
+      ],
+      "evaluation_sha256": "791dbb273a1559f9b504c0e442e5ae389271665689dd360ff61c3e8f87e5ea28"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002",
+      "algorithm": "basalt",
+      "repetition": 2,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 46282,
+      "export_time_coverage": 1.0,
+      "process_exit": 0,
+      "run_status": "ok",
+      "scale_factor": 0.990211485821959,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 0.48218238170348315,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 0.4905637287701171,
+          "n_pairs": 43090,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 0.48294247446221295,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 0.4815722955360869,
+          "n_pairs": 45282,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.0007600927587297912,
+      "native_error_observations": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/effective-estimator-settings.json",
+          "sha256": "519e0f070d7177c71ca90d7599492b87ce19fe5852943cdb04084185d647291c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/input-clock-preparation.json",
+          "sha256": "4313a62d288f0c9db3092312a3ae7c5bfadf5bbceb74db370a2bfa457bdab56b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/native-inputs/clock-policy.json",
+          "sha256": "4313a62d288f0c9db3092312a3ae7c5bfadf5bbceb74db370a2bfa457bdab56b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/native-inputs/dataset/mav0/imu0/data.csv",
+          "sha256": "933bfae9402744356e77a5c43f7aa51f7f99f32a627288deebff91f087836d0d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/native-inputs/effective-calibration.json",
+          "sha256": "ee391849f99553610ac07bd48ff15a09bfe902012004d70db643bdad8fb39ffa"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/native-settings-policy.json",
+          "sha256": "1e0c6b6faaf8a7f02d93f153dfe3f9874c8f7b6c1a754be779a18ea5ff3c15b6"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/processes/estimator.json",
+          "sha256": "f3ca3710887cdadc495ddfc74a617ad50ade5dd43db2c98b2fe43065972234d8"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/provenance/camera_calibration--effective-calibration.json",
+          "sha256": "ee391849f99553610ac07bd48ff15a09bfe902012004d70db643bdad8fb39ffa"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/provenance/estimator_config--effective-estimator-settings.json",
+          "sha256": "519e0f070d7177c71ca90d7599492b87ce19fe5852943cdb04084185d647291c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/provenance/implementation.json",
+          "sha256": "de60a7037613a78227a09163a45c8ce3dde7a9e5a72dba4638a2d55544d8d5fc"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/provenance/input_clock_policy--clock-policy.json",
+          "sha256": "958452676ac06c7b1bcc98155b7fd853e82a630c28b12c8b0c0fdc74826d7204"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/provenance/native_settings_policy--native-settings-policy.json",
+          "sha256": "71561131ba0fd5d6e4a602b538840bea888ae9bdeecb3c7d36e2390a5172408f"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/provenance/native_settings_review--basalt-native-profile-20261002.json",
+          "sha256": "17af08ca7c2b10e8b24d1689225f5bb362547decd0df417a64ff75d0ccdf7226"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/provenance/requested_camera_calibration--zed2i_calib.json",
+          "sha256": "d6fb226c9c48045af5dc8df9ab96d6686e56d2acdf649c7755db387be0c2f44b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/provenance/requested_estimator_config--vio_config.json",
+          "sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/provenance/runtime-assets.json",
+          "sha256": "8c2242849aa9bc13b085c7e804513dbc0274d618635dead807ea8f7d5312d839"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/run_eval.json",
+          "sha256": "0364c44d360750fb5d33ec6b72508f6828c86e61209eae45a958e00fe21a90de"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/run_log.txt",
+          "sha256": "754ca1c6b94c06305d20c7a9877a296894956bc2332f86ce30a2eee460a214ba"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/run_meta.json",
+          "sha256": "5b87f5c64cfedd7f4cda919b404b39024e2b150a2b063e6b4dba5d7b2f1e0c98"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/stats_all.ubjson",
+          "sha256": "9efbef527a4496242986bc34d81f2b24bd0a572a1892c52cf2a0570505ef5973"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/stats_sums.ubjson",
+          "sha256": "396489805f5c03fe0dbbec30f397a7213610a93d6db1573eac435b63420aaab5"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/stats_vio.ubjson",
+          "sha256": "096a927f633d29a88ef400814a2a3141486999a0bd8fa209187c813f3df2fccc"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002/trajectory.txt",
+          "sha256": "5ec5e417b9bd753cff259fd75b86dafc440ef53b45a271d15cef88022a938d19"
+        }
+      ],
+      "evaluation_sha256": "2419c986c0e2fc0c6cb240ea7edf4a799f44d8c4577f1046a274c0dcc3ad7875"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003",
+      "algorithm": "basalt",
+      "repetition": 3,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 46282,
+      "export_time_coverage": 1.0,
+      "process_exit": 0,
+      "run_status": "ok",
+      "scale_factor": 0.9901273992479201,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 0.48499396858081417,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 0.4931478053590424,
+          "n_pairs": 43090,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 0.48598043802328134,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 0.48415171206261925,
+          "n_pairs": 45282,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.0009864694424671638,
+      "native_error_observations": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/effective-estimator-settings.json",
+          "sha256": "519e0f070d7177c71ca90d7599492b87ce19fe5852943cdb04084185d647291c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/input-clock-preparation.json",
+          "sha256": "989963d60e1a474f40682f8b1a8cbf56d4b5d27d66ee725a8c0aecfe6b5627ad"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/native-inputs/clock-policy.json",
+          "sha256": "989963d60e1a474f40682f8b1a8cbf56d4b5d27d66ee725a8c0aecfe6b5627ad"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/native-inputs/dataset/mav0/imu0/data.csv",
+          "sha256": "933bfae9402744356e77a5c43f7aa51f7f99f32a627288deebff91f087836d0d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/native-inputs/effective-calibration.json",
+          "sha256": "ee391849f99553610ac07bd48ff15a09bfe902012004d70db643bdad8fb39ffa"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/native-settings-policy.json",
+          "sha256": "199d22ce64e65809078661f3b7cf296e3ab29a5a050714f24ba49488ca9c5bf1"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/processes/estimator.json",
+          "sha256": "de9051ce1f0d915ac8566f9c325aa453f3229d88309f272d3826f1ba669d9506"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/provenance/camera_calibration--effective-calibration.json",
+          "sha256": "ee391849f99553610ac07bd48ff15a09bfe902012004d70db643bdad8fb39ffa"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/provenance/estimator_config--effective-estimator-settings.json",
+          "sha256": "519e0f070d7177c71ca90d7599492b87ce19fe5852943cdb04084185d647291c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/provenance/implementation.json",
+          "sha256": "3f91b7e2ad15391af12ba4ac921b56ab9294a68e8829a1fc07ea4348a28d824a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/provenance/input_clock_policy--clock-policy.json",
+          "sha256": "02a2bfe3e18ad6f34335c4920b85588854886cb8199ddacb0728a969366f14b8"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/provenance/native_settings_policy--native-settings-policy.json",
+          "sha256": "b4b9bdd87925857e032a7fc78c6543850d1b11c27b19fe2f68f7c3c7db206952"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/provenance/native_settings_review--basalt-native-profile-20261002.json",
+          "sha256": "17af08ca7c2b10e8b24d1689225f5bb362547decd0df417a64ff75d0ccdf7226"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/provenance/requested_camera_calibration--zed2i_calib.json",
+          "sha256": "d6fb226c9c48045af5dc8df9ab96d6686e56d2acdf649c7755db387be0c2f44b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/provenance/requested_estimator_config--vio_config.json",
+          "sha256": "82937bd6493e592ef89572d31260c10f7437b4fb3ff1fda179375713966e34fa"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/provenance/runtime-assets.json",
+          "sha256": "8c2242849aa9bc13b085c7e804513dbc0274d618635dead807ea8f7d5312d839"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/run_eval.json",
+          "sha256": "f64f502d110124ae9c5b72131a7c654b3ed9baa8f36b13fbbf763d269b5f211b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/run_log.txt",
+          "sha256": "cd92c24d4844366fe1389ed20f55f7decdd7f5dda993e9c04409cd1345e603b0"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/run_meta.json",
+          "sha256": "72a3441d324a217502c17bfb498e8f45ffef25256befc06d4c513138e3f011ea"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/stats_all.ubjson",
+          "sha256": "2abf782b3ab96c6ac646b4244a7be5954605eec0ec6745febac251b4af310a24"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/stats_sums.ubjson",
+          "sha256": "f308b4924a3ae748d7d47bf7faaf3221c0c96bcce6c0e557edc2b85104006504"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/stats_vio.ubjson",
+          "sha256": "c6a528aa7d6a3e9a40fd4176bbeebf909d217652c52abcfd63416ff7385e5982"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003/trajectory.txt",
+          "sha256": "f565005c8e579b41bcfc741e3f006187265a7ce29a7d73d35af0e99ca68d1ab1"
+        }
+      ],
+      "evaluation_sha256": "1fee9d4530797173a36a8036657469670a9f38e919f56f150499451de180d7a6"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003",
+      "algorithm": "okvis2",
+      "repetition": 2,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 46280,
+      "export_time_coverage": 0.9999,
+      "process_exit": 0,
+      "run_status": "ok",
+      "scale_factor": 0.9921078651179983,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 0.4234139326636221,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 0.4263873588034612,
+          "n_pairs": 43090,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 0.42266708680828513,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 0.42428675590669696,
+          "n_pairs": 45281,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.0008728232430748606,
+      "native_error_observations": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003/okvis2_final_trajectory.csv",
+          "sha256": "91a7de0801804b418ec0b00ff97bf809ba9f21c8c2d784b4146c5d065338f34b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003/okvis2_raw_trajectory.csv",
+          "sha256": "ccc3d001d343b5d60862f7b644a306690ca8ed7736bf8605eb30dde11c1014d4"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003/processes/estimator.json",
+          "sha256": "ac0c83ec30eb225ee46a847d62b3567434f4599e2108baef774032f161408f5f"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003/provenance/estimator_config--zed2i_field1_110426_full_10fps_q90_vio.yaml",
+          "sha256": "ea6a93c363ae2e44d871bf6c6c662034de30725544d576f73730266c83fcb818"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003/provenance/estimator_config_source--zed2i_field1_110426_full_10fps_q90_vio.yaml",
+          "sha256": "ea6a93c363ae2e44d871bf6c6c662034de30725544d576f73730266c83fcb818"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003/provenance/implementation.json",
+          "sha256": "512568608db0bb6b80037bb9475f60a94b5f86d1bed2f9c60d7401ea083c73d4"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003/provenance/runtime-assets.json",
+          "sha256": "bca130d6615faa1adb676edbe68b601deedb487b4439c6461321f9cd8b49a9ab"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003/run_eval.json",
+          "sha256": "1a21b0baee3b2e496c9bac2a5d029107939324465e71e5018e0c15be66a6d1ce"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003/run_log.txt",
+          "sha256": "adac9f7cf60c7a3b22c5b5748dbff82c1966e2a1d67bd1f5eb92a86eccb5b82a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003/run_meta.json",
+          "sha256": "8c4c24d5e5cfe2d84c1d3f0f67a3bfdc40bd5ee5d97b594e7b941814576f77e4"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003/trajectory.txt",
+          "sha256": "de28e4b9b78dad5502289b1358c8b0d917355415710f49dcf1e00e24e5e2148f"
+        }
+      ],
+      "evaluation_sha256": "1fc2884202e8aa2718d198108865ccc6388093f8497c2a67ba5f1a5130faf30b"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004",
+      "algorithm": "okvis2",
+      "repetition": 3,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 46280,
+      "export_time_coverage": 0.9999,
+      "process_exit": 0,
+      "run_status": "ok",
+      "scale_factor": 0.9923032830146472,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 0.46627848951480555,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 0.47109679192082554,
+          "n_pairs": 43090,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 0.4643258293085048,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 0.46831623091410335,
+          "n_pairs": 45281,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.002037741399297799,
+      "native_error_observations": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004/okvis2_final_trajectory.csv",
+          "sha256": "6230f846020ef670adb7241717aa68a7d09577e5939dec665fd1e8c2fa738c28"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004/okvis2_raw_trajectory.csv",
+          "sha256": "18929b4df99e3068e6416b76ddb43a37dab3660e5802b5eeaaa97117c86c749e"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004/processes/estimator.json",
+          "sha256": "4b2c6db8a05e585b78f348cfea00a69b4718ab43d23f0c72867071ee331274c0"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004/provenance/estimator_config--zed2i_field1_110426_full_10fps_q90_vio.yaml",
+          "sha256": "ea6a93c363ae2e44d871bf6c6c662034de30725544d576f73730266c83fcb818"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004/provenance/estimator_config_source--zed2i_field1_110426_full_10fps_q90_vio.yaml",
+          "sha256": "ea6a93c363ae2e44d871bf6c6c662034de30725544d576f73730266c83fcb818"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004/provenance/implementation.json",
+          "sha256": "6cba748c1ea2a554ee7c6c2ac0a2536175fd600bc388570ada778cca09c3f3d9"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004/provenance/runtime-assets.json",
+          "sha256": "bca130d6615faa1adb676edbe68b601deedb487b4439c6461321f9cd8b49a9ab"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004/run_eval.json",
+          "sha256": "467ef967897bb82eb4146d34e6d6f6e13b8bdcb9ed2361b2cfa2186eda060255"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004/run_log.txt",
+          "sha256": "2887b2d8c39c376a360bc8a0371611d4b8184f2b08103e9276ba7568d8f695fe"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004/run_meta.json",
+          "sha256": "721b9d2a6447453502c353e9f924affb149b333374ea6106b680b59bcf022ae6"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004/trajectory.txt",
+          "sha256": "2e7b4d8f03f899761d5e11518ea3051bacf537b32d805a7e4304834b9dfa8155"
+        }
+      ],
+      "evaluation_sha256": "8ba6a9b2a277602305bbdb70538b9f3fb9a1f4801797df33e207b22e3b40af91"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003",
+      "algorithm": "okvis2x",
+      "repetition": 2,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 46280,
+      "export_time_coverage": 0.9999,
+      "process_exit": 0,
+      "run_status": "ok",
+      "scale_factor": 0.9920705208066055,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 0.43705675984862546,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 0.44022885794475025,
+          "n_pairs": 43090,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 0.43676664373321694,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 0.43747779116414726,
+          "n_pairs": 45281,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.0004210313155217915,
+      "native_error_observations": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003/okvis2-vio-final-ba_trajectory.csv",
+          "sha256": "287a66104011bccc4fc8f9df27043a205f214d11a470369db15889dbf8eb44df"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003/okvis2-vio-final_trajectory.csv",
+          "sha256": "287a66104011bccc4fc8f9df27043a205f214d11a470369db15889dbf8eb44df"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003/okvis2-vio_trajectory.csv",
+          "sha256": "dce23938e024b5d4a5997ca9873e09dfb063fcc264c09537d2899b61894f33bf"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003/processes/estimator.json",
+          "sha256": "723d0dede1267307aaae695df570f2b958441f3701545a3d9a506ad7cfb89249"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003/provenance/estimator_config--zed2i_field1_110426_full_10fps_q90_vio.yaml",
+          "sha256": "b366bb32e4b68cf18a589ddc8991e7c3384d6b25d6cb887f418c55ad298ecdf9"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003/provenance/implementation.json",
+          "sha256": "b582c175104baf7d51ce8b80561c489601d1b21cc3df1836116132ac2c744ac8"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003/provenance/runtime-assets.json",
+          "sha256": "c0c81fe3c26cd159c687dc1141624aa5ca46ea817c4256ee06b3eac885708970"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003/run_eval.json",
+          "sha256": "45b07b279b1d547735fb4cc520c51f681a8dfea3b0073b6ae5be187c6ef2e5f9"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003/run_log.txt",
+          "sha256": "cabd725482a83b4c09cc7ef253cd653b9480ce4b5dc7f39d99b702c167034d2d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003/run_meta.json",
+          "sha256": "3794e59fdafd88e783c5358aaf80f86216026a069f561b2647c58172eaac05e7"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003/trajectory.txt",
+          "sha256": "fef80cef3c397b5226ea1db88f23634a52eba6bf330aa992681793bb138cd24f"
+        }
+      ],
+      "evaluation_sha256": "12b893a4967a70627e535f1a2c88d90d0dc906b60ca7d735a850628043049884"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004",
+      "algorithm": "okvis2x",
+      "repetition": 3,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 46280,
+      "export_time_coverage": 0.9999,
+      "process_exit": 0,
+      "run_status": "ok",
+      "scale_factor": 0.9922582566570121,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 0.36986069724867066,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 0.37234625960814466,
+          "n_pairs": 43090,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 0.36914552967475794,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 0.37073299949017513,
+          "n_pairs": 45281,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.0008723022415044746,
+      "native_error_observations": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004/okvis2-vio-final-ba_trajectory.csv",
+          "sha256": "0fbf7050f360f7ae11a5204a45deaaed26f6bdb5b25e7b99d7072fc5fcd6f984"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004/okvis2-vio-final_trajectory.csv",
+          "sha256": "0fbf7050f360f7ae11a5204a45deaaed26f6bdb5b25e7b99d7072fc5fcd6f984"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004/okvis2-vio_trajectory.csv",
+          "sha256": "be9ab31a9e880373b4e1c5344cba597c2b780170c264e8d5cd40738be3902f3b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004/processes/estimator.json",
+          "sha256": "6d9b2efed0a3f47b36de8ee1e3a4f7194cec715bec46576e157e144f7972cb6b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004/provenance/estimator_config--zed2i_field1_110426_full_10fps_q90_vio.yaml",
+          "sha256": "b366bb32e4b68cf18a589ddc8991e7c3384d6b25d6cb887f418c55ad298ecdf9"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004/provenance/implementation.json",
+          "sha256": "8915f57b34bb6ba5babaa6a32c2fd84857692724f01c6fa99e2ac542f93a6eb5"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004/provenance/runtime-assets.json",
+          "sha256": "c0c81fe3c26cd159c687dc1141624aa5ca46ea817c4256ee06b3eac885708970"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004/run_eval.json",
+          "sha256": "1c555ffb1f5c18759d4df2cd47ade2ffad4b61820e476c753733c95ee5558b4f"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004/run_log.txt",
+          "sha256": "efe50a6d39bd5c4953fdba2a4f73763d9c2efbd4994a4e66dacb6f40369ba037"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004/run_meta.json",
+          "sha256": "c6f751e5bd3f29a7ddd4d2a7ad44ee39453bbe5cfb5633d05190ec5562859fff"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004/trajectory.txt",
+          "sha256": "24f08b8a2d65ea46e1d85b551a394180d5030875465877a81481bc9117bb2826"
+        }
+      ],
+      "evaluation_sha256": "29abf503e77e7a2358899404f17c8b9354d921f25a6d5709f19bb175fd9fc1b0"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001",
+      "algorithm": "openvins",
+      "repetition": 1,
+      "status": "valid_observed_failure",
+      "claim": "observed_divergence_or_native_stop_under_verified_zed_vio_profile",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 67172,
+      "export_time_coverage": 0.1455,
+      "process_exit": 139,
+      "run_status": "scale_collapse",
+      "scale_factor": 0.0008428148219241538,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 16251.456407721922,
+          "n_pairs": 6637,
+          "status": "scale_collapse"
+        },
+        "fixed_only": {
+          "ate_se3_m": 16317.83967176741,
+          "n_pairs": 6544,
+          "status": "scale_collapse"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 16251.454618973617,
+          "n_pairs": 6637,
+          "status": "scale_collapse"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 16251.458201922895,
+          "n_pairs": 6637,
+          "status": "scale_collapse"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.0017942009726539254,
+      "native_error_observations": [
+        "estimator container exited 139",
+        "estimator stopped publishing 682 s into the 4628 s sequence (67172 poses) while the player delivered every camera pair and IMU sample",
+        "scale collapse before stopping (Sim3 scale 0.0008): estimate diverged"
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "retain_failure_in_attempt_denominator",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/docker.cid",
+          "sha256": "0e474c50e47ab0f597e9a63ae95e9b9e88c114997f69e906abdd5ec48b084ad6"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/openvins_node.log",
+          "sha256": "7c9fccedd05c7c662e62c5b222feca9b584a5985b4e34de638b755ca2e85b574"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/processes/node.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/processes/node.json",
+          "sha256": "1ea28c515fd8ac711b76a2d0f71170a84e6daf5a7455fbc08a07f9f44a1b0171"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/processes/node.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/processes/node.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/processes/player.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/processes/player.json",
+          "sha256": "aa10764220addd512fa4e6ffdcf711d01f217e51bf97bde3f4c80681e809030c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/processes/player.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/processes/player.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+          "sha256": "a0252615b6ea461087bd94ee606278970f24472b67c3f39af2712cbc3624e1ba"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/provenance/estimator_config--estimator_config.yaml",
+          "sha256": "09db495c20c38e5916f2493c9239d974aab5328e7fc99df280e368e1b3a32d2b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/provenance/implementation.json",
+          "sha256": "ae6f2174c7fcd716e362cd9add03a978df1d48b55fd9706ebfc5e2a2b3cfd4d1"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/provenance/imu_calibration--kalibr_imu_chain.yaml",
+          "sha256": "3ac0f7813b874d566b79a1239b8ba7952162ff980e1ba0ea506b2d1ff20890b4"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/provenance/runtime-assets.json",
+          "sha256": "6b16caf5f13d58ab18ef76d8dde564476c6d9db93c1a0e09c5802a436db1621b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/ros_domain_id.txt",
+          "sha256": "95aebc97bc646c67fdcd923a5965b001f3c8a5c4d3a77075112e12a3a311d760"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/run_eval.json",
+          "sha256": "3586567861c8cc972eb846876b47e9b41b03cf9ed144c08ccdfd819b9f442b3a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/run_log.txt",
+          "sha256": "437f6a8a8ffac655b427d3e75855704d45c31fa99446d5da85901b54ceff19d8"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/run_meta.json",
+          "sha256": "5bf3f42538c5812fcc20df69e6f6167fcdb52807b505bc12d5a2b7d90af151fe"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/trajectory.txt",
+          "sha256": "dcf1a66f65e18685216104d9b18539e45d0e6ed4b296fdbc2e5d0437867291a4"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001/transport_stats.json",
+          "sha256": "db9327d94ffae254f74eb9dd68cbe619d65fd9d10df39c8ca0ff765fc8508869"
+        }
+      ],
+      "evaluation_sha256": "b348f1ccf36b142ab64d827d4eb0e66ae39d29465bd19e2edc9ded9b877f1043"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002",
+      "algorithm": "openvins",
+      "repetition": 2,
+      "status": "valid_observed_failure",
+      "claim": "observed_divergence_or_native_stop_under_verified_zed_vio_profile",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 72938,
+      "export_time_coverage": 0.158,
+      "process_exit": 139,
+      "run_status": "scale_collapse",
+      "scale_factor": 0.0009616602842622447,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 6402.011448652315,
+          "n_pairs": 7209,
+          "status": "scale_collapse"
+        },
+        "fixed_only": {
+          "ate_se3_m": 6440.524115353155,
+          "n_pairs": 7116,
+          "status": "scale_collapse"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 6402.00794654601,
+          "n_pairs": 7209,
+          "status": "scale_collapse"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 6402.014955218516,
+          "n_pairs": 7209,
+          "status": "scale_collapse"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.003506566200485395,
+      "native_error_observations": [
+        "estimator container exited 139",
+        "estimator stopped publishing 740 s into the 4628 s sequence (72938 poses) while the player delivered every camera pair and IMU sample",
+        "scale collapse before stopping (Sim3 scale 0.0010): estimate diverged"
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "retain_failure_in_attempt_denominator",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/docker.cid",
+          "sha256": "3e4e565414da79c8e286e7adcb446363419a39418dfa6aa97ae74bb132f07274"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/openvins_node.log",
+          "sha256": "0d4c0febad80e0ed2c120a88b2d289c421242a222276c1e869195500241b11bf"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/processes/node.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/processes/node.json",
+          "sha256": "c54643f445f3680db3273b86c803847cb3bb0f86449a66e91b7e6490ee16238d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/processes/node.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/processes/node.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/processes/player.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/processes/player.json",
+          "sha256": "0486c887e4ddb2e87dadaa56aabea77fe54d08cd1cbf6b5e2f118561da753475"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/processes/player.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/processes/player.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+          "sha256": "a0252615b6ea461087bd94ee606278970f24472b67c3f39af2712cbc3624e1ba"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/provenance/estimator_config--estimator_config.yaml",
+          "sha256": "09db495c20c38e5916f2493c9239d974aab5328e7fc99df280e368e1b3a32d2b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/provenance/implementation.json",
+          "sha256": "949dbefb99c930874721d2a4db8780540baeb743fa1bf28787a49f163351853a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/provenance/imu_calibration--kalibr_imu_chain.yaml",
+          "sha256": "3ac0f7813b874d566b79a1239b8ba7952162ff980e1ba0ea506b2d1ff20890b4"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/provenance/runtime-assets.json",
+          "sha256": "6b16caf5f13d58ab18ef76d8dde564476c6d9db93c1a0e09c5802a436db1621b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/ros_domain_id.txt",
+          "sha256": "95aebc97bc646c67fdcd923a5965b001f3c8a5c4d3a77075112e12a3a311d760"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/run_eval.json",
+          "sha256": "d5a0ab4da674b806100a49f2147dd5d8562c455eea625652216e446595c1bf4a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/run_log.txt",
+          "sha256": "1533c681c75925535b823b1b24949f219a308113dd865845cde1c03b1fce16d2"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/run_meta.json",
+          "sha256": "813e3862eee116de31448e86b2422cafea9753e623b49c356f2a4d535fe60d0e"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/trajectory.txt",
+          "sha256": "aad4f13fe60ac8911fb33e8d721c61d88bc4bde4cedb7ae950501e1d5abf8b1c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002/transport_stats.json",
+          "sha256": "4f51fc18f34b52fc9453db3c71d6754e08b71a53b6e20e6656836c26d978e938"
+        }
+      ],
+      "evaluation_sha256": "023ba3c129ef64ed73f2c814502b5a937caa8d3c4af2d80f2414840355fe12b1"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003",
+      "algorithm": "openvins",
+      "repetition": 3,
+      "status": "valid_observed_failure",
+      "claim": "observed_divergence_or_native_stop_under_verified_zed_vio_profile",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 6261,
+      "export_time_coverage": 0.0136,
+      "process_exit": 139,
+      "run_status": "ok",
+      "scale_factor": 0.6892866151919261,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 0.8217526476658388,
+          "n_pairs": 627,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 0.8288886839220458,
+          "n_pairs": 615,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 0.8218159004530106,
+          "n_pairs": 627,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 0.8216975372430627,
+          "n_pairs": 627,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 6.325278717178584e-05,
+      "native_error_observations": [
+        "estimator container exited 139",
+        "estimator stopped publishing 71 s into the 4628 s sequence (6261 poses) while the player delivered every camera pair and IMU sample"
+      ],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "retain_failure_in_attempt_denominator",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/docker.cid",
+          "sha256": "21db7a2cc1359f0408b61ddd6e6631bf7908a84d365cd37e2cdc892e3158dbb7"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/openvins_node.log",
+          "sha256": "6ef552e6e474b4a750631f1fcd90e65db65cf2867a758eea49e5fc014ae41525"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/processes/node.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/processes/node.json",
+          "sha256": "837dd04bdb4ff50e50f3588de8c8ed19988472b60165cf80082531fd34403174"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/processes/node.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/processes/node.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/processes/player.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/processes/player.json",
+          "sha256": "352ea4f3f94a02bd4fc83215a414e5094ff02b4dd8a56470b616f4160837a6fd"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/processes/player.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/processes/player.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+          "sha256": "a0252615b6ea461087bd94ee606278970f24472b67c3f39af2712cbc3624e1ba"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/provenance/estimator_config--estimator_config.yaml",
+          "sha256": "09db495c20c38e5916f2493c9239d974aab5328e7fc99df280e368e1b3a32d2b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/provenance/implementation.json",
+          "sha256": "4dd0c9f93a42803ab68866855af9a8a420a31ee4c4d132911e601b1d419c1e1f"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/provenance/imu_calibration--kalibr_imu_chain.yaml",
+          "sha256": "3ac0f7813b874d566b79a1239b8ba7952162ff980e1ba0ea506b2d1ff20890b4"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/provenance/runtime-assets.json",
+          "sha256": "6b16caf5f13d58ab18ef76d8dde564476c6d9db93c1a0e09c5802a436db1621b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/ros_domain_id.txt",
+          "sha256": "95aebc97bc646c67fdcd923a5965b001f3c8a5c4d3a77075112e12a3a311d760"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/run_eval.json",
+          "sha256": "b30dc4c8c71ca84d6b7a083be478c6874897cf3c440194f0ec3dea41ebe9838c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/run_log.txt",
+          "sha256": "fdd5facd37a1a97b21adf27e6669a06887adbc9375221cf482658482ad93376a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/run_meta.json",
+          "sha256": "9770e3ec6fc973d7cae3f88262b725fa2736aaab0c0c4887b0d69551b3241efc"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/trajectory.txt",
+          "sha256": "3738448d75fe459604aaf897293d0d6fc44ece3ff67c047c413c152ae5b72373"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003/transport_stats.json",
+          "sha256": "5545aaa115f53911a68ab5f227d374ebcd42e8f33bf73fb52bef90634cd43eea"
+        }
+      ],
+      "evaluation_sha256": "5adbfefb3ccdd3bc97163f45f2b98d14ada555f8718080d6d002eebbb2740108"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003",
+      "algorithm": "orbslam3",
+      "repetition": 2,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 46280,
+      "export_time_coverage": 0.9999,
+      "process_exit": 0,
+      "run_status": "ok",
+      "scale_factor": 0.9907124769091071,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 0.29501147680867834,
+          "n_pairs": 45281,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 0.2961748008299746,
+          "n_pairs": 43089,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 0.2962384834458918,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 0.2940380808995758,
+          "n_pairs": 45280,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.0012270066372134791,
+      "native_error_observations": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/keyframes.txt",
+          "sha256": "f56c168d8fec0a197561eae790bc7bbb53fcc11f286c728a48902c66117860a2"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/processes/estimator.json",
+          "sha256": "9066bd9b075549a8f301aab95c053d8e160afd3e2e46d08318ed178f2da02266"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/provenance/estimator_config--orbslam3_cfg_J9EoWY.yaml",
+          "sha256": "f2a0872e62f644414ee6ecfb5ae0eba421f60bf9416d1ef94a04044128e6161f"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/provenance/estimator_config_source--zed2i_field1_110426_full_10fps_q90_stereo_inertial.yaml",
+          "sha256": "0fb9901b2788b3bfb178d9373ac9f220651bb45f66c1357ea4fc46f46ff0e12e"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+          "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/provenance/implementation.json",
+          "sha256": "febd838ed4da4aaddd478113cdde5a6ebb0258bea8fd0a424abcd75d7686948e"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/provenance/runtime-assets.json",
+          "sha256": "b52e7a3b60caec449b511c964cf6178a2870b080a097c02d3b0eecc8d34fd532"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/run_eval.json",
+          "sha256": "d6ec833d0678d91081b0ca63a84bfb213f9ff7a93edbd8a15a727615031d6400"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/run_log.txt",
+          "sha256": "ca7138930e4ac8ab82c6f4954252cc3eb517c9418f7139091bff5686d6db1fbc"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/run_meta.json",
+          "sha256": "24c243e69af519d0dbc576bcbf9c55edaf3c3df124b2f6213b5a1ebf6ca72b0d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/trajectory.txt",
+          "sha256": "36c29f1a7b387cbe0bf807d999251ac213fcab4fc2a45744558f364c164550d0"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/trajectory_filter.json",
+          "sha256": "8abd20e6c2e945a5cd14ba040844abf33f69aab00a111bf5e7c7256a3bdabfe5"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003/trajectory_raw_ns.txt",
+          "sha256": "64b890e029dbd98efab62ffe730a0fea445ae0bfde99b5b041b8c389c0bd03cf"
+        }
+      ],
+      "evaluation_sha256": "615837d29197f587c1afffe6443926d290240abaa21ba75268759b78ac00db8d"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004",
+      "algorithm": "orbslam3",
+      "repetition": 3,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 46280,
+      "export_time_coverage": 0.9999,
+      "process_exit": 0,
+      "run_status": "ok",
+      "scale_factor": 0.9909697050558659,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 0.2946586129886558,
+          "n_pairs": 45281,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 0.295914341821335,
+          "n_pairs": 43089,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 0.29585642547000895,
+          "n_pairs": 45282,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 0.293715685768527,
+          "n_pairs": 45280,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.0011978124813531443,
+      "native_error_observations": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/keyframes.txt",
+          "sha256": "3714efbaad92a3227b68dc0a0447f7c0c1aef376cca856aea44c85e69695ed5d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/processes/estimator.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/processes/estimator.json",
+          "sha256": "7f2f270cb4f8b0419facd8db88aceb2810ffa09f1fefd0830fda8f8571baf1a8"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/processes/estimator.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/processes/estimator.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/provenance/estimator_config--orbslam3_cfg_IaGOwS.yaml",
+          "sha256": "f2a0872e62f644414ee6ecfb5ae0eba421f60bf9416d1ef94a04044128e6161f"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/provenance/estimator_config_source--zed2i_field1_110426_full_10fps_q90_stereo_inertial.yaml",
+          "sha256": "0fb9901b2788b3bfb178d9373ac9f220651bb45f66c1357ea4fc46f46ff0e12e"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+          "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/provenance/implementation.json",
+          "sha256": "55f3cec3b774504e7e4bc2d887946fd6dc4b8a98d0a7d8cbe2710db0f8f2d847"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/provenance/runtime-assets.json",
+          "sha256": "b52e7a3b60caec449b511c964cf6178a2870b080a097c02d3b0eecc8d34fd532"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/run_eval.json",
+          "sha256": "d04bb9884734091a859913396c63f3678449840c23b7f3b2a2954a8dc6ab509f"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/run_log.txt",
+          "sha256": "99f77bcd7ae24cb9b427a812186e85a40814cb968166074ee4997ee827a09ee9"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/run_meta.json",
+          "sha256": "688afdf2e92d3f0aeea5eebaa93ed5cba40136f76f348a0c3c8dc649b74c1aff"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/trajectory.txt",
+          "sha256": "2d801ac0d52708fd5cdeabcf2bc38d4473db6cc1eae9fdb813b8bbd52758067d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/trajectory_filter.json",
+          "sha256": "8abd20e6c2e945a5cd14ba040844abf33f69aab00a111bf5e7c7256a3bdabfe5"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004/trajectory_raw_ns.txt",
+          "sha256": "29e22b852733dcac9dab6855108bac9e4a9fc0a68f60c047e4ca0f77fc16dcd5"
+        }
+      ],
+      "evaluation_sha256": "3dd0f44ecb8b15709da0ab4c01a6d893393ccbeb71db25e1cc02b62d4f8b0e66"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001",
+      "algorithm": "voxel_svio",
+      "repetition": 1,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 45888,
+      "export_time_coverage": 0.9914,
+      "process_exit": 0,
+      "run_status": "ok",
+      "scale_factor": 0.9959183458655053,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 1.015198928127667,
+          "n_pairs": 44890,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 1.0084201031110418,
+          "n_pairs": 42710,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 1.0158542480075559,
+          "n_pairs": 44891,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 1.0146252026367812,
+          "n_pairs": 44889,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.0006553198798888715,
+      "native_error_observations": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/effective_ros_parameters.yaml",
+          "sha256": "17313ad6baa12be7e7f96acdad043a5d1c415751c9d12a69bb31d2260106ff0a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/native/camera_load.txt",
+          "sha256": "661c2a1bd2a45a744d5ed42caf7f3c40f8d89a2be7b21814c667732999a8e44c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/native/input_receipt.json",
+          "sha256": "9dbc1c77d4543090eea1d84906f3bdca6e1bb5c168ec4c428fda7b0bd0e82c75"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/native/parameter_list.txt",
+          "sha256": "2b67a11c2936dceffc780058ed257f3d069420aeb4bfa0b516d54ec382a1f764"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/native/pose.txt",
+          "sha256": "26628966616db4bbb00cc1c971c41086ca992525c942196a56682b1342999927"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/parameter_list.txt",
+          "sha256": "2b67a11c2936dceffc780058ed257f3d069420aeb4bfa0b516d54ec382a1f764"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/processes/node.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/processes/node.json",
+          "sha256": "0af892809decd7498953d95acd11e70ef29b03c5cb877bb2ccfcb109d655831b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/processes/node.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/processes/node.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/processes/node.stops.jsonl",
+          "sha256": "d726c4e85a4112417257133f25e76d90fad21dfc270078dd7684cbb498acd749"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/processes/player.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/processes/player.json",
+          "sha256": "5f9ffd70c5d0f94cc3def0a4140dcf5928a3dc01e4dae856f4000d4b9404cbeb"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/processes/player.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/processes/player.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/processes/roscore.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/processes/roscore.json",
+          "sha256": "24602f00ad2948462f36e3bfb8e53a676daffa9f99e7b55b39c2b5598c4d7f90"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/processes/roscore.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/processes/roscore.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/processes/roscore.stops.jsonl",
+          "sha256": "ef722831591fcf34274b896a7c63390e840b7b1ac5a14f35b552b98e723bdaa3"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/provenance/estimator_config--zed2i.yaml",
+          "sha256": "a0017e536ef37069995b98270bd436f28c3890bddbdd7c49c61e77c336935866"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/provenance/implementation.json",
+          "sha256": "ba6d2bce80409ced1c762b730bfa1c83a86e06591b79bb242ac7403b37d11d57"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+          "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/provenance/native_camera_load.txt--camera_load.txt",
+          "sha256": "661c2a1bd2a45a744d5ed42caf7f3c40f8d89a2be7b21814c667732999a8e44c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/provenance/native_input_receipt.json--input_receipt.json",
+          "sha256": "9dbc1c77d4543090eea1d84906f3bdca6e1bb5c168ec4c428fda7b0bd0e82c75"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/provenance/native_parameter_list.txt--parameter_list.txt",
+          "sha256": "2b67a11c2936dceffc780058ed257f3d069420aeb4bfa0b516d54ec382a1f764"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+          "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/provenance/runtime-assets.json",
+          "sha256": "2a5665984dc55afbf173ea8b923083e7ea22f9a14add5b19fac1058dce74690a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/ros_master_uri.txt",
+          "sha256": "c0914484468cf7eea02b37bc08eb658ee8e771328ea7759ae08cc736573988b5"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/run_eval.json",
+          "sha256": "1879b0d5522ea14056a1979b19572644def575e88d1496ab7a6210800c4443c4"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/run_log.txt",
+          "sha256": "94b8c3cc627f1f93a1451b4c41ed3f2dff2254b83e7ec32b3ca02e673a27d9e8"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/run_meta.json",
+          "sha256": "b05c01ac3397403c86808a0f134c4fb2d5e93da13ea6392775bd4ad6bf57071c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/trajectory.txt",
+          "sha256": "26628966616db4bbb00cc1c971c41086ca992525c942196a56682b1342999927"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001/transport_stats.json",
+          "sha256": "e7bd31ab733c9d6f5f3dc79ad39a19c89195d682ac2ca3614c5add386450ca1e"
+        }
+      ],
+      "evaluation_sha256": "89874664304605bf271700dfb17c5ed8694f271fb7c0e26a80284bcb507da84f"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002",
+      "algorithm": "voxel_svio",
+      "repetition": 2,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 45569,
+      "export_time_coverage": 0.9846,
+      "process_exit": 0,
+      "run_status": "ok",
+      "scale_factor": 0.9952613135182833,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 1.141320736035297,
+          "n_pairs": 44571,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 1.1342687380494405,
+          "n_pairs": 42391,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 1.1418628838856815,
+          "n_pairs": 44572,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 1.1408402646498026,
+          "n_pairs": 44570,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.0005421478503844224,
+      "native_error_observations": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/effective_ros_parameters.yaml",
+          "sha256": "b9ee842acdbb0422e8c2d418fdd78051152ae55d4468f9c6e6ff3f4607dcfb90"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/native/camera_load.txt",
+          "sha256": "661c2a1bd2a45a744d5ed42caf7f3c40f8d89a2be7b21814c667732999a8e44c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/native/input_receipt.json",
+          "sha256": "9dbc1c77d4543090eea1d84906f3bdca6e1bb5c168ec4c428fda7b0bd0e82c75"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/native/parameter_list.txt",
+          "sha256": "2b67a11c2936dceffc780058ed257f3d069420aeb4bfa0b516d54ec382a1f764"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/native/pose.txt",
+          "sha256": "e8b67dd0940f65a767c7c2052505f01059a1c9ae6ba4047d50dd6aa3cde707e6"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/parameter_list.txt",
+          "sha256": "2b67a11c2936dceffc780058ed257f3d069420aeb4bfa0b516d54ec382a1f764"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/processes/node.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/processes/node.json",
+          "sha256": "9d9153b3332ad9a23e3db35d7c7963d4d676d318cafe58234d2e873fdf84ab73"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/processes/node.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/processes/node.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/processes/node.stops.jsonl",
+          "sha256": "5b1898f10565b4fc348b38bd87e60a5368d94823e5185041c1fa102a9a783d47"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/processes/player.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/processes/player.json",
+          "sha256": "5fe367262b6cde385c7f9c5c3a98a76c5a22ca8a7d28cf2b5f4244fe3d9c246c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/processes/player.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/processes/player.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/processes/roscore.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/processes/roscore.json",
+          "sha256": "1f242bbb4ffb0520d15860ce7c76e915827249070481484b3671d42637fcf0c4"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/processes/roscore.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/processes/roscore.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/processes/roscore.stops.jsonl",
+          "sha256": "ca0e2900ba626567d0f7cb08d4a74ee629b81232f2e7d6260ce6db47d7c559f6"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/provenance/estimator_config--zed2i.yaml",
+          "sha256": "a0017e536ef37069995b98270bd436f28c3890bddbdd7c49c61e77c336935866"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/provenance/implementation.json",
+          "sha256": "82f36a12e9f4c8ddbfc1f6921fd81bc3f704ac61bdf76b66d5bc78f0ed5fcc9a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+          "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/provenance/native_camera_load.txt--camera_load.txt",
+          "sha256": "661c2a1bd2a45a744d5ed42caf7f3c40f8d89a2be7b21814c667732999a8e44c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/provenance/native_input_receipt.json--input_receipt.json",
+          "sha256": "9dbc1c77d4543090eea1d84906f3bdca6e1bb5c168ec4c428fda7b0bd0e82c75"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/provenance/native_parameter_list.txt--parameter_list.txt",
+          "sha256": "2b67a11c2936dceffc780058ed257f3d069420aeb4bfa0b516d54ec382a1f764"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+          "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/provenance/runtime-assets.json",
+          "sha256": "2a5665984dc55afbf173ea8b923083e7ea22f9a14add5b19fac1058dce74690a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/ros_master_uri.txt",
+          "sha256": "8dd645f4b21b3e24d4300b5f3ea0f208914325da5cb36a5b70b0518b3ea0e485"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/run_eval.json",
+          "sha256": "af94e9e049b93c8ef6950fa839cc5015ec82b835c20e23e228945ed1e27921a7"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/run_log.txt",
+          "sha256": "f9919cd660f1dac9f2676f9a23b394cefb773c12f7d64aa298b1410e3a62f86b"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/run_meta.json",
+          "sha256": "212c1c6173007c80459a4db9d245546d9be6021063b52999a43586e8693dd482"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/trajectory.txt",
+          "sha256": "e8b67dd0940f65a767c7c2052505f01059a1c9ae6ba4047d50dd6aa3cde707e6"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002/transport_stats.json",
+          "sha256": "e7bd31ab733c9d6f5f3dc79ad39a19c89195d682ac2ca3614c5add386450ca1e"
+        }
+      ],
+      "evaluation_sha256": "a15da602a662964f45c3fd6ba5c5c53e0600a7445a159dd7f1d7719ac3230a85"
+    },
+    {
+      "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003",
+      "algorithm": "voxel_svio",
+      "repetition": 3,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_zed_se3_final_position_accuracy",
+      "configuration_verified": true,
+      "camera_imu_transforms_match_serial_30291010": true,
+      "loop_closure_and_final_ba": false,
+      "input_pairs_delivered": 46283,
+      "output_poses": 45888,
+      "export_time_coverage": 0.9914,
+      "process_exit": 0,
+      "run_status": "ok",
+      "scale_factor": 0.997663443564697,
+      "sensitivity": {
+        "primary": {
+          "ate_se3_m": 0.6663391204339774,
+          "n_pairs": 44890,
+          "status": "ok"
+        },
+        "fixed_only": {
+          "ate_se3_m": 0.6622324870718812,
+          "n_pairs": 42710,
+          "status": "ok"
+        },
+        "query_offset_-0.1s": {
+          "ate_se3_m": 0.6666859857276678,
+          "n_pairs": 44891,
+          "status": "ok"
+        },
+        "query_offset_+0.1s": {
+          "ate_se3_m": 0.6661074869299803,
+          "n_pairs": 44889,
+          "status": "ok"
+        }
+      },
+      "clock_sensitivity_max_abs_delta_m": 0.00034686529369043484,
+      "native_error_observations": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction",
+        "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
+      ],
+      "evidence": [
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/effective_ros_parameters.yaml",
+          "sha256": "827c160d09706b9ab711dae0555ac54712e63c5f3601df0a0655849e243979f6"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/native/camera_load.txt",
+          "sha256": "661c2a1bd2a45a744d5ed42caf7f3c40f8d89a2be7b21814c667732999a8e44c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/native/input_receipt.json",
+          "sha256": "9dbc1c77d4543090eea1d84906f3bdca6e1bb5c168ec4c428fda7b0bd0e82c75"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/native/parameter_list.txt",
+          "sha256": "2b67a11c2936dceffc780058ed257f3d069420aeb4bfa0b516d54ec382a1f764"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/native/pose.txt",
+          "sha256": "868f66364cfb6fcb83102370ba970879bd385e79b5c861901706dda778404b76"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/parameter_list.txt",
+          "sha256": "2b67a11c2936dceffc780058ed257f3d069420aeb4bfa0b516d54ec382a1f764"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/processes/node.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/processes/node.json",
+          "sha256": "b21aa4c95b72b151c607e28ecda8bf8679d265d6c64fa81a313c36827c3a9818"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/processes/node.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/processes/node.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/processes/node.stops.jsonl",
+          "sha256": "9197859028687006f343abe7f24551ab50bc07b0477be90bb5a0e0c4e7673862"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/processes/player.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/processes/player.json",
+          "sha256": "4d60afb2891a7f575af6be84984508cb053901a8ccce6b7f9dd31c3863082582"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/processes/player.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/processes/player.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/processes/roscore.cancel",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/processes/roscore.json",
+          "sha256": "98fcc88882e0ca39067a262f03b97d7e734c2fb37a7697de44e7c02542eadb8d"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/processes/roscore.launch-lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/processes/roscore.lock",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/processes/roscore.stops.jsonl",
+          "sha256": "6d42149116d8617b13b4f27d15a4986606366bd98b0c268315fe1d38134fb0b1"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/provenance/estimator_config--zed2i.yaml",
+          "sha256": "a0017e536ef37069995b98270bd436f28c3890bddbdd7c49c61e77c336935866"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/provenance/implementation.json",
+          "sha256": "c00ed1863bdc947603659aa268ed7bbda70c00aa83b4f500b30132a3bf402b29"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/provenance/inputs.json",
+          "sha256": "daaf6311f983ee30610e4fa12bfe4641858e1851f2355e3aabb6e9d0a02cb833"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+          "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/provenance/native_camera_load.txt--camera_load.txt",
+          "sha256": "661c2a1bd2a45a744d5ed42caf7f3c40f8d89a2be7b21814c667732999a8e44c"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/provenance/native_input_receipt.json--input_receipt.json",
+          "sha256": "9dbc1c77d4543090eea1d84906f3bdca6e1bb5c168ec4c428fda7b0bd0e82c75"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/provenance/native_parameter_list.txt--parameter_list.txt",
+          "sha256": "2b67a11c2936dceffc780058ed257f3d069420aeb4bfa0b516d54ec382a1f764"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+          "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/provenance/runtime-assets.json",
+          "sha256": "2a5665984dc55afbf173ea8b923083e7ea22f9a14add5b19fac1058dce74690a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/ros_master_uri.txt",
+          "sha256": "38a287fe9ecedd1f369a7fdbb7a245a67b91408aa8542fdcdd7089454127eb21"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/run_eval.json",
+          "sha256": "c23f662430d157fc23a0bb92ebacca63d3660d71ea0b4d7b4f4c035cf41c2d55"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/run_log.txt",
+          "sha256": "410f7315bd999b7dfc7bad9681cff04c890938ffc714dd925a704db854a8318a"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/run_meta.json",
+          "sha256": "59d297af495bd79fba1e85a3baa350817ce9bd57b97a30ba4451cecf70563ec5"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/trajectory.txt",
+          "sha256": "868f66364cfb6fcb83102370ba970879bd385e79b5c861901706dda778404b76"
+        },
+        {
+          "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003/transport_stats.json",
+          "sha256": "e7bd31ab733c9d6f5f3dc79ad39a19c89195d682ac2ca3614c5add386450ca1e"
+        }
+      ],
+      "evaluation_sha256": "0c65264b4e818973f90100dcab760561e9cd317fa3dc86a6cf3b5a33b797b12c"
+    }
+  ],
+  "limitations": [
+    "nominal left-camera 3D position only; no reference orientation or surveyed terrain attitude",
+    "approved 448-sample GNSS mask; no interpolation across gaps; RTK float retained and fixed-only sensitivity reported",
+    "unmeasured field camera/robot clock, zero correction, frozen +/-0.1 second sensitivity; no fitted offset",
+    "recovered same-serial factory camera/IMU transform and original recording intrinsics; no claim of historic serial recalibration records",
+    "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction",
+    "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+    "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified"
+  ],
+  "failure_policy": "User decision 2026-10-03: failures caused by the algorithm under a verified configuration stay in the tables as measured outcomes (valid_observed_failure, kept in the denominator).",
+  "evidence": [
+    {
+      "path": "docs/campaigns/zed-physical-calibration-20261002.json",
+      "sha256": "0ece85a3d0f4a200cc82e1783111a3bbc1949d6461f1b476d89c2f5053095307"
+    },
+    {
+      "path": "docs/campaigns/zed-approved-screening-20261002.json",
+      "sha256": "e0a658c7af37e3db1dce068c56bd6d5f00ec9e0e37da0847bfa9369399e85f98"
+    },
+    {
+      "path": "results/zed-preparation-20261002/independent-source-validation.json",
+      "sha256": "7894a33633d584675d40c6ce76a5cfef1316d4a9fbc02eb47c82efb3ea4b72f0"
+    }
+  ]
+}

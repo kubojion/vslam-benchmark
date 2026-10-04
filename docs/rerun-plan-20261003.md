@@ -42,6 +42,9 @@ on a slow ground vehicle and would again fit the calibration to the test data.
 
 ## 2. Corrections recorded on 3 October (missing from the earlier reviews)
 
+The earlier review documents are left as reviewed: the acceptance ledger pins
+`docs/reference-review-20261001.md` byte for byte, so these corrections live here.
+
 | Cells | Attempts | What is wrong | Why it was yellow |
 |---|---|---|---|
 | AirSLAM Rosario VIO and VIO-LC, seq1 and seq5 (4 cells) | 12 | The saved AirSLAM camera file sets the left camera to IMU transform to identity ("cam0 IS the body frame"). AirSLAM links IMU and camera poses through it (`src/airslam/src/frame.cc`). This is the same defect that makes the Basalt, OpenVINS and Voxel-SVIO Rosario VIO cells red; the review document rejects exactly this "IMU is the camera body" argument for those. AirSLAM's EuRoC file uses the real transform. | The 1 October list and the finding code covered only Basalt, OpenVINS and Voxel-SVIO; the 2 October candidate review grouped AirSLAM with the camera-model cases. No document gives a reason to exempt it. |
