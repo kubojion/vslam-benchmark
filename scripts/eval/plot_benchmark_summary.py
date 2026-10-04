@@ -86,6 +86,8 @@ AGR_SEQS = [
     ("rosariov2", "sequence5", "Rosario\nseq5"),
     ("hortimulti", "strawberry02", "Horti\nstraw02"),
     ("hortimulti", "strawberry03", "Horti\nstraw03"),
+    ("citrusfarm", "seq04", "Citrus\nseq04"),
+    ("citrusfarm", "seq07", "Citrus\nseq07"),
 ]
 REF_SEQS = [
     ("euroc_mav", "MH_01_easy", "MH01"),

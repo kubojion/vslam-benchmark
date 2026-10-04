@@ -1,0 +1,66 @@
+{
+ "dataset": "CitrusFarm (Teng, Wang, Song, Karydis, ISVC 2023)",
+ "site": "https://ucr-robotics.github.io/Citrus-Farm-Dataset/",
+ "note": "Unmodified copies of the authors calibration results and IMU noise file; md5 checked against the authors dataset_file_list.yaml. imu_filter.py is the authors timestamp filter, kept for reference.",
+ "files": [
+  {
+   "file": "01-multi-cam-report.txt",
+   "source": "s3://ucr-robotics/citrus-farm-dataset/Calibration/results/01-multi-cam-report.txt",
+   "md5": "99747066e294a29559e2df21ab62c1c0",
+   "md5_matches_authors_list": true
+  },
+  {
+   "file": "01-multi-cam-result.yaml",
+   "source": "s3://ucr-robotics/citrus-farm-dataset/Calibration/results/01-multi-cam-result.yaml",
+   "md5": "ce91540427262945fe88f7c39e3d9456",
+   "md5_matches_authors_list": true
+  },
+  {
+   "file": "02-imu-cam-report.txt",
+   "source": "s3://ucr-robotics/citrus-farm-dataset/Calibration/results/02-imu-cam-report.txt",
+   "md5": "3d83d0e36e8fdea74fbb76e3775bdbfd",
+   "md5_matches_authors_list": true
+  },
+  {
+   "file": "02-imu-cam-result.yaml",
+   "source": "s3://ucr-robotics/citrus-farm-dataset/Calibration/results/02-imu-cam-result.yaml",
+   "md5": "7e82b11938a3611155f98c5b9736a9f0",
+   "md5_matches_authors_list": true
+  },
+  {
+   "file": "02-imu-intrinsics.yaml",
+   "source": "s3://ucr-robotics/citrus-farm-dataset/Calibration/results/02-imu-intrinsics.yaml",
+   "md5": "672e287a18cb921e9c2c01d32d12e6ea",
+   "md5_matches_authors_list": true
+  },
+  {
+   "file": "03-lidar-cam-result.txt",
+   "source": "s3://ucr-robotics/citrus-farm-dataset/Calibration/results/03-lidar-cam-result.txt",
+   "md5": "6ddc06ce848973ec406154ef65375388",
+   "md5_matches_authors_list": true
+  },
+  {
+   "file": "04-lidar-gps-result.txt",
+   "source": "s3://ucr-robotics/citrus-farm-dataset/Calibration/results/04-lidar-gps-result.txt",
+   "md5": "fb59ab6a84ce69c13a67e2dd1b9722e6",
+   "md5_matches_authors_list": true
+  },
+  {
+   "file": "05-baselink-lidar-result.txt",
+   "source": "s3://ucr-robotics/citrus-farm-dataset/Calibration/results/05-baselink-lidar-result.txt",
+   "md5": "038af200f21ef18ee467f6cc9f5efeea",
+   "md5_matches_authors_list": true
+  },
+  {
+   "file": "imu_filter.py",
+   "source": "https://github.com/UCR-Robotics/Citrus-Farm-Dataset/blob/main/scripts/imu_filter.py",
+   "md5": "6b7faab534c1df9e6c28c5d9ac916209"
+  },
+  {
+   "file": "microstrain_gx5.yaml",
+   "source": "s3://ucr-robotics/citrus-farm-dataset/Calibration/config/microstrain_gx5.yaml",
+   "md5": "55d43be2eab068c2dcc46e301c265c37",
+   "md5_matches_authors_list": true
+  }
+ ]
+}

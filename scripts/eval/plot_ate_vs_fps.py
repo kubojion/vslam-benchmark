@@ -83,12 +83,14 @@ DATASET_MARKER = {
     "hortimulti": "s",
     "rosariov2":  "D",
     "zed2i":       "^",
+    "citrusfarm":  "v",
 }
 DATASET_LABEL = {
     "euroc_mav":  "EuRoC-MAV",
     "hortimulti": "HortiMulti",
     "rosariov2":  "RosarioV2",
     "zed2i":       "ZED2i",
+    "citrusfarm":  "CitrusFarm",
 }
 # Short sequence labels for annotation
 SEQ_SHORTNAME = {
@@ -100,6 +102,8 @@ SEQ_SHORTNAME = {
     "sequence1":       "seq1",
     "sequence5":       "seq5",
     "field1_110426_full_10fps_q90": "zed2i",
+    "seq04":           "cf04",
+    "seq07":           "cf07",
 }
 
 

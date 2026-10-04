@@ -1,0 +1,101 @@
+%YAML:1.0
+# OKVIS2-X VO-LC configuration for CitrusFarm seq04.
+# CitrusFarm (UCR citrus orchard, Teng et al. ISVC 2023): ZED2i factory-rectified 1280x720
+# colour at 10 Hz, MicroStrain 3DM-GX5 IMU at 200 Hz on the camera clock. Written by
+# scripts/setup/build_citrusfarm_configs.py from configs/okvis2x/zed2i_field1_110426_full_10fps_q90_vo_lc.yaml; only sensor values differ.
+# T_SC maps the rectified optical cameras into the MicroStrain frame (inverse Kalibr chain).
+
+cameras:
+     - {T_SC:
+        [-0.02346529509, 0.003427464395, -0.999718776664, -0.172356736462,
+          0.999722472445, 0.002168597041, -0.023457946957, -0.061007465931,
+          0.002087585903, -0.999991774804, -0.003477399948, -0.081450715984,
+          0.0, 0.0, 0.0, 1.0],
+        image_dimension: [1280, 720],
+        distortion_coefficients: [0.0, 0.0, 0.0, 0.0],
+        distortion_type: radialtangential,
+        focal_length: [524.809448242188, 524.809448242188],
+        principal_point: [648.505615234375, 357.387756347656],
+        cam_model: pinhole,
+        camera_type: gray,
+        slam_use: okvis}
+
+     - {T_SC:
+        [-0.02346529509, 0.003427464395, -0.999718776664, -0.175169877361,
+          0.999722472445, 0.002168597041, -0.023457946957, 0.058844433007,
+          0.002087585903, -0.999991774804, -0.003477399948, -0.081200445393,
+          0.0, 0.0, 0.0, 1.0],
+        image_dimension: [1280, 720],
+        distortion_coefficients: [0.0, 0.0, 0.0, 0.0],
+        distortion_type: radialtangential,
+        focal_length: [524.809448242188, 524.809448242188],
+        principal_point: [648.505615234375, 357.387756347656],
+        cam_model: pinhole,
+        camera_type: gray,
+        slam_use: okvis}
+
+camera_parameters:
+    timestamp_tolerance: 0.005
+    sync_cameras: [0, 1]
+    image_delay: 0.0  # IMU stamps on the camera clock
+    online_calibration:
+        do_extrinsics: false
+        do_extrinsics_final_ba: true
+        sigma_r: 0.01
+        sigma_alpha: 0.1
+        sigma_r_final_ba: 0.03
+        sigma_alpha_final_ba: 0.3
+
+# IMU: MicroStrain 3DM-GX5. Recording-derived densities, Allan random walks (HortiMulti policy).
+imu_parameters:
+    use: false
+    a_max: 160.0
+    g_max: 10.0
+    sigma_g_c: 0.003  # recording-derived gyro envelope
+    sigma_a_c: 0.05  # recording-derived accel envelope
+    sigma_bg: 0.03
+    sigma_ba: 0.1
+    sigma_gw_c: 3.563656e-06  # authors Allan gyro bias random walk
+    sigma_aw_c: 6.706088e-06  # authors Allan accel bias random walk
+    g: 9.796  # Riverside, CA (~34 deg N)
+    g0: [-0.001188541788, -0.000244380243, -0.001283700034]  # stationary gyro bias at the start of seq04
+    a0: [ 0.0, 0.0, 0.0 ]
+    s_a: [ 1.0, 1.0, 1.0 ]
+    T_BS:
+        [1.0, 0.0, 0.0, 0.0,
+         0.0, 1.0, 0.0, 0.0,
+         0.0, 0.0, 1.0, 0.0,
+         0.0, 0.0, 0.0, 1.0]
+
+frontend_parameters:
+    detection_threshold: 38.0
+    absolute_threshold: 150.0
+    matching_threshold: 60.0
+    octaves: 0
+    max_num_keypoints: 700
+    keyframe_overlap: 0.60
+    use_cnn: false
+    parallelise_detection: true
+    num_matching_threads: 4
+
+estimator_parameters:
+    num_keyframes: 5
+    num_loop_closure_frames: 5
+    num_imu_frames: 3
+    do_loop_closures: true
+    do_final_ba: true
+    enforce_realtime: false
+    realtime_min_iterations: 3
+    realtime_max_iterations: 10
+    realtime_time_limit: 0.035
+    realtime_num_threads: 3
+    full_graph_iterations: 15
+    full_graph_num_threads: 3
+    p_dbow: 0.4
+    drift_percentage_heuristic: 1.35
+
+output_parameters:
+    display_topview: false
+    display_matches: false
+    display_overhead: false
+    enable_submapping: false

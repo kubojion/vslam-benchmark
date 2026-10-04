@@ -127,6 +127,11 @@ def physical_rosario_imu_to_camera(ws, seq, snapshots):
     return matrix(value['T_imu_left'])
 
 
+# Datasets whose inertial outputs are compared through an independent, reviewed physical
+# IMU-to-left-camera calibration rather than the estimator's own saved extrinsic.
+PHYSICAL_IMU_DATASETS = ('euroc_mav', 'rosariov2', 'zed2i', 'citrusfarm')
+
+
 def physical_imu_to_camera(ws, dataset, seq, snapshots):
     if dataset == 'euroc_mav':
         return physical_euroc_imu_to_camera(ws, seq, snapshots)
@@ -141,6 +146,18 @@ def physical_imu_to_camera(ws, dataset, seq, snapshots):
         for item in value['evidence']:
             actual=file_evidence(Path(ws)/item['path'],ws)
             if actual['sha256']!=item['sha256']:raise FrameEvidenceError('ZED calibration source changed')
+            snapshots.evidence.append(actual)
+        return matrix(value['T_imu_left'])
+    if dataset == 'citrusfarm':
+        # The authors' Kalibr chain, checked against the ZED IMU's gyro on both sequences.
+        path=Path(ws)/'docs/campaigns/citrusfarm-physical-calibration-20261003.json'
+        value=json.loads(path.read_text())
+        if seq not in value['sequences']:
+            raise FrameEvidenceError('unreviewed CitrusFarm recording')
+        snapshots.evidence.append(file_evidence(path,ws))
+        for item in value['evidence']:
+            actual=file_evidence(Path(ws)/item['path'],ws)
+            if actual['sha256']!=item['sha256']:raise FrameEvidenceError('CitrusFarm calibration source changed')
             snapshots.evidence.append(actual)
         return matrix(value['T_imu_left'])
     raise FrameEvidenceError('independent physical IMU calibration not established')
@@ -228,7 +245,7 @@ def estimate_transform(ws, dataset, seq, algo, use_imu, snapshots):
         final_ba = cfg.get('estimator_parameters', {}).get('do_final_ba', False)
         source = [f'src/{algo}/okvis_multisensor_processing/src/TrajectoryOutput.cpp']
         recovered = verified_okvis_causal_recovery(snapshots, cfg)
-        if use_imu and dataset in ('euroc_mav', 'rosariov2', 'zed2i'):
+        if use_imu and dataset in PHYSICAL_IMU_DATASETS:
             return 'physical_imu_sensor', physical_imu_to_camera(ws, dataset, seq, snapshots), source
         if recovered:
             return 'sensor_with_saved_initial_calibration_causal_prefix', matrix(cfg['cameras'][0]['T_SC']), source
@@ -239,7 +256,7 @@ def estimate_transform(ws, dataset, seq, algo, use_imu, snapshots):
         cfg = snapshots.read('camera_calibration')['value0']['T_imu_cam'][0]
         t = rotation_transform(Rotation.from_quat([cfg[k] for k in ('qx', 'qy', 'qz', 'qw')]).as_matrix())
         t[:3, 3] = [cfg[k] for k in ('px', 'py', 'pz')]
-        if use_imu and dataset in ('euroc_mav', 'rosariov2', 'zed2i'):
+        if use_imu and dataset in PHYSICAL_IMU_DATASETS:
             t = physical_imu_to_camera(ws, dataset, seq, snapshots)
         return 'imu_or_virtual_body', matrix(t), ['https://github.com/VladyslavUsenko/basalt/blob/0f3b2b52c807f70ff4e2973ce253c73329eea7bc/src/vio.cpp']
     if algo == 'openvins':
@@ -248,20 +265,20 @@ def estimate_transform(ws, dataset, seq, algo, use_imu, snapshots):
             raise FrameEvidenceError('online camera extrinsics require saved calibration per pose')
         cam = snapshots.read('camera_imu_calibration')['cam0']
         t = matrix(cam['T_imu_cam']) if 'T_imu_cam' in cam else np.linalg.inv(matrix(cam['T_cam_imu']))
-        if dataset in ('euroc_mav', 'rosariov2', 'zed2i'):
+        if dataset in PHYSICAL_IMU_DATASETS:
             t = physical_imu_to_camera(ws, dataset, seq, snapshots)
         return 'imu', t, ['src/open_vins/ov_msckf/src/ros/ROS2Visualizer.cpp', 'src/open_vins/ov_core/src/utils/quat_ops.h']
     if algo == 'voxel_svio':
         cfg = snapshots.read('estimator_config')
         if cfg.get('state_parameter', {}).get('calib_cam_extrinsics', False):
             raise FrameEvidenceError('online camera extrinsics require saved calibration per pose')
-        t = physical_imu_to_camera(ws, dataset, seq, snapshots) if dataset in ('euroc_mav', 'rosariov2', 'zed2i') else matrix(cfg['camera_parameter']['T_imu_cam_left'])
+        t = physical_imu_to_camera(ws, dataset, seq, snapshots) if dataset in PHYSICAL_IMU_DATASETS else matrix(cfg['camera_parameter']['T_imu_cam_left'])
         return 'imu', t, ['src/voxel_svio/src/stereoVio.cpp', 'src/voxel_svio/src/quatOps.cpp']
     if algo == 'orbslam3':
         cfg = snapshots.read('estimator_config')
         source = ['src/ORB_SLAM3/src/System.cc', 'src/ORB_SLAM3/src/Settings.cc']
         if use_imu:
-            t = physical_imu_to_camera(ws, dataset, seq, snapshots) if dataset in ('euroc_mav', 'rosariov2', 'zed2i') else matrix(cfg['IMU.T_b_c1'])
+            t = physical_imu_to_camera(ws, dataset, seq, snapshots) if dataset in PHYSICAL_IMU_DATASETS else matrix(cfg['IMU.T_b_c1'])
             return 'imu_body', t, source
         if cfg['Camera.type'] == 'Rectified':
             return 'left_camera_input_axes', np.eye(4), source
@@ -340,7 +357,7 @@ def estimate_transform(ws, dataset, seq, algo, use_imu, snapshots):
         calib = snapshots.read('camera_imu_calibration')
         t = matrix(np.asarray(calib['cameras'][0]['T_B_C']['data'], dtype=float).reshape(4, 4))
         source = ['src/svo_pro/svo_ros/src/benchmark_node.cpp', 'scripts/run/_svo_pro_stage.py']
-        if use_imu and dataset in ('euroc_mav', 'rosariov2', 'zed2i'):
+        if use_imu and dataset in PHYSICAL_IMU_DATASETS:
             return 'imu_body', physical_imu_to_camera(ws, dataset, seq, snapshots), source
         return 'imu_body_from_saved_calibration', t, source
     if algo == 'mast3r_fusion':
@@ -386,6 +403,12 @@ def frame_policy(ws, run_dir, meta, dataset, seq, algo, use_imu):
                       reference_transform=np.eye(4).tolist(),
                       common_origin_verified=policy['estimate_transform'] is not None)
         policy['blockers'].append('zed_reference_orientation_unavailable')
+    elif dataset == 'citrusfarm':
+        # Single-antenna RTK positions moved to the left camera (lever arm, path heading).
+        policy.update(reference_frame='lever_arm_corrected_camera_position_identity_quaternion',
+                      reference_transform=np.eye(4).tolist(),
+                      common_origin_verified=policy['estimate_transform'] is not None)
+        policy['blockers'].append('citrusfarm_reference_orientation_unavailable')
     elif dataset == 'hortimulti':
         policy['reference_frame'] = {'strawberry02': 'TagMap/base_link', 'strawberry03': 'odom/odom_mapping'}.get(seq)
         policy['blockers'].append('horti_reference_to_camera_extrinsic_unverified')

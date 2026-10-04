@@ -113,7 +113,7 @@ def test_manifest_cannot_claim_readiness_from_flags_alone(tmp_path):
 
 def test_todo_layout_preserved_and_failure_is_not_green():
     sections=[];cells=[]
-    sequences=[('rosariov2','sequence1'),('rosariov2','sequence5'),('hortimulti','strawberry02'),('hortimulti','strawberry03'),('euroc_mav','MH_01_easy'),('euroc_mav','MH_03_medium'),('euroc_mav','MH_05_difficult'),('zed2i','field1_110426_full_10fps_q90')]
+    sequences=[('rosariov2','sequence1'),('rosariov2','sequence5'),('hortimulti','strawberry02'),('hortimulti','strawberry03'),('euroc_mav','MH_01_easy'),('euroc_mav','MH_03_medium'),('euroc_mav','MH_05_difficult'),('zed2i','field1_110426_full_10fps_q90'),('citrusfarm','seq04'),('citrusfarm','seq07')]
     for mode in ('vo','vo-lc','vio','vio-lc','gnss-vio'):
         seqs=sequences[:4] if mode=='gnss-vio' else sequences
         sections+=['### Test - `results/'+mode+'/`','| Algorithm | '+' | '.join(s for _,s in seqs)+' |','| OKVIS2 | '+' | '.join(['✅ N=3']*len(seqs))+' |']
@@ -124,6 +124,27 @@ def test_todo_layout_preserved_and_failure_is_not_green():
     assert [s.count('|') for s in before.splitlines()]==[s.count('|') for s in after.splitlines()]
     assert [s for s in before.splitlines() if not s.startswith('| OKVIS2')]==[s for s in after.splitlines() if not s.startswith('| OKVIS2')]
     assert '✅' not in after and 'collapse r2' in after
+
+
+def test_todo_matrices_without_citrusfarm_columns_gain_them_once():
+    old=[('rosariov2','sequence1'),('rosariov2','sequence5'),('hortimulti','strawberry02'),('hortimulti','strawberry03'),('euroc_mav','MH_01_easy'),('euroc_mav','MH_03_medium'),('euroc_mav','MH_05_difficult'),('zed2i','field1_110426_full_10fps_q90')]
+    new=old+[('citrusfarm','seq04'),('citrusfarm','seq07')]
+    sections=[];cells=[]
+    for mode in ('vo','vo-lc','vio','vio-lc','gnss-vio'):
+        seqs=old[:4] if mode=='gnss-vio' else old
+        sections+=['### Test - `results/'+mode+'/`','| Algorithm | '+' | '.join(s for _,s in seqs)+' |',
+                   '|---|'+'---|'*len(seqs),'| OKVIS2 | '+' | '.join(['old']*len(seqs))+' |']
+        for ds,seq in (new[:4] if mode=='gnss-vio' else new):
+            cells.append(dict(run_type=mode,algorithm='okvis2',dataset=ds,sequence=seq,evaluated=0,attempts=[]))
+    after=update('\n'.join(sections)+'\n',{'cells':cells})
+    lines=after.splitlines()
+    for mode in ('vo','vo-lc','vio','vio-lc'):
+        i=lines.index('### Test - `results/'+mode+'/`')
+        assert lines[i+1].endswith('| citrusfarm seq04 | citrusfarm seq07 |')
+        assert all(l.count('|')==len(new)+2 for l in lines[i+1:i+4])
+    i=lines.index('### Test - `results/gnss-vio/`')
+    assert all(l.count('|')==6 for l in lines[i+1:i+4])
+    assert update(after,{'cells':cells})==after  # widened once, never again
 
 
 def test_airslam_rectified_imu_finding_requires_preserved_clean_source_and_saved_config(tmp_path):

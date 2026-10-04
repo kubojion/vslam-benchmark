@@ -1,0 +1,105 @@
+{
+    "value0": {
+        "_comment": "CitrusFarm ZED2i factory-rectified 1280x720 (seq04 CameraInfo; seq07 within 0.13 px). Written by scripts/setup/build_citrusfarm_configs.py from configs/basalt/zed2i_calib.json.",
+        "_comment_extrinsic": "MicroStrain <- ZED left: inverse of the authors Kalibr chain (02-imu-cam-result, 01-multi-cam-result in configs/sensors/sources/citrusfarm). IMU stamps are on the camera clock.",
+        "T_imu_cam": [
+            {
+                "px": -0.17235673646153138,
+                "py": -0.06100746593073163,
+                "pz": -0.0814507159843433,
+                "qx": 0.494429850387678,
+                "qy": 0.5072256135289257,
+                "qz": -0.5044351539347943,
+                "qw": -0.49376763310347094
+            },
+            {
+                "px": -0.1751698773613109,
+                "py": 0.058844433006548194,
+                "pz": -0.08120044539272032,
+                "qx": 0.494429850387678,
+                "qy": 0.5072256135289257,
+                "qz": -0.5044351539347943,
+                "qw": -0.49376763310347094
+            }
+        ],
+        "intrinsics": [
+            {
+                "camera_type": "pinhole",
+                "intrinsics": {
+                    "fx": 524.8094482421875,
+                    "fy": 524.8094482421875,
+                    "cx": 648.505615234375,
+                    "cy": 357.38775634765625
+                }
+            },
+            {
+                "camera_type": "pinhole",
+                "intrinsics": {
+                    "fx": 524.8094482421875,
+                    "fy": 524.8094482421875,
+                    "cx": 648.505615234375,
+                    "cy": 357.38775634765625
+                }
+            }
+        ],
+        "resolution": [
+            [
+                1280,
+                720
+            ],
+            [
+                1280,
+                720
+            ]
+        ],
+        "calib_accel_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "calib_gyro_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "imu_update_rate": 200.0,
+        "accel_noise_std": [
+            0.05,
+            0.05,
+            0.05
+        ],
+        "gyro_noise_std": [
+            0.003,
+            0.003,
+            0.003
+        ],
+        "accel_bias_std": [
+            6.706087584689249e-06,
+            6.706087584689249e-06,
+            6.706087584689249e-06
+        ],
+        "gyro_bias_std": [
+            3.5636559575381104e-06,
+            3.5636559575381104e-06,
+            3.5636559575381104e-06
+        ],
+        "cam_time_offset_ns": 0,
+        "vignette": [],
+        "_comment_noise": "Recording-derived envelope (derive_okvis_imu_noise.py --datasets citrusfarm) with the authors Allan random walks, as for HortiMulti (same MicroStrain 3DM-GX5 model)."
+    }
+}

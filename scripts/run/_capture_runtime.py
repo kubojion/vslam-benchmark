@@ -106,7 +106,7 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
             package=Path(list(spec.submodule_search_locations)[0])
             for p in sorted(package.glob('*.so'))+sorted(package.glob('*.py')):host(p)
     elif algorithm=='airslam':
-        for p in ['superpoint_lightglue.onnx']+[f'superpoint_lightglue_{ds}.engine' for ds in ('euroc_mav','hortimulti','rosariov2','zed2i')]:
+        for p in ['superpoint_lightglue.onnx']+[f'superpoint_lightglue_{ds}.engine' for ds in ('euroc_mav','hortimulti','rosariov2','zed2i','citrusfarm')]:
             host('src/airslam/output/'+p)
     if algorithm in ('openvins','openvins_gps'):
         info=inspect(['image','inspect','openvins:humble'])

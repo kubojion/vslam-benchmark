@@ -17,10 +17,16 @@ with the stereo images), so both gyroscopes see the same rigid-body rotation:
 Uses only the two IMU streams and the authors' calibration files, no images, estimator
 output or ground truth.
 
-Usage: citrusfarm_imu_alignment.py <extracted sequence> <calibration results folder> [--json out]
+--apply moves mav0/imu0/data.csv onto the camera clock (t_imu - offset, measured on this
+sequence), keeps the host-clock file as sources/microstrain_host_clock.csv, and records the
+shift in manifest.json. Every estimator then uses a zero camera-IMU time offset. Applying
+twice is refused; a second measurement on the shifted file must give about zero.
+
+Usage: citrusfarm_imu_alignment.py <extracted sequence> <calibration results folder> [--json out] [--apply]
 """
 import argparse
 import json
+import shutil
 from pathlib import Path
 
 import numpy as np
@@ -77,7 +83,12 @@ def main():
     ap.add_argument('calibration', type=Path, help="authors' Calibration/results folder")
     ap.add_argument('--json', type=Path)
     ap.add_argument('--max-lag-ms', type=float, default=150.0)
+    ap.add_argument('--apply', action='store_true', help='shift the MicroStrain stamps onto the camera clock')
     args = ap.parse_args()
+    manifest_path = args.sequence / 'manifest.json'
+    manifest = json.loads(manifest_path.read_text())
+    if args.apply and 'camera_clock_shift_s' in manifest['imu']:
+        raise SystemExit('MicroStrain stamps are already on the camera clock; refusing to shift twice')
 
     tz_ns, wz = load(args.sequence / 'sources/zed_imu.csv')
     tm_ns, wm = load(args.sequence / 'mav0/imu0/data.csv')
@@ -129,6 +140,21 @@ def main():
     print(text)
     if args.json:
         args.json.write_text(text + '\n')
+    if args.apply:
+        imu = args.sequence / 'mav0/imu0/data.csv'
+        host = args.sequence / 'sources/microstrain_host_clock.csv'
+        shutil.copyfile(imu, host)
+        shift_ns = int(round(lag * 1e9))
+        lines = imu.read_text().splitlines()
+        body = [f'{int(l.split(",", 1)[0]) - shift_ns},{l.split(",", 1)[1]}' for l in lines[1:]]
+        imu.write_text('\n'.join([lines[0]] + body) + '\n')
+        manifest['imu']['camera_clock_shift_s'] = shift_ns * 1e-9
+        manifest['imu']['camera_clock'] = ('mav0/imu0/data.csv stamps = re-stamped host stamps - camera_clock_shift_s '
+                                           '(offset measured against the ZED IMU on this sequence); host-clock copy in '
+                                           'sources/microstrain_host_clock.csv; estimators use a zero time offset')
+        manifest['imu']['alignment_report'] = 'sources/imu_alignment.json'
+        manifest_path.write_text(json.dumps(manifest, indent=1) + '\n')
+        print(f'applied: MicroStrain stamps shifted by -{shift_ns} ns onto the camera clock')
 
 
 if __name__ == '__main__':

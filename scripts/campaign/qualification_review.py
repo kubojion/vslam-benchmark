@@ -97,6 +97,11 @@ def review_saved(relative, meta, evaluation, findings, snapshots, *, exists, rep
         blockers.append('zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified')
         if mode in ('vio', 'vio-lc', 'gnss-vio'):
             blockers.append('zed_serial_specific_imu_rotation_and_time_offset_unverified')
+    if dataset == 'citrusfarm':
+        # Authors' RTK antenna positions moved to the camera (rtk-position-v1-20261003); the
+        # IMU chain and clock were checked against the ZED IMU and are not claim limits.
+        limitations.append('citrusfarm_position_only_reference_level_platform_lever_and_path_heading')
+        limitations.append('citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured')
     if algorithm == 'airslam':
         blockers.append('keyframe_only_accuracy_not_dense_frame_comparison')
     if algorithm in ('orbslam3', 'airslam', 'ov2slam', 'openvins'):

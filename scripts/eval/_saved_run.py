@@ -142,8 +142,8 @@ def evaluate_saved_run(ws, run_dir, *, gt_override=None):
     if physical_sequence!=seq:
         policy['diagnostic_parent_sequence']=physical_sequence
     if selected:
-        if dataset!='zed2i' or selected['orientation_valid']:
-            raise ValueError('only the reviewed position-only ZED reference is supported')
+        if dataset not in ('zed2i','citrusfarm') or selected['orientation_valid']:
+            raise ValueError('only the reviewed position-only ZED and CitrusFarm references are supported')
         policy.update(reference_frame='nominal_left_camera_position_enu',
                       reference_transform=np.eye(4).tolist(),orientation_valid=False,
                       reference_valid_intervals=selected['valid_intervals'],

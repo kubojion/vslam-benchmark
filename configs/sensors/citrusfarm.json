@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "dataset": "citrusfarm",
+  "image": {
+    "width": 1280,
+    "height": 720,
+    "fps": 10.0
+  },
+  "rectified_input": true,
+  "cameras": [
+    {
+      "name": "cam0",
+      "fx": 524.809448242188,
+      "fy": 524.809448242188,
+      "cx": 648.505615234375,
+      "cy": 357.387756347656,
+      "distortion_model": "none",
+      "distortion": []
+    },
+    {
+      "name": "cam1",
+      "fx": 524.809448242188,
+      "fy": 524.809448242188,
+      "cx": 648.505615234375,
+      "cy": 357.387756347656,
+      "distortion_model": "none",
+      "distortion": []
+    }
+  ],
+  "T_cam0_cam1": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.119885170376
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "baseline_m": 0.119885170376,
+  "imu": {
+    "T_imu_cam0": [
+      [
+        -0.023465294,
+        0.0034274643,
+        -0.9997188,
+        -0.17235674
+      ],
+      [
+        0.9997225,
+        0.002168597,
+        -0.023457946,
+        -0.061007466
+      ],
+      [
+        0.0020875859,
+        -0.9999918,
+        -0.0034774,
+        -0.081450716
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "gyroscope_noise_density": 0.000104266546,
+    "accelerometer_noise_density": 0.000227684677,
+    "gyroscope_random_walk": 3.563656e-06,
+    "accelerometer_random_walk": 6.706088e-06,
+    "frequency_hz": 200.0
+  },
+  "camera_imu_time_offset_s": 0.0,
+  "time_offset_convention": "t_imu = t_camera + camera_imu_time_offset_s",
+  "frames": "cam0 is the rig origin; T_cam0_cam1 is the pose of cam1 in cam0; T_imu_cam0 maps cam0 coordinates into the IMU frame",
+  "sources": [
+    {
+      "path": "configs/orbslam3/citrusfarm_stereo_inertial.yaml",
+      "sha256": "7b79e2ea6ca74a13fdc17fa592e7dfa7a8982097cedc3a7ea2b730a32858d64a",
+      "fields": "camera model, baseline or stereo transform, T_imu_cam0, IMU noise, rate"
+    },
+    {
+      "path": "configs/basalt/citrusfarm_calib.json",
+      "sha256": "ed811499237de9435392518816cc4f4dc93f12da15f3e03336cd61bedfb5d236",
+      "fields": "camera_imu_time_offset_s (cam_time_offset_ns)"
+    }
+  ]
+}

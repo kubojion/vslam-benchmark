@@ -1,0 +1,13 @@
+# MAC-VO sequence config for CitrusFarm seq04 (ZED2i factory-rectified 1280x720 colour PNG).
+# Written by scripts/setup/build_citrusfarm_configs.py.
+type: GeneralStereo
+name: citrusfarm_seq04
+args:
+  root: __WS__/datasets/citrusfarm/seq04
+  bl: 0.119885170376
+  format: png
+  camera:
+    fx: 524.809448242188
+    fy: 524.809448242188
+    cx: 648.505615234375
+    cy: 357.387756347656

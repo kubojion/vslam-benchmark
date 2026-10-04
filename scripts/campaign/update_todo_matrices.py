@@ -27,7 +27,8 @@ EXCLUDED = {'MASt3R-SLAM': 'mast3r_slam', 'MegaSaM': 'megasam', 'DROID-SLAM': 'd
 SEQUENCES = [('rosariov2', 'sequence1'), ('rosariov2', 'sequence5'),
              ('hortimulti', 'strawberry02'), ('hortimulti', 'strawberry03'),
              ('euroc_mav', 'MH_01_easy'), ('euroc_mav', 'MH_03_medium'),
-             ('euroc_mav', 'MH_05_difficult'), ('zed2i', 'field1_110426_full_10fps_q90')]
+             ('euroc_mav', 'MH_05_difficult'), ('zed2i', 'field1_110426_full_10fps_q90'),
+             ('citrusfarm', 'seq04'), ('citrusfarm', 'seq07')]
 MODES = {'vo', 'vio', 'vo-lc', 'vio-lc', 'gnss-vio'}
 DETAILS = 'docs/todo-status-details.md'
 MANIFESTS = ('results/repair-20261001/future-n3-manifest.json',
@@ -301,6 +302,20 @@ def render_excluded(inventory, mode, ds, seq, algorithm, previous):
     return f'[➖ excluded]({DETAILS}#excluded-history); {tally}{suffix}'
 
 
+# Sequences appended after the last TODO.md layout; older matrices gain their columns once.
+ADDED = [('citrusfarm', 'seq04'), ('citrusfarm', 'seq07')]
+
+
+def widen(line):
+    """Append the ADDED sequence columns to a matrix header, separator or row line."""
+    stripped = line.rstrip()
+    if set(stripped.replace('|', '').strip()) <= set('-: '):
+        return stripped + ''.join('---|' for _ in ADDED)
+    if stripped.split('|')[1].strip() == 'Algorithm':
+        return stripped + ''.join(f' {ds} {seq} |' for ds, seq in ADDED)
+    return stripped + ''.join('  |' for _ in ADDED)
+
+
 def update(text, inventory, campaigns=()):
     """Only replace cells; keep every matrix, row, column and surrounding note."""
     cells = {(c['run_type'], c['algorithm'], c['dataset'], c['sequence']): c for c in inventory['cells']}
@@ -313,6 +328,8 @@ def update(text, inventory, campaigns=()):
         if match:
             mode = match[1]
             seen.add(mode)
+        if mode and mode != 'gnss-vio' and line.startswith('|') and line.count('|') == len(SEQUENCES) + 2 - len(ADDED):
+            line = widen(line)
         if mode and line.startswith('| '):
             parts = line.split('|')
             name = parts[1].strip()

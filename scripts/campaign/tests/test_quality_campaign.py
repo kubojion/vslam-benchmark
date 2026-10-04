@@ -22,9 +22,9 @@ class CampaignDefinitionTests(unittest.TestCase):
 
     def test_committed_size_and_uniqueness(self) -> None:
         keys = [campaign.cell_key(cell) for cell in self.cells]
-        self.assertEqual(300, len(keys))
-        self.assertEqual(300, len(set(keys)))
-        self.assertEqual(1500, len(keys) * self.doc["repeats"])
+        self.assertEqual(370, len(keys))
+        self.assertEqual(370, len(set(keys)))
+        self.assertEqual(1850, len(keys) * self.doc["repeats"])
         self.assertEqual([], campaign.validate_manifest(self.doc, self.cells))
 
     def test_out_of_scope_algorithms_are_absent(self) -> None:

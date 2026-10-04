@@ -46,7 +46,7 @@ LOG_GLOBAL="$WS/logs/${DATASET}_${SEQ}_openvins_${RUN_TYPE}_run${RUN_ID}.log"
 OPENVINS_IMAGE=openvins:humble
 OPENVINS_VERBOSITY=INFO
 if [[ -n "${ROSARIO_VIO_PROFILE:-}" ]]; then OPENVINS_VERBOSITY=DEBUG; fi
-if [[ "$DATASET" == euroc_mav || "$DATASET" == zed2i || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then OPENVINS_IMAGE=openvins:humble-shutdown-20261001; fi
+if [[ "$DATASET" == euroc_mav || "$DATASET" == zed2i || "$DATASET" == citrusfarm || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then OPENVINS_IMAGE=openvins:humble-shutdown-20261001; fi
 
 [[ -d "$CFG_DIR" ]] || { echo "[openvins] missing config dir: $CFG_DIR" >&2; exit 2; }
 [[ -f "$CFG_DIR/estimator_config.yaml" ]] || { echo "[openvins] missing $CFG_DIR/estimator_config.yaml" >&2; exit 2; }

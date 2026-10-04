@@ -1,0 +1,2 @@
+# DPVO calib for CitrusFarm (rectified ZED2i cam0, monocular; no distortion).
+524.809448242188 524.809448242188 648.505615234375 357.387756347656

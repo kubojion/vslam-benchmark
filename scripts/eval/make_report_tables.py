@@ -20,9 +20,11 @@ SEQ_LABEL = {
     ("euroc_mav", "MH_01_easy"): "MH01",
     ("euroc_mav", "MH_03_medium"): "MH03",
     ("euroc_mav", "MH_05_difficult"): "MH05",
+    ("citrusfarm", "seq04"): "cf04",
+    ("citrusfarm", "seq07"): "cf07",
 }
 
-AGRI_ORDER = ["seq1", "seq5", "str02", "str03", "zed2i"]
+AGRI_ORDER = ["seq1", "seq5", "str02", "str03", "cf04", "cf07", "zed2i"]
 
 EUROC_ORDER = ["MH01", "MH03", "MH05"]
 

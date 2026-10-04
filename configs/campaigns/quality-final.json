@@ -3,8 +3,8 @@
   "campaign_id": "quality-final-n5",
   "description": "Single-configuration, quality-only benchmark campaign",
   "repeats": 5,
-  "expected_cells": 300,
-  "expected_executions": 1500,
+  "expected_cells": 370,
+  "expected_executions": 1850,
   "sequences": [
     {
       "dataset": "rosariov2",
@@ -37,6 +37,14 @@
     {
       "dataset": "zed2i",
       "sequence": "field1_110426_full_10fps_q90"
+    },
+    {
+      "dataset": "citrusfarm",
+      "sequence": "seq04"
+    },
+    {
+      "dataset": "citrusfarm",
+      "sequence": "seq07"
     }
   ],
   "gnss_sequences": [

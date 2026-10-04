@@ -35,6 +35,10 @@ DATASETS = {
     'zed2i': ('configs/orbslam3/zed2i_field1_110426_full_10fps_q90_stereo_inertial.yaml',
               'configs/basalt/zed2i_calib.json',
               'configs/okvis2/zed2i_field1_110426_full_10fps_q90_vio.yaml'),
+    # Written from the authors' calibration by scripts/setup/build_citrusfarm_configs.py.
+    'citrusfarm': ('configs/orbslam3/citrusfarm_stereo_inertial.yaml',
+                   'configs/basalt/citrusfarm_calib.json',
+                   'configs/okvis2/citrusfarm_seq04_vio.yaml'),
 }
 
 

@@ -1,0 +1,94 @@
+%YAML:1.0
+---
+# OV2SLAM stereo VO-LC on pre-rectified CitrusFarm ZED2i 1280x720 images.
+# CitrusFarm (UCR citrus orchard, Teng et al. ISVC 2023): ZED2i factory-rectified 1280x720
+# colour at 10 Hz, MicroStrain 3DM-GX5 IMU at 200 Hz on the camera clock. Written by
+# scripts/setup/build_citrusfarm_configs.py from configs/ov2slam/zed2i_vo_lc.yaml; only sensor values differ.
+Camera.topic_left: /cam0/image_raw
+Camera.topic_right: /cam1/image_raw
+Camera.model_left: pinhole
+Camera.model_right: pinhole
+Camera.left_nwidth: 1280
+Camera.left_nheight: 720
+Camera.right_nwidth: 1280
+Camera.right_nheight: 720
+Camera.fxl: 524.809448242188
+Camera.fyl: 524.809448242188
+Camera.cxl: 648.505615234375
+Camera.cyl: 357.387756347656
+Camera.k1l: 0.0
+Camera.k2l: 0.0
+Camera.p1l: 0.0
+Camera.p2l: 0.0
+Camera.fxr: 524.809448242188
+Camera.fyr: 524.809448242188
+Camera.cxr: 648.505615234375
+Camera.cyr: 357.387756347656
+Camera.k1r: 0.0
+Camera.k2r: 0.0
+Camera.p1r: 0.0
+Camera.p2r: 0.0
+body_T_cam0: !!opencv-matrix
+  rows: 4
+  cols: 4
+  dt: d
+  data: [1.0, 0.0, 0.0, 0.0,
+         0.0, 1.0, 0.0, 0.0,
+         0.0, 0.0, 1.0, 0.0,
+         0.0, 0.0, 0.0, 1.0]
+body_T_cam1: !!opencv-matrix
+  rows: 4
+  cols: 4
+  dt: d
+  data: [1.0, 0.0, 0.0, 0.119885170376,
+         0.0, 1.0, 0.0, 0.0,
+         0.0, 0.0, 1.0, 0.0,
+         0.0, 0.0, 0.0, 1.0]
+debug: 0
+log_timings: 0
+mono: 0
+stereo: 1
+force_realtime: 0
+slam_mode: 1
+buse_loop_closer: 1
+bdo_stereo_rect: 0
+alpha: 0.0
+bdo_undist: 0
+finit_parallax: 20.0
+use_shi_tomasi: 0
+use_fast: 0
+use_brief: 1
+use_singlescale_detector: 1
+nmaxdist: 35
+nfast_th: 10
+dmaxquality: 0.001
+use_clahe: 1
+fclahe_val: 3
+do_klt: 1
+klt_use_prior: 1
+btrack_keyframetoframe: 0
+nklt_win_size: 9
+nklt_pyr_lvl: 3
+nmax_iter: 30
+fmax_px_precision: 0.01
+fmax_fbklt_dist: 0.5
+nklt_err: 30.0
+bdo_track_localmap: 1
+fmax_desc_dist: 0.2
+fmax_proj_pxdist: 2.0
+doepipolar: 1
+dop3p: 0
+bdo_random: 1
+nransac_iter: 100
+fransac_err: 3.0
+fmax_reproj_err: 3.0
+buse_inv_depth: 1
+robust_mono_th: 5.9915
+use_sparse_schur: 1
+use_dogleg: 0
+use_subspace_dogleg: 0
+use_nonmonotic_step: 0
+apply_l2_after_robust: 1
+nmin_covscore: 25
+fkf_filtering_ratio: 0.95
+do_full_ba: 0

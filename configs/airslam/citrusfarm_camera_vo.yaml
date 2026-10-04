@@ -1,0 +1,44 @@
+%YAML:1.0
+# AirSLAM camera file (VO) for CitrusFarm.
+# CitrusFarm (UCR citrus orchard, Teng et al. ISVC 2023): ZED2i factory-rectified 1280x720
+# colour at 10 Hz, MicroStrain 3DM-GX5 IMU at 200 Hz on the camera clock. Written by
+# scripts/setup/build_citrusfarm_configs.py from configs/airslam/zed2i_camera_vo.yaml; only sensor values differ.
+# VO mode (use_imu: 0): body = cam0; cam1 is the right camera at +baseline. AirSLAM uses only
+# |x| of the cam0-cam1 offset as the stereo baseline.
+
+image_height: 720
+image_width: 1280
+use_imu: 0
+depth_lower_thr: 0.1
+depth_upper_thr: 50.0
+max_y_diff: 1
+
+distortion_type: 0   # 0 = undistorted / pre-rectified input
+
+cam0:
+  intrinsics: [524.809448242188, 524.809448242188, 648.505615234375, 357.387756347656]  # fx fy cx cy
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  T_type: 0
+  T:
+  - [1.0, 0.0, 0.0, 0.0]
+  - [0.0, 1.0, 0.0, 0.0]
+  - [0.0, 0.0, 1.0, 0.0]
+  - [0.0, 0.0, 0.0, 1.0]
+
+cam1:
+  intrinsics: [524.809448242188, 524.809448242188, 648.505615234375, 357.387756347656]  # fx fy cx cy
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  T_type: 0
+  T:
+  - [1.0, 0.0, 0.0, 0.119885170376]
+  - [0.0, 1.0, 0.0, 0.0]
+  - [0.0, 0.0, 1.0, 0.0]
+  - [0.0, 0.0, 0.0, 1.0]
+
+# Common ZED field IMU profile, recorded ~100 Hz. Unused in VO mode.
+rate_hz: 100
+gyroscope_noise_density:     1.9500e-02   # rad/s/sqrt(Hz)
+gyroscope_random_walk:       7.400196e-04 # rad/s^2/sqrt(Hz), factory deg-to-rad
+accelerometer_noise_density: 1.8000e-01   # m/s^2/sqrt(Hz)
+accelerometer_random_walk:   2.0200e-02   # m/s^3/sqrt(Hz)
+g_value: 9.812                            # Poznan, Poland (~52.29 deg N)

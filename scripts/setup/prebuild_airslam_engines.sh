@@ -67,5 +67,6 @@ build_one euroc_mav
 build_one hortimulti
 build_one rosariov2
 build_one zed2i
+build_one citrusfarm
 
 echo "[airslam-engine] all campaign engines are ready"

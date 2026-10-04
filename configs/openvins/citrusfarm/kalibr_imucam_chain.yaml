@@ -1,0 +1,33 @@
+%YAML:1.0
+# CitrusFarm (UCR citrus orchard, Teng et al. ISVC 2023): ZED2i factory-rectified 1280x720
+# colour at 10 Hz, MicroStrain 3DM-GX5 IMU at 200 Hz on the camera clock. Written by
+# scripts/setup/build_citrusfarm_configs.py from configs/openvins/zed2i/kalibr_imucam_chain.yaml; only sensor values differ.
+# T_imu_cam = (R_CtoI | p_CinI): inverse of the authors Kalibr chain MicroStrain -> Blackfly -> ZED left.
+
+cam0:
+  T_imu_cam:
+    - [-0.02346529509, 0.003427464395, -0.999718776664, -0.172356736462]
+    - [0.999722472445, 0.002168597041, -0.023457946957, -0.061007465931]
+    - [0.002087585903, -0.999991774804, -0.003477399948, -0.081450715984]
+    - [0.0, 0.0, 0.0, 1.0]
+  cam_overlaps: [1]
+  camera_model: pinhole
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0]
+  distortion_model: radtan
+  intrinsics: [524.809448242188, 524.809448242188, 648.505615234375, 357.387756347656]
+  resolution: [1280, 720]
+  rostopic: /cam0/image_raw
+
+cam1:
+  T_imu_cam:
+    - [-0.02346529509, 0.003427464395, -0.999718776664, -0.175169877361]
+    - [0.999722472445, 0.002168597041, -0.023457946957, 0.058844433007]
+    - [0.002087585903, -0.999991774804, -0.003477399948, -0.081200445393]
+    - [0.0, 0.0, 0.0, 1.0]
+  cam_overlaps: [0]
+  camera_model: pinhole
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0]
+  distortion_model: radtan
+  intrinsics: [524.809448242188, 524.809448242188, 648.505615234375, 357.387756347656]
+  resolution: [1280, 720]
+  rostopic: /cam1/image_raw

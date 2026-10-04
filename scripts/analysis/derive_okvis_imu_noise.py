@@ -32,6 +32,11 @@ SEQUENCES = {
     "zed2i": [
         ("field1_110426_full_10fps_q90", 0.0, 30.0),
     ],
+    # Robot standing still for 3.8 s and 2.5 s at the start (RTK track, wheel odometry).
+    "citrusfarm": [
+        ("seq04", 0.0, 3.0),
+        ("seq07", 0.0, 2.0),
+    ],
 }
 
 ZED_IMU_TOPIC = "/zed/zed_node/imu/data_raw"
@@ -45,6 +50,9 @@ BIAS_RANDOM_WALK = {
     # ZED SDK reports gyro quantities in degrees. Convert the factory gyro
     # random walk (0.0424 deg/s^2/sqrt(Hz)) to radians for the estimators.
     "zed2i": {"sigma_gw_c": math.radians(0.0424), "sigma_aw_c": 0.0202},
+    # MicroStrain 3DM-GX5 Allan analysis by the dataset authors
+    # (configs/sensors/sources/citrusfarm/microstrain_gx5.yaml).
+    "citrusfarm": {"sigma_gw_c": 3.5636559575381104e-06, "sigma_aw_c": 6.706087584689249e-06},
 }
 
 
@@ -231,14 +239,19 @@ def main() -> None:
         type=Path,
         help="ROS 2 bag from the same ZED containing a stationary first 30 s",
     )
+    parser.add_argument("--datasets", nargs="+", choices=sorted(SEQUENCES), default=sorted(SEQUENCES))
     args = parser.parse_args()
 
-    zed_bag = args.zed_stationary_bag or args.workspace.parent / "steering-test1-light"
-    zed_timestamps, zed_samples = load_ros2_imu(zed_bag)
-    zed_stationary = (zed_bag, zed_timestamps, zed_samples)
+    zed_stationary = None
+    if "zed2i" in args.datasets:
+        zed_bag = args.zed_stationary_bag or args.workspace.parent / "steering-test1-light"
+        zed_timestamps, zed_samples = load_ros2_imu(zed_bag)
+        zed_stationary = (zed_bag, zed_timestamps, zed_samples)
 
     report = {"method": "1 s robust first-difference density, q95 envelope", "datasets": {}}
     for dataset, sequence_specs in SEQUENCES.items():
+        if dataset not in args.datasets:
+            continue
         sequences = {}
         for sequence, stationary_start_seconds, stationary_seconds in sequence_specs:
             path = args.workspace / "datasets" / dataset / sequence / "mav0/imu0/data.csv"
