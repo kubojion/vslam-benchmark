@@ -82,6 +82,14 @@ def main():
     review_path = REPO/'docs/campaigns/zed-readiness-review-20261002.json'
     review = json.loads(review_path.read_text())
     decisions = deepcopy(review)
+    # Later readiness reviews cover ZED cells outside the ZED review (the four algorithms added on
+    # 2026-10-03, checked on 2026-10-04). A cell is decided in exactly one review.
+    for extra in sorted((REPO/'docs/campaigns').glob('readiness-review-2026*.json')):
+        cells = {k: v for k, v in json.loads(extra.read_text())['cells'].items() if k.split('/')[1] == 'zed2i'}
+        overlap = set(cells) & set(decisions['cells'])
+        if overlap:
+            raise ValueError(f'{extra.name} repeats reviewed cells: {sorted(overlap)[:3]}')
+        decisions['cells'].update(cells)
     for c in inv['cells']:
         if c['run_type']=='vo-lc' and c['algorithm'] in ('okvis2','okvis2x','airslam'):
             decisions['cells'][c['key']]['fresh_cohort'] = True
