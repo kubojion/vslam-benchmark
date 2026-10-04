@@ -4,119 +4,51 @@ Generated from hash-checked schema-3 evaluations and matching CSVs. These are in
 
 | Mode | Planned defaults | Evaluated | Numerical ok | Scale collapse | Invalid trajectory | Nonzero exits | Protocol-verified N=3 cells |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vo | 192 | 183 | 182 | 1 | 0 | 7 | 28 |
-| vo-lc | 144 | 137 | 136 | 1 | 0 | 9 | 17 |
-| vio | 168 | 146 | 143 | 3 | 0 | 6 | 15 |
-| vio-lc | 96 | 86 | 86 | 0 | 0 | 2 | 9 |
+| vo | 330 | 183 | 182 | 1 | 0 | 7 | 0 |
+| vo-lc | 210 | 137 | 136 | 1 | 0 | 9 | 0 |
+| vio | 300 | 160 | 156 | 4 | 0 | 9 | 0 |
+| vio-lc | 210 | 86 | 86 | 0 | 0 | 2 | 0 |
 | gnss-vio | 60 | 20 | 19 | 0 | 1 | 0 | 0 |
 
 Legacy GNSS variants: 6 separate rows; not included in default repetition counts.
 
-Scientific statuses among existing headline attempts: accepted=121, accepted_with_limitation=100, blocked=280, rerun_required=81, valid_observed_failure=3.
+Scientific statuses among existing headline attempts: blocked=599.
 
 ## Retained adverse outcomes
 
 | Run | Numerical status | Exit | Scientific status |
 |---|---|---:|---|
 | `results/gnss-vio/hortimulti/strawberry02/vins_fusion_gps/run1` | eval_failed | unknown | blocked |
-| `results/gnss-vio/rosariov2/sequence1/cifasis_gnss_si/run1` | ok | unknown | rerun_required |
-| `results/vio/euroc_mav/MH_01_easy/openvins/run1` | ok | 134 | accepted_with_limitation |
-| `results/vio/euroc_mav/MH_01_easy/voxel_svio/run1` | ok | 0 | accepted_with_limitation |
-| `results/vio/euroc_mav/MH_01_easy/voxel_svio/run2` | ok | 0 | accepted_with_limitation |
-| `results/vio/euroc_mav/MH_01_easy/voxel_svio/run3` | ok | 0 | accepted_with_limitation |
-| `results/vio/euroc_mav/MH_03_medium/openvins/run1` | ok | 134 | accepted_with_limitation |
-| `results/vio/euroc_mav/MH_03_medium/voxel_svio/run1` | ok | 0 | accepted_with_limitation |
-| `results/vio/euroc_mav/MH_03_medium/voxel_svio/run2` | ok | 0 | accepted_with_limitation |
-| `results/vio/euroc_mav/MH_03_medium/voxel_svio/run3` | ok | 0 | accepted_with_limitation |
-| `results/vio/euroc_mav/MH_05_difficult/voxel_svio/run1` | ok | 0 | accepted_with_limitation |
-| `results/vio/euroc_mav/MH_05_difficult/voxel_svio/run2` | ok | 0 | accepted_with_limitation |
-| `results/vio/euroc_mav/MH_05_difficult/voxel_svio/run3` | ok | 0 | accepted_with_limitation |
+| `results/vio/euroc_mav/MH_01_easy/openvins/run1` | ok | 134 | blocked |
+| `results/vio/euroc_mav/MH_03_medium/openvins/run1` | ok | 134 | blocked |
 | `results/vio/hortimulti/strawberry02/openvins/run1` | ok | 134 | blocked |
-| `results/vio/hortimulti/strawberry02/voxel_svio/run1` | ok | 0 | blocked |
-| `results/vio/hortimulti/strawberry02/voxel_svio/run2` | ok | 0 | blocked |
-| `results/vio/hortimulti/strawberry02/voxel_svio/run3` | ok | 0 | blocked |
 | `results/vio/hortimulti/strawberry03/openvins/run1` | ok | 134 | blocked |
-| `results/vio/hortimulti/strawberry03/voxel_svio/run1` | ok | 0 | blocked |
-| `results/vio/hortimulti/strawberry03/voxel_svio/run2` | ok | 0 | blocked |
-| `results/vio/hortimulti/strawberry03/voxel_svio/run3` | ok | 0 | blocked |
-| `results/vio/rosariov2/sequence1/openvins/run1` | scale_collapse | 134 | rerun_required |
-| `results/vio/rosariov2/sequence1/voxel_svio/run1` | ok | 0 | rerun_required |
-| `results/vio/rosariov2/sequence1/voxel_svio/run2` | ok | 0 | rerun_required |
-| `results/vio/rosariov2/sequence1/voxel_svio/run3` | ok | 0 | rerun_required |
-| `results/vio/rosariov2/sequence5/openvins/run1` | scale_collapse | 134 | rerun_required |
-| `results/vio/rosariov2/sequence5/voxel_svio/run1` | ok | 0 | rerun_required |
-| `results/vio/rosariov2/sequence5/voxel_svio/run2` | ok | 0 | rerun_required |
-| `results/vio/rosariov2/sequence5/voxel_svio/run3` | ok | 0 | rerun_required |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run1` | scale_collapse | 0 | rerun_required |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run1` | ok | 0 | rerun_required |
-| `results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4` | failed_without_trajectory | 139 | valid_observed_failure |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | failed_without_trajectory | 139 | rerun_required |
-| `results/vo/euroc_mav/MH_01_easy/ov2slam/run1` | ok | 0 | accepted_with_limitation |
-| `results/vo/euroc_mav/MH_01_easy/ov2slam/run2` | ok | 0 | accepted_with_limitation |
-| `results/vo/euroc_mav/MH_01_easy/ov2slam/run3` | ok | 0 | accepted_with_limitation |
+| `results/vio/rosariov2/sequence1/openvins/run1` | scale_collapse | 134 | blocked |
+| `results/vio/rosariov2/sequence5/openvins/run1` | scale_collapse | 134 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001` | scale_collapse | 139 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002` | scale_collapse | 139 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003` | ok | 139 | blocked |
+| `results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4` | failed_without_trajectory | 139 | blocked |
+| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | failed_without_trajectory | 139 | blocked |
 | `results/vo/euroc_mav/MH_03_medium/orbslam3/run2` | ok | 139 | blocked |
-| `results/vo/euroc_mav/MH_03_medium/ov2slam/run1` | ok | 0 | accepted_with_limitation |
-| `results/vo/euroc_mav/MH_03_medium/ov2slam/run2` | ok | 0 | accepted_with_limitation |
-| `results/vo/euroc_mav/MH_03_medium/ov2slam/run3` | ok | 0 | accepted_with_limitation |
-| `results/vo/euroc_mav/MH_05_difficult/ov2slam/run1` | ok | 0 | accepted_with_limitation |
-| `results/vo/euroc_mav/MH_05_difficult/ov2slam/run2` | ok | 0 | accepted_with_limitation |
-| `results/vo/euroc_mav/MH_05_difficult/ov2slam/run3` | ok | 0 | accepted_with_limitation |
 | `results/vo/hortimulti/strawberry02/orbslam3/run1` | failed_without_trajectory | 139 | blocked |
-| `results/vo/hortimulti/strawberry02/ov2slam/run1` | ok | 0 | blocked |
-| `results/vo/hortimulti/strawberry02/ov2slam/run2` | ok | 0 | blocked |
-| `results/vo/hortimulti/strawberry02/ov2slam/run3` | ok | 0 | blocked |
 | `results/vo/hortimulti/strawberry03/orbslam3/run2` | ok | 139 | blocked |
-| `results/vo/hortimulti/strawberry03/ov2slam/run1` | ok | 0 | blocked |
-| `results/vo/hortimulti/strawberry03/ov2slam/run2` | ok | 0 | blocked |
-| `results/vo/hortimulti/strawberry03/ov2slam/run3` | ok | 0 | blocked |
 | `results/vo/rosariov2/sequence1/orbslam3/run1` | failed_without_trajectory | 134 | blocked |
-| `results/vo/rosariov2/sequence1/ov2slam/run1` | ok | 0 | blocked |
-| `results/vo/rosariov2/sequence1/ov2slam/run2` | ok | 0 | blocked |
-| `results/vo/rosariov2/sequence1/ov2slam/run3` | ok | 0 | blocked |
 | `results/vo/rosariov2/sequence5/orbslam3/run1` | failed_without_trajectory | 139 | blocked |
-| `results/vo/rosariov2/sequence5/ov2slam/run1` | ok | 0 | blocked |
-| `results/vo/rosariov2/sequence5/ov2slam/run2` | ok | 0 | blocked |
-| `results/vo/rosariov2/sequence5/ov2slam/run3` | ok | 0 | blocked |
-| `results/vo/zed2i/field1_110426_full_10fps_q90/okvis2/run2` | scale_collapse | 0 | valid_observed_failure |
-| `results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | ok | 139 | rerun_required |
-| `results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run2` | ok | 139 | rerun_required |
-| `results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run1` | ok | 0 | accepted_with_limitation |
-| `results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run2` | ok | 0 | accepted_with_limitation |
-| `results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run3` | ok | 0 | accepted_with_limitation |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/okvis2/run2` | scale_collapse | 0 | blocked |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | ok | 139 | blocked |
+| `results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run2` | ok | 139 | blocked |
 | `results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run3` | ok | 139 | blocked |
-| `results/vo-lc/euroc_mav/MH_01_easy/ov2slam/run1` | ok | 0 | accepted_with_limitation |
-| `results/vo-lc/euroc_mav/MH_01_easy/ov2slam/run2` | ok | 0 | accepted_with_limitation |
-| `results/vo-lc/euroc_mav/MH_01_easy/ov2slam/run3` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/euroc_mav/MH_03_medium/orbslam3/run3` | ok | 139 | blocked |
-| `results/vo-lc/euroc_mav/MH_03_medium/ov2slam/run1` | ok | 0 | accepted_with_limitation |
-| `results/vo-lc/euroc_mav/MH_03_medium/ov2slam/run2` | ok | 0 | accepted_with_limitation |
-| `results/vo-lc/euroc_mav/MH_03_medium/ov2slam/run3` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/euroc_mav/MH_05_difficult/orbslam3/run1` | ok | 134 | blocked |
-| `results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run1` | ok | 0 | accepted_with_limitation |
-| `results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run2` | ok | 0 | accepted_with_limitation |
-| `results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run3` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/hortimulti/strawberry02/orbslam3/run1` | ok | 134 | blocked |
 | `results/vo-lc/hortimulti/strawberry02/orbslam3/run2` | ok | 139 | blocked |
-| `results/vo-lc/hortimulti/strawberry02/ov2slam/run1` | ok | 0 | blocked |
-| `results/vo-lc/hortimulti/strawberry02/ov2slam/run2` | ok | 0 | blocked |
-| `results/vo-lc/hortimulti/strawberry02/ov2slam/run3` | ok | 0 | blocked |
 | `results/vo-lc/hortimulti/strawberry03/orbslam3/run1` | ok | 139 | blocked |
-| `results/vo-lc/hortimulti/strawberry03/ov2slam/run1` | ok | 0 | blocked |
-| `results/vo-lc/hortimulti/strawberry03/ov2slam/run2` | ok | 0 | blocked |
-| `results/vo-lc/hortimulti/strawberry03/ov2slam/run3` | ok | 0 | blocked |
 | `results/vo-lc/rosariov2/sequence1/orbslam3/run1` | failed_without_trajectory | 134 | blocked |
-| `results/vo-lc/rosariov2/sequence1/ov2slam/run1` | ok | 0 | blocked |
-| `results/vo-lc/rosariov2/sequence1/ov2slam/run2` | scale_collapse | 0 | valid_observed_failure |
-| `results/vo-lc/rosariov2/sequence1/ov2slam/run3` | ok | 0 | blocked |
-| `results/vo-lc/rosariov2/sequence5/ov2slam/run1` | ok | 0 | blocked |
-| `results/vo-lc/rosariov2/sequence5/ov2slam/run2` | ok | 0 | blocked |
-| `results/vo-lc/rosariov2/sequence5/ov2slam/run3` | ok | 0 | blocked |
+| `results/vo-lc/rosariov2/sequence1/ov2slam/run2` | scale_collapse | 0 | blocked |
 | `results/vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run2` | incomplete | unknown | blocked |
 | `results/vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run1` | ok | 141 | blocked |
-| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | ok | 139 | rerun_required |
-| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run1` | ok | 0 | accepted_with_limitation |
-| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run2` | ok | 0 | accepted_with_limitation |
-| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run3` | ok | 0 | accepted_with_limitation |
+| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | ok | 139 | blocked |
 
 ## Claim boundaries
 
@@ -131,9 +63,9 @@ Scientific statuses among existing headline attempts: accepted=121, accepted_wit
 
 | Source | SHA-256 |
 |---|---|
-| `inventory.json` | `b74f04158c0dd1f2ec2820e96ca745244cd3acda93cdb46fc0c203bfbf7f2312` |
-| `benchmark-vo.csv` | `b20d934ba5eee4348443ba8017c70584ab2ec0e7b0f090743a0d6bc5cfcc037e` |
-| `benchmark-vo-lc.csv` | `e9b1eea69547455fa1e912b7ec1692cc17bff6798e163a1952307528a9fb85a6` |
-| `benchmark-vio.csv` | `0faf017d41d7f89e049ea6b39f71e648dd8f85113d9ca5824346cd7c15ecaf90` |
-| `benchmark-vio-lc.csv` | `f2959682343e6ccfe8aa896273fe0b34f2724151e3c71a229d146a62d7c10387` |
-| `benchmark-gnss-vio.csv` | `a4b5325fffb569ede3dcc290e521adfe5ae5eb6bf28dc8a8ec3e4c58fdc04f3c` |
+| `inventory.json` | `b745194028fe5e66d7bfafd940ece4b4d5c07c311cbf217f341d19ea1ec91da0` |
+| `benchmark-vo.csv` | `81fe96456f09731e61599bd46c80a1658d2aede2caa68d1dfb3183b9aa78edb0` |
+| `benchmark-vo-lc.csv` | `3e2a20853ab676c0b18746562d012b250470cfa447bbf586e4205277ce78497a` |
+| `benchmark-vio.csv` | `17a4b300817614569e67ddee22b1ca6537a9f39c1aa53bc8bdb245641a365882` |
+| `benchmark-vio-lc.csv` | `d412a7c5551d4329651bbf95909e6df16599bd99ec81e227648df0c9af48832d` |
+| `benchmark-gnss-vio.csv` | `2423e820b0f71e859a123b1291bb0c7ebfcdb3c2acf6028def8e2a5e56268f39` |

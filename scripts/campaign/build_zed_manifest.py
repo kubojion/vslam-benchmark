@@ -95,7 +95,10 @@ def main():
         a['cohort'] = 'zed-current-n3-'+a['cohort'].removeprefix('repair-n3-')
         if a['command']:
             a['command'][-1] = a['cohort']
-            a['planning_runtime_proxy'] = review['cells'][a['cell']]['planning_runtime_proxy']
+            # Cells without a reviewed entry (the four algorithms added on 2026-10-03) have no
+            # historical cost proxy yet; they stay unknown rather than borrowing another cell's.
+            a['planning_runtime_proxy'] = review['cells'].get(a['cell'], {}).get('planning_runtime_proxy',
+                dict(estimate_s=None, reason='no reviewed ZED readiness entry for this cell'))
             # Historical-cost proxies are deliberately distinct from the strict
             # comparable, scientifically-qualified runtime_estimate field.
     cats = Counter(a['category'] for a in result['actions'])

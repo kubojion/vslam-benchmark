@@ -1499,20 +1499,20 @@
       "review_complete": true,
       "effective_configuration_verified": true,
       "static_verified": true,
-      "execution_verified": true,
+      "execution_verified": false,
       "historical_cohort_preserved": true,
       "evidence": [
         {
-          "path": "results/zed-preparation-20261002/air-vo-lc-short-check-state.json",
-          "sha256": "da0afa22cdcada4015430ae90c40cdee9ff560f598e2de4929ee7bab788ef1d6"
+          "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+          "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
         },
         {
-          "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-          "sha256": "46c177b32542628c50f699054451ce959fe02437cd83c09b2675347f839de45f"
+          "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+          "sha256": "c1062530e15da186d1f4f258a1392c6bdfbb901f4e19c2239e4d05a400c12e32"
         },
         {
-          "path": "results/zed-preparation-20261002/air-vo-lc-short-check-00-airslam-vo-lc.log",
-          "sha256": "61bcb015800dedf85530cec8a690890c6c8282281ab783380725a89c82d5fe0c"
+          "path": "results/execution-readiness-20261002/zed-recheck-v4-00-airslam-vo-lc.log",
+          "sha256": "d737da93acf80c11fa50374afd7b48b69a9056698f626f91af3f4044d3119b65"
         },
         {
           "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -1544,113 +1544,36 @@
         {
           "role": "runner_with_embedded_parameters",
           "path": "scripts/run/run_airslam.sh",
-          "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+          "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
         },
         {
-          "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-          "sha256": "09245c9675a55350e75fb9d12247ccc59af760d8527948681feeb7d4cc9bf238"
-        },
-        {
-          "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
-          "sha256": "b8818a357ee4074c4da1819e41aab1ace9b89ee939639f4122bd6677b9d71caf"
-        },
-        {
-          "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vo.yaml",
+          "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vo.yaml",
           "sha256": "5cc6b2a07dd3391015d022b306831383674ab0381bac1a0d6c72270698905852"
         },
         {
-          "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vo_lc.yaml",
+          "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vo_lc.yaml",
           "sha256": "435d6518192a90d07f2546a480e423e966c79ddfe7a4b58303ba0ac403e42cf9"
         },
         {
-          "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/map_refinement_config--zed2i_mr.yaml",
+          "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/map_refinement_config--zed2i_mr.yaml",
           "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
         }
       ],
       "resolved_prerequisites": [
         {
-          "prerequisite": "validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort",
-          "evidence": [
-            {
-              "path": "results/zed-preparation-20261002/air-vo-lc-short-check-state.json",
-              "sha256": "da0afa22cdcada4015430ae90c40cdee9ff560f598e2de4929ee7bab788ef1d6"
-            },
-            {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-              "sha256": "46c177b32542628c50f699054451ce959fe02437cd83c09b2675347f839de45f"
-            },
-            {
-              "path": "results/zed-preparation-20261002/air-vo-lc-short-check-00-airslam-vo-lc.log",
-              "sha256": "61bcb015800dedf85530cec8a690890c6c8282281ab783380725a89c82d5fe0c"
-            },
-            {
-              "path": "docs/campaigns/zed-physical-calibration-20261002.json",
-              "sha256": "0ece85a3d0f4a200cc82e1783111a3bbc1949d6461f1b476d89c2f5053095307"
-            },
-            {
-              "path": "docs/campaigns/zed-approved-screening-20261002.json",
-              "sha256": "e0a658c7af37e3db1dce068c56bd6d5f00ec9e0e37da0847bfa9369399e85f98"
-            },
-            {
-              "path": "results/zed-preparation-20261002/independent-source-validation.json",
-              "sha256": "7894a33633d584675d40c6ce76a5cfef1316d4a9fbc02eb47c82efb3ea4b72f0"
-            },
-            {
-              "role": "odometry_config",
-              "path": "configs/airslam/zed2i_vo_lc.yaml",
-              "sha256": "435d6518192a90d07f2546a480e423e966c79ddfe7a4b58303ba0ac403e42cf9"
-            },
-            {
-              "role": "camera_config",
-              "path": "configs/airslam/zed2i_camera_vo.yaml",
-              "sha256": "5cc6b2a07dd3391015d022b306831383674ab0381bac1a0d6c72270698905852"
-            },
-            {
-              "role": "map_refinement_config",
-              "path": "configs/airslam/zed2i_mr.yaml",
-              "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
-            },
-            {
-              "role": "runner_with_embedded_parameters",
-              "path": "scripts/run/run_airslam.sh",
-              "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
-            },
-            {
-              "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-              "sha256": "09245c9675a55350e75fb9d12247ccc59af760d8527948681feeb7d4cc9bf238"
-            },
-            {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
-              "sha256": "b8818a357ee4074c4da1819e41aab1ace9b89ee939639f4122bd6677b9d71caf"
-            },
-            {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vo.yaml",
-              "sha256": "5cc6b2a07dd3391015d022b306831383674ab0381bac1a0d6c72270698905852"
-            },
-            {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vo_lc.yaml",
-              "sha256": "435d6518192a90d07f2546a480e423e966c79ddfe7a4b58303ba0ac403e42cf9"
-            },
-            {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/map_refinement_config--zed2i_mr.yaml",
-              "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
-            }
-          ]
-        },
-        {
           "prerequisite": "retain_fps15_attempts_and_validate_sequence_specific_10hz_config",
           "evidence": [
             {
-              "path": "results/zed-preparation-20261002/air-vo-lc-short-check-state.json",
-              "sha256": "da0afa22cdcada4015430ae90c40cdee9ff560f598e2de4929ee7bab788ef1d6"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+              "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
             },
             {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-              "sha256": "46c177b32542628c50f699054451ce959fe02437cd83c09b2675347f839de45f"
+              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+              "sha256": "c1062530e15da186d1f4f258a1392c6bdfbb901f4e19c2239e4d05a400c12e32"
             },
             {
-              "path": "results/zed-preparation-20261002/air-vo-lc-short-check-00-airslam-vo-lc.log",
-              "sha256": "61bcb015800dedf85530cec8a690890c6c8282281ab783380725a89c82d5fe0c"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-00-airslam-vo-lc.log",
+              "sha256": "d737da93acf80c11fa50374afd7b48b69a9056698f626f91af3f4044d3119b65"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -1682,26 +1605,18 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_airslam.sh",
-              "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+              "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
             },
             {
-              "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-              "sha256": "09245c9675a55350e75fb9d12247ccc59af760d8527948681feeb7d4cc9bf238"
-            },
-            {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
-              "sha256": "b8818a357ee4074c4da1819e41aab1ace9b89ee939639f4122bd6677b9d71caf"
-            },
-            {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vo.yaml",
+              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vo.yaml",
               "sha256": "5cc6b2a07dd3391015d022b306831383674ab0381bac1a0d6c72270698905852"
             },
             {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vo_lc.yaml",
+              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vo_lc.yaml",
               "sha256": "435d6518192a90d07f2546a480e423e966c79ddfe7a4b58303ba0ac403e42cf9"
             },
             {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/map_refinement_config--zed2i_mr.yaml",
+              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/map_refinement_config--zed2i_mr.yaml",
               "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
             }
           ]
@@ -1710,16 +1625,16 @@
           "prerequisite": "capture_native_exit_separately_and_diagnose_logged_shutdown_errors",
           "evidence": [
             {
-              "path": "results/zed-preparation-20261002/air-vo-lc-short-check-state.json",
-              "sha256": "da0afa22cdcada4015430ae90c40cdee9ff560f598e2de4929ee7bab788ef1d6"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+              "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
             },
             {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-              "sha256": "46c177b32542628c50f699054451ce959fe02437cd83c09b2675347f839de45f"
+              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+              "sha256": "c1062530e15da186d1f4f258a1392c6bdfbb901f4e19c2239e4d05a400c12e32"
             },
             {
-              "path": "results/zed-preparation-20261002/air-vo-lc-short-check-00-airslam-vo-lc.log",
-              "sha256": "61bcb015800dedf85530cec8a690890c6c8282281ab783380725a89c82d5fe0c"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-00-airslam-vo-lc.log",
+              "sha256": "d737da93acf80c11fa50374afd7b48b69a9056698f626f91af3f4044d3119b65"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -1751,26 +1666,18 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_airslam.sh",
-              "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+              "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
             },
             {
-              "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-              "sha256": "09245c9675a55350e75fb9d12247ccc59af760d8527948681feeb7d4cc9bf238"
-            },
-            {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
-              "sha256": "b8818a357ee4074c4da1819e41aab1ace9b89ee939639f4122bd6677b9d71caf"
-            },
-            {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vo.yaml",
+              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vo.yaml",
               "sha256": "5cc6b2a07dd3391015d022b306831383674ab0381bac1a0d6c72270698905852"
             },
             {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vo_lc.yaml",
+              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vo_lc.yaml",
               "sha256": "435d6518192a90d07f2546a480e423e966c79ddfe7a4b58303ba0ac403e42cf9"
             },
             {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/map_refinement_config--zed2i_mr.yaml",
+              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/map_refinement_config--zed2i_mr.yaml",
               "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
             }
           ]
@@ -1779,16 +1686,16 @@
           "prerequisite": "resolve_within_cell_configuration_mismatch",
           "evidence": [
             {
-              "path": "results/zed-preparation-20261002/air-vo-lc-short-check-state.json",
-              "sha256": "da0afa22cdcada4015430ae90c40cdee9ff560f598e2de4929ee7bab788ef1d6"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+              "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
             },
             {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-              "sha256": "46c177b32542628c50f699054451ce959fe02437cd83c09b2675347f839de45f"
+              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+              "sha256": "c1062530e15da186d1f4f258a1392c6bdfbb901f4e19c2239e4d05a400c12e32"
             },
             {
-              "path": "results/zed-preparation-20261002/air-vo-lc-short-check-00-airslam-vo-lc.log",
-              "sha256": "61bcb015800dedf85530cec8a690890c6c8282281ab783380725a89c82d5fe0c"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-00-airslam-vo-lc.log",
+              "sha256": "d737da93acf80c11fa50374afd7b48b69a9056698f626f91af3f4044d3119b65"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -1820,26 +1727,18 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_airslam.sh",
-              "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+              "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
             },
             {
-              "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-              "sha256": "09245c9675a55350e75fb9d12247ccc59af760d8527948681feeb7d4cc9bf238"
-            },
-            {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
-              "sha256": "b8818a357ee4074c4da1819e41aab1ace9b89ee939639f4122bd6677b9d71caf"
-            },
-            {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vo.yaml",
+              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vo.yaml",
               "sha256": "5cc6b2a07dd3391015d022b306831383674ab0381bac1a0d6c72270698905852"
             },
             {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vo_lc.yaml",
+              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vo_lc.yaml",
               "sha256": "435d6518192a90d07f2546a480e423e966c79ddfe7a4b58303ba0ac403e42cf9"
             },
             {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/map_refinement_config--zed2i_mr.yaml",
+              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/map_refinement_config--zed2i_mr.yaml",
               "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
             }
           ]
@@ -1848,16 +1747,16 @@
           "prerequisite": "resolve_recorded_source_binary_parameter_or_hardware_cohort_difference",
           "evidence": [
             {
-              "path": "results/zed-preparation-20261002/air-vo-lc-short-check-state.json",
-              "sha256": "da0afa22cdcada4015430ae90c40cdee9ff560f598e2de4929ee7bab788ef1d6"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+              "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
             },
             {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-              "sha256": "46c177b32542628c50f699054451ce959fe02437cd83c09b2675347f839de45f"
+              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+              "sha256": "c1062530e15da186d1f4f258a1392c6bdfbb901f4e19c2239e4d05a400c12e32"
             },
             {
-              "path": "results/zed-preparation-20261002/air-vo-lc-short-check-00-airslam-vo-lc.log",
-              "sha256": "61bcb015800dedf85530cec8a690890c6c8282281ab783380725a89c82d5fe0c"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-00-airslam-vo-lc.log",
+              "sha256": "d737da93acf80c11fa50374afd7b48b69a9056698f626f91af3f4044d3119b65"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -1889,34 +1788,28 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_airslam.sh",
-              "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+              "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
             },
             {
-              "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-              "sha256": "09245c9675a55350e75fb9d12247ccc59af760d8527948681feeb7d4cc9bf238"
-            },
-            {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
-              "sha256": "b8818a357ee4074c4da1819e41aab1ace9b89ee939639f4122bd6677b9d71caf"
-            },
-            {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vo.yaml",
+              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vo.yaml",
               "sha256": "5cc6b2a07dd3391015d022b306831383674ab0381bac1a0d6c72270698905852"
             },
             {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vo_lc.yaml",
+              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vo_lc.yaml",
               "sha256": "435d6518192a90d07f2546a480e423e966c79ddfe7a4b58303ba0ac403e42cf9"
             },
             {
-              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/map_refinement_config--zed2i_mr.yaml",
+              "path": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/map_refinement_config--zed2i_mr.yaml",
               "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
             }
           ]
         }
       ],
-      "blockers": [],
-      "diagnostic_attempt": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run1",
-      "diagnostic_scope": "600 images / 60 seconds; normal completion",
+      "blockers": [
+        "bounded_recheck_not_passed_review_required"
+      ],
+      "diagnostic_attempt": "results/vo-lc/zed2i/field1_diag60_20261002/airslam/run3",
+      "diagnostic_scope": "bounded recheck did not pass; see recorded exits and log",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 4685.578447818756,
@@ -3037,16 +2930,16 @@
       "historical_cohort_preserved": true,
       "evidence": [
         {
-          "path": "results/zed-preparation-20261002/short-check-state.json",
-          "sha256": "44a846ff591117aba2c1e8e3c13deede4ef8270c6146e30d68e3f432a72bbd1b"
+          "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+          "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
         },
         {
-          "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-          "sha256": "9bbcbde73c97c19a6b92262a456dc8a4e85a77256a6c60f3105897811421dfe6"
+          "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+          "sha256": "44c7279aa3f2ae5872fe28583eb8a29d1455c8c6ccbd4b9105c0340fb48d039d"
         },
         {
-          "path": "results/zed-preparation-20261002/short-check-06-airslam-vio.log",
-          "sha256": "feb9d458fcf42154dbd8f9110eaff1b42d01d3f19c46bc559a966934dad86dfb"
+          "path": "results/execution-readiness-20261002/zed-recheck-v4-01-airslam-vio.log",
+          "sha256": "26e5f5c37d89054ccae4541c19e0918a9b7bab5441d309a9bed0f393b4e92d2b"
         },
         {
           "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -3073,22 +2966,22 @@
         {
           "role": "runner_with_embedded_parameters",
           "path": "scripts/run/run_airslam.sh",
-          "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+          "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
         },
         {
-          "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vio/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-          "sha256": "0f40b58e3da4ea34b4598a2201c24a635b244fa1a621bf75373164300df22a63"
+          "path": "results/execution-readiness-20261002/zed-recheck-v4-evaluations/vio-airslam.json",
+          "sha256": "9fd06e14adbb04db005c99df6ef0711c57a7205fa5217c11cb267e7d225e5a8f"
         },
         {
-          "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
+          "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/trajectory.txt",
           "sha256": "53085ab7c22a35a080a6d4450a2cd47fbe8f14067d34444c5996ce847c69196b"
         },
         {
-          "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vio.yaml",
+          "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vio.yaml",
           "sha256": "decea6e163d44b5a7b6846d8bbc8676a5a8390f8d41709d2693fe1bac51c64ad"
         },
         {
-          "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vio.yaml",
+          "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vio.yaml",
           "sha256": "fcd70cfc0ebb5bbf05cc2abe52795598ffcb30c4a1b2e3a3c75d1d476189e05d"
         }
       ],
@@ -3097,16 +2990,16 @@
           "prerequisite": "validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort",
           "evidence": [
             {
-              "path": "results/zed-preparation-20261002/short-check-state.json",
-              "sha256": "44a846ff591117aba2c1e8e3c13deede4ef8270c6146e30d68e3f432a72bbd1b"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+              "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-              "sha256": "9bbcbde73c97c19a6b92262a456dc8a4e85a77256a6c60f3105897811421dfe6"
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+              "sha256": "44c7279aa3f2ae5872fe28583eb8a29d1455c8c6ccbd4b9105c0340fb48d039d"
             },
             {
-              "path": "results/zed-preparation-20261002/short-check-06-airslam-vio.log",
-              "sha256": "feb9d458fcf42154dbd8f9110eaff1b42d01d3f19c46bc559a966934dad86dfb"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-01-airslam-vio.log",
+              "sha256": "26e5f5c37d89054ccae4541c19e0918a9b7bab5441d309a9bed0f393b4e92d2b"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -3133,22 +3026,22 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_airslam.sh",
-              "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+              "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
             },
             {
-              "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vio/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-              "sha256": "0f40b58e3da4ea34b4598a2201c24a635b244fa1a621bf75373164300df22a63"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-evaluations/vio-airslam.json",
+              "sha256": "9fd06e14adbb04db005c99df6ef0711c57a7205fa5217c11cb267e7d225e5a8f"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/trajectory.txt",
               "sha256": "53085ab7c22a35a080a6d4450a2cd47fbe8f14067d34444c5996ce847c69196b"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vio.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vio.yaml",
               "sha256": "decea6e163d44b5a7b6846d8bbc8676a5a8390f8d41709d2693fe1bac51c64ad"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vio.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vio.yaml",
               "sha256": "fcd70cfc0ebb5bbf05cc2abe52795598ffcb30c4a1b2e3a3c75d1d476189e05d"
             }
           ]
@@ -3157,16 +3050,16 @@
           "prerequisite": "retain_fps15_attempts_and_validate_sequence_specific_10hz_config",
           "evidence": [
             {
-              "path": "results/zed-preparation-20261002/short-check-state.json",
-              "sha256": "44a846ff591117aba2c1e8e3c13deede4ef8270c6146e30d68e3f432a72bbd1b"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+              "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-              "sha256": "9bbcbde73c97c19a6b92262a456dc8a4e85a77256a6c60f3105897811421dfe6"
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+              "sha256": "44c7279aa3f2ae5872fe28583eb8a29d1455c8c6ccbd4b9105c0340fb48d039d"
             },
             {
-              "path": "results/zed-preparation-20261002/short-check-06-airslam-vio.log",
-              "sha256": "feb9d458fcf42154dbd8f9110eaff1b42d01d3f19c46bc559a966934dad86dfb"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-01-airslam-vio.log",
+              "sha256": "26e5f5c37d89054ccae4541c19e0918a9b7bab5441d309a9bed0f393b4e92d2b"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -3193,22 +3086,22 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_airslam.sh",
-              "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+              "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
             },
             {
-              "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vio/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-              "sha256": "0f40b58e3da4ea34b4598a2201c24a635b244fa1a621bf75373164300df22a63"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-evaluations/vio-airslam.json",
+              "sha256": "9fd06e14adbb04db005c99df6ef0711c57a7205fa5217c11cb267e7d225e5a8f"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/trajectory.txt",
               "sha256": "53085ab7c22a35a080a6d4450a2cd47fbe8f14067d34444c5996ce847c69196b"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vio.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vio.yaml",
               "sha256": "decea6e163d44b5a7b6846d8bbc8676a5a8390f8d41709d2693fe1bac51c64ad"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vio.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vio.yaml",
               "sha256": "fcd70cfc0ebb5bbf05cc2abe52795598ffcb30c4a1b2e3a3c75d1d476189e05d"
             }
           ]
@@ -3217,16 +3110,16 @@
           "prerequisite": "capture_native_exit_separately_and_diagnose_logged_shutdown_errors",
           "evidence": [
             {
-              "path": "results/zed-preparation-20261002/short-check-state.json",
-              "sha256": "44a846ff591117aba2c1e8e3c13deede4ef8270c6146e30d68e3f432a72bbd1b"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+              "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-              "sha256": "9bbcbde73c97c19a6b92262a456dc8a4e85a77256a6c60f3105897811421dfe6"
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+              "sha256": "44c7279aa3f2ae5872fe28583eb8a29d1455c8c6ccbd4b9105c0340fb48d039d"
             },
             {
-              "path": "results/zed-preparation-20261002/short-check-06-airslam-vio.log",
-              "sha256": "feb9d458fcf42154dbd8f9110eaff1b42d01d3f19c46bc559a966934dad86dfb"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-01-airslam-vio.log",
+              "sha256": "26e5f5c37d89054ccae4541c19e0918a9b7bab5441d309a9bed0f393b4e92d2b"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -3253,22 +3146,22 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_airslam.sh",
-              "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+              "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
             },
             {
-              "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vio/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-              "sha256": "0f40b58e3da4ea34b4598a2201c24a635b244fa1a621bf75373164300df22a63"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-evaluations/vio-airslam.json",
+              "sha256": "9fd06e14adbb04db005c99df6ef0711c57a7205fa5217c11cb267e7d225e5a8f"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/trajectory.txt",
               "sha256": "53085ab7c22a35a080a6d4450a2cd47fbe8f14067d34444c5996ce847c69196b"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vio.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vio.yaml",
               "sha256": "decea6e163d44b5a7b6846d8bbc8676a5a8390f8d41709d2693fe1bac51c64ad"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vio.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vio.yaml",
               "sha256": "fcd70cfc0ebb5bbf05cc2abe52795598ffcb30c4a1b2e3a3c75d1d476189e05d"
             }
           ]
@@ -3277,16 +3170,16 @@
           "prerequisite": "resolve_within_cell_configuration_mismatch",
           "evidence": [
             {
-              "path": "results/zed-preparation-20261002/short-check-state.json",
-              "sha256": "44a846ff591117aba2c1e8e3c13deede4ef8270c6146e30d68e3f432a72bbd1b"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+              "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-              "sha256": "9bbcbde73c97c19a6b92262a456dc8a4e85a77256a6c60f3105897811421dfe6"
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+              "sha256": "44c7279aa3f2ae5872fe28583eb8a29d1455c8c6ccbd4b9105c0340fb48d039d"
             },
             {
-              "path": "results/zed-preparation-20261002/short-check-06-airslam-vio.log",
-              "sha256": "feb9d458fcf42154dbd8f9110eaff1b42d01d3f19c46bc559a966934dad86dfb"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-01-airslam-vio.log",
+              "sha256": "26e5f5c37d89054ccae4541c19e0918a9b7bab5441d309a9bed0f393b4e92d2b"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -3313,22 +3206,22 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_airslam.sh",
-              "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+              "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
             },
             {
-              "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vio/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-              "sha256": "0f40b58e3da4ea34b4598a2201c24a635b244fa1a621bf75373164300df22a63"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-evaluations/vio-airslam.json",
+              "sha256": "9fd06e14adbb04db005c99df6ef0711c57a7205fa5217c11cb267e7d225e5a8f"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/trajectory.txt",
               "sha256": "53085ab7c22a35a080a6d4450a2cd47fbe8f14067d34444c5996ce847c69196b"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vio.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vio.yaml",
               "sha256": "decea6e163d44b5a7b6846d8bbc8676a5a8390f8d41709d2693fe1bac51c64ad"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vio.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vio.yaml",
               "sha256": "fcd70cfc0ebb5bbf05cc2abe52795598ffcb30c4a1b2e3a3c75d1d476189e05d"
             }
           ]
@@ -3337,16 +3230,16 @@
           "prerequisite": "resolve_recorded_source_binary_parameter_or_hardware_cohort_difference",
           "evidence": [
             {
-              "path": "results/zed-preparation-20261002/short-check-state.json",
-              "sha256": "44a846ff591117aba2c1e8e3c13deede4ef8270c6146e30d68e3f432a72bbd1b"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+              "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-              "sha256": "9bbcbde73c97c19a6b92262a456dc8a4e85a77256a6c60f3105897811421dfe6"
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+              "sha256": "44c7279aa3f2ae5872fe28583eb8a29d1455c8c6ccbd4b9105c0340fb48d039d"
             },
             {
-              "path": "results/zed-preparation-20261002/short-check-06-airslam-vio.log",
-              "sha256": "feb9d458fcf42154dbd8f9110eaff1b42d01d3f19c46bc559a966934dad86dfb"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-01-airslam-vio.log",
+              "sha256": "26e5f5c37d89054ccae4541c19e0918a9b7bab5441d309a9bed0f393b4e92d2b"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -3373,29 +3266,29 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_airslam.sh",
-              "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+              "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
             },
             {
-              "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vio/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-              "sha256": "0f40b58e3da4ea34b4598a2201c24a635b244fa1a621bf75373164300df22a63"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-evaluations/vio-airslam.json",
+              "sha256": "9fd06e14adbb04db005c99df6ef0711c57a7205fa5217c11cb267e7d225e5a8f"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/trajectory.txt",
               "sha256": "53085ab7c22a35a080a6d4450a2cd47fbe8f14067d34444c5996ce847c69196b"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vio.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vio.yaml",
               "sha256": "decea6e163d44b5a7b6846d8bbc8676a5a8390f8d41709d2693fe1bac51c64ad"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vio.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vio.yaml",
               "sha256": "fcd70cfc0ebb5bbf05cc2abe52795598ffcb30c4a1b2e3a3c75d1d476189e05d"
             }
           ]
         }
       ],
       "blockers": [],
-      "diagnostic_attempt": "results/vio/zed2i/field1_diag60_20261002/airslam/run1",
+      "diagnostic_attempt": "results/vio/zed2i/field1_diag60_20261002/airslam/run3",
       "diagnostic_scope": "600 images / 60 seconds; normal completion",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
@@ -4011,16 +3904,16 @@
       "historical_cohort_preserved": true,
       "evidence": [
         {
-          "path": "results/execution-readiness-20261002/zed-recheck-state-v2.json",
-          "sha256": "28f47891dccff3414a9e987ff3c192b702bcb18103461f217e6e054e98409f7e"
+          "path": "results/execution-readiness-20261002/zed-recheck-state-v3.json",
+          "sha256": "2e99c7c2f9c39eb3b81dad1aede3c2356c18ecd983195cb15d3d99d4f4891372"
         },
         {
-          "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/run_meta.json",
-          "sha256": "55a6819b6d1ee622ffba1b7bf2315f8d10d8eb1398cf2cca3dc4655a1a5c1c7d"
+          "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/run_meta.json",
+          "sha256": "ee98fc043a67e5183359950b4ebe6c4761da6d00f0ba7007997267fa7421e992"
         },
         {
-          "path": "results/execution-readiness-20261002/zed-recheck-v2-05-openvins-vio.log",
-          "sha256": "74e892cf37192506d6f84ded14cd49c07d081d7c0d4fbb8ff17a676725e4b16d"
+          "path": "results/execution-readiness-20261002/zed-recheck-v3-03-openvins-vio.log",
+          "sha256": "97acb724855dcf8a2173fab7aa706ea20358c26df8b70f86157bf23c8a9af41e"
         },
         {
           "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -4052,26 +3945,26 @@
         {
           "role": "runner_with_embedded_parameters",
           "path": "scripts/run/run_openvins.sh",
-          "sha256": "8a327568c3c8c8be7ffbf17e7e0985620561731f5f05eb6ae0f8517d7aabe054"
+          "sha256": "6df8226f50d4f4d9d7404b7fdba3093a29d4356e22d27717e9b42616362e45cf"
         },
         {
-          "path": "results/execution-readiness-20261002/zed-recheck-v2-evaluations/vio-openvins.json",
-          "sha256": "0bcf367f65b164e47033d65fa98208bc62e0eec874194607540128c6e7df2fff"
+          "path": "results/execution-readiness-20261002/zed-recheck-v3-evaluations/vio-openvins.json",
+          "sha256": "2ae6da451389feaf93e5bb600116f3154b985bd7e6cb6fbc36e62ea403660adc"
         },
         {
-          "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/trajectory.txt",
-          "sha256": "580cd550918333c20754fcbdfe35234228771f030963e7f50d5fe86dd8bf811a"
+          "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/trajectory.txt",
+          "sha256": "be4553440258962323c145d598a2ec664a788c210bd55c157910ac16acbea578"
         },
         {
-          "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/estimator_config--estimator_config.yaml",
+          "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/estimator_config--estimator_config.yaml",
           "sha256": "09db495c20c38e5916f2493c9239d974aab5328e7fc99df280e368e1b3a32d2b"
         },
         {
-          "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/imu_calibration--kalibr_imu_chain.yaml",
+          "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/imu_calibration--kalibr_imu_chain.yaml",
           "sha256": "3ac0f7813b874d566b79a1239b8ba7952162ff980e1ba0ea506b2d1ff20890b4"
         },
         {
-          "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+          "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
           "sha256": "a0252615b6ea461087bd94ee606278970f24472b67c3f39af2712cbc3624e1ba"
         }
       ],
@@ -4080,16 +3973,16 @@
           "prerequisite": "validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort",
           "evidence": [
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-state-v2.json",
-              "sha256": "28f47891dccff3414a9e987ff3c192b702bcb18103461f217e6e054e98409f7e"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v3.json",
+              "sha256": "2e99c7c2f9c39eb3b81dad1aede3c2356c18ecd983195cb15d3d99d4f4891372"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/run_meta.json",
-              "sha256": "55a6819b6d1ee622ffba1b7bf2315f8d10d8eb1398cf2cca3dc4655a1a5c1c7d"
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/run_meta.json",
+              "sha256": "ee98fc043a67e5183359950b4ebe6c4761da6d00f0ba7007997267fa7421e992"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-05-openvins-vio.log",
-              "sha256": "74e892cf37192506d6f84ded14cd49c07d081d7c0d4fbb8ff17a676725e4b16d"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-03-openvins-vio.log",
+              "sha256": "97acb724855dcf8a2173fab7aa706ea20358c26df8b70f86157bf23c8a9af41e"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -4121,26 +4014,26 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_openvins.sh",
-              "sha256": "8a327568c3c8c8be7ffbf17e7e0985620561731f5f05eb6ae0f8517d7aabe054"
+              "sha256": "6df8226f50d4f4d9d7404b7fdba3093a29d4356e22d27717e9b42616362e45cf"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-evaluations/vio-openvins.json",
-              "sha256": "0bcf367f65b164e47033d65fa98208bc62e0eec874194607540128c6e7df2fff"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-evaluations/vio-openvins.json",
+              "sha256": "2ae6da451389feaf93e5bb600116f3154b985bd7e6cb6fbc36e62ea403660adc"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/trajectory.txt",
-              "sha256": "580cd550918333c20754fcbdfe35234228771f030963e7f50d5fe86dd8bf811a"
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/trajectory.txt",
+              "sha256": "be4553440258962323c145d598a2ec664a788c210bd55c157910ac16acbea578"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/estimator_config--estimator_config.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/estimator_config--estimator_config.yaml",
               "sha256": "09db495c20c38e5916f2493c9239d974aab5328e7fc99df280e368e1b3a32d2b"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/imu_calibration--kalibr_imu_chain.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/imu_calibration--kalibr_imu_chain.yaml",
               "sha256": "3ac0f7813b874d566b79a1239b8ba7952162ff980e1ba0ea506b2d1ff20890b4"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
               "sha256": "a0252615b6ea461087bd94ee606278970f24472b67c3f39af2712cbc3624e1ba"
             }
           ]
@@ -4149,16 +4042,16 @@
           "prerequisite": "retain_fps15_attempts_and_validate_sequence_specific_10hz_config",
           "evidence": [
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-state-v2.json",
-              "sha256": "28f47891dccff3414a9e987ff3c192b702bcb18103461f217e6e054e98409f7e"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v3.json",
+              "sha256": "2e99c7c2f9c39eb3b81dad1aede3c2356c18ecd983195cb15d3d99d4f4891372"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/run_meta.json",
-              "sha256": "55a6819b6d1ee622ffba1b7bf2315f8d10d8eb1398cf2cca3dc4655a1a5c1c7d"
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/run_meta.json",
+              "sha256": "ee98fc043a67e5183359950b4ebe6c4761da6d00f0ba7007997267fa7421e992"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-05-openvins-vio.log",
-              "sha256": "74e892cf37192506d6f84ded14cd49c07d081d7c0d4fbb8ff17a676725e4b16d"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-03-openvins-vio.log",
+              "sha256": "97acb724855dcf8a2173fab7aa706ea20358c26df8b70f86157bf23c8a9af41e"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -4190,26 +4083,26 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_openvins.sh",
-              "sha256": "8a327568c3c8c8be7ffbf17e7e0985620561731f5f05eb6ae0f8517d7aabe054"
+              "sha256": "6df8226f50d4f4d9d7404b7fdba3093a29d4356e22d27717e9b42616362e45cf"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-evaluations/vio-openvins.json",
-              "sha256": "0bcf367f65b164e47033d65fa98208bc62e0eec874194607540128c6e7df2fff"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-evaluations/vio-openvins.json",
+              "sha256": "2ae6da451389feaf93e5bb600116f3154b985bd7e6cb6fbc36e62ea403660adc"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/trajectory.txt",
-              "sha256": "580cd550918333c20754fcbdfe35234228771f030963e7f50d5fe86dd8bf811a"
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/trajectory.txt",
+              "sha256": "be4553440258962323c145d598a2ec664a788c210bd55c157910ac16acbea578"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/estimator_config--estimator_config.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/estimator_config--estimator_config.yaml",
               "sha256": "09db495c20c38e5916f2493c9239d974aab5328e7fc99df280e368e1b3a32d2b"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/imu_calibration--kalibr_imu_chain.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/imu_calibration--kalibr_imu_chain.yaml",
               "sha256": "3ac0f7813b874d566b79a1239b8ba7952162ff980e1ba0ea506b2d1ff20890b4"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
               "sha256": "a0252615b6ea461087bd94ee606278970f24472b67c3f39af2712cbc3624e1ba"
             }
           ]
@@ -4218,16 +4111,16 @@
           "prerequisite": "capture_native_exit_separately_and_diagnose_logged_shutdown_errors",
           "evidence": [
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-state-v2.json",
-              "sha256": "28f47891dccff3414a9e987ff3c192b702bcb18103461f217e6e054e98409f7e"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v3.json",
+              "sha256": "2e99c7c2f9c39eb3b81dad1aede3c2356c18ecd983195cb15d3d99d4f4891372"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/run_meta.json",
-              "sha256": "55a6819b6d1ee622ffba1b7bf2315f8d10d8eb1398cf2cca3dc4655a1a5c1c7d"
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/run_meta.json",
+              "sha256": "ee98fc043a67e5183359950b4ebe6c4761da6d00f0ba7007997267fa7421e992"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-05-openvins-vio.log",
-              "sha256": "74e892cf37192506d6f84ded14cd49c07d081d7c0d4fbb8ff17a676725e4b16d"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-03-openvins-vio.log",
+              "sha256": "97acb724855dcf8a2173fab7aa706ea20358c26df8b70f86157bf23c8a9af41e"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -4259,26 +4152,26 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_openvins.sh",
-              "sha256": "8a327568c3c8c8be7ffbf17e7e0985620561731f5f05eb6ae0f8517d7aabe054"
+              "sha256": "6df8226f50d4f4d9d7404b7fdba3093a29d4356e22d27717e9b42616362e45cf"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-evaluations/vio-openvins.json",
-              "sha256": "0bcf367f65b164e47033d65fa98208bc62e0eec874194607540128c6e7df2fff"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-evaluations/vio-openvins.json",
+              "sha256": "2ae6da451389feaf93e5bb600116f3154b985bd7e6cb6fbc36e62ea403660adc"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/trajectory.txt",
-              "sha256": "580cd550918333c20754fcbdfe35234228771f030963e7f50d5fe86dd8bf811a"
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/trajectory.txt",
+              "sha256": "be4553440258962323c145d598a2ec664a788c210bd55c157910ac16acbea578"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/estimator_config--estimator_config.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/estimator_config--estimator_config.yaml",
               "sha256": "09db495c20c38e5916f2493c9239d974aab5328e7fc99df280e368e1b3a32d2b"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/imu_calibration--kalibr_imu_chain.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/imu_calibration--kalibr_imu_chain.yaml",
               "sha256": "3ac0f7813b874d566b79a1239b8ba7952162ff980e1ba0ea506b2d1ff20890b4"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
               "sha256": "a0252615b6ea461087bd94ee606278970f24472b67c3f39af2712cbc3624e1ba"
             }
           ]
@@ -4287,16 +4180,16 @@
           "prerequisite": "resolve_within_cell_configuration_mismatch",
           "evidence": [
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-state-v2.json",
-              "sha256": "28f47891dccff3414a9e987ff3c192b702bcb18103461f217e6e054e98409f7e"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v3.json",
+              "sha256": "2e99c7c2f9c39eb3b81dad1aede3c2356c18ecd983195cb15d3d99d4f4891372"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/run_meta.json",
-              "sha256": "55a6819b6d1ee622ffba1b7bf2315f8d10d8eb1398cf2cca3dc4655a1a5c1c7d"
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/run_meta.json",
+              "sha256": "ee98fc043a67e5183359950b4ebe6c4761da6d00f0ba7007997267fa7421e992"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-05-openvins-vio.log",
-              "sha256": "74e892cf37192506d6f84ded14cd49c07d081d7c0d4fbb8ff17a676725e4b16d"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-03-openvins-vio.log",
+              "sha256": "97acb724855dcf8a2173fab7aa706ea20358c26df8b70f86157bf23c8a9af41e"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -4328,26 +4221,26 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_openvins.sh",
-              "sha256": "8a327568c3c8c8be7ffbf17e7e0985620561731f5f05eb6ae0f8517d7aabe054"
+              "sha256": "6df8226f50d4f4d9d7404b7fdba3093a29d4356e22d27717e9b42616362e45cf"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-evaluations/vio-openvins.json",
-              "sha256": "0bcf367f65b164e47033d65fa98208bc62e0eec874194607540128c6e7df2fff"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-evaluations/vio-openvins.json",
+              "sha256": "2ae6da451389feaf93e5bb600116f3154b985bd7e6cb6fbc36e62ea403660adc"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/trajectory.txt",
-              "sha256": "580cd550918333c20754fcbdfe35234228771f030963e7f50d5fe86dd8bf811a"
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/trajectory.txt",
+              "sha256": "be4553440258962323c145d598a2ec664a788c210bd55c157910ac16acbea578"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/estimator_config--estimator_config.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/estimator_config--estimator_config.yaml",
               "sha256": "09db495c20c38e5916f2493c9239d974aab5328e7fc99df280e368e1b3a32d2b"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/imu_calibration--kalibr_imu_chain.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/imu_calibration--kalibr_imu_chain.yaml",
               "sha256": "3ac0f7813b874d566b79a1239b8ba7952162ff980e1ba0ea506b2d1ff20890b4"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
               "sha256": "a0252615b6ea461087bd94ee606278970f24472b67c3f39af2712cbc3624e1ba"
             }
           ]
@@ -4356,16 +4249,16 @@
           "prerequisite": "resolve_recorded_source_binary_parameter_or_hardware_cohort_difference",
           "evidence": [
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-state-v2.json",
-              "sha256": "28f47891dccff3414a9e987ff3c192b702bcb18103461f217e6e054e98409f7e"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v3.json",
+              "sha256": "2e99c7c2f9c39eb3b81dad1aede3c2356c18ecd983195cb15d3d99d4f4891372"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/run_meta.json",
-              "sha256": "55a6819b6d1ee622ffba1b7bf2315f8d10d8eb1398cf2cca3dc4655a1a5c1c7d"
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/run_meta.json",
+              "sha256": "ee98fc043a67e5183359950b4ebe6c4761da6d00f0ba7007997267fa7421e992"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-05-openvins-vio.log",
-              "sha256": "74e892cf37192506d6f84ded14cd49c07d081d7c0d4fbb8ff17a676725e4b16d"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-03-openvins-vio.log",
+              "sha256": "97acb724855dcf8a2173fab7aa706ea20358c26df8b70f86157bf23c8a9af41e"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -4397,33 +4290,33 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_openvins.sh",
-              "sha256": "8a327568c3c8c8be7ffbf17e7e0985620561731f5f05eb6ae0f8517d7aabe054"
+              "sha256": "6df8226f50d4f4d9d7404b7fdba3093a29d4356e22d27717e9b42616362e45cf"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-evaluations/vio-openvins.json",
-              "sha256": "0bcf367f65b164e47033d65fa98208bc62e0eec874194607540128c6e7df2fff"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-evaluations/vio-openvins.json",
+              "sha256": "2ae6da451389feaf93e5bb600116f3154b985bd7e6cb6fbc36e62ea403660adc"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/trajectory.txt",
-              "sha256": "580cd550918333c20754fcbdfe35234228771f030963e7f50d5fe86dd8bf811a"
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/trajectory.txt",
+              "sha256": "be4553440258962323c145d598a2ec664a788c210bd55c157910ac16acbea578"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/estimator_config--estimator_config.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/estimator_config--estimator_config.yaml",
               "sha256": "09db495c20c38e5916f2493c9239d974aab5328e7fc99df280e368e1b3a32d2b"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/imu_calibration--kalibr_imu_chain.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/imu_calibration--kalibr_imu_chain.yaml",
               "sha256": "3ac0f7813b874d566b79a1239b8ba7952162ff980e1ba0ea506b2d1ff20890b4"
             },
             {
-              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run2/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+              "path": "results/vio/zed2i/field1_diag60_20261002/openvins/run3/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
               "sha256": "a0252615b6ea461087bd94ee606278970f24472b67c3f39af2712cbc3624e1ba"
             }
           ]
         }
       ],
       "blockers": [],
-      "diagnostic_attempt": "results/vio/zed2i/field1_diag60_20261002/openvins/run2",
+      "diagnostic_attempt": "results/vio/zed2i/field1_diag60_20261002/openvins/run3",
       "diagnostic_scope": "600 images / 60 seconds; normal completion",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
@@ -4450,16 +4343,16 @@
       "historical_cohort_preserved": true,
       "evidence": [
         {
-          "path": "results/execution-readiness-20261002/zed-recheck-state-v2.json",
-          "sha256": "28f47891dccff3414a9e987ff3c192b702bcb18103461f217e6e054e98409f7e"
+          "path": "results/execution-readiness-20261002/zed-recheck-state-v3.json",
+          "sha256": "2e99c7c2f9c39eb3b81dad1aede3c2356c18ecd983195cb15d3d99d4f4891372"
         },
         {
-          "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/run_meta.json",
-          "sha256": "eb36568c8cf3719ea148b13e78b7bdcb9c7843c52c99c2814fd87f804c96059d"
+          "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/run_meta.json",
+          "sha256": "e4794c06b6c26c50cff78fb9642525d06d0b4a586c55450c9eda6db41d829dd8"
         },
         {
-          "path": "results/execution-readiness-20261002/zed-recheck-v2-06-voxel_svio-vio.log",
-          "sha256": "40a1e53f3850a2f89fa7d6b528750abc4febb8a1bc11361e657ee2d2bb3866de"
+          "path": "results/execution-readiness-20261002/zed-recheck-v3-04-voxel_svio-vio.log",
+          "sha256": "322e1a9aa6ac424681b7dc893e0e9ae8ed8f84620645bae18266e1cc1701ee39"
         },
         {
           "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -4481,38 +4374,38 @@
         {
           "role": "runner_with_embedded_parameters",
           "path": "scripts/run/run_voxel_svio.sh",
-          "sha256": "c814cba2e090f9634ee3e7b7c988fd1984f9257fa0ec2c23ed6c2e4b2aa8e8ec"
+          "sha256": "ddd3afc33d0983b96de2f67bddac17488e2f368dbfa8dfbdb26431955c134c82"
         },
         {
-          "path": "results/execution-readiness-20261002/zed-recheck-v2-evaluations/vio-voxel_svio.json",
-          "sha256": "1a4257e1e2e4c0c3fbb05159e7ba7c5c50f8d53ad28eb2f3dc912942613aa3a3"
+          "path": "results/execution-readiness-20261002/zed-recheck-v3-evaluations/vio-voxel_svio.json",
+          "sha256": "2d524e5595f9662087e31edaf6917345a3d2d914d478c58e3908c58d3d7231f6"
         },
         {
-          "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/trajectory.txt",
-          "sha256": "b0f4a946bc4d7a0b011b1ed7331a46e6f4c0dad5f0a0bea4b1b2259753ab2c51"
+          "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/trajectory.txt",
+          "sha256": "b9d1682c16e7da7a6cf60ca9803ae33b0f33e4bb1809c12f0b7705e167157964"
         },
         {
-          "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/estimator_config--zed2i.yaml",
+          "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/estimator_config--zed2i.yaml",
           "sha256": "a0017e536ef37069995b98270bd436f28c3890bddbdd7c49c61e77c336935866"
         },
         {
-          "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+          "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
           "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
         },
         {
-          "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+          "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
           "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
         },
         {
-          "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_parameter_list.txt--parameter_list.txt",
+          "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_parameter_list.txt--parameter_list.txt",
           "sha256": "2b67a11c2936dceffc780058ed257f3d069420aeb4bfa0b516d54ec382a1f764"
         },
         {
-          "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_camera_load.txt--camera_load.txt",
+          "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_camera_load.txt--camera_load.txt",
           "sha256": "661c2a1bd2a45a744d5ed42caf7f3c40f8d89a2be7b21814c667732999a8e44c"
         },
         {
-          "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_input_receipt.json--input_receipt.json",
+          "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_input_receipt.json--input_receipt.json",
           "sha256": "011d4a16ed1a00937a13a6d50594d8ff7ccefeb465c37808dce9c62f97d69ba3"
         },
         {
@@ -4525,16 +4418,16 @@
           "prerequisite": "validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort",
           "evidence": [
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-state-v2.json",
-              "sha256": "28f47891dccff3414a9e987ff3c192b702bcb18103461f217e6e054e98409f7e"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v3.json",
+              "sha256": "2e99c7c2f9c39eb3b81dad1aede3c2356c18ecd983195cb15d3d99d4f4891372"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/run_meta.json",
-              "sha256": "eb36568c8cf3719ea148b13e78b7bdcb9c7843c52c99c2814fd87f804c96059d"
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/run_meta.json",
+              "sha256": "e4794c06b6c26c50cff78fb9642525d06d0b4a586c55450c9eda6db41d829dd8"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-06-voxel_svio-vio.log",
-              "sha256": "40a1e53f3850a2f89fa7d6b528750abc4febb8a1bc11361e657ee2d2bb3866de"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-04-voxel_svio-vio.log",
+              "sha256": "322e1a9aa6ac424681b7dc893e0e9ae8ed8f84620645bae18266e1cc1701ee39"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -4556,38 +4449,38 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_voxel_svio.sh",
-              "sha256": "c814cba2e090f9634ee3e7b7c988fd1984f9257fa0ec2c23ed6c2e4b2aa8e8ec"
+              "sha256": "ddd3afc33d0983b96de2f67bddac17488e2f368dbfa8dfbdb26431955c134c82"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-evaluations/vio-voxel_svio.json",
-              "sha256": "1a4257e1e2e4c0c3fbb05159e7ba7c5c50f8d53ad28eb2f3dc912942613aa3a3"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-evaluations/vio-voxel_svio.json",
+              "sha256": "2d524e5595f9662087e31edaf6917345a3d2d914d478c58e3908c58d3d7231f6"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/trajectory.txt",
-              "sha256": "b0f4a946bc4d7a0b011b1ed7331a46e6f4c0dad5f0a0bea4b1b2259753ab2c51"
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/trajectory.txt",
+              "sha256": "b9d1682c16e7da7a6cf60ca9803ae33b0f33e4bb1809c12f0b7705e167157964"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/estimator_config--zed2i.yaml",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/estimator_config--zed2i.yaml",
               "sha256": "a0017e536ef37069995b98270bd436f28c3890bddbdd7c49c61e77c336935866"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
               "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
               "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_parameter_list.txt--parameter_list.txt",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_parameter_list.txt--parameter_list.txt",
               "sha256": "2b67a11c2936dceffc780058ed257f3d069420aeb4bfa0b516d54ec382a1f764"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_camera_load.txt--camera_load.txt",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_camera_load.txt--camera_load.txt",
               "sha256": "661c2a1bd2a45a744d5ed42caf7f3c40f8d89a2be7b21814c667732999a8e44c"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_input_receipt.json--input_receipt.json",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_input_receipt.json--input_receipt.json",
               "sha256": "011d4a16ed1a00937a13a6d50594d8ff7ccefeb465c37808dce9c62f97d69ba3"
             },
             {
@@ -4600,16 +4493,16 @@
           "prerequisite": "retain_fps15_attempts_and_validate_sequence_specific_10hz_config",
           "evidence": [
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-state-v2.json",
-              "sha256": "28f47891dccff3414a9e987ff3c192b702bcb18103461f217e6e054e98409f7e"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v3.json",
+              "sha256": "2e99c7c2f9c39eb3b81dad1aede3c2356c18ecd983195cb15d3d99d4f4891372"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/run_meta.json",
-              "sha256": "eb36568c8cf3719ea148b13e78b7bdcb9c7843c52c99c2814fd87f804c96059d"
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/run_meta.json",
+              "sha256": "e4794c06b6c26c50cff78fb9642525d06d0b4a586c55450c9eda6db41d829dd8"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-06-voxel_svio-vio.log",
-              "sha256": "40a1e53f3850a2f89fa7d6b528750abc4febb8a1bc11361e657ee2d2bb3866de"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-04-voxel_svio-vio.log",
+              "sha256": "322e1a9aa6ac424681b7dc893e0e9ae8ed8f84620645bae18266e1cc1701ee39"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -4631,38 +4524,38 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_voxel_svio.sh",
-              "sha256": "c814cba2e090f9634ee3e7b7c988fd1984f9257fa0ec2c23ed6c2e4b2aa8e8ec"
+              "sha256": "ddd3afc33d0983b96de2f67bddac17488e2f368dbfa8dfbdb26431955c134c82"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-evaluations/vio-voxel_svio.json",
-              "sha256": "1a4257e1e2e4c0c3fbb05159e7ba7c5c50f8d53ad28eb2f3dc912942613aa3a3"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-evaluations/vio-voxel_svio.json",
+              "sha256": "2d524e5595f9662087e31edaf6917345a3d2d914d478c58e3908c58d3d7231f6"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/trajectory.txt",
-              "sha256": "b0f4a946bc4d7a0b011b1ed7331a46e6f4c0dad5f0a0bea4b1b2259753ab2c51"
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/trajectory.txt",
+              "sha256": "b9d1682c16e7da7a6cf60ca9803ae33b0f33e4bb1809c12f0b7705e167157964"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/estimator_config--zed2i.yaml",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/estimator_config--zed2i.yaml",
               "sha256": "a0017e536ef37069995b98270bd436f28c3890bddbdd7c49c61e77c336935866"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
               "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
               "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_parameter_list.txt--parameter_list.txt",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_parameter_list.txt--parameter_list.txt",
               "sha256": "2b67a11c2936dceffc780058ed257f3d069420aeb4bfa0b516d54ec382a1f764"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_camera_load.txt--camera_load.txt",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_camera_load.txt--camera_load.txt",
               "sha256": "661c2a1bd2a45a744d5ed42caf7f3c40f8d89a2be7b21814c667732999a8e44c"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_input_receipt.json--input_receipt.json",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_input_receipt.json--input_receipt.json",
               "sha256": "011d4a16ed1a00937a13a6d50594d8ff7ccefeb465c37808dce9c62f97d69ba3"
             },
             {
@@ -4675,16 +4568,16 @@
           "prerequisite": "capture_native_exit_separately_and_diagnose_logged_shutdown_errors",
           "evidence": [
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-state-v2.json",
-              "sha256": "28f47891dccff3414a9e987ff3c192b702bcb18103461f217e6e054e98409f7e"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v3.json",
+              "sha256": "2e99c7c2f9c39eb3b81dad1aede3c2356c18ecd983195cb15d3d99d4f4891372"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/run_meta.json",
-              "sha256": "eb36568c8cf3719ea148b13e78b7bdcb9c7843c52c99c2814fd87f804c96059d"
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/run_meta.json",
+              "sha256": "e4794c06b6c26c50cff78fb9642525d06d0b4a586c55450c9eda6db41d829dd8"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-06-voxel_svio-vio.log",
-              "sha256": "40a1e53f3850a2f89fa7d6b528750abc4febb8a1bc11361e657ee2d2bb3866de"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-04-voxel_svio-vio.log",
+              "sha256": "322e1a9aa6ac424681b7dc893e0e9ae8ed8f84620645bae18266e1cc1701ee39"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -4706,38 +4599,38 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_voxel_svio.sh",
-              "sha256": "c814cba2e090f9634ee3e7b7c988fd1984f9257fa0ec2c23ed6c2e4b2aa8e8ec"
+              "sha256": "ddd3afc33d0983b96de2f67bddac17488e2f368dbfa8dfbdb26431955c134c82"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-evaluations/vio-voxel_svio.json",
-              "sha256": "1a4257e1e2e4c0c3fbb05159e7ba7c5c50f8d53ad28eb2f3dc912942613aa3a3"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-evaluations/vio-voxel_svio.json",
+              "sha256": "2d524e5595f9662087e31edaf6917345a3d2d914d478c58e3908c58d3d7231f6"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/trajectory.txt",
-              "sha256": "b0f4a946bc4d7a0b011b1ed7331a46e6f4c0dad5f0a0bea4b1b2259753ab2c51"
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/trajectory.txt",
+              "sha256": "b9d1682c16e7da7a6cf60ca9803ae33b0f33e4bb1809c12f0b7705e167157964"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/estimator_config--zed2i.yaml",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/estimator_config--zed2i.yaml",
               "sha256": "a0017e536ef37069995b98270bd436f28c3890bddbdd7c49c61e77c336935866"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
               "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
               "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_parameter_list.txt--parameter_list.txt",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_parameter_list.txt--parameter_list.txt",
               "sha256": "2b67a11c2936dceffc780058ed257f3d069420aeb4bfa0b516d54ec382a1f764"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_camera_load.txt--camera_load.txt",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_camera_load.txt--camera_load.txt",
               "sha256": "661c2a1bd2a45a744d5ed42caf7f3c40f8d89a2be7b21814c667732999a8e44c"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_input_receipt.json--input_receipt.json",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_input_receipt.json--input_receipt.json",
               "sha256": "011d4a16ed1a00937a13a6d50594d8ff7ccefeb465c37808dce9c62f97d69ba3"
             },
             {
@@ -4750,16 +4643,16 @@
           "prerequisite": "resolve_within_cell_configuration_mismatch",
           "evidence": [
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-state-v2.json",
-              "sha256": "28f47891dccff3414a9e987ff3c192b702bcb18103461f217e6e054e98409f7e"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v3.json",
+              "sha256": "2e99c7c2f9c39eb3b81dad1aede3c2356c18ecd983195cb15d3d99d4f4891372"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/run_meta.json",
-              "sha256": "eb36568c8cf3719ea148b13e78b7bdcb9c7843c52c99c2814fd87f804c96059d"
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/run_meta.json",
+              "sha256": "e4794c06b6c26c50cff78fb9642525d06d0b4a586c55450c9eda6db41d829dd8"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-06-voxel_svio-vio.log",
-              "sha256": "40a1e53f3850a2f89fa7d6b528750abc4febb8a1bc11361e657ee2d2bb3866de"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-04-voxel_svio-vio.log",
+              "sha256": "322e1a9aa6ac424681b7dc893e0e9ae8ed8f84620645bae18266e1cc1701ee39"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -4781,38 +4674,38 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_voxel_svio.sh",
-              "sha256": "c814cba2e090f9634ee3e7b7c988fd1984f9257fa0ec2c23ed6c2e4b2aa8e8ec"
+              "sha256": "ddd3afc33d0983b96de2f67bddac17488e2f368dbfa8dfbdb26431955c134c82"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-evaluations/vio-voxel_svio.json",
-              "sha256": "1a4257e1e2e4c0c3fbb05159e7ba7c5c50f8d53ad28eb2f3dc912942613aa3a3"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-evaluations/vio-voxel_svio.json",
+              "sha256": "2d524e5595f9662087e31edaf6917345a3d2d914d478c58e3908c58d3d7231f6"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/trajectory.txt",
-              "sha256": "b0f4a946bc4d7a0b011b1ed7331a46e6f4c0dad5f0a0bea4b1b2259753ab2c51"
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/trajectory.txt",
+              "sha256": "b9d1682c16e7da7a6cf60ca9803ae33b0f33e4bb1809c12f0b7705e167157964"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/estimator_config--zed2i.yaml",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/estimator_config--zed2i.yaml",
               "sha256": "a0017e536ef37069995b98270bd436f28c3890bddbdd7c49c61e77c336935866"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
               "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
               "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_parameter_list.txt--parameter_list.txt",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_parameter_list.txt--parameter_list.txt",
               "sha256": "2b67a11c2936dceffc780058ed257f3d069420aeb4bfa0b516d54ec382a1f764"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_camera_load.txt--camera_load.txt",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_camera_load.txt--camera_load.txt",
               "sha256": "661c2a1bd2a45a744d5ed42caf7f3c40f8d89a2be7b21814c667732999a8e44c"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_input_receipt.json--input_receipt.json",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_input_receipt.json--input_receipt.json",
               "sha256": "011d4a16ed1a00937a13a6d50594d8ff7ccefeb465c37808dce9c62f97d69ba3"
             },
             {
@@ -4825,16 +4718,16 @@
           "prerequisite": "resolve_recorded_source_binary_parameter_or_hardware_cohort_difference",
           "evidence": [
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-state-v2.json",
-              "sha256": "28f47891dccff3414a9e987ff3c192b702bcb18103461f217e6e054e98409f7e"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v3.json",
+              "sha256": "2e99c7c2f9c39eb3b81dad1aede3c2356c18ecd983195cb15d3d99d4f4891372"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/run_meta.json",
-              "sha256": "eb36568c8cf3719ea148b13e78b7bdcb9c7843c52c99c2814fd87f804c96059d"
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/run_meta.json",
+              "sha256": "e4794c06b6c26c50cff78fb9642525d06d0b4a586c55450c9eda6db41d829dd8"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-06-voxel_svio-vio.log",
-              "sha256": "40a1e53f3850a2f89fa7d6b528750abc4febb8a1bc11361e657ee2d2bb3866de"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-04-voxel_svio-vio.log",
+              "sha256": "322e1a9aa6ac424681b7dc893e0e9ae8ed8f84620645bae18266e1cc1701ee39"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -4856,38 +4749,38 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_voxel_svio.sh",
-              "sha256": "c814cba2e090f9634ee3e7b7c988fd1984f9257fa0ec2c23ed6c2e4b2aa8e8ec"
+              "sha256": "ddd3afc33d0983b96de2f67bddac17488e2f368dbfa8dfbdb26431955c134c82"
             },
             {
-              "path": "results/execution-readiness-20261002/zed-recheck-v2-evaluations/vio-voxel_svio.json",
-              "sha256": "1a4257e1e2e4c0c3fbb05159e7ba7c5c50f8d53ad28eb2f3dc912942613aa3a3"
+              "path": "results/execution-readiness-20261002/zed-recheck-v3-evaluations/vio-voxel_svio.json",
+              "sha256": "2d524e5595f9662087e31edaf6917345a3d2d914d478c58e3908c58d3d7231f6"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/trajectory.txt",
-              "sha256": "b0f4a946bc4d7a0b011b1ed7331a46e6f4c0dad5f0a0bea4b1b2259753ab2c51"
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/trajectory.txt",
+              "sha256": "b9d1682c16e7da7a6cf60ca9803ae33b0f33e4bb1809c12f0b7705e167157964"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/estimator_config--zed2i.yaml",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/estimator_config--zed2i.yaml",
               "sha256": "a0017e536ef37069995b98270bd436f28c3890bddbdd7c49c61e77c336935866"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
               "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
               "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_parameter_list.txt--parameter_list.txt",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_parameter_list.txt--parameter_list.txt",
               "sha256": "2b67a11c2936dceffc780058ed257f3d069420aeb4bfa0b516d54ec382a1f764"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_camera_load.txt--camera_load.txt",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_camera_load.txt--camera_load.txt",
               "sha256": "661c2a1bd2a45a744d5ed42caf7f3c40f8d89a2be7b21814c667732999a8e44c"
             },
             {
-              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2/provenance/native_input_receipt.json--input_receipt.json",
+              "path": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3/provenance/native_input_receipt.json--input_receipt.json",
               "sha256": "011d4a16ed1a00937a13a6d50594d8ff7ccefeb465c37808dce9c62f97d69ba3"
             },
             {
@@ -4898,7 +4791,7 @@
         }
       ],
       "blockers": [],
-      "diagnostic_attempt": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run2",
+      "diagnostic_attempt": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run3",
       "diagnostic_scope": "1800 images / 180 seconds; normal completion",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
@@ -6006,16 +5899,16 @@
       "historical_cohort_preserved": true,
       "evidence": [
         {
-          "path": "results/zed-preparation-20261002/short-check-state.json",
-          "sha256": "44a846ff591117aba2c1e8e3c13deede4ef8270c6146e30d68e3f432a72bbd1b"
+          "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+          "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
         },
         {
-          "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-          "sha256": "ac8d06c7ffa0bbe1e9e77b48cac888b0fe934952ef7d6575908b8c98d82c639d"
+          "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+          "sha256": "bad93d9234309a2c6cc9e0782ec497f81c42f558180704df1284153cbcd39524"
         },
         {
-          "path": "results/zed-preparation-20261002/short-check-12-airslam-vio-lc.log",
-          "sha256": "3857c4cb16c003c804502860aac3ca55e5da2463683ef1d2fd1d13ad3c4276d1"
+          "path": "results/execution-readiness-20261002/zed-recheck-v4-02-airslam-vio-lc.log",
+          "sha256": "de7ce9e5105eb808cff2a63213ed5e1948efd932553849819abe95cfe8cf6a59"
         },
         {
           "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -6047,26 +5940,26 @@
         {
           "role": "runner_with_embedded_parameters",
           "path": "scripts/run/run_airslam.sh",
-          "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+          "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
         },
         {
-          "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-          "sha256": "e4bf0b49ae3b06dd1b3fe5e30edc6a89756d89ed8977dc1e44bd2fb1009bdb77"
+          "path": "results/execution-readiness-20261002/zed-recheck-v4-evaluations/vio-lc-airslam.json",
+          "sha256": "d89b5cb437b9f04b0fc520343b2f1f6b7f15e2ab686f32d07414816bce902973"
         },
         {
-          "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
+          "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/trajectory.txt",
           "sha256": "f6ada012f04cbed395f1e2d99a14c2edb13af2a635e09bd31edbf9862b359eb9"
         },
         {
-          "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vio.yaml",
+          "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vio.yaml",
           "sha256": "decea6e163d44b5a7b6846d8bbc8676a5a8390f8d41709d2693fe1bac51c64ad"
         },
         {
-          "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vio.yaml",
+          "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vio.yaml",
           "sha256": "fcd70cfc0ebb5bbf05cc2abe52795598ffcb30c4a1b2e3a3c75d1d476189e05d"
         },
         {
-          "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/map_refinement_config--zed2i_mr.yaml",
+          "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/map_refinement_config--zed2i_mr.yaml",
           "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
         }
       ],
@@ -6075,16 +5968,16 @@
           "prerequisite": "validate_recovered_zed_factory_extrinsics_in_native_path_and_preserve_nominal_cohort",
           "evidence": [
             {
-              "path": "results/zed-preparation-20261002/short-check-state.json",
-              "sha256": "44a846ff591117aba2c1e8e3c13deede4ef8270c6146e30d68e3f432a72bbd1b"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+              "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-              "sha256": "ac8d06c7ffa0bbe1e9e77b48cac888b0fe934952ef7d6575908b8c98d82c639d"
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+              "sha256": "bad93d9234309a2c6cc9e0782ec497f81c42f558180704df1284153cbcd39524"
             },
             {
-              "path": "results/zed-preparation-20261002/short-check-12-airslam-vio-lc.log",
-              "sha256": "3857c4cb16c003c804502860aac3ca55e5da2463683ef1d2fd1d13ad3c4276d1"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-02-airslam-vio-lc.log",
+              "sha256": "de7ce9e5105eb808cff2a63213ed5e1948efd932553849819abe95cfe8cf6a59"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -6116,26 +6009,26 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_airslam.sh",
-              "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+              "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
             },
             {
-              "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-              "sha256": "e4bf0b49ae3b06dd1b3fe5e30edc6a89756d89ed8977dc1e44bd2fb1009bdb77"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-evaluations/vio-lc-airslam.json",
+              "sha256": "d89b5cb437b9f04b0fc520343b2f1f6b7f15e2ab686f32d07414816bce902973"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/trajectory.txt",
               "sha256": "f6ada012f04cbed395f1e2d99a14c2edb13af2a635e09bd31edbf9862b359eb9"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vio.yaml",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vio.yaml",
               "sha256": "decea6e163d44b5a7b6846d8bbc8676a5a8390f8d41709d2693fe1bac51c64ad"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vio.yaml",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vio.yaml",
               "sha256": "fcd70cfc0ebb5bbf05cc2abe52795598ffcb30c4a1b2e3a3c75d1d476189e05d"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/map_refinement_config--zed2i_mr.yaml",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/map_refinement_config--zed2i_mr.yaml",
               "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
             }
           ]
@@ -6144,16 +6037,16 @@
           "prerequisite": "retain_fps15_attempts_and_validate_sequence_specific_10hz_config",
           "evidence": [
             {
-              "path": "results/zed-preparation-20261002/short-check-state.json",
-              "sha256": "44a846ff591117aba2c1e8e3c13deede4ef8270c6146e30d68e3f432a72bbd1b"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+              "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-              "sha256": "ac8d06c7ffa0bbe1e9e77b48cac888b0fe934952ef7d6575908b8c98d82c639d"
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+              "sha256": "bad93d9234309a2c6cc9e0782ec497f81c42f558180704df1284153cbcd39524"
             },
             {
-              "path": "results/zed-preparation-20261002/short-check-12-airslam-vio-lc.log",
-              "sha256": "3857c4cb16c003c804502860aac3ca55e5da2463683ef1d2fd1d13ad3c4276d1"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-02-airslam-vio-lc.log",
+              "sha256": "de7ce9e5105eb808cff2a63213ed5e1948efd932553849819abe95cfe8cf6a59"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -6185,26 +6078,26 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_airslam.sh",
-              "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+              "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
             },
             {
-              "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-              "sha256": "e4bf0b49ae3b06dd1b3fe5e30edc6a89756d89ed8977dc1e44bd2fb1009bdb77"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-evaluations/vio-lc-airslam.json",
+              "sha256": "d89b5cb437b9f04b0fc520343b2f1f6b7f15e2ab686f32d07414816bce902973"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/trajectory.txt",
               "sha256": "f6ada012f04cbed395f1e2d99a14c2edb13af2a635e09bd31edbf9862b359eb9"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vio.yaml",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vio.yaml",
               "sha256": "decea6e163d44b5a7b6846d8bbc8676a5a8390f8d41709d2693fe1bac51c64ad"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vio.yaml",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vio.yaml",
               "sha256": "fcd70cfc0ebb5bbf05cc2abe52795598ffcb30c4a1b2e3a3c75d1d476189e05d"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/map_refinement_config--zed2i_mr.yaml",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/map_refinement_config--zed2i_mr.yaml",
               "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
             }
           ]
@@ -6213,16 +6106,16 @@
           "prerequisite": "capture_native_exit_separately_and_diagnose_logged_shutdown_errors",
           "evidence": [
             {
-              "path": "results/zed-preparation-20261002/short-check-state.json",
-              "sha256": "44a846ff591117aba2c1e8e3c13deede4ef8270c6146e30d68e3f432a72bbd1b"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+              "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-              "sha256": "ac8d06c7ffa0bbe1e9e77b48cac888b0fe934952ef7d6575908b8c98d82c639d"
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+              "sha256": "bad93d9234309a2c6cc9e0782ec497f81c42f558180704df1284153cbcd39524"
             },
             {
-              "path": "results/zed-preparation-20261002/short-check-12-airslam-vio-lc.log",
-              "sha256": "3857c4cb16c003c804502860aac3ca55e5da2463683ef1d2fd1d13ad3c4276d1"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-02-airslam-vio-lc.log",
+              "sha256": "de7ce9e5105eb808cff2a63213ed5e1948efd932553849819abe95cfe8cf6a59"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -6254,26 +6147,26 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_airslam.sh",
-              "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+              "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
             },
             {
-              "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-              "sha256": "e4bf0b49ae3b06dd1b3fe5e30edc6a89756d89ed8977dc1e44bd2fb1009bdb77"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-evaluations/vio-lc-airslam.json",
+              "sha256": "d89b5cb437b9f04b0fc520343b2f1f6b7f15e2ab686f32d07414816bce902973"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/trajectory.txt",
               "sha256": "f6ada012f04cbed395f1e2d99a14c2edb13af2a635e09bd31edbf9862b359eb9"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vio.yaml",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vio.yaml",
               "sha256": "decea6e163d44b5a7b6846d8bbc8676a5a8390f8d41709d2693fe1bac51c64ad"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vio.yaml",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vio.yaml",
               "sha256": "fcd70cfc0ebb5bbf05cc2abe52795598ffcb30c4a1b2e3a3c75d1d476189e05d"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/map_refinement_config--zed2i_mr.yaml",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/map_refinement_config--zed2i_mr.yaml",
               "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
             }
           ]
@@ -6282,16 +6175,16 @@
           "prerequisite": "resolve_within_cell_configuration_mismatch",
           "evidence": [
             {
-              "path": "results/zed-preparation-20261002/short-check-state.json",
-              "sha256": "44a846ff591117aba2c1e8e3c13deede4ef8270c6146e30d68e3f432a72bbd1b"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+              "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-              "sha256": "ac8d06c7ffa0bbe1e9e77b48cac888b0fe934952ef7d6575908b8c98d82c639d"
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+              "sha256": "bad93d9234309a2c6cc9e0782ec497f81c42f558180704df1284153cbcd39524"
             },
             {
-              "path": "results/zed-preparation-20261002/short-check-12-airslam-vio-lc.log",
-              "sha256": "3857c4cb16c003c804502860aac3ca55e5da2463683ef1d2fd1d13ad3c4276d1"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-02-airslam-vio-lc.log",
+              "sha256": "de7ce9e5105eb808cff2a63213ed5e1948efd932553849819abe95cfe8cf6a59"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -6323,26 +6216,26 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_airslam.sh",
-              "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+              "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
             },
             {
-              "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-              "sha256": "e4bf0b49ae3b06dd1b3fe5e30edc6a89756d89ed8977dc1e44bd2fb1009bdb77"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-evaluations/vio-lc-airslam.json",
+              "sha256": "d89b5cb437b9f04b0fc520343b2f1f6b7f15e2ab686f32d07414816bce902973"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/trajectory.txt",
               "sha256": "f6ada012f04cbed395f1e2d99a14c2edb13af2a635e09bd31edbf9862b359eb9"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vio.yaml",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vio.yaml",
               "sha256": "decea6e163d44b5a7b6846d8bbc8676a5a8390f8d41709d2693fe1bac51c64ad"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vio.yaml",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vio.yaml",
               "sha256": "fcd70cfc0ebb5bbf05cc2abe52795598ffcb30c4a1b2e3a3c75d1d476189e05d"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/map_refinement_config--zed2i_mr.yaml",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/map_refinement_config--zed2i_mr.yaml",
               "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
             }
           ]
@@ -6351,16 +6244,16 @@
           "prerequisite": "resolve_recorded_source_binary_parameter_or_hardware_cohort_difference",
           "evidence": [
             {
-              "path": "results/zed-preparation-20261002/short-check-state.json",
-              "sha256": "44a846ff591117aba2c1e8e3c13deede4ef8270c6146e30d68e3f432a72bbd1b"
+              "path": "results/execution-readiness-20261002/zed-recheck-state-v4.json",
+              "sha256": "6d3a0f94f37479932baa3155d77ea4414f54cab1ac8a923e3a37273b18b7902d"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/run_meta.json",
-              "sha256": "ac8d06c7ffa0bbe1e9e77b48cac888b0fe934952ef7d6575908b8c98d82c639d"
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/run_meta.json",
+              "sha256": "bad93d9234309a2c6cc9e0782ec497f81c42f558180704df1284153cbcd39524"
             },
             {
-              "path": "results/zed-preparation-20261002/short-check-12-airslam-vio-lc.log",
-              "sha256": "3857c4cb16c003c804502860aac3ca55e5da2463683ef1d2fd1d13ad3c4276d1"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-02-airslam-vio-lc.log",
+              "sha256": "de7ce9e5105eb808cff2a63213ed5e1948efd932553849819abe95cfe8cf6a59"
             },
             {
               "path": "docs/campaigns/zed-physical-calibration-20261002.json",
@@ -6392,33 +6285,33 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_airslam.sh",
-              "sha256": "6b3676609ec0b5a9b4e788b36101ce57278653585a89a4d156e55cfcc0de87cc"
+              "sha256": "47c5b3029379839c0b9eb568421dc1f5ca774e06d683d35a99ae8338011ee455"
             },
             {
-              "path": "results/zed-preparation-20261002/verified-final-stage/evaluations/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/run_eval.json",
-              "sha256": "e4bf0b49ae3b06dd1b3fe5e30edc6a89756d89ed8977dc1e44bd2fb1009bdb77"
+              "path": "results/execution-readiness-20261002/zed-recheck-v4-evaluations/vio-lc-airslam.json",
+              "sha256": "d89b5cb437b9f04b0fc520343b2f1f6b7f15e2ab686f32d07414816bce902973"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/trajectory.txt",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/trajectory.txt",
               "sha256": "f6ada012f04cbed395f1e2d99a14c2edb13af2a635e09bd31edbf9862b359eb9"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/camera_config--zed2i_camera_vio.yaml",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/camera_config--zed2i_camera_vio.yaml",
               "sha256": "decea6e163d44b5a7b6846d8bbc8676a5a8390f8d41709d2693fe1bac51c64ad"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/odometry_config--zed2i_vio.yaml",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/odometry_config--zed2i_vio.yaml",
               "sha256": "fcd70cfc0ebb5bbf05cc2abe52795598ffcb30c4a1b2e3a3c75d1d476189e05d"
             },
             {
-              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1/provenance/map_refinement_config--zed2i_mr.yaml",
+              "path": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3/provenance/map_refinement_config--zed2i_mr.yaml",
               "sha256": "da13f30a9d22a843ea7f41c6fff90d79dffd35f7e34fd79105ff2dd4ec579f01"
             }
           ]
         }
       ],
       "blockers": [],
-      "diagnostic_attempt": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run1",
+      "diagnostic_attempt": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3",
       "diagnostic_scope": "600 images / 60 seconds; normal completion",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
