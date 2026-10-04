@@ -127,9 +127,12 @@ def build(repo,inventory,inventory_path,decisions):
         errors=verify_files(repo,[item])
         if errors:raise ValueError('; '.join(errors))
         selection=json.loads((repo/item['path']).read_text())
-        completed_evidence.extend([item]+[selection[k] for k in ('source_manifest','batch_selection','pause_record')])
+        # First-batch records carry batch_selection/pause_record; later-batch records
+        # (record_batch_selection.py) carry batch_status and the earlier selection.
+        completed_evidence.extend([item]+[selection[k] for k in ('source_manifest','batch_selection','pause_record',
+                                                                 'batch_status','earlier_selection') if selection.get(k)])
         for record in selection['completed']:
-            completed_evidence.extend(record['evidence']+[record['attempt_state']])
+            completed_evidence.extend(record.get('evidence',[])+[record['attempt_state']])
     completed_evidence=list({item['path']:item for item in completed_evidence}.values())
     for cell in inventory['cells']:
         key=cell['key'];decision=decisions.get('cells',{}).get(key,{})

@@ -1,0 +1,271 @@
+{
+ "schema": 1,
+ "policy": "Select every finished attempt of the batch regardless of outcome; repetitions not run in the batch come from the earlier verified selection; qualification needs claim review.",
+ "source_manifest": {
+  "path": "results/zed-vio-n3-20261003/executed-zed-manifest.json",
+  "sha256": "4d43e90945e605562880751af4603d8508b570610a00d135fe3b2c760ee28e47"
+ },
+ "batch_status": {
+  "path": "logs/zed-vio-n3-20261003c/status.json",
+  "sha256": "daed6b7fc49fd3d53466f70e72bc6c62861c511a596f7bb8c51fd134bf14f594"
+ },
+ "earlier_selection": {
+  "path": "configs/campaigns/zed-vio-first-attempts-20261002.json",
+  "sha256": "4628e67e4509487380d10d00aebcf7593103233fcd714289f6b38cc616f12dc3"
+ },
+ "cells": {
+  "vio/zed2i/field1_110426_full_10fps_q90/airslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/basalt": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/okvis2": [
+   10001,
+   10003,
+   10004
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/okvis2x": [
+   10001,
+   10003,
+   10004
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/openvins": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/orbslam3": [
+   10001,
+   10003,
+   10004
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio": [
+   10001,
+   10002,
+   10003
+  ]
+ },
+ "completed": [
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/airslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/airslam/default/r1",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__airslam/run10001.json",
+    "sha256": "c35acf78d538a02dfca2fada44c93f21f0053a51c46f7fc9190ec3b4a5b915e0"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/airslam",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/airslam/default/r2",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__airslam/run10002.json",
+    "sha256": "b3c3cc5051f714b04a83609a5fda816b1bfd88ec5987f808f2578e2234caa83f"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/airslam",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/airslam/default/r3",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__airslam/run10003.json",
+    "sha256": "2e0e0b9a2f1cbb378a518be00448f3ec81ee357206140b47f937befd0794e545"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/basalt",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/basalt/default/r1",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__basalt/run10001.json",
+    "sha256": "cfb5f5800613e13c07f351eb733f546ae4d181113e035ced0fbd0f2d160e39d9"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/basalt",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/basalt/default/r2",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__basalt/run10002.json",
+    "sha256": "d88ac427acae53307c07c402370c5e61b2c46f0157d7616fa8880ccb4e215b92"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/basalt",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/basalt/default/r3",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__basalt/run10003.json",
+    "sha256": "f0023fb19df9d4c770e63309bfadb245d61f3028f8e4c09b0e08d1f63885ffba"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/okvis2",
+   "repetition": 2,
+   "physical_run_id": 10003,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/okvis2/default/r2",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__okvis2/run10003.json",
+    "sha256": "d5dd1bec3eb4415583f6e7f1036a3ab019cd4e4e0d8ee2467a2bdabbfdba7086"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/okvis2",
+   "repetition": 3,
+   "physical_run_id": 10004,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/okvis2/default/r3",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10004",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__okvis2/run10004.json",
+    "sha256": "4d2ca3e3815dd305a887446a0b10cdbb93693628cd9fc7ff41631b1338ab10a9"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/okvis2x",
+   "repetition": 2,
+   "physical_run_id": 10003,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/okvis2x/default/r2",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__okvis2x/run10003.json",
+    "sha256": "4784fd08c6daf77b0a9d91ae07d55f549c575bec27ee02e11efddc4c6c35ccca"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/okvis2x",
+   "repetition": 3,
+   "physical_run_id": 10004,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/okvis2x/default/r3",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10004",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__okvis2x/run10004.json",
+    "sha256": "d98022d25a40eca380c1763fec960804d1642c0c0ff81ad2dccd4d5ea019ff63"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/openvins",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/openvins/default/r1",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001",
+   "runner_exit_code": 1,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__openvins/run10001.json",
+    "sha256": "7a7a9613d1fb067f57268891fabc89eb0a498627601e81ca33aa1f70b1d1aab9"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/openvins",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/openvins/default/r2",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002",
+   "runner_exit_code": 1,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__openvins/run10002.json",
+    "sha256": "d47da77fac26175525940711c566006bedb36f1021808187e2e7ce779000b918"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/openvins",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/openvins/default/r3",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003",
+   "runner_exit_code": 1,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__openvins/run10003.json",
+    "sha256": "84a2dc6335409b234e6921a243b3fbd9c4b3248b7a4ab1fa9e7e07611a51c8ec"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/orbslam3",
+   "repetition": 2,
+   "physical_run_id": 10003,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/orbslam3/default/r2",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__orbslam3/run10003.json",
+    "sha256": "b88d53a5072f22f2ae9969ef46be9bed036eb5ef8c7ebbcb54378a921f8c1010"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/orbslam3",
+   "repetition": 3,
+   "physical_run_id": 10004,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/orbslam3/default/r3",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10004",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__orbslam3/run10004.json",
+    "sha256": "9fdf55fe9def7c7b390c23ea50fec98fb4d48f3424aa5e6c729d9bef5ea9d0f7"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/default/r1",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__voxel_svio/run10001.json",
+    "sha256": "1f39b95ace54b2b8e99334198066e9ec0a78caf58d1d4367f57f0a3e77b6c647"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/default/r2",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__voxel_svio/run10002.json",
+    "sha256": "b6fcd1f24b4d341285e039a226bc5ce0c741527155f4d9cf7d6ef8ece8c9b17b"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/default/r3",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__voxel_svio/run10003.json",
+    "sha256": "16d5a6032962db4b0f375d3fbfd1b1268b15ae0d72785e91d376ba5fdda1a788"
+   }
+  }
+ ]
+}
