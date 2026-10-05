@@ -69,10 +69,13 @@ def completed_zed_selections(repo):
     return selected
 
 
-BATCH_SELECTIONS=('configs/campaigns/zed-vio-n3-attempts-20261003.json','configs/campaigns/production-attempts-20261004.json')
+BATCH_SELECTIONS=('configs/campaigns/zed-vio-n3-attempts-20261003.json','configs/campaigns/production-attempts-20261004.json',
+                  'configs/campaigns/production-replacements-20261005.json','configs/campaigns/production-replacements-20261005b.json')
 # Comparison group recorded on the cells each batch selection lists.
 BATCH_LABELS={'configs/campaigns/zed-vio-n3-attempts-20261003.json':'zed_vio_n3_20261003',
-              'configs/campaigns/production-attempts-20261004.json':'production_20261004'}
+              'configs/campaigns/production-attempts-20261004.json':'production_20261004',
+              'configs/campaigns/production-replacements-20261005.json':'production_20261004',
+              'configs/campaigns/production-replacements-20261005b.json':'production_20261004'}
 TERMINAL=('evaluated','evaluated_failure_or_review','no_trajectory','evaluation_failed')
 
 
@@ -84,6 +87,8 @@ def completed_batch_selections(repo, earlier, labels=None):
     same physical attempt an earlier verified selection already chose, or the cell's
     default slot (physical id = repetition) when the batch did not run it. The batch
     status is a batch driver's attempt list or a frozen run_future_manifest state.
+    A later record may list a cell an earlier record listed, filling only repetitions
+    still at their default slot; it never replaces an attempt already selected.
     """
     selected={}
     for name in BATCH_SELECTIONS:
@@ -111,14 +116,19 @@ def completed_batch_selections(repo, earlier, labels=None):
                       if a.get('status') in ('evaluated','failure_or_review')}
         records={(r['cell'],r['repetition']):r for r in value['completed']}
         if len(records)!=len(value['completed']):raise ValueError('duplicate batch-selection record')
+        listed=set()
         for key,ids in value['cells'].items():
-            if key in selected or len(ids)!=3:raise ValueError('batch selection must list three repetitions once per cell')
+            if key in listed or len(ids)!=3:raise ValueError('batch selection must list three repetitions once per cell')
+            listed.add(key)
+            prior=selected.get(key) or earlier.get(key,[None]*3)
             for repetition,run_id in enumerate(ids,1):
                 record=records.pop((key,repetition),None)
                 if record is None:
-                    if earlier.get(key,[None]*3)[repetition-1]!=run_id and run_id!=repetition:
+                    if prior[repetition-1]!=run_id and run_id!=repetition:
                         raise ValueError(f'{key} r{repetition}: neither in this batch, previously selected nor the default slot')
                     continue
+                if key in selected and selected[key][repetition-1]!=repetition:
+                    raise ValueError(f'{key} r{repetition}: a later batch may not replace an attempt an earlier batch selected')
                 if record['physical_run_id']!=run_id or record['path']!=f'results/{key}/run{run_id}':
                     raise ValueError('batch record differs from its cell listing: '+key)
                 actions=[a for a in manifest['actions'] if a['id']==record['action_id']]

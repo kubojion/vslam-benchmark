@@ -42,6 +42,8 @@ def main():
         ap.add_argument('--' + name, type=Path, required=True)
     ap.add_argument('--frozen-status', type=Path, help='copy of a run_future_manifest state (required for one)')
     ap.add_argument('--exclude', action='append', default=[], metavar='ACTION_ID=REASON')
+    ap.add_argument('--carry', type=Path, action='append', default=[],
+                    help='earlier batch selection whose listing fills repetitions this batch did not run')
     args = ap.parse_args()
     status_path, manifest_path, frozen, output = (REPO / p for p in (args.status, args.manifest, args.frozen, args.output))
     status = json.loads(status_path.read_text())
@@ -71,6 +73,9 @@ def main():
     manifest = json.loads(frozen.read_text())
     actions = {a['id']: a for a in manifest['actions']}
     earlier = json.loads((REPO / EARLIER).read_text())['cells'] if (REPO / EARLIER).is_file() else {}
+    carried = {}
+    for path in args.carry:
+        carried.update(json.loads((REPO / path).read_text())['cells'])
 
     completed, cells, left_out = [], {}, []
     for attempt in status['attempts']:
@@ -93,6 +98,8 @@ def main():
         for repetition in (1, 2, 3):
             if repetition in reps:
                 ids.append(reps[repetition])
+            elif key in carried:
+                ids.append(carried[key][repetition - 1])
             elif key in earlier and earlier[key][repetition - 1] >= 10001:
                 ids.append(earlier[key][repetition - 1])
             else:
@@ -104,6 +111,7 @@ def main():
                          'excluded with a reason stay unselected; qualification needs claim review.',
                   source_manifest=evidence(frozen), batch_status=evidence(status_path),
                   earlier_selection=evidence(REPO / EARLIER) if (REPO / EARLIER).is_file() else None,
+                  carried_selections=[evidence(REPO / p) for p in args.carry],
                   cells=listing, completed=sorted(completed, key=lambda r: (r['cell'], r['repetition'])),
                   excluded=left_out)
     output.write_text(json.dumps(record, indent=1) + '\n')

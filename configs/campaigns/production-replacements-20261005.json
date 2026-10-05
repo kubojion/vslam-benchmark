@@ -1,0 +1,61 @@
+{
+ "schema": 1,
+ "policy": "Select every finished attempt of the batch regardless of outcome; repetitions not run in the batch come from the earlier verified selection or keep the default slot; attempts excluded with a reason stay unselected; qualification needs claim review.",
+ "source_manifest": {
+  "path": "results/window-20261004/post/executed-manifest-replacements.json",
+  "sha256": "e5981750d6ad0776a129b2731455b0c80714a76c1a0367a7120c2c1f7ed97749"
+ },
+ "batch_status": {
+  "path": "results/window-20261004/post/executor-state-replacements.json",
+  "sha256": "c6b0d32f3411c8e28e2d8b155e58ab9eccd51baced99bca95c711809a8943990"
+ },
+ "earlier_selection": {
+  "path": "configs/campaigns/zed-vio-first-attempts-20261002.json",
+  "sha256": "4628e67e4509487380d10d00aebcf7593103233fcd714289f6b38cc616f12dc3"
+ },
+ "carried_selections": [
+  {
+   "path": "configs/campaigns/production-attempts-20261004.json",
+   "sha256": "dae4c4ace317cd483de38150e0ca024504ed9b513b7ae56815dffea78f76a266"
+  }
+ ],
+ "cells": {
+  "vo/citrusfarm/seq07/dpvo": [
+   10002,
+   2,
+   3
+  ],
+  "vo/rosariov2/sequence5/orbslam3": [
+   10004,
+   10002,
+   10003
+  ]
+ },
+ "completed": [
+  {
+   "cell": "vo/citrusfarm/seq07/dpvo",
+   "repetition": 1,
+   "physical_run_id": 10002,
+   "action_id": "vo/citrusfarm/seq07/dpvo/default/r1",
+   "path": "results/vo/citrusfarm/seq07/dpvo/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq07__dpvo/run10002.json",
+    "sha256": "48318e05ecd496e282bc40846e57f9419dde933a045bc11863a9b70bf51cd29d"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence5/orbslam3",
+   "repetition": 1,
+   "physical_run_id": 10004,
+   "action_id": "vo/rosariov2/sequence5/orbslam3/default/r1",
+   "path": "results/vo/rosariov2/sequence5/orbslam3/run10004",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence5__orbslam3/run10004.json",
+    "sha256": "703d044a35a62f4efaef8c05ebe7c63a9bc7c16a2685f8c2576dbcae6f2cdd87"
+   }
+  }
+ ],
+ "excluded": []
+}

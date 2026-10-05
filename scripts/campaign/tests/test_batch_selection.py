@@ -103,3 +103,49 @@ def test_executor_state_of_another_plan_revision_is_refused(tmp_path):
     executor_fixture(tmp_path, plan_hash='0' * 64)
     with pytest.raises(ValueError, match='another plan revision'):
         completed_batch_selections(tmp_path, {})
+
+
+def replacement_fixture(root, earlier_ran_r1=False):
+    """A later executor batch fills r1 of a cell whose r2/r3 (and optionally r1) an earlier record selected."""
+    key = 'vo/rosariov2/sequence5/orbslam3'
+
+    def batch(index, plan, name):
+        actions, records = [], []
+        for repetition, run_id in plan:
+            action = dict(id=f'{key}/default/r{repetition}', cell=key, repetition=repetition,
+                          planned_output=f'results/{key}/run{run_id}', cohort='c')
+            actions.append(action)
+            state = write(root, f'results/.attempt-state/{key.replace("/", "__")}/run{run_id}.json',
+                          dict(status='evaluated', identity=dict(cohort='c', repetition=repetition, physical_run_id=run_id)))
+            records.append(dict(cell=key, repetition=repetition, physical_run_id=run_id, action_id=action['id'],
+                                path=action['planned_output'], attempt_state=state))
+        frozen = write(root, f'frozen-plan-{index}.json', dict(actions=actions))
+        executor = write(root, f'executor-state-{index}.json', dict(manifest_sha256=frozen['sha256'],
+                         actions={a['id']: dict(status='evaluated') for a in actions}))
+        ids = [dict(plan).get(r, r) for r in (1, 2, 3)]
+        write(root, name, dict(schema=1, source_manifest=frozen, batch_status=executor, cells={key: ids}, completed=records))
+        return ids
+
+    first = batch(1, ([(1, 10001)] if earlier_ran_r1 else []) + [(2, 10002), (3, 10003)], BATCH_SELECTIONS[1])
+    actions = [dict(id=f'{key}/default/r1', cell=key, repetition=1, planned_output=f'results/{key}/run10004', cohort='c')]
+    state = write(root, f'results/.attempt-state/{key.replace("/", "__")}/run10004.json',
+                  dict(status='evaluated', identity=dict(cohort='c', repetition=1, physical_run_id=10004)))
+    frozen = write(root, 'frozen-plan-2.json', dict(actions=actions))
+    executor = write(root, 'executor-state-2.json', dict(manifest_sha256=frozen['sha256'],
+                                                        actions={actions[0]['id']: dict(status='evaluated')}))
+    write(root, BATCH_SELECTIONS[2], dict(schema=1, source_manifest=frozen, batch_status=executor,
+                                          cells={key: [10004] + first[1:]},
+                                          completed=[dict(cell=key, repetition=1, physical_run_id=10004, action_id=actions[0]['id'],
+                                                          path=actions[0]['planned_output'], attempt_state=state)]))
+    return key
+
+
+def test_a_later_batch_fills_a_default_slot_left_by_an_earlier_batch(tmp_path):
+    key = replacement_fixture(tmp_path)
+    assert completed_batch_selections(tmp_path, {})[key] == [10004, 10002, 10003]
+
+
+def test_a_later_batch_never_replaces_an_attempt_an_earlier_batch_selected(tmp_path):
+    replacement_fixture(tmp_path, earlier_ran_r1=True)
+    with pytest.raises(ValueError, match='may not replace'):
+        completed_batch_selections(tmp_path, {})

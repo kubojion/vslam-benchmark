@@ -13,6 +13,7 @@
   "path": "configs/campaigns/zed-vio-first-attempts-20261002.json",
   "sha256": "4628e67e4509487380d10d00aebcf7593103233fcd714289f6b38cc616f12dc3"
  },
+ "carried_selections": [],
  "cells": {
   "vio/citrusfarm/seq04/airslam": [
    10001,
@@ -270,11 +271,6 @@
    10003
   ],
   "vio/zed2i/field1_110426_full_10fps_q90/cuvslam": [
-   10001,
-   2,
-   3
-  ],
-  "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion": [
    10001,
    2,
    3
@@ -1870,18 +1866,6 @@
    }
   },
   {
-   "cell": "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion",
-   "repetition": 1,
-   "physical_run_id": 10001,
-   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/default/r1",
-   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run10001",
-   "runner_exit_code": 1,
-   "attempt_state": {
-    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__mast3r_fusion/run10001.json",
-    "sha256": "908bd15047e653360ac9266cd4936895bf2899b9e1371c4f1af422e9ac6e50af"
-   }
-  },
-  {
    "cell": "vio/zed2i/field1_110426_full_10fps_q90/svo_pro",
    "repetition": 1,
    "physical_run_id": 10001,
@@ -2890,6 +2874,12 @@
    "status": "finished",
    "path": "results/vo/citrusfarm/seq07/dpvo/run10001",
    "reason": "overflowed the configured BUFFER_SIZE 8192 after 282 s and hung (stopped 22:43); a capacity setting, raised to 16384 in 50ee4ed, not an estimator outcome; the repetition is planned again"
+  },
+  {
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/default/r1",
+   "status": "finished",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run10001",
+   "reason": "estimation completed (46282 poses) but the provenance enrichment (_enrich_run_meta.py) crashed with a segmentation fault, leaving no verifiable run record (exit, captures, configuration); an infrastructure failure, not an estimator outcome; the repetition is planned again"
   }
  ]
 }
