@@ -64,14 +64,14 @@ observed failures—not necessarily three successful runs.** N counts verified,
 completed attempts; A also includes attempts awaiting review or using invalid
 settings. Unverified or invalid history is labelled `3 recorded` or `1 recorded`;
 recorded attempts are not presented as verified repetitions.
-`✔ N=1 + ✔ N=2` denotes separate implementation groups; it cannot be pooled into N=3.
+`🟢 N=1 + 🟢 N=2` denotes separate implementation groups; it cannot be pooled into N=3.
 
 | Mark | Meaning |
 |---|---|
 | 🟥 | Leading marker: a confirmed rerun is required; takes precedence over review |
 | 🟨 | Leading marker: unresolved review, with no confirmed rerun assumed |
 | ✅ N=3 | Three verified attempts in one implementation group, including valid observed failures |
-| ✔ N=1 / ✔ N=2 | Verified partial group; separate groups remain separate |
+| 🟢 N=1 / 🟢 N=2 | Verified partial group (fewer than three verified attempts); separate groups remain separate |
 | 🔴 | Beside a confirmed rerun requirement: not ready, including unverified readiness |
 | 🔄 | Beside a confirmed rerun requirement: reviewed execution checks passed (ready) |
 | 🟡 | Beside an unresolved evidence/reference/evaluation/execution review item |
@@ -80,7 +80,7 @@ recorded attempts are not presented as verified repetitions.
 | ➖ | Excluded; historical counts and reported failures remain visible |
 
 Cells show saved-run verification and **next** action readiness separately when
-needed. For example, `🟨 ✔ N=1; A2/E1/S1/F1; 🟡 review; next: new group ready`
+needed. For example, `🟨 🟢 N=1; A2/E1/S1/F1; 🟡 review; next: new group ready`
 retains the verified observation and failed attempt while reporting the reviewed
 future plan. `rerun` is reserved for a confirmed setup defect; a planned new
 implementation group is labelled `new group`. Mixed readiness is stated as a
@@ -268,7 +268,7 @@ def render_cell(cell, campaigns=()):
     if review['protocol_verified_n3']:
         label = '✅ N=3'
     elif groups and all(n in (1, 2) for n in groups):
-        label = ' + '.join(f'✔ N={n}' for n in groups)
+        label = ' + '.join(f'🟢 N={n}' for n in groups)
     else:
         label = f"{review['attempt_count']} recorded" if review['attempt_count'] else 'no attempts'
     # Rerun/review severity leads the cell; verification and readiness are separate.
@@ -420,7 +420,7 @@ def render_details(inventory, inventory_sha, campaigns):
              'Rosario candidates are integrated into main; native readiness remains unverified.',
              'See [integration and remaining prerequisites](rosario-main-integration-20261002.md).',
              'Rerun items use 🔴 for not ready and 🔄 for verified ready; review items use 🟡.',
-             '✅ N=3 and ✔ N=1/N=2 describe verified groups. Unverified or invalid history',
+             '✅ N=3 and 🟢 N=1/N=2 describe verified groups. Unverified or invalid history',
              'uses recorded-attempt counts; it never receives a verified repetition label.', '',
              'Common limits: accuracy is conditional on saved exports and reference support; no measured',
              'processing-rate or real-time deadline claim is established. ZED uses the qualified nominal',

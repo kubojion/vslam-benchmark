@@ -58,8 +58,8 @@ def test_setup_rerun_and_reference_review_are_both_visible():
 def test_separate_groups_keep_failure_and_unknown_is_not_success():
     c = cell([attempt(1, exit_code=134, cohort='old'), attempt(2), attempt(3)])
     rendered = render_cell(c)
-    assert rendered.startswith('[🟨 ✔ N=1 + ✔ N=2]')
-    assert '✔ N=1 + ✔ N=2' in rendered and 'A3/E3/S2/F1' in rendered and '✅' not in rendered
+    assert rendered.startswith('[🟨 🟢 N=1 + 🟢 N=2]')
+    assert '🟢 N=1 + 🟢 N=2' in rendered and 'A3/E3/S2/F1' in rendered and '✅' not in rendered
     c = cell([attempt(1, verified='blocked', exit_code=None)])
     assert render_cell(c).startswith('[🟨 1 recorded]')
     assert 'A1/E1/S0/F0/U1' in render_cell(c)
@@ -179,12 +179,12 @@ def absent(run):
 
 
 def test_complete_requested_symbol_legend_and_verified_partial_counts():
-    assert all(symbol in LEGEND for symbol in ['🟥', '🟨', '✅', '✔', '🔄', '🔴', '🟡', '❌', '🔜', '➖'])
+    assert all(symbol in LEGEND for symbol in ['🟥', '🟨', '✅', '🟢', '🔄', '🔴', '🟡', '❌', '🔜', '➖'])
     for n in (1, 2):
         c = cell([attempt(i, exit_code=139 if i == 1 else 0) if i <= n else absent(i) for i in (1, 2, 3)])
         campaign = plan(c, ['reusable'] * n + ['missing'] * (3 - n))
         rendered = render_cell(c, [campaign])
-        assert f'✔ N={n}' in rendered and f'A{n}/E{n}/S{n-1}/F1' in rendered
+        assert f'🟢 N={n}' in rendered and f'A{n}/E{n}/S{n-1}/F1' in rendered
         assert f'next: missing {3-n} ready' in rendered and '✅' not in rendered
         assert rendered.count('missing') == 1 and 'N=0' not in rendered
 
@@ -220,8 +220,8 @@ def test_verified_saved_observation_and_unresolved_review_coexist_with_ready_new
     c['attempts'][1]['qualification']['blockers'] = ['native_execution_cause_and_usable_export_missing']
     campaign = plan(c, ['cohort_completion', 'cohort_completion', 'missing'])
     result = render_cell(c, [campaign])
-    assert result.startswith('[🟨 ✔ N=1]')
-    assert '✔ N=1' in result and 'A2/E2/S1/F1' in result
+    assert result.startswith('[🟨 🟢 N=1]')
+    assert '🟢 N=1' in result and 'A2/E2/S1/F1' in result
     assert '🟡 review: execution' in result and 'next: new group 3 ready' in result
     assert 'rerun' not in result and '🔄' not in result
 
@@ -245,8 +245,8 @@ def test_verified_partial_and_confirmed_rerun_are_both_shown():
     c['attempts'][0] = attempt(1, exit_code=139)
     campaign = plan(c, ['reusable', 'required_rerun', 'required_rerun'])
     result = render_cell(c, [campaign])
-    assert result.startswith('[🟥 ✔ N=1]')
-    assert '✔ N=1' in result and '🔄 rerun ready: FPS' in result
+    assert result.startswith('[🟥 🟢 N=1]')
+    assert '🟢 N=1' in result and '🔄 rerun ready: FPS' in result
     assert 'A3/E3/S2/F1' in result and '✅' not in result
 
 
