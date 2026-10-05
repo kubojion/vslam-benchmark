@@ -36,7 +36,8 @@ the camera-clock IMU input below is not applied twice. Attempt-level records:
 | VO, VO-LC | ORB-SLAM3 (library decision, 3 October), OV2SLAM | 24 |
 | all | cuVSLAM, SVO Pro, DSOL, MASt3R-Fusion (not yet run) | 60 |
 
-Plus OpenVINS VIO on ZED (3) and CitrusFarm (seq04, seq07: 6). Kept and re-evaluated only:
+Plus OpenVINS VIO on ZED (3) and CitrusFarm (seq04, seq07: 6), and ORB-SLAM3 VO and VIO on CitrusFarm
+seq04/seq07, whose r1 is replaced after the ORB-SLAM3 source commit (section 5). Kept and re-evaluated only:
 Basalt VO, OKVIS2 and OKVIS2-X VO/VO-LC, AirSLAM VO/VO-LC, MAC-VO, DPVO and DPV-SLAM.
 
 ## 4. Evaluation-side items (no rerun)
@@ -52,9 +53,9 @@ Basalt VO, OKVIS2 and OKVIS2-X VO/VO-LC, AirSLAM VO/VO-LC, MAC-VO, DPVO and DPV-
 
 ## 5. Open
 
-- ORB-SLAM3 `Examples/Stereo-Inertial/stereo_inertial_euroc.cc` carries an uncommitted bounds fix
-  (str03's IMU starts 0.10 s after the first frame). It is compiled into the binary and recorded by
-  every run (source diff digest and captured file). Committing it changes ORB-SLAM3's recorded source
-  identity, so CitrusFarm ORB-SLAM3 cells with only r1 could no longer be pooled with later
-  repetitions; left for the user to decide before the batch.
+- ORB-SLAM3 `Examples/Stereo-Inertial/stereo_inertial_euroc.cc` bounds fix (str03's IMU starts 0.10 s after
+  the first frame): compiled into the binary since 15 September and recorded per run as an uncommitted diff;
+  committed in the submodule on 5 October (user). Because the recorded source identity changes, the
+  CitrusFarm ORB-SLAM3 VO and VIO cells holding only r1 cannot be pooled with later repetitions, so r1 is
+  replaced (`orb_source_commit_single_group`).
 - Rosario (parked by the user): one IMU noise profile, OpenVINS frame loss, AirSLAM depth threshold.

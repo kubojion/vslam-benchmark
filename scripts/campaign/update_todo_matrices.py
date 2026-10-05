@@ -49,6 +49,7 @@ RERUN_LABELS = {
     'horti_imu_profile_and_clock_inconsistent': 'IMU noise/timing',
     'ov2slam_horti_dataset_specific_parameters': 'tuning',
     'openvins_track_frequency_dropped_frames': 'frame drop',
+    'orb_source_identity_changed_partial_cell': 'one group',
 }
 LEGEND = """<!-- todo-matrix-legend:start -->
 **A = recorded attempts; E = trajectories evaluated; S = clean final exports;

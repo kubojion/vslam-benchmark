@@ -152,7 +152,7 @@ def test_recorded_decisions_cover_the_decided_attempts():
     record = json.loads((REPO / 'docs/campaigns/user-rerun-decisions-20261005.json').read_text())
     counts = record['counts']
     assert (counts['horti_inertial_one_profile'], counts['ov2slam_horti_parameters'],
-            counts['openvins_frame_throttle']) == (62, 12, 7)
+            counts['openvins_frame_throttle'], counts['orb_source_commit_single_group']) == (62, 12, 7, 4)
     for path, pinned in record['attempts'].items():
         mode, ds, seq, algo, run = path.split('/')
         # Container-based estimators save no host binaries; the record still pins the exact path.
