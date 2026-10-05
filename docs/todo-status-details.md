@@ -1,7 +1,7 @@
 # TODO status details
 
 Generated presentation of the reviewed inventory; no acceptance decisions or scores are changed.
-Inventory SHA-256: `1ebf1d964147ecfc2125b3aa2e1b5f60c5a6f32f2a4676ed7a592cbf5a493c19`. [Matrix legend](../TODO.md#run-combinations-matrix).
+Inventory SHA-256: `9a88d7a0d142df93b1514fbfaaba1698ecda6bd5fa3fb92d0560d2e503a3bd76`. [Matrix legend](../TODO.md#run-combinations-matrix).
 [Source inventory](../results/repair-20261001/inventory.json); [acceptance ledger](campaigns/paper-acceptance-20261001.json); [review definitions](protocol-review-20261002.md).
 
 N counts completed verified attempts. Counts describe the selected physical runs, including
@@ -2310,22 +2310,22 @@ Prerequisites: none.
 <a id="vo-citrusfarm-seq04-orbslam3"></a>
 ## vo/citrusfarm/seq04/orbslam3
 
-**A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
+**A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 2 not ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run10001](../results/vo/citrusfarm/seq04/orbslam3/run10001) | verified | success | 0 | yes |
+| 1 | [run10001](../results/vo/citrusfarm/seq04/orbslam3/run10001) | blocked | success | 0 | yes |
 | 2 | [run2](../results/vo/citrusfarm/seq04/orbslam3/run2) | blocked | not_attempted | unknown | no |
 | 3 | [run3](../results/vo/citrusfarm/seq04/orbslam3/run3) | blocked | not_attempted | unknown | no |
 
-Group `c44e576345b90e9c1a9aafd3b6c47f8d100054c483cb6722be36e4fd8875bc85`: 1 verified / 1 recorded; `run10001`.
+Group `c44e576345b90e9c1a9aafd3b6c47f8d100054c483cb6722be36e4fd8875bc85`: 0 verified / 1 recorded; `run10001`.
 
-Confirmed setup findings: none.
-Review blockers: `missing_repetition`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `export_coverage_below_95_percent_no_clean_success_tick`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
+Confirmed setup findings: `orb_source_identity_changed_partial_cell`.
+Review blockers: `confirmed_estimator_defect_prevents_acceptance`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
@@ -2565,22 +2565,22 @@ Prerequisites: none.
 <a id="vo-citrusfarm-seq07-orbslam3"></a>
 ## vo/citrusfarm/seq07/orbslam3
 
-**A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
+**A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 2 not ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run10001](../results/vo/citrusfarm/seq07/orbslam3/run10001) | verified | success | 0 | yes |
+| 1 | [run10001](../results/vo/citrusfarm/seq07/orbslam3/run10001) | blocked | success | 0 | yes |
 | 2 | [run2](../results/vo/citrusfarm/seq07/orbslam3/run2) | blocked | not_attempted | unknown | no |
 | 3 | [run3](../results/vo/citrusfarm/seq07/orbslam3/run3) | blocked | not_attempted | unknown | no |
 
-Group `c44e576345b90e9c1a9aafd3b6c47f8d100054c483cb6722be36e4fd8875bc85`: 1 verified / 1 recorded; `run10001`.
+Group `c44e576345b90e9c1a9aafd3b6c47f8d100054c483cb6722be36e4fd8875bc85`: 0 verified / 1 recorded; `run10001`.
 
-Confirmed setup findings: none.
-Review blockers: `missing_repetition`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `export_coverage_below_95_percent_no_clean_success_tick`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
+Confirmed setup findings: `orb_source_identity_changed_partial_cell`.
+Review blockers: `confirmed_estimator_defect_prevents_acceptance`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
@@ -6342,22 +6342,22 @@ Prerequisites: none.
 <a id="vio-citrusfarm-seq04-orbslam3"></a>
 ## vio/citrusfarm/seq04/orbslam3
 
-**A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
+**A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 2 not ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run10001](../results/vio/citrusfarm/seq04/orbslam3/run10001) | verified | success | 0 | yes |
+| 1 | [run10001](../results/vio/citrusfarm/seq04/orbslam3/run10001) | blocked | success | 0 | yes |
 | 2 | [run2](../results/vio/citrusfarm/seq04/orbslam3/run2) | blocked | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/citrusfarm/seq04/orbslam3/run3) | blocked | not_attempted | unknown | no |
 
-Group `a63f66df631d68a3470c4e995767967c4a973d85ad7bd7d3793f5c2f562a8315`: 1 verified / 1 recorded; `run10001`.
+Group `a63f66df631d68a3470c4e995767967c4a973d85ad7bd7d3793f5c2f562a8315`: 0 verified / 1 recorded; `run10001`.
 
-Confirmed setup findings: none.
-Review blockers: `missing_repetition`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
+Confirmed setup findings: `orb_source_identity_changed_partial_cell`.
+Review blockers: `confirmed_estimator_defect_prevents_acceptance`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
@@ -6572,22 +6572,22 @@ Prerequisites: none.
 <a id="vio-citrusfarm-seq07-orbslam3"></a>
 ## vio/citrusfarm/seq07/orbslam3
 
-**A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
+**A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 2 not ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run10001](../results/vio/citrusfarm/seq07/orbslam3/run10001) | verified | success | 0 | yes |
+| 1 | [run10001](../results/vio/citrusfarm/seq07/orbslam3/run10001) | blocked | success | 0 | yes |
 | 2 | [run2](../results/vio/citrusfarm/seq07/orbslam3/run2) | blocked | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/citrusfarm/seq07/orbslam3/run3) | blocked | not_attempted | unknown | no |
 
-Group `a63f66df631d68a3470c4e995767967c4a973d85ad7bd7d3793f5c2f562a8315`: 1 verified / 1 recorded; `run10001`.
+Group `a63f66df631d68a3470c4e995767967c4a973d85ad7bd7d3793f5c2f562a8315`: 0 verified / 1 recorded; `run10001`.
 
-Confirmed setup findings: none.
-Review blockers: `missing_repetition`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
+Confirmed setup findings: `orb_source_identity_changed_partial_cell`.
+Review blockers: `confirmed_estimator_defect_prevents_acceptance`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
