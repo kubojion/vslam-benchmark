@@ -34,12 +34,13 @@ case "$RUN_TYPE" in
     *)      echo "[dpvo] ERROR: run_type must be vo (DPVO) or vo-lc (DPV-SLAM)" >&2; exit 2 ;;
 esac
 # DPVO stores every keyframe in a fixed buffer (BUFFER_SIZE, default 4096) and stops when
-# it is full. CitrusFarm seq04 overflows it (low, vibrating platform: many keyframes); the
-# other datasets fit, so they keep the default. Capacity only: no estimate changes while it fits.
+# it is full. CitrusFarm overflows it (low, vibrating platform: many keyframes); seq07 overflowed
+# 8192 too (2026-10-04), so CitrusFarm uses 16384, above its frame count (seq07: 10136), which
+# bounds the buffer. The other datasets fit the default. Capacity only: no estimate changes while it fits.
 BUFFER_PARAM=()
 if [[ "$DATASET" == "citrusfarm" ]]; then
-    DPVO_OPTS+=(BUFFER_SIZE 8192)
-    BUFFER_PARAM=(--param "buffer_size=8192")
+    DPVO_OPTS+=(BUFFER_SIZE 16384)
+    BUFFER_PARAM=(--param "buffer_size=16384")
 fi
 
 REPO="$WS/src/DPVO"
