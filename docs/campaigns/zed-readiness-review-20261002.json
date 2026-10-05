@@ -2651,9 +2651,7 @@
           ]
         }
       ],
-      "blockers": [
-        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
-      ],
+      "blockers": [],
       "diagnostic_attempt": "results/vio/zed2i/field1_diag60_20261002/orbslam3/run3",
       "diagnostic_scope": "600 images / 60 seconds; normal completion",
       "historical_failures_preserved": true,
@@ -3000,9 +2998,7 @@
           ]
         }
       ],
-      "blockers": [
-        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
-      ],
+      "blockers": [],
       "diagnostic_attempt": "results/vio/zed2i/field1_diag60_20261002/okvis2/run1",
       "diagnostic_scope": "600 images / 60 seconds; normal completion",
       "historical_failures_preserved": true,
@@ -3333,9 +3329,7 @@
           ]
         }
       ],
-      "blockers": [
-        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
-      ],
+      "blockers": [],
       "diagnostic_attempt": "results/vio/zed2i/field1_diag60_20261002/okvis2x/run1",
       "diagnostic_scope": "600 images / 60 seconds; normal completion",
       "historical_failures_preserved": true,
@@ -3720,9 +3714,7 @@
           ]
         }
       ],
-      "blockers": [
-        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
-      ],
+      "blockers": [],
       "diagnostic_attempt": "results/vio/zed2i/field1_diag60_20261002/airslam/run3",
       "diagnostic_scope": "600 images / 60 seconds; normal completion",
       "historical_failures_preserved": true,
@@ -4311,9 +4303,7 @@
           ]
         }
       ],
-      "blockers": [
-        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
-      ],
+      "blockers": [],
       "diagnostic_attempt": "results/vio/zed2i/field1_diag60_20261002/basalt/run3",
       "diagnostic_scope": "600 images / 60 seconds; normal completion",
       "historical_failures_preserved": true,
@@ -4403,8 +4393,7 @@
       ],
       "resolved_prerequisites": [],
       "blockers": [
-        "readiness_check_did_not_complete_review_required",
-        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+        "readiness_check_did_not_complete_review_required"
       ],
       "diagnostic_attempt": "results/vio/zed2i/field1_diag180_20261002/openvins/run90001",
       "diagnostic_scope": "recheck after e880c2c (runner gained a HortiMulti branch; OpenVINS track_frequency 31 where changed): field1_diag180_20261002; native exit 0; outcome ok; checked at 4b2b3f8655; previous check results/vio/zed2i/field1_diag60_20261002/openvins/run4; CHECK FAILED: audit: processed 733/1800 published frames (41 %); OpenVINS lags 1.0x paced playback (mean 24 ms, max 583 ms behind), so track_frequency 31 does not remove the drops; ATE 5.97 m, scale 0.40 over 180 s",
@@ -4844,9 +4833,7 @@
           ]
         }
       ],
-      "blockers": [
-        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
-      ],
+      "blockers": [],
       "diagnostic_attempt": "results/vio/zed2i/field1_diag180_20261002/voxel_svio/run90001",
       "diagnostic_scope": "recheck after e880c2c (runner gained a HortiMulti branch; OpenVINS track_frequency 31 where changed): field1_diag180_20261002; native exit 0; outcome ok; checked at 4b2b3f8655; previous check results/vio/zed2i/field1_diag180_20261002/voxel_svio/run4",
       "historical_failures_preserved": true,
@@ -5249,9 +5236,7 @@
           ]
         }
       ],
-      "blockers": [
-        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
-      ],
+      "blockers": [],
       "diagnostic_attempt": "results/vio-lc/zed2i/field1_diag60_20261002/orbslam3/run3",
       "diagnostic_scope": "600 images / 60 seconds; normal completion",
       "historical_failures_preserved": true,
@@ -5598,9 +5583,7 @@
           ]
         }
       ],
-      "blockers": [
-        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
-      ],
+      "blockers": [],
       "diagnostic_attempt": "results/vio-lc/zed2i/field1_diag60_20261002/okvis2/run1",
       "diagnostic_scope": "600 images / 60 seconds; normal completion",
       "historical_failures_preserved": true,
@@ -5931,9 +5914,7 @@
           ]
         }
       ],
-      "blockers": [
-        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
-      ],
+      "blockers": [],
       "diagnostic_attempt": "results/vio-lc/zed2i/field1_diag60_20261002/okvis2x/run1",
       "diagnostic_scope": "600 images / 60 seconds; normal completion",
       "historical_failures_preserved": true,
@@ -6372,9 +6353,7 @@
           ]
         }
       ],
-      "blockers": [
-        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
-      ],
+      "blockers": [],
       "diagnostic_attempt": "results/vio-lc/zed2i/field1_diag60_20261002/airslam/run3",
       "diagnostic_scope": "600 images / 60 seconds; normal completion",
       "historical_failures_preserved": true,
