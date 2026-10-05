@@ -4,9 +4,9 @@ Generated from the checked inventory. The [claim review](paper-acceptance-202610
 
 | Mode | Protocol-verified N=3 cells | Accepted accuracy claims | Limited accuracy claims | Failure-only claim observations | Required reruns | Missing | Blocked |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vo | 56 | 45 | 160 | 5 | 3 | 71 | 46 |
+| vo | 61 | 45 | 158 | 5 | 3 | 71 | 48 |
 | vo-lc | 26 | 27 | 51 | 1 | 3 | 71 | 57 |
-| vio | 47 | 27 | 159 | 8 | 24 | 68 | 14 |
+| vio | 56 | 27 | 156 | 4 | 24 | 68 | 21 |
 | vio-lc | 13 | 18 | 20 | 1 | 34 | 122 | 15 |
 | gnss-vio | 0 | 0 | 0 | 0 | 5 | 40 | 15 |
 
@@ -14,16 +14,16 @@ Protocol counts are separate from claim-status counts above. Success means a cle
 
 | Mode | Verified attempts | Verified failures | Attempts | Evaluated | Clean exports | Observed failures | Unknown |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vo | 210 | 23 | 259 | 256 | 226 | 33 | 0 |
+| vo | 208 | 23 | 259 | 256 | 226 | 33 | 0 |
 | vo-lc | 79 | 18 | 139 | 137 | 105 | 34 | 0 |
-| vio | 194 | 17 | 232 | 232 | 207 | 25 | 0 |
+| vio | 187 | 13 | 232 | 232 | 213 | 19 | 0 |
 | vio-lc | 39 | 1 | 88 | 86 | 86 | 2 | 0 |
 | gnss-vio | 0 | 0 | 20 | 20 | 0 | 2 | 18 |
 
 **OpenVINS cohort completeness:** each EuRoC sequence has historical N=1 plus patched N=2. The selected logical slots are consumed. One additional patched repetition per sequence would complete that implementation cohort, only if separately authorized. These three potential additions are separate from the 81 absent planned slots and are not scheduled here. Old cohorts are not resampled for success.
 
 
-Future default actions: 522 reusable observations, 122 required reruns, 372 missing repetitions, 94 blocked. The separately authorized focused EuRoC campaign is complete; its 24 attempts yielded 23 final evaluations and one retained native refinement failure. The later ZED preparation used bounded diagnostics only; no ZED production repetitions or push occurred.
+Future default actions: 513 reusable observations, 145 required reruns, 372 missing repetitions, 80 blocked. The separately authorized focused EuRoC campaign is complete; its 24 attempts yielded 23 final evaluations and one retained native refinement failure. The later ZED preparation used bounded diagnostics only; no ZED production repetitions or push occurred.
 
 ## Protocol-verified N=3 cells
 
@@ -38,6 +38,7 @@ Future default actions: 522 reusable observations, 122 required reruns, 372 miss
 | `vo/rosariov2/sequence1/dpvo` | recorded_profile_rosario_final_trajectory_sim3_monocular_shape |
 | `vo/rosariov2/sequence1/macvo` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
 | `vo/rosariov2/sequence1/cuvslam` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
+| `vo/rosariov2/sequence1/svo_pro` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
 | `vo/rosariov2/sequence1/dsol` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
 | `vo/rosariov2/sequence5/okvis2` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
 | `vo/rosariov2/sequence5/okvis2x` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
@@ -47,6 +48,7 @@ Future default actions: 522 reusable observations, 122 required reruns, 372 miss
 | `vo/rosariov2/sequence5/dpvo` | recorded_profile_rosario_final_trajectory_sim3_monocular_shape |
 | `vo/rosariov2/sequence5/macvo` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
 | `vo/rosariov2/sequence5/cuvslam` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
+| `vo/rosariov2/sequence5/svo_pro` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
 | `vo/rosariov2/sequence5/dsol` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_01_easy/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_01_easy/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
@@ -57,6 +59,7 @@ Future default actions: 522 reusable observations, 122 required reruns, 372 miss
 | `vo/euroc_mav/MH_01_easy/dpvo` | recorded_profile_euroc_final_trajectory_sim3_monocular_shape |
 | `vo/euroc_mav/MH_01_easy/macvo` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_01_easy/cuvslam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo/euroc_mav/MH_01_easy/svo_pro` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_01_easy/dsol` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_03_medium/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_03_medium/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
@@ -67,6 +70,7 @@ Future default actions: 522 reusable observations, 122 required reruns, 372 miss
 | `vo/euroc_mav/MH_03_medium/dpvo` | recorded_profile_euroc_final_trajectory_sim3_monocular_shape |
 | `vo/euroc_mav/MH_03_medium/macvo` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_03_medium/cuvslam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo/euroc_mav/MH_03_medium/svo_pro` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_03_medium/dsol` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_05_difficult/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_05_difficult/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
@@ -77,6 +81,7 @@ Future default actions: 522 reusable observations, 122 required reruns, 372 miss
 | `vo/euroc_mav/MH_05_difficult/dpvo` | recorded_profile_euroc_final_trajectory_sim3_monocular_shape |
 | `vo/euroc_mav/MH_05_difficult/macvo` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_05_difficult/cuvslam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vo/euroc_mav/MH_05_difficult/svo_pro` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/euroc_mav/MH_05_difficult/dsol` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo/zed2i/field1_110426_full_10fps_q90/okvis2` | nominal_zed_se3_final_position_accuracy |
 | `vo/zed2i/field1_110426_full_10fps_q90/okvis2x` | nominal_zed_se3_final_position_accuracy |
@@ -119,6 +124,8 @@ Future default actions: 522 reusable observations, 122 required reruns, 372 miss
 | `vio/rosariov2/sequence1/openvins` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
 | `vio/rosariov2/sequence1/voxel_svio` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
 | `vio/rosariov2/sequence1/cuvslam` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
+| `vio/rosariov2/sequence1/svo_pro` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
+| `vio/rosariov2/sequence1/mast3r_fusion` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
 | `vio/rosariov2/sequence5/orbslam3` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
 | `vio/rosariov2/sequence5/okvis2` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
 | `vio/rosariov2/sequence5/okvis2x` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
@@ -127,6 +134,8 @@ Future default actions: 522 reusable observations, 122 required reruns, 372 miss
 | `vio/rosariov2/sequence5/openvins` | None |
 | `vio/rosariov2/sequence5/voxel_svio` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
 | `vio/rosariov2/sequence5/cuvslam` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
+| `vio/rosariov2/sequence5/svo_pro` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
+| `vio/rosariov2/sequence5/mast3r_fusion` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_01_easy/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_01_easy/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_01_easy/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
@@ -135,6 +144,8 @@ Future default actions: 522 reusable observations, 122 required reruns, 372 miss
 | `vio/euroc_mav/MH_01_easy/openvins` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_01_easy/voxel_svio` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_01_easy/cuvslam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vio/euroc_mav/MH_01_easy/svo_pro` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vio/euroc_mav/MH_01_easy/mast3r_fusion` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_03_medium/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_03_medium/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_03_medium/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
@@ -143,6 +154,8 @@ Future default actions: 522 reusable observations, 122 required reruns, 372 miss
 | `vio/euroc_mav/MH_03_medium/openvins` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_03_medium/voxel_svio` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_03_medium/cuvslam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vio/euroc_mav/MH_03_medium/svo_pro` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vio/euroc_mav/MH_03_medium/mast3r_fusion` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_05_difficult/orbslam3` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_05_difficult/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_05_difficult/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
@@ -151,12 +164,13 @@ Future default actions: 522 reusable observations, 122 required reruns, 372 miss
 | `vio/euroc_mav/MH_05_difficult/openvins` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_05_difficult/voxel_svio` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/euroc_mav/MH_05_difficult/cuvslam` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vio/euroc_mav/MH_05_difficult/svo_pro` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
+| `vio/euroc_mav/MH_05_difficult/mast3r_fusion` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vio/zed2i/field1_110426_full_10fps_q90/orbslam3` | nominal_zed_se3_final_position_accuracy |
 | `vio/zed2i/field1_110426_full_10fps_q90/okvis2` | nominal_zed_se3_final_position_accuracy |
 | `vio/zed2i/field1_110426_full_10fps_q90/okvis2x` | nominal_zed_se3_final_position_accuracy |
 | `vio/zed2i/field1_110426_full_10fps_q90/airslam` | nominal_zed_se3_final_position_accuracy |
 | `vio/zed2i/field1_110426_full_10fps_q90/basalt` | nominal_zed_se3_final_position_accuracy |
-| `vio/zed2i/field1_110426_full_10fps_q90/openvins` | observed_divergence_or_native_stop_under_verified_zed_vio_profile |
 | `vio/zed2i/field1_110426_full_10fps_q90/voxel_svio` | nominal_zed_se3_final_position_accuracy |
 | `vio-lc/rosariov2/sequence1/okvis2` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
 | `vio-lc/rosariov2/sequence1/okvis2x` | recorded_profile_rosario_final_trajectory_se3_metric_accuracy |
@@ -319,7 +333,6 @@ Future default actions: 522 reusable observations, 122 required reruns, 372 miss
 | `results/vo/zed2i/field1_110426_full_10fps_q90/macvo/run3` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; historical_profile_accuracy_not_bitwise_build_reproduction; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; official_performant_profile_not_paper_reproduction_profile; unmeasured_field_clock_zero_offset_with_frozen_sensitivity; zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity |
 | `results/vo/zed2i/field1_110426_full_10fps_q90/cuvslam/run10001` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; recorded_native_assets_not_complete_transitive_build_reconstruction; unmeasured_field_clock_zero_offset_with_frozen_sensitivity |
 | `results/vo/zed2i/field1_110426_full_10fps_q90/svo_pro/run10001` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; authors_export_starts_after_keyframe_window_fills; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; recorded_native_assets_not_complete_transitive_build_reconstruction; unmeasured_field_clock_zero_offset_with_frozen_sensitivity |
-| `results/vo/citrusfarm/seq04/orbslam3/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; export_coverage_below_95_percent_no_clean_success_tick; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq04/okvis2/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq04/okvis2x/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq04/airslam/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction; sparse_keyframe_accuracy_only |
@@ -330,7 +343,6 @@ Future default actions: 522 reusable observations, 122 required reruns, 372 miss
 | `results/vo/citrusfarm/seq04/cuvslam/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq04/svo_pro/run10001` | valid_observed_failure | authors_export_starts_after_keyframe_window_fills; citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction; retain_failure_in_attempt_denominator; retain_observed_scale_collapse_in_attempt_denominator |
 | `results/vo/citrusfarm/seq04/dsol/run10001` | valid_observed_failure | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; constant_velocity_motion_prior_without_gyroscope; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction; retain_failure_in_attempt_denominator |
-| `results/vo/citrusfarm/seq07/orbslam3/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; export_coverage_below_95_percent_no_clean_success_tick; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq07/okvis2/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq07/okvis2x/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq07/airslam/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction; sparse_keyframe_accuracy_only |
@@ -531,31 +543,24 @@ Future default actions: 522 reusable observations, 122 required reruns, 372 miss
 | `results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; recorded_native_assets_not_complete_transitive_build_reconstruction; unmeasured_field_clock_zero_offset_with_frozen_sensitivity |
 | `results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10002` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; recorded_native_assets_not_complete_transitive_build_reconstruction; unmeasured_field_clock_zero_offset_with_frozen_sensitivity |
 | `results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10003` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; recorded_native_assets_not_complete_transitive_build_reconstruction; unmeasured_field_clock_zero_offset_with_frozen_sensitivity |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001` | valid_observed_failure | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; recorded_native_assets_not_complete_transitive_build_reconstruction; retain_failure_in_attempt_denominator; unmeasured_field_clock_zero_offset_with_frozen_sensitivity |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002` | valid_observed_failure | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; recorded_native_assets_not_complete_transitive_build_reconstruction; retain_failure_in_attempt_denominator; unmeasured_field_clock_zero_offset_with_frozen_sensitivity |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003` | valid_observed_failure | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; recorded_native_assets_not_complete_transitive_build_reconstruction; retain_failure_in_attempt_denominator; unmeasured_field_clock_zero_offset_with_frozen_sensitivity |
 | `results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; recorded_native_assets_not_complete_transitive_build_reconstruction; unmeasured_field_clock_zero_offset_with_frozen_sensitivity |
 | `results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10002` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; recorded_native_assets_not_complete_transitive_build_reconstruction; unmeasured_field_clock_zero_offset_with_frozen_sensitivity |
 | `results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10003` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; recorded_native_assets_not_complete_transitive_build_reconstruction; unmeasured_field_clock_zero_offset_with_frozen_sensitivity |
 | `results/vio/zed2i/field1_110426_full_10fps_q90/cuvslam/run10001` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; recorded_native_assets_not_complete_transitive_build_reconstruction; unmeasured_field_clock_zero_offset_with_frozen_sensitivity |
 | `results/vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run10001` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; authors_export_starts_after_keyframe_window_fills; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; recorded_native_assets_not_complete_transitive_build_reconstruction; unmeasured_field_clock_zero_offset_with_frozen_sensitivity |
 | `results/vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run10002` | accepted_with_limitation | approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof; recorded_native_assets_not_complete_transitive_build_reconstruction; single_camera_with_imu_scale_from_imu_and_learned_depth; unmeasured_field_clock_zero_offset_with_frozen_sensitivity |
-| `results/vio/citrusfarm/seq04/orbslam3/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vio/citrusfarm/seq04/okvis2/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vio/citrusfarm/seq04/okvis2x/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vio/citrusfarm/seq04/airslam/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction; sparse_keyframe_accuracy_only |
 | `results/vio/citrusfarm/seq04/basalt/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
-| `results/vio/citrusfarm/seq04/openvins/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vio/citrusfarm/seq04/voxel_svio/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vio/citrusfarm/seq04/cuvslam/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vio/citrusfarm/seq04/svo_pro/run10001` | accepted_with_limitation | authors_export_starts_after_keyframe_window_fills; citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vio/citrusfarm/seq04/mast3r_fusion/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction; single_camera_with_imu_scale_from_imu_and_learned_depth |
-| `results/vio/citrusfarm/seq07/orbslam3/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vio/citrusfarm/seq07/okvis2/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vio/citrusfarm/seq07/okvis2x/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vio/citrusfarm/seq07/airslam/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction; sparse_keyframe_accuracy_only |
 | `results/vio/citrusfarm/seq07/basalt/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
-| `results/vio/citrusfarm/seq07/openvins/run10001` | valid_observed_failure | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction; retain_failure_in_attempt_denominator; retain_observed_scale_collapse_in_attempt_denominator |
 | `results/vio/citrusfarm/seq07/voxel_svio/run10001` | valid_observed_failure | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction; retain_failure_in_attempt_denominator; retain_observed_scale_collapse_in_attempt_denominator |
 | `results/vio/citrusfarm/seq07/cuvslam/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vio/citrusfarm/seq07/svo_pro/run10001` | accepted_with_limitation | authors_export_starts_after_keyframe_window_fills; citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
@@ -584,46 +589,59 @@ Future default actions: 522 reusable observations, 122 required reruns, 372 miss
 
 ## Exact required reruns
 
-There are 122 remaining distinct confirmed cases after the current cohort selection. Superseded affected AirSLAM attempts remain in their original directories and the historical-cohort CSV. Preserve every original attempt and use a new physical ID/cohort.
+There are 145 remaining distinct confirmed cases after the current cohort selection. Superseded affected AirSLAM attempts remain in their original directories and the historical-cohort CSV. Preserve every original attempt and use a new physical ID/cohort.
 
 | Cell | Logical repetitions | Concrete defect |
 |---|---|---|
 | `vo/hortimulti/strawberry02/orbslam3` | r1 | historical_orb_library_identity_unverified |
+| `vo/hortimulti/strawberry02/ov2slam` | r1, r2, r3 | ov2slam_horti_dataset_specific_parameters |
 | `vo/hortimulti/strawberry03/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
+| `vo/hortimulti/strawberry03/ov2slam` | r1, r2, r3 | ov2slam_horti_dataset_specific_parameters |
 | `vo/zed2i/field1_110426_full_10fps_q90/orbslam3` | r1, r2, r3 | camera_fps_changed_15_to_10 |
+| `vo/citrusfarm/seq04/orbslam3` | r1 | orb_source_identity_changed_partial_cell |
+| `vo/citrusfarm/seq07/orbslam3` | r1 | orb_source_identity_changed_partial_cell |
 | `vo-lc/rosariov2/sequence1/orbslam3` | r1 | historical_orb_library_identity_unverified |
 | `vo-lc/rosariov2/sequence5/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
 | `vo-lc/hortimulti/strawberry02/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
+| `vo-lc/hortimulti/strawberry02/ov2slam` | r1, r2, r3 | ov2slam_horti_dataset_specific_parameters |
 | `vo-lc/hortimulti/strawberry03/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
+| `vo-lc/hortimulti/strawberry03/ov2slam` | r1, r2, r3 | ov2slam_horti_dataset_specific_parameters |
 | `vo-lc/euroc_mav/MH_01_easy/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
 | `vo-lc/euroc_mav/MH_03_medium/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
 | `vo-lc/euroc_mav/MH_05_difficult/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
 | `vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3` | r1, r2, r3 | camera_fps_changed_15_to_10 |
 | `vo-lc/zed2i/field1_110426_full_10fps_q90/airslam` | r1, r2, r3 | airslam_zed_vo_lc_split_workspace_groups |
-| `vio/hortimulti/strawberry02/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified;horti_camera_imu_time_offset_uncompensated |
-| `vio/hortimulti/strawberry02/okvis2` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
-| `vio/hortimulti/strawberry02/okvis2x` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
-| `vio/hortimulti/strawberry02/airslam` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
-| `vio/hortimulti/strawberry02/basalt` | r1, r2, r3 | basalt_horti_undocumented_imu_noise |
-| `vio/hortimulti/strawberry02/voxel_svio` | r1, r2, r3 | horti_voxel_initializer_camera_imu_offset_omitted |
-| `vio/hortimulti/strawberry03/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified;horti_camera_imu_time_offset_uncompensated |
-| `vio/hortimulti/strawberry03/okvis2` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
-| `vio/hortimulti/strawberry03/okvis2x` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
-| `vio/hortimulti/strawberry03/airslam` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
-| `vio/hortimulti/strawberry03/basalt` | r1, r2, r3 | basalt_horti_undocumented_imu_noise |
-| `vio/hortimulti/strawberry03/voxel_svio` | r1, r2, r3 | horti_voxel_initializer_camera_imu_offset_omitted |
+| `vio/hortimulti/strawberry02/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified;horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
+| `vio/hortimulti/strawberry02/okvis2` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
+| `vio/hortimulti/strawberry02/okvis2x` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
+| `vio/hortimulti/strawberry02/airslam` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
+| `vio/hortimulti/strawberry02/basalt` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;basalt_horti_undocumented_imu_noise |
+| `vio/hortimulti/strawberry02/openvins` | r1 | horti_imu_profile_and_clock_inconsistent;openvins_track_frequency_dropped_frames |
+| `vio/hortimulti/strawberry02/voxel_svio` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_voxel_initializer_camera_imu_offset_omitted |
+| `vio/hortimulti/strawberry03/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified;horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
+| `vio/hortimulti/strawberry03/okvis2` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
+| `vio/hortimulti/strawberry03/okvis2x` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
+| `vio/hortimulti/strawberry03/airslam` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
+| `vio/hortimulti/strawberry03/basalt` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;basalt_horti_undocumented_imu_noise |
+| `vio/hortimulti/strawberry03/openvins` | r1 | horti_imu_profile_and_clock_inconsistent;openvins_track_frequency_dropped_frames |
+| `vio/hortimulti/strawberry03/voxel_svio` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_voxel_initializer_camera_imu_offset_omitted |
+| `vio/zed2i/field1_110426_full_10fps_q90/openvins` | r1, r2, r3 | openvins_track_frequency_dropped_frames |
+| `vio/citrusfarm/seq04/orbslam3` | r1 | orb_source_identity_changed_partial_cell |
+| `vio/citrusfarm/seq04/openvins` | r1 | openvins_track_frequency_dropped_frames |
+| `vio/citrusfarm/seq07/orbslam3` | r1 | orb_source_identity_changed_partial_cell |
+| `vio/citrusfarm/seq07/openvins` | r1 | openvins_track_frequency_dropped_frames |
 | `vio-lc/rosariov2/sequence1/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
 | `vio-lc/rosariov2/sequence1/airslam` | r1, r2, r3 | rosario_identity_camera_imu_extrinsic |
 | `vio-lc/rosariov2/sequence5/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
 | `vio-lc/rosariov2/sequence5/airslam` | r1, r2, r3 | rosario_identity_camera_imu_extrinsic |
-| `vio-lc/hortimulti/strawberry02/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified;orb_horti_rectified_camera_imu_extrinsic;horti_camera_imu_time_offset_uncompensated |
-| `vio-lc/hortimulti/strawberry02/okvis2` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
-| `vio-lc/hortimulti/strawberry02/okvis2x` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
-| `vio-lc/hortimulti/strawberry02/airslam` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
-| `vio-lc/hortimulti/strawberry03/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified;orb_horti_rectified_camera_imu_extrinsic;horti_camera_imu_time_offset_uncompensated |
-| `vio-lc/hortimulti/strawberry03/okvis2` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
-| `vio-lc/hortimulti/strawberry03/okvis2x` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
-| `vio-lc/hortimulti/strawberry03/airslam` | r1, r2, r3 | horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/hortimulti/strawberry02/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified;horti_imu_profile_and_clock_inconsistent;orb_horti_rectified_camera_imu_extrinsic;horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/hortimulti/strawberry02/okvis2` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/hortimulti/strawberry02/okvis2x` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/hortimulti/strawberry02/airslam` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/hortimulti/strawberry03/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified;horti_imu_profile_and_clock_inconsistent;orb_horti_rectified_camera_imu_extrinsic;horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/hortimulti/strawberry03/okvis2` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/hortimulti/strawberry03/okvis2x` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/hortimulti/strawberry03/airslam` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
 | `vio-lc/euroc_mav/MH_01_easy/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
 | `vio-lc/euroc_mav/MH_03_medium/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
 | `vio-lc/euroc_mav/MH_05_difficult/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
@@ -807,7 +825,7 @@ Exact affected attempt IDs and evidence are in `results/acceptance-20261001/hand
 | gnss_reference_independence_and_global_frame_not_established | 15 |
 | historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified | 15 |
 | historical_workspace_digest_differs_keep_cohorts_separate | 3 |
-| horti_february_reference_generation_origin_and_timestamp_linkage_unresolved | 82 |
+| horti_february_reference_generation_origin_and_timestamp_linkage_unresolved | 68 |
 | native_execution_cause_and_usable_export_missing | 1 |
 | native_execution_cause_unresolved_recovered_causal_prefix_not_final_ba | 1 |
 
@@ -867,7 +885,7 @@ The following representatives cover the other algorithm/mode branches; a validat
 | `vio/euroc_mav/MH_03_medium/voxel_svio` | deferred | unknown |
 | `vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3` | ZED short check passed | unknown |
 
-The timing subtotal is 20.9 serialized hours for 73 of the 494 required/missing actions; 421 have no comparable complete same-cell timing. It excludes native-error samples, diagnostics, unresolved blocked cases and evaluation/capture overhead. No total-campaign runtime is justified.
+The timing subtotal is 19.2 serialized hours for 67 of the 517 required/missing actions; 450 have no comparable complete same-cell timing. It excludes native-error samples, diagnostics, unresolved blocked cases and evaluation/capture overhead. No total-campaign runtime is justified.
 
 ## Reproduction and preservation
 
