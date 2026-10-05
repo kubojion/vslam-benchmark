@@ -4,15 +4,15 @@ Generated from hash-checked schema-3 evaluations and matching CSVs. These are in
 
 | Mode | Planned defaults | Evaluated | Numerical ok | Scale collapse | Invalid trajectory | Nonzero exits | Protocol-verified N=3 cells |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vo | 330 | 256 | 253 | 3 | 0 | 6 | 56 |
+| vo | 330 | 256 | 253 | 3 | 0 | 6 | 61 |
 | vo-lc | 210 | 137 | 136 | 1 | 0 | 9 | 26 |
-| vio | 300 | 232 | 225 | 7 | 0 | 5 | 47 |
+| vio | 300 | 232 | 225 | 7 | 0 | 5 | 56 |
 | vio-lc | 210 | 86 | 86 | 0 | 0 | 2 | 13 |
 | gnss-vio | 60 | 20 | 19 | 0 | 1 | 0 | 0 |
 
 Legacy GNSS variants: 6 separate rows; not included in default repetition counts.
 
-Scientific statuses among existing headline attempts: accepted=117, accepted_with_limitation=390, blocked=153, rerun_required=69, valid_observed_failure=15.
+Scientific statuses among existing headline attempts: accepted=117, accepted_with_limitation=389, blocked=158, rerun_required=69, valid_observed_failure=11.
 
 ## Retained adverse outcomes
 
@@ -20,7 +20,7 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 |---|---|---:|---|
 | `results/gnss-vio/hortimulti/strawberry02/vins_fusion_gps/run1` | eval_failed | unknown | blocked |
 | `results/gnss-vio/rosariov2/sequence1/cifasis_gnss_si/run1` | ok | unknown | rerun_required |
-| `results/vio/citrusfarm/seq07/openvins/run10001` | scale_collapse | 0 | valid_observed_failure |
+| `results/vio/citrusfarm/seq07/openvins/run10001` | scale_collapse | 0 | blocked |
 | `results/vio/citrusfarm/seq07/voxel_svio/run10001` | scale_collapse | 0 | valid_observed_failure |
 | `results/vio/euroc_mav/MH_01_easy/voxel_svio/run1` | ok | 0 | accepted_with_limitation |
 | `results/vio/euroc_mav/MH_01_easy/voxel_svio/run2` | ok | 0 | accepted_with_limitation |
@@ -32,19 +32,13 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 | `results/vio/euroc_mav/MH_05_difficult/voxel_svio/run2` | ok | 0 | accepted_with_limitation |
 | `results/vio/euroc_mav/MH_05_difficult/voxel_svio/run3` | ok | 0 | accepted_with_limitation |
 | `results/vio/hortimulti/strawberry02/openvins/run1` | ok | 134 | blocked |
-| `results/vio/hortimulti/strawberry02/voxel_svio/run1` | ok | 0 | blocked |
-| `results/vio/hortimulti/strawberry02/voxel_svio/run2` | ok | 0 | blocked |
-| `results/vio/hortimulti/strawberry02/voxel_svio/run3` | ok | 0 | blocked |
 | `results/vio/hortimulti/strawberry03/openvins/run1` | ok | 134 | blocked |
-| `results/vio/hortimulti/strawberry03/voxel_svio/run1` | ok | 0 | blocked |
-| `results/vio/hortimulti/strawberry03/voxel_svio/run2` | ok | 0 | blocked |
-| `results/vio/hortimulti/strawberry03/voxel_svio/run3` | ok | 0 | blocked |
 | `results/vio/rosariov2/sequence1/openvins/run10002` | scale_collapse | 0 | valid_observed_failure |
 | `results/vio/rosariov2/sequence5/openvins/run10001` | scale_collapse | 0 | valid_observed_failure |
 | `results/vio/rosariov2/sequence5/openvins/run10003` | scale_collapse | 0 | valid_observed_failure |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001` | scale_collapse | 139 | valid_observed_failure |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002` | scale_collapse | 139 | valid_observed_failure |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003` | ok | 139 | valid_observed_failure |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001` | scale_collapse | 139 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002` | scale_collapse | 139 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003` | ok | 139 | blocked |
 | `results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4` | failed_without_trajectory | 139 | valid_observed_failure |
 | `results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | failed_without_trajectory | 139 | rerun_required |
 | `results/vo/citrusfarm/seq04/dsol/run10001` | failed_without_trajectory | 134 | valid_observed_failure |
@@ -128,9 +122,9 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 
 | Source | SHA-256 |
 |---|---|
-| `inventory.json` | `3a0327ebff960ad33a240551d9c13d9fab68a31a94a828a10c97c590469d1663` |
-| `benchmark-vo.csv` | `a86c3a6bf4350e4251df1d16127303bc0d6fd98a69aa5cc9f3a3f2f77e07f495` |
+| `inventory.json` | `1ebf1d964147ecfc2125b3aa2e1b5f60c5a6f32f2a4676ed7a592cbf5a493c19` |
+| `benchmark-vo.csv` | `9c540264565b53e3d72c5bce2c66ae47eea604032f7e2679bbedfa6f6659fa66` |
 | `benchmark-vo-lc.csv` | `f513dbc329ec860e4416c121b957c39d78850bc44877a07d5395a7f0ea2ba437` |
-| `benchmark-vio.csv` | `a135a8f996eccbdfbbfad1e6fc7d54df8104de4bfea5819ec54b5f7070e5aa3b` |
+| `benchmark-vio.csv` | `12038faee2fb356b90fc147f8a86bad1662a442671ac5a9ee5e285e778e04c64` |
 | `benchmark-vio-lc.csv` | `92b8a74e67d3d4a00f16e9cc4c64ea7a0321c70aa1458dc046cb65867dee6b87` |
 | `benchmark-gnss-vio.csv` | `7eccab1f3b593feedcf877b31ca5618f33a3b6dffcd196c60dc45848acd88494` |

@@ -1,7 +1,7 @@
 # TODO status details
 
 Generated presentation of the reviewed inventory; no acceptance decisions or scores are changed.
-Inventory SHA-256: `24aaaa955d75d2154d8cdd7684e56e20b9b63c46011653255d35de49f9142dde`. [Matrix legend](../TODO.md#run-combinations-matrix).
+Inventory SHA-256: `1ebf1d964147ecfc2125b3aa2e1b5f60c5a6f32f2a4676ed7a592cbf5a493c19`. [Matrix legend](../TODO.md#run-combinations-matrix).
 [Source inventory](../results/repair-20261001/inventory.json); [acceptance ledger](campaigns/paper-acceptance-20261001.json); [review definitions](protocol-review-20261002.md).
 
 N counts completed verified attempts. Counts describe the selected physical runs, including
@@ -63,12 +63,15 @@ Evidence validation errors (readiness is unverified):
 - stale or absent evidence: configs/vins_fusion/hortimulti_strawberry02.yaml
 - stale or absent evidence: configs/vins_fusion/hortimulti_strawberry03.yaml
 - stale or absent evidence: configs/voxel_svio/hortimulti.yaml
+- stale or absent evidence: scripts/campaign/build_repair_inventory.py
 - stale or absent evidence: scripts/campaign/protocol_findings.py
+- stale or absent evidence: scripts/campaign/tests/test_cohort_receipts.py
 - stale or absent evidence: scripts/campaign/tests/test_new_algorithm_calibration.py
 - stale or absent evidence: scripts/campaign/update_todo_matrices.py
 - stale or absent evidence: scripts/run/openvins_data_player.py
 - stale or absent evidence: scripts/run/run_openvins.sh
 - stale or absent evidence: scripts/run/run_voxel_svio.sh
+- stale or absent evidence: docs/campaigns/paper-acceptance-20261001.json
 
 ### zed-coherent-n3-20261002-main-integration
 
@@ -102,12 +105,15 @@ Evidence validation errors (readiness is unverified):
 - stale or absent evidence: configs/vins_fusion/hortimulti_strawberry02.yaml
 - stale or absent evidence: configs/vins_fusion/hortimulti_strawberry03.yaml
 - stale or absent evidence: configs/voxel_svio/hortimulti.yaml
+- stale or absent evidence: scripts/campaign/build_repair_inventory.py
 - stale or absent evidence: scripts/campaign/protocol_findings.py
+- stale or absent evidence: scripts/campaign/tests/test_cohort_receipts.py
 - stale or absent evidence: scripts/campaign/tests/test_new_algorithm_calibration.py
 - stale or absent evidence: scripts/campaign/update_todo_matrices.py
 - stale or absent evidence: scripts/run/openvins_data_player.py
 - stale or absent evidence: scripts/run/run_openvins.sh
 - stale or absent evidence: scripts/run/run_voxel_svio.sh
+- stale or absent evidence: docs/campaigns/paper-acceptance-20261001.json
 
 The coherent ZED selection replaces its part of the five-mode plan. Counts must not be added.
 
@@ -434,9 +440,9 @@ Prerequisites: none.
 <a id="vo-rosariov2-sequence1-svo-pro"></a>
 ## vo/rosariov2/sequence1/svo_pro
 
-**A3/E3/S3/F0**; verified completed groups: 1+1+1. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
-Cell next-action display: 🟡 next: group review (not ready).
+Cell next-action display: no new action required by this plan.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -445,9 +451,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run10002](../results/vo/rosariov2/sequence1/svo_pro/run10002) | verified | success | 0 | yes |
 | 3 | [run10003](../results/vo/rosariov2/sequence1/svo_pro/run10003) | verified | success | 0 | yes |
 
-Group `10ab9cfcf5526ca23133708fd1a9d0bbb3b42a3bd6ace1dbc10d37f38edaa315`: 1 verified / 1 recorded; `run10002`.
-Group `47d1dfb665ec8dff5b07ffbd746d7479b049366c257657916c436c4df13b159f`: 1 verified / 1 recorded; `run10001`.
-Group `c0a92b28690e73032eb23fe766174ada0aa710275347592d319d9a553ce70ff4`: 1 verified / 1 recorded; `run10003`.
+Group `d4439e0e2a6e506942c8b4cc9121ba3a1f90c82914425df87f2a6ca9c2ad5cad`: 3 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
 
 Confirmed setup findings: none.
 Review blockers: none.
@@ -693,9 +697,9 @@ Prerequisites: none.
 <a id="vo-rosariov2-sequence5-svo-pro"></a>
 ## vo/rosariov2/sequence5/svo_pro
 
-**A3/E3/S3/F0**; verified completed groups: 1+1+1. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
-Cell next-action display: 🟡 next: group review (not ready).
+Cell next-action display: no new action required by this plan.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -704,9 +708,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run10002](../results/vo/rosariov2/sequence5/svo_pro/run10002) | verified | success | 0 | yes |
 | 3 | [run10003](../results/vo/rosariov2/sequence5/svo_pro/run10003) | verified | success | 0 | yes |
 
-Group `321596f194038b0a896aa7b0c6875e6c85ebaf32c99362fc5b5b7eb78e874c17`: 1 verified / 1 recorded; `run10003`.
-Group `53acdef92210b7d909ecd4c8e6d00a526f4e0491f486657f4c3abcb8db1624d5`: 1 verified / 1 recorded; `run10002`.
-Group `a0f2c245998dbed88971d2a971d148970b33a8fed8c52cb6c51587a981773cde`: 1 verified / 1 recorded; `run10001`.
+Group `b57ccbbf8f2ad0d49de2400c32ae16b577b08792723c6200260bb05ac8421fce`: 3 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
 
 Confirmed setup findings: none.
 Review blockers: none.
@@ -1459,9 +1461,9 @@ Prerequisites: none.
 <a id="vo-euroc-mav-mh-01-easy-svo-pro"></a>
 ## vo/euroc_mav/MH_01_easy/svo_pro
 
-**A3/E3/S3/F0**; verified completed groups: 1+1+1. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
-Cell next-action display: 🟡 next: group review (not ready).
+Cell next-action display: no new action required by this plan.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1470,9 +1472,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run10002](../results/vo/euroc_mav/MH_01_easy/svo_pro/run10002) | verified | success | 0 | yes |
 | 3 | [run10003](../results/vo/euroc_mav/MH_01_easy/svo_pro/run10003) | verified | success | 0 | yes |
 
-Group `35a53c0fc0929c3c5a02d0571e106dacc66050b4184a39e426741872ab3da2b4`: 1 verified / 1 recorded; `run10001`.
-Group `4c7a4b00712485691e31851ba03e8057c839501ffa9869acd8cae568fb3d4518`: 1 verified / 1 recorded; `run10003`.
-Group `6a50a5d85529eba1234de359e77abcb8803d163e7f91c00703873c05fa395ec5`: 1 verified / 1 recorded; `run10002`.
+Group `8237f36895272f15db40202c47464f358d14dbea16c237b572a70bedbc6d2578`: 3 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
 
 Confirmed setup findings: none.
 Review blockers: none.
@@ -1717,9 +1717,9 @@ Prerequisites: none.
 <a id="vo-euroc-mav-mh-03-medium-svo-pro"></a>
 ## vo/euroc_mav/MH_03_medium/svo_pro
 
-**A3/E3/S3/F0**; verified completed groups: 1+1+1. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
-Cell next-action display: 🟡 next: group review (not ready).
+Cell next-action display: no new action required by this plan.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1728,9 +1728,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run10002](../results/vo/euroc_mav/MH_03_medium/svo_pro/run10002) | verified | success | 0 | yes |
 | 3 | [run10003](../results/vo/euroc_mav/MH_03_medium/svo_pro/run10003) | verified | success | 0 | yes |
 
-Group `9f07e33259c456fc7721cca4f1486442816d153568d7cba508884062c4cfc590`: 1 verified / 1 recorded; `run10003`.
-Group `af156326b077e8b35b1dcf2604909da1c666be20e51113fab6ac7e85307cd273`: 1 verified / 1 recorded; `run10001`.
-Group `eaef1dbb0116f15f45b9448638172e02c171eba5e1f0ba15a10fadbf55185424`: 1 verified / 1 recorded; `run10002`.
+Group `f7781b2324df5cef36ea603543a26fb12ce9d5138426d33579f7925aa7a56a82`: 3 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
 
 Confirmed setup findings: none.
 Review blockers: none.
@@ -1976,9 +1974,9 @@ Prerequisites: none.
 <a id="vo-euroc-mav-mh-05-difficult-svo-pro"></a>
 ## vo/euroc_mav/MH_05_difficult/svo_pro
 
-**A3/E3/S3/F0**; verified completed groups: 1+1+1. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
-Cell next-action display: 🟡 next: group review (not ready).
+Cell next-action display: no new action required by this plan.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1987,9 +1985,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run10002](../results/vo/euroc_mav/MH_05_difficult/svo_pro/run10002) | verified | success | 0 | yes |
 | 3 | [run10003](../results/vo/euroc_mav/MH_05_difficult/svo_pro/run10003) | verified | success | 0 | yes |
 
-Group `30856e634d39eed7289a14f99fc36da1b17a990c5718cd832e839eadb2d24fab`: 1 verified / 1 recorded; `run10003`.
-Group `3fe616f5246491731bdcd8864e7cca481148349c7685f690ebd3f5a4691eb4dc`: 1 verified / 1 recorded; `run10002`.
-Group `fc5fe9f118197250fa2a1f9ead88da79f426bebc9c62e413e8ccfc81d9663829`: 1 verified / 1 recorded; `run10001`.
+Group `79f6e8302f654cce50463a2711b744c4370514036bd9cd5a5bb088c6487915da`: 3 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
 
 Confirmed setup findings: none.
 Review blockers: none.
@@ -2274,7 +2270,7 @@ Selected plan: `zed-coherent-n3-20261002-main-integration`.
 | 2 | [run2](../results/vo/zed2i/field1_110426_full_10fps_q90/svo_pro/run2) | blocked | not_attempted | unknown | no |
 | 3 | [run3](../results/vo/zed2i/field1_110426_full_10fps_q90/svo_pro/run3) | blocked | not_attempted | unknown | no |
 
-Group `1cafabb8a18cb34d470e744a16b173dc6aa7bbd41bb026eaa2e72afad83de111`: 1 verified / 1 recorded; `run10001`.
+Group `a540702150c24554590e583e150bcce90e32091b52c2522fa53f73db27e53588`: 1 verified / 1 recorded; `run10001`.
 
 Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
@@ -2532,7 +2528,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run2](../results/vo/citrusfarm/seq04/svo_pro/run2) | blocked | not_attempted | unknown | no |
 | 3 | [run3](../results/vo/citrusfarm/seq04/svo_pro/run3) | blocked | not_attempted | unknown | no |
 
-Group `6ac444765399abdd1194ea6024b9995545009119d7b4679b142ba7afb4007c25`: 1 verified / 1 recorded; `run10001`.
+Group `66b7b899b5293f3ce8021204e7c91e71e4f7b01acd16718f042bd68d10359173`: 1 verified / 1 recorded; `run10001`.
 
 Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
@@ -2787,7 +2783,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run2](../results/vo/citrusfarm/seq07/svo_pro/run2) | blocked | not_attempted | unknown | no |
 | 3 | [run3](../results/vo/citrusfarm/seq07/svo_pro/run3) | blocked | not_attempted | unknown | no |
 
-Group `1e951cc315387ee6b7cbaddf27de9253c0c85dd1232fab38dc01ed513b0e8c83`: 1 verified / 1 recorded; `run10001`.
+Group `81774431e6e78770392db91f9506d3ffaa70f3dca48cc40d9f43068a754ed0c2`: 1 verified / 1 recorded; `run10001`.
 
 Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
@@ -4653,9 +4649,9 @@ Prerequisites: none.
 <a id="vio-rosariov2-sequence1-svo-pro"></a>
 ## vio/rosariov2/sequence1/svo_pro
 
-**A3/E3/S3/F0**; verified completed groups: 1+1+1. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
-Cell next-action display: 🟡 next: group review (not ready).
+Cell next-action display: no new action required by this plan.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4664,9 +4660,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run10002](../results/vio/rosariov2/sequence1/svo_pro/run10002) | verified | success | 0 | yes |
 | 3 | [run10003](../results/vio/rosariov2/sequence1/svo_pro/run10003) | verified | success | 0 | yes |
 
-Group `93a91da0a38df6e4acad5648941ebe72956fa1f44a1d024e2711c762c882dff9`: 1 verified / 1 recorded; `run10002`.
-Group `b04d9b527931b5d9ace3c4f3f52698a5cf47425fa2466f30271db5ff580ae821`: 1 verified / 1 recorded; `run10003`.
-Group `d0ede2b1c1e36dd1d6d1713c100af4ae2df764334df1bd899b4fa98291d1a87e`: 1 verified / 1 recorded; `run10001`.
+Group `2713104a07a545ac2b8c9e52063a00afd8d1bed043c5ec256482a8a4d5499782`: 3 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
 
 Confirmed setup findings: none.
 Review blockers: none.
@@ -4678,9 +4672,9 @@ Prerequisites: none.
 <a id="vio-rosariov2-sequence1-mast3r-fusion"></a>
 ## vio/rosariov2/sequence1/mast3r_fusion
 
-**A3/E3/S3/F0**; verified completed groups: 1+1+1. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
-Cell next-action display: 🟡 next: group review (not ready).
+Cell next-action display: no new action required by this plan.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4689,9 +4683,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run10002](../results/vio/rosariov2/sequence1/mast3r_fusion/run10002) | verified | success | 0 | yes |
 | 3 | [run10003](../results/vio/rosariov2/sequence1/mast3r_fusion/run10003) | verified | success | 0 | yes |
 
-Group `07d6b1f75551d904a1a840eb5d3021837af6e6ac201975952718b8be5f8745c0`: 1 verified / 1 recorded; `run10001`.
-Group `6eaa1b78c304edb2697f61d5d422f2d160ddf8c4df29324a68ecc4059bab571f`: 1 verified / 1 recorded; `run10003`.
-Group `ff0f6e98ed562628fcde9503e180e5cd36e46bea114fca8785661df83ff61d11`: 1 verified / 1 recorded; `run10002`.
+Group `b33bbbe9f3199dce54bcd4bdfd6acb7bab150eb5dc65d7330b1c8fdace7416b2`: 3 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
 
 Confirmed setup findings: none.
 Review blockers: none.
@@ -4889,9 +4881,9 @@ Prerequisites: none.
 <a id="vio-rosariov2-sequence5-svo-pro"></a>
 ## vio/rosariov2/sequence5/svo_pro
 
-**A3/E3/S3/F0**; verified completed groups: 1+1+1. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
-Cell next-action display: 🟡 next: group review (not ready).
+Cell next-action display: no new action required by this plan.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4900,9 +4892,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run10002](../results/vio/rosariov2/sequence5/svo_pro/run10002) | verified | success | 0 | yes |
 | 3 | [run10003](../results/vio/rosariov2/sequence5/svo_pro/run10003) | verified | success | 0 | yes |
 
-Group `4a98f9d7133034911a29d9ad5b64222d8accee17274b1ace82a0e23ef3dd2b2b`: 1 verified / 1 recorded; `run10002`.
-Group `540c3c62f9be2c31417912027d2bbe30b332618df44b36003a360f3bb6e2d1e8`: 1 verified / 1 recorded; `run10001`.
-Group `db3a9aa01a5403ddadce8611ded2136c46dd91a683d1be30e3775face1651948`: 1 verified / 1 recorded; `run10003`.
+Group `7a5c98dcf97d68e9c9068b7d4e1a9d49490a18f2d708293585d99fda6dba6719`: 3 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
 
 Confirmed setup findings: none.
 Review blockers: none.
@@ -4914,9 +4904,9 @@ Prerequisites: none.
 <a id="vio-rosariov2-sequence5-mast3r-fusion"></a>
 ## vio/rosariov2/sequence5/mast3r_fusion
 
-**A3/E3/S3/F0**; verified completed groups: 1+1+1. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
-Cell next-action display: 🟡 next: group review (not ready).
+Cell next-action display: no new action required by this plan.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4925,9 +4915,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run10002](../results/vio/rosariov2/sequence5/mast3r_fusion/run10002) | verified | success | 0 | yes |
 | 3 | [run10003](../results/vio/rosariov2/sequence5/mast3r_fusion/run10003) | verified | success | 0 | yes |
 
-Group `07d6b1f75551d904a1a840eb5d3021837af6e6ac201975952718b8be5f8745c0`: 1 verified / 1 recorded; `run10001`.
-Group `6eaa1b78c304edb2697f61d5d422f2d160ddf8c4df29324a68ecc4059bab571f`: 1 verified / 1 recorded; `run10003`.
-Group `ff0f6e98ed562628fcde9503e180e5cd36e46bea114fca8785661df83ff61d11`: 1 verified / 1 recorded; `run10002`.
+Group `b33bbbe9f3199dce54bcd4bdfd6acb7bab150eb5dc65d7330b1c8fdace7416b2`: 3 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
 
 Confirmed setup findings: none.
 Review blockers: none.
@@ -5582,9 +5570,9 @@ Prerequisites: none.
 <a id="vio-euroc-mav-mh-01-easy-svo-pro"></a>
 ## vio/euroc_mav/MH_01_easy/svo_pro
 
-**A3/E3/S3/F0**; verified completed groups: 1+1+1. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
-Cell next-action display: 🟡 next: group review (not ready).
+Cell next-action display: no new action required by this plan.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5593,9 +5581,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run10002](../results/vio/euroc_mav/MH_01_easy/svo_pro/run10002) | verified | success | 0 | yes |
 | 3 | [run10003](../results/vio/euroc_mav/MH_01_easy/svo_pro/run10003) | verified | success | 0 | yes |
 
-Group `856c8a2b01e369aaf95b783183f96a9718ff522d336d3bd2a5ea2df81cea2f2d`: 1 verified / 1 recorded; `run10001`.
-Group `94f4175fe31a970a323bc951a16f16ba889354db692f8bc51ba8721ab16640a3`: 1 verified / 1 recorded; `run10002`.
-Group `f1507f318c4a35179802b200f7905fe47578d93e5f7b53a328afe1873875c568`: 1 verified / 1 recorded; `run10003`.
+Group `38ad8c1b9966cb962de9748e733088c3ed89357b811854ec0618e5e85e218876`: 3 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
 
 Confirmed setup findings: none.
 Review blockers: none.
@@ -5607,9 +5593,9 @@ Prerequisites: none.
 <a id="vio-euroc-mav-mh-01-easy-mast3r-fusion"></a>
 ## vio/euroc_mav/MH_01_easy/mast3r_fusion
 
-**A3/E3/S3/F0**; verified completed groups: 1+1+1. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
-Cell next-action display: 🟡 next: group review (not ready).
+Cell next-action display: no new action required by this plan.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5618,9 +5604,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run10002](../results/vio/euroc_mav/MH_01_easy/mast3r_fusion/run10002) | verified | success | 0 | yes |
 | 3 | [run10003](../results/vio/euroc_mav/MH_01_easy/mast3r_fusion/run10003) | verified | success | 0 | yes |
 
-Group `036fc03015d6835188e50cd35680e2798cfc79101322e0a90c1925bd93d1c66c`: 1 verified / 1 recorded; `run10003`.
-Group `4a8a40318a3e8da099eeebac9dcd6c5ec1e34afc49afadf9963218e0f24cd0f5`: 1 verified / 1 recorded; `run10002`.
-Group `5e505e3f6510bc02cca1ff73a055312563f5b3e664b579ec7e798333fe980890`: 1 verified / 1 recorded; `run10001`.
+Group `71c974a4f0f9b2beb0d54c73a4aaf7a3793b41ac8e2d8f0a509d4e684accaa5e`: 3 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
 
 Confirmed setup findings: none.
 Review blockers: none.
@@ -5819,9 +5803,9 @@ Prerequisites: none.
 <a id="vio-euroc-mav-mh-03-medium-svo-pro"></a>
 ## vio/euroc_mav/MH_03_medium/svo_pro
 
-**A3/E3/S3/F0**; verified completed groups: 1+1+1. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
-Cell next-action display: 🟡 next: group review (not ready).
+Cell next-action display: no new action required by this plan.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5830,9 +5814,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run10002](../results/vio/euroc_mav/MH_03_medium/svo_pro/run10002) | verified | success | 0 | yes |
 | 3 | [run10003](../results/vio/euroc_mav/MH_03_medium/svo_pro/run10003) | verified | success | 0 | yes |
 
-Group `2d622df979f51af673a47ad8666922be58a2ffe05dd96789c84891edde79c5d6`: 1 verified / 1 recorded; `run10001`.
-Group `3d57a576cd62918f986bc6f3b873861f5171968e4ab77b96b75d295cd5340356`: 1 verified / 1 recorded; `run10003`.
-Group `ee0492bc8d20d8b0b3ebdf6f06227fde25c89964c14a3e7f149d63b7941854e3`: 1 verified / 1 recorded; `run10002`.
+Group `0a84d736d537a38bdf0e252691cd9049def3e1c422ecbebb9baf3f4653106fbc`: 3 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
 
 Confirmed setup findings: none.
 Review blockers: none.
@@ -5844,9 +5826,9 @@ Prerequisites: none.
 <a id="vio-euroc-mav-mh-03-medium-mast3r-fusion"></a>
 ## vio/euroc_mav/MH_03_medium/mast3r_fusion
 
-**A3/E3/S3/F0**; verified completed groups: 1+1+1. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
-Cell next-action display: 🟡 next: group review (not ready).
+Cell next-action display: no new action required by this plan.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5855,9 +5837,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run10002](../results/vio/euroc_mav/MH_03_medium/mast3r_fusion/run10002) | verified | success | 0 | yes |
 | 3 | [run10003](../results/vio/euroc_mav/MH_03_medium/mast3r_fusion/run10003) | verified | success | 0 | yes |
 
-Group `036fc03015d6835188e50cd35680e2798cfc79101322e0a90c1925bd93d1c66c`: 1 verified / 1 recorded; `run10003`.
-Group `4a8a40318a3e8da099eeebac9dcd6c5ec1e34afc49afadf9963218e0f24cd0f5`: 1 verified / 1 recorded; `run10002`.
-Group `5e505e3f6510bc02cca1ff73a055312563f5b3e664b579ec7e798333fe980890`: 1 verified / 1 recorded; `run10001`.
+Group `71c974a4f0f9b2beb0d54c73a4aaf7a3793b41ac8e2d8f0a509d4e684accaa5e`: 3 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
 
 Confirmed setup findings: none.
 Review blockers: none.
@@ -6056,9 +6036,9 @@ Prerequisites: none.
 <a id="vio-euroc-mav-mh-05-difficult-svo-pro"></a>
 ## vio/euroc_mav/MH_05_difficult/svo_pro
 
-**A3/E3/S3/F0**; verified completed groups: 1+1+1. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
-Cell next-action display: 🟡 next: group review (not ready).
+Cell next-action display: no new action required by this plan.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6067,9 +6047,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run10002](../results/vio/euroc_mav/MH_05_difficult/svo_pro/run10002) | verified | success | 0 | yes |
 | 3 | [run10003](../results/vio/euroc_mav/MH_05_difficult/svo_pro/run10003) | verified | success | 0 | yes |
 
-Group `3f193db69f729e827399c79e19bb682aaae67db8a3089809c76db3e3ae80c41f`: 1 verified / 1 recorded; `run10001`.
-Group `ac46c71985874e4b454dd294a90120eee4ff6f0076e2fa8044fba25e8429de6b`: 1 verified / 1 recorded; `run10002`.
-Group `e49fb3449b443792855ec5449bd7fd7e6a38ddd3e9cbffbed8cca4a17929bfb5`: 1 verified / 1 recorded; `run10003`.
+Group `fbcd96ceb0e9f7de76dc1789097a64d6cab8b34c41d9ab04159c2bb510f4fdc1`: 3 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
 
 Confirmed setup findings: none.
 Review blockers: none.
@@ -6081,9 +6059,9 @@ Prerequisites: none.
 <a id="vio-euroc-mav-mh-05-difficult-mast3r-fusion"></a>
 ## vio/euroc_mav/MH_05_difficult/mast3r_fusion
 
-**A3/E3/S3/F0**; verified completed groups: 1+1+1. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 3. Verified N=3: yes.
 
-Cell next-action display: 🟡 next: group review (not ready).
+Cell next-action display: no new action required by this plan.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6092,9 +6070,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run10002](../results/vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10002) | verified | success | 0 | yes |
 | 3 | [run10003](../results/vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10003) | verified | success | 0 | yes |
 
-Group `036fc03015d6835188e50cd35680e2798cfc79101322e0a90c1925bd93d1c66c`: 1 verified / 1 recorded; `run10003`.
-Group `4a8a40318a3e8da099eeebac9dcd6c5ec1e34afc49afadf9963218e0f24cd0f5`: 1 verified / 1 recorded; `run10002`.
-Group `5e505e3f6510bc02cca1ff73a055312563f5b3e664b579ec7e798333fe980890`: 1 verified / 1 recorded; `run10001`.
+Group `71c974a4f0f9b2beb0d54c73a4aaf7a3793b41ac8e2d8f0a509d4e684accaa5e`: 3 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
 
 Confirmed setup findings: none.
 Review blockers: none.
@@ -6325,7 +6301,7 @@ Selected plan: `zed-coherent-n3-20261002-main-integration`.
 | 2 | [run2](../results/vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run2) | blocked | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run3) | blocked | not_attempted | unknown | no |
 
-Group `7e8c7bbb33d793697cfda749eaa0e7f094caa9914da5abeb2e034a222f904442`: 1 verified / 1 recorded; `run10001`.
+Group `cf3e3b12f3b8646980ac3b3dd97b0b6c6a52fcd8beb2b04150fa3d5c0838cdbb`: 1 verified / 1 recorded; `run10001`.
 
 Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
@@ -6351,7 +6327,7 @@ Selected plan: `zed-coherent-n3-20261002-main-integration`.
 | 2 | [run2](../results/vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run2) | blocked | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run3) | blocked | not_attempted | unknown | no |
 
-Group `2def2916f9aa2c40f82dd2a31978b8db31967bafe3126c8db5b983811414236e`: 1 verified / 1 recorded; `run10002`.
+Group `a070ea08ab63e0ff9eae85b1de4f9e5de3ba7afd03544685ee912b533eb15b93`: 1 verified / 1 recorded; `run10002`.
 
 Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
@@ -6561,7 +6537,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run2](../results/vio/citrusfarm/seq04/svo_pro/run2) | blocked | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/citrusfarm/seq04/svo_pro/run3) | blocked | not_attempted | unknown | no |
 
-Group `bd5f44b28f778063e0eea0d52ee9a50c58a9731de31af995e48ad2dcf8bb22b7`: 1 verified / 1 recorded; `run10001`.
+Group `4718830fad1fb0e39b8f6a3df4f5bb65e1131cea4c5835509c462f1078b290f7`: 1 verified / 1 recorded; `run10001`.
 
 Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
@@ -6584,7 +6560,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run2](../results/vio/citrusfarm/seq04/mast3r_fusion/run2) | blocked | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/citrusfarm/seq04/mast3r_fusion/run3) | blocked | not_attempted | unknown | no |
 
-Group `1e7a2203b5d30d2e3d6fa5abef0141602b7abe4b299e761a75933db82e4f31d4`: 1 verified / 1 recorded; `run10001`.
+Group `142ea1bb52b3c7afba89a45d8821eea07f9714de3cd86a590f066afd7e8dca2e`: 1 verified / 1 recorded; `run10001`.
 
 Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
@@ -6792,7 +6768,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run2](../results/vio/citrusfarm/seq07/svo_pro/run2) | blocked | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/citrusfarm/seq07/svo_pro/run3) | blocked | not_attempted | unknown | no |
 
-Group `63c6017956c73a58f076e2c1c423b06dc3de84233ab8a25c154257dbb318de64`: 1 verified / 1 recorded; `run10001`.
+Group `2a230d7a906bbe8424028e24c33cfd21383299a6b2d6f99d15947740879a32cd`: 1 verified / 1 recorded; `run10001`.
 
 Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
@@ -6815,7 +6791,7 @@ Selected plan: `future-n3-five-modes`.
 | 2 | [run2](../results/vio/citrusfarm/seq07/mast3r_fusion/run2) | blocked | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/citrusfarm/seq07/mast3r_fusion/run3) | blocked | not_attempted | unknown | no |
 
-Group `1e7a2203b5d30d2e3d6fa5abef0141602b7abe4b299e761a75933db82e4f31d4`: 1 verified / 1 recorded; `run10001`.
+Group `142ea1bb52b3c7afba89a45d8821eea07f9714de3cd86a590f066afd7e8dca2e`: 1 verified / 1 recorded; `run10001`.
 
 Confirmed setup findings: none.
 Review blockers: `missing_repetition`.

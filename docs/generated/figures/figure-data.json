@@ -3,11 +3,11 @@
   "inputs": [
     {
       "path": "results/repair-20261001/inventory.json",
-      "sha256": "3a0327ebff960ad33a240551d9c13d9fab68a31a94a828a10c97c590469d1663"
+      "sha256": "1ebf1d964147ecfc2125b3aa2e1b5f60c5a6f32f2a4676ed7a592cbf5a493c19"
     },
     {
       "path": "benchmark-vo.csv",
-      "sha256": "a86c3a6bf4350e4251df1d16127303bc0d6fd98a69aa5cc9f3a3f2f77e07f495"
+      "sha256": "9c540264565b53e3d72c5bce2c66ae47eea604032f7e2679bbedfa6f6659fa66"
     },
     {
       "path": "benchmark-vo-lc.csv",
@@ -15,7 +15,7 @@
     },
     {
       "path": "benchmark-vio.csv",
-      "sha256": "a135a8f996eccbdfbbfad1e6fc7d54df8104de4bfea5819ec54b5f7070e5aa3b"
+      "sha256": "12038faee2fb356b90fc147f8a86bad1662a442671ac5a9ee5e285e778e04c64"
     },
     {
       "path": "benchmark-vio-lc.csv",
@@ -9215,8 +9215,8 @@
         "svo_pro",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,L",
+      "value": 66.35966737842435,
+      "annotation": "66.4\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -9247,129 +9247,50 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "10ab9cfcf5526ca23133708fd1a9d0bbb3b42a3bd6ace1dbc10d37f38edaa315",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "d4439e0e2a6e506942c8b4cc9121ba3a1f90c82914425df87f2a6ca9c2ad5cad",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 1,
-              "mean": 50.09019025556994,
-              "median": 50.09019025556994,
-              "min": 50.09019025556994,
-              "max": 50.09019025556994,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 50.09019025556994,
-              "median": 50.09019025556994,
-              "min": 50.09019025556994,
-              "max": 50.09019025556994,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 98.85782552231703,
-              "median": 98.85782552231703,
-              "min": 98.85782552231703,
-              "max": 98.85782552231703,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vo/rosariov2/sequence1/svo_pro/run10002"
-            ]
-          },
-          {
-            "cohort": "47d1dfb665ec8dff5b07ffbd746d7479b049366c257657916c436c4df13b159f",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 75.70778501015361,
-              "median": 75.70778501015361,
-              "min": 75.70778501015361,
-              "max": 75.70778501015361,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 75.70778501015361,
-              "median": 75.70778501015361,
-              "min": 75.70778501015361,
-              "max": 75.70778501015361,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 98.81525898572288,
-              "median": 98.81525898572288,
-              "min": 98.81525898572288,
-              "max": 98.81525898572288,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vo/rosariov2/sequence1/svo_pro/run10001"
-            ]
-          },
-          {
-            "cohort": "c0a92b28690e73032eb23fe766174ada0aa710275347592d319d9a553ce70ff4",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 66.35966737842435,
+              "n": 3,
+              "mean": 64.0525475480493,
               "median": 66.35966737842435,
-              "min": 66.35966737842435,
-              "max": 66.35966737842435,
-              "sample_std": null
+              "min": 50.09019025556994,
+              "max": 75.70778501015361,
+              "sample_std": 12.963695140132717
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 66.35966737842435,
+              "n": 3,
+              "mean": 64.0525475480493,
               "median": 66.35966737842435,
-              "min": 66.35966737842435,
-              "max": 66.35966737842435,
-              "sample_std": null
+              "min": 50.09019025556994,
+              "max": 75.70778501015361,
+              "sample_std": 12.963695140132717
             },
             "dense_coverage_pct": {
-              "n": 1,
-              "mean": 98.84363671903958,
+              "n": 3,
+              "mean": 98.83890707569316,
               "median": 98.84363671903958,
-              "min": 98.84363671903958,
-              "max": 98.84363671903958,
-              "sample_std": null
+              "min": 98.81525898572288,
+              "max": 98.85782552231703,
+              "sample_std": 0.021673824167496133
             },
             "run_paths": [
+              "results/vo/rosariov2/sequence1/svo_pro/run10001",
+              "results/vo/rosariov2/sequence1/svo_pro/run10002",
               "results/vo/rosariov2/sequence1/svo_pro/run10003"
             ]
           }
         ],
-        "scientific_blockers": [
-          "within_cell_configuration_mismatch",
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
-        ],
-        "protocol_state": "separate_implementation_cohorts",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -9386,36 +9307,20 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "10ab9cfcf5526ca23133708fd1a9d0bbb3b42a3bd6ace1dbc10d37f38edaa315",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "cohort": "d4439e0e2a6e506942c8b4cc9121ba3a1f90c82914425df87f2a6ca9c2ad5cad",
+            "attempts": 3,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
-              "results/vo/rosariov2/sequence1/svo_pro/run10002"
-            ]
-          },
-          {
-            "cohort": "47d1dfb665ec8dff5b07ffbd746d7479b049366c257657916c436c4df13b159f",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vo/rosariov2/sequence1/svo_pro/run10001"
-            ]
-          },
-          {
-            "cohort": "c0a92b28690e73032eb23fe766174ada0aa710275347592d319d9a553ce70ff4",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
+              "results/vo/rosariov2/sequence1/svo_pro/run10001",
+              "results/vo/rosariov2/sequence1/svo_pro/run10002",
               "results/vo/rosariov2/sequence1/svo_pro/run10003"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
+        "V3",
         "L"
       ]
     },
@@ -9427,8 +9332,8 @@
         "svo_pro",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,L",
+      "value": 37.26606161716811,
+      "annotation": "37.3\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -9459,129 +9364,50 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "321596f194038b0a896aa7b0c6875e6c85ebaf32c99362fc5b5b7eb78e874c17",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "b57ccbbf8f2ad0d49de2400c32ae16b577b08792723c6200260bb05ac8421fce",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 1,
-              "mean": 31.95695745411759,
-              "median": 31.95695745411759,
+              "n": 3,
+              "mean": 36.85592134086876,
+              "median": 37.26606161716811,
               "min": 31.95695745411759,
-              "max": 31.95695745411759,
-              "sample_std": null
+              "max": 41.34474495132057,
+              "sample_std": 4.707313438453227
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 31.95695745411759,
-              "median": 31.95695745411759,
+              "n": 3,
+              "mean": 36.85592134086876,
+              "median": 37.26606161716811,
               "min": 31.95695745411759,
-              "max": 31.95695745411759,
-              "sample_std": null
+              "max": 41.34474495132057,
+              "sample_std": 4.707313438453227
             },
             "dense_coverage_pct": {
-              "n": 1,
-              "mean": 98.0393538737617,
-              "median": 98.0393538737617,
-              "min": 98.0393538737617,
-              "max": 98.0393538737617,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vo/rosariov2/sequence5/svo_pro/run10003"
-            ]
-          },
-          {
-            "cohort": "53acdef92210b7d909ecd4c8e6d00a526f4e0491f486657f4c3abcb8db1624d5",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 37.26606161716811,
-              "median": 37.26606161716811,
-              "min": 37.26606161716811,
-              "max": 37.26606161716811,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 37.26606161716811,
-              "median": 37.26606161716811,
-              "min": 37.26606161716811,
-              "max": 37.26606161716811,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 98.00584002486805,
+              "n": 3,
+              "mean": 97.98070447850255,
               "median": 98.00584002486805,
-              "min": 98.00584002486805,
-              "max": 98.00584002486805,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vo/rosariov2/sequence5/svo_pro/run10002"
-            ]
-          },
-          {
-            "cohort": "a0f2c245998dbed88971d2a971d148970b33a8fed8c52cb6c51587a981773cde",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 41.34474495132057,
-              "median": 41.34474495132057,
-              "min": 41.34474495132057,
-              "max": 41.34474495132057,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 41.34474495132057,
-              "median": 41.34474495132057,
-              "min": 41.34474495132057,
-              "max": 41.34474495132057,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 97.89691953687789,
-              "median": 97.89691953687789,
               "min": 97.89691953687789,
-              "max": 97.89691953687789,
-              "sample_std": null
+              "max": 98.0393538737617,
+              "sample_std": 0.07446967066666772
             },
             "run_paths": [
-              "results/vo/rosariov2/sequence5/svo_pro/run10001"
+              "results/vo/rosariov2/sequence5/svo_pro/run10001",
+              "results/vo/rosariov2/sequence5/svo_pro/run10002",
+              "results/vo/rosariov2/sequence5/svo_pro/run10003"
             ]
           }
         ],
-        "scientific_blockers": [
-          "within_cell_configuration_mismatch",
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
-        ],
-        "protocol_state": "separate_implementation_cohorts",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -9598,36 +9424,20 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "321596f194038b0a896aa7b0c6875e6c85ebaf32c99362fc5b5b7eb78e874c17",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "cohort": "b57ccbbf8f2ad0d49de2400c32ae16b577b08792723c6200260bb05ac8421fce",
+            "attempts": 3,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
+              "results/vo/rosariov2/sequence5/svo_pro/run10001",
+              "results/vo/rosariov2/sequence5/svo_pro/run10002",
               "results/vo/rosariov2/sequence5/svo_pro/run10003"
-            ]
-          },
-          {
-            "cohort": "53acdef92210b7d909ecd4c8e6d00a526f4e0491f486657f4c3abcb8db1624d5",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vo/rosariov2/sequence5/svo_pro/run10002"
-            ]
-          },
-          {
-            "cohort": "a0f2c245998dbed88971d2a971d148970b33a8fed8c52cb6c51587a981773cde",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vo/rosariov2/sequence5/svo_pro/run10001"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
+        "V3",
         "L"
       ]
     },
@@ -9797,7 +9607,7 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "1cafabb8a18cb34d470e744a16b173dc6aa7bbd41bb026eaa2e72afad83de111",
+            "cohort": "a540702150c24554590e583e150bcce90e32091b52c2522fa53f73db27e53588",
             "planned_members": 1,
             "evaluated": 1,
             "outcomes": {
@@ -9858,7 +9668,7 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "1cafabb8a18cb34d470e744a16b173dc6aa7bbd41bb026eaa2e72afad83de111",
+            "cohort": "a540702150c24554590e583e150bcce90e32091b52c2522fa53f73db27e53588",
             "attempts": 1,
             "verified_completed": 1,
             "missing_to_n3": 2,
@@ -9882,8 +9692,8 @@
         "svo_pro",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,L",
+      "value": 0.06238920077702829,
+      "annotation": "0.0624\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -9912,129 +9722,50 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "35a53c0fc0929c3c5a02d0571e106dacc66050b4184a39e426741872ab3da2b4",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "8237f36895272f15db40202c47464f358d14dbea16c237b572a70bedbc6d2578",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.06238920077702829,
+              "n": 3,
+              "mean": 0.05444379042679193,
               "median": 0.06238920077702829,
-              "min": 0.06238920077702829,
-              "max": 0.06238920077702829,
-              "sample_std": null
+              "min": 0.036486996086945694,
+              "max": 0.06445517441640179,
+              "sample_std": 0.015585310680005604
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.06238920077702829,
+              "n": 3,
+              "mean": 0.05444379042679193,
               "median": 0.06238920077702829,
-              "min": 0.06238920077702829,
-              "max": 0.06238920077702829,
-              "sample_std": null
+              "min": 0.036486996086945694,
+              "max": 0.06445517441640179,
+              "sample_std": 0.015585310680005604
             },
             "dense_coverage_pct": {
-              "n": 1,
-              "mean": 95.6805215703649,
+              "n": 3,
+              "mean": 95.66241056707622,
               "median": 95.6805215703649,
-              "min": 95.6805215703649,
-              "max": 95.6805215703649,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vo/euroc_mav/MH_01_easy/svo_pro/run10001"
-            ]
-          },
-          {
-            "cohort": "4c7a4b00712485691e31851ba03e8057c839501ffa9869acd8cae568fb3d4518",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.06445517441640179,
-              "median": 0.06445517441640179,
-              "min": 0.06445517441640179,
-              "max": 0.06445517441640179,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.06445517441640179,
-              "median": 0.06445517441640179,
-              "min": 0.06445517441640179,
-              "max": 0.06445517441640179,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 95.62618856049885,
-              "median": 95.62618856049885,
               "min": 95.62618856049885,
-              "max": 95.62618856049885,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vo/euroc_mav/MH_01_easy/svo_pro/run10003"
-            ]
-          },
-          {
-            "cohort": "6a50a5d85529eba1234de359e77abcb8803d163e7f91c00703873c05fa395ec5",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.036486996086945694,
-              "median": 0.036486996086945694,
-              "min": 0.036486996086945694,
-              "max": 0.036486996086945694,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.036486996086945694,
-              "median": 0.036486996086945694,
-              "min": 0.036486996086945694,
-              "max": 0.036486996086945694,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 95.6805215703649,
-              "median": 95.6805215703649,
-              "min": 95.6805215703649,
               "max": 95.6805215703649,
-              "sample_std": null
+              "sample_std": 0.03136917787205012
             },
             "run_paths": [
-              "results/vo/euroc_mav/MH_01_easy/svo_pro/run10002"
+              "results/vo/euroc_mav/MH_01_easy/svo_pro/run10001",
+              "results/vo/euroc_mav/MH_01_easy/svo_pro/run10002",
+              "results/vo/euroc_mav/MH_01_easy/svo_pro/run10003"
             ]
           }
         ],
-        "scientific_blockers": [
-          "within_cell_configuration_mismatch",
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
-        ],
-        "protocol_state": "separate_implementation_cohorts",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -10051,36 +9782,20 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "35a53c0fc0929c3c5a02d0571e106dacc66050b4184a39e426741872ab3da2b4",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "cohort": "8237f36895272f15db40202c47464f358d14dbea16c237b572a70bedbc6d2578",
+            "attempts": 3,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
-              "results/vo/euroc_mav/MH_01_easy/svo_pro/run10001"
-            ]
-          },
-          {
-            "cohort": "4c7a4b00712485691e31851ba03e8057c839501ffa9869acd8cae568fb3d4518",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
+              "results/vo/euroc_mav/MH_01_easy/svo_pro/run10001",
+              "results/vo/euroc_mav/MH_01_easy/svo_pro/run10002",
               "results/vo/euroc_mav/MH_01_easy/svo_pro/run10003"
-            ]
-          },
-          {
-            "cohort": "6a50a5d85529eba1234de359e77abcb8803d163e7f91c00703873c05fa395ec5",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vo/euroc_mav/MH_01_easy/svo_pro/run10002"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
+        "V3",
         "L"
       ]
     },
@@ -10092,8 +9807,8 @@
         "svo_pro",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,P,L",
+      "value": 0.1620047462727362,
+      "annotation": "0.162\nA3/E3/S3/F0\nV3,P,L",
       "summary": {
         "identity": [
           "vo",
@@ -10123,129 +9838,50 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "9f07e33259c456fc7721cca4f1486442816d153568d7cba508884062c4cfc590",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "f7781b2324df5cef36ea603543a26fb12ce9d5138426d33579f7925aa7a56a82",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.10649028472094282,
-              "median": 0.10649028472094282,
+              "n": 3,
+              "mean": 0.1550420361227212,
+              "median": 0.1620047462727362,
               "min": 0.10649028472094282,
-              "max": 0.10649028472094282,
-              "sample_std": null
+              "max": 0.19663107737448457,
+              "sample_std": 0.045471970757017366
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.10649028472094282,
-              "median": 0.10649028472094282,
+              "n": 3,
+              "mean": 0.1550420361227212,
+              "median": 0.1620047462727362,
               "min": 0.10649028472094282,
-              "max": 0.10649028472094282,
-              "sample_std": null
+              "max": 0.19663107737448457,
+              "sample_std": 0.045471970757017366
             },
             "dense_coverage_pct": {
-              "n": 1,
-              "mean": 85.66135610820203,
+              "n": 3,
+              "mean": 87.78559957575025,
               "median": 85.66135610820203,
-              "min": 85.66135610820203,
-              "max": 85.66135610820203,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vo/euroc_mav/MH_03_medium/svo_pro/run10003"
-            ]
-          },
-          {
-            "cohort": "af156326b077e8b35b1dcf2604909da1c666be20e51113fab6ac7e85307cd273",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.19663107737448457,
-              "median": 0.19663107737448457,
-              "min": 0.19663107737448457,
-              "max": 0.19663107737448457,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.19663107737448457,
-              "median": 0.19663107737448457,
-              "min": 0.19663107737448457,
-              "max": 0.19663107737448457,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 84.51278241948354,
-              "median": 84.51278241948354,
               "min": 84.51278241948354,
-              "max": 84.51278241948354,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vo/euroc_mav/MH_03_medium/svo_pro/run10001"
-            ]
-          },
-          {
-            "cohort": "eaef1dbb0116f15f45b9448638172e02c171eba5e1f0ba15a10fadbf55185424",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.1620047462727362,
-              "median": 0.1620047462727362,
-              "min": 0.1620047462727362,
-              "max": 0.1620047462727362,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.1620047462727362,
-              "median": 0.1620047462727362,
-              "min": 0.1620047462727362,
-              "max": 0.1620047462727362,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 93.1826601995652,
-              "median": 93.1826601995652,
-              "min": 93.1826601995652,
               "max": 93.1826601995652,
-              "sample_std": null
+              "sample_std": 4.709140358117863
             },
             "run_paths": [
-              "results/vo/euroc_mav/MH_03_medium/svo_pro/run10002"
+              "results/vo/euroc_mav/MH_03_medium/svo_pro/run10001",
+              "results/vo/euroc_mav/MH_03_medium/svo_pro/run10002",
+              "results/vo/euroc_mav/MH_03_medium/svo_pro/run10003"
             ]
           }
         ],
-        "scientific_blockers": [
-          "within_cell_configuration_mismatch",
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
-        ],
-        "protocol_state": "separate_implementation_cohorts",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -10262,36 +9898,20 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "9f07e33259c456fc7721cca4f1486442816d153568d7cba508884062c4cfc590",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "cohort": "f7781b2324df5cef36ea603543a26fb12ce9d5138426d33579f7925aa7a56a82",
+            "attempts": 3,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
+              "results/vo/euroc_mav/MH_03_medium/svo_pro/run10001",
+              "results/vo/euroc_mav/MH_03_medium/svo_pro/run10002",
               "results/vo/euroc_mav/MH_03_medium/svo_pro/run10003"
-            ]
-          },
-          {
-            "cohort": "af156326b077e8b35b1dcf2604909da1c666be20e51113fab6ac7e85307cd273",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vo/euroc_mav/MH_03_medium/svo_pro/run10001"
-            ]
-          },
-          {
-            "cohort": "eaef1dbb0116f15f45b9448638172e02c171eba5e1f0ba15a10fadbf55185424",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vo/euroc_mav/MH_03_medium/svo_pro/run10002"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
+        "V3",
         "P",
         "L"
       ]
@@ -10304,8 +9924,8 @@
         "svo_pro",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,P,L",
+      "value": 0.3657579758294943,
+      "annotation": "0.366\nA3/E3/S3/F0\nV3,P,L",
       "summary": {
         "identity": [
           "vo",
@@ -10335,129 +9955,50 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "30856e634d39eed7289a14f99fc36da1b17a990c5718cd832e839eadb2d24fab",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "79f6e8302f654cce50463a2711b744c4370514036bd9cd5a5bb088c6487915da",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.4136879416872448,
-              "median": 0.4136879416872448,
-              "min": 0.4136879416872448,
+              "n": 3,
+              "mean": 0.3466714483239123,
+              "median": 0.3657579758294943,
+              "min": 0.26056842745499764,
               "max": 0.4136879416872448,
-              "sample_std": null
+              "sample_std": 0.07832380263269807
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.4136879416872448,
-              "median": 0.4136879416872448,
-              "min": 0.4136879416872448,
+              "n": 3,
+              "mean": 0.3466714483239123,
+              "median": 0.3657579758294943,
+              "min": 0.26056842745499764,
               "max": 0.4136879416872448,
-              "sample_std": null
+              "sample_std": 0.07832380263269807
             },
             "dense_coverage_pct": {
-              "n": 1,
-              "mean": 93.92605624897888,
+              "n": 3,
+              "mean": 94.01408447403367,
               "median": 93.92605624897888,
-              "min": 93.92605624897888,
-              "max": 93.92605624897888,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vo/euroc_mav/MH_05_difficult/svo_pro/run10003"
-            ]
-          },
-          {
-            "cohort": "3fe616f5246491731bdcd8864e7cca481148349c7685f690ebd3f5a4691eb4dc",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.26056842745499764,
-              "median": 0.26056842745499764,
-              "min": 0.26056842745499764,
-              "max": 0.26056842745499764,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.26056842745499764,
-              "median": 0.26056842745499764,
-              "min": 0.26056842745499764,
-              "max": 0.26056842745499764,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 94.89436623487201,
-              "median": 94.89436623487201,
-              "min": 94.89436623487201,
-              "max": 94.89436623487201,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vo/euroc_mav/MH_05_difficult/svo_pro/run10002"
-            ]
-          },
-          {
-            "cohort": "fc5fe9f118197250fa2a1f9ead88da79f426bebc9c62e413e8ccfc81d9663829",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.3657579758294943,
-              "median": 0.3657579758294943,
-              "min": 0.3657579758294943,
-              "max": 0.3657579758294943,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.3657579758294943,
-              "median": 0.3657579758294943,
-              "min": 0.3657579758294943,
-              "max": 0.3657579758294943,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 93.22183093825011,
-              "median": 93.22183093825011,
               "min": 93.22183093825011,
-              "max": 93.22183093825011,
-              "sample_std": null
+              "max": 94.89436623487201,
+              "sample_std": 0.8397352594218314
             },
             "run_paths": [
-              "results/vo/euroc_mav/MH_05_difficult/svo_pro/run10001"
+              "results/vo/euroc_mav/MH_05_difficult/svo_pro/run10001",
+              "results/vo/euroc_mav/MH_05_difficult/svo_pro/run10002",
+              "results/vo/euroc_mav/MH_05_difficult/svo_pro/run10003"
             ]
           }
         ],
-        "scientific_blockers": [
-          "within_cell_configuration_mismatch",
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
-        ],
-        "protocol_state": "separate_implementation_cohorts",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -10474,36 +10015,20 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "30856e634d39eed7289a14f99fc36da1b17a990c5718cd832e839eadb2d24fab",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "cohort": "79f6e8302f654cce50463a2711b744c4370514036bd9cd5a5bb088c6487915da",
+            "attempts": 3,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
+              "results/vo/euroc_mav/MH_05_difficult/svo_pro/run10001",
+              "results/vo/euroc_mav/MH_05_difficult/svo_pro/run10002",
               "results/vo/euroc_mav/MH_05_difficult/svo_pro/run10003"
-            ]
-          },
-          {
-            "cohort": "3fe616f5246491731bdcd8864e7cca481148349c7685f690ebd3f5a4691eb4dc",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vo/euroc_mav/MH_05_difficult/svo_pro/run10002"
-            ]
-          },
-          {
-            "cohort": "fc5fe9f118197250fa2a1f9ead88da79f426bebc9c62e413e8ccfc81d9663829",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vo/euroc_mav/MH_05_difficult/svo_pro/run10001"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
+        "V3",
         "P",
         "L"
       ]
@@ -10553,7 +10078,7 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "6ac444765399abdd1194ea6024b9995545009119d7b4679b142ba7afb4007c25",
+            "cohort": "66b7b899b5293f3ce8021204e7c91e71e4f7b01acd16718f042bd68d10359173",
             "planned_members": 1,
             "evaluated": 1,
             "outcomes": {
@@ -10614,7 +10139,7 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "6ac444765399abdd1194ea6024b9995545009119d7b4679b142ba7afb4007c25",
+            "cohort": "66b7b899b5293f3ce8021204e7c91e71e4f7b01acd16718f042bd68d10359173",
             "attempts": 1,
             "verified_completed": 1,
             "missing_to_n3": 2,
@@ -10673,7 +10198,7 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "1e951cc315387ee6b7cbaddf27de9253c0c85dd1232fab38dc01ed513b0e8c83",
+            "cohort": "81774431e6e78770392db91f9506d3ffaa70f3dca48cc40d9f43068a754ed0c2",
             "planned_members": 1,
             "evaluated": 1,
             "outcomes": {
@@ -10734,7 +10259,7 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "1e951cc315387ee6b7cbaddf27de9253c0c85dd1232fab38dc01ed513b0e8c83",
+            "cohort": "81774431e6e78770392db91f9506d3ffaa70f3dca48cc40d9f43068a754ed0c2",
             "attempts": 1,
             "verified_completed": 1,
             "missing_to_n3": 2,
@@ -26208,7 +25733,7 @@
         "default"
       ],
       "value": 0.8217526476658388,
-      "annotation": "0.822\nA3/E3/S0/F3\nV3,X,P,F",
+      "annotation": "0.822\nA3/E3/S0/F3\nX,P,B",
       "summary": {
         "identity": [
           "vio",
@@ -26225,20 +25750,10 @@
           "ok": 1
         },
         "acceptance": {
-          "valid_observed_failure": 3
+          "blocked": 3
         },
-        "paper_usable": 3,
-        "claim_limits": [
-          "accuracy_conditional_on_observed_exports_and_reference_support",
-          "approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity",
-          "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "no_measured_processing_rate_or_realtime_deadline_claim",
-          "no_rotation_or_full_relative_pose_accuracy_claim",
-          "nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof",
-          "recorded_native_assets_not_complete_transitive_build_reconstruction",
-          "retain_failure_in_attempt_denominator",
-          "unmeasured_field_clock_zero_offset_with_frozen_sensitivity"
-        ],
+        "paper_usable": 0,
+        "claim_limits": [],
         "clean_qualified_n3": false,
         "cohorts": [
           {
@@ -26250,7 +25765,7 @@
               "ok": 1
             },
             "qualified": 0,
-            "paper_usable": 3,
+            "paper_usable": 0,
             "accepted_primary_ate": {
               "n": 0,
               "mean": null,
@@ -26284,9 +25799,11 @@
             ]
           }
         ],
-        "scientific_blockers": [],
-        "protocol_state": "verified_n3",
-        "protocol_verified_n3": true,
+        "scientific_blockers": [
+          "confirmed_estimator_defect_prevents_acceptance"
+        ],
+        "protocol_state": "blocked",
+        "protocol_verified_n3": false,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -26295,18 +25812,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 3,
-        "verified_failure_count": 3,
+        "protocol_verified_attempts": 0,
+        "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "verified": 3
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "b847248537defbe77aa834709f8f723159f85c7ee5c350d6d3b9e5a1519b2bf2",
             "attempts": 3,
-            "verified_completed": 3,
-            "missing_to_n3": 0,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001",
               "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002",
@@ -26316,10 +25833,9 @@
         ]
       },
       "flags": [
-        "V3",
         "X",
         "P",
-        "F"
+        "B"
       ]
     },
     {
@@ -26678,7 +26194,7 @@
         "default"
       ],
       "value": 9.690414754282713,
-      "annotation": "9.69\nA1/E1/S1/F0\nB,L,M",
+      "annotation": "9.69\nA1/E1/S1/F0\nB,M",
       "summary": {
         "identity": [
           "vio",
@@ -26696,18 +26212,13 @@
         },
         "acceptance": {
           "not_executed": 2,
-          "accepted_with_limitation": 1
+          "blocked": 1
         },
-        "paper_usable": 1,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
-          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
-          "no_measured_processing_rate_or_realtime_deadline_claim",
-          "no_rotation_or_full_relative_pose_accuracy_claim",
-          "recorded_native_assets_not_complete_transitive_build_reconstruction"
+          "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -26719,13 +26230,13 @@
               "ok": 1
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 1,
-              "mean": 9.690414754282713,
-              "median": 9.690414754282713,
-              "min": 9.690414754282713,
-              "max": 9.690414754282713,
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
               "sample_std": null
             },
             "nonzero_exits": 0,
@@ -26752,6 +26263,7 @@
           }
         ],
         "scientific_blockers": [
+          "confirmed_estimator_defect_prevents_acceptance",
           "missing_repetition"
         ],
         "protocol_state": "blocked",
@@ -26764,19 +26276,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 1,
+        "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 2,
-          "verified": 1
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "559dc32bb9f38bede002fb5a2a127af079393c63271183d84c66fef318280f64",
             "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vio/citrusfarm/seq04/openvins/run10001"
             ]
@@ -26785,7 +26296,6 @@
       },
       "flags": [
         "B",
-        "L",
         "M"
       ]
     },
@@ -26798,7 +26308,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA1/E1/S0/F1\nB,F,M",
+      "annotation": "no score\nA1/E1/S0/F1\nB,M",
       "summary": {
         "identity": [
           "vio",
@@ -26816,20 +26326,13 @@
         },
         "acceptance": {
           "not_executed": 2,
-          "valid_observed_failure": 1
+          "blocked": 1
         },
-        "paper_usable": 1,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
-          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
-          "no_measured_processing_rate_or_realtime_deadline_claim",
-          "no_rotation_or_full_relative_pose_accuracy_claim",
-          "recorded_native_assets_not_complete_transitive_build_reconstruction",
-          "retain_failure_in_attempt_denominator",
-          "retain_observed_scale_collapse_in_attempt_denominator"
+          "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -26841,7 +26344,7 @@
               "scale_collapse": 1
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 0,
             "accepted_primary_ate": {
               "n": 0,
               "mean": null,
@@ -26874,6 +26377,7 @@
           }
         ],
         "scientific_blockers": [
+          "confirmed_estimator_defect_prevents_acceptance",
           "missing_repetition"
         ],
         "protocol_state": "blocked",
@@ -26886,19 +26390,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 1,
-        "verified_failure_count": 1,
+        "protocol_verified_attempts": 0,
+        "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 2,
-          "verified": 1
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "559dc32bb9f38bede002fb5a2a127af079393c63271183d84c66fef318280f64",
             "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vio/citrusfarm/seq07/openvins/run10001"
             ]
@@ -26907,7 +26410,6 @@
       },
       "flags": [
         "B",
-        "F",
         "M"
       ]
     },
@@ -27152,7 +26654,7 @@
         "default"
       ],
       "value": 5.693586824770859,
-      "annotation": "5.69\nA3/E3/S0/F3\nB",
+      "annotation": "5.69\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -27171,10 +26673,7 @@
           "blocked": 3
         },
         "paper_usable": 0,
-        "claim_limits": [
-          "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
-        ],
+        "claim_limits": [],
         "clean_qualified_n3": false,
         "cohorts": [
           {
@@ -27220,17 +26719,17 @@
           }
         ],
         "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
+          "reviewed_evidence_changed:datasets/hortimulti/strawberry02/mav0/imu0/data.csv"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
-        "successful_run_count": 0,
-        "observed_failure_count": 3,
-        "completed_export_shutdown_error_count": 3,
-        "shutdown_error_count": 3,
+        "successful_run_count": 3,
+        "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -27265,7 +26764,7 @@
         "default"
       ],
       "value": 0.6941059102068555,
-      "annotation": "0.694\nA3/E3/S0/F3\nB",
+      "annotation": "0.694\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -27284,10 +26783,7 @@
           "blocked": 3
         },
         "paper_usable": 0,
-        "claim_limits": [
-          "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
-        ],
+        "claim_limits": [],
         "clean_qualified_n3": false,
         "cohorts": [
           {
@@ -27333,17 +26829,17 @@
           }
         ],
         "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
+          "reviewed_evidence_changed:datasets/hortimulti/strawberry03/mav0/imu0/data.csv"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
-        "successful_run_count": 0,
-        "observed_failure_count": 3,
-        "completed_export_shutdown_error_count": 3,
-        "shutdown_error_count": 3,
+        "successful_run_count": 3,
+        "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
@@ -29130,8 +28626,8 @@
         "svo_pro",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,L",
+      "value": 1.6645736018815072,
+      "annotation": "1.66\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vio",
@@ -29162,129 +28658,50 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "93a91da0a38df6e4acad5648941ebe72956fa1f44a1d024e2711c762c882dff9",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "2713104a07a545ac2b8c9e52063a00afd8d1bed043c5ec256482a8a4d5499782",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 1,
-              "mean": 1.598951115036486,
-              "median": 1.598951115036486,
-              "min": 1.598951115036486,
-              "max": 1.598951115036486,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.598951115036486,
-              "median": 1.598951115036486,
-              "min": 1.598951115036486,
-              "max": 1.598951115036486,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 98.51729520704797,
-              "median": 98.51729520704797,
-              "min": 98.51729520704797,
-              "max": 98.51729520704797,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/rosariov2/sequence1/svo_pro/run10002"
-            ]
-          },
-          {
-            "cohort": "b04d9b527931b5d9ace3c4f3f52698a5cf47425fa2466f30271db5ff580ae821",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 1.6935933520916795,
-              "median": 1.6935933520916795,
-              "min": 1.6935933520916795,
-              "max": 1.6935933520916795,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.6935933520916795,
-              "median": 1.6935933520916795,
-              "min": 1.6935933520916795,
-              "max": 1.6935933520916795,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 98.73012720550496,
-              "median": 98.73012720550496,
-              "min": 98.73012720550496,
-              "max": 98.73012720550496,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/rosariov2/sequence1/svo_pro/run10003"
-            ]
-          },
-          {
-            "cohort": "d0ede2b1c1e36dd1d6d1713c100af4ae2df764334df1bd899b4fa98291d1a87e",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 1.6645736018815072,
+              "n": 3,
+              "mean": 1.652372689669891,
               "median": 1.6645736018815072,
-              "min": 1.6645736018815072,
-              "max": 1.6645736018815072,
-              "sample_std": null
+              "min": 1.598951115036486,
+              "max": 1.6935933520916795,
+              "sample_std": 0.048486440917018654
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.6645736018815072,
+              "n": 3,
+              "mean": 1.652372689669891,
               "median": 1.6645736018815072,
-              "min": 1.6645736018815072,
-              "max": 1.6645736018815072,
-              "sample_std": null
+              "min": 1.598951115036486,
+              "max": 1.6935933520916795,
+              "sample_std": 0.048486440917018654
             },
             "dense_coverage_pct": {
-              "n": 1,
-              "mean": 98.58114477109176,
+              "n": 3,
+              "mean": 98.60952239454822,
               "median": 98.58114477109176,
-              "min": 98.58114477109176,
-              "max": 98.58114477109176,
-              "sample_std": null
+              "min": 98.51729520704797,
+              "max": 98.73012720550496,
+              "sample_std": 0.109216903575303
             },
             "run_paths": [
-              "results/vio/rosariov2/sequence1/svo_pro/run10001"
+              "results/vio/rosariov2/sequence1/svo_pro/run10001",
+              "results/vio/rosariov2/sequence1/svo_pro/run10002",
+              "results/vio/rosariov2/sequence1/svo_pro/run10003"
             ]
           }
         ],
-        "scientific_blockers": [
-          "within_cell_configuration_mismatch",
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
-        ],
-        "protocol_state": "separate_implementation_cohorts",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -29301,36 +28718,20 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "93a91da0a38df6e4acad5648941ebe72956fa1f44a1d024e2711c762c882dff9",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "cohort": "2713104a07a545ac2b8c9e52063a00afd8d1bed043c5ec256482a8a4d5499782",
+            "attempts": 3,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
-              "results/vio/rosariov2/sequence1/svo_pro/run10002"
-            ]
-          },
-          {
-            "cohort": "b04d9b527931b5d9ace3c4f3f52698a5cf47425fa2466f30271db5ff580ae821",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
+              "results/vio/rosariov2/sequence1/svo_pro/run10001",
+              "results/vio/rosariov2/sequence1/svo_pro/run10002",
               "results/vio/rosariov2/sequence1/svo_pro/run10003"
-            ]
-          },
-          {
-            "cohort": "d0ede2b1c1e36dd1d6d1713c100af4ae2df764334df1bd899b4fa98291d1a87e",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vio/rosariov2/sequence1/svo_pro/run10001"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
+        "V3",
         "L"
       ]
     },
@@ -29342,8 +28743,8 @@
         "svo_pro",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,L",
+      "value": 1.5239606368308531,
+      "annotation": "1.52\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vio",
@@ -29374,129 +28775,50 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "4a98f9d7133034911a29d9ad5b64222d8accee17274b1ace82a0e23ef3dd2b2b",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "7a5c98dcf97d68e9c9068b7d4e1a9d49490a18f2d708293585d99fda6dba6719",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 1,
-              "mean": 1.354677126290981,
-              "median": 1.354677126290981,
-              "min": 1.354677126290981,
-              "max": 1.354677126290981,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.354677126290981,
-              "median": 1.354677126290981,
-              "min": 1.354677126290981,
-              "max": 1.354677126290981,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 98.13989949267203,
-              "median": 98.13989949267203,
-              "min": 98.13989949267203,
-              "max": 98.13989949267203,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/rosariov2/sequence5/svo_pro/run10002"
-            ]
-          },
-          {
-            "cohort": "540c3c62f9be2c31417912027d2bbe30b332618df44b36003a360f3bb6e2d1e8",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 1.5239606368308531,
+              "n": 3,
+              "mean": 1.4682890332606489,
               "median": 1.5239606368308531,
-              "min": 1.5239606368308531,
-              "max": 1.5239606368308531,
-              "sample_std": null
+              "min": 1.354677126290981,
+              "max": 1.5262293366601127,
+              "sample_std": 0.09839733636482338
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.5239606368308531,
+              "n": 3,
+              "mean": 1.4682890332606489,
               "median": 1.5239606368308531,
-              "min": 1.5239606368308531,
-              "max": 1.5239606368308531,
-              "sample_std": null
+              "min": 1.354677126290981,
+              "max": 1.5262293366601127,
+              "sample_std": 0.09839733636482338
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 98.13989949267203,
               "median": 98.13989949267203,
               "min": 98.13989949267203,
               "max": 98.13989949267203,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/rosariov2/sequence5/svo_pro/run10001"
-            ]
-          },
-          {
-            "cohort": "db3a9aa01a5403ddadce8611ded2136c46dd91a683d1be30e3775face1651948",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 1.5262293366601127,
-              "median": 1.5262293366601127,
-              "min": 1.5262293366601127,
-              "max": 1.5262293366601127,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.5262293366601127,
-              "median": 1.5262293366601127,
-              "min": 1.5262293366601127,
-              "max": 1.5262293366601127,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 98.13989949267203,
-              "median": 98.13989949267203,
-              "min": 98.13989949267203,
-              "max": 98.13989949267203,
-              "sample_std": null
-            },
-            "run_paths": [
+              "results/vio/rosariov2/sequence5/svo_pro/run10001",
+              "results/vio/rosariov2/sequence5/svo_pro/run10002",
               "results/vio/rosariov2/sequence5/svo_pro/run10003"
             ]
           }
         ],
-        "scientific_blockers": [
-          "within_cell_configuration_mismatch",
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
-        ],
-        "protocol_state": "separate_implementation_cohorts",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -29513,36 +28835,20 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "4a98f9d7133034911a29d9ad5b64222d8accee17274b1ace82a0e23ef3dd2b2b",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "cohort": "7a5c98dcf97d68e9c9068b7d4e1a9d49490a18f2d708293585d99fda6dba6719",
+            "attempts": 3,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
-              "results/vio/rosariov2/sequence5/svo_pro/run10002"
-            ]
-          },
-          {
-            "cohort": "540c3c62f9be2c31417912027d2bbe30b332618df44b36003a360f3bb6e2d1e8",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vio/rosariov2/sequence5/svo_pro/run10001"
-            ]
-          },
-          {
-            "cohort": "db3a9aa01a5403ddadce8611ded2136c46dd91a683d1be30e3775face1651948",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
+              "results/vio/rosariov2/sequence5/svo_pro/run10001",
+              "results/vio/rosariov2/sequence5/svo_pro/run10002",
               "results/vio/rosariov2/sequence5/svo_pro/run10003"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
+        "V3",
         "L"
       ]
     },
@@ -29712,7 +29018,7 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "7e8c7bbb33d793697cfda749eaa0e7f094caa9914da5abeb2e034a222f904442",
+            "cohort": "cf3e3b12f3b8646980ac3b3dd97b0b6c6a52fcd8beb2b04150fa3d5c0838cdbb",
             "planned_members": 1,
             "evaluated": 1,
             "outcomes": {
@@ -29773,7 +29079,7 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "7e8c7bbb33d793697cfda749eaa0e7f094caa9914da5abeb2e034a222f904442",
+            "cohort": "cf3e3b12f3b8646980ac3b3dd97b0b6c6a52fcd8beb2b04150fa3d5c0838cdbb",
             "attempts": 1,
             "verified_completed": 1,
             "missing_to_n3": 2,
@@ -29797,8 +29103,8 @@
         "svo_pro",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,P,L",
+      "value": 0.10183576165488974,
+      "annotation": "0.102\nA3/E3/S3/F0\nV3,P,L",
       "summary": {
         "identity": [
           "vio",
@@ -29828,129 +29134,50 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "856c8a2b01e369aaf95b783183f96a9718ff522d336d3bd2a5ea2df81cea2f2d",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "38ad8c1b9966cb962de9748e733088c3ed89357b811854ec0618e5e85e218876",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.10183576165488974,
+              "n": 3,
+              "mean": 0.10010751395538474,
               "median": 0.10183576165488974,
-              "min": 0.10183576165488974,
-              "max": 0.10183576165488974,
-              "sample_std": null
+              "min": 0.0927265494239493,
+              "max": 0.10576023078731518,
+              "sample_std": 0.0066865045093509835
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.10183576165488974,
+              "n": 3,
+              "mean": 0.10010751395538474,
               "median": 0.10183576165488974,
-              "min": 0.10183576165488974,
-              "max": 0.10183576165488974,
-              "sample_std": null
+              "min": 0.0927265494239493,
+              "max": 0.10576023078731518,
+              "sample_std": 0.0066865045093509835
             },
             "dense_coverage_pct": {
-              "n": 1,
-              "mean": 94.62102684165589,
+              "n": 3,
+              "mean": 94.69347094117072,
               "median": 94.62102684165589,
               "min": 94.62102684165589,
-              "max": 94.62102684165589,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/euroc_mav/MH_01_easy/svo_pro/run10001"
-            ]
-          },
-          {
-            "cohort": "94f4175fe31a970a323bc951a16f16ba889354db692f8bc51ba8721ab16640a3",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.10576023078731518,
-              "median": 0.10576023078731518,
-              "min": 0.10576023078731518,
-              "max": 0.10576023078731518,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.10576023078731518,
-              "median": 0.10576023078731518,
-              "min": 0.10576023078731518,
-              "max": 0.10576023078731518,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 94.83835914020035,
-              "median": 94.83835914020035,
-              "min": 94.83835914020035,
               "max": 94.83835914020035,
-              "sample_std": null
+              "sample_std": 0.1254768610682457
             },
             "run_paths": [
-              "results/vio/euroc_mav/MH_01_easy/svo_pro/run10002"
-            ]
-          },
-          {
-            "cohort": "f1507f318c4a35179802b200f7905fe47578d93e5f7b53a328afe1873875c568",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.0927265494239493,
-              "median": 0.0927265494239493,
-              "min": 0.0927265494239493,
-              "max": 0.0927265494239493,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.0927265494239493,
-              "median": 0.0927265494239493,
-              "min": 0.0927265494239493,
-              "max": 0.0927265494239493,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 94.62102684165589,
-              "median": 94.62102684165589,
-              "min": 94.62102684165589,
-              "max": 94.62102684165589,
-              "sample_std": null
-            },
-            "run_paths": [
+              "results/vio/euroc_mav/MH_01_easy/svo_pro/run10001",
+              "results/vio/euroc_mav/MH_01_easy/svo_pro/run10002",
               "results/vio/euroc_mav/MH_01_easy/svo_pro/run10003"
             ]
           }
         ],
-        "scientific_blockers": [
-          "within_cell_configuration_mismatch",
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
-        ],
-        "protocol_state": "separate_implementation_cohorts",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -29967,36 +29194,20 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "856c8a2b01e369aaf95b783183f96a9718ff522d336d3bd2a5ea2df81cea2f2d",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "cohort": "38ad8c1b9966cb962de9748e733088c3ed89357b811854ec0618e5e85e218876",
+            "attempts": 3,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
-              "results/vio/euroc_mav/MH_01_easy/svo_pro/run10001"
-            ]
-          },
-          {
-            "cohort": "94f4175fe31a970a323bc951a16f16ba889354db692f8bc51ba8721ab16640a3",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vio/euroc_mav/MH_01_easy/svo_pro/run10002"
-            ]
-          },
-          {
-            "cohort": "f1507f318c4a35179802b200f7905fe47578d93e5f7b53a328afe1873875c568",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
+              "results/vio/euroc_mav/MH_01_easy/svo_pro/run10001",
+              "results/vio/euroc_mav/MH_01_easy/svo_pro/run10002",
               "results/vio/euroc_mav/MH_01_easy/svo_pro/run10003"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
+        "V3",
         "P",
         "L"
       ]
@@ -30009,8 +29220,8 @@
         "svo_pro",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,P,L",
+      "value": 0.09690173679229733,
+      "annotation": "0.0969\nA3/E3/S3/F0\nV3,P,L",
       "summary": {
         "identity": [
           "vio",
@@ -30040,129 +29251,50 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "2d622df979f51af673a47ad8666922be58a2ffe05dd96789c84891edde79c5d6",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "0a84d736d537a38bdf0e252691cd9049def3e1c422ecbebb9baf3f4653106fbc",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.09690173679229733,
+              "n": 3,
+              "mean": 0.0941191082550305,
               "median": 0.09690173679229733,
-              "min": 0.09690173679229733,
-              "max": 0.09690173679229733,
-              "sample_std": null
+              "min": 0.08645995915545403,
+              "max": 0.09899562881734014,
+              "sample_std": 0.006715133628625106
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.09690173679229733,
+              "n": 3,
+              "mean": 0.0941191082550305,
               "median": 0.09690173679229733,
-              "min": 0.09690173679229733,
-              "max": 0.09690173679229733,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 85.47610231023734,
-              "median": 85.47610231023734,
-              "min": 85.47610231023734,
-              "max": 85.47610231023734,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/euroc_mav/MH_03_medium/svo_pro/run10001"
-            ]
-          },
-          {
-            "cohort": "3d57a576cd62918f986bc6f3b873861f5171968e4ab77b96b75d295cd5340356",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.09899562881734014,
-              "median": 0.09899562881734014,
-              "min": 0.09899562881734014,
-              "max": 0.09899562881734014,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.09899562881734014,
-              "median": 0.09899562881734014,
-              "min": 0.09899562881734014,
-              "max": 0.09899562881734014,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 84.06817337503702,
-              "median": 84.06817337503702,
-              "min": 84.06817337503702,
-              "max": 84.06817337503702,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/euroc_mav/MH_03_medium/svo_pro/run10003"
-            ]
-          },
-          {
-            "cohort": "ee0492bc8d20d8b0b3ebdf6f06227fde25c89964c14a3e7f149d63b7941854e3",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.08645995915545403,
-              "median": 0.08645995915545403,
               "min": 0.08645995915545403,
-              "max": 0.08645995915545403,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.08645995915545403,
-              "median": 0.08645995915545403,
-              "min": 0.08645995915545403,
-              "max": 0.08645995915545403,
-              "sample_std": null
+              "max": 0.09899562881734014,
+              "sample_std": 0.006715133628625106
             },
             "dense_coverage_pct": {
-              "n": 1,
-              "mean": 84.10522427596739,
+              "n": 3,
+              "mean": 84.54983332041391,
               "median": 84.10522427596739,
-              "min": 84.10522427596739,
-              "max": 84.10522427596739,
-              "sample_std": null
+              "min": 84.06817337503702,
+              "max": 85.47610231023734,
+              "sample_std": 0.8023863617025874
             },
             "run_paths": [
-              "results/vio/euroc_mav/MH_03_medium/svo_pro/run10002"
+              "results/vio/euroc_mav/MH_03_medium/svo_pro/run10001",
+              "results/vio/euroc_mav/MH_03_medium/svo_pro/run10002",
+              "results/vio/euroc_mav/MH_03_medium/svo_pro/run10003"
             ]
           }
         ],
-        "scientific_blockers": [
-          "within_cell_configuration_mismatch",
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
-        ],
-        "protocol_state": "separate_implementation_cohorts",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -30179,36 +29311,20 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "2d622df979f51af673a47ad8666922be58a2ffe05dd96789c84891edde79c5d6",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "cohort": "0a84d736d537a38bdf0e252691cd9049def3e1c422ecbebb9baf3f4653106fbc",
+            "attempts": 3,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
-              "results/vio/euroc_mav/MH_03_medium/svo_pro/run10001"
-            ]
-          },
-          {
-            "cohort": "3d57a576cd62918f986bc6f3b873861f5171968e4ab77b96b75d295cd5340356",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
+              "results/vio/euroc_mav/MH_03_medium/svo_pro/run10001",
+              "results/vio/euroc_mav/MH_03_medium/svo_pro/run10002",
               "results/vio/euroc_mav/MH_03_medium/svo_pro/run10003"
-            ]
-          },
-          {
-            "cohort": "ee0492bc8d20d8b0b3ebdf6f06227fde25c89964c14a3e7f149d63b7941854e3",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vio/euroc_mav/MH_03_medium/svo_pro/run10002"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
+        "V3",
         "P",
         "L"
       ]
@@ -30221,8 +29337,8 @@
         "svo_pro",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,P,L",
+      "value": 0.21278129002069485,
+      "annotation": "0.213\nA3/E3/S3/F0\nV3,P,L",
       "summary": {
         "identity": [
           "vio",
@@ -30252,129 +29368,50 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "3f193db69f729e827399c79e19bb682aaae67db8a3089809c76db3e3ae80c41f",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "fbcd96ceb0e9f7de76dc1789097a64d6cab8b34c41d9ab04159c2bb510f4fdc1",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.21278129002069485,
+              "n": 3,
+              "mean": 0.22632678492389466,
               "median": 0.21278129002069485,
-              "min": 0.21278129002069485,
-              "max": 0.21278129002069485,
-              "sample_std": null
+              "min": 0.1449166253787182,
+              "max": 0.3212824393722709,
+              "sample_std": 0.08895974039154772
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.21278129002069485,
+              "n": 3,
+              "mean": 0.22632678492389466,
               "median": 0.21278129002069485,
-              "min": 0.21278129002069485,
-              "max": 0.21278129002069485,
-              "sample_std": null
+              "min": 0.1449166253787182,
+              "max": 0.3212824393722709,
+              "sample_std": 0.08895974039154772
             },
             "dense_coverage_pct": {
-              "n": 1,
-              "mean": 93.88204220640999,
+              "n": 3,
+              "mean": 93.89671355393295,
               "median": 93.88204220640999,
               "min": 93.88204220640999,
-              "max": 93.88204220640999,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/euroc_mav/MH_05_difficult/svo_pro/run10001"
-            ]
-          },
-          {
-            "cohort": "ac46c71985874e4b454dd294a90120eee4ff6f0076e2fa8044fba25e8429de6b",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.3212824393722709,
-              "median": 0.3212824393722709,
-              "min": 0.3212824393722709,
-              "max": 0.3212824393722709,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.3212824393722709,
-              "median": 0.3212824393722709,
-              "min": 0.3212824393722709,
-              "max": 0.3212824393722709,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 93.92605624897888,
-              "median": 93.92605624897888,
-              "min": 93.92605624897888,
               "max": 93.92605624897888,
-              "sample_std": null
+              "sample_std": 0.02541151932527201
             },
             "run_paths": [
-              "results/vio/euroc_mav/MH_05_difficult/svo_pro/run10002"
-            ]
-          },
-          {
-            "cohort": "e49fb3449b443792855ec5449bd7fd7e6a38ddd3e9cbffbed8cca4a17929bfb5",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.1449166253787182,
-              "median": 0.1449166253787182,
-              "min": 0.1449166253787182,
-              "max": 0.1449166253787182,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.1449166253787182,
-              "median": 0.1449166253787182,
-              "min": 0.1449166253787182,
-              "max": 0.1449166253787182,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 93.88204220640999,
-              "median": 93.88204220640999,
-              "min": 93.88204220640999,
-              "max": 93.88204220640999,
-              "sample_std": null
-            },
-            "run_paths": [
+              "results/vio/euroc_mav/MH_05_difficult/svo_pro/run10001",
+              "results/vio/euroc_mav/MH_05_difficult/svo_pro/run10002",
               "results/vio/euroc_mav/MH_05_difficult/svo_pro/run10003"
             ]
           }
         ],
-        "scientific_blockers": [
-          "within_cell_configuration_mismatch",
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
-        ],
-        "protocol_state": "separate_implementation_cohorts",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -30391,36 +29428,20 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "3f193db69f729e827399c79e19bb682aaae67db8a3089809c76db3e3ae80c41f",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "cohort": "fbcd96ceb0e9f7de76dc1789097a64d6cab8b34c41d9ab04159c2bb510f4fdc1",
+            "attempts": 3,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
-              "results/vio/euroc_mav/MH_05_difficult/svo_pro/run10001"
-            ]
-          },
-          {
-            "cohort": "ac46c71985874e4b454dd294a90120eee4ff6f0076e2fa8044fba25e8429de6b",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vio/euroc_mav/MH_05_difficult/svo_pro/run10002"
-            ]
-          },
-          {
-            "cohort": "e49fb3449b443792855ec5449bd7fd7e6a38ddd3e9cbffbed8cca4a17929bfb5",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
+              "results/vio/euroc_mav/MH_05_difficult/svo_pro/run10001",
+              "results/vio/euroc_mav/MH_05_difficult/svo_pro/run10002",
               "results/vio/euroc_mav/MH_05_difficult/svo_pro/run10003"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
+        "V3",
         "P",
         "L"
       ]
@@ -30468,7 +29489,7 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "bd5f44b28f778063e0eea0d52ee9a50c58a9731de31af995e48ad2dcf8bb22b7",
+            "cohort": "4718830fad1fb0e39b8f6a3df4f5bb65e1131cea4c5835509c462f1078b290f7",
             "planned_members": 1,
             "evaluated": 1,
             "outcomes": {
@@ -30529,7 +29550,7 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "bd5f44b28f778063e0eea0d52ee9a50c58a9731de31af995e48ad2dcf8bb22b7",
+            "cohort": "4718830fad1fb0e39b8f6a3df4f5bb65e1131cea4c5835509c462f1078b290f7",
             "attempts": 1,
             "verified_completed": 1,
             "missing_to_n3": 2,
@@ -30588,7 +29609,7 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "63c6017956c73a58f076e2c1c423b06dc3de84233ab8a25c154257dbb318de64",
+            "cohort": "2a230d7a906bbe8424028e24c33cfd21383299a6b2d6f99d15947740879a32cd",
             "planned_members": 1,
             "evaluated": 1,
             "outcomes": {
@@ -30649,7 +29670,7 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "63c6017956c73a58f076e2c1c423b06dc3de84233ab8a25c154257dbb318de64",
+            "cohort": "2a230d7a906bbe8424028e24c33cfd21383299a6b2d6f99d15947740879a32cd",
             "attempts": 1,
             "verified_completed": 1,
             "missing_to_n3": 2,
@@ -30673,8 +29694,8 @@
         "mast3r_fusion",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,L",
+      "value": 47.20123219933396,
+      "annotation": "47.2\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vio",
@@ -30705,128 +29726,50 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "07d6b1f75551d904a1a840eb5d3021837af6e6ac201975952718b8be5f8745c0",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "b33bbbe9f3199dce54bcd4bdfd6acb7bab150eb5dc65d7330b1c8fdace7416b2",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 1,
+              "n": 3,
               "mean": 47.20123219933396,
               "median": 47.20123219933396,
               "min": 47.20123219933396,
               "max": 47.20123219933396,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
+              "n": 3,
               "mean": 47.20123219933396,
               "median": 47.20123219933396,
               "min": 47.20123219933396,
               "max": 47.20123219933396,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 99.99290014760385,
               "median": 99.99290014760385,
               "min": 99.99290014760385,
               "max": 99.99290014760385,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/rosariov2/sequence1/mast3r_fusion/run10001"
-            ]
-          },
-          {
-            "cohort": "6eaa1b78c304edb2697f61d5d422f2d160ddf8c4df29324a68ecc4059bab571f",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 47.20123219933396,
-              "median": 47.20123219933396,
-              "min": 47.20123219933396,
-              "max": 47.20123219933396,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 47.20123219933396,
-              "median": 47.20123219933396,
-              "min": 47.20123219933396,
-              "max": 47.20123219933396,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 99.99290014760385,
-              "median": 99.99290014760385,
-              "min": 99.99290014760385,
-              "max": 99.99290014760385,
-              "sample_std": null
-            },
-            "run_paths": [
+              "results/vio/rosariov2/sequence1/mast3r_fusion/run10001",
+              "results/vio/rosariov2/sequence1/mast3r_fusion/run10002",
               "results/vio/rosariov2/sequence1/mast3r_fusion/run10003"
-            ]
-          },
-          {
-            "cohort": "ff0f6e98ed562628fcde9503e180e5cd36e46bea114fca8785661df83ff61d11",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 47.20123219933396,
-              "median": 47.20123219933396,
-              "min": 47.20123219933396,
-              "max": 47.20123219933396,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 47.20123219933396,
-              "median": 47.20123219933396,
-              "min": 47.20123219933396,
-              "max": 47.20123219933396,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 99.99290014760385,
-              "median": 99.99290014760385,
-              "min": 99.99290014760385,
-              "max": 99.99290014760385,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/rosariov2/sequence1/mast3r_fusion/run10002"
             ]
           }
         ],
-        "scientific_blockers": [
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
-        ],
-        "protocol_state": "separate_implementation_cohorts",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -30843,36 +29786,20 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "07d6b1f75551d904a1a840eb5d3021837af6e6ac201975952718b8be5f8745c0",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "cohort": "b33bbbe9f3199dce54bcd4bdfd6acb7bab150eb5dc65d7330b1c8fdace7416b2",
+            "attempts": 3,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
-              "results/vio/rosariov2/sequence1/mast3r_fusion/run10001"
-            ]
-          },
-          {
-            "cohort": "6eaa1b78c304edb2697f61d5d422f2d160ddf8c4df29324a68ecc4059bab571f",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
+              "results/vio/rosariov2/sequence1/mast3r_fusion/run10001",
+              "results/vio/rosariov2/sequence1/mast3r_fusion/run10002",
               "results/vio/rosariov2/sequence1/mast3r_fusion/run10003"
-            ]
-          },
-          {
-            "cohort": "ff0f6e98ed562628fcde9503e180e5cd36e46bea114fca8785661df83ff61d11",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vio/rosariov2/sequence1/mast3r_fusion/run10002"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
+        "V3",
         "L"
       ]
     },
@@ -30884,8 +29811,8 @@
         "mast3r_fusion",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,L",
+      "value": 6.423444556715078,
+      "annotation": "6.42\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vio",
@@ -30916,128 +29843,50 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "07d6b1f75551d904a1a840eb5d3021837af6e6ac201975952718b8be5f8745c0",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "b33bbbe9f3199dce54bcd4bdfd6acb7bab150eb5dc65d7330b1c8fdace7416b2",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 1,
+              "n": 3,
               "mean": 6.423444556715078,
               "median": 6.423444556715078,
               "min": 6.423444556715078,
               "max": 6.423444556715078,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
+              "n": 3,
               "mean": 6.423444556715078,
               "median": 6.423444556715078,
               "min": 6.423444556715078,
               "max": 6.423444556715078,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 99.99162126829081,
               "median": 99.99162126829081,
               "min": 99.99162126829081,
               "max": 99.99162126829081,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/rosariov2/sequence5/mast3r_fusion/run10001"
-            ]
-          },
-          {
-            "cohort": "6eaa1b78c304edb2697f61d5d422f2d160ddf8c4df29324a68ecc4059bab571f",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 6.423444556715078,
-              "median": 6.423444556715078,
-              "min": 6.423444556715078,
-              "max": 6.423444556715078,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 6.423444556715078,
-              "median": 6.423444556715078,
-              "min": 6.423444556715078,
-              "max": 6.423444556715078,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 99.99162126829081,
-              "median": 99.99162126829081,
-              "min": 99.99162126829081,
-              "max": 99.99162126829081,
-              "sample_std": null
-            },
-            "run_paths": [
+              "results/vio/rosariov2/sequence5/mast3r_fusion/run10001",
+              "results/vio/rosariov2/sequence5/mast3r_fusion/run10002",
               "results/vio/rosariov2/sequence5/mast3r_fusion/run10003"
-            ]
-          },
-          {
-            "cohort": "ff0f6e98ed562628fcde9503e180e5cd36e46bea114fca8785661df83ff61d11",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 6.423444556715078,
-              "median": 6.423444556715078,
-              "min": 6.423444556715078,
-              "max": 6.423444556715078,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 6.423444556715078,
-              "median": 6.423444556715078,
-              "min": 6.423444556715078,
-              "max": 6.423444556715078,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 99.99162126829081,
-              "median": 99.99162126829081,
-              "min": 99.99162126829081,
-              "max": 99.99162126829081,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/rosariov2/sequence5/mast3r_fusion/run10002"
             ]
           }
         ],
-        "scientific_blockers": [
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
-        ],
-        "protocol_state": "separate_implementation_cohorts",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -31054,36 +29903,20 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "07d6b1f75551d904a1a840eb5d3021837af6e6ac201975952718b8be5f8745c0",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "cohort": "b33bbbe9f3199dce54bcd4bdfd6acb7bab150eb5dc65d7330b1c8fdace7416b2",
+            "attempts": 3,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
-              "results/vio/rosariov2/sequence5/mast3r_fusion/run10001"
-            ]
-          },
-          {
-            "cohort": "6eaa1b78c304edb2697f61d5d422f2d160ddf8c4df29324a68ecc4059bab571f",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
+              "results/vio/rosariov2/sequence5/mast3r_fusion/run10001",
+              "results/vio/rosariov2/sequence5/mast3r_fusion/run10002",
               "results/vio/rosariov2/sequence5/mast3r_fusion/run10003"
-            ]
-          },
-          {
-            "cohort": "ff0f6e98ed562628fcde9503e180e5cd36e46bea114fca8785661df83ff61d11",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vio/rosariov2/sequence5/mast3r_fusion/run10002"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
+        "V3",
         "L"
       ]
     },
@@ -31253,7 +30086,7 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "2def2916f9aa2c40f82dd2a31978b8db31967bafe3126c8db5b983811414236e",
+            "cohort": "a070ea08ab63e0ff9eae85b1de4f9e5de3ba7afd03544685ee912b533eb15b93",
             "planned_members": 1,
             "evaluated": 1,
             "outcomes": {
@@ -31314,7 +30147,7 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "2def2916f9aa2c40f82dd2a31978b8db31967bafe3126c8db5b983811414236e",
+            "cohort": "a070ea08ab63e0ff9eae85b1de4f9e5de3ba7afd03544685ee912b533eb15b93",
             "attempts": 1,
             "verified_completed": 1,
             "missing_to_n3": 2,
@@ -31338,8 +30171,8 @@
         "mast3r_fusion",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,L",
+      "value": 0.36373858571309386,
+      "annotation": "0.364\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vio",
@@ -31368,128 +30201,50 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "036fc03015d6835188e50cd35680e2798cfc79101322e0a90c1925bd93d1c66c",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "71c974a4f0f9b2beb0d54c73a4aaf7a3793b41ac8e2d8f0a509d4e684accaa5e",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 1,
+              "n": 3,
               "mean": 0.36373858571309386,
               "median": 0.36373858571309386,
               "min": 0.36373858571309386,
               "max": 0.36373858571309386,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
+              "n": 3,
               "mean": 0.36373858571309386,
               "median": 0.36373858571309386,
               "min": 0.36373858571309386,
               "max": 0.36373858571309386,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 99.97283349506698,
               "median": 99.97283349506698,
               "min": 99.97283349506698,
               "max": 99.97283349506698,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
+              "results/vio/euroc_mav/MH_01_easy/mast3r_fusion/run10001",
+              "results/vio/euroc_mav/MH_01_easy/mast3r_fusion/run10002",
               "results/vio/euroc_mav/MH_01_easy/mast3r_fusion/run10003"
-            ]
-          },
-          {
-            "cohort": "4a8a40318a3e8da099eeebac9dcd6c5ec1e34afc49afadf9963218e0f24cd0f5",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.36373858571309386,
-              "median": 0.36373858571309386,
-              "min": 0.36373858571309386,
-              "max": 0.36373858571309386,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.36373858571309386,
-              "median": 0.36373858571309386,
-              "min": 0.36373858571309386,
-              "max": 0.36373858571309386,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 99.97283349506698,
-              "median": 99.97283349506698,
-              "min": 99.97283349506698,
-              "max": 99.97283349506698,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/euroc_mav/MH_01_easy/mast3r_fusion/run10002"
-            ]
-          },
-          {
-            "cohort": "5e505e3f6510bc02cca1ff73a055312563f5b3e664b579ec7e798333fe980890",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.36373858571309386,
-              "median": 0.36373858571309386,
-              "min": 0.36373858571309386,
-              "max": 0.36373858571309386,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.36373858571309386,
-              "median": 0.36373858571309386,
-              "min": 0.36373858571309386,
-              "max": 0.36373858571309386,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 99.97283349506698,
-              "median": 99.97283349506698,
-              "min": 99.97283349506698,
-              "max": 99.97283349506698,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/euroc_mav/MH_01_easy/mast3r_fusion/run10001"
             ]
           }
         ],
-        "scientific_blockers": [
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
-        ],
-        "protocol_state": "separate_implementation_cohorts",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -31506,36 +30261,20 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "036fc03015d6835188e50cd35680e2798cfc79101322e0a90c1925bd93d1c66c",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "cohort": "71c974a4f0f9b2beb0d54c73a4aaf7a3793b41ac8e2d8f0a509d4e684accaa5e",
+            "attempts": 3,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
+              "results/vio/euroc_mav/MH_01_easy/mast3r_fusion/run10001",
+              "results/vio/euroc_mav/MH_01_easy/mast3r_fusion/run10002",
               "results/vio/euroc_mav/MH_01_easy/mast3r_fusion/run10003"
-            ]
-          },
-          {
-            "cohort": "4a8a40318a3e8da099eeebac9dcd6c5ec1e34afc49afadf9963218e0f24cd0f5",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vio/euroc_mav/MH_01_easy/mast3r_fusion/run10002"
-            ]
-          },
-          {
-            "cohort": "5e505e3f6510bc02cca1ff73a055312563f5b3e664b579ec7e798333fe980890",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vio/euroc_mav/MH_01_easy/mast3r_fusion/run10001"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
+        "V3",
         "L"
       ]
     },
@@ -31547,8 +30286,8 @@
         "mast3r_fusion",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,L",
+      "value": 0.45285881454925175,
+      "annotation": "0.453\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vio",
@@ -31577,128 +30316,50 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "036fc03015d6835188e50cd35680e2798cfc79101322e0a90c1925bd93d1c66c",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "71c974a4f0f9b2beb0d54c73a4aaf7a3793b41ac8e2d8f0a509d4e684accaa5e",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 1,
+              "n": 3,
               "mean": 0.45285881454925175,
               "median": 0.45285881454925175,
               "min": 0.45285881454925175,
               "max": 0.45285881454925175,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
+              "n": 3,
               "mean": 0.45285881454925175,
               "median": 0.45285881454925175,
               "min": 0.45285881454925175,
               "max": 0.45285881454925175,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 99.96294945241321,
               "median": 99.96294945241321,
               "min": 99.96294945241321,
               "max": 99.96294945241321,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
+              "results/vio/euroc_mav/MH_03_medium/mast3r_fusion/run10001",
+              "results/vio/euroc_mav/MH_03_medium/mast3r_fusion/run10002",
               "results/vio/euroc_mav/MH_03_medium/mast3r_fusion/run10003"
-            ]
-          },
-          {
-            "cohort": "4a8a40318a3e8da099eeebac9dcd6c5ec1e34afc49afadf9963218e0f24cd0f5",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.45285881454925175,
-              "median": 0.45285881454925175,
-              "min": 0.45285881454925175,
-              "max": 0.45285881454925175,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.45285881454925175,
-              "median": 0.45285881454925175,
-              "min": 0.45285881454925175,
-              "max": 0.45285881454925175,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 99.96294945241321,
-              "median": 99.96294945241321,
-              "min": 99.96294945241321,
-              "max": 99.96294945241321,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/euroc_mav/MH_03_medium/mast3r_fusion/run10002"
-            ]
-          },
-          {
-            "cohort": "5e505e3f6510bc02cca1ff73a055312563f5b3e664b579ec7e798333fe980890",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.45285881454925175,
-              "median": 0.45285881454925175,
-              "min": 0.45285881454925175,
-              "max": 0.45285881454925175,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.45285881454925175,
-              "median": 0.45285881454925175,
-              "min": 0.45285881454925175,
-              "max": 0.45285881454925175,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 99.96294945241321,
-              "median": 99.96294945241321,
-              "min": 99.96294945241321,
-              "max": 99.96294945241321,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/euroc_mav/MH_03_medium/mast3r_fusion/run10001"
             ]
           }
         ],
-        "scientific_blockers": [
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
-        ],
-        "protocol_state": "separate_implementation_cohorts",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -31715,36 +30376,20 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "036fc03015d6835188e50cd35680e2798cfc79101322e0a90c1925bd93d1c66c",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "cohort": "71c974a4f0f9b2beb0d54c73a4aaf7a3793b41ac8e2d8f0a509d4e684accaa5e",
+            "attempts": 3,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
+              "results/vio/euroc_mav/MH_03_medium/mast3r_fusion/run10001",
+              "results/vio/euroc_mav/MH_03_medium/mast3r_fusion/run10002",
               "results/vio/euroc_mav/MH_03_medium/mast3r_fusion/run10003"
-            ]
-          },
-          {
-            "cohort": "4a8a40318a3e8da099eeebac9dcd6c5ec1e34afc49afadf9963218e0f24cd0f5",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vio/euroc_mav/MH_03_medium/mast3r_fusion/run10002"
-            ]
-          },
-          {
-            "cohort": "5e505e3f6510bc02cca1ff73a055312563f5b3e664b579ec7e798333fe980890",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vio/euroc_mav/MH_03_medium/mast3r_fusion/run10001"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
+        "V3",
         "L"
       ]
     },
@@ -31756,8 +30401,8 @@
         "mast3r_fusion",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,L",
+      "value": 0.5444223075133398,
+      "annotation": "0.544\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vio",
@@ -31786,128 +30431,50 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "036fc03015d6835188e50cd35680e2798cfc79101322e0a90c1925bd93d1c66c",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "71c974a4f0f9b2beb0d54c73a4aaf7a3793b41ac8e2d8f0a509d4e684accaa5e",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 1,
+              "n": 3,
               "mean": 0.5444223075133398,
               "median": 0.5444223075133398,
               "min": 0.5444223075133398,
               "max": 0.5444223075133398,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
+              "n": 3,
               "mean": 0.5444223075133398,
               "median": 0.5444223075133398,
               "min": 0.5444223075133398,
               "max": 0.5444223075133398,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 99.91197191486222,
               "median": 99.91197191486222,
               "min": 99.91197191486222,
               "max": 99.91197191486222,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
+              "results/vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10001",
+              "results/vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10002",
               "results/vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10003"
-            ]
-          },
-          {
-            "cohort": "4a8a40318a3e8da099eeebac9dcd6c5ec1e34afc49afadf9963218e0f24cd0f5",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.5444223075133398,
-              "median": 0.5444223075133398,
-              "min": 0.5444223075133398,
-              "max": 0.5444223075133398,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.5444223075133398,
-              "median": 0.5444223075133398,
-              "min": 0.5444223075133398,
-              "max": 0.5444223075133398,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 99.91197191486222,
-              "median": 99.91197191486222,
-              "min": 99.91197191486222,
-              "max": 99.91197191486222,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10002"
-            ]
-          },
-          {
-            "cohort": "5e505e3f6510bc02cca1ff73a055312563f5b3e664b579ec7e798333fe980890",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 1,
-            "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.5444223075133398,
-              "median": 0.5444223075133398,
-              "min": 0.5444223075133398,
-              "max": 0.5444223075133398,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.5444223075133398,
-              "median": 0.5444223075133398,
-              "min": 0.5444223075133398,
-              "max": 0.5444223075133398,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 99.91197191486222,
-              "median": 99.91197191486222,
-              "min": 99.91197191486222,
-              "max": 99.91197191486222,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10001"
             ]
           }
         ],
-        "scientific_blockers": [
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
-        ],
-        "protocol_state": "separate_implementation_cohorts",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -31924,36 +30491,20 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "036fc03015d6835188e50cd35680e2798cfc79101322e0a90c1925bd93d1c66c",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "cohort": "71c974a4f0f9b2beb0d54c73a4aaf7a3793b41ac8e2d8f0a509d4e684accaa5e",
+            "attempts": 3,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
+              "results/vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10001",
+              "results/vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10002",
               "results/vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10003"
-            ]
-          },
-          {
-            "cohort": "4a8a40318a3e8da099eeebac9dcd6c5ec1e34afc49afadf9963218e0f24cd0f5",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10002"
-            ]
-          },
-          {
-            "cohort": "5e505e3f6510bc02cca1ff73a055312563f5b3e664b579ec7e798333fe980890",
-            "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
-            "run_paths": [
-              "results/vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10001"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
+        "V3",
         "L"
       ]
     },
@@ -32000,7 +30551,7 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "1e7a2203b5d30d2e3d6fa5abef0141602b7abe4b299e761a75933db82e4f31d4",
+            "cohort": "142ea1bb52b3c7afba89a45d8821eea07f9714de3cd86a590f066afd7e8dca2e",
             "planned_members": 1,
             "evaluated": 1,
             "outcomes": {
@@ -32061,7 +30612,7 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "1e7a2203b5d30d2e3d6fa5abef0141602b7abe4b299e761a75933db82e4f31d4",
+            "cohort": "142ea1bb52b3c7afba89a45d8821eea07f9714de3cd86a590f066afd7e8dca2e",
             "attempts": 1,
             "verified_completed": 1,
             "missing_to_n3": 2,
@@ -32120,7 +30671,7 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "1e7a2203b5d30d2e3d6fa5abef0141602b7abe4b299e761a75933db82e4f31d4",
+            "cohort": "142ea1bb52b3c7afba89a45d8821eea07f9714de3cd86a590f066afd7e8dca2e",
             "planned_members": 1,
             "evaluated": 1,
             "outcomes": {
@@ -32181,7 +30732,7 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "1e7a2203b5d30d2e3d6fa5abef0141602b7abe4b299e761a75933db82e4f31d4",
+            "cohort": "142ea1bb52b3c7afba89a45d8821eea07f9714de3cd86a590f066afd7e8dca2e",
             "attempts": 1,
             "verified_completed": 1,
             "missing_to_n3": 2,
@@ -41266,11 +39817,11 @@
     },
     {
       "path": "fig_accuracy_vo_default.png",
-      "sha256": "c7e1759efac428142207c56d2d935ca5fe2cba1e0e3f1f1d1088cb757dd87a24"
+      "sha256": "fd022259ec634439e28d8a0d5ac845b10b65795f4af560f93d0c5044dc348c36"
     },
     {
       "path": "fig_accuracy_vo_default.pdf",
-      "sha256": "4d4887893fa89f21a7d35537a4f2e4feaec58a69b3a8f8b872eac187875f3233"
+      "sha256": "ac8f8fe985bc0c0f1e427b6262f6903253e9cfa978ad5176589f895defd33f1a"
     },
     {
       "path": "fig_accuracy_vo-lc_default.png",
@@ -41282,11 +39833,11 @@
     },
     {
       "path": "fig_accuracy_vio_default.png",
-      "sha256": "2d63206c4030c2a93b26b1105ccc7893d238a181fd0b649690aeb944a523137f"
+      "sha256": "9a1ac5ca66232d9a9d410134dd45e4758a90bb132ede68e406559d7d120e0ab4"
     },
     {
       "path": "fig_accuracy_vio_default.pdf",
-      "sha256": "d58a8674232ed0d23981481aaa5ed69d0c54f0443a003f159253790274e6c03f"
+      "sha256": "c3a0106af42496cdbd86eb8faddc80e97bb96f7cb456b8bde6d0056a987c63c8"
     },
     {
       "path": "fig_accuracy_vio-lc_default.png",
