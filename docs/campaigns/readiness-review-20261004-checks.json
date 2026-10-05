@@ -14185,7 +14185,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/zed2i/field1_diag60_20261002/mast3r_fusion/run90001",
       "diagnostic_scope": "bounded field1_diag60_20261002; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -14439,7 +14441,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/zed2i/field1_diag60_20261002/mast3r_fusion/run90001",
       "diagnostic_scope": "bounded field1_diag60_20261002; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -26060,7 +26064,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vio/zed2i/field1_110426_full_10fps_q90/cuvslam/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vio/zed2i/field1_110426_full_10fps_q90/cuvslam/run1 (exit 0, 46283 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vio/zed2i/field1_110426_full_10fps_q90/cuvslam/run1; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/cuvslam/run90002",
       "historical_failures_preserved": true,
@@ -26401,7 +26407,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run3",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run3 (exit 0, 46101 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run3; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/svo_pro/run90002",
       "historical_failures_preserved": true,
@@ -26688,7 +26696,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run1 (exit 0, 46283 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run1; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/cuvslam/run90002",
       "historical_failures_preserved": true,
@@ -27041,7 +27051,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run2",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run2 (exit 0, 46099 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run2; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/svo_pro/run90002",
       "historical_failures_preserved": true,

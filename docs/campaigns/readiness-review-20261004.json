@@ -9142,7 +9142,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/orbslam3/run90002",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -9346,7 +9348,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/okvis2/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -9538,7 +9542,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/okvis2x/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -9757,7 +9763,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/airslam/run90002",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -10066,7 +10074,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/basalt/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -10162,7 +10172,8 @@
       ],
       "resolved_prerequisites": [],
       "blockers": [
-        "readiness_check_did_not_complete_review_required"
+        "readiness_check_did_not_complete_review_required",
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
       ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/openvins/run90003",
       "diagnostic_scope": "recheck after e880c2c (runner gained a HortiMulti branch; OpenVINS track_frequency 31 where changed): seq04; native exit 0; outcome ok; checked at 4b2b3f8655; previous check results/vio/citrusfarm/seq04/openvins/run90002; CHECK FAILED: audit: processed 4297/7692 published frames (56 %); OpenVINS lags 1.0x paced playback (mean 27 ms, max 340 ms behind), so track_frequency 31 does not remove the drops; ATE 17.4 m against 6.7-9.7 m at track_frequency 10",
@@ -10502,7 +10513,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/voxel_svio/run90003",
       "diagnostic_scope": "recheck after e880c2c (runner gained a HortiMulti branch; OpenVINS track_frequency 31 where changed): seq04; native exit 0; outcome ok; checked at 4b2b3f8655; previous check results/vio/citrusfarm/seq04/voxel_svio/run90002",
       "historical_failures_preserved": true,
@@ -10733,7 +10746,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/cuvslam/run90003",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -11030,7 +11045,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/svo_pro/run90002",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -11300,7 +11317,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/mast3r_fusion/run90003",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -11686,7 +11705,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/orbslam3/run90002",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -11890,7 +11911,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/okvis2/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -12082,7 +12105,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/okvis2x/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -12301,7 +12326,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/airslam/run90002",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -12610,7 +12637,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/basalt/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -12706,7 +12735,8 @@
       ],
       "resolved_prerequisites": [],
       "blockers": [
-        "readiness_check_did_not_complete_review_required"
+        "readiness_check_did_not_complete_review_required",
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
       ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/openvins/run90003",
       "diagnostic_scope": "recheck after e880c2c (runner gained a HortiMulti branch; OpenVINS track_frequency 31 where changed): seq04; native exit 0; outcome ok; checked at 4b2b3f8655; previous check results/vio/citrusfarm/seq04/openvins/run90002; CHECK FAILED: audit: processed 4297/7692 published frames (56 %); OpenVINS lags 1.0x paced playback (mean 27 ms, max 340 ms behind), so track_frequency 31 does not remove the drops; ATE 17.4 m against 6.7-9.7 m at track_frequency 10",
@@ -13046,7 +13076,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/voxel_svio/run90003",
       "diagnostic_scope": "recheck after e880c2c (runner gained a HortiMulti branch; OpenVINS track_frequency 31 where changed): seq04; native exit 0; outcome ok; checked at 4b2b3f8655; previous check results/vio/citrusfarm/seq04/voxel_svio/run90002",
       "historical_failures_preserved": true,
@@ -13277,7 +13309,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/cuvslam/run90003",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -13574,7 +13608,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/svo_pro/run90002",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -13844,7 +13880,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/citrusfarm/seq04/mast3r_fusion/run90003",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -14143,7 +14181,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/citrusfarm/seq04/orbslam3/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -14347,7 +14387,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/citrusfarm/seq04/okvis2/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -14539,7 +14581,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/citrusfarm/seq04/okvis2x/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -14785,7 +14829,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/citrusfarm/seq04/airslam/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -15016,7 +15062,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/citrusfarm/seq04/cuvslam/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -15313,7 +15361,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/citrusfarm/seq04/svo_pro/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -15583,7 +15633,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/citrusfarm/seq04/mast3r_fusion/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -15882,7 +15934,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/citrusfarm/seq04/orbslam3/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -16086,7 +16140,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/citrusfarm/seq04/okvis2/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -16278,7 +16334,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/citrusfarm/seq04/okvis2x/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -16524,7 +16582,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/citrusfarm/seq04/airslam/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -16755,7 +16815,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/citrusfarm/seq04/cuvslam/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -17052,7 +17114,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/citrusfarm/seq04/svo_pro/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -17322,7 +17386,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_imu_noise_rule_to_dataset_configuration_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/citrusfarm/seq04/mast3r_fusion/run90001",
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
