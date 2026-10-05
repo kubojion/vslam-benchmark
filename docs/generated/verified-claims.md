@@ -4,15 +4,15 @@ Generated from hash-checked schema-3 evaluations and matching CSVs. These are in
 
 | Mode | Planned defaults | Evaluated | Numerical ok | Scale collapse | Invalid trajectory | Nonzero exits | Protocol-verified N=3 cells |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vo | 330 | 183 | 182 | 1 | 0 | 7 | 42 |
+| vo | 330 | 256 | 253 | 3 | 0 | 6 | 56 |
 | vo-lc | 210 | 137 | 136 | 1 | 0 | 9 | 26 |
-| vio | 300 | 160 | 156 | 4 | 0 | 9 | 26 |
+| vio | 300 | 232 | 225 | 7 | 0 | 5 | 47 |
 | vio-lc | 210 | 86 | 86 | 0 | 0 | 2 | 13 |
 | gnss-vio | 60 | 20 | 19 | 0 | 1 | 0 | 0 |
 
 Legacy GNSS variants: 6 separate rows; not included in default repetition counts.
 
-Scientific statuses among existing headline attempts: accepted=117, accepted_with_limitation=199, blocked=188, rerun_required=89, valid_observed_failure=6.
+Scientific statuses among existing headline attempts: accepted=117, accepted_with_limitation=390, blocked=155, rerun_required=69, valid_observed_failure=13.
 
 ## Retained adverse outcomes
 
@@ -20,11 +20,11 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 |---|---|---:|---|
 | `results/gnss-vio/hortimulti/strawberry02/vins_fusion_gps/run1` | eval_failed | unknown | blocked |
 | `results/gnss-vio/rosariov2/sequence1/cifasis_gnss_si/run1` | ok | unknown | rerun_required |
-| `results/vio/euroc_mav/MH_01_easy/openvins/run1` | ok | 134 | blocked |
+| `results/vio/citrusfarm/seq07/openvins/run10001` | scale_collapse | 0 | valid_observed_failure |
+| `results/vio/citrusfarm/seq07/voxel_svio/run10001` | scale_collapse | 0 | valid_observed_failure |
 | `results/vio/euroc_mav/MH_01_easy/voxel_svio/run1` | ok | 0 | accepted_with_limitation |
 | `results/vio/euroc_mav/MH_01_easy/voxel_svio/run2` | ok | 0 | accepted_with_limitation |
 | `results/vio/euroc_mav/MH_01_easy/voxel_svio/run3` | ok | 0 | accepted_with_limitation |
-| `results/vio/euroc_mav/MH_03_medium/openvins/run1` | ok | 134 | blocked |
 | `results/vio/euroc_mav/MH_03_medium/voxel_svio/run1` | ok | 0 | accepted_with_limitation |
 | `results/vio/euroc_mav/MH_03_medium/voxel_svio/run2` | ok | 0 | accepted_with_limitation |
 | `results/vio/euroc_mav/MH_03_medium/voxel_svio/run3` | ok | 0 | accepted_with_limitation |
@@ -39,23 +39,21 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 | `results/vio/hortimulti/strawberry03/voxel_svio/run1` | ok | 0 | blocked |
 | `results/vio/hortimulti/strawberry03/voxel_svio/run2` | ok | 0 | blocked |
 | `results/vio/hortimulti/strawberry03/voxel_svio/run3` | ok | 0 | blocked |
-| `results/vio/rosariov2/sequence1/openvins/run1` | scale_collapse | 134 | rerun_required |
-| `results/vio/rosariov2/sequence1/voxel_svio/run1` | ok | 0 | rerun_required |
-| `results/vio/rosariov2/sequence1/voxel_svio/run2` | ok | 0 | rerun_required |
-| `results/vio/rosariov2/sequence1/voxel_svio/run3` | ok | 0 | rerun_required |
-| `results/vio/rosariov2/sequence5/openvins/run1` | scale_collapse | 134 | rerun_required |
-| `results/vio/rosariov2/sequence5/voxel_svio/run1` | ok | 0 | rerun_required |
-| `results/vio/rosariov2/sequence5/voxel_svio/run2` | ok | 0 | rerun_required |
-| `results/vio/rosariov2/sequence5/voxel_svio/run3` | ok | 0 | rerun_required |
+| `results/vio/rosariov2/sequence1/openvins/run10002` | scale_collapse | 0 | valid_observed_failure |
+| `results/vio/rosariov2/sequence5/openvins/run10001` | scale_collapse | 0 | valid_observed_failure |
+| `results/vio/rosariov2/sequence5/openvins/run10003` | scale_collapse | 0 | valid_observed_failure |
 | `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001` | scale_collapse | 139 | valid_observed_failure |
 | `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002` | scale_collapse | 139 | valid_observed_failure |
 | `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003` | ok | 139 | valid_observed_failure |
 | `results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4` | failed_without_trajectory | 139 | valid_observed_failure |
 | `results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | failed_without_trajectory | 139 | rerun_required |
+| `results/vo/citrusfarm/seq04/dsol/run10001` | failed_without_trajectory | 134 | blocked |
+| `results/vo/citrusfarm/seq04/svo_pro/run10001` | scale_collapse | 0 | valid_observed_failure |
+| `results/vo/citrusfarm/seq07/dsol/run10001` | failed_without_trajectory | 134 | blocked |
 | `results/vo/euroc_mav/MH_01_easy/ov2slam/run1` | ok | 0 | accepted_with_limitation |
 | `results/vo/euroc_mav/MH_01_easy/ov2slam/run2` | ok | 0 | accepted_with_limitation |
 | `results/vo/euroc_mav/MH_01_easy/ov2slam/run3` | ok | 0 | accepted_with_limitation |
-| `results/vo/euroc_mav/MH_03_medium/orbslam3/run2` | ok | 139 | blocked |
+| `results/vo/euroc_mav/MH_03_medium/dsol/run10002` | scale_collapse | 0 | valid_observed_failure |
 | `results/vo/euroc_mav/MH_03_medium/ov2slam/run1` | ok | 0 | accepted_with_limitation |
 | `results/vo/euroc_mav/MH_03_medium/ov2slam/run2` | ok | 0 | accepted_with_limitation |
 | `results/vo/euroc_mav/MH_03_medium/ov2slam/run3` | ok | 0 | accepted_with_limitation |
@@ -70,11 +68,9 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 | `results/vo/hortimulti/strawberry03/ov2slam/run1` | ok | 0 | blocked |
 | `results/vo/hortimulti/strawberry03/ov2slam/run2` | ok | 0 | blocked |
 | `results/vo/hortimulti/strawberry03/ov2slam/run3` | ok | 0 | blocked |
-| `results/vo/rosariov2/sequence1/orbslam3/run1` | failed_without_trajectory | 134 | blocked |
 | `results/vo/rosariov2/sequence1/ov2slam/run1` | ok | 0 | accepted_with_limitation |
 | `results/vo/rosariov2/sequence1/ov2slam/run2` | ok | 0 | accepted_with_limitation |
 | `results/vo/rosariov2/sequence1/ov2slam/run3` | ok | 0 | accepted_with_limitation |
-| `results/vo/rosariov2/sequence5/orbslam3/run1` | failed_without_trajectory | 139 | blocked |
 | `results/vo/rosariov2/sequence5/ov2slam/run1` | ok | 0 | accepted_with_limitation |
 | `results/vo/rosariov2/sequence5/ov2slam/run2` | ok | 0 | accepted_with_limitation |
 | `results/vo/rosariov2/sequence5/ov2slam/run3` | ok | 0 | accepted_with_limitation |
@@ -132,9 +128,9 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 
 | Source | SHA-256 |
 |---|---|
-| `inventory.json` | `b932b69efb9734862afb87ddf7ae4e46b639bcccda816e12b7fc320641104b07` |
-| `benchmark-vo.csv` | `8c20d9892869a5b8ea711027f10b4e08b5aefcb2737850d13bc52ad17157f133` |
+| `inventory.json` | `db238c08f88ea02684d159109651924b73df5c7eb68397d5b8cea6e62ebd9ead` |
+| `benchmark-vo.csv` | `36a58545a11e7037d42ffbdda31e1990451abaef55f82ec8ba2ec724cab8e5cf` |
 | `benchmark-vo-lc.csv` | `f513dbc329ec860e4416c121b957c39d78850bc44877a07d5395a7f0ea2ba437` |
-| `benchmark-vio.csv` | `d8aa28a6a8bf8b8c39b8441a6e35bb31b88aa2dcda2fd4b26a48842a6e89dbd3` |
+| `benchmark-vio.csv` | `a135a8f996eccbdfbbfad1e6fc7d54df8104de4bfea5819ec54b5f7070e5aa3b` |
 | `benchmark-vio-lc.csv` | `92b8a74e67d3d4a00f16e9cc4c64ea7a0321c70aa1458dc046cb65867dee6b87` |
 | `benchmark-gnss-vio.csv` | `7eccab1f3b593feedcf877b31ca5618f33a3b6dffcd196c60dc45848acd88494` |

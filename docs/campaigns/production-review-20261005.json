@@ -1,0 +1,1621 @@
+{
+ "schema": 1,
+ "date": "2026-10-05",
+ "scope": "claim review of the selected production attempts",
+ "selections": [
+  {
+   "path": "configs/campaigns/production-attempts-20261004.json",
+   "sha256": "dae4c4ace317cd483de38150e0ca024504ed9b513b7ae56815dffea78f76a266"
+  },
+  {
+   "path": "configs/campaigns/production-replacements-20261005.json",
+   "sha256": "0ecb9f5d3c48374eaf53b043ce7b95f01cdbffeb4a9fb07785fb5204a7bdf374"
+  },
+  {
+   "path": "configs/campaigns/production-replacements-20261005b.json",
+   "sha256": "ce0e942c43a2efbfd6f2643bbec85822ee232d0114c10a0c9dc5d58d48f65790"
+  }
+ ],
+ "attempts": {
+  "vio/citrusfarm/seq04/airslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq04/basalt/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq04/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq04/mast3r_fusion/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq04/okvis2/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq04/okvis2x/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq04/openvins/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.1,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq04/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.5,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq04/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.0,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq04/voxel_svio/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.2,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq07/airslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq07/basalt/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq07/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq07/mast3r_fusion/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq07/okvis2/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq07/okvis2x/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq07/openvins/run10001": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": "scale_collapse",
+   "exit": 0,
+   "coverage": 99.5,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq07/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.8,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq07/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.5,
+   "reasons": []
+  },
+  "vio/citrusfarm/seq07/voxel_svio/run10001": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": "scale_collapse",
+   "exit": 0,
+   "coverage": 99.5,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_01_easy/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_01_easy/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_01_easy/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_01_easy/mast3r_fusion/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_01_easy/mast3r_fusion/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_01_easy/mast3r_fusion/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_01_easy/openvins/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.4,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_01_easy/openvins/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.4,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_01_easy/openvins/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.4,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_01_easy/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_01_easy/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_01_easy/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_01_easy/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 94.6,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_01_easy/svo_pro/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 94.8,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_01_easy/svo_pro/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 94.6,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_03_medium/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_03_medium/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_03_medium/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_03_medium/mast3r_fusion/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_03_medium/mast3r_fusion/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_03_medium/mast3r_fusion/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_03_medium/openvins/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 95.9,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_03_medium/openvins/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 95.9,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_03_medium/openvins/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 95.9,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_03_medium/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_03_medium/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_03_medium/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 85.8,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_03_medium/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 85.5,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_03_medium/svo_pro/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 84.1,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_03_medium/svo_pro/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 84.1,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_05_difficult/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_05_difficult/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_05_difficult/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_05_difficult/openvins/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 94.1,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_05_difficult/openvins/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 94.1,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_05_difficult/openvins/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 94.1,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_05_difficult/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 81.8,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_05_difficult/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_05_difficult/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 81.8,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_05_difficult/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 93.9,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_05_difficult/svo_pro/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 93.9,
+   "reasons": []
+  },
+  "vio/euroc_mav/MH_05_difficult/svo_pro/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 93.9,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/airslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/airslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/airslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/basalt/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/basalt/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/basalt/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/mast3r_fusion/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/mast3r_fusion/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/mast3r_fusion/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/openvins/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.3,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/openvins/run10002": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": "scale_collapse",
+   "exit": 0,
+   "coverage": 99.3,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/openvins/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.3,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.4,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.4,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.4,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.6,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/svo_pro/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.5,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/svo_pro/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.7,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/voxel_svio/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.3,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/voxel_svio/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.3,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence1/voxel_svio/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.3,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/airslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/airslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/airslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/basalt/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/basalt/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/basalt/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/mast3r_fusion/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/mast3r_fusion/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/mast3r_fusion/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/openvins/run10001": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": "scale_collapse",
+   "exit": 0,
+   "coverage": 98.4,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/openvins/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.4,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/openvins/run10003": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": "scale_collapse",
+   "exit": 0,
+   "coverage": 98.4,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.5,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.5,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.1,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/svo_pro/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.1,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/svo_pro/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.1,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/voxel_svio/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.4,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/voxel_svio/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.4,
+   "reasons": []
+  },
+  "vio/rosariov2/sequence5/voxel_svio/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.4,
+   "reasons": []
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_zed_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_zed_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.6,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq04/airslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq04/basalt/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq04/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq04/dpvo/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_sim3_monocular_position_shape",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq04/dsol/run10001": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": null,
+   "exit": 134,
+   "coverage": null,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq04/macvo/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq04/okvis2/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq04/okvis2x/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq04/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 13.1,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq04/ov2slam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq04/svo_pro/run10001": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": "scale_collapse",
+   "exit": 0,
+   "coverage": 99.0,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq07/airslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq07/basalt/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq07/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq07/dsol/run10001": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": null,
+   "exit": 134,
+   "coverage": null,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq07/macvo/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq07/okvis2/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq07/okvis2x/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq07/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 12.3,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq07/ov2slam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq07/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.3,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_01_easy/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_01_easy/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_01_easy/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_01_easy/dsol/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_01_easy/dsol/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_01_easy/dsol/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_01_easy/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_01_easy/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_01_easy/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_01_easy/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 95.7,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_01_easy/svo_pro/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 95.7,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_01_easy/svo_pro/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 95.6,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_03_medium/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_03_medium/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_03_medium/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_03_medium/dsol/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_03_medium/dsol/run10002": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": "scale_collapse",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_03_medium/dsol/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_03_medium/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_03_medium/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 97.9,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_03_medium/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_03_medium/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 84.5,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_03_medium/svo_pro/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 93.2,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_03_medium/svo_pro/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 85.7,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_05_difficult/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_05_difficult/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_05_difficult/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_05_difficult/dsol/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_05_difficult/dsol/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_05_difficult/dsol/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_05_difficult/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_05_difficult/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_05_difficult/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_05_difficult/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 93.2,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_05_difficult/svo_pro/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 94.9,
+   "reasons": []
+  },
+  "vo/euroc_mav/MH_05_difficult/svo_pro/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_euroc_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 93.9,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence1/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence1/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence1/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence1/dsol/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence1/dsol/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence1/dsol/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence1/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 80.6,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence1/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence1/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 85.1,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence1/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.8,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence1/svo_pro/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.9,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence1/svo_pro/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.8,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence5/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence5/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence5/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence5/dsol/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence5/dsol/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence5/dsol/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence5/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 75.3,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence5/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence5/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 97.9,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence5/svo_pro/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.0,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence5/svo_pro/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.0,
+   "reasons": []
+  },
+  "vo/zed2i/field1_110426_full_10fps_q90/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_zed_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/zed2i/field1_110426_full_10fps_q90/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_zed_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.3,
+   "reasons": []
+  },
+  "vo/citrusfarm/seq07/dpvo/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_citrusfarm_sim3_monocular_position_shape",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/rosariov2/sequence5/orbslam3/run10004": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_rosario_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "nominal_zed_se3_final_position_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  }
+ }
+}

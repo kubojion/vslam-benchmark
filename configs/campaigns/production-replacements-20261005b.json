@@ -1,0 +1,48 @@
+{
+ "schema": 1,
+ "policy": "Select every finished attempt of the batch regardless of outcome; repetitions not run in the batch come from the earlier verified selection or keep the default slot; attempts excluded with a reason stay unselected; qualification needs claim review.",
+ "source_manifest": {
+  "path": "results/window-20261004/post/executed-manifest-mast3r.json",
+  "sha256": "ec81dd343bdd7b8fabb8109734b78bd346b66496ec75ceffde1028b32ad29ed1"
+ },
+ "batch_status": {
+  "path": "results/window-20261004/post/executor-state-mast3r.json",
+  "sha256": "0612d7976cfffd2b9e69e777d1addd8460697ac095277a4d3b78db76202244ff"
+ },
+ "earlier_selection": {
+  "path": "configs/campaigns/zed-vio-first-attempts-20261002.json",
+  "sha256": "4628e67e4509487380d10d00aebcf7593103233fcd714289f6b38cc616f12dc3"
+ },
+ "carried_selections": [
+  {
+   "path": "configs/campaigns/production-attempts-20261004.json",
+   "sha256": "dae4c4ace317cd483de38150e0ca024504ed9b513b7ae56815dffea78f76a266"
+  },
+  {
+   "path": "configs/campaigns/production-replacements-20261005.json",
+   "sha256": "0ecb9f5d3c48374eaf53b043ce7b95f01cdbffeb4a9fb07785fb5204a7bdf374"
+  }
+ ],
+ "cells": {
+  "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion": [
+   10002,
+   2,
+   3
+  ]
+ },
+ "completed": [
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion",
+   "repetition": 1,
+   "physical_run_id": 10002,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/default/r1",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__mast3r_fusion/run10002.json",
+    "sha256": "14cfb13fae5de7c7b2e8eabc0022c6fafcca94c2411b67f3780ac320dbfe6038"
+   }
+  }
+ ],
+ "excluded": []
+}
