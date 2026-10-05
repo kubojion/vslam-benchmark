@@ -122,7 +122,7 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 
 | Source | SHA-256 |
 |---|---|
-| `inventory.json` | `3fd9354dbca1bf2c90f2412b7da7a938bd00fdb71b9dbe8d0c322252dc03dd15` |
+| `inventory.json` | `1c9aadb5899b97565af5bda55957e460579c87e898ac43130791037e44648fd2` |
 | `benchmark-vo.csv` | `87a59862296b5084488d4126d87f2d4290fe521b477482197f965e1fd635217c` |
 | `benchmark-vo-lc.csv` | `f513dbc329ec860e4416c121b957c39d78850bc44877a07d5395a7f0ea2ba437` |
 | `benchmark-vio.csv` | `9beeee1f8cb02ce3ce3c06f29746e67e7ae0d030a19c2daf002906ce7a2804d4` |

@@ -3,7 +3,7 @@
   "inputs": [
     {
       "path": "results/repair-20261001/inventory.json",
-      "sha256": "3fd9354dbca1bf2c90f2412b7da7a938bd00fdb71b9dbe8d0c322252dc03dd15"
+      "sha256": "1c9aadb5899b97565af5bda55957e460579c87e898ac43130791037e44648fd2"
     },
     {
       "path": "benchmark-vo.csv",
