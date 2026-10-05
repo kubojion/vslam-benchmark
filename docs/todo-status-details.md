@@ -1,7 +1,7 @@
 # TODO status details
 
 Generated presentation of the reviewed inventory; no acceptance decisions or scores are changed.
-Inventory SHA-256: `3a0327ebff960ad33a240551d9c13d9fab68a31a94a828a10c97c590469d1663`. [Matrix legend](../TODO.md#run-combinations-matrix).
+Inventory SHA-256: `24aaaa955d75d2154d8cdd7684e56e20b9b63c46011653255d35de49f9142dde`. [Matrix legend](../TODO.md#run-combinations-matrix).
 [Source inventory](../results/repair-20261001/inventory.json); [acceptance ledger](campaigns/paper-acceptance-20261001.json); [review definitions](protocol-review-20261002.md).
 
 N counts completed verified attempts. Counts describe the selected physical runs, including
@@ -32,15 +32,82 @@ items; separately verified N=1 and N=2 never become one N=3.
 
 ### future-n3-five-modes
 
-Manifest: [results/repair-20261001/future-n3-manifest.json](../results/repair-20261001/future-n3-manifest.json); SHA-256: `7962f03881545d652820a34a331561936d1451735a923d47dd133308ded60ac0`.
+Manifest: [results/repair-20261001/future-n3-manifest.json](../results/repair-20261001/future-n3-manifest.json); SHA-256: `e3728647506ff3a70f8ef2f0264416c1084b7fbb85f1a22b3d774ff2f15a1b4a`.
 Categories: `blocked=94`, `missing=372`, `required_rerun=122`, `reusable=522`.
-Verified new-attempt readiness: **313**.
+Verified new-attempt readiness: **0**.
+
+Evidence validation errors (readiness is unverified):
+
+- stale or absent evidence: results/repair-20261001/inventory.json
+- stale or absent evidence: configs/airslam/hortimulti_camera.yaml
+- stale or absent evidence: configs/basalt/hortimulti_calib.json
+- stale or absent evidence: configs/okvis2/hortimulti_strawberry02_vio.yaml
+- stale or absent evidence: configs/okvis2/hortimulti_strawberry02_vio_lc.yaml
+- stale or absent evidence: configs/okvis2/hortimulti_strawberry03_vio.yaml
+- stale or absent evidence: configs/okvis2/hortimulti_strawberry03_vio_lc.yaml
+- stale or absent evidence: configs/okvis2x/hortimulti_strawberry02_gnss_vio.yaml
+- stale or absent evidence: configs/okvis2x/hortimulti_strawberry02_vio.yaml
+- stale or absent evidence: configs/okvis2x/hortimulti_strawberry02_vio_lc.yaml
+- stale or absent evidence: configs/okvis2x/hortimulti_strawberry03_gnss_vio.yaml
+- stale or absent evidence: configs/okvis2x/hortimulti_strawberry03_vio.yaml
+- stale or absent evidence: configs/okvis2x/hortimulti_strawberry03_vio_lc.yaml
+- stale or absent evidence: configs/openvins/citrusfarm/estimator_config.yaml
+- stale or absent evidence: configs/openvins/hortimulti/estimator_config.yaml
+- stale or absent evidence: configs/openvins/hortimulti/kalibr_imu_chain.yaml
+- stale or absent evidence: configs/openvins/zed2i/estimator_config.yaml
+- stale or absent evidence: configs/orbslam3/hortimulti_stereo_inertial.yaml
+- stale or absent evidence: configs/orbslam3/hortimulti_stereo_inertial_lc.yaml
+- stale or absent evidence: configs/ov2slam/hortimulti_vo.yaml
+- stale or absent evidence: configs/ov2slam/hortimulti_vo_lc.yaml
+- stale or absent evidence: configs/sensors/hortimulti.json
+- stale or absent evidence: configs/vins_fusion/hortimulti_strawberry02.yaml
+- stale or absent evidence: configs/vins_fusion/hortimulti_strawberry03.yaml
+- stale or absent evidence: configs/voxel_svio/hortimulti.yaml
+- stale or absent evidence: scripts/campaign/protocol_findings.py
+- stale or absent evidence: scripts/campaign/tests/test_new_algorithm_calibration.py
+- stale or absent evidence: scripts/campaign/update_todo_matrices.py
+- stale or absent evidence: scripts/run/openvins_data_player.py
+- stale or absent evidence: scripts/run/run_openvins.sh
+- stale or absent evidence: scripts/run/run_voxel_svio.sh
 
 ### zed-coherent-n3-20261002-main-integration
 
-Manifest: [results/zed-preparation-20261002/campaign/manifest.json](../results/zed-preparation-20261002/campaign/manifest.json); SHA-256: `6ba7e865af5844535568fda96a6b7274635238ce7749365c68748a6014512dfa`.
+Manifest: [results/zed-preparation-20261002/campaign/manifest.json](../results/zed-preparation-20261002/campaign/manifest.json); SHA-256: `fc3d1bf27788162afb4fe7a10b53d308cfff48ef46c967b5d352381e0ead1be8`.
 Categories: `cohort_completion=3`, `missing=36`, `required_rerun=13`, `reusable=53`.
-Verified new-attempt readiness: **52**.
+Verified new-attempt readiness: **0**.
+
+Evidence validation errors (readiness is unverified):
+
+- stale or absent evidence: configs/airslam/hortimulti_camera.yaml
+- stale or absent evidence: configs/basalt/hortimulti_calib.json
+- stale or absent evidence: configs/okvis2/hortimulti_strawberry02_vio.yaml
+- stale or absent evidence: configs/okvis2/hortimulti_strawberry02_vio_lc.yaml
+- stale or absent evidence: configs/okvis2/hortimulti_strawberry03_vio.yaml
+- stale or absent evidence: configs/okvis2/hortimulti_strawberry03_vio_lc.yaml
+- stale or absent evidence: configs/okvis2x/hortimulti_strawberry02_gnss_vio.yaml
+- stale or absent evidence: configs/okvis2x/hortimulti_strawberry02_vio.yaml
+- stale or absent evidence: configs/okvis2x/hortimulti_strawberry02_vio_lc.yaml
+- stale or absent evidence: configs/okvis2x/hortimulti_strawberry03_gnss_vio.yaml
+- stale or absent evidence: configs/okvis2x/hortimulti_strawberry03_vio.yaml
+- stale or absent evidence: configs/okvis2x/hortimulti_strawberry03_vio_lc.yaml
+- stale or absent evidence: configs/openvins/citrusfarm/estimator_config.yaml
+- stale or absent evidence: configs/openvins/hortimulti/estimator_config.yaml
+- stale or absent evidence: configs/openvins/hortimulti/kalibr_imu_chain.yaml
+- stale or absent evidence: configs/openvins/zed2i/estimator_config.yaml
+- stale or absent evidence: configs/orbslam3/hortimulti_stereo_inertial.yaml
+- stale or absent evidence: configs/orbslam3/hortimulti_stereo_inertial_lc.yaml
+- stale or absent evidence: configs/ov2slam/hortimulti_vo.yaml
+- stale or absent evidence: configs/ov2slam/hortimulti_vo_lc.yaml
+- stale or absent evidence: configs/sensors/hortimulti.json
+- stale or absent evidence: configs/vins_fusion/hortimulti_strawberry02.yaml
+- stale or absent evidence: configs/vins_fusion/hortimulti_strawberry03.yaml
+- stale or absent evidence: configs/voxel_svio/hortimulti.yaml
+- stale or absent evidence: scripts/campaign/protocol_findings.py
+- stale or absent evidence: scripts/campaign/tests/test_new_algorithm_calibration.py
+- stale or absent evidence: scripts/campaign/update_todo_matrices.py
+- stale or absent evidence: scripts/run/openvins_data_player.py
+- stale or absent evidence: scripts/run/run_openvins.sh
+- stale or absent evidence: scripts/run/run_voxel_svio.sh
 
 The coherent ZED selection replaces its part of the five-mode plan. Counts must not be added.
 
@@ -792,7 +859,7 @@ Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_febru
 
 **A3/E3/S0/F3**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -803,7 +870,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `596214197599c7ea1b9187d7ac157514ae110ed3a98d2eaed3a970271c8cfdec`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: none.
+Confirmed setup findings: `ov2slam_horti_dataset_specific_parameters`.
 Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 Native failure evidence r1: `{"line": 154, "text": "terminate called without an active exception"}`.
@@ -1046,7 +1113,7 @@ Prerequisites: `complete_cell_configuration_input_and_claim_review`, `link_febru
 
 **A3/E3/S0/F3**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1057,7 +1124,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `596214197599c7ea1b9187d7ac157514ae110ed3a98d2eaed3a970271c8cfdec`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: none.
+Confirmed setup findings: `ov2slam_horti_dataset_specific_parameters`.
 Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 Native failure evidence r1: `{"line": 119, "text": "terminate called without an active exception"}`.
@@ -1959,7 +2026,7 @@ Prerequisites: none.
 
 **A3/E3/S1/F2**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -1976,10 +2043,10 @@ Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, 
 Native failure evidence r1: `{"line": 66, "text": "5647.331 Segmentation fault (core dumped)"}`.
 Native failure evidence r2: `{"line": 66, "text": "5752.268 Segmentation fault (core dumped)"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-okvis2"></a>
@@ -2172,7 +2239,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2187,10 +2254,10 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-svo-pro"></a>
@@ -2198,7 +2265,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2213,10 +2280,10 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `authors_export_starts_after_keyframe_window_fills`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-zed2i-field1-110426-full-10fps-q90-dsol"></a>
@@ -2224,7 +2291,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2238,10 +2305,10 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-orbslam3"></a>
@@ -2249,7 +2316,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2264,7 +2331,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `export_coverage_below_95_percent_no_clean_success_tick`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-okvis2"></a>
@@ -2272,7 +2339,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2287,7 +2354,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-okvis2x"></a>
@@ -2295,7 +2362,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2310,7 +2377,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-airslam"></a>
@@ -2318,7 +2385,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2333,7 +2400,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `sparse_keyframe_accuracy_only`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-basalt"></a>
@@ -2341,7 +2408,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2356,7 +2423,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-ov2slam"></a>
@@ -2364,7 +2431,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2379,7 +2446,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-dpvo"></a>
@@ -2387,7 +2454,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2402,7 +2469,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `monocular_sim3_shape_only_not_metric_stereo_ranking`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-macvo"></a>
@@ -2410,7 +2477,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2425,7 +2492,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `official_performant_profile_not_paper_reproduction_profile`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-cuvslam"></a>
@@ -2433,7 +2500,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2448,7 +2515,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-svo-pro"></a>
@@ -2456,7 +2523,7 @@ Prerequisites: none.
 
 **A1/E1/S0/F1**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2472,7 +2539,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `authors_export_starts_after_keyframe_window_fills`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `retain_failure_in_attempt_denominator`, `retain_observed_scale_collapse_in_attempt_denominator`.
 Native failure evidence r10001: `"native exit 0; evaluated outcome scale_collapse"`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq04-dsol"></a>
@@ -2480,7 +2547,7 @@ Prerequisites: none.
 
 **A1/E0/S0/F1**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2496,7 +2563,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `constant_velocity_motion_prior_without_gyroscope`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `retain_failure_in_attempt_denominator`.
 Native failure evidence r10001: `"native exit 134, no trajectory: DSOL aborts on its own assertion (align.cpp:307) after losing the scene at motion onset; docs/campaigns/readiness-review-20261004.json"`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-orbslam3"></a>
@@ -2504,7 +2571,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2519,7 +2586,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `export_coverage_below_95_percent_no_clean_success_tick`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-okvis2"></a>
@@ -2527,7 +2594,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2542,7 +2609,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-okvis2x"></a>
@@ -2550,7 +2617,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2565,7 +2632,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-airslam"></a>
@@ -2573,7 +2640,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2588,7 +2655,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `sparse_keyframe_accuracy_only`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-basalt"></a>
@@ -2596,7 +2663,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2611,7 +2678,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-ov2slam"></a>
@@ -2619,7 +2686,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2634,7 +2701,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-dpvo"></a>
@@ -2642,7 +2709,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2657,7 +2724,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `monocular_sim3_shape_only_not_metric_stereo_ranking`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-macvo"></a>
@@ -2665,7 +2732,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2680,7 +2747,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `official_performant_profile_not_paper_reproduction_profile`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-cuvslam"></a>
@@ -2688,7 +2755,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2703,7 +2770,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-svo-pro"></a>
@@ -2711,7 +2778,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2726,7 +2793,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `authors_export_starts_after_keyframe_window_fills`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-citrusfarm-seq07-dsol"></a>
@@ -2734,7 +2801,7 @@ Prerequisites: none.
 
 **A1/E0/S0/F1**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2750,7 +2817,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `constant_velocity_motion_prior_without_gyroscope`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `retain_failure_in_attempt_denominator`.
 Native failure evidence r10001: `"native exit 134, no trajectory: DSOL aborts on its own assertion (align.cpp:307) after losing the scene at motion onset; docs/campaigns/readiness-review-20261004.json"`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence1-orbslam3"></a>
@@ -2758,7 +2825,7 @@ Prerequisites: none.
 
 **A1/E0/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2774,7 +2841,7 @@ Review blockers: `historical_orb_loaded_library_abi_unknown`, `missing_repetitio
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_calibrated_agricultural_accuracy_or_intrinsic_algorithm_failure_claim`, `no_measured_processing_rate_or_realtime_deadline_claim`, `retain_failure_in_attempt_denominator`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 Native failure evidence r1: `{"line": 56, "text": "2.145 terminate called after throwing an instance of 'std::bad_alloc'"}`, `{"line": 57, "text": "2.145   what():  std::bad_alloc"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence1-okvis2"></a>
@@ -2901,7 +2968,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2915,7 +2982,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence5-orbslam3"></a>
@@ -2923,7 +2990,7 @@ Prerequisites: none.
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -2938,7 +3005,7 @@ Confirmed setup findings: `historical_orb_library_identity_unverified`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-rosariov2-sequence5-okvis2"></a>
@@ -3064,7 +3131,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3078,7 +3145,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-hortimulti-strawberry02-orbslam3"></a>
@@ -3179,7 +3246,7 @@ Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sp
 
 **A3/E3/S0/F3**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3190,7 +3257,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `3d44ca34443fb94597e3c8a34ab10f186c2aa2eb9bdf8c66d9cb4f78d938387d`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: none.
+Confirmed setup findings: `ov2slam_horti_dataset_specific_parameters`.
 Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 Native failure evidence r1: `{"line": 158, "text": "terminate called without an active exception"}`.
@@ -3343,7 +3410,7 @@ Prerequisites: `complete_cell_configuration_input_and_claim_review`, `declare_sp
 
 **A3/E3/S0/F3**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3354,7 +3421,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `3d44ca34443fb94597e3c8a34ab10f186c2aa2eb9bdf8c66d9cb4f78d938387d`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: none.
+Confirmed setup findings: `ov2slam_horti_dataset_specific_parameters`.
 Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 Native failure evidence r1: `{"line": 192, "text": "terminate called without an active exception"}`.
@@ -3414,7 +3481,7 @@ Prerequisites: `link_february_reference_generation_origin_and_clock_to_each_save
 
 **A3/E3/S2/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3430,7 +3497,7 @@ Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `saved_accuracy_with_recorded_nonzero_exit_no_clean_success`.
 Native failure evidence r3: `{"line": 71, "text": "201.536 Segmentation fault (core dumped)"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-01-easy-okvis2"></a>
@@ -3556,7 +3623,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3570,7 +3637,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-03-medium-orbslam3"></a>
@@ -3578,7 +3645,7 @@ Prerequisites: none.
 
 **A3/E3/S2/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3594,7 +3661,7 @@ Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `saved_accuracy_with_recorded_nonzero_exit_no_clean_success`.
 Native failure evidence r3: `{"line": 71, "text": "148.380 Segmentation fault (core dumped)"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-03-medium-okvis2"></a>
@@ -3720,7 +3787,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3734,7 +3801,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-05-difficult-orbslam3"></a>
@@ -3742,7 +3809,7 @@ Prerequisites: none.
 
 **A3/E3/S2/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3758,7 +3825,7 @@ Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `saved_accuracy_with_recorded_nonzero_exit_no_clean_success`.
 Native failure evidence r1: `{"line": 77, "text": "126.067 terminate called without an active exception"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-euroc-mav-mh-05-difficult-okvis2"></a>
@@ -3884,7 +3951,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3898,7 +3965,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-orbslam3"></a>
@@ -3906,7 +3973,7 @@ Prerequisites: none.
 
 **A3/E3/S2/F1**; verified completed groups: 0+0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3923,10 +3990,10 @@ Review blockers: `camera_fps_changed_15_to_10`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 Native failure evidence r1: `{"line": 66, "text": "5651.548 Segmentation fault (core dumped)"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-okvis2"></a>
@@ -3934,7 +4001,7 @@ Prerequisites: none.
 
 **A2/E1/S1/F1**; verified completed groups: 1+0. Verified N=3: no.
 
-Cell next-action display: next: new group 3 ready.
+Cell next-action display: next: new group 3 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3951,10 +4018,10 @@ Review blockers: `missing_repetition`, `native_execution_cause_and_usable_export
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `final_ba_disabled`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 Native failure evidence r2: `{"line": 12602, "text": "9388.271 Killed"}`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 blocked; readiness unverified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 blocked; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: `retain_failed_or_interrupted_attempt_and_resolve_execution_cause`.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; checks verified; r2 cohort_completion; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; readiness unverified; r2 cohort_completion; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-okvis2x"></a>
@@ -3962,7 +4029,7 @@ Prerequisites: none.
 
 **A1/E1/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: new group 3 ready.
+Cell next-action display: next: new group 3 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -3977,10 +4044,10 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`, `native_execution_cause_unresolved_recovered_causal_prefix_not_final_ba`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recovered_35_second_causal_prefix_not_final_bundle_adjustment`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 blocked; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: `saved_result_has_unresolved_scientific_evidence`.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 cohort_completion; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-airslam"></a>
@@ -3988,7 +4055,7 @@ Prerequisites: none.
 
 **A3/E3/S3/F0**; verified completed groups: 0+0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4004,10 +4071,10 @@ Confirmed setup findings: `airslam_zed_vo_lc_split_workspace_groups`.
 Review blockers: `confirmed_estimator_defect_prevents_acceptance`.
 Claim limits: none.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-zed2i-field1-110426-full-10fps-q90-ov2slam"></a>
@@ -4070,7 +4137,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4084,10 +4151,10 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq04-orbslam3"></a>
@@ -4095,7 +4162,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4109,7 +4176,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq04-okvis2"></a>
@@ -4117,7 +4184,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4131,7 +4198,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq04-okvis2x"></a>
@@ -4139,7 +4206,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4153,7 +4220,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq04-airslam"></a>
@@ -4161,7 +4228,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4175,7 +4242,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq04-ov2slam"></a>
@@ -4183,7 +4250,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4197,7 +4264,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq04-dpvo"></a>
@@ -4205,7 +4272,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4219,7 +4286,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq04-cuvslam"></a>
@@ -4227,7 +4294,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4241,7 +4308,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq07-orbslam3"></a>
@@ -4249,7 +4316,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4263,7 +4330,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq07-okvis2"></a>
@@ -4271,7 +4338,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4285,7 +4352,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq07-okvis2x"></a>
@@ -4293,7 +4360,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4307,7 +4374,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq07-airslam"></a>
@@ -4315,7 +4382,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4329,7 +4396,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq07-ov2slam"></a>
@@ -4337,7 +4404,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4351,7 +4418,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq07-dpvo"></a>
@@ -4359,7 +4426,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4373,7 +4440,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vo-lc-citrusfarm-seq07-cuvslam"></a>
@@ -4381,7 +4448,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -4395,7 +4462,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-rosariov2-sequence1-orbslam3"></a>
@@ -4885,7 +4952,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `e4e246ca2f26ad675ca292e67f365ad9b438a524a3876f8ba92dc399c42b40e1`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `historical_orb_library_identity_unverified`, `horti_camera_imu_time_offset_uncompensated`.
+Confirmed setup findings: `historical_orb_library_identity_unverified`, `horti_camera_imu_time_offset_uncompensated`, `horti_imu_profile_and_clock_inconsistent`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`, `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -4908,7 +4975,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `aec160653d6faafd3180478787a1f147e6b0af639a16e8e739a96b8b4d61cc63`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`.
+Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`, `horti_imu_profile_and_clock_inconsistent`.
 Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -4931,7 +4998,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `52dd52eaec9c09feb5135895755234d5b52c24831e58acf3e14026673fb044e4`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`.
+Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`, `horti_imu_profile_and_clock_inconsistent`.
 Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -4954,7 +5021,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `79e939d4973f106e227d84178ee498bd593e7e73326c2434de425e0d72cfa05b`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`.
+Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`, `horti_imu_profile_and_clock_inconsistent`.
 Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -4977,7 +5044,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `0ebf0138550eea069538aba59df2634dc3343d6acc728f370715e70b44fd5004`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `basalt_horti_undocumented_imu_noise`.
+Confirmed setup findings: `basalt_horti_undocumented_imu_noise`, `horti_imu_profile_and_clock_inconsistent`.
 Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -4989,7 +5056,7 @@ Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_origi
 
 **A1/E1/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 2 not ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5000,7 +5067,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `1c955198923325c661966c833fed4ac55045231b1023acc7dcefeaa98acfc779`: 0 verified / 1 recorded; `run1`.
 
-Confirmed setup findings: none.
+Confirmed setup findings: `horti_imu_profile_and_clock_inconsistent`, `openvins_track_frequency_dropped_frames`.
 Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 Native failure evidence r1: `{"line": 48, "text": "959.571 terminate called without an active exception"}`.
@@ -5011,25 +5078,22 @@ Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_r
 <a id="vio-hortimulti-strawberry02-voxel-svio"></a>
 ## vio/hortimulti/strawberry02/voxel_svio
 
-**A3/E3/S0/F3**; verified completed groups: 0. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
 Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/hortimulti/strawberry02/voxel_svio/run1) | blocked | completed_export_shutdown_error | 0 | yes |
-| 2 | [run2](../results/vio/hortimulti/strawberry02/voxel_svio/run2) | blocked | completed_export_shutdown_error | 0 | yes |
-| 3 | [run3](../results/vio/hortimulti/strawberry02/voxel_svio/run3) | blocked | completed_export_shutdown_error | 0 | yes |
+| 1 | [run1](../results/vio/hortimulti/strawberry02/voxel_svio/run1) | blocked | success | 0 | yes |
+| 2 | [run2](../results/vio/hortimulti/strawberry02/voxel_svio/run2) | blocked | success | 0 | yes |
+| 3 | [run3](../results/vio/hortimulti/strawberry02/voxel_svio/run3) | blocked | success | 0 | yes |
 
 Group `615143d25e1c76579b8f4752b4e03c1f05567302e862c0b6d47b1ea8299bd5f3`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `horti_voxel_initializer_camera_imu_offset_omitted`.
-Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
-Native failure evidence r1: `{"line": 141158, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
-Native failure evidence r2: `{"line": 142169, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
-Native failure evidence r3: `{"line": 140768, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
+Confirmed setup findings: `horti_imu_profile_and_clock_inconsistent`, `horti_voxel_initializer_camera_imu_offset_omitted`.
+Review blockers: `reviewed_evidence_changed:datasets/hortimulti/strawberry02/mav0/imu0/data.csv`.
+Claim limits: none.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `rerun_with_repaired_voxel_initializer_that_loads_the_declared_9p160379ms_offset_preserve_original_attempts`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
@@ -5116,7 +5180,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `e4e246ca2f26ad675ca292e67f365ad9b438a524a3876f8ba92dc399c42b40e1`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `historical_orb_library_identity_unverified`, `horti_camera_imu_time_offset_uncompensated`.
+Confirmed setup findings: `historical_orb_library_identity_unverified`, `horti_camera_imu_time_offset_uncompensated`, `horti_imu_profile_and_clock_inconsistent`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`, `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -5139,7 +5203,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `3b6a186fe461e056f92e96e0c4eea9888eb3dd0739f4f137ba91b03ec4172ae9`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`.
+Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`, `horti_imu_profile_and_clock_inconsistent`.
 Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -5162,7 +5226,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `b83ceab6919b0d6d14cc38ffe4113b670f2850f014d69ba485bb48abe789e9af`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`.
+Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`, `horti_imu_profile_and_clock_inconsistent`.
 Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -5185,7 +5249,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `79e939d4973f106e227d84178ee498bd593e7e73326c2434de425e0d72cfa05b`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`.
+Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`, `horti_imu_profile_and_clock_inconsistent`.
 Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -5208,7 +5272,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `0ebf0138550eea069538aba59df2634dc3343d6acc728f370715e70b44fd5004`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `basalt_horti_undocumented_imu_noise`.
+Confirmed setup findings: `basalt_horti_undocumented_imu_noise`, `horti_imu_profile_and_clock_inconsistent`.
 Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -5220,7 +5284,7 @@ Prerequisites: `complete_cell_configuration_input_and_claim_review`, `keep_origi
 
 **A1/E1/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 2 not ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -5231,7 +5295,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `1c955198923325c661966c833fed4ac55045231b1023acc7dcefeaa98acfc779`: 0 verified / 1 recorded; `run1`.
 
-Confirmed setup findings: none.
+Confirmed setup findings: `horti_imu_profile_and_clock_inconsistent`, `openvins_track_frequency_dropped_frames`.
 Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 Native failure evidence r1: `{"line": 17, "text": "249.021 terminate called without an active exception"}`.
@@ -5242,25 +5306,22 @@ Prerequisites: `complete_cell_configuration_input_and_claim_review`, `document_r
 <a id="vio-hortimulti-strawberry03-voxel-svio"></a>
 ## vio/hortimulti/strawberry03/voxel_svio
 
-**A3/E3/S0/F3**; verified completed groups: 0. Verified N=3: no.
+**A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
 Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run1](../results/vio/hortimulti/strawberry03/voxel_svio/run1) | blocked | completed_export_shutdown_error | 0 | yes |
-| 2 | [run2](../results/vio/hortimulti/strawberry03/voxel_svio/run2) | blocked | completed_export_shutdown_error | 0 | yes |
-| 3 | [run3](../results/vio/hortimulti/strawberry03/voxel_svio/run3) | blocked | completed_export_shutdown_error | 0 | yes |
+| 1 | [run1](../results/vio/hortimulti/strawberry03/voxel_svio/run1) | blocked | success | 0 | yes |
+| 2 | [run2](../results/vio/hortimulti/strawberry03/voxel_svio/run2) | blocked | success | 0 | yes |
+| 3 | [run3](../results/vio/hortimulti/strawberry03/voxel_svio/run3) | blocked | success | 0 | yes |
 
 Group `615143d25e1c76579b8f4752b4e03c1f05567302e862c0b6d47b1ea8299bd5f3`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `horti_voxel_initializer_camera_imu_offset_omitted`.
-Review blockers: `horti_exact_reference_origin_timing_unresolved`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
-Native failure evidence r1: `{"line": 36171, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
-Native failure evidence r2: `{"line": 36139, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
-Native failure evidence r3: `{"line": 36165, "text": "terminate called after throwing an instance of 'boost::wrapexcept<boost::lock_error>'"}`.
+Confirmed setup findings: `horti_imu_profile_and_clock_inconsistent`, `horti_voxel_initializer_camera_imu_offset_omitted`.
+Review blockers: `reviewed_evidence_changed:datasets/hortimulti/strawberry03/mav0/imu0/data.csv`.
+Claim limits: none.
 
 Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: `capture_native_exit_separately_and_diagnose_logged_shutdown_errors`, `complete_cell_configuration_input_and_claim_review`, `keep_original_invalid_configuration_cohort_separate`, `link_february_reference_generation_origin_and_clock_to_each_saved_session`, `rerun_with_repaired_voxel_initializer_that_loads_the_declared_9p160379ms_offset_preserve_original_attempts`, `resolve_or_document_claim_limit:horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `validate_camera_imu_time_compensation_and_output_clock_in_native_path`, `verify_effective_native_config_after_runtime_materialization`, `verify_native_build_source_linkage_and_loaded_runtime_dependency_closure`.
@@ -6175,25 +6236,22 @@ Prerequisites: none.
 <a id="vio-zed2i-field1-110426-full-10fps-q90-openvins"></a>
 ## vio/zed2i/field1_110426_full_10fps_q90/openvins
 
-**A3/E3/S0/F3**; verified completed groups: 3. Verified N=3: yes.
+**A3/E3/S0/F3**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: no new action required by this plan.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run10001](../results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001) | verified | failure_scale_collapse | 139 | yes |
-| 2 | [run10002](../results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002) | verified | failure_scale_collapse | 139 | yes |
-| 3 | [run10003](../results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003) | verified | failure_with_saved_trajectory | 139 | yes |
+| 1 | [run10001](../results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001) | blocked | failure_scale_collapse | 139 | yes |
+| 2 | [run10002](../results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002) | blocked | failure_scale_collapse | 139 | yes |
+| 3 | [run10003](../results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003) | blocked | failure_with_saved_trajectory | 139 | yes |
 
-Group `b847248537defbe77aa834709f8f723159f85c7ee5c350d6d3b9e5a1519b2bf2`: 3 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
+Group `b847248537defbe77aa834709f8f723159f85c7ee5c350d6d3b9e5a1519b2bf2`: 0 verified / 3 recorded; `run10001`, `run10002`, `run10003`.
 
-Confirmed setup findings: none.
-Review blockers: none.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `retain_failure_in_attempt_denominator`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`.
-Native failure evidence r10001: `"estimator container exited 139"`, `"estimator stopped publishing 682 s into the 4628 s sequence (67172 poses) while the player delivered every camera pair and IMU sample"`, `"scale collapse before stopping (Sim3 scale 0.0008): estimate diverged"`.
-Native failure evidence r10002: `"estimator container exited 139"`, `"estimator stopped publishing 740 s into the 4628 s sequence (72938 poses) while the player delivered every camera pair and IMU sample"`, `"scale collapse before stopping (Sim3 scale 0.0010): estimate diverged"`.
-Native failure evidence r10003: `"estimator container exited 139"`, `"estimator stopped publishing 71 s into the 4628 s sequence (6261 poses) while the player delivered every camera pair and IMU sample"`.
+Confirmed setup findings: `openvins_track_frequency_dropped_frames`.
+Review blockers: `confirmed_estimator_defect_prevents_acceptance`.
+Claim limits: none.
 
 Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 reusable; retained observation; r3 reusable; retained observation.
 Prerequisites: none.
@@ -6232,7 +6290,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6247,10 +6305,10 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-svo-pro"></a>
@@ -6258,7 +6316,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6273,10 +6331,10 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `authors_export_starts_after_keyframe_window_fills`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-zed2i-field1-110426-full-10fps-q90-mast3r-fusion"></a>
@@ -6284,7 +6342,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6299,10 +6357,10 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `single_camera_with_imu_scale_from_imu_and_learned_depth`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-orbslam3"></a>
@@ -6310,7 +6368,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6325,7 +6383,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-okvis2"></a>
@@ -6333,7 +6391,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6348,7 +6406,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-okvis2x"></a>
@@ -6356,7 +6414,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6371,7 +6429,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-airslam"></a>
@@ -6379,7 +6437,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6394,7 +6452,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `sparse_keyframe_accuracy_only`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-basalt"></a>
@@ -6402,7 +6460,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6417,30 +6475,30 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-openvins"></a>
 ## vio/citrusfarm/seq04/openvins
 
-**A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
+**A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run10001](../results/vio/citrusfarm/seq04/openvins/run10001) | verified | success | 0 | yes |
+| 1 | [run10001](../results/vio/citrusfarm/seq04/openvins/run10001) | blocked | success | 0 | yes |
 | 2 | [run2](../results/vio/citrusfarm/seq04/openvins/run2) | blocked | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/citrusfarm/seq04/openvins/run3) | blocked | not_attempted | unknown | no |
 
-Group `559dc32bb9f38bede002fb5a2a127af079393c63271183d84c66fef318280f64`: 1 verified / 1 recorded; `run10001`.
+Group `559dc32bb9f38bede002fb5a2a127af079393c63271183d84c66fef318280f64`: 0 verified / 1 recorded; `run10001`.
 
-Confirmed setup findings: none.
-Review blockers: `missing_repetition`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
+Confirmed setup findings: `openvins_track_frequency_dropped_frames`.
+Review blockers: `confirmed_estimator_defect_prevents_acceptance`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-voxel-svio"></a>
@@ -6448,7 +6506,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6463,7 +6521,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-cuvslam"></a>
@@ -6471,7 +6529,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6486,7 +6544,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-svo-pro"></a>
@@ -6494,7 +6552,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6509,7 +6567,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `authors_export_starts_after_keyframe_window_fills`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq04-mast3r-fusion"></a>
@@ -6517,7 +6575,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6532,7 +6590,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `single_camera_with_imu_scale_from_imu_and_learned_depth`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-orbslam3"></a>
@@ -6540,7 +6598,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6555,7 +6613,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-okvis2"></a>
@@ -6563,7 +6621,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6578,7 +6636,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-okvis2x"></a>
@@ -6586,7 +6644,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6601,7 +6659,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-airslam"></a>
@@ -6609,7 +6667,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6624,7 +6682,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `sparse_keyframe_accuracy_only`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-basalt"></a>
@@ -6632,7 +6690,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6647,31 +6705,30 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-openvins"></a>
 ## vio/citrusfarm/seq07/openvins
 
-**A1/E1/S0/F1**; verified completed groups: 1. Verified N=3: no.
+**A1/E1/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
 |---|---|---|---|---|---|
-| 1 | [run10001](../results/vio/citrusfarm/seq07/openvins/run10001) | verified | failure_scale_collapse | 0 | yes |
+| 1 | [run10001](../results/vio/citrusfarm/seq07/openvins/run10001) | blocked | failure_scale_collapse | 0 | yes |
 | 2 | [run2](../results/vio/citrusfarm/seq07/openvins/run2) | blocked | not_attempted | unknown | no |
 | 3 | [run3](../results/vio/citrusfarm/seq07/openvins/run3) | blocked | not_attempted | unknown | no |
 
-Group `559dc32bb9f38bede002fb5a2a127af079393c63271183d84c66fef318280f64`: 1 verified / 1 recorded; `run10001`.
+Group `559dc32bb9f38bede002fb5a2a127af079393c63271183d84c66fef318280f64`: 0 verified / 1 recorded; `run10001`.
 
-Confirmed setup findings: none.
-Review blockers: `missing_repetition`.
-Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `disclose_rig_specific_algorithm_parameters_in_saved_parameter_review`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `retain_failure_in_attempt_denominator`, `retain_observed_scale_collapse_in_attempt_denominator`.
-Native failure evidence r10001: `"native exit 0; evaluated outcome scale_collapse"`.
+Confirmed setup findings: `openvins_track_frequency_dropped_frames`.
+Review blockers: `confirmed_estimator_defect_prevents_acceptance`, `missing_repetition`.
+Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-voxel-svio"></a>
@@ -6679,7 +6736,7 @@ Prerequisites: none.
 
 **A1/E1/S0/F1**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6695,7 +6752,7 @@ Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `retain_failure_in_attempt_denominator`, `retain_observed_scale_collapse_in_attempt_denominator`.
 Native failure evidence r10001: `"native exit 0; evaluated outcome scale_collapse"`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-cuvslam"></a>
@@ -6703,7 +6760,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6718,7 +6775,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-svo-pro"></a>
@@ -6726,7 +6783,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6741,7 +6798,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `authors_export_starts_after_keyframe_window_fills`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-citrusfarm-seq07-mast3r-fusion"></a>
@@ -6749,7 +6806,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 1. Verified N=3: no.
 
-Cell next-action display: next: missing 2 ready.
+Cell next-action display: next: missing 2 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6764,7 +6821,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `citrusfarm_position_only_reference_level_platform_lever_and_path_heading`, `citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `recorded_native_assets_not_complete_transitive_build_reconstruction`, `single_camera_with_imu_scale_from_imu_and_learned_depth`.
 
-Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 reusable; retained observation; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence1-orbslam3"></a>
@@ -6772,7 +6829,7 @@ Prerequisites: none.
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6787,7 +6844,7 @@ Confirmed setup findings: `historical_orb_library_identity_unverified`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence1-okvis2"></a>
@@ -6841,7 +6898,7 @@ Prerequisites: none.
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6856,7 +6913,7 @@ Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
 Review blockers: `rosario_identity_camera_imu_extrinsic`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence1-cuvslam"></a>
@@ -6864,7 +6921,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6878,7 +6935,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence1-svo-pro"></a>
@@ -6886,7 +6943,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6900,7 +6957,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence1-mast3r-fusion"></a>
@@ -6908,7 +6965,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6922,7 +6979,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence5-orbslam3"></a>
@@ -6930,7 +6987,7 @@ Prerequisites: none.
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -6945,7 +7002,7 @@ Confirmed setup findings: `historical_orb_library_identity_unverified`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence5-okvis2"></a>
@@ -6999,7 +7056,7 @@ Prerequisites: none.
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7014,7 +7071,7 @@ Confirmed setup findings: `rosario_identity_camera_imu_extrinsic`.
 Review blockers: `rosario_identity_camera_imu_extrinsic`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `fused_stereo_imu_ppk_reference_not_independent_ground_truth`, `no_measured_processing_rate_or_realtime_deadline_claim`, `rosario_authors_orb_camera_model_accepted_by_decision_20261003_fxb_0p5_to_1pct_below_kalibr`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence5-cuvslam"></a>
@@ -7022,7 +7079,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7036,7 +7093,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence5-svo-pro"></a>
@@ -7044,7 +7101,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7058,7 +7115,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-rosariov2-sequence5-mast3r-fusion"></a>
@@ -7066,7 +7123,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7080,7 +7137,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-hortimulti-strawberry02-orbslam3"></a>
@@ -7099,7 +7156,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `c8fb082f5e74e1529ad692cd01516ae7c253669990776919bb03905bd7527cbe`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `historical_orb_library_identity_unverified`, `horti_camera_imu_time_offset_uncompensated`, `orb_horti_rectified_camera_imu_extrinsic`.
+Confirmed setup findings: `historical_orb_library_identity_unverified`, `horti_camera_imu_time_offset_uncompensated`, `horti_imu_profile_and_clock_inconsistent`, `orb_horti_rectified_camera_imu_extrinsic`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`, `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `orb_horti_rectified_camera_imu_extrinsic`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -7122,7 +7179,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `be86e9aa751b50b0aa4caa36ad02397841c03dcd23426d1f323cffc6af2434e8`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`.
+Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`, `horti_imu_profile_and_clock_inconsistent`.
 Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -7145,7 +7202,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `40b444ef5ce4af78d4ae2b4a6067bbce7aa4ed88df41ae66fc7f8d30bb23904c`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`.
+Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`, `horti_imu_profile_and_clock_inconsistent`.
 Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -7168,7 +7225,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `08b962a0b00ade1997e4bf6bb729d28939389c036bc8deb49422a8b51a4645da`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`.
+Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`, `horti_imu_profile_and_clock_inconsistent`.
 Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -7257,7 +7314,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `c8fb082f5e74e1529ad692cd01516ae7c253669990776919bb03905bd7527cbe`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `historical_orb_library_identity_unverified`, `horti_camera_imu_time_offset_uncompensated`, `orb_horti_rectified_camera_imu_extrinsic`.
+Confirmed setup findings: `historical_orb_library_identity_unverified`, `horti_camera_imu_time_offset_uncompensated`, `horti_imu_profile_and_clock_inconsistent`, `orb_horti_rectified_camera_imu_extrinsic`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`, `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`, `orb_horti_rectified_camera_imu_extrinsic`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -7280,7 +7337,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `182b1097d4cdc561ff738fdd7229a670e480973b321d3617a9012cd02900d664`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`.
+Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`, `horti_imu_profile_and_clock_inconsistent`.
 Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -7303,7 +7360,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `86f33a0ad698589886db3a46ae9697422dd1a4565aa93747d9c9a9e416c2e9d1`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`.
+Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`, `horti_imu_profile_and_clock_inconsistent`.
 Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -7326,7 +7383,7 @@ Selected plan: `future-n3-five-modes`.
 
 Group `08b962a0b00ade1997e4bf6bb729d28939389c036bc8deb49422a8b51a4645da`: 0 verified / 3 recorded; `run1`, `run2`, `run3`.
 
-Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`.
+Confirmed setup findings: `horti_camera_imu_time_offset_uncompensated`, `horti_imu_profile_and_clock_inconsistent`.
 Review blockers: `horti_camera_imu_time_offset_uncompensated`, `horti_february_reference_generation_origin_and_timestamp_linkage_unresolved`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
@@ -7404,7 +7461,7 @@ Prerequisites: `declare_keyframe_only_global_trajectory_claim`, `link_february_r
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7419,7 +7476,7 @@ Confirmed setup findings: `historical_orb_library_identity_unverified`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-01-easy-okvis2"></a>
@@ -7496,7 +7553,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7510,7 +7567,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-01-easy-svo-pro"></a>
@@ -7518,7 +7575,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7532,7 +7589,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-01-easy-mast3r-fusion"></a>
@@ -7540,7 +7597,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7554,7 +7611,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-03-medium-orbslam3"></a>
@@ -7562,7 +7619,7 @@ Prerequisites: none.
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7577,7 +7634,7 @@ Confirmed setup findings: `historical_orb_library_identity_unverified`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `export_coverage_below_95_percent_no_clean_success_tick`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-03-medium-okvis2"></a>
@@ -7654,7 +7711,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7668,7 +7725,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-03-medium-svo-pro"></a>
@@ -7676,7 +7733,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7690,7 +7747,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-03-medium-mast3r-fusion"></a>
@@ -7698,7 +7755,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7712,7 +7769,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-05-difficult-orbslam3"></a>
@@ -7720,7 +7777,7 @@ Prerequisites: none.
 
 **A3/E3/S3/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready.
+Cell next-action display: 🔴 rerun not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7735,7 +7792,7 @@ Confirmed setup findings: `historical_orb_library_identity_unverified`.
 Review blockers: `historical_orb_loaded_library_abi_unknown`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `historical_orb_loaded_library_abi_unknown`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 required_rerun; checks verified; r3 required_rerun; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 required_rerun; readiness unverified; r3 required_rerun; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-05-difficult-okvis2"></a>
@@ -7813,7 +7870,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7827,7 +7884,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-05-difficult-svo-pro"></a>
@@ -7835,7 +7892,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7849,7 +7906,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-euroc-mav-mh-05-difficult-mast3r-fusion"></a>
@@ -7857,7 +7914,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7871,7 +7928,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-orbslam3"></a>
@@ -7879,7 +7936,7 @@ Prerequisites: none.
 
 **A1/E0/S0/F1**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7895,10 +7952,10 @@ Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `retain_failure_in_attempt_denominator`, `serial_specific_imu_rotation_and_timing_unverified`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 Native failure evidence r1: `{"line": 65, "text": "2.695 Segmentation fault (core dumped)"}`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-okvis2"></a>
@@ -7906,7 +7963,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7921,10 +7978,10 @@ Confirmed setup findings: `zed_factory_camera_imu_rotation_omitted`.
 Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-okvis2x"></a>
@@ -7932,7 +7989,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7947,10 +8004,10 @@ Confirmed setup findings: `zed_factory_camera_imu_rotation_omitted`.
 Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-airslam"></a>
@@ -7958,7 +8015,7 @@ Prerequisites: none.
 
 **A1/E1/S1/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: 🔄 rerun ready; next: missing 2 ready.
+Cell next-action display: 🔴 rerun not ready; next: missing 2 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7973,10 +8030,10 @@ Confirmed setup findings: `zed_factory_camera_imu_rotation_omitted`.
 Review blockers: `missing_repetition`, `zed_factory_camera_imu_rotation_omitted`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `approved_gnss_spike_mask_gaps_preserved_rtk_float_retained_fixed_only_sensitivity`, `historical_profile_accuracy_not_bitwise_build_reproduction`, `no_measured_processing_rate_or_realtime_deadline_claim`, `no_rotation_or_full_relative_pose_accuracy_claim`, `nominal_3d_position_reference_1m_height_level_platform_not_surveyed_6dof`, `unmeasured_field_clock_zero_offset_with_frozen_sensitivity`, `zed_camera_rtk_clock_unmeasured_zero_offset_with_disclosed_sampled_sensitivity`.
 
-Future plan `future-n3-five-modes`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 required_rerun; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-cuvslam"></a>
@@ -7984,7 +8041,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -7998,10 +8055,10 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-svo-pro"></a>
@@ -8009,7 +8066,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8023,10 +8080,10 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-zed2i-field1-110426-full-10fps-q90-mast3r-fusion"></a>
@@ -8034,7 +8091,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `zed-coherent-n3-20261002-main-integration`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8048,10 +8105,10 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
-Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `zed-coherent-n3-20261002-main-integration`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq04-orbslam3"></a>
@@ -8059,7 +8116,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8073,7 +8130,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq04-okvis2"></a>
@@ -8081,7 +8138,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8095,7 +8152,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq04-okvis2x"></a>
@@ -8103,7 +8160,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8117,7 +8174,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq04-airslam"></a>
@@ -8125,7 +8182,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8139,7 +8196,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq04-cuvslam"></a>
@@ -8147,7 +8204,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8161,7 +8218,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq04-svo-pro"></a>
@@ -8169,7 +8226,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8183,7 +8240,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq04-mast3r-fusion"></a>
@@ -8191,7 +8248,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8205,7 +8262,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq07-orbslam3"></a>
@@ -8213,7 +8270,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8227,7 +8284,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq07-okvis2"></a>
@@ -8235,7 +8292,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8249,7 +8306,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq07-okvis2x"></a>
@@ -8257,7 +8314,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8271,7 +8328,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq07-airslam"></a>
@@ -8279,7 +8336,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8293,7 +8350,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq07-cuvslam"></a>
@@ -8301,7 +8358,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8315,7 +8372,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq07-svo-pro"></a>
@@ -8323,7 +8380,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8337,7 +8394,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="vio-lc-citrusfarm-seq07-mast3r-fusion"></a>
@@ -8345,7 +8402,7 @@ Prerequisites: none.
 
 **A0/E0/S0/F0**; verified completed groups: 0. Verified N=3: no.
 
-Cell next-action display: next: missing 3 ready.
+Cell next-action display: next: missing 3 not ready.
 Selected plan: `future-n3-five-modes`.
 
 | Logical repetition | Physical run / evidence | Reviewed attempt | Observed outcome | Exit | Evaluated |
@@ -8359,7 +8416,7 @@ Confirmed setup findings: none.
 Review blockers: `missing_repetition`.
 Claim limits: `accuracy_conditional_on_observed_exports_and_reference_support`, `configuration_choices_are_not_evidence_of_algorithm_optimality`, `no_measured_processing_rate_or_realtime_deadline_claim`.
 
-Future plan `future-n3-five-modes`: r1 missing; checks verified; r2 missing; checks verified; r3 missing; checks verified.
+Future plan `future-n3-five-modes`: r1 missing; readiness unverified; r2 missing; readiness unverified; r3 missing; readiness unverified.
 Prerequisites: none.
 
 <a id="gnss-vio-rosariov2-sequence1-cifasis-gnss-si"></a>
