@@ -12,7 +12,7 @@ Generated from hash-checked schema-3 evaluations and matching CSVs. These are in
 
 Legacy GNSS variants: 6 separate rows; not included in default repetition counts.
 
-Scientific statuses among existing headline attempts: accepted=117, accepted_with_limitation=390, blocked=155, rerun_required=69, valid_observed_failure=13.
+Scientific statuses among existing headline attempts: accepted=117, accepted_with_limitation=390, blocked=153, rerun_required=69, valid_observed_failure=15.
 
 ## Retained adverse outcomes
 
@@ -47,9 +47,9 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 | `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003` | ok | 139 | valid_observed_failure |
 | `results/vio-lc/euroc_mav/MH_05_difficult/airslam/run4` | failed_without_trajectory | 139 | valid_observed_failure |
 | `results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | failed_without_trajectory | 139 | rerun_required |
-| `results/vo/citrusfarm/seq04/dsol/run10001` | failed_without_trajectory | 134 | blocked |
+| `results/vo/citrusfarm/seq04/dsol/run10001` | failed_without_trajectory | 134 | valid_observed_failure |
 | `results/vo/citrusfarm/seq04/svo_pro/run10001` | scale_collapse | 0 | valid_observed_failure |
-| `results/vo/citrusfarm/seq07/dsol/run10001` | failed_without_trajectory | 134 | blocked |
+| `results/vo/citrusfarm/seq07/dsol/run10001` | failed_without_trajectory | 134 | valid_observed_failure |
 | `results/vo/euroc_mav/MH_01_easy/ov2slam/run1` | ok | 0 | accepted_with_limitation |
 | `results/vo/euroc_mav/MH_01_easy/ov2slam/run2` | ok | 0 | accepted_with_limitation |
 | `results/vo/euroc_mav/MH_01_easy/ov2slam/run3` | ok | 0 | accepted_with_limitation |
@@ -128,8 +128,8 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 
 | Source | SHA-256 |
 |---|---|
-| `inventory.json` | `db238c08f88ea02684d159109651924b73df5c7eb68397d5b8cea6e62ebd9ead` |
-| `benchmark-vo.csv` | `36a58545a11e7037d42ffbdda31e1990451abaef55f82ec8ba2ec724cab8e5cf` |
+| `inventory.json` | `3a0327ebff960ad33a240551d9c13d9fab68a31a94a828a10c97c590469d1663` |
+| `benchmark-vo.csv` | `a86c3a6bf4350e4251df1d16127303bc0d6fd98a69aa5cc9f3a3f2f77e07f495` |
 | `benchmark-vo-lc.csv` | `f513dbc329ec860e4416c121b957c39d78850bc44877a07d5395a7f0ea2ba437` |
 | `benchmark-vio.csv` | `a135a8f996eccbdfbbfad1e6fc7d54df8104de4bfea5819ec54b5f7070e5aa3b` |
 | `benchmark-vio-lc.csv` | `92b8a74e67d3d4a00f16e9cc4c64ea7a0321c70aa1458dc046cb65867dee6b87` |

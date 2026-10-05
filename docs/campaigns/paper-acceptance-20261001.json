@@ -71071,7 +71071,7 @@
         "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
         "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction"
       ],
-      "evaluation_sha256": null,
+      "evaluation_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
       "evidence": [
         {
           "path": "results/vo/citrusfarm/seq04/dsol/run10001/run_meta.json",
@@ -71978,7 +71978,7 @@
         "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
         "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction"
       ],
-      "evaluation_sha256": null,
+      "evaluation_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
       "evidence": [
         {
           "path": "results/vo/citrusfarm/seq07/dsol/run10001/run_meta.json",
@@ -81994,13 +81994,13 @@
       ]
     },
     "vo/citrusfarm/seq04/dsol": {
-      "status": "blocked",
+      "status": "missing_repetitions",
       "attempts": {
-        "blocked": 1,
+        "valid_observed_failure": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
+      "paper_usable_attempts": 1,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
@@ -82013,18 +82013,19 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 0,
-      "verified_failure_count": 0,
+      "protocol_verified_attempts": 1,
+      "verified_failure_count": 1,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "blocked": 3
+        "verified": 1,
+        "blocked": 2
       },
       "protocol_cohorts": [
         {
           "cohort": "e57fb2cf61a4957ed48200f5dfbb348163605a3eaa648241f1d9f00d2e08151e",
           "attempts": 1,
-          "verified_completed": 0,
-          "missing_to_n3": null,
+          "verified_completed": 1,
+          "missing_to_n3": 2,
           "run_paths": [
             "results/vo/citrusfarm/seq04/dsol/run10001"
           ]
@@ -82422,13 +82423,13 @@
       ]
     },
     "vo/citrusfarm/seq07/dsol": {
-      "status": "blocked",
+      "status": "missing_repetitions",
       "attempts": {
-        "blocked": 1,
+        "valid_observed_failure": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
+      "paper_usable_attempts": 1,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
@@ -82441,18 +82442,19 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 0,
-      "verified_failure_count": 0,
+      "protocol_verified_attempts": 1,
+      "verified_failure_count": 1,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "blocked": 3
+        "verified": 1,
+        "blocked": 2
       },
       "protocol_cohorts": [
         {
           "cohort": "06e6bd0839d8510fa3fe39e1e91c0ab521cf048e0a390c92892ac3139c84f058",
           "attempts": 1,
-          "verified_completed": 0,
-          "missing_to_n3": null,
+          "verified_completed": 1,
+          "missing_to_n3": 2,
           "run_paths": [
             "results/vo/citrusfarm/seq07/dsol/run10001"
           ]

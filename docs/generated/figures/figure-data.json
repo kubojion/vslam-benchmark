@@ -3,11 +3,11 @@
   "inputs": [
     {
       "path": "results/repair-20261001/inventory.json",
-      "sha256": "db238c08f88ea02684d159109651924b73df5c7eb68397d5b8cea6e62ebd9ead"
+      "sha256": "3a0327ebff960ad33a240551d9c13d9fab68a31a94a828a10c97c590469d1663"
     },
     {
       "path": "benchmark-vo.csv",
-      "sha256": "36a58545a11e7037d42ffbdda31e1990451abaef55f82ec8ba2ec724cab8e5cf"
+      "sha256": "a86c3a6bf4350e4251df1d16127303bc0d6fd98a69aa5cc9f3a3f2f77e07f495"
     },
     {
       "path": "benchmark-vo-lc.csv",
@@ -11527,7 +11527,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA1/E0/S0/F1\nX,B,M",
+      "annotation": "no score\nA1/E0/S0/F1\nX,B,F,M",
       "summary": {
         "identity": [
           "vo",
@@ -11545,13 +11545,19 @@
         },
         "acceptance": {
           "not_executed": 2,
-          "blocked": 1
+          "valid_observed_failure": 1
         },
-        "paper_usable": 0,
+        "paper_usable": 1,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "constant_velocity_motion_prior_without_gyroscope",
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "recorded_native_assets_not_complete_transitive_build_reconstruction",
+          "retain_failure_in_attempt_denominator"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -11563,7 +11569,7 @@
               "failed_without_trajectory": 1
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 1,
             "accepted_primary_ate": {
               "n": 0,
               "mean": null,
@@ -11596,8 +11602,7 @@
           }
         ],
         "scientific_blockers": [
-          "missing_repetition",
-          "numerical_evidence_changed_since_claim_review"
+          "missing_repetition"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
@@ -11609,18 +11614,19 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
-        "verified_failure_count": 0,
+        "protocol_verified_attempts": 1,
+        "verified_failure_count": 1,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 3
+          "blocked": 2,
+          "verified": 1
         },
         "protocol_cohorts": [
           {
             "cohort": "e57fb2cf61a4957ed48200f5dfbb348163605a3eaa648241f1d9f00d2e08151e",
             "attempts": 1,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 1,
+            "missing_to_n3": 2,
             "run_paths": [
               "results/vo/citrusfarm/seq04/dsol/run10001"
             ]
@@ -11630,6 +11636,7 @@
       "flags": [
         "X",
         "B",
+        "F",
         "M"
       ]
     },
@@ -11642,7 +11649,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA1/E0/S0/F1\nX,B,M",
+      "annotation": "no score\nA1/E0/S0/F1\nX,B,F,M",
       "summary": {
         "identity": [
           "vo",
@@ -11660,13 +11667,19 @@
         },
         "acceptance": {
           "not_executed": 2,
-          "blocked": 1
+          "valid_observed_failure": 1
         },
-        "paper_usable": 0,
+        "paper_usable": 1,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "constant_velocity_motion_prior_without_gyroscope",
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "no_rotation_or_full_relative_pose_accuracy_claim",
+          "recorded_native_assets_not_complete_transitive_build_reconstruction",
+          "retain_failure_in_attempt_denominator"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -11678,7 +11691,7 @@
               "failed_without_trajectory": 1
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 1,
             "accepted_primary_ate": {
               "n": 0,
               "mean": null,
@@ -11711,8 +11724,7 @@
           }
         ],
         "scientific_blockers": [
-          "missing_repetition",
-          "numerical_evidence_changed_since_claim_review"
+          "missing_repetition"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
@@ -11724,18 +11736,19 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
-        "verified_failure_count": 0,
+        "protocol_verified_attempts": 1,
+        "verified_failure_count": 1,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 3
+          "blocked": 2,
+          "verified": 1
         },
         "protocol_cohorts": [
           {
             "cohort": "06e6bd0839d8510fa3fe39e1e91c0ab521cf048e0a390c92892ac3139c84f058",
             "attempts": 1,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 1,
+            "missing_to_n3": 2,
             "run_paths": [
               "results/vo/citrusfarm/seq07/dsol/run10001"
             ]
@@ -11745,6 +11758,7 @@
       "flags": [
         "X",
         "B",
+        "F",
         "M"
       ]
     },
@@ -41252,11 +41266,11 @@
     },
     {
       "path": "fig_accuracy_vo_default.png",
-      "sha256": "92b18977ed36c48b8c0a413bfea9b0b43ed0682b593bd77735a4a4c6b7f617c3"
+      "sha256": "c7e1759efac428142207c56d2d935ca5fe2cba1e0e3f1f1d1088cb757dd87a24"
     },
     {
       "path": "fig_accuracy_vo_default.pdf",
-      "sha256": "3520eb4cca40e9aa1780e841bfef90529922d33a360771029037a9d6e98ce2de"
+      "sha256": "4d4887893fa89f21a7d35537a4f2e4feaec58a69b3a8f8b872eac187875f3233"
     },
     {
       "path": "fig_accuracy_vo-lc_default.png",

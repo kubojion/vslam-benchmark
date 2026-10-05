@@ -279,3 +279,10 @@ def test_rosario_candidate_preparation_does_not_promote_history_or_readiness():
     assert 'Execution remains unverified; historical validity is unchanged.' in details
     assert 'A3/E3/S0/F3' in rendered and '🟥' in rendered and '🔴 rerun not ready' in rendered
     assert '✅' not in rendered and c == before
+
+
+def test_verified_partial_group_with_only_missing_repetitions_has_no_review_flag():
+    c = cell([attempt(1), absent(2), absent(3)])
+    result = render_cell(c, [plan(c, ['reusable', 'missing', 'missing'])])
+    assert '🟢 N=1' in result and '🟡' not in result and '🟨' not in result
+    assert 'next: missing 2 ready' in result

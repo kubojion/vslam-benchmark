@@ -157,7 +157,9 @@ def short_flags(cell, review):
             reviews.add('evidence')
     if reviews:
         flags.append('🟡 review: ' + ', '.join(sorted(reviews)))
-    elif review['protocol_state'] == 'blocked' and review['attempt_count']:
+    elif (review['protocol_state'] == 'blocked' and review['attempt_count']
+          and review.get('protocol_verified_attempts', 0) < review['attempt_count']):
+        # Missing repetitions alone are a planning gap, not an open review of recorded evidence.
         flags.append('🟡 review: evidence')
     if review['protocol_state'] == 'invalid_setup' and not reruns:
         flags.append('rerun: setup')
