@@ -81524,13 +81524,13 @@
       "protocol_cohorts": []
     },
     "vo/citrusfarm/seq04/orbslam3": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "accepted_with_limitation": 1,
+        "blocked": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 1,
+      "paper_usable_attempts": 0,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
@@ -81543,19 +81543,18 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 1,
+      "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "verified": 1,
-        "blocked": 2
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
           "cohort": "c44e576345b90e9c1a9aafd3b6c47f8d100054c483cb6722be36e4fd8875bc85",
           "attempts": 1,
-          "verified_completed": 1,
-          "missing_to_n3": 2,
+          "verified_completed": 0,
+          "missing_to_n3": null,
           "run_paths": [
             "results/vo/citrusfarm/seq04/orbslam3/run10001"
           ]
@@ -81953,13 +81952,13 @@
       ]
     },
     "vo/citrusfarm/seq07/orbslam3": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "accepted_with_limitation": 1,
+        "blocked": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 1,
+      "paper_usable_attempts": 0,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
@@ -81972,19 +81971,18 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 1,
+      "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "verified": 1,
-        "blocked": 2
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
           "cohort": "c44e576345b90e9c1a9aafd3b6c47f8d100054c483cb6722be36e4fd8875bc85",
           "attempts": 1,
-          "verified_completed": 1,
-          "missing_to_n3": 2,
+          "verified_completed": 0,
+          "missing_to_n3": null,
           "run_paths": [
             "results/vo/citrusfarm/seq07/orbslam3/run10001"
           ]
@@ -87934,13 +87932,13 @@
       ]
     },
     "vio/citrusfarm/seq04/orbslam3": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "accepted_with_limitation": 1,
+        "blocked": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 1,
+      "paper_usable_attempts": 0,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
@@ -87953,19 +87951,18 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 1,
+      "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "verified": 1,
-        "blocked": 2
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
           "cohort": "a63f66df631d68a3470c4e995767967c4a973d85ad7bd7d3793f5c2f562a8315",
           "attempts": 1,
-          "verified_completed": 1,
-          "missing_to_n3": 2,
+          "verified_completed": 0,
+          "missing_to_n3": null,
           "run_paths": [
             "results/vio/citrusfarm/seq04/orbslam3/run10001"
           ]
@@ -88323,13 +88320,13 @@
       ]
     },
     "vio/citrusfarm/seq07/orbslam3": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "accepted_with_limitation": 1,
+        "blocked": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 1,
+      "paper_usable_attempts": 0,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
@@ -88342,19 +88339,18 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 1,
+      "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "verified": 1,
-        "blocked": 2
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
           "cohort": "a63f66df631d68a3470c4e995767967c4a973d85ad7bd7d3793f5c2f562a8315",
           "attempts": 1,
-          "verified_completed": 1,
-          "missing_to_n3": 2,
+          "verified_completed": 0,
+          "missing_to_n3": null,
           "run_paths": [
             "results/vio/citrusfarm/seq07/orbslam3/run10001"
           ]

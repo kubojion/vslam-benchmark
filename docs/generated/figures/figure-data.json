@@ -3,11 +3,11 @@
   "inputs": [
     {
       "path": "results/repair-20261001/inventory.json",
-      "sha256": "1ebf1d964147ecfc2125b3aa2e1b5f60c5a6f32f2a4676ed7a592cbf5a493c19"
+      "sha256": "3fd9354dbca1bf2c90f2412b7da7a938bd00fdb71b9dbe8d0c322252dc03dd15"
     },
     {
       "path": "benchmark-vo.csv",
-      "sha256": "9c540264565b53e3d72c5bce2c66ae47eea604032f7e2679bbedfa6f6659fa66"
+      "sha256": "87a59862296b5084488d4126d87f2d4290fe521b477482197f965e1fd635217c"
     },
     {
       "path": "benchmark-vo-lc.csv",
@@ -15,7 +15,7 @@
     },
     {
       "path": "benchmark-vio.csv",
-      "sha256": "12038faee2fb356b90fc147f8a86bad1662a442671ac5a9ee5e285e778e04c64"
+      "sha256": "9beeee1f8cb02ce3ce3c06f29746e67e7ae0d030a19c2daf002906ce7a2804d4"
     },
     {
       "path": "benchmark-vio-lc.csv",
@@ -1022,7 +1022,7 @@
         "default"
       ],
       "value": 0.18645164802869885,
-      "annotation": "0.186\nA1/E1/S1/F0\nP,B,L,M",
+      "annotation": "0.186\nA1/E1/S1/F0\nP,B,M",
       "summary": {
         "identity": [
           "vo",
@@ -1040,19 +1040,13 @@
         },
         "acceptance": {
           "not_executed": 2,
-          "accepted_with_limitation": 1
+          "blocked": 1
         },
-        "paper_usable": 1,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
-          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
-          "export_coverage_below_95_percent_no_clean_success_tick",
-          "no_measured_processing_rate_or_realtime_deadline_claim",
-          "no_rotation_or_full_relative_pose_accuracy_claim",
-          "recorded_native_assets_not_complete_transitive_build_reconstruction"
+          "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -1064,13 +1058,13 @@
               "ok": 1
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.18645164802869885,
-              "median": 0.18645164802869885,
-              "min": 0.18645164802869885,
-              "max": 0.18645164802869885,
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
               "sample_std": null
             },
             "nonzero_exits": 0,
@@ -1097,6 +1091,7 @@
           }
         ],
         "scientific_blockers": [
+          "confirmed_estimator_defect_prevents_acceptance",
           "missing_repetition"
         ],
         "protocol_state": "blocked",
@@ -1109,19 +1104,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 1,
+        "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 2,
-          "verified": 1
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "c44e576345b90e9c1a9aafd3b6c47f8d100054c483cb6722be36e4fd8875bc85",
             "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vo/citrusfarm/seq04/orbslam3/run10001"
             ]
@@ -1131,7 +1125,6 @@
       "flags": [
         "P",
         "B",
-        "L",
         "M"
       ]
     },
@@ -1144,7 +1137,7 @@
         "default"
       ],
       "value": 0.1662487145044336,
-      "annotation": "0.166\nA1/E1/S1/F0\nP,B,L,M",
+      "annotation": "0.166\nA1/E1/S1/F0\nP,B,M",
       "summary": {
         "identity": [
           "vo",
@@ -1162,19 +1155,13 @@
         },
         "acceptance": {
           "not_executed": 2,
-          "accepted_with_limitation": 1
+          "blocked": 1
         },
-        "paper_usable": 1,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
-          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
-          "export_coverage_below_95_percent_no_clean_success_tick",
-          "no_measured_processing_rate_or_realtime_deadline_claim",
-          "no_rotation_or_full_relative_pose_accuracy_claim",
-          "recorded_native_assets_not_complete_transitive_build_reconstruction"
+          "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -1186,13 +1173,13 @@
               "ok": 1
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.1662487145044336,
-              "median": 0.1662487145044336,
-              "min": 0.1662487145044336,
-              "max": 0.1662487145044336,
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
               "sample_std": null
             },
             "nonzero_exits": 0,
@@ -1219,6 +1206,7 @@
           }
         ],
         "scientific_blockers": [
+          "confirmed_estimator_defect_prevents_acceptance",
           "missing_repetition"
         ],
         "protocol_state": "blocked",
@@ -1231,19 +1219,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 1,
+        "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 2,
-          "verified": 1
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "c44e576345b90e9c1a9aafd3b6c47f8d100054c483cb6722be36e4fd8875bc85",
             "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vo/citrusfarm/seq07/orbslam3/run10001"
             ]
@@ -1253,7 +1240,6 @@
       "flags": [
         "P",
         "B",
-        "L",
         "M"
       ]
     },
@@ -20406,7 +20392,7 @@
         "default"
       ],
       "value": 0.6726949246066687,
-      "annotation": "0.673\nA1/E1/S1/F0\nB,L,M",
+      "annotation": "0.673\nA1/E1/S1/F0\nB,M",
       "summary": {
         "identity": [
           "vio",
@@ -20424,18 +20410,13 @@
         },
         "acceptance": {
           "not_executed": 2,
-          "accepted_with_limitation": 1
+          "blocked": 1
         },
-        "paper_usable": 1,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
-          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
-          "no_measured_processing_rate_or_realtime_deadline_claim",
-          "no_rotation_or_full_relative_pose_accuracy_claim",
-          "recorded_native_assets_not_complete_transitive_build_reconstruction"
+          "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -20447,13 +20428,13 @@
               "ok": 1
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 1,
-              "mean": 0.6726949246066687,
-              "median": 0.6726949246066687,
-              "min": 0.6726949246066687,
-              "max": 0.6726949246066687,
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
               "sample_std": null
             },
             "nonzero_exits": 0,
@@ -20480,6 +20461,7 @@
           }
         ],
         "scientific_blockers": [
+          "confirmed_estimator_defect_prevents_acceptance",
           "missing_repetition"
         ],
         "protocol_state": "blocked",
@@ -20492,19 +20474,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 1,
+        "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 2,
-          "verified": 1
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "a63f66df631d68a3470c4e995767967c4a973d85ad7bd7d3793f5c2f562a8315",
             "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vio/citrusfarm/seq04/orbslam3/run10001"
             ]
@@ -20513,7 +20494,6 @@
       },
       "flags": [
         "B",
-        "L",
         "M"
       ]
     },
@@ -20526,7 +20506,7 @@
         "default"
       ],
       "value": 1.2275907177657488,
-      "annotation": "1.23\nA1/E1/S1/F0\nB,L,M",
+      "annotation": "1.23\nA1/E1/S1/F0\nB,M",
       "summary": {
         "identity": [
           "vio",
@@ -20544,18 +20524,13 @@
         },
         "acceptance": {
           "not_executed": 2,
-          "accepted_with_limitation": 1
+          "blocked": 1
         },
-        "paper_usable": 1,
+        "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
-          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
-          "no_measured_processing_rate_or_realtime_deadline_claim",
-          "no_rotation_or_full_relative_pose_accuracy_claim",
-          "recorded_native_assets_not_complete_transitive_build_reconstruction"
+          "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -20567,13 +20542,13 @@
               "ok": 1
             },
             "qualified": 0,
-            "paper_usable": 1,
+            "paper_usable": 0,
             "accepted_primary_ate": {
-              "n": 1,
-              "mean": 1.2275907177657488,
-              "median": 1.2275907177657488,
-              "min": 1.2275907177657488,
-              "max": 1.2275907177657488,
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
               "sample_std": null
             },
             "nonzero_exits": 0,
@@ -20600,6 +20575,7 @@
           }
         ],
         "scientific_blockers": [
+          "confirmed_estimator_defect_prevents_acceptance",
           "missing_repetition"
         ],
         "protocol_state": "blocked",
@@ -20612,19 +20588,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 1,
+        "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
         "missing_attempt_count": 2,
         "protocol_status_counts": {
-          "blocked": 2,
-          "verified": 1
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "a63f66df631d68a3470c4e995767967c4a973d85ad7bd7d3793f5c2f562a8315",
             "attempts": 1,
-            "verified_completed": 1,
-            "missing_to_n3": 2,
+            "verified_completed": 0,
+            "missing_to_n3": null,
             "run_paths": [
               "results/vio/citrusfarm/seq07/orbslam3/run10001"
             ]
@@ -20633,7 +20608,6 @@
       },
       "flags": [
         "B",
-        "L",
         "M"
       ]
     },
@@ -39817,11 +39791,11 @@
     },
     {
       "path": "fig_accuracy_vo_default.png",
-      "sha256": "fd022259ec634439e28d8a0d5ac845b10b65795f4af560f93d0c5044dc348c36"
+      "sha256": "978a8beccfd20b7edd06f2444f768867576e03eb2a3c9313d422fcd2ec508fd6"
     },
     {
       "path": "fig_accuracy_vo_default.pdf",
-      "sha256": "ac8f8fe985bc0c0f1e427b6262f6903253e9cfa978ad5176589f895defd33f1a"
+      "sha256": "2628844e094a004a92d0cddd64e923667400666cc36f414dfaca0f5ea4676e10"
     },
     {
       "path": "fig_accuracy_vo-lc_default.png",
@@ -39833,11 +39807,11 @@
     },
     {
       "path": "fig_accuracy_vio_default.png",
-      "sha256": "9a1ac5ca66232d9a9d410134dd45e4758a90bb132ede68e406559d7d120e0ab4"
+      "sha256": "4eac2cc36c89cac47c53b877ecee1adc6efc18ab4773efc8ae28efacab475e72"
     },
     {
       "path": "fig_accuracy_vio_default.pdf",
-      "sha256": "c3a0106af42496cdbd86eb8faddc80e97bb96f7cb456b8bde6d0056a987c63c8"
+      "sha256": "7a4224b2efab2e1b0be0d3b5ba8ae0bd2071d1dcbbd569ed69fffbe688ec5eda"
     },
     {
       "path": "fig_accuracy_vio-lc_default.png",

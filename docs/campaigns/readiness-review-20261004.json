@@ -76,6 +76,14 @@
         {
           "path": "docs/campaigns/orb-zed-g2o-build-20261002.json",
           "sha256": "1c20f94a077cb10d0db13149ee558381031edd2e91efb2eb3b172d3ff9c84dc9"
+        },
+        {
+          "path": "docs/campaigns/user-rerun-decisions-20261005.json",
+          "sha256": "213a1c5759e7da6c1f40c2558c29ee38d2c79db463ed661bb18bc1915c7ca52f"
+        },
+        {
+          "path": "docs/hortimulti-decisions-20261005.md",
+          "sha256": "5a1423d44cbecacc047d5ec337e2a9bfcc2ffe6883ba46c905a07bf0d9a84031"
         }
       ],
       "resolved_prerequisites": [
@@ -289,6 +297,85 @@
             {
               "path": "docs/campaigns/orb-zed-g2o-build-20261002.json",
               "sha256": "1c20f94a077cb10d0db13149ee558381031edd2e91efb2eb3b172d3ff9c84dc9"
+            }
+          ]
+        },
+        {
+          "prerequisite": "rerun_all_three_repetitions_in_one_recorded_implementation_group",
+          "evidence": [
+            {
+              "path": "results/vo/citrusfarm/seq04/orbslam3/run90001/run_meta.json",
+              "sha256": "ffa3bd81d61ed07f38d8dbf800166183b6160245b5edfe52e690d1e8e8317a6e"
+            },
+            {
+              "path": "results/vo/citrusfarm/seq04/orbslam3/run90001/run_log.txt",
+              "sha256": "7457a0e65c407d510d498a3926bf8732e2b14dace0bc48f4ef0c632ee53bc748"
+            },
+            {
+              "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
+              "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
+            },
+            {
+              "path": "docs/campaigns/citrusfarm-imu-alignment-20261003.json",
+              "sha256": "047358f3c9aa15253f2832148c1e3b2a83a85a268be2410d788363bb9df5e9b2"
+            },
+            {
+              "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
+              "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
+            },
+            {
+              "path": "configs/sensors/citrusfarm.json",
+              "sha256": "afe12decd4446e0305a10801fbae6f4694b898a564056224bcf20468293471f2"
+            },
+            {
+              "path": "datasets/citrusfarm/seq04/references/rtk-position-v1-20261003/reference.json",
+              "sha256": "c2ecba6307dfc0446d8a75d7d3c7c807648c437c610b2eabf1be0b0084f8840e"
+            },
+            {
+              "path": "datasets/citrusfarm/seq07/references/rtk-position-v1-20261003/reference.json",
+              "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
+            },
+            {
+              "role": "estimator_config",
+              "path": "configs/orbslam3/citrusfarm_stereo.yaml",
+              "sha256": "187ff7814ab9ffa90833be6646535dc5737f6bd96caa06a2da7479e0710bf498"
+            },
+            {
+              "role": "runner_with_embedded_parameters",
+              "path": "scripts/run/run_orbslam3.sh",
+              "sha256": "90f612f6ebdafd5412434555629ac5fef37d934a9653c8ab16110371c2d8ff12"
+            },
+            {
+              "path": "results/vo/citrusfarm/seq04/orbslam3/run90001/run_eval.json",
+              "sha256": "4b520d498a300737fbf80c10a5d38018ee2a54a91937643fafbca03bfee53102"
+            },
+            {
+              "path": "results/vo/citrusfarm/seq04/orbslam3/run90001/trajectory.txt",
+              "sha256": "09a70e94cd5baf7d1cb7c5d466370bfc1281bb18da74a7f453ab8304e13c29d1"
+            },
+            {
+              "path": "results/vo/citrusfarm/seq04/orbslam3/run90001/provenance/estimator_config--orbslam3_cfg_0tlQDR.yaml",
+              "sha256": "47126436fb9c6b3f8849f18c8cacd4f2482ca985466eaf52acb8b87a285d0c8c"
+            },
+            {
+              "path": "results/vo/citrusfarm/seq04/orbslam3/run90001/provenance/estimator_config_source--citrusfarm_stereo.yaml",
+              "sha256": "187ff7814ab9ffa90833be6646535dc5737f6bd96caa06a2da7479e0710bf498"
+            },
+            {
+              "path": "results/vo/citrusfarm/seq04/orbslam3/run90001/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+              "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+            },
+            {
+              "path": "docs/campaigns/orb-zed-g2o-build-20261002.json",
+              "sha256": "1c20f94a077cb10d0db13149ee558381031edd2e91efb2eb3b172d3ff9c84dc9"
+            },
+            {
+              "path": "docs/campaigns/user-rerun-decisions-20261005.json",
+              "sha256": "213a1c5759e7da6c1f40c2558c29ee38d2c79db463ed661bb18bc1915c7ca52f"
+            },
+            {
+              "path": "docs/hortimulti-decisions-20261005.md",
+              "sha256": "5a1423d44cbecacc047d5ec337e2a9bfcc2ffe6883ba46c905a07bf0d9a84031"
             }
           ]
         }
@@ -2777,6 +2864,14 @@
         {
           "path": "docs/campaigns/orb-zed-g2o-build-20261002.json",
           "sha256": "1c20f94a077cb10d0db13149ee558381031edd2e91efb2eb3b172d3ff9c84dc9"
+        },
+        {
+          "path": "docs/campaigns/user-rerun-decisions-20261005.json",
+          "sha256": "213a1c5759e7da6c1f40c2558c29ee38d2c79db463ed661bb18bc1915c7ca52f"
+        },
+        {
+          "path": "docs/hortimulti-decisions-20261005.md",
+          "sha256": "5a1423d44cbecacc047d5ec337e2a9bfcc2ffe6883ba46c905a07bf0d9a84031"
         }
       ],
       "resolved_prerequisites": [
@@ -2990,6 +3085,85 @@
             {
               "path": "docs/campaigns/orb-zed-g2o-build-20261002.json",
               "sha256": "1c20f94a077cb10d0db13149ee558381031edd2e91efb2eb3b172d3ff9c84dc9"
+            }
+          ]
+        },
+        {
+          "prerequisite": "rerun_all_three_repetitions_in_one_recorded_implementation_group",
+          "evidence": [
+            {
+              "path": "results/vo/citrusfarm/seq04/orbslam3/run90001/run_meta.json",
+              "sha256": "ffa3bd81d61ed07f38d8dbf800166183b6160245b5edfe52e690d1e8e8317a6e"
+            },
+            {
+              "path": "results/vo/citrusfarm/seq04/orbslam3/run90001/run_log.txt",
+              "sha256": "7457a0e65c407d510d498a3926bf8732e2b14dace0bc48f4ef0c632ee53bc748"
+            },
+            {
+              "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
+              "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
+            },
+            {
+              "path": "docs/campaigns/citrusfarm-imu-alignment-20261003.json",
+              "sha256": "047358f3c9aa15253f2832148c1e3b2a83a85a268be2410d788363bb9df5e9b2"
+            },
+            {
+              "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
+              "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
+            },
+            {
+              "path": "configs/sensors/citrusfarm.json",
+              "sha256": "afe12decd4446e0305a10801fbae6f4694b898a564056224bcf20468293471f2"
+            },
+            {
+              "path": "datasets/citrusfarm/seq04/references/rtk-position-v1-20261003/reference.json",
+              "sha256": "c2ecba6307dfc0446d8a75d7d3c7c807648c437c610b2eabf1be0b0084f8840e"
+            },
+            {
+              "path": "datasets/citrusfarm/seq07/references/rtk-position-v1-20261003/reference.json",
+              "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
+            },
+            {
+              "role": "estimator_config",
+              "path": "configs/orbslam3/citrusfarm_stereo.yaml",
+              "sha256": "187ff7814ab9ffa90833be6646535dc5737f6bd96caa06a2da7479e0710bf498"
+            },
+            {
+              "role": "runner_with_embedded_parameters",
+              "path": "scripts/run/run_orbslam3.sh",
+              "sha256": "90f612f6ebdafd5412434555629ac5fef37d934a9653c8ab16110371c2d8ff12"
+            },
+            {
+              "path": "results/vo/citrusfarm/seq04/orbslam3/run90001/run_eval.json",
+              "sha256": "4b520d498a300737fbf80c10a5d38018ee2a54a91937643fafbca03bfee53102"
+            },
+            {
+              "path": "results/vo/citrusfarm/seq04/orbslam3/run90001/trajectory.txt",
+              "sha256": "09a70e94cd5baf7d1cb7c5d466370bfc1281bb18da74a7f453ab8304e13c29d1"
+            },
+            {
+              "path": "results/vo/citrusfarm/seq04/orbslam3/run90001/provenance/estimator_config--orbslam3_cfg_0tlQDR.yaml",
+              "sha256": "47126436fb9c6b3f8849f18c8cacd4f2482ca985466eaf52acb8b87a285d0c8c"
+            },
+            {
+              "path": "results/vo/citrusfarm/seq04/orbslam3/run90001/provenance/estimator_config_source--citrusfarm_stereo.yaml",
+              "sha256": "187ff7814ab9ffa90833be6646535dc5737f6bd96caa06a2da7479e0710bf498"
+            },
+            {
+              "path": "results/vo/citrusfarm/seq04/orbslam3/run90001/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+              "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+            },
+            {
+              "path": "docs/campaigns/orb-zed-g2o-build-20261002.json",
+              "sha256": "1c20f94a077cb10d0db13149ee558381031edd2e91efb2eb3b172d3ff9c84dc9"
+            },
+            {
+              "path": "docs/campaigns/user-rerun-decisions-20261005.json",
+              "sha256": "213a1c5759e7da6c1f40c2558c29ee38d2c79db463ed661bb18bc1915c7ca52f"
+            },
+            {
+              "path": "docs/hortimulti-decisions-20261005.md",
+              "sha256": "5a1423d44cbecacc047d5ec337e2a9bfcc2ffe6883ba46c905a07bf0d9a84031"
             }
           ]
         }
@@ -8664,6 +8838,14 @@
         {
           "path": "docs/campaigns/orb-zed-g2o-build-20261002.json",
           "sha256": "1c20f94a077cb10d0db13149ee558381031edd2e91efb2eb3b172d3ff9c84dc9"
+        },
+        {
+          "path": "docs/campaigns/user-rerun-decisions-20261005.json",
+          "sha256": "213a1c5759e7da6c1f40c2558c29ee38d2c79db463ed661bb18bc1915c7ca52f"
+        },
+        {
+          "path": "docs/hortimulti-decisions-20261005.md",
+          "sha256": "5a1423d44cbecacc047d5ec337e2a9bfcc2ffe6883ba46c905a07bf0d9a84031"
         }
       ],
       "resolved_prerequisites": [
@@ -8877,6 +9059,85 @@
             {
               "path": "docs/campaigns/orb-zed-g2o-build-20261002.json",
               "sha256": "1c20f94a077cb10d0db13149ee558381031edd2e91efb2eb3b172d3ff9c84dc9"
+            }
+          ]
+        },
+        {
+          "prerequisite": "rerun_all_three_repetitions_in_one_recorded_implementation_group",
+          "evidence": [
+            {
+              "path": "results/vio/citrusfarm/seq04/orbslam3/run90002/run_meta.json",
+              "sha256": "cde3b9c307de198839f090e1f63d3e7431ef1ade4747c66c59f06593ae93147c"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/orbslam3/run90002/run_log.txt",
+              "sha256": "206d18d0710765a9a16de0ac8c86dddf471a2c0c66740f165534015950d9d86f"
+            },
+            {
+              "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
+              "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
+            },
+            {
+              "path": "docs/campaigns/citrusfarm-imu-alignment-20261003.json",
+              "sha256": "047358f3c9aa15253f2832148c1e3b2a83a85a268be2410d788363bb9df5e9b2"
+            },
+            {
+              "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
+              "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
+            },
+            {
+              "path": "configs/sensors/citrusfarm.json",
+              "sha256": "afe12decd4446e0305a10801fbae6f4694b898a564056224bcf20468293471f2"
+            },
+            {
+              "path": "datasets/citrusfarm/seq04/references/rtk-position-v1-20261003/reference.json",
+              "sha256": "c2ecba6307dfc0446d8a75d7d3c7c807648c437c610b2eabf1be0b0084f8840e"
+            },
+            {
+              "path": "datasets/citrusfarm/seq07/references/rtk-position-v1-20261003/reference.json",
+              "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
+            },
+            {
+              "role": "estimator_config",
+              "path": "configs/orbslam3/citrusfarm_stereo_inertial.yaml",
+              "sha256": "f5c5a1b6a9c4c193e32a06eefbdc9ebc53a7c3e78bb2c98b961ca08e8001f14a"
+            },
+            {
+              "role": "runner_with_embedded_parameters",
+              "path": "scripts/run/run_orbslam3.sh",
+              "sha256": "90f612f6ebdafd5412434555629ac5fef37d934a9653c8ab16110371c2d8ff12"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/orbslam3/run90002/run_eval.json",
+              "sha256": "c4c3dd96f58690170dc654327151d110cc96ac40869feb883103cb6df8cdcd52"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/orbslam3/run90002/trajectory.txt",
+              "sha256": "428708d028c099008b7d34a0b0a37c75e82200454f23e1876a52598689a11db9"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/orbslam3/run90002/provenance/estimator_config--orbslam3_cfg_msToJ7.yaml",
+              "sha256": "c54997ecf592295843b78d73ee0499407c99f0f3957938c02ae507aaa5b73c23"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/orbslam3/run90002/provenance/estimator_config_source--citrusfarm_stereo_inertial.yaml",
+              "sha256": "f5c5a1b6a9c4c193e32a06eefbdc9ebc53a7c3e78bb2c98b961ca08e8001f14a"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/orbslam3/run90002/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+              "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+            },
+            {
+              "path": "docs/campaigns/orb-zed-g2o-build-20261002.json",
+              "sha256": "1c20f94a077cb10d0db13149ee558381031edd2e91efb2eb3b172d3ff9c84dc9"
+            },
+            {
+              "path": "docs/campaigns/user-rerun-decisions-20261005.json",
+              "sha256": "213a1c5759e7da6c1f40c2558c29ee38d2c79db463ed661bb18bc1915c7ca52f"
+            },
+            {
+              "path": "docs/hortimulti-decisions-20261005.md",
+              "sha256": "5a1423d44cbecacc047d5ec337e2a9bfcc2ffe6883ba46c905a07bf0d9a84031"
             }
           ]
         }
@@ -9819,16 +10080,44 @@
       "review_complete": true,
       "effective_configuration_verified": true,
       "static_verified": true,
-      "execution_verified": true,
+      "execution_verified": false,
       "historical_cohort_preserved": true,
       "evidence": [
         {
-          "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_meta.json",
-          "sha256": "1ad0afe734b9f09e577a1b6140aa4f80a83c7058298b64d88677eaea45c2088c"
+          "path": "results/vio/citrusfarm/seq04/openvins/run90003/run_meta.json",
+          "sha256": "8a7fa52587d5a7253f19ef1de963bdf8569fa97315797545efdd1c76086513ed"
         },
         {
-          "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_log.txt",
-          "sha256": "78088b1d849cf8aaae0e877de71ff506cc617c4daaf6bb55bc666450bb4da59c"
+          "path": "results/vio/citrusfarm/seq04/openvins/run90003/run_log.txt",
+          "sha256": "f75fb9d3ddc74e51243622451710bd920e6050f1fe893adff92f8ff78bbf0b72"
+        },
+        {
+          "path": "logs/citrusfarm_seq04_openvins_vio_run90003.log",
+          "sha256": "f75fb9d3ddc74e51243622451710bd920e6050f1fe893adff92f8ff78bbf0b72"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/openvins/run90003/run_eval.json",
+          "sha256": "0b9b208387c192b9fffe30cef0a1aee547014bfa63d423a0b26a38f72cccb84c"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/openvins/run90003/trajectory.txt",
+          "sha256": "7e65c676fde09946229e4d22115cda2f2e5f099be139c57622334365f67da49a"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/openvins/run90003/trajectory_poseimu.txt",
+          "sha256": "d08c17e4a063db2c2ce000e39bd7618ba9d538a47a2c4fc15628debd1ab6d42a"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/openvins/run90003/provenance/estimator_config--estimator_config.yaml",
+          "sha256": "7e425188bf31da4f8d387faf267a895aaf50de51ec298171a8ad4b1e3c5d2e6f"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/openvins/run90003/provenance/imu_calibration--kalibr_imu_chain.yaml",
+          "sha256": "8bacd200e6cc9001976562b318c1705a8f8d3324746924488b725df3cf278ff3"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/openvins/run90003/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+          "sha256": "a75d8279ba3338418d7041029b6e746c07ba0525b7e77394df20a63804694c94"
         },
         {
           "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -9855,205 +10144,28 @@
           "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
         },
         {
-          "role": "estimator_config",
           "path": "configs/openvins/citrusfarm/estimator_config.yaml",
-          "sha256": "6b6a14e9e5b1d8ba65bb284901dfeb44b549fb72b0bccd2c6b402fb0167f80e6"
+          "sha256": "7e425188bf31da4f8d387faf267a895aaf50de51ec298171a8ad4b1e3c5d2e6f"
         },
         {
-          "role": "imu_calibration",
           "path": "configs/openvins/citrusfarm/kalibr_imu_chain.yaml",
           "sha256": "8bacd200e6cc9001976562b318c1705a8f8d3324746924488b725df3cf278ff3"
         },
         {
-          "role": "camera_imu_calibration",
           "path": "configs/openvins/citrusfarm/kalibr_imucam_chain.yaml",
           "sha256": "a75d8279ba3338418d7041029b6e746c07ba0525b7e77394df20a63804694c94"
         },
         {
-          "role": "runner_with_embedded_parameters",
           "path": "scripts/run/run_openvins.sh",
-          "sha256": "0689effab2d3d7ac45121f66fad05d690479082c205c620d9320d962948e51f2"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_eval.json",
-          "sha256": "4fc599e6482c9cb4dc46c06ef573f86452c35eb8fed6bc80d8e4d6ae848ab97b"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/openvins/run90002/trajectory.txt",
-          "sha256": "fded96c324a3d3b916db2c7806231e02ae0c5a7b2fe1b70211aa6d5a1c555b6f"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/estimator_config--estimator_config.yaml",
-          "sha256": "6b6a14e9e5b1d8ba65bb284901dfeb44b549fb72b0bccd2c6b402fb0167f80e6"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/imu_calibration--kalibr_imu_chain.yaml",
-          "sha256": "8bacd200e6cc9001976562b318c1705a8f8d3324746924488b725df3cf278ff3"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
-          "sha256": "a75d8279ba3338418d7041029b6e746c07ba0525b7e77394df20a63804694c94"
+          "sha256": "c7a21580234fca62cd0d250947a559abc6c39a26401838cdc9d648fbefc97e3b"
         }
       ],
-      "resolved_prerequisites": [
-        {
-          "prerequisite": "resolve_within_cell_configuration_mismatch",
-          "evidence": [
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_meta.json",
-              "sha256": "1ad0afe734b9f09e577a1b6140aa4f80a83c7058298b64d88677eaea45c2088c"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_log.txt",
-              "sha256": "78088b1d849cf8aaae0e877de71ff506cc617c4daaf6bb55bc666450bb4da59c"
-            },
-            {
-              "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
-              "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
-            },
-            {
-              "path": "docs/campaigns/citrusfarm-imu-alignment-20261003.json",
-              "sha256": "047358f3c9aa15253f2832148c1e3b2a83a85a268be2410d788363bb9df5e9b2"
-            },
-            {
-              "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
-              "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
-            },
-            {
-              "path": "configs/sensors/citrusfarm.json",
-              "sha256": "afe12decd4446e0305a10801fbae6f4694b898a564056224bcf20468293471f2"
-            },
-            {
-              "path": "datasets/citrusfarm/seq04/references/rtk-position-v1-20261003/reference.json",
-              "sha256": "c2ecba6307dfc0446d8a75d7d3c7c807648c437c610b2eabf1be0b0084f8840e"
-            },
-            {
-              "path": "datasets/citrusfarm/seq07/references/rtk-position-v1-20261003/reference.json",
-              "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
-            },
-            {
-              "role": "estimator_config",
-              "path": "configs/openvins/citrusfarm/estimator_config.yaml",
-              "sha256": "6b6a14e9e5b1d8ba65bb284901dfeb44b549fb72b0bccd2c6b402fb0167f80e6"
-            },
-            {
-              "role": "imu_calibration",
-              "path": "configs/openvins/citrusfarm/kalibr_imu_chain.yaml",
-              "sha256": "8bacd200e6cc9001976562b318c1705a8f8d3324746924488b725df3cf278ff3"
-            },
-            {
-              "role": "camera_imu_calibration",
-              "path": "configs/openvins/citrusfarm/kalibr_imucam_chain.yaml",
-              "sha256": "a75d8279ba3338418d7041029b6e746c07ba0525b7e77394df20a63804694c94"
-            },
-            {
-              "role": "runner_with_embedded_parameters",
-              "path": "scripts/run/run_openvins.sh",
-              "sha256": "0689effab2d3d7ac45121f66fad05d690479082c205c620d9320d962948e51f2"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_eval.json",
-              "sha256": "4fc599e6482c9cb4dc46c06ef573f86452c35eb8fed6bc80d8e4d6ae848ab97b"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/trajectory.txt",
-              "sha256": "fded96c324a3d3b916db2c7806231e02ae0c5a7b2fe1b70211aa6d5a1c555b6f"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/estimator_config--estimator_config.yaml",
-              "sha256": "6b6a14e9e5b1d8ba65bb284901dfeb44b549fb72b0bccd2c6b402fb0167f80e6"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/imu_calibration--kalibr_imu_chain.yaml",
-              "sha256": "8bacd200e6cc9001976562b318c1705a8f8d3324746924488b725df3cf278ff3"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
-              "sha256": "a75d8279ba3338418d7041029b6e746c07ba0525b7e77394df20a63804694c94"
-            }
-          ]
-        },
-        {
-          "prerequisite": "resolve_recorded_source_binary_parameter_or_hardware_cohort_difference",
-          "evidence": [
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_meta.json",
-              "sha256": "1ad0afe734b9f09e577a1b6140aa4f80a83c7058298b64d88677eaea45c2088c"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_log.txt",
-              "sha256": "78088b1d849cf8aaae0e877de71ff506cc617c4daaf6bb55bc666450bb4da59c"
-            },
-            {
-              "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
-              "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
-            },
-            {
-              "path": "docs/campaigns/citrusfarm-imu-alignment-20261003.json",
-              "sha256": "047358f3c9aa15253f2832148c1e3b2a83a85a268be2410d788363bb9df5e9b2"
-            },
-            {
-              "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
-              "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
-            },
-            {
-              "path": "configs/sensors/citrusfarm.json",
-              "sha256": "afe12decd4446e0305a10801fbae6f4694b898a564056224bcf20468293471f2"
-            },
-            {
-              "path": "datasets/citrusfarm/seq04/references/rtk-position-v1-20261003/reference.json",
-              "sha256": "c2ecba6307dfc0446d8a75d7d3c7c807648c437c610b2eabf1be0b0084f8840e"
-            },
-            {
-              "path": "datasets/citrusfarm/seq07/references/rtk-position-v1-20261003/reference.json",
-              "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
-            },
-            {
-              "role": "estimator_config",
-              "path": "configs/openvins/citrusfarm/estimator_config.yaml",
-              "sha256": "6b6a14e9e5b1d8ba65bb284901dfeb44b549fb72b0bccd2c6b402fb0167f80e6"
-            },
-            {
-              "role": "imu_calibration",
-              "path": "configs/openvins/citrusfarm/kalibr_imu_chain.yaml",
-              "sha256": "8bacd200e6cc9001976562b318c1705a8f8d3324746924488b725df3cf278ff3"
-            },
-            {
-              "role": "camera_imu_calibration",
-              "path": "configs/openvins/citrusfarm/kalibr_imucam_chain.yaml",
-              "sha256": "a75d8279ba3338418d7041029b6e746c07ba0525b7e77394df20a63804694c94"
-            },
-            {
-              "role": "runner_with_embedded_parameters",
-              "path": "scripts/run/run_openvins.sh",
-              "sha256": "0689effab2d3d7ac45121f66fad05d690479082c205c620d9320d962948e51f2"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_eval.json",
-              "sha256": "4fc599e6482c9cb4dc46c06ef573f86452c35eb8fed6bc80d8e4d6ae848ab97b"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/trajectory.txt",
-              "sha256": "fded96c324a3d3b916db2c7806231e02ae0c5a7b2fe1b70211aa6d5a1c555b6f"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/estimator_config--estimator_config.yaml",
-              "sha256": "6b6a14e9e5b1d8ba65bb284901dfeb44b549fb72b0bccd2c6b402fb0167f80e6"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/imu_calibration--kalibr_imu_chain.yaml",
-              "sha256": "8bacd200e6cc9001976562b318c1705a8f8d3324746924488b725df3cf278ff3"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
-              "sha256": "a75d8279ba3338418d7041029b6e746c07ba0525b7e77394df20a63804694c94"
-            }
-          ]
-        }
+      "resolved_prerequisites": [],
+      "blockers": [
+        "readiness_check_did_not_complete_review_required"
       ],
-      "blockers": [],
-      "diagnostic_attempt": "results/vio/citrusfarm/seq04/openvins/run90002",
-      "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
+      "diagnostic_attempt": "results/vio/citrusfarm/seq04/openvins/run90003",
+      "diagnostic_scope": "recheck after e880c2c (runner gained a HortiMulti branch; OpenVINS track_frequency 31 where changed): seq04; native exit 0; outcome ok; checked at 4b2b3f8655; previous check results/vio/citrusfarm/seq04/openvins/run90002; CHECK FAILED: audit: processed 4297/7692 published frames (56 %); OpenVINS lags 1.0x paced playback (mean 27 ms, max 340 ms behind), so track_frequency 31 does not remove the drops; ATE 17.4 m against 6.7-9.7 m at track_frequency 10",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 777.5756809711456,
@@ -10069,12 +10181,48 @@
       "historical_cohort_preserved": true,
       "evidence": [
         {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_meta.json",
-          "sha256": "143b8357235c06132700127de32a502dd48a7710e7a7e00721ddc11e07d4220c"
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_meta.json",
+          "sha256": "c9383c8139d7e461e429908bc824b1a6a8ecfc4a1b3cfbdeca329b75ad8ccaf3"
         },
         {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_log.txt",
-          "sha256": "de277eba4e1dfe36ab928ecf6d3ee6df960bd761250058f7f306d5047bb56812"
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_log.txt",
+          "sha256": "b4859cae0de50d461506d0d2b607c140101af807b4db60bff37c0a938da0c59c"
+        },
+        {
+          "path": "logs/citrusfarm_seq04_voxel_svio_vio_run90003.log",
+          "sha256": "b4859cae0de50d461506d0d2b607c140101af807b4db60bff37c0a938da0c59c"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_eval.json",
+          "sha256": "324d26044337d4ee9604552f60c3d7d961b3bd0fd8fb21c49fcd3207a0bdaaa3"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/trajectory.txt",
+          "sha256": "b0c8961350d7d842b4bffdeaddac1731fe236bf995818979ccae25b5c4c4a9db"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/estimator_config--citrusfarm.yaml",
+          "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+          "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+          "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_parameter_list.txt--parameter_list.txt",
+          "sha256": "caf1179d3c1f8d0420646fd7405c23c8b5fe76babcdf85e2dfc5e7f11624bd8e"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_camera_load.txt--camera_load.txt",
+          "sha256": "2021a208aa43faa46840fb1ec1038ddb4b03556f8f25903e38fc2bb96c51b82f"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_input_receipt.json--input_receipt.json",
+          "sha256": "c3cddda0c9c550a9b50e97d5544562b585aa4d683d6f11b9b1715ec1f6b4dc6e"
         },
         {
           "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -10101,46 +10249,12 @@
           "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
         },
         {
-          "role": "estimator_config",
           "path": "configs/voxel_svio/citrusfarm.yaml",
           "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
         },
         {
-          "role": "runner_with_embedded_parameters",
           "path": "scripts/run/run_voxel_svio.sh",
-          "sha256": "fa12c804cb292734f0db905069b9711d242cd9fb6c863b39efce8bb957c39210"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_eval.json",
-          "sha256": "946f58ee4a924114fd3313bb606da1ae11b3cc7b1e4af50dae1f1835a715b79c"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/trajectory.txt",
-          "sha256": "be4ad32e7b1d14260d04bef377c755a8539893955a3394f7a25567445e6faa35"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/estimator_config--citrusfarm.yaml",
-          "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
-          "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
-          "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_parameter_list.txt--parameter_list.txt",
-          "sha256": "caf1179d3c1f8d0420646fd7405c23c8b5fe76babcdf85e2dfc5e7f11624bd8e"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_camera_load.txt--camera_load.txt",
-          "sha256": "2021a208aa43faa46840fb1ec1038ddb4b03556f8f25903e38fc2bb96c51b82f"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_input_receipt.json--input_receipt.json",
-          "sha256": "c3cddda0c9c550a9b50e97d5544562b585aa4d683d6f11b9b1715ec1f6b4dc6e"
+          "sha256": "7f2ea50d42c116cb70809402a505288322f08a8fad90e065497abc0627dba2c0"
         }
       ],
       "resolved_prerequisites": [
@@ -10148,12 +10262,48 @@
           "prerequisite": "resolve_within_cell_configuration_mismatch",
           "evidence": [
             {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_meta.json",
-              "sha256": "143b8357235c06132700127de32a502dd48a7710e7a7e00721ddc11e07d4220c"
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_meta.json",
+              "sha256": "c9383c8139d7e461e429908bc824b1a6a8ecfc4a1b3cfbdeca329b75ad8ccaf3"
             },
             {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_log.txt",
-              "sha256": "de277eba4e1dfe36ab928ecf6d3ee6df960bd761250058f7f306d5047bb56812"
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_log.txt",
+              "sha256": "b4859cae0de50d461506d0d2b607c140101af807b4db60bff37c0a938da0c59c"
+            },
+            {
+              "path": "logs/citrusfarm_seq04_voxel_svio_vio_run90003.log",
+              "sha256": "b4859cae0de50d461506d0d2b607c140101af807b4db60bff37c0a938da0c59c"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_eval.json",
+              "sha256": "324d26044337d4ee9604552f60c3d7d961b3bd0fd8fb21c49fcd3207a0bdaaa3"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/trajectory.txt",
+              "sha256": "b0c8961350d7d842b4bffdeaddac1731fe236bf995818979ccae25b5c4c4a9db"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/estimator_config--citrusfarm.yaml",
+              "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+              "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+              "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_parameter_list.txt--parameter_list.txt",
+              "sha256": "caf1179d3c1f8d0420646fd7405c23c8b5fe76babcdf85e2dfc5e7f11624bd8e"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_camera_load.txt--camera_load.txt",
+              "sha256": "2021a208aa43faa46840fb1ec1038ddb4b03556f8f25903e38fc2bb96c51b82f"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_input_receipt.json--input_receipt.json",
+              "sha256": "c3cddda0c9c550a9b50e97d5544562b585aa4d683d6f11b9b1715ec1f6b4dc6e"
             },
             {
               "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -10180,46 +10330,12 @@
               "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
             },
             {
-              "role": "estimator_config",
               "path": "configs/voxel_svio/citrusfarm.yaml",
               "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
             },
             {
-              "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_voxel_svio.sh",
-              "sha256": "fa12c804cb292734f0db905069b9711d242cd9fb6c863b39efce8bb957c39210"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_eval.json",
-              "sha256": "946f58ee4a924114fd3313bb606da1ae11b3cc7b1e4af50dae1f1835a715b79c"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/trajectory.txt",
-              "sha256": "be4ad32e7b1d14260d04bef377c755a8539893955a3394f7a25567445e6faa35"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/estimator_config--citrusfarm.yaml",
-              "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
-              "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
-              "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_parameter_list.txt--parameter_list.txt",
-              "sha256": "caf1179d3c1f8d0420646fd7405c23c8b5fe76babcdf85e2dfc5e7f11624bd8e"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_camera_load.txt--camera_load.txt",
-              "sha256": "2021a208aa43faa46840fb1ec1038ddb4b03556f8f25903e38fc2bb96c51b82f"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_input_receipt.json--input_receipt.json",
-              "sha256": "c3cddda0c9c550a9b50e97d5544562b585aa4d683d6f11b9b1715ec1f6b4dc6e"
+              "sha256": "7f2ea50d42c116cb70809402a505288322f08a8fad90e065497abc0627dba2c0"
             }
           ]
         },
@@ -10227,12 +10343,48 @@
           "prerequisite": "resolve_recorded_source_binary_parameter_or_hardware_cohort_difference",
           "evidence": [
             {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_meta.json",
-              "sha256": "143b8357235c06132700127de32a502dd48a7710e7a7e00721ddc11e07d4220c"
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_meta.json",
+              "sha256": "c9383c8139d7e461e429908bc824b1a6a8ecfc4a1b3cfbdeca329b75ad8ccaf3"
             },
             {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_log.txt",
-              "sha256": "de277eba4e1dfe36ab928ecf6d3ee6df960bd761250058f7f306d5047bb56812"
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_log.txt",
+              "sha256": "b4859cae0de50d461506d0d2b607c140101af807b4db60bff37c0a938da0c59c"
+            },
+            {
+              "path": "logs/citrusfarm_seq04_voxel_svio_vio_run90003.log",
+              "sha256": "b4859cae0de50d461506d0d2b607c140101af807b4db60bff37c0a938da0c59c"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_eval.json",
+              "sha256": "324d26044337d4ee9604552f60c3d7d961b3bd0fd8fb21c49fcd3207a0bdaaa3"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/trajectory.txt",
+              "sha256": "b0c8961350d7d842b4bffdeaddac1731fe236bf995818979ccae25b5c4c4a9db"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/estimator_config--citrusfarm.yaml",
+              "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+              "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+              "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_parameter_list.txt--parameter_list.txt",
+              "sha256": "caf1179d3c1f8d0420646fd7405c23c8b5fe76babcdf85e2dfc5e7f11624bd8e"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_camera_load.txt--camera_load.txt",
+              "sha256": "2021a208aa43faa46840fb1ec1038ddb4b03556f8f25903e38fc2bb96c51b82f"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_input_receipt.json--input_receipt.json",
+              "sha256": "c3cddda0c9c550a9b50e97d5544562b585aa4d683d6f11b9b1715ec1f6b4dc6e"
             },
             {
               "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -10259,46 +10411,12 @@
               "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
             },
             {
-              "role": "estimator_config",
               "path": "configs/voxel_svio/citrusfarm.yaml",
               "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
             },
             {
-              "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_voxel_svio.sh",
-              "sha256": "fa12c804cb292734f0db905069b9711d242cd9fb6c863b39efce8bb957c39210"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_eval.json",
-              "sha256": "946f58ee4a924114fd3313bb606da1ae11b3cc7b1e4af50dae1f1835a715b79c"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/trajectory.txt",
-              "sha256": "be4ad32e7b1d14260d04bef377c755a8539893955a3394f7a25567445e6faa35"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/estimator_config--citrusfarm.yaml",
-              "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
-              "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
-              "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_parameter_list.txt--parameter_list.txt",
-              "sha256": "caf1179d3c1f8d0420646fd7405c23c8b5fe76babcdf85e2dfc5e7f11624bd8e"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_camera_load.txt--camera_load.txt",
-              "sha256": "2021a208aa43faa46840fb1ec1038ddb4b03556f8f25903e38fc2bb96c51b82f"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_input_receipt.json--input_receipt.json",
-              "sha256": "c3cddda0c9c550a9b50e97d5544562b585aa4d683d6f11b9b1715ec1f6b4dc6e"
+              "sha256": "7f2ea50d42c116cb70809402a505288322f08a8fad90e065497abc0627dba2c0"
             }
           ]
         },
@@ -10306,12 +10424,48 @@
           "prerequisite": "capture_native_exit_separately_and_diagnose_logged_shutdown_errors",
           "evidence": [
             {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_meta.json",
-              "sha256": "143b8357235c06132700127de32a502dd48a7710e7a7e00721ddc11e07d4220c"
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_meta.json",
+              "sha256": "c9383c8139d7e461e429908bc824b1a6a8ecfc4a1b3cfbdeca329b75ad8ccaf3"
             },
             {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_log.txt",
-              "sha256": "de277eba4e1dfe36ab928ecf6d3ee6df960bd761250058f7f306d5047bb56812"
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_log.txt",
+              "sha256": "b4859cae0de50d461506d0d2b607c140101af807b4db60bff37c0a938da0c59c"
+            },
+            {
+              "path": "logs/citrusfarm_seq04_voxel_svio_vio_run90003.log",
+              "sha256": "b4859cae0de50d461506d0d2b607c140101af807b4db60bff37c0a938da0c59c"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_eval.json",
+              "sha256": "324d26044337d4ee9604552f60c3d7d961b3bd0fd8fb21c49fcd3207a0bdaaa3"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/trajectory.txt",
+              "sha256": "b0c8961350d7d842b4bffdeaddac1731fe236bf995818979ccae25b5c4c4a9db"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/estimator_config--citrusfarm.yaml",
+              "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+              "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+              "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_parameter_list.txt--parameter_list.txt",
+              "sha256": "caf1179d3c1f8d0420646fd7405c23c8b5fe76babcdf85e2dfc5e7f11624bd8e"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_camera_load.txt--camera_load.txt",
+              "sha256": "2021a208aa43faa46840fb1ec1038ddb4b03556f8f25903e38fc2bb96c51b82f"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_input_receipt.json--input_receipt.json",
+              "sha256": "c3cddda0c9c550a9b50e97d5544562b585aa4d683d6f11b9b1715ec1f6b4dc6e"
             },
             {
               "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -10338,53 +10492,19 @@
               "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
             },
             {
-              "role": "estimator_config",
               "path": "configs/voxel_svio/citrusfarm.yaml",
               "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
             },
             {
-              "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_voxel_svio.sh",
-              "sha256": "fa12c804cb292734f0db905069b9711d242cd9fb6c863b39efce8bb957c39210"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_eval.json",
-              "sha256": "946f58ee4a924114fd3313bb606da1ae11b3cc7b1e4af50dae1f1835a715b79c"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/trajectory.txt",
-              "sha256": "be4ad32e7b1d14260d04bef377c755a8539893955a3394f7a25567445e6faa35"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/estimator_config--citrusfarm.yaml",
-              "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
-              "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
-              "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_parameter_list.txt--parameter_list.txt",
-              "sha256": "caf1179d3c1f8d0420646fd7405c23c8b5fe76babcdf85e2dfc5e7f11624bd8e"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_camera_load.txt--camera_load.txt",
-              "sha256": "2021a208aa43faa46840fb1ec1038ddb4b03556f8f25903e38fc2bb96c51b82f"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_input_receipt.json--input_receipt.json",
-              "sha256": "c3cddda0c9c550a9b50e97d5544562b585aa4d683d6f11b9b1715ec1f6b4dc6e"
+              "sha256": "7f2ea50d42c116cb70809402a505288322f08a8fad90e065497abc0627dba2c0"
             }
           ]
         }
       ],
       "blockers": [],
-      "diagnostic_attempt": "results/vio/citrusfarm/seq04/voxel_svio/run90002",
-      "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
+      "diagnostic_attempt": "results/vio/citrusfarm/seq04/voxel_svio/run90003",
+      "diagnostic_scope": "recheck after e880c2c (runner gained a HortiMulti branch; OpenVINS track_frequency 31 where changed): seq04; native exit 0; outcome ok; checked at 4b2b3f8655; previous check results/vio/citrusfarm/seq04/voxel_svio/run90002",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 780.8040096759796,
@@ -11262,6 +11382,14 @@
         {
           "path": "docs/campaigns/orb-zed-g2o-build-20261002.json",
           "sha256": "1c20f94a077cb10d0db13149ee558381031edd2e91efb2eb3b172d3ff9c84dc9"
+        },
+        {
+          "path": "docs/campaigns/user-rerun-decisions-20261005.json",
+          "sha256": "213a1c5759e7da6c1f40c2558c29ee38d2c79db463ed661bb18bc1915c7ca52f"
+        },
+        {
+          "path": "docs/hortimulti-decisions-20261005.md",
+          "sha256": "5a1423d44cbecacc047d5ec337e2a9bfcc2ffe6883ba46c905a07bf0d9a84031"
         }
       ],
       "resolved_prerequisites": [
@@ -11475,6 +11603,85 @@
             {
               "path": "docs/campaigns/orb-zed-g2o-build-20261002.json",
               "sha256": "1c20f94a077cb10d0db13149ee558381031edd2e91efb2eb3b172d3ff9c84dc9"
+            }
+          ]
+        },
+        {
+          "prerequisite": "rerun_all_three_repetitions_in_one_recorded_implementation_group",
+          "evidence": [
+            {
+              "path": "results/vio/citrusfarm/seq04/orbslam3/run90002/run_meta.json",
+              "sha256": "cde3b9c307de198839f090e1f63d3e7431ef1ade4747c66c59f06593ae93147c"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/orbslam3/run90002/run_log.txt",
+              "sha256": "206d18d0710765a9a16de0ac8c86dddf471a2c0c66740f165534015950d9d86f"
+            },
+            {
+              "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
+              "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
+            },
+            {
+              "path": "docs/campaigns/citrusfarm-imu-alignment-20261003.json",
+              "sha256": "047358f3c9aa15253f2832148c1e3b2a83a85a268be2410d788363bb9df5e9b2"
+            },
+            {
+              "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
+              "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
+            },
+            {
+              "path": "configs/sensors/citrusfarm.json",
+              "sha256": "afe12decd4446e0305a10801fbae6f4694b898a564056224bcf20468293471f2"
+            },
+            {
+              "path": "datasets/citrusfarm/seq04/references/rtk-position-v1-20261003/reference.json",
+              "sha256": "c2ecba6307dfc0446d8a75d7d3c7c807648c437c610b2eabf1be0b0084f8840e"
+            },
+            {
+              "path": "datasets/citrusfarm/seq07/references/rtk-position-v1-20261003/reference.json",
+              "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
+            },
+            {
+              "role": "estimator_config",
+              "path": "configs/orbslam3/citrusfarm_stereo_inertial.yaml",
+              "sha256": "f5c5a1b6a9c4c193e32a06eefbdc9ebc53a7c3e78bb2c98b961ca08e8001f14a"
+            },
+            {
+              "role": "runner_with_embedded_parameters",
+              "path": "scripts/run/run_orbslam3.sh",
+              "sha256": "90f612f6ebdafd5412434555629ac5fef37d934a9653c8ab16110371c2d8ff12"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/orbslam3/run90002/run_eval.json",
+              "sha256": "c4c3dd96f58690170dc654327151d110cc96ac40869feb883103cb6df8cdcd52"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/orbslam3/run90002/trajectory.txt",
+              "sha256": "428708d028c099008b7d34a0b0a37c75e82200454f23e1876a52598689a11db9"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/orbslam3/run90002/provenance/estimator_config--orbslam3_cfg_msToJ7.yaml",
+              "sha256": "c54997ecf592295843b78d73ee0499407c99f0f3957938c02ae507aaa5b73c23"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/orbslam3/run90002/provenance/estimator_config_source--citrusfarm_stereo_inertial.yaml",
+              "sha256": "f5c5a1b6a9c4c193e32a06eefbdc9ebc53a7c3e78bb2c98b961ca08e8001f14a"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/orbslam3/run90002/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+              "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+            },
+            {
+              "path": "docs/campaigns/orb-zed-g2o-build-20261002.json",
+              "sha256": "1c20f94a077cb10d0db13149ee558381031edd2e91efb2eb3b172d3ff9c84dc9"
+            },
+            {
+              "path": "docs/campaigns/user-rerun-decisions-20261005.json",
+              "sha256": "213a1c5759e7da6c1f40c2558c29ee38d2c79db463ed661bb18bc1915c7ca52f"
+            },
+            {
+              "path": "docs/hortimulti-decisions-20261005.md",
+              "sha256": "5a1423d44cbecacc047d5ec337e2a9bfcc2ffe6883ba46c905a07bf0d9a84031"
             }
           ]
         }
@@ -12417,16 +12624,44 @@
       "review_complete": true,
       "effective_configuration_verified": true,
       "static_verified": true,
-      "execution_verified": true,
+      "execution_verified": false,
       "historical_cohort_preserved": true,
       "evidence": [
         {
-          "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_meta.json",
-          "sha256": "1ad0afe734b9f09e577a1b6140aa4f80a83c7058298b64d88677eaea45c2088c"
+          "path": "results/vio/citrusfarm/seq04/openvins/run90003/run_meta.json",
+          "sha256": "8a7fa52587d5a7253f19ef1de963bdf8569fa97315797545efdd1c76086513ed"
         },
         {
-          "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_log.txt",
-          "sha256": "78088b1d849cf8aaae0e877de71ff506cc617c4daaf6bb55bc666450bb4da59c"
+          "path": "results/vio/citrusfarm/seq04/openvins/run90003/run_log.txt",
+          "sha256": "f75fb9d3ddc74e51243622451710bd920e6050f1fe893adff92f8ff78bbf0b72"
+        },
+        {
+          "path": "logs/citrusfarm_seq04_openvins_vio_run90003.log",
+          "sha256": "f75fb9d3ddc74e51243622451710bd920e6050f1fe893adff92f8ff78bbf0b72"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/openvins/run90003/run_eval.json",
+          "sha256": "0b9b208387c192b9fffe30cef0a1aee547014bfa63d423a0b26a38f72cccb84c"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/openvins/run90003/trajectory.txt",
+          "sha256": "7e65c676fde09946229e4d22115cda2f2e5f099be139c57622334365f67da49a"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/openvins/run90003/trajectory_poseimu.txt",
+          "sha256": "d08c17e4a063db2c2ce000e39bd7618ba9d538a47a2c4fc15628debd1ab6d42a"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/openvins/run90003/provenance/estimator_config--estimator_config.yaml",
+          "sha256": "7e425188bf31da4f8d387faf267a895aaf50de51ec298171a8ad4b1e3c5d2e6f"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/openvins/run90003/provenance/imu_calibration--kalibr_imu_chain.yaml",
+          "sha256": "8bacd200e6cc9001976562b318c1705a8f8d3324746924488b725df3cf278ff3"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/openvins/run90003/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
+          "sha256": "a75d8279ba3338418d7041029b6e746c07ba0525b7e77394df20a63804694c94"
         },
         {
           "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -12453,205 +12688,28 @@
           "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
         },
         {
-          "role": "estimator_config",
           "path": "configs/openvins/citrusfarm/estimator_config.yaml",
-          "sha256": "6b6a14e9e5b1d8ba65bb284901dfeb44b549fb72b0bccd2c6b402fb0167f80e6"
+          "sha256": "7e425188bf31da4f8d387faf267a895aaf50de51ec298171a8ad4b1e3c5d2e6f"
         },
         {
-          "role": "imu_calibration",
           "path": "configs/openvins/citrusfarm/kalibr_imu_chain.yaml",
           "sha256": "8bacd200e6cc9001976562b318c1705a8f8d3324746924488b725df3cf278ff3"
         },
         {
-          "role": "camera_imu_calibration",
           "path": "configs/openvins/citrusfarm/kalibr_imucam_chain.yaml",
           "sha256": "a75d8279ba3338418d7041029b6e746c07ba0525b7e77394df20a63804694c94"
         },
         {
-          "role": "runner_with_embedded_parameters",
           "path": "scripts/run/run_openvins.sh",
-          "sha256": "0689effab2d3d7ac45121f66fad05d690479082c205c620d9320d962948e51f2"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_eval.json",
-          "sha256": "4fc599e6482c9cb4dc46c06ef573f86452c35eb8fed6bc80d8e4d6ae848ab97b"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/openvins/run90002/trajectory.txt",
-          "sha256": "fded96c324a3d3b916db2c7806231e02ae0c5a7b2fe1b70211aa6d5a1c555b6f"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/estimator_config--estimator_config.yaml",
-          "sha256": "6b6a14e9e5b1d8ba65bb284901dfeb44b549fb72b0bccd2c6b402fb0167f80e6"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/imu_calibration--kalibr_imu_chain.yaml",
-          "sha256": "8bacd200e6cc9001976562b318c1705a8f8d3324746924488b725df3cf278ff3"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
-          "sha256": "a75d8279ba3338418d7041029b6e746c07ba0525b7e77394df20a63804694c94"
+          "sha256": "c7a21580234fca62cd0d250947a559abc6c39a26401838cdc9d648fbefc97e3b"
         }
       ],
-      "resolved_prerequisites": [
-        {
-          "prerequisite": "resolve_within_cell_configuration_mismatch",
-          "evidence": [
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_meta.json",
-              "sha256": "1ad0afe734b9f09e577a1b6140aa4f80a83c7058298b64d88677eaea45c2088c"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_log.txt",
-              "sha256": "78088b1d849cf8aaae0e877de71ff506cc617c4daaf6bb55bc666450bb4da59c"
-            },
-            {
-              "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
-              "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
-            },
-            {
-              "path": "docs/campaigns/citrusfarm-imu-alignment-20261003.json",
-              "sha256": "047358f3c9aa15253f2832148c1e3b2a83a85a268be2410d788363bb9df5e9b2"
-            },
-            {
-              "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
-              "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
-            },
-            {
-              "path": "configs/sensors/citrusfarm.json",
-              "sha256": "afe12decd4446e0305a10801fbae6f4694b898a564056224bcf20468293471f2"
-            },
-            {
-              "path": "datasets/citrusfarm/seq04/references/rtk-position-v1-20261003/reference.json",
-              "sha256": "c2ecba6307dfc0446d8a75d7d3c7c807648c437c610b2eabf1be0b0084f8840e"
-            },
-            {
-              "path": "datasets/citrusfarm/seq07/references/rtk-position-v1-20261003/reference.json",
-              "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
-            },
-            {
-              "role": "estimator_config",
-              "path": "configs/openvins/citrusfarm/estimator_config.yaml",
-              "sha256": "6b6a14e9e5b1d8ba65bb284901dfeb44b549fb72b0bccd2c6b402fb0167f80e6"
-            },
-            {
-              "role": "imu_calibration",
-              "path": "configs/openvins/citrusfarm/kalibr_imu_chain.yaml",
-              "sha256": "8bacd200e6cc9001976562b318c1705a8f8d3324746924488b725df3cf278ff3"
-            },
-            {
-              "role": "camera_imu_calibration",
-              "path": "configs/openvins/citrusfarm/kalibr_imucam_chain.yaml",
-              "sha256": "a75d8279ba3338418d7041029b6e746c07ba0525b7e77394df20a63804694c94"
-            },
-            {
-              "role": "runner_with_embedded_parameters",
-              "path": "scripts/run/run_openvins.sh",
-              "sha256": "0689effab2d3d7ac45121f66fad05d690479082c205c620d9320d962948e51f2"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_eval.json",
-              "sha256": "4fc599e6482c9cb4dc46c06ef573f86452c35eb8fed6bc80d8e4d6ae848ab97b"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/trajectory.txt",
-              "sha256": "fded96c324a3d3b916db2c7806231e02ae0c5a7b2fe1b70211aa6d5a1c555b6f"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/estimator_config--estimator_config.yaml",
-              "sha256": "6b6a14e9e5b1d8ba65bb284901dfeb44b549fb72b0bccd2c6b402fb0167f80e6"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/imu_calibration--kalibr_imu_chain.yaml",
-              "sha256": "8bacd200e6cc9001976562b318c1705a8f8d3324746924488b725df3cf278ff3"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
-              "sha256": "a75d8279ba3338418d7041029b6e746c07ba0525b7e77394df20a63804694c94"
-            }
-          ]
-        },
-        {
-          "prerequisite": "resolve_recorded_source_binary_parameter_or_hardware_cohort_difference",
-          "evidence": [
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_meta.json",
-              "sha256": "1ad0afe734b9f09e577a1b6140aa4f80a83c7058298b64d88677eaea45c2088c"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_log.txt",
-              "sha256": "78088b1d849cf8aaae0e877de71ff506cc617c4daaf6bb55bc666450bb4da59c"
-            },
-            {
-              "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
-              "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
-            },
-            {
-              "path": "docs/campaigns/citrusfarm-imu-alignment-20261003.json",
-              "sha256": "047358f3c9aa15253f2832148c1e3b2a83a85a268be2410d788363bb9df5e9b2"
-            },
-            {
-              "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
-              "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
-            },
-            {
-              "path": "configs/sensors/citrusfarm.json",
-              "sha256": "afe12decd4446e0305a10801fbae6f4694b898a564056224bcf20468293471f2"
-            },
-            {
-              "path": "datasets/citrusfarm/seq04/references/rtk-position-v1-20261003/reference.json",
-              "sha256": "c2ecba6307dfc0446d8a75d7d3c7c807648c437c610b2eabf1be0b0084f8840e"
-            },
-            {
-              "path": "datasets/citrusfarm/seq07/references/rtk-position-v1-20261003/reference.json",
-              "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
-            },
-            {
-              "role": "estimator_config",
-              "path": "configs/openvins/citrusfarm/estimator_config.yaml",
-              "sha256": "6b6a14e9e5b1d8ba65bb284901dfeb44b549fb72b0bccd2c6b402fb0167f80e6"
-            },
-            {
-              "role": "imu_calibration",
-              "path": "configs/openvins/citrusfarm/kalibr_imu_chain.yaml",
-              "sha256": "8bacd200e6cc9001976562b318c1705a8f8d3324746924488b725df3cf278ff3"
-            },
-            {
-              "role": "camera_imu_calibration",
-              "path": "configs/openvins/citrusfarm/kalibr_imucam_chain.yaml",
-              "sha256": "a75d8279ba3338418d7041029b6e746c07ba0525b7e77394df20a63804694c94"
-            },
-            {
-              "role": "runner_with_embedded_parameters",
-              "path": "scripts/run/run_openvins.sh",
-              "sha256": "0689effab2d3d7ac45121f66fad05d690479082c205c620d9320d962948e51f2"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/run_eval.json",
-              "sha256": "4fc599e6482c9cb4dc46c06ef573f86452c35eb8fed6bc80d8e4d6ae848ab97b"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/trajectory.txt",
-              "sha256": "fded96c324a3d3b916db2c7806231e02ae0c5a7b2fe1b70211aa6d5a1c555b6f"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/estimator_config--estimator_config.yaml",
-              "sha256": "6b6a14e9e5b1d8ba65bb284901dfeb44b549fb72b0bccd2c6b402fb0167f80e6"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/imu_calibration--kalibr_imu_chain.yaml",
-              "sha256": "8bacd200e6cc9001976562b318c1705a8f8d3324746924488b725df3cf278ff3"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/openvins/run90002/provenance/camera_imu_calibration--kalibr_imucam_chain.yaml",
-              "sha256": "a75d8279ba3338418d7041029b6e746c07ba0525b7e77394df20a63804694c94"
-            }
-          ]
-        }
+      "resolved_prerequisites": [],
+      "blockers": [
+        "readiness_check_did_not_complete_review_required"
       ],
-      "blockers": [],
-      "diagnostic_attempt": "results/vio/citrusfarm/seq04/openvins/run90002",
-      "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
+      "diagnostic_attempt": "results/vio/citrusfarm/seq04/openvins/run90003",
+      "diagnostic_scope": "recheck after e880c2c (runner gained a HortiMulti branch; OpenVINS track_frequency 31 where changed): seq04; native exit 0; outcome ok; checked at 4b2b3f8655; previous check results/vio/citrusfarm/seq04/openvins/run90002; CHECK FAILED: audit: processed 4297/7692 published frames (56 %); OpenVINS lags 1.0x paced playback (mean 27 ms, max 340 ms behind), so track_frequency 31 does not remove the drops; ATE 17.4 m against 6.7-9.7 m at track_frequency 10",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 1025.307855012668,
@@ -12667,12 +12725,48 @@
       "historical_cohort_preserved": true,
       "evidence": [
         {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_meta.json",
-          "sha256": "143b8357235c06132700127de32a502dd48a7710e7a7e00721ddc11e07d4220c"
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_meta.json",
+          "sha256": "c9383c8139d7e461e429908bc824b1a6a8ecfc4a1b3cfbdeca329b75ad8ccaf3"
         },
         {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_log.txt",
-          "sha256": "de277eba4e1dfe36ab928ecf6d3ee6df960bd761250058f7f306d5047bb56812"
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_log.txt",
+          "sha256": "b4859cae0de50d461506d0d2b607c140101af807b4db60bff37c0a938da0c59c"
+        },
+        {
+          "path": "logs/citrusfarm_seq04_voxel_svio_vio_run90003.log",
+          "sha256": "b4859cae0de50d461506d0d2b607c140101af807b4db60bff37c0a938da0c59c"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_eval.json",
+          "sha256": "324d26044337d4ee9604552f60c3d7d961b3bd0fd8fb21c49fcd3207a0bdaaa3"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/trajectory.txt",
+          "sha256": "b0c8961350d7d842b4bffdeaddac1731fe236bf995818979ccae25b5c4c4a9db"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/estimator_config--citrusfarm.yaml",
+          "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+          "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+          "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_parameter_list.txt--parameter_list.txt",
+          "sha256": "caf1179d3c1f8d0420646fd7405c23c8b5fe76babcdf85e2dfc5e7f11624bd8e"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_camera_load.txt--camera_load.txt",
+          "sha256": "2021a208aa43faa46840fb1ec1038ddb4b03556f8f25903e38fc2bb96c51b82f"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_input_receipt.json--input_receipt.json",
+          "sha256": "c3cddda0c9c550a9b50e97d5544562b585aa4d683d6f11b9b1715ec1f6b4dc6e"
         },
         {
           "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -12699,46 +12793,12 @@
           "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
         },
         {
-          "role": "estimator_config",
           "path": "configs/voxel_svio/citrusfarm.yaml",
           "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
         },
         {
-          "role": "runner_with_embedded_parameters",
           "path": "scripts/run/run_voxel_svio.sh",
-          "sha256": "fa12c804cb292734f0db905069b9711d242cd9fb6c863b39efce8bb957c39210"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_eval.json",
-          "sha256": "946f58ee4a924114fd3313bb606da1ae11b3cc7b1e4af50dae1f1835a715b79c"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/trajectory.txt",
-          "sha256": "be4ad32e7b1d14260d04bef377c755a8539893955a3394f7a25567445e6faa35"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/estimator_config--citrusfarm.yaml",
-          "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
-          "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
-          "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_parameter_list.txt--parameter_list.txt",
-          "sha256": "caf1179d3c1f8d0420646fd7405c23c8b5fe76babcdf85e2dfc5e7f11624bd8e"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_camera_load.txt--camera_load.txt",
-          "sha256": "2021a208aa43faa46840fb1ec1038ddb4b03556f8f25903e38fc2bb96c51b82f"
-        },
-        {
-          "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_input_receipt.json--input_receipt.json",
-          "sha256": "c3cddda0c9c550a9b50e97d5544562b585aa4d683d6f11b9b1715ec1f6b4dc6e"
+          "sha256": "7f2ea50d42c116cb70809402a505288322f08a8fad90e065497abc0627dba2c0"
         }
       ],
       "resolved_prerequisites": [
@@ -12746,12 +12806,48 @@
           "prerequisite": "resolve_within_cell_configuration_mismatch",
           "evidence": [
             {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_meta.json",
-              "sha256": "143b8357235c06132700127de32a502dd48a7710e7a7e00721ddc11e07d4220c"
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_meta.json",
+              "sha256": "c9383c8139d7e461e429908bc824b1a6a8ecfc4a1b3cfbdeca329b75ad8ccaf3"
             },
             {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_log.txt",
-              "sha256": "de277eba4e1dfe36ab928ecf6d3ee6df960bd761250058f7f306d5047bb56812"
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_log.txt",
+              "sha256": "b4859cae0de50d461506d0d2b607c140101af807b4db60bff37c0a938da0c59c"
+            },
+            {
+              "path": "logs/citrusfarm_seq04_voxel_svio_vio_run90003.log",
+              "sha256": "b4859cae0de50d461506d0d2b607c140101af807b4db60bff37c0a938da0c59c"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_eval.json",
+              "sha256": "324d26044337d4ee9604552f60c3d7d961b3bd0fd8fb21c49fcd3207a0bdaaa3"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/trajectory.txt",
+              "sha256": "b0c8961350d7d842b4bffdeaddac1731fe236bf995818979ccae25b5c4c4a9db"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/estimator_config--citrusfarm.yaml",
+              "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+              "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+              "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_parameter_list.txt--parameter_list.txt",
+              "sha256": "caf1179d3c1f8d0420646fd7405c23c8b5fe76babcdf85e2dfc5e7f11624bd8e"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_camera_load.txt--camera_load.txt",
+              "sha256": "2021a208aa43faa46840fb1ec1038ddb4b03556f8f25903e38fc2bb96c51b82f"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_input_receipt.json--input_receipt.json",
+              "sha256": "c3cddda0c9c550a9b50e97d5544562b585aa4d683d6f11b9b1715ec1f6b4dc6e"
             },
             {
               "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -12778,46 +12874,12 @@
               "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
             },
             {
-              "role": "estimator_config",
               "path": "configs/voxel_svio/citrusfarm.yaml",
               "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
             },
             {
-              "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_voxel_svio.sh",
-              "sha256": "fa12c804cb292734f0db905069b9711d242cd9fb6c863b39efce8bb957c39210"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_eval.json",
-              "sha256": "946f58ee4a924114fd3313bb606da1ae11b3cc7b1e4af50dae1f1835a715b79c"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/trajectory.txt",
-              "sha256": "be4ad32e7b1d14260d04bef377c755a8539893955a3394f7a25567445e6faa35"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/estimator_config--citrusfarm.yaml",
-              "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
-              "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
-              "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_parameter_list.txt--parameter_list.txt",
-              "sha256": "caf1179d3c1f8d0420646fd7405c23c8b5fe76babcdf85e2dfc5e7f11624bd8e"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_camera_load.txt--camera_load.txt",
-              "sha256": "2021a208aa43faa46840fb1ec1038ddb4b03556f8f25903e38fc2bb96c51b82f"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_input_receipt.json--input_receipt.json",
-              "sha256": "c3cddda0c9c550a9b50e97d5544562b585aa4d683d6f11b9b1715ec1f6b4dc6e"
+              "sha256": "7f2ea50d42c116cb70809402a505288322f08a8fad90e065497abc0627dba2c0"
             }
           ]
         },
@@ -12825,12 +12887,48 @@
           "prerequisite": "resolve_recorded_source_binary_parameter_or_hardware_cohort_difference",
           "evidence": [
             {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_meta.json",
-              "sha256": "143b8357235c06132700127de32a502dd48a7710e7a7e00721ddc11e07d4220c"
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_meta.json",
+              "sha256": "c9383c8139d7e461e429908bc824b1a6a8ecfc4a1b3cfbdeca329b75ad8ccaf3"
             },
             {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_log.txt",
-              "sha256": "de277eba4e1dfe36ab928ecf6d3ee6df960bd761250058f7f306d5047bb56812"
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_log.txt",
+              "sha256": "b4859cae0de50d461506d0d2b607c140101af807b4db60bff37c0a938da0c59c"
+            },
+            {
+              "path": "logs/citrusfarm_seq04_voxel_svio_vio_run90003.log",
+              "sha256": "b4859cae0de50d461506d0d2b607c140101af807b4db60bff37c0a938da0c59c"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_eval.json",
+              "sha256": "324d26044337d4ee9604552f60c3d7d961b3bd0fd8fb21c49fcd3207a0bdaaa3"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/trajectory.txt",
+              "sha256": "b0c8961350d7d842b4bffdeaddac1731fe236bf995818979ccae25b5c4c4a9db"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/estimator_config--citrusfarm.yaml",
+              "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+              "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+              "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_parameter_list.txt--parameter_list.txt",
+              "sha256": "caf1179d3c1f8d0420646fd7405c23c8b5fe76babcdf85e2dfc5e7f11624bd8e"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_camera_load.txt--camera_load.txt",
+              "sha256": "2021a208aa43faa46840fb1ec1038ddb4b03556f8f25903e38fc2bb96c51b82f"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_input_receipt.json--input_receipt.json",
+              "sha256": "c3cddda0c9c550a9b50e97d5544562b585aa4d683d6f11b9b1715ec1f6b4dc6e"
             },
             {
               "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -12857,46 +12955,12 @@
               "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
             },
             {
-              "role": "estimator_config",
               "path": "configs/voxel_svio/citrusfarm.yaml",
               "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
             },
             {
-              "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_voxel_svio.sh",
-              "sha256": "fa12c804cb292734f0db905069b9711d242cd9fb6c863b39efce8bb957c39210"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_eval.json",
-              "sha256": "946f58ee4a924114fd3313bb606da1ae11b3cc7b1e4af50dae1f1835a715b79c"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/trajectory.txt",
-              "sha256": "be4ad32e7b1d14260d04bef377c755a8539893955a3394f7a25567445e6faa35"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/estimator_config--citrusfarm.yaml",
-              "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
-              "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
-              "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_parameter_list.txt--parameter_list.txt",
-              "sha256": "caf1179d3c1f8d0420646fd7405c23c8b5fe76babcdf85e2dfc5e7f11624bd8e"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_camera_load.txt--camera_load.txt",
-              "sha256": "2021a208aa43faa46840fb1ec1038ddb4b03556f8f25903e38fc2bb96c51b82f"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_input_receipt.json--input_receipt.json",
-              "sha256": "c3cddda0c9c550a9b50e97d5544562b585aa4d683d6f11b9b1715ec1f6b4dc6e"
+              "sha256": "7f2ea50d42c116cb70809402a505288322f08a8fad90e065497abc0627dba2c0"
             }
           ]
         },
@@ -12904,12 +12968,48 @@
           "prerequisite": "capture_native_exit_separately_and_diagnose_logged_shutdown_errors",
           "evidence": [
             {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_meta.json",
-              "sha256": "143b8357235c06132700127de32a502dd48a7710e7a7e00721ddc11e07d4220c"
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_meta.json",
+              "sha256": "c9383c8139d7e461e429908bc824b1a6a8ecfc4a1b3cfbdeca329b75ad8ccaf3"
             },
             {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_log.txt",
-              "sha256": "de277eba4e1dfe36ab928ecf6d3ee6df960bd761250058f7f306d5047bb56812"
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_log.txt",
+              "sha256": "b4859cae0de50d461506d0d2b607c140101af807b4db60bff37c0a938da0c59c"
+            },
+            {
+              "path": "logs/citrusfarm_seq04_voxel_svio_vio_run90003.log",
+              "sha256": "b4859cae0de50d461506d0d2b607c140101af807b4db60bff37c0a938da0c59c"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/run_eval.json",
+              "sha256": "324d26044337d4ee9604552f60c3d7d961b3bd0fd8fb21c49fcd3207a0bdaaa3"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/trajectory.txt",
+              "sha256": "b0c8961350d7d842b4bffdeaddac1731fe236bf995818979ccae25b5c4c4a9db"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/estimator_config--citrusfarm.yaml",
+              "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
+              "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
+              "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_parameter_list.txt--parameter_list.txt",
+              "sha256": "caf1179d3c1f8d0420646fd7405c23c8b5fe76babcdf85e2dfc5e7f11624bd8e"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_camera_load.txt--camera_load.txt",
+              "sha256": "2021a208aa43faa46840fb1ec1038ddb4b03556f8f25903e38fc2bb96c51b82f"
+            },
+            {
+              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90003/provenance/native_input_receipt.json--input_receipt.json",
+              "sha256": "c3cddda0c9c550a9b50e97d5544562b585aa4d683d6f11b9b1715ec1f6b4dc6e"
             },
             {
               "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -12936,53 +13036,19 @@
               "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
             },
             {
-              "role": "estimator_config",
               "path": "configs/voxel_svio/citrusfarm.yaml",
               "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
             },
             {
-              "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_voxel_svio.sh",
-              "sha256": "fa12c804cb292734f0db905069b9711d242cd9fb6c863b39efce8bb957c39210"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/run_eval.json",
-              "sha256": "946f58ee4a924114fd3313bb606da1ae11b3cc7b1e4af50dae1f1835a715b79c"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/trajectory.txt",
-              "sha256": "be4ad32e7b1d14260d04bef377c755a8539893955a3394f7a25567445e6faa35"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/estimator_config--citrusfarm.yaml",
-              "sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_build_review--voxel-zed-shutdown-build-20261002.json",
-              "sha256": "528f25c733c34999e12eaa07d473cf4416427901157fc78a68540a7799148052"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/parameter_audit_build--voxel-parameter-audit-build-20261002-v3.json",
-              "sha256": "10c004cd59ca60c0b70312b84c25577c3db1f2e10524cab3ec9a214d3a76bd8a"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_parameter_list.txt--parameter_list.txt",
-              "sha256": "caf1179d3c1f8d0420646fd7405c23c8b5fe76babcdf85e2dfc5e7f11624bd8e"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_camera_load.txt--camera_load.txt",
-              "sha256": "2021a208aa43faa46840fb1ec1038ddb4b03556f8f25903e38fc2bb96c51b82f"
-            },
-            {
-              "path": "results/vio/citrusfarm/seq04/voxel_svio/run90002/provenance/native_input_receipt.json--input_receipt.json",
-              "sha256": "c3cddda0c9c550a9b50e97d5544562b585aa4d683d6f11b9b1715ec1f6b4dc6e"
+              "sha256": "7f2ea50d42c116cb70809402a505288322f08a8fad90e065497abc0627dba2c0"
             }
           ]
         }
       ],
       "blockers": [],
-      "diagnostic_attempt": "results/vio/citrusfarm/seq04/voxel_svio/run90002",
-      "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
+      "diagnostic_attempt": "results/vio/citrusfarm/seq04/voxel_svio/run90003",
+      "diagnostic_scope": "recheck after e880c2c (runner gained a HortiMulti branch; OpenVINS track_frequency 31 where changed): seq04; native exit 0; outcome ok; checked at 4b2b3f8655; previous check results/vio/citrusfarm/seq04/voxel_svio/run90002",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 1029.564714969367,

@@ -12,7 +12,7 @@ Generated from hash-checked schema-3 evaluations and matching CSVs. These are in
 
 Legacy GNSS variants: 6 separate rows; not included in default repetition counts.
 
-Scientific statuses among existing headline attempts: accepted=117, accepted_with_limitation=389, blocked=158, rerun_required=69, valid_observed_failure=11.
+Scientific statuses among existing headline attempts: accepted=117, accepted_with_limitation=385, blocked=162, rerun_required=69, valid_observed_failure=11.
 
 ## Retained adverse outcomes
 
@@ -122,9 +122,9 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 
 | Source | SHA-256 |
 |---|---|
-| `inventory.json` | `1ebf1d964147ecfc2125b3aa2e1b5f60c5a6f32f2a4676ed7a592cbf5a493c19` |
-| `benchmark-vo.csv` | `9c540264565b53e3d72c5bce2c66ae47eea604032f7e2679bbedfa6f6659fa66` |
+| `inventory.json` | `3fd9354dbca1bf2c90f2412b7da7a938bd00fdb71b9dbe8d0c322252dc03dd15` |
+| `benchmark-vo.csv` | `87a59862296b5084488d4126d87f2d4290fe521b477482197f965e1fd635217c` |
 | `benchmark-vo-lc.csv` | `f513dbc329ec860e4416c121b957c39d78850bc44877a07d5395a7f0ea2ba437` |
-| `benchmark-vio.csv` | `12038faee2fb356b90fc147f8a86bad1662a442671ac5a9ee5e285e778e04c64` |
+| `benchmark-vio.csv` | `9beeee1f8cb02ce3ce3c06f29746e67e7ae0d030a19c2daf002906ce7a2804d4` |
 | `benchmark-vio-lc.csv` | `92b8a74e67d3d4a00f16e9cc4c64ea7a0321c70aa1458dc046cb65867dee6b87` |
 | `benchmark-gnss-vio.csv` | `7eccab1f3b593feedcf877b31ca5618f33a3b6dffcd196c60dc45848acd88494` |
