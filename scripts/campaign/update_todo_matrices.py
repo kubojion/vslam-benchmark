@@ -46,6 +46,9 @@ RERUN_LABELS = {
     'camera_fps_changed_15_to_10': 'FPS',
     'horti_voxel_initializer_camera_imu_offset_omitted': 'IMU timing',
     'basalt_horti_undocumented_imu_noise': 'IMU noise',
+    'horti_imu_profile_and_clock_inconsistent': 'IMU noise/timing',
+    'ov2slam_horti_dataset_specific_parameters': 'tuning',
+    'openvins_track_frequency_dropped_frames': 'frame drop',
 }
 LEGEND = """<!-- todo-matrix-legend:start -->
 **A = recorded attempts; E = trajectories evaluated; S = clean final exports;

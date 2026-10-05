@@ -16,7 +16,8 @@
 #   cam1 T = T_forwardRight_cam_imu_link (= inverse of T_imu_link_forwardRight_cam)
 #
 # IMU: MicroStrain 3DM-GX5-25 AHRS @ 200 Hz.
-# Noise from Allan variance in datasets/hortimulti/calibration.yaml.
+# Noise: one HortiMulti profile for every estimator (decision 2026-10-05): recording-derived
+# densities (docs/okvis-imu-noise-derivation.md), published calibration random walks.
 
 image_height: 480
 image_width: 640
@@ -51,8 +52,8 @@ cam1:
   - [ 0.0,           0.0,           0.0,           1.0          ]
 # IMU
 rate_hz: 200
-gyroscope_noise_density:     6.037e-04   # rad/s/sqrt(Hz)  - Allan variance
-gyroscope_random_walk:       3.221e-05   # rad/s^2/sqrt(Hz)
-accelerometer_noise_density: 1.094e-03   # m/s^2/sqrt(Hz)
-accelerometer_random_walk:   4.584e-05   # m/s^3/sqrt(Hz)
+gyroscope_noise_density:     0.0035      # rad/s/sqrt(Hz)  - recording-derived envelope
+gyroscope_random_walk:       3.22094e-05 # rad/s^2/sqrt(Hz)
+accelerometer_noise_density: 0.110       # m/s^2/sqrt(Hz)  - recording-derived envelope
+accelerometer_random_walk:   4.584471e-05 # m/s^3/sqrt(Hz)
 g_value: 9.812                           # Herefordshire, UK (~52 deg N)

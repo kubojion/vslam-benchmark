@@ -66,7 +66,7 @@ g_norm: 9.81007
 
 #unsynchronization parameters
 estimate_td: 1
-td: 0.009160379134269684
+td: 0.0  # IMU input already on the camera clock (datasets/hortimulti/<seq>/manifest.json, 2026-10-05)
 
 #loop closure parameters
 load_previous_pose_graph: 0

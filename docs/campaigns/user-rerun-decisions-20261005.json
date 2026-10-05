@@ -1,0 +1,816 @@
+{
+ "schema": 1,
+ "decided": "2026-10-05",
+ "decided_by": "user (project lead), recorded by Claude",
+ "scope": "Attempts the user decided to replace by new N=3 runs (HortiMulti one IMU profile and camera-clock input; OV2SLAM HortiMulti parameters; OpenVINS frame throttle on HortiMulti, ZED and CitrusFarm). Each record pins one attempt path and its recorded binaries; replacement runs get new physical run IDs and never inherit a finding. Original folders are kept. Separate from user-rerun-decisions-20261003.json so the bytes earlier reviews pin stay unchanged.",
+ "decisions": {
+  "horti_inertial_one_profile": {
+   "code": "horti_imu_profile_and_clock_inconsistent",
+   "disposition": "required_rerun",
+   "prerequisite": "rerun_with_one_envelope_imu_noise_profile_and_camera_clock_imu_input_for_every_estimator",
+   "evidence": [
+    "docs/hortimulti-decisions-20261005.md",
+    "docs/okvis-imu-noise-derivation.md",
+    "docs/campaigns/horti-time-offset-findings-20261001.json"
+   ],
+   "explanation": "Saved HortiMulti inertial attempts used three IMU noise profiles (dataset Allan values, the recording-derived envelope, Basalt sweep leftovers) and four treatments of the published 9.16 ms camera-IMU relation. Decision (user, 2026-10-05): one envelope profile for every estimator and one camera-clock IMU input with zero native offsets; replace every saved VIO/VIO-LC attempt."
+  },
+  "ov2slam_horti_parameters": {
+   "code": "ov2slam_horti_dataset_specific_parameters",
+   "disposition": "required_rerun",
+   "prerequisite": "rerun_with_accurate_profile_values_used_on_every_dataset",
+   "evidence": [
+    "docs/hortimulti-decisions-20261005.md"
+   ],
+   "explanation": "HortiMulti alone used finit_parallax 15 and nmin_covscore 20 (no recorded reason); upstream accurate profile and every other dataset use 20 and 25. Decision (user, 2026-10-05): rerun."
+  },
+  "openvins_frame_throttle": {
+   "code": "openvins_track_frequency_dropped_frames",
+   "disposition": "required_rerun",
+   "prerequisite": "rerun_with_track_frequency_above_every_camera_interval",
+   "evidence": [
+    "docs/hortimulti-decisions-20261005.md"
+   ],
+   "explanation": "track_frequency equal to the 10 Hz camera rate made the ROS front end drop every frame arriving less than 0.1 s after the last accepted one: 62 % (HortiMulti), 51 % (ZED) and about 63 % (CitrusFarm) of frames processed. Decision (user, 2026-10-05): track_frequency 31, rerun."
+  }
+ },
+ "counts": {
+  "ov2slam_horti_parameters": 12,
+  "horti_inertial_one_profile": 62,
+  "openvins_frame_throttle": 7,
+  "attempts": 79,
+  "cells": 29
+ },
+ "attempts": {
+  "vo/hortimulti/strawberry02/ov2slam/run1": {
+   "decisions": [
+    "ov2slam_horti_parameters"
+   ],
+   "binaries": []
+  },
+  "vo/hortimulti/strawberry02/ov2slam/run2": {
+   "decisions": [
+    "ov2slam_horti_parameters"
+   ],
+   "binaries": []
+  },
+  "vo/hortimulti/strawberry02/ov2slam/run3": {
+   "decisions": [
+    "ov2slam_horti_parameters"
+   ],
+   "binaries": []
+  },
+  "vo/hortimulti/strawberry03/ov2slam/run1": {
+   "decisions": [
+    "ov2slam_horti_parameters"
+   ],
+   "binaries": []
+  },
+  "vo/hortimulti/strawberry03/ov2slam/run2": {
+   "decisions": [
+    "ov2slam_horti_parameters"
+   ],
+   "binaries": []
+  },
+  "vo/hortimulti/strawberry03/ov2slam/run3": {
+   "decisions": [
+    "ov2slam_horti_parameters"
+   ],
+   "binaries": []
+  },
+  "vo-lc/hortimulti/strawberry02/ov2slam/run1": {
+   "decisions": [
+    "ov2slam_horti_parameters"
+   ],
+   "binaries": []
+  },
+  "vo-lc/hortimulti/strawberry02/ov2slam/run2": {
+   "decisions": [
+    "ov2slam_horti_parameters"
+   ],
+   "binaries": []
+  },
+  "vo-lc/hortimulti/strawberry02/ov2slam/run3": {
+   "decisions": [
+    "ov2slam_horti_parameters"
+   ],
+   "binaries": []
+  },
+  "vo-lc/hortimulti/strawberry03/ov2slam/run1": {
+   "decisions": [
+    "ov2slam_horti_parameters"
+   ],
+   "binaries": []
+  },
+  "vo-lc/hortimulti/strawberry03/ov2slam/run2": {
+   "decisions": [
+    "ov2slam_horti_parameters"
+   ],
+   "binaries": []
+  },
+  "vo-lc/hortimulti/strawberry03/ov2slam/run3": {
+   "decisions": [
+    "ov2slam_horti_parameters"
+   ],
+   "binaries": []
+  },
+  "vio/hortimulti/strawberry02/orbslam3/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry02/orbslam3/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry02/orbslam3/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry02/okvis2/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry02/okvis2/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry02/okvis2/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry02/okvis2x/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry02/okvis2x/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry02/okvis2x/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry02/airslam/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio/hortimulti/strawberry02/airslam/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio/hortimulti/strawberry02/airslam/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio/hortimulti/strawberry02/basalt/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry02/basalt/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry02/basalt/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry02/openvins/run1": {
+   "decisions": [
+    "horti_inertial_one_profile",
+    "openvins_frame_throttle"
+   ],
+   "binaries": []
+  },
+  "vio/hortimulti/strawberry02/voxel_svio/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio/hortimulti/strawberry02/voxel_svio/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio/hortimulti/strawberry02/voxel_svio/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio/hortimulti/strawberry03/orbslam3/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry03/orbslam3/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry03/orbslam3/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry03/okvis2/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry03/okvis2/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry03/okvis2/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry03/okvis2x/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry03/okvis2x/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry03/okvis2x/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry03/airslam/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio/hortimulti/strawberry03/airslam/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio/hortimulti/strawberry03/airslam/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio/hortimulti/strawberry03/basalt/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry03/basalt/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry03/basalt/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    }
+   ]
+  },
+  "vio/hortimulti/strawberry03/openvins/run1": {
+   "decisions": [
+    "horti_inertial_one_profile",
+    "openvins_frame_throttle"
+   ],
+   "binaries": []
+  },
+  "vio/hortimulti/strawberry03/voxel_svio/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio/hortimulti/strawberry03/voxel_svio/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio/hortimulti/strawberry03/voxel_svio/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001": {
+   "decisions": [
+    "openvins_frame_throttle"
+   ],
+   "binaries": []
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002": {
+   "decisions": [
+    "openvins_frame_throttle"
+   ],
+   "binaries": []
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003": {
+   "decisions": [
+    "openvins_frame_throttle"
+   ],
+   "binaries": []
+  },
+  "vio/citrusfarm/seq04/openvins/run10001": {
+   "decisions": [
+    "openvins_frame_throttle"
+   ],
+   "binaries": []
+  },
+  "vio/citrusfarm/seq07/openvins/run10001": {
+   "decisions": [
+    "openvins_frame_throttle"
+   ],
+   "binaries": []
+  },
+  "vio-lc/hortimulti/strawberry02/orbslam3/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry02/orbslam3/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry02/orbslam3/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry02/okvis2/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry02/okvis2/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry02/okvis2/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry02/okvis2x/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry02/okvis2x/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry02/okvis2x/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry02/airslam/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio-lc/hortimulti/strawberry02/airslam/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio-lc/hortimulti/strawberry02/airslam/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio-lc/hortimulti/strawberry03/orbslam3/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry03/orbslam3/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry03/orbslam3/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry03/okvis2/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry03/okvis2/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry03/okvis2/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry03/okvis2x/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry03/okvis2x/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry03/okvis2x/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio-lc/hortimulti/strawberry03/airslam/run1": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio-lc/hortimulti/strawberry03/airslam/run2": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  },
+  "vio-lc/hortimulti/strawberry03/airslam/run3": {
+   "decisions": [
+    "horti_inertial_one_profile"
+   ],
+   "binaries": []
+  }
+ }
+}

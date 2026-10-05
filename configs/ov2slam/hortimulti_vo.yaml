@@ -51,7 +51,7 @@ buse_loop_closer: 0
 bdo_stereo_rect: 0
 alpha: 0.0
 bdo_undist: 0
-finit_parallax: 15.0
+finit_parallax: 20.0
 use_shi_tomasi: 0
 use_fast: 0
 use_brief: 1
@@ -86,6 +86,6 @@ use_dogleg: 0
 use_subspace_dogleg: 0
 use_nonmonotic_step: 0
 apply_l2_after_robust: 1
-nmin_covscore: 20
+nmin_covscore: 25
 fkf_filtering_ratio: 0.95
 do_full_ba: 0

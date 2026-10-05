@@ -1,0 +1,21 @@
+{
+ "dataset": "hortimulti",
+ "sequence": "strawberry03",
+ "imu": {
+  "sensor": "MicroStrain 3DM-GX5-25 (/ms/imu/data), 200 Hz",
+  "camera_clock_shift_s": 0.009160379,
+  "camera_clock": "mav0/imu0/data.csv stamps = IMU-clock stamps - camera_clock_shift_s (Kalibr t_imu = t_cam + timeshift_cam_imu); IMU-clock copy in sources/microstrain_imu_clock.csv; every estimator uses a zero camera-IMU time offset",
+  "source": "https://s3.eidf.ac.uk/eidf258-hortimulti-a-multi-sensor-dataset-for-polytunnels/Feb2026/Strawberry/calibration.yaml (imu0: timeshift_cam_imu)",
+  "samples": 48448,
+  "original": {
+   "path": "sources/microstrain_imu_clock.csv",
+   "sha256": "7e7845f0065b0b8bbde3fc17769286d51da26f05f1836fdb10abc1ded4aa1c50"
+  },
+  "camera_clock_file": {
+   "path": "mav0/imu0/data.csv",
+   "sha256": "ac5b3edee56e49fdfff457d5120a02530acd926cfe1e204ed9e4b1de1d18f11e"
+  },
+  "decided": "2026-10-05 (user): one shared camera-clock IMU input for every HortiMulti estimator",
+  "script": "scripts/data/hortimulti_imu_camera_clock.py"
+ }
+}

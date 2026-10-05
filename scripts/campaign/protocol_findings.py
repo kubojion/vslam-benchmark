@@ -50,21 +50,33 @@ def native_gnss_findings(repo, relative):
     return [{key: record[key] for key in ('code', 'disposition', 'prerequisite', 'evidence')}]
 
 
+USER_RERUN_DECISIONS = ('docs/campaigns/user-rerun-decisions-20261003.json',
+                        'docs/campaigns/user-rerun-decisions-20261005.json')
+
+
 def user_rerun_decisions(repo, relative, meta):
-    """Replacements the user decided (ORB-SLAM3 libraries outside ZED, OpenVINS EuRoC VIO).
+    """Replacements the user decided: ORB-SLAM3 libraries outside ZED, OpenVINS EuRoC VIO
+    (2026-10-03); one HortiMulti IMU profile and camera-clock input, OV2SLAM HortiMulti values,
+    the OpenVINS frame throttle (2026-10-05).
 
     A record applies only to its own attempt path with the binaries saved at the time, so
-    replacement attempts (new physical run IDs) never inherit it.
+    replacement attempts (new physical run IDs) never inherit it. Later decisions live in a
+    separate file, so the bytes earlier reviews pin stay unchanged; an attempt may carry one
+    'decision' or a list of 'decisions'.
     """
-    review = Path(repo) / 'docs/campaigns/user-rerun-decisions-20261003.json'
-    if not review.is_file():
-        return []
-    record = json.loads(review.read_text())
-    pinned = record.get('attempts', {}).get(relative)
-    if not pinned or meta.get('provenance', {}).get('binaries') != pinned['binaries']:
-        return []
-    decision = record['decisions'][pinned['decision']]
-    return [{key: decision[key] for key in ('code', 'disposition', 'prerequisite', 'evidence')}]
+    findings = []
+    for name in USER_RERUN_DECISIONS:
+        review = Path(repo) / name
+        if not review.is_file():
+            continue
+        record = json.loads(review.read_text())
+        pinned = record.get('attempts', {}).get(relative)
+        if not pinned or meta.get('provenance', {}).get('binaries') != pinned['binaries']:
+            continue
+        for key in pinned.get('decisions') or [pinned['decision']]:
+            decision = record['decisions'][key]
+            findings.append({k: decision[k] for k in ('code', 'disposition', 'prerequisite', 'evidence')})
+    return findings
 
 
 def historical_findings(repo,relative,meta):

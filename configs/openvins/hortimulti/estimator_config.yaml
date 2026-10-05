@@ -3,15 +3,15 @@
 # OpenVINS estimator config for HortiMulti (Basler stereo, 10 Hz,
 # MicroStrain 3DM-GX5-25 AHRS 200 Hz, pre-rectified 640x480 grayscale).
 #
-# Tuning notes vs. rosariov2 config:
+# Settings shared with the ZED and CitrusFarm configs:
 #  - gravity_mag: 9.812           Herefordshire, UK (~52 deg N).
-#  - track_frequency: 10.0        HortiMulti cameras publish at 10 Hz.
-#  - num_pts: 200                 polytunnel has repetitive structure; fewer
-#                                 reliable long-range features than outdoors.
-#  - calib_cam_timeoffset: true   known cam-IMU timeshift ~9.16 ms; let the
-#                                 filter refine it online.
-#  - init_imu_thresh: 1.5         robot moves slowly in narrow polytunnel rows;
-#                                 raise threshold to tolerate low excitation.
+#  - track_frequency: 31.0        above every camera rate: the ROS front end drops a frame
+#                                 arriving < 1/track_frequency after the last accepted one
+#                                 (10.0 kept only ~62 % of the 10 Hz frames; fixed 2026-10-05).
+#  - num_pts: 200, init_imu_thresh: 1.0   the shared field-dataset profile.
+#  - calib_cam_timeoffset: true   OpenVINS default online refinement, starting from zero:
+#                                 the IMU input is already on the camera clock
+#                                 (datasets/hortimulti/<seq>/manifest.json, 2026-10-05).
 
 verbosity: "INFO"
 
@@ -85,7 +85,7 @@ grid_x: 5
 grid_y: 5
 min_px_dist: 10
 knn_ratio: 0.70
-track_frequency: 10.0
+track_frequency: 31.0
 downsample_cameras: false
 num_opencv_threads: 4
 histogram_method: "HISTOGRAM"

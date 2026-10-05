@@ -9,6 +9,9 @@ Publishes:
 
 Subscribes:
     /ov_msckf/odomimu  nav_msgs/Odometry  -> writes TUM trajectory.
+    /ov_msckf/poseimu  geometry_msgs/PoseWithCovarianceStamped, the filter state after each
+                       camera update (stamped camera time + online time offset)
+                       -> <out_traj stem>_poseimu.txt beside it (TUM).
 
 Designed to run inside the openvins:humble container next to the OpenVINS node
 launched via `ros2 launch ov_msckf subscribe.launch.py ...`.
@@ -40,6 +43,7 @@ from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
 from sensor_msgs.msg import Image, Imu
 from nav_msgs.msg import Odometry
+from geometry_msgs.msg import PoseWithCovarianceStamped
 from _transport_stats import write_transport_stats
 from cv_bridge import CvBridge
 
@@ -129,9 +133,14 @@ class Player(Node):
         # poses; OpenVINS publishes at ~20 Hz (per camera frame).
         self.sub_odom = self.create_subscription(
             Odometry, "/ov_msckf/odomimu", self._on_odom, 50)
+        # Updated state at each processed camera frame; recorded beside the
+        # IMU-rate odometry so either can be evaluated.
+        self.sub_pose = self.create_subscription(
+            PoseWithCovarianceStamped, "/ov_msckf/poseimu", self._on_pose, 50)
 
         self.bridge = CvBridge()
         self.poses: List[Tuple[float, float, float, float, float, float, float, float]] = []
+        self.update_poses: List[Tuple[float, float, float, float, float, float, float, float]] = []
 
         # Load data.
         mav0 = seq_dir / "mav0"
@@ -151,6 +160,12 @@ class Player(Node):
         p = msg.pose.pose.position
         q = msg.pose.pose.orientation
         self.poses.append((t, p.x, p.y, p.z, q.x, q.y, q.z, q.w))
+
+    def _on_pose(self, msg: PoseWithCovarianceStamped):
+        t = msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9
+        p = msg.pose.pose.position
+        q = msg.pose.pose.orientation
+        self.update_poses.append((t, p.x, p.y, p.z, q.x, q.y, q.z, q.w))
 
     # ------------------------------------------------------------------
     def _make_imu_msg(self, t_ns: int, wx, wy, wz, ax, ay, az) -> Imu:
@@ -249,6 +264,12 @@ class Player(Node):
                 f.write("{:.9f} {:.9f} {:.9f} {:.9f} {:.9f} {:.9f} {:.9f} {:.9f}\n".format(*row))
         self.get_logger().info(
             f"wrote {len(self.poses)} poses to {self.out_traj}")
+        updates = self.out_traj.with_name(self.out_traj.stem + "_poseimu" + self.out_traj.suffix)
+        with updates.open("w") as f:
+            for row in self.update_poses:
+                f.write("{:.9f} {:.9f} {:.9f} {:.9f} {:.9f} {:.9f} {:.9f} {:.9f}\n".format(*row))
+        self.get_logger().info(
+            f"wrote {len(self.update_poses)} updated poses to {updates}")
 
 
 # ---------------------------------------------------------------------------

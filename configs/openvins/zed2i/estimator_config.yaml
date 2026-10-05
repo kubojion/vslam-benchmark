@@ -10,7 +10,8 @@
 #                                  online (saves filter capacity).
 #  - calib_cam_intrinsics:false    same reason.
 #  - gravity_mag: 9.812           Poznan, Poland (~52.29N) - ZED2i field dataset.
-#  - track_frequency: 10.0         exported benchmark camera rate.
+#  - track_frequency: 31.0         above every camera rate, so the ROS front end never drops a
+#                                  frame (10.0 kept only 51-64 %; fixed 2026-10-05).
 #  - num_pts: 200                  frozen upstream quality profile.
 #  - histogram_method: HISTOGRAM   retains the upstream equalization choice.
 
@@ -87,7 +88,7 @@ grid_x: 5
 grid_y: 5
 min_px_dist: 10
 knn_ratio: 0.70
-track_frequency: 10.0
+track_frequency: 31.0
 downsample_cameras: false
 num_opencv_threads: 4
 histogram_method: "HISTOGRAM"

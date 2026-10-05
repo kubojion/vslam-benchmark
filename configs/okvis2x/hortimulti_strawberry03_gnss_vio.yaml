@@ -42,8 +42,8 @@ cameras:
 camera_parameters:
     timestamp_tolerance: 0.005
     sync_cameras: [0, 1]
-    # February-session Kalibr t_imu=t_camera+9.160379 ms; OKVIS subtracts image_delay.
-    image_delay: -0.009160379134269684
+    # IMU input already on the camera clock (datasets/hortimulti/<seq>/manifest.json, 2026-10-05).
+    image_delay: 0.0
     online_calibration:
         do_extrinsics: false
         do_extrinsics_final_ba: true

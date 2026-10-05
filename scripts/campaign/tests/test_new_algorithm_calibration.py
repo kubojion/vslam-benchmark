@@ -59,17 +59,24 @@ def test_profile_is_self_consistent(dataset):
     assert p['rectified_input'] == all(c['distortion_model'] == 'none' for c in p['cameras'])
 
 
-@pytest.mark.parametrize('dataset,offset_ms', [('hortimulti', 9.160379), ('zed2i', 0.0)])
+@pytest.mark.parametrize('dataset,offset_ms', [('hortimulti', 0.0), ('zed2i', 0.0), ('hortimulti', 9.160379)])
 def test_svo_pro_stage_follows_profile_and_trims_to_imu(tmp_path, dataset, offset_ms):
     stage = load('_svo_pro_stage')
     p = profile(dataset)
+    sensor = REPO / 'configs/sensors' / f'{dataset}.json'
+    if p['camera_imu_time_offset_s'] != offset_ms / 1e3:
+        # No stored profile declares a nonzero offset since HortiMulti's IMU input moved onto the
+        # camera clock (2026-10-05); a modified copy keeps the shift path covered.
+        p = dict(p, camera_imu_time_offset_s=offset_ms / 1e3)
+        sensor = tmp_path / f'{dataset}-offset.json'
+        sensor.write_text(json.dumps(p))
     camera = [1_000_000_000 + i * 100_000_000 for i in range(20)]
     # IMU starts 0.25 s after the first image and stops 0.15 s before the last one.
     imu = list(range(camera[0] + 250_000_000, camera[-1] - 150_000_000, 5_000_000))
     sequence = fake_sequence(tmp_path / 'seq', camera, imu)
     okvis = next((REPO / 'configs/okvis2').glob(f'{dataset}_*_vio.yaml'))
     out = tmp_path / 'stage'
-    args = type('A', (), dict(sequence=sequence, sensor=REPO / 'configs/sensors' / f'{dataset}.json',
+    args = type('A', (), dict(sequence=sequence, sensor=sensor,
                               imu_params=f'okvis2:{okvis}', out=out, max_frames=0))
     stage.stage(args)
     calib = yaml.safe_load((out / 'calib.yaml').read_text())

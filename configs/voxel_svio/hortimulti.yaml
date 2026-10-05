@@ -38,14 +38,14 @@ initializer_parameter:
     gravity_mag: 9.812           # Herefordshire, UK (~52 deg N)
     downsample_cameras: false
 
-# MicroStrain 3DM-GX5-25 AHRS @ 200 Hz. Noise values from Allan variance
-# in datasets/hortimulti/calibration.yaml; match configs/openvins/hortimulti/
-# kalibr_imu_chain.yaml and configs/basalt/hortimulti_calib.json.
+# MicroStrain 3DM-GX5-25 AHRS @ 200 Hz. One HortiMulti IMU profile for every estimator
+# (decision 2026-10-05): recording-derived noise densities (docs/okvis-imu-noise-derivation.md),
+# published calibration random walks.
 imu_parameter:
-    accelerometer_noise_density: 1.0936e-03
-    accelerometer_random_walk:   4.5845e-05
-    gyroscope_noise_density:     6.0370e-04
-    gyroscope_random_walk:       3.2209e-05
+    accelerometer_noise_density: 0.110
+    accelerometer_random_walk:   4.584471e-05
+    gyroscope_noise_density:     0.0035
+    gyroscope_random_walk:       3.22094e-05
     sigma_pix: 1.0
     Tw: [ 1.0, 0.0, 0.0,
           0.0, 1.0, 0.0,
@@ -71,8 +71,8 @@ imu_parameter:
 # RECTIFIED: composed with cv2.fisheye.stereoRectify R_rect (cam0 1.22 deg, cam1 0.20 deg).
 # The published extrinsic is for the RAW fisheye; mav0/cam{0,1} images are RECTIFIED.
 camera_parameter:
-    timeshift_cam_imu_left: 0.009160379134       # cam leads IMU by ~9 ms
-    timeshift_cam_imu_right: 0.009160379134
+    timeshift_cam_imu_left: 0.0    # IMU input already on the camera clock (datasets/hortimulti/<seq>/manifest.json)
+    timeshift_cam_imu_right: 0.0
     distortion_model_left: radtan
     distortion_model_right: radtan
     intrinsics_left:  [262.7149, 262.7149, 329.4310, 219.5617]

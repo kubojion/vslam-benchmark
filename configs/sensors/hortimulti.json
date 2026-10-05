@@ -81,24 +81,24 @@
         1.0
       ]
     ],
-    "gyroscope_noise_density": 0.0006037,
-    "accelerometer_noise_density": 0.001094,
-    "gyroscope_random_walk": 3.221e-05,
-    "accelerometer_random_walk": 4.584e-05,
+    "gyroscope_noise_density": 0.0035,
+    "accelerometer_noise_density": 0.11,
+    "gyroscope_random_walk": 3.22094e-05,
+    "accelerometer_random_walk": 4.584471e-05,
     "frequency_hz": 200.0
   },
-  "camera_imu_time_offset_s": 0.009160379,
+  "camera_imu_time_offset_s": 0.0,
   "time_offset_convention": "t_imu = t_camera + camera_imu_time_offset_s",
   "frames": "cam0 is the rig origin; T_cam0_cam1 is the pose of cam1 in cam0; T_imu_cam0 maps cam0 coordinates into the IMU frame",
   "sources": [
     {
       "path": "configs/orbslam3/hortimulti_stereo_inertial.yaml",
-      "sha256": "b3d7cb8a4610ce706d791b39c2e787279bb4c482ad51118f0797528f095b96f1",
+      "sha256": "4ae0f0593a6235aa032ea4e305a48742af8c02c22c0f166afada4f8e883e3ea9",
       "fields": "camera model, baseline or stereo transform, T_imu_cam0, IMU noise, rate"
     },
     {
       "path": "configs/basalt/hortimulti_calib.json",
-      "sha256": "e834983e2243a2d00c09aab77d42075888a88c673c01d42972d39ef089fa17f4",
+      "sha256": "2ff94fb41f4ef0a7663daff7769163e400f5a7131b53cb9b09bfb548a19cd58f",
       "fields": "camera_imu_time_offset_s (cam_time_offset_ns)"
     }
   ]
