@@ -73,3 +73,33 @@ def test_changed_status_or_plan_evidence_is_refused(tmp_path):
 
 def test_absent_record_selects_nothing(tmp_path):
     assert completed_batch_selections(tmp_path, EARLIER) == {}
+
+
+def executor_fixture(root, plan_hash=None):
+    """A run_future_manifest batch that ran only r1 of a cell; r2/r3 keep their default slots."""
+    key = 'vo/citrusfarm/seq04/okvis2'
+    action = dict(id=f'{key}/default/r1', cell=key, repetition=1, planned_output=f'results/{key}/run10001',
+                  cohort='repair-n3-okvis2')
+    frozen = write(root, 'frozen-plan.json', dict(actions=[action]))
+    state = write(root, f'results/.attempt-state/{key.replace("/", "__")}/run10001.json',
+                  dict(status='evaluated', identity=dict(cohort=action['cohort'], repetition=1, physical_run_id=10001)))
+    executor = write(root, 'executor-state.json', dict(manifest_sha256=plan_hash or frozen['sha256'],
+                                                      actions={action['id']: dict(status='evaluated', exit_code=0)}))
+    value = dict(schema=1, source_manifest=frozen, batch_status=executor, cells={key: [10001, 2, 3]},
+                 completed=[dict(cell=key, repetition=1, physical_run_id=10001, action_id=action['id'],
+                                 path=action['planned_output'], attempt_state=state)])
+    write(root, BATCH_SELECTIONS[1], value)
+    return value
+
+
+def test_executor_state_batch_keeps_default_slots_for_repetitions_it_did_not_run(tmp_path):
+    value = executor_fixture(tmp_path)
+    labels = {}
+    assert completed_batch_selections(tmp_path, {}, labels) == value['cells']
+    assert labels == {'vo/citrusfarm/seq04/okvis2': 'production_20261004'}
+
+
+def test_executor_state_of_another_plan_revision_is_refused(tmp_path):
+    executor_fixture(tmp_path, plan_hash='0' * 64)
+    with pytest.raises(ValueError, match='another plan revision'):
+        completed_batch_selections(tmp_path, {})

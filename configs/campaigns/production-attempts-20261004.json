@@ -1,0 +1,2895 @@
+{
+ "schema": 1,
+ "policy": "Select every finished attempt of the batch regardless of outcome; repetitions not run in the batch come from the earlier verified selection or keep the default slot; attempts excluded with a reason stay unselected; qualification needs claim review.",
+ "source_manifest": {
+  "path": "results/window-20261004/production-vo/executed-future-n3-manifest.json",
+  "sha256": "93963fc3a9e8b63bd2af311c69936b74290c6c3ea52f8a889323eca8a6557462"
+ },
+ "batch_status": {
+  "path": "results/window-20261004/production-vo/executor-state-final.json",
+  "sha256": "6f1886d5809a8928e04c1e5859db799ad953ee3c4cf778d658867cb2314a0c74"
+ },
+ "earlier_selection": {
+  "path": "configs/campaigns/zed-vio-first-attempts-20261002.json",
+  "sha256": "4628e67e4509487380d10d00aebcf7593103233fcd714289f6b38cc616f12dc3"
+ },
+ "cells": {
+  "vio/citrusfarm/seq04/airslam": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq04/basalt": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq04/cuvslam": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq04/mast3r_fusion": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq04/okvis2": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq04/okvis2x": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq04/openvins": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq04/orbslam3": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq04/svo_pro": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq04/voxel_svio": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq07/airslam": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq07/basalt": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq07/cuvslam": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq07/mast3r_fusion": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq07/okvis2": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq07/okvis2x": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq07/openvins": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq07/orbslam3": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq07/svo_pro": [
+   10001,
+   2,
+   3
+  ],
+  "vio/citrusfarm/seq07/voxel_svio": [
+   10001,
+   2,
+   3
+  ],
+  "vio/euroc_mav/MH_01_easy/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/euroc_mav/MH_01_easy/mast3r_fusion": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/euroc_mav/MH_01_easy/openvins": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/euroc_mav/MH_01_easy/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/euroc_mav/MH_01_easy/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/euroc_mav/MH_03_medium/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/euroc_mav/MH_03_medium/mast3r_fusion": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/euroc_mav/MH_03_medium/openvins": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/euroc_mav/MH_03_medium/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/euroc_mav/MH_03_medium/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/euroc_mav/MH_05_difficult/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/euroc_mav/MH_05_difficult/mast3r_fusion": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/euroc_mav/MH_05_difficult/openvins": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/euroc_mav/MH_05_difficult/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/euroc_mav/MH_05_difficult/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/airslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/basalt": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/mast3r_fusion": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/openvins": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/voxel_svio": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/airslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/basalt": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/mast3r_fusion": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/openvins": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/voxel_svio": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/cuvslam": [
+   10001,
+   2,
+   3
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion": [
+   10001,
+   2,
+   3
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/svo_pro": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/airslam": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/basalt": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/cuvslam": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/dpvo": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/dsol": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/macvo": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/okvis2": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/okvis2x": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/orbslam3": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/ov2slam": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/svo_pro": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/airslam": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/basalt": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/cuvslam": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/dsol": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/macvo": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/okvis2": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/okvis2x": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/orbslam3": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/ov2slam": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/svo_pro": [
+   10001,
+   2,
+   3
+  ],
+  "vo/euroc_mav/MH_01_easy/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/euroc_mav/MH_01_easy/dsol": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/euroc_mav/MH_01_easy/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/euroc_mav/MH_01_easy/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/euroc_mav/MH_03_medium/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/euroc_mav/MH_03_medium/dsol": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/euroc_mav/MH_03_medium/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/euroc_mav/MH_03_medium/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/euroc_mav/MH_05_difficult/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/euroc_mav/MH_05_difficult/dsol": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/euroc_mav/MH_05_difficult/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/euroc_mav/MH_05_difficult/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence1/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence1/dsol": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence1/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence1/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence5/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence5/dsol": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence5/orbslam3": [
+   1,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence5/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/zed2i/field1_110426_full_10fps_q90/cuvslam": [
+   10001,
+   2,
+   3
+  ],
+  "vo/zed2i/field1_110426_full_10fps_q90/svo_pro": [
+   10001,
+   2,
+   3
+  ]
+ },
+ "completed": [
+  {
+   "cell": "vio/citrusfarm/seq04/airslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq04/airslam/default/r1",
+   "path": "results/vio/citrusfarm/seq04/airslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq04__airslam/run10001.json",
+    "sha256": "46db0b71f6e4ce8687be671407df60eb8cfb367f53c4e010046e103d823658d8"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq04/basalt",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq04/basalt/default/r1",
+   "path": "results/vio/citrusfarm/seq04/basalt/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq04__basalt/run10001.json",
+    "sha256": "19b361b9fb252e35ed000850039f20f54ae6dc564c062f879ab9f12f7860c9ae"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq04/cuvslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq04/cuvslam/default/r1",
+   "path": "results/vio/citrusfarm/seq04/cuvslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq04__cuvslam/run10001.json",
+    "sha256": "ca3a6d31c359a9472bce50619ca24a237c4d86259429e60c3378bfee6de26677"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq04/mast3r_fusion",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq04/mast3r_fusion/default/r1",
+   "path": "results/vio/citrusfarm/seq04/mast3r_fusion/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq04__mast3r_fusion/run10001.json",
+    "sha256": "0fe21300a3d1d9d6d9e895e4edea2190b424bddbd8c9764d064cd038387c1021"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq04/okvis2",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq04/okvis2/default/r1",
+   "path": "results/vio/citrusfarm/seq04/okvis2/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq04__okvis2/run10001.json",
+    "sha256": "54e8bb54f047f328f332239dd4840fabcac596da8ff0d9ab9075acd4b78d2439"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq04/okvis2x",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq04/okvis2x/default/r1",
+   "path": "results/vio/citrusfarm/seq04/okvis2x/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq04__okvis2x/run10001.json",
+    "sha256": "339698e89082caeb0d47a9c51fdf9946536e8494612a04a3a61771bcafb5bef5"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq04/openvins",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq04/openvins/default/r1",
+   "path": "results/vio/citrusfarm/seq04/openvins/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq04__openvins/run10001.json",
+    "sha256": "5dc17bc9936e98c5af8a4b71403f27188895a7cd323949a7a17d2d681fd91511"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq04/orbslam3",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq04/orbslam3/default/r1",
+   "path": "results/vio/citrusfarm/seq04/orbslam3/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq04__orbslam3/run10001.json",
+    "sha256": "0e5b444065dcb08cb81d752ce803dd5d6cf2eb3317db3ec877aa6da18bc7db61"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq04/svo_pro",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq04/svo_pro/default/r1",
+   "path": "results/vio/citrusfarm/seq04/svo_pro/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq04__svo_pro/run10001.json",
+    "sha256": "e628b81b48ad132e0076a9a752fad36e6971ebfcb14101d50c2f5be7f9551d58"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq04/voxel_svio",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq04/voxel_svio/default/r1",
+   "path": "results/vio/citrusfarm/seq04/voxel_svio/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq04__voxel_svio/run10001.json",
+    "sha256": "f11ed5e3b356e13eff46f6af361d1a434920a6da12fce7bad9754e2a330a52ee"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq07/airslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq07/airslam/default/r1",
+   "path": "results/vio/citrusfarm/seq07/airslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq07__airslam/run10001.json",
+    "sha256": "440070aa37aa3609d70188553be2249e297565ed0339ed4c0a9795437ecb54cd"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq07/basalt",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq07/basalt/default/r1",
+   "path": "results/vio/citrusfarm/seq07/basalt/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq07__basalt/run10001.json",
+    "sha256": "e37f73fd882a5b8aa6454eca4705a622de53e1dcfdccb57fede162b9d046b3c5"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq07/cuvslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq07/cuvslam/default/r1",
+   "path": "results/vio/citrusfarm/seq07/cuvslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq07__cuvslam/run10001.json",
+    "sha256": "e6b6ec336383ae61032a16646c691cb1ae403265ef63236226e6b3e59feba0bd"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq07/mast3r_fusion",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq07/mast3r_fusion/default/r1",
+   "path": "results/vio/citrusfarm/seq07/mast3r_fusion/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq07__mast3r_fusion/run10001.json",
+    "sha256": "a04ab151f929cc5c7ca1f26ec447cf2a9d72576de6ad0fa681761d3f25f6ba2d"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq07/okvis2",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq07/okvis2/default/r1",
+   "path": "results/vio/citrusfarm/seq07/okvis2/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq07__okvis2/run10001.json",
+    "sha256": "a123154488d3995217fc51f161a52cb938a6d651a384567e4fa4234264bfc88e"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq07/okvis2x",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq07/okvis2x/default/r1",
+   "path": "results/vio/citrusfarm/seq07/okvis2x/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq07__okvis2x/run10001.json",
+    "sha256": "ca4910e7750d461355296d11d31bae215e5ff98a072a5d71dd9ae78c4ae69ebf"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq07/openvins",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq07/openvins/default/r1",
+   "path": "results/vio/citrusfarm/seq07/openvins/run10001",
+   "runner_exit_code": 1,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq07__openvins/run10001.json",
+    "sha256": "87493c337d84286071dedd2dbad35bc6f4d1ab6f49918290387db5e71489e83e"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq07/orbslam3",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq07/orbslam3/default/r1",
+   "path": "results/vio/citrusfarm/seq07/orbslam3/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq07__orbslam3/run10001.json",
+    "sha256": "76c61b856c447b924781b314ce4f09b2508c999d5768af8e4e79536646a17f4f"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq07/svo_pro",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq07/svo_pro/default/r1",
+   "path": "results/vio/citrusfarm/seq07/svo_pro/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq07__svo_pro/run10001.json",
+    "sha256": "c59878375d54e1c2b73d3d9650d2c0f0ecbaf8cc873002902ce1a4d25d22e5e2"
+   }
+  },
+  {
+   "cell": "vio/citrusfarm/seq07/voxel_svio",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/citrusfarm/seq07/voxel_svio/default/r1",
+   "path": "results/vio/citrusfarm/seq07/voxel_svio/run10001",
+   "runner_exit_code": 1,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__citrusfarm__seq07__voxel_svio/run10001.json",
+    "sha256": "2d3dac1562dc8cadb63e38f42d3f3124b6dd969960b8b2aa9977242afe11585f"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_01_easy/cuvslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/euroc_mav/MH_01_easy/cuvslam/default/r1",
+   "path": "results/vio/euroc_mav/MH_01_easy/cuvslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_01_easy__cuvslam/run10001.json",
+    "sha256": "153bdba63c41a8f3894b1b4a74deb766ce875543d8015d7115ee14bb4e56ca13"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_01_easy/cuvslam",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/euroc_mav/MH_01_easy/cuvslam/default/r2",
+   "path": "results/vio/euroc_mav/MH_01_easy/cuvslam/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_01_easy__cuvslam/run10002.json",
+    "sha256": "e6f2cb58ae427cae77dd31aa82715d2d2ff95981583e464bc2481665242b7046"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_01_easy/cuvslam",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/euroc_mav/MH_01_easy/cuvslam/default/r3",
+   "path": "results/vio/euroc_mav/MH_01_easy/cuvslam/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_01_easy__cuvslam/run10003.json",
+    "sha256": "966c7a9b5749b70e1bf156bc00d013da1bbd017750ce54918db8327507e724b8"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_01_easy/mast3r_fusion",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/euroc_mav/MH_01_easy/mast3r_fusion/default/r1",
+   "path": "results/vio/euroc_mav/MH_01_easy/mast3r_fusion/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_01_easy__mast3r_fusion/run10001.json",
+    "sha256": "61a5b2b428a9d2991abb22492e2e883580ab5aa040972f8f5266e1a00c0ae611"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_01_easy/mast3r_fusion",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/euroc_mav/MH_01_easy/mast3r_fusion/default/r2",
+   "path": "results/vio/euroc_mav/MH_01_easy/mast3r_fusion/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_01_easy__mast3r_fusion/run10002.json",
+    "sha256": "2c8ad0b850ed9d3f82934b2f18ca5f1e8a7d7eed80b501aac12edf1801dba980"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_01_easy/mast3r_fusion",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/euroc_mav/MH_01_easy/mast3r_fusion/default/r3",
+   "path": "results/vio/euroc_mav/MH_01_easy/mast3r_fusion/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_01_easy__mast3r_fusion/run10003.json",
+    "sha256": "ebf619dfd09a5e745b2d0fffbdd61497d711a1b18755e4a4f3fe95104f8ba805"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_01_easy/openvins",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/euroc_mav/MH_01_easy/openvins/default/r1",
+   "path": "results/vio/euroc_mav/MH_01_easy/openvins/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_01_easy__openvins/run10001.json",
+    "sha256": "a7b2eee8d0642ed847eafcff2cbae06e4b58f11a8a0f4a051f3b0209a36372eb"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_01_easy/openvins",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/euroc_mav/MH_01_easy/openvins/default/r2",
+   "path": "results/vio/euroc_mav/MH_01_easy/openvins/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_01_easy__openvins/run10002.json",
+    "sha256": "871310881a2ecaf259d662a97a21678e2fb5a8400450e4805bdd9671cf294e85"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_01_easy/openvins",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/euroc_mav/MH_01_easy/openvins/default/r3",
+   "path": "results/vio/euroc_mav/MH_01_easy/openvins/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_01_easy__openvins/run10003.json",
+    "sha256": "b946cb832f527ade228d2404bbeea7c2820ec2bf5810ec13e9e1a8e43bb1a5b5"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_01_easy/orbslam3",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/euroc_mav/MH_01_easy/orbslam3/default/r1",
+   "path": "results/vio/euroc_mav/MH_01_easy/orbslam3/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_01_easy__orbslam3/run10001.json",
+    "sha256": "ff1f375e27131a9ca6e6ded560a75dcc3bfc2a446374ff7f73a956f03f18826a"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_01_easy/orbslam3",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/euroc_mav/MH_01_easy/orbslam3/default/r2",
+   "path": "results/vio/euroc_mav/MH_01_easy/orbslam3/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_01_easy__orbslam3/run10002.json",
+    "sha256": "cc9db74bc541b2347d8aeb61fa2417a37ca94e39ffce8210286dbf193222b7b5"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_01_easy/orbslam3",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/euroc_mav/MH_01_easy/orbslam3/default/r3",
+   "path": "results/vio/euroc_mav/MH_01_easy/orbslam3/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_01_easy__orbslam3/run10003.json",
+    "sha256": "57927d0b0d6e64be4b6eccd681c4b1941b51b386caa58efdbf2cd64153a31ba0"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_01_easy/svo_pro",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/euroc_mav/MH_01_easy/svo_pro/default/r1",
+   "path": "results/vio/euroc_mav/MH_01_easy/svo_pro/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_01_easy__svo_pro/run10001.json",
+    "sha256": "688802a238b090a4a25957c2d1b9732328a54601ca4ed656efb0af4c1a18007b"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_01_easy/svo_pro",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/euroc_mav/MH_01_easy/svo_pro/default/r2",
+   "path": "results/vio/euroc_mav/MH_01_easy/svo_pro/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_01_easy__svo_pro/run10002.json",
+    "sha256": "2750f10c13662b6ee4048a8f2ac5e61270ff852b0885355d63f220ec6ff076e8"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_01_easy/svo_pro",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/euroc_mav/MH_01_easy/svo_pro/default/r3",
+   "path": "results/vio/euroc_mav/MH_01_easy/svo_pro/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_01_easy__svo_pro/run10003.json",
+    "sha256": "c9b23f75e3a346fcad4ad5c68571a8dd77bb7d28da85e3873bb6b736e2e2c541"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_03_medium/cuvslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/euroc_mav/MH_03_medium/cuvslam/default/r1",
+   "path": "results/vio/euroc_mav/MH_03_medium/cuvslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_03_medium__cuvslam/run10001.json",
+    "sha256": "4d2efa7c9bb19b2b993a25d313f7dbbf5e7dbfa6d2db87eeabfeb07604f7c24a"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_03_medium/cuvslam",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/euroc_mav/MH_03_medium/cuvslam/default/r2",
+   "path": "results/vio/euroc_mav/MH_03_medium/cuvslam/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_03_medium__cuvslam/run10002.json",
+    "sha256": "ac39cf3aca81d0908a39476f2218a0adcd3ad6a15de3fecd7d9a800b4ec333fe"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_03_medium/cuvslam",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/euroc_mav/MH_03_medium/cuvslam/default/r3",
+   "path": "results/vio/euroc_mav/MH_03_medium/cuvslam/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_03_medium__cuvslam/run10003.json",
+    "sha256": "c361adbe0927b8da654cf8e49165ed1d2bb013519e6a2f77de10ecaed6128cd6"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_03_medium/mast3r_fusion",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/euroc_mav/MH_03_medium/mast3r_fusion/default/r1",
+   "path": "results/vio/euroc_mav/MH_03_medium/mast3r_fusion/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_03_medium__mast3r_fusion/run10001.json",
+    "sha256": "2b2f8a8020bde909a946f94fa5260cc480af112fa22a07ebc96fa98495f8c93b"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_03_medium/mast3r_fusion",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/euroc_mav/MH_03_medium/mast3r_fusion/default/r2",
+   "path": "results/vio/euroc_mav/MH_03_medium/mast3r_fusion/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_03_medium__mast3r_fusion/run10002.json",
+    "sha256": "f972e2beba5affe0f6cc05ad42fa36d47bc5f62a4cf09cdff8e02fd2c875f51c"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_03_medium/mast3r_fusion",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/euroc_mav/MH_03_medium/mast3r_fusion/default/r3",
+   "path": "results/vio/euroc_mav/MH_03_medium/mast3r_fusion/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_03_medium__mast3r_fusion/run10003.json",
+    "sha256": "7a9e252ebbbdf62a7b864c010d73548ba9197276c1873d767a5c4a80a51e8c5a"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_03_medium/openvins",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/euroc_mav/MH_03_medium/openvins/default/r1",
+   "path": "results/vio/euroc_mav/MH_03_medium/openvins/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_03_medium__openvins/run10001.json",
+    "sha256": "c0809a1557ea489dd99b0039d085982d53d42df7968630004f6333dc6872f4d2"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_03_medium/openvins",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/euroc_mav/MH_03_medium/openvins/default/r2",
+   "path": "results/vio/euroc_mav/MH_03_medium/openvins/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_03_medium__openvins/run10002.json",
+    "sha256": "172d176b1740c3b1bbe5070624a5355e0fa1493a61c6a352d62e6345037019b1"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_03_medium/openvins",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/euroc_mav/MH_03_medium/openvins/default/r3",
+   "path": "results/vio/euroc_mav/MH_03_medium/openvins/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_03_medium__openvins/run10003.json",
+    "sha256": "ecf387182d4ee8c0cec77596821a7ace306eca93e3856da46dfcd3cdedd7902f"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_03_medium/orbslam3",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/euroc_mav/MH_03_medium/orbslam3/default/r1",
+   "path": "results/vio/euroc_mav/MH_03_medium/orbslam3/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_03_medium__orbslam3/run10001.json",
+    "sha256": "47ce06589769864758aa987fbcc339fc4abe0d9c3e222c4b64ffde143fe61976"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_03_medium/orbslam3",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/euroc_mav/MH_03_medium/orbslam3/default/r2",
+   "path": "results/vio/euroc_mav/MH_03_medium/orbslam3/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_03_medium__orbslam3/run10002.json",
+    "sha256": "be58c94c1b853f8d0dcb7b09606c13743fa5f1b2d990fc4597407b24b3a437ee"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_03_medium/orbslam3",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/euroc_mav/MH_03_medium/orbslam3/default/r3",
+   "path": "results/vio/euroc_mav/MH_03_medium/orbslam3/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_03_medium__orbslam3/run10003.json",
+    "sha256": "41f704305d258cfc9fb41a2746bfe2ace23bbf1135a98fe2a30d27b3cb4fdbfa"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_03_medium/svo_pro",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/euroc_mav/MH_03_medium/svo_pro/default/r1",
+   "path": "results/vio/euroc_mav/MH_03_medium/svo_pro/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_03_medium__svo_pro/run10001.json",
+    "sha256": "6604c312b39a1f6fdb2577f5df14c038a591fb435d3706439aecde6a44386ad0"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_03_medium/svo_pro",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/euroc_mav/MH_03_medium/svo_pro/default/r2",
+   "path": "results/vio/euroc_mav/MH_03_medium/svo_pro/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_03_medium__svo_pro/run10002.json",
+    "sha256": "ea3c64ad97e80a5ef7df99aa128fa063464a6262657664d7178a84667ee5b4b4"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_03_medium/svo_pro",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/euroc_mav/MH_03_medium/svo_pro/default/r3",
+   "path": "results/vio/euroc_mav/MH_03_medium/svo_pro/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_03_medium__svo_pro/run10003.json",
+    "sha256": "7ae7ea039436009956f582a43c668af1d0a40902c24f81cf12113becc7007d24"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_05_difficult/cuvslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/euroc_mav/MH_05_difficult/cuvslam/default/r1",
+   "path": "results/vio/euroc_mav/MH_05_difficult/cuvslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_05_difficult__cuvslam/run10001.json",
+    "sha256": "d1f6eeb55666dd8e5acf6e118353450985ea2dbeeb1f58a50ace0c45b617293d"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_05_difficult/cuvslam",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/euroc_mav/MH_05_difficult/cuvslam/default/r2",
+   "path": "results/vio/euroc_mav/MH_05_difficult/cuvslam/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_05_difficult__cuvslam/run10002.json",
+    "sha256": "a18358e19b72b4e30293704ab33eed5d16b70a8fa046dab61eef9c19c5c309d5"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_05_difficult/cuvslam",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/euroc_mav/MH_05_difficult/cuvslam/default/r3",
+   "path": "results/vio/euroc_mav/MH_05_difficult/cuvslam/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_05_difficult__cuvslam/run10003.json",
+    "sha256": "3b5ae53b7ad967dc6e2efc7331643e92d04b115ea55433c4996ef681963b9e81"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_05_difficult/mast3r_fusion",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/euroc_mav/MH_05_difficult/mast3r_fusion/default/r1",
+   "path": "results/vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_05_difficult__mast3r_fusion/run10001.json",
+    "sha256": "84fe26955164f1a3e487c7cee182e69b1986d5b8ee775fc990356e67ce1c95f1"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_05_difficult/mast3r_fusion",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/euroc_mav/MH_05_difficult/mast3r_fusion/default/r2",
+   "path": "results/vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_05_difficult__mast3r_fusion/run10002.json",
+    "sha256": "1455a32744983894aa9fbe15dc9146b6dc6e2c9fb8e5e6c00e8624b4e7eda398"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_05_difficult/mast3r_fusion",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/euroc_mav/MH_05_difficult/mast3r_fusion/default/r3",
+   "path": "results/vio/euroc_mav/MH_05_difficult/mast3r_fusion/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_05_difficult__mast3r_fusion/run10003.json",
+    "sha256": "ced5ab98acdbddcb5fad091bd2c854b31fcfabe466862a3e8f3e4430b51878a2"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_05_difficult/openvins",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/euroc_mav/MH_05_difficult/openvins/default/r1",
+   "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_05_difficult__openvins/run10001.json",
+    "sha256": "73f73cf75b8e6448ccc79d979edd3d87e1098ac57b0b6f0497d07d293c5847d6"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_05_difficult/openvins",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/euroc_mav/MH_05_difficult/openvins/default/r2",
+   "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_05_difficult__openvins/run10002.json",
+    "sha256": "18e113aad147819849aadb9bdfeafdd168813c8f1654ca73ce1e789d9e0d16f8"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_05_difficult/openvins",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/euroc_mav/MH_05_difficult/openvins/default/r3",
+   "path": "results/vio/euroc_mav/MH_05_difficult/openvins/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_05_difficult__openvins/run10003.json",
+    "sha256": "cdef21ffee914cae81f162a6bbc51feedf20df26116bb72be9b1824e135ab0c1"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_05_difficult/orbslam3",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/euroc_mav/MH_05_difficult/orbslam3/default/r1",
+   "path": "results/vio/euroc_mav/MH_05_difficult/orbslam3/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_05_difficult__orbslam3/run10001.json",
+    "sha256": "61138d2857366630103736784aeb135b9bb4dbe4d39f4a0c9af32e6532f33846"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_05_difficult/orbslam3",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/euroc_mav/MH_05_difficult/orbslam3/default/r2",
+   "path": "results/vio/euroc_mav/MH_05_difficult/orbslam3/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_05_difficult__orbslam3/run10002.json",
+    "sha256": "6e1d5a0fdf60b1ffa2c74381f8bef0f2a32860f2a28dbcb44e8f1e05bdee2b73"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_05_difficult/orbslam3",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/euroc_mav/MH_05_difficult/orbslam3/default/r3",
+   "path": "results/vio/euroc_mav/MH_05_difficult/orbslam3/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_05_difficult__orbslam3/run10003.json",
+    "sha256": "9d5279e855c99f4d915e938e93ac56aff1d677db3e93c70b5d5d6b56ff898466"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_05_difficult/svo_pro",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/euroc_mav/MH_05_difficult/svo_pro/default/r1",
+   "path": "results/vio/euroc_mav/MH_05_difficult/svo_pro/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_05_difficult__svo_pro/run10001.json",
+    "sha256": "e02d641db6852999d023768a123c919026b5838bccd60e2d1249292e73ab51c1"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_05_difficult/svo_pro",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/euroc_mav/MH_05_difficult/svo_pro/default/r2",
+   "path": "results/vio/euroc_mav/MH_05_difficult/svo_pro/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_05_difficult__svo_pro/run10002.json",
+    "sha256": "8736b14f3fbc13187e7b37e80616d85ae9e70b2d35b50b6893e03631a44ba552"
+   }
+  },
+  {
+   "cell": "vio/euroc_mav/MH_05_difficult/svo_pro",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/euroc_mav/MH_05_difficult/svo_pro/default/r3",
+   "path": "results/vio/euroc_mav/MH_05_difficult/svo_pro/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__euroc_mav__MH_05_difficult__svo_pro/run10003.json",
+    "sha256": "28e0ade9995bd918c2ed500f92e3d631837ac678b6aa00e1deb393736e8947da"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/airslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/rosariov2/sequence1/airslam/default/r1",
+   "path": "results/vio/rosariov2/sequence1/airslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__airslam/run10001.json",
+    "sha256": "72412c97e722e9d7bcebab81ec6f73267f1f439652b2296ebeea6b2023a32400"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/airslam",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/rosariov2/sequence1/airslam/default/r2",
+   "path": "results/vio/rosariov2/sequence1/airslam/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__airslam/run10002.json",
+    "sha256": "5087b18ac6ea97c9ba0644d7f498def8319b167ac972c8e65ddbab10f8dddc78"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/airslam",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/rosariov2/sequence1/airslam/default/r3",
+   "path": "results/vio/rosariov2/sequence1/airslam/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__airslam/run10003.json",
+    "sha256": "4c6af16a8b5d93f939fc7ee7512f76d6d9339d4fbdd158fe640f1858daed37c4"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/basalt",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/rosariov2/sequence1/basalt/default/r1",
+   "path": "results/vio/rosariov2/sequence1/basalt/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__basalt/run10001.json",
+    "sha256": "0de34d7342a67d2b43c2a87c8372798e3e45214a0bdc96d20a04752353cd5975"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/basalt",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/rosariov2/sequence1/basalt/default/r2",
+   "path": "results/vio/rosariov2/sequence1/basalt/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__basalt/run10002.json",
+    "sha256": "a7c291dbd5c0994fb01f31e7d4df18ca6b22f53a3a6f8a844cac7ccc8c5e20ed"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/basalt",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/rosariov2/sequence1/basalt/default/r3",
+   "path": "results/vio/rosariov2/sequence1/basalt/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__basalt/run10003.json",
+    "sha256": "8fff145fde5a970a587962238f54b83f0ca41229cc16ebf730b9a39372171744"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/cuvslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/rosariov2/sequence1/cuvslam/default/r1",
+   "path": "results/vio/rosariov2/sequence1/cuvslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__cuvslam/run10001.json",
+    "sha256": "6e97dd1e317a63ab642171a4f72d1ebe1aa8003075260f4d4a59e6c4196cf37a"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/cuvslam",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/rosariov2/sequence1/cuvslam/default/r2",
+   "path": "results/vio/rosariov2/sequence1/cuvslam/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__cuvslam/run10002.json",
+    "sha256": "9728955c3d53c8adcb66b90e73f8a05b0e00b83651c8cf97d063c638ea15aeb1"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/cuvslam",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/rosariov2/sequence1/cuvslam/default/r3",
+   "path": "results/vio/rosariov2/sequence1/cuvslam/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__cuvslam/run10003.json",
+    "sha256": "6b198ad2c5633f3f57cbd16a239ecfbe16b898f23d3c8388519ee6c5a57af740"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/mast3r_fusion",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/rosariov2/sequence1/mast3r_fusion/default/r1",
+   "path": "results/vio/rosariov2/sequence1/mast3r_fusion/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__mast3r_fusion/run10001.json",
+    "sha256": "2e176db68e2c605707265a29af7d4d055160341711d566769ea73baece462bd2"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/mast3r_fusion",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/rosariov2/sequence1/mast3r_fusion/default/r2",
+   "path": "results/vio/rosariov2/sequence1/mast3r_fusion/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__mast3r_fusion/run10002.json",
+    "sha256": "08d73571fc64247381bba2a62c6260b45f4c95158cc41c83ada7b36ad05f48af"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/mast3r_fusion",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/rosariov2/sequence1/mast3r_fusion/default/r3",
+   "path": "results/vio/rosariov2/sequence1/mast3r_fusion/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__mast3r_fusion/run10003.json",
+    "sha256": "21597ca94c204d28942c381a11b0ee483211f97745411c3059c85d07a0cd512c"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/openvins",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/rosariov2/sequence1/openvins/default/r1",
+   "path": "results/vio/rosariov2/sequence1/openvins/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__openvins/run10001.json",
+    "sha256": "f410398f4b2b39fde6fa2480b8fabe274d75e7be0523a918c18058f7c4601856"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/openvins",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/rosariov2/sequence1/openvins/default/r2",
+   "path": "results/vio/rosariov2/sequence1/openvins/run10002",
+   "runner_exit_code": 1,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__openvins/run10002.json",
+    "sha256": "4088c12d72f42fe0c5487c0e764fb5d002a03148e0a99ea31f391a12d6aee285"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/openvins",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/rosariov2/sequence1/openvins/default/r3",
+   "path": "results/vio/rosariov2/sequence1/openvins/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__openvins/run10003.json",
+    "sha256": "a66c99f56302ecd34e08e093893d6427b36c9a115157843566d13e556fa430a1"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/orbslam3",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/rosariov2/sequence1/orbslam3/default/r1",
+   "path": "results/vio/rosariov2/sequence1/orbslam3/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__orbslam3/run10001.json",
+    "sha256": "1a3d2856d31930ed64dc9da5d18feb432beccc604a5672500a3638974692ee6f"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/orbslam3",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/rosariov2/sequence1/orbslam3/default/r2",
+   "path": "results/vio/rosariov2/sequence1/orbslam3/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__orbslam3/run10002.json",
+    "sha256": "9ac92a15c4a3120e0a9edfa6fbc793daac5e59ae2c2fa23958878f357d1f20b9"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/orbslam3",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/rosariov2/sequence1/orbslam3/default/r3",
+   "path": "results/vio/rosariov2/sequence1/orbslam3/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__orbslam3/run10003.json",
+    "sha256": "e03168dd6cd619e7f549233ff22780333e8c2e7d495629300a0d0b2d80f44968"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/svo_pro",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/rosariov2/sequence1/svo_pro/default/r1",
+   "path": "results/vio/rosariov2/sequence1/svo_pro/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__svo_pro/run10001.json",
+    "sha256": "ad5dee588ef2aec99a41f730099de8905b66ee1729d2aeb69f520c11770f2675"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/svo_pro",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/rosariov2/sequence1/svo_pro/default/r2",
+   "path": "results/vio/rosariov2/sequence1/svo_pro/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__svo_pro/run10002.json",
+    "sha256": "327d39e6b3ab15e61f84fe7eeddb87f5fec62ceccbed3840ea495534767ed20d"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/svo_pro",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/rosariov2/sequence1/svo_pro/default/r3",
+   "path": "results/vio/rosariov2/sequence1/svo_pro/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__svo_pro/run10003.json",
+    "sha256": "78fd7eaed8ececed57c291c28bcbed0e4a1ce67f2eb904f000d9f8a6ad25ae65"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/voxel_svio",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/rosariov2/sequence1/voxel_svio/default/r1",
+   "path": "results/vio/rosariov2/sequence1/voxel_svio/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__voxel_svio/run10001.json",
+    "sha256": "a09839d9bb35e129e68bdb47af071650dd1ed3a67be9646cdaf4acf95b73d98f"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/voxel_svio",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/rosariov2/sequence1/voxel_svio/default/r2",
+   "path": "results/vio/rosariov2/sequence1/voxel_svio/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__voxel_svio/run10002.json",
+    "sha256": "7ec9dedd3fc2991f035c0f248086363848339e1f9c05048013565c4402df6e4d"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence1/voxel_svio",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/rosariov2/sequence1/voxel_svio/default/r3",
+   "path": "results/vio/rosariov2/sequence1/voxel_svio/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence1__voxel_svio/run10003.json",
+    "sha256": "20bbb0fb5e415042fadd343496cad3ca718a7716dbb128135faa5dc8e7530de2"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/airslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/rosariov2/sequence5/airslam/default/r1",
+   "path": "results/vio/rosariov2/sequence5/airslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__airslam/run10001.json",
+    "sha256": "31f32163dbd88ca333a7baa7ee39ef04ca01ea2d20c4dcbe65f9741854723615"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/airslam",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/rosariov2/sequence5/airslam/default/r2",
+   "path": "results/vio/rosariov2/sequence5/airslam/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__airslam/run10002.json",
+    "sha256": "6b9b716f0f46e10bcdb6c3c961f6dc5bbf3451540ecf755e29a701bd33f339fc"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/airslam",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/rosariov2/sequence5/airslam/default/r3",
+   "path": "results/vio/rosariov2/sequence5/airslam/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__airslam/run10003.json",
+    "sha256": "7a2f65b1a8911fa28bfa45833f96ae4a53a7f5a2560998912a68f822189c3e32"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/basalt",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/rosariov2/sequence5/basalt/default/r1",
+   "path": "results/vio/rosariov2/sequence5/basalt/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__basalt/run10001.json",
+    "sha256": "ceeb2680cf6281b8f45b806b302a5f101391a4a2481e3ec9b76000e13b9b5ea9"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/basalt",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/rosariov2/sequence5/basalt/default/r2",
+   "path": "results/vio/rosariov2/sequence5/basalt/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__basalt/run10002.json",
+    "sha256": "55c47a27ced6008a7e9b6caa4d679547e4393bcc36b3ed4f91d144d4bf72f70f"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/basalt",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/rosariov2/sequence5/basalt/default/r3",
+   "path": "results/vio/rosariov2/sequence5/basalt/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__basalt/run10003.json",
+    "sha256": "4455a716f1f86a8bc6adf9cb01b10ce58ec6cc117644b689bbe6b76b0e69989d"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/cuvslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/rosariov2/sequence5/cuvslam/default/r1",
+   "path": "results/vio/rosariov2/sequence5/cuvslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__cuvslam/run10001.json",
+    "sha256": "84ce2edc253e6dca9275d32835de1fee978cabbf6245f1aede24dc12c907d41a"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/cuvslam",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/rosariov2/sequence5/cuvslam/default/r2",
+   "path": "results/vio/rosariov2/sequence5/cuvslam/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__cuvslam/run10002.json",
+    "sha256": "98886a1cdc6d8d0a55e8d3f93ac38211b0d4c7c8ce72c455bcd5f44fcd0cdde5"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/cuvslam",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/rosariov2/sequence5/cuvslam/default/r3",
+   "path": "results/vio/rosariov2/sequence5/cuvslam/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__cuvslam/run10003.json",
+    "sha256": "aa8c242c92d4f408b46d4db826f65cd7414051745518119208e18f7a958d96f1"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/mast3r_fusion",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/rosariov2/sequence5/mast3r_fusion/default/r1",
+   "path": "results/vio/rosariov2/sequence5/mast3r_fusion/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__mast3r_fusion/run10001.json",
+    "sha256": "5f257f96391f7855856e8c29fd161ddce73f355096b3d585e4f347e4f0fce5ed"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/mast3r_fusion",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/rosariov2/sequence5/mast3r_fusion/default/r2",
+   "path": "results/vio/rosariov2/sequence5/mast3r_fusion/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__mast3r_fusion/run10002.json",
+    "sha256": "108f25276d31fbc82ea9be580973cbadc22f4b049ed883b921a07108ae329893"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/mast3r_fusion",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/rosariov2/sequence5/mast3r_fusion/default/r3",
+   "path": "results/vio/rosariov2/sequence5/mast3r_fusion/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__mast3r_fusion/run10003.json",
+    "sha256": "efa745c97dca8db70b0106137ca6682bb8d88d65fbe92ce018043301b9cf8d62"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/openvins",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/rosariov2/sequence5/openvins/default/r1",
+   "path": "results/vio/rosariov2/sequence5/openvins/run10001",
+   "runner_exit_code": 1,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__openvins/run10001.json",
+    "sha256": "9962a3312a766a7689f153b5c7d8b03e683bbe87fc735e3ed32634255c8f1bd4"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/openvins",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/rosariov2/sequence5/openvins/default/r2",
+   "path": "results/vio/rosariov2/sequence5/openvins/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__openvins/run10002.json",
+    "sha256": "5e4ee6830442fa4288c65eae95a36b47ad71724498541a0ccee0584da9fc3c17"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/openvins",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/rosariov2/sequence5/openvins/default/r3",
+   "path": "results/vio/rosariov2/sequence5/openvins/run10003",
+   "runner_exit_code": 1,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__openvins/run10003.json",
+    "sha256": "0d78cf0b4e423c0810dbc2a5de4513a3fdecd99f2e2212782775937cf07625d1"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/orbslam3",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/rosariov2/sequence5/orbslam3/default/r1",
+   "path": "results/vio/rosariov2/sequence5/orbslam3/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__orbslam3/run10001.json",
+    "sha256": "ad67acd8296fd916ec0bceeb7f4fdf2c80e377dc62675ee320181527cbd7eda8"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/orbslam3",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/rosariov2/sequence5/orbslam3/default/r2",
+   "path": "results/vio/rosariov2/sequence5/orbslam3/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__orbslam3/run10002.json",
+    "sha256": "43963f6528628eac869eb9696f0182b6f383bcbff841e52078edbdbfcb9ac5b9"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/orbslam3",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/rosariov2/sequence5/orbslam3/default/r3",
+   "path": "results/vio/rosariov2/sequence5/orbslam3/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__orbslam3/run10003.json",
+    "sha256": "76ea791467f0bf48ffb06b2d9cdc0c207819125a2eda0df8477c5932a2934533"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/svo_pro",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/rosariov2/sequence5/svo_pro/default/r1",
+   "path": "results/vio/rosariov2/sequence5/svo_pro/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__svo_pro/run10001.json",
+    "sha256": "fd941bc70b333ccea69329742aceeed54eddece817c653113f03ad866e7d4df7"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/svo_pro",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/rosariov2/sequence5/svo_pro/default/r2",
+   "path": "results/vio/rosariov2/sequence5/svo_pro/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__svo_pro/run10002.json",
+    "sha256": "b00ad766ba3c0ea3806d800e1ff427c099ad2ed2c455ef0ec22c9a049f66a682"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/svo_pro",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/rosariov2/sequence5/svo_pro/default/r3",
+   "path": "results/vio/rosariov2/sequence5/svo_pro/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__svo_pro/run10003.json",
+    "sha256": "ea96651138d79b3e4da3ba4869e848f78393f6882708eae44ce5688ebda4f554"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/voxel_svio",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/rosariov2/sequence5/voxel_svio/default/r1",
+   "path": "results/vio/rosariov2/sequence5/voxel_svio/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__voxel_svio/run10001.json",
+    "sha256": "857a73a2db75ceb32307af656edef88bb2a708f6609c2f9aeebeb130eeb7fcba"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/voxel_svio",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vio/rosariov2/sequence5/voxel_svio/default/r2",
+   "path": "results/vio/rosariov2/sequence5/voxel_svio/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__voxel_svio/run10002.json",
+    "sha256": "889928aa98cd2ac7aa2f7682e125bbf250fee85c727ece65b2e2c1b7f138fd45"
+   }
+  },
+  {
+   "cell": "vio/rosariov2/sequence5/voxel_svio",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vio/rosariov2/sequence5/voxel_svio/default/r3",
+   "path": "results/vio/rosariov2/sequence5/voxel_svio/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__rosariov2__sequence5__voxel_svio/run10003.json",
+    "sha256": "0a3d73482f2dccf7bf7cd0678f49beab5885b0529a95e8ba4f7a3583c638bcc5"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/cuvslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/cuvslam/default/r1",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/cuvslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__cuvslam/run10001.json",
+    "sha256": "3acf9627db80d444c10b4ff8b4949b05524babe9abfff2d0cd28d9b307e14ce9"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/default/r1",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run10001",
+   "runner_exit_code": 1,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__mast3r_fusion/run10001.json",
+    "sha256": "908bd15047e653360ac9266cd4936895bf2899b9e1371c4f1af422e9ac6e50af"
+   }
+  },
+  {
+   "cell": "vio/zed2i/field1_110426_full_10fps_q90/svo_pro",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vio/zed2i/field1_110426_full_10fps_q90/svo_pro/default/r1",
+   "path": "results/vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vio__zed2i__field1_110426_full_10fps_q90__svo_pro/run10001.json",
+    "sha256": "c1c19060770ce43457c7c564d27bf00ae2082c18a7d73e265a3b13541910c9d2"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq04/airslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq04/airslam/default/r1",
+   "path": "results/vo/citrusfarm/seq04/airslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq04__airslam/run10001.json",
+    "sha256": "30b22515428114283bcca0458dbab49333002ae42b9390ad89d458ecb86c7ad2"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq04/basalt",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq04/basalt/default/r1",
+   "path": "results/vo/citrusfarm/seq04/basalt/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq04__basalt/run10001.json",
+    "sha256": "f47064ed86ffe7c61a495f22e20c48b7ba62a0410d8c8ac33f21529ca7713641"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq04/cuvslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq04/cuvslam/default/r1",
+   "path": "results/vo/citrusfarm/seq04/cuvslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq04__cuvslam/run10001.json",
+    "sha256": "7f965c5b8f633aba42c5d9dc49508972127d36aea13c3ab806df435b80c006dd"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq04/dpvo",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq04/dpvo/default/r1",
+   "path": "results/vo/citrusfarm/seq04/dpvo/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq04__dpvo/run10001.json",
+    "sha256": "31399269c5d54f3d3dbf5672cc41bd962f0e65628e57f00449f12275478c9431"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq04/dsol",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq04/dsol/default/r1",
+   "path": "results/vo/citrusfarm/seq04/dsol/run10001",
+   "runner_exit_code": 1,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq04__dsol/run10001.json",
+    "sha256": "da5b60958054eb71c8486554601a5fbaf6b45e04bc726b39d5565948608536b7"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq04/macvo",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq04/macvo/default/r1",
+   "path": "results/vo/citrusfarm/seq04/macvo/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq04__macvo/run10001.json",
+    "sha256": "c5decdb24939f503f3cf7466379f922d022b3e9b411d729b3243243abc61800f"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq04/okvis2",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq04/okvis2/default/r1",
+   "path": "results/vo/citrusfarm/seq04/okvis2/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq04__okvis2/run10001.json",
+    "sha256": "401e76c33739647dd8f0d496f8ede74c98f9d1b2098ff37f64b1f864ebfa1f1e"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq04/okvis2x",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq04/okvis2x/default/r1",
+   "path": "results/vo/citrusfarm/seq04/okvis2x/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq04__okvis2x/run10001.json",
+    "sha256": "4d2e7cc99cdd03ae0f9801ad713f04171f8f1837f42523ca9b899efbd1af0dd2"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq04/orbslam3",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq04/orbslam3/default/r1",
+   "path": "results/vo/citrusfarm/seq04/orbslam3/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq04__orbslam3/run10001.json",
+    "sha256": "0192f014b0802a0c3b0d634c009808739c084291daa87e1a31119d04c480e607"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq04/ov2slam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq04/ov2slam/default/r1",
+   "path": "results/vo/citrusfarm/seq04/ov2slam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq04__ov2slam/run10001.json",
+    "sha256": "7c655ffed97da02c850478f0571b5947c1e513fd2c3ae5a6ca8571f368878145"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq04/svo_pro",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq04/svo_pro/default/r1",
+   "path": "results/vo/citrusfarm/seq04/svo_pro/run10001",
+   "runner_exit_code": 1,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq04__svo_pro/run10001.json",
+    "sha256": "bbebe41ed2719e2cd53dfd6c60cc27245e9035802415b59f507c9d268982c28b"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq07/airslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq07/airslam/default/r1",
+   "path": "results/vo/citrusfarm/seq07/airslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq07__airslam/run10001.json",
+    "sha256": "3c9dc0de31eb972a42c0347e40ba16b954fa7b0c285641fcfb4817154ae8bcb5"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq07/basalt",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq07/basalt/default/r1",
+   "path": "results/vo/citrusfarm/seq07/basalt/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq07__basalt/run10001.json",
+    "sha256": "8ed656de3041bc41a8aae2d1e0c02287e0888328d737f8f6575a10e0d3cc9f72"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq07/cuvslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq07/cuvslam/default/r1",
+   "path": "results/vo/citrusfarm/seq07/cuvslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq07__cuvslam/run10001.json",
+    "sha256": "8860a582731737adc8cfa22dea783b05c1c5aa8d2a72a2b1ff6ece450c880281"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq07/dsol",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq07/dsol/default/r1",
+   "path": "results/vo/citrusfarm/seq07/dsol/run10001",
+   "runner_exit_code": 1,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq07__dsol/run10001.json",
+    "sha256": "c554e4d96d3c0fa773dbcb7384032a8c69e47b8f0343174c69673a370e94d713"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq07/macvo",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq07/macvo/default/r1",
+   "path": "results/vo/citrusfarm/seq07/macvo/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq07__macvo/run10001.json",
+    "sha256": "e1032a138c53b7c9fd20cbd7699ba5347d21f5a492e2f389eba0d38c83b5537c"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq07/okvis2",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq07/okvis2/default/r1",
+   "path": "results/vo/citrusfarm/seq07/okvis2/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq07__okvis2/run10001.json",
+    "sha256": "ed96a74deea1a7ef04bd8767b15ca942f0aa669b7b7ddfcbcb0c89dcea2b48f5"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq07/okvis2x",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq07/okvis2x/default/r1",
+   "path": "results/vo/citrusfarm/seq07/okvis2x/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq07__okvis2x/run10001.json",
+    "sha256": "1870c3ca288a7f140bf580eafc94bcafc8fc41cac9f577e2e60c248dd886388c"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq07/orbslam3",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq07/orbslam3/default/r1",
+   "path": "results/vo/citrusfarm/seq07/orbslam3/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq07__orbslam3/run10001.json",
+    "sha256": "2d35cd77eac671e0dd3cd483de5a072c6521486fb162f8c4e0e527602e4f5043"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq07/ov2slam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq07/ov2slam/default/r1",
+   "path": "results/vo/citrusfarm/seq07/ov2slam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq07__ov2slam/run10001.json",
+    "sha256": "eef645265d66bd5c5d4bb50ba76b89fae27358ee39a72ede78d24ce81ff0588f"
+   }
+  },
+  {
+   "cell": "vo/citrusfarm/seq07/svo_pro",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/citrusfarm/seq07/svo_pro/default/r1",
+   "path": "results/vo/citrusfarm/seq07/svo_pro/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__citrusfarm__seq07__svo_pro/run10001.json",
+    "sha256": "3cc56f88cd3974562e129d9b7b7ce69fac50177a00ab80ccccb49653f961a0d7"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_01_easy/cuvslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/euroc_mav/MH_01_easy/cuvslam/default/r1",
+   "path": "results/vo/euroc_mav/MH_01_easy/cuvslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_01_easy__cuvslam/run10001.json",
+    "sha256": "36c2d4541bc5f17ed470ac6c298d6fc876e04824d414761ba154dbe80e1a0840"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_01_easy/cuvslam",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/euroc_mav/MH_01_easy/cuvslam/default/r2",
+   "path": "results/vo/euroc_mav/MH_01_easy/cuvslam/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_01_easy__cuvslam/run10002.json",
+    "sha256": "36a4f1b3f84e1d9e1ea1662921397ea84b0ca1bf84c54b018c5a2c99eb4ad216"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_01_easy/cuvslam",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/euroc_mav/MH_01_easy/cuvslam/default/r3",
+   "path": "results/vo/euroc_mav/MH_01_easy/cuvslam/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_01_easy__cuvslam/run10003.json",
+    "sha256": "f6ed83fc5d023e6dbb3137475b7fd6802ca05b3e648d30e6f7e9dc8cf991eb04"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_01_easy/dsol",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/euroc_mav/MH_01_easy/dsol/default/r1",
+   "path": "results/vo/euroc_mav/MH_01_easy/dsol/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_01_easy__dsol/run10001.json",
+    "sha256": "13a6c453e5f402c331784d87e5cf66b19d430bb3dae04c28c79b399654a3f6d5"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_01_easy/dsol",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/euroc_mav/MH_01_easy/dsol/default/r2",
+   "path": "results/vo/euroc_mav/MH_01_easy/dsol/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_01_easy__dsol/run10002.json",
+    "sha256": "565ad5d4f65f0dd5779e48c28f738f65be1777a7339de48bf730d7f19b45310d"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_01_easy/dsol",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/euroc_mav/MH_01_easy/dsol/default/r3",
+   "path": "results/vo/euroc_mav/MH_01_easy/dsol/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_01_easy__dsol/run10003.json",
+    "sha256": "209ff809c3db7647077017b66d833107ba05555d86464820c0c9b22e7cd78d11"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_01_easy/orbslam3",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/euroc_mav/MH_01_easy/orbslam3/default/r1",
+   "path": "results/vo/euroc_mav/MH_01_easy/orbslam3/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_01_easy__orbslam3/run10001.json",
+    "sha256": "79a77d0e0a35aaa4e81b1db5ddc8cc38d666ac748e7bff44792d853f9bd687e8"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_01_easy/orbslam3",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/euroc_mav/MH_01_easy/orbslam3/default/r2",
+   "path": "results/vo/euroc_mav/MH_01_easy/orbslam3/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_01_easy__orbslam3/run10002.json",
+    "sha256": "07d61768c36000a0c12b1edbdedb5d8f6e850b7952d8f1fd50257ec552f9c6ae"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_01_easy/orbslam3",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/euroc_mav/MH_01_easy/orbslam3/default/r3",
+   "path": "results/vo/euroc_mav/MH_01_easy/orbslam3/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_01_easy__orbslam3/run10003.json",
+    "sha256": "d46f5f41eb39fe1903c902e9524ac1923fd0ccd94c14bd2759e9c8b44fda21ce"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_01_easy/svo_pro",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/euroc_mav/MH_01_easy/svo_pro/default/r1",
+   "path": "results/vo/euroc_mav/MH_01_easy/svo_pro/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_01_easy__svo_pro/run10001.json",
+    "sha256": "737d23e9297b9407c235ae353f428cc7b0f925f25f35b0bd2cae420363078ee9"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_01_easy/svo_pro",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/euroc_mav/MH_01_easy/svo_pro/default/r2",
+   "path": "results/vo/euroc_mav/MH_01_easy/svo_pro/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_01_easy__svo_pro/run10002.json",
+    "sha256": "9b90da1d8abc07539b36b6dc8ac9f8bd1197aa2e99847b681e67c7dfab1580af"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_01_easy/svo_pro",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/euroc_mav/MH_01_easy/svo_pro/default/r3",
+   "path": "results/vo/euroc_mav/MH_01_easy/svo_pro/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_01_easy__svo_pro/run10003.json",
+    "sha256": "c63eed5686522cc64e2fe3d80691755f241288c5ed5136ca5f5dee27437cacc1"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_03_medium/cuvslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/euroc_mav/MH_03_medium/cuvslam/default/r1",
+   "path": "results/vo/euroc_mav/MH_03_medium/cuvslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_03_medium__cuvslam/run10001.json",
+    "sha256": "a0a1d2625240ee8e041c8f0e76fde7680675afdbdad26dfe8f1972e3fa88f676"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_03_medium/cuvslam",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/euroc_mav/MH_03_medium/cuvslam/default/r2",
+   "path": "results/vo/euroc_mav/MH_03_medium/cuvslam/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_03_medium__cuvslam/run10002.json",
+    "sha256": "ca8e217fbc07d52a9e95fac79a681e6050e12b46d038be0bcf5c9c5085f03b5f"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_03_medium/cuvslam",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/euroc_mav/MH_03_medium/cuvslam/default/r3",
+   "path": "results/vo/euroc_mav/MH_03_medium/cuvslam/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_03_medium__cuvslam/run10003.json",
+    "sha256": "6b009cf4d43b2be40f878a64875c903627505ab48ad2ab15a7f9cd12770854d4"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_03_medium/dsol",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/euroc_mav/MH_03_medium/dsol/default/r1",
+   "path": "results/vo/euroc_mav/MH_03_medium/dsol/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_03_medium__dsol/run10001.json",
+    "sha256": "3846d611e4ec30ebf8776ac1794e48fdb0f3540f6b92722f0b3111d897e17a50"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_03_medium/dsol",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/euroc_mav/MH_03_medium/dsol/default/r2",
+   "path": "results/vo/euroc_mav/MH_03_medium/dsol/run10002",
+   "runner_exit_code": 1,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_03_medium__dsol/run10002.json",
+    "sha256": "724894f0c6913381b569f3fde63389cfbf8c30e15539d401754558dd63296e22"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_03_medium/dsol",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/euroc_mav/MH_03_medium/dsol/default/r3",
+   "path": "results/vo/euroc_mav/MH_03_medium/dsol/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_03_medium__dsol/run10003.json",
+    "sha256": "51d6b51bccf10296fbfbeafdccdef852f565230b4cdea9ed28313a9d8d3172a6"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_03_medium/orbslam3",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/euroc_mav/MH_03_medium/orbslam3/default/r1",
+   "path": "results/vo/euroc_mav/MH_03_medium/orbslam3/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_03_medium__orbslam3/run10001.json",
+    "sha256": "fd2cdd38735ca394b3fc9f2dae24bfab58bb3ae60c877b2dfd49b9b0f5c3e77a"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_03_medium/orbslam3",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/euroc_mav/MH_03_medium/orbslam3/default/r2",
+   "path": "results/vo/euroc_mav/MH_03_medium/orbslam3/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_03_medium__orbslam3/run10002.json",
+    "sha256": "37ca11db21e79b3a14e8776454ce45f7696fa0d984f1c113a94fee60ed3bf68d"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_03_medium/orbslam3",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/euroc_mav/MH_03_medium/orbslam3/default/r3",
+   "path": "results/vo/euroc_mav/MH_03_medium/orbslam3/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_03_medium__orbslam3/run10003.json",
+    "sha256": "977e78ba9cefa9bf0ecf721e8d52376d8c1b07523ff210832c77f1c92c0437cb"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_03_medium/svo_pro",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/euroc_mav/MH_03_medium/svo_pro/default/r1",
+   "path": "results/vo/euroc_mav/MH_03_medium/svo_pro/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_03_medium__svo_pro/run10001.json",
+    "sha256": "db0b1bbf85de295adc664df39ecbf329b9cb35b7845efbd2eada02fcb18a2ccd"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_03_medium/svo_pro",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/euroc_mav/MH_03_medium/svo_pro/default/r2",
+   "path": "results/vo/euroc_mav/MH_03_medium/svo_pro/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_03_medium__svo_pro/run10002.json",
+    "sha256": "f108ebba0e9b73b7aafb34107cb5141694c12aebae99c47e35a00c143a09cda7"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_03_medium/svo_pro",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/euroc_mav/MH_03_medium/svo_pro/default/r3",
+   "path": "results/vo/euroc_mav/MH_03_medium/svo_pro/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_03_medium__svo_pro/run10003.json",
+    "sha256": "78ed6809bdbb613eea722f532bc27f21214b680913a87cbc5f48360001444d21"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_05_difficult/cuvslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/euroc_mav/MH_05_difficult/cuvslam/default/r1",
+   "path": "results/vo/euroc_mav/MH_05_difficult/cuvslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_05_difficult__cuvslam/run10001.json",
+    "sha256": "835736419b51cad76ccd9f1a73db3ca6af4944ac490d134087c287a271be330d"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_05_difficult/cuvslam",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/euroc_mav/MH_05_difficult/cuvslam/default/r2",
+   "path": "results/vo/euroc_mav/MH_05_difficult/cuvslam/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_05_difficult__cuvslam/run10002.json",
+    "sha256": "355d039d579a6920d43949e12f86e8475a009d88d1111a31a24470705e0f6e75"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_05_difficult/cuvslam",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/euroc_mav/MH_05_difficult/cuvslam/default/r3",
+   "path": "results/vo/euroc_mav/MH_05_difficult/cuvslam/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_05_difficult__cuvslam/run10003.json",
+    "sha256": "4c93edb6f662cc37fc20862cf1a546a13ed3f830dcd8ac8a47cb1c1ba64bb438"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_05_difficult/dsol",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/euroc_mav/MH_05_difficult/dsol/default/r1",
+   "path": "results/vo/euroc_mav/MH_05_difficult/dsol/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_05_difficult__dsol/run10001.json",
+    "sha256": "e6dc51c7f3391aecec5fe6c5006a6fe30555a348edd570a1f06573768fcdfee7"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_05_difficult/dsol",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/euroc_mav/MH_05_difficult/dsol/default/r2",
+   "path": "results/vo/euroc_mav/MH_05_difficult/dsol/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_05_difficult__dsol/run10002.json",
+    "sha256": "42b2564739563dd669d6d519eadddd552a6384cfe959c0a0480f2629a0d71d6c"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_05_difficult/dsol",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/euroc_mav/MH_05_difficult/dsol/default/r3",
+   "path": "results/vo/euroc_mav/MH_05_difficult/dsol/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_05_difficult__dsol/run10003.json",
+    "sha256": "8be26f9e17936f7c909f1b02dd587cb3eb76a29eb60b4a222efaadce9dd455c9"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_05_difficult/orbslam3",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/euroc_mav/MH_05_difficult/orbslam3/default/r1",
+   "path": "results/vo/euroc_mav/MH_05_difficult/orbslam3/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_05_difficult__orbslam3/run10001.json",
+    "sha256": "ed2801f002911a171d9850c7ad017c14ef6b0d0a14e6efbd454e533b61db3571"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_05_difficult/orbslam3",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/euroc_mav/MH_05_difficult/orbslam3/default/r2",
+   "path": "results/vo/euroc_mav/MH_05_difficult/orbslam3/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_05_difficult__orbslam3/run10002.json",
+    "sha256": "e05f9568c087ca52f0454abb423658993b058188fa2afef5fc066e049288dd91"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_05_difficult/orbslam3",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/euroc_mav/MH_05_difficult/orbslam3/default/r3",
+   "path": "results/vo/euroc_mav/MH_05_difficult/orbslam3/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_05_difficult__orbslam3/run10003.json",
+    "sha256": "f0d3c715f962beadcbebfbf2d4b26d1daeae822884c9c24869eb607dd0faca59"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_05_difficult/svo_pro",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/euroc_mav/MH_05_difficult/svo_pro/default/r1",
+   "path": "results/vo/euroc_mav/MH_05_difficult/svo_pro/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_05_difficult__svo_pro/run10001.json",
+    "sha256": "33a510243a9ed041f11787d320f740f8b388c350ec484bbfb1e9b8ee7a97dd51"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_05_difficult/svo_pro",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/euroc_mav/MH_05_difficult/svo_pro/default/r2",
+   "path": "results/vo/euroc_mav/MH_05_difficult/svo_pro/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_05_difficult__svo_pro/run10002.json",
+    "sha256": "1a84bd888591fa23937db0c9fa5a6c8c7732f01d767303a726180f8967f752da"
+   }
+  },
+  {
+   "cell": "vo/euroc_mav/MH_05_difficult/svo_pro",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/euroc_mav/MH_05_difficult/svo_pro/default/r3",
+   "path": "results/vo/euroc_mav/MH_05_difficult/svo_pro/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__euroc_mav__MH_05_difficult__svo_pro/run10003.json",
+    "sha256": "e40f565591c7ce00cf275728331f7ae3924427692f49c68e9fd40fcedd2d3a64"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence1/cuvslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/rosariov2/sequence1/cuvslam/default/r1",
+   "path": "results/vo/rosariov2/sequence1/cuvslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence1__cuvslam/run10001.json",
+    "sha256": "2dd572f1991fd52afc11395951463a4bca8961e7144d401e0b4d3f062d4b2f24"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence1/cuvslam",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/rosariov2/sequence1/cuvslam/default/r2",
+   "path": "results/vo/rosariov2/sequence1/cuvslam/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence1__cuvslam/run10002.json",
+    "sha256": "2f87d7632d29cd240c5c6c9f2858a9559a6fcc46aec6443a4b9785bbb5e50045"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence1/cuvslam",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/rosariov2/sequence1/cuvslam/default/r3",
+   "path": "results/vo/rosariov2/sequence1/cuvslam/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence1__cuvslam/run10003.json",
+    "sha256": "f84e89fba8999ff081e3cfdf0d5c700bb1ed0d13a744080521a924f30ae5c855"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence1/dsol",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/rosariov2/sequence1/dsol/default/r1",
+   "path": "results/vo/rosariov2/sequence1/dsol/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence1__dsol/run10001.json",
+    "sha256": "dda0d022b28b5ac0c680493cf7552294560010be95bd848cc0169e87fa1d2b41"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence1/dsol",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/rosariov2/sequence1/dsol/default/r2",
+   "path": "results/vo/rosariov2/sequence1/dsol/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence1__dsol/run10002.json",
+    "sha256": "f3dd96d638cf368a0e2dae5153618362db8592da5c0c367078c41f0d13ca0a9b"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence1/dsol",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/rosariov2/sequence1/dsol/default/r3",
+   "path": "results/vo/rosariov2/sequence1/dsol/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence1__dsol/run10003.json",
+    "sha256": "3ae738275c7d23358f36afc5ffc20dd669e8fbac0819bd6d6e2a8baacc06784e"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence1/orbslam3",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/rosariov2/sequence1/orbslam3/default/r1",
+   "path": "results/vo/rosariov2/sequence1/orbslam3/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence1__orbslam3/run10001.json",
+    "sha256": "7ed6ef6c7223d0a99e4df6caef3e0c15048977caa0ce63678d27ccfab688ccb2"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence1/orbslam3",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/rosariov2/sequence1/orbslam3/default/r2",
+   "path": "results/vo/rosariov2/sequence1/orbslam3/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence1__orbslam3/run10002.json",
+    "sha256": "8f03521441d06492d81a6c6c9f6339d15306b6538ab8b5162ee62d8384563808"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence1/orbslam3",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/rosariov2/sequence1/orbslam3/default/r3",
+   "path": "results/vo/rosariov2/sequence1/orbslam3/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence1__orbslam3/run10003.json",
+    "sha256": "bb56764037113e376be1f0d141bd953bfacb9d7c336ee1aaa4b5c9465e6cdb3a"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence1/svo_pro",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/rosariov2/sequence1/svo_pro/default/r1",
+   "path": "results/vo/rosariov2/sequence1/svo_pro/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence1__svo_pro/run10001.json",
+    "sha256": "ae88b1a08a1aa5ec38c971bdab45d792735d7a1276b73ebe1b6cf7d35e3ca57a"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence1/svo_pro",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/rosariov2/sequence1/svo_pro/default/r2",
+   "path": "results/vo/rosariov2/sequence1/svo_pro/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence1__svo_pro/run10002.json",
+    "sha256": "aaf429d402f580a20047c7617f4b0da187448251f3b5bdc8d4900c6cbbb51dc2"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence1/svo_pro",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/rosariov2/sequence1/svo_pro/default/r3",
+   "path": "results/vo/rosariov2/sequence1/svo_pro/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence1__svo_pro/run10003.json",
+    "sha256": "65a12a7985bc386282bfef27b788f47042371a22119465cdcd909fe6fc789b75"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence5/cuvslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/rosariov2/sequence5/cuvslam/default/r1",
+   "path": "results/vo/rosariov2/sequence5/cuvslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence5__cuvslam/run10001.json",
+    "sha256": "03cbc547b60b37290c1f4fd17a480efea141f2d0fc666aef630845e426ee1637"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence5/cuvslam",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/rosariov2/sequence5/cuvslam/default/r2",
+   "path": "results/vo/rosariov2/sequence5/cuvslam/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence5__cuvslam/run10002.json",
+    "sha256": "ea37350b895577a9fbdc38bb04da9544ee1b64f4de4379a2a402da8492e9472a"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence5/cuvslam",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/rosariov2/sequence5/cuvslam/default/r3",
+   "path": "results/vo/rosariov2/sequence5/cuvslam/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence5__cuvslam/run10003.json",
+    "sha256": "779577be90faf85b72d8a5eaac620cb3c0617b6d4a438e221b82a3ba5072e3f9"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence5/dsol",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/rosariov2/sequence5/dsol/default/r1",
+   "path": "results/vo/rosariov2/sequence5/dsol/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence5__dsol/run10001.json",
+    "sha256": "cc8278c932d26e4042847167c654b98d1f628bfc0a60dbaeebc5a3d764778439"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence5/dsol",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/rosariov2/sequence5/dsol/default/r2",
+   "path": "results/vo/rosariov2/sequence5/dsol/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence5__dsol/run10002.json",
+    "sha256": "72a48b804e1f85c747405fb3e72898b00808467069bb03cf4dce2026b5268312"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence5/dsol",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/rosariov2/sequence5/dsol/default/r3",
+   "path": "results/vo/rosariov2/sequence5/dsol/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence5__dsol/run10003.json",
+    "sha256": "216cadae127d6a443c457c64175c291c01fb88cb5c93612d698a76fb7dc809d4"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence5/orbslam3",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/rosariov2/sequence5/orbslam3/default/r2",
+   "path": "results/vo/rosariov2/sequence5/orbslam3/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence5__orbslam3/run10002.json",
+    "sha256": "c1d2848e01c15a27d0c8e5205567d31022e233ff81f71305fc2e82d9b45acf6e"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence5/orbslam3",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/rosariov2/sequence5/orbslam3/default/r3",
+   "path": "results/vo/rosariov2/sequence5/orbslam3/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence5__orbslam3/run10003.json",
+    "sha256": "981bae1e2c9eeaa9e2fd044264f5bb2ea5a32dd25e24d7dd0efdc63632aa48c9"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence5/svo_pro",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/rosariov2/sequence5/svo_pro/default/r1",
+   "path": "results/vo/rosariov2/sequence5/svo_pro/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence5__svo_pro/run10001.json",
+    "sha256": "ec73a4d97dcd7c19ecabc6a205484f5c2471ebfae017ced0c16d6c3870815e41"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence5/svo_pro",
+   "repetition": 2,
+   "physical_run_id": 10002,
+   "action_id": "vo/rosariov2/sequence5/svo_pro/default/r2",
+   "path": "results/vo/rosariov2/sequence5/svo_pro/run10002",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence5__svo_pro/run10002.json",
+    "sha256": "48f52a97f1a3fefa7b029d1b1e04dd560f071e716bff4462b45e3ad5f6673ed7"
+   }
+  },
+  {
+   "cell": "vo/rosariov2/sequence5/svo_pro",
+   "repetition": 3,
+   "physical_run_id": 10003,
+   "action_id": "vo/rosariov2/sequence5/svo_pro/default/r3",
+   "path": "results/vo/rosariov2/sequence5/svo_pro/run10003",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__rosariov2__sequence5__svo_pro/run10003.json",
+    "sha256": "056e2c54ff002e0fd14fd9e9e4b9995a466165506ef0b3d32fd667b8d18340cf"
+   }
+  },
+  {
+   "cell": "vo/zed2i/field1_110426_full_10fps_q90/cuvslam",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/zed2i/field1_110426_full_10fps_q90/cuvslam/default/r1",
+   "path": "results/vo/zed2i/field1_110426_full_10fps_q90/cuvslam/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__zed2i__field1_110426_full_10fps_q90__cuvslam/run10001.json",
+    "sha256": "302acc56228b0d43116255cabb8cdc3b4f757e3360d3a498aba299f03d82e1b0"
+   }
+  },
+  {
+   "cell": "vo/zed2i/field1_110426_full_10fps_q90/svo_pro",
+   "repetition": 1,
+   "physical_run_id": 10001,
+   "action_id": "vo/zed2i/field1_110426_full_10fps_q90/svo_pro/default/r1",
+   "path": "results/vo/zed2i/field1_110426_full_10fps_q90/svo_pro/run10001",
+   "runner_exit_code": 0,
+   "attempt_state": {
+    "path": "results/.attempt-state/vo__zed2i__field1_110426_full_10fps_q90__svo_pro/run10001.json",
+    "sha256": "292676764bb3ccfa39721dfb1f6bbe7732031b2683afb3c939f9756d85e882e1"
+   }
+  }
+ ],
+ "excluded": [
+  {
+   "action_id": "vo/rosariov2/sequence5/orbslam3/default/r1",
+   "status": "running",
+   "path": "results/vo/rosariov2/sequence5/orbslam3/run10001",
+   "reason": "interrupted by the unclean host restart at 2026-10-04 16:21:45 (no run_meta, no trajectory); not an estimator outcome; the repetition is planned again"
+  },
+  {
+   "action_id": "vo/citrusfarm/seq07/dpvo/default/r1",
+   "status": "finished",
+   "path": "results/vo/citrusfarm/seq07/dpvo/run10001",
+   "reason": "overflowed the configured BUFFER_SIZE 8192 after 282 s and hung (stopped 22:43); a capacity setting, raised to 16384 in 50ee4ed, not an estimator outcome; the repetition is planned again"
+  }
+ ]
+}

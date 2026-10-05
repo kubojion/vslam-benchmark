@@ -299,7 +299,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 988.617963552475,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -503,7 +503,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 712.3380773067474,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -695,7 +695,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 671.7727553844452,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -914,7 +914,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 225.43545579910278,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -1184,7 +1184,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 135.93969678878784,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -1435,7 +1435,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 784.5139739513397,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -1447,12 +1447,12 @@
       "historical_cohort_preserved": true,
       "evidence": [
         {
-          "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_meta.json",
-          "sha256": "d3b13a6050e86a437da816786372dad6d52e70ce6dfe42f8aa8a440f9efd7d3f"
+          "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_meta.json",
+          "sha256": "9e703777def08274bebfcc5d4ec129dc3a890cd1eba928fcdf735cce5c6166ca"
         },
         {
-          "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_log.txt",
-          "sha256": "cb5f38c1e143e2797b9ce624758172e599e19c14001a0d01b442a6132351016b"
+          "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_log.txt",
+          "sha256": "5a7b6a4adc3a8ccadc5d58a65475a959159b136ab02e96c723ba7f2493f37aab"
         },
         {
           "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -1496,22 +1496,22 @@
         {
           "role": "runner_with_embedded_parameters",
           "path": "scripts/run/run_dpvo.sh",
-          "sha256": "d589c568416231ad9476ef8ab2b9acdf87d93996e1f3f7bff5f8a0ce785b7b2e"
+          "sha256": "7d5b18a7e2ba228817eb5bca3e060bf354e5f3c9f09ff9f88878e6b041e9d9c4"
         },
         {
-          "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_eval.json",
-          "sha256": "23f0a4303a6ea07f99d3d1be4a35ba1a74a68f04a8b23bd0a0f9de10551ed1da"
+          "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_eval.json",
+          "sha256": "8c8fee7efbfc911d62db16560492d5392d78c2c3ca9eacbcd35c4fa1723aecd8"
         },
         {
-          "path": "results/vo/citrusfarm/seq04/dpvo/run90002/trajectory.txt",
-          "sha256": "891931393a6ce83cc082e2508b7d2c1ff7e2b6e02aa62963ff75d5f4cdcbd484"
+          "path": "results/vo/citrusfarm/seq07/dpvo/run90001/trajectory.txt",
+          "sha256": "eeabbf281accfd5f1a74f1be3cdf497112973400df7a33d6e35f683ab3b19234"
         },
         {
-          "path": "results/vo/citrusfarm/seq04/dpvo/run90002/provenance/camera_calibration--citrusfarm.txt",
+          "path": "results/vo/citrusfarm/seq07/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
           "sha256": "75e15adec42a73ad7a67a2bc3ec837eb4dbb87f75ef48acd66ace8f097530c0d"
         },
         {
-          "path": "results/vo/citrusfarm/seq04/dpvo/run90002/provenance/algorithm_config--default.yaml",
+          "path": "results/vo/citrusfarm/seq07/dpvo/run90001/provenance/algorithm_config--default.yaml",
           "sha256": "0351abfbc60d9ec93bf402857130497b2f063f8ce0e8fd6e87cc55c73273594a"
         }
       ],
@@ -1520,12 +1520,12 @@
           "prerequisite": "resolve_within_cell_configuration_mismatch",
           "evidence": [
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_meta.json",
-              "sha256": "d3b13a6050e86a437da816786372dad6d52e70ce6dfe42f8aa8a440f9efd7d3f"
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_meta.json",
+              "sha256": "9e703777def08274bebfcc5d4ec129dc3a890cd1eba928fcdf735cce5c6166ca"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_log.txt",
-              "sha256": "cb5f38c1e143e2797b9ce624758172e599e19c14001a0d01b442a6132351016b"
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_log.txt",
+              "sha256": "5a7b6a4adc3a8ccadc5d58a65475a959159b136ab02e96c723ba7f2493f37aab"
             },
             {
               "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -1569,22 +1569,22 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_dpvo.sh",
-              "sha256": "d589c568416231ad9476ef8ab2b9acdf87d93996e1f3f7bff5f8a0ce785b7b2e"
+              "sha256": "7d5b18a7e2ba228817eb5bca3e060bf354e5f3c9f09ff9f88878e6b041e9d9c4"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_eval.json",
-              "sha256": "23f0a4303a6ea07f99d3d1be4a35ba1a74a68f04a8b23bd0a0f9de10551ed1da"
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_eval.json",
+              "sha256": "8c8fee7efbfc911d62db16560492d5392d78c2c3ca9eacbcd35c4fa1723aecd8"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/trajectory.txt",
-              "sha256": "891931393a6ce83cc082e2508b7d2c1ff7e2b6e02aa62963ff75d5f4cdcbd484"
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/trajectory.txt",
+              "sha256": "eeabbf281accfd5f1a74f1be3cdf497112973400df7a33d6e35f683ab3b19234"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/provenance/camera_calibration--citrusfarm.txt",
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
               "sha256": "75e15adec42a73ad7a67a2bc3ec837eb4dbb87f75ef48acd66ace8f097530c0d"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/provenance/algorithm_config--default.yaml",
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/provenance/algorithm_config--default.yaml",
               "sha256": "0351abfbc60d9ec93bf402857130497b2f063f8ce0e8fd6e87cc55c73273594a"
             }
           ]
@@ -1593,12 +1593,12 @@
           "prerequisite": "resolve_recorded_source_binary_parameter_or_hardware_cohort_difference",
           "evidence": [
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_meta.json",
-              "sha256": "d3b13a6050e86a437da816786372dad6d52e70ce6dfe42f8aa8a440f9efd7d3f"
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_meta.json",
+              "sha256": "9e703777def08274bebfcc5d4ec129dc3a890cd1eba928fcdf735cce5c6166ca"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_log.txt",
-              "sha256": "cb5f38c1e143e2797b9ce624758172e599e19c14001a0d01b442a6132351016b"
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_log.txt",
+              "sha256": "5a7b6a4adc3a8ccadc5d58a65475a959159b136ab02e96c723ba7f2493f37aab"
             },
             {
               "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -1642,34 +1642,34 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_dpvo.sh",
-              "sha256": "d589c568416231ad9476ef8ab2b9acdf87d93996e1f3f7bff5f8a0ce785b7b2e"
+              "sha256": "7d5b18a7e2ba228817eb5bca3e060bf354e5f3c9f09ff9f88878e6b041e9d9c4"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_eval.json",
-              "sha256": "23f0a4303a6ea07f99d3d1be4a35ba1a74a68f04a8b23bd0a0f9de10551ed1da"
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_eval.json",
+              "sha256": "8c8fee7efbfc911d62db16560492d5392d78c2c3ca9eacbcd35c4fa1723aecd8"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/trajectory.txt",
-              "sha256": "891931393a6ce83cc082e2508b7d2c1ff7e2b6e02aa62963ff75d5f4cdcbd484"
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/trajectory.txt",
+              "sha256": "eeabbf281accfd5f1a74f1be3cdf497112973400df7a33d6e35f683ab3b19234"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/provenance/camera_calibration--citrusfarm.txt",
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
               "sha256": "75e15adec42a73ad7a67a2bc3ec837eb4dbb87f75ef48acd66ace8f097530c0d"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/provenance/algorithm_config--default.yaml",
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/provenance/algorithm_config--default.yaml",
               "sha256": "0351abfbc60d9ec93bf402857130497b2f063f8ce0e8fd6e87cc55c73273594a"
             }
           ]
         }
       ],
       "blockers": [],
-      "diagnostic_attempt": "results/vo/citrusfarm/seq04/dpvo/run90002",
-      "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
+      "diagnostic_attempt": "results/vo/citrusfarm/seq07/dpvo/run90001",
+      "diagnostic_scope": "whole seq07 (1014 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
-        "estimate_s": 260.8149321079254,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "estimate_s": 268.7899893421158,
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -1903,7 +1903,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 1475.4277250766754,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -2134,7 +2134,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 30.88118028640747,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -2431,7 +2431,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 228.08943343162537,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -2701,7 +2701,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": null,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -2999,8 +2999,8 @@
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
-        "estimate_s": 1303.587275737594,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "estimate_s": 1303.5872757375937,
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -3204,7 +3204,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 939.2858392575317,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -3396,7 +3396,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 885.7965851233126,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -3615,7 +3615,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 297.2581952929652,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -3885,7 +3885,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 179.24948315192572,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -4136,7 +4136,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 1034.456657459894,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -4148,12 +4148,12 @@
       "historical_cohort_preserved": true,
       "evidence": [
         {
-          "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_meta.json",
-          "sha256": "d3b13a6050e86a437da816786372dad6d52e70ce6dfe42f8aa8a440f9efd7d3f"
+          "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_meta.json",
+          "sha256": "9e703777def08274bebfcc5d4ec129dc3a890cd1eba928fcdf735cce5c6166ca"
         },
         {
-          "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_log.txt",
-          "sha256": "cb5f38c1e143e2797b9ce624758172e599e19c14001a0d01b442a6132351016b"
+          "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_log.txt",
+          "sha256": "5a7b6a4adc3a8ccadc5d58a65475a959159b136ab02e96c723ba7f2493f37aab"
         },
         {
           "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -4197,22 +4197,22 @@
         {
           "role": "runner_with_embedded_parameters",
           "path": "scripts/run/run_dpvo.sh",
-          "sha256": "d589c568416231ad9476ef8ab2b9acdf87d93996e1f3f7bff5f8a0ce785b7b2e"
+          "sha256": "7d5b18a7e2ba228817eb5bca3e060bf354e5f3c9f09ff9f88878e6b041e9d9c4"
         },
         {
-          "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_eval.json",
-          "sha256": "23f0a4303a6ea07f99d3d1be4a35ba1a74a68f04a8b23bd0a0f9de10551ed1da"
+          "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_eval.json",
+          "sha256": "8c8fee7efbfc911d62db16560492d5392d78c2c3ca9eacbcd35c4fa1723aecd8"
         },
         {
-          "path": "results/vo/citrusfarm/seq04/dpvo/run90002/trajectory.txt",
-          "sha256": "891931393a6ce83cc082e2508b7d2c1ff7e2b6e02aa62963ff75d5f4cdcbd484"
+          "path": "results/vo/citrusfarm/seq07/dpvo/run90001/trajectory.txt",
+          "sha256": "eeabbf281accfd5f1a74f1be3cdf497112973400df7a33d6e35f683ab3b19234"
         },
         {
-          "path": "results/vo/citrusfarm/seq04/dpvo/run90002/provenance/camera_calibration--citrusfarm.txt",
+          "path": "results/vo/citrusfarm/seq07/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
           "sha256": "75e15adec42a73ad7a67a2bc3ec837eb4dbb87f75ef48acd66ace8f097530c0d"
         },
         {
-          "path": "results/vo/citrusfarm/seq04/dpvo/run90002/provenance/algorithm_config--default.yaml",
+          "path": "results/vo/citrusfarm/seq07/dpvo/run90001/provenance/algorithm_config--default.yaml",
           "sha256": "0351abfbc60d9ec93bf402857130497b2f063f8ce0e8fd6e87cc55c73273594a"
         }
       ],
@@ -4221,12 +4221,12 @@
           "prerequisite": "resolve_within_cell_configuration_mismatch",
           "evidence": [
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_meta.json",
-              "sha256": "d3b13a6050e86a437da816786372dad6d52e70ce6dfe42f8aa8a440f9efd7d3f"
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_meta.json",
+              "sha256": "9e703777def08274bebfcc5d4ec129dc3a890cd1eba928fcdf735cce5c6166ca"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_log.txt",
-              "sha256": "cb5f38c1e143e2797b9ce624758172e599e19c14001a0d01b442a6132351016b"
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_log.txt",
+              "sha256": "5a7b6a4adc3a8ccadc5d58a65475a959159b136ab02e96c723ba7f2493f37aab"
             },
             {
               "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -4270,22 +4270,22 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_dpvo.sh",
-              "sha256": "d589c568416231ad9476ef8ab2b9acdf87d93996e1f3f7bff5f8a0ce785b7b2e"
+              "sha256": "7d5b18a7e2ba228817eb5bca3e060bf354e5f3c9f09ff9f88878e6b041e9d9c4"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_eval.json",
-              "sha256": "23f0a4303a6ea07f99d3d1be4a35ba1a74a68f04a8b23bd0a0f9de10551ed1da"
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_eval.json",
+              "sha256": "8c8fee7efbfc911d62db16560492d5392d78c2c3ca9eacbcd35c4fa1723aecd8"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/trajectory.txt",
-              "sha256": "891931393a6ce83cc082e2508b7d2c1ff7e2b6e02aa62963ff75d5f4cdcbd484"
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/trajectory.txt",
+              "sha256": "eeabbf281accfd5f1a74f1be3cdf497112973400df7a33d6e35f683ab3b19234"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/provenance/camera_calibration--citrusfarm.txt",
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
               "sha256": "75e15adec42a73ad7a67a2bc3ec837eb4dbb87f75ef48acd66ace8f097530c0d"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/provenance/algorithm_config--default.yaml",
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/provenance/algorithm_config--default.yaml",
               "sha256": "0351abfbc60d9ec93bf402857130497b2f063f8ce0e8fd6e87cc55c73273594a"
             }
           ]
@@ -4294,12 +4294,12 @@
           "prerequisite": "resolve_recorded_source_binary_parameter_or_hardware_cohort_difference",
           "evidence": [
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_meta.json",
-              "sha256": "d3b13a6050e86a437da816786372dad6d52e70ce6dfe42f8aa8a440f9efd7d3f"
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_meta.json",
+              "sha256": "9e703777def08274bebfcc5d4ec129dc3a890cd1eba928fcdf735cce5c6166ca"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_log.txt",
-              "sha256": "cb5f38c1e143e2797b9ce624758172e599e19c14001a0d01b442a6132351016b"
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_log.txt",
+              "sha256": "5a7b6a4adc3a8ccadc5d58a65475a959159b136ab02e96c723ba7f2493f37aab"
             },
             {
               "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -4343,34 +4343,34 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_dpvo.sh",
-              "sha256": "d589c568416231ad9476ef8ab2b9acdf87d93996e1f3f7bff5f8a0ce785b7b2e"
+              "sha256": "7d5b18a7e2ba228817eb5bca3e060bf354e5f3c9f09ff9f88878e6b041e9d9c4"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/run_eval.json",
-              "sha256": "23f0a4303a6ea07f99d3d1be4a35ba1a74a68f04a8b23bd0a0f9de10551ed1da"
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/run_eval.json",
+              "sha256": "8c8fee7efbfc911d62db16560492d5392d78c2c3ca9eacbcd35c4fa1723aecd8"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/trajectory.txt",
-              "sha256": "891931393a6ce83cc082e2508b7d2c1ff7e2b6e02aa62963ff75d5f4cdcbd484"
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/trajectory.txt",
+              "sha256": "eeabbf281accfd5f1a74f1be3cdf497112973400df7a33d6e35f683ab3b19234"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/provenance/camera_calibration--citrusfarm.txt",
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
               "sha256": "75e15adec42a73ad7a67a2bc3ec837eb4dbb87f75ef48acd66ace8f097530c0d"
             },
             {
-              "path": "results/vo/citrusfarm/seq04/dpvo/run90002/provenance/algorithm_config--default.yaml",
+              "path": "results/vo/citrusfarm/seq07/dpvo/run90001/provenance/algorithm_config--default.yaml",
               "sha256": "0351abfbc60d9ec93bf402857130497b2f063f8ce0e8fd6e87cc55c73273594a"
             }
           ]
         }
       ],
       "blockers": [],
-      "diagnostic_attempt": "results/vo/citrusfarm/seq04/dpvo/run90002",
-      "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
+      "diagnostic_attempt": "results/vo/citrusfarm/seq07/dpvo/run90001",
+      "diagnostic_scope": "whole seq07 (1014 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
-        "estimate_s": 343.90941632956617,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "estimate_s": 354.4252915382385,
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -4603,8 +4603,8 @@
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
-        "estimate_s": 1945.4924749385552,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "estimate_s": 1945.492474938555,
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -4835,7 +4835,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 40.71978778987929,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -5132,7 +5132,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 300.7577184651081,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -5402,7 +5402,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": null,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -5701,7 +5701,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 987.6468937397003,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -5905,7 +5905,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 1912.9696998596191,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -6097,7 +6097,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 2228.8449907302856,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -6343,7 +6343,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 990.9370105266571,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -6530,7 +6530,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": null,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -6542,12 +6542,12 @@
       "historical_cohort_preserved": true,
       "evidence": [
         {
-          "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_meta.json",
-          "sha256": "c062ef29b7f97ae04a3009b388b7dacedd89a6caa95dc4bbd126baf1b480e199"
+          "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_meta.json",
+          "sha256": "45c09835555ab95692679350baaba51b3846919139813e36b66228e916274480"
         },
         {
-          "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_log.txt",
-          "sha256": "7e33a47919faad923e77aab664afb51ecbc0d9be0f86aed929ee32953a39cc1a"
+          "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_log.txt",
+          "sha256": "11a336430b883b7766080368df610ba3730288ac542e72fb06ab131f8b28b5ff"
         },
         {
           "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -6591,22 +6591,22 @@
         {
           "role": "runner_with_embedded_parameters",
           "path": "scripts/run/run_dpvo.sh",
-          "sha256": "d589c568416231ad9476ef8ab2b9acdf87d93996e1f3f7bff5f8a0ce785b7b2e"
+          "sha256": "7d5b18a7e2ba228817eb5bca3e060bf354e5f3c9f09ff9f88878e6b041e9d9c4"
         },
         {
-          "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_eval.json",
-          "sha256": "256ecb4a4456e0ab961254942fd84ab2d929f424d089bdcfbf74bae0156ac634"
+          "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_eval.json",
+          "sha256": "d9bb610a9a51fafdc3e7bf5fe42a2d25aa1811892dc087fd73fc6d26a7a6ce1d"
         },
         {
-          "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/trajectory.txt",
-          "sha256": "ec26878fdd8fb5ffd31354e4195b96fa09f3743cfef7bee7c2181f00304b91dd"
+          "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/trajectory.txt",
+          "sha256": "17cebceb25bbbc2b86f4b2a1d710bb5b637f2f27d7d181b66f9ec29e11bd231a"
         },
         {
-          "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
+          "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
           "sha256": "75e15adec42a73ad7a67a2bc3ec837eb4dbb87f75ef48acd66ace8f097530c0d"
         },
         {
-          "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/provenance/algorithm_config--default.yaml",
+          "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/provenance/algorithm_config--default.yaml",
           "sha256": "0351abfbc60d9ec93bf402857130497b2f063f8ce0e8fd6e87cc55c73273594a"
         }
       ],
@@ -6615,12 +6615,12 @@
           "prerequisite": "resolve_within_cell_configuration_mismatch",
           "evidence": [
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_meta.json",
-              "sha256": "c062ef29b7f97ae04a3009b388b7dacedd89a6caa95dc4bbd126baf1b480e199"
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_meta.json",
+              "sha256": "45c09835555ab95692679350baaba51b3846919139813e36b66228e916274480"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_log.txt",
-              "sha256": "7e33a47919faad923e77aab664afb51ecbc0d9be0f86aed929ee32953a39cc1a"
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_log.txt",
+              "sha256": "11a336430b883b7766080368df610ba3730288ac542e72fb06ab131f8b28b5ff"
             },
             {
               "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -6664,22 +6664,22 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_dpvo.sh",
-              "sha256": "d589c568416231ad9476ef8ab2b9acdf87d93996e1f3f7bff5f8a0ce785b7b2e"
+              "sha256": "7d5b18a7e2ba228817eb5bca3e060bf354e5f3c9f09ff9f88878e6b041e9d9c4"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_eval.json",
-              "sha256": "256ecb4a4456e0ab961254942fd84ab2d929f424d089bdcfbf74bae0156ac634"
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_eval.json",
+              "sha256": "d9bb610a9a51fafdc3e7bf5fe42a2d25aa1811892dc087fd73fc6d26a7a6ce1d"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/trajectory.txt",
-              "sha256": "ec26878fdd8fb5ffd31354e4195b96fa09f3743cfef7bee7c2181f00304b91dd"
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/trajectory.txt",
+              "sha256": "17cebceb25bbbc2b86f4b2a1d710bb5b637f2f27d7d181b66f9ec29e11bd231a"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
               "sha256": "75e15adec42a73ad7a67a2bc3ec837eb4dbb87f75ef48acd66ace8f097530c0d"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/provenance/algorithm_config--default.yaml",
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/provenance/algorithm_config--default.yaml",
               "sha256": "0351abfbc60d9ec93bf402857130497b2f063f8ce0e8fd6e87cc55c73273594a"
             }
           ]
@@ -6688,12 +6688,12 @@
           "prerequisite": "resolve_recorded_source_binary_parameter_or_hardware_cohort_difference",
           "evidence": [
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_meta.json",
-              "sha256": "c062ef29b7f97ae04a3009b388b7dacedd89a6caa95dc4bbd126baf1b480e199"
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_meta.json",
+              "sha256": "45c09835555ab95692679350baaba51b3846919139813e36b66228e916274480"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_log.txt",
-              "sha256": "7e33a47919faad923e77aab664afb51ecbc0d9be0f86aed929ee32953a39cc1a"
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_log.txt",
+              "sha256": "11a336430b883b7766080368df610ba3730288ac542e72fb06ab131f8b28b5ff"
             },
             {
               "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -6737,34 +6737,34 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_dpvo.sh",
-              "sha256": "d589c568416231ad9476ef8ab2b9acdf87d93996e1f3f7bff5f8a0ce785b7b2e"
+              "sha256": "7d5b18a7e2ba228817eb5bca3e060bf354e5f3c9f09ff9f88878e6b041e9d9c4"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_eval.json",
-              "sha256": "256ecb4a4456e0ab961254942fd84ab2d929f424d089bdcfbf74bae0156ac634"
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_eval.json",
+              "sha256": "d9bb610a9a51fafdc3e7bf5fe42a2d25aa1811892dc087fd73fc6d26a7a6ce1d"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/trajectory.txt",
-              "sha256": "ec26878fdd8fb5ffd31354e4195b96fa09f3743cfef7bee7c2181f00304b91dd"
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/trajectory.txt",
+              "sha256": "17cebceb25bbbc2b86f4b2a1d710bb5b637f2f27d7d181b66f9ec29e11bd231a"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
               "sha256": "75e15adec42a73ad7a67a2bc3ec837eb4dbb87f75ef48acd66ace8f097530c0d"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/provenance/algorithm_config--default.yaml",
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/provenance/algorithm_config--default.yaml",
               "sha256": "0351abfbc60d9ec93bf402857130497b2f063f8ce0e8fd6e87cc55c73273594a"
             }
           ]
         }
       ],
       "blockers": [],
-      "diagnostic_attempt": "results/vo-lc/citrusfarm/seq04/dpvo/run90001",
-      "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
+      "diagnostic_attempt": "results/vo-lc/citrusfarm/seq07/dpvo/run90001",
+      "diagnostic_scope": "whole seq07 (1014 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
-        "estimate_s": 880.8276968002319,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "estimate_s": 961.3136667977188,
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -6995,7 +6995,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 53.36130738258362,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -7293,8 +7293,8 @@
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
-        "estimate_s": 1302.3068273758859,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "estimate_s": 1302.3068273758856,
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -7497,8 +7497,8 @@
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
-        "estimate_s": 2522.4333883714617,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "estimate_s": 2522.433388371461,
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -7689,8 +7689,8 @@
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
-        "estimate_s": 2938.9451503257606,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "estimate_s": 2938.94515032576,
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -7936,7 +7936,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 1306.6451608244868,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -8123,7 +8123,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": null,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -8135,12 +8135,12 @@
       "historical_cohort_preserved": true,
       "evidence": [
         {
-          "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_meta.json",
-          "sha256": "c062ef29b7f97ae04a3009b388b7dacedd89a6caa95dc4bbd126baf1b480e199"
+          "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_meta.json",
+          "sha256": "45c09835555ab95692679350baaba51b3846919139813e36b66228e916274480"
         },
         {
-          "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_log.txt",
-          "sha256": "7e33a47919faad923e77aab664afb51ecbc0d9be0f86aed929ee32953a39cc1a"
+          "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_log.txt",
+          "sha256": "11a336430b883b7766080368df610ba3730288ac542e72fb06ab131f8b28b5ff"
         },
         {
           "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -8184,22 +8184,22 @@
         {
           "role": "runner_with_embedded_parameters",
           "path": "scripts/run/run_dpvo.sh",
-          "sha256": "d589c568416231ad9476ef8ab2b9acdf87d93996e1f3f7bff5f8a0ce785b7b2e"
+          "sha256": "7d5b18a7e2ba228817eb5bca3e060bf354e5f3c9f09ff9f88878e6b041e9d9c4"
         },
         {
-          "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_eval.json",
-          "sha256": "256ecb4a4456e0ab961254942fd84ab2d929f424d089bdcfbf74bae0156ac634"
+          "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_eval.json",
+          "sha256": "d9bb610a9a51fafdc3e7bf5fe42a2d25aa1811892dc087fd73fc6d26a7a6ce1d"
         },
         {
-          "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/trajectory.txt",
-          "sha256": "ec26878fdd8fb5ffd31354e4195b96fa09f3743cfef7bee7c2181f00304b91dd"
+          "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/trajectory.txt",
+          "sha256": "17cebceb25bbbc2b86f4b2a1d710bb5b637f2f27d7d181b66f9ec29e11bd231a"
         },
         {
-          "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
+          "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
           "sha256": "75e15adec42a73ad7a67a2bc3ec837eb4dbb87f75ef48acd66ace8f097530c0d"
         },
         {
-          "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/provenance/algorithm_config--default.yaml",
+          "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/provenance/algorithm_config--default.yaml",
           "sha256": "0351abfbc60d9ec93bf402857130497b2f063f8ce0e8fd6e87cc55c73273594a"
         }
       ],
@@ -8208,12 +8208,12 @@
           "prerequisite": "resolve_within_cell_configuration_mismatch",
           "evidence": [
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_meta.json",
-              "sha256": "c062ef29b7f97ae04a3009b388b7dacedd89a6caa95dc4bbd126baf1b480e199"
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_meta.json",
+              "sha256": "45c09835555ab95692679350baaba51b3846919139813e36b66228e916274480"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_log.txt",
-              "sha256": "7e33a47919faad923e77aab664afb51ecbc0d9be0f86aed929ee32953a39cc1a"
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_log.txt",
+              "sha256": "11a336430b883b7766080368df610ba3730288ac542e72fb06ab131f8b28b5ff"
             },
             {
               "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -8257,22 +8257,22 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_dpvo.sh",
-              "sha256": "d589c568416231ad9476ef8ab2b9acdf87d93996e1f3f7bff5f8a0ce785b7b2e"
+              "sha256": "7d5b18a7e2ba228817eb5bca3e060bf354e5f3c9f09ff9f88878e6b041e9d9c4"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_eval.json",
-              "sha256": "256ecb4a4456e0ab961254942fd84ab2d929f424d089bdcfbf74bae0156ac634"
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_eval.json",
+              "sha256": "d9bb610a9a51fafdc3e7bf5fe42a2d25aa1811892dc087fd73fc6d26a7a6ce1d"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/trajectory.txt",
-              "sha256": "ec26878fdd8fb5ffd31354e4195b96fa09f3743cfef7bee7c2181f00304b91dd"
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/trajectory.txt",
+              "sha256": "17cebceb25bbbc2b86f4b2a1d710bb5b637f2f27d7d181b66f9ec29e11bd231a"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
               "sha256": "75e15adec42a73ad7a67a2bc3ec837eb4dbb87f75ef48acd66ace8f097530c0d"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/provenance/algorithm_config--default.yaml",
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/provenance/algorithm_config--default.yaml",
               "sha256": "0351abfbc60d9ec93bf402857130497b2f063f8ce0e8fd6e87cc55c73273594a"
             }
           ]
@@ -8281,12 +8281,12 @@
           "prerequisite": "resolve_recorded_source_binary_parameter_or_hardware_cohort_difference",
           "evidence": [
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_meta.json",
-              "sha256": "c062ef29b7f97ae04a3009b388b7dacedd89a6caa95dc4bbd126baf1b480e199"
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_meta.json",
+              "sha256": "45c09835555ab95692679350baaba51b3846919139813e36b66228e916274480"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_log.txt",
-              "sha256": "7e33a47919faad923e77aab664afb51ecbc0d9be0f86aed929ee32953a39cc1a"
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_log.txt",
+              "sha256": "11a336430b883b7766080368df610ba3730288ac542e72fb06ab131f8b28b5ff"
             },
             {
               "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
@@ -8330,34 +8330,34 @@
             {
               "role": "runner_with_embedded_parameters",
               "path": "scripts/run/run_dpvo.sh",
-              "sha256": "d589c568416231ad9476ef8ab2b9acdf87d93996e1f3f7bff5f8a0ce785b7b2e"
+              "sha256": "7d5b18a7e2ba228817eb5bca3e060bf354e5f3c9f09ff9f88878e6b041e9d9c4"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/run_eval.json",
-              "sha256": "256ecb4a4456e0ab961254942fd84ab2d929f424d089bdcfbf74bae0156ac634"
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/run_eval.json",
+              "sha256": "d9bb610a9a51fafdc3e7bf5fe42a2d25aa1811892dc087fd73fc6d26a7a6ce1d"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/trajectory.txt",
-              "sha256": "ec26878fdd8fb5ffd31354e4195b96fa09f3743cfef7bee7c2181f00304b91dd"
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/trajectory.txt",
+              "sha256": "17cebceb25bbbc2b86f4b2a1d710bb5b637f2f27d7d181b66f9ec29e11bd231a"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/provenance/camera_calibration--citrusfarm.txt",
               "sha256": "75e15adec42a73ad7a67a2bc3ec837eb4dbb87f75ef48acd66ace8f097530c0d"
             },
             {
-              "path": "results/vo-lc/citrusfarm/seq04/dpvo/run90001/provenance/algorithm_config--default.yaml",
+              "path": "results/vo-lc/citrusfarm/seq07/dpvo/run90001/provenance/algorithm_config--default.yaml",
               "sha256": "0351abfbc60d9ec93bf402857130497b2f063f8ce0e8fd6e87cc55c73273594a"
             }
           ]
         }
       ],
       "blockers": [],
-      "diagnostic_attempt": "results/vo-lc/citrusfarm/seq04/dpvo/run90001",
-      "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
+      "diagnostic_attempt": "results/vo-lc/citrusfarm/seq07/dpvo/run90001",
+      "diagnostic_scope": "whole seq07 (1014 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
-        "estimate_s": 1161.455506574038,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "estimate_s": 1267.5839507579803,
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -8588,7 +8588,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 70.3619839869178,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -8887,7 +8887,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 987.8894777297974,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -9091,7 +9091,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 738.0188689231873,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -9283,7 +9283,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 697.1394710540771,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -9502,7 +9502,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 269.530170917511,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -9811,7 +9811,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 137.66348552703857,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -10057,7 +10057,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 777.5756809711456,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -10388,7 +10388,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 780.8040096759796,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -10619,7 +10619,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 73.62552833557129,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -10916,7 +10916,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 342.36780548095703,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -11186,7 +11186,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 781.5736353397369,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -11485,7 +11485,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 1302.6266975526846,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -11689,7 +11689,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 973.1484175398074,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -11880,8 +11880,8 @@
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
-        "estimate_s": 919.2450242507598,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "estimate_s": 919.2450242507597,
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -12100,7 +12100,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 355.40129169097025,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -12409,7 +12409,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 181.52246336075046,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -12655,7 +12655,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 1025.307855012668,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -12986,7 +12986,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 1029.564714969367,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -13217,7 +13217,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 97.08229614079231,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -13514,7 +13514,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 451.44467458737375,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -13784,7 +13784,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 1030.5795399668314,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -14083,7 +14083,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 987.3217899799347,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -14287,7 +14287,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 1849.5780191421509,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -14479,7 +14479,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 2632.6537322998047,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -14725,7 +14725,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 1058.906788110733,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -14956,7 +14956,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 105.98459386825562,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -15253,7 +15253,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 358.69422698020935,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -15523,7 +15523,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 831.9952664375305,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -15822,7 +15822,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 1301.8781469956486,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -16026,7 +16026,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 2438.845398452719,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -16217,8 +16217,8 @@
       "diagnostic_scope": "whole seq04 (769 s); native exit 0; outcome ok",
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
-        "estimate_s": 3471.4055715890795,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "estimate_s": 3471.405571589079,
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -16464,7 +16464,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 1396.2698090302774,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -16695,7 +16695,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 139.75081688219922,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -16992,7 +16992,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 472.9726217918495,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     },
@@ -17262,7 +17262,7 @@
       "historical_failures_preserved": true,
       "planning_runtime_proxy": {
         "estimate_s": 1097.0652798018932,
-        "kind": "seq04 pilot wall time, scaled by duration for seq07",
+        "kind": "pilot wall time, scaled by sequence duration",
         "uncertainty": "single pilot; no interval"
       }
     }

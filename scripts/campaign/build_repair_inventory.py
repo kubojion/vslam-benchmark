@@ -69,16 +69,21 @@ def completed_zed_selections(repo):
     return selected
 
 
-BATCH_SELECTIONS=('configs/campaigns/zed-vio-n3-attempts-20261003.json',)
+BATCH_SELECTIONS=('configs/campaigns/zed-vio-n3-attempts-20261003.json','configs/campaigns/production-attempts-20261004.json')
+# Comparison group recorded on the cells each batch selection lists.
+BATCH_LABELS={'configs/campaigns/zed-vio-n3-attempts-20261003.json':'zed_vio_n3_20261003',
+              'configs/campaigns/production-attempts-20261004.json':'production_20261004'}
 TERMINAL=('evaluated','evaluated_failure_or_review','no_trajectory','evaluation_failed')
 
 
-def completed_batch_selections(repo, earlier):
+def completed_batch_selections(repo, earlier, labels=None):
     """Select the terminal attempts of a completed later batch, regardless of outcome.
 
     Every repetition listed for a cell is either an attempt of this batch (checked
-    against the frozen executed plan, the batch status and its attempt state) or the
-    same physical attempt an earlier verified selection already chose.
+    against the frozen executed plan, the batch status and its attempt state), the
+    same physical attempt an earlier verified selection already chose, or the cell's
+    default slot (physical id = repetition) when the batch did not run it. The batch
+    status is a batch driver's attempt list or a frozen run_future_manifest state.
     """
     selected={}
     for name in BATCH_SELECTIONS:
@@ -96,7 +101,14 @@ def completed_batch_selections(repo, earlier):
             return p
         manifest=read(checked(value['source_manifest']))
         status=read(checked(value['batch_status']))
-        finished={str(a.get('output','')).split('/results/',1)[-1]:a for a in status['attempts'] if a.get('status')=='finished'}
+        if 'attempts' in status:
+            finished={str(a.get('output','')).split('/results/',1)[-1]:a for a in status['attempts'] if a.get('status')=='finished'}
+        else:  # run_future_manifest state: per-action status, outputs from the executed plan
+            if status.get('manifest_sha256')!=value['source_manifest']['sha256']:
+                raise ValueError('executor state belongs to another plan revision')
+            outputs={a['id']:a['planned_output'] for a in manifest['actions']}
+            finished={outputs[i].removeprefix('results/'):a for i,a in status['actions'].items()
+                      if a.get('status') in ('evaluated','failure_or_review')}
         records={(r['cell'],r['repetition']):r for r in value['completed']}
         if len(records)!=len(value['completed']):raise ValueError('duplicate batch-selection record')
         for key,ids in value['cells'].items():
@@ -104,8 +116,8 @@ def completed_batch_selections(repo, earlier):
             for repetition,run_id in enumerate(ids,1):
                 record=records.pop((key,repetition),None)
                 if record is None:
-                    if earlier.get(key,[None]*3)[repetition-1]!=run_id:
-                        raise ValueError(f'{key} r{repetition}: neither in this batch nor previously selected')
+                    if earlier.get(key,[None]*3)[repetition-1]!=run_id and run_id!=repetition:
+                        raise ValueError(f'{key} r{repetition}: neither in this batch, previously selected nor the default slot')
                     continue
                 if record['physical_run_id']!=run_id or record['path']!=f'results/{key}/run{run_id}':
                     raise ValueError('batch record differs from its cell listing: '+key)
@@ -121,6 +133,7 @@ def completed_batch_selections(repo, earlier):
                 if state.get('status') not in TERMINAL:
                     raise ValueError('attempt is not terminal; do not select a live or interrupted capture')
             selected[key]=list(ids)
+            if labels is not None:labels[key]=BATCH_LABELS[name]
         if records:raise ValueError('batch records without a cell listing: '+', '.join(r['path'] for r in records.values()))
     return selected
 
@@ -379,7 +392,7 @@ def build(repo,stage):
     future,future_hash=load_manifest(repo/'configs/campaigns/quality-final.json')
     cells=[];members=set();selections=selected_attempts(repo);superseded=set()
     zed_selections=completed_zed_selections(repo);selections.update(zed_selections)
-    batch_selections=completed_batch_selections(repo,zed_selections);selections.update(batch_selections)
+    batch_labels={};batch_selections=completed_batch_selections(repo,zed_selections,batch_labels);selections.update(batch_selections)
     for cell in expand_cells(future):
         key=cell_key(cell);attempts=[]
         ids=selections.get(key,[1,2,3])
@@ -395,7 +408,7 @@ def build(repo,stage):
                 attempt['recorded_cohort_fingerprint']=attempt['cohort_fingerprint']
                 attempt['cohort_fingerprint']=pooling['cohort']
         cells.append(dict(**cell,variant='default',key=key,target_repetitions=3,cohort_pooling=pooling,
-            comparison_membership=('zed_vio_n3_20261003' if key in batch_selections else
+            comparison_membership=(batch_labels[key] if key in batch_labels else
                 'corrected_zed_first_20261002' if key in zed_selections
                 else 'corrected_euroc_20261001' if key in selections else None),
             original_campaign_member=cell['algorithm'] in executed['tables'][cell['run_type']],
