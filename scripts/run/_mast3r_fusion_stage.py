@@ -27,6 +27,8 @@ from pathlib import Path
 import numpy as np
 import yaml
 
+import _imu_noise_rule
+
 
 def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
@@ -104,6 +106,9 @@ def config(args):
     params['dataset']['subsample'] = max(1, int(math.floor(record['fps'] / 10.0 + 1e-9)))
     if record['dataset'] not in (override.get('keep_upstream_imu_noise') or []):
         imu = record['imu']
+        if _imu_noise_rule.applies(record['dataset']):
+            # IMU noise rule "authors' operating point": Allan x MASt3R-Fusion's EuRoC factors.
+            imu = _imu_noise_rule.noise('mast3r_fusion', record['dataset'])
         noise = [imu['accelerometer_noise_density'], imu['gyroscope_noise_density'],
                  imu['accelerometer_random_walk'], imu['gyroscope_random_walk']]
         params['ms_opt']['imu_noise'] = noise

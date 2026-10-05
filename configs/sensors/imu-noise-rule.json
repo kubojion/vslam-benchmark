@@ -1,0 +1,47 @@
+{
+ "schema": 1,
+ "rule": "authors_operating_point",
+ "decided": "2026-10-05 (user)",
+ "statement": "Each estimator receives the dataset's published Allan-variance IMU noise (densities and bias random walks), each quantity multiplied by the factor its authors applied to the EuRoC Kalibr calibration in their released EuRoC configuration. Sensor quantities come from the dataset; the inflation is the authors' algorithm choice. No value is tuned on benchmark data. On EuRoC the rule reproduces the authors' released values. Documented in docs/imu-noise-rule-20261005.md.",
+ "datasets": ["hortimulti"],
+ "keys": ["gyroscope_noise_density", "accelerometer_noise_density", "gyroscope_random_walk", "accelerometer_random_walk"],
+ "euroc_reference": {
+  "source": "datasets/euroc/MH_01_easy/mav0/imu0/sensor.yaml (EuRoC Kalibr calibration)",
+  "gyroscope_noise_density": 1.6968e-04,
+  "accelerometer_noise_density": 2.0e-03,
+  "gyroscope_random_walk": 1.9393e-05,
+  "accelerometer_random_walk": 3.0e-03
+ },
+ "dataset_allan": {
+  "hortimulti": {
+   "source": "https://s3.eidf.ac.uk/eidf258-hortimulti-a-multi-sensor-dataset-for-polytunnels/Feb2026/Strawberry/calibration.yaml (imu0 noise block, MicroStrain 3DM-GX5-25)",
+   "gyroscope_noise_density": 0.00060369579,
+   "accelerometer_noise_density": 0.001093618,
+   "gyroscope_random_walk": 3.22094e-05,
+   "accelerometer_random_walk": 4.584471e-05
+  }
+ },
+ "authors_euroc": {
+  "orbslam3": {"source": "src/ORB_SLAM3/Examples/Stereo-Inertial/EuRoC.yaml", "copies_reference": true,
+               "note": "IMU.NoiseGyro 1.7e-04 is the Kalibr 1.6968e-04 rounded (the file comments the Kalibr value)"},
+  "openvins": {"source": "src/open_vins/config/euroc_mav/kalibr_imu_chain.yaml", "copies_reference": true},
+  "voxel_svio": {"source": "src/voxel_svio/config/euroc.yaml", "copies_reference": true},
+  "airslam": {"source": "src/airslam/configs/camera/euroc.yaml", "copies_reference": true},
+  "cuvslam": {"source": "src/cuvslam/examples/euroc/sensor_imu0.yaml", "copies_reference": true},
+  "okvis2": {"source": "src/okvis2/config/euroc.yaml (sigma_g_c, sigma_a_c, sigma_gw_c, sigma_aw_c)",
+             "gyroscope_noise_density": 2.0e-03, "accelerometer_noise_density": 2.0e-02,
+             "gyroscope_random_walk": 2.0e-04, "accelerometer_random_walk": 2.0e-02},
+  "okvis2x": {"source": "src/okvis2x/config/euroc/okvis2.yaml (sigma_g_c, sigma_a_c, sigma_gw_c, sigma_aw_c)",
+              "gyroscope_noise_density": 2.0e-03, "accelerometer_noise_density": 2.0e-02,
+              "gyroscope_random_walk": 2.0e-04, "accelerometer_random_walk": 2.0e-02},
+  "basalt": {"source": "Basalt data/euroc_ds_calib.json (copy: results/reference-review-20261001/author-sources/basalt/data/euroc_ds_calib.json; gyro/accel_noise_std, gyro/accel_bias_std)",
+             "gyroscope_noise_density": 2.82e-04, "accelerometer_noise_density": 1.6e-02,
+             "gyroscope_random_walk": 1.0e-04, "accelerometer_random_walk": 1.0e-03},
+  "svo_pro": {"source": "src/svo_pro/svo_ros/param/calib/euroc_stereo.yaml imu_params (sigma_omega_c, sigma_acc_c, sigma_omega_bias_c, sigma_acc_bias_c)",
+              "gyroscope_noise_density": 1.2e-03, "accelerometer_noise_density": 8.0e-03,
+              "gyroscope_random_walk": 0.03, "accelerometer_random_walk": 0.1},
+  "mast3r_fusion": {"source": "src/mast3r_fusion/config/base_euroc.yaml ms_opt.imu_noise [accel, gyro, accel_rw, gyro_rw]",
+                    "gyroscope_noise_density": 0.001028445124575, "accelerometer_noise_density": 0.001962,
+                    "gyroscope_random_walk": 3.6361026075e-07, "accelerometer_random_walk": 4.905e-05}
+ }
+}

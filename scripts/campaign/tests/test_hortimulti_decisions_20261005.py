@@ -32,32 +32,8 @@ def same(values):
         assert value == pytest.approx(NOISE[key], rel=1e-9), key
 
 
-def test_one_imu_profile_for_every_estimator():
-    for name in ('hortimulti_stereo_inertial.yaml', 'hortimulti_stereo_inertial_lc.yaml'):
-        text = (REPO / 'configs/orbslam3' / name).read_text()
-        get = lambda key: float(re.search(rf'^IMU\.{key}:\s*(\S+)', text, re.M).group(1))
-        same(dict(gyro=get('NoiseGyro'), accel=get('NoiseAcc'), gyro_walk=get('GyroWalk'), accel_walk=get('AccWalk')))
-    for path, value in ((REPO / 'configs/airslam/hortimulti_camera.yaml', None),
-                        (REPO / 'configs/openvins/hortimulti/kalibr_imu_chain.yaml', 'imu0'),
-                        (REPO / 'configs/voxel_svio/hortimulti.yaml', 'imu_parameter')):
-        d = opencv_yaml(path)
-        d = d[value] if value else d
-        same(dict(gyro=d['gyroscope_noise_density'], accel=d['accelerometer_noise_density'],
-                  gyro_walk=d['gyroscope_random_walk'], accel_walk=d['accelerometer_random_walk']))
-    basalt = json.loads((REPO / 'configs/basalt/hortimulti_calib.json').read_text())['value0']
-    for key, field in (('gyro', 'gyro_noise_std'), ('accel', 'accel_noise_std'),
-                       ('gyro_walk', 'gyro_bias_std'), ('accel_walk', 'accel_bias_std')):
-        assert len(set(basalt[field])) == 1
-        same({key: basalt[field][0]})
-    for algo, modes in (('okvis2', ('vio', 'vio_lc')), ('okvis2x', ('vio', 'vio_lc'))):
-        for seq in SEQS:
-            for mode in modes:
-                imu = opencv_yaml(REPO / f'configs/{algo}/hortimulti_{seq}_{mode}.yaml')['imu_parameters']
-                same(dict(gyro=imu['sigma_g_c'], accel=imu['sigma_a_c'], gyro_walk=imu['sigma_gw_c'],
-                          accel_walk=imu['sigma_aw_c']))
-    profile = json.loads((REPO / 'configs/sensors/hortimulti.json').read_text())['imu']
-    same(dict(gyro=profile['gyroscope_noise_density'], accel=profile['accelerometer_noise_density'],
-              gyro_walk=profile['gyroscope_random_walk'], accel_walk=profile['accelerometer_random_walk']))
+# The shared-envelope assertion was superseded by the IMU noise rule
+# (test_imu_noise_rule_20261005.py, docs/imu-noise-rule-20261005.md).
 
 
 def test_every_native_camera_imu_offset_is_zero():

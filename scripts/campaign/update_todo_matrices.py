@@ -50,6 +50,7 @@ RERUN_LABELS = {
     'ov2slam_horti_dataset_specific_parameters': 'tuning',
     'openvins_track_frequency_dropped_frames': 'frame drop',
     'orb_source_identity_changed_partial_cell': 'one group',
+    'imu_noise_not_at_authors_operating_point': 'IMU noise rule',
 }
 LEGEND = """<!-- todo-matrix-legend:start -->
 **A = recorded attempts; E = trajectories evaluated; S = clean final exports;

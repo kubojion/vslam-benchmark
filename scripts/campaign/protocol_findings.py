@@ -51,7 +51,8 @@ def native_gnss_findings(repo, relative):
 
 
 USER_RERUN_DECISIONS = ('docs/campaigns/user-rerun-decisions-20261003.json',
-                        'docs/campaigns/user-rerun-decisions-20261005.json')
+                        'docs/campaigns/user-rerun-decisions-20261005.json',
+                        'docs/campaigns/user-rerun-decisions-20261005b.json')
 
 
 def user_rerun_decisions(repo, relative, meta):

@@ -81,8 +81,8 @@
         1.0
       ]
     ],
-    "gyroscope_noise_density": 0.0035,
-    "accelerometer_noise_density": 0.11,
+    "gyroscope_noise_density": 0.00060369579,
+    "accelerometer_noise_density": 0.001093618,
     "gyroscope_random_walk": 3.22094e-05,
     "accelerometer_random_walk": 4.584471e-05,
     "frequency_hz": 200.0
@@ -93,12 +93,12 @@
   "sources": [
     {
       "path": "configs/orbslam3/hortimulti_stereo_inertial.yaml",
-      "sha256": "4ae0f0593a6235aa032ea4e305a48742af8c02c22c0f166afada4f8e883e3ea9",
+      "sha256": "9e508fff27f1d57a3f0955d31681887d06c23e807089545b19ccfd0cfac35d8b",
       "fields": "camera model, baseline or stereo transform, T_imu_cam0, IMU noise, rate"
     },
     {
       "path": "configs/basalt/hortimulti_calib.json",
-      "sha256": "2ff94fb41f4ef0a7663daff7769163e400f5a7131b53cb9b09bfb548a19cd58f",
+      "sha256": "bd56d0ce9ec51e82ed4fe9ce3900aa94b92b162e878d8b23e72a5f85da2f96dd",
       "fields": "camera_imu_time_offset_s (cam_time_offset_ns)"
     }
   ]

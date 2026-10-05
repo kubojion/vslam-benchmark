@@ -111,12 +111,12 @@ IMU.T_b_c1: !!opencv-matrix
           0.0069899215, -0.9999436043, -0.0079955743, -0.0562970105,
           0.0,           0.0,           0.0,           1.0          ]
 
-# One HortiMulti IMU profile for every estimator (decision 2026-10-05): recording-derived noise
-# densities (docs/okvis-imu-noise-derivation.md), published calibration random walks.
-IMU.NoiseGyro: 0.0035
-IMU.NoiseAcc:  0.110
-IMU.GyroWalk:  3.22094e-05
-IMU.AccWalk:   4.584471e-05
+# IMU noise rule "authors' operating point" (configs/sensors/imu-noise-rule.json, 2026-10-05):
+# the dataset's published Allan values x ORB-SLAM3's EuRoC factor (1, Kalibr values).
+IMU.NoiseGyro: 0.00060369579
+IMU.NoiseAcc: 0.001093618
+IMU.GyroWalk: 3.22094e-05
+IMU.AccWalk: 4.584471e-05
 IMU.Frequency: 200.0
 IMU.InsertKFsWhenLost: 1
 

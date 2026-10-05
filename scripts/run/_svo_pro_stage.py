@@ -27,6 +27,8 @@ from pathlib import Path
 import numpy as np
 import yaml
 
+import _imu_noise_rule
+
 # The upstream calibration files use 752 px wide EuRoC images; the upstream parameter
 # file marks these settings as "increase for larger images".
 REFERENCE_WIDTH = 752
@@ -74,11 +76,19 @@ def imu_parameters(args, sensor):
                       g=value('g'), imu_rate=float(sensor['imu']['frequency_hz']))
     else:
         raise ValueError('--imu-params must be upstream:<file> or okvis2:<file>')
+    # IMU noise rule "authors' operating point" (configs/sensors/imu-noise-rule.json): on its datasets the
+    # four noise quantities are the dataset's Allan values x SVO Pro's EuRoC factors.
+    noise_rule = None
+    if _imu_noise_rule.applies(sensor['dataset']):
+        n = _imu_noise_rule.noise('svo_pro', sensor['dataset'])
+        params.update(sigma_omega_c=n['gyroscope_noise_density'], sigma_acc_c=n['accelerometer_noise_density'],
+                      sigma_omega_bias_c=n['gyroscope_random_walk'], sigma_acc_bias_c=n['accelerometer_random_walk'])
+        noise_rule = _imu_noise_rule.record()
     # A frame is rejected when the newest IMU sample is older than this; upstream uses
     # 10 ms for a 200 Hz IMU (two sample periods).
     params.update(delay_imu_cam=0.0, sigma_integration=0.0,
                   max_imu_delta_t=max(0.01, 2.0 / float(sensor['imu']['frequency_hz'])))
-    return params, dict(kind=kind, path=str(path), sha256=sha(path))
+    return params, dict(kind=kind, path=str(path), sha256=sha(path), noise_rule=noise_rule)
 
 
 def matrix_node(m):
@@ -97,6 +107,8 @@ def stage(args):
     out = args.out
     key = dict(stage_schema=2, sensor_sha256=sha(args.sensor), imu_params=args.imu_params,
                timestamps_ns=[t for t, _ in left], max_frames=args.max_frames)
+    if _imu_noise_rule.applies(sensor['dataset']):     # a rule edit must not reuse a staged calibration
+        key['noise_rule'] = _imu_noise_rule.record()['sha256']
     if (out / 'stage.json').is_file():
         old = json.loads((out / 'stage.json').read_text())
         if any(old.get(k) != v for k, v in key.items()):
