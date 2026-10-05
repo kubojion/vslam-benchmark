@@ -611,20 +611,20 @@ There are 145 remaining distinct confirmed cases after the current cohort select
 | `vo-lc/euroc_mav/MH_05_difficult/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
 | `vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3` | r1, r2, r3 | camera_fps_changed_15_to_10 |
 | `vo-lc/zed2i/field1_110426_full_10fps_q90/airslam` | r1, r2, r3 | airslam_zed_vo_lc_split_workspace_groups |
-| `vio/hortimulti/strawberry02/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified;horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
-| `vio/hortimulti/strawberry02/okvis2` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
-| `vio/hortimulti/strawberry02/okvis2x` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
-| `vio/hortimulti/strawberry02/airslam` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
-| `vio/hortimulti/strawberry02/basalt` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;basalt_horti_undocumented_imu_noise |
-| `vio/hortimulti/strawberry02/openvins` | r1 | horti_imu_profile_and_clock_inconsistent;openvins_track_frequency_dropped_frames |
-| `vio/hortimulti/strawberry02/voxel_svio` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_voxel_initializer_camera_imu_offset_omitted |
-| `vio/hortimulti/strawberry03/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified;horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
-| `vio/hortimulti/strawberry03/okvis2` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
-| `vio/hortimulti/strawberry03/okvis2x` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
-| `vio/hortimulti/strawberry03/airslam` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
-| `vio/hortimulti/strawberry03/basalt` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;basalt_horti_undocumented_imu_noise |
-| `vio/hortimulti/strawberry03/openvins` | r1 | horti_imu_profile_and_clock_inconsistent;openvins_track_frequency_dropped_frames |
-| `vio/hortimulti/strawberry03/voxel_svio` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_voxel_initializer_camera_imu_offset_omitted |
+| `vio/hortimulti/strawberry02/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified;horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;horti_camera_imu_time_offset_uncompensated |
+| `vio/hortimulti/strawberry02/okvis2` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;horti_camera_imu_time_offset_uncompensated |
+| `vio/hortimulti/strawberry02/okvis2x` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;horti_camera_imu_time_offset_uncompensated |
+| `vio/hortimulti/strawberry02/airslam` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;horti_camera_imu_time_offset_uncompensated |
+| `vio/hortimulti/strawberry02/basalt` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;basalt_horti_undocumented_imu_noise |
+| `vio/hortimulti/strawberry02/openvins` | r1 | horti_imu_profile_and_clock_inconsistent;openvins_track_frequency_dropped_frames;imu_noise_not_at_authors_operating_point |
+| `vio/hortimulti/strawberry02/voxel_svio` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;horti_voxel_initializer_camera_imu_offset_omitted |
+| `vio/hortimulti/strawberry03/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified;horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;horti_camera_imu_time_offset_uncompensated |
+| `vio/hortimulti/strawberry03/okvis2` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;horti_camera_imu_time_offset_uncompensated |
+| `vio/hortimulti/strawberry03/okvis2x` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;horti_camera_imu_time_offset_uncompensated |
+| `vio/hortimulti/strawberry03/airslam` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;horti_camera_imu_time_offset_uncompensated |
+| `vio/hortimulti/strawberry03/basalt` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;basalt_horti_undocumented_imu_noise |
+| `vio/hortimulti/strawberry03/openvins` | r1 | horti_imu_profile_and_clock_inconsistent;openvins_track_frequency_dropped_frames;imu_noise_not_at_authors_operating_point |
+| `vio/hortimulti/strawberry03/voxel_svio` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;horti_voxel_initializer_camera_imu_offset_omitted |
 | `vio/zed2i/field1_110426_full_10fps_q90/openvins` | r1, r2, r3 | openvins_track_frequency_dropped_frames |
 | `vio/citrusfarm/seq04/orbslam3` | r1 | orb_source_identity_changed_partial_cell |
 | `vio/citrusfarm/seq04/openvins` | r1 | openvins_track_frequency_dropped_frames |
@@ -634,14 +634,14 @@ There are 145 remaining distinct confirmed cases after the current cohort select
 | `vio-lc/rosariov2/sequence1/airslam` | r1, r2, r3 | rosario_identity_camera_imu_extrinsic |
 | `vio-lc/rosariov2/sequence5/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
 | `vio-lc/rosariov2/sequence5/airslam` | r1, r2, r3 | rosario_identity_camera_imu_extrinsic |
-| `vio-lc/hortimulti/strawberry02/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified;horti_imu_profile_and_clock_inconsistent;orb_horti_rectified_camera_imu_extrinsic;horti_camera_imu_time_offset_uncompensated |
-| `vio-lc/hortimulti/strawberry02/okvis2` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
-| `vio-lc/hortimulti/strawberry02/okvis2x` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
-| `vio-lc/hortimulti/strawberry02/airslam` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
-| `vio-lc/hortimulti/strawberry03/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified;horti_imu_profile_and_clock_inconsistent;orb_horti_rectified_camera_imu_extrinsic;horti_camera_imu_time_offset_uncompensated |
-| `vio-lc/hortimulti/strawberry03/okvis2` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
-| `vio-lc/hortimulti/strawberry03/okvis2x` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
-| `vio-lc/hortimulti/strawberry03/airslam` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/hortimulti/strawberry02/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified;horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;orb_horti_rectified_camera_imu_extrinsic;horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/hortimulti/strawberry02/okvis2` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/hortimulti/strawberry02/okvis2x` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/hortimulti/strawberry02/airslam` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/hortimulti/strawberry03/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified;horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;orb_horti_rectified_camera_imu_extrinsic;horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/hortimulti/strawberry03/okvis2` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/hortimulti/strawberry03/okvis2x` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;horti_camera_imu_time_offset_uncompensated |
+| `vio-lc/hortimulti/strawberry03/airslam` | r1, r2, r3 | horti_imu_profile_and_clock_inconsistent;imu_noise_not_at_authors_operating_point;horti_camera_imu_time_offset_uncompensated |
 | `vio-lc/euroc_mav/MH_01_easy/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
 | `vio-lc/euroc_mav/MH_03_medium/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
 | `vio-lc/euroc_mav/MH_05_difficult/orbslam3` | r1, r2, r3 | historical_orb_library_identity_unverified |
