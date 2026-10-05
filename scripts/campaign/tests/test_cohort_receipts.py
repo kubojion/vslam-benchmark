@@ -6,7 +6,7 @@ import sys
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from build_repair_inventory import cohort_artifacts
+from build_repair_inventory import cohort_artifacts, cohort_identity
 
 
 def receipt(run, role, value):
@@ -35,3 +35,28 @@ def test_receipt_paths_and_observed_counts_do_not_split_new_cohorts(tmp_path):
     (run/'provenance/native_input_receipt.json').write_text('{}')
     with pytest.raises(ValueError, match='changed cohort receipt'):
         cohort_artifacts(p, run)
+
+
+def svo_config(run, trace_dir=None, max_fts=180):
+    path = run/'provenance/effective_config--svo_effective_config.yaml'
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(f'max_fts: {max_fts}\ntrace_dir: {trace_dir or "/ws/" + str(run.relative_to(run.parents[5])) + "/native"}\n')
+    return dict(role='effective_config', snapshot=str(path.relative_to(run)),
+                snapshot_sha256=hashlib.sha256(path.read_bytes()).hexdigest())
+
+
+def test_svo_pro_attempt_trace_directory_does_not_split_cohorts(tmp_path):
+    runs = [tmp_path/'results/vo/euroc_mav/MH_01_easy/svo_pro'/f'run1000{n}' for n in (1, 2)]
+    provenance = [dict(parameters={}, artifacts=[svo_config(run)]) for run in runs]
+    assert cohort_artifacts(provenance[0], runs[0], 'svo_pro') == cohort_artifacts(provenance[1], runs[1], 'svo_pro')
+    # Other estimators keep byte-based historical signatures.
+    assert cohort_artifacts(provenance[0], runs[0], 'orbslam3') != cohort_artifacts(provenance[1], runs[1], 'orbslam3')
+    changed = dict(parameters={}, artifacts=[svo_config(runs[1], max_fts=120)])
+    assert cohort_artifacts(provenance[0], runs[0], 'svo_pro') != cohort_artifacts(changed, runs[1], 'svo_pro')
+
+
+def test_mast3r_fusion_repetition_seed_is_not_a_setting():
+    def meta(seed):
+        return dict(provenance=dict(parameters=dict(seed=seed, stride=1), artifacts=[]), machine_id='m')
+    assert cohort_identity(meta(11001), 'mast3r_fusion')[0] == cohort_identity(meta(11002), 'mast3r_fusion')[0]
+    assert cohort_identity(meta(11001), 'orbslam3')[0] != cohort_identity(meta(11002), 'orbslam3')[0]
