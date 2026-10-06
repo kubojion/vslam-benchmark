@@ -79,27 +79,27 @@
         ],
         "imu_update_rate": 200.0,
         "accel_noise_std": [
-            0.05,
-            0.05,
-            0.05
+            0.001821477417578732,
+            0.001821477417578732,
+            0.001821477417578732
         ],
         "gyro_noise_std": [
-            0.003,
-            0.003,
-            0.003
+            0.00017328598440669645,
+            0.00017328598440669645,
+            0.00017328598440669645
         ],
         "accel_bias_std": [
-            6.706087584689249e-06,
-            6.706087584689249e-06,
-            6.706087584689249e-06
+            2.2353625282297495e-06,
+            2.2353625282297495e-06,
+            2.2353625282297495e-06
         ],
         "gyro_bias_std": [
-            3.5636559575381104e-06,
-            3.5636559575381104e-06,
-            3.5636559575381104e-06
+            1.8375991118125667e-05,
+            1.8375991118125667e-05,
+            1.8375991118125667e-05
         ],
         "cam_time_offset_ns": 0,
         "vignette": [],
-        "_comment_noise": "Recording-derived envelope (derive_okvis_imu_noise.py --datasets citrusfarm) with the authors Allan random walks, as for HortiMulti (same MicroStrain 3DM-GX5 model)."
+        "_comment_noise": "Rule C: published Allan values x Basalt EuRoC ratios (2026-10-06)."
     }
 }

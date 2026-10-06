@@ -1,20 +1,11 @@
 %YAML:1.0
-# OpenVINS imu-cam extrinsics for Rosario v2.
-#
-# Images are recorded rectified RealSense IR (1280x720, mono8); distortion is zero.
-# Kalibr camera-IMU result published by the Rosario v2 authors (infra1 -> IMU, 0.365 deg, 33.9 mm;
-# paper Table 8, URDF, their ORB-SLAM3 config); values from configs/sensors/rosariov2.json,
-# rotation projected onto SO(3). Decision 2026-10-03: same transform for every algorithm.
-# Camera model unchanged (authors ORB-SLAM3 profile), time offset 0, IMU noise unchanged.
-#
-# T_imu_cam = (R_CtoI | p_CinI) per OpenVINS docs.
-
+# Rosario Option A; input IMU already on camera clock.
 cam0:
   T_imu_cam:
-    - [0.999992236855, -0.003897970925, -0.000576239109, -0.004483]
-    - [0.003895034736, 0.999979855857, -0.005011644997, 0.019179]
-    - [0.000595762747, 0.005009361619, 0.999987275601, 0.027584]
-    - [0.0, 0.0, 0.0, 1.0]
+  - [0.999980875276748, -0.004553445130156764, -0.004185118659624644, -0.004483027809925508]
+  - [0.004532185177239902, 0.9999768494608953, -0.005075415232423456, 0.01917969921314904]
+  - [0.004208132396645058, 0.005056350433757609, 0.9999783622369149, 0.02758414303707034]
+  - [0.0, 0.0, 0.0, 1.0]
   cam_overlaps: [1]
   camera_model: pinhole
   distortion_coeffs: [0.0, 0.0, 0.0, 0.0]
@@ -22,13 +13,13 @@ cam0:
   intrinsics: [648.8624169653789, 648.8624169653789, 645.0113372802734, 348.24266815185547]
   resolution: [1280, 720]
   rostopic: /cam0/image_raw
-
+  timeshift_cam_imu: 0.0
 cam1:
   T_imu_cam:
-    - [0.999992236855, -0.003897970925, -0.000576239109, 0.04525030801]
-    - [0.003895034736, 0.999979855857, -0.005011644997, 0.019372714466]
-    - [0.000595762747, 0.005009361619, 0.999987275601, 0.027613629482]
-    - [0.0, 0.0, 0.0, 1.0]
+  - [0.999980875276748, -0.004553445130154778, -0.00418511865971248, 0.04575690217196798]
+  - [0.004532185177237443, 0.9999768494608948, -0.005075415232430427, 0.019407400233837323]
+  - [0.004208132396732913, 0.005056350433764187, 0.9999783622369146, 0.027795563357391383]
+  - [0.0, 0.0, 0.0, 1.0]
   cam_overlaps: [0]
   camera_model: pinhole
   distortion_coeffs: [0.0, 0.0, 0.0, 0.0]
@@ -36,3 +27,4 @@ cam1:
   intrinsics: [648.8624169653789, 648.8624169653789, 645.0113372802734, 348.24266815185547]
   resolution: [1280, 720]
   rostopic: /cam1/image_raw
+  timeshift_cam_imu: 0.0

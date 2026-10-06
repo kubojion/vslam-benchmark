@@ -83,7 +83,7 @@ def imu_parameters(args, sensor):
         n = _imu_noise_rule.noise('svo_pro', sensor['dataset'])
         params.update(sigma_omega_c=n['gyroscope_noise_density'], sigma_acc_c=n['accelerometer_noise_density'],
                       sigma_omega_bias_c=n['gyroscope_random_walk'], sigma_acc_bias_c=n['accelerometer_random_walk'])
-        noise_rule = _imu_noise_rule.record()
+        noise_rule = _imu_noise_rule.record(dataset=sensor['dataset'])
     # A frame is rejected when the newest IMU sample is older than this; upstream uses
     # 10 ms for a 200 Hz IMU (two sample periods).
     params.update(delay_imu_cam=0.0, sigma_integration=0.0,
@@ -107,8 +107,10 @@ def stage(args):
     out = args.out
     key = dict(stage_schema=2, sensor_sha256=sha(args.sensor), imu_params=args.imu_params,
                timestamps_ns=[t for t, _ in left], max_frames=args.max_frames)
+    if sensor['dataset'] == 'rosariov2':
+        key['prepared_manifest_sha256'] = sha(args.sequence / 'manifest.json')
     if _imu_noise_rule.applies(sensor['dataset']):     # a rule edit must not reuse a staged calibration
-        key['noise_rule'] = _imu_noise_rule.record()['sha256']
+        key['noise_rule'] = _imu_noise_rule.record(dataset=sensor['dataset'])['sha256']
     if (out / 'stage.json').is_file():
         old = json.loads((out / 'stage.json').read_text())
         if any(old.get(k) != v for k, v in key.items()):

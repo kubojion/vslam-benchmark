@@ -1,4 +1,5 @@
 %YAML:1.0
+# IMU noise: rule C, published Allan values x estimator EuRoC ratios (2026-10-06).
 # OKVIS2 stereo-inertial configuration for the Rosario v2 dataset.
 #
 # Calibration values are derived from the official CIFASIS evaluation config
@@ -21,10 +22,7 @@
 
 cameras:
      - {T_SC:
-        [ 0.999992, -0.003898, -0.000576, -0.004483,
-          0.003895,  0.999979, -0.005012,  0.019179,
-          0.000596,  0.005009,  0.999987,  0.027584,
-          0.0, 0.0, 0.0, 1.0],
+        [0.999980875276748, -0.004553445130156764, -0.004185118659624644, -0.004483027809925508, 0.004532185177239902, 0.9999768494608953, -0.005075415232423456, 0.01917969921314904, 0.004208132396645058, 0.005056350433757609, 0.9999783622369149, 0.02758414303707034, 0.0, 0.0, 0.0, 1.0],
         image_dimension: [1280, 720],
         distortion_coefficients: [0.0, 0.0, 0.0, 0.0],
         distortion_type: radialtangential,
@@ -34,10 +32,7 @@ cameras:
         slam_use: okvis}
 
      - {T_SC:
-        [ 0.999992, -0.003898, -0.000576,  0.045250,
-          0.003895,  0.999979, -0.005012,  0.019373,
-          0.000596,  0.005009,  0.999987,  0.027614,
-          0.0, 0.0, 0.0, 1.0],
+        [0.999980875276748, -0.004553445130154778, -0.00418511865971248, 0.04575690217196798, 0.004532185177237443, 0.9999768494608948, -0.005075415232430427, 0.019407400233837323, 0.004208132396732913, 0.005056350433764187, 0.9999783622369146, 0.027795563357391383, 0.0, 0.0, 0.0, 1.0],
         image_dimension: [1280, 720],
         distortion_coefficients: [0.0, 0.0, 0.0, 0.0],
         distortion_type: radialtangential,
@@ -58,18 +53,18 @@ camera_parameters:
         sigma_r_final_ba: 0.03
         sigma_alpha_final_ba: 0.3
 
-# IMU: RealSense D435i. Effective recording-noise envelope derived by
-# scripts/analysis/derive_okvis_imu_noise.py; random walks are calibrated Allan values.
+
+
 imu_parameters:
     use: true
     a_max: 160.0
     g_max: 10.0
-    sigma_g_c: 0.0015       # effective gyro density [rad/s/sqrt(Hz)]
-    sigma_a_c: 0.070        # effective accel density [m/s^2/sqrt(Hz)]
+    sigma_g_c: 0.002740417247152107
+    sigma_a_c: 0.009943860019903928
     sigma_bg: 0.03
     sigma_ba: 0.1
-    sigma_gw_c: 1.823e-06 # calibrated gyro bias random walk
-    sigma_aw_c: 4.750e-05 # calibrated accel bias random walk
+    sigma_gw_c: 1.8806977123060564e-05
+    sigma_aw_c: 0.00031673150319115075
     g: 9.7958              # Argentina (Rosario lat -32.95)
     g0: [-0.0042909713, -0.0005803788, -0.0016624973] # stationary-head mean
     a0: [ 0.0, 0.0, 0.0 ]

@@ -1,60 +1,34 @@
 %YAML:1.0
-# AirSLAM camera calibration for the Rosario v2 dataset.
-#
-# Source: ZED stereo camera (infrared, IR images).
-# Pre-processing: stereo rectification (scripts/data/convert_rosario_to_tum.sh),
-#   output 1280x720 grayscale PNG stored in mav0/cam0/data/ and mav0/cam1/data/.
-#
-# Because images are pre-rectified (zero distortion), distortion_type = 0.
-#
-# Rectified intrinsics (from official Rosario v2 calibration):
-#   fx = fy = 648.8624169653789,  cx = 645.0113372802734,  cy = 348.24266815185547
-#   baseline = 0.0497336941 m
-#
-# T convention (T_type: 0, src/airslam/src/camera.cc): T is T_bc, the camera pose in the
-# IMU body frame (as EuRoC T_BS). AirSLAM uses cam0 T for IMU-camera fusion and only
-# |x| of the cam0-cam1 offset for the stereo baseline.
-# Kalibr camera-IMU result published by the Rosario v2 authors (infra1 -> IMU, 0.365 deg, 33.9 mm;
-# paper Table 8, URDF, their ORB-SLAM3 config); values from configs/sensors/rosariov2.json,
-# rotation projected onto SO(3). Decision 2026-10-03: same transform for every algorithm.
-# Camera model unchanged (authors ORB-SLAM3 profile), time offset 0, IMU noise unchanged.
-
+# IMU noise: rule C, published Allan values x estimator EuRoC ratios (2026-10-06).
+# Rosario Option A: common Kalibr rectified pixels, original resolution; depth cap unchanged.
 image_height: 720
 image_width: 1280
 use_imu: 1
-
 depth_lower_thr: 0.1
 depth_upper_thr: 50.0
 max_y_diff: 1
-
-# Calibration
-distortion_type: 0   # 0 = undistorted / pre-rectified input
-
+distortion_type: 0
 cam0:
-  intrinsics: [648.8624, 648.8624, 645.0113, 348.2427]  # fx fy cx cy
-  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
-  T_type: 0           # EuRoC format, T is Tbc (camera -> body)
-  T:
-  - [0.999992236855, -0.003897970925, -0.000576239109, -0.004483]
-  - [0.003895034736, 0.999979855857, -0.005011644997, 0.019179]
-  - [0.000595762747, 0.005009361619, 0.999987275601, 0.027584]
-  - [0.0, 0.0, 0.0, 1.0]
-
-cam1:
-  intrinsics: [648.8624, 648.8624, 645.0113, 348.2427]  # fx fy cx cy
+  intrinsics: [648.8624169653789, 648.8624169653789, 645.0113372802734, 348.24266815185547]
   distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
   T_type: 0
   T:
-  - [0.999992236855, -0.003897970925, -0.000576239109, 0.04525030801]
-  - [0.003895034736, 0.999979855857, -0.005011644997, 0.019372714466]
-  - [0.000595762747, 0.005009361619, 0.999987275601, 0.027613629482]
+  - [0.999980875276748, -0.004553445130156764, -0.004185118659624644, -0.004483027809925508]
+  - [0.004532185177239902, 0.9999768494608953, -0.005075415232423456, 0.01917969921314904]
+  - [0.004208132396645058, 0.005056350433757609, 0.9999783622369149, 0.02758414303707034]
   - [0.0, 0.0, 0.0, 1.0]
-
-# IMU (Rosario v2: ZED integrated IMU, 200 Hz)
-# Noise from configs/basalt/rosariov2_calib.json and OKVIS2 reference.
+cam1:
+  intrinsics: [648.8624169653789, 648.8624169653789, 645.0113372802734, 348.24266815185547]
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  T_type: 0
+  T:
+  - [0.999980875276748, -0.004553445130154778, -0.00418511865971248, 0.04575690217196798]
+  - [0.004532185177237443, 0.9999768494608948, -0.005075415232430427, 0.019407400233837323]
+  - [0.004208132396732913, 0.005056350433764187, 0.9999783622369146, 0.027795563357391383]
+  - [0.0, 0.0, 0.0, 1.0]
 rate_hz: 200
-gyroscope_noise_density:     2.8200e-04   # rad/s/sqrt(Hz)
-gyroscope_random_walk:       1.0000e-04   # rad/s^2/sqrt(Hz)
-accelerometer_noise_density: 1.6000e-02   # m/s^2/sqrt(Hz)
-accelerometer_random_walk:   1.0000e-03   # m/s^3/sqrt(Hz)
-g_value: 9.7958                           # Cordoba, Argentina (~31 deg S)
+gyroscope_noise_density: 0.00023249699924838475
+gyroscope_random_walk: 1.8236185367375672e-06
+accelerometer_noise_density: 0.0009943860019903928
+accelerometer_random_walk: 4.750972547867261e-05
+g_value: 9.7958

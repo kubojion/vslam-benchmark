@@ -138,6 +138,13 @@ def config_recipe(repo, cell):
     except (OSError,ValueError,KeyError) as exc:
         errors.append('config_selection_failed:'+str(exc))
     runner=repo/'scripts/run'/f'run_{algorithm}.sh'
+    if dataset == 'rosariov2' and mode in ('vo', 'vio', 'vo-lc', 'vio-lc'):
+        selected('prepared_geometry_policy',root/'sensors/rosario-rectification-20261006.json')
+        operations.append('Option A: common residual-rectified images; IMU already shifted -4098308 ns; fixed native offsets zero; saved input-profile marker gates evaluation')
+    if dataset in ('rosariov2', 'citrusfarm') and mode in ('vio', 'vio-lc'):
+        selected('imu_noise_rule',root/'sensors/imu-noise-rule.json')
+        selected('imu_noise_rule_extension',root/'sensors/imu-noise-rule-20261006.json')
+        operations.append('Rule C: published dataset Allan sigmas x this estimator EuRoC ratios; SVO/Fusion stages override inherited noise, Fusion in both ms_opt and global_opt')
     selected('runner_with_embedded_parameters',runner)
     recipe=dict(schema=1,source_files=files,planned_effective_inputs=effective,operations=operations,
         selection_errors=errors,scope='default source selection and deterministic materialization identity only',

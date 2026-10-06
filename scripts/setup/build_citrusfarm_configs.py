@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Write the CitrusFarm estimator configs from the authors' calibration and the ZED2i templates.
+"""Maintain the reviewed CitrusFarm configs (default: rule C noise only).
+
+Since 2026-10-06 the default updates inertial noise through the central rule and
+preserves every reviewed visual setting. The historical template/envelope recipe
+below is available only through --noise-policy legacy-envelope --envelope FILE.
 
 CitrusFarm (Teng et al., ISVC 2023) records the same camera model as our own field data
 (ZED2i, factory-rectified 1280x720 colour at 10 Hz), so every estimator setting is taken
@@ -360,12 +364,21 @@ WRITERS = dict(orbslam3=orbslam3, basalt=basalt, airslam=airslam, ov2slam=ov2sla
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
-    ap.add_argument('--envelope', type=Path, required=True,
+    ap.add_argument('--noise-policy', choices=('rule-c', 'legacy-envelope'), default='rule-c')
+    ap.add_argument('--envelope', type=Path,
                     help='JSON from derive_okvis_imu_noise.py --datasets citrusfarm')
     ap.add_argument('--alignment', type=Path,
                     help='JSON with the per-sequence alignment results to quote in the physical calibration record')
     ap.add_argument('--only', nargs='+', choices=sorted(WRITERS), default=sorted(WRITERS))
     args = ap.parse_args()
+    if args.noise_policy == 'rule-c':
+        if args.envelope or args.alignment or args.only != sorted(WRITERS):
+            ap.error('rule-c updates only reviewed inertial noise; template options require --noise-policy legacy-envelope')
+        from prepare_rule_c_20261006 import noise_configs, sensors
+        noise_configs('citrusfarm')
+        sensors(['citrusfarm'])
+        return
+    if args.envelope is None: ap.error('legacy-envelope requires --envelope')
     report = json.loads(args.envelope.read_text())
     envelope = report['datasets']['citrusfarm']['recommended']
     v = values(envelope)

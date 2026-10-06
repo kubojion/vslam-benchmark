@@ -32,7 +32,7 @@
       1.0,
       0.0,
       0.0,
-      0.0497336941
+      0.05024089082502646
     ],
     [
       0.0,
@@ -53,26 +53,26 @@
       1.0
     ]
   ],
-  "baseline_m": 0.0497336941,
+  "baseline_m": 0.05024089082502646,
   "imu": {
     "T_imu_cam0": [
       [
-        0.999992,
-        -0.003898,
-        -0.000576,
-        -0.004483
+        0.999980875276748,
+        -0.004553445130156764,
+        -0.004185118659624644,
+        -0.004483027809925508
       ],
       [
-        0.003895,
-        0.999979,
-        -0.005012,
-        0.019179
+        0.004532185177239902,
+        0.9999768494608953,
+        -0.005075415232423456,
+        0.01917969921314904
       ],
       [
-        0.000596,
-        0.005009,
-        0.999987,
-        0.027584
+        0.004208132396645058,
+        0.005056350433757609,
+        0.9999783622369149,
+        0.02758414303707034
       ],
       [
         0.0,
@@ -81,10 +81,10 @@
         1.0
       ]
     ],
-    "gyroscope_noise_density": 0.0002324,
-    "accelerometer_noise_density": 0.0009943,
-    "gyroscope_random_walk": 1.823e-06,
-    "accelerometer_random_walk": 4.75e-05,
+    "gyroscope_noise_density": 0.00023249699924838475,
+    "accelerometer_noise_density": 0.0009943860019903928,
+    "gyroscope_random_walk": 1.8236185367375672e-06,
+    "accelerometer_random_walk": 4.750972547867261e-05,
     "frequency_hz": 200.0
   },
   "camera_imu_time_offset_s": 0.0,
@@ -93,12 +93,12 @@
   "sources": [
     {
       "path": "configs/orbslam3/rosariov2_stereo_inertial.yaml",
-      "sha256": "371495c23128381633a427f6a638cc2d6bc5d0f26775dd402a8bbba4016446a9",
+      "sha256": "4143129bafc12139394c71dafb979978314f79c655c17b6c5f47760211f2aba5",
       "fields": "camera model, baseline or stereo transform, T_imu_cam0, IMU noise, rate"
     },
     {
       "path": "configs/basalt/rosariov2_calib.json",
-      "sha256": "b3575adb5f0cfca84da714282b13b69c7fecf0446c51c4b5252f6e464f5dbac8",
+      "sha256": "5faca15c349082a0cd7ce312bfce55859eac70f1a30c4ce829f5ba831d23d855",
       "fields": "camera_imu_time_offset_s (cam_time_offset_ns)"
     }
   ]

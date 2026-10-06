@@ -1,4 +1,5 @@
 %YAML:1.0
+# IMU noise: rule C, published Allan values x estimator EuRoC ratios (2026-10-06).
 # OKVIS2 VIO configuration for CitrusFarm seq04.
 # CitrusFarm (UCR citrus orchard, Teng et al. ISVC 2023): ZED2i factory-rectified 1280x720
 # colour at 10 Hz, MicroStrain 3DM-GX5 IMU at 200 Hz on the camera clock. Written by
@@ -49,12 +50,12 @@ imu_parameters:
     use: true
     a_max: 160.0
     g_max: 10.0
-    sigma_g_c: 0.003  # recording-derived gyro envelope
-    sigma_a_c: 0.05  # recording-derived accel envelope
+    sigma_g_c: 0.00122897861281345
+    sigma_a_c: 0.002276846771973415
     sigma_bg: 0.03
     sigma_ba: 0.1
-    sigma_gw_c: 3.563656e-06  # authors Allan gyro bias random walk
-    sigma_aw_c: 6.706088e-06  # authors Allan accel bias random walk
+    sigma_gw_c: 3.6751982236251333e-05
+    sigma_aw_c: 4.4707250564594996e-05
     g: 9.796  # Riverside, CA (~34 deg N)
     g0: [-0.001188541788, -0.000244380243, -0.001283700034]  # stationary gyro bias at the start of seq04
     a0: [ 0.0, 0.0, 0.0 ]

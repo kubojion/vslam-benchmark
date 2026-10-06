@@ -4,10 +4,10 @@ type: GeneralStereo
 name: rosario_v2_seq05
 args:
   root: __WS__/datasets/rosariov2/sequence5
-  bl: 0.04973         # METERS
+  bl: 0.05024089082502646
   format: png
   camera:
-    fx: 648.862
-    fy: 648.862
-    cx: 645.011
-    cy: 348.243
+    fx: 648.8624169653789
+    fy: 648.8624169653789
+    cx: 645.0113372802734
+    cy: 348.24266815185547

@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "rule": "authors_operating_point",
+  "datasets": [
+    "rosariov2",
+    "citrusfarm"
+  ],
+  "dataset_allan": {
+    "rosariov2": {
+      "source": "configs/candidates/rosario-vio-20261002/sources/kalibr-imu.yaml",
+      "sha256": "e6805f2396b4e3f961fa957a2a12434d8625bd597101a6a1ba875be1f852a146",
+      "gyroscope_noise_density": 0.00023249699924838475,
+      "accelerometer_noise_density": 0.0009943860019903928,
+      "gyroscope_random_walk": 1.8236185367375672e-06,
+      "accelerometer_random_walk": 4.750972547867261e-05
+    },
+    "citrusfarm": {
+      "source": "configs/sensors/sources/citrusfarm/microstrain_gx5.yaml",
+      "sha256": "a889633c727df9e41ae513e1bdb341c81c7abd03b18ab5fb9c7c0c3dd5827790",
+      "gyroscope_noise_density": 0.00010426654551109309,
+      "accelerometer_noise_density": 0.0002276846771973415,
+      "gyroscope_random_walk": 3.5636559575381104e-06,
+      "accelerometer_random_walk": 6.706087584689249e-06
+    }
+  }
+}

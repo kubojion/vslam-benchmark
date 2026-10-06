@@ -4,9 +4,9 @@
 # at 15 Hz + integrated IMU at 200 Hz, pre-rectified 1280x720 mono8 images).
 #
 # Tuning notes vs. upstream euroc_mav config:
-#  - Spatial calibration is disabled in this historical profile. Its identity
-#    IMU/camera geometry is invalid; production remains BLOCKED until a consistent
-#    matched image/projection/extrinsic model is selected. See reference review.
+#  - Spatial calibration stays disabled; Option A uses the published Kalibr
+#    stereo-IMU bundle composed into common rectified input axes.
+#    The fixed time shift is already applied; online residual time estimation stays enabled.
 #  - gravity_mag: 9.7958           Cordoba, Argentina (~31°S).
 #  - track_frequency: 15.0         camera publishes at 15 Hz.
 #  - num_pts: 200                  frozen upstream quality profile.
@@ -14,6 +14,7 @@
 
 verbosity: "INFO"
 
+multi_threading_subs: false  # joined callback thread; preserve existing default
 use_fej: true
 integration: "rk4"
 use_stereo: true

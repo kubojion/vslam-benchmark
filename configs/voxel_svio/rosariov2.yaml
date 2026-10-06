@@ -1,3 +1,4 @@
+# IMU noise: rule C, published Allan values x estimator EuRoC ratios (2026-10-06).
 common:
     image_left_topic: "/cam0/image_raw"
     image_right_topic: "/cam1/image_raw"
@@ -38,14 +39,14 @@ initializer_parameter:
     gravity_mag: 9.7958          # Rosario, Argentina (~32.95 deg S)
     downsample_cameras: false
 
-# ZED 2 IMU (Rosario v2). Noise values match configs/openvins/rosariov2/
-# kalibr_imu_chain.yaml and configs/basalt/rosariov2_calib.json (validated by
-# Basalt and OKVIS2 runs).
+
+
+# Rule C uses Voxel-SVIO ratios.
 imu_parameter:
-    accelerometer_noise_density: 1.6000e-02
-    accelerometer_random_walk:   1.0000e-03
-    gyroscope_noise_density:     2.8200e-04
-    gyroscope_random_walk:       1.0000e-04
+    accelerometer_noise_density: 0.0009943860019903928
+    accelerometer_random_walk:   4.750972547867261e-05
+    gyroscope_noise_density:     0.00023249699924838475
+    gyroscope_random_walk:       1.8236185367375672e-06
     sigma_pix: 1.0
     Tw: [ 1.0, 0.0, 0.0,
           0.0, 1.0, 0.0,
@@ -66,8 +67,8 @@ imu_parameter:
 # Rosario v2 cameras: RealSense IR, pre-rectified to 1280x720 mono8. Distortion = 0.
 # Kalibr camera-IMU result published by the Rosario v2 authors (infra1 -> IMU, 0.365 deg, 33.9 mm;
 # paper Table 8, URDF, their ORB-SLAM3 config); values from configs/sensors/rosariov2.json,
-# rotation projected onto SO(3). Decision 2026-10-03: same transform for every algorithm.
-# Camera model unchanged (authors ORB-SLAM3 profile), time offset 0, IMU noise unchanged.
+# Rotation composed into the common rectified axes (decision 2026-10-06).
+# Option A: residual Kalibr rectification, transformed extrinsics, pre-shifted IMU and rule C.
 camera_parameter:
     timeshift_cam_imu_left: 0.0
     timeshift_cam_imu_right: 0.0
@@ -79,14 +80,8 @@ camera_parameter:
     distortion_coeffs_right: [0.0, 0.0, 0.0, 0.0]
     resolution_left:  [1280, 720]
     resolution_right: [1280, 720]
-    T_imu_cam_left:  [0.999992236855, -0.003897970925, -0.000576239109, -0.004483,
-                      0.003895034736, 0.999979855857, -0.005011644997, 0.019179,
-                      0.000595762747, 0.005009361619, 0.999987275601, 0.027584,
-                      0.0, 0.0, 0.0, 1.0]
-    T_imu_cam_right: [0.999992236855, -0.003897970925, -0.000576239109, 0.04525030801,
-                      0.003895034736, 0.999979855857, -0.005011644997, 0.019372714466,
-                      0.000595762747, 0.005009361619, 0.999987275601, 0.027613629482,
-                      0.0, 0.0, 0.0, 1.0]
+    T_imu_cam_left:  [0.999980875276748, -0.004553445130156764, -0.004185118659624644, -0.004483027809925508, 0.004532185177239902, 0.9999768494608953, -0.005075415232423456, 0.01917969921314904, 0.004208132396645058, 0.005056350433757609, 0.9999783622369149, 0.02758414303707034, 0.0, 0.0, 0.0, 1.0]
+    T_imu_cam_right: [0.999980875276748, -0.004553445130154778, -0.00418511865971248, 0.04575690217196798, 0.004532185177237443, 0.9999768494608948, -0.005075415232430427, 0.019407400233837323, 0.004208132396732913, 0.005056350433764187, 0.9999783622369146, 0.027795563357391383, 0.0, 0.0, 0.0, 1.0]
 
 odometry_parameter:
     use_mask: false

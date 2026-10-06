@@ -38,6 +38,10 @@ def stage(args):
     sensor = json.loads(args.sensor.read_text())
     out = args.out
     key = dict(sensor_sha256=sha(args.sensor), sequence=str(args.sequence))
+    if sensor['dataset'] in ('rosariov2', 'citrusfarm'):
+        key['noise_rule_sha256'] = _imu_noise_rule.record(dataset=sensor['dataset'])['sha256']
+    if sensor['dataset'] == 'rosariov2':
+        key['prepared_manifest_sha256'] = sha(args.sequence / 'manifest.json')
     if (out / 'stage.json').is_file():
         old = json.loads((out / 'stage.json').read_text())
         if any(old.get(k) != v for k, v in key.items()):

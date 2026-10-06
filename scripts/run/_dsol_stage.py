@@ -71,7 +71,8 @@ def stage(args):
         # Reuse a finished stage only if it describes exactly this input.
         old = json.loads((args.out / 'stage.json').read_text())
         if (old.get('sensor_sha256') != sha(args.sensor) or old.get('timestamps_ns') != [t for t, _ in left]
-                or args.max_frames):
+                or args.max_frames or (sensor['dataset'] == 'rosariov2' and
+                old.get('prepared_manifest_sha256') != sha(args.sequence/'manifest.json'))):
             sys.exit('[dsol] stale stage directory: ' + str(args.out))
         print(json.dumps({k: v for k, v in old.items() if k != 'timestamps_ns'}))
         return
@@ -85,6 +86,8 @@ def stage(args):
     record = dict(schema=1, frames=len(left), timestamps_ns=[t for t, _ in left],
                   sensor_profile=str(args.sensor), sensor_sha256=sha(args.sensor),
                   sequence=str(args.sequence))
+    if sensor['dataset'] == 'rosariov2':
+        record['prepared_manifest_sha256'] = sha(args.sequence/'manifest.json')
     mounts = set()
     if sensor['rectified_input']:
         cam = sensor['cameras'][0]

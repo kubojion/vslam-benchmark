@@ -11,12 +11,28 @@ import json
 from pathlib import Path
 
 RULE = Path(__file__).resolve().parents[2] / 'configs/sensors/imu-noise-rule.json'
+EXTENSION = RULE.with_name('imu-noise-rule-20261006.json')
 
 
-def load(path=RULE):
+def load(path=None):
+    extend = path is None
+    path = path or RULE
     rule = json.loads(Path(path).read_text())
     if rule.get('schema') != 1 or rule.get('rule') != 'authors_operating_point':
         raise ValueError(f'unsupported IMU noise rule: {path}')
+    if extend:
+        extra = json.loads(EXTENSION.read_text())
+        if extra['schema'] != 1 or extra['rule'] != rule['rule']:
+            raise ValueError('unsupported IMU noise rule extension')
+        for dataset in extra['datasets']:
+            if dataset in rule['datasets']:
+                raise ValueError('duplicate noise policy dataset')
+            source = extra['dataset_allan'][dataset]
+            raw = (RULE.parents[2] / source['source']).read_bytes()
+            if hashlib.sha256(raw).hexdigest() != source['sha256']:
+                raise ValueError('IMU calibration source changed: ' + dataset)
+            rule['datasets'].append(dataset)
+            rule['dataset_allan'][dataset] = source
     return rule
 
 
@@ -44,8 +60,17 @@ def noise(algorithm, dataset, rule=None):
     return {k: float(allan[k]) * f for k, f in factors(algorithm, rule).items()}
 
 
-def record(path=RULE):
+def record(path=RULE, *, dataset=None):
     path = Path(path)
+    if dataset in ('rosariov2', 'citrusfarm'):
+        rule = load()
+        files = [record(path), record(EXTENSION)]
+        for item in files:
+            item['path'] = str(Path(item['path']).relative_to(RULE.parents[2]))
+        source = rule['dataset_allan'][dataset]
+        files.append(dict(path=source['source'], sha256=source['sha256']))
+        digest = hashlib.sha256(json.dumps(files, sort_keys=True).encode()).hexdigest()
+        return dict(dataset=dataset, files=files, sha256=digest)
     return dict(path=str(path), sha256=hashlib.sha256(path.read_bytes()).hexdigest())
 
 

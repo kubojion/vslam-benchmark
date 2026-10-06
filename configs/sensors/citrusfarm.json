@@ -81,10 +81,10 @@
         1.0
       ]
     ],
-    "gyroscope_noise_density": 0.003,
-    "accelerometer_noise_density": 0.05,
-    "gyroscope_random_walk": 3.563656e-06,
-    "accelerometer_random_walk": 6.706088e-06,
+    "gyroscope_noise_density": 0.00010426654551109309,
+    "accelerometer_noise_density": 0.0002276846771973415,
+    "gyroscope_random_walk": 3.5636559575381104e-06,
+    "accelerometer_random_walk": 6.706087584689249e-06,
     "frequency_hz": 200.0
   },
   "camera_imu_time_offset_s": 0.0,
@@ -93,12 +93,12 @@
   "sources": [
     {
       "path": "configs/orbslam3/citrusfarm_stereo_inertial.yaml",
-      "sha256": "f5c5a1b6a9c4c193e32a06eefbdc9ebc53a7c3e78bb2c98b961ca08e8001f14a",
+      "sha256": "caccdc5b76295c74bacc05548bc73cad3a3f70d7aabbda351c70cc01ef158272",
       "fields": "camera model, baseline or stereo transform, T_imu_cam0, IMU noise, rate"
     },
     {
       "path": "configs/basalt/citrusfarm_calib.json",
-      "sha256": "ed811499237de9435392518816cc4f4dc93f12da15f3e03336cd61bedfb5d236",
+      "sha256": "be375a99f76a7d9f5204038f1429467c39223530679d5ef3159ae07a19fadd22",
       "fields": "camera_imu_time_offset_s (cam_time_offset_ns)"
     }
   ]
