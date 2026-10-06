@@ -78162,6 +78162,1116 @@
         "implementation": "2026-10-04/05 production batch, plan future-n3-five-modes (workspace d3824d1); replacements on the rebuilt plan",
         "review_document": "docs/campaigns/production-review-20261005.json"
       }
+    },
+    "vio/citrusfarm/seq04/orbslam3/run10002": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+        "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction"
+      ],
+      "disclosures": [
+        "CitrusFarm ORB-SLAM3 VO/VIO: all three repetitions rerun in one implementation group after the ORB-SLAM3 source commit (user decision 2026-10-05)",
+        "MicroStrain IMU on the camera clock by the measured shift; one IMU-noise profile for every inertial estimator (recording-derived densities, authors Allan random walks; decided 2026-10-04)",
+        "RTK antenna track moved to the left camera (rtk-position-v1-20261003): position only, level-platform lever and path-tangent heading; reference stamps are host arrival times, camera/GNSS clock unmeasured",
+        "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified",
+        "executed from the reviewed five-mode plan (future-n3-five-modes) by run_future_manifest; one attempt per action, no success-conditioned retry",
+        "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+        "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction"
+      ],
+      "evaluation_sha256": "eeb7201e32c090e38fb5ce7ae29da23acbd7e116f43b78f8da924ba4a0e9b9c5",
+      "evidence": [
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10002/run_meta.json",
+          "sha256": "fbd37d74601de9740d983e9c805cebf8b012cc6a001a47eb28f7409b10031884"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10002/run_log.txt",
+          "sha256": "34790da259bd45a31dba126211e2a39f677f0690e85eb9aa2cb717fba49bf0e8"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10002/trajectory.txt",
+          "sha256": "6044e0e0e7860ede88bd232b5d368bc315310792cf7b2d5d098b53258010200f"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10002/run_eval.json",
+          "sha256": "5383b7cd0130a38889c9f019a9a40c19a6f2e048ed4fc41791bf49b066230c94"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10002/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10002/provenance/estimator_config--orbslam3_cfg_PeAg6t.yaml",
+          "sha256": "c54997ecf592295843b78d73ee0499407c99f0f3957938c02ae507aaa5b73c23"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10002/provenance/estimator_config_source--citrusfarm_stereo_inertial.yaml",
+          "sha256": "f5c5a1b6a9c4c193e32a06eefbdc9ebc53a7c3e78bb2c98b961ca08e8001f14a"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10002/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+          "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+        },
+        {
+          "path": "datasets/citrusfarm/seq04/gt_tum.txt",
+          "sha256": "fb3c9f1d3467282ea0cc43b72d3dd74816b8fc48d2d645d3ee2238517e73b844"
+        },
+        {
+          "path": "datasets/citrusfarm/seq04/times.txt",
+          "sha256": "17c5793bf48eddddccde579126dedf1c22dffcafbe1f074021927f2fccd5c66c"
+        },
+        {
+          "path": "results/.attempt-state/vio__citrusfarm__seq04__orbslam3/run10002.json",
+          "sha256": "5648bd1a3d47a0ac1b754c9bfcab481dbc2b459de7820d50448d58a708cf8e7c"
+        },
+        {
+          "path": "configs/campaigns/production-attempts-20261005c.json",
+          "sha256": "455b5fd766a06bb4f26a74643c0f327c5d21fad1ca19ff1d3afe03e6c6e4f899"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
+          "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
+          "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
+        }
+      ],
+      "native_error_observations": [],
+      "protocol": {
+        "status": "verified",
+        "blockers": [],
+        "basis": "Selected production attempt: terminal attempt state, verified saved configuration snapshots, evaluator output and dataset claim scope reviewed; limits and failures retained.",
+        "implementation": "2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8)",
+        "review_document": "docs/campaigns/production-review-20261006.json"
+      }
+    },
+    "vio/citrusfarm/seq04/orbslam3/run10003": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+        "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction"
+      ],
+      "disclosures": [
+        "CitrusFarm ORB-SLAM3 VO/VIO: all three repetitions rerun in one implementation group after the ORB-SLAM3 source commit (user decision 2026-10-05)",
+        "MicroStrain IMU on the camera clock by the measured shift; one IMU-noise profile for every inertial estimator (recording-derived densities, authors Allan random walks; decided 2026-10-04)",
+        "RTK antenna track moved to the left camera (rtk-position-v1-20261003): position only, level-platform lever and path-tangent heading; reference stamps are host arrival times, camera/GNSS clock unmeasured",
+        "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified",
+        "executed from the reviewed five-mode plan (future-n3-five-modes) by run_future_manifest; one attempt per action, no success-conditioned retry",
+        "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+        "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction"
+      ],
+      "evaluation_sha256": "69a7929dbce98c3737ff5b02314567bd99c1e90e061ed955ea67d2687f56f264",
+      "evidence": [
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10003/run_meta.json",
+          "sha256": "7aed959aabb82900307dce2c82966722a67764b110f9f7966e46dd7d095ca078"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10003/run_log.txt",
+          "sha256": "864f8b40b58008e35add328c7b73688cb4b4445bb1967b5fd1953b59de6a58aa"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10003/trajectory.txt",
+          "sha256": "fd51880dc869546aa25f6b3d98f9d06ae5656969325ed61b2997e47ae0545b16"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10003/run_eval.json",
+          "sha256": "e55983acd82ef85da1c3a86cdeedb4e7b6f36ca8938cd4beea93c4649eb5453c"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10003/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10003/provenance/estimator_config--orbslam3_cfg_CFyTZf.yaml",
+          "sha256": "c54997ecf592295843b78d73ee0499407c99f0f3957938c02ae507aaa5b73c23"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10003/provenance/estimator_config_source--citrusfarm_stereo_inertial.yaml",
+          "sha256": "f5c5a1b6a9c4c193e32a06eefbdc9ebc53a7c3e78bb2c98b961ca08e8001f14a"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10003/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+          "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+        },
+        {
+          "path": "datasets/citrusfarm/seq04/gt_tum.txt",
+          "sha256": "fb3c9f1d3467282ea0cc43b72d3dd74816b8fc48d2d645d3ee2238517e73b844"
+        },
+        {
+          "path": "datasets/citrusfarm/seq04/times.txt",
+          "sha256": "17c5793bf48eddddccde579126dedf1c22dffcafbe1f074021927f2fccd5c66c"
+        },
+        {
+          "path": "results/.attempt-state/vio__citrusfarm__seq04__orbslam3/run10003.json",
+          "sha256": "b362c6a064632c3294f689ad19a6168d5d83b608d89679605459c1bd47e62fc4"
+        },
+        {
+          "path": "configs/campaigns/production-attempts-20261005c.json",
+          "sha256": "455b5fd766a06bb4f26a74643c0f327c5d21fad1ca19ff1d3afe03e6c6e4f899"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
+          "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
+          "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
+        }
+      ],
+      "native_error_observations": [],
+      "protocol": {
+        "status": "verified",
+        "blockers": [],
+        "basis": "Selected production attempt: terminal attempt state, verified saved configuration snapshots, evaluator output and dataset claim scope reviewed; limits and failures retained.",
+        "implementation": "2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8)",
+        "review_document": "docs/campaigns/production-review-20261006.json"
+      }
+    },
+    "vio/citrusfarm/seq04/orbslam3/run10004": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+        "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction"
+      ],
+      "disclosures": [
+        "CitrusFarm ORB-SLAM3 VO/VIO: all three repetitions rerun in one implementation group after the ORB-SLAM3 source commit (user decision 2026-10-05)",
+        "MicroStrain IMU on the camera clock by the measured shift; one IMU-noise profile for every inertial estimator (recording-derived densities, authors Allan random walks; decided 2026-10-04)",
+        "RTK antenna track moved to the left camera (rtk-position-v1-20261003): position only, level-platform lever and path-tangent heading; reference stamps are host arrival times, camera/GNSS clock unmeasured",
+        "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified",
+        "executed from the reviewed five-mode plan (future-n3-five-modes) by run_future_manifest; one attempt per action, no success-conditioned retry",
+        "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+        "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction"
+      ],
+      "evaluation_sha256": "cbc2e5d141db3872f3c23afbd4d18e09605ce7b6700f72a06ccac604149e5e2a",
+      "evidence": [
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10004/run_meta.json",
+          "sha256": "bb4eb3256a95a2e8a9f4fcad709d912c1d161f1b932459fdc3a8786f462180df"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10004/run_log.txt",
+          "sha256": "e06ebc17f1ac91112977fe30b4b177cd9275773b0bc33eb25de5ba50c4bb7138"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10004/trajectory.txt",
+          "sha256": "a28c6338ef277fe7119186f7c5b26a2a9febad29b7d0f55c6e23daf96eab8826"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10004/run_eval.json",
+          "sha256": "aa95307b2fa156160c0e8cf99a3cd0d53712ece939f37949fcc6571df111d0cb"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10004/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10004/provenance/estimator_config--orbslam3_cfg_unNX0c.yaml",
+          "sha256": "c54997ecf592295843b78d73ee0499407c99f0f3957938c02ae507aaa5b73c23"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10004/provenance/estimator_config_source--citrusfarm_stereo_inertial.yaml",
+          "sha256": "f5c5a1b6a9c4c193e32a06eefbdc9ebc53a7c3e78bb2c98b961ca08e8001f14a"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq04/orbslam3/run10004/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+          "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+        },
+        {
+          "path": "datasets/citrusfarm/seq04/gt_tum.txt",
+          "sha256": "fb3c9f1d3467282ea0cc43b72d3dd74816b8fc48d2d645d3ee2238517e73b844"
+        },
+        {
+          "path": "datasets/citrusfarm/seq04/times.txt",
+          "sha256": "17c5793bf48eddddccde579126dedf1c22dffcafbe1f074021927f2fccd5c66c"
+        },
+        {
+          "path": "results/.attempt-state/vio__citrusfarm__seq04__orbslam3/run10004.json",
+          "sha256": "18f1532bd4cc87fbf361d50ebc564a5c9136263b79c2dbb8f71820cc06ae11ee"
+        },
+        {
+          "path": "configs/campaigns/production-attempts-20261005c.json",
+          "sha256": "455b5fd766a06bb4f26a74643c0f327c5d21fad1ca19ff1d3afe03e6c6e4f899"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
+          "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
+          "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
+        }
+      ],
+      "native_error_observations": [],
+      "protocol": {
+        "status": "verified",
+        "blockers": [],
+        "basis": "Selected production attempt: terminal attempt state, verified saved configuration snapshots, evaluator output and dataset claim scope reviewed; limits and failures retained.",
+        "implementation": "2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8)",
+        "review_document": "docs/campaigns/production-review-20261006.json"
+      }
+    },
+    "vio/citrusfarm/seq07/orbslam3/run10002": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+        "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction"
+      ],
+      "disclosures": [
+        "CitrusFarm ORB-SLAM3 VO/VIO: all three repetitions rerun in one implementation group after the ORB-SLAM3 source commit (user decision 2026-10-05)",
+        "MicroStrain IMU on the camera clock by the measured shift; one IMU-noise profile for every inertial estimator (recording-derived densities, authors Allan random walks; decided 2026-10-04)",
+        "RTK antenna track moved to the left camera (rtk-position-v1-20261003): position only, level-platform lever and path-tangent heading; reference stamps are host arrival times, camera/GNSS clock unmeasured",
+        "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified",
+        "executed from the reviewed five-mode plan (future-n3-five-modes) by run_future_manifest; one attempt per action, no success-conditioned retry",
+        "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+        "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction"
+      ],
+      "evaluation_sha256": "dd807fb5b844be45af8206d227fa6d7fc0481e94880e33c7e6e3679b8d401c44",
+      "evidence": [
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10002/run_meta.json",
+          "sha256": "2b9a37074a32d3f6e01aa394768414fbc448a42224413e9c84ddd38d85d7b578"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10002/run_log.txt",
+          "sha256": "42cc856dc03b4ab99600aeb902ac23ce15ba2ff5fa04dd12922542b4deb820e0"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10002/trajectory.txt",
+          "sha256": "d64f8e51d08b0cd88e700950e33844e8d3831f37407dfa209ea81bb93981b361"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10002/run_eval.json",
+          "sha256": "aa02b4619b61a53536ee1041cf12eadb73ed4944c1f95aabdfb6d281987955ea"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10002/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10002/provenance/estimator_config--orbslam3_cfg_Ot78sw.yaml",
+          "sha256": "c54997ecf592295843b78d73ee0499407c99f0f3957938c02ae507aaa5b73c23"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10002/provenance/estimator_config_source--citrusfarm_stereo_inertial.yaml",
+          "sha256": "f5c5a1b6a9c4c193e32a06eefbdc9ebc53a7c3e78bb2c98b961ca08e8001f14a"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10002/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+          "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+        },
+        {
+          "path": "datasets/citrusfarm/seq07/gt_tum.txt",
+          "sha256": "a707c79573e353790b33d2a93c92354257ca71cf52d2ee8ed74ceeee577c17a9"
+        },
+        {
+          "path": "datasets/citrusfarm/seq07/times.txt",
+          "sha256": "79d9bbb7c7f8a31edb6a9ca58f1f24e7ddc3ef265e6e06738fcae1b557273e5f"
+        },
+        {
+          "path": "results/.attempt-state/vio__citrusfarm__seq07__orbslam3/run10002.json",
+          "sha256": "3806b59aadb983f8fd5789641ad05c500a1ea423e14a255e632732daf6b6542d"
+        },
+        {
+          "path": "configs/campaigns/production-attempts-20261005c.json",
+          "sha256": "455b5fd766a06bb4f26a74643c0f327c5d21fad1ca19ff1d3afe03e6c6e4f899"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
+          "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
+          "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
+        }
+      ],
+      "native_error_observations": [],
+      "protocol": {
+        "status": "verified",
+        "blockers": [],
+        "basis": "Selected production attempt: terminal attempt state, verified saved configuration snapshots, evaluator output and dataset claim scope reviewed; limits and failures retained.",
+        "implementation": "2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8)",
+        "review_document": "docs/campaigns/production-review-20261006.json"
+      }
+    },
+    "vio/citrusfarm/seq07/orbslam3/run10003": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+        "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction"
+      ],
+      "disclosures": [
+        "CitrusFarm ORB-SLAM3 VO/VIO: all three repetitions rerun in one implementation group after the ORB-SLAM3 source commit (user decision 2026-10-05)",
+        "MicroStrain IMU on the camera clock by the measured shift; one IMU-noise profile for every inertial estimator (recording-derived densities, authors Allan random walks; decided 2026-10-04)",
+        "RTK antenna track moved to the left camera (rtk-position-v1-20261003): position only, level-platform lever and path-tangent heading; reference stamps are host arrival times, camera/GNSS clock unmeasured",
+        "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified",
+        "executed from the reviewed five-mode plan (future-n3-five-modes) by run_future_manifest; one attempt per action, no success-conditioned retry",
+        "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+        "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction"
+      ],
+      "evaluation_sha256": "7d9c84f60ff6b8b58d88e818f4f3e511ecf470f3dc5d344b05ff5f707f6f3b28",
+      "evidence": [
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10003/run_meta.json",
+          "sha256": "00c04285cadb7a82452f5ad34b40af55ada2a17e4382ea727cdc79b2f99027bd"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10003/run_log.txt",
+          "sha256": "c4a1873c0cb5b4a6a729bc234bd6c956d87530745b4d4a24956f2e243ea31c01"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10003/trajectory.txt",
+          "sha256": "82bec60a56e9813659cc134ef4c85a47e2a952c8b01db745497a7b3a2b6472e8"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10003/run_eval.json",
+          "sha256": "5b210ee29ffa18d5517e7652a1c56cb085de1de87321950e0f36cc4385b9ed90"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10003/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10003/provenance/estimator_config--orbslam3_cfg_TmyDWy.yaml",
+          "sha256": "c54997ecf592295843b78d73ee0499407c99f0f3957938c02ae507aaa5b73c23"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10003/provenance/estimator_config_source--citrusfarm_stereo_inertial.yaml",
+          "sha256": "f5c5a1b6a9c4c193e32a06eefbdc9ebc53a7c3e78bb2c98b961ca08e8001f14a"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10003/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+          "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+        },
+        {
+          "path": "datasets/citrusfarm/seq07/gt_tum.txt",
+          "sha256": "a707c79573e353790b33d2a93c92354257ca71cf52d2ee8ed74ceeee577c17a9"
+        },
+        {
+          "path": "datasets/citrusfarm/seq07/times.txt",
+          "sha256": "79d9bbb7c7f8a31edb6a9ca58f1f24e7ddc3ef265e6e06738fcae1b557273e5f"
+        },
+        {
+          "path": "results/.attempt-state/vio__citrusfarm__seq07__orbslam3/run10003.json",
+          "sha256": "de3659d5be6eae3f4c6d0ab902e07ca6d80e84ed1c366b02394f7b681ef36263"
+        },
+        {
+          "path": "configs/campaigns/production-attempts-20261005c.json",
+          "sha256": "455b5fd766a06bb4f26a74643c0f327c5d21fad1ca19ff1d3afe03e6c6e4f899"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
+          "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
+          "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
+        }
+      ],
+      "native_error_observations": [],
+      "protocol": {
+        "status": "verified",
+        "blockers": [],
+        "basis": "Selected production attempt: terminal attempt state, verified saved configuration snapshots, evaluator output and dataset claim scope reviewed; limits and failures retained.",
+        "implementation": "2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8)",
+        "review_document": "docs/campaigns/production-review-20261006.json"
+      }
+    },
+    "vio/citrusfarm/seq07/orbslam3/run10004": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+        "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction"
+      ],
+      "disclosures": [
+        "CitrusFarm ORB-SLAM3 VO/VIO: all three repetitions rerun in one implementation group after the ORB-SLAM3 source commit (user decision 2026-10-05)",
+        "MicroStrain IMU on the camera clock by the measured shift; one IMU-noise profile for every inertial estimator (recording-derived densities, authors Allan random walks; decided 2026-10-04)",
+        "RTK antenna track moved to the left camera (rtk-position-v1-20261003): position only, level-platform lever and path-tangent heading; reference stamps are host arrival times, camera/GNSS clock unmeasured",
+        "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified",
+        "executed from the reviewed five-mode plan (future-n3-five-modes) by run_future_manifest; one attempt per action, no success-conditioned retry",
+        "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+        "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction"
+      ],
+      "evaluation_sha256": "3a7486bda0e264d29eab414a4b2118c37aad193a1d39b945f8c56e476283228e",
+      "evidence": [
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10004/run_meta.json",
+          "sha256": "0903d7ffbd04400a99977804d16672d626b13101bbea595f9624128eac9d9abb"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10004/run_log.txt",
+          "sha256": "bd5d296c9097551d829aed70588a07e9e659693424fadc96c02e3e491aefe4c7"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10004/trajectory.txt",
+          "sha256": "c97ef91a81684a13c62620fb8405292558b7ce0216d223847cf16c0f7b2e9a8d"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10004/run_eval.json",
+          "sha256": "60602873804aef70f2938ebc79795972bbbf938355dbd1ce93235c0c2ea895b3"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10004/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10004/provenance/estimator_config--orbslam3_cfg_hawmIj.yaml",
+          "sha256": "c54997ecf592295843b78d73ee0499407c99f0f3957938c02ae507aaa5b73c23"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10004/provenance/estimator_config_source--citrusfarm_stereo_inertial.yaml",
+          "sha256": "f5c5a1b6a9c4c193e32a06eefbdc9ebc53a7c3e78bb2c98b961ca08e8001f14a"
+        },
+        {
+          "path": "results/vio/citrusfarm/seq07/orbslam3/run10004/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+          "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+        },
+        {
+          "path": "datasets/citrusfarm/seq07/gt_tum.txt",
+          "sha256": "a707c79573e353790b33d2a93c92354257ca71cf52d2ee8ed74ceeee577c17a9"
+        },
+        {
+          "path": "datasets/citrusfarm/seq07/times.txt",
+          "sha256": "79d9bbb7c7f8a31edb6a9ca58f1f24e7ddc3ef265e6e06738fcae1b557273e5f"
+        },
+        {
+          "path": "results/.attempt-state/vio__citrusfarm__seq07__orbslam3/run10004.json",
+          "sha256": "28c8b2fbb06dcab7b436457ea939e659c153313fed997c01754bc7cdf046e508"
+        },
+        {
+          "path": "configs/campaigns/production-attempts-20261005c.json",
+          "sha256": "455b5fd766a06bb4f26a74643c0f327c5d21fad1ca19ff1d3afe03e6c6e4f899"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
+          "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
+          "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
+        }
+      ],
+      "native_error_observations": [],
+      "protocol": {
+        "status": "verified",
+        "blockers": [],
+        "basis": "Selected production attempt: terminal attempt state, verified saved configuration snapshots, evaluator output and dataset claim scope reviewed; limits and failures retained.",
+        "implementation": "2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8)",
+        "review_document": "docs/campaigns/production-review-20261006.json"
+      }
+    },
+    "vo/citrusfarm/seq04/orbslam3/run10002": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+        "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+        "export_coverage_below_95_percent_no_clean_success_tick",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction"
+      ],
+      "disclosures": [
+        "CitrusFarm ORB-SLAM3 VO/VIO: all three repetitions rerun in one implementation group after the ORB-SLAM3 source commit (user decision 2026-10-05)",
+        "MicroStrain IMU on the camera clock by the measured shift; one IMU-noise profile for every inertial estimator (recording-derived densities, authors Allan random walks; decided 2026-10-04)",
+        "RTK antenna track moved to the left camera (rtk-position-v1-20261003): position only, level-platform lever and path-tangent heading; reference stamps are host arrival times, camera/GNSS clock unmeasured",
+        "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified",
+        "executed from the reviewed five-mode plan (future-n3-five-modes) by run_future_manifest; one attempt per action, no success-conditioned retry",
+        "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+        "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction"
+      ],
+      "evaluation_sha256": "9a47fda17d73a0fbfeed58edca2dd19ed35842b129b7e0b05bf11a53c1d6cf58",
+      "evidence": [
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10002/run_meta.json",
+          "sha256": "df1735e556f2bcfac75f1fd8579e806ecbda96f16dd4f96c028aa821cf8f5d07"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10002/run_log.txt",
+          "sha256": "2ab06428238437a3895dd8a7cd5aa35130db5b4571a378c1234879c7ad118c05"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10002/trajectory.txt",
+          "sha256": "25fd5b780d0e251f591a44a598fe2ee2ac3a7c29a27e9771d88041f5bdd69adc"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10002/run_eval.json",
+          "sha256": "788c05edca07a3b890f5a3021441c4167cad67fbb407db5d11d6c1402fea4a5f"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10002/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10002/provenance/estimator_config--orbslam3_cfg_9yp8vS.yaml",
+          "sha256": "47126436fb9c6b3f8849f18c8cacd4f2482ca985466eaf52acb8b87a285d0c8c"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10002/provenance/estimator_config_source--citrusfarm_stereo.yaml",
+          "sha256": "187ff7814ab9ffa90833be6646535dc5737f6bd96caa06a2da7479e0710bf498"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10002/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+          "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+        },
+        {
+          "path": "datasets/citrusfarm/seq04/gt_tum.txt",
+          "sha256": "fb3c9f1d3467282ea0cc43b72d3dd74816b8fc48d2d645d3ee2238517e73b844"
+        },
+        {
+          "path": "datasets/citrusfarm/seq04/times.txt",
+          "sha256": "17c5793bf48eddddccde579126dedf1c22dffcafbe1f074021927f2fccd5c66c"
+        },
+        {
+          "path": "results/.attempt-state/vo__citrusfarm__seq04__orbslam3/run10002.json",
+          "sha256": "51ae8b0dfd760baa050a462a15a946a1281a727e8eabe9f67fe72269d093eca9"
+        },
+        {
+          "path": "configs/campaigns/production-attempts-20261005c.json",
+          "sha256": "455b5fd766a06bb4f26a74643c0f327c5d21fad1ca19ff1d3afe03e6c6e4f899"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
+          "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
+          "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
+        }
+      ],
+      "native_error_observations": [],
+      "protocol": {
+        "status": "verified",
+        "blockers": [],
+        "basis": "Selected production attempt: terminal attempt state, verified saved configuration snapshots, evaluator output and dataset claim scope reviewed; limits and failures retained.",
+        "implementation": "2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8)",
+        "review_document": "docs/campaigns/production-review-20261006.json"
+      }
+    },
+    "vo/citrusfarm/seq04/orbslam3/run10003": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+        "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+        "export_coverage_below_95_percent_no_clean_success_tick",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction"
+      ],
+      "disclosures": [
+        "CitrusFarm ORB-SLAM3 VO/VIO: all three repetitions rerun in one implementation group after the ORB-SLAM3 source commit (user decision 2026-10-05)",
+        "MicroStrain IMU on the camera clock by the measured shift; one IMU-noise profile for every inertial estimator (recording-derived densities, authors Allan random walks; decided 2026-10-04)",
+        "RTK antenna track moved to the left camera (rtk-position-v1-20261003): position only, level-platform lever and path-tangent heading; reference stamps are host arrival times, camera/GNSS clock unmeasured",
+        "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified",
+        "executed from the reviewed five-mode plan (future-n3-five-modes) by run_future_manifest; one attempt per action, no success-conditioned retry",
+        "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+        "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction"
+      ],
+      "evaluation_sha256": "bf6534116f4044550b992e19c9b4d2d0a682f42df5af8790690d723b6605a5bd",
+      "evidence": [
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10003/run_meta.json",
+          "sha256": "c7c6f40a33f1c54e045dcd2af4f83087143d144370db3153f6853b79231a3692"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10003/run_log.txt",
+          "sha256": "efe6657c3b27dcb4ff81a389cb98e1287459e652c0bcfd26cd0506dfc9bee268"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10003/trajectory.txt",
+          "sha256": "84ad15dfe1af92c88e2d10c7a30b59af6e71b02b3130e06818a3af42fb4d4e5d"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10003/run_eval.json",
+          "sha256": "91a969be66f15150b53b9b9016f3752199da17e79033b73d8b2982a67b87f1c7"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10003/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10003/provenance/estimator_config--orbslam3_cfg_Ce40vm.yaml",
+          "sha256": "47126436fb9c6b3f8849f18c8cacd4f2482ca985466eaf52acb8b87a285d0c8c"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10003/provenance/estimator_config_source--citrusfarm_stereo.yaml",
+          "sha256": "187ff7814ab9ffa90833be6646535dc5737f6bd96caa06a2da7479e0710bf498"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10003/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+          "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+        },
+        {
+          "path": "datasets/citrusfarm/seq04/gt_tum.txt",
+          "sha256": "fb3c9f1d3467282ea0cc43b72d3dd74816b8fc48d2d645d3ee2238517e73b844"
+        },
+        {
+          "path": "datasets/citrusfarm/seq04/times.txt",
+          "sha256": "17c5793bf48eddddccde579126dedf1c22dffcafbe1f074021927f2fccd5c66c"
+        },
+        {
+          "path": "results/.attempt-state/vo__citrusfarm__seq04__orbslam3/run10003.json",
+          "sha256": "dea6bb17a0b631873c4155b155d49ace5f0c99d61e729b622a689ca9a2156dad"
+        },
+        {
+          "path": "configs/campaigns/production-attempts-20261005c.json",
+          "sha256": "455b5fd766a06bb4f26a74643c0f327c5d21fad1ca19ff1d3afe03e6c6e4f899"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
+          "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
+          "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
+        }
+      ],
+      "native_error_observations": [],
+      "protocol": {
+        "status": "verified",
+        "blockers": [],
+        "basis": "Selected production attempt: terminal attempt state, verified saved configuration snapshots, evaluator output and dataset claim scope reviewed; limits and failures retained.",
+        "implementation": "2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8)",
+        "review_document": "docs/campaigns/production-review-20261006.json"
+      }
+    },
+    "vo/citrusfarm/seq04/orbslam3/run10004": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+        "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+        "export_coverage_below_95_percent_no_clean_success_tick",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction"
+      ],
+      "disclosures": [
+        "CitrusFarm ORB-SLAM3 VO/VIO: all three repetitions rerun in one implementation group after the ORB-SLAM3 source commit (user decision 2026-10-05)",
+        "MicroStrain IMU on the camera clock by the measured shift; one IMU-noise profile for every inertial estimator (recording-derived densities, authors Allan random walks; decided 2026-10-04)",
+        "RTK antenna track moved to the left camera (rtk-position-v1-20261003): position only, level-platform lever and path-tangent heading; reference stamps are host arrival times, camera/GNSS clock unmeasured",
+        "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified",
+        "executed from the reviewed five-mode plan (future-n3-five-modes) by run_future_manifest; one attempt per action, no success-conditioned retry",
+        "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+        "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction"
+      ],
+      "evaluation_sha256": "181ae09ea8b679730a39eda7f93c159ced75f558ed446f3d0b469967ef8af183",
+      "evidence": [
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10004/run_meta.json",
+          "sha256": "1a2e4301bf587850baf682cdb4ff5f7cb16a575c5721f754eb42f3c995e9a116"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10004/run_log.txt",
+          "sha256": "dcba657c59a5ec8c344ddc691b40814d86e3876d526b9b8617ba9d92417d7c31"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10004/trajectory.txt",
+          "sha256": "e677fb5947b836ba074d0c805fb56e951c725baf8f71750c837ee84aacc90edb"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10004/run_eval.json",
+          "sha256": "5f515b4f2748c00f503fa960f96b19f8e5f58a243887ebdb7a88083a79a177ad"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10004/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10004/provenance/estimator_config--orbslam3_cfg_XwlzDc.yaml",
+          "sha256": "47126436fb9c6b3f8849f18c8cacd4f2482ca985466eaf52acb8b87a285d0c8c"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10004/provenance/estimator_config_source--citrusfarm_stereo.yaml",
+          "sha256": "187ff7814ab9ffa90833be6646535dc5737f6bd96caa06a2da7479e0710bf498"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq04/orbslam3/run10004/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+          "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+        },
+        {
+          "path": "datasets/citrusfarm/seq04/gt_tum.txt",
+          "sha256": "fb3c9f1d3467282ea0cc43b72d3dd74816b8fc48d2d645d3ee2238517e73b844"
+        },
+        {
+          "path": "datasets/citrusfarm/seq04/times.txt",
+          "sha256": "17c5793bf48eddddccde579126dedf1c22dffcafbe1f074021927f2fccd5c66c"
+        },
+        {
+          "path": "results/.attempt-state/vo__citrusfarm__seq04__orbslam3/run10004.json",
+          "sha256": "7fe6761b69a8fffada4ab1ae5de0313d0580fb12ae3fbad8b3efa8c971cbd1a6"
+        },
+        {
+          "path": "configs/campaigns/production-attempts-20261005c.json",
+          "sha256": "455b5fd766a06bb4f26a74643c0f327c5d21fad1ca19ff1d3afe03e6c6e4f899"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
+          "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
+          "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
+        }
+      ],
+      "native_error_observations": [],
+      "protocol": {
+        "status": "verified",
+        "blockers": [],
+        "basis": "Selected production attempt: terminal attempt state, verified saved configuration snapshots, evaluator output and dataset claim scope reviewed; limits and failures retained.",
+        "implementation": "2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8)",
+        "review_document": "docs/campaigns/production-review-20261006.json"
+      }
+    },
+    "vo/citrusfarm/seq07/orbslam3/run10002": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+        "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+        "export_coverage_below_95_percent_no_clean_success_tick",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction"
+      ],
+      "disclosures": [
+        "CitrusFarm ORB-SLAM3 VO/VIO: all three repetitions rerun in one implementation group after the ORB-SLAM3 source commit (user decision 2026-10-05)",
+        "MicroStrain IMU on the camera clock by the measured shift; one IMU-noise profile for every inertial estimator (recording-derived densities, authors Allan random walks; decided 2026-10-04)",
+        "RTK antenna track moved to the left camera (rtk-position-v1-20261003): position only, level-platform lever and path-tangent heading; reference stamps are host arrival times, camera/GNSS clock unmeasured",
+        "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified",
+        "executed from the reviewed five-mode plan (future-n3-five-modes) by run_future_manifest; one attempt per action, no success-conditioned retry",
+        "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+        "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction"
+      ],
+      "evaluation_sha256": "6083261bc4d92ad65c3ae4dd0473d46521d57d94338af741e97f6f49fad0bd64",
+      "evidence": [
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10002/run_meta.json",
+          "sha256": "b07d77f967faa6b57dee9019bac63cc8f868038fdaaf25263aee994049adc530"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10002/run_log.txt",
+          "sha256": "299fda8a11293d42b86363bcda38539384c7c59003eae357e07e24261d97e48e"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10002/trajectory.txt",
+          "sha256": "9e901cb67204a1472b4915886b36d11a4d55f1abb7cc2edaf1f29ca5bd05520d"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10002/run_eval.json",
+          "sha256": "f988242b1af5abc398a2220805773dd353d2c2e55adb8d441b807931e202ddfa"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10002/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10002/provenance/estimator_config--orbslam3_cfg_QfuZJ1.yaml",
+          "sha256": "47126436fb9c6b3f8849f18c8cacd4f2482ca985466eaf52acb8b87a285d0c8c"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10002/provenance/estimator_config_source--citrusfarm_stereo.yaml",
+          "sha256": "187ff7814ab9ffa90833be6646535dc5737f6bd96caa06a2da7479e0710bf498"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10002/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+          "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+        },
+        {
+          "path": "datasets/citrusfarm/seq07/gt_tum.txt",
+          "sha256": "a707c79573e353790b33d2a93c92354257ca71cf52d2ee8ed74ceeee577c17a9"
+        },
+        {
+          "path": "datasets/citrusfarm/seq07/times.txt",
+          "sha256": "79d9bbb7c7f8a31edb6a9ca58f1f24e7ddc3ef265e6e06738fcae1b557273e5f"
+        },
+        {
+          "path": "results/.attempt-state/vo__citrusfarm__seq07__orbslam3/run10002.json",
+          "sha256": "c4c871e647acab299a2e404c36013257f4582e88f1246e2de87191ba78d79887"
+        },
+        {
+          "path": "configs/campaigns/production-attempts-20261005c.json",
+          "sha256": "455b5fd766a06bb4f26a74643c0f327c5d21fad1ca19ff1d3afe03e6c6e4f899"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
+          "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
+          "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
+        }
+      ],
+      "native_error_observations": [],
+      "protocol": {
+        "status": "verified",
+        "blockers": [],
+        "basis": "Selected production attempt: terminal attempt state, verified saved configuration snapshots, evaluator output and dataset claim scope reviewed; limits and failures retained.",
+        "implementation": "2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8)",
+        "review_document": "docs/campaigns/production-review-20261006.json"
+      }
+    },
+    "vo/citrusfarm/seq07/orbslam3/run10003": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+        "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+        "export_coverage_below_95_percent_no_clean_success_tick",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction"
+      ],
+      "disclosures": [
+        "CitrusFarm ORB-SLAM3 VO/VIO: all three repetitions rerun in one implementation group after the ORB-SLAM3 source commit (user decision 2026-10-05)",
+        "MicroStrain IMU on the camera clock by the measured shift; one IMU-noise profile for every inertial estimator (recording-derived densities, authors Allan random walks; decided 2026-10-04)",
+        "RTK antenna track moved to the left camera (rtk-position-v1-20261003): position only, level-platform lever and path-tangent heading; reference stamps are host arrival times, camera/GNSS clock unmeasured",
+        "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified",
+        "executed from the reviewed five-mode plan (future-n3-five-modes) by run_future_manifest; one attempt per action, no success-conditioned retry",
+        "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+        "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction"
+      ],
+      "evaluation_sha256": "5c43cdd309b27610b8d5dc05077ea8bcd79b39181bff47ff9e0c67576058d5bf",
+      "evidence": [
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10003/run_meta.json",
+          "sha256": "9eeda8e9c75838b7cf223b29e4a95a7f298981abd9dba6acff4878a0559a8950"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10003/run_log.txt",
+          "sha256": "b26f8db491c1cd0a596feecd212784034847228679fcd115c3ae90f28fd2820a"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10003/trajectory.txt",
+          "sha256": "7f1f20c44c28b4aaee2a842b08afc88fa29d0663dd3bc5781b0727804fbd211b"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10003/run_eval.json",
+          "sha256": "1ddee1924435a6660f912bb7aa353b2a7b2a3d7db5e26b30972db264dad53b97"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10003/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10003/provenance/estimator_config--orbslam3_cfg_yTeCZx.yaml",
+          "sha256": "47126436fb9c6b3f8849f18c8cacd4f2482ca985466eaf52acb8b87a285d0c8c"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10003/provenance/estimator_config_source--citrusfarm_stereo.yaml",
+          "sha256": "187ff7814ab9ffa90833be6646535dc5737f6bd96caa06a2da7479e0710bf498"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10003/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+          "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+        },
+        {
+          "path": "datasets/citrusfarm/seq07/gt_tum.txt",
+          "sha256": "a707c79573e353790b33d2a93c92354257ca71cf52d2ee8ed74ceeee577c17a9"
+        },
+        {
+          "path": "datasets/citrusfarm/seq07/times.txt",
+          "sha256": "79d9bbb7c7f8a31edb6a9ca58f1f24e7ddc3ef265e6e06738fcae1b557273e5f"
+        },
+        {
+          "path": "results/.attempt-state/vo__citrusfarm__seq07__orbslam3/run10003.json",
+          "sha256": "63a54549ca33469b251b84d7e06b36513b09b6f1ba4416c82ae5b281b3c2aec8"
+        },
+        {
+          "path": "configs/campaigns/production-attempts-20261005c.json",
+          "sha256": "455b5fd766a06bb4f26a74643c0f327c5d21fad1ca19ff1d3afe03e6c6e4f899"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
+          "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
+          "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
+        }
+      ],
+      "native_error_observations": [],
+      "protocol": {
+        "status": "verified",
+        "blockers": [],
+        "basis": "Selected production attempt: terminal attempt state, verified saved configuration snapshots, evaluator output and dataset claim scope reviewed; limits and failures retained.",
+        "implementation": "2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8)",
+        "review_document": "docs/campaigns/production-review-20261006.json"
+      }
+    },
+    "vo/citrusfarm/seq07/orbslam3/run10004": {
+      "exists": true,
+      "status": "accepted_with_limitation",
+      "claim": "nominal_citrusfarm_se3_final_position_accuracy",
+      "blockers": [],
+      "claim_limits": [
+        "accuracy_conditional_on_observed_exports_and_reference_support",
+        "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+        "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
+        "configuration_choices_are_not_evidence_of_algorithm_optimality",
+        "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+        "export_coverage_below_95_percent_no_clean_success_tick",
+        "no_measured_processing_rate_or_realtime_deadline_claim",
+        "no_rotation_or_full_relative_pose_accuracy_claim",
+        "recorded_native_assets_not_complete_transitive_build_reconstruction"
+      ],
+      "disclosures": [
+        "CitrusFarm ORB-SLAM3 VO/VIO: all three repetitions rerun in one implementation group after the ORB-SLAM3 source commit (user decision 2026-10-05)",
+        "MicroStrain IMU on the camera clock by the measured shift; one IMU-noise profile for every inertial estimator (recording-derived densities, authors Allan random walks; decided 2026-10-04)",
+        "RTK antenna track moved to the left camera (rtk-position-v1-20261003): position only, level-platform lever and path-tangent heading; reference stamps are host arrival times, camera/GNSS clock unmeasured",
+        "complete source-to-binary and loaded-dependency closure remains a reproducibility limit, not falsely marked verified",
+        "executed from the reviewed five-mode plan (future-n3-five-modes) by run_future_manifest; one attempt per action, no success-conditioned retry",
+        "no processing-FPS/deadline claim from paced/max-throughput wrapper times",
+        "recorded rig-specific settings, noise and thresholds are not evidence of optimality or author-paper reproduction"
+      ],
+      "evaluation_sha256": "342a1e1a3ae5c5489fe8e78517a642d5ddb8109025f9bb46744bbb4b14ba2332",
+      "evidence": [
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10004/run_meta.json",
+          "sha256": "df08648513d6a6b427d9ac65d489707fa3cb56922b47972ba6d74711caf419d7"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10004/run_log.txt",
+          "sha256": "4c81ff1ac156fd70e377a1a6c90d1fe5429157174a92d8710ee7cb8249d660c5"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10004/trajectory.txt",
+          "sha256": "8aa9922f519d56ea93aecd34dba4859b45f3cd09f2aefd243452e4f82b0616cb"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10004/run_eval.json",
+          "sha256": "430c32b25dd293b0005ab55969b37b95505efd8ec9f8b97cd52d10f8c4eac911"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10004/COMPLETE",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10004/provenance/estimator_config--orbslam3_cfg_1UpuEc.yaml",
+          "sha256": "47126436fb9c6b3f8849f18c8cacd4f2482ca985466eaf52acb8b87a285d0c8c"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10004/provenance/estimator_config_source--citrusfarm_stereo.yaml",
+          "sha256": "187ff7814ab9ffa90833be6646535dc5737f6bd96caa06a2da7479e0710bf498"
+        },
+        {
+          "path": "results/vo/citrusfarm/seq07/orbslam3/run10004/provenance/g2o_build_review--orb-zed-g2o-build-20261002.json",
+          "sha256": "64d00e8d066a115a7664499d47501873530e2ffd2380a46b02b8c7ea6bb15c20"
+        },
+        {
+          "path": "datasets/citrusfarm/seq07/gt_tum.txt",
+          "sha256": "a707c79573e353790b33d2a93c92354257ca71cf52d2ee8ed74ceeee577c17a9"
+        },
+        {
+          "path": "datasets/citrusfarm/seq07/times.txt",
+          "sha256": "79d9bbb7c7f8a31edb6a9ca58f1f24e7ddc3ef265e6e06738fcae1b557273e5f"
+        },
+        {
+          "path": "results/.attempt-state/vo__citrusfarm__seq07__orbslam3/run10004.json",
+          "sha256": "d2132cf64dc9e8da93e2fab3529577b65013deb751b8c3961c955d2f3d57cc78"
+        },
+        {
+          "path": "configs/campaigns/production-attempts-20261005c.json",
+          "sha256": "455b5fd766a06bb4f26a74643c0f327c5d21fad1ca19ff1d3afe03e6c6e4f899"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-physical-calibration-20261003.json",
+          "sha256": "384d124c8756d23e8b3d4efc7987ef3e35a37daa9638c662847ece95937172f7"
+        },
+        {
+          "path": "docs/campaigns/citrusfarm-imu-noise-20261003.json",
+          "sha256": "9c5c2c2732cdf71eea7dc4c78314ecb4a1dd67432e25e1cb9f505fa329aa8d4b"
+        }
+      ],
+      "native_error_observations": [],
+      "protocol": {
+        "status": "verified",
+        "blockers": [],
+        "basis": "Selected production attempt: terminal attempt state, verified saved configuration snapshots, evaluator output and dataset claim scope reviewed; limits and failures retained.",
+        "implementation": "2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8)",
+        "review_document": "docs/campaigns/production-review-20261006.json"
+      }
     }
   },
   "cells": {
@@ -78192,7 +79302,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "b369efff51ed8168bcf238806772fa8557a27a499e0d7667eee76222086505c8",
+          "cohort": "8d14bdd20e8e9eafe1f80cdd3a7ef283996e9ebc2fb6cbd28454ec4b4a9a26fb",
           "attempts": 3,
           "verified_completed": 3,
           "missing_to_n3": 0,
@@ -78621,7 +79731,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "1052de2fef72f052ea66df14ad10363cc40640031b17006999f9a9ece329f0b0",
+          "cohort": "2643015ea755e2a873715e13236947464ee14af37e42e9766cc991a8b04d44db",
           "attempts": 1,
           "verified_completed": 1,
           "missing_to_n3": 2,
@@ -78630,7 +79740,7 @@
           ]
         },
         {
-          "cohort": "b369efff51ed8168bcf238806772fa8557a27a499e0d7667eee76222086505c8",
+          "cohort": "8d14bdd20e8e9eafe1f80cdd3a7ef283996e9ebc2fb6cbd28454ec4b4a9a26fb",
           "attempts": 2,
           "verified_completed": 2,
           "missing_to_n3": 1,
@@ -79034,38 +80144,38 @@
     "vo/hortimulti/strawberry02/orbslam3": {
       "status": "blocked",
       "attempts": {
-        "blocked": 1,
-        "not_executed": 2
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 2,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 1,
-      "completed_attempt_count": 1,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
-      "observed_failure_count": 1,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
+      "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 2,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "blocked": 1,
-        "not_executed": 2
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "a97d3710859ffa8efb12f7fa1f02db8a44b5291d70a351cbb1548eb69ebd65f7",
-          "attempts": 1,
+          "cohort": "f991653d703293ad365a04ecdc9ac60792f04033aa67b5cd3f00c4b654861c40",
+          "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vo/hortimulti/strawberry02/orbslam3/run1"
+            "results/vo/hortimulti/strawberry02/orbslam3/run10001",
+            "results/vo/hortimulti/strawberry02/orbslam3/run10002",
+            "results/vo/hortimulti/strawberry02/orbslam3/run10003"
           ]
         }
       ]
@@ -79240,10 +80350,10 @@
       "attempt_count": 3,
       "completed_attempt_count": 3,
       "evaluated_trajectory_count": 3,
-      "successful_run_count": 0,
-      "observed_failure_count": 3,
-      "completed_export_shutdown_error_count": 3,
-      "shutdown_error_count": 3,
+      "successful_run_count": 3,
+      "observed_failure_count": 0,
+      "completed_export_shutdown_error_count": 0,
+      "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
@@ -79253,14 +80363,14 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "596214197599c7ea1b9187d7ac157514ae110ed3a98d2eaed3a970271c8cfdec",
+          "cohort": "12b83047d7d260b519a0bc0c78b020b2d844f86dab638a209f144e78db9508a5",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vo/hortimulti/strawberry02/ov2slam/run1",
-            "results/vo/hortimulti/strawberry02/ov2slam/run2",
-            "results/vo/hortimulti/strawberry02/ov2slam/run3"
+            "results/vo/hortimulti/strawberry02/ov2slam/run10001",
+            "results/vo/hortimulti/strawberry02/ov2slam/run10002",
+            "results/vo/hortimulti/strawberry02/ov2slam/run10003"
           ]
         }
       ]
@@ -79344,85 +80454,121 @@
       ]
     },
     "vo/hortimulti/strawberry02/cuvslam": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "not_executed": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
       "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 3,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
         "blocked": 3
       },
-      "protocol_cohorts": []
+      "protocol_cohorts": [
+        {
+          "cohort": "0d0c257012a60f606e7f509abf1f820d97d342d1267867261294ec7900fb49e9",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vo/hortimulti/strawberry02/cuvslam/run10001",
+            "results/vo/hortimulti/strawberry02/cuvslam/run10002",
+            "results/vo/hortimulti/strawberry02/cuvslam/run10003"
+          ]
+        }
+      ]
     },
     "vo/hortimulti/strawberry02/svo_pro": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "not_executed": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
       "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 3,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
         "blocked": 3
       },
-      "protocol_cohorts": []
+      "protocol_cohorts": [
+        {
+          "cohort": "9de976c1ee529554187620905384927230bb96132f6033f3fdc3f63596834cd9",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vo/hortimulti/strawberry02/svo_pro/run10001",
+            "results/vo/hortimulti/strawberry02/svo_pro/run10002",
+            "results/vo/hortimulti/strawberry02/svo_pro/run10003"
+          ]
+        }
+      ]
     },
     "vo/hortimulti/strawberry02/dsol": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "not_executed": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
       "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 3,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
         "blocked": 3
       },
-      "protocol_cohorts": []
+      "protocol_cohorts": [
+        {
+          "cohort": "8ec71d5da2c82d37653e781ec758a292a7e1d5e06c9598cc67cdf75fd4911e19",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vo/hortimulti/strawberry02/dsol/run10001",
+            "results/vo/hortimulti/strawberry02/dsol/run10002",
+            "results/vo/hortimulti/strawberry02/dsol/run10003"
+          ]
+        }
+      ]
     },
     "vo/hortimulti/strawberry03/orbslam3": {
       "status": "blocked",
@@ -79438,10 +80584,10 @@
       "attempt_count": 3,
       "completed_attempt_count": 3,
       "evaluated_trajectory_count": 3,
-      "successful_run_count": 2,
-      "observed_failure_count": 1,
-      "completed_export_shutdown_error_count": 1,
-      "shutdown_error_count": 1,
+      "successful_run_count": 3,
+      "observed_failure_count": 0,
+      "completed_export_shutdown_error_count": 0,
+      "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
@@ -79451,14 +80597,14 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "2fb6c3448bac07def910b05d7e7d8a84d45deda6dcb6ad7b6bd1ab368a8280dc",
+          "cohort": "f991653d703293ad365a04ecdc9ac60792f04033aa67b5cd3f00c4b654861c40",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vo/hortimulti/strawberry03/orbslam3/run1",
-            "results/vo/hortimulti/strawberry03/orbslam3/run2",
-            "results/vo/hortimulti/strawberry03/orbslam3/run3"
+            "results/vo/hortimulti/strawberry03/orbslam3/run10001",
+            "results/vo/hortimulti/strawberry03/orbslam3/run10002",
+            "results/vo/hortimulti/strawberry03/orbslam3/run10003"
           ]
         }
       ]
@@ -79633,10 +80779,10 @@
       "attempt_count": 3,
       "completed_attempt_count": 3,
       "evaluated_trajectory_count": 3,
-      "successful_run_count": 0,
-      "observed_failure_count": 3,
-      "completed_export_shutdown_error_count": 3,
-      "shutdown_error_count": 3,
+      "successful_run_count": 3,
+      "observed_failure_count": 0,
+      "completed_export_shutdown_error_count": 0,
+      "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
@@ -79646,14 +80792,14 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "596214197599c7ea1b9187d7ac157514ae110ed3a98d2eaed3a970271c8cfdec",
+          "cohort": "12b83047d7d260b519a0bc0c78b020b2d844f86dab638a209f144e78db9508a5",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vo/hortimulti/strawberry03/ov2slam/run1",
-            "results/vo/hortimulti/strawberry03/ov2slam/run2",
-            "results/vo/hortimulti/strawberry03/ov2slam/run3"
+            "results/vo/hortimulti/strawberry03/ov2slam/run10001",
+            "results/vo/hortimulti/strawberry03/ov2slam/run10002",
+            "results/vo/hortimulti/strawberry03/ov2slam/run10003"
           ]
         }
       ]
@@ -79737,85 +80883,121 @@
       ]
     },
     "vo/hortimulti/strawberry03/cuvslam": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "not_executed": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
       "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 3,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
         "blocked": 3
       },
-      "protocol_cohorts": []
+      "protocol_cohorts": [
+        {
+          "cohort": "ab113b5350e5d15f353508cdf946a05575a6ac7ffd4fbf21e48e1767c284ec36",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vo/hortimulti/strawberry03/cuvslam/run10001",
+            "results/vo/hortimulti/strawberry03/cuvslam/run10002",
+            "results/vo/hortimulti/strawberry03/cuvslam/run10003"
+          ]
+        }
+      ]
     },
     "vo/hortimulti/strawberry03/svo_pro": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "not_executed": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
       "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 3,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
         "blocked": 3
       },
-      "protocol_cohorts": []
+      "protocol_cohorts": [
+        {
+          "cohort": "8f5225c06ca62915b1cfc1939153ef24b45b506cbcb1e03f4ce903a886e4c178",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vo/hortimulti/strawberry03/svo_pro/run10001",
+            "results/vo/hortimulti/strawberry03/svo_pro/run10002",
+            "results/vo/hortimulti/strawberry03/svo_pro/run10003"
+          ]
+        }
+      ]
     },
     "vo/hortimulti/strawberry03/dsol": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "not_executed": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
       "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 3,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
         "blocked": 3
       },
-      "protocol_cohorts": []
+      "protocol_cohorts": [
+        {
+          "cohort": "a61de933f1f4c7d2149abff8b896e445d08741612d409625baecac3be797149a",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vo/hortimulti/strawberry03/dsol/run10001",
+            "results/vo/hortimulti/strawberry03/dsol/run10002",
+            "results/vo/hortimulti/strawberry03/dsol/run10003"
+          ]
+        }
+      ]
     },
     "vo/euroc_mav/MH_01_easy/orbslam3": {
       "status": "accepted_with_limitation",
@@ -79844,7 +81026,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "713570b5d4726c6b3c415debc4cac6b39f010e6399f89fb8fe90fd3caf2259bc",
+          "cohort": "dbec9ee76823161d925782243d25fa2e8f49821c3bcd654085bb1fc4e4051d3b",
           "attempts": 3,
           "verified_completed": 3,
           "missing_to_n3": 0,
@@ -80273,7 +81455,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "713570b5d4726c6b3c415debc4cac6b39f010e6399f89fb8fe90fd3caf2259bc",
+          "cohort": "dbec9ee76823161d925782243d25fa2e8f49821c3bcd654085bb1fc4e4051d3b",
           "attempts": 3,
           "verified_completed": 3,
           "missing_to_n3": 0,
@@ -80703,7 +81885,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "713570b5d4726c6b3c415debc4cac6b39f010e6399f89fb8fe90fd3caf2259bc",
+          "cohort": "dbec9ee76823161d925782243d25fa2e8f49821c3bcd654085bb1fc4e4051d3b",
           "attempts": 3,
           "verified_completed": 3,
           "missing_to_n3": 0,
@@ -81524,39 +82706,40 @@
       "protocol_cohorts": []
     },
     "vo/citrusfarm/seq04/orbslam3": {
-      "status": "blocked",
+      "status": "accepted_with_limitation",
       "attempts": {
-        "blocked": 1,
-        "not_executed": 2
+        "accepted_with_limitation": 3
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
-      "missing_repetitions": 2,
+      "paper_usable_attempts": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "blocked",
-      "protocol_verified_n3": false,
-      "attempt_count": 1,
-      "completed_attempt_count": 1,
-      "evaluated_trajectory_count": 1,
-      "successful_run_count": 1,
+      "protocol_state": "verified_n3",
+      "protocol_verified_n3": true,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
       "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 0,
+      "protocol_verified_attempts": 3,
       "verified_failure_count": 0,
-      "missing_attempt_count": 2,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "blocked": 3
+        "verified": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "c44e576345b90e9c1a9aafd3b6c47f8d100054c483cb6722be36e4fd8875bc85",
-          "attempts": 1,
-          "verified_completed": 0,
-          "missing_to_n3": null,
+          "cohort": "7c926d5c2f7ae04cbb186a932d571890016b2ba1657635cb1e83b8db38cea31f",
+          "attempts": 3,
+          "verified_completed": 3,
+          "missing_to_n3": 0,
           "run_paths": [
-            "results/vo/citrusfarm/seq04/orbslam3/run10001"
+            "results/vo/citrusfarm/seq04/orbslam3/run10002",
+            "results/vo/citrusfarm/seq04/orbslam3/run10003",
+            "results/vo/citrusfarm/seq04/orbslam3/run10004"
           ]
         }
       ]
@@ -81952,39 +83135,40 @@
       ]
     },
     "vo/citrusfarm/seq07/orbslam3": {
-      "status": "blocked",
+      "status": "accepted_with_limitation",
       "attempts": {
-        "blocked": 1,
-        "not_executed": 2
+        "accepted_with_limitation": 3
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
-      "missing_repetitions": 2,
+      "paper_usable_attempts": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "blocked",
-      "protocol_verified_n3": false,
-      "attempt_count": 1,
-      "completed_attempt_count": 1,
-      "evaluated_trajectory_count": 1,
-      "successful_run_count": 1,
+      "protocol_state": "verified_n3",
+      "protocol_verified_n3": true,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
       "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 0,
+      "protocol_verified_attempts": 3,
       "verified_failure_count": 0,
-      "missing_attempt_count": 2,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "blocked": 3
+        "verified": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "c44e576345b90e9c1a9aafd3b6c47f8d100054c483cb6722be36e4fd8875bc85",
-          "attempts": 1,
-          "verified_completed": 0,
-          "missing_to_n3": null,
+          "cohort": "7c926d5c2f7ae04cbb186a932d571890016b2ba1657635cb1e83b8db38cea31f",
+          "attempts": 3,
+          "verified_completed": 3,
+          "missing_to_n3": 0,
           "run_paths": [
-            "results/vo/citrusfarm/seq07/orbslam3/run10001"
+            "results/vo/citrusfarm/seq07/orbslam3/run10002",
+            "results/vo/citrusfarm/seq07/orbslam3/run10003",
+            "results/vo/citrusfarm/seq07/orbslam3/run10004"
           ]
         }
       ]
@@ -82676,7 +83860,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "7b48dc57080e7b413b83255fbe1e87cc96e7be04cf9ed0703060daa7ecaa4e98",
+          "cohort": "13a846bf704353fb1b607fdb03d46512f55833a22d27d4f07efc98bc7c1736f7",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
@@ -82924,10 +84108,10 @@
       "attempt_count": 3,
       "completed_attempt_count": 3,
       "evaluated_trajectory_count": 3,
-      "successful_run_count": 1,
-      "observed_failure_count": 2,
+      "successful_run_count": 3,
+      "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
-      "shutdown_error_count": 2,
+      "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
@@ -82937,14 +84121,14 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "5d8b80a466bca1529910dd70011ba6705013ffc80cdb845e6b60dabd5793bf02",
+          "cohort": "82cafc1b40978d5ead5aef23d2772967132a73412cf3c2e766887b59b5a861cf",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vo-lc/hortimulti/strawberry02/orbslam3/run1",
-            "results/vo-lc/hortimulti/strawberry02/orbslam3/run2",
-            "results/vo-lc/hortimulti/strawberry02/orbslam3/run3"
+            "results/vo-lc/hortimulti/strawberry02/orbslam3/run10001",
+            "results/vo-lc/hortimulti/strawberry02/orbslam3/run10002",
+            "results/vo-lc/hortimulti/strawberry02/orbslam3/run10003"
           ]
         }
       ]
@@ -83080,10 +84264,10 @@
       "attempt_count": 3,
       "completed_attempt_count": 3,
       "evaluated_trajectory_count": 3,
-      "successful_run_count": 0,
-      "observed_failure_count": 3,
-      "completed_export_shutdown_error_count": 3,
-      "shutdown_error_count": 3,
+      "successful_run_count": 3,
+      "observed_failure_count": 0,
+      "completed_export_shutdown_error_count": 0,
+      "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
@@ -83093,14 +84277,14 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "3d44ca34443fb94597e3c8a34ab10f186c2aa2eb9bdf8c66d9cb4f78d938387d",
+          "cohort": "ffdc96a918e51ba1447fd925a1c0b693b95ecffbf4d002baf8d0bb9388729b2f",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vo-lc/hortimulti/strawberry02/ov2slam/run1",
-            "results/vo-lc/hortimulti/strawberry02/ov2slam/run2",
-            "results/vo-lc/hortimulti/strawberry02/ov2slam/run3"
+            "results/vo-lc/hortimulti/strawberry02/ov2slam/run10001",
+            "results/vo-lc/hortimulti/strawberry02/ov2slam/run10002",
+            "results/vo-lc/hortimulti/strawberry02/ov2slam/run10003"
           ]
         }
       ]
@@ -83145,31 +84329,43 @@
       ]
     },
     "vo-lc/hortimulti/strawberry02/cuvslam": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "not_executed": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
       "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 3,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
         "blocked": 3
       },
-      "protocol_cohorts": []
+      "protocol_cohorts": [
+        {
+          "cohort": "5b1523c883ad716d9fbe522897ffeef28282e632d3b1c10d0cb9dd7859edb2a5",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vo-lc/hortimulti/strawberry02/cuvslam/run10001",
+            "results/vo-lc/hortimulti/strawberry02/cuvslam/run10002",
+            "results/vo-lc/hortimulti/strawberry02/cuvslam/run10003"
+          ]
+        }
+      ]
     },
     "vo-lc/hortimulti/strawberry03/orbslam3": {
       "status": "blocked",
@@ -83185,10 +84381,10 @@
       "attempt_count": 3,
       "completed_attempt_count": 3,
       "evaluated_trajectory_count": 3,
-      "successful_run_count": 2,
-      "observed_failure_count": 1,
-      "completed_export_shutdown_error_count": 1,
-      "shutdown_error_count": 1,
+      "successful_run_count": 3,
+      "observed_failure_count": 0,
+      "completed_export_shutdown_error_count": 0,
+      "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
@@ -83198,14 +84394,14 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "baaa5530dc964aabb6dd8c8ec731b1a58a2e5a62763558e734fbd2b53f012a74",
+          "cohort": "82cafc1b40978d5ead5aef23d2772967132a73412cf3c2e766887b59b5a861cf",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vo-lc/hortimulti/strawberry03/orbslam3/run1",
-            "results/vo-lc/hortimulti/strawberry03/orbslam3/run2",
-            "results/vo-lc/hortimulti/strawberry03/orbslam3/run3"
+            "results/vo-lc/hortimulti/strawberry03/orbslam3/run10001",
+            "results/vo-lc/hortimulti/strawberry03/orbslam3/run10002",
+            "results/vo-lc/hortimulti/strawberry03/orbslam3/run10003"
           ]
         }
       ]
@@ -83341,10 +84537,10 @@
       "attempt_count": 3,
       "completed_attempt_count": 3,
       "evaluated_trajectory_count": 3,
-      "successful_run_count": 0,
-      "observed_failure_count": 3,
-      "completed_export_shutdown_error_count": 3,
-      "shutdown_error_count": 3,
+      "successful_run_count": 3,
+      "observed_failure_count": 0,
+      "completed_export_shutdown_error_count": 0,
+      "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
@@ -83354,14 +84550,14 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "3d44ca34443fb94597e3c8a34ab10f186c2aa2eb9bdf8c66d9cb4f78d938387d",
+          "cohort": "ffdc96a918e51ba1447fd925a1c0b693b95ecffbf4d002baf8d0bb9388729b2f",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vo-lc/hortimulti/strawberry03/ov2slam/run1",
-            "results/vo-lc/hortimulti/strawberry03/ov2slam/run2",
-            "results/vo-lc/hortimulti/strawberry03/ov2slam/run3"
+            "results/vo-lc/hortimulti/strawberry03/ov2slam/run10001",
+            "results/vo-lc/hortimulti/strawberry03/ov2slam/run10002",
+            "results/vo-lc/hortimulti/strawberry03/ov2slam/run10003"
           ]
         }
       ]
@@ -83406,31 +84602,43 @@
       ]
     },
     "vo-lc/hortimulti/strawberry03/cuvslam": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "not_executed": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
       "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 3,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
         "blocked": 3
       },
-      "protocol_cohorts": []
+      "protocol_cohorts": [
+        {
+          "cohort": "deb572755e3f53a6f4c972896cc386342e597d68cb5e193d22485d421b92b7eb",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vo-lc/hortimulti/strawberry03/cuvslam/run10001",
+            "results/vo-lc/hortimulti/strawberry03/cuvslam/run10002",
+            "results/vo-lc/hortimulti/strawberry03/cuvslam/run10003"
+          ]
+        }
+      ]
     },
     "vo-lc/euroc_mav/MH_01_easy/orbslam3": {
       "status": "blocked",
@@ -83459,7 +84667,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "2fb7a8a1ab2b92230c69f9c42e7da5e311ac3f0079a814fb8405dc8a66d38cd1",
+          "cohort": "8a89436b115262c1ea57cd7f30bc52af39510474f760790f8648902c640d6e96",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
@@ -83720,7 +84928,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "2fb7a8a1ab2b92230c69f9c42e7da5e311ac3f0079a814fb8405dc8a66d38cd1",
+          "cohort": "8a89436b115262c1ea57cd7f30bc52af39510474f760790f8648902c640d6e96",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
@@ -83981,7 +85189,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "2fb7a8a1ab2b92230c69f9c42e7da5e311ac3f0079a814fb8405dc8a66d38cd1",
+          "cohort": "8a89436b115262c1ea57cd7f30bc52af39510474f760790f8648902c640d6e96",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
@@ -84242,7 +85450,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "3a94af0233858111304b2576385f8e0d1d4866b7afa71b4a8884a465975601fd",
+          "cohort": "75da64421b8cb443fdd8d21cad6309e9414789aa9f9ca56f5ad5c7a220ee7084",
           "attempts": 1,
           "verified_completed": 0,
           "missing_to_n3": null,
@@ -84251,7 +85459,7 @@
           ]
         },
         {
-          "cohort": "bedd5c4ff1ae3185aea851301102e4ad0246107fa04b2558a52d52056d40e80e",
+          "cohort": "8e716fa6fa304dcfa957c3ec48b3e34a32dc5a3b39238182b505ecc58d7e1d4c",
           "attempts": 2,
           "verified_completed": 0,
           "missing_to_n3": null,
@@ -84908,7 +86116,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "37bd807bbd4d4b7ee95ae7c6af4ef94e958f0595ad456e389c60489b03415791",
+          "cohort": "1eab31dd70250fc5c42f3f540a2140e5dce679360d6224753a32da8e926645b1",
           "attempts": 3,
           "verified_completed": 3,
           "missing_to_n3": 0,
@@ -85299,7 +86507,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "37bd807bbd4d4b7ee95ae7c6af4ef94e958f0595ad456e389c60489b03415791",
+          "cohort": "1eab31dd70250fc5c42f3f540a2140e5dce679360d6224753a32da8e926645b1",
           "attempts": 3,
           "verified_completed": 3,
           "missing_to_n3": 0,
@@ -85664,15 +86872,15 @@
       ]
     },
     "vio/hortimulti/strawberry02/orbslam3": {
-      "status": "rerun_required",
+      "status": "blocked",
       "attempts": {
-        "rerun_required": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "invalid_setup",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
@@ -85686,32 +86894,32 @@
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "invalid_setup": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "e4e246ca2f26ad675ca292e67f365ad9b438a524a3876f8ba92dc399c42b40e1",
+          "cohort": "07fd1fd57845e1a22e0da10d5a93784652d4ae35c0c7323ca4a5c6c432c06b9b",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio/hortimulti/strawberry02/orbslam3/run1",
-            "results/vio/hortimulti/strawberry02/orbslam3/run2",
-            "results/vio/hortimulti/strawberry02/orbslam3/run3"
+            "results/vio/hortimulti/strawberry02/orbslam3/run10004",
+            "results/vio/hortimulti/strawberry02/orbslam3/run10005",
+            "results/vio/hortimulti/strawberry02/orbslam3/run10006"
           ]
         }
       ]
     },
     "vio/hortimulti/strawberry02/okvis2": {
-      "status": "rerun_required",
+      "status": "blocked",
       "attempts": {
-        "rerun_required": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "invalid_setup",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
@@ -85725,32 +86933,32 @@
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "invalid_setup": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "aec160653d6faafd3180478787a1f147e6b0af639a16e8e739a96b8b4d61cc63",
+          "cohort": "08bd5452bdec8d11a6473f22701f452262fe98cb8b9daaf9632b85644095c633",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio/hortimulti/strawberry02/okvis2/run1",
-            "results/vio/hortimulti/strawberry02/okvis2/run2",
-            "results/vio/hortimulti/strawberry02/okvis2/run3"
+            "results/vio/hortimulti/strawberry02/okvis2/run10001",
+            "results/vio/hortimulti/strawberry02/okvis2/run10002",
+            "results/vio/hortimulti/strawberry02/okvis2/run10003"
           ]
         }
       ]
     },
     "vio/hortimulti/strawberry02/okvis2x": {
-      "status": "rerun_required",
+      "status": "blocked",
       "attempts": {
-        "rerun_required": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "invalid_setup",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
@@ -85764,32 +86972,32 @@
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "invalid_setup": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "52dd52eaec9c09feb5135895755234d5b52c24831e58acf3e14026673fb044e4",
+          "cohort": "4ad81ef16183c99df8d0827c7534603807540915d49d57e32fdd340f090fde72",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio/hortimulti/strawberry02/okvis2x/run1",
-            "results/vio/hortimulti/strawberry02/okvis2x/run2",
-            "results/vio/hortimulti/strawberry02/okvis2x/run3"
+            "results/vio/hortimulti/strawberry02/okvis2x/run10001",
+            "results/vio/hortimulti/strawberry02/okvis2x/run10002",
+            "results/vio/hortimulti/strawberry02/okvis2x/run10003"
           ]
         }
       ]
     },
     "vio/hortimulti/strawberry02/airslam": {
-      "status": "rerun_required",
+      "status": "blocked",
       "attempts": {
-        "rerun_required": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "invalid_setup",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
@@ -85803,18 +87011,18 @@
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "invalid_setup": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "79e939d4973f106e227d84178ee498bd593e7e73326c2434de425e0d72cfa05b",
+          "cohort": "9b80b99eeadd9b32d7683988730834749fbdb2c406d1c902a3125b03fbde5ba3",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio/hortimulti/strawberry02/airslam/run1",
-            "results/vio/hortimulti/strawberry02/airslam/run2",
-            "results/vio/hortimulti/strawberry02/airslam/run3"
+            "results/vio/hortimulti/strawberry02/airslam/run10001",
+            "results/vio/hortimulti/strawberry02/airslam/run10002",
+            "results/vio/hortimulti/strawberry02/airslam/run10003"
           ]
         }
       ]
@@ -85846,14 +87054,14 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "0ebf0138550eea069538aba59df2634dc3343d6acc728f370715e70b44fd5004",
+          "cohort": "bef353884adbff1172e4023c425aae486bb520d7b80dd4a6f8861f1d22f5d95d",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio/hortimulti/strawberry02/basalt/run1",
-            "results/vio/hortimulti/strawberry02/basalt/run2",
-            "results/vio/hortimulti/strawberry02/basalt/run3"
+            "results/vio/hortimulti/strawberry02/basalt/run10001",
+            "results/vio/hortimulti/strawberry02/basalt/run10002",
+            "results/vio/hortimulti/strawberry02/basalt/run10003"
           ]
         }
       ]
@@ -85861,38 +87069,38 @@
     "vio/hortimulti/strawberry02/openvins": {
       "status": "blocked",
       "attempts": {
-        "blocked": 1,
-        "not_executed": 2
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 2,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 1,
-      "completed_attempt_count": 1,
-      "evaluated_trajectory_count": 1,
-      "successful_run_count": 0,
-      "observed_failure_count": 1,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
+      "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 2,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "blocked": 1,
-        "not_executed": 2
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "1c955198923325c661966c833fed4ac55045231b1023acc7dcefeaa98acfc779",
-          "attempts": 1,
+          "cohort": "ebb894cbab15375612d4b48f8995870007c46857a2167ea4719dd9cf5d30097f",
+          "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio/hortimulti/strawberry02/openvins/run1"
+            "results/vio/hortimulti/strawberry02/openvins/run10001",
+            "results/vio/hortimulti/strawberry02/openvins/run10002",
+            "results/vio/hortimulti/strawberry02/openvins/run10003"
           ]
         }
       ]
@@ -85924,109 +87132,28 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "615143d25e1c76579b8f4752b4e03c1f05567302e862c0b6d47b1ea8299bd5f3",
+          "cohort": "16a054821804ca3f5970d50654271cfc05d1d53dea33f871f28b3715d89129b9",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio/hortimulti/strawberry02/voxel_svio/run1",
-            "results/vio/hortimulti/strawberry02/voxel_svio/run2",
-            "results/vio/hortimulti/strawberry02/voxel_svio/run3"
+            "results/vio/hortimulti/strawberry02/voxel_svio/run10001",
+            "results/vio/hortimulti/strawberry02/voxel_svio/run10002",
+            "results/vio/hortimulti/strawberry02/voxel_svio/run10003"
           ]
         }
       ]
     },
     "vio/hortimulti/strawberry02/cuvslam": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "not_executed": 3
-      },
-      "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
-      "verified_ready_to_run": false,
-      "protocol_state": "blocked",
-      "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
-      "observed_failure_count": 0,
-      "completed_export_shutdown_error_count": 0,
-      "shutdown_error_count": 0,
-      "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 0,
-      "verified_failure_count": 0,
-      "missing_attempt_count": 3,
-      "protocol_status_counts": {
         "blocked": 3
-      },
-      "protocol_cohorts": []
-    },
-    "vio/hortimulti/strawberry02/svo_pro": {
-      "status": "missing_repetitions",
-      "attempts": {
-        "not_executed": 3
-      },
-      "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
-      "verified_ready_to_run": false,
-      "protocol_state": "blocked",
-      "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
-      "observed_failure_count": 0,
-      "completed_export_shutdown_error_count": 0,
-      "shutdown_error_count": 0,
-      "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 0,
-      "verified_failure_count": 0,
-      "missing_attempt_count": 3,
-      "protocol_status_counts": {
-        "blocked": 3
-      },
-      "protocol_cohorts": []
-    },
-    "vio/hortimulti/strawberry02/mast3r_fusion": {
-      "status": "missing_repetitions",
-      "attempts": {
-        "not_executed": 3
-      },
-      "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
-      "verified_ready_to_run": false,
-      "protocol_state": "blocked",
-      "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
-      "observed_failure_count": 0,
-      "completed_export_shutdown_error_count": 0,
-      "shutdown_error_count": 0,
-      "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 0,
-      "verified_failure_count": 0,
-      "missing_attempt_count": 3,
-      "protocol_status_counts": {
-        "blocked": 3
-      },
-      "protocol_cohorts": []
-    },
-    "vio/hortimulti/strawberry03/orbslam3": {
-      "status": "rerun_required",
-      "attempts": {
-        "rerun_required": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "invalid_setup",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
@@ -86040,32 +87167,149 @@
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "invalid_setup": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "e4e246ca2f26ad675ca292e67f365ad9b438a524a3876f8ba92dc399c42b40e1",
+          "cohort": "16a3b3eb288894d4bf5999471ea57e528b42bc52cd44baeaf90093b8f676c2b5",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio/hortimulti/strawberry03/orbslam3/run1",
-            "results/vio/hortimulti/strawberry03/orbslam3/run2",
-            "results/vio/hortimulti/strawberry03/orbslam3/run3"
+            "results/vio/hortimulti/strawberry02/cuvslam/run10001",
+            "results/vio/hortimulti/strawberry02/cuvslam/run10002",
+            "results/vio/hortimulti/strawberry02/cuvslam/run10003"
+          ]
+        }
+      ]
+    },
+    "vio/hortimulti/strawberry02/svo_pro": {
+      "status": "blocked",
+      "attempts": {
+        "blocked": 3
+      },
+      "clean_qualified_n3": false,
+      "paper_usable_attempts": 0,
+      "missing_repetitions": 0,
+      "verified_ready_to_run": false,
+      "protocol_state": "blocked",
+      "protocol_verified_n3": false,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
+      "observed_failure_count": 0,
+      "completed_export_shutdown_error_count": 0,
+      "shutdown_error_count": 0,
+      "unknown_outcome_count": 0,
+      "protocol_verified_attempts": 0,
+      "verified_failure_count": 0,
+      "missing_attempt_count": 0,
+      "protocol_status_counts": {
+        "blocked": 3
+      },
+      "protocol_cohorts": [
+        {
+          "cohort": "02867693e473fb7ef69faf45ef6b0e2b1fd42ead361d18f92dbdd008855a297c",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vio/hortimulti/strawberry02/svo_pro/run10001",
+            "results/vio/hortimulti/strawberry02/svo_pro/run10002",
+            "results/vio/hortimulti/strawberry02/svo_pro/run10003"
+          ]
+        }
+      ]
+    },
+    "vio/hortimulti/strawberry02/mast3r_fusion": {
+      "status": "blocked",
+      "attempts": {
+        "blocked": 3
+      },
+      "clean_qualified_n3": false,
+      "paper_usable_attempts": 0,
+      "missing_repetitions": 0,
+      "verified_ready_to_run": false,
+      "protocol_state": "blocked",
+      "protocol_verified_n3": false,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
+      "observed_failure_count": 0,
+      "completed_export_shutdown_error_count": 0,
+      "shutdown_error_count": 0,
+      "unknown_outcome_count": 0,
+      "protocol_verified_attempts": 0,
+      "verified_failure_count": 0,
+      "missing_attempt_count": 0,
+      "protocol_status_counts": {
+        "blocked": 3
+      },
+      "protocol_cohorts": [
+        {
+          "cohort": "3e830c429c812ca795dbe3a536b2d5c602aebb40ea39d662d4cce4734215450b",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vio/hortimulti/strawberry02/mast3r_fusion/run10001",
+            "results/vio/hortimulti/strawberry02/mast3r_fusion/run10002",
+            "results/vio/hortimulti/strawberry02/mast3r_fusion/run10003"
+          ]
+        }
+      ]
+    },
+    "vio/hortimulti/strawberry03/orbslam3": {
+      "status": "blocked",
+      "attempts": {
+        "blocked": 3
+      },
+      "clean_qualified_n3": false,
+      "paper_usable_attempts": 0,
+      "missing_repetitions": 0,
+      "verified_ready_to_run": false,
+      "protocol_state": "blocked",
+      "protocol_verified_n3": false,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
+      "observed_failure_count": 0,
+      "completed_export_shutdown_error_count": 0,
+      "shutdown_error_count": 0,
+      "unknown_outcome_count": 0,
+      "protocol_verified_attempts": 0,
+      "verified_failure_count": 0,
+      "missing_attempt_count": 0,
+      "protocol_status_counts": {
+        "blocked": 3
+      },
+      "protocol_cohorts": [
+        {
+          "cohort": "07fd1fd57845e1a22e0da10d5a93784652d4ae35c0c7323ca4a5c6c432c06b9b",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vio/hortimulti/strawberry03/orbslam3/run10001",
+            "results/vio/hortimulti/strawberry03/orbslam3/run10002",
+            "results/vio/hortimulti/strawberry03/orbslam3/run10003"
           ]
         }
       ]
     },
     "vio/hortimulti/strawberry03/okvis2": {
-      "status": "rerun_required",
+      "status": "blocked",
       "attempts": {
-        "rerun_required": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "invalid_setup",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
@@ -86079,32 +87323,32 @@
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "invalid_setup": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "3b6a186fe461e056f92e96e0c4eea9888eb3dd0739f4f137ba91b03ec4172ae9",
+          "cohort": "0a57011b2e4f48fb1b4bb9cc15e1a3b2829268584751095c3915b8e1d7c35778",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio/hortimulti/strawberry03/okvis2/run1",
-            "results/vio/hortimulti/strawberry03/okvis2/run2",
-            "results/vio/hortimulti/strawberry03/okvis2/run3"
+            "results/vio/hortimulti/strawberry03/okvis2/run10001",
+            "results/vio/hortimulti/strawberry03/okvis2/run10002",
+            "results/vio/hortimulti/strawberry03/okvis2/run10003"
           ]
         }
       ]
     },
     "vio/hortimulti/strawberry03/okvis2x": {
-      "status": "rerun_required",
+      "status": "blocked",
       "attempts": {
-        "rerun_required": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "invalid_setup",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
@@ -86118,32 +87362,32 @@
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "invalid_setup": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "b83ceab6919b0d6d14cc38ffe4113b670f2850f014d69ba485bb48abe789e9af",
+          "cohort": "e72ce07c1d2dd616b36cc0340ffc08a219f040deda3bf66de7d0af11d59accfa",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio/hortimulti/strawberry03/okvis2x/run1",
-            "results/vio/hortimulti/strawberry03/okvis2x/run2",
-            "results/vio/hortimulti/strawberry03/okvis2x/run3"
+            "results/vio/hortimulti/strawberry03/okvis2x/run10001",
+            "results/vio/hortimulti/strawberry03/okvis2x/run10002",
+            "results/vio/hortimulti/strawberry03/okvis2x/run10003"
           ]
         }
       ]
     },
     "vio/hortimulti/strawberry03/airslam": {
-      "status": "rerun_required",
+      "status": "blocked",
       "attempts": {
-        "rerun_required": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "invalid_setup",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
@@ -86157,18 +87401,18 @@
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "invalid_setup": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "79e939d4973f106e227d84178ee498bd593e7e73326c2434de425e0d72cfa05b",
+          "cohort": "9b80b99eeadd9b32d7683988730834749fbdb2c406d1c902a3125b03fbde5ba3",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio/hortimulti/strawberry03/airslam/run1",
-            "results/vio/hortimulti/strawberry03/airslam/run2",
-            "results/vio/hortimulti/strawberry03/airslam/run3"
+            "results/vio/hortimulti/strawberry03/airslam/run10001",
+            "results/vio/hortimulti/strawberry03/airslam/run10002",
+            "results/vio/hortimulti/strawberry03/airslam/run10003"
           ]
         }
       ]
@@ -86200,14 +87444,14 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "0ebf0138550eea069538aba59df2634dc3343d6acc728f370715e70b44fd5004",
+          "cohort": "51e79bcf8b3577abdd3a71a3228df3b375a9baf371210d5a3509ebcf87a1bbc0",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio/hortimulti/strawberry03/basalt/run1",
-            "results/vio/hortimulti/strawberry03/basalt/run2",
-            "results/vio/hortimulti/strawberry03/basalt/run3"
+            "results/vio/hortimulti/strawberry03/basalt/run10001",
+            "results/vio/hortimulti/strawberry03/basalt/run10002",
+            "results/vio/hortimulti/strawberry03/basalt/run10003"
           ]
         }
       ]
@@ -86215,38 +87459,38 @@
     "vio/hortimulti/strawberry03/openvins": {
       "status": "blocked",
       "attempts": {
-        "blocked": 1,
-        "not_executed": 2
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 2,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 1,
-      "completed_attempt_count": 1,
-      "evaluated_trajectory_count": 1,
-      "successful_run_count": 0,
-      "observed_failure_count": 1,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
+      "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 2,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "blocked": 1,
-        "not_executed": 2
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "1c955198923325c661966c833fed4ac55045231b1023acc7dcefeaa98acfc779",
-          "attempts": 1,
+          "cohort": "ebb894cbab15375612d4b48f8995870007c46857a2167ea4719dd9cf5d30097f",
+          "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio/hortimulti/strawberry03/openvins/run1"
+            "results/vio/hortimulti/strawberry03/openvins/run10001",
+            "results/vio/hortimulti/strawberry03/openvins/run10002",
+            "results/vio/hortimulti/strawberry03/openvins/run10003"
           ]
         }
       ]
@@ -86278,98 +87522,134 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "615143d25e1c76579b8f4752b4e03c1f05567302e862c0b6d47b1ea8299bd5f3",
+          "cohort": "16a054821804ca3f5970d50654271cfc05d1d53dea33f871f28b3715d89129b9",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio/hortimulti/strawberry03/voxel_svio/run1",
-            "results/vio/hortimulti/strawberry03/voxel_svio/run2",
-            "results/vio/hortimulti/strawberry03/voxel_svio/run3"
+            "results/vio/hortimulti/strawberry03/voxel_svio/run10001",
+            "results/vio/hortimulti/strawberry03/voxel_svio/run10002",
+            "results/vio/hortimulti/strawberry03/voxel_svio/run10003"
           ]
         }
       ]
     },
     "vio/hortimulti/strawberry03/cuvslam": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "not_executed": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
       "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 3,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
         "blocked": 3
       },
-      "protocol_cohorts": []
+      "protocol_cohorts": [
+        {
+          "cohort": "3fe44ba0faf9c61432f4799651d350673a72946305cd7df884ba12858e98b52c",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vio/hortimulti/strawberry03/cuvslam/run10001",
+            "results/vio/hortimulti/strawberry03/cuvslam/run10002",
+            "results/vio/hortimulti/strawberry03/cuvslam/run10003"
+          ]
+        }
+      ]
     },
     "vio/hortimulti/strawberry03/svo_pro": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "not_executed": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
       "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 3,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
         "blocked": 3
       },
-      "protocol_cohorts": []
+      "protocol_cohorts": [
+        {
+          "cohort": "d28943e05a2ee650058a1604fd87886e82a30d79dda6f3f1c5da1a7f92ab6899",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vio/hortimulti/strawberry03/svo_pro/run10001",
+            "results/vio/hortimulti/strawberry03/svo_pro/run10002",
+            "results/vio/hortimulti/strawberry03/svo_pro/run10003"
+          ]
+        }
+      ]
     },
     "vio/hortimulti/strawberry03/mast3r_fusion": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "not_executed": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
       "successful_run_count": 0,
-      "observed_failure_count": 0,
+      "observed_failure_count": 3,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 3,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
         "blocked": 3
       },
-      "protocol_cohorts": []
+      "protocol_cohorts": [
+        {
+          "cohort": "3e830c429c812ca795dbe3a536b2d5c602aebb40ea39d662d4cce4734215450b",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vio/hortimulti/strawberry03/mast3r_fusion/run10001",
+            "results/vio/hortimulti/strawberry03/mast3r_fusion/run10002",
+            "results/vio/hortimulti/strawberry03/mast3r_fusion/run10003"
+          ]
+        }
+      ]
     },
     "vio/euroc_mav/MH_01_easy/orbslam3": {
       "status": "accepted_with_limitation",
@@ -86398,7 +87678,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "6c8d30af406e96b7915652cbfcc7b9f7384d10ebb19fbc443a786cbb27489759",
+          "cohort": "f20d54274c33b9628ee2ea0716ac8d6d1ae091b5d0b42001131e690f0972261d",
           "attempts": 3,
           "verified_completed": 3,
           "missing_to_n3": 0,
@@ -86788,7 +88068,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "6c8d30af406e96b7915652cbfcc7b9f7384d10ebb19fbc443a786cbb27489759",
+          "cohort": "f20d54274c33b9628ee2ea0716ac8d6d1ae091b5d0b42001131e690f0972261d",
           "attempts": 3,
           "verified_completed": 3,
           "missing_to_n3": 0,
@@ -87178,7 +88458,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "6c8d30af406e96b7915652cbfcc7b9f7384d10ebb19fbc443a786cbb27489759",
+          "cohort": "f20d54274c33b9628ee2ea0716ac8d6d1ae091b5d0b42001131e690f0972261d",
           "attempts": 3,
           "verified_completed": 3,
           "missing_to_n3": 0,
@@ -87568,7 +88848,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "pooled-ae62430aa8f2005648be420e3feab96284a8688d16fdc85cd6d64f15acabc493",
+          "cohort": "pooled-c06c2676408e3cf4955c76f4eb0346dc5be345659eb2cbc4b9b34746a6517f11",
           "attempts": 3,
           "verified_completed": 3,
           "missing_to_n3": 0,
@@ -87932,39 +89212,40 @@
       ]
     },
     "vio/citrusfarm/seq04/orbslam3": {
-      "status": "blocked",
+      "status": "accepted_with_limitation",
       "attempts": {
-        "blocked": 1,
-        "not_executed": 2
+        "accepted_with_limitation": 3
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
-      "missing_repetitions": 2,
+      "paper_usable_attempts": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "blocked",
-      "protocol_verified_n3": false,
-      "attempt_count": 1,
-      "completed_attempt_count": 1,
-      "evaluated_trajectory_count": 1,
-      "successful_run_count": 1,
+      "protocol_state": "verified_n3",
+      "protocol_verified_n3": true,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
       "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 0,
+      "protocol_verified_attempts": 3,
       "verified_failure_count": 0,
-      "missing_attempt_count": 2,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "blocked": 3
+        "verified": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "a63f66df631d68a3470c4e995767967c4a973d85ad7bd7d3793f5c2f562a8315",
-          "attempts": 1,
-          "verified_completed": 0,
-          "missing_to_n3": null,
+          "cohort": "b1233739bdf55446b80923b1f7dfdb039ebf5202d0bb4f017d85935e311b92d8",
+          "attempts": 3,
+          "verified_completed": 3,
+          "missing_to_n3": 0,
           "run_paths": [
-            "results/vio/citrusfarm/seq04/orbslam3/run10001"
+            "results/vio/citrusfarm/seq04/orbslam3/run10002",
+            "results/vio/citrusfarm/seq04/orbslam3/run10003",
+            "results/vio/citrusfarm/seq04/orbslam3/run10004"
           ]
         }
       ]
@@ -88320,39 +89601,40 @@
       ]
     },
     "vio/citrusfarm/seq07/orbslam3": {
-      "status": "blocked",
+      "status": "accepted_with_limitation",
       "attempts": {
-        "blocked": 1,
-        "not_executed": 2
+        "accepted_with_limitation": 3
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
-      "missing_repetitions": 2,
+      "paper_usable_attempts": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "blocked",
-      "protocol_verified_n3": false,
-      "attempt_count": 1,
-      "completed_attempt_count": 1,
-      "evaluated_trajectory_count": 1,
-      "successful_run_count": 1,
+      "protocol_state": "verified_n3",
+      "protocol_verified_n3": true,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
       "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 0,
+      "protocol_verified_attempts": 3,
       "verified_failure_count": 0,
-      "missing_attempt_count": 2,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "blocked": 3
+        "verified": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "a63f66df631d68a3470c4e995767967c4a973d85ad7bd7d3793f5c2f562a8315",
-          "attempts": 1,
-          "verified_completed": 0,
-          "missing_to_n3": null,
+          "cohort": "b1233739bdf55446b80923b1f7dfdb039ebf5202d0bb4f017d85935e311b92d8",
+          "attempts": 3,
+          "verified_completed": 3,
+          "missing_to_n3": 0,
           "run_paths": [
-            "results/vio/citrusfarm/seq07/orbslam3/run10001"
+            "results/vio/citrusfarm/seq07/orbslam3/run10002",
+            "results/vio/citrusfarm/seq07/orbslam3/run10003",
+            "results/vio/citrusfarm/seq07/orbslam3/run10004"
           ]
         }
       ]
@@ -88734,7 +90016,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "c5eaa79e03fdc75fd88c70c5e747edaca2b3d3308854092cb8033b8142c99125",
+          "cohort": "b99c03b6850ea34d3f1b605568d6a26414fa0da593002e8cfe5f668ddc55cac2",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
@@ -88971,7 +90253,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "c5eaa79e03fdc75fd88c70c5e747edaca2b3d3308854092cb8033b8142c99125",
+          "cohort": "b99c03b6850ea34d3f1b605568d6a26414fa0da593002e8cfe5f668ddc55cac2",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
@@ -89182,21 +90464,21 @@
       "protocol_cohorts": []
     },
     "vio-lc/hortimulti/strawberry02/orbslam3": {
-      "status": "rerun_required",
+      "status": "blocked",
       "attempts": {
-        "rerun_required": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "invalid_setup",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
-      "evaluated_trajectory_count": 3,
-      "successful_run_count": 3,
-      "observed_failure_count": 0,
+      "evaluated_trajectory_count": 2,
+      "successful_run_count": 2,
+      "observed_failure_count": 1,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
@@ -89204,32 +90486,32 @@
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "invalid_setup": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "c8fb082f5e74e1529ad692cd01516ae7c253669990776919bb03905bd7527cbe",
+          "cohort": "dfaeb76ee495e5de594eb190d144d582513da2b362c95334e8330331cad98be7",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio-lc/hortimulti/strawberry02/orbslam3/run1",
-            "results/vio-lc/hortimulti/strawberry02/orbslam3/run2",
-            "results/vio-lc/hortimulti/strawberry02/orbslam3/run3"
+            "results/vio-lc/hortimulti/strawberry02/orbslam3/run10001",
+            "results/vio-lc/hortimulti/strawberry02/orbslam3/run10002",
+            "results/vio-lc/hortimulti/strawberry02/orbslam3/run10003"
           ]
         }
       ]
     },
     "vio-lc/hortimulti/strawberry02/okvis2": {
-      "status": "rerun_required",
+      "status": "blocked",
       "attempts": {
-        "rerun_required": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "invalid_setup",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
@@ -89243,32 +90525,32 @@
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "invalid_setup": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "be86e9aa751b50b0aa4caa36ad02397841c03dcd23426d1f323cffc6af2434e8",
+          "cohort": "f2431bc729bfda368d4f3300eab1a365e67502b1d3bdd430c66c9809f6727282",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio-lc/hortimulti/strawberry02/okvis2/run1",
-            "results/vio-lc/hortimulti/strawberry02/okvis2/run2",
-            "results/vio-lc/hortimulti/strawberry02/okvis2/run3"
+            "results/vio-lc/hortimulti/strawberry02/okvis2/run10001",
+            "results/vio-lc/hortimulti/strawberry02/okvis2/run10002",
+            "results/vio-lc/hortimulti/strawberry02/okvis2/run10003"
           ]
         }
       ]
     },
     "vio-lc/hortimulti/strawberry02/okvis2x": {
-      "status": "rerun_required",
+      "status": "blocked",
       "attempts": {
-        "rerun_required": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "invalid_setup",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
@@ -89282,32 +90564,32 @@
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "invalid_setup": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "40b444ef5ce4af78d4ae2b4a6067bbce7aa4ed88df41ae66fc7f8d30bb23904c",
+          "cohort": "28d957e6d4c341becf35be82d2412475f451ec55c83f221f69c8040984fb156e",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio-lc/hortimulti/strawberry02/okvis2x/run1",
-            "results/vio-lc/hortimulti/strawberry02/okvis2x/run2",
-            "results/vio-lc/hortimulti/strawberry02/okvis2x/run3"
+            "results/vio-lc/hortimulti/strawberry02/okvis2x/run10001",
+            "results/vio-lc/hortimulti/strawberry02/okvis2x/run10002",
+            "results/vio-lc/hortimulti/strawberry02/okvis2x/run10003"
           ]
         }
       ]
     },
     "vio-lc/hortimulti/strawberry02/airslam": {
-      "status": "rerun_required",
+      "status": "blocked",
       "attempts": {
-        "rerun_required": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "invalid_setup",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
@@ -89321,113 +90603,32 @@
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "invalid_setup": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "08b962a0b00ade1997e4bf6bb729d28939389c036bc8deb49422a8b51a4645da",
+          "cohort": "fef33390709e060236416c94080e84a596ade8c60683accf6afba196255b8aef",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio-lc/hortimulti/strawberry02/airslam/run1",
-            "results/vio-lc/hortimulti/strawberry02/airslam/run2",
-            "results/vio-lc/hortimulti/strawberry02/airslam/run3"
+            "results/vio-lc/hortimulti/strawberry02/airslam/run10001",
+            "results/vio-lc/hortimulti/strawberry02/airslam/run10002",
+            "results/vio-lc/hortimulti/strawberry02/airslam/run10003"
           ]
         }
       ]
     },
     "vio-lc/hortimulti/strawberry02/cuvslam": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "not_executed": 3
-      },
-      "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
-      "verified_ready_to_run": false,
-      "protocol_state": "blocked",
-      "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
-      "observed_failure_count": 0,
-      "completed_export_shutdown_error_count": 0,
-      "shutdown_error_count": 0,
-      "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 0,
-      "verified_failure_count": 0,
-      "missing_attempt_count": 3,
-      "protocol_status_counts": {
         "blocked": 3
-      },
-      "protocol_cohorts": []
-    },
-    "vio-lc/hortimulti/strawberry02/svo_pro": {
-      "status": "missing_repetitions",
-      "attempts": {
-        "not_executed": 3
-      },
-      "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
-      "verified_ready_to_run": false,
-      "protocol_state": "blocked",
-      "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
-      "observed_failure_count": 0,
-      "completed_export_shutdown_error_count": 0,
-      "shutdown_error_count": 0,
-      "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 0,
-      "verified_failure_count": 0,
-      "missing_attempt_count": 3,
-      "protocol_status_counts": {
-        "blocked": 3
-      },
-      "protocol_cohorts": []
-    },
-    "vio-lc/hortimulti/strawberry02/mast3r_fusion": {
-      "status": "missing_repetitions",
-      "attempts": {
-        "not_executed": 3
-      },
-      "clean_qualified_n3": false,
-      "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
-      "verified_ready_to_run": false,
-      "protocol_state": "blocked",
-      "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
-      "observed_failure_count": 0,
-      "completed_export_shutdown_error_count": 0,
-      "shutdown_error_count": 0,
-      "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 0,
-      "verified_failure_count": 0,
-      "missing_attempt_count": 3,
-      "protocol_status_counts": {
-        "blocked": 3
-      },
-      "protocol_cohorts": []
-    },
-    "vio-lc/hortimulti/strawberry03/orbslam3": {
-      "status": "rerun_required",
-      "attempts": {
-        "rerun_required": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "invalid_setup",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
@@ -89441,32 +90642,149 @@
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "invalid_setup": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "c8fb082f5e74e1529ad692cd01516ae7c253669990776919bb03905bd7527cbe",
+          "cohort": "c2d7a4061f2de6b6532e432779af48418c6ad813f0e9473c71fd51e262e6b2b5",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio-lc/hortimulti/strawberry03/orbslam3/run1",
-            "results/vio-lc/hortimulti/strawberry03/orbslam3/run2",
-            "results/vio-lc/hortimulti/strawberry03/orbslam3/run3"
+            "results/vio-lc/hortimulti/strawberry02/cuvslam/run10001",
+            "results/vio-lc/hortimulti/strawberry02/cuvslam/run10002",
+            "results/vio-lc/hortimulti/strawberry02/cuvslam/run10003"
+          ]
+        }
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/svo_pro": {
+      "status": "blocked",
+      "attempts": {
+        "blocked": 3
+      },
+      "clean_qualified_n3": false,
+      "paper_usable_attempts": 0,
+      "missing_repetitions": 0,
+      "verified_ready_to_run": false,
+      "protocol_state": "blocked",
+      "protocol_verified_n3": false,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 0,
+      "successful_run_count": 0,
+      "observed_failure_count": 3,
+      "completed_export_shutdown_error_count": 0,
+      "shutdown_error_count": 0,
+      "unknown_outcome_count": 0,
+      "protocol_verified_attempts": 0,
+      "verified_failure_count": 0,
+      "missing_attempt_count": 0,
+      "protocol_status_counts": {
+        "blocked": 3
+      },
+      "protocol_cohorts": [
+        {
+          "cohort": "8f83bba3a882c6aabf711899171d29c13cbf0baaef19c18086a8654745ba8b49",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vio-lc/hortimulti/strawberry02/svo_pro/run10001",
+            "results/vio-lc/hortimulti/strawberry02/svo_pro/run10002",
+            "results/vio-lc/hortimulti/strawberry02/svo_pro/run10003"
+          ]
+        }
+      ]
+    },
+    "vio-lc/hortimulti/strawberry02/mast3r_fusion": {
+      "status": "blocked",
+      "attempts": {
+        "blocked": 3
+      },
+      "clean_qualified_n3": false,
+      "paper_usable_attempts": 0,
+      "missing_repetitions": 0,
+      "verified_ready_to_run": false,
+      "protocol_state": "blocked",
+      "protocol_verified_n3": false,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
+      "observed_failure_count": 0,
+      "completed_export_shutdown_error_count": 0,
+      "shutdown_error_count": 0,
+      "unknown_outcome_count": 0,
+      "protocol_verified_attempts": 0,
+      "verified_failure_count": 0,
+      "missing_attempt_count": 0,
+      "protocol_status_counts": {
+        "blocked": 3
+      },
+      "protocol_cohorts": [
+        {
+          "cohort": "1b9d7bc6b0b9e31225065e0a4be6d82e179bf60c1e4d078f46c9b616dfdf3429",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vio-lc/hortimulti/strawberry02/mast3r_fusion/run10001",
+            "results/vio-lc/hortimulti/strawberry02/mast3r_fusion/run10002",
+            "results/vio-lc/hortimulti/strawberry02/mast3r_fusion/run10003"
+          ]
+        }
+      ]
+    },
+    "vio-lc/hortimulti/strawberry03/orbslam3": {
+      "status": "blocked",
+      "attempts": {
+        "blocked": 3
+      },
+      "clean_qualified_n3": false,
+      "paper_usable_attempts": 0,
+      "missing_repetitions": 0,
+      "verified_ready_to_run": false,
+      "protocol_state": "blocked",
+      "protocol_verified_n3": false,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
+      "observed_failure_count": 0,
+      "completed_export_shutdown_error_count": 0,
+      "shutdown_error_count": 0,
+      "unknown_outcome_count": 0,
+      "protocol_verified_attempts": 0,
+      "verified_failure_count": 0,
+      "missing_attempt_count": 0,
+      "protocol_status_counts": {
+        "blocked": 3
+      },
+      "protocol_cohorts": [
+        {
+          "cohort": "dfaeb76ee495e5de594eb190d144d582513da2b362c95334e8330331cad98be7",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vio-lc/hortimulti/strawberry03/orbslam3/run10001",
+            "results/vio-lc/hortimulti/strawberry03/orbslam3/run10002",
+            "results/vio-lc/hortimulti/strawberry03/orbslam3/run10003"
           ]
         }
       ]
     },
     "vio-lc/hortimulti/strawberry03/okvis2": {
-      "status": "rerun_required",
+      "status": "blocked",
       "attempts": {
-        "rerun_required": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "invalid_setup",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
@@ -89480,32 +90798,32 @@
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "invalid_setup": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "182b1097d4cdc561ff738fdd7229a670e480973b321d3617a9012cd02900d664",
+          "cohort": "df37870130620cd0d049cdf882612f474b92a513a1cd9addae20cfd2e0d243ad",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio-lc/hortimulti/strawberry03/okvis2/run1",
-            "results/vio-lc/hortimulti/strawberry03/okvis2/run2",
-            "results/vio-lc/hortimulti/strawberry03/okvis2/run3"
+            "results/vio-lc/hortimulti/strawberry03/okvis2/run10001",
+            "results/vio-lc/hortimulti/strawberry03/okvis2/run10002",
+            "results/vio-lc/hortimulti/strawberry03/okvis2/run10003"
           ]
         }
       ]
     },
     "vio-lc/hortimulti/strawberry03/okvis2x": {
-      "status": "rerun_required",
+      "status": "blocked",
       "attempts": {
-        "rerun_required": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "invalid_setup",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
@@ -89519,32 +90837,32 @@
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "invalid_setup": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "86f33a0ad698589886db3a46ae9697422dd1a4565aa93747d9c9a9e416c2e9d1",
+          "cohort": "60c259248e2c30bef49528c1ff3cce2e2dd17b1abf911ea423a373137d7d5853",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio-lc/hortimulti/strawberry03/okvis2x/run1",
-            "results/vio-lc/hortimulti/strawberry03/okvis2x/run2",
-            "results/vio-lc/hortimulti/strawberry03/okvis2x/run3"
+            "results/vio-lc/hortimulti/strawberry03/okvis2x/run10001",
+            "results/vio-lc/hortimulti/strawberry03/okvis2x/run10002",
+            "results/vio-lc/hortimulti/strawberry03/okvis2x/run10003"
           ]
         }
       ]
     },
     "vio-lc/hortimulti/strawberry03/airslam": {
-      "status": "rerun_required",
+      "status": "blocked",
       "attempts": {
-        "rerun_required": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
       "missing_repetitions": 0,
       "verified_ready_to_run": false,
-      "protocol_state": "invalid_setup",
+      "protocol_state": "blocked",
       "protocol_verified_n3": false,
       "attempt_count": 3,
       "completed_attempt_count": 3,
@@ -89558,102 +90876,138 @@
       "verified_failure_count": 0,
       "missing_attempt_count": 0,
       "protocol_status_counts": {
-        "invalid_setup": 3
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
-          "cohort": "08b962a0b00ade1997e4bf6bb729d28939389c036bc8deb49422a8b51a4645da",
+          "cohort": "fef33390709e060236416c94080e84a596ade8c60683accf6afba196255b8aef",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
           "run_paths": [
-            "results/vio-lc/hortimulti/strawberry03/airslam/run1",
-            "results/vio-lc/hortimulti/strawberry03/airslam/run2",
-            "results/vio-lc/hortimulti/strawberry03/airslam/run3"
+            "results/vio-lc/hortimulti/strawberry03/airslam/run10001",
+            "results/vio-lc/hortimulti/strawberry03/airslam/run10002",
+            "results/vio-lc/hortimulti/strawberry03/airslam/run10003"
           ]
         }
       ]
     },
     "vio-lc/hortimulti/strawberry03/cuvslam": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "not_executed": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
+      "successful_run_count": 3,
       "observed_failure_count": 0,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 3,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
         "blocked": 3
       },
-      "protocol_cohorts": []
+      "protocol_cohorts": [
+        {
+          "cohort": "e3c756602b1a3a91d2f7a74c8042e833500bbdec50019721bdf149cf2bd30344",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vio-lc/hortimulti/strawberry03/cuvslam/run10001",
+            "results/vio-lc/hortimulti/strawberry03/cuvslam/run10002",
+            "results/vio-lc/hortimulti/strawberry03/cuvslam/run10003"
+          ]
+        }
+      ]
     },
     "vio-lc/hortimulti/strawberry03/svo_pro": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "not_executed": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
-      "successful_run_count": 0,
-      "observed_failure_count": 0,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 1,
+      "successful_run_count": 1,
+      "observed_failure_count": 2,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 3,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
         "blocked": 3
       },
-      "protocol_cohorts": []
+      "protocol_cohorts": [
+        {
+          "cohort": "f7fddedbfc8382ab818346443a2bb1ac8f43c21323923d925604e123d1b01135",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vio-lc/hortimulti/strawberry03/svo_pro/run10001",
+            "results/vio-lc/hortimulti/strawberry03/svo_pro/run10002",
+            "results/vio-lc/hortimulti/strawberry03/svo_pro/run10003"
+          ]
+        }
+      ]
     },
     "vio-lc/hortimulti/strawberry03/mast3r_fusion": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "not_executed": 3
+        "blocked": 3
       },
       "clean_qualified_n3": false,
       "paper_usable_attempts": 0,
-      "missing_repetitions": 3,
+      "missing_repetitions": 0,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
       "protocol_verified_n3": false,
-      "attempt_count": 0,
-      "completed_attempt_count": 0,
-      "evaluated_trajectory_count": 0,
+      "attempt_count": 3,
+      "completed_attempt_count": 3,
+      "evaluated_trajectory_count": 3,
       "successful_run_count": 0,
-      "observed_failure_count": 0,
+      "observed_failure_count": 3,
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
       "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
-      "missing_attempt_count": 3,
+      "missing_attempt_count": 0,
       "protocol_status_counts": {
         "blocked": 3
       },
-      "protocol_cohorts": []
+      "protocol_cohorts": [
+        {
+          "cohort": "1b9d7bc6b0b9e31225065e0a4be6d82e179bf60c1e4d078f46c9b616dfdf3429",
+          "attempts": 3,
+          "verified_completed": 0,
+          "missing_to_n3": null,
+          "run_paths": [
+            "results/vio-lc/hortimulti/strawberry03/mast3r_fusion/run10001",
+            "results/vio-lc/hortimulti/strawberry03/mast3r_fusion/run10002",
+            "results/vio-lc/hortimulti/strawberry03/mast3r_fusion/run10003"
+          ]
+        }
+      ]
     },
     "vio-lc/euroc_mav/MH_01_easy/orbslam3": {
       "status": "blocked",
@@ -89682,7 +91036,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "8d7d796cd40b271ccd5508b44ea2cd3398df046ade49c489747bc38f543e5902",
+          "cohort": "9c6536242fe10a77db99bbb45012b889dc29837e5f6785cb52e9eec7d09a7a32",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
@@ -89919,7 +91273,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "8d7d796cd40b271ccd5508b44ea2cd3398df046ade49c489747bc38f543e5902",
+          "cohort": "9c6536242fe10a77db99bbb45012b889dc29837e5f6785cb52e9eec7d09a7a32",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,
@@ -90156,7 +91510,7 @@
       },
       "protocol_cohorts": [
         {
-          "cohort": "8d7d796cd40b271ccd5508b44ea2cd3398df046ade49c489747bc38f543e5902",
+          "cohort": "9c6536242fe10a77db99bbb45012b889dc29837e5f6785cb52e9eec7d09a7a32",
           "attempts": 3,
           "verified_completed": 0,
           "missing_to_n3": null,

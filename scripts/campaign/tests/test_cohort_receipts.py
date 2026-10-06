@@ -60,3 +60,11 @@ def test_mast3r_fusion_repetition_seed_is_not_a_setting():
         return dict(provenance=dict(parameters=dict(seed=seed, stride=1), artifacts=[]), machine_id='m')
     assert cohort_identity(meta(11001), 'mast3r_fusion')[0] == cohort_identity(meta(11002), 'mast3r_fusion')[0]
     assert cohort_identity(meta(11001), 'orbslam3')[0] != cohort_identity(meta(11002), 'orbslam3')[0]
+
+
+def test_orb_canonicalization_marker_absent_after_a_crash_does_not_split_cohorts():
+    def meta(**extra):
+        return dict(provenance=dict(parameters=dict(dict(stride=1), **extra), artifacts=[]), machine_id='m')
+    exported = meta(trajectory_canonicalization='drop_exact_duplicate_timestamp_pose_rows')
+    assert cohort_identity(exported, 'orbslam3')[0] == cohort_identity(meta(), 'orbslam3')[0]
+    assert cohort_identity(meta(stride=2), 'orbslam3')[0] != cohort_identity(meta(), 'orbslam3')[0]

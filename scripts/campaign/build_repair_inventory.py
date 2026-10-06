@@ -17,7 +17,7 @@ import sys
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from run_quality_campaign import expand_cells, cell_key, load_manifest
 from run_repetitions import atomic_json
-from protocol_findings import historical_findings
+from protocol_findings import historical_findings, USER_RERUN_DECISIONS
 from qualification_review import review_saved, review_identity
 from acceptance_ledger import cell_acceptance
 
@@ -70,13 +70,23 @@ def completed_zed_selections(repo):
 
 
 BATCH_SELECTIONS=('configs/campaigns/zed-vio-n3-attempts-20261003.json','configs/campaigns/production-attempts-20261004.json',
-                  'configs/campaigns/production-replacements-20261005.json','configs/campaigns/production-replacements-20261005b.json')
+                  'configs/campaigns/production-replacements-20261005.json','configs/campaigns/production-replacements-20261005b.json',
+                  'configs/campaigns/production-attempts-20261005c.json')
 # Comparison group recorded on the cells each batch selection lists.
 BATCH_LABELS={'configs/campaigns/zed-vio-n3-attempts-20261003.json':'zed_vio_n3_20261003',
               'configs/campaigns/production-attempts-20261004.json':'production_20261004',
               'configs/campaigns/production-replacements-20261005.json':'production_20261004',
-              'configs/campaigns/production-replacements-20261005b.json':'production_20261004'}
+              'configs/campaigns/production-replacements-20261005b.json':'production_20261004',
+              'configs/campaigns/production-attempts-20261005c.json':'production_20261005_rule_c'}
 TERMINAL=('evaluated','evaluated_failure_or_review','no_trajectory','evaluation_failed')
+
+
+def decided_replacement(repo, attempt):
+    """True when a recorded user rerun decision supersedes this attempt (path relative to results/)."""
+    for name in USER_RERUN_DECISIONS:
+        path=repo/name
+        if path.is_file() and attempt in read(path).get('attempts',{}):return True
+    return False
 
 
 def completed_batch_selections(repo, earlier, labels=None):
@@ -88,7 +98,9 @@ def completed_batch_selections(repo, earlier, labels=None):
     default slot (physical id = repetition) when the batch did not run it. The batch
     status is a batch driver's attempt list or a frozen run_future_manifest state.
     A later record may list a cell an earlier record listed, filling only repetitions
-    still at their default slot; it never replaces an attempt already selected.
+    still at their default slot; it never replaces an attempt already selected, unless a
+    recorded user rerun decision (protocol_findings.USER_RERUN_DECISIONS) supersedes that
+    attempt.
     """
     selected={}
     for name in BATCH_SELECTIONS:
@@ -127,7 +139,8 @@ def completed_batch_selections(repo, earlier, labels=None):
                     if prior[repetition-1]!=run_id and run_id!=repetition:
                         raise ValueError(f'{key} r{repetition}: neither in this batch, previously selected nor the default slot')
                     continue
-                if key in selected and selected[key][repetition-1]!=repetition:
+                if (key in selected and selected[key][repetition-1]!=repetition
+                        and not decided_replacement(repo,f'{key}/run{selected[key][repetition-1]}')):
                     raise ValueError(f'{key} r{repetition}: a later batch may not replace an attempt an earlier batch selected')
                 if record['physical_run_id']!=run_id or record['path']!=f'results/{key}/run{run_id}':
                     raise ValueError('batch record differs from its cell listing: '+key)
@@ -221,8 +234,11 @@ def cohort_identity(meta, algorithm, *, run_dir=None):
 
     Historical hashes identify historical bytes: never translate run records
     through an author-rewrite map. The recorded repetition seed of DPVO and
-    MASt3R-Fusion (1000 + physical run id) is the sole excluded parameter;
-    different seeds are intentional repeated trials.
+    MASt3R-Fusion (1000 + physical run id) is excluded; different seeds are
+    intentional repeated trials. So is ORB-SLAM3's trajectory_canonicalization
+    marker: the runner records it only after a trajectory was exported, so an
+    attempt that crashed earlier lacks it, and its policy lives in the runner,
+    which the implementation capture already pins.
     A signature groups evidence, it does not certify its completeness.
     """
     provenance = meta.get('provenance', {})
@@ -231,6 +247,8 @@ def cohort_identity(meta, algorithm, *, run_dir=None):
     parameters = dict(provenance.get('parameters', {}))
     if algorithm in ('dpvo', 'mast3r_fusion'):
         parameters.pop('seed', None)
+    if algorithm == 'orbslam3':
+        parameters.pop('trajectory_canonicalization', None)
     def ordered(records):
         return sorted(records, key=lambda r: json.dumps(r, sort_keys=True))
     payload = dict(

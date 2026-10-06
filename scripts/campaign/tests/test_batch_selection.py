@@ -149,3 +149,14 @@ def test_a_later_batch_never_replaces_an_attempt_an_earlier_batch_selected(tmp_p
     replacement_fixture(tmp_path, earlier_ran_r1=True)
     with pytest.raises(ValueError, match='may not replace'):
         completed_batch_selections(tmp_path, {})
+
+
+def test_a_later_batch_replaces_an_earlier_selection_a_user_decision_supersedes(tmp_path):
+    key = replacement_fixture(tmp_path, earlier_ran_r1=True)
+    write(tmp_path, 'docs/campaigns/user-rerun-decisions-20261005.json',
+          dict(schema=1, attempts={f'{key}/run10001': dict(decisions=['one_group'])}))
+    assert completed_batch_selections(tmp_path, {})[key] == [10004, 10002, 10003]
+    write(tmp_path, 'docs/campaigns/user-rerun-decisions-20261005.json',
+          dict(schema=1, attempts={f'{key}/run10002': dict(decisions=['one_group'])}))
+    with pytest.raises(ValueError, match='may not replace'):
+        completed_batch_selections(tmp_path, {})
