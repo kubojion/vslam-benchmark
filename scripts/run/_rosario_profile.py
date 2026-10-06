@@ -27,6 +27,9 @@ def select_profile(repo, algorithm, dataset, sequence, profile):
     repo = Path(repo).resolve()
     if dataset != 'rosariov2' or profile not in FILES or FILES[profile][0] != algorithm:
         raise ValueError('Rosario profile does not match this dataset/algorithm')
+    prepared = repo / 'datasets' / dataset / sequence / 'manifest.json'
+    if prepared.is_file() and json.loads(prepared.read_text()).get('profile') == 'rosario-kalibr-rectified-ruleC-20261006':
+        raise ValueError('historical Rosario candidates require original pixels; incompatible with Option A inputs')
     bundle = repo / BUNDLE
     index = json.loads((bundle / 'index.json').read_text())
     source_sequence = sequence

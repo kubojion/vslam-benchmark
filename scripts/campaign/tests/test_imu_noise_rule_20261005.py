@@ -131,7 +131,7 @@ def load_stage(name):
     return module
 
 
-@pytest.mark.parametrize('dataset', ['hortimulti', 'zed2i', 'citrusfarm'])
+@pytest.mark.parametrize('dataset', ['hortimulti', 'zed2i', 'citrusfarm', 'rosariov2'])
 def test_svo_pro_stage_applies_the_rule_only_on_rule_datasets(dataset):
     stage = load_stage('_svo_pro_stage')
     sensor = json.loads((REPO / 'configs/sensors' / f'{dataset}.json').read_text())
@@ -147,7 +147,7 @@ def test_svo_pro_stage_applies_the_rule_only_on_rule_datasets(dataset):
         assert got == okvis(okvis_cfg) and not source.get('noise_rule')
 
 
-@pytest.mark.parametrize('dataset', ['hortimulti', 'zed2i', 'euroc_mav'])
+@pytest.mark.parametrize('dataset', ['hortimulti', 'zed2i', 'euroc_mav', 'rosariov2', 'citrusfarm'])
 def test_mast3r_fusion_stage_applies_the_rule_only_on_rule_datasets(tmp_path, dataset):
     stage = load_stage('_mast3r_fusion_stage')
     sensor = json.loads((REPO / 'configs/sensors' / f'{dataset}.json').read_text())
@@ -167,6 +167,7 @@ def test_mast3r_fusion_stage_applies_the_rule_only_on_rule_datasets(tmp_path, da
         assert all(close(got[k], sensor['imu'][k]) for k in KEYS)
 
 
-def test_rule_applies_to_hortimulti_only_for_now():
-    assert RULE['datasets'] == ['hortimulti']
+def test_rule_applies_to_calibrated_field_datasets():
+    assert RULE['datasets'] == ['hortimulti', 'rosariov2', 'citrusfarm']
+    assert not rule_module.applies('euroc_mav') and not rule_module.applies('zed2i')
     assert set(RULE['authors_euroc']) == set(AUTHOR_FILES)

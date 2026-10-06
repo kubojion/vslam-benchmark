@@ -58,3 +58,18 @@ def test_missing_camera_manifest_is_a_preparation_error_not_generated_in_runner(
     seq=fixture(tmp_path);path=seq/'mav0/cam0/data.csv';path.unlink()
     with pytest.raises(ValueError,match='missing prepared input'):identity(tmp_path,'test','seq')
     assert not path.exists()
+
+
+def test_rosario_profile_captured_before_execution_and_gnss_excluded(tmp_path):
+    seq=fixture(tmp_path)
+    target=tmp_path/'datasets/rosariov2/sequence1';target.parent.mkdir();seq.rename(target)
+    manifest=dict(profile='rosario-kalibr-rectified-ruleC-20261006',geometry=dict(imu_shift_ns=-4098308))
+    (target/'manifest.json').write_text(json.dumps(manifest))
+    run=tmp_path/'results/vio/rosariov2/sequence1/openvins/run10001';run.mkdir(parents=True)
+    value=capture(tmp_path,run)
+    profile=json.loads((run/'provenance/rosario-input-profile.json').read_text())
+    assert profile['input_sha256']==value['sha256']
+    assert profile['geometry']==manifest['geometry']
+    assert profile['manifest_sha256']==hashlib.sha256((target/'manifest.json').read_bytes()).hexdigest()
+    gnss=tmp_path/'results/gnss-vio/rosariov2/sequence1/okvis2x/run10001';gnss.mkdir(parents=True)
+    with pytest.raises(ValueError,match='not approved for GNSS'):capture(tmp_path,gnss)

@@ -114,6 +114,18 @@ def capture(repo,run):
     target.parent.mkdir(parents=True,exist_ok=True)
     with target.open('x') as stream:
         json.dump(value,stream,indent=2);stream.write('\n');stream.flush();os.fsync(stream.fileno())
+    if parts[1] == 'rosariov2':
+        manifest = repo/'datasets'/parts[1]/parts[2]/'manifest.json'
+        if manifest.is_file():
+            prepared = json.loads(manifest.read_text())
+            if prepared.get('profile') == 'rosario-kalibr-rectified-ruleC-20261006':
+                if parts[0] not in ('vo', 'vio', 'vo-lc', 'vio-lc'):
+                    raise ValueError('Rosario Option A is not approved for GNSS recipes')
+                profile = dict(schema=1, profile=prepared['profile'], geometry=prepared['geometry'],
+                               input_sha256=value['sha256'],
+                               manifest_sha256=hashlib.sha256(manifest.read_bytes()).hexdigest())
+                with (run/'provenance/rosario-input-profile.json').open('x') as stream:
+                    json.dump(profile,stream,indent=2);stream.write('\n')
     return value
 
 

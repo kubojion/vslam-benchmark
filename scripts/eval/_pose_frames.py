@@ -377,6 +377,18 @@ def frame_policy(ws, run_dir, meta, dataset, seq, algo, use_imu):
                   blockers=[], evidence=[], source_locations=[])
     try:
         name, transform, sources = estimate_transform(ws, dataset, seq, algo, use_imu, snapshots)
+        if dataset == 'rosariov2' and any(a.get('role') == 'rosario_input_profile' for a in snapshots.artifacts):
+            profile = snapshots.read('rosario_input_profile')
+            if profile.get('profile') != 'rosario-kalibr-rectified-ruleC-20261006':
+                raise FrameEvidenceError('unreviewed Rosario prepared profile')
+            # Inertial body exports were already converted through the immutable
+            # physical reference calibration. Camera/virtual-body exports are
+            # currently in the NEW image axes and require T_rect_original = R0.
+            physical_body = use_imu and algo in ('orbslam3', 'okvis2', 'okvis2x', 'basalt', 'openvins', 'voxel_svio', 'svo_pro')
+            if not physical_body:
+                transform = transform @ rotation_transform(np.asarray(profile['geometry']['R'][0]))
+            policy['input_profile'] = profile['profile']
+            policy['target_frame'] = 'left_camera_original_input_axes'
         policy.update(estimate_frame=name, estimate_transform=matrix(transform).tolist(), source_locations=sources)
     except (FrameEvidenceError, KeyError, OSError, ValueError, yaml.YAMLError) as exc:
         policy['blockers'].append(f'estimate_frame_unverified: {exc}')

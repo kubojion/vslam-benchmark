@@ -73,7 +73,7 @@ def test_inertial_configs_carry_the_profile():
     assert imu['update_rate'] == 200.0 and imu['time_offset'] == 0.0
 
 
-def test_every_inertial_estimator_uses_the_one_citrusfarm_imu_profile():
+def test_every_inertial_estimator_uses_rule_c():
     """Recording-derived densities with the authors' Allan random walks, as for ZED2i (decided 2026-10-04)."""
     noise = json.loads((REPO / 'docs/campaigns/citrusfarm-imu-noise-20261003.json').read_text())['datasets']['citrusfarm']['recommended']
     allan = yaml.safe_load((SOURCES / 'microstrain_gx5.yaml').read_text())
@@ -93,16 +93,25 @@ def test_every_inertial_estimator_uses_the_one_citrusfarm_imu_profile():
     basalt = json.loads((REPO / 'configs/basalt/citrusfarm_calib.json').read_text())['value0']
     found['basalt'] = [basalt[k][0] for k in ('gyro_noise_std', 'accel_noise_std', 'gyro_bias_std', 'accel_bias_std')]
     for name, values in found.items():
+        import sys
+        sys.path.insert(0, str(REPO / 'scripts/run'))
+        import _imu_noise_rule
+        algo = 'cuvslam' if name == 'sensor profile' else 'orbslam3' if name.startswith('citrusfarm_stereo') else name
+        expected = [_imu_noise_rule.noise(algo, 'citrusfarm')[k] for k in kalibr]
         assert values == pytest.approx(expected, rel=1e-6), name
 
 
 @pytest.mark.parametrize('sequence', SEQUENCES)
-def test_okvis_files_use_the_recording_envelope_and_zero_delay(sequence):
+def test_okvis_inertial_rule_c_visual_unchanged_and_zero_delay(sequence):
     noise = json.loads((REPO / 'docs/campaigns/citrusfarm-imu-noise-20261003.json').read_text())['datasets']['citrusfarm']
     for algorithm, modes in (('okvis2', ('vio', 'vo', 'vo_lc')), ('okvis2x', ('vio', 'vio_lc', 'vo', 'vo_lc'))):
         for mode in modes:
             cfg = opencv_yaml(REPO / f'configs/{algorithm}/citrusfarm_{sequence}_{mode}.yaml')
-            assert cfg['imu_parameters']['sigma_a_c'] == noise['recommended']['sigma_a_c']
+            import sys
+            sys.path.insert(0, str(REPO / 'scripts/run'))
+            import _imu_noise_rule
+            expected = _imu_noise_rule.noise(algorithm, 'citrusfarm')['accelerometer_noise_density'] if mode.startswith('vio') else noise['recommended']['sigma_a_c']
+            assert cfg['imu_parameters']['sigma_a_c'] == expected
             assert np.allclose(cfg['imu_parameters']['g0'], noise['sequences'][sequence]['gyro_bias_rad_s'], atol=1e-9)
             assert cfg['camera_parameters']['image_delay'] == 0.0
             check(*(np.array(c['T_SC'], dtype=float).reshape(4, 4) for c in cfg['cameras']))

@@ -213,6 +213,17 @@ class Player(Node):
 
         t0_ns = events[0][0]
         t0_wall = time.time()
+        # Accounting only: preserve the existing replay schedule and ROS QoS.
+        audit = self.seq_dir.parent.name in ('rosariov2', 'citrusfarm')
+        delivery = None
+        if audit:
+            delivery = dict(schema=1, rate=self.rate, expected_imu=len(self.imu),
+                expected_left=len(self.cam0), expected_right=len(self.cam1),
+                subscribers_at_start=dict(imu=self.pub_imu.get_subscription_count(),
+                    left=self.pub_cam0.get_subscription_count(), right=self.pub_cam1.get_subscription_count()),
+                maximum_schedule_lateness_s=0.0, maximum_event_processing_s=0.0,
+                camera_events_over_10ms_late=0, camera_events_over_100ms_late=0,
+                start_delay_s=self.start_delay, end_wait_s=self.end_wait)
 
         for i, (t_ns, kind, payload) in enumerate(events):
             if not rclpy.ok():
@@ -223,6 +234,14 @@ class Player(Node):
             if target_wall > now:
                 time.sleep(target_wall - now)
 
+            if audit:
+                started = time.monotonic()
+                lateness = max(0.0, time.time() - target_wall)
+                delivery['maximum_schedule_lateness_s'] = max(delivery['maximum_schedule_lateness_s'], lateness)
+                if kind != 'imu':
+                    delivery['camera_events_over_10ms_late'] += int(lateness > 0.01)
+                    delivery['camera_events_over_100ms_late'] += int(lateness > 0.1)
+
             if kind == "imu":
                 self.pub_imu.publish(self._make_imu_msg(t_ns, *payload))
                 self.published_imu += 1
@@ -232,6 +251,9 @@ class Player(Node):
             elif kind == "cam1":
                 self.pub_cam1.publish(self._make_image_msg(t_ns, payload, "cam1"))
                 self.published_cam1 += 1
+
+            if audit:
+                delivery['maximum_event_processing_s'] = max(delivery['maximum_event_processing_s'], time.monotonic()-started)
 
             if i % 5000 == 0:
                 pct = 100.0 * i / len(events)
@@ -244,6 +266,16 @@ class Player(Node):
         time.sleep(self.end_wait)
 
         self.write_trajectory()
+        if audit:
+            import json
+            delivery.update(published_imu=self.published_imu, published_left=self.published_cam0,
+                published_right=self.published_cam1, camera_update_outputs=len(self.update_poses),
+                propagated_outputs=len(self.poses),
+                first_update_stamp_s=self.update_poses[0][0] if self.update_poses else None,
+                last_update_stamp_s=self.update_poses[-1][0] if self.update_poses else None,
+                estimator_received_imu=None, estimator_received_camera_pairs=None,
+                limitation='Publisher counts are not estimator receipts. poseimu is post-initialisation output; use native TIME lines for processed camera callbacks. Online residual time offset remains enabled where configured.')
+            self.out_traj.with_name('openvins_delivery.json').write_text(json.dumps(delivery, indent=2)+'\n')
         expected = min(len(self.cam0), len(self.cam1))
         published = min(self.published_cam0, self.published_cam1)
         write_transport_stats(

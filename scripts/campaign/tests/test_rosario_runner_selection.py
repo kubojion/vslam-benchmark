@@ -78,3 +78,11 @@ def test_candidate_override_cannot_leak_into_a_default_production_manifest():
     for name in ('ROSARIO_VIO_PROFILE', 'BASALT_CALIBRATION'):
         with pytest.raises(ValueError, match='unreviewed inherited'):
             check_execution_environment({name: 'unreviewed'})
+
+
+def test_old_candidates_cannot_consume_new_rectified_inputs(repo):
+    path=repo/'datasets/rosariov2/sequence1/manifest.json'
+    path.parent.mkdir(parents=True)
+    path.write_text(json.dumps(dict(profile='rosario-kalibr-rectified-ruleC-20261006')))
+    with pytest.raises(ValueError,match='original pixels'):
+        select_profile(repo,'openvins','rosariov2','sequence1','openvins-kalibr')

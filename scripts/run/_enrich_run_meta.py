@@ -527,6 +527,15 @@ def main() -> int:
     run_dir = meta_path.parent
     try:
         artifacts = list(args.artifact)
+        # Created by input capture BEFORE estimation, never inferred from the
+        # current dataset when enriching a historical run.
+        rosario_profile = run_dir / 'provenance/rosario-input-profile.json'
+        if rosario_profile.is_file():
+            saved = json.loads(rosario_profile.read_text())
+            inputs = json.loads((run_dir/'provenance/inputs.json').read_text())
+            if saved['input_sha256'] != inputs['sha256']:
+                raise ValueError('Rosario profile disagrees with captured inputs')
+            artifacts.append(f'rosario_input_profile={rosario_profile}')
         if args.config:
             artifacts.append(f"estimator_config={args.config}")
         artifact_items = [split_assignment(v, "--artifact") for v in artifacts]

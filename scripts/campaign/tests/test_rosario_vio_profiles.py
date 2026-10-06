@@ -1,10 +1,4 @@
-"""The Rosario VIO rerun configs carry the decided camera-IMU transform (2026-10-03).
-
-Decision: the authors' published Kalibr result (0.365 deg, 33.9 mm, in
-configs/sensors/rosariov2.json) for every algorithm, the authors' ORB-SLAM3 camera model,
-time offset 0. These tests fail if a Basalt, OpenVINS, Voxel-SVIO or AirSLAM Rosario VIO
-file drifts from the shared profile or falls back to the historical identity transform.
-"""
+"""Rosario Option A: full Kalibr bundle composed into rectified input axes."""
 import json
 from pathlib import Path
 
@@ -30,7 +24,7 @@ def expected():
 def check(t0, t1):
     e0, e1 = expected()
     assert np.allclose(t0, e0, atol=1e-9) and np.allclose(t1, e1, atol=1e-9)
-    assert abs(np.degrees(Rotation.from_matrix(t0[:3, :3]).magnitude()) - 0.365) < 0.001
+    assert abs(np.degrees(Rotation.from_matrix(t0[:3, :3]).magnitude()) - 0.45805589535) < 0.001
     assert abs(np.linalg.norm(t0[:3, 3]) - 0.0339) < 0.0001
     assert abs(np.linalg.norm((np.linalg.inv(t0) @ t1)[:3, 3]) - PROFILE['baseline_m']) < 1e-9
 
@@ -66,7 +60,7 @@ def test_airslam():
     check(*(np.array(camera[c]['T'], dtype=float) for c in ('cam0', 'cam1')))
 
 
-def test_camera_model_is_the_authors_orb_profile():
+def test_camera_model_is_the_complete_rectified_kalibr_profile():
     cam = PROFILE['cameras'][0]
-    assert (cam['fx'], cam['fy'], PROFILE['baseline_m']) == (648.8624169653789, 648.8624169653789, 0.0497336941)
+    assert (cam['fx'], cam['fy'], PROFILE['baseline_m']) == (648.8624169653789, 648.8624169653789, 0.05024089082502646)
     assert PROFILE['camera_imu_time_offset_s'] == 0.0

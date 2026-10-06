@@ -46,15 +46,21 @@ def main():
     ap.add_argument('--refresh',action='store_true',help='preserve and replace stale current identities after review')
     ap.add_argument('--verify',action='store_true',help='check current identities without replacing them')
     ap.add_argument('--inputs',action='store_true');ap.add_argument('--runtime',action='store_true');ap.add_argument('--sources',action='store_true')
+    ap.add_argument('--dataset', action='append', help='restrict input identities to named datasets (requires --inputs only)')
     args=ap.parse_args()
     if args.verify and args.refresh:ap.error('choose verify or refresh')
     scope=[n for n in ('inputs','runtime','sources') if getattr(args,n)] or ['inputs','runtime','sources']
+    if args.dataset and scope != ['inputs']:ap.error('--dataset requires --inputs only')
     folder=REPO/'results/repair-20261001'
     inventory=json.loads((folder/'inventory.json').read_text());records=[]
+    if args.dataset:
+        known = {c['dataset'] for c in inventory['cells']}
+        if not set(args.dataset) <= known:ap.error('unknown dataset')
     targets=[]
     if 'inputs' in scope:
         targets.extend(('inputs',(ds,seq),folder/'prepared-inputs'/f'{ds}--{seq}.json')
-            for ds,seq in sorted({(c['dataset'],c['sequence']) for c in inventory['cells']}))
+            for ds,seq in sorted({(c['dataset'],c['sequence']) for c in inventory['cells']})
+            if not args.dataset or ds in args.dataset)
     algorithms=sorted({c['algorithm'] for c in inventory['cells']})
     if 'runtime' in scope:targets.extend(('runtime',(a,),folder/'runtime-assets'/f'{a}.json') for a in algorithms)
     if 'sources' in scope:targets.extend(('sources',(a,),folder/'implementation-capture-current'/a/'provenance/implementation.json') for a in algorithms)

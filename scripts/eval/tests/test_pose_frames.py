@@ -114,3 +114,24 @@ def test_causal_recovery_requires_exact_native_export_and_fixed_online_extrinsic
     receipt.write_text(json.dumps(value))
     with pytest.raises(FrameEvidenceError, match='every native pose'):
         verified_okvis_causal_recovery(snapshots, cfg)
+
+
+@pytest.mark.parametrize('algorithm,use_imu', [('orbslam3',False),('airslam',True),('basalt',False),('orbslam3',True),('openvins',True)])
+def test_rosario_new_profile_conversion_is_saved_and_mode_specific(tmp_path, monkeypatch, algorithm, use_imu):
+    import _pose_frames as frames
+    t=np.eye(4);t[:3,3]=[.01,.02,.03]
+    r=Rotation.from_euler('xyz',[.01,-.02,.005]).as_matrix()
+    monkeypatch.setattr(frames,'estimate_transform',lambda *args:('synthetic_output',t.copy(),[]))
+    monkeypatch.setattr(frames,'physical_rosario_imu_to_camera',lambda *args:np.eye(4))
+    old=frames.frame_policy(tmp_path,tmp_path,{},'rosariov2','sequence1',algorithm,use_imu)
+    np.testing.assert_array_equal(old['estimate_transform'],t)
+    p=tmp_path/'profile.json';p.write_text(json.dumps(dict(profile='rosario-kalibr-rectified-ruleC-20261006',geometry=dict(R=[r.tolist(),r.tolist()]))))
+    meta=dict(provenance=dict(artifacts=[dict(role='rosario_input_profile',snapshot=p.name,snapshot_sha256=hashlib.sha256(p.read_bytes()).hexdigest())]))
+    new=frames.frame_policy(tmp_path,tmp_path,meta,'rosariov2','sequence1',algorithm,use_imu)
+    expected=t.copy()
+    if not (use_imu and algorithm in ('orbslam3','openvins')):expected[:3,:3]=r
+    np.testing.assert_array_equal(new['estimate_transform'],expected)
+    assert new['reference_transform']==old['reference_transform']
+    p.write_text('{}')
+    bad=frames.frame_policy(tmp_path,tmp_path,meta,'rosariov2','sequence1',algorithm,use_imu)
+    assert bad['estimate_transform'] is None and any('hash' in x for x in bad['blockers'])
