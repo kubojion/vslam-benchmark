@@ -51,6 +51,7 @@ RERUN_LABELS = {
     'openvins_track_frequency_dropped_frames': 'frame drop',
     'orb_source_identity_changed_partial_cell': 'one group',
     'imu_noise_not_at_authors_operating_point': 'IMU noise rule',
+    'rosario_camera_clock_model_superseded': 'Rosario calibration',
 }
 LEGEND = """<!-- todo-matrix-legend:start -->
 **A = recorded attempts; E = trajectories evaluated; S = clean final exports;
@@ -76,6 +77,7 @@ recorded attempts are not presented as verified repetitions.
 | 🟥 | Leading marker: a confirmed rerun is required; takes precedence over review |
 | 🟨 | Leading marker: unresolved review, with no confirmed rerun assumed |
 | ✅ N=3 | Three verified attempts in one implementation group, including valid observed failures |
+| ✅ N=3 ❗ | Verified N=3 in which at least one attempt is a reviewed algorithm-side failure (crash or divergence under a verified setup) |
 | 🟢 N=1 / 🟢 N=2 | Verified partial group (fewer than three verified attempts); separate groups remain separate |
 | 🔴 | Beside a confirmed rerun requirement: not ready, including unverified readiness |
 | 🔄 | Beside a confirmed rerun requirement: reviewed execution checks passed (ready) |
@@ -274,6 +276,9 @@ def render_cell(cell, campaigns=()):
     groups = sorted(c['verified_completed'] for c in review['protocol_cohorts'] if c['verified_completed'])
     if review['protocol_verified_n3']:
         label = '✅ N=3'
+        # The algorithm itself crashed or diverged under a verified setup (user request 2026-10-06).
+        if (review.get('attempts') or {}).get('valid_observed_failure'):
+            label += ' ❗'
     elif groups and all(n in (1, 2) for n in groups):
         label = ' + '.join(f'🟢 N={n}' for n in groups)
     else:

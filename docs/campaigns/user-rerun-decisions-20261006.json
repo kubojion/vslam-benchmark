@@ -1,0 +1,2336 @@
+{
+ "schema": 1,
+ "decided": "2026-10-06",
+ "decided_by": "user (project lead), recorded by Claude",
+ "scope": "Write docs/campaigns/user-rerun-decisions-20261006.json (user decisions 2026-10-06, docs/benchmark-decisions-20261006.md): attempts superseded by",
+ "decisions": {
+  "rosario_kalibr_rectified_bundle": {
+   "code": "rosario_camera_clock_model_superseded",
+   "disposition": "required_rerun",
+   "prerequisite": "rerun_with_rosario_kalibr_rectified_bundle",
+   "evidence": [
+    "docs/benchmark-decisions-20261006.md"
+   ],
+   "explanation": "The attempt used the Rosario authors' released ORB-SLAM3 camera profile (virtual rectified intrinsics on unremapped image_rect_raw pixels, bf 32.270, zero camera-IMU offset). Decision (user, 2026-10-06): the complete published Kalibr stereo-IMU bundle as a rectified input (baseline 0.050240890825 m, camera-IMU transforms in the rectified axes, IMU on the camera clock by the published 4.098 ms) for every algorithm and mode."
+  },
+  "imu_noise_rule_rosario": {
+   "code": "imu_noise_not_at_authors_operating_point",
+   "disposition": "required_rerun",
+   "prerequisite": "rerun_with_imu_noise_rule_on_rosario",
+   "evidence": [
+    "docs/benchmark-decisions-20261006.md",
+    "docs/imu-noise-rule-20261005.md"
+   ],
+   "explanation": "The attempt used IMU noise other than rule C (copied Basalt EuRoC values, the recording envelope or the raw calibration without the estimator's factor). Decision (user, 2026-10-06): rule C on every dataset with a published Allan calibration."
+  },
+  "imu_noise_rule_citrusfarm": {
+   "code": "imu_noise_not_at_authors_operating_point",
+   "disposition": "required_rerun",
+   "prerequisite": "rerun_with_imu_noise_rule_on_citrusfarm",
+   "evidence": [
+    "docs/benchmark-decisions-20261006.md",
+    "docs/imu-noise-rule-20261005.md"
+   ],
+   "explanation": "The attempt used the shared CitrusFarm recording envelope. Decision (user, 2026-10-06): rule C on every dataset with a published Allan calibration, CitrusFarm included (MicroStrain GX5 published values), for every inertial estimator including ORB-SLAM3; the envelope results stay as a separately labelled adaptation condition."
+  }
+ },
+ "counts": {
+  "attempts": 210,
+  "cells": 82,
+  "by_dataset_and_decisions": {
+   "citrusfarm: imu_noise_rule_citrusfarm": 26,
+   "rosariov2: rosario_kalibr_rectified_bundle": 118,
+   "rosariov2: rosario_kalibr_rectified_bundle+imu_noise_rule_rosario": 66
+  }
+ },
+ "attempts": {
+  "vo/rosariov2/sequence1/orbslam3/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+     "role": "estimator",
+     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+     "size_bytes": 57984
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vo/rosariov2/sequence1/orbslam3/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+     "role": "estimator",
+     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+     "size_bytes": 57984
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vo/rosariov2/sequence1/orbslam3/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+     "role": "estimator",
+     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+     "size_bytes": 57984
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vo/rosariov2/sequence1/okvis2/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vo/rosariov2/sequence1/okvis2/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vo/rosariov2/sequence1/okvis2/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vo/rosariov2/sequence1/okvis2x/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vo/rosariov2/sequence1/okvis2x/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vo/rosariov2/sequence1/okvis2x/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vo/rosariov2/sequence1/airslam/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/airslam/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/airslam/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/basalt/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    }
+   ]
+  },
+  "vo/rosariov2/sequence1/basalt/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    }
+   ]
+  },
+  "vo/rosariov2/sequence1/basalt/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    }
+   ]
+  },
+  "vo/rosariov2/sequence1/ov2slam/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/ov2slam/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/ov2slam/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/dpvo/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/dpvo/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/dpvo/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/macvo/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/macvo/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/macvo/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/cuvslam/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/cuvslam/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/cuvslam/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/svo_pro/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/svo_pro/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/svo_pro/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/dsol/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/dsol/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence1/dsol/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/orbslam3/run10004": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+     "role": "estimator",
+     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+     "size_bytes": 57984
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vo/rosariov2/sequence5/orbslam3/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+     "role": "estimator",
+     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+     "size_bytes": 57984
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vo/rosariov2/sequence5/orbslam3/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+     "role": "estimator",
+     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+     "size_bytes": 57984
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vo/rosariov2/sequence5/okvis2/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vo/rosariov2/sequence5/okvis2/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vo/rosariov2/sequence5/okvis2/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vo/rosariov2/sequence5/okvis2x/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vo/rosariov2/sequence5/okvis2x/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vo/rosariov2/sequence5/okvis2x/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vo/rosariov2/sequence5/airslam/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/airslam/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/airslam/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/basalt/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    }
+   ]
+  },
+  "vo/rosariov2/sequence5/basalt/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    }
+   ]
+  },
+  "vo/rosariov2/sequence5/basalt/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    }
+   ]
+  },
+  "vo/rosariov2/sequence5/ov2slam/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/ov2slam/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/ov2slam/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/dpvo/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/dpvo/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/dpvo/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/macvo/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/macvo/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/macvo/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/cuvslam/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/cuvslam/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/cuvslam/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/svo_pro/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/svo_pro/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/svo_pro/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/dsol/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/dsol/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo/rosariov2/sequence5/dsol/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence1/orbslam3/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+     "role": "estimator",
+     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+     "size_bytes": 57984
+    }
+   ]
+  },
+  "vo-lc/rosariov2/sequence1/okvis2/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vo-lc/rosariov2/sequence1/okvis2/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vo-lc/rosariov2/sequence1/okvis2/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vo-lc/rosariov2/sequence1/okvis2x/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vo-lc/rosariov2/sequence1/okvis2x/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vo-lc/rosariov2/sequence1/okvis2x/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vo-lc/rosariov2/sequence1/airslam/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence1/airslam/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence1/airslam/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence1/ov2slam/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence1/ov2slam/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence1/ov2slam/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence1/dpvo/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence1/dpvo/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence1/dpvo/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence5/orbslam3/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+     "role": "estimator",
+     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+     "size_bytes": 57984
+    }
+   ]
+  },
+  "vo-lc/rosariov2/sequence5/orbslam3/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+     "role": "estimator",
+     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+     "size_bytes": 57984
+    }
+   ]
+  },
+  "vo-lc/rosariov2/sequence5/orbslam3/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo/stereo_euroc",
+     "role": "estimator",
+     "sha256": "e16d28cc3539af162006ac2f7331adec7807b2b9e8e2a424ca5a8385dbbc9ec9",
+     "size_bytes": 57984
+    }
+   ]
+  },
+  "vo-lc/rosariov2/sequence5/okvis2/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vo-lc/rosariov2/sequence5/okvis2/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vo-lc/rosariov2/sequence5/okvis2/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vo-lc/rosariov2/sequence5/okvis2x/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vo-lc/rosariov2/sequence5/okvis2x/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vo-lc/rosariov2/sequence5/okvis2x/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vo-lc/rosariov2/sequence5/airslam/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence5/airslam/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence5/airslam/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence5/ov2slam/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence5/ov2slam/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence5/ov2slam/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence5/dpvo/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence5/dpvo/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vo-lc/rosariov2/sequence5/dpvo/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/orbslam3/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "aabd7355621df73575308d66c8484e142f528500fc0a9c0aad13efbc9ee43477",
+     "size_bytes": 4746528
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vio/rosariov2/sequence1/orbslam3/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "aabd7355621df73575308d66c8484e142f528500fc0a9c0aad13efbc9ee43477",
+     "size_bytes": 4746528
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vio/rosariov2/sequence1/orbslam3/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "aabd7355621df73575308d66c8484e142f528500fc0a9c0aad13efbc9ee43477",
+     "size_bytes": 4746528
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vio/rosariov2/sequence1/okvis2/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio/rosariov2/sequence1/okvis2/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio/rosariov2/sequence1/okvis2/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio/rosariov2/sequence1/okvis2x/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio/rosariov2/sequence1/okvis2x/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio/rosariov2/sequence1/okvis2x/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio/rosariov2/sequence1/airslam/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/airslam/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/airslam/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/basalt/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    },
+    {
+     "path": "libbasalt.so",
+     "role": "estimator_shared",
+     "sha256": "c5474db4c904ed6eb7adb83d6952f11bce2bc7571be74fee40638bef97abcc30",
+     "size_bytes": 15755664
+    }
+   ]
+  },
+  "vio/rosariov2/sequence1/basalt/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    },
+    {
+     "path": "libbasalt.so",
+     "role": "estimator_shared",
+     "sha256": "c5474db4c904ed6eb7adb83d6952f11bce2bc7571be74fee40638bef97abcc30",
+     "size_bytes": 15755664
+    }
+   ]
+  },
+  "vio/rosariov2/sequence1/basalt/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    },
+    {
+     "path": "libbasalt.so",
+     "role": "estimator_shared",
+     "sha256": "c5474db4c904ed6eb7adb83d6952f11bce2bc7571be74fee40638bef97abcc30",
+     "size_bytes": 15755664
+    }
+   ]
+  },
+  "vio/rosariov2/sequence1/openvins/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/openvins/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/openvins/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/voxel_svio/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/voxel_svio/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/voxel_svio/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/cuvslam/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/cuvslam/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/cuvslam/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/svo_pro/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/svo_pro/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/svo_pro/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/mast3r_fusion/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/mast3r_fusion/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence1/mast3r_fusion/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/orbslam3/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "aabd7355621df73575308d66c8484e142f528500fc0a9c0aad13efbc9ee43477",
+     "size_bytes": 4746528
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vio/rosariov2/sequence5/orbslam3/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "aabd7355621df73575308d66c8484e142f528500fc0a9c0aad13efbc9ee43477",
+     "size_bytes": 4746528
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vio/rosariov2/sequence5/orbslam3/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "aabd7355621df73575308d66c8484e142f528500fc0a9c0aad13efbc9ee43477",
+     "size_bytes": 4746528
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vio/rosariov2/sequence5/okvis2/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio/rosariov2/sequence5/okvis2/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio/rosariov2/sequence5/okvis2/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio/rosariov2/sequence5/okvis2x/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio/rosariov2/sequence5/okvis2x/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio/rosariov2/sequence5/okvis2x/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio/rosariov2/sequence5/airslam/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/airslam/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/airslam/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/basalt/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    },
+    {
+     "path": "libbasalt.so",
+     "role": "estimator_shared",
+     "sha256": "c5474db4c904ed6eb7adb83d6952f11bce2bc7571be74fee40638bef97abcc30",
+     "size_bytes": 15755664
+    }
+   ]
+  },
+  "vio/rosariov2/sequence5/basalt/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    },
+    {
+     "path": "libbasalt.so",
+     "role": "estimator_shared",
+     "sha256": "c5474db4c904ed6eb7adb83d6952f11bce2bc7571be74fee40638bef97abcc30",
+     "size_bytes": 15755664
+    }
+   ]
+  },
+  "vio/rosariov2/sequence5/basalt/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    },
+    {
+     "path": "libbasalt.so",
+     "role": "estimator_shared",
+     "sha256": "c5474db4c904ed6eb7adb83d6952f11bce2bc7571be74fee40638bef97abcc30",
+     "size_bytes": 15755664
+    }
+   ]
+  },
+  "vio/rosariov2/sequence5/openvins/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/openvins/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/openvins/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/voxel_svio/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/voxel_svio/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/voxel_svio/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/cuvslam/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/cuvslam/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/cuvslam/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/svo_pro/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/svo_pro/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/svo_pro/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/mast3r_fusion/run10001": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/mast3r_fusion/run10002": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/rosariov2/sequence5/mast3r_fusion/run10003": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/citrusfarm/seq04/orbslam3/run10002": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "aabd7355621df73575308d66c8484e142f528500fc0a9c0aad13efbc9ee43477",
+     "size_bytes": 4746528
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vio/citrusfarm/seq04/orbslam3/run10003": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "aabd7355621df73575308d66c8484e142f528500fc0a9c0aad13efbc9ee43477",
+     "size_bytes": 4746528
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vio/citrusfarm/seq04/orbslam3/run10004": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "aabd7355621df73575308d66c8484e142f528500fc0a9c0aad13efbc9ee43477",
+     "size_bytes": 4746528
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vio/citrusfarm/seq04/okvis2/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio/citrusfarm/seq04/okvis2x/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio/citrusfarm/seq04/airslam/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": []
+  },
+  "vio/citrusfarm/seq04/basalt/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    },
+    {
+     "path": "libbasalt.so",
+     "role": "estimator_shared",
+     "sha256": "c5474db4c904ed6eb7adb83d6952f11bce2bc7571be74fee40638bef97abcc30",
+     "size_bytes": 15755664
+    }
+   ]
+  },
+  "vio/citrusfarm/seq04/openvins/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": []
+  },
+  "vio/citrusfarm/seq04/voxel_svio/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": []
+  },
+  "vio/citrusfarm/seq04/cuvslam/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": []
+  },
+  "vio/citrusfarm/seq04/svo_pro/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": []
+  },
+  "vio/citrusfarm/seq04/mast3r_fusion/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": []
+  },
+  "vio/citrusfarm/seq07/orbslam3/run10002": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "aabd7355621df73575308d66c8484e142f528500fc0a9c0aad13efbc9ee43477",
+     "size_bytes": 4746528
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vio/citrusfarm/seq07/orbslam3/run10003": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "aabd7355621df73575308d66c8484e142f528500fc0a9c0aad13efbc9ee43477",
+     "size_bytes": 4746528
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vio/citrusfarm/seq07/orbslam3/run10004": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "aabd7355621df73575308d66c8484e142f528500fc0a9c0aad13efbc9ee43477",
+     "size_bytes": 4746528
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ]
+  },
+  "vio/citrusfarm/seq07/okvis2/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio/citrusfarm/seq07/okvis2x/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio/citrusfarm/seq07/airslam/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": []
+  },
+  "vio/citrusfarm/seq07/basalt/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    },
+    {
+     "path": "libbasalt.so",
+     "role": "estimator_shared",
+     "sha256": "c5474db4c904ed6eb7adb83d6952f11bce2bc7571be74fee40638bef97abcc30",
+     "size_bytes": 15755664
+    }
+   ]
+  },
+  "vio/citrusfarm/seq07/openvins/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": []
+  },
+  "vio/citrusfarm/seq07/voxel_svio/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": []
+  },
+  "vio/citrusfarm/seq07/cuvslam/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": []
+  },
+  "vio/citrusfarm/seq07/svo_pro/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": []
+  },
+  "vio/citrusfarm/seq07/mast3r_fusion/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": []
+  },
+  "vio-lc/rosariov2/sequence1/orbslam3/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence1/orbslam3/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence1/orbslam3/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence1/okvis2/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence1/okvis2/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence1/okvis2/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence1/okvis2x/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence1/okvis2x/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence1/okvis2x/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence1/airslam/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio-lc/rosariov2/sequence1/airslam/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio-lc/rosariov2/sequence1/airslam/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio-lc/rosariov2/sequence5/orbslam3/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence5/orbslam3/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence5/orbslam3/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "7e07a7d5be738eb457e03251a313320e49587ce2ba191ab129d8d7660894ff0c",
+     "size_bytes": 71872
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence5/okvis2/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence5/okvis2/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence5/okvis2/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "73d656a4eed0ea80e0d09a539c7e34935e33821b86f5ab36faaee0b42af45c28",
+     "size_bytes": 12578568
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence5/okvis2x/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence5/okvis2x/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence5/okvis2x/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": [
+    {
+     "path": "src/okvis2x/build/okvis_app_synchronous",
+     "role": "estimator",
+     "sha256": "6facde27ad5d9094398e46a43604ca8d72546595edbb2134611c4cea4f81e03d",
+     "size_bytes": 13359944
+    }
+   ]
+  },
+  "vio-lc/rosariov2/sequence5/airslam/run1": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio-lc/rosariov2/sequence5/airslam/run2": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio-lc/rosariov2/sequence5/airslam/run3": {
+   "decisions": [
+    "rosario_kalibr_rectified_bundle",
+    "imu_noise_rule_rosario"
+   ],
+   "binaries": []
+  },
+  "vio/citrusfarm/seq04/orbslam3/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "aabd7355621df73575308d66c8484e142f528500fc0a9c0aad13efbc9ee43477",
+     "size_bytes": 4746528
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ],
+   "unselected": true
+  },
+  "vio/citrusfarm/seq07/orbslam3/run10001": {
+   "decisions": [
+    "imu_noise_rule_citrusfarm"
+   ],
+   "binaries": [
+    {
+     "path": "src/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc",
+     "role": "estimator",
+     "sha256": "aabd7355621df73575308d66c8484e142f528500fc0a9c0aad13efbc9ee43477",
+     "size_bytes": 4746528
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/g2o-source/lib/libg2o.so",
+     "role": "g2o_compatible",
+     "sha256": "90c17b9610b9b39472ffd415686dd91f93101e049f58dd0d004cf535af60257b",
+     "size_bytes": 71259328
+    },
+    {
+     "path": "results/zed-preparation-20261002/orb-build/orb-shutdown/libORB_SLAM3.so",
+     "role": "estimator_shared",
+     "sha256": "aa46b51dfcbd02523cd88e6f528f6fa11225fc79c45b6375f89f03d6e35243f0",
+     "size_bytes": 349480888
+    }
+   ],
+   "unselected": true
+  }
+ }
+}

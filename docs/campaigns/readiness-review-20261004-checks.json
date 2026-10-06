@@ -7298,7 +7298,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vo/rosariov2/sequence1_readiness60_20261002/orbslam3/run90001",
       "diagnostic_scope": "bounded sequence1_readiness60_20261002; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -7667,7 +7669,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vo/rosariov2/sequence1_readiness60_20261002/orbslam3/run90001",
       "diagnostic_scope": "bounded sequence1_readiness60_20261002; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -8036,7 +8040,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vo-lc/rosariov2/sequence1_readiness60_20261002/orbslam3/run90001",
       "diagnostic_scope": "bounded sequence1_readiness60_20261002; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -8405,7 +8411,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vo-lc/rosariov2/sequence1_readiness60_20261002/orbslam3/run90001",
       "diagnostic_scope": "bounded sequence1_readiness60_20261002; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -8691,7 +8699,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/rosariov2/sequence1_readiness60_20261002/airslam/run90001",
       "diagnostic_scope": "bounded sequence1_readiness60_20261002; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -8977,7 +8987,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/rosariov2/sequence1_readiness60_20261002/airslam/run90001",
       "diagnostic_scope": "bounded sequence1_readiness60_20261002; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -9399,7 +9411,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run90001",
       "diagnostic_scope": "bounded sequence1_readiness60_20261002; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -9821,7 +9835,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/rosariov2/sequence1_readiness60_20261002/basalt/run90001",
       "diagnostic_scope": "bounded sequence1_readiness60_20261002; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -10075,7 +10091,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/rosariov2/sequence1_readiness60_20261002/mast3r_fusion/run90001",
       "diagnostic_scope": "bounded sequence1_readiness60_20261002; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -10329,7 +10347,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/rosariov2/sequence1_readiness60_20261002/mast3r_fusion/run90001",
       "diagnostic_scope": "bounded sequence1_readiness60_20261002; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -10651,7 +10671,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run90003",
       "diagnostic_scope": "recheck after e880c2c (runner gained a HortiMulti branch; OpenVINS track_frequency 31 where changed): sequence1_readiness60_20261002; native exit 0; outcome ok; checked at 4b2b3f8655; previous check results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run90002",
       "historical_failures_preserved": true,
@@ -10973,7 +10995,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run90003",
       "diagnostic_scope": "recheck after e880c2c (runner gained a HortiMulti branch; OpenVINS track_frequency 31 where changed): sequence1_readiness60_20261002; native exit 0; outcome ok; checked at 4b2b3f8655; previous check results/vio/rosariov2/sequence1_readiness60_20261002/openvins/run90002",
       "historical_failures_preserved": true,
@@ -11342,7 +11366,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/rosariov2/sequence1_readiness60_20261002/orbslam3/run90001",
       "diagnostic_scope": "bounded sequence1_readiness60_20261002; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -11711,7 +11737,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/rosariov2/sequence1_readiness60_20261002/orbslam3/run90001",
       "diagnostic_scope": "bounded sequence1_readiness60_20261002; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -12130,7 +12158,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/rosariov2/sequence1_readiness60_20261002/voxel_svio/run90003",
       "diagnostic_scope": "recheck after e880c2c (runner gained a HortiMulti branch; OpenVINS track_frequency 31 where changed): sequence1_readiness60_20261002; native exit 0; outcome ok; checked at 4b2b3f8655; previous check results/vio/rosariov2/sequence1_readiness60_20261002/voxel_svio/run90002",
       "historical_failures_preserved": true,
@@ -12549,7 +12579,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio/rosariov2/sequence1_readiness60_20261002/voxel_svio/run90003",
       "diagnostic_scope": "recheck after e880c2c (runner gained a HortiMulti branch; OpenVINS track_frequency 31 where changed): sequence1_readiness60_20261002; native exit 0; outcome ok; checked at 4b2b3f8655; previous check results/vio/rosariov2/sequence1_readiness60_20261002/voxel_svio/run90002",
       "historical_failures_preserved": true,
@@ -12871,7 +12903,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/rosariov2/sequence1/airslam/run90001",
       "diagnostic_scope": "bounded sequence1; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -13193,7 +13227,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/rosariov2/sequence1/airslam/run90001",
       "diagnostic_scope": "bounded sequence1; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -13562,7 +13598,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/rosariov2/sequence1_readiness60_20261002/orbslam3/run90001",
       "diagnostic_scope": "bounded sequence1_readiness60_20261002; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -13931,7 +13969,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/vio-lc/rosariov2/sequence1_readiness60_20261002/orbslam3/run90001",
       "diagnostic_scope": "bounded sequence1_readiness60_20261002; native exit 0; outcome ok",
       "historical_failures_preserved": true,
@@ -20438,7 +20478,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vio/rosariov2/sequence1/cuvslam/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vio/rosariov2/sequence1/cuvslam/run1 (exit 0, 13821 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vio/rosariov2/sequence1/cuvslam/run1; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/cuvslam/run90002",
       "historical_failures_preserved": true,
@@ -20725,7 +20767,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vio/rosariov2/sequence1/cuvslam/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vio/rosariov2/sequence1/cuvslam/run1 (exit 0, 13821 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vio/rosariov2/sequence1/cuvslam/run1; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/cuvslam/run90002",
       "historical_failures_preserved": true,
@@ -21066,7 +21110,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vio/rosariov2/sequence1/svo_pro/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vio/rosariov2/sequence1/svo_pro/run1 (exit 0, 13648 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vio/rosariov2/sequence1/svo_pro/run1; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/svo_pro/run90002",
       "historical_failures_preserved": true,
@@ -21407,7 +21453,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vio/rosariov2/sequence1/svo_pro/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vio/rosariov2/sequence1/svo_pro/run1 (exit 0, 13648 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vio/rosariov2/sequence1/svo_pro/run1; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/svo_pro/run90002",
       "historical_failures_preserved": true,
@@ -21694,7 +21742,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vio-lc/rosariov2/sequence1/cuvslam/run2",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vio-lc/rosariov2/sequence1/cuvslam/run2 (exit 0, 13821 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vio-lc/rosariov2/sequence1/cuvslam/run2; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/cuvslam/run90002",
       "historical_failures_preserved": true,
@@ -21981,7 +22031,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vio-lc/rosariov2/sequence1/cuvslam/run2",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vio-lc/rosariov2/sequence1/cuvslam/run2 (exit 0, 13821 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vio-lc/rosariov2/sequence1/cuvslam/run2; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/cuvslam/run90002",
       "historical_failures_preserved": true,
@@ -22307,7 +22359,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vio-lc/rosariov2/sequence1/mast3r_fusion/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vio-lc/rosariov2/sequence1/mast3r_fusion/run1 (exit 0, 849 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vio-lc/rosariov2/sequence1/mast3r_fusion/run1; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/mast3r_fusion/run90002",
       "historical_failures_preserved": true,
@@ -22633,7 +22687,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vio-lc/rosariov2/sequence1/mast3r_fusion/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vio-lc/rosariov2/sequence1/mast3r_fusion/run1 (exit 0, 849 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vio-lc/rosariov2/sequence1/mast3r_fusion/run1; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/mast3r_fusion/run90002",
       "historical_failures_preserved": true,
@@ -22974,7 +23030,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vio-lc/rosariov2/sequence1/svo_pro/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vio-lc/rosariov2/sequence1/svo_pro/run1 (exit 0, 13628 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vio-lc/rosariov2/sequence1/svo_pro/run1; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/svo_pro/run90002",
       "historical_failures_preserved": true,
@@ -23315,7 +23373,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vio-lc/rosariov2/sequence1/svo_pro/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vio-lc/rosariov2/sequence1/svo_pro/run1 (exit 0, 13628 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vio-lc/rosariov2/sequence1/svo_pro/run1; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/svo_pro/run90002",
       "historical_failures_preserved": true,
@@ -23602,7 +23662,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vo/rosariov2/sequence1/cuvslam/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vo/rosariov2/sequence1/cuvslam/run1 (exit 0, 13821 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vo/rosariov2/sequence1/cuvslam/run1; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/cuvslam/run90002",
       "historical_failures_preserved": true,
@@ -23889,7 +23951,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vo/rosariov2/sequence1/cuvslam/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vo/rosariov2/sequence1/cuvslam/run1 (exit 0, 13821 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vo/rosariov2/sequence1/cuvslam/run1; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/cuvslam/run90002",
       "historical_failures_preserved": true,
@@ -24203,7 +24267,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vo/rosariov2/sequence1/dsol/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vo/rosariov2/sequence1/dsol/run1 (exit 0, 13821 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vo/rosariov2/sequence1/dsol/run1; runner and installation in main: results/vo/euroc_mav/MH_01_easy_readiness30_20261002/dsol/run90002",
       "historical_failures_preserved": true,
@@ -24517,7 +24583,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vo/rosariov2/sequence1/dsol/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vo/rosariov2/sequence1/dsol/run1 (exit 0, 13821 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vo/rosariov2/sequence1/dsol/run1; runner and installation in main: results/vo/euroc_mav/MH_01_easy_readiness30_20261002/dsol/run90002",
       "historical_failures_preserved": true,
@@ -24858,7 +24926,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vo/rosariov2/sequence1/svo_pro/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vo/rosariov2/sequence1/svo_pro/run1 (exit 0, 13668 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vo/rosariov2/sequence1/svo_pro/run1; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/svo_pro/run90002",
       "historical_failures_preserved": true,
@@ -25199,7 +25269,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vo/rosariov2/sequence1/svo_pro/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vo/rosariov2/sequence1/svo_pro/run1 (exit 0, 13668 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vo/rosariov2/sequence1/svo_pro/run1; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/svo_pro/run90002",
       "historical_failures_preserved": true,
@@ -25486,7 +25558,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vo-lc/rosariov2/sequence1/cuvslam/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vo-lc/rosariov2/sequence1/cuvslam/run1 (exit 0, 13821 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vo-lc/rosariov2/sequence1/cuvslam/run1; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/cuvslam/run90002",
       "historical_failures_preserved": true,
@@ -25773,7 +25847,9 @@
           ]
         }
       ],
-      "blockers": [],
+      "blockers": [
+        "apply_rosario_kalibr_bundle_and_imu_noise_rule_before_new_attempts"
+      ],
       "diagnostic_attempt": "results/window-20261004/clone-pilots/vo-lc/rosariov2/sequence1/cuvslam/run1",
       "diagnostic_scope": "integration-clone full-sequence pilot results/vo-lc/rosariov2/sequence1/cuvslam/run1 (exit 0, 13821 poses; configuration files byte-identical to main), copied to results/window-20261004/clone-pilots/vo-lc/rosariov2/sequence1/cuvslam/run1; runner and installation in main: results/vio/euroc_mav/MH_01_easy_readiness30_20261002/cuvslam/run90002",
       "historical_failures_preserved": true,

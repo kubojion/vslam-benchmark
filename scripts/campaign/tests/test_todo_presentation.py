@@ -34,6 +34,14 @@ def test_three_verified_failures_keep_tick_and_all_overlapping_counts():
     assert details.count('| 139 | yes |') == 3
 
 
+def test_reviewed_algorithm_failure_marks_the_tick_only_when_present():
+    failed = render_cell(cell([attempt(1, exit_code=139), attempt(2), attempt(3)]))
+    clean = render_cell(cell())
+    assert '✅ N=3 ❗' in failed and 'A3/E3/S2/F1' in failed
+    assert '✅ N=3' in clean and '❗' not in clean
+    assert '❗' in LEGEND
+
+
 def test_three_evaluations_without_review_never_become_verified():
     c = cell([attempt(i, verified='blocked') for i in (1, 2, 3)])
     for a in c['attempts']:

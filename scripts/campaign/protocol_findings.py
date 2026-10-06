@@ -52,13 +52,15 @@ def native_gnss_findings(repo, relative):
 
 USER_RERUN_DECISIONS = ('docs/campaigns/user-rerun-decisions-20261003.json',
                         'docs/campaigns/user-rerun-decisions-20261005.json',
-                        'docs/campaigns/user-rerun-decisions-20261005b.json')
+                        'docs/campaigns/user-rerun-decisions-20261005b.json',
+                        'docs/campaigns/user-rerun-decisions-20261006.json')
 
 
 def user_rerun_decisions(repo, relative, meta):
     """Replacements the user decided: ORB-SLAM3 libraries outside ZED, OpenVINS EuRoC VIO
     (2026-10-03); one HortiMulti IMU profile and camera-clock input, OV2SLAM HortiMulti values,
-    the OpenVINS frame throttle (2026-10-05).
+    the OpenVINS frame throttle (2026-10-05); the Rosario Kalibr bundle and IMU noise rule C on
+    Rosario and CitrusFarm (2026-10-06).
 
     A record applies only to its own attempt path with the binaries saved at the time, so
     replacement attempts (new physical run IDs) never inherit it. Later decisions live in a

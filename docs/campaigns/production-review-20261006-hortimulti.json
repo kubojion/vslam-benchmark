@@ -1,0 +1,1214 @@
+{
+ "schema": 1,
+ "date": "2026-10-06",
+ "scope": "claim review of the HortiMulti attempts of the rule-C batch; reference accepted by the user (docs/benchmark-decisions-20261006.md)",
+ "selections": [
+  {
+   "path": "configs/campaigns/production-attempts-20261005c.json",
+   "sha256": "455b5fd766a06bb4f26a74643c0f327c5d21fad1ca19ff1d3afe03e6c6e4f899"
+  }
+ ],
+ "attempts": {
+  "vio-lc/hortimulti/strawberry02/airslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/airslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/airslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/mast3r_fusion/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 6.1,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/mast3r_fusion/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 6.1,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/mast3r_fusion/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 6.1,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/okvis2/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/okvis2/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/okvis2/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/okvis2x/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/okvis2x/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/okvis2x/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/orbslam3/run10001": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": null,
+   "exit": 139,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.7,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.7,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/svo_pro/run10001": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": null,
+   "exit": 134,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/svo_pro/run10002": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": null,
+   "exit": 134,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry02/svo_pro/run10003": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": null,
+   "exit": 134,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/airslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/airslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/airslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/mast3r_fusion/run10001": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": "scale_collapse",
+   "exit": 0,
+   "coverage": 11.8,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/mast3r_fusion/run10002": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": "scale_collapse",
+   "exit": 0,
+   "coverage": 11.8,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/mast3r_fusion/run10003": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": "scale_collapse",
+   "exit": 0,
+   "coverage": 11.8,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/okvis2/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/okvis2/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/okvis2/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/okvis2x/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/okvis2x/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/okvis2x/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/svo_pro/run10001": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": null,
+   "exit": 134,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/svo_pro/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 97.8,
+   "reasons": []
+  },
+  "vio-lc/hortimulti/strawberry03/svo_pro/run10003": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": null,
+   "exit": 134,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/airslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/airslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/airslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/basalt/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/basalt/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/basalt/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/mast3r_fusion/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/mast3r_fusion/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/mast3r_fusion/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/okvis2/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/okvis2/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/okvis2/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/okvis2x/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/okvis2x/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/okvis2x/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/openvins/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.6,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/openvins/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.6,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/openvins/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.6,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/orbslam3/run10004": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.7,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/orbslam3/run10005": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.7,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/orbslam3/run10006": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.7,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.3,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/svo_pro/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.4,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/svo_pro/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.4,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/voxel_svio/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.7,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/voxel_svio/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.7,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry02/voxel_svio/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.7,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/airslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/airslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/airslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": null,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/basalt/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/basalt/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/basalt/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/mast3r_fusion/run10001": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": "scale_collapse",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/mast3r_fusion/run10002": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": "scale_collapse",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/mast3r_fusion/run10003": {
+   "status": "valid_observed_failure",
+   "claim": null,
+   "outcome": "scale_collapse",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/okvis2/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/okvis2/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/okvis2/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/okvis2x/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/okvis2x/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/okvis2x/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/openvins/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.9,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/openvins/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.9,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/openvins/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.9,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.9,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.2,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/svo_pro/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.2,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/svo_pro/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.2,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/voxel_svio/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.1,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/voxel_svio/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.1,
+   "reasons": []
+  },
+  "vio/hortimulti/strawberry03/voxel_svio/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.1,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry02/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry02/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry02/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry02/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 53.1,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry02/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.7,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry02/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 31.8,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry02/ov2slam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry02/ov2slam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry02/ov2slam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry03/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry03/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry03/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry03/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry03/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry03/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry03/ov2slam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry03/ov2slam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo-lc/hortimulti/strawberry03/ov2slam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry02/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry02/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry02/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry02/dsol/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry02/dsol/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry02/dsol/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry02/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 31.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry02/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 30.7,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry02/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 31.8,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry02/ov2slam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry02/ov2slam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry02/ov2slam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry02/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.4,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry02/svo_pro/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.4,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry02/svo_pro/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 99.4,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry03/cuvslam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry03/cuvslam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry03/cuvslam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry03/dsol/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry03/dsol/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry03/dsol/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry03/orbslam3/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry03/orbslam3/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry03/orbslam3/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry03/ov2slam/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry03/ov2slam/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry03/ov2slam/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 100.0,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry03/svo_pro/run10001": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.2,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry03/svo_pro/run10002": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.3,
+   "reasons": []
+  },
+  "vo/hortimulti/strawberry03/svo_pro/run10003": {
+   "status": "accepted_with_limitation",
+   "claim": "recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy",
+   "outcome": "ok",
+   "exit": 0,
+   "coverage": 98.3,
+   "reasons": []
+  }
+ },
+ "deferred": {}
+}
