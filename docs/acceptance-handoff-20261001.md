@@ -4,8 +4,8 @@ Generated from the checked inventory. The [claim review](paper-acceptance-202610
 
 | Mode | Protocol-verified N=3 cells | Accepted accuracy claims | Limited accuracy claims | Failure-only claim observations | Required reruns | Missing | Blocked |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vo | 52 | 45 | 128 | 5 | 3 | 47 | 102 |
-| vo-lc | 23 | 27 | 43 | 0 | 3 | 65 | 72 |
+| vo | 64 | 45 | 164 | 5 | 3 | 47 | 66 |
+| vo-lc | 31 | 27 | 67 | 0 | 3 | 65 | 48 |
 | vio | 56 | 27 | 141 | 3 | 0 | 42 | 87 |
 | vio-lc | 23 | 18 | 41 | 10 | 10 | 104 | 27 |
 | gnss-vio | 0 | 0 | 0 | 0 | 5 | 40 | 15 |
@@ -14,8 +14,8 @@ Protocol counts are separate from claim-status counts above. Success means a cle
 
 | Mode | Verified attempts | Verified failures | Attempts | Evaluated | Clean exports | Observed failures | Unknown |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vo | 178 | 17 | 283 | 281 | 264 | 19 | 0 |
-| vo-lc | 70 | 12 | 145 | 143 | 125 | 20 | 0 |
+| vo | 214 | 17 | 283 | 281 | 264 | 19 | 0 |
+| vo-lc | 94 | 12 | 145 | 143 | 125 | 20 | 0 |
 | vio | 171 | 12 | 258 | 258 | 238 | 20 | 0 |
 | vio-lc | 69 | 10 | 106 | 98 | 95 | 11 | 0 |
 | gnss-vio | 0 | 0 | 20 | 20 | 0 | 2 | 18 |
@@ -23,19 +23,31 @@ Protocol counts are separate from claim-status counts above. Success means a cle
 **OpenVINS cohort completeness:** each EuRoC sequence has historical N=1 plus patched N=2. The selected logical slots are consumed. One additional patched repetition per sequence would complete that implementation cohort, only if separately authorized. These three potential additions are separate from the 81 absent planned slots and are not scheduled here. Old cohorts are not resampled for success.
 
 
-Future default actions: 488 reusable observations, 247 required reruns, 298 missing repetitions, 77 blocked. The separately authorized focused EuRoC campaign is complete; its 24 attempts yielded 23 final evaluations and one retained native refinement failure. The later ZED preparation used bounded diagnostics only; no ZED production repetitions or push occurred.
+Future default actions: 548 reusable observations, 247 required reruns, 298 missing repetitions, 17 blocked. The separately authorized focused EuRoC campaign is complete; its 24 attempts yielded 23 final evaluations and one retained native refinement failure. The later ZED preparation used bounded diagnostics only; no ZED production repetitions or push occurred.
 
 ## Protocol-verified N=3 cells
 
 | Cell | Accepted claim |
 |---|---|
 | `vo/hortimulti/strawberry02/orbslam3` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
+| `vo/hortimulti/strawberry02/okvis2` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
+| `vo/hortimulti/strawberry02/okvis2x` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
+| `vo/hortimulti/strawberry02/airslam` | recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy |
+| `vo/hortimulti/strawberry02/basalt` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
 | `vo/hortimulti/strawberry02/ov2slam` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
+| `vo/hortimulti/strawberry02/dpvo` | recorded_profile_hortimulti_final_trajectory_sim3_monocular_shape |
+| `vo/hortimulti/strawberry02/macvo` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
 | `vo/hortimulti/strawberry02/cuvslam` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
 | `vo/hortimulti/strawberry02/svo_pro` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
 | `vo/hortimulti/strawberry02/dsol` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
 | `vo/hortimulti/strawberry03/orbslam3` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
+| `vo/hortimulti/strawberry03/okvis2` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
+| `vo/hortimulti/strawberry03/okvis2x` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
+| `vo/hortimulti/strawberry03/airslam` | recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy |
+| `vo/hortimulti/strawberry03/basalt` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
 | `vo/hortimulti/strawberry03/ov2slam` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
+| `vo/hortimulti/strawberry03/dpvo` | recorded_profile_hortimulti_final_trajectory_sim3_monocular_shape |
+| `vo/hortimulti/strawberry03/macvo` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
 | `vo/hortimulti/strawberry03/cuvslam` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
 | `vo/hortimulti/strawberry03/svo_pro` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
 | `vo/hortimulti/strawberry03/dsol` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
@@ -82,10 +94,18 @@ Future default actions: 488 reusable observations, 247 required reruns, 298 miss
 | `vo/citrusfarm/seq04/orbslam3` | nominal_citrusfarm_se3_final_position_accuracy |
 | `vo/citrusfarm/seq07/orbslam3` | nominal_citrusfarm_se3_final_position_accuracy |
 | `vo-lc/hortimulti/strawberry02/orbslam3` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
+| `vo-lc/hortimulti/strawberry02/okvis2` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
+| `vo-lc/hortimulti/strawberry02/okvis2x` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
+| `vo-lc/hortimulti/strawberry02/airslam` | recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy |
 | `vo-lc/hortimulti/strawberry02/ov2slam` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
+| `vo-lc/hortimulti/strawberry02/dpvo` | recorded_profile_hortimulti_final_trajectory_sim3_monocular_shape |
 | `vo-lc/hortimulti/strawberry02/cuvslam` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
 | `vo-lc/hortimulti/strawberry03/orbslam3` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
+| `vo-lc/hortimulti/strawberry03/okvis2` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
+| `vo-lc/hortimulti/strawberry03/okvis2x` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
+| `vo-lc/hortimulti/strawberry03/airslam` | recorded_profile_hortimulti_sparse_keyframe_se3_metric_accuracy |
 | `vo-lc/hortimulti/strawberry03/ov2slam` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
+| `vo-lc/hortimulti/strawberry03/dpvo` | recorded_profile_hortimulti_final_trajectory_sim3_monocular_shape |
 | `vo-lc/hortimulti/strawberry03/cuvslam` | recorded_profile_hortimulti_final_trajectory_se3_metric_accuracy |
 | `vo-lc/euroc_mav/MH_01_easy/okvis2` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
 | `vo-lc/euroc_mav/MH_01_easy/okvis2x` | recorded_profile_euroc_final_trajectory_se3_metric_accuracy |
@@ -191,9 +211,27 @@ Future default actions: 488 reusable observations, 247 required reruns, 298 miss
 | `results/vo/hortimulti/strawberry02/orbslam3/run10001` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; export_coverage_below_95_percent_no_clean_success_tick; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/hortimulti/strawberry02/orbslam3/run10002` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; export_coverage_below_95_percent_no_clean_success_tick; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/hortimulti/strawberry02/orbslam3/run10003` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; export_coverage_below_95_percent_no_clean_success_tick; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
+| `results/vo/hortimulti/strawberry02/okvis2/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry02/okvis2/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry02/okvis2/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry02/okvis2x/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry02/okvis2x/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry02/okvis2x/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry02/airslam/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; sparse_keyframe_accuracy_only |
+| `results/vo/hortimulti/strawberry02/airslam/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; sparse_keyframe_accuracy_only |
+| `results/vo/hortimulti/strawberry02/airslam/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; sparse_keyframe_accuracy_only |
+| `results/vo/hortimulti/strawberry02/basalt/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry02/basalt/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry02/basalt/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
 | `results/vo/hortimulti/strawberry02/ov2slam/run10001` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/hortimulti/strawberry02/ov2slam/run10002` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/hortimulti/strawberry02/ov2slam/run10003` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
+| `results/vo/hortimulti/strawberry02/dpvo/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry02/dpvo/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry02/dpvo/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry02/macvo/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry02/macvo/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry02/macvo/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
 | `results/vo/hortimulti/strawberry02/cuvslam/run10001` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/hortimulti/strawberry02/cuvslam/run10002` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/hortimulti/strawberry02/cuvslam/run10003` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
@@ -206,9 +244,27 @@ Future default actions: 488 reusable observations, 247 required reruns, 298 miss
 | `results/vo/hortimulti/strawberry03/orbslam3/run10001` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/hortimulti/strawberry03/orbslam3/run10002` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/hortimulti/strawberry03/orbslam3/run10003` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
+| `results/vo/hortimulti/strawberry03/okvis2/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry03/okvis2/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry03/okvis2/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry03/okvis2x/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry03/okvis2x/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry03/okvis2x/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry03/airslam/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; sparse_keyframe_accuracy_only |
+| `results/vo/hortimulti/strawberry03/airslam/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; sparse_keyframe_accuracy_only |
+| `results/vo/hortimulti/strawberry03/airslam/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; sparse_keyframe_accuracy_only |
+| `results/vo/hortimulti/strawberry03/basalt/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry03/basalt/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry03/basalt/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
 | `results/vo/hortimulti/strawberry03/ov2slam/run10001` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/hortimulti/strawberry03/ov2slam/run10002` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/hortimulti/strawberry03/ov2slam/run10003` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
+| `results/vo/hortimulti/strawberry03/dpvo/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry03/dpvo/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry03/dpvo/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry03/macvo/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry03/macvo/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo/hortimulti/strawberry03/macvo/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
 | `results/vo/hortimulti/strawberry03/cuvslam/run10001` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/hortimulti/strawberry03/cuvslam/run10002` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/hortimulti/strawberry03/cuvslam/run10003` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
@@ -324,18 +380,42 @@ Future default actions: 488 reusable observations, 247 required reruns, 298 miss
 | `results/vo-lc/hortimulti/strawberry02/orbslam3/run10001` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; export_coverage_below_95_percent_no_clean_success_tick; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo-lc/hortimulti/strawberry02/orbslam3/run10002` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo-lc/hortimulti/strawberry02/orbslam3/run10003` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; export_coverage_below_95_percent_no_clean_success_tick; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
+| `results/vo-lc/hortimulti/strawberry02/okvis2/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo-lc/hortimulti/strawberry02/okvis2/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo-lc/hortimulti/strawberry02/okvis2/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo-lc/hortimulti/strawberry02/okvis2x/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo-lc/hortimulti/strawberry02/okvis2x/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo-lc/hortimulti/strawberry02/okvis2x/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo-lc/hortimulti/strawberry02/airslam/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; sparse_keyframe_accuracy_only |
+| `results/vo-lc/hortimulti/strawberry02/airslam/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; sparse_keyframe_accuracy_only |
+| `results/vo-lc/hortimulti/strawberry02/airslam/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; sparse_keyframe_accuracy_only |
 | `results/vo-lc/hortimulti/strawberry02/ov2slam/run10001` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo-lc/hortimulti/strawberry02/ov2slam/run10002` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo-lc/hortimulti/strawberry02/ov2slam/run10003` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
+| `results/vo-lc/hortimulti/strawberry02/dpvo/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo-lc/hortimulti/strawberry02/dpvo/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo-lc/hortimulti/strawberry02/dpvo/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
 | `results/vo-lc/hortimulti/strawberry02/cuvslam/run10001` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo-lc/hortimulti/strawberry02/cuvslam/run10002` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo-lc/hortimulti/strawberry02/cuvslam/run10003` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo-lc/hortimulti/strawberry03/orbslam3/run10001` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo-lc/hortimulti/strawberry03/orbslam3/run10002` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo-lc/hortimulti/strawberry03/orbslam3/run10003` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
+| `results/vo-lc/hortimulti/strawberry03/okvis2/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo-lc/hortimulti/strawberry03/okvis2/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo-lc/hortimulti/strawberry03/okvis2/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo-lc/hortimulti/strawberry03/okvis2x/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo-lc/hortimulti/strawberry03/okvis2x/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo-lc/hortimulti/strawberry03/okvis2x/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo-lc/hortimulti/strawberry03/airslam/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; sparse_keyframe_accuracy_only |
+| `results/vo-lc/hortimulti/strawberry03/airslam/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; sparse_keyframe_accuracy_only |
+| `results/vo-lc/hortimulti/strawberry03/airslam/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; sparse_keyframe_accuracy_only |
 | `results/vo-lc/hortimulti/strawberry03/ov2slam/run10001` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo-lc/hortimulti/strawberry03/ov2slam/run10002` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo-lc/hortimulti/strawberry03/ov2slam/run10003` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
+| `results/vo-lc/hortimulti/strawberry03/dpvo/run1` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo-lc/hortimulti/strawberry03/dpvo/run2` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
+| `results/vo-lc/hortimulti/strawberry03/dpvo/run3` | accepted_with_limitation | hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006 |
 | `results/vo-lc/hortimulti/strawberry03/cuvslam/run10001` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo-lc/hortimulti/strawberry03/cuvslam/run10002` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo-lc/hortimulti/strawberry03/cuvslam/run10003` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
@@ -810,7 +890,7 @@ Exact affected attempt IDs and evidence are in `results/acceptance-20261001/hand
 | estimate_frame_unverified: output frame not established for vins_fusion_gps | 4 |
 | gnss_reference_independence_and_global_frame_not_established | 15 |
 | historical_effective_gnss_input_covariance_antenna_and_fusion_output_unverified | 15 |
-| horti_february_reference_generation_origin_and_timestamp_linkage_unresolved | 68 |
+| horti_february_reference_generation_origin_and_timestamp_linkage_unresolved | 8 |
 | native_execution_cause_and_usable_export_missing | 1 |
 | native_execution_cause_unresolved_recovered_causal_prefix_not_final_ba | 1 |
 
