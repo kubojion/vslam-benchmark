@@ -3,15 +3,15 @@
   "inputs": [
     {
       "path": "results/repair-20261001/inventory.json",
-      "sha256": "75cf643c7ed435b07edf12cef4898f0824723b5de5f31f76197a8f77ab04e4d4"
+      "sha256": "298e215825c30dddccba0811d9ebb53a89794f49e83310f6c7609dc2068c2c36"
     },
     {
       "path": "benchmark-vo.csv",
-      "sha256": "1857edadf2b72382f98c8fcd836c25917c3462c2f643a382b5a8a9afe894edea"
+      "sha256": "3af768f1db55db68b30cc11e242b6bee0c374809eb3458abed27322e1fabf494"
     },
     {
       "path": "benchmark-vo-lc.csv",
-      "sha256": "034c8b804cbdcc51b178c30c4da34de0154b8a65e95580fe709d4caf1583f911"
+      "sha256": "8a6c206fa244c65a48dba4ef63023776c971e4c65116866f633b2aeec56a8bef"
     },
     {
       "path": "benchmark-vio.csv",
@@ -2616,7 +2616,7 @@
         "default"
       ],
       "value": 9.603131877534125,
-      "annotation": "9.6\nA3/E3/S3/F0\nB",
+      "annotation": "9.6\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -2632,11 +2632,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -2649,14 +2650,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 9.786813354211558,
+              "median": 9.603131877534125,
+              "min": 9.585674301594752,
+              "max": 10.171633883505798,
+              "sample_std": 0.33337864593303507
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -2683,11 +2684,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -2696,18 +2695,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "450367dcfd4a1faf6966b579a7217b98fe6febc775978ae08316419e18082459",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/hortimulti/strawberry02/macvo/run1",
               "results/vo/hortimulti/strawberry02/macvo/run2",
@@ -2717,7 +2716,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -2729,7 +2729,7 @@
         "default"
       ],
       "value": 0.8393886332734278,
-      "annotation": "0.839\nA3/E3/S3/F0\nB",
+      "annotation": "0.839\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -2745,11 +2745,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -2762,14 +2763,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.8408554135195044,
+              "median": 0.8393886332734278,
+              "min": 0.834781936583038,
+              "max": 0.8483956707020474,
+              "sample_std": 0.006924378844595385
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -2796,11 +2797,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -2809,18 +2808,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "03c3ceaf989ea4a3d33eca1a48da0052dbd5af4a06740b87a7ff57035f953592",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/hortimulti/strawberry03/macvo/run1",
               "results/vo/hortimulti/strawberry03/macvo/run2",
@@ -2830,7 +2829,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -3754,7 +3754,7 @@
         "default"
       ],
       "value": 2.7240850047341043,
-      "annotation": "2.72\nA3/E3/S3/F0\nB",
+      "annotation": "2.72\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -3770,11 +3770,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -3787,14 +3788,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 2.724065099124029,
+              "median": 2.7240850047341043,
+              "min": 2.722768213513559,
+              "max": 2.725342079124424,
+              "sample_std": 0.0012870482588785588
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -3821,11 +3822,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -3834,18 +3833,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "342c84fda25fec145be0832a499a8b4ad5b363184d32849ef83dcbaae3ff51b0",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/hortimulti/strawberry02/basalt/run1",
               "results/vo/hortimulti/strawberry02/basalt/run2",
@@ -3855,7 +3854,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -3867,7 +3867,7 @@
         "default"
       ],
       "value": 0.7228066567609831,
-      "annotation": "0.723\nA3/E3/S3/F0\nB",
+      "annotation": "0.723\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -3883,11 +3883,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -3900,14 +3901,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.7228047342546616,
+              "median": 0.7228066567609831,
+              "min": 0.7227964203324729,
+              "max": 0.722811125670529,
+              "sample_std": 7.538817198507335e-06
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -3934,11 +3935,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -3947,18 +3946,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "342c84fda25fec145be0832a499a8b4ad5b363184d32849ef83dcbaae3ff51b0",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/hortimulti/strawberry03/basalt/run1",
               "results/vo/hortimulti/strawberry03/basalt/run2",
@@ -3968,7 +3967,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -4891,7 +4891,7 @@
         "default"
       ],
       "value": 16.171820335106272,
-      "annotation": "16.2\nA3/E3/S3/F0\nK,B",
+      "annotation": "16.2\nA3/E3/S3/F0\nV3,K,L",
       "summary": {
         "identity": [
           "vo",
@@ -4907,12 +4907,14 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "sparse_keyframe_accuracy_only"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -4924,14 +4926,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 16.136205309809185,
+              "median": 16.171820335106272,
+              "min": 14.907884467834837,
+              "max": 17.328911126486442,
+              "sample_std": 1.2109062073487045
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -4958,11 +4960,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -4971,18 +4971,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "afa2b7613f95daa3bcfc8aa7f2ff598dc82d8c39e6aa396f5e651c599911f0cc",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/hortimulti/strawberry02/airslam/run1",
               "results/vo/hortimulti/strawberry02/airslam/run2",
@@ -4992,8 +4992,9 @@
         ]
       },
       "flags": [
+        "V3",
         "K",
-        "B"
+        "L"
       ]
     },
     {
@@ -5005,7 +5006,7 @@
         "default"
       ],
       "value": 4.331348816921353,
-      "annotation": "4.33\nA3/E3/S3/F0\nK,B",
+      "annotation": "4.33\nA3/E3/S3/F0\nV3,K,L",
       "summary": {
         "identity": [
           "vo",
@@ -5021,12 +5022,14 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "sparse_keyframe_accuracy_only"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -5038,14 +5041,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 4.326571574784537,
+              "median": 4.331348816921353,
+              "min": 4.23964386076086,
+              "max": 4.408722046671397,
+              "sample_std": 0.08464026683278413
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -5072,11 +5075,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -5085,18 +5086,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "afa2b7613f95daa3bcfc8aa7f2ff598dc82d8c39e6aa396f5e651c599911f0cc",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/hortimulti/strawberry03/airslam/run1",
               "results/vo/hortimulti/strawberry03/airslam/run2",
@@ -5106,8 +5107,9 @@
         ]
       },
       "flags": [
+        "V3",
         "K",
-        "B"
+        "L"
       ]
     },
     {
@@ -6045,7 +6047,7 @@
         "default"
       ],
       "value": 2.0955719338907235,
-      "annotation": "2.1\nA3/E3/S3/F0\nB",
+      "annotation": "2.1\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -6061,11 +6063,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -6078,14 +6081,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 2.0851828684323293,
+              "median": 2.0955719338907235,
+              "min": 1.9850018376431773,
+              "max": 2.1749748337630863,
+              "sample_std": 0.09541165717310358
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -6112,11 +6115,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -6125,18 +6126,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "0bbfdaa1673f7e61b754a24c9da25102c8379d66f9b01ab4dc94cc7e4885fcdc",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/hortimulti/strawberry02/okvis2/run1",
               "results/vo/hortimulti/strawberry02/okvis2/run2",
@@ -6146,7 +6147,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -6158,7 +6160,7 @@
         "default"
       ],
       "value": 0.7484023259782575,
-      "annotation": "0.748\nA3/E3/S3/F0\nB",
+      "annotation": "0.748\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -6174,11 +6176,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -6191,14 +6194,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.7481479795749878,
+              "median": 0.7484023259782575,
+              "min": 0.7215267979102631,
+              "max": 0.7745148148364429,
+              "sample_std": 0.026494924108438622
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -6225,11 +6228,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -6238,18 +6239,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "1618e3557d8c87fbf9914d54c2a9507f036e30b93d07e4c059c8cee653d26af1",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/hortimulti/strawberry03/okvis2/run1",
               "results/vo/hortimulti/strawberry03/okvis2/run2",
@@ -6259,7 +6260,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -7185,7 +7187,7 @@
         "default"
       ],
       "value": 2.547997122823253,
-      "annotation": "2.55\nA3/E3/S3/F0\nB",
+      "annotation": "2.55\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -7201,11 +7203,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -7218,14 +7221,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 2.6621669912499044,
+              "median": 2.547997122823253,
+              "min": 2.5055512058358276,
+              "max": 2.932952645090633,
+              "sample_std": 0.2354656380699507
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -7252,11 +7255,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -7265,18 +7266,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "c3dbfad80e34e0e4ed0ae7ee68c07b331a39e5319eb582185d7043fafbfa23aa",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/hortimulti/strawberry02/okvis2x/run1",
               "results/vo/hortimulti/strawberry02/okvis2x/run2",
@@ -7286,7 +7287,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -7298,7 +7300,7 @@
         "default"
       ],
       "value": 0.7941154670047036,
-      "annotation": "0.794\nA3/E3/S3/F0\nB",
+      "annotation": "0.794\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -7314,11 +7316,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -7331,14 +7334,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.8096492977747551,
+              "median": 0.7941154670047036,
+              "min": 0.7648338151792253,
+              "max": 0.8699986111403365,
+              "sample_std": 0.05427599378343971
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -7365,11 +7368,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -7378,18 +7379,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "eac959e52e37e448131d85a397bcac246c6dced83a0e959838c61dc80211b33c",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/hortimulti/strawberry03/okvis2x/run1",
               "results/vo/hortimulti/strawberry03/okvis2x/run2",
@@ -7399,7 +7400,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -11742,7 +11744,7 @@
         "default"
       ],
       "value": 13.094730178088119,
-      "annotation": "13.1\nA3/E3/S3/F0\nB",
+      "annotation": "13.1\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -11758,11 +11760,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -11775,14 +11778,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 13.001599249482242,
+              "median": 13.094730178088119,
+              "min": 11.760103349003929,
+              "max": 14.149964221354677,
+              "sample_std": 1.1976492703189507
             },
             "nonzero_exits": 0,
             "alignment": "sim3",
@@ -11809,11 +11812,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -11822,18 +11823,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "7013cdd95b08627391b9b7da737e14542bd30a2c2e75a64d89e24f39c864a6b0",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/hortimulti/strawberry02/dpvo/run1",
               "results/vo/hortimulti/strawberry02/dpvo/run2",
@@ -11843,7 +11844,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -11855,7 +11857,7 @@
         "default"
       ],
       "value": 1.7276098478440816,
-      "annotation": "1.73\nA3/E3/S3/F0\nB",
+      "annotation": "1.73\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -11871,11 +11873,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -11888,14 +11891,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 1.81800331738887,
+              "median": 1.7276098478440816,
+              "min": 1.5838515437491487,
+              "max": 2.1425485605733803,
+              "sample_std": 0.2901100199137086
             },
             "nonzero_exits": 0,
             "alignment": "sim3",
@@ -11922,11 +11925,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -11935,18 +11936,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "7013cdd95b08627391b9b7da737e14542bd30a2c2e75a64d89e24f39c864a6b0",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo/hortimulti/strawberry03/dpvo/run1",
               "results/vo/hortimulti/strawberry03/dpvo/run2",
@@ -11956,7 +11957,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -15024,7 +15026,7 @@
         "default"
       ],
       "value": 16.94446720293741,
-      "annotation": "16.9\nA3/E3/S3/F0\nK,B",
+      "annotation": "16.9\nA3/E3/S3/F0\nV3,K,L",
       "summary": {
         "identity": [
           "vo-lc",
@@ -15040,12 +15042,14 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "sparse_keyframe_accuracy_only"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -15057,14 +15061,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 17.04355106394787,
+              "median": 16.94446720293741,
+              "min": 16.587543324547127,
+              "max": 17.59864266435907,
+              "sample_std": 0.5127803402789455
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -15091,11 +15095,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -15104,18 +15106,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "67662cd8cc5aec617b7736a4883f56eaf24200675b14b22078a1a6a90e3ab487",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo-lc/hortimulti/strawberry02/airslam/run1",
               "results/vo-lc/hortimulti/strawberry02/airslam/run2",
@@ -15125,8 +15127,9 @@
         ]
       },
       "flags": [
+        "V3",
         "K",
-        "B"
+        "L"
       ]
     },
     {
@@ -15138,7 +15141,7 @@
         "default"
       ],
       "value": 5.861346468904253,
-      "annotation": "5.86\nA3/E3/S3/F0\nK,B",
+      "annotation": "5.86\nA3/E3/S3/F0\nV3,K,L",
       "summary": {
         "identity": [
           "vo-lc",
@@ -15154,12 +15157,14 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "sparse_keyframe_accuracy_only"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
@@ -15171,14 +15176,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 6.297446610225136,
+              "median": 5.861346468904253,
+              "min": 5.8103551790435795,
+              "max": 7.220638182727575,
+              "sample_std": 0.7999137688307777
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -15205,11 +15210,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -15218,18 +15221,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "67662cd8cc5aec617b7736a4883f56eaf24200675b14b22078a1a6a90e3ab487",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo-lc/hortimulti/strawberry03/airslam/run1",
               "results/vo-lc/hortimulti/strawberry03/airslam/run2",
@@ -15239,8 +15242,9 @@
         ]
       },
       "flags": [
+        "V3",
         "K",
-        "B"
+        "L"
       ]
     },
     {
@@ -16095,7 +16099,7 @@
         "default"
       ],
       "value": 1.8786366193331718,
-      "annotation": "1.88\nA3/E3/S3/F0\nB",
+      "annotation": "1.88\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo-lc",
@@ -16111,11 +16115,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -16128,14 +16133,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 1.8730541175919575,
+              "median": 1.8786366193331718,
+              "min": 1.8001947506483194,
+              "max": 1.9403309827943813,
+              "sample_std": 0.07023470747637338
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -16162,11 +16167,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -16175,18 +16178,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "0a64b3993335ee0e4b615b33cf1913fa7b99cbc0ef6aeabb0ac83563b6a4c16a",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo-lc/hortimulti/strawberry02/okvis2/run1",
               "results/vo-lc/hortimulti/strawberry02/okvis2/run2",
@@ -16196,7 +16199,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -16208,7 +16212,7 @@
         "default"
       ],
       "value": 0.686204084390956,
-      "annotation": "0.686\nA3/E3/S3/F0\nB",
+      "annotation": "0.686\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo-lc",
@@ -16224,11 +16228,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -16241,14 +16246,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.7004491610105054,
+              "median": 0.686204084390956,
+              "min": 0.6821342103434125,
+              "max": 0.7330091882971476,
+              "sample_std": 0.028271142555101672
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -16275,11 +16280,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -16288,18 +16291,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "b9511f099206d1a57a1abcccd9e37dd9f637dfdd3a1d4cf9a46c773e5bda3020",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo-lc/hortimulti/strawberry03/okvis2/run1",
               "results/vo-lc/hortimulti/strawberry03/okvis2/run2",
@@ -16309,7 +16312,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -17223,7 +17227,7 @@
         "default"
       ],
       "value": 2.027983115946578,
-      "annotation": "2.03\nA3/E3/S3/F0\nB",
+      "annotation": "2.03\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo-lc",
@@ -17239,11 +17243,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -17256,14 +17261,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 2.6158195274231253,
+              "median": 2.027983115946578,
+              "min": 1.812578027967229,
+              "max": 4.006897438355569,
+              "sample_std": 1.2095136021124264
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -17290,11 +17295,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -17303,18 +17306,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "e2956f06790731aff966c78544486a36e5427d50223efe317affba7b86d0853d",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo-lc/hortimulti/strawberry02/okvis2x/run1",
               "results/vo-lc/hortimulti/strawberry02/okvis2x/run2",
@@ -17324,7 +17327,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -17336,7 +17340,7 @@
         "default"
       ],
       "value": 1.6961397110227618,
-      "annotation": "1.7\nA3/E3/S3/F0\nB",
+      "annotation": "1.7\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo-lc",
@@ -17352,11 +17356,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -17369,14 +17374,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 1.4147666521374047,
+              "median": 1.6961397110227618,
+              "min": 0.6686778487024614,
+              "max": 1.8794823966869907,
+              "sample_std": 0.6526024916094652
             },
             "nonzero_exits": 0,
             "alignment": "se3",
@@ -17403,11 +17408,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -17416,18 +17419,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "58b8bacb5f6445f6afb6b31b32e725057802f7819515486fc037deae8f1e5391",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo-lc/hortimulti/strawberry03/okvis2x/run1",
               "results/vo-lc/hortimulti/strawberry03/okvis2x/run2",
@@ -17437,7 +17440,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -18965,7 +18969,7 @@
         "default"
       ],
       "value": 20.987292456374224,
-      "annotation": "21\nA3/E3/S3/F0\nB",
+      "annotation": "21\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo-lc",
@@ -18981,11 +18985,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -18998,14 +19003,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 19.737065116635453,
+              "median": 20.987292456374224,
+              "min": 14.849538627317983,
+              "max": 23.374364266214148,
+              "sample_std": 4.397779478801554
             },
             "nonzero_exits": 0,
             "alignment": "sim3",
@@ -19032,11 +19037,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -19045,18 +19048,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "4637225210a4ea381f49448ab590e0b2abd1bf0aeba05dfb620e4b6d58071903",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo-lc/hortimulti/strawberry02/dpvo/run1",
               "results/vo-lc/hortimulti/strawberry02/dpvo/run2",
@@ -19066,7 +19069,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -19078,7 +19082,7 @@
         "default"
       ],
       "value": 8.822021194090631,
-      "annotation": "8.82\nA3/E3/S3/F0\nB",
+      "annotation": "8.82\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo-lc",
@@ -19094,11 +19098,12 @@
           "ok": 3
         },
         "acceptance": {
-          "blocked": 3
+          "accepted_with_limitation": 3
         },
-        "paper_usable": 0,
+        "paper_usable": 3,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
@@ -19111,14 +19116,14 @@
               "ok": 3
             },
             "qualified": 0,
-            "paper_usable": 0,
+            "paper_usable": 3,
             "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 8.952085369694668,
+              "median": 8.822021194090631,
+              "min": 8.77941499999513,
+              "max": 9.254819914998244,
+              "sample_std": 0.2630398746082957
             },
             "nonzero_exits": 0,
             "alignment": "sim3",
@@ -19145,11 +19150,9 @@
             ]
           }
         ],
-        "scientific_blockers": [
-          "horti_february_reference_generation_origin_and_timestamp_linkage_unresolved"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
+        "scientific_blockers": [],
+        "protocol_state": "verified_n3",
+        "protocol_verified_n3": true,
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
@@ -19158,18 +19161,18 @@
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
+        "protocol_verified_attempts": 3,
         "verified_failure_count": 0,
         "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "blocked": 3
+          "verified": 3
         },
         "protocol_cohorts": [
           {
             "cohort": "4637225210a4ea381f49448ab590e0b2abd1bf0aeba05dfb620e4b6d58071903",
             "attempts": 3,
-            "verified_completed": 0,
-            "missing_to_n3": null,
+            "verified_completed": 3,
+            "missing_to_n3": 0,
             "run_paths": [
               "results/vo-lc/hortimulti/strawberry03/dpvo/run1",
               "results/vo-lc/hortimulti/strawberry03/dpvo/run2",
@@ -19179,7 +19182,8 @@
         ]
       },
       "flags": [
-        "B"
+        "V3",
+        "L"
       ]
     },
     {
@@ -40573,19 +40577,19 @@
     },
     {
       "path": "fig_accuracy_vo_default.png",
-      "sha256": "ba28703d6ea3fde1298b25146c4053c979c337fd91e92bd20d0a507e8237794d"
+      "sha256": "30e7dff6e45239722c0cdc6f9551e499b0e3e9ad9a2be86cb935bf20fb9130c9"
     },
     {
       "path": "fig_accuracy_vo_default.pdf",
-      "sha256": "1845ef420f6f1f7d2a22c073d84e433fae1a1ddadbd6d9cab825072a4eda588a"
+      "sha256": "144fef92b9382376f047928b6ebdaa0fa4c57472f91882f1fe44fb51b9f896ac"
     },
     {
       "path": "fig_accuracy_vo-lc_default.png",
-      "sha256": "9b4f1dc50ec769279b1bfd946ac9567d148a181f6eebacd3ad9dbffd8b9e54f9"
+      "sha256": "22769ef10c18219476060ecdc20d58d482b59c5adf5e92f73c7f2596efd541dd"
     },
     {
       "path": "fig_accuracy_vo-lc_default.pdf",
-      "sha256": "7c2b987c2f6d41aa1f543ccf8ad70e7fafd025b6c8f32df5a0d2a3fd3d1785b4"
+      "sha256": "881524087326d0594e8c76c356db035ca1d37cf8f52d182329dc2aca676a56b6"
     },
     {
       "path": "fig_accuracy_vio_default.png",

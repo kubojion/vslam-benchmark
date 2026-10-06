@@ -4,15 +4,15 @@ Generated from hash-checked schema-3 evaluations and matching CSVs. These are in
 
 | Mode | Planned defaults | Evaluated | Numerical ok | Scale collapse | Invalid trajectory | Nonzero exits | Protocol-verified N=3 cells |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vo | 330 | 281 | 278 | 3 | 0 | 4 | 52 |
-| vo-lc | 210 | 143 | 142 | 1 | 0 | 6 | 23 |
+| vo | 330 | 281 | 278 | 3 | 0 | 4 | 64 |
+| vo-lc | 210 | 143 | 142 | 1 | 0 | 6 | 31 |
 | vio | 300 | 258 | 248 | 10 | 0 | 3 | 56 |
 | vio-lc | 210 | 98 | 95 | 3 | 0 | 8 | 23 |
 | gnss-vio | 60 | 20 | 19 | 0 | 1 | 0 | 0 |
 
 Legacy GNSS variants: 6 separate rows; not included in default repetition counts.
 
-Scientific statuses among existing headline attempts: accepted=117, accepted_with_limitation=353, blocked=309, rerun_required=21, valid_observed_failure=18.
+Scientific statuses among existing headline attempts: accepted=117, accepted_with_limitation=413, blocked=249, rerun_required=21, valid_observed_failure=18.
 
 ## Retained adverse outcomes
 
@@ -104,9 +104,9 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 
 | Source | SHA-256 |
 |---|---|
-| `inventory.json` | `75cf643c7ed435b07edf12cef4898f0824723b5de5f31f76197a8f77ab04e4d4` |
-| `benchmark-vo.csv` | `1857edadf2b72382f98c8fcd836c25917c3462c2f643a382b5a8a9afe894edea` |
-| `benchmark-vo-lc.csv` | `034c8b804cbdcc51b178c30c4da34de0154b8a65e95580fe709d4caf1583f911` |
+| `inventory.json` | `298e215825c30dddccba0811d9ebb53a89794f49e83310f6c7609dc2068c2c36` |
+| `benchmark-vo.csv` | `3af768f1db55db68b30cc11e242b6bee0c374809eb3458abed27322e1fabf494` |
+| `benchmark-vo-lc.csv` | `8a6c206fa244c65a48dba4ef63023776c971e4c65116866f633b2aeec56a8bef` |
 | `benchmark-vio.csv` | `7ee347b003f688dcfe4490272b1d9367c7fb07296328042d585e6e2669053c85` |
 | `benchmark-vio-lc.csv` | `ea821383a7526e1d1b8d72b9b7c0426c04b0d048af9fe35205434d35d53310a8` |
 | `benchmark-gnss-vio.csv` | `7eccab1f3b593feedcf877b31ca5618f33a3b6dffcd196c60dc45848acd88494` |
