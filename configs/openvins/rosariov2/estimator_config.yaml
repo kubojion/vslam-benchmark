@@ -8,7 +8,8 @@
 #    stereo-IMU bundle composed into common rectified input axes.
 #    The fixed time shift is already applied; online residual time estimation stays enabled.
 #  - gravity_mag: 9.7958           Cordoba, Argentina (~31°S).
-#  - track_frequency: 15.0         camera publishes at 15 Hz.
+#  - track_frequency: 31.0         above the 15 Hz camera rate, so the ROS front end never drops a
+#                                  jittered frame (15.0 rejected about 1 %; user decision 2026-10-06).
 #  - num_pts: 200                  frozen upstream quality profile.
 #  - histogram_method: HISTOGRAM   keeps default (cheap and robust on IR).
 
@@ -86,7 +87,7 @@ grid_x: 5
 grid_y: 5
 min_px_dist: 10
 knn_ratio: 0.70
-track_frequency: 15.0
+track_frequency: 31.0
 downsample_cameras: false
 num_opencv_threads: 4
 histogram_method: "HISTOGRAM"
