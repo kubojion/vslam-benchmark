@@ -4,7 +4,7 @@ Generated from the checked inventory. The [claim review](paper-acceptance-202610
 
 | Mode | Protocol-verified N=3 cells | Accepted accuracy claims | Limited accuracy claims | Failure-only claim observations | Required reruns | Missing | Blocked |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vo | 64 | 45 | 164 | 5 | 3 | 47 | 66 |
+| vo | 64 | 45 | 159 | 2 | 3 | 47 | 74 |
 | vo-lc | 31 | 27 | 67 | 0 | 3 | 65 | 48 |
 | vio | 56 | 27 | 141 | 3 | 0 | 42 | 87 |
 | vio-lc | 23 | 18 | 41 | 10 | 10 | 104 | 27 |
@@ -14,7 +14,7 @@ Protocol counts are separate from claim-status counts above. Success means a cle
 
 | Mode | Verified attempts | Verified failures | Attempts | Evaluated | Clean exports | Observed failures | Unknown |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vo | 214 | 17 | 283 | 281 | 264 | 19 | 0 |
+| vo | 206 | 14 | 283 | 281 | 264 | 19 | 0 |
 | vo-lc | 94 | 12 | 145 | 143 | 125 | 20 | 0 |
 | vio | 171 | 12 | 258 | 258 | 238 | 20 | 0 |
 | vio-lc | 69 | 10 | 106 | 98 | 95 | 11 | 0 |
@@ -23,7 +23,7 @@ Protocol counts are separate from claim-status counts above. Success means a cle
 **OpenVINS cohort completeness:** each EuRoC sequence has historical N=1 plus patched N=2. The selected logical slots are consumed. One additional patched repetition per sequence would complete that implementation cohort, only if separately authorized. These three potential additions are separate from the 81 absent planned slots and are not scheduled here. Old cohorts are not resampled for success.
 
 
-Future default actions: 548 reusable observations, 247 required reruns, 298 missing repetitions, 17 blocked. The separately authorized focused EuRoC campaign is complete; its 24 attempts yielded 23 final evaluations and one retained native refinement failure. The later ZED preparation used bounded diagnostics only; no ZED production repetitions or push occurred.
+Future default actions: 540 reusable observations, 255 required reruns, 298 missing repetitions, 17 blocked. The separately authorized focused EuRoC campaign is complete; its 24 attempts yielded 23 final evaluations and one retained native refinement failure. The later ZED preparation used bounded diagnostics only; no ZED production repetitions or push occurred.
 
 ## Protocol-verified N=3 cells
 
@@ -357,26 +357,18 @@ Future default actions: 548 reusable observations, 247 required reruns, 298 miss
 | `results/vo/citrusfarm/seq04/okvis2/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq04/okvis2x/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq04/airslam/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction; sparse_keyframe_accuracy_only |
-| `results/vo/citrusfarm/seq04/basalt/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq04/ov2slam/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq04/dpvo/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; monocular_sim3_shape_only_not_metric_stereo_ranking; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq04/macvo/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; official_performant_profile_not_paper_reproduction_profile; recorded_native_assets_not_complete_transitive_build_reconstruction |
-| `results/vo/citrusfarm/seq04/cuvslam/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
-| `results/vo/citrusfarm/seq04/svo_pro/run10001` | valid_observed_failure | authors_export_starts_after_keyframe_window_fills; citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction; retain_failure_in_attempt_denominator; retain_observed_scale_collapse_in_attempt_denominator |
-| `results/vo/citrusfarm/seq04/dsol/run10001` | valid_observed_failure | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; constant_velocity_motion_prior_without_gyroscope; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction; retain_failure_in_attempt_denominator |
 | `results/vo/citrusfarm/seq07/orbslam3/run10002` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; export_coverage_below_95_percent_no_clean_success_tick; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq07/orbslam3/run10003` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; export_coverage_below_95_percent_no_clean_success_tick; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq07/orbslam3/run10004` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; export_coverage_below_95_percent_no_clean_success_tick; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq07/okvis2/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq07/okvis2x/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq07/airslam/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction; sparse_keyframe_accuracy_only |
-| `results/vo/citrusfarm/seq07/basalt/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq07/ov2slam/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq07/dpvo/run10002` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; monocular_sim3_shape_only_not_metric_stereo_ranking; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo/citrusfarm/seq07/macvo/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; official_performant_profile_not_paper_reproduction_profile; recorded_native_assets_not_complete_transitive_build_reconstruction |
-| `results/vo/citrusfarm/seq07/cuvslam/run10001` | accepted_with_limitation | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
-| `results/vo/citrusfarm/seq07/svo_pro/run10001` | accepted_with_limitation | authors_export_starts_after_keyframe_window_fills; citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction |
-| `results/vo/citrusfarm/seq07/dsol/run10001` | valid_observed_failure | citrusfarm_position_only_reference_level_platform_lever_and_path_heading; citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured; configuration_choices_are_not_evidence_of_algorithm_optimality; constant_velocity_motion_prior_without_gyroscope; no_rotation_or_full_relative_pose_accuracy_claim; recorded_native_assets_not_complete_transitive_build_reconstruction; retain_failure_in_attempt_denominator |
 | `results/vo-lc/hortimulti/strawberry02/orbslam3/run10001` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; export_coverage_below_95_percent_no_clean_success_tick; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo-lc/hortimulti/strawberry02/orbslam3/run10002` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
 | `results/vo-lc/hortimulti/strawberry02/orbslam3/run10003` | accepted_with_limitation | configuration_choices_are_not_evidence_of_algorithm_optimality; disclose_rig_specific_algorithm_parameters_in_saved_parameter_review; export_coverage_below_95_percent_no_clean_success_tick; hortimulti_reference_frame_and_clock_as_recorded_user_decision_20261006; recorded_native_assets_not_complete_transitive_build_reconstruction |
@@ -642,7 +634,7 @@ Future default actions: 548 reusable observations, 247 required reruns, 298 miss
 
 ## Exact required reruns
 
-There are 247 remaining distinct confirmed cases after the current cohort selection. Superseded affected AirSLAM attempts remain in their original directories and the historical-cohort CSV. Preserve every original attempt and use a new physical ID/cohort.
+There are 255 remaining distinct confirmed cases after the current cohort selection. Superseded affected AirSLAM attempts remain in their original directories and the historical-cohort CSV. Preserve every original attempt and use a new physical ID/cohort.
 
 | Cell | Logical repetitions | Concrete defect |
 |---|---|---|
@@ -669,6 +661,14 @@ There are 247 remaining distinct confirmed cases after the current cohort select
 | `vo/rosariov2/sequence5/svo_pro` | r1, r2, r3 | rosario_camera_clock_model_superseded |
 | `vo/rosariov2/sequence5/dsol` | r1, r2, r3 | rosario_camera_clock_model_superseded |
 | `vo/zed2i/field1_110426_full_10fps_q90/orbslam3` | r1, r2, r3 | camera_fps_changed_15_to_10 |
+| `vo/citrusfarm/seq04/basalt` | r1 | imu_noise_not_at_authors_operating_point |
+| `vo/citrusfarm/seq04/cuvslam` | r1 | imu_noise_not_at_authors_operating_point |
+| `vo/citrusfarm/seq04/svo_pro` | r1 | imu_noise_not_at_authors_operating_point |
+| `vo/citrusfarm/seq04/dsol` | r1 | imu_noise_not_at_authors_operating_point |
+| `vo/citrusfarm/seq07/basalt` | r1 | imu_noise_not_at_authors_operating_point |
+| `vo/citrusfarm/seq07/cuvslam` | r1 | imu_noise_not_at_authors_operating_point |
+| `vo/citrusfarm/seq07/svo_pro` | r1 | imu_noise_not_at_authors_operating_point |
+| `vo/citrusfarm/seq07/dsol` | r1 | imu_noise_not_at_authors_operating_point |
 | `vo-lc/rosariov2/sequence1/orbslam3` | r1 | historical_orb_library_identity_unverified;rosario_camera_clock_model_superseded |
 | `vo-lc/rosariov2/sequence1/okvis2` | r1, r2, r3 | rosario_camera_clock_model_superseded |
 | `vo-lc/rosariov2/sequence1/okvis2x` | r1, r2, r3 | rosario_camera_clock_model_superseded |
@@ -950,7 +950,7 @@ The following representatives cover the other algorithm/mode branches; a validat
 | `vio/euroc_mav/MH_03_medium/voxel_svio` | deferred | unknown |
 | `vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3` | ZED short check passed | unknown |
 
-The timing subtotal is 15.0 serialized hours for 41 of the 545 required/missing actions; 504 have no comparable complete same-cell timing. It excludes native-error samples, diagnostics, unresolved blocked cases and evaluation/capture overhead. No total-campaign runtime is justified.
+The timing subtotal is 14.6 serialized hours for 31 of the 553 required/missing actions; 522 have no comparable complete same-cell timing. It excludes native-error samples, diagnostics, unresolved blocked cases and evaluation/capture overhead. No total-campaign runtime is justified.
 
 ## Reproduction and preservation
 
