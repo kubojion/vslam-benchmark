@@ -32,16 +32,26 @@
     "docs/imu-noise-rule-20261005.md"
    ],
    "explanation": "The attempt used the shared CitrusFarm recording envelope. Decision (user, 2026-10-06): rule C on every dataset with a published Allan calibration, CitrusFarm included (MicroStrain GX5 published values), for every inertial estimator including ORB-SLAM3; the envelope results stay as a separately labelled adaptation condition."
+  },
+  "citrusfarm_vo_shared_file_changed_new_group": {
+   "code": "imu_noise_not_at_authors_operating_point",
+   "disposition": "required_rerun",
+   "prerequisite": "rerun_citrusfarm_vo_in_one_group_after_rule_c_shared_file_change",
+   "evidence": [
+    "docs/benchmark-decisions-20261006.md"
+   ],
+   "explanation": "Rule C changed IMU-noise fields of shared CitrusFarm files this visual-only attempt recorded (Basalt calibration, sensor profile, OKVIS2 VIO file read by SVO Pro). Its visual setting is unchanged, but the recorded hashes enter the cohort identity, so the cell restarts as one new group (user N=1-first plan, 2026-10-06); the attempt is preserved."
   }
  },
  "counts": {
-  "attempts": 210,
+  "attempts": 218,
   "cells": 82,
   "by_dataset_and_decisions": {
    "citrusfarm: imu_noise_rule_citrusfarm": 26,
    "rosariov2: rosario_kalibr_rectified_bundle": 118,
    "rosariov2: rosario_kalibr_rectified_bundle+imu_noise_rule_rosario": 66
-  }
+  },
+  "citrusfarm_vo_new_group": 8
  },
  "attempts": {
   "vo/rosariov2/sequence1/orbslam3/run10001": {
@@ -2331,6 +2341,80 @@
     }
    ],
    "unselected": true
+  },
+  "vo/citrusfarm/seq04/basalt/run10001": {
+   "decisions": [
+    "citrusfarm_vo_shared_file_changed_new_group"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    },
+    {
+     "path": "libbasalt.so",
+     "role": "estimator_shared",
+     "sha256": "c5474db4c904ed6eb7adb83d6952f11bce2bc7571be74fee40638bef97abcc30",
+     "size_bytes": 15755664
+    }
+   ]
+  },
+  "vo/citrusfarm/seq04/cuvslam/run10001": {
+   "decisions": [
+    "citrusfarm_vo_shared_file_changed_new_group"
+   ],
+   "binaries": []
+  },
+  "vo/citrusfarm/seq04/svo_pro/run10001": {
+   "decisions": [
+    "citrusfarm_vo_shared_file_changed_new_group"
+   ],
+   "binaries": []
+  },
+  "vo/citrusfarm/seq04/dsol/run10001": {
+   "decisions": [
+    "citrusfarm_vo_shared_file_changed_new_group"
+   ],
+   "binaries": []
+  },
+  "vo/citrusfarm/seq07/basalt/run10001": {
+   "decisions": [
+    "citrusfarm_vo_shared_file_changed_new_group"
+   ],
+   "binaries": [
+    {
+     "path": "basalt_vio",
+     "role": "estimator",
+     "sha256": "f49883e2340127abe4f02971077ce29511fb9959e52979fb4c913cc0da0e0706",
+     "size_bytes": 4269912
+    },
+    {
+     "path": "libbasalt.so",
+     "role": "estimator_shared",
+     "sha256": "c5474db4c904ed6eb7adb83d6952f11bce2bc7571be74fee40638bef97abcc30",
+     "size_bytes": 15755664
+    }
+   ]
+  },
+  "vo/citrusfarm/seq07/cuvslam/run10001": {
+   "decisions": [
+    "citrusfarm_vo_shared_file_changed_new_group"
+   ],
+   "binaries": []
+  },
+  "vo/citrusfarm/seq07/svo_pro/run10001": {
+   "decisions": [
+    "citrusfarm_vo_shared_file_changed_new_group"
+   ],
+   "binaries": []
+  },
+  "vo/citrusfarm/seq07/dsol/run10001": {
+   "decisions": [
+    "citrusfarm_vo_shared_file_changed_new_group"
+   ],
+   "binaries": []
   }
  }
 }

@@ -98637,13 +98637,13 @@
       ]
     },
     "vo/citrusfarm/seq04/basalt": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "accepted_with_limitation": 1,
+        "blocked": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 1,
+      "paper_usable_attempts": 0,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
@@ -98656,19 +98656,18 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 1,
+      "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "verified": 1,
-        "blocked": 2
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
           "cohort": "03114bdbfecda1bd0c26ad62d9cbf02427235e3a5f7bf3135d13c473085596f0",
           "attempts": 1,
-          "verified_completed": 1,
-          "missing_to_n3": 2,
+          "verified_completed": 0,
+          "missing_to_n3": null,
           "run_paths": [
             "results/vo/citrusfarm/seq04/basalt/run10001"
           ]
@@ -98793,13 +98792,13 @@
       ]
     },
     "vo/citrusfarm/seq04/cuvslam": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "accepted_with_limitation": 1,
+        "blocked": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 1,
+      "paper_usable_attempts": 0,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
@@ -98812,19 +98811,18 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 1,
+      "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "verified": 1,
-        "blocked": 2
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
           "cohort": "a15d63d66a7cd4919ec60d79d5836ded4981132e2aa2ffe490d9ab0cb99a77bb",
           "attempts": 1,
-          "verified_completed": 1,
-          "missing_to_n3": 2,
+          "verified_completed": 0,
+          "missing_to_n3": null,
           "run_paths": [
             "results/vo/citrusfarm/seq04/cuvslam/run10001"
           ]
@@ -98832,13 +98830,13 @@
       ]
     },
     "vo/citrusfarm/seq04/svo_pro": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "valid_observed_failure": 1,
+        "blocked": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 1,
+      "paper_usable_attempts": 0,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
@@ -98851,19 +98849,18 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 1,
-      "verified_failure_count": 1,
+      "protocol_verified_attempts": 0,
+      "verified_failure_count": 0,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "verified": 1,
-        "blocked": 2
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
           "cohort": "66b7b899b5293f3ce8021204e7c91e71e4f7b01acd16718f042bd68d10359173",
           "attempts": 1,
-          "verified_completed": 1,
-          "missing_to_n3": 2,
+          "verified_completed": 0,
+          "missing_to_n3": null,
           "run_paths": [
             "results/vo/citrusfarm/seq04/svo_pro/run10001"
           ]
@@ -98871,13 +98868,13 @@
       ]
     },
     "vo/citrusfarm/seq04/dsol": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "valid_observed_failure": 1,
+        "blocked": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 1,
+      "paper_usable_attempts": 0,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
@@ -98890,19 +98887,18 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 1,
-      "verified_failure_count": 1,
+      "protocol_verified_attempts": 0,
+      "verified_failure_count": 0,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "verified": 1,
-        "blocked": 2
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
           "cohort": "e57fb2cf61a4957ed48200f5dfbb348163605a3eaa648241f1d9f00d2e08151e",
           "attempts": 1,
-          "verified_completed": 1,
-          "missing_to_n3": 2,
+          "verified_completed": 0,
+          "missing_to_n3": null,
           "run_paths": [
             "results/vo/citrusfarm/seq04/dsol/run10001"
           ]
@@ -99066,13 +99062,13 @@
       ]
     },
     "vo/citrusfarm/seq07/basalt": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "accepted_with_limitation": 1,
+        "blocked": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 1,
+      "paper_usable_attempts": 0,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
@@ -99085,19 +99081,18 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 1,
+      "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "verified": 1,
-        "blocked": 2
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
           "cohort": "03114bdbfecda1bd0c26ad62d9cbf02427235e3a5f7bf3135d13c473085596f0",
           "attempts": 1,
-          "verified_completed": 1,
-          "missing_to_n3": 2,
+          "verified_completed": 0,
+          "missing_to_n3": null,
           "run_paths": [
             "results/vo/citrusfarm/seq07/basalt/run10001"
           ]
@@ -99222,13 +99217,13 @@
       ]
     },
     "vo/citrusfarm/seq07/cuvslam": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "accepted_with_limitation": 1,
+        "blocked": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 1,
+      "paper_usable_attempts": 0,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
@@ -99241,19 +99236,18 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 1,
+      "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "verified": 1,
-        "blocked": 2
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
           "cohort": "741e0f206d2ef905fcccc959c788b348c9e22be76172a319c6bef4ee2f1f579a",
           "attempts": 1,
-          "verified_completed": 1,
-          "missing_to_n3": 2,
+          "verified_completed": 0,
+          "missing_to_n3": null,
           "run_paths": [
             "results/vo/citrusfarm/seq07/cuvslam/run10001"
           ]
@@ -99261,13 +99255,13 @@
       ]
     },
     "vo/citrusfarm/seq07/svo_pro": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "accepted_with_limitation": 1,
+        "blocked": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 1,
+      "paper_usable_attempts": 0,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
@@ -99280,19 +99274,18 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 1,
+      "protocol_verified_attempts": 0,
       "verified_failure_count": 0,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "verified": 1,
-        "blocked": 2
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
           "cohort": "81774431e6e78770392db91f9506d3ffaa70f3dca48cc40d9f43068a754ed0c2",
           "attempts": 1,
-          "verified_completed": 1,
-          "missing_to_n3": 2,
+          "verified_completed": 0,
+          "missing_to_n3": null,
           "run_paths": [
             "results/vo/citrusfarm/seq07/svo_pro/run10001"
           ]
@@ -99300,13 +99293,13 @@
       ]
     },
     "vo/citrusfarm/seq07/dsol": {
-      "status": "missing_repetitions",
+      "status": "blocked",
       "attempts": {
-        "valid_observed_failure": 1,
+        "blocked": 1,
         "not_executed": 2
       },
       "clean_qualified_n3": false,
-      "paper_usable_attempts": 1,
+      "paper_usable_attempts": 0,
       "missing_repetitions": 2,
       "verified_ready_to_run": false,
       "protocol_state": "blocked",
@@ -99319,19 +99312,18 @@
       "completed_export_shutdown_error_count": 0,
       "shutdown_error_count": 0,
       "unknown_outcome_count": 0,
-      "protocol_verified_attempts": 1,
-      "verified_failure_count": 1,
+      "protocol_verified_attempts": 0,
+      "verified_failure_count": 0,
       "missing_attempt_count": 2,
       "protocol_status_counts": {
-        "verified": 1,
-        "blocked": 2
+        "blocked": 3
       },
       "protocol_cohorts": [
         {
           "cohort": "06e6bd0839d8510fa3fe39e1e91c0ab521cf048e0a390c92892ac3139c84f058",
           "attempts": 1,
-          "verified_completed": 1,
-          "missing_to_n3": 2,
+          "verified_completed": 0,
+          "missing_to_n3": null,
           "run_paths": [
             "results/vo/citrusfarm/seq07/dsol/run10001"
           ]
