@@ -65,16 +65,13 @@ benchmark-vo-lc.csv  # aggregated metrics for vo-lc runs
 benchmark-vio.csv    # aggregated metrics for vio runs
 benchmark-vio-lc.csv # aggregated metrics for vio-lc runs
 benchmark-gnss-vio.csv # aggregated metrics for gnss-vio runs
-obsolete/            # quarantined data (e.g. ORB-SLAM3 stereo+LC runs that
-                     # don't fit the current run-type scheme)
-experiments/          # smoke/failed artifacts excluded from benchmark discovery
-vendor/prerequisites/ # OKVIS2 external CMake patches + install.sh (see its README)
+archive/experiments/ # July smoke/failed artifacts, excluded from benchmark discovery
 datasets/            # bulk data untracked; gt_*.txt / times.txt / manifest.json
                      # / segments_auto.csv ARE git-tracked (GT provenance)
 docs/                # documentation — see docs/README.md for the layout:
                      # core how-tos | generated/ (tables, claims, figures) |
                      # campaigns/ (agent briefs + campaign records) | private/
-PROGRESS.md          # running log of results and known issues
+PROGRESS.md          # historical log up to 2026-10-02 (not current)
 TODO.md              # authoritative open-work matrix (🔁 = re-run recommended)
 ```
 
