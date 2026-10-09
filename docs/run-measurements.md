@@ -78,7 +78,7 @@ ROS players atomically record expected/published camera pairs, IMU/GNSS messages
 and read failures in `transport_stats.json`. These establish source emissions;
 they do not establish estimator receipt, processing or drops. Attempt process
 states and shutdown signal logs are separate execution evidence, described in the
-[runner audit](runner-isolation-audit.md).
+[runner audit](archive/2026-10/runner-isolation-audit.md).
 
 ## Validation
 

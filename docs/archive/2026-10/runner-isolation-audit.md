@@ -1,7 +1,7 @@
 # Attempt process and output isolation audit — 2026-10-01
 
 The original repair below was validated synthetically. Subsequently the separately
-authorized [focused campaign](euroc-focused-campaign-20261001.md) validated OpenVINS
+authorized [focused campaign](../../euroc-focused-campaign-20261001.md) validated OpenVINS
 EuRoC VIO and AirSLAM EuRoC VIO/VIO-LC, including native exits, output capture,
 immediate evaluation and bounded interruption/recovery. Other native paths remain
 unverified; shared helper tests do not establish their execution readiness.

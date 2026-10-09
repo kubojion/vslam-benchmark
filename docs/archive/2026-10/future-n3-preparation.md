@@ -3,7 +3,7 @@
 The user extended the existing repair goal on 2026-10-01. Preserve completed work,
 prepare the next campaign across VO, VO-LC, VIO, VIO-LC and GNSS-VIO, and retain the
 DROID-SLAM, MASt3R-SLAM and MegaSaM exclusions. The original preparation authorized no estimation. A subsequent focused authorization
-completed only the EuRoC OpenVINS/AirSLAM campaign; no further execution is authorized. See [the detailed goal](../codex-goal.md).
+completed only the EuRoC OpenVINS/AirSLAM campaign; no further execution is authorized. See [the detailed goal](codex-goal.md).
 
 ## Scope and evidence
 
@@ -34,9 +34,9 @@ input hashes and provenance blockers. Original trajectories are unchanged.
 `results/repair-20261001/future-n3-manifest.json` is a schema-2 executable action
 manifest consumed by `scripts/campaign/run_future_manifest.py`. Preparation and
 repair/audit are complete within the no-new-estimation scope; see the
-[handoff](../repair-handoff-20261001.md). No action is certified ready.
+[handoff](../../repair-handoff-20261001.md). No action is certified ready.
 
-Current classification after the [focused acceptance review](../acceptance-handoff-20261001.md):
+Current classification after the [focused acceptance review](../../acceptance-handoff-20261001.md):
 
 | Category | Logical repetitions | Meaning |
 |---|---:|---|
@@ -86,7 +86,7 @@ execution begins require an explicit new campaign revision, preserving old state
 - Existing directories are never deleted or estimated again in place. Partial and
   interrupted attempts remain visible. Recovery retries evaluation, not estimation.
 - Atomic state and global/cell locks protect controller use. Eight ROS wrappers now
-  use attempt-owned cleanup and private transport; see the [runner audit](../runner-isolation-audit.md).
+  use attempt-owned cleanup and private transport; see the [runner audit](runner-isolation-audit.md).
   Native/container startup and shutdown still require execution validation; controller
   locks do not control unrelated manually launched jobs.
 - `_evaluate_run.py` uses schema 3, checks input/evaluator hashes and saves independent
@@ -94,7 +94,7 @@ execution begins require an explicit new campaign revision, preserving old state
   It does not create historical COMPLETE markers or scientific qualification ticks.
 - No report aggregation infers success from one successful attempt in a mixed cell.
   Root evaluations, CSVs, cell reports, tables, figures and browser are now reconciled
-  with the authoritative inventory. The [claim review](../publication-qualification-20261001.md)
+  with the authoritative inventory. The [claim review](../../publication-qualification-20261001.md)
   records historical evidence gaps separately from the 30 confirmed reruns.
 
 ## Completion and readiness are distinct
@@ -145,7 +145,7 @@ upstream default. No historical trajectory or LC algorithm was changed.
 
 The repetition controller now requires measurement schema 2 for new attempts.
 Uninstrumented processing counts/FPS stay unknown; available-input/wall-time ratios
-are nominal. See [measurement semantics](../run-measurements.md). Historical saved
+are nominal. See [measurement semantics](../../run-measurements.md). Historical saved
 metadata and processing claims remain preserved as evidence.
 
 Final validation: 149 tests plus three subtests pass. Manifest structure and
@@ -157,7 +157,7 @@ image preview. Evidence is under `results/repair-20261001/` in
 establish scientific qualification or native execution readiness. Root-output
 promotion and the archival cleanup described in the audit are complete.
 
-The [AirSLAM source audit](../airslam-rectification-audit.md) establishes that the
+The [AirSLAM source audit](../../airslam-rectification-audit.md) establishes that the
 recorded EuRoC fusion configuration mixes rectified visual axes with raw-camera
 IMU extrinsics. A source patch is prepared and its transform algebra checked;
 application, build and execution validation remain prerequisites. Eighteen existing
@@ -213,7 +213,7 @@ input and runtime bytes after execution. A changed or missing artifact prevents
 completion and leaves the attempt available for diagnosis. Source-to-binary build
 linkage, dynamic dependency resolution and effective native configuration loading
 remain explicit prerequisites. Present-day capture cannot reconstruct a historical
-missing patch or certify a calibration. See [provenance](../run-provenance.md).
+missing patch or certify a calibration. See [provenance](../../run-provenance.md).
 
 Read-only preparation/verification commands (no estimator, container startup or build):
 

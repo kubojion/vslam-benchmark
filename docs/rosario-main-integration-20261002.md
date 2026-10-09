@@ -28,8 +28,8 @@ not replaced. Newer main notes and colleagues' unrelated files were preserved.
   preventing those logical slots from being scheduled again while review is pending.
 
 See [candidate configurations and author questions](rosario-vio-candidates-20261002.md),
-[main candidate validation](rosario-main-candidate-validation-20261002.json), and
-[the source/integration inventory](rosario-main-integration-20261002.json).
+[main candidate validation](archive/2026-10/rosario-main-candidate-validation-20261002.json), and
+[the source/integration inventory](archive/2026-10/rosario-main-integration-20261002.json).
 
 ## ZED state and preservation
 

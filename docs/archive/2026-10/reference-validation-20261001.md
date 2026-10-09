@@ -1,15 +1,15 @@
 # Matched-session review validation — 2026-10-01
 
-> Historical checkpoint. Later [ZED preparation](zed-preparation-20261002.md)
+> Historical checkpoint. Later [ZED preparation](../../zed-preparation-20261002.md)
 > supersedes its ZED calibration/reference blockers and current aggregate counts.
 > Original observations, provenance hashes and non-ZED decisions remain preserved.
 
 > Historical checkpoint. Current focused EuRoC execution, counts and remaining limitations are in
-> [the campaign record](euroc-focused-campaign-20261001.md) and [current handoff](acceptance-handoff-20261001.md).
+> [the campaign record](../../euroc-focused-campaign-20261001.md) and [current handoff](../../acceptance-handoff-20261001.md).
 
 This extends the [previous acceptance checkpoint](acceptance-validation-20261001.md).
-The [reference review](reference-review-20261001.md) explains the scientific findings;
-the [current handoff](acceptance-handoff-20261001.md) lists exact remaining actions.
+The [reference review](../../reference-review-20261001.md) explains the scientific findings;
+the [current handoff](../../acceptance-handoff-20261001.md) lists exact remaining actions.
 Audit completion does not certify repaired native execution.
 
 - **161 tests and three subtests pass.** The new checks cover independent Rosario

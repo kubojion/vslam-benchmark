@@ -3,7 +3,7 @@
 Updated 2026-10-01. All five result trees, root CSVs, cell reports and the browser
 now use the reconciled schema-3 evidence. Scientific qualification remains separate;
 see [publication qualification](publication-qualification-20261001.md). The original
-[pre-repair design](result-storage-design-before-repair-20261001.md) is historical.
+[pre-repair design](archive/2026-10/result-storage-design-before-repair-20261001.md) is historical.
 Its whole-cell deletion and COMPLETE-only aggregation rules are superseded.
 
 ## Current layout
@@ -37,7 +37,7 @@ above 10000 and records their logical repetition and cohort separately. A failed
 partial or completed directory is never deleted to make room for another attempt.
 The repetition controller evaluates each available trajectory before advancing and
 can retry evaluation without launching estimation. Locks protect controller writes;
-they do not control unrelated manually launched jobs. See [runner isolation](runner-isolation-audit.md).
+they do not control unrelated manually launched jobs. See [runner isolation](archive/2026-10/runner-isolation-audit.md).
 
 `COMPLETE` is a historical execution/artifact marker, not a scientific certificate.
 Recovery does not invent missing markers. The inventory includes saved evaluated
@@ -81,4 +81,4 @@ The server binds to localhost. An SSH tunnel can expose it to your laptop. The
 browser separates current JSONs from historical plots and redacts identifying paths
 in displayed logs/metadata. It does not turn an artifact into qualified evidence.
 Native containers, calibration and missing historical provenance still have the
-specific prerequisites in the [future manifest](campaigns/future-n3-preparation.md).
+specific prerequisites in the [future manifest](archive/2026-10/future-n3-preparation.md).

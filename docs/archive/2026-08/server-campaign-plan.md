@@ -5,7 +5,7 @@
 > requests 200 cells / 600 runs (N=3, including EuRoC, excluding GNSS). Current inventory:
 > 538 evaluated runs, 176 N=3 cells, ten N=1 cells, fourteen cells without a complete
 > evaluation. No matching campaign process was observed; some state entries are stale.
-> See [the audit](server-status-20261001.md) and [executed manifest snapshot](server-n3-manifest-20260826.json).
+> See [the audit](../2026-10/server-status-20261001.md) and [executed manifest snapshot](server-n3-manifest-20260826.json).
 > The default commands below still select the N=5 manifest. They are not a recovery
 > instruction for missing N=3 repetitions. Confirm scope and preserve current artifacts first.
 
@@ -16,7 +16,7 @@ configuration. There is no real-time campaign and no per-dataset tuning sweep.
 ## Scope
 
 The committed source of truth is
-[`configs/campaigns/quality-final.json`](../../configs/campaigns/quality-final.json). It expands
+[`configs/campaigns/quality-final.json`](../../../configs/campaigns/quality-final.json). It expands
 to **220 comparison cells** and **1,100 estimator executions** (five repetitions per cell):
 
 | Table | Algorithms | Sequences | Cells |

@@ -41,13 +41,13 @@ the effective input, preservation in provenance, and runtime-hash guard are
 implemented; the final wrapper regression passed at `3cee23b`. Ordinary float32
 rounding is distinguished from omitted settings.
 
-The [final Basalt regression](campaigns/basalt-final-review-20261002.json) has
+The [final Basalt regression](archive/2026-10/basalt-final-review-20261002.json) has
 three clean native/wrapper exits: one Rosario check and two identical-input ZED
 checks. Both ZED attempts have the same cohort fingerprint. The preceding
 diagnostic produced a trajectory but failed metadata finalization because the
 grouping marker was supplied twice; that wrapper failure remains preserved.
 
-The [OpenVINS review](campaigns/openvins-native-review-20261002.json) verifies
+The [OpenVINS review](archive/2026-10/openvins-native-review-20261002.json) verifies
 both cameras' loaded transforms, intrinsics and distortion in all four existing
 Rosario checks, clean node/player exits, complete publication, and finite ordered
 IMU-clock exports. Its upstream DEBUG print formats integer `init_max_features`

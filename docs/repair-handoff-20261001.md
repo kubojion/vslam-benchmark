@@ -73,7 +73,7 @@ until three successes are obtained.
 
 The [qualification review](publication-qualification-20261001.md),
 [saved-parameter review](saved-parameter-review-20261001.md),
-[runner audit](runner-isolation-audit.md) and
+[runner audit](archive/2026-10/runner-isolation-audit.md) and
 [repair audit](repair-audit-20261001.md) retain the detailed evidence.
 
 ## Executable future plan
@@ -133,7 +133,7 @@ commit. Collaborator changes in nested repositories remain untouched. Nothing wa
 pushed by the repair agent.
 
 Historical provenance hashes remain historical after the authorized author rewrite;
-use [the mapping](campaigns/git-author-rewrite-20261001.json). The temporary maintenance
+use [the mapping](archive/2026-10/git-author-rewrite-20261001.json). The temporary maintenance
 pause was explicitly revoked and was not reapplied. The goal ends because its
 no-new-estimation repair scope is complete, not because it is paused or because
 publication qualification has been achieved.

@@ -86,6 +86,6 @@ reference is immutable and selected by hash. The only added historical productio
 trajectory is the explicitly labelled OKVIS2-X causal conversion; original native
 CSV, metadata, logs and completion state are preserved.
 
-The authorship rewrite mapping remains `docs/campaigns/git-author-rewrite-20261001.json`;
+The authorship rewrite mapping remains `docs/archive/2026-10/git-author-rewrite-20261001.json`;
 historical provenance hashes were not rewritten. The obsolete temporary pause
 remains revoked. No production execution or push is authorized by this handoff.

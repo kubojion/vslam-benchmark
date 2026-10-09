@@ -1,7 +1,7 @@
 # Documentation index (status reviewed 2026-10-01)
 
 Start with [the final repair handoff](repair-handoff-20261001.md) and
-[the current TODO](../TODO.md). The [server status audit](campaigns/server-status-20261001.md)
+[the current TODO](../TODO.md). The [server status audit](archive/2026-10/server-status-20261001.md)
 is the preserved pre-repair inventory. Generated numeric tables/claims remain
 provisional; repair completion does not certify publication or native execution readiness.
 
@@ -18,4 +18,4 @@ report content is now written from `generated/`, never the other way around.
 Current scientific eligibility: [paper acceptance criteria](paper-acceptance-20261001.md)
 and [acceptance handoff with exact remaining repetitions](acceptance-handoff-20261001.md).
 
-Validation and preservation: [acceptance checks](acceptance-validation-20261001.md).
+Validation and preservation: [acceptance checks](archive/2026-10/acceptance-validation-20261001.md).

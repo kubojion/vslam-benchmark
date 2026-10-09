@@ -34,7 +34,7 @@ in attempt metadata; no other parameter is ignored. A signature groups recorded
 evidence, not proof that missing provenance has been recovered. Unverified legacy
 attempts remain separate rather than being pooled by a common `unknown` label.
 Historical Git hashes remain historical after the author rewrite; see the
-[mapping](campaigns/git-author-rewrite-20261001.json).
+[mapping](archive/2026-10/git-author-rewrite-20261001.json).
 
 New runners explicitly declaring `cohort_artifact_semantics=2` normalize only
 attempt-local paths in the named configuration receipts. Input-receipt frame

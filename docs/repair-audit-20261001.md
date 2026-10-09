@@ -4,7 +4,7 @@
 > supersedes blanket qualification counts and native-error timing assumptions.
 
 
-This records [the completed repair/audit scope](codex-goal.md), covering VO,
+This records [the completed repair/audit scope](archive/2026-10/codex-goal.md), covering VO,
 VO-LC, VIO, VIO-LC and GNSS-VIO. See [the final handoff](repair-handoff-20261001.md).
 The 593 repaired evaluations, five root CSVs, cell reports, tables, figures and
 browser are now reconciled and promoted. Numerical repair does not establish
@@ -225,7 +225,7 @@ Remaining reference-frame and publication qualification blockers still apply.
 Attribution bookkeeping on 2026-10-01 rewrote eight repair-era commit identities
 to kubojion. All eleven mapped old/new commit trees (including three unchanged
 August commits) were independently checked and are identical. See the preserved
-[mapping](campaigns/git-author-rewrite-20261001.json). The original history is kept
+[mapping](archive/2026-10/git-author-rewrite-20261001.json). The original history is kept
 at `backup/author-before-20261001T114608Z` and in the external author-rewrite backup.
 Historical run/source and backup hashes remain unchanged. The initial push failed;
 the user subsequently reported a successful push and explicitly revoked the
@@ -240,7 +240,7 @@ protocol. Future GNSS repetitions and input variants need explicit cohort and
 action identities. Safe per-run resumption and immediate evaluation replace the
 old destructive cell-wide workflow. Repair/audit completion and verified execution
 readiness must be reported separately; native crashes are not resolved by wrapper
-or syntax checks. See [the extended goal](codex-goal.md#7-prepare-the-future-n3-campaign-without-executing-it).
+or syntax checks. See [the extended goal](archive/2026-10/codex-goal.md#7-prepare-the-future-n3-campaign-without-executing-it).
 
 The wrapper now delegates to `scripts/campaign/run_repetitions.py`. Existing
 physical run IDs are never estimated again: saved trajectories are evaluated,
@@ -274,7 +274,7 @@ readiness has yet been certified; this is an intermediate review state, not a
 recommendation to rerun 567 results. Hash-checked manifest validation passes and
 `--require-ready` correctly fails with 660 unready actions. Eighty tests plus three
 subtests pass, including matrix-format preservation and no partial launch before
-detecting a blocked selection. See [the preparation record](campaigns/future-n3-preparation.md)
+detecting a blocked selection. See [the preparation record](archive/2026-10/future-n3-preparation.md)
 for commands, scope, runtime limits and unresolved historical GNSS provenance.
 
 The subsequent GNSS input repair binds every future run to a preserved CSV/hash
@@ -285,7 +285,7 @@ exclude explicit no-fix rows and fill missing covariance per axis. The four curr
 CSV files validate, and their old native caches match position/uncertainty values
 (at most 232 ns timestamp rounding difference). No historical source bytes were
 overwritten or retroactively attributed to a run. Ninety tests plus three subtests
-pass; see [the detailed validation](campaigns/future-n3-preparation.md#gnss-input-repair-validation).
+pass; see [the detailed validation](archive/2026-10/future-n3-preparation.md#gnss-input-repair-validation).
 
 Outstanding at that intermediate stage (superseded by the final handoff):
 

@@ -5,7 +5,7 @@ Prepared: 2026-10-01. Workspace: `/data/imoroz/vslam-benchmark`.
 ## Current continuation — focused execution readiness, 2026-10-02
 
 Continue from `03c7c0e`, with final reporting checkpointed as `0fa0066`.
-Complete the [focused readiness plan](execution-readiness-20261002.md): explicit
+Complete the [focused readiness plan](../../execution-readiness-20261002.md): explicit
 Rosario candidate selection and bounded native validation; the fixed first
 180-second Voxel ZED diagnostic; evidence-based separation of shutdown errors
 from trajectory failures; non-ZED ORB historical ABI/build review and short
@@ -69,7 +69,7 @@ formatting, selected-run links, separate implementation groups, red confirmed
 reruns and yellow unresolved review. 🔴 becomes 🔄 only with verified readiness.
 
 The live-batch integration hold was observed and the requested pauses recorded in
-[the handoff](rosario-main-integration-20261002.md). On resume, the controller and
+[the handoff](../../rosario-main-integration-20261002.md). On resume, the controller and
 all started native/evaluation/capture processes were confirmed stopped. Three
 started ZED first repetitions have final records; three actions were never
 started. Preserve both facts and never relaunch the original one-shot controller.
@@ -94,7 +94,7 @@ unchanged historical evidence files, all 252 matrix cells with A/E/S/F, and 81
 unchanged verified N=3 cells. The three completed ZED first repetitions are held
 for review without duplicate execution commands. Rosario's four candidates remain
 inactive and unverified; its 14 replacements, four missing repetitions and native/
-author prerequisites remain explicit. See [the final handoff](rosario-main-integration-20261002.md)
+author prerequisites remain explicit. See [the final handoff](../../rosario-main-integration-20261002.md)
 for the refreshed plans, exact remaining gates and verified final snapshot.
 
 ## Completed continuation — ZED preparation, 2026-10-02
@@ -136,8 +136,8 @@ Verbatim calibration/screening records are preserved under `docs/campaigns/` and
 in the incremental backup. Their original files remain unchanged. The path
 clarification is no longer needed.
 
-ZED repair deliverables are reconciled in [the validation record](zed-validation-20261002.md)
-and [the exact remaining campaign](zed-campaign-20261002.md). Nine ZED cells now
+ZED repair deliverables are reconciled in [the validation record](../../zed-validation-20261002.md)
+and [the exact remaining campaign](../../zed-campaign-20261002.md). Nine ZED cells now
 have qualified nominal-position protocol N=3; all original outcomes remain.
 At that preparation checkpoint, the coherent campaign retained 27 observations and named 48 new attempts
 (17 setup replacements, 25 missing, six cohort-completion). Fifteen paths passed
@@ -146,7 +146,7 @@ The known timing proxy subtotal is 70.7 hours for 39 attempts, with nine unknown
 Repair/audit completion does not authorize production execution or imply that
 these remaining execution/evidence limitations have been fixed.
 The later integration above records three completed first attempts separately;
-the [current campaign](zed-campaign-20261002.md) now names 45 remaining new attempts.
+the [current campaign](../../zed-campaign-20261002.md) now names 45 remaining new attempts.
 
 ## Completed continuation — protocol validity, 2026-10-02
 
@@ -185,7 +185,7 @@ diagnostics localized a reproduced AirSLAM fault to its asynchronous publisher;
 the exact cause remains unresolved. AirSLAM PR and OpenVINS report branches are
 prepared locally, with benchmark sources pinned and no push. See
 [validation and preservation](protocol-validation-20261002.md) and
-[the protocol review](protocol-review-20261002.md). No further production execution
+[the protocol review](../../protocol-review-20261002.md). No further production execution
 is authorized, and unresolved agricultural/native prerequisites remain explicit.
 
 ## Objective and scope
@@ -196,14 +196,14 @@ recordings. Start with Rosario and HortiMulti, then ZED and GNSS. Preserve the
 completed configuration/fairness review and its accepted decisions; do not restart
 the general audit. For each case, retain supported claims, repair evaluation from
 saved trajectories, or identify exact estimator-side reruns without executing them.
-The matched-session review is recorded in [the reference review](reference-review-20261001.md).
+The matched-session review is recorded in [the reference review](../../reference-review-20261001.md).
 It identifies 91 distinct required reruns and corrects 159 Rosario evaluations while
 preserving 45 accepted EuRoC N=3 cells. Remaining physical/native prerequisites are
 explicit; this does not certify readiness for new estimation.
 Reconcile changed decisions into CSVs, reports, figures and the existing TODO matrix
 format, and finish with counts and concrete production prerequisites. The
-[acceptance review](paper-acceptance-20261001.md)
-and [current handoff](acceptance-handoff-20261001.md) supersede the historical blanket
+[acceptance review](../../paper-acceptance-20261001.md)
+and [current handoff](../../acceptance-handoff-20261001.md) supersede the historical blanket
 hold below. Preserve explicit accepted/limited/failure decisions across regeneration;
 keep its initial 30 concrete reruns separate from missing repetitions and material
 blockers, adding further reruns only when the new evidence establishes a defect.
@@ -213,7 +213,7 @@ temporary maintenance pause was explicitly revoked; continue the active goal.
 Completion checkpoint, 2026-10-01: the repair/audit scope is complete without new
 estimation. All 593 repaired evaluations and root exports are reconciled; exact
 future source/input/known-runtime capture, guarded N=3 preparation and safe cleanup
-are delivered. See [the handoff](repair-handoff-20261001.md) for final validation,
+are delivered. See [the handoff](../../repair-handoff-20261001.md) for final validation,
 counts, evidence, backups and prerequisites. At that checkpoint no cell had a green publication
 tick; subsequent acceptance decisions are recorded above. No future estimation is certified ready to execute. Physical/reference,
 historical provenance and native-validation gaps remain explicit; they are not
@@ -262,7 +262,7 @@ Attribution maintenance outside this repair rewrote eight post-2026-09-23 commit
 identities on 2026-10-01, with file trees unchanged. Keep the historical hashes in
 run provenance and backup records unchanged. The original checkpoint above maps
 to `22a63852e0a0ee34a77db9ffb6996c0eabea288a`; see the preserved
-[old-to-new mapping](campaigns/git-author-rewrite-20261001.json). Original history
+[old-to-new mapping](git-author-rewrite-20261001.json). Original history
 remains under `backup/author-before-20261001T114608Z`. The initial maintenance push
 failed; the user subsequently reported a successful push. No repair push is
 authorized. Re-read Git status/history before further commits. The temporary
@@ -574,7 +574,7 @@ it. Give progress updates and continue until the defined scope is complete.
 ## Copyable goal prompt
 
 Complete the benchmark repair for **VO, VO-LC, VIO, VIO-LC and GNSS-VIO**, following
-`/data/imoroz/vslam-benchmark/docs/codex-goal.md`. Preserve existing progress with
+`/data/imoroz/vslam-benchmark/docs/archive/2026-10/codex-goal.md`. Preserve existing progress with
 verified commits and backups. Do not launch new estimator runs or add algorithms.
 
 Audit every configuration, repair issues recoverable from existing artifacts,

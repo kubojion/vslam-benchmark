@@ -1,6 +1,6 @@
 # Archived TODO before the 2026-10-01 status reconciliation
 
-Historical record only. Its checkboxes, matrices, counts, scientific claims and paths are superseded by [the current TODO](../../TODO.md) and [the status audit](server-status-20261001.md).
+Historical record only. Its checkboxes, matrices, counts, scientific claims and paths are superseded by [the current TODO](../../../TODO.md) and [the status audit](server-status-20261001.md).
 
 ---
 
@@ -12,10 +12,10 @@ Historical record only. Its checkboxes, matrices, counts, scientific claims and 
 > five `benchmark-*.csv` are full rebuilds, byte-reproducible on both machines; report tables
 > come ONLY from `scripts/eval/make_report_tables.py` (see `docs/generated/tables.md`), prose
 > numbers from `scripts/eval/verify_claims.py`. See `PROGRESS.md` "2026-08-05 —
-> Evaluation-pipeline fixes", `docs/campaigns/machine-b-report-20260806.md` and
-> `docs/campaigns/machine-b-verification-20260806.md`.
+> Evaluation-pipeline fixes", `docs/archive/2026-08/machine-b-report-20260806.md` and
+> `docs/archive/2026-08/machine-b-verification-20260806.md`.
 > **Next milestone: the N=5 server campaign** (RTX 3090 / 24 GB) — see
-> `docs/campaigns/server-campaign-plan.md`. The 🔁 cells below fold into it.
+> `docs/archive/2026-08/server-campaign-plan.md`. The 🔁 cells below fold into it.
 
 > Older summary (2026-08-03, kept for context): VO has 109 evaluated rows. OV2SLAM VO filled on
 > str02/MH_01/MH_03 (OV2SLAM zed2i done — matrix row is authoritative). ORB-SLAM3 rebuilt/run NATIVELY from the submodule
@@ -50,7 +50,7 @@ Legend per cell: ✅ run complete | 🟡 run complete with caveat | ⬜ config o
 🔧 config missing | ➖ mode unsupported | **🔁 re-run recommended** (config-fairness
 equalization — the cell's published value compares a tuned configuration against untuned
 competitors, or vice versa; see `PROGRESS.md` config-deviation findings and
-`docs/campaigns/server-campaign-plan.md` §C13. The N=5 server campaign re-runs ALL agricultural cells
+`docs/archive/2026-08/server-campaign-plan.md` §C13. The N=5 server campaign re-runs ALL agricultural cells
 anyway; 🔁 marks the ones that additionally need an A/B config decision first)
 
 ### VO (no IMU, no loop closure) - `results-vo/`
@@ -98,7 +98,7 @@ Legend: ✅ run complete | 🟡 run complete with caveat | ⬜ config only | �
 All core agricultural/EuRoC cells have N=1 results as of 2026-07-21. HortiMulti was corrected via
 the camera-IMU extrinsic fix and no scale-collapsed core cells remain. ZED2i has six usable VIO
 trajectories plus one ORB-SLAM3 failed attempt; every tested VIO configuration underperformed the
-two VO baselines. Next step for the core table: **N=5 on the server** (`docs/campaigns/server-campaign-plan.md`).
+two VO baselines. Next step for the core table: **N=5 on the server** (`docs/archive/2026-08/server-campaign-plan.md`).
 
 | Algorithm | rosariov2 seq1 | rosariov2 seq5 | hortimulti str02 | hortimulti str03 | EuRoC MH_01 | EuRoC MH_03 | EuRoC MH_05 | zed2i field1 |
 |---|---|---|---|---|---|---|---|---|
@@ -246,7 +246,7 @@ Legend: ✅ run complete | 🟡 run complete with caveat | ⬜ config only | �
 | 6 | ~~Run OpenVINS VIO on rosariov2/seq5 N=3~~ | folded into task 9 (server campaign) |
 | 7 | MASt3R-SLAM / MegaSaM revisit on the 24 GB server (optional — both OOM'd at 12 GB) | `[ ]` |
 | 8 | ORB-SLAM3 VO-clean LC-off re-runs | `[x]` done 2026-08-04 (truly LC-off re-runs are the current VO table) |
-| 9 | **N=5 server campaign** (supersedes all N=3 items): every agricultural cell x 5 run types at N=5, one machine, uniform feeding protocol, incl. the 🔁 config-equalization A/Bs | `[ ]` see `docs/campaigns/server-campaign-plan.md` |
+| 9 | **N=5 server campaign** (supersedes all N=3 items): every agricultural cell x 5 run types at N=5, one machine, uniform feeding protocol, incl. the 🔁 config-equalization A/Bs | `[ ]` see `docs/archive/2026-08/server-campaign-plan.md` |
 | 10 | Complete GNSS-VIO N=1 sweep | `[x]` 20 headline runs (5 algorithms incl. OKVIS2-X x 4 sequences) |
 | 10b | Re-run OpenVINS+GPS HortiMulti with corrected extrinsics; validate all four rows | `[ ]` folded into task 9 |
 | 11 | Normalize EuRoC dataset aliases and result/config paths to `euroc_mav` | `[x]` central shell/Python canonicalization; obsolete aliases removed |

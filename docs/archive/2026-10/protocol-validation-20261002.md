@@ -1,11 +1,11 @@
 # Protocol reporting validation — 2026-10-02
 
-> Historical checkpoint. Later [ZED preparation](zed-preparation-20261002.md)
+> Historical checkpoint. Later [ZED preparation](../../zed-preparation-20261002.md)
 > supersedes its ZED calibration/reference blockers and current aggregate counts.
 > Original observations, provenance hashes and non-ZED decisions remain preserved.
 
 The reporting/audit continuation is complete. Existing results and implementation
-identities are preserved. See [the protocol review](protocol-review-20261002.md)
+identities are preserved. See [the protocol review](../../protocol-review-20261002.md)
 for counts, claim scopes and unresolved prerequisites. This does not certify
 remaining production actions: the manifest has **zero verified-ready actions**.
 
@@ -31,9 +31,9 @@ remaining production actions: the manifest has **zero verified-ready actions**.
   passes 6/6. Two bounded saved-map diagnostic outcomes remain separate from production.
   Root-cause uncertainty and OpenVINS lifecycle review limits remain explicit.
 
-Machine-readable checks: [reporting proof](campaigns/protocol-reporting-validation-20261002.json),
-[diagnostic evidence](campaigns/protocol-diagnostics-20261002.json), and
-[prepared contribution identities](upstream/prepared-contributions-20261002.json).
+Machine-readable checks: [reporting proof](protocol-reporting-validation-20261002.json),
+[diagnostic evidence](protocol-diagnostics-20261002.json), and
+[prepared contribution identities](../../upstream/prepared-contributions-20261002.json).
 Detailed commands/logs are under `results/protocol-review-20261002/`.
 
 Checkpoint: `cb014d5`. Pre-change incremental preservation:

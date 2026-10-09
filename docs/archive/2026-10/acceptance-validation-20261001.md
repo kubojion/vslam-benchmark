@@ -5,8 +5,8 @@
 > numerical-change and action counts. The checks below describe that earlier snapshot.
 
 The focused review is complete within its no-estimation scope. See the
-[acceptance handoff](acceptance-handoff-20261001.md) for decisions and remaining
-actions, and [claim criteria](paper-acceptance-20261001.md) for their meaning.
+[acceptance handoff](../../acceptance-handoff-20261001.md) for decisions and remaining
+actions, and [claim criteria](../../paper-acceptance-20261001.md) for their meaning.
 
 - **154 tests and three subtests passed.** New tests check evidence-pinned decision
   replay, changed-evidence rejection, retained failures without trajectories,

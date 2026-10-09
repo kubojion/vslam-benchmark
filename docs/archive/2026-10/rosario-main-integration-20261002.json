@@ -16,7 +16,7 @@
   },
   "committed_review_paths": [
     "TODO.md",
-    "docs/codex-goal.md",
+    "docs/archive/2026-10/codex-goal.md",
     "docs/todo-status-details.md",
     "scripts/campaign/tests/test_acceptance_ledger.py",
     "scripts/campaign/tests/test_todo_presentation.py",
@@ -24,7 +24,7 @@
   ],
   "uncommitted_tracked_review_paths": [
     "TODO.md",
-    "docs/codex-goal.md",
+    "docs/archive/2026-10/codex-goal.md",
     "docs/todo-status-details.md",
     "scripts/campaign/tests/test_todo_presentation.py",
     "scripts/campaign/update_todo_matrices.py"

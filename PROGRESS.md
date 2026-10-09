@@ -111,7 +111,7 @@ remaining-work notes. Scientific and native execution prerequisites remain unres
 - Remaining: finish configuration/reference/input qualification, applicable runner
   fixes and execution-isolation checks, integrate/reconcile CSVs and
   reports, complete safe cleanup, and finalize the manifest/readiness assessment.
-  See [future campaign preparation](docs/campaigns/future-n3-preparation.md).
+  See [future campaign preparation](docs/archive/2026-10/future-n3-preparation.md).
 - GNSS input selection now preserves the actual file/hash and covariance/status
   policy; non-default variants need an explicit input file. OKVIS2-X uses a private
   per-attempt native conversion, avoiding shared-cache staleness. Four current inputs
@@ -140,7 +140,7 @@ remaining-work notes. Scientific and native execution prerequisites remain unres
   databases now stay inside their attempt directories. Removed CIFASIS's reset of
   caller-supplied GPS covariance and its ambiguous trajectory fallback. Synthetic
   process tests pass; actual container/ROS startup, shutdown and fusion remain
-  unverified. See [runner audit](docs/runner-isolation-audit.md).
+  unverified. See [runner audit](docs/archive/2026-10/runner-isolation-audit.md).
 - Corrected an unsupported measurement assumption: schema 1 assigned all available
   input frames to the processed count. All 593 evaluations were restaged; pose
   metrics, coverage, pair counts and numerical outcomes are exactly unchanged.
@@ -262,9 +262,9 @@ extension; result integration currently manual), **OpenVINS** (MSCKF VIO, Docker
 The 2026-08-05 fixes were propagated to the datasets/results held on machine B and
 independently verified (5-agent verification on Jion's machine): all 173 EuRoC/HortiMulti/zed2i
 runs re-evaluated (0 failures), CSVs reproduce **byte-identically on both machines**, and every
-checkable number in `docs/campaigns/machine-b-report-20260806.md` verified exact — with the
+checkable number in `docs/archive/2026-08/machine-b-report-20260806.md` verified exact — with the
 prose corrections and one residual gap recorded in
-`docs/campaigns/machine-b-verification-20260806.md` (notably: zed2i **vio/vo-lc** segment maps
+`docs/archive/2026-08/machine-b-verification-20260806.md` (notably: zed2i **vio/vo-lc** segment maps
 still render the superseded 1.86 m GT; "every shifted cell improved" is false — str02
 vins_fusion +2.3% and voxel_svio +2.1% regressed, legitimately, from artifact removal).
 Number impact: HortiMulti str02 improved 5–9% for every algorithm (707 GT-artifact frames
@@ -277,7 +277,7 @@ Also: `gt_provenance` completed to 259/259; forks created and wired
 runtime prerequisites vendored (`vendor/prerequisites/` + install.sh); `plot_comparison.py`
 accepts all five run types; report figures moved to `docs/generated/figures/`; docs
 reorganized (`docs/README.md`); next milestone: **N=5 server campaign**
-(`docs/campaigns/server-campaign-plan.md`).
+(`docs/archive/2026-08/server-campaign-plan.md`).
 
 ## 2026-08-05 — Evaluation-pipeline fixes (external audit + repairs)
 

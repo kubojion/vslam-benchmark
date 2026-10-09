@@ -2,7 +2,7 @@
 
 Updated after the focused EuRoC campaign (2026-10-02 local). Its six OpenVINS and 18 corrected AirSLAM repetitions are complete; no further estimator execution is authorized. Other paths retain the guarded manifest prerequisites. Existing exclusions
 remain: DROID-SLAM, MASt3R-SLAM and MegaSaM. The older
-[algorithm walkthrough](running_algorithms-before-repair-20261001.md) is historical;
+[algorithm walkthrough](archive/2026-10/running_algorithms-before-repair-20261001.md) is historical;
 its replacement behavior and several dataset/config assumptions are superseded.
 
 The EuRoC OpenVINS runner selects `openvins:humble-shutdown-20261001`. EuRoC AirSLAM inertial modes require `/root/catkin_ws_rectified_20261001/devel` in `air_slam`; the original build remains for other paths. Native exits are captured directly and refinement has one attempt. See [build and execution evidence](euroc-focused-campaign-20261001.md).
@@ -21,7 +21,7 @@ executable/model, container, dataset input and effective config identities. Reso
 confirmed invalid configs and retain their historical cohorts. See
 [saved parameters](saved-parameter-review-20261001.md),
 [qualification](publication-qualification-20261001.md), and
-[runner isolation](runner-isolation-audit.md). A syntax check does not establish
+[runner isolation](archive/2026-10/runner-isolation-audit.md). A syntax check does not establish
 native execution readiness. No native crash is claimed fixed by a wrapper change.
 
 Inputs are prepared beneath `datasets/<dataset>/<sequence>/`: image streams under
@@ -89,5 +89,5 @@ promotion as described in [evaluation](evaluation.md).
   Performant profile. Neither label implies exact reproduction of an upstream paper.
 
 After new authorization and successful readiness validation, run serially and retain
-all attempts. Follow [future preparation](campaigns/future-n3-preparation.md), not
+all attempts. Follow [future preparation](archive/2026-10/future-n3-preparation.md), not
 old N=5 or whole-cell replacement examples. All-mode runtime estimates remain partial.

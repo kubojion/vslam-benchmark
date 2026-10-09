@@ -2,7 +2,7 @@
 
 Status: implemented 2026-08-26; operational limitations reviewed 2026-10-01.
 
-The current store is not a finalized campaign: see [the status audit](campaigns/server-status-20261001.md).
+The current store is not a finalized campaign: see [the status audit](server-status-20261001.md).
 COMPLETE permits both `ok` and `scale_collapse`; it does not certify tracking success.
 Cell replacement removes the old result before all new repetitions succeed, and the batch
 wrapper evaluates after all repetitions, so interruption can leave successful output unscored.
@@ -222,12 +222,12 @@ The manifest should contain:
   schema versions.
 
 New executions use the mandatory schema described in
-[run-provenance.md](run-provenance.md). Migrated historical runs remain
+[run-provenance.md](../../run-provenance.md). Migrated historical runs remain
 discoverable as `legacy`; the manifest does not invent missing execution-time
 identity for them.
 
 Measurement schema 1 is documented in
-[run-measurements.md](run-measurements.md). It keeps historical runs visible as
+[run-measurements.md](../../run-measurements.md). It keeps historical runs visible as
 `legacy` while preventing whole-system resources or pose-rate FPS from being
 presented as estimator performance for new runs.
 

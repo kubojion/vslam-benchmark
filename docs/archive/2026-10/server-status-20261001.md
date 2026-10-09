@@ -1,7 +1,7 @@
 # Server status audit — 2026-10-01
 
-> Initial inventory, superseded for current counts by [the repair audit](../repair-audit-20261001.md)
-> and [TODO](../../TODO.md). Saved-artifact recovery now stages 545 original campaign
+> Initial inventory, superseded for current counts by [the repair audit](../../repair-audit-20261001.md)
+> and [TODO](../../../TODO.md). Saved-artifact recovery now stages 545 original campaign
 > evaluations, versus the 538 marker-qualified evaluations counted below. Preserve
 > this report as the pre-repair record. Future five-mode N=3 preparation is tracked
 > [separately](future-n3-preparation.md); the old N=5 plan is not retroactively complete.
@@ -25,7 +25,7 @@ mean accurate or full-coverage tracking. Missing evaluations can include failed 
 recoverable trajectories; they are not necessarily never-attempted runs. This audit reads
 existing markers and metadata; it does not freshly validate every trajectory.
 
-The executed manifest is preserved as [a documentation snapshot](server-n3-manifest-20260826.json).
+The executed manifest is preserved as [a documentation snapshot](../2026-08/server-n3-manifest-20260826.json).
 Its original path is `logs/server-campaign/quality-final-n3-no-gnss/manifest.json`.
 SHA-256: `3a5c34a8ba69cc30f3fd5a485b82fb7affe70bf5ce94cb5e550c4565f210eada`.
 
@@ -179,7 +179,7 @@ two ORB-SLAM3 cells failed. Of the nine evaluated repetitions, eight are `ok` an
 VIO is `scale_collapse`. All are N=1 in the current result tree. The earlier blanket claim
 that every current ZED VIO artifact uses the identity optical/IMU transform is obsolete.
 The serial-specific residual camera–IMU rotation and timing qualification remain open;
-see [the calibration record](../zed2i-imu-extrinsics.md).
+see [the calibration record](../../zed2i-imu-extrinsics.md).
 
 ## Configuration and provenance decisions
 
