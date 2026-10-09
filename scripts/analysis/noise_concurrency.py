@@ -21,8 +21,9 @@ import noise_reliable as search
 
 ENGINE = search.engine
 FOLLOWUP = search.ART
-ART = FOLLOWUP.parent/'noise-concurrency-20261009'
+ART = FOLLOWUP.parent/'noise-concurrency-20261009-v2'
 LOCK = ENGINE.MAIN/'results/.locks/execution.lock'
+CONDITION_PHASE = {name:'concurrency_v2_'+name for name in ('serial','parallel')}
 
 
 @contextmanager
@@ -61,7 +62,7 @@ def worker(args):
         raise KeyboardInterrupt(f'signal {signum}')
     signal.signal(signal.SIGTERM, interrupt)
     ENGINE.run_attempt(job['spec'], 'concurrency_probe', job['params'],
-        job['sequence'], 'vio', job['repetition'], 'concurrency_'+job['condition'])
+        job['sequence'], 'vio', job['repetition'], CONDITION_PHASE[job['condition']])
 
 
 def protocol():
@@ -86,7 +87,8 @@ def protocol():
             'Does not validate concurrent loop-closure optimization.',
             'Concurrent timing/resource measurements are excluded from benchmark performance tables.',
             'Validation observations never enter noise candidate selection.'],
-        search_protocol_sha256=ENGINE.sha(search.PROTOCOL))
+        search_protocol_sha256=ENGINE.sha(search.PROTOCOL),
+        worktree_revision=subprocess.check_output(['git','rev-parse','HEAD'],cwd=search.ROOT,text=True).strip())
 
 
 def prepare():
@@ -133,8 +135,8 @@ def assess(records, batches, spec):
     for case in spec['cases']:
         study = case['spec']['id']
         rows = [r for r in records if r['study']==study]
-        serial = [r for r in rows if r['phase']=='concurrency_serial']
-        parallel = [r for r in rows if r['phase']=='concurrency_parallel']
+        serial = [r for r in rows if r['phase']==CONDITION_PHASE['serial']]
+        parallel = [r for r in rows if r['phase']==CONDITION_PHASE['parallel']]
         if len(serial)!=spec['repetitions'] or len(parallel)!=spec['repetitions']:
             raise RuntimeError('Incomplete comparison: '+study)
         all_ok = all(r['state']=='finished' and not r['result']['failed'] and

@@ -34,7 +34,7 @@ class ConcurrencyTests(unittest.TestCase):
         for case in protocol['cases']:
             for condition in protocol['conditions']:
                 for rep in range(3):
-                    rows.append(dict(study=case['spec']['id'],phase='concurrency_'+condition,
+                    rows.append(dict(study=case['spec']['id'],phase=runner.CONDITION_PHASE[condition],
                         state='finished',timeout=False,returncode=0,wall_s=100,
                         result=dict(failed=False,ate_se3_rmse_m=.3,export_support_fraction=.98)))
         batches=[dict(condition='serial',wall_s=300),dict(condition='parallel',wall_s=150)]
@@ -45,7 +45,7 @@ class ConcurrencyTests(unittest.TestCase):
             self.assertFalse(runner.assess(changed,batches,protocol)['passed'])
             changed[-1]['result']['ate_se3_rmse_m']=None
             self.assertFalse(runner.assess(changed,batches,protocol)['passed'])
-        with patch.object(runner,'receipt',side_effect=lambda r:dict(stereo_received=1790 if r['phase']=='concurrency_parallel' else 1800)):
+        with patch.object(runner,'receipt',side_effect=lambda r:dict(stereo_received=1790 if r['phase']==runner.CONDITION_PHASE['parallel'] else 1800)):
             self.assertFalse(runner.assess(rows,batches,protocol)['passed'])
 
 
