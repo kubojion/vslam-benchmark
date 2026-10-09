@@ -42,7 +42,7 @@ SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/voxel_svio/run${RUN_ID}"
 LOG="$WS/logs/${DATASET}_${SEQ}_voxel_svio_${RUN_TYPE}_run${RUN_ID}.log"
 
-CONTAINER="noise_search_voxel_20261009"
+CONTAINER="noise_reliable_voxel_20261009"
 VOXEL_PREFIX=/root/catkin_ws/devel
 # Repaired build (shutdown, initializer offset) wherever the reviewed configuration is current;
 # Rosario since its decided configuration became the default (3 October 2026); HortiMulti since

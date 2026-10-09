@@ -93,3 +93,6 @@ src/svo_pro_gps/
 
 # Independent, regenerable inputs for this branch's noise-search pilot.
 /datasets/*/*_noise180/
+
+# Regenerable candidate files for this experiment.
+/configs/experiments/generated/

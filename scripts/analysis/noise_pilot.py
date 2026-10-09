@@ -209,8 +209,8 @@ def stop_owned_attempt(proc, run):
             proc.wait(timeout=45)
         except subprocess.TimeoutExpired:
             for state in (run/'processes').glob('*.json'):
-                container = {'airslam': 'noise_search_airslam_20261009',
-                             'voxel_svio': 'noise_search_voxel_20261009'}.get(run.parent.name)
+                container = {'airslam': 'noise_reliable_airslam_20261009',
+                             'voxel_svio': 'noise_reliable_voxel_20261009'}.get(run.parent.name)
                 args = [sys.executable, str(ROOT/'scripts/run/_owned_process.py'), '--state', str(state)]
                 if container:
                     args += ['--container', container, '--container-state', '/results/'+str(state.relative_to(ROOT/'results'))]

@@ -1,0 +1,447 @@
+{
+  "schema": 2,
+  "experiment": "noise-reliable-20261009",
+  "development_only": true,
+  "previous_pilot": {
+    "path": "/data/imoroz/IMU-NOISE-ISSUE2/noise-search-20261009",
+    "protocol_sha256": "04011c875bfa66205604b9c543c6f618753d961b445b69efd419d574a3520cd2"
+  },
+  "screen_seeds": [
+    202610091,
+    202610092
+  ],
+  "screen_candidates_per_seed": 16,
+  "screen_startup_trials": 8,
+  "full_seed": 202610093,
+  "full_candidates": 12,
+  "full_seed_candidates": 6,
+  "finalists": 2,
+  "repetitions": 3,
+  "max_wall_hours": 48,
+  "studies": [
+    {
+      "id": "orbslam3_rosariov2",
+      "algorithm": "orbslam3",
+      "dataset": "rosariov2",
+      "target_sequence": "sequence1",
+      "clips": [
+        "sequence1_noise180",
+        "sequence5_noise180"
+      ],
+      "config": "configs/orbslam3/rosariov2_stereo_inertial.yaml",
+      "rule_c": {
+        "gyroscope_noise_density": 0.00023249699924838475,
+        "accelerometer_noise_density": 0.0009943860019903928,
+        "gyroscope_random_walk": 1.8236185367375672e-06,
+        "accelerometer_random_walk": 4.750972547867261e-05
+      },
+      "legacy": {
+        "gyroscope_noise_density": 0.0002324,
+        "accelerometer_noise_density": 0.0009943,
+        "gyroscope_random_walk": 1.823e-06,
+        "accelerometer_random_walk": 4.75e-05
+      },
+      "legacy_label": "previous_rounded_calibration",
+      "legacy_source": "/data/imoroz/vslam-benchmark/results/vio/rosariov2/sequence1/orbslam3/run1/provenance/estimator_config--orbslam3_cfg_v7gTo2.yaml",
+      "legacy_sha256": "371495c23128381633a427f6a638cc2d6bc5d0f26775dd402a8bbba4016446a9",
+      "bounds": {
+        "gyroscope_noise_density": [
+          2.324e-05,
+          0.023249699924838475
+        ],
+        "accelerometer_noise_density": [
+          9.943e-05,
+          0.09943860019903927
+        ],
+        "gyroscope_random_walk": [
+          1.8229999999999998e-07,
+          0.0001823618536737567
+        ],
+        "accelerometer_random_walk": [
+          4.75e-06,
+          0.004750972547867261
+        ]
+      },
+      "supports_lc": true,
+      "pilot_candidates": [
+        {
+          "label": "candidate08",
+          "params": {
+            "gyroscope_noise_density": 0.005334213577831076,
+            "accelerometer_noise_density": 0.00038967563036918727,
+            "gyroscope_random_walk": 1.0803172865548384e-06,
+            "accelerometer_random_walk": 0.0018347285190862023
+          }
+        },
+        {
+          "label": "candidate11",
+          "params": {
+            "gyroscope_noise_density": 0.019110805795077148,
+            "accelerometer_noise_density": 0.0029191902588150613,
+            "gyroscope_random_walk": 2.1257317450578257e-07,
+            "accelerometer_random_walk": 0.004566496864728879
+          }
+        }
+      ],
+      "pilot_selection_source": {
+        "path": "/data/imoroz/IMU-NOISE-ISSUE2/noise-search-20261009/studies/orbslam3_rosariov2/short-selection.json",
+        "sha256": "d3990e54e932b32e24d530e1d743f2c6f63fe6d4c16839abdac0d32c5a730d4c"
+      },
+      "full_sequences": [
+        "sequence1",
+        "sequence5"
+      ]
+    },
+    {
+      "id": "airslam_citrusfarm",
+      "algorithm": "airslam",
+      "dataset": "citrusfarm",
+      "target_sequence": "seq04",
+      "clips": [
+        "seq04_noise180",
+        "seq07_noise180"
+      ],
+      "config": "configs/airslam/citrusfarm_camera_vio.yaml",
+      "rule_c": {
+        "gyroscope_noise_density": 0.00010426654551109309,
+        "accelerometer_noise_density": 0.0002276846771973415,
+        "gyroscope_random_walk": 3.5636559575381104e-06,
+        "accelerometer_random_walk": 6.706087584689249e-06
+      },
+      "legacy": {
+        "gyroscope_noise_density": 0.003,
+        "accelerometer_noise_density": 0.05,
+        "gyroscope_random_walk": 3.563656e-06,
+        "accelerometer_random_walk": 6.706088e-06
+      },
+      "legacy_label": "historical_envelope_noise",
+      "legacy_source": "/data/imoroz/vslam-benchmark/results/vio/citrusfarm/seq04/airslam/run10001/provenance/camera_config--citrusfarm_camera_vio.yaml",
+      "legacy_sha256": "4a3eba54103cc34045ff5eca79857567c416e00062d3a5d98086dde8de1a7a97",
+      "bounds": {
+        "gyroscope_noise_density": [
+          1.042665455110931e-05,
+          0.01042665455110931
+        ],
+        "accelerometer_noise_density": [
+          2.2768467719734148e-05,
+          0.15000000000000002
+        ],
+        "gyroscope_random_walk": [
+          3.5636559575381106e-07,
+          0.00035636559575381106
+        ],
+        "accelerometer_random_walk": [
+          6.706087584689249e-07,
+          0.0006706087584689249
+        ]
+      },
+      "supports_lc": true,
+      "pilot_candidates": [
+        {
+          "label": "candidate12",
+          "params": {
+            "gyroscope_noise_density": 1.056417810153921e-05,
+            "accelerometer_noise_density": 0.0019302448568032863,
+            "gyroscope_random_walk": 0.00012285228727284693,
+            "accelerometer_random_walk": 1.8759780726424913e-05
+          }
+        },
+        {
+          "label": "candidate15",
+          "params": {
+            "gyroscope_noise_density": 1.0570873287179013e-05,
+            "accelerometer_noise_density": 0.001940074022105199,
+            "gyroscope_random_walk": 0.00012655465137909408,
+            "accelerometer_random_walk": 0.0003244139986988324
+          }
+        }
+      ],
+      "pilot_selection_source": {
+        "path": "/data/imoroz/IMU-NOISE-ISSUE2/noise-search-20261009/studies/airslam_citrusfarm/short-selection.json",
+        "sha256": "44810f48ff33ebc36449f18128088f041ab169d798f4d5ccd04c4cf47501fdf7"
+      },
+      "full_sequences": [
+        "seq04",
+        "seq07"
+      ]
+    },
+    {
+      "id": "voxel_svio_citrusfarm",
+      "algorithm": "voxel_svio",
+      "dataset": "citrusfarm",
+      "target_sequence": "seq04",
+      "clips": [
+        "seq04_noise180",
+        "seq07_noise180"
+      ],
+      "config": "configs/voxel_svio/citrusfarm.yaml",
+      "rule_c": {
+        "gyroscope_noise_density": 0.00010426654551109309,
+        "accelerometer_noise_density": 0.0002276846771973415,
+        "gyroscope_random_walk": 3.5636559575381104e-06,
+        "accelerometer_random_walk": 6.706087584689249e-06
+      },
+      "legacy": {
+        "gyroscope_noise_density": 0.003,
+        "accelerometer_noise_density": 0.05,
+        "gyroscope_random_walk": 3.563656e-06,
+        "accelerometer_random_walk": 6.706088e-06
+      },
+      "legacy_label": "historical_envelope_noise",
+      "legacy_source": "/data/imoroz/vslam-benchmark/results/vio/citrusfarm/seq04/voxel_svio/run10001/provenance/estimator_config--citrusfarm.yaml",
+      "legacy_sha256": "162c342d401fa507d063af6352639424e309b6af7a11825cfb5d020a0e86d045",
+      "bounds": {
+        "gyroscope_noise_density": [
+          1.042665455110931e-05,
+          0.01042665455110931
+        ],
+        "accelerometer_noise_density": [
+          2.2768467719734148e-05,
+          0.15000000000000002
+        ],
+        "gyroscope_random_walk": [
+          3.5636559575381106e-07,
+          0.00035636559575381106
+        ],
+        "accelerometer_random_walk": [
+          6.706087584689249e-07,
+          0.0006706087584689249
+        ]
+      },
+      "supports_lc": false,
+      "pilot_candidates": [
+        {
+          "label": "candidate14",
+          "params": {
+            "gyroscope_noise_density": 0.010017132886837539,
+            "accelerometer_noise_density": 0.08199238482845633,
+            "gyroscope_random_walk": 1.5803532704286409e-06,
+            "accelerometer_random_walk": 0.00027349092560595217
+          }
+        },
+        {
+          "label": "candidate06",
+          "params": {
+            "gyroscope_noise_density": 1.6595162224131795e-05,
+            "accelerometer_noise_density": 0.025554038542866933,
+            "gyroscope_random_walk": 1.2421162819829762e-06,
+            "accelerometer_random_walk": 1.0845393124796117e-05
+          }
+        }
+      ],
+      "pilot_selection_source": {
+        "path": "/data/imoroz/IMU-NOISE-ISSUE2/noise-search-20261009/studies/voxel_svio_citrusfarm/short-selection.json",
+        "sha256": "613a59369c6215aff2ef3f506581979c881cfb32a08ea9845ec6e2085cff454e"
+      },
+      "full_sequences": [
+        "seq04",
+        "seq07"
+      ]
+    },
+    {
+      "id": "airslam_hortimulti",
+      "algorithm": "airslam",
+      "dataset": "hortimulti",
+      "target_sequence": "strawberry03",
+      "clips": [
+        "strawberry02_noise180",
+        "strawberry03_noise180"
+      ],
+      "config": "configs/airslam/hortimulti_camera.yaml",
+      "rule_c": {
+        "gyroscope_noise_density": 0.00060369579,
+        "accelerometer_noise_density": 0.001093618,
+        "gyroscope_random_walk": 3.22094e-05,
+        "accelerometer_random_walk": 4.584471e-05
+      },
+      "legacy": {
+        "gyroscope_noise_density": 0.0035,
+        "accelerometer_noise_density": 0.11,
+        "gyroscope_random_walk": 3.22094e-05,
+        "accelerometer_random_walk": 4.584471e-05
+      },
+      "legacy_label": "historical_envelope_noise",
+      "legacy_source": "/data/imoroz/vslam-benchmark/results/vio/hortimulti/strawberry03/airslam/run90001/provenance/camera_config--hortimulti_camera.yaml",
+      "legacy_sha256": "54f3a3374822c57632735520ef66dc59db7172def5750d3f908c91d7c487dc3f",
+      "bounds": {
+        "gyroscope_noise_density": [
+          6.0369579e-05,
+          0.060369579
+        ],
+        "accelerometer_noise_density": [
+          0.0001093618,
+          0.33
+        ],
+        "gyroscope_random_walk": [
+          3.2209399999999998e-06,
+          0.00322094
+        ],
+        "accelerometer_random_walk": [
+          4.584471e-06,
+          0.004584471
+        ]
+      },
+      "supports_lc": true,
+      "pilot_candidates": [
+        {
+          "label": "rule_c",
+          "params": {
+            "gyroscope_noise_density": 0.00060369579,
+            "accelerometer_noise_density": 0.001093618,
+            "gyroscope_random_walk": 3.22094e-05,
+            "accelerometer_random_walk": 4.584471e-05
+          }
+        },
+        {
+          "label": "candidate03",
+          "params": {
+            "gyroscope_noise_density": 0.00035617962895584637,
+            "accelerometer_noise_density": 0.0016597631216821928,
+            "gyroscope_random_walk": 5.8608175805270236e-05,
+            "accelerometer_random_walk": 1.1226035536127598e-05
+          }
+        }
+      ],
+      "pilot_selection_source": {
+        "path": "/data/imoroz/IMU-NOISE-ISSUE2/noise-search-20261009/studies/airslam_hortimulti/short-selection.json",
+        "sha256": "12745ee4fa8c8bd45f6be7dee961e09b30dbeb0c4fca625d6dcafe13ba8869ba"
+      },
+      "full_sequences": [
+        "strawberry02",
+        "strawberry03"
+      ]
+    },
+    {
+      "id": "airslam_rosariov2",
+      "algorithm": "airslam",
+      "dataset": "rosariov2",
+      "target_sequence": "sequence1",
+      "clips": [
+        "sequence1_noise180",
+        "sequence5_noise180"
+      ],
+      "full_sequences": [
+        "sequence1",
+        "sequence5"
+      ],
+      "config": "configs/airslam/rosariov2_camera_vio.yaml",
+      "rule_c": {
+        "gyroscope_noise_density": 0.00023249699924838475,
+        "accelerometer_noise_density": 0.0009943860019903928,
+        "gyroscope_random_walk": 1.8236185367375672e-06,
+        "accelerometer_random_walk": 4.750972547867261e-05
+      },
+      "legacy": {
+        "gyroscope_noise_density": 0.000282,
+        "accelerometer_noise_density": 0.016,
+        "gyroscope_random_walk": 0.0001,
+        "accelerometer_random_walk": 0.001
+      },
+      "legacy_label": "historical_Rosario_noise_profile",
+      "legacy_source": "/data/imoroz/vslam-benchmark/results/vio/rosariov2/sequence1/airslam/run10001/provenance/camera_config--rosariov2_camera_vio.yaml",
+      "legacy_sha256": "ea3c37d1cc4ff41e5296388933aae40c7eddc896f9aec7d009f4cda23a4d6c54",
+      "supports_lc": true,
+      "pilot_candidates": [],
+      "bounds": {
+        "gyroscope_noise_density": [
+          2.3249699924838476e-05,
+          0.023249699924838475
+        ],
+        "accelerometer_noise_density": [
+          9.943860019903928e-05,
+          0.09943860019903927
+        ],
+        "gyroscope_random_walk": [
+          1.823618536737567e-07,
+          0.00030000000000000003
+        ],
+        "accelerometer_random_walk": [
+          4.7509725478672605e-06,
+          0.004750972547867261
+        ]
+      }
+    }
+  ],
+  "clips": [
+    {
+      "dataset": "rosariov2",
+      "sequence": "sequence1",
+      "clip": "sequence1_noise180",
+      "schema": 1,
+      "diagnostic_only": true,
+      "parent_sequence": "sequence1",
+      "parent_times_sha256": "2df7d34b8e144e6b1eaf83f9a038d70e74b5beb7ba262d1cc6682f2353272c38",
+      "subset_times_sha256": "5c0cce8e01237e0694d81768e4575443f637c2cfa85be95956a4f647c7ba21e9"
+    },
+    {
+      "dataset": "rosariov2",
+      "sequence": "sequence5",
+      "clip": "sequence5_noise180",
+      "schema": 1,
+      "diagnostic_only": true,
+      "parent_sequence": "sequence5",
+      "parent_times_sha256": "896e64e6d5d88375ad59cf45fe72c56662bdade60bac2dcd051dbc3f49e49a8c",
+      "subset_times_sha256": "a0a27b87fb1ab43559fe23b880a1074555c215efd98f3e31f3964670903f1007"
+    },
+    {
+      "dataset": "citrusfarm",
+      "sequence": "seq04",
+      "clip": "seq04_noise180",
+      "schema": 1,
+      "diagnostic_only": true,
+      "parent_sequence": "seq04",
+      "parent_times_sha256": "17c5793bf48eddddccde579126dedf1c22dffcafbe1f074021927f2fccd5c66c",
+      "subset_times_sha256": "e43ce6362595b12d61d333ef0f87b99af678fcea077e9cec75ab7ea2f976345e"
+    },
+    {
+      "dataset": "citrusfarm",
+      "sequence": "seq07",
+      "clip": "seq07_noise180",
+      "schema": 1,
+      "diagnostic_only": true,
+      "parent_sequence": "seq07",
+      "parent_times_sha256": "79d9bbb7c7f8a31edb6a9ca58f1f24e7ddc3ef265e6e06738fcae1b557273e5f",
+      "subset_times_sha256": "975cca5549788c76aa15565cf5324c626f63bb0aebc22061624f8319d4adf906"
+    },
+    {
+      "dataset": "hortimulti",
+      "sequence": "strawberry02",
+      "clip": "strawberry02_noise180",
+      "schema": 1,
+      "diagnostic_only": true,
+      "parent_sequence": "strawberry02",
+      "parent_times_sha256": "2097bccf3ce8a189a607e08a5fe972b8a5ec68ca7e2888a7390b26013887f2e2",
+      "subset_times_sha256": "f80cf24b44d587c54f9b2004891a51a8612714f2d4aacfc6b2589c1adec2b2c4"
+    },
+    {
+      "dataset": "hortimulti",
+      "sequence": "strawberry03",
+      "clip": "strawberry03_noise180",
+      "schema": 1,
+      "diagnostic_only": true,
+      "parent_sequence": "strawberry03",
+      "parent_times_sha256": "95ca301e4edd51692f22dd1c9e444d06140586b5c1c913dab5b84aa0568bffe3",
+      "subset_times_sha256": "f64fa64c0d6b7d77915c12e5431a8db728da865b6ed94e939ea6d7efb4b67af9"
+    }
+  ],
+  "worktree": "/data/imoroz/vslam-noise-reliable-20261009",
+  "main_root": "/data/imoroz/vslam-benchmark",
+  "sampler": "Optuna 4.5.0 multivariate TPE; four positive standard deviations in log space",
+  "short_selection": "Independent seeded explorations, sharing freshly measured identical control observations. Full seeds include controls, pilot finalists, and each screen seed winner; fill to six by short score.",
+  "full_search": "Each proposal runs both full development recordings. Six seeded proposals then six TPE proposals informed by full-recording scores. Short and full objectives are never mixed in one Optuna study.",
+  "repeated_selection": "Top two full candidates plus both controls, deduplicated by exact parameter vector, receive N=3 on both full sequences. The selected candidate minimizes the same declared score over these equal-sized repeat cohorts.",
+  "score": "10 * failed_observation_count + 0.5 * mean(residual) + 0.5 * max(residual); residual = RMSE/(reference_path_length+RMSE) + unsupported_export_fraction. Existing numerical and 90% export-support gates retained. Lower is better.",
+  "lc": "After full-VIO selection is frozen: N=1 VIO-LC for selected and Rule C on the original target sequence, deduplicated. LC does not feed VIO search. These are diagnostics, not N=3 LC benchmark results.",
+  "budget": "Measured wall deadline fixed on first execute. Do not start an attempt without its declared maximum time plus 120s cleanup reserve remaining. Budget truncation is recorded; unrun candidates are not failures.",
+  "bounds": "Same per-component rule as pilot: [min(C,historical)/10, max(100*C,3*historical)]. Report boundary proximity; do not change bounds after starting.",
+  "limitations": [
+    "All recordings have already been inspected and are development data.",
+    "This is not independent final testing or a new physical IMU calibration.",
+    "Two screen seeds probe proposal sensitivity, not two independent full optimization replications.",
+    "Prior pilot candidate parameters inform full seeds; previous pilot scores are not reused.",
+    "One configuration per algorithm and dataset; no per-sequence parameter selection.",
+    "Selected candidate may still fail; selection is never proof of reliable deployment.",
+    "Retain existing reference-frame and sparse-export qualifications.",
+    "Equal proposal counts, not equal CPU time; algorithm costs differ."
+  ]
+}
