@@ -36,12 +36,22 @@ class ParallelTests(unittest.TestCase):
                 runner.ENGINE.write(lane/'attempts/second.json',done)
                 runner.collect({'orbslam3':lane})
                 self.assertEqual(json.loads((art/'attempts/second.json').read_text()),done)
+                # Collector may see engine's finished measurement before the
+                # caller appends its warning annotation; that is not a rerun.
+                annotated=dict(done,solver_warnings={'cholesky_failure':2})
+                runner.ENGINE.write(lane/'attempts/second.json',annotated)
+                runner.collect({'orbslam3':lane})
+                self.assertEqual(json.loads((art/'attempts/second.json').read_text()),annotated)
                 runner.prepare_lane('orbslam3',['orb'])
-                changed=copy.deepcopy(done);changed['result']['loss']=0
+                changed=copy.deepcopy(annotated);changed['result']['loss']=0
                 runner.ENGINE.write(lane/'attempts/second.json',changed)
                 with self.assertRaises(RuntimeError):
                     runner.collect({'orbslam3':lane})
-                self.assertEqual(json.loads((art/'attempts/second.json').read_text()),done)
+                self.assertEqual(json.loads((art/'attempts/second.json').read_text()),annotated)
+                changed=copy.deepcopy(annotated);changed['solver_warnings']['cholesky_failure']=0
+                runner.ENGINE.write(lane/'attempts/second.json',changed)
+                with self.assertRaises(RuntimeError):
+                    runner.collect({'orbslam3':lane})
 
 
 if __name__=='__main__':

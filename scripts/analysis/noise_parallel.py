@@ -41,7 +41,15 @@ def immutable_or_advance(target, value):
         if previous==value:
             return
         if previous.get('state')=='finished':
-            raise RuntimeError('Refusing to replace a finished observation: '+str(target))
+            # run_attempt commits the measurement before attempt() appends its
+            # deterministic solver-warning count. Collection may observe either
+            # version. Accept only that one added field; never change a measured
+            # value, identity, timestamp, parameter, or existing annotation.
+            annotated = ('solver_warnings' not in previous and
+                'solver_warnings' in value and
+                {k:v for k,v in value.items() if k!='solver_warnings'}==previous)
+            if not annotated:
+                raise RuntimeError('Refusing to replace a finished observation: '+str(target))
         if previous.get('key')!=value.get('key') or previous.get('run')!=value.get('run'):
             raise RuntimeError('Observation identity changed: '+str(target))
     ENGINE.write(target,value)
