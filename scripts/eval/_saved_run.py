@@ -138,6 +138,28 @@ def evaluate_saved_run(ws, run_dir, *, gt_override=None):
     inputs = [file_evidence(p, ws) for p in (gt_path, times_path, trajectory)]
     inputs.extend(file_evidence(p, ws) for p in (meta_path,) if p.exists())
     physical_sequence=selected.get('physical_sequence',seq) if selected else seq
+    # Experimental clips retain the independently reviewed parent's pose frame.
+    # Check an exact prefix and both file hashes; never silently reinterpret an
+    # arbitrary sequence alias as a calibrated recording.
+    prefix_path = ds/'experiment-prefix.json'
+    if prefix_path.is_file():
+        prefix = json.loads(prefix_path.read_text())
+        parent_name = prefix['parent_sequence']
+        if Path(parent_name).name != parent_name or parent_name in ('.', '..'):
+            raise ValueError('unsafe experimental parent')
+        parent_times = ws/'datasets'/dataset/parent_name/'times.txt'
+        parent_evidence = file_evidence(parent_times, ws)
+        subset_evidence = file_evidence(times_path, ws)
+        subset_rows = times_path.read_text().splitlines()
+        if (prefix.get('diagnostic_only') is not True or not subset_rows
+            or parent_evidence['sha256'] != prefix['parent_times_sha256']
+            or subset_evidence['sha256'] != prefix['subset_times_sha256']
+            or subset_rows != parent_times.read_text().splitlines()[:len(subset_rows)]):
+            raise ValueError('experimental prefix identity mismatch')
+        if selected and physical_sequence != parent_name:
+            raise ValueError('experimental/reference parents disagree')
+        physical_sequence = parent_name
+        inputs.extend([file_evidence(prefix_path, ws), parent_evidence])
     policy = frame_policy(ws, run_dir, meta, dataset, physical_sequence, algo, rt.use_imu)
     if physical_sequence!=seq:
         policy['diagnostic_parent_sequence']=physical_sequence

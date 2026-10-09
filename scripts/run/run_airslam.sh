@@ -68,7 +68,7 @@ CONT_RESULTS_DIR="/results/$RUN_TYPE"
 SAVING_DIR="${CONT_RESULTS_DIR}/$DATASET/$SEQ/airslam/run${RUN_ID}"
 MODEL_DIR="/root/catkin_ws/src/air_slam/output"
 
-CONTAINER="air_slam"
+CONTAINER="noise_search_airslam_20261009"
 CORRECTED_NATIVE=false
 NATIVE_PREFIX=/root/catkin_ws_rectified_20261001/devel
 if [[ ( "$DATASET" == "euroc_mav" || "$DATASET" == "zed2i" || "$DATASET" == "citrusfarm" ) && "$USE_IMU" == "true" ]]; then
@@ -166,6 +166,11 @@ wait_for_native_exit() {
 }
 
 CAM_CFG_HOST="$WS/configs/airslam/$(basename "$CAM_CFG")"
+if [[ -n "${NOISE_PILOT_CONFIG:-}" ]]; then
+    CAM_CFG_HOST=$(realpath "$NOISE_PILOT_CONFIG")
+    [[ "$CAM_CFG_HOST" == "$WS/configs/experiments/"* ]] || exit 2
+    CAM_CFG="/benchmark_configs/${CAM_CFG_HOST#"$WS/configs/"}"
+fi
 VO_CFG_HOST="$WS/configs/airslam/${DATASET}_${PROFILE_TAG}.yaml"
 [[ -f "$CAM_CFG_HOST" ]] || {
     echo "ERROR: no AirSLAM camera config at $CAM_CFG_HOST"; exit 2; }

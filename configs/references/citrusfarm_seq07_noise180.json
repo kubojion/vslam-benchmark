@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "dataset": "citrusfarm",
+  "sequence": "seq07_noise180",
+  "variant": "primary",
+  "reference": {
+    "path": "datasets/citrusfarm/seq07/references/rtk-position-v1-20261003/reference.json",
+    "sha256": "4b7949ce64e8be3ef592f0ec34b07f7724eab1ac27070613a489d0d8fe1a5866"
+  },
+  "diagnostic_only": true,
+  "diagnostic_parent_sequence": "seq07",
+  "parent_times": {
+    "path": "datasets/citrusfarm/seq07/times.txt",
+    "sha256": "79d9bbb7c7f8a31edb6a9ca58f1f24e7ddc3ef265e6e06738fcae1b557273e5f"
+  },
+  "subset_times": {
+    "path": "datasets/citrusfarm/seq07_noise180/times.txt",
+    "sha256": "975cca5549788c76aa15565cf5324c626f63bb0aebc22061624f8319d4adf906"
+  }
+}

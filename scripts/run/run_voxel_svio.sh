@@ -42,7 +42,7 @@ SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/voxel_svio/run${RUN_ID}"
 LOG="$WS/logs/${DATASET}_${SEQ}_voxel_svio_${RUN_TYPE}_run${RUN_ID}.log"
 
-CONTAINER="voxel_svio"
+CONTAINER="noise_search_voxel_20261009"
 VOXEL_PREFIX=/root/catkin_ws/devel
 # Repaired build (shutdown, initializer offset) wherever the reviewed configuration is current;
 # Rosario since its decided configuration became the default (3 October 2026); HortiMulti since
@@ -71,6 +71,11 @@ else
     exit 2
 fi
 CFG_CONT="/benchmark_configs/voxel_svio/$(basename "$CFG_HOST")"
+if [[ -n "${NOISE_PILOT_CONFIG:-}" ]]; then
+    CFG_HOST=$(realpath "$NOISE_PILOT_CONFIG")
+    [[ "$CFG_HOST" == "$WS/configs/experiments/"* ]] || exit 2
+    CFG_CONT="/benchmark_configs/${CFG_HOST#"$WS/configs/"}"
+fi
 
 [[ -d "$SEQ_DIR/mav0/cam0/data" && -d "$SEQ_DIR/mav0/cam1/data" ]] \
     || { echo "[voxel_svio] missing $SEQ_DIR/mav0/cam{0,1}/data" >&2; exit 2; }

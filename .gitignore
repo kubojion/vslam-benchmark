@@ -90,3 +90,6 @@ src/svo_pro_gps/
 /datasets/rosariov2/.profiles/
 /datasets/rosariov2/sequence1/manifest.json
 /datasets/rosariov2/sequence5/manifest.json
+
+# Independent, regenerable inputs for this branch's noise-search pilot.
+/datasets/*/*_noise180/

@@ -1,0 +1,59 @@
+%YAML:1.0
+# AirSLAM camera + IMU calibration for the HortiMulti dataset.
+#
+# Source: Basler acA1920-155uc cameras with fisheye lenses.
+# Pre-processing: fisheye stereo rectification (scripts/data/convert_hortimulti.sh),
+#   output 640x480 grayscale PNG stored in mav0/cam0/data/ and mav0/cam1/data/.
+#
+# Because images are pre-rectified (zero distortion), distortion_type = 0.
+#
+# Rectified intrinsics (cv2.fisheye.stereoRectify, scaled 2048x1536 -> 640x480):
+#   fx = fy = 262.7149,  cx = 329.4310,  cy = 219.5617
+#   baseline = 0.139502 m
+#
+# T convention (T_type: 0 = EuRoC Tbc): T is T_cam_imu (camera <- IMU/body).
+#   cam0 T = T_forwardLeft_cam_imu_link  (from calibration.yaml)
+#   cam1 T = T_forwardRight_cam_imu_link (= inverse of T_imu_link_forwardRight_cam)
+#
+# IMU: MicroStrain 3DM-GX5-25 AHRS @ 200 Hz.
+# Noise: IMU noise rule "authors' operating point" (configs/sensors/imu-noise-rule.json, 2026-10-05):
+# the dataset's published Allan values x the authors' EuRoC factor (1, Kalibr values).
+
+image_height: 480
+image_width: 640
+# FIXED: T was T_forwardLeft_cam_imu_link (the INVERSE of what T_type:0 wants) and raw;
+# now official T_imu_link_forward*_cam composed with stereoRectify R_rect.
+use_imu: 1
+
+depth_lower_thr: 0.1
+depth_upper_thr: 15.0
+max_y_diff: 1
+
+# Calibration
+distortion_type: 0   # 0 = undistorted / pre-rectified input
+
+cam0:
+  intrinsics: [262.7149, 262.7149, 329.4310, 219.5617]  # fx fy cx cy
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  T_type: 0           # EuRoC format: T is T_imu_cam (camera -> IMU/body), = EuRoC T_BS
+  T:
+  - [ 0.0309292864, -0.0077757525,  0.9994913291,  0.1219040939]
+  - [-0.9994971337, -0.0072336634,  0.0308731902,  0.0366053924]
+  - [ 0.0069899215, -0.9999436043, -0.0079955743, -0.0562970105]
+  - [ 0.0,           0.0,           0.0,           1.0          ]
+cam1:
+  intrinsics: [262.7149, 262.7149, 329.4310, 219.5617]  # fx fy cx cy
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  T_type: 0
+  T:
+  - [ 0.0309292864, -0.0077757525,  0.9994913290,  0.1262187787]
+  - [-0.9994971337, -0.0072336634,  0.0308731902, -0.1028260523]
+  - [ 0.0069899215, -0.9999436042, -0.0079955743, -0.0553219052]
+  - [ 0.0,           0.0,           0.0,           1.0          ]
+# IMU
+rate_hz: 200
+gyroscope_noise_density: 0.0035000000000000001
+gyroscope_random_walk: 3.2209399999999997e-05
+accelerometer_noise_density: 0.11
+accelerometer_random_walk: 4.5844709999999999e-05
+g_value: 9.812                           # Herefordshire, UK (~52 deg N)

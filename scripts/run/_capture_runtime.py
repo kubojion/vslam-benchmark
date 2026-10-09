@@ -20,7 +20,7 @@ import tarfile
 from _capture_implementation import SOURCES, digest_file
 from _capture_inputs import digest
 
-CONTAINERS={'airslam':'air_slam','ov2slam':'ov2slam','voxel_svio':'voxel_svio',
+CONTAINERS={'airslam':'noise_search_airslam_20261009','ov2slam':'ov2slam','voxel_svio':'noise_search_voxel_20261009',
             'cifasis_gnss_si':'cifasis_gnss_si','vins_fusion_gps':'vins_fusion'}
 
 
