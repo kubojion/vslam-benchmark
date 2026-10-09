@@ -1,3 +1,7 @@
+> **Historical log, not maintained since 2026-10-02.** Results tables and findings below predate the
+> repair, Rule C and Rosario Option A. Current state: [TODO](TODO.md), [docs/README.md](docs/README.md)
+> and [generated tables](docs/generated/tables.md).
+
 # vSLAM Benchmark - Progress
 
 > Current protocol status: 69 verified N=3 cells. Twelve previously green EuRoC

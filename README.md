@@ -1,16 +1,9 @@
 # vSLAM Benchmark
 
-> **Native review in progress (2026-10-02): 69 cells have verified protocol N=3.**
-> Twelve previously green EuRoC ORB cells are held because historical ORB/g2o
-> library identities are unknown; this does not establish incompatibility or
-> request blanket reruns. Scores and original decisions remain preserved.
-> Green verifies three consistently configured attempts, including valid failures.
-> ZED claims remain nominal 3D **position** only, with mounting, RTK-float and
-> clock limits. See [TODO](TODO.md) and [current readiness work](docs/execution-readiness-20261002.md).
-> Only the specifically authorized remaining ZED VIO first repetitions may run
-> after engineering and preflight refresh; no full campaign, repetitions 2/3 or push.
-
-
+> **Status (2026-10-09):** Rule C N=3 campaign in progress: HortiMulti complete, Rosario v2 at repetition 2,
+> CitrusFarm at repetition 1, EuRoC loop-closure work remaining; ZED2i and GNSS-VIO separate.
+> Per-cell state: [TODO](TODO.md) (generated). Start reading at [docs/README.md](docs/README.md): current
+> policies, frozen records, decision log and errata for older documents.
 
 | Algorithm | Type | Source |
 |---|---|---|
@@ -23,22 +16,27 @@
 | **OV2SLAM** | Fully online feature/KLT stereo VO with BA and optional online-BoW LC | [ov2slam/ov2slam](https://github.com/ov2slam/ov2slam) (Docker, ROS 1 Noetic) |
 | **OpenVINS** | MSCKF stereo-IMU filter (VIO only, no LC) | [kubojion/open_vins @ vslam-benchmark-patches](https://github.com/kubojion/open_vins/tree/vslam-benchmark-patches) (Docker, ROS 2 Humble; fork carries Dockerfile.benchmark; new EuRoC runs use shutdown patch `7a496c53d9ee`) |
 | **Voxel-SVIO** | Voxel-map-augmented stereo MSCKF VIO (RA-L 2025) | [ZikangYuan/voxel_svio](https://github.com/ZikangYuan/voxel_svio) (Docker, ROS 1 Noetic) |
+| **cuVSLAM** | NVIDIA GPU-accelerated stereo VO / VIO with optional SLAM (loop closure) | [nvidia-isaac/cuVSLAM](https://github.com/nvidia-isaac/cuVSLAM) v17.0.0 (Python wheel, conda env `cuvslam`) |
+| **SVO Pro** | Semi-direct stereo VO / VIO with optional loop closure | [uzh-rpg/rpg_svo_pro_open](https://github.com/uzh-rpg/rpg_svo_pro_open) |
+| **MASt3R-Fusion** | MASt3R dense priors fused with IMU in a factor graph (VIO, VIO-LC) | [GREAT-WHU/MASt3R-Fusion](https://github.com/GREAT-WHU/MASt3R-Fusion) (conda env `mast3r_fusion`) |
+| **DSOL** | Direct sparse stereo odometry (VO) | [versatran01/dsol](https://github.com/versatran01/dsol) |
 | **CIFASIS GNSS-SI** | Tightly-coupled GNSS+stereo+inertial SLAM, ORB-SLAM3-based (JFR 2023) | [CIFASIS/gnss-stereo-inertial-fusion](https://github.com/CIFASIS/gnss-stereo-inertial-fusion) (Docker, ROS 1 Noetic) |
 | **RTAB-Map** | Graph-based stereo SLAM with optional IMU + GNSS factors | [introlab/rtabmap_ros](https://github.com/introlab/rtabmap_ros) (apt, ROS 2 Humble) |
 | **VINS-Fusion** | Optimization-based stereo+IMU VIO with loose GPS fusion | [HKUST-Aerial-Robotics/VINS-Fusion](https://github.com/HKUST-Aerial-Robotics/VINS-Fusion) (Docker, ROS 1 Noetic) |
-| **DROID-SLAM** | Neural dense stereo VO (Phase 1 only; dropped per supervisor) | [princeton-vl/DROID-SLAM](https://github.com/princeton-vl/DROID-SLAM). Historical results retained. |
+| **DROID-SLAM** | Neural dense stereo VO. **Excluded** (replaced by DPVO); historical results retained | [princeton-vl/DROID-SLAM](https://github.com/princeton-vl/DROID-SLAM). Historical results retained. |
 | **DPVO / DPV-SLAM** | Monocular deep patch VO (+ optional loop closure); DROID-SLAM successor | [princeton-vl/DPVO](https://github.com/princeton-vl/DPVO) (MIT). ~2-4 GB VRAM. |
-| **MASt3R-SLAM** | Monocular dense SLAM with retrieval-based LC (needs >12 GB VRAM) | [rmurai0610/MASt3R-SLAM](https://github.com/rmurai0610/MASt3R-SLAM) (arXiv:2412.12392) |
-| **MegaSaM** | Monocular structure-and-motion, learned (3-stage pipeline) | [mega-sam/mega-sam](https://github.com/mega-sam/mega-sam) (arXiv:2412.04463) |
+| **MASt3R-SLAM** | Monocular dense SLAM with retrieval-based LC. **Excluded** (not in campaign scope) | [rmurai0610/MASt3R-SLAM](https://github.com/rmurai0610/MASt3R-SLAM) (arXiv:2412.12392) |
+| **MegaSaM** | Monocular structure-and-motion, learned. **Excluded** (not in campaign scope) | [mega-sam/mega-sam](https://github.com/mega-sam/mega-sam) (arXiv:2412.04463) |
 
 ## Datasets
 
 * **Rosario v2** - outdoor soybean field, stereo + IMU + GPS.
 * **HortiMulti** - indoor strawberry polytunnel, stereo + IMU + consumer GNSS.
+* **CitrusFarm** (seq04, seq07) - citrus orchard, ZED2i stereo + MicroStrain IMU, RTK reference.
 * **ZED2i `field1_110426_full_10fps_q90`** - the project's own agricultural field sequence, stereo + IMU + RTK position reference.
 * **EuRoC-MAV** (MH_01_easy, MH_03_medium, MH_05_difficult) - [NON-AGRICULTURAL REFERENCE] indoor MAV flight, stereo + IMU. Used as a sanity check only.
 
-Rosario v2, HortiMulti and the local ZED2i field sequence are the agricultural scope. A separate
+Rosario v2, HortiMulti, CitrusFarm and the local ZED2i field sequence are the agricultural scope. A separate
 GREENBOT dataset is not part of the current benchmark. EuRoC-MAV is tracked as a
 [NON-AGRICULTURAL REFERENCE] for configuration/evaluation checks; the executed server campaign includes three repetitions per cell.
 Its canonical repository identifier/path is `euroc_mav`; CLI aliases `EuRoC-MAV` and `euroc` are
@@ -106,15 +104,19 @@ warn for unsupported combinations:
 | OV2SLAM     | yes | yes | no | no |
 | Basalt      | yes | no | yes | (no LC) |
 | DPVO / DPV-SLAM | yes | yes (DPV-SLAM) | no | no |
-| MASt3R-SLAM | yes | yes (retrieval LC, needs >12 GB VRAM) | no | no |
+| MASt3R-SLAM | excluded | excluded | no | no |
 | OpenVINS    | (no VO mode) | no | yes (+gnss-vio via robot_localization) | (no LC) |
 | Voxel-SVIO  | (no VO mode) | no | yes | (no LC) |
+| cuVSLAM     | yes | yes | yes | yes |
+| SVO Pro     | yes | no | yes | yes |
+| MASt3R-Fusion | (no VO mode) | no | yes | yes |
+| DSOL        | yes | no | no | no |
 | CIFASIS GNSS-SI | (no VO mode) | no | (gnss-vio only) | (gnss-vio only) |
 | RTAB-Map    | (gnss-vio only) | no | (gnss-vio only) | (gnss-vio only) |
 | VINS-Fusion | (no VO mode) | no | (gnss-vio only) | (gnss-vio only) |
 | MAC-VO      | yes | no | (not supported) | (not supported) |
-| DROID-SLAM  | yes (dropped; results kept) | no | (not supported) | (not supported) |
-| MegaSaM     | yes | no | (not supported) | (not supported) |
+| DROID-SLAM  | excluded (results kept) | no | (not supported) | (not supported) |
+| MegaSaM     | excluded | no | (not supported) | (not supported) |
 
 ## Quickstart
 
@@ -125,9 +127,7 @@ cd vslam-benchmark
 # 2. install deps + clone the SLAM source trees (see docs/setup.md)
 # 2b. install Basalt binary (see docs/setup.md §6)
 # 2c. set up AirSLAM Docker container (see docs/setup.md §7)
-# 2d. (optional) MegaSaM + MASt3R-SLAM envs:
-#       bash scripts/build/setup_megasam_env.sh
-#       bash scripts/build/setup_mast3r_slam_env.sh
+# 2d. new algorithms: see docs/claude-new-algorithms-setup-20261003.md and scripts/build/setup_*_env.sh
 
 # Future execution requires readiness and authorization. The controller preserves
 # existing attempts and evaluates each repetition before continuing. See TODO.md.
@@ -162,37 +162,21 @@ bash scripts/results/serve_site.sh 8080
 
 ## Documentation
 
+* [docs/README.md](docs/README.md) - **start here**: current policies, frozen records, decision log, errata.
+* [docs/results-layout.md](docs/results-layout.md) - what every folder in `results/` is and how to find current numbers.
 * [docs/setup.md](docs/setup.md) - system deps, building Pangolin + ORB-SLAM3, conda envs, Docker containers.
 * [docs/running_algorithms.md](docs/running_algorithms.md) - how to run any algorithm on any dataset / run-type combination.
 * [docs/evaluation.md](docs/evaluation.md) - evaluation pipeline, metric definitions, plot conventions.
 * [docs/result-storage-design.md](docs/result-storage-design.md) - attempt preservation, evaluation history, manifest, and browser behavior.
-* [PROGRESS.md](PROGRESS.md) - current results tables (VO / VIO / VIO-LC), known issues, dataset-specific notes.
+* [PROGRESS.md](PROGRESS.md) - historical log up to 2026-10-02 (not current).
 
 ## Results snapshot
 
-Current numerical and execution status is documented in [TODO](TODO.md) and
-[the focused campaign](docs/euroc-focused-campaign-20261001.md). The four-mode
-comparison has 551/600 evaluated repetitions, including retained collapses. Across
-all scopes, 622 evaluations are reconciled. The original 593 numerical
-evaluations and all historical attempts remain intact.
-
-The five root CSVs contain **666 rows**: 660 planned default repetitions plus six
-separate GNSS variants. The corrected AirSLAM inertial cohort uses physical runs
-4–6. Its 18 affected original runs remain in `benchmark-historical-cohorts.csv`,
-their original directories and separate reports. Missing runs and failures remain
-explicit. [Tables](docs/generated/tables.md), [counts](docs/generated/verified-claims.md),
-[figures](docs/generated/README.md) and the browser use the same checked inventory.
-
-The [current native review](docs/execution-readiness-20261002.md) retains **69 N=3 cells**: 60 EuRoC and nine ZED. Twelve historical ORB cells previously qualified at the 81-cell checkpoint are now under explicit dependency/ABI review. Their previous decisions and numerical results remain preserved. Future manifests require identity and preflight refresh after the ongoing engineering changes; older category totals are dated snapshots.
-Readiness is per action and requires its recorded native/configuration checks.
-ZED nominal position qualification does not resolve Rosario, Horti or GNSS blockers.
-Older generated reports and figures remain [archived](docs/generated/historical-before-repair-20261001/README.md).
-
-The historical observations in [PROGRESS.md](PROGRESS.md) require reassessment against the
-corrected calibration, declared configuration cohorts, failures and coverage. In particular,
-old ZED VIO collapse cannot be attributed solely to weak excitation after discovery of the
-optical-camera/IMU frame error. The next milestone is closing the current execution and
-validation gaps before expanding the algorithm set.
+Numbers are generated, never written by hand: [tables](docs/generated/tables.md),
+[verified claims](docs/generated/verified-claims.md), [figures](docs/generated/README.md) and the root
+`benchmark-*.csv` files (one row per planned repetition, including missing and failed slots). They are
+as fresh as the last inventory rebuild; see [docs/results-layout.md](docs/results-layout.md).
+Superseded calibration cohorts are listed separately in `benchmark-historical-cohorts.csv`.
 
 ## License
 
