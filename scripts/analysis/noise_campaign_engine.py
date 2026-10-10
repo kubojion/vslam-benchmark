@@ -18,6 +18,7 @@ import time
 import noise_adapters as adapters
 import noise_delivery
 import noise_cleanup
+import noise_execution_policy as execution_policy
 import noise_pilot as base
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -73,6 +74,11 @@ def verify_frozen():
     if ART is None or PROTOCOL is None:
         raise RuntimeError('Campaign not configured')
     manifest = json.loads((ART / 'execution-identity.json').read_text())
+    if manifest.get('controller_environment') != execution_policy.controller_environment():
+        raise RuntimeError('Python or optimizer environment differs from the frozen campaign')
+    boot = Path('/proc/sys/kernel/random/boot_id').read_text().strip()
+    if manifest.get('boot_id') != boot:
+        raise RuntimeError('Host restarted since activation; explicit incident review is required')
     head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
     if head != manifest['worktree_head']:
         raise RuntimeError('Experimental worktree revision changed; stop and review before resuming')
@@ -156,11 +162,15 @@ def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
     env.update(PROTOCOL['runtime_environment'].get(spec['algorithm'], {}))
     env.update(PROTOCOL.get('runtime_environment_by_study', {}).get(spec['id'], {}))
     env.update(candidate['environment'])
+    env.update(execution_policy.identity_environment(
+        PROTOCOL, spec['algorithm'], spec['dataset'], sequence))
     if spec['algorithm'] == 'mast3r_fusion':
         env['MAST3R_FUSION_SEED'] = str(seed)
     env['LD_LIBRARY_PATH'] = str(ROOT / 'src/ORB_SLAM3/Thirdparty/DBoW2/lib') + ':' + env.get('LD_LIBRARY_PATH', '')
     command = ['bash', str(ROOT / f'scripts/run/run_{spec["algorithm"]}.sh'),
                spec['dataset'], sequence, str(run_id), mode]
+    command = execution_policy.bounded_command(
+        command, PROTOCOL, spec['algorithm'], run_id, env)
     timeout_key = 'short' if sequence in spec['clips'] else mode
     timeouts = PROTOCOL['attempt_timeouts_s'].get(spec['algorithm'], PROTOCOL['attempt_timeouts_s'])
     timeout = timeouts[timeout_key]
@@ -173,6 +183,11 @@ def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
     distance = base.reference_distance(spec['dataset'], sequence)
     with base.machine_slot():
         verify_frozen()
+        if spec['algorithm'] in noise_cleanup.PERSISTENT:
+            container, location = noise_cleanup.owned_container(run, ROOT)
+            if location != 'persistent':
+                raise RuntimeError('Missing private persistent container')
+            execution_policy.verify_persistent_limits(PROTOCOL, spec['algorithm'], container)
         record = dict(key=key, campaign_id=CAMPAIGN, state='running', started=base.now(),
                       study=spec['id'], phase=phase, label=label, params=parameters,
                       sequence=sequence, mode=mode, repetition=repetition, run=str(run),

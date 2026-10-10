@@ -18,6 +18,7 @@ import time
 
 import noise_campaign_engine as execution
 from noise_campaign_search import DevelopmentSearch
+from noise_execution_policy import can_launch, campaign_budget
 
 BASE = execution.base
 LOCK = BASE.MAIN / 'results/.locks/execution.lock'
@@ -45,14 +46,6 @@ def copy_identity(source, target):
     if not target.exists():
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(source.read_bytes())
-
-
-def can_launch(spec, active_specs, schedule):
-    if any(s['algorithm'] == spec['algorithm'] for s in active_specs):
-        return False
-    resource = schedule['resource_class'][spec['algorithm']]
-    occupied = sum(schedule['resource_class'][s['algorithm']] == resource for s in active_specs)
-    return occupied < schedule['slots'][resource]
 
 
 def verify_activation(art, protocol):
@@ -222,11 +215,7 @@ def coordinator(args, protocol):
         execution.verify_frozen()
         if BASE.production_processes():
             raise RuntimeError('Production process active')
-        budget = art / 'budget.json'
-        if not budget.exists():
-            started = time.time()
-            BASE.write(budget, dict(started_unix=started,
-                deadline_unix=started + 3600 * protocol['max_wall_hours']))
+        campaign_budget(art, protocol)
         immutable(art / 'activation.json', dict(protocol_sha256=BASE.sha(art / 'protocol.json'),
             execution_manifest_sha256=BASE.sha(art / 'execution-identity.json'),
             readiness_sha256=BASE.sha(art / 'readiness.json'),

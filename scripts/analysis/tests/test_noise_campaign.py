@@ -122,7 +122,8 @@ class SearchChecks(unittest.TestCase):
 
     def test_scheduler_enforces_independent_resource_and_algorithm_limits(self):
         schedule = dict(resource_class={'orbslam3': 'cpu', 'okvis2': 'cpu', 'okvis2x': 'cpu',
-            'openvins': 'cpu', 'airslam': 'gpu', 'cuvslam': 'gpu'}, slots=dict(cpu=3, gpu=1))
+            'openvins': 'cpu', 'airslam': 'gpu', 'cuvslam': 'gpu'}, slots=dict(cpu=3, gpu=1),
+            validated_concurrent_groups=[['orbslam3','okvis2','okvis2x','airslam']])
         active = [dict(algorithm=x) for x in ('orbslam3', 'okvis2', 'okvis2x')]
         self.assertFalse(coordinator.can_launch(dict(algorithm='openvins'), active, schedule))
         self.assertTrue(coordinator.can_launch(dict(algorithm='airslam'), active, schedule))
