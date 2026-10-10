@@ -120,6 +120,16 @@ else
     echo "[openvins] sequence resolves outside \$WS ($SEQ_REAL); bind-mounting at /seqdata"
 fi
 
+# Experimental prefixes retain absolute per-image symlinks into the original
+# read-only dataset. Mount their resolved image directories as well as the
+# sequence table; mounting /ws alone does not make those targets accessible.
+python3 "$WS/scripts/run/_openvins_image_mounts.py" "$SEQ_DIR" > "$OUT_DIR/image-bind-mounts.json"
+mapfile -t IMAGE_DIRECTORIES < <(python3 -c 'import json,sys; print("\n".join(json.load(open(sys.argv[1]))["directories"]))' "$OUT_DIR/image-bind-mounts.json")
+IMAGE_MOUNTS=()
+for image_directory in "${IMAGE_DIRECTORIES[@]}"; do
+    IMAGE_MOUNTS+=(--volume "$image_directory:$image_directory:ro")
+done
+
 # We mount the workspace at /ws inside the container. host UID/GID is passed
 # through so the trajectory file is owned by the user (not root).
 START=$(date +%s.%N)
@@ -139,6 +149,7 @@ docker run --rm \
     --user "$(id -u):$(id -g)" \
     --volume "$WS:/ws" \
     "${SEQ_MOUNT[@]}" \
+    "${IMAGE_MOUNTS[@]}" \
     --workdir /ws \
     --env ROS_HOME=/tmp/vslam_ros \
     --env ROS_DOMAIN_ID="$ROS_DOMAIN_ID" --env ROS_LOCALHOST_ONLY=1 \
@@ -197,6 +208,7 @@ PROV_ARGS=(
     --artifact "estimator_config=$CFG_DIR/estimator_config.yaml"
     --artifact "imu_calibration=$CFG_DIR/kalibr_imu_chain.yaml"
     --artifact "camera_imu_calibration=$CFG_DIR/kalibr_imucam_chain.yaml"
+    --artifact "image_bind_mounts=$OUT_DIR/image-bind-mounts.json"
     --source "algorithm=$WS/src/open_vins"
     --param "process_isolation=attempt_token_private_ros2_domain"
     --param "playback_rate=${OPENVINS_RATE:-1.0}"
