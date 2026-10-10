@@ -60,6 +60,24 @@ fi
 OPENVINS_IMU_RELIABILITY=${OPENVINS_IMU_RELIABILITY:-best_effort}
 OPENVINS_END_OF_STREAM_DRAIN=${OPENVINS_END_OF_STREAM_DRAIN:-0}
 OPENVINS_FLOW_CONTROL=${OPENVINS_FLOW_CONTROL:-0}
+OPENVINS_TRANSPORT_PROFILE=${OPENVINS_TRANSPORT_PROFILE:-default}
+TRANSPORT_ARGS=()
+TRANSPORT_ARTIFACTS=()
+OPENVINS_LOCALHOST_ONLY=1
+case "$OPENVINS_TRANSPORT_PROFILE" in
+    default) ;;
+    large_shm)
+        TRANSPORT_XML="$WS/configs/experiments/openvins-local-large-images.xml"
+        [[ -f "$TRANSPORT_XML" ]] || { echo '[openvins] missing local transport profile' >&2; exit 2; }
+        # Humble's localhost-only switch appends another default-size SHM
+        # transport. The XML instead specifies ONLY loopback UDP plus 32MiB SHM.
+        OPENVINS_LOCALHOST_ONLY=0
+        TRANSPORT_ARGS=(--shm-size 128m --env RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+            --env FASTRTPS_DEFAULT_PROFILES_FILE=/ws/configs/experiments/openvins-local-large-images.xml)
+        TRANSPORT_ARTIFACTS=(--artifact "dds_transport_profile=$TRANSPORT_XML")
+        ;;
+    *) echo '[openvins] invalid transport profile' >&2; exit 2 ;;
+esac
 case "$OPENVINS_FLOW_CONTROL" in
     0) ;;
     1) [[ "$OPENVINS_END_OF_STREAM_DRAIN" == 1 ]] || { echo '[openvins] flow control requires end drain' >&2; exit 2; } ;;
@@ -171,7 +189,8 @@ docker run --rm \
     --env OPENVINS_IMU_RELIABILITY="$OPENVINS_IMU_RELIABILITY" \
     --env OPENVINS_END_OF_STREAM_DRAIN="$OPENVINS_END_OF_STREAM_DRAIN" \
     --env OPENVINS_FLOW_CONTROL="$OPENVINS_FLOW_CONTROL" \
-    --env ROS_DOMAIN_ID="$ROS_DOMAIN_ID" --env ROS_LOCALHOST_ONLY=1 \
+    "${TRANSPORT_ARGS[@]}" \
+    --env ROS_DOMAIN_ID="$ROS_DOMAIN_ID" --env ROS_LOCALHOST_ONLY="$OPENVINS_LOCALHOST_ONLY" \
     --entrypoint /bin/bash \
     "$OPENVINS_IMAGE" \
     -c "
@@ -224,6 +243,7 @@ MONPID=""
 
 PROV_ARGS=(
     "${PROFILE_PROV_ARGS[@]}"
+    "${TRANSPORT_ARTIFACTS[@]}"
     --artifact "estimator_config=$CFG_DIR/estimator_config.yaml"
     --artifact "imu_calibration=$CFG_DIR/kalibr_imu_chain.yaml"
     --artifact "camera_imu_calibration=$CFG_DIR/kalibr_imucam_chain.yaml"
@@ -234,6 +254,8 @@ PROV_ARGS=(
     --param "imu_reliability=$OPENVINS_IMU_RELIABILITY"
     --param "end_of_recording_drain=$OPENVINS_END_OF_STREAM_DRAIN"
     --param "flow_control=$OPENVINS_FLOW_CONTROL"
+    --param "transport_profile=$OPENVINS_TRANSPORT_PROFILE"
+    --param "ros_localhost_only=$OPENVINS_LOCALHOST_ONLY"
     --param "native_verbosity=$OPENVINS_VERBOSITY"
     --container-image "$OPENVINS_IMAGE"
 )
