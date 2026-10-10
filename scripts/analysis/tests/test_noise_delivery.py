@@ -204,6 +204,46 @@ class DeliveryChecks(unittest.TestCase):
         self.assertFalse(noise_delivery.audit_openvins(self.run,self.sequence,allowed_pending_tail=2,
             require_exact=True,require_end_of_stream=True)['passed'])
 
+    def flow_completed(self):
+        self.completed()
+        self.received.update(left_received=2,right_received=2,
+                             flow_control=dict(enabled=True,acknowledgements_sent=4))
+        self.write_receipt()
+        for stream in ('left','right','stereo'):
+            (self.run/f'openvins_input_receipt.json.{stream}-stamps.txt').write_text('1000000000\n1100000000\n')
+        (self.run/'openvins_delivery.json').write_text(json.dumps(dict(player_error=None,
+            flow_control=dict(enabled=True,completed_checkpoints=4,last_acknowledgement=[1,5,2,2]))))
+
+    def audit_flow(self):
+        return noise_delivery.audit_openvins(self.run,self.sequence,allowed_pending_tail=None,
+            require_exact=True,require_end_of_stream=True,require_flow_control=True)
+
+    def test_complete_application_receipt_barriers_pass(self):
+        self.flow_completed();self.assertTrue(self.audit_flow()['passed'])
+
+    def test_every_raw_camera_stream_requires_exact_order(self):
+        for stream in ('left','right','stereo'):
+            with self.subTest(stream=stream):
+                self.flow_completed()
+                (self.run/f'openvins_input_receipt.json.{stream}-stamps.txt').write_text('1100000000\n1000000000\n')
+                self.assertFalse(self.audit_flow()['passed'])
+
+    def test_stale_ack_cannot_qualify_even_with_complete_native_counts(self):
+        self.flow_completed();path=self.run/'openvins_delivery.json';row=json.loads(path.read_text())
+        row['flow_control']['last_acknowledgement']=[1,4,2,2];path.write_text(json.dumps(row))
+        self.assertFalse(self.audit_flow()['passed'])
+
+    def test_partial_output_after_player_error_is_not_a_success(self):
+        self.flow_completed();path=self.run/'openvins_delivery.json';row=json.loads(path.read_text())
+        row['player_error']='RuntimeError: receipt stalled';path.write_text(json.dumps(row))
+        self.assertFalse(self.audit_flow()['passed'])
+
+    def test_missing_raw_stream_and_disabled_native_flow_fail(self):
+        self.flow_completed();(self.run/'openvins_input_receipt.json.left-stamps.txt').unlink()
+        self.assertFalse(self.audit_flow()['passed'])
+        self.flow_completed();self.received['flow_control']['enabled']=False;self.write_receipt()
+        self.assertFalse(self.audit_flow()['passed'])
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

@@ -59,6 +59,12 @@ if [[ -n "${OPENVINS_EXPERIMENT_IMAGE:-}" ]]; then
 fi
 OPENVINS_IMU_RELIABILITY=${OPENVINS_IMU_RELIABILITY:-best_effort}
 OPENVINS_END_OF_STREAM_DRAIN=${OPENVINS_END_OF_STREAM_DRAIN:-0}
+OPENVINS_FLOW_CONTROL=${OPENVINS_FLOW_CONTROL:-0}
+case "$OPENVINS_FLOW_CONTROL" in
+    0) ;;
+    1) [[ "$OPENVINS_END_OF_STREAM_DRAIN" == 1 ]] || { echo '[openvins] flow control requires end drain' >&2; exit 2; } ;;
+    *) echo '[openvins] invalid flow-control policy' >&2; exit 2 ;;
+esac
 case "$OPENVINS_END_OF_STREAM_DRAIN" in
     0|1) ;;
     *) echo '[openvins] invalid end-of-recording policy' >&2; exit 2 ;;
@@ -164,6 +170,7 @@ docker run --rm \
     --env ROS_HOME=/tmp/vslam_ros \
     --env OPENVINS_IMU_RELIABILITY="$OPENVINS_IMU_RELIABILITY" \
     --env OPENVINS_END_OF_STREAM_DRAIN="$OPENVINS_END_OF_STREAM_DRAIN" \
+    --env OPENVINS_FLOW_CONTROL="$OPENVINS_FLOW_CONTROL" \
     --env ROS_DOMAIN_ID="$ROS_DOMAIN_ID" --env ROS_LOCALHOST_ONLY=1 \
     --entrypoint /bin/bash \
     "$OPENVINS_IMAGE" \
@@ -226,6 +233,7 @@ PROV_ARGS=(
     --param "playback_rate=${OPENVINS_RATE:-1.0}"
     --param "imu_reliability=$OPENVINS_IMU_RELIABILITY"
     --param "end_of_recording_drain=$OPENVINS_END_OF_STREAM_DRAIN"
+    --param "flow_control=$OPENVINS_FLOW_CONTROL"
     --param "native_verbosity=$OPENVINS_VERBOSITY"
     --container-image "$OPENVINS_IMAGE"
 )

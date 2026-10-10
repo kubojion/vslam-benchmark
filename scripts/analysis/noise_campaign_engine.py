@@ -32,6 +32,7 @@ CONFIG_ENVIRONMENT = (
     'OPENVINS_EXPERIMENT_IMAGE', 'OPENVINS_RATE',
     'OPENVINS_IMU_RELIABILITY',
     'OPENVINS_END_OF_STREAM_DRAIN',
+    'OPENVINS_FLOW_CONTROL',
     'OPENVINS_MEMORY_LIMIT', 'OPENVINS_MEMORY_SWAP_LIMIT',
     'BASALT_EXPERIMENT_BIN', 'BASALT_EXPERIMENT_LIBDIR',
     'SVO_PRO_IMU_FILE', 'SVO_PRO_IMAGE', 'SVO_PRO_TIME_LIMIT_S',
@@ -120,7 +121,8 @@ def verify_transport(run, spec, sequence, returncode):
             return evidence
         evidence = noise_delivery.audit_openvins(run, ROOT / 'datasets' / spec['dataset'] / sequence,
             allowed_pending_tail=PROTOCOL['delivery_policy']['openvins_pending_camera_tail'], require_exact=True,
-            require_end_of_stream=PROTOCOL['delivery_policy'].get('openvins_end_of_stream_drain', False))
+            require_end_of_stream=PROTOCOL['delivery_policy'].get('openvins_end_of_stream_drain', False),
+            require_flow_control=PROTOCOL['delivery_policy'].get('openvins_flow_control', False))
         base.write(run / 'native_delivery_audit.json', evidence)
         if not evidence['passed']:
             raise RuntimeError('OpenVINS delivery gate failed; stop before optimizing around input loss: ' + str(run))

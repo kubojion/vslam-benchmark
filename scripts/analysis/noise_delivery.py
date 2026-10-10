@@ -36,7 +36,8 @@ def verify_native_noise(run, parameters):
     return native
 
 
-def audit_openvins(run, sequence, *, allowed_pending_tail, require_exact=False, require_end_of_stream=False):
+def audit_openvins(run, sequence, *, allowed_pending_tail, require_exact=False, require_end_of_stream=False,
+                   require_flow_control=False):
     """Separate receipt from processing with a fixed or native-eligibility tail policy.
 
     A final camera may await future IMU or a processing trigger when playback
@@ -133,9 +134,33 @@ def audit_openvins(run, sequence, *, allowed_pending_tail, require_exact=False, 
             and not any(exact.get('pending_camera_has_later_imu', [])))
         if exact is not None:
             exact['pending_note'] = 'After explicit end-of-recording drain, every pending camera must lack later real IMU support. No sensor sample is synthesized or replayed.'
+    if require_flow_control:
+        checks['flow_requires_exact_end_policy'] = require_exact and require_end_of_stream
+        flow = received.get('flow_control', {})
+        checks['native_flow_control_enabled'] = (flow.get('enabled') is True
+            and flow.get('acknowledgements_sent', 0) > 0)
+        for stream, sensor in [('left','cam0'), ('right','cam1'), ('stereo','cam0')]:
+            path = run / f'openvins_input_receipt.json.{stream}-stamps.txt'
+            checks[f'exact_{stream}_receipt_present'] = path.is_file()
+            if path.is_file():
+                actual = [int(x) for x in path.read_text().splitlines() if x.strip()]
+                wanted = [int(row[0]) for row in csv.reader((sequence/f'mav0/{sensor}/data.csv').read_text().splitlines())
+                          if row and not row[0].lstrip().startswith('#')]
+                checks[f'exact_ordered_{stream}_timestamps'] = actual == wanted
+                checks[f'{stream}_raw_count_matches'] = received.get(stream+'_received') == len(wanted)
+        player_path = run/'openvins_delivery.json'
+        checks['flow_player_receipt_present'] = player_path.is_file()
+        if player_path.is_file():
+            player = json.loads(player_path.read_text())
+            flow = player.get('flow_control', {})
+            checks['player_flow_control_completed'] = (flow.get('enabled') is True
+                and flow.get('completed_checkpoints',0) >= left['count'] + 2
+                and flow.get('last_acknowledgement') == [1,imu['count'],left['count'],left['count']]
+                and player.get('player_error') is None)
     return dict(schema=1, passed=all(checks.values()), checks=checks, native=received,
                 publisher=published, expected=dict(imu=imu, stereo=left),
                 exact_receipt=exact, exact_required=require_exact,
                 allowed_pending_tail=allowed_pending_tail,
                 end_of_stream_required=require_end_of_stream,
+                flow_control_required=require_flow_control,
                 note='Counts and timestamp fingerprints audit receipt; processed cameras are completed feed calls, not successful tracking updates.')

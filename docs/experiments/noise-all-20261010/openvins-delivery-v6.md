@@ -1,0 +1,14 @@
+# OpenVINS application receipt barriers
+
+The first complete V5 Rosario sequence1 attempt (`run212506432747`) exited with native code0 and player code1. The native stereo callback received7342 of13821 prepared pairs, with zero frequency-gate discards. It received187361 of187362 IMU samples; the missing sample was at index121970, inside the recording. All prepared left/right timestamps agree. This is not keyframe-only trajectory export. V5 does not localize the image loss to DDS queues versus stereo synchronization, so queue pressure remains a hypothesis. Its failed end acknowledgement correctly prevented qualification.
+
+V6 adds optional `OPENVINS_FLOW_CONTROL=1`, requiring the existing end-of-recording drain. The player waits for application-level receipt after each stereo pair and after at most100 further IMU samples between pairs. A separate UInt64 control request/ack confirms the exact cumulative IMU/stereo/queued counts. It never republishes sensor samples, changes their timestamps, selects features, or requires a successful estimate. It acknowledges receipt rather than completed camera updates, allowing initialization and clock offsets to use future real IMU samples. Wall-clock playback may slow down; timing under this delivery policy is not a real-time-throughput benchmark.
+
+Native counters now record exact ordered left, right and stereo timestamps using the existing image subscriptions before synchronization. Default image QoS, synchronizer, filter, geometry, noise settings and sensor values are unchanged. The player also preserves partial counts and poses if a receipt wait fails; a saved trajectory cannot override the nonzero exit or failed delivery audit.
+
+Both fresh Rule C controls and tuned OpenVINS candidates must use the same policy and pinned image. Earlier OpenVINS results are not reused as matched noise controls. Main remains unchanged and needs a reviewed backport before corresponding production reruns resume.
+
+Native image: `sha256:2f74b56e67a7f887d0a495d38226379584e90c267090d1d21efdd07618d7aa31`.
+The adjoining patch records all private ROS2Visualizer changes relative to the OpenVINS submodule HEAD, including the previous lifetime and end-drain fixes. Native execution validation is still pending at preparation time.
+
+ROS2 Humble documents bounded KeepLast history separately from reliability: [official QoS documentation source](https://github.com/ros2/ros2_documentation/blob/humble/source/Concepts/Intermediate/About-Quality-of-Service-Settings.rst). The [Humble message-filter subscriber](https://github.com/ros2/message_filters/blob/humble/include/message_filters/subscriber.h) uses the default subscription profile unless one is supplied. Those sources motivate checking application receipt; they do not prove the exact cause of this run's loss.
