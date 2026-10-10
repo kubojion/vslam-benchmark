@@ -196,6 +196,8 @@ def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
             config_path = Path(next(iter(candidate['environment'].values())))
             base.verify_native_parameters(run, spec, parameters, config_path, returncode)
         transport = verify_transport(run, spec, sequence, returncode)
+        if spec['algorithm'] == 'openvins' and returncode == 0:
+            transport['native_noise_parameters'] = noise_delivery.verify_native_noise(run, parameters)
         log_text = log.read_text(errors='replace')
         record.update(state='finished', finished=base.now(), returncode=returncode,
                       timeout=timed_out, wall_s=elapsed, wrapper_log=str(log),

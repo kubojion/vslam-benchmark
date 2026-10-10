@@ -27,6 +27,14 @@ def expected(path):
     return timestamp_fingerprint(str(path), hashlib.sha256(path.read_bytes()).hexdigest())
 
 
+def verify_native_noise(run, parameters):
+    receipt = json.loads((Path(run) / 'openvins_input_receipt.json').read_text())
+    native = receipt.get('native_imu_noise')
+    if native != parameters:
+        raise RuntimeError('OpenVINS native noise differs from the proposed four-parameter vector')
+    return native
+
+
 def audit_openvins(run, sequence, *, allowed_pending_tail, require_exact=False):
     """Separate receipt from processing and permit only a declared tiny tail.
 

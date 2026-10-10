@@ -49,6 +49,19 @@ class DeliveryChecks(unittest.TestCase):
     def test_full_receipt_passes(self):
         self.assertTrue(self.audit()['passed'])
 
+    def test_native_values_must_match_proposal_not_only_saved_config(self):
+        parameters={k:1.0 for k in ('gyroscope_noise_density','accelerometer_noise_density',
+                                  'gyroscope_random_walk','accelerometer_random_walk')}
+        with self.assertRaisesRegex(RuntimeError,'native noise differs'):
+            noise_delivery.verify_native_noise(self.run,parameters)
+        self.received['native_imu_noise']=dict(parameters)
+        self.write_receipt()
+        self.assertEqual(noise_delivery.verify_native_noise(self.run,parameters),parameters)
+        self.received['native_imu_noise']['gyroscope_random_walk']=0.1
+        self.write_receipt()
+        with self.assertRaisesRegex(RuntimeError,'native noise differs'):
+            noise_delivery.verify_native_noise(self.run,parameters)
+
     def exact_receipt(self):
         (self.run / 'openvins_input_receipt.json.imu-stamps.txt').write_text(
             '990000000\n1000000000\n1010000000\n1100000000\n1110000000\n')
