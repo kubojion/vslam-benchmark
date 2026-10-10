@@ -57,6 +57,11 @@ if [[ "$DATASET" == euroc_mav || "$DATASET" == zed2i || "$DATASET" == citrusfarm
 if [[ -n "${OPENVINS_EXPERIMENT_IMAGE:-}" ]]; then
     OPENVINS_IMAGE="$OPENVINS_EXPERIMENT_IMAGE"
 fi
+OPENVINS_IMU_RELIABILITY=${OPENVINS_IMU_RELIABILITY:-best_effort}
+case "$OPENVINS_IMU_RELIABILITY" in
+    best_effort|reliable) ;;
+    *) echo '[openvins] invalid experimental IMU reliability policy' >&2; exit 2 ;;
+esac
 
 [[ -d "$CFG_DIR" ]] || { echo "[openvins] missing config dir: $CFG_DIR" >&2; exit 2; }
 [[ -f "$CFG_DIR/estimator_config.yaml" ]] || { echo "[openvins] missing $CFG_DIR/estimator_config.yaml" >&2; exit 2; }
@@ -152,6 +157,7 @@ docker run --rm \
     "${IMAGE_MOUNTS[@]}" \
     --workdir /ws \
     --env ROS_HOME=/tmp/vslam_ros \
+    --env OPENVINS_IMU_RELIABILITY="$OPENVINS_IMU_RELIABILITY" \
     --env ROS_DOMAIN_ID="$ROS_DOMAIN_ID" --env ROS_LOCALHOST_ONLY=1 \
     --entrypoint /bin/bash \
     "$OPENVINS_IMAGE" \
@@ -212,6 +218,7 @@ PROV_ARGS=(
     --source "algorithm=$WS/src/open_vins"
     --param "process_isolation=attempt_token_private_ros2_domain"
     --param "playback_rate=${OPENVINS_RATE:-1.0}"
+    --param "imu_reliability=$OPENVINS_IMU_RELIABILITY"
     --param "native_verbosity=$OPENVINS_VERBOSITY"
     --container-image "$OPENVINS_IMAGE"
 )

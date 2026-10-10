@@ -49,6 +49,43 @@ class DeliveryChecks(unittest.TestCase):
     def test_full_receipt_passes(self):
         self.assertTrue(self.audit()['passed'])
 
+    def exact_receipt(self):
+        (self.run / 'openvins_input_receipt.json.imu-stamps.txt').write_text(
+            '990000000\n1000000000\n1010000000\n1100000000\n1110000000\n')
+        self.received.update(last_received_imu_ns=1110000000,
+            final_camera_imu_offset_s=0., pending_camera_timestamps_s=[])
+        self.write_receipt()
+
+    def test_complete_exact_receipt_is_required_by_expanded_campaign(self):
+        self.assertFalse(noise_delivery.audit_openvins(self.run,self.sequence,
+            allowed_pending_tail=0,require_exact=True)['passed'])
+        self.exact_receipt()
+        self.assertTrue(noise_delivery.audit_openvins(self.run,self.sequence,
+            allowed_pending_tail=0,require_exact=True)['passed'])
+
+    def test_reordering_is_detected_even_when_count_sum_and_xor_match(self):
+        self.exact_receipt()
+        (self.run / 'openvins_input_receipt.json.imu-stamps.txt').write_text(
+            '1000000000\n990000000\n1010000000\n1100000000\n1110000000\n')
+        report=self.audit()
+        self.assertTrue(report['checks']['imu_count'])
+        self.assertTrue(report['checks']['imu_timestamp_sum'])
+        self.assertTrue(report['checks']['imu_timestamp_xor'])
+        self.assertFalse(report['passed'])
+
+    def test_tail_allowance_cannot_hide_a_missing_interior_frame(self):
+        self.exact_receipt()
+        self.received.update(camera_processed=1,camera_remaining=1,
+                             pending_camera_timestamps_s=[1.0])
+        self.write_receipt()
+        (self.run / 'openvins_node.log').write_text('[TIME]: 0.01 seconds total\n')
+        self.assertFalse(self.audit(allowed=1)['passed'])
+        self.received['pending_camera_timestamps_s']=[1.1]
+        self.write_receipt()
+        report=self.audit(allowed=1)
+        self.assertTrue(report['passed'])
+        self.assertEqual(report['exact_receipt']['pending_camera_has_later_imu'],[True])
+
     def test_equal_counts_do_not_hide_wrong_imu_timestamps(self):
         self.received['imu_stamp_sum_u64'] += 1000000
         self.write_receipt()

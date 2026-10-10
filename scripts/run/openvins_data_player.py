@@ -108,8 +108,9 @@ class Player(Node):
 
         # Publishers. OpenVINS' ROS2Visualizer uses different QoS per topic:
         #   - cameras (message_filters::Subscriber): RELIABLE, depth=10  (default)
-        #   - imu  (rclcpp::SensorDataQoS()):        BEST_EFFORT, depth=10
-        # Mismatched QoS silently drops messages, so reliability must match.
+        #   - imu  (rclcpp::SensorDataQoS()):        BEST_EFFORT, depth=5
+        # The experimental delivery image can request RELIABLE with a larger
+        # receive buffer. Both sides use the explicitly recorded policy.
         # The publisher queue depth is set high so a transient slowdown in the
         # OV node does not back-pressure RELIABLE publishes and stall the
         # player thread (which would also halt IMU pacing because the player
@@ -120,8 +121,12 @@ class Player(Node):
             history=HistoryPolicy.KEEP_LAST,
             depth=2000,
         )
+        self.imu_reliability = os.environ.get('OPENVINS_IMU_RELIABILITY', 'best_effort')
+        if self.imu_reliability not in ('best_effort', 'reliable'):
+            raise ValueError('Invalid OPENVINS_IMU_RELIABILITY')
         imu_qos = QoSProfile(
-            reliability=ReliabilityPolicy.BEST_EFFORT,
+            reliability=(ReliabilityPolicy.RELIABLE if self.imu_reliability == 'reliable'
+                         else ReliabilityPolicy.BEST_EFFORT),
             history=HistoryPolicy.KEEP_LAST,
             depth=200,
         )
@@ -214,10 +219,11 @@ class Player(Node):
         t0_ns = events[0][0]
         t0_wall = time.time()
         # Accounting only: preserve the existing replay schedule and ROS QoS.
-        audit = self.seq_dir.parent.name in ('rosariov2', 'citrusfarm')
+        audit = True
         delivery = None
         if audit:
-            delivery = dict(schema=1, rate=self.rate, expected_imu=len(self.imu),
+            delivery = dict(schema=1, rate=self.rate, imu_reliability=self.imu_reliability,
+                expected_imu=len(self.imu),
                 expected_left=len(self.cam0), expected_right=len(self.cam1),
                 subscribers_at_start=dict(imu=self.pub_imu.get_subscription_count(),
                     left=self.pub_cam0.get_subscription_count(), right=self.pub_cam1.get_subscription_count()),

@@ -17,6 +17,7 @@ import time
 
 import noise_adapters as adapters
 import noise_delivery
+import noise_cleanup
 import noise_pilot as base
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -29,6 +30,7 @@ CONFIG_ENVIRONMENT = (
     'CUVSLAM_SENSOR', 'CUVSLAM_CONFIG', 'SVO_PRO_CONFIG', 'MAST3R_FUSION_CONFIG',
     'EXPERIMENT_IMU_NOISE', 'ROSARIO_VIO_PROFILE', 'MAST3R_FUSION_SEED',
     'OPENVINS_EXPERIMENT_IMAGE', 'OPENVINS_RATE',
+    'OPENVINS_IMU_RELIABILITY',
     'OPENVINS_MEMORY_LIMIT', 'OPENVINS_MEMORY_SWAP_LIMIT',
     'BASALT_EXPERIMENT_BIN', 'BASALT_EXPERIMENT_LIBDIR',
     'SVO_PRO_IMU_FILE', 'SVO_PRO_IMAGE', 'SVO_PRO_TIME_LIMIT_S',
@@ -105,7 +107,7 @@ def verify_transport(run, spec, sequence, returncode):
                 raise RuntimeError('Voxel rate gate dropped received camera frames: ' + str(run))
     elif algorithm == 'openvins' and returncode == 0:
         evidence = noise_delivery.audit_openvins(run, ROOT / 'datasets' / spec['dataset'] / sequence,
-            allowed_pending_tail=PROTOCOL['delivery_policy']['openvins_pending_camera_tail'])
+            allowed_pending_tail=PROTOCOL['delivery_policy']['openvins_pending_camera_tail'], require_exact=True)
         base.write(run / 'native_delivery_audit.json', evidence)
         if not evidence['passed']:
             raise RuntimeError('OpenVINS delivery gate failed; stop before optimizing around input loss: ' + str(run))
@@ -172,10 +174,10 @@ def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
                 returncode = process.wait(timeout=timeout)
                 timed_out = False
             except subprocess.TimeoutExpired:
-                base.stop_owned_attempt(process, run)
+                noise_cleanup.stop_owned_attempt(process, run, ROOT)
                 returncode, timed_out = 124, True
             except BaseException:
-                base.stop_owned_attempt(process, run)
+                noise_cleanup.stop_owned_attempt(process, run, ROOT)
                 raise
         elapsed = time.monotonic() - started
         evaluation, native_evidence = {}, None
