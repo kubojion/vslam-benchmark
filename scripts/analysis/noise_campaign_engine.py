@@ -31,6 +31,7 @@ CONFIG_ENVIRONMENT = (
     'EXPERIMENT_IMU_NOISE', 'ROSARIO_VIO_PROFILE', 'MAST3R_FUSION_SEED',
     'OPENVINS_EXPERIMENT_IMAGE', 'OPENVINS_RATE',
     'OPENVINS_IMU_RELIABILITY',
+    'OPENVINS_END_OF_STREAM_DRAIN',
     'OPENVINS_MEMORY_LIMIT', 'OPENVINS_MEMORY_SWAP_LIMIT',
     'BASALT_EXPERIMENT_BIN', 'BASALT_EXPERIMENT_LIBDIR',
     'SVO_PRO_IMU_FILE', 'SVO_PRO_IMAGE', 'SVO_PRO_TIME_LIMIT_S',
@@ -105,9 +106,21 @@ def verify_transport(run, spec, sequence, returncode):
                     raise RuntimeError('Voxel input delivery mismatch: ' + str(run))
             if returncode == 0 and rx['stereo_queued_after_rate_gate'] != rx['stereo_received']:
                 raise RuntimeError('Voxel rate gate dropped received camera frames: ' + str(run))
-    elif algorithm == 'openvins' and returncode == 0:
+    elif algorithm == 'openvins':
+        # A player/EOF failure can give the wrapper a nonzero exit while the
+        # estimator itself exits normally. Audit that case too, so transport
+        # problems cannot become a supposedly bad noise observation. Preserve
+        # independent estimator crashes and attempt timeouts as failures.
+        node_path = run / 'processes/node.json'
+        native_clean_exit = False
+        if returncode not in (0, 124) and node_path.is_file():
+            node = json.loads(node_path.read_text())
+            native_clean_exit = node.get('status') == 'exited' and node.get('exit_code') == 0
+        if returncode != 0 and not native_clean_exit:
+            return evidence
         evidence = noise_delivery.audit_openvins(run, ROOT / 'datasets' / spec['dataset'] / sequence,
-            allowed_pending_tail=PROTOCOL['delivery_policy']['openvins_pending_camera_tail'], require_exact=True)
+            allowed_pending_tail=PROTOCOL['delivery_policy']['openvins_pending_camera_tail'], require_exact=True,
+            require_end_of_stream=PROTOCOL['delivery_policy'].get('openvins_end_of_stream_drain', False))
         base.write(run / 'native_delivery_audit.json', evidence)
         if not evidence['passed']:
             raise RuntimeError('OpenVINS delivery gate failed; stop before optimizing around input loss: ' + str(run))
@@ -196,7 +209,7 @@ def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
             config_path = Path(next(iter(candidate['environment'].values())))
             base.verify_native_parameters(run, spec, parameters, config_path, returncode)
         transport = verify_transport(run, spec, sequence, returncode)
-        if spec['algorithm'] == 'openvins' and returncode == 0:
+        if spec['algorithm'] == 'openvins' and transport:
             transport['native_noise_parameters'] = noise_delivery.verify_native_noise(run, parameters)
         log_text = log.read_text(errors='replace')
         record.update(state='finished', finished=base.now(), returncode=returncode,

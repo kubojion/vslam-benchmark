@@ -4,6 +4,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 ART = Path(__file__).resolve().parent
 WORK = Path(__file__).resolve().parents[3]
@@ -135,6 +136,73 @@ class DeliveryChecks(unittest.TestCase):
         self.assertNotEqual(first[2], final[2])
         self.assertTrue(0 <= first[2] < 2**32)
         self.assertEqual(first, engine.identities('fusion_citrus', 'candidate1', 'seq04', 'vio', 1, 'full'))
+
+    def test_player_failure_with_clean_native_exit_still_checks_transport(self):
+        p=self.run/'processes/node.json';p.parent.mkdir()
+        p.write_text(json.dumps(dict(status='exited',exit_code=0)))
+        policy=dict(delivery_policy=dict(openvins_pending_camera_tail=None,openvins_end_of_stream_drain=True))
+        with mock.patch.object(engine,'PROTOCOL',policy), mock.patch.object(
+                engine.noise_delivery,'audit_openvins',return_value=dict(passed=False)) as check:
+            with self.assertRaisesRegex(RuntimeError,'delivery gate failed'):
+                engine.verify_transport(self.run,dict(algorithm='openvins',dataset='test'),'sequence',1)
+            check.assert_called_once()
+
+    def test_native_crash_or_attempt_timeout_remains_estimator_failure(self):
+        p=self.run/'processes/node.json';p.parent.mkdir()
+        for native_code,wrapper_code in ((134,1),(0,124)):
+            p.write_text(json.dumps(dict(status='exited',exit_code=native_code)))
+            with mock.patch.object(engine.noise_delivery,'audit_openvins') as check:
+                self.assertEqual(engine.verify_transport(self.run,dict(algorithm='openvins'),
+                                                        'sequence',wrapper_code),{})
+                check.assert_not_called()
+
+    def completed(self,processed=2,pending=(),offset=0.):
+        self.exact_receipt()
+        self.received.update(camera_processed=processed,camera_remaining=len(pending),
+            pending_camera_timestamps_s=list(pending),final_camera_imu_offset_s=offset,
+            end_of_stream=dict(enabled=True,complete=True,expected_imu=5,expected_stereo=2,
+                               eligible_cameras_drained=processed))
+        self.write_receipt()
+        (self.run/'openvins_node.log').write_text('[TIME]: 0.01 seconds total\n'*processed)
+        (self.run/'openvins_end_ack.json').write_text(json.dumps(dict(schema=1,
+            request=[1,5,2],acknowledgement=[1,5,2,2,processed,len(pending),processed])))
+
+    def audit_end(self):
+        return noise_delivery.audit_openvins(self.run,self.sequence,allowed_pending_tail=None,
+                                    require_exact=True,require_end_of_stream=True)
+
+    def test_completed_drain_passes(self):
+        self.completed();self.assertTrue(self.audit_end()['passed'])
+
+    def test_eligible_tail_rejected_even_with_end_ack(self):
+        self.completed(processed=1,pending=[1.1])
+        result=self.audit_end();self.assertFalse(result['passed'])
+        self.assertFalse(result['checks']['no_eligible_camera_left_pending'])
+
+    def test_real_imu_support_can_leave_two_unprocessable_final_cameras(self):
+        self.completed(processed=0,pending=[1.,1.1],offset=.2)
+        self.assertTrue(self.audit_end()['passed'])
+
+    def test_end_ack_required_and_must_match_actual_received_counts(self):
+        self.completed();p=self.run/'openvins_end_ack.json';value=json.loads(p.read_text())
+        value['acknowledgement'][1]-=1;p.write_text(json.dumps(value))
+        self.assertFalse(self.audit_end()['passed'])
+        p.unlink();self.assertFalse(self.audit_end()['passed'])
+
+    def test_stale_last_imu_and_nonfinite_offset_are_rejected(self):
+        self.completed();self.received['last_received_imu_ns']=1100000000;self.write_receipt()
+        self.assertFalse(self.audit_end()['passed'])
+        self.completed();self.received['final_camera_imu_offset_s']=float('nan');self.write_receipt()
+        self.assertFalse(self.audit_end()['passed'])
+
+    def test_complete_flag_does_not_override_missing_imu(self):
+        self.completed();self.received['imu_received']-=1;self.write_receipt()
+        self.assertFalse(self.audit_end()['passed'])
+
+    def test_numeric_tail_allowance_cannot_enable_end_policy(self):
+        self.completed()
+        self.assertFalse(noise_delivery.audit_openvins(self.run,self.sequence,allowed_pending_tail=2,
+            require_exact=True,require_end_of_stream=True)['passed'])
 
 
 if __name__ == '__main__':

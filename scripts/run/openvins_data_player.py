@@ -44,6 +44,7 @@ from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
 from sensor_msgs.msg import Image, Imu
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import PoseWithCovarianceStamped
+from std_msgs.msg import UInt64MultiArray
 from _transport_stats import write_transport_stats
 from cv_bridge import CvBridge
 
@@ -105,6 +106,18 @@ class Player(Node):
         self.published_cam0 = 0
         self.published_cam1 = 0
         self.published_imu = 0
+        end_policy = os.environ.get('OPENVINS_END_OF_STREAM_DRAIN', '0')
+        if end_policy not in ('0', '1'):
+            raise ValueError('Invalid end-of-recording drain policy')
+        self.end_drain = end_policy == '1'
+        self.end_ack = None
+        self.end_ack_event = threading.Event()
+        if self.end_drain:
+            end_qos = QoSProfile(reliability=ReliabilityPolicy.RELIABLE,
+                                 history=HistoryPolicy.KEEP_LAST, depth=1)
+            self.pub_end = self.create_publisher(UInt64MultiArray, '/ov_msckf/input_end_request', end_qos)
+            self.sub_end_ack = self.create_subscription(
+                UInt64MultiArray, '/ov_msckf/input_end_ack', self._on_end_ack, end_qos)
 
         # Publishers. OpenVINS' ROS2Visualizer uses different QoS per topic:
         #   - cameras (message_filters::Subscriber): RELIABLE, depth=10  (default)
@@ -271,6 +284,10 @@ class Player(Node):
             f"all events published; waiting {self.end_wait:.1f}s for filter flush...")
         time.sleep(self.end_wait)
 
+        if self.end_drain:
+            self.drain_end_of_recording()
+            # Keep output subscribers alive while the final camera updates arrive.
+            time.sleep(self.end_wait)
         self.write_trajectory()
         if audit:
             import json
@@ -295,6 +312,30 @@ class Player(Node):
         )
 
     # ------------------------------------------------------------------
+    def _on_end_ack(self, message):
+        data = list(message.data)
+        if (len(data) == 7 and data[0] == 1 and data[1] == self.published_imu
+                and data[2] == min(self.published_cam0, self.published_cam1)
+                and data[3] == data[2] and data[4] + data[5] == data[3]
+                and data[6] <= data[4]):
+            self.end_ack = data
+            self.end_ack_event.set()
+
+    def drain_end_of_recording(self):
+        import json
+        request = UInt64MultiArray()
+        request.data = [1, self.published_imu, min(self.published_cam0, self.published_cam1)]
+        deadline = time.monotonic() + 30.0
+        while not self.end_ack_event.is_set():
+            if time.monotonic() >= deadline:
+                raise RuntimeError('Native end-of-recording acknowledgement missing; do not qualify this delivery')
+            self.pub_end.publish(request)
+            self.end_ack_event.wait(0.2)
+        self.out_traj.parent.mkdir(parents=True, exist_ok=True)
+        self.out_traj.with_name('openvins_end_ack.json').write_text(
+            json.dumps(dict(schema=1, request=list(request.data), acknowledgement=self.end_ack), indent=2)+'\n')
+        self.get_logger().info(f'native end-of-recording acknowledged: {self.end_ack}')
+
     def write_trajectory(self):
         self.out_traj.parent.mkdir(parents=True, exist_ok=True)
         with self.out_traj.open("w") as f:

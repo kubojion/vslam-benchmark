@@ -3,6 +3,7 @@ import csv
 from functools import lru_cache
 import hashlib
 import json
+import math
 from pathlib import Path
 import re
 
@@ -35,13 +36,16 @@ def verify_native_noise(run, parameters):
     return native
 
 
-def audit_openvins(run, sequence, *, allowed_pending_tail, require_exact=False):
-    """Separate receipt from processing and permit only a declared tiny tail.
+def audit_openvins(run, sequence, *, allowed_pending_tail, require_exact=False, require_end_of_stream=False):
+    """Separate receipt from processing with a fixed or native-eligibility tail policy.
 
     A final camera may await future IMU or a processing trigger when playback
     ends. Detailed receipts identify its timestamp and IMU eligibility. The tail
     allowance is frozen by the campaign protocol, never adjusted to improve ATE.
     All published IMU samples and stereo pairs must still be received exactly.
+    With an explicit end-of-stream drain, allowed_pending_tail must be None:
+    every remaining camera must be in the true suffix and lack later real IMU
+    support at the native estimated offset. An eligible unprocessed frame fails.
     """
     run, sequence = Path(run), Path(sequence)
     received = json.loads((run / 'openvins_input_receipt.json').read_text())
@@ -60,7 +64,14 @@ def audit_openvins(run, sequence, *, allowed_pending_tail, require_exact=False):
     checks['no_frontend_rate_drops'] = received['camera_rate_dropped'] == 0
     checks['all_received_cameras_queued'] = received['camera_queued'] == received['stereo_received']
     checks['queue_accounted_for'] = received['camera_processed'] + received['camera_remaining'] == received['camera_queued']
-    checks['bounded_pending_tail'] = 0 <= received['camera_remaining'] <= allowed_pending_tail
+    if require_end_of_stream:
+        # This policy allows only the actual recording suffix that has no
+        # later real IMU sample at the native estimated clock offset. It does
+        # not increase a fixed lost-frame allowance to make a run pass.
+        checks['end_policy_requires_exact_receipt'] = require_exact and allowed_pending_tail is None
+    else:
+        checks['bounded_pending_tail'] = (isinstance(allowed_pending_tail, int)
+            and 0 <= received['camera_remaining'] <= allowed_pending_tail)
     log = (run / 'openvins_node.log').read_text(errors='replace')
     feeds = len(re.findall(r'\[TIME\]: [0-9.eE+-]+ seconds total', log))
     checks['native_log_matches_receipt'] = feeds == received['camera_processed']
@@ -90,13 +101,41 @@ def audit_openvins(run, sequence, *, allowed_pending_tail, require_exact=False):
                 and len(pending) == len(tail)
                 and all(abs(t - stamp / 1e9) <= 5e-7 for t, stamp in zip(pending, tail)))
             if exact is not None:
-                last_imu = received['last_received_imu_ns'] / 1e9
+                last_ns = received['last_received_imu_ns']
+                last_imu = last_ns // 1000000000 + (last_ns % 1000000000) * 1e-9
                 offset = received['final_camera_imu_offset_s']
                 exact['pending_camera_has_later_imu'] = [t < last_imu - offset for t in pending]
                 exact['pending_note'] = ('Eligibility is diagnostic: an eligible final frame may lack a later '
                     'callback to trigger processing. No frame is synthesized or replayed.')
+    if require_end_of_stream:
+        end = received.get('end_of_stream', {})
+        checks['native_end_of_stream_complete'] = (end.get('enabled') is True
+            and end.get('complete') is True and end.get('expected_imu') == imu['count']
+            and end.get('expected_stereo') == left['count'])
+        ack_path = run / 'openvins_end_ack.json'
+        checks['end_acknowledgement_present'] = ack_path.is_file()
+        if ack_path.is_file():
+            ack = json.loads(ack_path.read_text())
+            checks['end_acknowledgement_matches_native_receipt'] = (ack.get('schema') == 1
+                and ack.get('request') == [1, imu['count'], left['count']]
+                and ack.get('acknowledgement') == [1, received['imu_received'], received['stereo_received'],
+                    received['camera_queued'], received['camera_processed'], received['camera_remaining'],
+                    end.get('eligible_cameras_drained')])
+        checks['native_last_imu_is_input_end'] = (exact is not None and bool(reference)
+            and received.get('last_received_imu_ns') == reference[-1])
+        pending = received.get('pending_camera_timestamps_s')
+        offset = received.get('final_camera_imu_offset_s')
+        finite = (isinstance(offset, (int,float)) and math.isfinite(offset)
+            and isinstance(pending, list) and all(isinstance(t,(int,float)) and math.isfinite(t) for t in pending))
+        checks['finite_native_end_clock'] = finite
+        checks['no_eligible_camera_left_pending'] = (finite and exact is not None
+            and len(exact.get('pending_camera_has_later_imu', [])) == received['camera_remaining']
+            and not any(exact.get('pending_camera_has_later_imu', [])))
+        if exact is not None:
+            exact['pending_note'] = 'After explicit end-of-recording drain, every pending camera must lack later real IMU support. No sensor sample is synthesized or replayed.'
     return dict(schema=1, passed=all(checks.values()), checks=checks, native=received,
                 publisher=published, expected=dict(imu=imu, stereo=left),
                 exact_receipt=exact, exact_required=require_exact,
                 allowed_pending_tail=allowed_pending_tail,
+                end_of_stream_required=require_end_of_stream,
                 note='Counts and timestamp fingerprints audit receipt; processed cameras are completed feed calls, not successful tracking updates.')
