@@ -16,6 +16,7 @@ sys.path[:0]=[str(ROOT/'scripts/run'),str(ROOT/'scripts/setup'),str(ROOT/'script
 import _imu_noise_rule as rule
 from _rosario_rectified import geometry, maps
 from prepare_rosario_option_a import shifted
+from prepare_rule_c_20261006 import opencv_dump
 from test_imu_noise_rule_20261005 import orb, okvis, basalt, kalibr_style, cv_yaml
 
 
@@ -103,6 +104,39 @@ def test_orb_matrices_parse_and_do_not_rectify_again():
             np.testing.assert_allclose(f.getNode(side+'.R').mat(),np.eye(3))
             np.testing.assert_allclose(f.getNode(side+'.P').mat(),g['P'][i])
             assert not f.getNode(side+'.D').mat().any()
+        f.release()
+
+
+def test_openvins_camera_chain_native_parser_and_generator(tmp_path):
+    """PyYAML accepts indentless rows that OpenVINS' OpenCV parser rejects."""
+    source=ROOT/'configs/openvins/rosariov2/kalibr_imucam_chain.yaml'
+    values=yaml.safe_load(source.read_text().replace('%YAML:1.0',''))
+    regenerated=tmp_path/'kalibr_imucam_chain.yaml'
+    regenerated.write_text('%YAML:1.0\n'+opencv_dump(values))
+    assert yaml.safe_load(regenerated.read_text().replace('%YAML:1.0',''))==values
+    g=geometry(ROOT)
+    for path in (source,regenerated):
+        f=cv2.FileStorage(str(path),cv2.FILE_STORAGE_READ)
+        try:
+            assert f.isOpened()
+            for i in range(2):
+                camera=f.getNode(f'cam{i}')
+                matrix=camera.getNode('T_imu_cam')
+                assert matrix.isSeq() and matrix.size()==4
+                actual=[[matrix.at(r).at(c).real() for c in range(4)] for r in range(4)]
+                np.testing.assert_allclose(actual,g['T_imu_cam'][i],rtol=0,atol=1e-15)
+                assert camera.getNode('timeshift_cam_imu').real()==0.0
+        finally:
+            f.release()
+
+
+@pytest.mark.parametrize('dataset',['rosariov2','citrusfarm','hortimulti'])
+@pytest.mark.parametrize('name',['estimator_config.yaml','kalibr_imu_chain.yaml','kalibr_imucam_chain.yaml'])
+def test_openvins_native_config_files_parse(dataset,name):
+    f=cv2.FileStorage(str(ROOT/'configs/openvins'/dataset/name),cv2.FILE_STORAGE_READ)
+    try:
+        assert f.isOpened() and not f.root().empty()
+    finally:
         f.release()
 
 
