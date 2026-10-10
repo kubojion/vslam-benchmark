@@ -58,3 +58,19 @@ def test_basalt_identity_matches_runner_environment_regardless_of_caller(tmp_pat
         values.append(identity(tmp_path,'basalt'))
     assert values[0]==values[1] and not values[0]['missing']
     assert [f['path'] for f in values[0]['files']]==[str(binary),str(library)]
+
+
+def test_basalt_private_runtime_is_the_recorded_runtime(tmp_path,monkeypatch):
+    binary=tmp_path/'private/bin/basalt_vio';binary.parent.mkdir(parents=True);binary.write_bytes(b'private-elf')
+    library=tmp_path/'private/lib/libbasalt.so';library.parent.mkdir(parents=True);library.write_bytes(b'private-lib')
+    monkeypatch.setenv('BASALT_EXPERIMENT_BIN',str(binary))
+    monkeypatch.setenv('BASALT_EXPERIMENT_LIBDIR',str(library.parent))
+    import _capture_runtime
+    def ldd(command,**options):
+        assert command==['ldd',str(binary)]
+        assert options['env']['LD_LIBRARY_PATH'].split(':')[0]==str(library.parent)
+        return 'libbasalt.so => '+str(library)+' (0x0)\n'
+    monkeypatch.setattr(_capture_runtime.subprocess,'check_output',ldd)
+    value=identity(tmp_path,'basalt')
+    assert not value['missing']
+    assert [f['path'] for f in value['files']]==[str(binary),str(library)]

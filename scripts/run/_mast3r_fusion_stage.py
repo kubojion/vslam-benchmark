@@ -28,6 +28,7 @@ import numpy as np
 import yaml
 
 import _imu_noise_rule
+import _experimental_imu_noise
 
 
 def sha(path):
@@ -117,6 +118,13 @@ def config(args):
                  imu['accelerometer_random_walk'], imu['gyroscope_random_walk']]
         params['ms_opt']['imu_noise'] = noise
         params['global_opt']['imu_noise'] = noise
+    if getattr(args, 'noise_override', None):
+        imu, receipt = _experimental_imu_noise.load(args.noise_override, 'mast3r_fusion', record['dataset'])
+        noise = [imu['accelerometer_noise_density'], imu['gyroscope_noise_density'],
+                 imu['accelerometer_random_walk'], imu['gyroscope_random_walk']]
+        params['ms_opt']['imu_noise'] = list(noise)
+        params['global_opt']['imu_noise'] = list(noise)
+        args.out.with_suffix('.noise-override.json').write_text(json.dumps(receipt, indent=2) + '\n')
     params['ms_opt']['imu_format'] = 'euroc'
     args.out.write_text(yaml.safe_dump(params, sort_keys=False))
     print(json.dumps(dict(subsample=params['dataset']['subsample'], imu_noise=params['ms_opt']['imu_noise'])))
@@ -152,6 +160,7 @@ def main():
     c.add_argument('--base', required=True, type=Path, help='upstream config/base_euroc.yaml')
     c.add_argument('--override', required=True, type=Path)
     c.add_argument('--out', required=True, type=Path)
+    c.add_argument('--noise-override', type=Path, help='explicit experimental noise document')
     c.set_defaults(run=config)
     e = sub.add_parser('export')
     e.add_argument('--raw', required=True, type=Path)

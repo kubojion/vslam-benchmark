@@ -99,12 +99,17 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
         # Resolve identically here so the campaign identity and the launch
         # preflight do not depend on the caller's PATH or LD_LIBRARY_PATH.
         environment=dict(os.environ)
-        if (Path.home()/'.basalt/env').is_file():
+        private_binary=environment.get('BASALT_EXPERIMENT_BIN')
+        private_library=environment.get('BASALT_EXPERIMENT_LIBDIR')
+        if private_binary:
+            if not private_library:raise ValueError('private Basalt library directory missing')
+            environment['LD_LIBRARY_PATH']=private_library+':'+environment.get('LD_LIBRARY_PATH','')
+        elif (Path.home()/'.basalt/env').is_file():
             for key,folder in (('PATH','bin'),('LD_LIBRARY_PATH','lib')):
                 local=str(Path.home()/'.local'/folder)
                 parts=[x for x in environment.get(key,'').split(':') if x]
                 if local not in parts:environment[key]=':'.join([local]+parts)
-        binary=shutil.which('basalt_vio',path=environment.get('PATH'))
+        binary=private_binary or shutil.which('basalt_vio',path=environment.get('PATH'))
         host(binary or 'missing-basalt_vio')
         if binary:
             dependencies=subprocess.check_output(['ldd',binary],text=True,timeout=30,env=environment)
@@ -138,6 +143,10 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
             corrected=inspect(['image','inspect','openvins:humble-shutdown-20261001'])
             container['corrected_euroc_image']={'image':'openvins:humble-shutdown-20261001',
                                               'image_id':corrected['Id']}
+            experiment_image = os.environ.get('OPENVINS_EXPERIMENT_IMAGE')
+            if experiment_image:
+                selected = inspect(['image', 'inspect', experiment_image])
+                container['selected_experimental_image'] = {'image': experiment_image, 'image_id': selected['Id']}
     elif algorithm=='mast3r_fusion':
         for p in sorted((repo/'third_party/mast3r-fusion-checkpoints').glob('MASt3R_*')):host(p.relative_to(repo))
         host('third_party/gtsam-mast3r-fusion.commit')

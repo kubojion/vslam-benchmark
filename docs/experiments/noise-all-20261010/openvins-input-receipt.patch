@@ -1,0 +1,117 @@
+diff --git a/ov_msckf/src/ros/ROS2Visualizer.cpp b/ov_msckf/src/ros/ROS2Visualizer.cpp
+index 9722782..93bc296 100644
+--- a/ov_msckf/src/ros/ROS2Visualizer.cpp
++++ b/ov_msckf/src/ros/ROS2Visualizer.cpp
+@@ -20,6 +20,7 @@
+  */
+ 
+ #include "ROS2Visualizer.h"
++#include <cstdlib>
+ 
+ #include "core/VioManager.h"
+ #include "ros/ROSVisualizerHelper.h"
+@@ -165,6 +166,20 @@ void ROS2Visualizer::stop() {
+   // The executor is stopped; drain the last already-dispatched update before
+   // releasing the state and publisher objects it uses.
+   while (thread_update_running) std::this_thread::sleep_for(std::chrono::milliseconds(1));
++  const char *receipt_path = std::getenv("OPENVINS_INPUT_RECEIPT");
++  if (receipt_path && !input_receipt_written_.exchange(true)) {
++    std::ofstream receipt(receipt_path);
++    receipt << "{\"schema\":1,\"imu_received\":" << input_imu_received_.load()
++            << ",\"imu_stamp_sum_u64\":" << input_imu_stamp_sum_.load()
++            << ",\"imu_stamp_xor_u64\":" << input_imu_stamp_xor_.load()
++            << ",\"stereo_received\":" << input_stereo_received_.load()
++            << ",\"stereo_stamp_sum_u64\":" << input_stereo_stamp_sum_.load()
++            << ",\"stereo_stamp_xor_u64\":" << input_stereo_stamp_xor_.load()
++            << ",\"camera_queued\":" << input_camera_queued_.load()
++            << ",\"camera_processed\":" << input_camera_processed_.load()
++            << ",\"camera_rate_dropped\":" << input_camera_rate_dropped_.load()
++            << ",\"camera_remaining\":" << camera_queue.size() << "}\n";
++  }
+ }
+ 
+ ROS2Visualizer::~ROS2Visualizer() { stop(); }
+@@ -454,6 +469,10 @@ void ROS2Visualizer::callback_inertial(const sensor_msgs::msg::Imu::SharedPtr ms
+ 
+   // send it to our VIO system
+   _app->feed_measurement_imu(message);
++  const auto receipt_stamp = static_cast<std::uint64_t>(msg->header.stamp.sec) * 1000000000ULL + msg->header.stamp.nanosec;
++  input_imu_received_.fetch_add(1, std::memory_order_relaxed);
++  input_imu_stamp_sum_.fetch_add(receipt_stamp, std::memory_order_relaxed);
++  input_imu_stamp_xor_.fetch_xor(receipt_stamp, std::memory_order_relaxed);
+   visualize_odometry(message.timestamp);
+ 
+   // If the processing queue is currently active / running just return so we can keep getting measurements
+@@ -485,6 +504,7 @@ void ROS2Visualizer::callback_inertial(const sensor_msgs::msg::Imu::SharedPtr ms
+         auto rT0_1 = boost::posix_time::microsec_clock::local_time();
+         double update_dt = 100.0 * (timestamp_imu_inC - camera_queue.at(0).timestamp);
+         _app->feed_measurement_camera(camera_queue.at(0));
++        input_camera_processed_.fetch_add(1, std::memory_order_relaxed);
+         visualize();
+         camera_queue.pop_front();
+         auto rT0_2 = boost::posix_time::microsec_clock::local_time();
+@@ -510,6 +530,7 @@ void ROS2Visualizer::callback_monocular(const sensor_msgs::msg::Image::SharedPtr
+   double timestamp = msg0->header.stamp.sec + msg0->header.stamp.nanosec * 1e-9;
+   double time_delta = 1.0 / _app->get_params().track_frequency;
+   if (camera_last_timestamp.find(cam_id0) != camera_last_timestamp.end() && timestamp < camera_last_timestamp.at(cam_id0) + time_delta) {
++    input_camera_rate_dropped_.fetch_add(1, std::memory_order_relaxed);
+     return;
+   }
+   camera_last_timestamp[cam_id0] = timestamp;
+@@ -540,16 +561,23 @@ void ROS2Visualizer::callback_monocular(const sensor_msgs::msg::Image::SharedPtr
+   // append it to our queue of images
+   std::lock_guard<std::mutex> lck(camera_queue_mtx);
+   camera_queue.push_back(message);
++  input_camera_queued_.fetch_add(1, std::memory_order_relaxed);
+   std::sort(camera_queue.begin(), camera_queue.end());
+ }
+ 
+ void ROS2Visualizer::callback_stereo(const sensor_msgs::msg::Image::ConstSharedPtr msg0, const sensor_msgs::msg::Image::ConstSharedPtr msg1,
+                                      int cam_id0, int cam_id1) {
+ 
++  const auto receipt_stamp = static_cast<std::uint64_t>(msg0->header.stamp.sec) * 1000000000ULL + msg0->header.stamp.nanosec;
++  input_stereo_received_.fetch_add(1, std::memory_order_relaxed);
++  input_stereo_stamp_sum_.fetch_add(receipt_stamp, std::memory_order_relaxed);
++  input_stereo_stamp_xor_.fetch_xor(receipt_stamp, std::memory_order_relaxed);
++
+   // Check if we should drop this image
+   double timestamp = msg0->header.stamp.sec + msg0->header.stamp.nanosec * 1e-9;
+   double time_delta = 1.0 / _app->get_params().track_frequency;
+   if (camera_last_timestamp.find(cam_id0) != camera_last_timestamp.end() && timestamp < camera_last_timestamp.at(cam_id0) + time_delta) {
++    input_camera_rate_dropped_.fetch_add(1, std::memory_order_relaxed);
+     return;
+   }
+   camera_last_timestamp[cam_id0] = timestamp;
+@@ -594,6 +622,7 @@ void ROS2Visualizer::callback_stereo(const sensor_msgs::msg::Image::ConstSharedP
+   // append it to our queue of images
+   std::lock_guard<std::mutex> lck(camera_queue_mtx);
+   camera_queue.push_back(message);
++  input_camera_queued_.fetch_add(1, std::memory_order_relaxed);
+   std::sort(camera_queue.begin(), camera_queue.end());
+ }
+ 
+diff --git a/ov_msckf/src/ros/ROS2Visualizer.h b/ov_msckf/src/ros/ROS2Visualizer.h
+index 709b8e4..558a09d 100644
+--- a/ov_msckf/src/ros/ROS2Visualizer.h
++++ b/ov_msckf/src/ros/ROS2Visualizer.h
+@@ -46,6 +46,7 @@
+ #include <tf2_ros/transform_broadcaster.h>
+ 
+ #include <atomic>
++#include <cstdint>
+ #include <fstream>
+ #include <memory>
+ #include <mutex>
+@@ -185,6 +186,12 @@ protected:
+ 
+   // Thread atomics
+   std::atomic<bool> thread_update_running;
++
++  // Experiment-only delivery receipts. These are observations, not filter state.
++  std::atomic<bool> input_receipt_written_{false};
++  std::atomic<std::uint64_t> input_imu_received_{0}, input_imu_stamp_sum_{0}, input_imu_stamp_xor_{0};
++  std::atomic<std::uint64_t> input_stereo_received_{0}, input_stereo_stamp_sum_{0}, input_stereo_stamp_xor_{0};
++  std::atomic<std::uint64_t> input_camera_queued_{0}, input_camera_processed_{0}, input_camera_rate_dropped_{0};
+   std::atomic<bool> stop_publishing{false};
+   std::thread publishing_thread;
+ 

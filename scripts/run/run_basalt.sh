@@ -52,15 +52,21 @@ CALIB=$(realpath -e "$CALIB")
 ESTIMATOR_CFG=$(realpath -e "$ESTIMATOR_CFG")
 
 # ── PATH: source Basalt env to ensure basalt_vio is available ────────────────
-if [[ -f "$HOME/.basalt/env" ]]; then
+BASALT_BIN=""
+if [[ -n "${BASALT_EXPERIMENT_BIN:-}" ]]; then
+    [[ -x "$BASALT_EXPERIMENT_BIN" && -f "${BASALT_EXPERIMENT_LIBDIR:-}/libbasalt.so" ]] \
+        || { echo '[basalt] incomplete private runtime selection' >&2; exit 2; }
+    BASALT_BIN=$(realpath -e "$BASALT_EXPERIMENT_BIN")
+    export LD_LIBRARY_PATH="$BASALT_EXPERIMENT_LIBDIR:${LD_LIBRARY_PATH:-}"
+elif [[ -f "$HOME/.basalt/env" ]]; then
     # shellcheck source=/dev/null
     source "$HOME/.basalt/env"
 fi
-if ! command -v basalt_vio &>/dev/null; then
+if [[ -z "${BASALT_BIN:-}" ]] && ! command -v basalt_vio &>/dev/null; then
     echo "[basalt] ERROR: basalt_vio not found. Run: curl -LsSf https://gitlab.com/VladyslavUsenko/basalt/-/raw/master/scripts/install.sh | sh" >&2
     exit 1
 fi
-BASALT_BIN=$(command -v basalt_vio)
+BASALT_BIN=${BASALT_BIN:-$(command -v basalt_vio)}
 BASALT_LIBRARY=$(ldd "$BASALT_BIN" | awk '$1 == "libbasalt.so" && $2 == "=>" { print $3 }')
 [[ -f "$BASALT_LIBRARY" ]] || { echo '[basalt] loaded libbasalt.so identity unavailable' >&2; exit 2; }
 

@@ -37,7 +37,11 @@ source "$WS/scripts/run/_rosario_profile.sh"
 check_rosario_candidate openvins
 
 SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
-CFG_DIR="$WS/configs/openvins/$DATASET"
+CFG_DIR="${OPENVINS_CONFIG_DIR:-$WS/configs/openvins/$DATASET}"
+if [[ -n "${OPENVINS_CONFIG_DIR:-}" && -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
+    echo '[openvins] explicit config and Rosario candidate profile are mutually exclusive' >&2
+    exit 2
+fi
 if [[ -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
     CFG_DIR="$WS/configs/candidates/rosario-vio-20261002/$ROSARIO_VIO_PROFILE"
 fi
@@ -49,6 +53,10 @@ OPENVINS_VERBOSITY=INFO
 # HortiMulti since its camera-clock IMU decision (5 October 2026).
 if [[ -n "${ROSARIO_VIO_PROFILE:-}" ]]; then OPENVINS_VERBOSITY=DEBUG; fi
 if [[ "$DATASET" == euroc_mav || "$DATASET" == zed2i || "$DATASET" == citrusfarm || "$DATASET" == rosariov2 || "$DATASET" == hortimulti || -n "${ROSARIO_VIO_PROFILE:-}" ]]; then OPENVINS_IMAGE=openvins:humble-shutdown-20261001; fi
+
+if [[ -n "${OPENVINS_EXPERIMENT_IMAGE:-}" ]]; then
+    OPENVINS_IMAGE="$OPENVINS_EXPERIMENT_IMAGE"
+fi
 
 [[ -d "$CFG_DIR" ]] || { echo "[openvins] missing config dir: $CFG_DIR" >&2; exit 2; }
 [[ -f "$CFG_DIR/estimator_config.yaml" ]] || { echo "[openvins] missing $CFG_DIR/estimator_config.yaml" >&2; exit 2; }
@@ -116,10 +124,17 @@ fi
 # through so the trajectory file is owned by the user (not root).
 START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
+EXPERIMENT_RESOURCE_ARGS=()
+if [[ -n "${OPENVINS_MEMORY_LIMIT:-}" ]]; then
+    [[ -n "${OPENVINS_MEMORY_SWAP_LIMIT:-}" ]] \
+        || { echo '[openvins] experimental memory limit requires an explicit total RAM+swap limit' >&2; exit 2; }
+    EXPERIMENT_RESOURCE_ARGS=(--memory "$OPENVINS_MEMORY_LIMIT" --memory-swap "$OPENVINS_MEMORY_SWAP_LIMIT")
+fi
 set +e
 docker run --rm \
     --name "$RUN_CONTAINER" \
     --cidfile "$OUT_DIR/docker.cid" \
+    "${EXPERIMENT_RESOURCE_ARGS[@]}" \
     --network host \
     --user "$(id -u):$(id -g)" \
     --volume "$WS:/ws" \
@@ -144,6 +159,7 @@ docker run --rm \
         # Same namespace/parameters as subscribe.launch.py, with the native
         # process directly supervised. ros2 launch can return zero after a node
         # segfault and forward a second SIGINT during attempt cleanup.
+        export OPENVINS_INPUT_RECEIPT=/ws/${OUT_REL}/openvins_input_receipt.json
         owned_run node /colcon_ws/install/lib/ov_msckf/run_subscribe_msckf \
             --ros-args -r __ns:=/ov_msckf \
             -p config_path:=/ws/$CFG_REL/estimator_config.yaml \
@@ -187,6 +203,10 @@ PROV_ARGS=(
     --param "native_verbosity=$OPENVINS_VERBOSITY"
     --container-image "$OPENVINS_IMAGE"
 )
+if [[ -n "${OPENVINS_MEMORY_LIMIT:-}" ]]; then
+    PROV_ARGS+=(--param "memory_limit=$OPENVINS_MEMORY_LIMIT"
+        --param "total_ram_swap_limit=$OPENVINS_MEMORY_SWAP_LIMIT")
+fi
 if (( OPENVINS_RC != 0 )); then
     record_failed_run_meta "$OUT_DIR/run_meta.json" openvins "$DATASET" "$SEQ" \
         "$RUN_ID" "$RUN_TYPE" "$OPENVINS_RC" "container pipeline exited nonzero" "${PROV_ARGS[@]}"

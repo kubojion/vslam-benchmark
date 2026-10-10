@@ -80,8 +80,12 @@ mkdir "$NATIVE"
 # main.py resolves "checkpoints/" and writes graph.pkl / data.h5 relative to the
 # working directory, so each attempt gets its own.
 ln -s "$CKPT" "$NATIVE/checkpoints"
+NOISE_ARGS=()
+if [[ -n "${EXPERIMENT_IMU_NOISE:-}" ]]; then
+    NOISE_ARGS=(--noise-override "$EXPERIMENT_IMU_NOISE")
+fi
 python3 "$WS/scripts/run/_mast3r_fusion_stage.py" config --stage "$STAGE" --base "$BASE_CFG" \
-    --override "$ALGO_CFG" --out "$OUT_DIR/mast3r_fusion_config.yaml" > "$NATIVE/config_summary.json"
+    --override "$ALGO_CFG" --out "$OUT_DIR/mast3r_fusion_config.yaml" "${NOISE_ARGS[@]}" > "$NATIVE/config_summary.json"
 cp "$STAGE/intrinsics.yaml" "$OUT_DIR/intrinsics.yaml"
 
 echo "[mast3r_fusion] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG"
@@ -108,6 +112,9 @@ PROV_ARGS=(
     --seed "$SEED"
     --conda-env "$CONDA_ENV"
 )
+if [[ -n "${EXPERIMENT_IMU_NOISE:-}" ]]; then
+    PROV_ARGS+=(--artifact "experimental_noise=$EXPERIMENT_IMU_NOISE")
+fi
 
 stamp() { python3 -u -c "
 import sys, time
