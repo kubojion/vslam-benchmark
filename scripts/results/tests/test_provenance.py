@@ -71,6 +71,18 @@ def valid_basalt_meta() -> dict:
 
 
 class ProvenanceValidationTests(unittest.TestCase):
+    def test_xml_transport_profile_is_saved_with_its_digest(self):
+        enricher = load_enricher()
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            source = root / "transport.xml"
+            source.write_text('<profiles><segment_size>33554432</segment_size></profiles>\n')
+            run = root / "run1"
+            entry = enricher.artifact_entry("dds_transport_profile", str(source), run, snapshot=True)
+            self.assertEqual((run / entry["snapshot"]).read_bytes(), source.read_bytes())
+            self.assertEqual(entry["snapshot_sha256"], entry["sha256"])
+            self.assertFalse(entry["snapshot_normalized"])
+
     def write_meta(self, directory: Path, data: dict) -> None:
         directory.mkdir(parents=True)
         (directory / "run_meta.json").write_text(json.dumps(data))

@@ -10,7 +10,9 @@ Humble's `ROS_LOCALHOST_ONLY=1` appends another default-size SHM transport even 
 
 This is an experiment in complete offline input delivery. Both fresh Rule C controls and tuned OpenVINS configurations must use whichever delivery policy passes all validation. It cannot be reported as an IMU tuning gain or real-time throughput improvement. Full native validation and concurrency validation remain prerequisites to noise-search activation.
 
-Evidence: `openvins-input-audit/v6-full-rosario-slowdown.json` and `large-shm-preflight.json` in the external campaign artifact directory.
+The first complete Rosario sequence1 attempt with this profile finished in 951.3 seconds. Independent review passed all 38 receipt/EOF checks: 187,362 IMU samples and 13,821 ordered raw-left/raw-right/stereo samples, 13,821 completed camera feeds, zero rate drops and zero pending cameras. Both native and player exited zero. The diagnostic controller subsequently raised `KeyError: snapshot` because the provenance helper hashed XML files without copying them. The helper now includes small XML files. The original completed run and metadata are preserved; a separate reviewed record verifies its transport bytes against the pre-execution digest and runtime segment evidence. This bookkeeping fix does not require repeating that estimator run. Other recordings and concurrency remain pending.
+
+Evidence: `openvins-input-audit/v6-full-rosario-slowdown.json`, `large-shm-preflight.json` and `v7-completed-run-review/completed-review.json` in the external campaign artifact directory.
 
 Primary sources:
 
