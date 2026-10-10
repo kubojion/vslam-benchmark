@@ -54,7 +54,7 @@ PREP_ENV="${SVO_PRO_PREP_CONDA_ENV:-cuvslam}"   # host python with numpy, yaml, 
 if [[ "$DATASET" == "euroc_mav" ]]; then
     IMU_FILE="$REPO/svo_ros/param/calib/euroc_stereo.yaml"; IMU_SRC="upstream:$IMU_FILE"
 else
-    IMU_FILE="$WS/configs/okvis2/${DATASET}_${SEQ}_vio.yaml"; IMU_SRC="okvis2:$IMU_FILE"
+    IMU_FILE="${SVO_PRO_IMU_FILE:-$WS/configs/okvis2/${DATASET}_${SEQ}_vio.yaml}"; IMU_SRC="okvis2:$IMU_FILE"
 fi
 
 [[ -e "$REPO/.git" ]] || { echo "[svo_pro] ERROR: source checkout missing at $REPO (run scripts/build/build_svo_pro.sh)" >&2; exit 2; }
@@ -138,6 +138,14 @@ PROV_ARGS=(
 if [[ -n "${EXPERIMENT_IMU_NOISE:-}" ]]; then
     PROV_ARGS+=(--artifact "experimental_noise=$EXPERIMENT_IMU_NOISE")
 fi
+EXPERIMENT_RESOURCE_ARGS=()
+if [[ -n "${SVO_PRO_MEMORY_LIMIT:-}" ]]; then
+    [[ -n "${SVO_PRO_MEMORY_SWAP_LIMIT:-}" ]] \
+        || { echo '[svo_pro] experimental RAM limit requires an explicit total RAM+swap limit' >&2; exit 2; }
+    EXPERIMENT_RESOURCE_ARGS=(--memory "$SVO_PRO_MEMORY_LIMIT" --memory-swap "$SVO_PRO_MEMORY_SWAP_LIMIT")
+    PROV_ARGS+=(--param "memory_limit=$SVO_PRO_MEMORY_LIMIT"
+        --param "total_ram_swap_limit=$SVO_PRO_MEMORY_SWAP_LIMIT")
+fi
 
 # The container has its own network namespace, so its ROS master cannot be seen
 # by, or collide with, any other run on the host.
@@ -147,6 +155,7 @@ set +e
 timeout --signal=TERM --kill-after=60 "$TIME_LIMIT_S" docker run --rm \
     --name "$RUN_CONTAINER" \
     --cidfile "$OUT_DIR/docker.cid" \
+    "${EXPERIMENT_RESOURCE_ARGS[@]}" \
     --user "$(id -u):$(id -g)" \
     --volume "$WS:/ws" \
     "${STAGE_MOUNTS[@]}" \

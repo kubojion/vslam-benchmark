@@ -69,6 +69,10 @@ class AdapterChecks(unittest.TestCase):
                             if algorithm in ('svo_pro', 'mast3r_fusion'):
                                 actual, _ = override.load(destination / 'noise.json', algorithm, dataset)
                                 self.assertEqual(actual, PARAMS)
+                                if algorithm == 'svo_pro':
+                                    self.assertEqual(receipt['environment']['SVO_PRO_IMU_FILE'],
+                                        str(self.root / f'configs/okvis2/{dataset}_{sequence}_vio.yaml'))
+                                    self.assertTrue(Path(receipt['environment']['SVO_PRO_IMU_FILE']).is_file())
                             else:
                                 for source, generated in zip(receipt['sources'], receipt['files']):
                                     original = parsed(self.root / source['path'])

@@ -145,6 +145,8 @@ def prepare(root, algorithm, dataset, parent_sequence, mode, parameters, destina
     if algorithm in ('svo_pro', 'mast3r_fusion'):
         path = output('noise.json', json_text(document(algorithm, dataset, parameters)))
         env['EXPERIMENT_IMU_NOISE'] = path
+        if algorithm == 'svo_pro':
+            env['SVO_PRO_IMU_FILE'] = str(source(f'configs/okvis2/{dataset}_{parent_sequence}_vio.yaml'))
     elif algorithm == 'basalt':
         data = json.loads(source(f'configs/basalt/{dataset}_calib.json').read_text())
         for key, field in zip(KEYS, BASALT_KEYS):

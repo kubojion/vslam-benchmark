@@ -32,6 +32,11 @@ source "$WS/scripts/_paths.sh"
 canonicalize_dataset "$DATASET"
 resolve_run_type "$RUN_TYPE"
 
+if [[ "$USE_LC" == true && -f "$WS/results/.locks/airslam-refinement-quarantine.json" ]]; then
+    echo '[airslam] refinement is quarantined after two host restarts; inspect the saved incident before any retry' >&2
+    exit 2
+fi
+
 case "$RUN_TYPE" in
     vo)      LAUNCH_FILE="vo_euroc.launch";       CFG_TAG="vo" ;;
     vo-lc)   LAUNCH_FILE="vo_euroc.launch";       CFG_TAG="vo_lc" ;;
