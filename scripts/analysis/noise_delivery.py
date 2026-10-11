@@ -36,6 +36,26 @@ def verify_native_noise(run, parameters):
     return native
 
 
+def timing_log_evidence(log):
+    """Count completed-feed timing lines despite interleaved Ceres/glog stderr.
+
+    The native counter and exact sensor receipts remain authoritative. This
+    redundant log check still requires a complete timing message: remove only
+    recognized, newline-terminated glog messages from an in-memory copy. Never
+    accept a timing prefix alone or change the preserved estimator log.
+    """
+    pattern = r'\[TIME\]: [0-9.eE+-]+ seconds total'
+    without_warning, warnings = re.subn(
+        r'WARNING: Logging before InitGoogleLogging\(\) is written to STDERR\r?\n', '', log)
+    normalized, messages = re.subn(
+        r'[IWEF]\d{4} \d{2}:\d{2}:\d{2}\.\d+ +\d+ '
+        r'[A-Za-z0-9_.-]+:\d+\] [^\r\n]*\r?\n', '', without_warning)
+    return dict(raw_complete_messages=len(re.findall(pattern, log)),
+                complete_messages=len(re.findall(pattern, normalized)),
+                glog_warnings_removed=warnings, glog_messages_removed=messages,
+                raw_log_sha256=hashlib.sha256(log.encode()).hexdigest())
+
+
 def audit_openvins(run, sequence, *, allowed_pending_tail, require_exact=False, require_end_of_stream=False,
                    require_flow_control=False):
     """Separate receipt from processing with a fixed or native-eligibility tail policy.
@@ -74,8 +94,8 @@ def audit_openvins(run, sequence, *, allowed_pending_tail, require_exact=False, 
         checks['bounded_pending_tail'] = (isinstance(allowed_pending_tail, int)
             and 0 <= received['camera_remaining'] <= allowed_pending_tail)
     log = (run / 'openvins_node.log').read_text(errors='replace')
-    feeds = len(re.findall(r'\[TIME\]: [0-9.eE+-]+ seconds total', log))
-    checks['native_log_matches_receipt'] = feeds == received['camera_processed']
+    log_evidence = timing_log_evidence(log)
+    checks['native_log_matches_receipt'] = log_evidence['complete_messages'] == received['camera_processed']
     exact_path = run / 'openvins_input_receipt.json.imu-stamps.txt'
     exact = None
     if require_exact or exact_path.exists():
@@ -159,6 +179,7 @@ def audit_openvins(run, sequence, *, allowed_pending_tail, require_exact=False, 
                 and player.get('player_error') is None)
     return dict(schema=1, passed=all(checks.values()), checks=checks, native=received,
                 publisher=published, expected=dict(imu=imu, stereo=left),
+                timing_log_evidence=log_evidence,
                 exact_receipt=exact, exact_required=require_exact,
                 allowed_pending_tail=allowed_pending_tail,
                 end_of_stream_required=require_end_of_stream,

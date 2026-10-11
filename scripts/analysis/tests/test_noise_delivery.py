@@ -47,6 +47,48 @@ class DeliveryChecks(unittest.TestCase):
     def audit(self, allowed=0):
         return noise_delivery.audit_openvins(self.run, self.sequence, allowed_pending_tail=allowed)
 
+    def test_glog_interleaving_preserves_complete_feed_count(self):
+        original = ('[TIME]: 0.0022 sWARNING: Logging before InitGoogleLogging() is written to STDERR\n'
+                    'E1011 14:29:37.108036   549 covariance_impl.cc:651] Jacobian matrix is rank deficient.\n'
+                    'econds total (447.8 hz, 0.20 ms behind)\n'
+                    '[TIME]: 0.01 seconds total\n')
+        path = self.run / 'openvins_node.log'
+        path.write_text(original)
+        report = self.audit()
+        self.assertTrue(report['passed'])
+        counts = report['timing_log_evidence']
+        self.assertEqual(counts['raw_complete_messages'], 1)
+        self.assertEqual(counts['complete_messages'], 2)
+        self.assertEqual(counts['glog_warnings_removed'], 1)
+        self.assertEqual(counts['glog_messages_removed'], 1)
+        self.assertEqual(path.read_text(), original)
+
+    def test_incomplete_or_unknown_split_message_still_fails(self):
+        for text in ('[TIME]: 0.01 seconds total\n[TIME]: 0.02 s',
+                     '[TIME]: 0.01 seconds total\n[TIME]: 0.02 sUNKNOWN WARNING\neconds total\n'):
+            (self.run / 'openvins_node.log').write_text(text)
+            self.assertFalse(self.audit()['checks']['native_log_matches_receipt'])
+
+    def test_duplicate_feed_messages_still_fail(self):
+        (self.run / 'openvins_node.log').write_text('[TIME]: 0.01 seconds total\n' * 3)
+        self.assertFalse(self.audit()['checks']['native_log_matches_receipt'])
+
+    def test_other_debug_timing_messages_are_not_feed_calls(self):
+        with (self.run / 'openvins_node.log').open('a') as stream:
+            stream.write('[TIME]: 0.01 seconds for tracking\n[TIME]: 0.02 sec total for initialization\n')
+        self.assertTrue(self.audit()['passed'])
+
+    def test_log_repair_cannot_hide_sensor_loss(self):
+        (self.run / 'openvins_node.log').write_text(
+            '[TIME]: 0.01 seconds total\n'
+            '[TIME]: 0.02 sE1011 14:29:37.108036   549 covariance_impl.cc:651] warning\neconds total\n')
+        self.received['imu_received'] -= 1
+        self.write_receipt()
+        report = self.audit()
+        self.assertTrue(report['checks']['native_log_matches_receipt'])
+        self.assertFalse(report['checks']['imu_count'])
+        self.assertFalse(report['passed'])
+
     def test_full_receipt_passes(self):
         self.assertTrue(self.audit()['passed'])
 
