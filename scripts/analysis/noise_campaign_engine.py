@@ -62,7 +62,11 @@ def identities(study, label, sequence, mode, repetition, phase):
     if not CAMPAIGN:
         raise RuntimeError('Campaign not configured')
     key = '__'.join((phase, study, label, sequence, mode, 'rep' + str(repetition)))
-    run_id = 2_000_000_000 + int(hashlib.sha256((CAMPAIGN + ':' + key).encode()).hexdigest()[:10], 16)
+    revision = execution_policy.reviewed_attempt_revision(PROTOCOL or {}, key)
+    physical_key = CAMPAIGN + ':' + key
+    if revision is not None:
+        physical_key += ':revision=' + revision['revision']
+    run_id = 2_000_000_000 + int(hashlib.sha256(physical_key.encode()).hexdigest()[:10], 16)
     # Common random numbers across noise candidates where the native algorithm
     # exposes a seed. NumPy's legacy seed interface requires an unsigned 32-bit value.
     seed_key = ':'.join((CAMPAIGN, study, sequence, phase, str(repetition)))
@@ -139,12 +143,19 @@ def verify_transport(run, spec, sequence, returncode):
 def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
     key, run_id, seed = identities(spec['id'], label, sequence, mode, repetition, phase)
     record_path = ART / 'attempts' / (key + '.json')
+    revision = execution_policy.reviewed_attempt_revision(PROTOCOL, key)
+    if revision is not None:
+        predecessor = json.loads(Path(revision['record']).read_text())
+        if predecessor['params'] != parameters:
+            raise RuntimeError('Replacement parameters differ from the reviewed attempt: ' + key)
     if record_path.exists():
         old = json.loads(record_path.read_text())
         if old.get('state') != 'finished':
             raise RuntimeError('Incomplete attempt requires explicit recovery: ' + key)
         if old['params'] != parameters or old.get('campaign_id') != CAMPAIGN:
             raise RuntimeError('Cached observation identity differs: ' + key)
+        if old.get('physical_attempt_revision') != revision:
+            raise RuntimeError('Cached physical attempt belongs to another revision: ' + key)
         return old
     if (ART / 'STOP_AFTER_CURRENT').exists():
         raise InterruptedError('Stop requested at an attempt boundary')
@@ -193,9 +204,12 @@ def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
                       sequence=sequence, mode=mode, repetition=repetition, run=str(run),
                       candidate=candidate, command=command, timeout_limit_s=timeout,
                       native_seed=seed if spec['algorithm'] == 'mast3r_fusion' else None)
+        if revision is not None:
+            record['physical_attempt_revision'] = revision
         base.write(record_path, record)
         base.event('attempt_started', key=key, run=str(run))
-        log = ART / 'wrapper-logs' / (key + '.log')
+        log_name = key + ('__physical_' + revision['revision'] if revision is not None else '')
+        log = ART / 'wrapper-logs' / (log_name + '.log')
         log.parent.mkdir(parents=True, exist_ok=True)
         started = time.monotonic()
         with log.open('xb') as stream:

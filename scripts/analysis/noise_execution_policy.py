@@ -11,6 +11,37 @@ import sys
 import time
 
 
+def reviewed_attempt_revision(protocol, key):
+    """Allow only an explicitly reviewed replacement of a failed physical attempt.
+
+    A replacement keeps the logical candidate/repetition and native seed, but
+    receives a different physical run directory. The archived record is required
+    evidence, never deleted or silently reclassified as a successful run.
+    """
+    item = protocol.get('physical_attempt_revisions', {}).get(key)
+    if item is None:
+        return None
+    if (set(item) != {'revision', 'record', 'record_sha256', 'review', 'review_sha256'}
+            or not isinstance(item['revision'], str)
+            or re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,63}', item['revision']) is None):
+        raise RuntimeError('Invalid reviewed attempt revision: ' + key)
+    evidence = {}
+    for name in ('record', 'review'):
+        path = Path(item[name])
+        if (not path.is_absolute() or not path.is_file()
+                or hashlib.sha256(path.read_bytes()).hexdigest() != item[name+'_sha256']):
+            raise RuntimeError('Replacement evidence missing or changed: ' + key)
+        evidence[name] = json.loads(path.read_text())
+    old, review = evidence['record'], evidence['review']
+    if (old.get('key') != key or old.get('state') != 'finished'
+            or not old.get('returncode') or not old.get('result', {}).get('failed')):
+        raise RuntimeError('Replacement must reference the reviewed failed attempt: ' + key)
+    if (review.get('revision') != item['revision']
+            or key not in review.get('resource_censored_attempts', [])):
+        raise RuntimeError('Attempt is absent from resource amendment review: ' + key)
+    return item
+
+
 def controller_environment():
     """Record interpreter and relevant package versions, not a dependency hash closure."""
     return dict(python=sys.version, executable=str(Path(sys.executable).resolve()),
