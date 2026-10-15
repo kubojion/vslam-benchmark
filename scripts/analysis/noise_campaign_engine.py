@@ -17,6 +17,7 @@ import time
 
 import noise_adapters as adapters
 import noise_delivery
+import noise_voxel_delivery
 import noise_cleanup
 import noise_execution_policy as execution_policy
 import noise_pilot as base
@@ -110,14 +111,10 @@ def verify_transport(run, spec, sequence, returncode):
         if returncode == 0 and not (published.is_file() and received.is_file()):
             raise RuntimeError('Successful Voxel attempt lacks input-delivery evidence: ' + str(run))
         if published.exists() and received.exists():
-            tx, rx = json.loads(published.read_text()), json.loads(received.read_text())
-            evidence = dict(published=tx, received=rx)
-            for sent, got in (('camera_frames_published', 'stereo_received'),
-                              ('imu_messages_published', 'imu_received')):
-                if tx[sent] != rx[got]:
-                    raise RuntimeError('Voxel input delivery mismatch: ' + str(run))
-            if returncode == 0 and rx['stereo_queued_after_rate_gate'] != rx['stereo_received']:
-                raise RuntimeError('Voxel rate gate dropped received camera frames: ' + str(run))
+            evidence = noise_voxel_delivery.audit(run, ROOT / 'datasets' / spec['dataset'] / sequence)
+            base.write(run / 'native_delivery_audit.json', evidence)
+            if not evidence['passed']:
+                raise RuntimeError('Voxel input delivery or native rate gate audit failed: ' + str(run))
     elif algorithm == 'openvins':
         # A player/EOF failure can give the wrapper a nonzero exit while the
         # estimator itself exits normally. Audit that case too, so transport

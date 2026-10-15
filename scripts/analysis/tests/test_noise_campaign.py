@@ -7,6 +7,7 @@ import sys
 import tempfile
 from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
 
 ART = Path(__file__).resolve().parent
 WORK = Path(__file__).resolve().parents[3]
@@ -105,20 +106,30 @@ class SearchChecks(unittest.TestCase):
         for objective in ('mean', 'mean_worst'):
             self.assertLess(policy.combined(success, objective), policy.combined(failure, objective))
 
-    def test_voxel_success_requires_native_receipts_and_no_rate_drops(self):
+    def test_voxel_success_requires_receipts_and_expected_native_sampling(self):
         run = self.root / 'voxel'
         run.mkdir()
-        spec = dict(algorithm='voxel_svio')
+        spec = dict(algorithm='voxel_svio', dataset='synthetic')
         with self.assertRaisesRegex(RuntimeError, 'lacks input-delivery evidence'):
             execution.verify_transport(run, spec, 'unused', 0)
-        write(run / 'transport_stats.json', dict(camera_frames_published=10, imu_messages_published=100))
-        write(run / 'native/input_receipt.json', dict(stereo_received=10, imu_received=100,
-                                                      stereo_queued_after_rate_gate=9))
-        with self.assertRaisesRegex(RuntimeError, 'rate gate dropped'):
-            execution.verify_transport(run, spec, 'unused', 0)
-        write(run / 'native/input_receipt.json', dict(stereo_received=10, imu_received=100,
-                                                      stereo_queued_after_rate_gate=10))
-        self.assertIn('received', execution.verify_transport(run, spec, 'unused', 0))
+        dataset = self.root / 'datasets/synthetic/unused'
+        for name in ('cam0','cam1','imu0'):
+            path = dataset / 'mav0' / name / 'data.csv'
+            path.parent.mkdir(parents=True)
+            path.write_text('0,data\n33000000,data\n100000000,data\n')
+        write(run / 'transport_stats.json', dict(camera_frames_expected=3,
+            camera_frames_published=3, imu_messages_published=3, camera_read_failures=0))
+        receipt = dict(stereo_received=3, imu_received=3, stereo_queued_after_rate_gate=2,
+            first_camera_s=0., last_camera_s=.1, first_imu_s=0., last_imu_s=.1)
+        write(run / 'native/input_receipt.json', receipt)
+        (run / 'native/parameter_list.txt').write_text('track_frequency: 20.0\n')
+        (run / 'effective_ros_parameters.yaml').write_text('odometry_parameter:\n  track_frequency: 20.0\n')
+        with patch.object(execution, 'ROOT', self.root):
+            self.assertTrue(execution.verify_transport(run, spec, 'unused', 0)['passed'])
+            receipt['stereo_queued_after_rate_gate'] = 1
+            write(run / 'native/input_receipt.json', receipt)
+            with self.assertRaisesRegex(RuntimeError, 'native rate gate audit failed'):
+                execution.verify_transport(run, spec, 'unused', 0)
 
     def test_scheduler_enforces_independent_resource_and_algorithm_limits(self):
         schedule = dict(resource_class={'orbslam3': 'cpu', 'okvis2': 'cpu', 'okvis2x': 'cpu',
