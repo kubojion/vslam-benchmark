@@ -64,6 +64,11 @@ TRACKED_ENV = (
     "OPENVINS_CONFIG_DIR",
     "VOXEL_SVIO_CONFIG",
     "SVO_PRO_IMU_NOISE",
+    # OpenVINS input-delivery policy (production defaults are set by run_openvins.sh).
+    "OPENVINS_IMU_RELIABILITY",
+    "OPENVINS_END_OF_STREAM_DRAIN",
+    "OPENVINS_FLOW_CONTROL",
+    "OPENVINS_TRANSPORT_PROFILE",
 )
 MEASUREMENT_MODES = ("max_throughput", "paced", "transport")
 
