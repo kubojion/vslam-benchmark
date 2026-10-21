@@ -12,6 +12,8 @@ from pathlib import Path
 
 RULE = Path(__file__).resolve().parents[2] / 'configs/sensors/imu-noise-rule.json'
 EXTENSION = RULE.with_name('imu-noise-rule-20261006.json')
+# Rosario/Citrus (2026-10-06), then Sielinko's engine-off static calibration (2026-10-21).
+EXTENSIONS = (EXTENSION, RULE.with_name('imu-noise-rule-20261021.json'))
 
 
 def load(path=None):
@@ -21,19 +23,28 @@ def load(path=None):
     if rule.get('schema') != 1 or rule.get('rule') != 'authors_operating_point':
         raise ValueError(f'unsupported IMU noise rule: {path}')
     if extend:
-        extra = json.loads(EXTENSION.read_text())
-        if extra['schema'] != 1 or extra['rule'] != rule['rule']:
-            raise ValueError('unsupported IMU noise rule extension')
-        for dataset in extra['datasets']:
-            if dataset in rule['datasets']:
-                raise ValueError('duplicate noise policy dataset')
-            source = extra['dataset_allan'][dataset]
-            raw = (RULE.parents[2] / source['source']).read_bytes()
-            if hashlib.sha256(raw).hexdigest() != source['sha256']:
-                raise ValueError('IMU calibration source changed: ' + dataset)
-            rule['datasets'].append(dataset)
-            rule['dataset_allan'][dataset] = source
+        for extension in EXTENSIONS:
+            extra = json.loads(extension.read_text())
+            if extra['schema'] != 1 or extra['rule'] != rule['rule']:
+                raise ValueError('unsupported IMU noise rule extension')
+            for dataset in extra['datasets']:
+                if dataset in rule['datasets']:
+                    raise ValueError('duplicate noise policy dataset')
+                source = extra['dataset_allan'][dataset]
+                raw = (RULE.parents[2] / source['source']).read_bytes()
+                if hashlib.sha256(raw).hexdigest() != source['sha256']:
+                    raise ValueError('IMU calibration source changed: ' + dataset)
+                rule['datasets'].append(dataset)
+                rule['dataset_allan'][dataset] = source
     return rule
+
+
+def extension_for(dataset):
+    """The extension file that adds `dataset` to the rule, or None for the base rule's datasets."""
+    for extension in EXTENSIONS:
+        if dataset in json.loads(extension.read_text())['datasets']:
+            return extension
+    return None
 
 
 def applies(dataset, rule=None):
@@ -62,9 +73,12 @@ def noise(algorithm, dataset, rule=None):
 
 def record(path=RULE, *, dataset=None):
     path = Path(path)
-    if dataset in ('rosariov2', 'citrusfarm'):
+    # Only the extension that defines the dataset enters its record, so adding a
+    # later extension leaves earlier datasets' records (and staged caches) unchanged.
+    extension = extension_for(dataset) if dataset else None
+    if extension is not None:
         rule = load()
-        files = [record(path), record(EXTENSION)]
+        files = [record(path), record(extension)]
         for item in files:
             item['path'] = str(Path(item['path']).relative_to(RULE.parents[2]))
         source = rule['dataset_allan'][dataset]

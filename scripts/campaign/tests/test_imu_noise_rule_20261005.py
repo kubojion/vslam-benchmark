@@ -168,6 +168,7 @@ def test_mast3r_fusion_stage_applies_the_rule_only_on_rule_datasets(tmp_path, da
 
 
 def test_rule_applies_to_calibrated_field_datasets():
-    assert RULE['datasets'] == ['hortimulti', 'rosariov2', 'citrusfarm']
-    assert not rule_module.applies('euroc_mav') and not rule_module.applies('zed2i')
+    # Sielinko (zed2i) joined with its engine-off static calibration on 2026-10-21.
+    assert RULE['datasets'] == ['hortimulti', 'rosariov2', 'citrusfarm', 'zed2i']
+    assert not rule_module.applies('euroc_mav') and rule_module.applies('zed2i')
     assert set(RULE['authors_euroc']) == set(AUTHOR_FILES)

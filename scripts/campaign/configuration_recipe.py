@@ -145,6 +145,11 @@ def config_recipe(repo, cell):
         selected('imu_noise_rule',root/'sensors/imu-noise-rule.json')
         selected('imu_noise_rule_extension',root/'sensors/imu-noise-rule-20261006.json')
         operations.append('Rule C: published dataset Allan sigmas x this estimator EuRoC ratios; SVO/Fusion stages override inherited noise, Fusion in both ms_opt and global_opt')
+    if dataset == 'zed2i' and mode in ('vio', 'vio-lc'):
+        selected('imu_noise_rule',root/'sensors/imu-noise-rule.json')
+        selected('imu_noise_rule_extension',root/'sensors/imu-noise-rule-20261021.json')
+        selected('imu_noise_rule_source',root/'sensors/sources/zed2i/allan-20261018.json')
+        operations.append('Rule C: Sielinko engine-off static Allan sigmas x this estimator EuRoC ratios; SVO/Fusion stages override inherited noise, Fusion in both ms_opt and global_opt')
     selected('runner_with_embedded_parameters',runner)
     recipe=dict(schema=1,source_files=files,planned_effective_inputs=effective,operations=operations,
         selection_errors=errors,scope='default source selection and deterministic materialization identity only',

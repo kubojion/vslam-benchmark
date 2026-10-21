@@ -81,10 +81,10 @@
         1.0
       ]
     ],
-    "gyroscope_noise_density": 0.0195,
-    "accelerometer_noise_density": 0.18,
-    "gyroscope_random_walk": 0.0007400196,
-    "accelerometer_random_walk": 0.0202,
+    "gyroscope_noise_density": 0.00015,
+    "accelerometer_noise_density": 0.0011,
+    "gyroscope_random_walk": 2.1e-06,
+    "accelerometer_random_walk": 3.5e-05,
     "frequency_hz": 100.0
   },
   "camera_imu_time_offset_s": 0.0,
@@ -93,12 +93,12 @@
   "sources": [
     {
       "path": "configs/orbslam3/zed2i_field1_110426_full_10fps_q90_stereo_inertial.yaml",
-      "sha256": "0fb9901b2788b3bfb178d9373ac9f220651bb45f66c1357ea4fc46f46ff0e12e",
+      "sha256": "ee42b84d832e006ff9dd41dd3c5a47d236af34384ccbbca51fb159233469397e",
       "fields": "camera model, baseline or stereo transform, T_imu_cam0, IMU noise, rate"
     },
     {
       "path": "configs/basalt/zed2i_calib.json",
-      "sha256": "d6fb226c9c48045af5dc8df9ab96d6686e56d2acdf649c7755db387be0c2f44b",
+      "sha256": "e98b918e2a56e3b8076e8344ecd90ebc990ba3cb681bdc481169de846acef0d8",
       "fields": "camera_imu_time_offset_s (cam_time_offset_ns)"
     }
   ]
