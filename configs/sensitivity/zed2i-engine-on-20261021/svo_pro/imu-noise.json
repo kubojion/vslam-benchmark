@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "algorithm": "svo_pro",
+  "dataset": "zed2i",
+  "units": "continuous_time_standard_deviation",
+  "parameters": {
+    "gyroscope_noise_density": 0.02263083451202263,
+    "accelerometer_noise_density": 0.08,
+    "gyroscope_random_walk": 0.003248594853813231,
+    "accelerometer_random_walk": 0.0011666666666666665
+  }
+}

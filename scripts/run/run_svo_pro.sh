@@ -74,12 +74,24 @@ set -u
 python3 "$WS/scripts/setup/build_sensor_profiles.py" --repo "$WS" --check > /dev/null \
     || { echo "[svo_pro] ERROR: sensor profiles are stale or inconsistent" >&2; exit 2; }
 
+# Optional labelled sensitivity profile: a noise document under configs/ that replaces the
+# four IMU noise values after Rule C. Unset, the stage key and the stage are unchanged.
+NOISE_ARGS=()
+STAGE_KEY_FILES=("$SENSOR" "$IMU_FILE")
+if [[ -n "${SVO_PRO_IMU_NOISE:-}" ]]; then
+    SVO_PRO_IMU_NOISE=$(realpath -e "$SVO_PRO_IMU_NOISE")
+    [[ "$SVO_PRO_IMU_NOISE" == "$WS/configs/"* ]] \
+        || { echo "[svo_pro] ERROR: SVO_PRO_IMU_NOISE must be a file under $WS/configs" >&2; exit 2; }
+    NOISE_ARGS=(--noise-override "$SVO_PRO_IMU_NOISE")
+    STAGE_KEY_FILES+=("$SVO_PRO_IMU_NOISE")
+fi
+
 # One prepared folder per (sequence, sensor profile, IMU-noise source); reused by every repetition.
-STAGE_KEY=$(cat "$SENSOR" "$IMU_FILE" | sha256sum | cut -c1-16)
+STAGE_KEY=$(cat "${STAGE_KEY_FILES[@]}" | sha256sum | cut -c1-16)
 STAGE="$WS/results/.cache/svo-pro-stage/$DATASET/$SEQ/$STAGE_KEY"
 mkdir -p "$(dirname "$STAGE")"
 python3 "$WS/scripts/run/_svo_pro_stage.py" stage --sequence "$SEQ_DIR" --sensor "$SENSOR" \
-    --imu-params "$IMU_SRC" --out "$STAGE"
+    --imu-params "$IMU_SRC" --out "$STAGE" "${NOISE_ARGS[@]}"
 mapfile -t STAGE_MOUNTS < <(python3 -c "
 import json
 for m in json.load(open('$STAGE/stage.json'))['mounts']: print('--volume'); print(f'{m}:{m}:ro')")
@@ -129,6 +141,7 @@ PROV_ARGS=(
     --param "time_limit_s=$TIME_LIMIT_S"
     --container-image "$SVO_IMAGE"
 )
+[[ -n "${SVO_PRO_IMU_NOISE:-}" ]] && PROV_ARGS+=(--artifact "imu_noise_override=$SVO_PRO_IMU_NOISE")
 
 # The container has its own network namespace, so its ROS master cannot be seen
 # by, or collide with, any other run on the host.

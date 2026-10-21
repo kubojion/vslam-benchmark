@@ -1,0 +1,105 @@
+{
+    "value0": {
+        "_comment": "ZED2i HD1080 rectified stereo. Intrinsics/baseline confirmed from two independent sources: dataset manifest.json camera_info AND the ZED factory calibration for this unit (/usr/local/zed/settings/SN30291010.conf, Baseline=119.844mm). Images are pre-rectified (distortion all zeros).",
+        "_comment_extrinsic": "Recovered SN30291010 factory transform, SDK IMAGE -> recorded ROS IMU axes; see docs/zed-preparation-20261002.md. July CameraInfo retained.",
+        "T_imu_cam": [
+            {
+                "px": 0.0021688236148721765,
+                "py": 0.02304638761031235,
+                "pz": -0.0001308044739260186,
+                "qx": 0.49524061588139223,
+                "qy": -0.5003403129076863,
+                "qz": 0.5032705959026513,
+                "qw": -0.5011137704759748
+            },
+            {
+                "px": 0.0013007241505751522,
+                "py": -0.09679618841246951,
+                "pz": -0.0004873185099958028,
+                "qx": 0.49524061588139223,
+                "qy": -0.5003403129076863,
+                "qz": 0.5032705959026513,
+                "qw": -0.5011137704759748
+            }
+        ],
+        "intrinsics": [
+            {
+                "camera_type": "pinhole",
+                "intrinsics": {
+                    "fx": 1118.6947021484375,
+                    "fy": 1118.6947021484375,
+                    "cx": 964.8566284179688,
+                    "cy": 559.3102416992188
+                }
+            },
+            {
+                "camera_type": "pinhole",
+                "intrinsics": {
+                    "fx": 1118.6947021484375,
+                    "fy": 1118.6947021484375,
+                    "cx": 964.8566284179688,
+                    "cy": 559.3102416992188
+                }
+            }
+        ],
+        "resolution": [
+            [
+                1920,
+                1080
+            ],
+            [
+                1920,
+                1080
+            ]
+        ],
+        "calib_accel_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "calib_gyro_bias": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        "imu_update_rate": 100.0,
+        "accel_noise_std": [
+            0.16,
+            0.16,
+            0.16
+        ],
+        "gyro_noise_std": [
+            0.005318246110325319,
+            0.005318246110325319,
+            0.005318246110325319
+        ],
+        "accel_bias_std": [
+            1.1666666666666665e-05,
+            1.1666666666666665e-05,
+            1.1666666666666665e-05
+        ],
+        "gyro_bias_std": [
+            1.0828649512710772e-05,
+            1.0828649512710772e-05,
+            1.0828649512710772e-05
+        ],
+        "cam_time_offset_ns": 0,
+        "vignette": [],
+        "_comment_noise": "Sensitivity profile zed2i-engine-on-20261021, NOT Rule C: engine-on standstill white densities and engine-off random walks x Basalt EuRoC ratios."
+    }
+}

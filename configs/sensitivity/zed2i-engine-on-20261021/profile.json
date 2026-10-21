@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "name": "zed2i-engine-on-20261021",
+  "label": "Sielinko operating-idle (engine-on) IMU noise sensitivity",
+  "not_rule_c": true,
+  "counts_toward_rule_c_cells": false,
+  "dataset": "zed2i",
+  "sequence": "field1_110426_full_10fps_q90",
+  "modes": [
+    "vio"
+  ],
+  "decided": "2026-10-21 (user): run as a labelled sensitivity at N=1, CPU estimators only",
+  "reference": {
+    "gyroscope_noise_density": 0.0032,
+    "accelerometer_noise_density": 0.02,
+    "gyroscope_random_walk": 2.1e-06,
+    "accelerometer_random_walk": 3.5e-05
+  },
+  "reference_source": {
+    "path": "configs/sensors/sources/zed2i/allan-20261018.json",
+    "sha256": "ebe217bd2184e5209742f035ed96884a1e0bc8aaaa23ec7db02bbb6a4184db45"
+  },
+  "scaling": "Rule C factors: authors EuRoC value / EuRoC Kalibr value per quantity (configs/sensors/imu-noise-rule.json)",
+  "environment_paths": "relative to the repository root; set them as absolute paths ($REPO/<path>)",
+  "estimators": {
+    "orbslam3": {
+      "environment": {
+        "ORBSLAM3_CONFIG": "configs/sensitivity/zed2i-engine-on-20261021/orbslam3/zed2i_field1_110426_full_10fps_q90_stereo_inertial.yaml"
+      },
+      "noise": {
+        "gyroscope_noise_density": 0.0032,
+        "accelerometer_noise_density": 0.02,
+        "gyroscope_random_walk": 2.1e-06,
+        "accelerometer_random_walk": 3.5e-05
+      },
+      "files": {
+        "configs/sensitivity/zed2i-engine-on-20261021/orbslam3/zed2i_field1_110426_full_10fps_q90_stereo_inertial.yaml": "700e9049f56b685786f7da5bc9372dbbaba473465cfef9451f6c9a2c6d2494ef"
+      },
+      "copied_from_rule_c": {
+        "configs/orbslam3/zed2i_field1_110426_full_10fps_q90_stereo_inertial.yaml": "ee42b84d832e006ff9dd41dd3c5a47d236af34384ccbbca51fb159233469397e"
+      }
+    },
+    "okvis2": {
+      "environment": {
+        "OKVIS2_CONFIG": "configs/sensitivity/zed2i-engine-on-20261021/okvis2/zed2i_field1_110426_full_10fps_q90_vio.yaml"
+      },
+      "noise": {
+        "gyroscope_noise_density": 0.03771805752003773,
+        "accelerometer_noise_density": 0.2,
+        "gyroscope_random_walk": 2.1657299025421543e-05,
+        "accelerometer_random_walk": 0.00023333333333333333
+      },
+      "files": {
+        "configs/sensitivity/zed2i-engine-on-20261021/okvis2/zed2i_field1_110426_full_10fps_q90_vio.yaml": "caeb3201cb604a43a50eb44f78653b68608492082e2809e1345946001fc9728f"
+      },
+      "copied_from_rule_c": {
+        "configs/okvis2/zed2i_field1_110426_full_10fps_q90_vio.yaml": "47ea528dd76b0a24d49507937ed7f9008fe1489360517d4cce027c46fd44a657"
+      }
+    },
+    "okvis2x": {
+      "environment": {
+        "OKVIS2X_CONFIG": "configs/sensitivity/zed2i-engine-on-20261021/okvis2x/zed2i_field1_110426_full_10fps_q90_vio.yaml"
+      },
+      "noise": {
+        "gyroscope_noise_density": 0.03771805752003773,
+        "accelerometer_noise_density": 0.2,
+        "gyroscope_random_walk": 2.1657299025421543e-05,
+        "accelerometer_random_walk": 0.00023333333333333333
+      },
+      "files": {
+        "configs/sensitivity/zed2i-engine-on-20261021/okvis2x/zed2i_field1_110426_full_10fps_q90_vio.yaml": "09a0d49a106ebfd84e8c476800436fba8cda31924e92d6916bbcc1786db632eb"
+      },
+      "copied_from_rule_c": {
+        "configs/okvis2x/zed2i_field1_110426_full_10fps_q90_vio.yaml": "c51f9497ea3957b306cf1002bdff33889b610a9e0d321318fba346d11e6dce77"
+      }
+    },
+    "basalt": {
+      "environment": {
+        "BASALT_CALIBRATION": "configs/sensitivity/zed2i-engine-on-20261021/basalt/zed2i_calib.json"
+      },
+      "noise": {
+        "gyroscope_noise_density": 0.005318246110325319,
+        "accelerometer_noise_density": 0.16,
+        "gyroscope_random_walk": 1.0828649512710772e-05,
+        "accelerometer_random_walk": 1.1666666666666665e-05
+      },
+      "files": {
+        "configs/sensitivity/zed2i-engine-on-20261021/basalt/zed2i_calib.json": "3d2e5f4ffccb7b873463a1532a32c826effced92989cddf1523f5d2a85601c6a"
+      },
+      "copied_from_rule_c": {
+        "configs/basalt/zed2i_calib.json": "e98b918e2a56e3b8076e8344ecd90ebc990ba3cb681bdc481169de846acef0d8"
+      }
+    },
+    "voxel_svio": {
+      "environment": {
+        "VOXEL_SVIO_CONFIG": "configs/sensitivity/zed2i-engine-on-20261021/voxel_svio/zed2i.yaml"
+      },
+      "noise": {
+        "gyroscope_noise_density": 0.0032,
+        "accelerometer_noise_density": 0.02,
+        "gyroscope_random_walk": 2.1e-06,
+        "accelerometer_random_walk": 3.5e-05
+      },
+      "files": {
+        "configs/sensitivity/zed2i-engine-on-20261021/voxel_svio/zed2i.yaml": "59ccd8391401833a50a278ef7cc261567ba442b563b0d77d032b7e7ff5ec0906"
+      },
+      "copied_from_rule_c": {
+        "configs/voxel_svio/zed2i.yaml": "635e25e9c44f2ed31f1a0ab36ea09099c24ff0d6a798f761a07178f331a4b5c2"
+      }
+    },
+    "openvins": {
+      "environment": {
+        "OPENVINS_CONFIG_DIR": "configs/sensitivity/zed2i-engine-on-20261021/openvins/zed2i"
+      },
+      "noise": {
+        "gyroscope_noise_density": 0.0032,
+        "accelerometer_noise_density": 0.02,
+        "gyroscope_random_walk": 2.1e-06,
+        "accelerometer_random_walk": 3.5e-05
+      },
+      "files": {
+        "configs/sensitivity/zed2i-engine-on-20261021/openvins/zed2i/estimator_config.yaml": "8b02730c5c03074001c5f2d8db6a762123f00bd68bf49aa173bffa41b2c90392",
+        "configs/sensitivity/zed2i-engine-on-20261021/openvins/zed2i/kalibr_imu_chain.yaml": "b2460a2e5264eff9389d483db6a33a0329367f5e7acaa8f0022dd24d0d646ab4",
+        "configs/sensitivity/zed2i-engine-on-20261021/openvins/zed2i/kalibr_imucam_chain.yaml": "a0252615b6ea461087bd94ee606278970f24472b67c3f39af2712cbc3624e1ba"
+      },
+      "copied_from_rule_c": {
+        "configs/openvins/zed2i/estimator_config.yaml": "8b02730c5c03074001c5f2d8db6a762123f00bd68bf49aa173bffa41b2c90392",
+        "configs/openvins/zed2i/kalibr_imu_chain.yaml": "0eb7fbf3381653d8f5b2193221cf2750da8b073353d52e588512155f4ba4346e",
+        "configs/openvins/zed2i/kalibr_imucam_chain.yaml": "a0252615b6ea461087bd94ee606278970f24472b67c3f39af2712cbc3624e1ba"
+      }
+    },
+    "svo_pro": {
+      "environment": {
+        "SVO_PRO_IMU_NOISE": "configs/sensitivity/zed2i-engine-on-20261021/svo_pro/imu-noise.json"
+      },
+      "noise": {
+        "gyroscope_noise_density": 0.02263083451202263,
+        "accelerometer_noise_density": 0.08,
+        "gyroscope_random_walk": 0.003248594853813231,
+        "accelerometer_random_walk": 0.0011666666666666665
+      },
+      "files": {
+        "configs/sensitivity/zed2i-engine-on-20261021/svo_pro/imu-noise.json": "bcfcb5287dfaa2dd98400a2de398969bd4e60c1c81bd02695cfdb1969190a69f"
+      },
+      "copied_from_rule_c": {}
+    }
+  }
+}

@@ -59,6 +59,11 @@ TRACKED_ENV = (
     "GT_OVERRIDE",
     "AIRSLAM_LAUNCH",
     "GNSS_VARIANT",
+    # Labelled sensitivity profiles (configs/sensitivity/).
+    "BASALT_CALIBRATION",
+    "OPENVINS_CONFIG_DIR",
+    "VOXEL_SVIO_CONFIG",
+    "SVO_PRO_IMU_NOISE",
 )
 MEASUREMENT_MODES = ("max_throughput", "paced", "transport")
 

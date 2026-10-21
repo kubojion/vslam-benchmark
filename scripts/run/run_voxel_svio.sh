@@ -62,6 +62,11 @@ CFG_HOST_SEQ="$WS/configs/voxel_svio/${DATASET}_${SEQ}.yaml"
 CFG_HOST_DSET="$WS/configs/voxel_svio/${DATASET}.yaml"
 if [[ -n "${ROSARIO_VIO_PROFILE:-}" ]]; then
     CFG_HOST="$WS/configs/candidates/rosario-vio-20261002/$ROSARIO_VIO_PROFILE/rosariov2.yaml"
+elif [[ -n "${VOXEL_SVIO_CONFIG:-}" ]]; then
+    # Labelled sensitivity profile; the container sees the whole configs tree.
+    CFG_HOST=$(realpath -e "$VOXEL_SVIO_CONFIG")
+    [[ "$CFG_HOST" == "$WS/configs/"* ]] \
+        || { echo "[voxel_svio] VOXEL_SVIO_CONFIG must be a file under $WS/configs" >&2; exit 2; }
 elif [[ -f "$CFG_HOST_SEQ" ]]; then
     CFG_HOST="$CFG_HOST_SEQ"
 elif [[ -f "$CFG_HOST_DSET" ]]; then
@@ -71,6 +76,7 @@ else
     exit 2
 fi
 CFG_CONT="/benchmark_configs/voxel_svio/$(basename "$CFG_HOST")"
+[[ -n "${VOXEL_SVIO_CONFIG:-}" && -z "${ROSARIO_VIO_PROFILE:-}" ]] && CFG_CONT="/benchmark_configs/${CFG_HOST#"$WS/configs/"}"
 
 [[ -d "$SEQ_DIR/mav0/cam0/data" && -d "$SEQ_DIR/mav0/cam1/data" ]] \
     || { echo "[voxel_svio] missing $SEQ_DIR/mav0/cam{0,1}/data" >&2; exit 2; }

@@ -28,6 +28,7 @@ import numpy as np
 import yaml
 
 import _imu_noise_rule
+import _imu_noise_override
 
 # The upstream calibration files use 752 px wide EuRoC images; the upstream parameter
 # file marks these settings as "increase for larger images".
@@ -84,11 +85,20 @@ def imu_parameters(args, sensor):
         params.update(sigma_omega_c=n['gyroscope_noise_density'], sigma_acc_c=n['accelerometer_noise_density'],
                       sigma_omega_bias_c=n['gyroscope_random_walk'], sigma_acc_bias_c=n['accelerometer_random_walk'])
         noise_rule = _imu_noise_rule.record(dataset=sensor['dataset'])
+    # A labelled sensitivity profile (SVO_PRO_IMU_NOISE) replaces the four values after the rule.
+    override = None
+    if getattr(args, 'noise_override', None):
+        n, override = _imu_noise_override.load(args.noise_override, 'svo_pro', sensor['dataset'])
+        params.update(sigma_omega_c=n['gyroscope_noise_density'], sigma_acc_c=n['accelerometer_noise_density'],
+                      sigma_omega_bias_c=n['gyroscope_random_walk'], sigma_acc_bias_c=n['accelerometer_random_walk'])
     # A frame is rejected when the newest IMU sample is older than this; upstream uses
     # 10 ms for a 200 Hz IMU (two sample periods).
     params.update(delay_imu_cam=0.0, sigma_integration=0.0,
                   max_imu_delta_t=max(0.01, 2.0 / float(sensor['imu']['frequency_hz'])))
-    return params, dict(kind=kind, path=str(path), sha256=sha(path), noise_rule=noise_rule)
+    receipt = dict(kind=kind, path=str(path), sha256=sha(path), noise_rule=noise_rule)
+    if override is not None:
+        receipt['noise_override'] = override
+    return params, receipt
 
 
 def matrix_node(m):
@@ -111,6 +121,8 @@ def stage(args):
         key['prepared_manifest_sha256'] = sha(args.sequence / 'manifest.json')
     if _imu_noise_rule.applies(sensor['dataset']):     # a rule edit must not reuse a staged calibration
         key['noise_rule'] = _imu_noise_rule.record(dataset=sensor['dataset'])['sha256']
+    if getattr(args, 'noise_override', None):
+        key['noise_override_sha256'] = _imu_noise_override.load(args.noise_override, 'svo_pro', sensor['dataset'])[1]['sha256']
     if (out / 'stage.json').is_file():
         old = json.loads((out / 'stage.json').read_text())
         if any(old.get(k) != v for k, v in key.items()):
@@ -247,6 +259,7 @@ def main():
     s.add_argument('--imu-params', required=True, help='upstream:<calib yaml> or okvis2:<config yaml>')
     s.add_argument('--out', required=True, type=Path)
     s.add_argument('--max-frames', type=int, default=0, help='diagnostic only')
+    s.add_argument('--noise-override', type=Path, help='labelled sensitivity noise document (configs/sensitivity/)')
     s.set_defaults(run=stage)
     c = sub.add_parser('config')
     c.add_argument('--stage', required=True, type=Path)
