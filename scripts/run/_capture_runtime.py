@@ -22,6 +22,9 @@ from _capture_inputs import digest
 
 CONTAINERS={'airslam':'air_slam','ov2slam':'ov2slam','voxel_svio':'voxel_svio',
             'cifasis_gnss_si':'cifasis_gnss_si','vins_fusion_gps':'vins_fusion'}
+# run_openvins.sh executes this image and refuses any other ID behind the tag.
+OPENVINS_DELIVERY_IMAGE='openvins:noise-delivery-audit-20261010-v6'
+OPENVINS_DELIVERY_IMAGE_ID='sha256:2f74b56e67a7f887d0a495d38226379584e90c267090d1d21efdd07618d7aa31'
 
 
 
@@ -138,6 +141,11 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
             corrected=inspect(['image','inspect','openvins:humble-shutdown-20261001'])
             container['corrected_euroc_image']={'image':'openvins:humble-shutdown-20261001',
                                               'image_id':corrected['Id']}
+            delivery=inspect(['image','inspect',OPENVINS_DELIVERY_IMAGE])
+            container['delivery_image']={'image':OPENVINS_DELIVERY_IMAGE,'image_id':delivery['Id'],
+                                         'native_patch':'scripts/patches/openvins-ros2-input-delivery-v6.patch'}
+            if delivery['Id']!=OPENVINS_DELIVERY_IMAGE_ID:
+                missing.append('unvalidated_openvins_delivery_image:'+delivery['Id'])
     elif algorithm=='mast3r_fusion':
         for p in sorted((repo/'third_party/mast3r-fusion-checkpoints').glob('MASt3R_*')):host(p.relative_to(repo))
         host('third_party/gtsam-mast3r-fusion.commit')

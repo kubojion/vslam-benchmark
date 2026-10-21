@@ -20,6 +20,16 @@ import _imu_noise_rule as rule
 from _rosario_rectified import geometry
 
 
+class OpenCVSafeDumper(yaml.SafeDumper):
+    def increase_indent(self, flow=False, indentless=False):
+        # OpenCV rejects PyYAML's default indentless block sequences.
+        return super().increase_indent(flow, False)
+
+
+def opencv_dump(value):
+    return yaml.dump(value, Dumper=OpenCVSafeDumper, sort_keys=False, default_flow_style=None)
+
+
 def scalar(text, key, value, expected=1):
     text, n = re.subn(r'(?m)^(\s*'+re.escape(key)+r':[ \t]*)[^\n]*',
                      lambda m:m[1]+repr(float(value)), text)
@@ -117,7 +127,7 @@ def rosario():
     path=ROOT/'configs/openvins/rosariov2/kalibr_imucam_chain.yaml';v=yaml.safe_load(path.read_text().replace('%YAML:1.0',''))
     for i,t in enumerate(poses):
         v[f'cam{i}']['T_imu_cam']=t.tolist();v[f'cam{i}']['timeshift_cam_imu']=0.0
-    write(path,'%YAML:1.0\n# Rosario Option A; input IMU already on camera clock.\n'+yaml.safe_dump(v,sort_keys=False,default_flow_style=None))
+    write(path,'%YAML:1.0\n# Rosario Option A; input IMU already on camera clock.\n'+opencv_dump(v))
     path=ROOT/'configs/voxel_svio/rosariov2.yaml';text=path.read_text()
     for side,t in zip(('left','right'),poses): text=array(text,'T_imu_cam_'+side,t)
     write(path,text)

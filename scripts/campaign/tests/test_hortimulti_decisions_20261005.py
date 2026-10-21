@@ -102,9 +102,11 @@ def test_ov2slam_hortimulti_uses_the_profile_of_every_other_dataset():
 def test_repaired_native_builds_include_hortimulti():
     voxel = (REPO / 'scripts/run/run_voxel_svio.sh').read_text()
     assert voxel.count('"$DATASET" == hortimulti') == 3
+    # Since 21 October 2026 every OpenVINS dataset, HortiMulti included, uses the
+    # input-delivery image, which is built on the shutdown-repaired one.
     openvins = (REPO / 'scripts/run/run_openvins.sh').read_text()
-    line = next(l for l in openvins.splitlines() if 'OPENVINS_IMAGE=openvins:humble-shutdown-20261001' in l)
-    assert '"$DATASET" == hortimulti' in line
+    assert 'OPENVINS_IMAGE=openvins:noise-delivery-audit-20261010-v6\n' in openvins
+    assert 'OPENVINS_IMAGE=openvins:humble' not in openvins
 
 
 def test_second_decision_file_adds_findings_without_changing_the_first(tmp_path):

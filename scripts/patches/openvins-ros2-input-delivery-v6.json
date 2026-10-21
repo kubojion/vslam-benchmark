@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "image": "openvins:noise-delivery-audit-20261010-v6",
+  "image_id": "sha256:2f74b56e67a7f887d0a495d38226379584e90c267090d1d21efdd07618d7aa31",
+  "built_utc": "2026-10-10T16:04:29Z",
+  "built_from": {
+    "base_production_image": {
+      "image": "openvins:humble-shutdown-20261001",
+      "image_id": "sha256:7e9facf925e899340cbef8395c583cb7bc7e4565638e49fa69f5ba0466ee2324"
+    },
+    "method": "Incremental private builds on the base image (docker create with --network none, patched sources copied into /colcon_ws/src/open_vins, colcon build --packages-select ov_msckf -DCMAKE_BUILD_TYPE=Release -DENABLE_ARUCO_TAGS=OFF, docker commit); the final layer is the delivery-v6 build.",
+    "build_records": [
+      "IMU-NOISE-ISSUE2/noise-all-n1-20261010/openvins-input-audit/build-state.json",
+      "IMU-NOISE-ISSUE2/noise-all-n1-20261010/openvins-input-audit/delivery-v6-build-state.json"
+    ]
+  },
+  "source_submodule": {
+    "path": "src/open_vins",
+    "commit": "7a496c5",
+    "note": "The submodule pointer is unchanged; this patch is the complete private delta on top of it."
+  },
+  "patch": "scripts/patches/openvins-ros2-input-delivery-v6.patch",
+  "patch_sha256": "500026018056f754663fed8daed92814debc939d28ba21d42ec14b8852c97291",
+  "patched_sources": [
+    {
+      "path": "ov_msckf/src/ros/ROS2Visualizer.cpp",
+      "base_sha256": "539e999a4461cee2a2b9c96a0cbaa8b96a05bfbb7d93796cef5056cdcaab224a",
+      "patched_sha256": "7421655da5c39541153842cf2805f5aae865689950a85d24d5f0035ddcb0a2cb"
+    },
+    {
+      "path": "ov_msckf/src/ros/ROS2Visualizer.h",
+      "base_sha256": "a5e18ca35f007746767f440d76c44b17030bf8b36250c86d5c18608947078d05",
+      "patched_sha256": "d5dcb3fe33b206eddae8633693b4204f5b84e6af7d9031d8a48ad85b38a2d4a8"
+    }
+  ],
+  "verification": "Applying the patch to src/open_vins at 7a496c5 reproduces patched_sha256 for both files, which equal the sources recorded for the v6 build (verified 2026-10-21).",
+  "changes": [
+    "Optional application receipt acknowledgements (flow control) and explicit end-of-recording drain",
+    "Native input receipts: exact ordered IMU/left/right/stereo timestamps (OPENVINS_INPUT_RECEIPT)",
+    "Optional RELIABLE IMU subscription (OPENVINS_IMU_RELIABILITY)",
+    "Estimator, noise, geometry, image QoS and sensor timestamps unchanged"
+  ],
+  "validation": [
+    "Full Rosario sequence1 with large_shm transport: 951.3 s, all 38 receipt/EOF checks passed (IMU-NOISE-ISSUE2/noise-all-n1-20261010/openvins-input-audit/v7-completed-run-review/completed-review.json)",
+    "The cpu15 noise-search protocol runs all OpenVINS attempts on Rosario, HortiMulti and CitrusFarm with this image and policy (reliable IMU, end drain, flow control, large_shm, rate 1): IMU-NOISE-ISSUE2/noise-all-n1-20261010/cpu15-campaign/amendments/003-memory-ceiling/original/protocol.json"
+  ],
+  "experiment_notes": "docs/experiments/noise-all-20261010/openvins-delivery-v6.md and -v7.md on experiment/imu-noise-reliable-20261009"
+}

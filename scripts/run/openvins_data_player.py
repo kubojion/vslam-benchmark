@@ -44,6 +44,7 @@ from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
 from sensor_msgs.msg import Image, Imu
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import PoseWithCovarianceStamped
+from std_msgs.msg import UInt64MultiArray
 from _transport_stats import write_transport_stats
 from cv_bridge import CvBridge
 
@@ -105,11 +106,39 @@ class Player(Node):
         self.published_cam0 = 0
         self.published_cam1 = 0
         self.published_imu = 0
+        end_policy = os.environ.get('OPENVINS_END_OF_STREAM_DRAIN', '0')
+        if end_policy not in ('0', '1'):
+            raise ValueError('Invalid end-of-recording drain policy')
+        self.end_drain = end_policy == '1'
+        self.end_ack = None
+        self.end_ack_event = threading.Event()
+        flow_policy = os.environ.get('OPENVINS_FLOW_CONTROL', '0')
+        if flow_policy not in ('0', '1') or (flow_policy == '1' and not self.end_drain):
+            raise ValueError('Flow control requires a valid policy and end-of-recording drain')
+        self.flow_control = flow_policy == '1'
+        self.progress_condition = threading.Condition()
+        self.progress_ack = None
+        self.progress_checkpoints = 0
+        self.progress_wait_s = 0.0
+        self.progress_last_imu = 0
+        self.delivery = {}
+        if self.end_drain:
+            end_qos = QoSProfile(reliability=ReliabilityPolicy.RELIABLE,
+                                 history=HistoryPolicy.KEEP_LAST, depth=1)
+            self.pub_end = self.create_publisher(UInt64MultiArray, '/ov_msckf/input_end_request', end_qos)
+            self.sub_end_ack = self.create_subscription(
+                UInt64MultiArray, '/ov_msckf/input_end_ack', self._on_end_ack, end_qos)
+        if self.flow_control:
+            self.pub_progress = self.create_publisher(UInt64MultiArray, '/ov_msckf/input_progress_request', end_qos)
+            self.sub_progress = self.create_subscription(
+                UInt64MultiArray, '/ov_msckf/input_progress_ack', self._on_progress_ack, end_qos)
 
         # Publishers. OpenVINS' ROS2Visualizer uses different QoS per topic:
         #   - cameras (message_filters::Subscriber): RELIABLE, depth=10  (default)
-        #   - imu  (rclcpp::SensorDataQoS()):        BEST_EFFORT, depth=10
-        # Mismatched QoS silently drops messages, so reliability must match.
+        #   - imu  (rclcpp::SensorDataQoS()):        BEST_EFFORT, depth=5
+        # The input-delivery image can request RELIABLE with a larger receive
+        # buffer (run_openvins.sh sets it by default). Both sides use the
+        # explicitly recorded policy; the player defaults keep the old one.
         # The publisher queue depth is set high so a transient slowdown in the
         # OV node does not back-pressure RELIABLE publishes and stall the
         # player thread (which would also halt IMU pacing because the player
@@ -120,8 +149,12 @@ class Player(Node):
             history=HistoryPolicy.KEEP_LAST,
             depth=2000,
         )
+        self.imu_reliability = os.environ.get('OPENVINS_IMU_RELIABILITY', 'best_effort')
+        if self.imu_reliability not in ('best_effort', 'reliable'):
+            raise ValueError('Invalid OPENVINS_IMU_RELIABILITY')
         imu_qos = QoSProfile(
-            reliability=ReliabilityPolicy.BEST_EFFORT,
+            reliability=(ReliabilityPolicy.RELIABLE if self.imu_reliability == 'reliable'
+                         else ReliabilityPolicy.BEST_EFFORT),
             history=HistoryPolicy.KEEP_LAST,
             depth=200,
         )
@@ -150,6 +183,8 @@ class Player(Node):
         if not self.imu or not self.cam0 or not self.cam1:
             raise RuntimeError(f"empty data in {seq_dir} (imu={len(self.imu)} "
                                f"cam0={len(self.cam0)} cam1={len(self.cam1)})")
+        if self.flow_control and [r[0] for r in self.cam0] != [r[0] for r in self.cam1]:
+            raise ValueError('Flow-controlled benchmark replay requires the prepared exact stereo pairs')
         self.get_logger().info(
             f"loaded imu={len(self.imu)} cam0={len(self.cam0)} cam1={len(self.cam1)} "
             f"from {seq_dir}")
@@ -210,20 +245,26 @@ class Player(Node):
         # and we want to be sure the ROS graph is settled.
         self.get_logger().info(f"start delay {self.start_delay:.1f}s for ROS graph...")
         time.sleep(self.start_delay)
+        if self.flow_control:
+            self.wait_for_input_subscribers()
+            self.wait_for_input_receipt()
 
         t0_ns = events[0][0]
         t0_wall = time.time()
-        # Accounting only: preserve the existing replay schedule and ROS QoS.
-        audit = self.seq_dir.parent.name in ('rosariov2', 'citrusfarm')
+        # Preserve sensor timestamps and the nominal rate. Optional receipt
+        # barriers allow wall-clock playback to slow down instead of losing input.
+        audit = True
         delivery = None
         if audit:
-            delivery = dict(schema=1, rate=self.rate, expected_imu=len(self.imu),
+            delivery = dict(schema=1, rate=self.rate, imu_reliability=self.imu_reliability,
+                expected_imu=len(self.imu),
                 expected_left=len(self.cam0), expected_right=len(self.cam1),
                 subscribers_at_start=dict(imu=self.pub_imu.get_subscription_count(),
                     left=self.pub_cam0.get_subscription_count(), right=self.pub_cam1.get_subscription_count()),
                 maximum_schedule_lateness_s=0.0, maximum_event_processing_s=0.0,
                 camera_events_over_10ms_late=0, camera_events_over_100ms_late=0,
                 start_delay_s=self.start_delay, end_wait_s=self.end_wait)
+            self.delivery = delivery
 
         for i, (t_ns, kind, payload) in enumerate(events):
             if not rclpy.ok():
@@ -255,6 +296,10 @@ class Player(Node):
             if audit:
                 delivery['maximum_event_processing_s'] = max(delivery['maximum_event_processing_s'], time.monotonic()-started)
 
+            if self.flow_control and self.published_cam0 == self.published_cam1 and (
+                    kind == 'cam1' or self.published_imu - self.progress_last_imu >= 100):
+                self.wait_for_input_receipt()
+
             if i % 5000 == 0:
                 pct = 100.0 * i / len(events)
                 self.get_logger().info(
@@ -265,17 +310,27 @@ class Player(Node):
             f"all events published; waiting {self.end_wait:.1f}s for filter flush...")
         time.sleep(self.end_wait)
 
-        self.write_trajectory()
-        if audit:
-            import json
-            delivery.update(published_imu=self.published_imu, published_left=self.published_cam0,
-                published_right=self.published_cam1, camera_update_outputs=len(self.update_poses),
-                propagated_outputs=len(self.poses),
-                first_update_stamp_s=self.update_poses[0][0] if self.update_poses else None,
-                last_update_stamp_s=self.update_poses[-1][0] if self.update_poses else None,
-                estimator_received_imu=None, estimator_received_camera_pairs=None,
-                limitation='Publisher counts are not estimator receipts. poseimu is post-initialisation output; use native TIME lines for processed camera callbacks. Online residual time offset remains enabled where configured.')
-            self.out_traj.with_name('openvins_delivery.json').write_text(json.dumps(delivery, indent=2)+'\n')
+        if self.end_drain:
+            if self.flow_control:
+                self.wait_for_input_receipt()
+            self.drain_end_of_recording()
+            # Keep output subscribers alive while the final camera updates arrive.
+            time.sleep(self.end_wait)
+
+    def write_delivery(self, error=None):
+        import json
+        delivery = dict(self.delivery)
+        delivery.update(published_imu=self.published_imu, published_left=self.published_cam0,
+            published_right=self.published_cam1, camera_update_outputs=len(self.update_poses),
+            propagated_outputs=len(self.poses), player_error=error,
+            first_update_stamp_s=self.update_poses[0][0] if self.update_poses else None,
+            last_update_stamp_s=self.update_poses[-1][0] if self.update_poses else None,
+            flow_control=dict(enabled=self.flow_control, completed_checkpoints=self.progress_checkpoints,
+                wait_s=self.progress_wait_s, last_acknowledgement=self.progress_ack),
+            estimator_received_imu=None, estimator_received_camera_pairs=None,
+            limitation='Publisher counts are not estimator receipts. Exact native receipts and end acknowledgement are required. Wall-clock flow-control delays do not change sensor timestamps.')
+        self.out_traj.parent.mkdir(parents=True, exist_ok=True)
+        self.out_traj.with_name('openvins_delivery.json').write_text(json.dumps(delivery, indent=2)+'\n')
         expected = min(len(self.cam0), len(self.cam1))
         published = min(self.published_cam0, self.published_cam1)
         write_transport_stats(
@@ -288,7 +343,67 @@ class Player(Node):
             estimator_output_messages=len(self.poses),
         )
 
+    def wait_for_input_subscribers(self):
+        deadline = time.monotonic() + 30.0
+        publishers = (self.pub_imu, self.pub_cam0, self.pub_cam1, self.pub_progress)
+        while not (all(p.get_subscription_count() >= 1 for p in publishers)
+                   and self.count_publishers('/ov_msckf/input_progress_ack') >= 1):
+            if time.monotonic() >= deadline:
+                raise RuntimeError('Native input/control subscriptions did not become ready')
+            time.sleep(0.02)
+
+    def _on_progress_ack(self, message):
+        data = list(message.data)
+        if len(data) != 4 or data[0] != 1 or data[2] != data[3]:
+            return
+        with self.progress_condition:
+            self.progress_ack = data
+            self.progress_condition.notify_all()
+
+    def wait_for_input_receipt(self):
+        if self.published_cam0 != self.published_cam1:
+            raise RuntimeError('Cannot wait on half of a prepared stereo pair')
+        expected = [1, self.published_imu, self.published_cam0, self.published_cam0]
+        request = UInt64MultiArray()
+        request.data = expected[:3]
+        start = time.monotonic()
+        while True:
+            with self.progress_condition:
+                if self.progress_ack == expected:
+                    self.progress_checkpoints += 1
+                    self.progress_wait_s += time.monotonic() - start
+                    self.progress_last_imu = self.published_imu
+                    return
+                if time.monotonic() - start >= 30.0:
+                    raise RuntimeError(f'Native input receipt stalled at {expected}; last acknowledgement {self.progress_ack}')
+                self.pub_progress.publish(request)
+                self.progress_condition.wait(timeout=0.02)
+
     # ------------------------------------------------------------------
+    def _on_end_ack(self, message):
+        data = list(message.data)
+        if (len(data) == 7 and data[0] == 1 and data[1] == self.published_imu
+                and data[2] == min(self.published_cam0, self.published_cam1)
+                and data[3] == data[2] and data[4] + data[5] == data[3]
+                and data[6] <= data[4]):
+            self.end_ack = data
+            self.end_ack_event.set()
+
+    def drain_end_of_recording(self):
+        import json
+        request = UInt64MultiArray()
+        request.data = [1, self.published_imu, min(self.published_cam0, self.published_cam1)]
+        deadline = time.monotonic() + 30.0
+        while not self.end_ack_event.is_set():
+            if time.monotonic() >= deadline:
+                raise RuntimeError('Native end-of-recording acknowledgement missing; do not qualify this delivery')
+            self.pub_end.publish(request)
+            self.end_ack_event.wait(0.2)
+        self.out_traj.parent.mkdir(parents=True, exist_ok=True)
+        self.out_traj.with_name('openvins_end_ack.json').write_text(
+            json.dumps(dict(schema=1, request=list(request.data), acknowledgement=self.end_ack), indent=2)+'\n')
+        self.get_logger().info(f'native end-of-recording acknowledged: {self.end_ack}')
+
     def write_trajectory(self):
         self.out_traj.parent.mkdir(parents=True, exist_ok=True)
         with self.out_traj.open("w") as f:
@@ -338,16 +453,21 @@ def main():
         daemon=False,
     )
     spin_thread.start()
+    error = None
     try:
         node.play()
-    except KeyboardInterrupt:
-        node.get_logger().warning("interrupted; writing partial trajectory")
-        node.write_trajectory()
+    except BaseException as exc:
+        error = f'{type(exc).__name__}: {exc}'
+        raise
     finally:
         executor.shutdown(timeout_sec=5.0)
         spin_thread.join(timeout=5.0)
         if spin_thread.is_alive():
             node.get_logger().error("ROS executor did not stop cleanly")
+        # Preserve partial receipts and poses on a delivery exception as well as
+        # on success. The original nonzero exit still disqualifies the attempt.
+        node.write_trajectory()
+        node.write_delivery(error)
         executor.remove_node(node)
         node.destroy_node()
         if rclpy.ok():
