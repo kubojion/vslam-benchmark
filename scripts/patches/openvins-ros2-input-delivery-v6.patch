@@ -1,0 +1,327 @@
+diff --git a/ov_msckf/src/ros/ROS2Visualizer.cpp b/ov_msckf/src/ros/ROS2Visualizer.cpp
+index 9722782..1aada74 100644
+--- a/ov_msckf/src/ros/ROS2Visualizer.cpp
++++ b/ov_msckf/src/ros/ROS2Visualizer.cpp
+@@ -20,6 +20,8 @@
+  */
+ 
+ #include "ROS2Visualizer.h"
++#include <cstdlib>
++#include <iomanip>
+ 
+ #include "core/VioManager.h"
+ #include "ros/ROSVisualizerHelper.h"
+@@ -165,6 +167,53 @@ void ROS2Visualizer::stop() {
+   // The executor is stopped; drain the last already-dispatched update before
+   // releasing the state and publisher objects it uses.
+   while (thread_update_running) std::this_thread::sleep_for(std::chrono::milliseconds(1));
++  const char *receipt_path = std::getenv("OPENVINS_INPUT_RECEIPT");
++  if (receipt_path && !input_receipt_written_.exchange(true)) {
++    const auto native_noise = _app->get_params().imu_noises;
++    std::ofstream receipt(receipt_path);
++    receipt << "{\"schema\":1,\"imu_received\":" << input_imu_received_.load()
++            << ",\"imu_stamp_sum_u64\":" << input_imu_stamp_sum_.load()
++            << ",\"imu_stamp_xor_u64\":" << input_imu_stamp_xor_.load()
++            << ",\"stereo_received\":" << input_stereo_received_.load()
++            << ",\"stereo_stamp_sum_u64\":" << input_stereo_stamp_sum_.load()
++            << ",\"stereo_stamp_xor_u64\":" << input_stereo_stamp_xor_.load()
++            << ",\"camera_queued\":" << input_camera_queued_.load()
++            << ",\"camera_processed\":" << input_camera_processed_.load()
++            << ",\"camera_rate_dropped\":" << input_camera_rate_dropped_.load()
++            << ",\"camera_remaining\":" << camera_queue.size()
++            << ",\"imu_reliability\":\"" << input_imu_reliability_ << "\""
++            << ",\"imu_receive_depth\":2000"
++            << ",\"left_received\":" << input_left_stamps_.size()
++            << ",\"right_received\":" << input_right_stamps_.size()
++            << ",\"flow_control\":{\"enabled\":" << (input_flow_enabled_ ? "true" : "false")
++            << ",\"acknowledgements_sent\":" << input_progress_acks_ << "}"
++            << ",\"end_of_stream\":{\"enabled\":" << (input_end_enabled_ ? "true" : "false")
++            << ",\"complete\":" << (input_end_complete_ ? "true" : "false")
++            << ",\"expected_imu\":" << input_end_expected_imu_
++            << ",\"expected_stereo\":" << input_end_expected_stereo_
++            << ",\"eligible_cameras_drained\":" << input_end_drained_ << "}"
++            << ",\"last_received_imu_ns\":" << (input_imu_stamps_.empty() ? 0 : input_imu_stamps_.back())
++            << std::setprecision(17)
++            << ",\"native_imu_noise\":{\"gyroscope_noise_density\":" << native_noise.sigma_w
++            << ",\"accelerometer_noise_density\":" << native_noise.sigma_a
++            << ",\"gyroscope_random_walk\":" << native_noise.sigma_wb
++            << ",\"accelerometer_random_walk\":" << native_noise.sigma_ab << "}"
++            << ",\"final_camera_imu_offset_s\":" << _app->get_state()->_calib_dt_CAMtoIMU->value()(0)
++            << ",\"pending_camera_timestamps_s\":[";
++    for (size_t i = 0; i < camera_queue.size(); ++i) {
++      if (i) receipt << ",";
++      receipt << camera_queue.at(i).timestamp;
++    }
++    receipt << "]}\n";
++    std::ofstream stamps(std::string(receipt_path) + ".imu-stamps.txt");
++    for (const auto stamp : input_imu_stamps_) stamps << stamp << "\n";
++    for (const auto &stream : {std::make_pair(".left-stamps.txt", &input_left_stamps_),
++                               std::make_pair(".right-stamps.txt", &input_right_stamps_),
++                               std::make_pair(".stereo-stamps.txt", &input_stereo_stamps_)}) {
++      std::ofstream camera_stamps(std::string(receipt_path) + stream.first);
++      for (const auto stamp : *stream.second) camera_stamps << stamp << "\n";
++    }
++  }
+ }
+ 
+ ROS2Visualizer::~ROS2Visualizer() { stop(); }
+@@ -174,12 +223,37 @@ void ROS2Visualizer::setup_subscribers(std::shared_ptr<ov_core::YamlParser> pars
+   // We need a valid parser
+   assert(parser != nullptr);
+ 
++  const char *end_policy = std::getenv("OPENVINS_END_OF_STREAM_DRAIN");
++  input_end_enabled_ = end_policy && std::string(end_policy) == "1";
++  const char *flow_policy = std::getenv("OPENVINS_FLOW_CONTROL");
++  input_flow_enabled_ = flow_policy && std::string(flow_policy) == "1";
++  if (input_flow_enabled_ && !input_end_enabled_)
++    throw std::runtime_error("OPENVINS_FLOW_CONTROL requires end-of-recording drain");
++  if (input_end_enabled_) {
++    auto end_qos = rclcpp::QoS(1).reliable();
++    pub_input_end_ack_ = _node->create_publisher<std_msgs::msg::UInt64MultiArray>("input_end_ack", end_qos);
++    sub_input_end_ = _node->create_subscription<std_msgs::msg::UInt64MultiArray>(
++        "input_end_request", end_qos, std::bind(&ROS2Visualizer::callback_input_end, this, std::placeholders::_1));
++  }
++
++  if (input_flow_enabled_) {
++    auto progress_qos = rclcpp::QoS(1).reliable();
++    pub_input_progress_ack_ = _node->create_publisher<std_msgs::msg::UInt64MultiArray>("input_progress_ack", progress_qos);
++    sub_input_progress_ = _node->create_subscription<std_msgs::msg::UInt64MultiArray>(
++        "input_progress_request", progress_qos, std::bind(&ROS2Visualizer::callback_input_progress, this, std::placeholders::_1));
++  }
++
+   // Create imu subscriber (handle legacy ros param info)
+   std::string topic_imu;
+   _node->declare_parameter<std::string>("topic_imu", "/imu0");
+   _node->get_parameter("topic_imu", topic_imu);
+   parser->parse_external("relative_config_imu", "imu0", "rostopic", topic_imu);
+-  sub_imu = _node->create_subscription<sensor_msgs::msg::Imu>(topic_imu, rclcpp::SensorDataQoS(),
++  auto imu_qos = rclcpp::SensorDataQoS().keep_last(2000);
++  const char *reliability = std::getenv("OPENVINS_IMU_RELIABILITY");
++  input_imu_reliability_ = reliability ? reliability : "best_effort";
++  if (input_imu_reliability_ == "reliable") imu_qos.reliable();
++  else if (input_imu_reliability_ != "best_effort") throw std::runtime_error("Invalid OPENVINS_IMU_RELIABILITY");
++  sub_imu = _node->create_subscription<sensor_msgs::msg::Imu>(topic_imu, imu_qos,
+                                                               std::bind(&ROS2Visualizer::callback_inertial, this, std::placeholders::_1));
+   PRINT_INFO("subscribing to IMU: %s\n", topic_imu.c_str());
+ 
+@@ -197,6 +271,10 @@ void ROS2Visualizer::setup_subscribers(std::shared_ptr<ov_core::YamlParser> pars
+     // Create sync filter (they have unique pointers internally, so we have to use move logic here...)
+     auto image_sub0 = std::make_shared<message_filters::Subscriber<sensor_msgs::msg::Image>>(_node, cam_topic0);
+     auto image_sub1 = std::make_shared<message_filters::Subscriber<sensor_msgs::msg::Image>>(_node, cam_topic1);
++    // Observe the existing subscriptions before synchronization. No additional
++    // image subscriber, changed QoS, or image conversion is introduced.
++    image_sub0->registerCallback(std::bind(&ROS2Visualizer::callback_input_image, this, std::placeholders::_1, 0));
++    image_sub1->registerCallback(std::bind(&ROS2Visualizer::callback_input_image, this, std::placeholders::_1, 1));
+     auto sync = std::make_shared<message_filters::Synchronizer<sync_pol>>(sync_pol(10), *image_sub0, *image_sub1);
+     sync->registerCallback(std::bind(&ROS2Visualizer::callback_stereo, this, std::placeholders::_1, std::placeholders::_2, 0, 1));
+     // sync->registerCallback([](const sensor_msgs::msg::Image::SharedPtr msg0, const sensor_msgs::msg::Image::SharedPtr msg1)
+@@ -454,6 +532,14 @@ void ROS2Visualizer::callback_inertial(const sensor_msgs::msg::Imu::SharedPtr ms
+ 
+   // send it to our VIO system
+   _app->feed_measurement_imu(message);
++  const auto receipt_stamp = static_cast<std::uint64_t>(msg->header.stamp.sec) * 1000000000ULL + msg->header.stamp.nanosec;
++  input_imu_received_.fetch_add(1, std::memory_order_relaxed);
++  input_imu_stamp_sum_.fetch_add(receipt_stamp, std::memory_order_relaxed);
++  input_imu_stamp_xor_.fetch_xor(receipt_stamp, std::memory_order_relaxed);
++  {
++    std::lock_guard<std::mutex> lock(input_stamp_mtx_);
++    input_imu_stamps_.push_back(receipt_stamp);
++  }
+   visualize_odometry(message.timestamp);
+ 
+   // If the processing queue is currently active / running just return so we can keep getting measurements
+@@ -462,7 +548,8 @@ void ROS2Visualizer::callback_inertial(const sensor_msgs::msg::Imu::SharedPtr ms
+   if (thread_update_running)
+     return;
+   thread_update_running = true;
+-  std::thread thread([&] {
++  // A detached worker must own the callback-local timestamp it uses.
++  std::thread thread([this, message] {
+     // Lock on the queue (prevents new images from appending)
+     std::lock_guard<std::mutex> lck(camera_queue_mtx);
+ 
+@@ -485,6 +572,7 @@ void ROS2Visualizer::callback_inertial(const sensor_msgs::msg::Imu::SharedPtr ms
+         auto rT0_1 = boost::posix_time::microsec_clock::local_time();
+         double update_dt = 100.0 * (timestamp_imu_inC - camera_queue.at(0).timestamp);
+         _app->feed_measurement_camera(camera_queue.at(0));
++        input_camera_processed_.fetch_add(1, std::memory_order_relaxed);
+         visualize();
+         camera_queue.pop_front();
+         auto rT0_2 = boost::posix_time::microsec_clock::local_time();
+@@ -504,12 +592,83 @@ void ROS2Visualizer::callback_inertial(const sensor_msgs::msg::Imu::SharedPtr ms
+   }
+ }
+ 
++void ROS2Visualizer::callback_input_image(const sensor_msgs::msg::Image::ConstSharedPtr msg, int camera) {
++  const auto stamp = static_cast<std::uint64_t>(msg->header.stamp.sec) * 1000000000ULL + msg->header.stamp.nanosec;
++  std::lock_guard<std::mutex> lock(input_stamp_mtx_);
++  (camera == 0 ? input_left_stamps_ : input_right_stamps_).push_back(stamp);
++}
++
++void ROS2Visualizer::callback_input_progress(const std_msgs::msg::UInt64MultiArray::SharedPtr msg) {
++  // Acknowledge application receipt, not DDS delivery or filter accuracy.
++  // Do not require a camera update: initialization and positive time offsets
++  // can require future real IMU samples. The queue/worker behavior is unchanged.
++  if (!input_flow_enabled_ || msg->data.size() != 3 || msg->data[0] != 1 ||
++      input_imu_received_.load() != msg->data[1] || input_stereo_received_.load() != msg->data[2] ||
++      input_camera_queued_.load() != msg->data[2] || input_left_stamps_.size() != msg->data[2] ||
++      input_right_stamps_.size() != msg->data[2])
++    return;
++  std_msgs::msg::UInt64MultiArray ack;
++  ack.data = {1, input_imu_received_.load(), input_stereo_received_.load(), input_camera_queued_.load()};
++  ++input_progress_acks_;
++  pub_input_progress_ack_->publish(ack);
++}
++
++void ROS2Visualizer::callback_input_end(const std_msgs::msg::UInt64MultiArray::SharedPtr msg) {
++  // All subscriptions use this node's default mutually-exclusive callback group.
++  // The independent update worker may still be busy; the player retries this
++  // control message until all real input has arrived and that worker is idle.
++  if (!input_end_enabled_ || msg->data.size() != 3 || msg->data[0] != 1 ||
++      _app->get_params().state_options.num_cameras != 2 || msg->data[1] == 0 ||
++      input_imu_received_.load() != msg->data[1] || input_stereo_received_.load() != msg->data[2] ||
++      input_camera_queued_.load() != msg->data[2] || thread_update_running.load())
++    return;
++
++  std::lock_guard<std::mutex> lock(camera_queue_mtx);
++  if (!input_end_complete_) {
++    std::uint64_t last_imu_ns;
++    {
++      std::lock_guard<std::mutex> stamp_lock(input_stamp_mtx_);
++      if (input_imu_stamps_.empty()) return;
++      last_imu_ns = input_imu_stamps_.back();
++    }
++    // Reproduce the native sec + nanosec conversion exactly. This is a
++    // watermark for IMU samples already fed, never a new IMU measurement.
++    const double last_imu_s = static_cast<double>(last_imu_ns / 1000000000ULL)
++                           + (last_imu_ns % 1000000000ULL) * 1e-9;
++    while (!camera_queue.empty()) {
++      const double timestamp_imu_inC = last_imu_s - _app->get_state()->_calib_dt_CAMtoIMU->value()(0);
++      if (!(camera_queue.front().timestamp < timestamp_imu_inC)) break;
++      auto start = boost::posix_time::microsec_clock::local_time();
++      const double update_dt = 100.0 * (timestamp_imu_inC - camera_queue.front().timestamp);
++      _app->feed_measurement_camera(camera_queue.front());
++      input_camera_processed_.fetch_add(1, std::memory_order_relaxed);
++      ++input_end_drained_;
++      visualize();
++      camera_queue.pop_front();
++      const double elapsed = (boost::posix_time::microsec_clock::local_time() - start).total_microseconds() * 1e-6;
++      PRINT_INFO(BLUE "[TIME]: %.4f seconds total (%.1f hz, %.2f ms behind) [end-of-recording]\n" RESET,
++                 elapsed, elapsed > 0 ? 1.0 / elapsed : 0.0, update_dt);
++    }
++    input_end_expected_imu_ = msg->data[1];
++    input_end_expected_stereo_ = msg->data[2];
++    input_end_complete_ = true;
++  }
++  // Repeated control messages only repeat the acknowledgement. No sample is
++  // replayed, and no camera lacking a later real IMU sample is forced through.
++  std_msgs::msg::UInt64MultiArray ack;
++  ack.data = {1, input_imu_received_.load(), input_stereo_received_.load(),
++              input_camera_queued_.load(), input_camera_processed_.load(),
++              static_cast<std::uint64_t>(camera_queue.size()), input_end_drained_};
++  pub_input_end_ack_->publish(ack);
++}
++
+ void ROS2Visualizer::callback_monocular(const sensor_msgs::msg::Image::SharedPtr msg0, int cam_id0) {
+ 
+   // Check if we should drop this image
+   double timestamp = msg0->header.stamp.sec + msg0->header.stamp.nanosec * 1e-9;
+   double time_delta = 1.0 / _app->get_params().track_frequency;
+   if (camera_last_timestamp.find(cam_id0) != camera_last_timestamp.end() && timestamp < camera_last_timestamp.at(cam_id0) + time_delta) {
++    input_camera_rate_dropped_.fetch_add(1, std::memory_order_relaxed);
+     return;
+   }
+   camera_last_timestamp[cam_id0] = timestamp;
+@@ -540,16 +699,27 @@ void ROS2Visualizer::callback_monocular(const sensor_msgs::msg::Image::SharedPtr
+   // append it to our queue of images
+   std::lock_guard<std::mutex> lck(camera_queue_mtx);
+   camera_queue.push_back(message);
++  input_camera_queued_.fetch_add(1, std::memory_order_relaxed);
+   std::sort(camera_queue.begin(), camera_queue.end());
+ }
+ 
+ void ROS2Visualizer::callback_stereo(const sensor_msgs::msg::Image::ConstSharedPtr msg0, const sensor_msgs::msg::Image::ConstSharedPtr msg1,
+                                      int cam_id0, int cam_id1) {
+ 
++  const auto receipt_stamp = static_cast<std::uint64_t>(msg0->header.stamp.sec) * 1000000000ULL + msg0->header.stamp.nanosec;
++  input_stereo_received_.fetch_add(1, std::memory_order_relaxed);
++  input_stereo_stamp_sum_.fetch_add(receipt_stamp, std::memory_order_relaxed);
++  input_stereo_stamp_xor_.fetch_xor(receipt_stamp, std::memory_order_relaxed);
++  {
++    std::lock_guard<std::mutex> lock(input_stamp_mtx_);
++    input_stereo_stamps_.push_back(receipt_stamp);
++  }
++
+   // Check if we should drop this image
+   double timestamp = msg0->header.stamp.sec + msg0->header.stamp.nanosec * 1e-9;
+   double time_delta = 1.0 / _app->get_params().track_frequency;
+   if (camera_last_timestamp.find(cam_id0) != camera_last_timestamp.end() && timestamp < camera_last_timestamp.at(cam_id0) + time_delta) {
++    input_camera_rate_dropped_.fetch_add(1, std::memory_order_relaxed);
+     return;
+   }
+   camera_last_timestamp[cam_id0] = timestamp;
+@@ -594,6 +764,7 @@ void ROS2Visualizer::callback_stereo(const sensor_msgs::msg::Image::ConstSharedP
+   // append it to our queue of images
+   std::lock_guard<std::mutex> lck(camera_queue_mtx);
+   camera_queue.push_back(message);
++  input_camera_queued_.fetch_add(1, std::memory_order_relaxed);
+   std::sort(camera_queue.begin(), camera_queue.end());
+ }
+ 
+diff --git a/ov_msckf/src/ros/ROS2Visualizer.h b/ov_msckf/src/ros/ROS2Visualizer.h
+index 709b8e4..d7fcf3e 100644
+--- a/ov_msckf/src/ros/ROS2Visualizer.h
++++ b/ov_msckf/src/ros/ROS2Visualizer.h
+@@ -46,9 +46,12 @@
+ #include <tf2_ros/transform_broadcaster.h>
+ 
+ #include <atomic>
++#include <std_msgs/msg/u_int64_multi_array.hpp>
++#include <cstdint>
+ #include <fstream>
+ #include <memory>
+ #include <mutex>
++#include <vector>
+ 
+ #include <Eigen/Eigen>
+ #include <boost/date_time/posix_time/posix_time.hpp>
+@@ -117,6 +120,11 @@ public:
+   /// Callback for inertial information
+   void callback_inertial(const sensor_msgs::msg::Imu::SharedPtr msg);
+ 
++  // Experiment-only end-of-recording control, separate from sensor messages.
++  void callback_input_end(const std_msgs::msg::UInt64MultiArray::SharedPtr msg);
++  void callback_input_progress(const std_msgs::msg::UInt64MultiArray::SharedPtr msg);
++  void callback_input_image(const sensor_msgs::msg::Image::ConstSharedPtr msg, int camera);
++
+   /// Callback for monocular cameras information
+   void callback_monocular(const sensor_msgs::msg::Image::SharedPtr msg0, int cam_id0);
+ 
+@@ -185,6 +193,27 @@ protected:
+ 
+   // Thread atomics
+   std::atomic<bool> thread_update_running;
++
++  // Experiment-only delivery receipts. These are observations, not filter state.
++  // Diagnostic timestamps are recorded after the native IMU feed, and written
++  // only after callbacks and the update thread have stopped.
++  std::mutex input_stamp_mtx_;
++  std::vector<std::uint64_t> input_imu_stamps_;
++  std::vector<std::uint64_t> input_left_stamps_, input_right_stamps_, input_stereo_stamps_;
++  std::string input_imu_reliability_ = "best_effort";
++  std::atomic<bool> input_receipt_written_{false};
++  bool input_end_enabled_ = false, input_end_complete_ = false;
++  bool input_flow_enabled_ = false;
++  std::uint64_t input_progress_acks_ = 0;
++  std::uint64_t input_end_drained_ = 0;
++  std::uint64_t input_end_expected_imu_ = 0, input_end_expected_stereo_ = 0;
++  rclcpp::Subscription<std_msgs::msg::UInt64MultiArray>::SharedPtr sub_input_end_;
++  rclcpp::Publisher<std_msgs::msg::UInt64MultiArray>::SharedPtr pub_input_end_ack_;
++  rclcpp::Subscription<std_msgs::msg::UInt64MultiArray>::SharedPtr sub_input_progress_;
++  rclcpp::Publisher<std_msgs::msg::UInt64MultiArray>::SharedPtr pub_input_progress_ack_;
++  std::atomic<std::uint64_t> input_imu_received_{0}, input_imu_stamp_sum_{0}, input_imu_stamp_xor_{0};
++  std::atomic<std::uint64_t> input_stereo_received_{0}, input_stereo_stamp_sum_{0}, input_stereo_stamp_xor_{0};
++  std::atomic<std::uint64_t> input_camera_queued_{0}, input_camera_processed_{0}, input_camera_rate_dropped_{0};
+   std::atomic<bool> stop_publishing{false};
+   std::thread publishing_thread;
+ 

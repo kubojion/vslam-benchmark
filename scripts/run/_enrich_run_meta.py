@@ -42,7 +42,7 @@ from _capture_runtime import verify_identity as verify_runtime_identity
 REPO = Path(__file__).resolve().parents[2]
 RESULTS = REPO / "results"
 ROLE_RE = re.compile(r"^[a-z][a-z0-9_.-]*$")
-TEXT_SUFFIXES = {".json", ".yaml", ".yml", ".txt", ".cfg", ".ini", ".toml", ".csv"}
+TEXT_SUFFIXES = {".json", ".yaml", ".yml", ".txt", ".cfg", ".ini", ".toml", ".csv", ".xml"}
 SNAPSHOT_LIMIT = 2 * 1024 * 1024
 TRACKED_ENV = (
     "CUDA_VISIBLE_DEVICES",
