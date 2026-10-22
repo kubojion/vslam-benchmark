@@ -85,8 +85,10 @@ def test_missing_records_fail_closed(tmp_path):
     assert report['classification'] == 'unclassified' and report['estimator_failure'] is False and 'error' in report
 
 
-def test_runner_line_buffers_the_native_node_and_attributes_failures():
-    assert 'owned_run node stdbuf -oL -eL $NODE_PREFIX /colcon_ws/install/lib/ov_msckf/run_subscribe_msckf' in RUNNER
+def test_runner_keeps_native_output_buffering_and_attributes_failures():
+    # Line buffering changed OpenVINS's result on CitrusFarm seq04 (0.8380 vs 0.8532 m); never add it.
+    assert 'owned_run node $NODE_PREFIX /colcon_ws/install/lib/ov_msckf/run_subscribe_msckf' in RUNNER
+    assert 'stdbuf' not in RUNNER.replace('line buffering', '')
     failure = RUNNER[RUNNER.index('if (( OPENVINS_RC != 0 )); then'):]
     failure = failure[:failure.index('\nfi\n')]
     assert '_openvins_native_outcome.py' in failure and 'native_outcome=' in failure

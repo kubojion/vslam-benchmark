@@ -242,10 +242,10 @@ docker run --rm \
         # process directly supervised. ros2 launch can return zero after a node
         # segfault and forward a second SIGINT during attempt cleanup.
         export OPENVINS_INPUT_RECEIPT=/ws/${OUT_REL}/openvins_input_receipt.json
-        # Line-buffered output: OpenVINS prints why it aborts (e.g. a negative covariance
-        # diagonal) right before std::exit, and a crash in the static teardown that follows
-        # would otherwise discard the buffered message. Output buffering only.
-        owned_run node stdbuf -oL -eL $NODE_PREFIX /colcon_ws/install/lib/ov_msckf/run_subscribe_msckf \
+        # Output stays fully buffered: line buffering changed OpenVINS's timing-sensitive
+        # result on CitrusFarm (22 Oct). An abort message lost in a teardown crash is
+        # recovered with OPENVINS_GDB=1; the native-outcome record attributes the failure.
+        owned_run node $NODE_PREFIX /colcon_ws/install/lib/ov_msckf/run_subscribe_msckf \
             --ros-args -r __ns:=/ov_msckf \
             -p config_path:=/ws/$CFG_REL/estimator_config.yaml \
             -p use_stereo:=true -p max_cameras:=2 -p verbosity:=$OPENVINS_VERBOSITY \
