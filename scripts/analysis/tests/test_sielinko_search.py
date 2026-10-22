@@ -8,6 +8,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import time
 import unittest
 from unittest.mock import patch
 
@@ -179,6 +180,18 @@ class ProtocolChecks(unittest.TestCase):
             self.assertEqual(spec['final_modes'], ['vio'])
             self.assertEqual(set(spec['sequence_roles'].values()), {'short', 'half', 'full'})
             self.assertTrue(set(spec['sequence_roles'].values()) <= set(self.protocol['attempt_timeouts_s'][spec['algorithm']]))
+
+    def test_private_voxel_container_is_the_one_the_engine_owns(self):
+        import noise_cleanup
+        import noise_campaign_engine as engine
+        container = self.protocol['runtime_environment']['voxel_svio']['VOXEL_SVIO_CONTAINER']
+        self.assertEqual(container, noise_cleanup.PERSISTENT['voxel_svio'])
+        self.assertNotEqual(container, 'voxel_svio')
+        # Stray hook values in the controller environment never reach an attempt.
+        for name in ('VOXEL_SVIO_CONFIG', 'SVO_PRO_IMU_NOISE', 'VOXEL_SVIO_CONTAINER', 'OPENVINS_CPUSET',
+                     'SVO_PRO_CPUSET', 'ORBSLAM3_CONFIG', 'OKVIS2_CONFIG', 'OKVIS2X_CONFIG', 'BASALT_CALIBRATION',
+                     'OPENVINS_CONFIG_DIR', 'SVO_PRO_IMU_FILE', 'OPENVINS_MEMORY_LIMIT', 'SVO_PRO_MEMORY_LIMIT'):
+            self.assertIn(name, engine.CONFIG_ENVIRONMENT)
 
     def test_lanes_and_limits(self):
         lanes_ = self.protocol['lanes']
@@ -383,6 +396,50 @@ class Scheduling(unittest.TestCase):
             protocol['lane_handover']['sha256'] = noise_pilot.sha(path)
             with self.assertRaisesRegex(RuntimeError, 'lane2'):
                 coordinator.verify_handover(protocol)
+
+
+class LaneSlot(unittest.TestCase):
+    """The slot waits for the lane, samples the attempt, and stops the search on a finding."""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='sielinko-slot-', dir=ART)
+        self.art = Path(self.temp.name)
+        self.protocol = prepare.protocol({v: dict(first=0, count=1, times_sha256='0' * 64) for v in prepare.VIEWS})
+        self.protocol['launch_policy'].update(poll_s=0, sample_s=0.01)
+        import noise_campaign_engine as engine
+        self.engine = engine
+        patcher = patch.multiple(engine, ART=self.art, CURRENT=dict(key='k', run=str(self.art / 'run7'), unit='u-7'))
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        events = patch.object(noise_pilot, 'ART', self.art)
+        events.start()
+        self.addCleanup(events.stop)
+        self.addCleanup(self.temp.cleanup)
+
+    def slot(self):
+        return coordinator.lane_slot(self.art, self.protocol, 'lane1', os.getppid())
+
+    def test_waits_until_the_lane_is_free_then_samples(self):
+        answers = [['busy'], ['busy'], []]
+        with patch.object(lanes, 'launch_blockers', side_effect=lambda *a, **k: answers.pop(0)), \
+                patch.object(lanes, 'sample_errors', return_value=[]):
+            with self.slot():
+                pass
+        self.assertEqual(answers, [])
+        events = [json.loads(x)['event'] for x in (self.art / 'events.jsonl').read_text().splitlines()]
+        self.assertEqual(events, ['waiting_for_lane'])  # changes are recorded, not every poll
+        self.assertTrue((self.art / 'lane-samples/run7.jsonl').read_text())
+
+    def test_finding_stops_after_the_attempt_and_stop_file_before_it(self):
+        with patch.object(lanes, 'launch_blockers', return_value=[]), \
+                patch.object(lanes, 'sample_errors', return_value=['thread outside lane']):
+            with self.assertRaisesRegex(RuntimeError, 'Lane check failed'):
+                with self.slot():
+                    time.sleep(0.05)
+        (self.art / 'STOP_AFTER_CURRENT').touch()
+        with self.assertRaises(InterruptedError):
+            with self.slot():
+                self.fail('must not launch after a stop request')
 
 
 class MainPins(unittest.TestCase):
