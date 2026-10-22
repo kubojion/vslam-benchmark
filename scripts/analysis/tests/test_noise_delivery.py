@@ -191,12 +191,27 @@ class DeliveryChecks(unittest.TestCase):
 
     def test_native_crash_or_attempt_timeout_remains_estimator_failure(self):
         p=self.run/'processes/node.json';p.parent.mkdir()
-        for native_code,wrapper_code in ((134,1),(0,124)):
+        outcome=self.run/'openvins_native_outcome.json'
+        outcome.write_text(json.dumps(dict(classification='estimator_numerical_abort',estimator_failure=True)))
+        for native_code,wrapper_code,expected in ((-11,1,dict(native_outcome=json.loads(outcome.read_text()))),(0,124,{})):
             p.write_text(json.dumps(dict(status='exited',exit_code=native_code)))
             with mock.patch.object(engine.noise_delivery,'audit_openvins') as check:
                 self.assertEqual(engine.verify_transport(self.run,dict(algorithm='openvins'),
-                                                        'sequence',wrapper_code),{})
+                                                        'sequence',wrapper_code),expected)
                 check.assert_not_called()
+
+    def test_native_failure_not_attributed_to_the_estimator_stops_the_search(self):
+        p=self.run/'processes/node.json';p.parent.mkdir()
+        p.write_text(json.dumps(dict(status='exited',exit_code=-11)))
+        outcome=self.run/'openvins_native_outcome.json'
+        for record in (None,dict(classification='input_delivery_stall',estimator_failure=False),
+                       dict(classification='native_time_order_abort',estimator_failure=False)):
+            if record is None:
+                outcome.unlink(missing_ok=True)
+            else:
+                outcome.write_text(json.dumps(record))
+            with self.subTest(record=record),self.assertRaisesRegex(RuntimeError,'not attributed to the estimator'):
+                engine.verify_transport(self.run,dict(algorithm='openvins'),'sequence',1)
 
     def completed(self,processed=2,pending=(),offset=0.):
         self.exact_receipt()

@@ -138,8 +138,17 @@ def verify_transport(run, spec, sequence, returncode):
         if returncode not in (0, 124) and node_path.is_file():
             node = json.loads(node_path.read_text())
             native_clean_exit = node.get('status') == 'exited' and node.get('exit_code') == 0
+        if returncode == 124:
+            return evidence  # attempt timeout: remains a failure
         if returncode != 0 and not native_clean_exit:
-            return evidence
+            # A native failure is a measured estimator failure only when the runner
+            # attributes it to the estimator after exact delivery (native outcome).
+            path = run / 'openvins_native_outcome.json'
+            outcome = json.loads(path.read_text()) if path.is_file() else {}
+            if outcome.get('estimator_failure') is not True:
+                raise RuntimeError('OpenVINS failure is not attributed to the estimator ('
+                                   + str(outcome.get('classification')) + '); review before optimizing: ' + str(run))
+            return dict(native_outcome=outcome)
         evidence = noise_delivery.audit_openvins(run, ROOT / 'datasets' / spec['dataset'] / sequence,
             allowed_pending_tail=PROTOCOL['delivery_policy']['openvins_pending_camera_tail'], require_exact=True,
             require_end_of_stream=PROTOCOL['delivery_policy'].get('openvins_end_of_stream_drain', False),
@@ -256,7 +265,7 @@ def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
             config_path = Path(next(iter(candidate['environment'].values())))
             base.verify_native_parameters(run, spec, parameters, config_path, returncode)
         transport = verify_transport(run, spec, sequence, returncode)
-        if spec['algorithm'] == 'openvins' and transport:
+        if spec['algorithm'] == 'openvins' and transport.get('passed') is True:
             transport['native_noise_parameters'] = noise_delivery.verify_native_noise(run, parameters)
         log_text = log.read_text(errors='replace')
         record.update(state='finished', finished=base.now(), returncode=returncode,
