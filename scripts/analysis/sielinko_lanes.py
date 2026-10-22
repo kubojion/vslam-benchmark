@@ -9,9 +9,12 @@ That makes the lane rules checkable without a shared registry:
 - nothing launches while any Basalt run is active (Basalt runs alone);
 - an exclusive (Basalt) attempt launches only when no run and no GPU job exist.
 
-During an attempt a sampler checks the attempt's own processes and containers:
-host threads must keep the lane's CPU set, a container must carry it, and an
-exclusive attempt must stay alone. A finding stops the search at the boundary.
+During an attempt a sampler checks the attempt's own processes and containers.
+A host thread that widens its own affinity (Mesa's shader-cache worker in ORB-SLAM3
+does) is put back on the lane cores and logged, as in Rule C revision 13; a failed
+re-pin, or more than max_affinity_corrections episodes in one attempt, is a finding.
+A container must carry the lane's CPU set and an exclusive attempt must stay alone.
+A finding stops the search at the boundary.
 """
 from __future__ import annotations
 
@@ -158,17 +161,42 @@ def thread_affinities(pid):
     return result
 
 
+def escaped_threads(protocol, lane, attempt, snapshot):
+    """(pid, tid, affinity) of the attempt's host threads outside the lane cores."""
+    allowed = set(cpu_set(lane_cpus(protocol, lane)))
+    scope = '/' + attempt['unit'] + '.scope'
+    return [(item['pid'], task, cpus) for item in snapshot if scope in item['cgroup']
+            for task, cpus in thread_affinities(item['pid']).items() if not set(cpus) <= allowed]
+
+
+def repin(protocol, lane, escapes):
+    """Put escaped threads back on the lane cores; returns (corrections, findings)."""
+    cpus = cpu_set(lane_cpus(protocol, lane))
+    corrections, errors = [], []
+    for pid, tid, before in escapes:
+        row = dict(pid=pid, tid=tid, before=before)
+        try:
+            row['thread'] = Path(f'/proc/{pid}/task/{tid}/comm').read_text().strip()
+        except OSError:
+            row['thread'] = None
+        try:
+            os.sched_setaffinity(tid, cpus)
+            row['after'] = sorted(os.sched_getaffinity(tid))
+        except ProcessLookupError:
+            continue  # the thread has already ended
+        except OSError as exc:
+            row['error'] = repr(exc)
+        corrections.append(row)
+        if row.get('after') != cpus:
+            errors.append(f"could not re-pin thread {tid} ({row['thread']}) of {pid} to lane {lane}")
+    return corrections, errors
+
+
 def sample_errors(protocol, lane, attempt, snapshot, *, cpuset=None, gpu=None):
-    """Check one sample of a running attempt; returns findings (empty when clean)."""
+    """Check one sample of a running attempt (container and exclusivity); returns findings."""
     allowed = set(cpu_set(lane_cpus(protocol, lane)))
     scope = '/' + attempt['unit'] + '.scope'
     errors = []
-    for item in snapshot:
-        if scope not in item['cgroup']:
-            continue
-        for task, cpus in thread_affinities(item['pid']).items():
-            if not set(cpus) <= allowed:
-                errors.append(f"thread {task} of {item['pid']} runs on {cpus}, outside lane {lane}")
     if cpuset is not None and cpu_set(cpuset or '0-1023') != sorted(allowed):
         errors.append(f'attempt container CPU set {cpuset!r} differs from lane {lane}')
     if protocol['lanes'][lane].get('idle_host'):
@@ -188,7 +216,7 @@ class Sampler(threading.Thread):
         self.protocol, self.lane, self.attempt = protocol, lane, attempt
         self.path = Path(directory) / (Path(attempt['run']).name + '.jsonl')
         self.finished = threading.Event()
-        self.errors, self.samples = [], 0
+        self.errors, self.samples, self.episodes = [], 0, 0
 
     def run(self):
         self.path.parent.mkdir(parents=True, exist_ok=True)
@@ -203,13 +231,24 @@ class Sampler(threading.Thread):
                     errors = sample_errors(self.protocol, self.lane, self.attempt, snapshot, cpuset=cpuset, gpu=gpu)
                     if exclusive and gpu is None:
                         errors.append('GPU use cannot be verified')
+                    corrections = []
+                    escapes = escaped_threads(self.protocol, self.lane, self.attempt, snapshot)
+                    if escapes:
+                        # One correction episode per sample with escapes; every thread is logged.
+                        self.episodes += 1
+                        corrections, failed = repin(self.protocol, self.lane, escapes)
+                        errors += failed
+                        limit = self.protocol['launch_policy']['max_affinity_corrections']
+                        if self.episodes > limit:
+                            errors.append(f'more than {limit} affinity corrections in one attempt')
                     memory = meminfo()['MemAvailable']
                 except Exception as exc:  # a sampler fault is a finding, never a silent pass
-                    errors, cpuset, memory = [f'sampler fault: {type(exc).__name__}: {exc}'], None, None
+                    errors, cpuset, memory, corrections = [f'sampler fault: {type(exc).__name__}: {exc}'], None, None, []
                 self.samples += 1
                 self.errors.extend(e for e in errors if e not in self.errors)
                 stream.write(json.dumps(dict(at=time.time(), lane=self.lane, container_cpuset=cpuset,
-                                             available_bytes=memory, errors=errors)) + '\n')
+                                             available_bytes=memory, affinity_corrections=corrections,
+                                             errors=errors)) + '\n')
                 stream.flush()
                 if stopping or self.finished.wait(self.protocol['launch_policy']['sample_s']):
                     if stopping:
@@ -218,4 +257,5 @@ class Sampler(threading.Thread):
     def stop(self):
         self.finished.set()
         self.join(timeout=60)
-        return dict(samples=self.samples, errors=self.errors, path=str(self.path))
+        return dict(samples=self.samples, errors=self.errors, affinity_correction_episodes=self.episodes,
+                    path=str(self.path))

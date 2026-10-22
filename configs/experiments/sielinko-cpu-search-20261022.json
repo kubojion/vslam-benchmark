@@ -811,7 +811,8 @@
     "no_host_swap_use": true,
     "min_disk_free_gib": 100,
     "poll_s": 30,
-    "sample_s": 5
+    "sample_s": 5,
+    "max_affinity_corrections": 3
   },
   "lane_handover": null,
   "scheduling": {

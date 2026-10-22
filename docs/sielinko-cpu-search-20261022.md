@@ -48,7 +48,9 @@ never a Rule C ranking. Nothing has run yet.
   - Docker estimators get `--cpuset-cpus` and `--memory` from the lane (`_docker_limits.sh`).
   - The private Voxel container carries the lane's CPU set.
   - A sampler checks every attempt: thread affinity, container CPU set and, for Basalt, that
-    nothing else runs.
+    nothing else runs. A host thread that widens its own affinity (Mesa's shader-cache worker in
+    ORB-SLAM3 does) is put back on the lane cores and logged, as in Rule C revision 13. A failed
+    re-pin, or more than 3 correction episodes in one attempt, stops the search.
 - **Launch gate** (the same checks as Rule C revision 13):
   - at least 40 GiB free, no host swap in use, at least 100 GiB of free disk;
   - no other benchmark run on the lane's cores;

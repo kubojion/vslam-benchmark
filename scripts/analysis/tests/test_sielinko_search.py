@@ -299,16 +299,52 @@ class LaneChecks(unittest.TestCase):
     def test_sampler_findings(self):
         attempt = dict(unit='noise-campaign-x-1', run='/tmp/run1')
         mine = dict(pid=os.getpid(), argv=['bash', '/w/scripts/run/run_basalt.sh'], cgroup='0::/a/noise-campaign-x-1.scope', cpus=[0])
+        other = dict(mine, pid=1, cgroup='0::/other.scope')
         with patch.object(lanes, 'thread_affinities', return_value={1: [0, 1, 2, 3], 2: [0, 1]}):
-            self.assertEqual(lanes.sample_errors(self.protocol, 'lane1', attempt, [mine]), [])
-        with patch.object(lanes, 'thread_affinities', return_value={1: list(range(24))}):
-            self.assertTrue(lanes.sample_errors(self.protocol, 'lane1', attempt, [mine]))
-        with patch.object(lanes, 'thread_affinities', return_value={}):
-            self.assertTrue(lanes.sample_errors(self.protocol, 'lane1', attempt, [mine], cpuset='0-7'))
-            self.assertEqual(lanes.sample_errors(self.protocol, 'lane1', attempt, [mine], cpuset='0-3'), [])
-            self.assertEqual(lanes.sample_errors(self.protocol, 'exclusive', attempt, [mine], gpu=[]), [])
-            self.assertTrue(lanes.sample_errors(self.protocol, 'exclusive', attempt, [mine, self.wrapper('cuvslam', [20])], gpu=[]))
-            self.assertTrue(lanes.sample_errors(self.protocol, 'exclusive', attempt, [mine], gpu=[99]))
+            self.assertEqual(lanes.escaped_threads(self.protocol, 'lane1', attempt, [mine]), [])
+        with patch.object(lanes, 'thread_affinities', return_value={7: list(range(24))}):
+            self.assertEqual(lanes.escaped_threads(self.protocol, 'lane1', attempt, [mine, other]),
+                             [(os.getpid(), 7, list(range(24)))])  # only the attempt's own scope
+        self.assertTrue(lanes.sample_errors(self.protocol, 'lane1', attempt, [mine], cpuset='0-7'))
+        self.assertEqual(lanes.sample_errors(self.protocol, 'lane1', attempt, [mine], cpuset='0-3'), [])
+        self.assertEqual(lanes.sample_errors(self.protocol, 'exclusive', attempt, [mine], gpu=[]), [])
+        self.assertTrue(lanes.sample_errors(self.protocol, 'exclusive', attempt, [mine, self.wrapper('cuvslam', [20])], gpu=[]))
+        self.assertTrue(lanes.sample_errors(self.protocol, 'exclusive', attempt, [mine], gpu=[99]))
+
+    def test_escaped_thread_is_put_back_on_the_lane_and_logged(self):
+        allowed = sorted(os.sched_getaffinity(0))
+        self.protocol['lanes']['lane1']['cpus'] = str(allowed[0])
+        child = subprocess.Popen([sys.executable, '-c', 'import time; time.sleep(30)'])
+        try:
+            corrections, errors = lanes.repin(self.protocol, 'lane1', [(child.pid, child.pid, allowed)])
+            self.assertEqual(errors, [])
+            self.assertEqual(corrections[0]['after'], [allowed[0]])
+            self.assertEqual(sorted(os.sched_getaffinity(child.pid)), [allowed[0]])
+        finally:
+            child.kill(); child.wait()
+        # A thread that has ended is not a finding; a refused re-pin is.
+        self.assertEqual(lanes.repin(self.protocol, 'lane1', [(child.pid, child.pid, allowed)]), ([], []))
+        with patch.object(lanes.os, 'sched_setaffinity', side_effect=PermissionError('denied')):
+            corrections, errors = lanes.repin(self.protocol, 'lane1', [(os.getpid(), os.getpid(), allowed)])
+        self.assertTrue(errors and 'error' in corrections[0])
+
+    def test_more_than_the_allowed_correction_episodes_is_a_finding(self):
+        self.protocol['launch_policy'].update(sample_s=0.001, max_affinity_corrections=3)
+        attempt = dict(unit='u', run=str(Path(tempfile.mkdtemp(dir=ART)) / 'run9'))
+        self.addCleanup(lambda: __import__('shutil').rmtree(Path(attempt['run']).parent))
+        def episodes(count):
+            sampler = lanes.Sampler(self.protocol, 'lane1', attempt, Path(attempt['run']).parent)
+            calls = iter([[(1, 2, [0, 9])]] * count + [[]] * 1000)
+            with patch.object(lanes, 'processes', return_value=[]), patch.object(lanes, 'container_cpuset', return_value=None), \
+                    patch.object(lanes, 'meminfo', return_value=dict(MemAvailable=GIB)), \
+                    patch.object(lanes, 'escaped_threads', side_effect=lambda *a: next(calls)), \
+                    patch.object(lanes, 'repin', return_value=([dict(pid=1, tid=2, after=[0])], [])):
+                sampler.start()
+                while sampler.episodes < count:
+                    time.sleep(0.001)
+                return sampler.stop()
+        self.assertEqual(episodes(3)['errors'], [])
+        self.assertEqual(episodes(4)['errors'], ['more than 3 affinity corrections in one attempt'])
 
     def test_lane_locks_are_never_created_and_wait_for_other_holders(self):
         with tempfile.TemporaryDirectory(dir=ART) as directory:

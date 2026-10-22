@@ -251,7 +251,7 @@ def protocol(view_records):
                    lane2=dict(cpus='4-7', memory_gib=50, locks=locks),
                    exclusive=dict(cpus='0-7', memory_gib=50, locks=locks, idle_host=True)),
         launch_policy=dict(min_available_gib=40, no_host_swap_use=True, min_disk_free_gib=100,
-                           poll_s=30, sample_s=5),
+                           poll_s=30, sample_s=5, max_affinity_corrections=3),
         lane_handover=None,
         scheduling=dict(resource_class={a: 'cpu' for a in ORDER}, develop=('Two lanes, one study per lane at a time; a study keeps its declared lane. '
                                  'An exclusive study starts only after every other study, with the host idle.'),
