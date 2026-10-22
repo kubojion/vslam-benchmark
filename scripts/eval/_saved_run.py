@@ -123,7 +123,7 @@ def interpreted_measurements(meta):
     return values
 
 
-def evaluate_saved_run(ws, run_dir, *, gt_override=None):
+def evaluate_saved_run(ws, run_dir, *, gt_override=None, sparse_export=None):
     ws, run_dir = Path(ws).resolve(), Path(run_dir).resolve()
     mode, dataset, seq, algo, run_name = run_dir.relative_to(ws/'results').parts
     rt = resolve(mode, ws)
@@ -161,7 +161,7 @@ def evaluate_saved_run(ws, run_dir, *, gt_override=None):
     try:
         numerical, paired = evaluate_arrays(reference, estimate, times, policy,
                          monocular=algo in ('dpvo', 'droidslam', 'mast3r_slam', 'megasam'),
-                         sparse_export=algo == 'airslam', gnss=rt.use_gnss)
+                         sparse_export=(algo == 'airslam' if sparse_export is None else sparse_export), gnss=rt.use_gnss)
     except ValueError as exc:
         numerical = dict(eval_schema=3, run_status='eval_failed', failure_reason=str(exc), n_pairs_ate=0,
                          ate=statistics([]), ate_se3=statistics([]), ate_origin={},

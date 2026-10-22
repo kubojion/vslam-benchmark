@@ -127,6 +127,9 @@ if ! docker image inspect "$OPENVINS_IMAGE" >/dev/null 2>&1; then
 fi
 [[ "$(docker image inspect --format '{{.Id}}' "$OPENVINS_IMAGE")" == "$OPENVINS_IMAGE_ID" ]] \
     || { echo "[openvins] $OPENVINS_IMAGE is not the validated image $OPENVINS_IMAGE_ID" >&2; exit 2; }
+# Optional experiment-lane limits (OPENVINS_MEMORY_LIMIT, OPENVINS_MEMORY_SWAP_LIMIT, OPENVINS_CPUSET).
+source "$WS/scripts/run/_docker_limits.sh"
+docker_limit_args OPENVINS || exit 2
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
@@ -195,6 +198,7 @@ set +e
 docker run --rm \
     --name "$RUN_CONTAINER" \
     --cidfile "$OUT_DIR/docker.cid" \
+    "${DOCKER_LIMIT_ARGS[@]}" \
     --network host \
     --user "$(id -u):$(id -g)" \
     --volume "$WS:/ws" \
@@ -276,6 +280,7 @@ PROV_ARGS=(
     --param "delivery_gate=$DELIVERY_GATE"
     --param "container_image_id=$OPENVINS_IMAGE_ID"
     --param "native_verbosity=$OPENVINS_VERBOSITY"
+    "${DOCKER_LIMIT_PROV[@]}"
     --container-image "$OPENVINS_IMAGE"
 )
 # Audit native input receipts whenever they exist (also after a failed

@@ -42,7 +42,9 @@ SEQ_DIR="$WS/datasets/$DATASET/$SEQ"
 OUT_DIR="$RESULTS_ROOT/$DATASET/$SEQ/voxel_svio/run${RUN_ID}"
 LOG="$WS/logs/${DATASET}_${SEQ}_voxel_svio_${RUN_TYPE}_run${RUN_ID}.log"
 
-CONTAINER="voxel_svio"
+# The persistent container mounts one checkout's configs/, scripts/ and results/.
+# Another checkout selects its own container; the mounts are checked before use.
+CONTAINER="${VOXEL_SVIO_CONTAINER:-voxel_svio}"
 VOXEL_PREFIX=/root/catkin_ws/devel
 # Repaired build (shutdown, initializer offset) wherever the reviewed configuration is current;
 # Rosario since its decided configuration became the default (3 October 2026); HortiMulti since
@@ -119,6 +121,14 @@ if ! docker ps --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
         exit 2
     fi
 fi
+
+# Refuse a container that would read another checkout's configs or write its results.
+MOUNTS=$(docker inspect --format '{{range .Mounts}}{{.Source}}={{.Destination}} {{end}}' "$CONTAINER") \
+    || { echo "[voxel_svio] cannot inspect container $CONTAINER" >&2; exit 2; }
+for pair in "$WS/configs=/benchmark_configs" "$WS/scripts=/benchmark_scripts" "$WS/results=/results"; do
+    [[ " $MOUNTS " == *" $pair "* ]] \
+        || { echo "[voxel_svio] container $CONTAINER does not mount ${pair%%=*} at ${pair#*=}" >&2; exit 2; }
+done
 
 owned_require_idle roscore rosmaster roslaunch vio_node
 owned_ros1_port

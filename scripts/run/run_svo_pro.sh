@@ -54,7 +54,15 @@ PREP_ENV="${SVO_PRO_PREP_CONDA_ENV:-cuvslam}"   # host python with numpy, yaml, 
 if [[ "$DATASET" == "euroc_mav" ]]; then
     IMU_FILE="$REPO/svo_ros/param/calib/euroc_stereo.yaml"; IMU_SRC="upstream:$IMU_FILE"
 else
-    IMU_FILE="$WS/configs/okvis2/${DATASET}_${SEQ}_vio.yaml"; IMU_SRC="okvis2:$IMU_FILE"
+    # A derived clip or half of a recording reads its parent's OKVIS2 IMU calibration.
+    IMU_FILE="${SVO_PRO_IMU_FILE:-$WS/configs/okvis2/${DATASET}_${SEQ}_vio.yaml}"; IMU_SRC="okvis2:$IMU_FILE"
+fi
+
+if [[ -n "${SVO_PRO_IMU_FILE:-}" ]]; then
+    IMU_FILE=$(realpath -e "$SVO_PRO_IMU_FILE")
+    [[ "$IMU_FILE" == "$WS/configs/"* ]] \
+        || { echo "[svo_pro] ERROR: SVO_PRO_IMU_FILE must be a file under $WS/configs" >&2; exit 2; }
+    IMU_SRC="okvis2:$IMU_FILE"
 fi
 
 [[ -e "$REPO/.git" ]] || { echo "[svo_pro] ERROR: source checkout missing at $REPO (run scripts/build/build_svo_pro.sh)" >&2; exit 2; }
@@ -142,6 +150,10 @@ PROV_ARGS=(
     --container-image "$SVO_IMAGE"
 )
 [[ -n "${SVO_PRO_IMU_NOISE:-}" ]] && PROV_ARGS+=(--artifact "imu_noise_override=$SVO_PRO_IMU_NOISE")
+# Optional experiment-lane limits (SVO_PRO_MEMORY_LIMIT, SVO_PRO_MEMORY_SWAP_LIMIT, SVO_PRO_CPUSET).
+source "$WS/scripts/run/_docker_limits.sh"
+docker_limit_args SVO_PRO || exit 2
+PROV_ARGS+=("${DOCKER_LIMIT_PROV[@]}")
 
 # The container has its own network namespace, so its ROS master cannot be seen
 # by, or collide with, any other run on the host.
@@ -151,6 +163,7 @@ set +e
 timeout --signal=TERM --kill-after=60 "$TIME_LIMIT_S" docker run --rm \
     --name "$RUN_CONTAINER" \
     --cidfile "$OUT_DIR/docker.cid" \
+    "${DOCKER_LIMIT_ARGS[@]}" \
     --user "$(id -u):$(id -g)" \
     --volume "$WS:/ws" \
     "${STAGE_MOUNTS[@]}" \

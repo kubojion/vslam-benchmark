@@ -69,6 +69,15 @@ TRACKED_ENV = (
     "OPENVINS_END_OF_STREAM_DRAIN",
     "OPENVINS_FLOW_CONTROL",
     "OPENVINS_TRANSPORT_PROFILE",
+    # Experiment lanes and derived recordings (Sielinko CPU noise search).
+    "OPENVINS_MEMORY_LIMIT",
+    "OPENVINS_MEMORY_SWAP_LIMIT",
+    "OPENVINS_CPUSET",
+    "SVO_PRO_MEMORY_LIMIT",
+    "SVO_PRO_MEMORY_SWAP_LIMIT",
+    "SVO_PRO_CPUSET",
+    "SVO_PRO_IMU_FILE",
+    "VOXEL_SVIO_CONTAINER",
 )
 MEASUREMENT_MODES = ("max_throughput", "paced", "transport")
 
