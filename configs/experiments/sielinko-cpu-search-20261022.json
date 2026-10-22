@@ -1,0 +1,836 @@
+{
+  "schema": 1,
+  "status": "DRAFT_NOT_FROZEN",
+  "campaign_id": "sielinko-cpu-search-20261022",
+  "development_only": true,
+  "worktree": "/data/imoroz/vslam-sielinko-search-20261022",
+  "main_root": "/data/imoroz/vslam-benchmark",
+  "max_wall_hours": 120,
+  "preliminary": {
+    "seed": 20261009,
+    "candidates": 16,
+    "startup": 8,
+    "finalists": 2,
+    "repetitions": 3
+  },
+  "screen": {
+    "seeds": [
+      202610091,
+      202610092
+    ],
+    "candidates_per_seed": 16,
+    "startup": 8
+  },
+  "full": {
+    "seed": 202610093,
+    "candidates": 12,
+    "seed_candidates": 6,
+    "finalists": 2,
+    "repetitions": 3
+  },
+  "studies": [
+    {
+      "id": "orbslam3_zed2i",
+      "algorithm": "orbslam3",
+      "dataset": "zed2i",
+      "supports_lc": true,
+      "final_modes": [
+        "vio"
+      ],
+      "clips": [
+        "field1_sielinko_h1c1_20261022",
+        "field1_sielinko_h1c2_20261022"
+      ],
+      "full_sequences": [
+        "field1_sielinko_h1_20261022"
+      ],
+      "test_sequences": [
+        "field1_sielinko_h2_20261022",
+        "field1_110426_full_10fps_q90"
+      ],
+      "final_controls": [],
+      "sequence_parents": {
+        "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h2_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c2_20261022": "field1_110426_full_10fps_q90"
+      },
+      "sequence_roles": {
+        "field1_110426_full_10fps_q90": "full",
+        "field1_sielinko_h1_20261022": "half",
+        "field1_sielinko_h2_20261022": "half",
+        "field1_sielinko_h1c1_20261022": "short",
+        "field1_sielinko_h1c2_20261022": "short"
+      },
+      "controls": [
+        {
+          "label": "rule_c",
+          "params": {
+            "gyroscope_noise_density": 0.00015,
+            "accelerometer_noise_density": 0.0011,
+            "gyroscope_random_walk": 2.1e-06,
+            "accelerometer_random_walk": 3.5e-05
+          },
+          "source": "configs/orbslam3/zed2i_field1_110426_full_10fps_q90_stereo_inertial.yaml"
+        },
+        {
+          "label": "engine_on",
+          "params": {
+            "gyroscope_noise_density": 0.0032,
+            "accelerometer_noise_density": 0.02,
+            "gyroscope_random_walk": 2.1e-06,
+            "accelerometer_random_walk": 3.5e-05
+          },
+          "source": "configs/sensitivity/zed2i-engine-on-20261021/profile.json"
+        },
+        {
+          "label": "envelope",
+          "params": {
+            "gyroscope_noise_density": 0.0195,
+            "accelerometer_noise_density": 0.18,
+            "gyroscope_random_walk": 0.0007400196,
+            "accelerometer_random_walk": 0.0202
+          },
+          "source": "docs/imu-noise-rule-20261005.md (ZED2i envelope)",
+          "historical_run": "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001"
+        }
+      ],
+      "bounds": {
+        "gyroscope_noise_density": [
+          1.4999999999999999e-05,
+          0.058499999999999996
+        ],
+        "accelerometer_noise_density": [
+          0.00011,
+          0.54
+        ],
+        "gyroscope_random_walk": [
+          2.0999999999999997e-07,
+          0.0022200588
+        ],
+        "accelerometer_random_walk": [
+          3.4999999999999995e-06,
+          0.0606
+        ]
+      },
+      "lane": null
+    },
+    {
+      "id": "okvis2_zed2i",
+      "algorithm": "okvis2",
+      "dataset": "zed2i",
+      "supports_lc": true,
+      "final_modes": [
+        "vio"
+      ],
+      "clips": [
+        "field1_sielinko_h1c1_20261022",
+        "field1_sielinko_h1c2_20261022"
+      ],
+      "full_sequences": [
+        "field1_sielinko_h1_20261022"
+      ],
+      "test_sequences": [
+        "field1_sielinko_h2_20261022",
+        "field1_110426_full_10fps_q90"
+      ],
+      "final_controls": [],
+      "sequence_parents": {
+        "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h2_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c2_20261022": "field1_110426_full_10fps_q90"
+      },
+      "sequence_roles": {
+        "field1_110426_full_10fps_q90": "full",
+        "field1_sielinko_h1_20261022": "half",
+        "field1_sielinko_h2_20261022": "half",
+        "field1_sielinko_h1c1_20261022": "short",
+        "field1_sielinko_h1c2_20261022": "short"
+      },
+      "controls": [
+        {
+          "label": "rule_c",
+          "params": {
+            "gyroscope_noise_density": 0.0017680339462517681,
+            "accelerometer_noise_density": 0.011000000000000001,
+            "gyroscope_random_walk": 2.1657299025421543e-05,
+            "accelerometer_random_walk": 0.00023333333333333333
+          },
+          "source": "configs/okvis2/zed2i_field1_110426_full_10fps_q90_vio.yaml"
+        },
+        {
+          "label": "engine_on",
+          "params": {
+            "gyroscope_noise_density": 0.03771805752003773,
+            "accelerometer_noise_density": 0.2,
+            "gyroscope_random_walk": 2.1657299025421543e-05,
+            "accelerometer_random_walk": 0.00023333333333333333
+          },
+          "source": "configs/sensitivity/zed2i-engine-on-20261021/profile.json"
+        },
+        {
+          "label": "envelope",
+          "params": {
+            "gyroscope_noise_density": 0.0195,
+            "accelerometer_noise_density": 0.18,
+            "gyroscope_random_walk": 0.0007400196,
+            "accelerometer_random_walk": 0.0202
+          },
+          "source": "docs/imu-noise-rule-20261005.md (ZED2i envelope)",
+          "historical_run": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run10001"
+        }
+      ],
+      "bounds": {
+        "gyroscope_noise_density": [
+          0.0001768033946251768,
+          0.1768033946251768
+        ],
+        "accelerometer_noise_density": [
+          0.0011,
+          1.1
+        ],
+        "gyroscope_random_walk": [
+          2.165729902542154e-06,
+          0.0022200588
+        ],
+        "accelerometer_random_walk": [
+          2.3333333333333332e-05,
+          0.0606
+        ]
+      },
+      "lane": null
+    },
+    {
+      "id": "openvins_zed2i",
+      "algorithm": "openvins",
+      "dataset": "zed2i",
+      "supports_lc": false,
+      "final_modes": [
+        "vio"
+      ],
+      "clips": [
+        "field1_sielinko_h1c1_20261022",
+        "field1_sielinko_h1c2_20261022"
+      ],
+      "full_sequences": [
+        "field1_sielinko_h1_20261022"
+      ],
+      "test_sequences": [
+        "field1_sielinko_h2_20261022",
+        "field1_110426_full_10fps_q90"
+      ],
+      "final_controls": [],
+      "sequence_parents": {
+        "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h2_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c2_20261022": "field1_110426_full_10fps_q90"
+      },
+      "sequence_roles": {
+        "field1_110426_full_10fps_q90": "full",
+        "field1_sielinko_h1_20261022": "half",
+        "field1_sielinko_h2_20261022": "half",
+        "field1_sielinko_h1c1_20261022": "short",
+        "field1_sielinko_h1c2_20261022": "short"
+      },
+      "controls": [
+        {
+          "label": "rule_c",
+          "params": {
+            "gyroscope_noise_density": 0.00015,
+            "accelerometer_noise_density": 0.0011,
+            "gyroscope_random_walk": 2.1e-06,
+            "accelerometer_random_walk": 3.5e-05
+          },
+          "source": "configs/openvins/zed2i/kalibr_imu_chain.yaml"
+        },
+        {
+          "label": "engine_on",
+          "params": {
+            "gyroscope_noise_density": 0.0032,
+            "accelerometer_noise_density": 0.02,
+            "gyroscope_random_walk": 2.1e-06,
+            "accelerometer_random_walk": 3.5e-05
+          },
+          "source": "configs/sensitivity/zed2i-engine-on-20261021/profile.json"
+        },
+        {
+          "label": "envelope",
+          "params": {
+            "gyroscope_noise_density": 0.0195,
+            "accelerometer_noise_density": 0.18,
+            "gyroscope_random_walk": 0.0007400196,
+            "accelerometer_random_walk": 0.0202
+          },
+          "source": "docs/imu-noise-rule-20261005.md (ZED2i envelope)",
+          "historical_run": "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001"
+        }
+      ],
+      "bounds": {
+        "gyroscope_noise_density": [
+          1.4999999999999999e-05,
+          0.058499999999999996
+        ],
+        "accelerometer_noise_density": [
+          0.00011,
+          0.54
+        ],
+        "gyroscope_random_walk": [
+          2.0999999999999997e-07,
+          0.0022200588
+        ],
+        "accelerometer_random_walk": [
+          3.4999999999999995e-06,
+          0.0606
+        ]
+      },
+      "lane": null
+    },
+    {
+      "id": "voxel_svio_zed2i",
+      "algorithm": "voxel_svio",
+      "dataset": "zed2i",
+      "supports_lc": false,
+      "final_modes": [
+        "vio"
+      ],
+      "clips": [
+        "field1_sielinko_h1c1_20261022",
+        "field1_sielinko_h1c2_20261022"
+      ],
+      "full_sequences": [
+        "field1_sielinko_h1_20261022"
+      ],
+      "test_sequences": [
+        "field1_sielinko_h2_20261022",
+        "field1_110426_full_10fps_q90"
+      ],
+      "final_controls": [],
+      "sequence_parents": {
+        "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h2_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c2_20261022": "field1_110426_full_10fps_q90"
+      },
+      "sequence_roles": {
+        "field1_110426_full_10fps_q90": "full",
+        "field1_sielinko_h1_20261022": "half",
+        "field1_sielinko_h2_20261022": "half",
+        "field1_sielinko_h1c1_20261022": "short",
+        "field1_sielinko_h1c2_20261022": "short"
+      },
+      "controls": [
+        {
+          "label": "rule_c",
+          "params": {
+            "gyroscope_noise_density": 0.00015,
+            "accelerometer_noise_density": 0.0011,
+            "gyroscope_random_walk": 2.1e-06,
+            "accelerometer_random_walk": 3.5e-05
+          },
+          "source": "configs/voxel_svio/zed2i.yaml"
+        },
+        {
+          "label": "engine_on",
+          "params": {
+            "gyroscope_noise_density": 0.0032,
+            "accelerometer_noise_density": 0.02,
+            "gyroscope_random_walk": 2.1e-06,
+            "accelerometer_random_walk": 3.5e-05
+          },
+          "source": "configs/sensitivity/zed2i-engine-on-20261021/profile.json"
+        },
+        {
+          "label": "envelope",
+          "params": {
+            "gyroscope_noise_density": 0.0195,
+            "accelerometer_noise_density": 0.18,
+            "gyroscope_random_walk": 0.0007400196,
+            "accelerometer_random_walk": 0.0202
+          },
+          "source": "docs/imu-noise-rule-20261005.md (ZED2i envelope)",
+          "historical_run": "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run10001"
+        }
+      ],
+      "bounds": {
+        "gyroscope_noise_density": [
+          1.4999999999999999e-05,
+          0.058499999999999996
+        ],
+        "accelerometer_noise_density": [
+          0.00011,
+          0.54
+        ],
+        "gyroscope_random_walk": [
+          2.0999999999999997e-07,
+          0.0022200588
+        ],
+        "accelerometer_random_walk": [
+          3.4999999999999995e-06,
+          0.0606
+        ]
+      },
+      "lane": "lane2"
+    },
+    {
+      "id": "okvis2x_zed2i",
+      "algorithm": "okvis2x",
+      "dataset": "zed2i",
+      "supports_lc": true,
+      "final_modes": [
+        "vio"
+      ],
+      "clips": [
+        "field1_sielinko_h1c1_20261022",
+        "field1_sielinko_h1c2_20261022"
+      ],
+      "full_sequences": [
+        "field1_sielinko_h1_20261022"
+      ],
+      "test_sequences": [
+        "field1_sielinko_h2_20261022",
+        "field1_110426_full_10fps_q90"
+      ],
+      "final_controls": [],
+      "sequence_parents": {
+        "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h2_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c2_20261022": "field1_110426_full_10fps_q90"
+      },
+      "sequence_roles": {
+        "field1_110426_full_10fps_q90": "full",
+        "field1_sielinko_h1_20261022": "half",
+        "field1_sielinko_h2_20261022": "half",
+        "field1_sielinko_h1c1_20261022": "short",
+        "field1_sielinko_h1c2_20261022": "short"
+      },
+      "controls": [
+        {
+          "label": "rule_c",
+          "params": {
+            "gyroscope_noise_density": 0.0017680339462517681,
+            "accelerometer_noise_density": 0.011000000000000001,
+            "gyroscope_random_walk": 2.1657299025421543e-05,
+            "accelerometer_random_walk": 0.00023333333333333333
+          },
+          "source": "configs/okvis2x/zed2i_field1_110426_full_10fps_q90_vio.yaml"
+        },
+        {
+          "label": "engine_on",
+          "params": {
+            "gyroscope_noise_density": 0.03771805752003773,
+            "accelerometer_noise_density": 0.2,
+            "gyroscope_random_walk": 2.1657299025421543e-05,
+            "accelerometer_random_walk": 0.00023333333333333333
+          },
+          "source": "configs/sensitivity/zed2i-engine-on-20261021/profile.json"
+        },
+        {
+          "label": "envelope",
+          "params": {
+            "gyroscope_noise_density": 0.0195,
+            "accelerometer_noise_density": 0.18,
+            "gyroscope_random_walk": 0.0007400196,
+            "accelerometer_random_walk": 0.0202
+          },
+          "source": "docs/imu-noise-rule-20261005.md (ZED2i envelope)",
+          "historical_run": "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001"
+        }
+      ],
+      "bounds": {
+        "gyroscope_noise_density": [
+          0.0001768033946251768,
+          0.1768033946251768
+        ],
+        "accelerometer_noise_density": [
+          0.0011,
+          1.1
+        ],
+        "gyroscope_random_walk": [
+          2.165729902542154e-06,
+          0.0022200588
+        ],
+        "accelerometer_random_walk": [
+          2.3333333333333332e-05,
+          0.0606
+        ]
+      },
+      "lane": null
+    },
+    {
+      "id": "svo_pro_zed2i",
+      "algorithm": "svo_pro",
+      "dataset": "zed2i",
+      "supports_lc": true,
+      "final_modes": [
+        "vio"
+      ],
+      "clips": [
+        "field1_sielinko_h1c1_20261022",
+        "field1_sielinko_h1c2_20261022"
+      ],
+      "full_sequences": [
+        "field1_sielinko_h1_20261022"
+      ],
+      "test_sequences": [
+        "field1_sielinko_h2_20261022",
+        "field1_110426_full_10fps_q90"
+      ],
+      "final_controls": [],
+      "sequence_parents": {
+        "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h2_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c2_20261022": "field1_110426_full_10fps_q90"
+      },
+      "sequence_roles": {
+        "field1_110426_full_10fps_q90": "full",
+        "field1_sielinko_h1_20261022": "half",
+        "field1_sielinko_h2_20261022": "half",
+        "field1_sielinko_h1c1_20261022": "short",
+        "field1_sielinko_h1c2_20261022": "short"
+      },
+      "controls": [
+        {
+          "label": "rule_c",
+          "params": {
+            "gyroscope_noise_density": 0.0010608203677510608,
+            "accelerometer_noise_density": 0.0044,
+            "gyroscope_random_walk": 0.003248594853813231,
+            "accelerometer_random_walk": 0.0011666666666666665
+          },
+          "source": "scripts/run/_imu_noise_rule.py (zed2i)"
+        },
+        {
+          "label": "engine_on",
+          "params": {
+            "gyroscope_noise_density": 0.02263083451202263,
+            "accelerometer_noise_density": 0.08,
+            "gyroscope_random_walk": 0.003248594853813231,
+            "accelerometer_random_walk": 0.0011666666666666665
+          },
+          "source": "configs/sensitivity/zed2i-engine-on-20261021/profile.json"
+        },
+        {
+          "label": "envelope",
+          "params": {
+            "gyroscope_noise_density": 0.0195,
+            "accelerometer_noise_density": 0.18,
+            "gyroscope_random_walk": 0.0007400196,
+            "accelerometer_random_walk": 0.0202
+          },
+          "source": "docs/imu-noise-rule-20261005.md (ZED2i envelope)",
+          "historical_run": "results/vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run10001"
+        }
+      ],
+      "bounds": {
+        "gyroscope_noise_density": [
+          0.00010608203677510608,
+          0.10608203677510608
+        ],
+        "accelerometer_noise_density": [
+          0.00044,
+          0.54
+        ],
+        "gyroscope_random_walk": [
+          7.400196e-05,
+          0.3248594853813231
+        ],
+        "accelerometer_random_walk": [
+          0.00011666666666666665,
+          0.11666666666666665
+        ]
+      },
+      "lane": null
+    },
+    {
+      "id": "basalt_zed2i",
+      "algorithm": "basalt",
+      "dataset": "zed2i",
+      "supports_lc": false,
+      "final_modes": [
+        "vio"
+      ],
+      "clips": [
+        "field1_sielinko_h1c1_20261022",
+        "field1_sielinko_h1c2_20261022"
+      ],
+      "full_sequences": [
+        "field1_sielinko_h1_20261022"
+      ],
+      "test_sequences": [
+        "field1_sielinko_h2_20261022",
+        "field1_110426_full_10fps_q90"
+      ],
+      "final_controls": [],
+      "sequence_parents": {
+        "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h2_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c2_20261022": "field1_110426_full_10fps_q90"
+      },
+      "sequence_roles": {
+        "field1_110426_full_10fps_q90": "full",
+        "field1_sielinko_h1_20261022": "half",
+        "field1_sielinko_h2_20261022": "half",
+        "field1_sielinko_h1c1_20261022": "short",
+        "field1_sielinko_h1c2_20261022": "short"
+      },
+      "controls": [
+        {
+          "label": "rule_c",
+          "params": {
+            "gyroscope_noise_density": 0.0002492927864214993,
+            "accelerometer_noise_density": 0.0088,
+            "gyroscope_random_walk": 1.0828649512710772e-05,
+            "accelerometer_random_walk": 1.1666666666666665e-05
+          },
+          "source": "configs/basalt/zed2i_calib.json"
+        },
+        {
+          "label": "engine_on",
+          "params": {
+            "gyroscope_noise_density": 0.005318246110325319,
+            "accelerometer_noise_density": 0.16,
+            "gyroscope_random_walk": 1.0828649512710772e-05,
+            "accelerometer_random_walk": 1.1666666666666665e-05
+          },
+          "source": "configs/sensitivity/zed2i-engine-on-20261021/profile.json"
+        },
+        {
+          "label": "envelope",
+          "params": {
+            "gyroscope_noise_density": 0.0195,
+            "accelerometer_noise_density": 0.18,
+            "gyroscope_random_walk": 0.0007400196,
+            "accelerometer_random_walk": 0.0202
+          },
+          "source": "docs/imu-noise-rule-20261005.md (ZED2i envelope)",
+          "historical_run": "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run10001"
+        }
+      ],
+      "bounds": {
+        "gyroscope_noise_density": [
+          2.492927864214993e-05,
+          0.058499999999999996
+        ],
+        "accelerometer_noise_density": [
+          0.00088,
+          0.88
+        ],
+        "gyroscope_random_walk": [
+          1.082864951271077e-06,
+          0.0022200588
+        ],
+        "accelerometer_random_walk": [
+          1.1666666666666664e-06,
+          0.0606
+        ]
+      },
+      "lane": "exclusive"
+    }
+  ],
+  "views": {
+    "field1_110426_full_10fps_q90": {
+      "role": "full",
+      "first": 0,
+      "count": 46283,
+      "times_sha256": "7dda00e487f4c8ced3d08ca6fd3df2c1037eb8f572feca24158f168c5ed1d288"
+    },
+    "field1_sielinko_h1_20261022": {
+      "role": "half",
+      "first": 0,
+      "count": 23141,
+      "times_sha256": "cd3e105e701b476f83215e7436c2441ab590ff66daed07da245dc6839a650fa2"
+    },
+    "field1_sielinko_h2_20261022": {
+      "role": "half",
+      "first": 23141,
+      "count": 23142,
+      "times_sha256": "a39b4a395d2c2b37bdeee1413d83303ab8f78e46bf8b0f7a928faab84cf62215"
+    },
+    "field1_sielinko_h1c1_20261022": {
+      "role": "short",
+      "first": 0,
+      "count": 1800,
+      "times_sha256": "1009d287ec129754620999917a9786f8711554dbc12d5678ff6f63c71832c59c"
+    },
+    "field1_sielinko_h1c2_20261022": {
+      "role": "short",
+      "first": 11569,
+      "count": 1801,
+      "times_sha256": "f83a5a15a2576000846f576eb9108b354d804b8f544b39830af0d3eb9f47f708"
+    }
+  },
+  "split": "Time midpoint of the recording. Development (all selection) uses only the first half and two 180 s clips from it: its start, and the window starting at its own time midpoint. The fresh final N=1 runs the selected setting on the second half and on the full recording.",
+  "runtime_environment": {
+    "voxel_svio": {
+      "VOXEL_SVIO_CONTAINER": "sielinko_search_voxel_20261022"
+    }
+  },
+  "runtime_environment_by_study": {},
+  "delivery_policy": {
+    "openvins_pending_camera_tail": null,
+    "openvins_end_of_stream_drain": true,
+    "openvins_flow_control": true,
+    "openvins_transport_profile": "large_shm",
+    "voxel_camera_rate_gate": "Audit the expected native timestamp gate from its recorded frequency; do not change sampling or accept unexplained missing input.",
+    "basis": "exact native receipts; never chosen using ATE"
+  },
+  "attempt_timeouts_s": {
+    "orbslam3": {
+      "short": 1020,
+      "half": 4800,
+      "full": 9000
+    },
+    "okvis2": {
+      "short": 1020,
+      "half": 4500,
+      "full": 8400
+    },
+    "okvis2x": {
+      "short": 1020,
+      "half": 3900,
+      "full": 7200
+    },
+    "openvins": {
+      "short": 1200,
+      "half": 4800,
+      "full": 9000
+    },
+    "voxel_svio": {
+      "short": 1200,
+      "half": 4200,
+      "full": 7800
+    },
+    "svo_pro": {
+      "short": 1020,
+      "half": 2400,
+      "full": 3600
+    },
+    "basalt": {
+      "short": 1020,
+      "half": 1800,
+      "full": 2700
+    }
+  },
+  "attempt_resource_limits": {
+    "orbslam3": {
+      "memory_gib": 50,
+      "swap_gib": 0
+    },
+    "okvis2": {
+      "memory_gib": 50,
+      "swap_gib": 0
+    },
+    "openvins": {
+      "memory_gib": 50,
+      "swap_gib": 0
+    },
+    "voxel_svio": {
+      "memory_gib": 50,
+      "swap_gib": 0
+    },
+    "okvis2x": {
+      "memory_gib": 50,
+      "swap_gib": 0
+    },
+    "svo_pro": {
+      "memory_gib": 50,
+      "swap_gib": 0
+    },
+    "basalt": {
+      "memory_gib": 50,
+      "swap_gib": 0
+    }
+  },
+  "lanes": {
+    "lane1": {
+      "cpus": "0-3",
+      "memory_gib": 50,
+      "locks": [
+        "/data/imoroz/vslam-benchmark/results/.locks/cpu-lane-1.lock"
+      ]
+    },
+    "lane2": {
+      "cpus": "4-7",
+      "memory_gib": 50,
+      "locks": [
+        "/data/imoroz/vslam-benchmark/results/.locks/cpu-lane-2.lock"
+      ]
+    },
+    "exclusive": {
+      "cpus": "0-7",
+      "memory_gib": 50,
+      "locks": [
+        "/data/imoroz/vslam-benchmark/results/.locks/cpu-lane-1.lock",
+        "/data/imoroz/vslam-benchmark/results/.locks/cpu-lane-2.lock"
+      ],
+      "idle_host": true
+    }
+  },
+  "launch_policy": {
+    "min_available_gib": 40,
+    "poll_s": 30,
+    "sample_s": 5
+  },
+  "lane_handover": null,
+  "scheduling": {
+    "resource_class": {
+      "orbslam3": "cpu",
+      "okvis2": "cpu",
+      "openvins": "cpu",
+      "voxel_svio": "cpu",
+      "okvis2x": "cpu",
+      "svo_pro": "cpu",
+      "basalt": "cpu"
+    },
+    "develop": "Two lanes, one study per lane at a time; a study keeps its declared lane. An exclusive study starts only after every other study, with the host idle.",
+    "final": "serial, one attempt at a time, after every selection is frozen"
+  },
+  "score": "10 * failed_observation_count + 0.5 * mean(residual) + 0.5 * max(residual); residual = RMSE/(reference_path_length+RMSE) + unsupported_export_fraction. Existing numerical and 90% export-support gates retained. Lower is better.",
+  "repeated_selection": "Top two full candidates plus the three controls, deduplicated by exact parameter vector, receive N=3 on the first half. The selected candidate minimizes the same declared score.",
+  "controls": "Rule C engine-off, engine-on sensitivity and the historical envelope, enqueued first in every stage.",
+  "bounds_rule": "[min(controls)/10, max(100*Rule C, 3*engine-on, 3*envelope)] per component; never changed after start.",
+  "exclusions": [
+    "every dataset except zed2i",
+    "GPU estimators",
+    "AirSLAM"
+  ],
+  "limitations": [
+    "One recording; its halves share platform, field and day.",
+    "The recording was inspected before (Rule C and envelope runs on the full run).",
+    "The full-run test includes the development half; only the second half is unseen by selection.",
+    "Position-only GNSS reference; SE3 position alignment.",
+    "Two clips probe short-horizon behaviour; equal proposal counts, not equal CPU time.",
+    "Runtimes from concurrent lanes are labelled overlapped."
+  ],
+  "frozen_input_sha256": {},
+  "frozen_runtime_sha256": {},
+  "frozen_source_sha256": {},
+  "shared_budget_file": "sielinko-cpu-search-budget.json",
+  "main_pins": [
+    "datasets/zed2i/field1_110426_full_10fps_q90/times.txt",
+    "datasets/zed2i/field1_110426_full_10fps_q90/mav0/cam0/data.csv",
+    "datasets/zed2i/field1_110426_full_10fps_q90/mav0/cam1/data.csv",
+    "datasets/zed2i/field1_110426_full_10fps_q90/mav0/imu0/data.csv"
+  ],
+  "enforce_main_head": false,
+  "pending": [
+    "lane_handover",
+    "final_controls (second-half Rule C baseline)",
+    "frozen identities",
+    "private source trees",
+    "private Voxel container",
+    "check clips"
+  ]
+}

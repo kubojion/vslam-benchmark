@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "dataset": "zed2i",
+  "sequence": "field1_sielinko_h1c1_20261022",
+  "variant": "primary",
+  "reference": {
+    "path": "datasets/zed2i/field1_110426_full_10fps_q90/references/gnss-position-v2-20261002/reference.json",
+    "sha256": "e965f3701dc9ba706c98cf26f481a4e374f6b7b5e54a63a1ca196b0b846f0301"
+  },
+  "diagnostic_parent_sequence": "field1_110426_full_10fps_q90",
+  "diagnostic_only": true,
+  "purpose": "sielinko-cpu-search-20261022: development",
+  "subset_times": {
+    "path": "datasets/zed2i/field1_sielinko_h1c1_20261022/times.txt",
+    "sha256": "1009d287ec129754620999917a9786f8711554dbc12d5678ff6f63c71832c59c"
+  },
+  "parent_times": {
+    "path": "datasets/zed2i/field1_110426_full_10fps_q90/times.txt",
+    "sha256": "7dda00e487f4c8ced3d08ca6fd3df2c1037eb8f572feca24158f168c5ed1d288"
+  }
+}

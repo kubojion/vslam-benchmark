@@ -8,10 +8,8 @@ import subprocess
 import pytest
 
 
-@pytest.mark.parametrize('node_exit,player_exit,saved,expected', [
-    (134, 0, True, 134), (134, 0, False, 134),
-    (0, 7, True, 7), (0, 0, False, 1), (0, 0, True, 0)])
-def test_native_failure_cannot_be_hidden_by_trajectory(tmp_path, node_exit, player_exit, saved, expected):
+def fake_wrapper(tmp_path, mounts=None):
+    """A copy of run_voxel_svio.sh with fake helpers; the fake container mounts this tree."""
     root = Path(__file__).resolve().parents[3]
     scripts = tmp_path/'scripts/run'; scripts.mkdir(parents=True)
     shutil.copy2(root/'scripts/run/run_voxel_svio.sh', scripts/'run_voxel_svio.sh')
@@ -50,11 +48,35 @@ owned_run() {
 ''')
     (scripts/'_resource_monitor.py').write_text('')
     commands = tmp_path/'bin'; commands.mkdir()
-    for name, body in [('docker', 'echo voxel_svio'), ('sleep', ':')]:
+    if mounts is None:
+        mounts = ' '.join(f'{tmp_path}/{a}={b}' for a, b in
+                          [('configs', '/benchmark_configs'), ('scripts', '/benchmark_scripts'), ('results', '/results')])
+    docker = f'if [[ "$1" == inspect ]]; then echo "{mounts}"; else echo voxel_svio; fi'
+    for name, body in [('docker', docker), ('sleep', ':')]:
         path = commands/name; path.write_text('#!/bin/bash\n'+body+'\n'); path.chmod(0o755)
-    env = dict(os.environ, PATH=str(commands)+os.pathsep+os.environ['PATH'],
+    return scripts/'run_voxel_svio.sh', str(commands)+os.pathsep+os.environ['PATH']
+
+
+def test_container_of_another_checkout_is_refused(tmp_path):
+    wrapper, path = fake_wrapper(tmp_path, mounts='/data/imoroz/vslam-benchmark/configs=/benchmark_configs '
+                                 '/data/imoroz/vslam-benchmark/scripts=/benchmark_scripts '
+                                 '/data/imoroz/vslam-benchmark/results=/results')
+    env = dict(os.environ, PATH=path, FAKE_NODE_EXIT='0', FAKE_PLAYER_EXIT='0', FAKE_SAVED='1')
+    result = subprocess.run(['bash', str(wrapper), 'test', 'seq', '1', 'vio'],
+        env=env, capture_output=True, text=True, timeout=10)
+    assert result.returncode == 2
+    assert 'does not mount' in result.stderr
+    assert not (tmp_path/'results/vio/test/seq/voxel_svio/run1/run_log.txt').exists()
+
+
+@pytest.mark.parametrize('node_exit,player_exit,saved,expected', [
+    (134, 0, True, 134), (134, 0, False, 134),
+    (0, 7, True, 7), (0, 0, False, 1), (0, 0, True, 0)])
+def test_native_failure_cannot_be_hidden_by_trajectory(tmp_path, node_exit, player_exit, saved, expected):
+    wrapper, path = fake_wrapper(tmp_path)
+    env = dict(os.environ, PATH=path,
         FAKE_NODE_EXIT=str(node_exit), FAKE_PLAYER_EXIT=str(player_exit), FAKE_SAVED=str(int(saved)))
-    result = subprocess.run(['bash', str(scripts/'run_voxel_svio.sh'), 'test', 'seq', '1', 'vio'],
+    result = subprocess.run(['bash', str(wrapper), 'test', 'seq', '1', 'vio'],
         env=env, capture_output=True, text=True, timeout=10)
     run = tmp_path/'results/vio/test/seq/voxel_svio/run1'
     assert result.returncode == expected, result.stdout+result.stderr
