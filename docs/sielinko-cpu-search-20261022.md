@@ -65,7 +65,11 @@ never a Rule C ranking. Nothing has run yet.
 2. **Preparation, without runs:**
    - `scripts/setup/prepare_sielinko_private_sources.py` copies the private source/build trees;
    - `scripts/setup/create_sielinko_search_voxel_container.sh` creates the private Voxel container;
-   - `scripts/analysis/prepare_sielinko_search.py views` builds the recording views.
+   - `scripts/analysis/prepare_sielinko_search.py views` builds the recording views;
+   - the reviewed ORB-SLAM3 runtime (`results/zed-preparation-20261002/orb-build`, which `run_orbslam3.sh`
+     loads from `$WS/results`) is copied from main.
+
+   Done 22 Oct with the user's go, no estimator run: receipt `results/sielinko-preparation-20261022.json`.
 3. **Freeze:** `prepare_sielinko_search.py freeze --art <dir> --handover <file>`. It records the
    input, source and runtime identities, the main pins (only the files the search reads; main's
    HEAD may move) and the execution identity.
