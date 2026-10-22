@@ -218,7 +218,9 @@ def protocol(view_records):
             id=f'{algorithm}_{DATASET}', algorithm=algorithm, dataset=DATASET,
             supports_lc=algorithm not in ('basalt', 'openvins', 'voxel_svio'), final_modes=['vio'],
             clips=[names['clip1'], names['clip2']], full_sequences=[names['half1']],
-            test_sequences=[names['half2'], names['full']], final_controls=[],
+            # User 22 Oct: Rule C also once on the second half, as its held-out baseline.
+            test_sequences=[names['half2'], names['full']], final_controls=['rule_c'],
+            final_control_sequences=[names['half2']],
             sequence_parents={names[v]: PARENT for v in VIEWS},
             sequence_roles={names[v]: ROLES[v] for v in VIEWS},
             controls=controls[algorithm], bounds=bounds(controls[algorithm]),
@@ -273,8 +275,9 @@ def protocol(view_records):
         main_pins=[f'datasets/{DATASET}/{PARENT}/{name}' for name in
                    ('times.txt', 'mav0/cam0/data.csv', 'mav0/cam1/data.csv', 'mav0/imu0/data.csv')],
         enforce_main_head=False,
-        pending=['lane_handover', 'final_controls (second-half Rule C baseline)', 'frozen identities',
-                 'private source trees', 'private Voxel container', 'check clips'])
+        decisions=dict(at='2026-10-22', clips='2 x 180 s', second_half_rule_c=True, vio_lc_final=False,
+                       approved='protocol approved; starts only after the written lane handover and the user\'s go'),
+        pending=['lane_handover', 'frozen identities', 'check clips', "user's go"])
 
 
 def plan(source):

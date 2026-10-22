@@ -19,7 +19,8 @@ never a Rule C ranking. Nothing has run yet.
   2. Screen: 2 seeds × 16 proposals on both clips.
   3. Full: 6 seeded + 6 TPE proposals on the first half.
   4. Repeated selection: the top 2 plus the controls at N=3 on the first half.
-  5. Final: the selected setting, fresh N=1, on the second half and on the full run.
+  5. Final: the selected setting, fresh N=1, on the second half and on the full run, plus the Rule C
+     control once on the second half as its held-out baseline. No VIO-LC final (user, 22 Oct).
 - **Score:** unchanged. 10 × failures + 0.5·mean + 0.5·max of [RMSE/(path+RMSE) + unsupported
   export], with the 90 % export gate.
 - **Controls** (enqueued first in every stage):

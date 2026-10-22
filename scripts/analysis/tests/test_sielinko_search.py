@@ -177,6 +177,7 @@ class ProtocolChecks(unittest.TestCase):
         for spec in self.protocol['studies']:
             self.assertNotIn(half2, spec['clips'] + spec['full_sequences'])
             self.assertEqual(spec['test_sequences'], [half2, prepare.PARENT])
+            self.assertEqual((spec['final_controls'], spec['final_control_sequences']), (['rule_c'], [half2]))
             self.assertEqual(spec['final_modes'], ['vio'])
             self.assertEqual(set(spec['sequence_roles'].values()), {'short', 'half', 'full'})
             self.assertTrue(set(spec['sequence_roles'].values()) <= set(self.protocol['attempt_timeouts_s'][spec['algorithm']]))
@@ -246,12 +247,17 @@ class SearchWithHeldOutTest(unittest.TestCase):
         self.assertEqual([self.engine.records[k]['sequence'] for k in final['records']], ['half2', 'full'])
         self.assertFalse(set(final['records']) & development)
         self.assertIn('never measured the test sequences', final['note'])
-        self.spec['final_controls'] = ['rule_c']
+        self.spec.update(final_controls=['rule_c'], final_control_sequences=['half2'])
         (self.search.directory / 'final-n1.json').unlink()
         final = self.search.final_n1()
-        labels = {self.engine.records[k]['params'][policy.KEYS[0]] for k in final['records']}
-        self.assertIn(1., labels)
-        self.assertEqual(len(final['records']), 4 if len(labels) == 2 else 2)
+        rows = [(self.engine.records[k]['params'][policy.KEYS[0]], self.engine.records[k]['sequence'])
+                for k in final['records']]
+        winner = json.loads((self.search.directory / 'selection.json').read_text())['winner']['params']
+        if policy.identity(winner) == policy.identity(self.spec['controls'][0]['params']):
+            self.assertEqual([s for _, s in rows], ['half2', 'full'])
+        else:
+            self.assertEqual(rows[2:], [(1., 'half2')])  # Rule C only on the held-out half
+            self.assertEqual(len(rows), 3)
 
 
 class LaneChecks(unittest.TestCase):

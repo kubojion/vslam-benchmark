@@ -197,9 +197,12 @@ class DevelopmentSearch:
         # Declared controls measured beside the winner on the test sequences.
         named = {item['label']: item['params'] for item in control_items(self.spec)}
         settings = [selection['winner']['params']] + [named[label] for label in self.spec.get('final_controls', [])]
+        # A control may be limited to some test sequences (final_control_sequences).
+        limited = self.spec.get('final_control_sequences', sequences)
+        winner = identity(selection['winner']['params'])
         for params in unique([dict(params=x) for x in settings]):
             for mode in modes:
-                for sequence in sequences:
+                for sequence in sequences if identity(params['params']) == winner else limited:
                     records.append(self.attempt(params['params'], sequence, 'final_n1', mode=mode))
         if 'test_sequences' in self.spec:
             note = ('Fresh executions with frozen settings. Selection never measured the test sequences; '

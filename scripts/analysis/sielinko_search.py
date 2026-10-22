@@ -266,7 +266,8 @@ def dry_plan(art, protocol):
     return dict(campaign=protocol['campaign_id'], status=protocol['status'], studies=[s['id'] for s in protocol['studies']],
                 lanes={k: v['cpus'] for k, v in protocol['lanes'].items()},
                 attempts_per_study=dict(short_clip_runs=short, first_half_runs_at_most=development,
-                                        final_runs=len(protocol['studies'][0]['test_sequences'])),
+                                        final_runs=len(protocol['studies'][0]['test_sequences'])
+                                        + len(protocol['studies'][0].get('final_control_sequences', []))),
                 pending=protocol.get('pending', []), artifacts=str(art),
                 readiness_exists=(Path(art) / 'readiness.json').is_file(), executed=False)
 

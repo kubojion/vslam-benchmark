@@ -48,7 +48,12 @@
         "field1_sielinko_h2_20261022",
         "field1_110426_full_10fps_q90"
       ],
-      "final_controls": [],
+      "final_controls": [
+        "rule_c"
+      ],
+      "final_control_sequences": [
+        "field1_sielinko_h2_20261022"
+      ],
       "sequence_parents": {
         "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
         "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
@@ -135,7 +140,12 @@
         "field1_sielinko_h2_20261022",
         "field1_110426_full_10fps_q90"
       ],
-      "final_controls": [],
+      "final_controls": [
+        "rule_c"
+      ],
+      "final_control_sequences": [
+        "field1_sielinko_h2_20261022"
+      ],
       "sequence_parents": {
         "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
         "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
@@ -222,7 +232,12 @@
         "field1_sielinko_h2_20261022",
         "field1_110426_full_10fps_q90"
       ],
-      "final_controls": [],
+      "final_controls": [
+        "rule_c"
+      ],
+      "final_control_sequences": [
+        "field1_sielinko_h2_20261022"
+      ],
       "sequence_parents": {
         "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
         "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
@@ -309,7 +324,12 @@
         "field1_sielinko_h2_20261022",
         "field1_110426_full_10fps_q90"
       ],
-      "final_controls": [],
+      "final_controls": [
+        "rule_c"
+      ],
+      "final_control_sequences": [
+        "field1_sielinko_h2_20261022"
+      ],
       "sequence_parents": {
         "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
         "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
@@ -396,7 +416,12 @@
         "field1_sielinko_h2_20261022",
         "field1_110426_full_10fps_q90"
       ],
-      "final_controls": [],
+      "final_controls": [
+        "rule_c"
+      ],
+      "final_control_sequences": [
+        "field1_sielinko_h2_20261022"
+      ],
       "sequence_parents": {
         "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
         "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
@@ -483,7 +508,12 @@
         "field1_sielinko_h2_20261022",
         "field1_110426_full_10fps_q90"
       ],
-      "final_controls": [],
+      "final_controls": [
+        "rule_c"
+      ],
+      "final_control_sequences": [
+        "field1_sielinko_h2_20261022"
+      ],
       "sequence_parents": {
         "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
         "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
@@ -570,7 +600,12 @@
         "field1_sielinko_h2_20261022",
         "field1_110426_full_10fps_q90"
       ],
-      "final_controls": [],
+      "final_controls": [
+        "rule_c"
+      ],
+      "final_control_sequences": [
+        "field1_sielinko_h2_20261022"
+      ],
       "sequence_parents": {
         "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
         "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
@@ -820,12 +855,17 @@
     "datasets/zed2i/field1_110426_full_10fps_q90/mav0/imu0/data.csv"
   ],
   "enforce_main_head": false,
+  "decisions": {
+    "at": "2026-10-22",
+    "clips": "2 x 180 s",
+    "second_half_rule_c": true,
+    "vio_lc_final": false,
+    "approved": "protocol approved; starts only after the written lane handover and the user's go"
+  },
   "pending": [
     "lane_handover",
-    "final_controls (second-half Rule C baseline)",
     "frozen identities",
-    "private source trees",
-    "private Voxel container",
-    "check clips"
+    "check clips",
+    "user's go"
   ]
 }
