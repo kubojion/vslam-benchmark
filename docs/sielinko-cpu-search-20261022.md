@@ -48,19 +48,19 @@ never a Rule C ranking. Nothing has run yet.
   - The private Voxel container carries the lane's CPU set.
   - A sampler checks every attempt: thread affinity, container CPU set and, for Basalt, that
     nothing else runs.
-- **Launch gate:**
-  - at least 40 GiB free;
+- **Launch gate** (the same checks as Rule C revision 13):
+  - at least 40 GiB free, no host swap in use, at least 100 GiB of free disk;
   - no other benchmark run on the lane's cores;
   - nothing launches while any Basalt run is active;
-  - Basalt itself launches only with no run and no GPU job on the host.
+  - Basalt itself launches only with no run and no GPU job on the host;
+  - nothing launches after a `STOP_AFTER_CURRENT` in this campaign or in `rule-c-batch-20261018`.
 - **A run is recognised by its wrapper process** (`scripts/run/run_<algorithm>.sh`, from any
   checkout), so other controllers need no shared registry to follow the same rule.
 - **Estimated cost:** ≈135 h of runs: ≈64 h on two lanes plus ≈6 h of Basalt alone.
 
 ## Procedure (each step needs the user's go)
-1. **Lane owner (Rule C runner):**
-   - creates `results/.locks/cpu-lane-1.lock` and `cpu-lane-2.lock` in main;
-   - when Rule C CPU is done, writes the handover (format below).
+1. **Lane owner (Rule C runner):** when Rule C CPU is done, writes the handover (format below). No lock
+   files are needed: revision 13 uses none, and every launch checks the lane's cores for other runs.
 2. **Preparation, without runs:**
    - `scripts/setup/prepare_sielinko_private_sources.py` copies the private source/build trees;
    - `scripts/setup/create_sielinko_search_voxel_container.sh` creates the private Voxel container;

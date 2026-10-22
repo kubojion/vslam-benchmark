@@ -4,7 +4,8 @@ A benchmark run is recognised by its wrapper process (scripts/run/run_<algorithm
 from any checkout); every run of every controller has one for its whole duration.
 That makes the lane rules checkable without a shared registry:
 
-- a lane launches only with enough free memory and no other run on its cores;
+- a lane launches only with enough free memory and disk, no host swap in use,
+  and no other run on its cores;
 - nothing launches while any Basalt run is active (Basalt runs alone);
 - an exclusive (Basalt) attempt launches only when no run and no GPU job exist.
 
@@ -20,6 +21,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import threading
 import time
@@ -77,14 +79,19 @@ def gpu_compute_pids():
     return [int(x) for x in result.stdout.split() if x.strip().isdigit()]
 
 
-def launch_blockers(protocol, lane, *, snapshot=None, memory=None, gpu=QUERY):
+def launch_blockers(protocol, lane, *, snapshot=None, memory=None, gpu=QUERY, disk_free=None):
     """Reasons this lane may not launch now; an empty list means it may."""
     policy = protocol['launch_policy']
     memory = meminfo() if memory is None else memory
     snapshot = processes() if snapshot is None else snapshot
+    disk_free = shutil.disk_usage(protocol['worktree']).free if disk_free is None else disk_free
     reasons = []
     if memory['MemAvailable'] < policy['min_available_gib'] * GIB:
         reasons.append(f"free memory {memory['MemAvailable'] / GIB:.1f} GiB below {policy['min_available_gib']} GiB")
+    if policy.get('no_host_swap_use') and memory.get('SwapTotal', 0) - memory.get('SwapFree', 0) > 0:
+        reasons.append('host swap in use')
+    if disk_free < policy.get('min_disk_free_gib', 0) * GIB:
+        reasons.append(f'free disk {disk_free / GIB:.0f} GiB below {policy["min_disk_free_gib"]} GiB')
     runs = benchmark_runs(snapshot)
     mine = set(cpu_set(lane_cpus(protocol, lane)))
     if protocol['lanes'][lane].get('idle_host'):
@@ -106,7 +113,7 @@ def launch_blockers(protocol, lane, *, snapshot=None, memory=None, gpu=QUERY):
 
 @contextmanager
 def lane_locks(protocol, lane, *, stop, poll_s=None, on_wait=None):
-    """Hold every lock file of a lane. Files are opened read-only and never created."""
+    """Hold every lock file a lane declares (none by default). Files are opened read-only, never created."""
     poll_s = protocol['launch_policy']['poll_s'] if poll_s is None else poll_s
     paths = [Path(p) for p in protocol['lanes'][lane]['locks']]
     missing = [str(p) for p in paths if not p.is_file()]

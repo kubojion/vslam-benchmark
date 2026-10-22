@@ -36,8 +36,19 @@ EXCLUSIVE = 'exclusive'
 CHECK_HOURS = 6
 
 
+# Rule C's graceful stop also stops new search launches (revision 13 restart procedure).
+EXTERNAL_STOPS = (Path('/data/imoroz/rule-c-batch-20261018/STOP_AFTER_CURRENT'),)
+
+
 def stopped(art):
     return (Path(art) / 'STOP_AFTER_CURRENT').exists()
+
+
+def stop_reason(art):
+    if stopped(art):
+        return 'Campaign requested stop at attempt boundary'
+    found = [str(p) for p in EXTERNAL_STOPS if p.exists()]
+    return 'External stop request: ' + ', '.join(found) if found else None
 
 
 def sentinel(spec):
@@ -77,8 +88,9 @@ def lane_slot(art, protocol, lane, parent):
     """Wait for this lane's launch conditions, then sample the attempt while it runs."""
     poll, previous = protocol['launch_policy']['poll_s'], None
     while True:
-        if stopped(art):
-            raise InterruptedError('Campaign requested stop at attempt boundary')
+        reason = stop_reason(art)
+        if reason:
+            raise InterruptedError(reason)
         if os.getppid() != parent:
             raise RuntimeError('Coordinator is no longer the parent of this worker')
         reasons = lanes.launch_blockers(protocol, lane)
@@ -106,7 +118,7 @@ def worker(args, protocol):
     directory = worker_directory(art, spec, args.stage)
     result = dict(study=spec['id'], stage=args.stage, lane=args.lane, started=BASE.now())
     try:
-        with lanes.lane_locks(protocol, args.lane, stop=lambda: stopped(art),
+        with lanes.lane_locks(protocol, args.lane, stop=lambda: stop_reason(art) is not None,
                               on_wait=lambda path: BASE.event('waiting_for_lane_lock', lock=path)):
             execution.configure(directory, protocol, lambda: lane_slot(art, protocol, args.lane, args.parent_pid),
                                 lane=args.lane)

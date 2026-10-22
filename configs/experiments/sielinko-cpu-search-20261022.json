@@ -757,29 +757,24 @@
     "lane1": {
       "cpus": "0-3",
       "memory_gib": 50,
-      "locks": [
-        "/data/imoroz/vslam-benchmark/results/.locks/cpu-lane-1.lock"
-      ]
+      "locks": []
     },
     "lane2": {
       "cpus": "4-7",
       "memory_gib": 50,
-      "locks": [
-        "/data/imoroz/vslam-benchmark/results/.locks/cpu-lane-2.lock"
-      ]
+      "locks": []
     },
     "exclusive": {
       "cpus": "0-7",
       "memory_gib": 50,
-      "locks": [
-        "/data/imoroz/vslam-benchmark/results/.locks/cpu-lane-1.lock",
-        "/data/imoroz/vslam-benchmark/results/.locks/cpu-lane-2.lock"
-      ],
+      "locks": [],
       "idle_host": true
     }
   },
   "launch_policy": {
     "min_available_gib": 40,
+    "no_host_swap_use": true,
+    "min_disk_free_gib": 100,
     "poll_s": 30,
     "sample_s": 5
   },

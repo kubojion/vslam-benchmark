@@ -223,8 +223,9 @@ def protocol(view_records):
             sequence_roles={names[v]: ROLES[v] for v in VIEWS},
             controls=controls[algorithm], bounds=bounds(controls[algorithm]),
             lane='exclusive' if algorithm == 'basalt' else 'lane2' if algorithm == 'voxel_svio' else None))
-    locks = ['/data/imoroz/vslam-benchmark/results/.locks/cpu-lane-1.lock',
-             '/data/imoroz/vslam-benchmark/results/.locks/cpu-lane-2.lock']
+    # Revision 13 of the Rule C coordinator uses no lane lock files: the written handover
+    # releases the lanes, and every launch checks the lane's cores for other runs.
+    locks = []
     return dict(
         schema=1, status='DRAFT_NOT_FROZEN', campaign_id=CAMPAIGN, development_only=True,
         worktree=str(ROOT), main_root=str(MAIN), max_wall_hours=120,
@@ -244,10 +245,11 @@ def protocol(view_records):
                              basis='exact native receipts; never chosen using ATE'),
         attempt_timeouts_s=TIMEOUTS_S,
         attempt_resource_limits={a: dict(memory_gib=50, swap_gib=0) for a in ORDER},
-        lanes=dict(lane1=dict(cpus='0-3', memory_gib=50, locks=locks[:1]),
-                   lane2=dict(cpus='4-7', memory_gib=50, locks=locks[1:]),
+        lanes=dict(lane1=dict(cpus='0-3', memory_gib=50, locks=locks),
+                   lane2=dict(cpus='4-7', memory_gib=50, locks=locks),
                    exclusive=dict(cpus='0-7', memory_gib=50, locks=locks, idle_host=True)),
-        launch_policy=dict(min_available_gib=40, poll_s=30, sample_s=5),
+        launch_policy=dict(min_available_gib=40, no_host_swap_use=True, min_disk_free_gib=100,
+                           poll_s=30, sample_s=5),
         lane_handover=None,
         scheduling=dict(resource_class={a: 'cpu' for a in ORDER}, develop=('Two lanes, one study per lane at a time; a study keeps its declared lane. '
                                  'An exclusive study starts only after every other study, with the host idle.'),

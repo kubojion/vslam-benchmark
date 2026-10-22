@@ -202,6 +202,9 @@ class ProtocolChecks(unittest.TestCase):
         self.assertTrue(all(v == dict(memory_gib=50, swap_gib=0) for v in self.protocol['attempt_resource_limits'].values()))
         self.assertLessEqual(max(t['full'] for t in self.protocol['attempt_timeouts_s'].values()), 6 * 3600)
         self.assertIsNone(self.protocol['lane_handover'])
+        self.assertTrue(all(lane['locks'] == [] for lane in lanes_.values()))
+        with lanes.lane_locks(self.protocol, 'lane1', stop=lambda: True):
+            pass  # no declared lock: nothing to wait for
 
 
 class SearchWithHeldOutTest(unittest.TestCase):
@@ -256,7 +259,7 @@ class LaneChecks(unittest.TestCase):
         records = {view: dict(first=0, count=1, times_sha256='0' * 64) for view in prepare.VIEWS}
         self.protocol = prepare.protocol(records)
         self.protocol['campaign_id'] = 'lane-test'
-        self.free = dict(MemAvailable=100 * GIB)
+        self.free = dict(MemAvailable=100 * GIB, SwapTotal=130 * GIB, SwapFree=130 * GIB)
 
     @staticmethod
     def wrapper(algorithm, cpus, pid=10, scope='other.scope'):
@@ -265,7 +268,7 @@ class LaneChecks(unittest.TestCase):
 
     def blockers(self, lane, snapshot, memory=None, gpu=()):
         return lanes.launch_blockers(self.protocol, lane, snapshot=snapshot, memory=memory or self.free,
-                                     gpu=list(gpu) if gpu is not None else None)
+                                     gpu=list(gpu) if gpu is not None else None, disk_free=500 * GIB)
 
     def test_free_lane_launches_beside_the_other_lane(self):
         self.assertEqual(self.blockers('lane1', [self.wrapper('orbslam3', [4, 5, 6, 7])]), [])
@@ -273,6 +276,8 @@ class LaneChecks(unittest.TestCase):
 
     def test_memory_foreign_run_on_lane_cores_and_basalt_block(self):
         self.assertTrue(self.blockers('lane1', [], memory=dict(MemAvailable=39 * GIB)))
+        self.assertTrue(self.blockers('lane1', [], memory=dict(self.free, SwapFree=129 * GIB)))
+        self.assertTrue(lanes.launch_blockers(self.protocol, 'lane1', snapshot=[], memory=self.free, disk_free=99 * GIB))
         self.assertTrue(self.blockers('lane1', [self.wrapper('okvis2', list(range(24)))]))
         self.assertTrue(self.blockers('lane2', [self.wrapper('okvis2', [3, 4])]))
         self.assertTrue(self.blockers('lane1', [self.wrapper('basalt', [16, 17])]))
@@ -436,6 +441,12 @@ class LaneSlot(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, 'Lane check failed'):
                 with self.slot():
                     time.sleep(0.05)
+        external = self.art / 'rule-c-stop'
+        external.touch()
+        with patch.object(coordinator, 'EXTERNAL_STOPS', (external,)):
+            with self.assertRaisesRegex(InterruptedError, 'External stop'):
+                with self.slot():
+                    self.fail('must not launch after a Rule C stop request')
         (self.art / 'STOP_AFTER_CURRENT').touch()
         with self.assertRaises(InterruptedError):
             with self.slot():
