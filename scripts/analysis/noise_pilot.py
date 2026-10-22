@@ -65,8 +65,11 @@ def verify_main():
     head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=MAIN, text=True).strip()
     report = dict(checked=now(), files=len(before['sha256']), changed=changed,
                   main_head_unchanged=head == before['main_head'])
+    # A campaign may pin only the main files it reads (enforce_main_head false):
+    # then a reviewed commit elsewhere in main does not invalidate its inputs.
+    report['main_head_enforced'] = before.get('enforce_main_head', True) is not False
     write(ART/'main-integrity.json', report)
-    if changed or not report['main_head_unchanged']:
+    if changed or (report['main_head_enforced'] and not report['main_head_unchanged']):
         raise RuntimeError('main changed during experiment; pause to review provenance: '+str(changed))
 
 

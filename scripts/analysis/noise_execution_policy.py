@@ -78,27 +78,66 @@ def validated_limits(protocol, algorithm):
     return limits
 
 
-def bounded_command(command, protocol, algorithm, runid, environment):
+DOCKER_PREFIX = {'openvins':'OPENVINS', 'svo_pro':'SVO_PRO'}
+
+
+def lane_cpus(protocol, lane):
+    """The pinned CPU list of a declared execution lane, e.g. '0-3'."""
+    item = protocol.get('lanes', {}).get(lane)
+    if not item or not isinstance(item.get('cpus'), str) or re.fullmatch(
+            r'[0-9]+(-[0-9]+)?(,[0-9]+(-[0-9]+)?)*', item['cpus']) is None:
+        raise RuntimeError('No reviewed CPU lane: '+str(lane))
+    return item['cpus']
+
+
+def cpu_set(text):
+    """Expand a CPU list such as '0-3,8' into a sorted list of integers."""
+    result = set()
+    for part in text.split(','):
+        first, _, last = part.partition('-')
+        result.update(range(int(first), int(last or first)+1))
+    return sorted(result)
+
+
+def lane_environment(protocol, algorithm, lane):
+    """Docker estimators run under dockerd, so the lane's limits must reach docker run."""
+    prefix = DOCKER_PREFIX.get(algorithm)
+    if lane is None or prefix is None:
+        return {}
+    memory = str(validated_limits(protocol, algorithm)['memory_gib'])+'g'
+    return {prefix+'_MEMORY_LIMIT': memory, prefix+'_MEMORY_SWAP_LIMIT': memory,
+            prefix+'_CPUSET': lane_cpus(protocol, lane)}
+
+
+def bounded_command(command, protocol, algorithm, runid, environment, lane=None):
     limits = validated_limits(protocol, algorithm)
-    suffix = {'openvins':'OPENVINS', 'svo_pro':'SVO_PRO'}.get(algorithm)
+    suffix = DOCKER_PREFIX.get(algorithm)
     if suffix:
         expected = str(limits['memory_gib'])+'g'
         if any(environment.get(suffix+'_'+key) != expected
                for key in ('MEMORY_LIMIT', 'MEMORY_SWAP_LIMIT')):
             raise RuntimeError('Docker limits differ from the reviewed attempt policy: '+algorithm)
+        if lane is not None and environment.get(suffix+'_CPUSET') != lane_cpus(protocol, lane):
+            raise RuntimeError('Docker CPU set differs from the attempt lane: '+algorithm)
+    if lane is not None:
+        # The user cgroup has no cpuset controller, so AllowedCPUs on the scope
+        # would be ignored. Affinity is inherited by every host child process.
+        command = ['taskset', '--cpu-list', lane_cpus(protocol, lane), *command]
     token = hashlib.sha256(protocol['campaign_id'].encode()).hexdigest()[:12]
     unit = 'noise-campaign-'+token+'-'+str(runid)
     return ['systemd-run','--user','--scope','--quiet','--unit='+unit,
         '-p','MemoryMax='+str(limits['memory_gib'])+'G','-p','MemorySwapMax=0',*command]
 
 
-def verify_persistent_limits(protocol, algorithm, item):
+def verify_persistent_limits(protocol, algorithm, item, lane=None):
     limits = validated_limits(protocol, algorithm)
     if item is None:
         raise RuntimeError('Private persistent container is unavailable')
     expected = limits['memory_gib']*1024**3
     if any(item['HostConfig'].get(k) != expected for k in ('Memory','MemorySwap')):
         raise RuntimeError('Private container resource limits differ from the frozen policy')
+    if lane is not None and cpu_set(item['HostConfig'].get('CpusetCpus') or '0-1023') != cpu_set(lane_cpus(protocol, lane)):
+        raise RuntimeError('Private container CPU set differs from the attempt lane')
     if protocol['scheduling']['resource_class'][algorithm]=='cpu' and item['HostConfig'].get('DeviceRequests'):
         raise RuntimeError('CPU-only phase has an unexpected GPU-enabled container')
 

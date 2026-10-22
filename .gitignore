@@ -94,3 +94,4 @@ src/svo_pro_gps/
 # Regenerable inputs and candidate files of the Sielinko CPU noise search.
 /datasets/zed2i/field1_sielinko_*/
 /configs/experiments/generated/
+/.venv/

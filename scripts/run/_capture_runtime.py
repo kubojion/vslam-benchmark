@@ -167,7 +167,9 @@ def identity(repo,algorithm,*,tree_reader=container_tree,inspector=None):
                        note='runner mounts /ws and the original image directories, not /svo_ws; '
                             'dependency commits are in the image at /svo_ws/dependencies.exact.yaml')
     elif algorithm in CONTAINERS:
-        name=CONTAINERS[algorithm];info=inspect(['inspect',name])
+        name=CONTAINERS[algorithm]
+        if algorithm=='voxel_svio':name=os.environ.get('VOXEL_SVIO_CONTAINER',name)  # same selection as run_voxel_svio.sh
+        info=inspect(['inspect',name])
         mounts=[]
         for m in info.get('Mounts',[]):
             source=Path(m['Source'])

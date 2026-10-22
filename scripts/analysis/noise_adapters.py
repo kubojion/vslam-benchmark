@@ -1,4 +1,8 @@
-"""Materialize candidates without changing geometry, modes or production files."""
+"""Materialize candidates without changing geometry, modes or production files.
+
+Sielinko CPU search copy: the seven CPU estimators only, selected through the
+same hooks as main's labelled sensitivity profiles (configs/sensitivity/).
+"""
 from __future__ import annotations
 
 import hashlib
@@ -10,19 +14,17 @@ import sys
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'run'))
-from _experimental_imu_noise import KEYS, document, validate_parameters
+from _imu_noise_override import KEYS, document, validate_parameters
 
 ORB_KEYS = ('IMU.NoiseGyro', 'IMU.NoiseAcc', 'IMU.GyroWalk', 'IMU.AccWalk')
 OKVIS_KEYS = ('sigma_g_c', 'sigma_a_c', 'sigma_gw_c', 'sigma_aw_c')
 BASALT_KEYS = ('gyro_noise_std', 'accel_noise_std', 'gyro_bias_std', 'accel_bias_std')
-SUPPORTED = {'orbslam3', 'okvis2', 'okvis2x', 'airslam', 'basalt',
-             'openvins', 'voxel_svio', 'cuvslam', 'svo_pro', 'mast3r_fusion'}
+SUPPORTED = {'orbslam3', 'okvis2', 'okvis2x', 'basalt', 'openvins', 'voxel_svio', 'svo_pro'}
 SNAPSHOT_ROLES = {
     'orbslam3': 'estimator_config', 'okvis2': 'estimator_config',
-    'okvis2x': 'estimator_config', 'airslam': 'camera_config',
-    'basalt': 'camera_calibration', 'openvins': 'imu_calibration',
-    'voxel_svio': 'estimator_config', 'cuvslam': 'camera_calibration',
-    'svo_pro': 'camera_imu_calibration', 'mast3r_fusion': 'effective_config',
+    'okvis2x': 'estimator_config', 'basalt': 'camera_calibration',
+    'openvins': 'imu_calibration', 'voxel_svio': 'estimator_config',
+    'svo_pro': 'camera_imu_calibration',
 }
 
 
@@ -67,11 +69,6 @@ def read_effective(path, algorithm):
     elif algorithm == 'svo_pro':
         fields = ('sigma_omega_c', 'sigma_acc_c', 'sigma_omega_bias_c', 'sigma_acc_bias_c')
         values = [data['imu_params'][k] for k in fields]
-    elif algorithm == 'mast3r_fusion':
-        a, b = data['ms_opt']['imu_noise'], data['global_opt']['imu_noise']
-        if len(a) != 4 or a != b:
-            raise ValueError('Fusion noise must agree in sliding-window and global optimizers')
-        values = [a[1], a[0], a[3], a[2]]
     else:
         for container in ('imu0', 'imu_parameter', 'imu'):
             if isinstance(data.get(container), dict) and all(k in data[container] for k in KEYS):
@@ -142,11 +139,9 @@ def prepare(root, algorithm, dataset, parent_sequence, mode, parameters, destina
         files.append(dict(path=str(path), sha256=sha(path)))
         return str(path)
 
-    if algorithm in ('svo_pro', 'mast3r_fusion'):
-        path = output('noise.json', json_text(document(algorithm, dataset, parameters)))
-        env['EXPERIMENT_IMU_NOISE'] = path
-        if algorithm == 'svo_pro':
-            env['SVO_PRO_IMU_FILE'] = str(source(f'configs/okvis2/{dataset}_{parent_sequence}_vio.yaml'))
+    if algorithm == 'svo_pro':
+        env['SVO_PRO_IMU_NOISE'] = output('noise.json', json_text(document(algorithm, dataset, parameters)))
+        env['SVO_PRO_IMU_FILE'] = str(source(f'configs/okvis2/{dataset}_{parent_sequence}_vio.yaml'))
     elif algorithm == 'basalt':
         data = json.loads(source(f'configs/basalt/{dataset}_calib.json').read_text())
         for key, field in zip(KEYS, BASALT_KEYS):
@@ -154,13 +149,6 @@ def prepare(root, algorithm, dataset, parent_sequence, mode, parameters, destina
                 raise ValueError('Basalt noise must have three axes')
             data['value0'][field] = [parameters[key]] * 3
         env['BASALT_CALIBRATION'] = output('calibration.json', json_text(data))
-    elif algorithm == 'cuvslam':
-        data = json.loads(source(f'configs/sensors/{dataset}.json').read_text())
-        for key in KEYS:
-            if key not in data['imu']:
-                raise KeyError(key)
-            data['imu'][key] = parameters[key]
-        env['CUVSLAM_SENSOR'] = output('sensor.json', json_text(data))
     elif algorithm == 'openvins':
         for filename in ('estimator_config.yaml', 'kalibr_imucam_chain.yaml', 'kalibr_imu_chain.yaml'):
             text = source(f'configs/openvins/{dataset}/{filename}').read_text()
@@ -170,7 +158,13 @@ def prepare(root, algorithm, dataset, parent_sequence, mode, parameters, destina
         env['OPENVINS_CONFIG_DIR'] = str(destination)
     else:
         if algorithm == 'orbslam3':
-            relative = f'configs/orbslam3/{dataset}_stereo_inertial.yaml'
+            # Same order as the runner's preflight (_config_preflight.select_orb_config):
+            # the recording's own file first, then the dataset file. LC is materialized by the runner.
+            suffix = {'vio': 'stereo_inertial', 'vio-lc': 'stereo_inertial_lc'}[mode]
+            relative = next(name for name in (
+                f'configs/orbslam3/{dataset}_{parent_sequence}_{suffix}.yaml',
+                f'configs/orbslam3/{dataset}_{parent_sequence}_stereo_inertial.yaml',
+                f'configs/orbslam3/{dataset}_{suffix}.yaml') if (root / name).is_file())
             fields, variable = ORB_KEYS, 'ORBSLAM3_CONFIG'
         elif algorithm in ('okvis2', 'okvis2x'):
             relative = f'configs/{algorithm}/{dataset}_{parent_sequence}_{mode.replace("-", "_")}.yaml'
@@ -180,13 +174,9 @@ def prepare(root, algorithm, dataset, parent_sequence, mode, parameters, destina
                 relative = f'configs/okvis2/{dataset}_{parent_sequence}_vio.yaml'
                 mode_materialization.append('do_loop_closures=true')
             fields, variable = OKVIS_KEYS, algorithm.upper() + '_CONFIG'
-        elif algorithm == 'airslam':
-            suffix = '_camera.yaml' if dataset == 'hortimulti' else '_camera_vio.yaml'
-            relative = f'configs/airslam/{dataset}{suffix}'
-            fields, variable = KEYS, 'NOISE_PILOT_CONFIG'
         else:
             relative = f'configs/voxel_svio/{dataset}.yaml'
-            fields, variable = KEYS, 'NOISE_PILOT_CONFIG'
+            fields, variable = KEYS, 'VOXEL_SVIO_CONFIG'
         text = replace_scalars(source(relative).read_text(), fields, parameters)
         if mode_materialization:
             text, count = re.subn(r'^(\s*do_loop_closures:\s*)(true|false)\b',

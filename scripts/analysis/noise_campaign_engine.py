@@ -4,6 +4,9 @@ No campaign starts by importing this module. A coordinator must first configure
 it with a frozen protocol and an exclusive machine lease. Final N=1 attempts use
 separate identities from development repeats; they are still development-set
 measurements when they use the same recordings.
+
+Sielinko CPU search copy: each worker runs in one declared CPU lane (pinned
+cores, memory cap), and attempt limits are keyed by the sequence's role.
 """
 from __future__ import annotations
 
@@ -23,9 +26,13 @@ import noise_execution_policy as execution_policy
 import noise_pilot as base
 
 ROOT = Path(__file__).resolve().parents[2]
+WORKTREE_NAME = 'vslam-sielinko-search-20261022'
 ART = None
 CAMPAIGN = None
 PROTOCOL = None
+LANE = None
+# The attempt inside the current machine slot, for the slot's own resource checks.
+CURRENT = None
 CONFIG_ENVIRONMENT = (
     'ORBSLAM3_CONFIG', 'OKVIS2_CONFIG', 'OKVIS2X_CONFIG', 'NOISE_PILOT_CONFIG',
     'BASALT_CALIBRATION', 'BASALT_CONFIG', 'OPENVINS_CONFIG_DIR',
@@ -45,10 +52,13 @@ CONFIG_ENVIRONMENT = (
 )
 
 
-def configure(artifact_directory, protocol, slot):
-    global ART, CAMPAIGN, PROTOCOL
-    if ROOT.resolve() == base.MAIN.resolve() or ROOT.name != 'vslam-noise-reliable-20261009':
+def configure(artifact_directory, protocol, slot, lane=None):
+    global ART, CAMPAIGN, PROTOCOL, LANE
+    if ROOT.resolve() == base.MAIN.resolve() or ROOT.name != WORKTREE_NAME:
         raise RuntimeError('Expanded search is restricted to the isolated experimental worktree')
+    if lane is not None:
+        execution_policy.lane_cpus(protocol, lane)
+    LANE = lane
     ART = Path(artifact_directory).resolve()
     if ART == base.MAIN.resolve() or base.MAIN.resolve() in ART.parents:
         raise RuntimeError('Campaign artifacts must be outside the production worktree')
@@ -138,6 +148,7 @@ def verify_transport(run, spec, sequence, returncode):
 
 
 def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
+    global CURRENT
     key, run_id, seed = identities(spec['id'], label, sequence, mode, repetition, phase)
     record_path = ART / 'attempts' / (key + '.json')
     revision = execution_policy.reviewed_attempt_revision(PROTOCOL, key)
@@ -169,6 +180,7 @@ def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
                AIRSLAM_STAGE_TIMEOUT_S='3600')
     env.update(PROTOCOL['runtime_environment'].get(spec['algorithm'], {}))
     env.update(PROTOCOL.get('runtime_environment_by_study', {}).get(spec['id'], {}))
+    env.update(execution_policy.lane_environment(PROTOCOL, spec['algorithm'], LANE))
     env.update(candidate['environment'])
     env.update(execution_policy.identity_environment(
         PROTOCOL, spec['algorithm'], spec['dataset'], sequence))
@@ -178,8 +190,9 @@ def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
     command = ['bash', str(ROOT / f'scripts/run/run_{spec["algorithm"]}.sh'),
                spec['dataset'], sequence, str(run_id), mode]
     command = execution_policy.bounded_command(
-        command, PROTOCOL, spec['algorithm'], run_id, env)
-    timeout_key = 'short' if sequence in spec['clips'] else mode
+        command, PROTOCOL, spec['algorithm'], run_id, env, lane=LANE)
+    # A declared role ('short', 'half', 'full') keys the limit; otherwise clip or mode.
+    timeout_key = spec.get('sequence_roles', {}).get(sequence) or ('short' if sequence in spec['clips'] else mode)
     timeouts = PROTOCOL['attempt_timeouts_s'].get(spec['algorithm'], PROTOCOL['attempt_timeouts_s'])
     timeout = timeouts[timeout_key]
     budget_path = ART / 'budget.json'
@@ -189,17 +202,19 @@ def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
     if time.time() + timeout + 120 > budget['deadline_unix']:
         raise InterruptedError('Insufficient campaign time remains for this attempt plus cleanup')
     distance = base.reference_distance(spec['dataset'], sequence)
+    CURRENT = dict(key=key, run=str(run), algorithm=spec['algorithm'], lane=LANE,
+                   unit=command[command.index('--quiet') + 1].removeprefix('--unit='))
     with base.machine_slot():
         verify_frozen()
         if spec['algorithm'] in noise_cleanup.PERSISTENT:
             container, location = noise_cleanup.owned_container(run, ROOT)
             if location != 'persistent':
                 raise RuntimeError('Missing private persistent container')
-            execution_policy.verify_persistent_limits(PROTOCOL, spec['algorithm'], container)
+            execution_policy.verify_persistent_limits(PROTOCOL, spec['algorithm'], container, lane=LANE)
         record = dict(key=key, campaign_id=CAMPAIGN, state='running', started=base.now(),
                       study=spec['id'], phase=phase, label=label, params=parameters,
                       sequence=sequence, mode=mode, repetition=repetition, run=str(run),
-                      candidate=candidate, command=command, timeout_limit_s=timeout,
+                      candidate=candidate, command=command, timeout_limit_s=timeout, lane=LANE,
                       native_seed=seed if spec['algorithm'] == 'mast3r_fusion' else None)
         if revision is not None:
             record['physical_attempt_revision'] = revision

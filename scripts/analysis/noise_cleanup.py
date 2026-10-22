@@ -8,8 +8,8 @@ import subprocess
 import sys
 
 
-PERSISTENT = {'airslam': 'noise_reliable_airslam_20261009',
-              'voxel_svio': 'noise_reliable_voxel_20261009'}
+# This checkout's private persistent container (run_voxel_svio.sh VOXEL_SVIO_CONTAINER).
+PERSISTENT = {'voxel_svio': 'sielinko_search_voxel_20261022'}
 EPHEMERAL = {'openvins', 'svo_pro'}
 
 
