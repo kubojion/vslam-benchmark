@@ -127,6 +127,23 @@ if ! docker image inspect "$OPENVINS_IMAGE" >/dev/null 2>&1; then
 fi
 [[ "$(docker image inspect --format '{{.Id}}' "$OPENVINS_IMAGE")" == "$OPENVINS_IMAGE_ID" ]] \
     || { echo "[openvins] $OPENVINS_IMAGE is not the validated image $OPENVINS_IMAGE_ID" >&2; exit 2; }
+# Diagnostic only: OPENVINS_GDB=1 runs the native node under gdb and records all-thread
+# backtraces in openvins_node.log. OPENVINS_GDB_IMAGE must be built directly on the
+# validated image (only gdb added), so the estimator binaries are the validated ones.
+NODE_PREFIX=""
+DIAGNOSTIC_ARGS=()
+if [[ "${OPENVINS_GDB:-0}" == 1 ]]; then
+    [[ -n "${OPENVINS_GDB_IMAGE:-}" ]] || { echo '[openvins] OPENVINS_GDB=1 needs OPENVINS_GDB_IMAGE' >&2; exit 2; }
+    python3 - "$OPENVINS_IMAGE" "$OPENVINS_GDB_IMAGE" <<'PY' || { echo "[openvins] $OPENVINS_GDB_IMAGE is not built on $OPENVINS_IMAGE_ID" >&2; exit 2; }
+import json, subprocess, sys
+base, debug = (json.loads(subprocess.check_output(['docker', 'image', 'inspect', '--format', '{{json .RootFS.Layers}}', i]))
+               for i in sys.argv[1:])
+sys.exit(0 if len(debug) == len(base) + 1 and debug[:len(base)] == base else 1)
+PY
+    OPENVINS_IMAGE="$OPENVINS_GDB_IMAGE"
+    NODE_PREFIX="gdb --batch --return-child-result -ex 'set pagination off' -ex 'set disable-randomization off' -ex 'handle SIGPIPE nostop noprint pass' -ex run -ex 'thread apply all bt 30' -ex 'info registers rip' --args"
+    DIAGNOSTIC_ARGS=(--param "diagnostic_gdb_image=$(docker image inspect --format '{{.Id}}' "$OPENVINS_GDB_IMAGE")")
+fi
 
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
@@ -225,7 +242,10 @@ docker run --rm \
         # process directly supervised. ros2 launch can return zero after a node
         # segfault and forward a second SIGINT during attempt cleanup.
         export OPENVINS_INPUT_RECEIPT=/ws/${OUT_REL}/openvins_input_receipt.json
-        owned_run node /colcon_ws/install/lib/ov_msckf/run_subscribe_msckf \
+        # Line-buffered output: OpenVINS prints why it aborts (e.g. a negative covariance
+        # diagonal) right before std::exit, and a crash in the static teardown that follows
+        # would otherwise discard the buffered message. Output buffering only.
+        owned_run node stdbuf -oL -eL $NODE_PREFIX /colcon_ws/install/lib/ov_msckf/run_subscribe_msckf \
             --ros-args -r __ns:=/ov_msckf \
             -p config_path:=/ws/$CFG_REL/estimator_config.yaml \
             -p use_stereo:=true -p max_cameras:=2 -p verbosity:=$OPENVINS_VERBOSITY \
@@ -276,6 +296,7 @@ PROV_ARGS=(
     --param "delivery_gate=$DELIVERY_GATE"
     --param "container_image_id=$OPENVINS_IMAGE_ID"
     --param "native_verbosity=$OPENVINS_VERBOSITY"
+    "${DIAGNOSTIC_ARGS[@]}"
     --container-image "$OPENVINS_IMAGE"
 )
 # Audit native input receipts whenever they exist (also after a failed
@@ -291,9 +312,15 @@ else
     GATE_RC=2
 fi
 if (( OPENVINS_RC != 0 )); then
+    # Attribute the failure from the attempt's own records: the estimator ending on its
+    # own after exact delivery (a measured failure) versus an input-delivery fault.
+    python3 "$WS/scripts/run/_openvins_native_outcome.py" "$OUT_DIR" > "$OUT_DIR/openvins_native_outcome.json"
+    PROV_ARGS+=(--artifact "native_outcome=$OUT_DIR/openvins_native_outcome.json")
+    OUTCOME=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['classification'])" \
+        "$OUT_DIR/openvins_native_outcome.json")
     record_failed_run_meta "$OUT_DIR/run_meta.json" openvins "$DATASET" "$SEQ" \
-        "$RUN_ID" "$RUN_TYPE" "$OPENVINS_RC" "container pipeline exited nonzero" "${PROV_ARGS[@]}"
-    echo "[openvins] ERROR: container exited with status $OPENVINS_RC" | tee -a "$LOG_GLOBAL"
+        "$RUN_ID" "$RUN_TYPE" "$OPENVINS_RC" "container pipeline exited nonzero; native outcome: $OUTCOME" "${PROV_ARGS[@]}"
+    echo "[openvins] ERROR: container exited with status $OPENVINS_RC (native outcome: $OUTCOME)" | tee -a "$LOG_GLOBAL"
     exit "$OPENVINS_RC"
 fi
 
