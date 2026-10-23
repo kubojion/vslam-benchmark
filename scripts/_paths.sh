@@ -16,6 +16,12 @@
 #                      RUN_TYPE (normalised), USE_IMU (true|false), USE_LC (true|false),
 #                      USE_GNSS (true|false).
 
+# Provenance helpers (capture, enrichment, GNSS freeze) always run on the system
+# interpreter, never on a conda env a wrapper activated for its own staging. Under the
+# cuvslam env (SVO Pro, DSOL) the live input re-verification segfaulted in pure Python
+# (Rule C 093, 164, 258, 283); the system Python runs every other wrapper's helpers.
+VSLAM_HELPER_PYTHON=/usr/bin/python3
+
 # Canonical repository identifier for dataset aliases. Call this before deriving
 # config, dataset or result paths so one dataset cannot split across multiple trees.
 canonicalize_dataset() {
@@ -113,9 +119,9 @@ prepare_fresh_run_dir() {
     mkdir "$out_real"
     # Capture runner/config and recursively nested algorithm checkout bytes before
     # any estimator can start. A failed capture consumes and preserves this ID.
-    python3 "$WS/scripts/run/_capture_implementation.py" --repo "$WS" --run "$out_real"
-    python3 "$WS/scripts/run/_capture_inputs.py" --repo "$WS" --run "$out_real"
-    python3 "$WS/scripts/run/_capture_runtime.py" --repo "$WS" --run "$out_real"
+    "$VSLAM_HELPER_PYTHON" "$WS/scripts/run/_capture_implementation.py" --repo "$WS" --run "$out_real"
+    "$VSLAM_HELPER_PYTHON" "$WS/scripts/run/_capture_inputs.py" --repo "$WS" --run "$out_real"
+    "$VSLAM_HELPER_PYTHON" "$WS/scripts/run/_capture_runtime.py" --repo "$WS" --run "$out_real"
 }
 
 # Provenance wrappers shared by every runner. Enrichment is intentionally not
@@ -124,7 +130,7 @@ prepare_fresh_run_dir() {
 enrich_run_meta() {
     local meta_path="${1:?run_meta.json path required}"
     shift
-    python3 "$WS/scripts/run/_enrich_run_meta.py" "$meta_path" --require-implementation-capture "$@"
+    "$VSLAM_HELPER_PYTHON" "$WS/scripts/run/_enrich_run_meta.py" "$meta_path" --require-implementation-capture "$@"
 }
 
 # Freeze the actual GNSS CSV for this physical attempt. A variant label alone
@@ -140,7 +146,7 @@ prepare_gnss_input() {
     export GPS_COV_XY="${GPS_COV_XY:-1.0}"
     export GPS_COV_Z="${GPS_COV_Z:-4.0}"
     export GPS_STATUS="${GPS_STATUS:-0}"
-    python3 "$WS/scripts/run/_gnss_input.py" "$input_csv" "$out/gnss_input.csv" \
+    "$VSLAM_HELPER_PYTHON" "$WS/scripts/run/_gnss_input.py" "$input_csv" "$out/gnss_input.csv" \
         --variant "$GNSS_VARIANT" "${explicit[@]}" \
         --cov-xy "$GPS_COV_XY" --cov-z "$GPS_COV_Z" --status "$GPS_STATUS" || return "$?"
     export GNSS_INPUT="$out/gnss_input.csv"
@@ -157,7 +163,7 @@ record_failed_run_meta() {
     local exit_code="${7:?exit code required}"
     local reason="${8:?failure reason required}"
     shift 8
-    python3 "$WS/scripts/run/_enrich_run_meta.py" "$meta_path" \
+    "$VSLAM_HELPER_PYTHON" "$WS/scripts/run/_enrich_run_meta.py" "$meta_path" \
         --require-implementation-capture \
         --create --algo "$algo" --dataset "$dataset" --sequence "$sequence" \
         --run-id "$run_id" --run-type "$run_type" \
