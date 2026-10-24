@@ -272,9 +272,10 @@ class LaneChecks(unittest.TestCase):
         return dict(pid=pid, argv=['bash', f'/data/x/scripts/run/run_{algorithm}.sh', 'zed2i'], cgroup='0::/' + scope,
                     cpus=cpus)
 
-    def blockers(self, lane, snapshot, memory=None, gpu=()):
+    def blockers(self, lane, snapshot, memory=None, gpu=(), benchmark_swap=0):
         return lanes.launch_blockers(self.protocol, lane, snapshot=snapshot, memory=memory or self.free,
-                                     gpu=list(gpu) if gpu is not None else None, disk_free=500 * GIB)
+                                     gpu=list(gpu) if gpu is not None else None, disk_free=500 * GIB,
+                                     benchmark_swap=benchmark_swap)
 
     def test_free_lane_launches_beside_the_other_lane(self):
         self.assertEqual(self.blockers('lane1', [self.wrapper('orbslam3', [4, 5, 6, 7])]), [])
@@ -282,13 +283,33 @@ class LaneChecks(unittest.TestCase):
 
     def test_memory_foreign_run_on_lane_cores_and_basalt_block(self):
         self.assertTrue(self.blockers('lane1', [], memory=dict(MemAvailable=39 * GIB)))
-        self.assertTrue(self.blockers('lane1', [], memory=dict(self.free, SwapFree=129 * GIB)))
-        self.assertTrue(lanes.launch_blockers(self.protocol, 'lane1', snapshot=[], memory=self.free, disk_free=99 * GIB))
+        self.assertTrue(self.blockers('lane1', [], benchmark_swap=4096))
+        self.assertTrue(lanes.launch_blockers(self.protocol, 'lane1', snapshot=[], memory=self.free, disk_free=99 * GIB,
+                                              benchmark_swap=0))
         self.assertTrue(self.blockers('lane1', [self.wrapper('okvis2', list(range(24)))]))
         self.assertTrue(self.blockers('lane2', [self.wrapper('okvis2', [3, 4])]))
         self.assertTrue(self.blockers('lane1', [self.wrapper('basalt', [16, 17])]))
         relative = dict(pid=3, argv=['bash', 'scripts/run/run_openvins.sh'], cgroup='', cpus=[0])
         self.assertTrue(self.blockers('lane1', [relative]))
+
+    def test_system_service_swap_does_not_block_benchmark_swap_does(self):
+        # User, 24 Oct (Rule C revision 13p): only benchmark cgroups count; here they must hold none at all.
+        system = dict(self.free, SwapFree=128 * GIB)
+        self.assertEqual(self.blockers('lane1', [], memory=system, benchmark_swap=0), [])
+        self.assertIn('benchmark cgroups swap in use (1 bytes)', self.blockers('lane1', [], memory=system, benchmark_swap=1))
+
+    def test_benchmark_swap_counts_only_benchmark_groups(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            units = Path(temporary) / 'app.slice'
+            for name, swap in (('vslam-sielinko-check.service', 10), ('noise-campaign-abc-1.scope', 20),
+                               ('tomcat9.service', 1000), ('vscode.scope', 500)):
+                (units / name).mkdir(parents=True)
+                (units / name / 'memory.swap.current').write_text(str(swap))
+            container = Path(temporary) / 'docker-x.scope'
+            container.mkdir()
+            (container / 'memory.swap.current').write_text('5')
+            self.assertEqual(lanes.benchmark_swap_bytes(units, [container]), 35)
+            self.assertEqual(lanes.benchmark_swap_bytes(Path(temporary) / 'absent', []), 0)
 
     def test_exclusive_needs_an_idle_host_and_a_verifiable_idle_gpu(self):
         self.assertEqual(self.blockers('exclusive', []), [])

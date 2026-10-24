@@ -4,7 +4,7 @@ A benchmark run is recognised by its wrapper process (scripts/run/run_<algorithm
 from any checkout); every run of every controller has one for its whole duration.
 That makes the lane rules checkable without a shared registry:
 
-- a lane launches only with enough free memory and disk, no host swap in use,
+- a lane launches only with enough free memory and disk, no swap in benchmark cgroups (user, 24 Oct),
   and no other run on its cores;
 - nothing launches while any Basalt run is active (Basalt runs alone);
 - an exclusive (Basalt) attempt launches only when no run and no GPU job exist.
@@ -32,6 +32,11 @@ import time
 from noise_execution_policy import cpu_set, lane_cpus
 
 GIB = 1024**3
+# Benchmark cgroups whose swap blocks a launch (user, 24 Oct, as Rule C revision 13p): system services
+# (tomcat9, Overleaf, editors) may swap; benchmark units, scopes and containers may not.
+USER_UNITS = Path(f'/sys/fs/cgroup/user.slice/user-{os.getuid()}.slice/user@{os.getuid()}.service/app.slice')
+BENCH_UNIT_PREFIXES = ('vslam-', 'noise-campaign-')
+BENCH_CONTAINERS = ('voxel_svio', 'air_slam', 'ov2slam', 'sielinko_search_voxel_20261022')
 QUERY = object()  # ask the GPU now; None means it could not be asked
 WRAPPER = re.compile(r'(?:^|/)scripts/run/run_([a-z0-9_]+)\.sh$')
 
@@ -82,7 +87,31 @@ def gpu_compute_pids():
     return [int(x) for x in result.stdout.split() if x.strip().isdigit()]
 
 
-def launch_blockers(protocol, lane, *, snapshot=None, memory=None, gpu=QUERY, disk_free=None):
+def benchmark_container_groups():
+    out = subprocess.run(['/usr/bin/docker', 'ps', '--format', '{{.ID}} {{.Names}}', '--no-trunc'],
+                         capture_output=True, text=True, timeout=20, check=True).stdout
+    groups = []
+    for line in out.splitlines():
+        cid, _, name = line.partition(' ')
+        if name.startswith('vslam_') or name in BENCH_CONTAINERS:
+            groups.append(Path('/sys/fs/cgroup/system.slice') / f'docker-{cid}.scope')
+    return groups
+
+
+def benchmark_swap_bytes(user_units=USER_UNITS, container_groups=None):
+    """Swap held by benchmark cgroups only: vslam-* and noise-campaign-* user units/scopes and benchmark containers."""
+    groups = [g for g in user_units.iterdir() if g.name.startswith(BENCH_UNIT_PREFIXES)] if user_units.is_dir() else []
+    groups += benchmark_container_groups() if container_groups is None else container_groups
+    total = 0
+    for group in groups:
+        try:
+            total += int((group / 'memory.swap.current').read_text())
+        except (FileNotFoundError, ValueError, OSError):
+            continue
+    return total
+
+
+def launch_blockers(protocol, lane, *, snapshot=None, memory=None, gpu=QUERY, disk_free=None, benchmark_swap=None):
     """Reasons this lane may not launch now; an empty list means it may."""
     policy = protocol['launch_policy']
     memory = meminfo() if memory is None else memory
@@ -91,8 +120,10 @@ def launch_blockers(protocol, lane, *, snapshot=None, memory=None, gpu=QUERY, di
     reasons = []
     if memory['MemAvailable'] < policy['min_available_gib'] * GIB:
         reasons.append(f"free memory {memory['MemAvailable'] / GIB:.1f} GiB below {policy['min_available_gib']} GiB")
-    if policy.get('no_host_swap_use') and memory.get('SwapTotal', 0) - memory.get('SwapFree', 0) > 0:
-        reasons.append('host swap in use')
+    if policy.get('no_host_swap_use'):
+        swapped = benchmark_swap_bytes() if benchmark_swap is None else benchmark_swap
+        if swapped > 0:
+            reasons.append(f'benchmark cgroups swap in use ({swapped} bytes)')
     if disk_free < policy.get('min_disk_free_gib', 0) * GIB:
         reasons.append(f'free disk {disk_free / GIB:.0f} GiB below {policy["min_disk_free_gib"]} GiB')
     runs = benchmark_runs(snapshot)
