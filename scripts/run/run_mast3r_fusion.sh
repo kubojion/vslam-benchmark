@@ -70,6 +70,16 @@ STAGE="$WS/results/.cache/mast3r-fusion-stage/$DATASET/$SEQ/$(sha256sum "$SENSOR
 mkdir -p "$(dirname "$STAGE")"
 python3 "$WS/scripts/run/_mast3r_fusion_stage.py" stage --sequence "$SEQ_DIR" --sensor "$SENSOR" --out "$STAGE"
 
+# A labelled sensitivity profile (MAST3R_FUSION_IMU_NOISE, a noise document under configs/) replaces the
+# four IMU noise values; validated before an attempt ID is consumed.
+NOISE_ARGS=()
+if [[ -n "${MAST3R_FUSION_IMU_NOISE:-}" ]]; then
+    MAST3R_FUSION_IMU_NOISE=$(realpath -e "$MAST3R_FUSION_IMU_NOISE")
+    [[ "$MAST3R_FUSION_IMU_NOISE" == "$WS/configs/"* ]] \
+        || { echo "[mast3r_fusion] ERROR: MAST3R_FUSION_IMU_NOISE must be a file under $WS/configs" >&2; exit 2; }
+    NOISE_ARGS=(--noise-override "$MAST3R_FUSION_IMU_NOISE")
+fi
+
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
 CONTAINER=""
@@ -81,7 +91,7 @@ mkdir "$NATIVE"
 # working directory, so each attempt gets its own.
 ln -s "$CKPT" "$NATIVE/checkpoints"
 python3 "$WS/scripts/run/_mast3r_fusion_stage.py" config --stage "$STAGE" --base "$BASE_CFG" \
-    --override "$ALGO_CFG" --out "$OUT_DIR/mast3r_fusion_config.yaml" > "$NATIVE/config_summary.json"
+    --override "$ALGO_CFG" --out "$OUT_DIR/mast3r_fusion_config.yaml" "${NOISE_ARGS[@]}" > "$NATIVE/config_summary.json"
 cp "$STAGE/intrinsics.yaml" "$OUT_DIR/intrinsics.yaml"
 
 echo "[mast3r_fusion] $DATASET/$SEQ type=${RUN_TYPE} run=${RUN_ID} -> $OUT_DIR" | tee "$LOG"
@@ -108,6 +118,7 @@ PROV_ARGS=(
     --seed "$SEED"
     --conda-env "$CONDA_ENV"
 )
+[[ -n "${MAST3R_FUSION_IMU_NOISE:-}" ]] && PROV_ARGS+=(--artifact "imu_noise_override=$MAST3R_FUSION_IMU_NOISE")
 
 stamp() { python3 -u -c "
 import sys, time

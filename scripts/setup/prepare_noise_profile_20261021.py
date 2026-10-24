@@ -44,7 +44,15 @@ FILES = {
     'voxel_svio': (f'configs/voxel_svio/{DATASET}.yaml', 'VOXEL_SVIO_CONFIG'),
     'openvins': (f'configs/openvins/{DATASET}', 'OPENVINS_CONFIG_DIR'),
     'svo_pro': (None, 'SVO_PRO_IMU_NOISE'),
+    # User, 2026-10-24: GPU estimators added; exploratory N=1 runs after the GPU search, not in the predictions.
+    'cuvslam': (None, 'CUVSLAM_IMU_NOISE'),
+    'mast3r_fusion': (None, 'MAST3R_FUSION_IMU_NOISE'),
+    'airslam': (f'configs/airslam/{DATASET}_camera_vio.yaml', 'AIRSLAM_CAMERA_CONFIG'),
 }
+# Estimators whose profile is an explicit noise document rather than a config copy.
+DOCUMENTS = ('svo_pro', 'cuvslam', 'mast3r_fusion')
+ADDITIONS = [dict(date='2026-10-24', by='user', estimators=['cuvslam', 'mast3r_fusion', 'airslam'],
+                  note='exploratory N=1 engine-on runs, queued after the GPU search; not part of the predictions')]
 
 
 def sha(path):
@@ -78,7 +86,7 @@ def build(root=ROOT):
         n = noise(algorithm)
         target_dir = out/algorithm
         target_dir.mkdir(parents=True)
-        if algorithm == 'svo_pro':
+        if algorithm in DOCUMENTS:
             target = target_dir/'imu-noise.json'
             target.write_text(json.dumps(override.document(algorithm, DATASET, n), indent=2) + '\n')
             copied = {}
@@ -106,6 +114,7 @@ def build(root=ROOT):
         counts_toward_rule_c_cells=False,
         dataset=DATASET, sequence=SEQUENCE, modes=['vio'],
         decided='2026-10-21 (user): run as a labelled sensitivity at N=1, CPU estimators only',
+        additions=ADDITIONS,
         reference=reference(),
         reference_source=dict(path=str(SOURCE.relative_to(ROOT)), sha256=sha(root/SOURCE.relative_to(ROOT))),
         scaling='Rule C factors: authors EuRoC value / EuRoC Kalibr value per quantity (configs/sensors/imu-noise-rule.json)',

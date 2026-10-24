@@ -28,6 +28,7 @@ import numpy as np
 import yaml
 
 import _imu_noise_rule
+import _imu_noise_override
 
 
 def sha(path):
@@ -113,13 +114,21 @@ def config(args):
         if _imu_noise_rule.applies(record['dataset']):
             # IMU noise rule "authors' operating point": Allan x MASt3R-Fusion's EuRoC factors.
             imu = _imu_noise_rule.noise('mast3r_fusion', record['dataset'])
+        # A labelled sensitivity profile (MAST3R_FUSION_IMU_NOISE) replaces the four values after the rule.
+        noise_override = getattr(args, 'noise_override', None)
+        imu, override_receipt = _imu_noise_override.select(imu, noise_override, 'mast3r_fusion', record['dataset'])
         noise = [imu['accelerometer_noise_density'], imu['gyroscope_noise_density'],
                  imu['accelerometer_random_walk'], imu['gyroscope_random_walk']]
         params['ms_opt']['imu_noise'] = noise
         params['global_opt']['imu_noise'] = noise
+    elif getattr(args, 'noise_override', None):
+        raise ValueError('an IMU noise override cannot apply to a dataset kept at upstream IMU noise')
     params['ms_opt']['imu_format'] = 'euroc'
     args.out.write_text(yaml.safe_dump(params, sort_keys=False))
-    print(json.dumps(dict(subsample=params['dataset']['subsample'], imu_noise=params['ms_opt']['imu_noise'])))
+    summary = dict(subsample=params['dataset']['subsample'], imu_noise=params['ms_opt']['imu_noise'])
+    if getattr(args, 'noise_override', None):
+        summary['noise_override'] = override_receipt
+    print(json.dumps(summary))
 
 
 def export(args):
@@ -152,6 +161,7 @@ def main():
     c.add_argument('--base', required=True, type=Path, help='upstream config/base_euroc.yaml')
     c.add_argument('--override', required=True, type=Path)
     c.add_argument('--out', required=True, type=Path)
+    c.add_argument('--noise-override', type=Path, help='labelled sensitivity noise document (configs/sensitivity/)')
     c.set_defaults(run=config)
     e = sub.add_parser('export')
     e.add_argument('--raw', required=True, type=Path)

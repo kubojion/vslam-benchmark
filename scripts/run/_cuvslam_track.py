@@ -34,6 +34,9 @@ from scipy.spatial.transform import Rotation
 
 import cuvslam
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import _imu_noise_override  # noqa: E402
+
 MODES = {'vo': ('Multicamera', False), 'vo-lc': ('Multicamera', True),
          'vio': ('Inertial', False), 'vio-lc': ('Inertial', True)}
 
@@ -45,7 +48,7 @@ def to_pose(t):
     return cuvslam.Pose(rotation=Rotation.from_matrix(r).as_quat(), translation=t[:3, 3])
 
 
-def build_rig(sensor, use_imu):
+def build_rig(sensor, use_imu, noise_override=None):
     width, height = sensor['image']['width'], sensor['image']['height']
     transforms = [np.eye(4), np.asarray(sensor['T_cam0_cam1'], dtype=float)]
     cameras = []
@@ -70,10 +73,12 @@ def build_rig(sensor, use_imu):
         spec = sensor['imu']
         imu = cuvslam.ImuCalibration()
         imu.rig_from_imu = to_pose(np.linalg.inv(np.asarray(spec['T_imu_cam0'], dtype=float)))
-        imu.gyroscope_noise_density = spec['gyroscope_noise_density']
-        imu.gyroscope_random_walk = spec['gyroscope_random_walk']
-        imu.accelerometer_noise_density = spec['accelerometer_noise_density']
-        imu.accelerometer_random_walk = spec['accelerometer_random_walk']
+        # A labelled sensitivity profile (CUVSLAM_IMU_NOISE) replaces the four profile values.
+        noise, _ = _imu_noise_override.select(spec, noise_override, 'cuvslam', sensor['dataset'])
+        imu.gyroscope_noise_density = noise['gyroscope_noise_density']
+        imu.gyroscope_random_walk = noise['gyroscope_random_walk']
+        imu.accelerometer_noise_density = noise['accelerometer_noise_density']
+        imu.accelerometer_random_walk = noise['accelerometer_random_walk']
         imu.frequency = spec['frequency_hz']
         rig.imus = [imu]
     return rig
@@ -128,6 +133,7 @@ def main():
     ap.add_argument('--out', required=True, type=Path, help='run directory')
     ap.add_argument('--max-frames', type=int, default=0, help='diagnostic only: stop after N frames')
     ap.add_argument('--prefetch', type=int, default=8)
+    ap.add_argument('--noise-override', type=Path, help='labelled sensitivity noise document (configs/sensitivity/)')
     args = ap.parse_args()
 
     sensor = json.loads(args.sensor.read_text())
@@ -146,7 +152,9 @@ def main():
         enable_final_landmarks_export=False, **odom)
     slam_kwargs = dict(config['slam']) if use_slam else None
     cuvslam.set_verbosity(int(config.get('verbosity', 0)))
-    rig = build_rig(sensor, use_imu)
+    if args.noise_override and not use_imu:
+        raise ValueError('an IMU noise override needs an inertial mode')
+    rig = build_rig(sensor, use_imu, args.noise_override)
     tracker = cuvslam.Tracker(rig, cuvslam.Tracker.OdometryConfig(**odom_kwargs),
                               cuvslam.Tracker.SlamConfig(**slam_kwargs) if use_slam else None)
 

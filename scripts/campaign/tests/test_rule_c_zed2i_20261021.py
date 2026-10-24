@@ -108,9 +108,9 @@ def test_profile_differs_from_rule_c_only_in_noise():
         (variable, target), = entry['environment'].items()
         assert (REPO/target).exists() and target.startswith('configs/sensitivity/')
         rule_c = rule.noise(algorithm, 'zed2i')
-        if algorithm == 'svo_pro':
-            values, receipt = override.load(REPO/target, 'svo_pro', 'zed2i')
-            assert values == entry['noise'] and variable == 'SVO_PRO_IMU_NOISE'
+        if algorithm in profile.DOCUMENTS:
+            values, receipt = override.load(REPO/target, algorithm, 'zed2i')
+            assert values == entry['noise'] and variable == profile.FILES[algorithm][1]
             continue
         if algorithm == 'openvins':
             for f in (REPO/target).iterdir():

@@ -10,6 +10,18 @@
     "vio"
   ],
   "decided": "2026-10-21 (user): run as a labelled sensitivity at N=1, CPU estimators only",
+  "additions": [
+    {
+      "date": "2026-10-24",
+      "by": "user",
+      "estimators": [
+        "cuvslam",
+        "mast3r_fusion",
+        "airslam"
+      ],
+      "note": "exploratory N=1 engine-on runs, queued after the GPU search; not part of the predictions"
+    }
+  ],
   "reference": {
     "gyroscope_noise_density": 0.0032,
     "accelerometer_noise_density": 0.02,
@@ -143,6 +155,53 @@
         "configs/sensitivity/zed2i-engine-on-20261021/svo_pro/imu-noise.json": "bcfcb5287dfaa2dd98400a2de398969bd4e60c1c81bd02695cfdb1969190a69f"
       },
       "copied_from_rule_c": {}
+    },
+    "cuvslam": {
+      "environment": {
+        "CUVSLAM_IMU_NOISE": "configs/sensitivity/zed2i-engine-on-20261021/cuvslam/imu-noise.json"
+      },
+      "noise": {
+        "gyroscope_noise_density": 0.0032,
+        "accelerometer_noise_density": 0.02,
+        "gyroscope_random_walk": 2.1e-06,
+        "accelerometer_random_walk": 3.5e-05
+      },
+      "files": {
+        "configs/sensitivity/zed2i-engine-on-20261021/cuvslam/imu-noise.json": "98c08498570113985044bf7eaaf96c772a11e817fb7603be0da292ac6d0ef44b"
+      },
+      "copied_from_rule_c": {}
+    },
+    "mast3r_fusion": {
+      "environment": {
+        "MAST3R_FUSION_IMU_NOISE": "configs/sensitivity/zed2i-engine-on-20261021/mast3r_fusion/imu-noise.json"
+      },
+      "noise": {
+        "gyroscope_noise_density": 0.019395476182461107,
+        "accelerometer_noise_density": 0.019620000000000002,
+        "gyroscope_random_walk": 3.937408072887124e-08,
+        "accelerometer_random_walk": 5.722499999999999e-07
+      },
+      "files": {
+        "configs/sensitivity/zed2i-engine-on-20261021/mast3r_fusion/imu-noise.json": "9246816bcdb7502b9c0e6c2c14742ace4a12ca3c2715d9a090bef0fdf2451989"
+      },
+      "copied_from_rule_c": {}
+    },
+    "airslam": {
+      "environment": {
+        "AIRSLAM_CAMERA_CONFIG": "configs/sensitivity/zed2i-engine-on-20261021/airslam/zed2i_camera_vio.yaml"
+      },
+      "noise": {
+        "gyroscope_noise_density": 0.0032,
+        "accelerometer_noise_density": 0.02,
+        "gyroscope_random_walk": 2.1e-06,
+        "accelerometer_random_walk": 3.5e-05
+      },
+      "files": {
+        "configs/sensitivity/zed2i-engine-on-20261021/airslam/zed2i_camera_vio.yaml": "31e1a3b489c34e684d21364f72257dc8c56b159a32fbcd3c1c7d675449114a26"
+      },
+      "copied_from_rule_c": {
+        "configs/airslam/zed2i_camera_vio.yaml": "72eacf2f1440d4e6b680b0e664d4f312c2326bf16b3c2bf5b9857cdc5df91850"
+      }
     }
   }
 }

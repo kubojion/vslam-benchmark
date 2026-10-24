@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "algorithm": "mast3r_fusion",
+  "dataset": "zed2i",
+  "units": "continuous_time_standard_deviation",
+  "parameters": {
+    "gyroscope_noise_density": 0.019395476182461107,
+    "accelerometer_noise_density": 0.019620000000000002,
+    "gyroscope_random_walk": 3.937408072887124e-08,
+    "accelerometer_random_walk": 5.722499999999999e-07
+  }
+}
