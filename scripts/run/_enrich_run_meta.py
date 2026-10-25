@@ -398,7 +398,11 @@ def execution_stages(run_dir: Path) -> list[dict[str, Any]]:
 
 
 def conda_snapshot(name: str, run_dir: Path) -> dict[str, Any]:
-    raw = command(["conda", "list", "-n", name, "--json"], timeout=60)
+    is_prefix = Path(name).is_absolute()
+    label = Path(name).name if is_prefix else name
+    if not label or label in (".", "..") or "/" in label or "\\" in label:
+        raise ValueError("invalid conda environment name")
+    raw = command(["conda", "list", "-p" if is_prefix else "-n", name, "--json"], timeout=60)
     if raw is None:
         raise ValueError(f"cannot inspect conda environment {name!r}")
     packages = json.loads(raw)
@@ -418,11 +422,11 @@ def conda_snapshot(name: str, run_dir: Path) -> dict[str, Any]:
     payload = json.dumps(normalized, indent=2, sort_keys=True) + "\n"
     out_dir = run_dir / "provenance"
     out_dir.mkdir(parents=True, exist_ok=True)
-    output = out_dir / f"conda-{name}.json"
+    output = out_dir / f"conda-{label}.json"
     output.write_text(payload)
     return {
         "kind": "conda",
-        "name": name,
+        "name": label,
         "snapshot": output.relative_to(run_dir).as_posix(),
         "sha256": hashlib.sha256(payload.encode()).hexdigest(),
         "package_count": len(normalized),
