@@ -62,6 +62,17 @@ export LD_LIBRARY_PATH="$CUDA_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 python3 "$WS/scripts/setup/build_sensor_profiles.py" --repo "$WS" --check > /dev/null \
     || { echo "[cuvslam] ERROR: sensor profiles are stale or inconsistent" >&2; exit 2; }
 
+# A labelled sensitivity profile (CUVSLAM_IMU_NOISE, a noise document under configs/) replaces the
+# four IMU noise values; validated before an attempt ID is consumed.
+NOISE_ARGS=()
+if [[ -n "${CUVSLAM_IMU_NOISE:-}" ]]; then
+    [[ "$USE_IMU" == "true" ]] || { echo "[cuvslam] ERROR: CUVSLAM_IMU_NOISE needs an inertial run type" >&2; exit 2; }
+    CUVSLAM_IMU_NOISE=$(realpath -e "$CUVSLAM_IMU_NOISE")
+    [[ "$CUVSLAM_IMU_NOISE" == "$WS/configs/"* ]] \
+        || { echo "[cuvslam] ERROR: CUVSLAM_IMU_NOISE must be a file under $WS/configs" >&2; exit 2; }
+    NOISE_ARGS=(--noise-override "$CUVSLAM_IMU_NOISE")
+fi
+
 mkdir -p "$WS/logs"
 prepare_fresh_run_dir "$OUT_DIR"
 CONTAINER=""
@@ -88,13 +99,14 @@ PROV_ARGS=(
     --param "feed=max_throughput_synchronous_sba_and_slam"
     --conda-env "$CONDA_ENV"
 )
+[[ -n "${CUVSLAM_IMU_NOISE:-}" ]] && PROV_ARGS+=(--artifact "imu_noise_override=$CUVSLAM_IMU_NOISE")
 
 START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
 set +e
 owned_run estimator python3 "$WS/scripts/run/_cuvslam_track.py" \
     --sequence "$SEQ_DIR" --sensor "$SENSOR" --config "$ALGO_CFG" \
-    --mode "$RUN_TYPE" --out "$OUT_DIR" 2>&1 | python3 -u -c "
+    --mode "$RUN_TYPE" --out "$OUT_DIR" "${NOISE_ARGS[@]}" 2>&1 | python3 -u -c "
 import sys, time
 t0 = time.time()
 for line in sys.stdin:

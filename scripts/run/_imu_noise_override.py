@@ -37,6 +37,13 @@ def document(algorithm, dataset, parameters):
                 parameters=validate_parameters(parameters))
 
 
+def select(defaults, path, algorithm, dataset):
+    """The four values a run applies: its defaults, or a labelled sensitivity document if one is given."""
+    if not path:
+        return {key: defaults[key] for key in KEYS}, None
+    return load(path, algorithm, dataset)
+
+
 def _unique_object(pairs):
     result = {}
     for key, value in pairs:

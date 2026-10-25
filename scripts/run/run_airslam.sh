@@ -62,6 +62,15 @@ elif [[ "$USE_IMU" == "false" && -f "$WS/configs/airslam/${DATASET}_camera_vo.ya
 else
     CAM_CFG="/benchmark_configs/airslam/${DATASET}_camera.yaml"
 fi
+# A labelled sensitivity profile (AIRSLAM_CAMERA_CONFIG, a copy of the VIO camera config under
+# configs/ with only its four IMU noise values changed) replaces the camera config for VIO.
+if [[ -n "${AIRSLAM_CAMERA_CONFIG:-}" ]]; then
+    [[ "$USE_IMU" == "true" ]] || { echo "[airslam] ERROR: AIRSLAM_CAMERA_CONFIG needs an inertial run type" >&2; exit 2; }
+    AIRSLAM_CAMERA_CONFIG=$(realpath -e "$AIRSLAM_CAMERA_CONFIG")
+    [[ "$AIRSLAM_CAMERA_CONFIG" == "$WS/configs/"* ]] \
+        || { echo "[airslam] ERROR: AIRSLAM_CAMERA_CONFIG must be a file under $WS/configs" >&2; exit 2; }
+    CAM_CFG="/benchmark_configs/${AIRSLAM_CAMERA_CONFIG#"$WS/configs/"}"
+fi
 VO_CFG="/benchmark_configs/airslam/${DATASET}_${PROFILE_TAG}.yaml"
 DATAROOT="/datasets/$DATASET/$SEQ/mav0"
 CONT_RESULTS_DIR="/results/$RUN_TYPE"
@@ -165,7 +174,7 @@ wait_for_native_exit() {
     return "$code"
 }
 
-CAM_CFG_HOST="$WS/configs/airslam/$(basename "$CAM_CFG")"
+CAM_CFG_HOST="$WS/configs/${CAM_CFG#/benchmark_configs/}"
 VO_CFG_HOST="$WS/configs/airslam/${DATASET}_${PROFILE_TAG}.yaml"
 [[ -f "$CAM_CFG_HOST" ]] || {
     echo "ERROR: no AirSLAM camera config at $CAM_CFG_HOST"; exit 2; }

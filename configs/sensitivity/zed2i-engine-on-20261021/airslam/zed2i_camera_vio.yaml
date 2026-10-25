@@ -1,0 +1,52 @@
+%YAML:1.0
+# Recovered factory rotation: docs/campaigns/zed-physical-calibration-20261002.json.
+# AirSLAM camera calibration for the ZED2i field1_110426_full_10fps_q90 dataset.
+#
+# Source: ZED2i stereo (SN30291010), 1920x1080 rectified color JPEGs, exposed
+#   through .png symlinks and converted to grayscale. distortion_type = 0.
+#
+# Rectified intrinsics (ZED factory):
+#   fx = fy = 1118.6947021484375, cx = 964.8566284179688, cy = 559.3102416992188
+#   baseline = 0.1198462504 m
+#
+# T_type 0 is Tbc (camera optical -> IMU/body). The matrices include the
+# mandatory zed_imu_link/optical-frame axis conversion and the ZED2i SDK
+# camera-to-IMU translation. See docs/zed2i-imu-extrinsics.md.
+
+image_height: 1080
+image_width: 1920
+use_imu: 1
+
+depth_lower_thr: 0.1
+depth_upper_thr: 50.0
+max_y_diff: 1
+
+distortion_type: 0   # 0 = undistorted / pre-rectified input
+
+cam0:
+  intrinsics: [1118.6947, 1118.6947, 964.8566, 559.3102]  # fx fy cx cy
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  T_type: 0
+  T:
+  - [-0.00724344284154254, 0.00881396233555461, 0.999934921184248, 0.00216882361487218]
+  - [-0.999969341194319, 0.00291087936241895, -0.00726935022800382, 0.0230463876103124]
+  - [-0.00297476170495083, -0.999956919496678, 0.00879260732171577, -0.000130804473926019]
+  - [0, 0, 0, 1]
+
+cam1:
+  intrinsics: [1118.6947, 1118.6947, 964.8566, 559.3102]  # fx fy cx cy
+  distortion_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
+  T_type: 0
+  T:
+  - [-0.00724344284154254, 0.00881396233555461, 0.999934921184248, 0.00130072415057515]
+  - [-0.999969341194319, 0.00291087936241895, -0.00726935022800382, -0.0967961884124695]
+  - [-0.00297476170495083, -0.999956919496678, 0.00879260732171577, -0.000487318509995803]
+  - [0, 0, 0, 1]
+
+# IMU noise: SENSITIVITY profile zed2i-engine-on-20261021, NOT Rule C: engine-on standstill white densities + engine-off random walks, x this estimator's EuRoC ratios.
+rate_hz: 100
+gyroscope_noise_density:     0.0032   # rad/s/sqrt(Hz)
+gyroscope_random_walk:       2.1e-06
+accelerometer_noise_density: 0.02   # m/s^2/sqrt(Hz)
+accelerometer_random_walk:   3.5e-05   # m/s^3/sqrt(Hz)
+g_value: 9.812                            # Poznan, Poland (~52.29 deg N)
