@@ -48,3 +48,32 @@ results line.
 
 ---
 Results (filled in after the runs):
+
+
+## Evaluation recorded 25 October 2026
+
+The approved text above is byte-for-byte unchanged (SHA-256 `d1cd0561840c6cfd3d94fde31be97c81a822e653decef138b02a2d3322c4e4ff`). Its retained DRAFT label is historical: approval is recorded in `coordinated/revision12-20261021/predictions-user-approval.json`.
+
+This evaluates logical Rule C **r1 only**, plus engine-on **N=1**, for the seven CPU estimators specified above. It does not use N=3 medians, search-selected runs or the later GPU sensitivities. Explicit infrastructure replacements 361/363 supply Voxel-SVIO/SVO Pro r1; superseded attempts 282/283 receive no primary credit.
+
+| Estimator | Rule C r1 SE(3) ATE (m) | Rule C collapse | Engine-on SE(3) ATE (m) | Engine-on collapse | Threshold (m) |
+|---|---:|:---:|---:|:---:|---:|
+| ORB-SLAM3 | 58462.5 † | Yes | 1157.4 † | Yes | 0.885 |
+| OKVIS2 | 3.07738e+07 † | Yes | 0.681902 | No | 1.398 |
+| OKVIS2-X | 2.1634e+06 † | Yes | 0.458155 | No | 1.272 |
+| Basalt | 0.462546 | No | 0.421997 † | Yes | 1.446 |
+| OpenVINS | 3.59756e+07 † | Yes | 1.00769 | No | 1.4 |
+| Voxel-SVIO | 1.35908e+07 † | Yes | 342236 † | Yes | 3.06 |
+| SVO Pro | 0.506894 | No | 0.452215 | No | 2.01 |
+
+† Diagnostic ATE from a failed observation, not an accepted accuracy score. Collapse uses the original failure-or-threshold definition. Basalt engine-on is a failed observation despite evaluator status `ok`: native SIGSEGV occurred during trajectory saving; the exported trajectory ends 131 s early. Review 290 explicitly rejects it as a clean result. No failure is retried or relabelled here.
+
+1. **Prediction 1: holds at the stated aggregate level (5/7 collapses; threshold at least 4).** The expected identities were not all right: ORB-SLAM3 collapses, while SVO Pro survives alongside Basalt.
+
+2. **Prediction 2: fails (3/7 engine-on collapses; allowed at most 2).** ORB-SLAM3 and Voxel-SVIO retain scale collapse; Basalt has the reviewed native/export failure. The separate lower-ATE clause holds numerically for all five Rule C collapses, but ORB-SLAM3/Voxel-SVIO remain failed observations.
+
+3. **Prediction 3: the literal numerical median-ratio test holds (1.271932253 <= 2).** Ratios use the six envelope values printed in the approved table and each engine-on `run_eval.json` SE(3) ATE. This includes diagnostic values for failed observations, as marked above; it does not establish six clean near-envelope results. Three engine-on observations in this six-estimator subset failed, including Basalt. No survivor-only median or substituted failure score is used.
+
+**Interpretation:** the document's joint condition that predictions 1 and 2 hold is not met. These N=1 observations support substantial improvement for several estimators, including OpenVINS (1.007693209 m engine-on versus failed Rule C r1), but do not support the pre-written claim that operating-condition noise generally avoids failure on this platform.
+
+**Provenance and limits:** exact runs, review/meta/evaluation hashes and computed values are in `sielinko-vio-predictions-results-20261025.json`. The OpenVINS no-envelope threshold remains the literal 1.4 m written above, rather than recomputing its rounded parenthetical arithmetic. Failed diagnostic ratios are not copied into successful-score tables. Preserve the benchmark's Sielinko reference/calibration qualifications and exported-coverage limitations. Concurrent runtimes are not isolated performance measurements.
