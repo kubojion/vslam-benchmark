@@ -110,12 +110,14 @@ def amend(art, key, revision, decision):
         review['collected_copy'] = collected
     write(folder / 'replacement-review.json', review)
     protocol = load(art / 'protocol.json')
+    identities = refresh_identities(art, protocol)
     protocol.setdefault('physical_attempt_revisions', {})[key] = dict(
         revision=revision, record=str(original), record_sha256=prepare.sha(original),
         review=str(folder / 'replacement-review.json'), review_sha256=prepare.sha(folder / 'replacement-review.json'))
     protocol.setdefault('amendments', []).append(dict(
         revision=revision, at=review['reviewed_at'], prior_protocol_sha256=prepare.sha(prior / 'protocol.json'),
-        decision=decision, kind='one reviewed helper-crash replacement; no protocol, bound or scoring change'))
+        decision=decision, prior_frozen_identities=identities,
+        kind='one reviewed helper-crash replacement; no protocol, bound or scoring change'))
     write(art / 'protocol.json', protocol)
     return finish(art, protocol, key, revision, folder, prior)
 
@@ -178,6 +180,57 @@ def amend_supersede(art, key, revision, decision):
     return finish(art, protocol, key, revision, folder, prior)
 
 
+def amend_pre_estimation(art, key, revision, decision):
+    """Replace an attempt the harness refused before its estimator started (empty run directory)."""
+    art = Path(art).resolve()
+    study = key.split('__')[1]
+    worker = art / 'workers' / study
+    record_path = worker / 'attempts' / (key + '.json')
+    folder = art / 'amendments' / revision
+    if folder.exists():
+        raise FileExistsError('amendment already prepared: ' + str(folder))
+    if not (art / 'STOP_AFTER_CURRENT').exists():
+        raise RuntimeError('the search must be stopped (STOP_AFTER_CURRENT) while amending')
+    record = load(record_path)
+    run = Path(record['run'])
+    log = worker / 'wrapper-logs' / (key + '.log')
+    log_text = log.read_text(errors='replace')
+    if (record.get('key') != key or record.get('state') != 'running' or 'returncode' in record or 'result' in record
+            or (run.exists() and any(run.iterdir()))
+            or 'source implementation disagrees with reviewed campaign' not in log_text):
+        raise RuntimeError('attempt is not a pre-estimation infrastructure failure: ' + key)
+    prior = folder / 'prior'
+    prior.mkdir(parents=True)
+    for name in ('protocol.json', 'execution-identity.json', 'readiness.json', 'activation.json'):
+        if (art / name).is_file():
+            shutil.copy2(art / name, prior / name)
+    original = folder / 'original-attempt.json'
+    os.replace(record_path, original)
+    collected = archive_collected(art, key, folder)
+    review = dict(
+        classification='pre_estimation_infrastructure_failure', revision=revision, infrastructure_failed_attempts=[key],
+        estimator_started=False, scientific_score=None, optimizer_feedback=False, replacement_count=1,
+        original_record_sha256=prepare.sha(original), logical_identity={k: record.get(k) for k in IDENTITY_FIELDS},
+        original_run=str(run), decision=decision, reviewed_at=datetime.now(timezone.utc).isoformat(),
+        evidence=dict(wrapper_log=evidence_row(log)),
+        cause=('implementation capture refused the frozen source identity after the harness commit (the first '
+               'helper-crash amendment had not refreshed frozen_source_sha256); the estimator never started'))
+    if collected:
+        review['collected_copy'] = collected
+    write(folder / 'replacement-review.json', review)
+    protocol = load(art / 'protocol.json')
+    identities = refresh_identities(art, protocol)
+    protocol.setdefault('physical_attempt_revisions', {})[key] = dict(
+        revision=revision, record=str(original), record_sha256=prepare.sha(original),
+        review=str(folder / 'replacement-review.json'), review_sha256=prepare.sha(folder / 'replacement-review.json'))
+    protocol.setdefault('amendments', []).append(dict(
+        revision=revision, at=review['reviewed_at'], prior_protocol_sha256=prepare.sha(prior / 'protocol.json'),
+        decision=decision, prior_frozen_identities=identities,
+        kind='one reviewed pre-estimation replacement; identities refreshed after the harness commit'))
+    write(art / 'protocol.json', protocol)
+    return finish(art, protocol, key, revision, folder, prior)
+
+
 def finish(art, protocol, key, revision, folder, prior):
     files = [dict(path=p, sha256=prepare.sha(ROOT / p)) for p in prepare.git('ls-files', '--', 'scripts', 'configs').split('\n')
              if p and (ROOT / p).is_file()]
@@ -223,8 +276,9 @@ def main():
     parser.add_argument('--revision', required=True)
     parser.add_argument('--decision', required=True)
     parser.add_argument('--supersede', action='store_true', help='supersede a never-started replacement of this key')
+    parser.add_argument('--pre-estimation', action='store_true', help='replace an attempt refused before its estimator started')
     args = parser.parse_args()
-    run = amend_supersede if args.supersede else amend
+    run = amend_supersede if args.supersede else amend_pre_estimation if args.pre_estimation else amend
     print(json.dumps(run(args.art, args.key, args.revision, args.decision), indent=2))
 
 

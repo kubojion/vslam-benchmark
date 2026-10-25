@@ -62,6 +62,22 @@ class HelperCrashRevisionTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, 'helper-crash'):
             self.revision()
 
+    def test_pre_estimation_failure_needs_its_own_exact_review(self):
+        self.review = dict(classification='pre_estimation_infrastructure_failure', revision='helpercrash-20261025',
+                           infrastructure_failed_attempts=[KEY], estimator_started=False, scientific_score=None,
+                           optimizer_feedback=False, replacement_count=1)
+        self.assertEqual(self.revision()['revision'], 'helpercrash-20261025')
+        for field, value in (('estimator_started', True), ('scientific_score', 0.2), ('optimizer_feedback', True),
+                             ('replacement_count', 2), ('infrastructure_failed_attempts', [])):
+            with self.subTest(field=field):
+                review = dict(classification='pre_estimation_infrastructure_failure', revision='helpercrash-20261025',
+                              infrastructure_failed_attempts=[KEY], estimator_started=False, scientific_score=None,
+                              optimizer_feedback=False, replacement_count=1)
+                review[field] = value
+                self.review = review
+                with self.assertRaisesRegex(RuntimeError, 'pre-estimation'):
+                    self.revision()
+
     def test_finished_records_keep_the_original_rule(self):
         self.record['state'] = 'finished'
         with self.assertRaises(RuntimeError):

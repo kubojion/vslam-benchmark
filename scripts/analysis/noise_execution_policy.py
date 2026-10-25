@@ -33,6 +33,17 @@ def reviewed_attempt_revision(protocol, key):
             raise RuntimeError('Replacement evidence missing or changed: ' + key)
         evidence[name] = json.loads(path.read_text())
     old, review = evidence['record'], evidence['review']
+    if old.get('key') == key and old.get('state') == 'running' and review.get('classification') == 'pre_estimation_infrastructure_failure':
+        # Sielinko search, 25 Oct: refused by the harness before its estimator started (empty run directory).
+        if (review.get('revision') != item['revision']
+                or key not in review.get('infrastructure_failed_attempts', [])
+                or review.get('estimator_started') is not False
+                or review.get('scientific_score') is not None
+                or review.get('optimizer_feedback') is not False
+                or review.get('replacement_count') != 1
+                or review.get('original_record_sha256') != item['record_sha256']):
+            raise RuntimeError('Incomplete attempt lacks a reviewed pre-estimation replacement: ' + key)
+        return item
     if old.get('key') == key and old.get('state') == 'running' and review.get('classification') == 'post_native_helper_crash':
         # Sielinko search, 25 Oct: the native run finished but the post-native provenance helper
         # crashed, leaving the attempt incomplete. Only an explicit helper-crash review admits it.
