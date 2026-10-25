@@ -47,6 +47,21 @@ class HelperCrashRevisionTests(unittest.TestCase):
                 with self.assertRaisesRegex(RuntimeError, 'helper-crash'):
                     self.revision()
 
+    def test_a_replacement_that_never_started_its_estimator_may_be_superseded(self):
+        self.review.update(revision='helpercrash-20261025', replacement_count=2,
+                           superseded_replacements=[dict(revision='x', estimator_started=False, record_sha256='a' * 64)])
+        self.assertEqual(self.revision()['revision'], 'helpercrash-20261025')
+        for bad in (dict(estimator_started=True, record_sha256='a' * 64), dict(estimator_started=False)):
+            with self.subTest(bad=bad):
+                self.setUp()
+                self.review.update(replacement_count=2, superseded_replacements=[dict(revision='x', **bad)])
+                with self.assertRaisesRegex(RuntimeError, 'helper-crash'):
+                    self.revision()
+        self.setUp()
+        self.review.update(replacement_count=1, superseded_replacements=[dict(revision='x', estimator_started=False, record_sha256='a' * 64)])
+        with self.assertRaisesRegex(RuntimeError, 'helper-crash'):
+            self.revision()
+
     def test_finished_records_keep_the_original_rule(self):
         self.record['state'] = 'finished'
         with self.assertRaises(RuntimeError):

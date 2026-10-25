@@ -36,12 +36,16 @@ def reviewed_attempt_revision(protocol, key):
     if old.get('key') == key and old.get('state') == 'running' and review.get('classification') == 'post_native_helper_crash':
         # Sielinko search, 25 Oct: the native run finished but the post-native provenance helper
         # crashed, leaving the attempt incomplete. Only an explicit helper-crash review admits it.
+        # A replacement that failed before its estimator started is listed, never scored, and counted.
+        superseded = review.get('superseded_replacements', [])
         if (review.get('revision') != item['revision']
                 or key not in review.get('helper_crash_attempts', [])
                 or review.get('native_finished') is not True
                 or review.get('scientific_score') is not None
                 or review.get('optimizer_feedback') is not False
-                or review.get('replacement_count') != 1
+                or not isinstance(superseded, list)
+                or any(s.get('estimator_started') is not False or not s.get('record_sha256') for s in superseded)
+                or review.get('replacement_count') != 1 + len(superseded)
                 or review.get('original_record_sha256') != item['record_sha256']):
             raise RuntimeError('Incomplete attempt lacks a reviewed helper-crash replacement: ' + key)
         return item
