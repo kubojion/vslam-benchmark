@@ -22,6 +22,22 @@
 # (Rule C 093, 164, 258, 283); the system Python runs every other wrapper's helpers.
 VSLAM_HELPER_PYTHON=/usr/bin/python3
 
+# A post-native provenance helper that segfaults (exit 139) is retried once in a fresh process
+# with a fault handler: it only records and re-verifies provenance, and writes run_meta.json
+# atomically at its end, so a retry starts from the same state. The estimator is never rerun.
+# The system Python also segfaulted once (Sielinko search, 25 Oct 05:21Z) on this host with a
+# CPU CrashLog history, so the cause is not the conda interpreter alone.
+run_post_native_helper() {
+    local code=0
+    PYTHONFAULTHANDLER=1 "$@" || code=$?
+    if (( code == 139 )); then
+        echo "[helper] $(basename "${2:-$1}") exited 139 (SIGSEGV); retrying once in a fresh process" >&2
+        code=0
+        PYTHONFAULTHANDLER=1 "$@" || code=$?
+    fi
+    return "$code"
+}
+
 # Canonical repository identifier for dataset aliases. Call this before deriving
 # config, dataset or result paths so one dataset cannot split across multiple trees.
 canonicalize_dataset() {
@@ -130,7 +146,7 @@ prepare_fresh_run_dir() {
 enrich_run_meta() {
     local meta_path="${1:?run_meta.json path required}"
     shift
-    "$VSLAM_HELPER_PYTHON" "$WS/scripts/run/_enrich_run_meta.py" "$meta_path" --require-implementation-capture "$@"
+    run_post_native_helper "$VSLAM_HELPER_PYTHON" "$WS/scripts/run/_enrich_run_meta.py" "$meta_path" --require-implementation-capture "$@"
 }
 
 # Freeze the actual GNSS CSV for this physical attempt. A variant label alone
@@ -163,7 +179,7 @@ record_failed_run_meta() {
     local exit_code="${7:?exit code required}"
     local reason="${8:?failure reason required}"
     shift 8
-    "$VSLAM_HELPER_PYTHON" "$WS/scripts/run/_enrich_run_meta.py" "$meta_path" \
+    run_post_native_helper "$VSLAM_HELPER_PYTHON" "$WS/scripts/run/_enrich_run_meta.py" "$meta_path" \
         --require-implementation-capture \
         --create --algo "$algo" --dataset "$dataset" --sequence "$sequence" \
         --run-id "$run_id" --run-type "$run_type" \

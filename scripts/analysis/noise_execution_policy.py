@@ -33,6 +33,18 @@ def reviewed_attempt_revision(protocol, key):
             raise RuntimeError('Replacement evidence missing or changed: ' + key)
         evidence[name] = json.loads(path.read_text())
     old, review = evidence['record'], evidence['review']
+    if old.get('key') == key and old.get('state') == 'running' and review.get('classification') == 'post_native_helper_crash':
+        # Sielinko search, 25 Oct: the native run finished but the post-native provenance helper
+        # crashed, leaving the attempt incomplete. Only an explicit helper-crash review admits it.
+        if (review.get('revision') != item['revision']
+                or key not in review.get('helper_crash_attempts', [])
+                or review.get('native_finished') is not True
+                or review.get('scientific_score') is not None
+                or review.get('optimizer_feedback') is not False
+                or review.get('replacement_count') != 1
+                or review.get('original_record_sha256') != item['record_sha256']):
+            raise RuntimeError('Incomplete attempt lacks a reviewed helper-crash replacement: ' + key)
+        return item
     if (old.get('key') != key or old.get('state') != 'finished'
             or not old.get('returncode') or not old.get('result', {}).get('failed')):
         raise RuntimeError('Replacement must reference the reviewed failed attempt: ' + key)
