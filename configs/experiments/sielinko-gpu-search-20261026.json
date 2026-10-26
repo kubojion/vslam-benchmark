@@ -1,0 +1,465 @@
+{
+  "schema": 1,
+  "status": "DRAFT_NOT_FROZEN",
+  "campaign_id": "sielinko-gpu-search-20261026",
+  "development_only": true,
+  "worktree": "/data/imoroz/vslam-sielinko-gpu-search-20261026",
+  "main_root": "/data/imoroz/vslam-benchmark",
+  "max_wall_hours": 120,
+  "preliminary": {
+    "seed": 20261009,
+    "candidates": 16,
+    "startup": 8,
+    "finalists": 2,
+    "repetitions": 3
+  },
+  "screen": {
+    "seeds": [
+      202610091,
+      202610092
+    ],
+    "candidates_per_seed": 16,
+    "startup": 8
+  },
+  "full": {
+    "seed": 202610093,
+    "candidates": 12,
+    "seed_candidates": 6,
+    "finalists": 2,
+    "repetitions": 3
+  },
+  "studies": [
+    {
+      "id": "cuvslam_zed2i",
+      "algorithm": "cuvslam",
+      "dataset": "zed2i",
+      "supports_lc": true,
+      "final_modes": [
+        "vio"
+      ],
+      "clips": [
+        "field1_sielinko_h1c1_20261022",
+        "field1_sielinko_h1c2_20261022"
+      ],
+      "full_sequences": [
+        "field1_sielinko_h1_20261022"
+      ],
+      "test_sequences": [
+        "field1_sielinko_h2_20261022",
+        "field1_110426_full_10fps_q90"
+      ],
+      "final_controls": [
+        "rule_c"
+      ],
+      "final_control_sequences": [
+        "field1_sielinko_h2_20261022"
+      ],
+      "sequence_parents": {
+        "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h2_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c2_20261022": "field1_110426_full_10fps_q90"
+      },
+      "sequence_roles": {
+        "field1_110426_full_10fps_q90": "full",
+        "field1_sielinko_h1_20261022": "half",
+        "field1_sielinko_h2_20261022": "half",
+        "field1_sielinko_h1c1_20261022": "short",
+        "field1_sielinko_h1c2_20261022": "short"
+      },
+      "controls": [
+        {
+          "label": "rule_c",
+          "params": {
+            "gyroscope_noise_density": 0.00015,
+            "accelerometer_noise_density": 0.0011,
+            "gyroscope_random_walk": 2.1e-06,
+            "accelerometer_random_walk": 3.5e-05
+          },
+          "source": "scripts/run/_imu_noise_rule.py (zed2i)"
+        },
+        {
+          "label": "engine_on",
+          "params": {
+            "gyroscope_noise_density": 0.0032,
+            "accelerometer_noise_density": 0.02,
+            "gyroscope_random_walk": 2.1e-06,
+            "accelerometer_random_walk": 3.5e-05
+          },
+          "source": "configs/sensitivity/zed2i-engine-on-20261021/profile.json"
+        },
+        {
+          "label": "envelope",
+          "params": {
+            "gyroscope_noise_density": 0.0195,
+            "accelerometer_noise_density": 0.18,
+            "gyroscope_random_walk": 0.0007400196,
+            "accelerometer_random_walk": 0.0202
+          },
+          "source": "docs/imu-noise-rule-20261005.md (ZED2i envelope)",
+          "historical_run": "results/vio/zed2i/field1_110426_full_10fps_q90/cuvslam/run10001"
+        }
+      ],
+      "bounds": {
+        "gyroscope_noise_density": [
+          1.4999999999999999e-05,
+          0.058499999999999996
+        ],
+        "accelerometer_noise_density": [
+          0.00011,
+          0.54
+        ],
+        "gyroscope_random_walk": [
+          2.0999999999999997e-07,
+          0.0022200588
+        ],
+        "accelerometer_random_walk": [
+          3.4999999999999995e-06,
+          0.0606
+        ]
+      },
+      "lane": "gpu"
+    },
+    {
+      "id": "mast3r_fusion_zed2i",
+      "algorithm": "mast3r_fusion",
+      "dataset": "zed2i",
+      "supports_lc": true,
+      "final_modes": [
+        "vio"
+      ],
+      "clips": [
+        "field1_sielinko_h1c1_20261022",
+        "field1_sielinko_h1c2_20261022"
+      ],
+      "full_sequences": [
+        "field1_sielinko_h1_20261022"
+      ],
+      "test_sequences": [
+        "field1_sielinko_h2_20261022",
+        "field1_110426_full_10fps_q90"
+      ],
+      "final_controls": [
+        "rule_c"
+      ],
+      "final_control_sequences": [
+        "field1_sielinko_h2_20261022"
+      ],
+      "sequence_parents": {
+        "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h2_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c2_20261022": "field1_110426_full_10fps_q90"
+      },
+      "sequence_roles": {
+        "field1_110426_full_10fps_q90": "full",
+        "field1_sielinko_h1_20261022": "half",
+        "field1_sielinko_h2_20261022": "half",
+        "field1_sielinko_h1c1_20261022": "short",
+        "field1_sielinko_h1c2_20261022": "short"
+      },
+      "controls": [
+        {
+          "label": "rule_c",
+          "params": {
+            "gyroscope_noise_density": 0.0009091629460528643,
+            "accelerometer_noise_density": 0.0010791000000000002,
+            "gyroscope_random_walk": 3.937408072887124e-08,
+            "accelerometer_random_walk": 5.722499999999999e-07
+          },
+          "source": "scripts/run/_imu_noise_rule.py (zed2i)"
+        },
+        {
+          "label": "engine_on",
+          "params": {
+            "gyroscope_noise_density": 0.019395476182461107,
+            "accelerometer_noise_density": 0.019620000000000002,
+            "gyroscope_random_walk": 3.937408072887124e-08,
+            "accelerometer_random_walk": 5.722499999999999e-07
+          },
+          "source": "configs/sensitivity/zed2i-engine-on-20261021/profile.json"
+        },
+        {
+          "label": "envelope",
+          "params": {
+            "gyroscope_noise_density": 0.0195,
+            "accelerometer_noise_density": 0.18,
+            "gyroscope_random_walk": 0.0007400196,
+            "accelerometer_random_walk": 0.0202
+          },
+          "source": "docs/imu-noise-rule-20261005.md (ZED2i envelope)",
+          "historical_run": "results/vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run10001"
+        }
+      ],
+      "bounds": {
+        "gyroscope_noise_density": [
+          9.091629460528644e-05,
+          0.09091629460528644
+        ],
+        "accelerometer_noise_density": [
+          0.00010791000000000002,
+          0.54
+        ],
+        "gyroscope_random_walk": [
+          3.937408072887124e-09,
+          0.0022200588
+        ],
+        "accelerometer_random_walk": [
+          5.722499999999999e-08,
+          0.0606
+        ]
+      },
+      "lane": "gpu"
+    },
+    {
+      "id": "airslam_zed2i",
+      "algorithm": "airslam",
+      "dataset": "zed2i",
+      "supports_lc": true,
+      "final_modes": [
+        "vio"
+      ],
+      "clips": [
+        "field1_sielinko_h1c1_20261022",
+        "field1_sielinko_h1c2_20261022"
+      ],
+      "full_sequences": [
+        "field1_sielinko_h1_20261022"
+      ],
+      "test_sequences": [
+        "field1_sielinko_h2_20261022",
+        "field1_110426_full_10fps_q90"
+      ],
+      "final_controls": [
+        "rule_c"
+      ],
+      "final_control_sequences": [
+        "field1_sielinko_h2_20261022"
+      ],
+      "sequence_parents": {
+        "field1_110426_full_10fps_q90": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h2_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c1_20261022": "field1_110426_full_10fps_q90",
+        "field1_sielinko_h1c2_20261022": "field1_110426_full_10fps_q90"
+      },
+      "sequence_roles": {
+        "field1_110426_full_10fps_q90": "full",
+        "field1_sielinko_h1_20261022": "half",
+        "field1_sielinko_h2_20261022": "half",
+        "field1_sielinko_h1c1_20261022": "short",
+        "field1_sielinko_h1c2_20261022": "short"
+      },
+      "controls": [
+        {
+          "label": "rule_c",
+          "params": {
+            "gyroscope_noise_density": 0.00015,
+            "accelerometer_noise_density": 0.0011,
+            "gyroscope_random_walk": 2.1e-06,
+            "accelerometer_random_walk": 3.5e-05
+          },
+          "source": "configs/airslam/zed2i_camera_vio.yaml"
+        },
+        {
+          "label": "engine_on",
+          "params": {
+            "gyroscope_noise_density": 0.0032,
+            "accelerometer_noise_density": 0.02,
+            "gyroscope_random_walk": 2.1e-06,
+            "accelerometer_random_walk": 3.5e-05
+          },
+          "source": "configs/sensitivity/zed2i-engine-on-20261021/profile.json"
+        },
+        {
+          "label": "envelope",
+          "params": {
+            "gyroscope_noise_density": 0.0195,
+            "accelerometer_noise_density": 0.18,
+            "gyroscope_random_walk": 0.0007400196,
+            "accelerometer_random_walk": 0.0202
+          },
+          "source": "docs/imu-noise-rule-20261005.md (ZED2i envelope)",
+          "historical_run": "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run10001"
+        }
+      ],
+      "bounds": {
+        "gyroscope_noise_density": [
+          1.4999999999999999e-05,
+          0.058499999999999996
+        ],
+        "accelerometer_noise_density": [
+          0.00011,
+          0.54
+        ],
+        "gyroscope_random_walk": [
+          2.0999999999999997e-07,
+          0.0022200588
+        ],
+        "accelerometer_random_walk": [
+          3.4999999999999995e-06,
+          0.0606
+        ]
+      },
+      "lane": "gpu"
+    }
+  ],
+  "views": {
+    "field1_110426_full_10fps_q90": {
+      "role": "full",
+      "first": 0,
+      "count": 46283,
+      "times_sha256": "7dda00e487f4c8ced3d08ca6fd3df2c1037eb8f572feca24158f168c5ed1d288"
+    },
+    "field1_sielinko_h1_20261022": {
+      "role": "half",
+      "first": 0,
+      "count": 23141,
+      "times_sha256": "cd3e105e701b476f83215e7436c2441ab590ff66daed07da245dc6839a650fa2"
+    },
+    "field1_sielinko_h2_20261022": {
+      "role": "half",
+      "first": 23141,
+      "count": 23142,
+      "times_sha256": "a39b4a395d2c2b37bdeee1413d83303ab8f78e46bf8b0f7a928faab84cf62215"
+    },
+    "field1_sielinko_h1c1_20261022": {
+      "role": "short",
+      "first": 0,
+      "count": 1800,
+      "times_sha256": "1009d287ec129754620999917a9786f8711554dbc12d5678ff6f63c71832c59c"
+    },
+    "field1_sielinko_h1c2_20261022": {
+      "role": "short",
+      "first": 11569,
+      "count": 1801,
+      "times_sha256": "f83a5a15a2576000846f576eb9108b354d804b8f544b39830af0d3eb9f47f708"
+    }
+  },
+  "split": "Time midpoint of the recording. Development (all selection) uses only the first half and two 180 s clips from it: its start, and the window starting at its own time midpoint. The fresh final N=1 runs the selected setting on the second half and on the full recording.",
+  "runtime_environment": {
+    "cuvslam": {
+      "CUVSLAM_CONDA_ENV": "/data/imoroz/conda/envs/cuvslam"
+    },
+    "mast3r_fusion": {
+      "MAST3R_FUSION_CONDA_ENV": "/data/imoroz/conda/envs/mast3r_fusion"
+    }
+  },
+  "runtime_environment_by_study": {},
+  "delivery_policy": {
+    "openvins_pending_camera_tail": null,
+    "openvins_end_of_stream_drain": true,
+    "openvins_flow_control": true,
+    "openvins_transport_profile": "large_shm",
+    "voxel_camera_rate_gate": "Audit the expected native timestamp gate from its recorded frequency; do not change sampling or accept unexplained missing input.",
+    "basis": "exact native receipts; never chosen using ATE"
+  },
+  "attempt_timeouts_s": {
+    "cuvslam": {
+      "short": 600,
+      "half": 1800,
+      "full": 1800
+    },
+    "mast3r_fusion": {
+      "short": 1800,
+      "half": 7200,
+      "full": 10800
+    },
+    "airslam": {
+      "short": 1800,
+      "half": 5400,
+      "full": 10800
+    }
+  },
+  "attempt_resource_limits": {
+    "cuvslam": {
+      "memory_gib": 32,
+      "memory_high_gib": 24,
+      "swap_gib": 0
+    },
+    "mast3r_fusion": {
+      "memory_gib": 32,
+      "memory_high_gib": 24,
+      "swap_gib": 0
+    },
+    "airslam": {
+      "memory_gib": 50,
+      "memory_high_gib": 40,
+      "swap_gib": 0
+    }
+  },
+  "lanes": {
+    "gpu": {
+      "cpus": "20-23",
+      "memory_gib": 32
+    }
+  },
+  "launch_policy": {
+    "min_available_gib": 40,
+    "no_host_swap_use": true,
+    "min_disk_free_gib": 100,
+    "poll_s": 30,
+    "sample_s": 5,
+    "max_affinity_corrections": 3
+  },
+  "lane_handover": null,
+  "scheduling": {
+    "resource_class": {
+      "cuvslam": "gpu",
+      "mast3r_fusion": "gpu",
+      "airslam": "gpu"
+    },
+    "develop": "One GPU study at a time beside external CPU lanes. AirSLAM only after CPU campaign complete.",
+    "final": "Serial VIO only after all three selections frozen; selected second-half/full and Rule C second-half, exact-setting deduplicated."
+  },
+  "score": "10 * failed_observation_count + 0.5 * mean(residual) + 0.5 * max(residual); residual = RMSE/(reference_path_length+RMSE) + unsupported_export_fraction. Existing numerical and 90% export-support gates retained. Lower is better.",
+  "repeated_selection": "Top two full candidates plus the three controls, deduplicated by exact parameter vector, receive N=3 on the first half. The selected candidate minimizes the same declared score.",
+  "controls": "Rule C engine-off, engine-on sensitivity and the historical envelope, enqueued first in every stage.",
+  "bounds_rule": "[min(controls)/10, max(100*Rule C, 3*engine-on, 3*envelope)] per component; never changed after start.",
+  "exclusions": [
+    "other datasets",
+    "VIO-LC",
+    "CPU estimators"
+  ],
+  "limitations": [
+    "One recording; its halves share platform, field and day.",
+    "The recording was inspected before (Rule C and envelope runs on the full run).",
+    "The full-run test includes the development half; only the second half is unseen by selection.",
+    "Position-only GNSS reference; SE3 position alignment.",
+    "Two clips probe short-horizon behaviour; equal proposal counts, not equal CPU time.",
+    "Runtimes from concurrent lanes are labelled overlapped."
+  ],
+  "frozen_input_sha256": {},
+  "frozen_runtime_sha256": {},
+  "frozen_source_sha256": {},
+  "shared_budget_file": "sielinko-gpu-search-budget.json",
+  "main_pins": [
+    "datasets/zed2i/field1_110426_full_10fps_q90/times.txt",
+    "datasets/zed2i/field1_110426_full_10fps_q90/mav0/cam0/data.csv",
+    "datasets/zed2i/field1_110426_full_10fps_q90/mav0/cam1/data.csv",
+    "datasets/zed2i/field1_110426_full_10fps_q90/mav0/imu0/data.csv"
+  ],
+  "enforce_main_head": true,
+  "decisions": {
+    "at": "2026-10-26",
+    "approved": "User: yes please do it then, Sielinko GPU extended search alongside CPU",
+    "inherited_method": "Same Sielinko CPU split/stages/control bounds/scoring and VIO final modes",
+    "phase_budget_hours": 120,
+    "air_starts": "Only after CPU campaign complete including Basalt"
+  },
+  "pending": [
+    "lane_handover",
+    "frozen identities",
+    "check clips",
+    "user's go"
+  ],
+  "source_protocol": "Sielinko CPU 20261022 method; new independent campaign, run IDs and deadline",
+  "outcome_policy": {
+    "numerical_failures": "retain unchanged score; never retry for accuracy",
+    "native_nonzero": "stop for infrastructure/native classification; preserve failed attempt",
+    "resource_guard_abort": "preserve as resource-censored; reviewed new-ID replacement only under standing rules",
+    "air_cap_contact": "qualified result at50GiB; never censor for cap contact alone; OOM remains fault"
+  }
+}

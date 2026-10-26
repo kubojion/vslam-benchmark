@@ -112,11 +112,11 @@ IMU.T_b_c1: !!opencv-matrix
           -0.00297476170495083, -0.999956919496678, 0.00879260732171577, -0.000130804473926019,
           0, 0, 0, 1]
 
-# Common ZED field IMU profile (SN30291010), continuous-time densities.
-IMU.NoiseGyro: 1.9500e-02
-IMU.NoiseAcc:  1.8000e-01
-IMU.GyroWalk:  7.400196e-04
-IMU.AccWalk:   2.0200e-02
+# IMU noise: Rule C, Sielinko engine-off static Allan values x this estimator's EuRoC ratios (2026-10-21).
+IMU.NoiseGyro: 0.00015
+IMU.NoiseAcc:  0.0011
+IMU.GyroWalk:  2.1e-06
+IMU.AccWalk:   3.5e-05
 IMU.Frequency: 100.0
 IMU.InsertKFsWhenLost: 1
 

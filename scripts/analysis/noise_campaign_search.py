@@ -3,6 +3,10 @@
 No CLI and no work starts on import. Independent studies may run concurrently,
 but each study always asks, measures, and tells its optimizer in serial order.
 Fresh final measurements never feed selection, including loop-closure results.
+
+A study may declare its controls (label and parameters, in order); earlier
+studies had exactly two, rule_c and legacy. It may also declare separate test
+sequences for the fresh final runs, which development never measures.
 """
 from __future__ import annotations
 
@@ -20,11 +24,17 @@ def identity(params):
     return tuple(float(params[key]) for key in KEYS)
 
 
+def control_items(spec):
+    """Declared controls in their fixed order, as dicts with label and params."""
+    if 'controls' in spec:
+        return spec['controls']
+    return [dict(label='rule_c', params=spec['rule_c']), dict(label='legacy', params=spec['legacy'])]
+
+
 def label_for(spec, params):
-    if identity(params) == identity(spec['rule_c']):
-        return 'rule_c'
-    if identity(params) == identity(spec['legacy']):
-        return 'legacy'
+    for item in control_items(spec):
+        if identity(params) == identity(item['params']):
+            return item['label']
     return 'noise_' + hashlib.sha256(json.dumps(identity(params)).encode()).hexdigest()[:16]
 
 
@@ -55,7 +65,7 @@ def combined(records, objective='mean_worst'):
 
 
 def controls(spec):
-    return list(unique([dict(params=spec['rule_c']), dict(params=spec['legacy'])]))
+    return list(unique([dict(params=item['params']) for item in control_items(spec)]))
 
 
 class DevelopmentSearch:
@@ -103,7 +113,7 @@ class DevelopmentSearch:
             if preliminary_labels:
                 # Retain the original 16-proposal pilot's declared tie order.
                 label = label_for(self.spec, params)
-                result['tie_label'] = label if label in ('rule_c', 'legacy') else f'candidate{index:02}'
+                result['tie_label'] = label if not label.startswith('noise_') else f'candidate{index:02}'
             study.tell(trial, result['loss'])
             self.immutable(str(Path(name) / path.name), result)
             trials.append(result)
@@ -182,12 +192,23 @@ class DevelopmentSearch:
         # Only the serial final coordinator may call this after development.
         selection = json.loads((self.directory / 'selection.json').read_text())
         records = []
-        modes = ['vio', 'vio-lc'] if self.spec['supports_lc'] else ['vio']
-        for mode in modes:
-            for sequence in self.spec['full_sequences']:
-                records.append(self.attempt(selection['winner']['params'], sequence,
-                                             'final_n1', mode=mode))
+        modes = self.spec.get('final_modes') or (['vio', 'vio-lc'] if self.spec['supports_lc'] else ['vio'])
+        sequences = self.spec.get('test_sequences', self.spec['full_sequences'])
+        # Declared controls measured beside the winner on the test sequences.
+        named = {item['label']: item['params'] for item in control_items(self.spec)}
+        settings = [selection['winner']['params']] + [named[label] for label in self.spec.get('final_controls', [])]
+        # A control may be limited to some test sequences (final_control_sequences).
+        limited = self.spec.get('final_control_sequences', sequences)
+        winner = identity(selection['winner']['params'])
+        for params in unique([dict(params=x) for x in settings]):
+            for mode in modes:
+                for sequence in sequences if identity(params['params']) == winner else limited:
+                    records.append(self.attempt(params['params'], sequence, 'final_n1', mode=mode))
+        if 'test_sequences' in self.spec:
+            note = ('Fresh executions with frozen settings. Selection never measured the test sequences; '
+                    'they come from a recording that was inspected before.')
+        else:
+            note = 'Fresh executions with frozen settings; these same recordings remain development data.'
         return self.immutable('final-n1.json', dict(selected_at=selection['selected_at'],
             parameters=selection['winner']['params'], records=[r['key'] for r in records],
-            independent_test=False,
-            note='Fresh executions with frozen settings; these same recordings remain development data.'))
+            independent_test=False, note=note))

@@ -8,7 +8,7 @@ import subprocess
 import sys
 
 
-PERSISTENT = {'airslam': 'noise_reliable_airslam_20261009',
+PERSISTENT = {'airslam': 'sielinko_gpu_airslam_20261026',
               'voxel_svio': 'noise_reliable_voxel_20261009'}
 EPHEMERAL = {'openvins', 'svo_pro'}
 

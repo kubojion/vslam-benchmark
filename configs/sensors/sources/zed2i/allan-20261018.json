@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "dataset": "zed2i",
+  "display_name": "Sielinko",
+  "sensor": "ZED 2i internal IMU, /zed/zed_node/imu/data_raw, same mounting as the field sequence (user-confirmed)",
+  "units": {
+    "gyroscope_noise_density": "rad/s/sqrt(Hz)",
+    "accelerometer_noise_density": "m/s^2/sqrt(Hz)",
+    "gyroscope_random_walk": "rad/s^2/sqrt(Hz)",
+    "accelerometer_random_walk": "m/s^3/sqrt(Hz)"
+  },
+  "engine_off_static": {
+    "role": "Rule C input (user decision 2026-10-21)",
+    "recording": {
+      "path": "/data/imoroz/agrorob-zed-imu-recordings/zed2i_imu_allan_20261017_234925.zip",
+      "size": 4035619706,
+      "sha256": "30d8e4a33709f3b928146cd710c09d0558d0c1f921607e6cc2e16e2aae0236f3"
+    },
+    "condition": "engine off, same mounting, confirmed by user",
+    "interval_elapsed_s": [
+      3600,
+      31900
+    ],
+    "interval_reason": "Discard first hour of warm-up and stop 57 seconds before the 10.5079-second gap at elapsed 31957.37 seconds. No post-gap data enter recommended parameters.",
+    "white_noise_method": "Overlapping rate Allan deviation; log-space fixed slope -1/2 over 0.1-1 seconds. Native ~399 Hz and every-fourth-sample ~100 Hz checked; all four phases agree. Field tick-spacing surrogate is an additional check. Scalar uses largest axis rounded to practical precision.",
+    "white_noise_axis_values_100Hz": [
+      0.00013950112064168123,
+      0.00014806026334965205,
+      0.00013796484420261861,
+      0.0010475607271582578,
+      0.0009024224162271649,
+      0.0009262881452726714
+    ],
+    "random_walk_method": "Provisional equivalent fixed +1/2 slope over 100-1000 seconds on native pre-gap data; K = geometric mean(ADEV * sqrt(3/tau)); max over axes separately for gyro and accelerometer. These fits include mixed flicker/drift and are not uniquely identified pure Brownian bias coefficients.",
+    "random_walk_axis_values": [
+      1.5448029294879741e-06,
+      2.07351630155772e-06,
+      2.034441635895073e-06,
+      3.497847379218179e-05,
+      3.1344042469270325e-05,
+      2.7660578379572273e-05
+    ],
+    "reference": {
+      "gyroscope_noise_density": 0.00015,
+      "accelerometer_noise_density": 0.0011,
+      "gyroscope_random_walk": 2.1e-06,
+      "accelerometer_random_walk": 3.5e-05
+    },
+    "rounding": "largest axis, rounded up to two significant figures"
+  },
+  "engine_on_standstill": {
+    "role": "labelled sensitivity profile only (user decision 2026-10-21); never the Rule C input",
+    "recordings": {
+      "engine1450": {
+        "path": "/data/imoroz/agrorob-zed-imu-recordings/zed-imu-engine-1450rpm-20261016_104126.zip",
+        "size": 126809802,
+        "sha256": "d404fd46af190c6b1c31606f13988cb4954fc6335be89f47e3e218098f826fc7"
+      },
+      "engine1550": {
+        "path": "/data/imoroz/agrorob-zed-imu-recordings/zed-imu-engine-1550rpm-20261016_101120.zip",
+        "size": 175347403,
+        "sha256": "541733e57a220c5299dc6d7394a4d82bc30498bd2f624fc0e922e2c79c2ad367"
+      }
+    },
+    "condition": "engine running at fixed rpm, robot stationary, same mounting",
+    "white_noise_method": "same fixed slope -1/2 fit over 0.1-1 s on the delivered ~100 Hz stream, whole recordings",
+    "fits": {
+      "engine1450": {
+        "duration_s": 1282.7327196598053,
+        "analysis_fs_hz": 99.70058713066629,
+        "white_noise_axis_values": [
+          0.0016699507230016363,
+          0.003111865655198234,
+          0.0028900924145103444,
+          0.00613676015549629,
+          0.0037785863669121266,
+          0.002814331501274967
+        ],
+        "free_slopes": [
+          -0.6005360451648318,
+          -0.5820376769102342,
+          -0.584372186446841,
+          -0.7398413729054559,
+          -0.5197902007825789,
+          -0.8398244247944061
+        ]
+      },
+      "engine1550": {
+        "duration_s": 1784.9227321147919,
+        "analysis_fs_hz": 99.70058713066629,
+        "white_noise_axis_values": [
+          0.0006732587641640229,
+          0.0017975841524400587,
+          0.0007887897865388232,
+          0.019706070293522827,
+          0.0026293473934318823,
+          0.0033124975996946158
+        ],
+        "free_slopes": [
+          -0.8219048382482852,
+          -0.724567114455875,
+          -0.826634559645545,
+          -0.7092287962575311,
+          -0.7460759651817801,
+          -0.766932488321671
+        ]
+      }
+    },
+    "selection": "largest axis, then the larger of the two rpm settings, per quantity",
+    "unrounded": {
+      "gyroscope_noise_density": 0.003111865655198234,
+      "accelerometer_noise_density": 0.019706070293522827
+    },
+    "selected": {
+      "gyroscope_noise_density": 0.0032,
+      "accelerometer_noise_density": 0.02
+    },
+    "rounding": "rounded up to two significant figures, as the engine-off reference",
+    "random_walks": "not identifiable from 20-30 min recordings; the profile keeps the engine-off random walks",
+    "qualification": "Engine vibration is periodic (free slopes -0.6 to -0.8, peaks at engine orders), so this density is an operating-condition amplitude, not a sensor calibration."
+  },
+  "analysis": {
+    "directory": "/data/imoroz/PROGRESS/.data/sielinko-imu-analysis",
+    "outputs": {
+      "recommendation.json": "c1ab098b5beea620a920efc7a78647a33e9038682c5b6d2d3162623ac95423fc",
+      "summary.json": "c86bbe009048a9991b529aa727c3b52a311e7d94507560f326858fba9030b4ef",
+      "source-sha256.json": "62d8e9ee79d6934e88c296fa1b3f141410219500e06605b275d364988204ce47"
+    },
+    "scripts": {
+      "finish.py": "badd26df8b44bdf79ad0584426c16e77385037b97737cd3db2ebfdeeef4b576d",
+      "extract.py": "af29c769fed7ee8c345320a397fabc2e3909bc752e3b29ca49a23668bb2388fa",
+      "analyze.py": "80ff1e0c49cf26f5eb71707c49cc41825b646c165d03b96af398883a9675b53b",
+      "refine.py": "e3f800a23ac4add2ccef653579c7a82622c6868dd9323318a8f04604fedb2d04"
+    }
+  }
+}

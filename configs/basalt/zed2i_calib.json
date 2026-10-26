@@ -79,27 +79,27 @@
         ],
         "imu_update_rate": 100.0,
         "accel_noise_std": [
-            0.18,
-            0.18,
-            0.18
+            0.0088,
+            0.0088,
+            0.0088
         ],
         "gyro_noise_std": [
-            0.0195,
-            0.0195,
-            0.0195
+            0.0002492927864214993,
+            0.0002492927864214993,
+            0.0002492927864214993
         ],
         "accel_bias_std": [
-            0.0202,
-            0.0202,
-            0.0202
+            1.1666666666666665e-05,
+            1.1666666666666665e-05,
+            1.1666666666666665e-05
         ],
         "gyro_bias_std": [
-            0.0007400196,
-            0.0007400196,
-            0.0007400196
+            1.0828649512710772e-05,
+            1.0828649512710772e-05,
+            1.0828649512710772e-05
         ],
         "cam_time_offset_ns": 0,
         "vignette": [],
-        "_comment_noise": "Common ZED field profile: effective measurement densities from the benchmark recording (gyro 0.0195 rad/s/sqrtHz, accel 0.180 m/s^2/sqrtHz); factory bias random walks with gyro converted from 0.0424 deg/s^2/sqrtHz to 0.0007400196 rad/s^2/sqrtHz. Derived without trajectory-error feedback; see docs/okvis-imu-noise-derivation.md."
+        "_comment_noise": "Rule C (2026-10-21): Sielinko engine-off static Allan values x Basalt EuRoC ratios; configs/sensors/imu-noise-rule-20261021.json."
     }
 }

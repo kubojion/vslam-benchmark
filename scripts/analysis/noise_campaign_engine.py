@@ -47,7 +47,7 @@ CONFIG_ENVIRONMENT = (
 
 def configure(artifact_directory, protocol, slot):
     global ART, CAMPAIGN, PROTOCOL
-    if ROOT.resolve() == base.MAIN.resolve() or ROOT.name != 'vslam-noise-reliable-20261009':
+    if ROOT.resolve() == base.MAIN.resolve() or ROOT.name != 'vslam-sielinko-gpu-search-20261026':
         raise RuntimeError('Expanded search is restricted to the isolated experimental worktree')
     ART = Path(artifact_directory).resolve()
     if ART == base.MAIN.resolve() or base.MAIN.resolve() in ART.parents:
@@ -179,7 +179,7 @@ def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
                spec['dataset'], sequence, str(run_id), mode]
     command = execution_policy.bounded_command(
         command, PROTOCOL, spec['algorithm'], run_id, env)
-    timeout_key = 'short' if sequence in spec['clips'] else mode
+    timeout_key = spec.get('sequence_roles', {}).get(sequence) or ('short' if sequence in spec['clips'] else mode)
     timeouts = PROTOCOL['attempt_timeouts_s'].get(spec['algorithm'], PROTOCOL['attempt_timeouts_s'])
     timeout = timeouts[timeout_key]
     budget_path = ART / 'budget.json'
