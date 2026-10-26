@@ -24,8 +24,12 @@ def selected_reference(ws, dataset, sequence):
         physical_sequence=config['diagnostic_parent_sequence']
         subset=bound(config['subset_times']).read_text().splitlines()
         parent=bound(config['parent_times']).read_text().splitlines()
-        if not subset or subset!=parent[:len(subset)]:
-            raise ValueError('diagnostic times are not an exact parent prefix')
+        # A prefix by default; an explicit window names its first parent frame.
+        offset=config.get('parent_offset',0)
+        if type(offset) is not int or offset<0:raise ValueError('invalid diagnostic parent offset')
+        if not subset or subset!=parent[offset:offset+len(subset)]:
+            raise ValueError('diagnostic times are not an exact parent window' if offset else
+                             'diagnostic times are not an exact parent prefix')
         actual=ws/'datasets'/dataset/sequence/'times.txt'
         if file_evidence(actual,ws)['sha256']!=config['subset_times']['sha256']:
             raise ValueError('diagnostic time identity mismatch')
