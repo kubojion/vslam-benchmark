@@ -50,7 +50,7 @@ owned_run() {
 ''')
     (scripts/'_resource_monitor.py').write_text('')
     commands = tmp_path/'bin'; commands.mkdir()
-    for name, body in [('docker', 'echo voxel_svio'), ('sleep', ':')]:
+    for name, body in [('docker', 'echo vslam_corrected_voxel_20261031'), ('sleep', ':')]:
         path = commands/name; path.write_text('#!/bin/bash\n'+body+'\n'); path.chmod(0o755)
     env = dict(os.environ, PATH=str(commands)+os.pathsep+os.environ['PATH'],
         FAKE_NODE_EXIT=str(node_exit), FAKE_PLAYER_EXIT=str(player_exit), FAKE_SAVED=str(int(saved)))

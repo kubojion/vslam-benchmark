@@ -77,7 +77,7 @@ python3 "$WS/scripts/setup/build_sensor_profiles.py" --repo "$WS" --check > /dev
 # Optional labelled sensitivity profile: a noise document under configs/ that replaces the
 # four IMU noise values after Rule C. Unset, the stage key and the stage are unchanged.
 NOISE_ARGS=()
-STAGE_KEY_FILES=("$SENSOR" "$IMU_FILE")
+STAGE_KEY_FILES=("$SENSOR" "$IMU_FILE" "$SEQ_DIR/mav0/imu0/data.csv")
 if [[ -n "${SVO_PRO_IMU_NOISE:-}" ]]; then
     SVO_PRO_IMU_NOISE=$(realpath -e "$SVO_PRO_IMU_NOISE")
     [[ "$SVO_PRO_IMU_NOISE" == "$WS/configs/"* ]] \
@@ -86,7 +86,7 @@ if [[ -n "${SVO_PRO_IMU_NOISE:-}" ]]; then
     STAGE_KEY_FILES+=("$SVO_PRO_IMU_NOISE")
 fi
 
-# One prepared folder per (sequence, sensor profile, IMU-noise source); reused by every repetition.
+# One prepared folder per (sequence, sensor profile, IMU data, IMU-noise source); reused by every repetition.
 STAGE_KEY=$(cat "${STAGE_KEY_FILES[@]}" | sha256sum | cut -c1-16)
 STAGE="$WS/results/.cache/svo-pro-stage/$DATASET/$SEQ/$STAGE_KEY"
 mkdir -p "$(dirname "$STAGE")"
@@ -148,7 +148,9 @@ PROV_ARGS=(
 START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
 set +e
-timeout --signal=TERM --kill-after=60 "$TIME_LIMIT_S" docker run --rm \
+timeout --signal=TERM --kill-after=60 "$TIME_LIMIT_S" docker run --rm --cpuset-cpus "$TIMING_CPUS" --memory "$TIMING_MEM" --memory-swap "$TIMING_MEM" \
+    --volume /data/imoroz/vslam-benchmark/datasets:/data/imoroz/vslam-benchmark/datasets:ro \
+    --volume /data/imoroz/vslam-benchmark/src:/data/imoroz/vslam-benchmark/src:ro \
     --name "$RUN_CONTAINER" \
     --cidfile "$OUT_DIR/docker.cid" \
     --user "$(id -u):$(id -g)" \

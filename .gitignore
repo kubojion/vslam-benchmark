@@ -90,3 +90,11 @@ src/svo_pro_gps/
 /datasets/rosariov2/.profiles/
 /datasets/rosariov2/sequence1/manifest.json
 /datasets/rosariov2/sequence5/manifest.json
+
+# --- private links of the corrected-timing worktree (timing-campaign/setup_private.sh) ---
+third_party/gtsam-mast3r-fusion
+third_party/gtsam-mast3r-fusion.commit
+third_party/mast3r-fusion-checkpoints
+third_party/mast3r-fusion-checkpoints.sha256
+third_party/wheels
+timing-campaign/run/

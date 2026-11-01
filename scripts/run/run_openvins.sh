@@ -209,7 +209,9 @@ done
 START=$(date +%s.%N)
 mark_resource_start "$OUT_DIR"
 set +e
-docker run --rm \
+docker run --rm --cpuset-cpus "$TIMING_CPUS" --memory "$TIMING_MEM" --memory-swap "$TIMING_MEM" \
+    --volume /data/imoroz/vslam-benchmark/datasets:/data/imoroz/vslam-benchmark/datasets:ro \
+    --volume /data/imoroz/vslam-benchmark/src:/data/imoroz/vslam-benchmark/src:ro \
     --name "$RUN_CONTAINER" \
     --cidfile "$OUT_DIR/docker.cid" \
     --network host \
