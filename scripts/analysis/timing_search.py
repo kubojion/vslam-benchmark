@@ -298,7 +298,8 @@ def coordinator(args, protocol):
             report = stage_report(art, protocol, stages[0], groups[stages[0]])
             if stages[0] == 'gate-repro':
                 report['verdict'] = repro_verdict(report, protocol)
-            BASE.write(art / (stages[0] + '-report.json'), report)
+            name = stages[0] + ('-' + args.dataset if args.dataset else '') + '-report.json'
+            BASE.write(art / name, report)
         execution.verify_frozen()
         BASE.event('campaign_finished', complete=finished, stages=stages, dataset=args.dataset)
 
