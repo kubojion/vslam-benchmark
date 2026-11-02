@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "dataset": "citrusfarm",
+  "sequence": "seq04_tsearch_c2",
+  "variant": "primary",
+  "reference": {
+    "path": "datasets/citrusfarm/seq04/references/rtk-position-v1-20261003/reference.json",
+    "sha256": "c2ecba6307dfc0446d8a75d7d3c7c807648c437c610b2eabf1be0b0084f8840e"
+  },
+  "diagnostic_only": true,
+  "diagnostic_parent_sequence": "seq04",
+  "purpose": "imu-timing-search-20261031: tuning clip",
+  "subset_times": {
+    "path": "datasets/citrusfarm/seq04_tsearch_c2/times.txt",
+    "sha256": "96097fbbc3631b8880e04ebbf6b8f937c2a1d61db606a5b49657a8af59b7bb0d"
+  },
+  "parent_times": {
+    "path": "datasets/citrusfarm/seq04/times.txt",
+    "sha256": "17c5793bf48eddddccde579126dedf1c22dffcafbe1f074021927f2fccd5c66c"
+  },
+  "parent_offset": 3846
+}

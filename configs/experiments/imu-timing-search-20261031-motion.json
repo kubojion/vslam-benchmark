@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "definition": "1.4826*MAD(adjacent differences)/sqrt(2*fs) per axis in non-overlapping 1-s windows; 95th percentile over windows; largest over axes; largest over the dataset's two sequences; unrounded",
+  "datasets": {
+    "citrusfarm": {
+      "sequences": {
+        "seq04": {
+          "gyro_q95": 0.0025292599144778874,
+          "accel_q95": 0.04400142625416013,
+          "rate_hz": 200.01376125598742,
+          "duration_s": 769.4570565223694,
+          "samples": 153903,
+          "sha256": "9ec219ee1fa598ede605cb5c55b5dc98f57a47512c64b63dc8c09598d7625336",
+          "paper_snapshot": {
+            "gyro_q95": 0.0025292599144778874,
+            "accel_q95": 0.04400142625416013
+          }
+        },
+        "seq07": {
+          "gyro_q95": 0.002164045120446842,
+          "accel_q95": 0.043073708800123886,
+          "rate_hz": 200.01374645138634,
+          "duration_s": 1013.9853065013885,
+          "samples": 202812,
+          "sha256": "1629baf2b4af799cd9ab652c60bc97edb1f385f96690fe50e24b1ce8d7247f65",
+          "paper_snapshot": {
+            "gyro_q95": 0.002164045120446842,
+            "accel_q95": 0.043073708800123886
+          }
+        }
+      },
+      "M": {
+        "gyroscope_noise_density": 0.0025292599144778874,
+        "accelerometer_noise_density": 0.04400142625416013,
+        "gyroscope_random_walk": 3.5636559575381104e-06,
+        "accelerometer_random_walk": 6.706087584689249e-06
+      },
+      "random_walks_source": "configs/sensors/sources/citrusfarm/microstrain_gx5.yaml"
+    },
+    "hortimulti": {
+      "sequences": {
+        "strawberry02": {
+          "gyro_q95": 0.0033257570115165103,
+          "accel_q95": 0.10272344272141964,
+          "rate_hz": 200.00232007303515,
+          "duration_s": 952.4489512443542,
+          "samples": 190493,
+          "sha256": "96d0c074befa24e4318dc5ea85d8a6fa7cff996a7f81f26f08d292986e7325a0",
+          "paper_snapshot": {
+            "gyro_q95": 0.0033257570115165103,
+            "accel_q95": 0.10272344272141964
+          }
+        },
+        "strawberry03": {
+          "gyro_q95": 0.0028637573352871355,
+          "accel_q95": 0.08721712081904222,
+          "rate_hz": 200.0028168385268,
+          "duration_s": 242.23158836364746,
+          "samples": 48448,
+          "sha256": "ac5b3edee56e49fdfff457d5120a02530acd926cfe1e204ed9e4b1de1d18f11e",
+          "paper_snapshot": {
+            "gyro_q95": 0.0028637573352871355,
+            "accel_q95": 0.08721712081904222
+          }
+        }
+      },
+      "M": {
+        "gyroscope_noise_density": 0.0033257570115165103,
+        "accelerometer_noise_density": 0.10272344272141964,
+        "gyroscope_random_walk": 3.22094e-05,
+        "accelerometer_random_walk": 4.584471e-05
+      },
+      "random_walks_source": "https://s3.eidf.ac.uk/eidf258-hortimulti-a-multi-sensor-dataset-for-polytunnels/Feb2026/Strawberry/calibration.yaml (imu0 noise block, MicroStrain 3DM-GX5-25)"
+    },
+    "rosariov2": {
+      "sequences": {
+        "sequence1": {
+          "gyro_q95": 0.0012963659990723455,
+          "accel_q95": 0.06524291278308327,
+          "rate_hz": 199.21294385863453,
+          "duration_s": 940.5061557292938,
+          "samples": 187362,
+          "sha256": "9252673ea08153a4f010c8c0ea80057f445c054c9fdd0bbe6a86c9b478e9fa61",
+          "paper_snapshot": {
+            "gyro_q95": 0.0012963659990723455,
+            "accel_q95": 0.06524291278308327
+          }
+        },
+        "sequence5": {
+          "gyro_q95": 0.0012484274348794405,
+          "accel_q95": 0.05711219874551964,
+          "rate_hz": 198.99747355869437,
+          "duration_s": 796.2965416908264,
+          "samples": 158462,
+          "sha256": "37f7c19782bf365baff04a0d8cf17629b5bb46b27d0271c01fe4bc9493d0f42b",
+          "paper_snapshot": {
+            "gyro_q95": 0.0012484274348794405,
+            "accel_q95": 0.05711219874551964
+          }
+        }
+      },
+      "M": {
+        "gyroscope_noise_density": 0.0012963659990723455,
+        "accelerometer_noise_density": 0.06524291278308327,
+        "gyroscope_random_walk": 1.8236185367375672e-06,
+        "accelerometer_random_walk": 4.750972547867261e-05
+      },
+      "random_walks_source": "configs/candidates/rosario-vio-20261002/sources/kalibr-imu.yaml"
+    }
+  },
+  "sources": {
+    "code": "scripts/analysis/imu_motion_noise.py, the estimator of PAPER/vslam-paper/scripts/imu_envelope.py",
+    "method": "docs/okvis-imu-noise-derivation.md",
+    "dataset_level": "PAPER/vslam-paper/scripts/paperdata/noise.py _motion: largest per-sequence value",
+    "check": "paper_snapshot values: data/snapshot-20261102/imu-envelope.json, read from live IMU files"
+  }
+}
