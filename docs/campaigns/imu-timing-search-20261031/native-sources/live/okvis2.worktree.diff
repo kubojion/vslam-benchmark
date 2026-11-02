@@ -1,0 +1,12 @@
+diff --git a/external/DBoW2 b/external/DBoW2
+--- a/external/DBoW2
++++ b/external/DBoW2
+@@ -1 +1 @@
+-Subproject commit 3924753db6145f12618e7de09b7e6b258db93c6e
++Subproject commit 3924753db6145f12618e7de09b7e6b258db93c6e-dirty
+diff --git a/external/opengv b/external/opengv
+--- a/external/opengv
++++ b/external/opengv
+@@ -1 +1 @@
+-Subproject commit 91f4b19c73450833a40e463ad3648aae80b3a7f3
++Subproject commit 91f4b19c73450833a40e463ad3648aae80b3a7f3-dirty

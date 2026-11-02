@@ -1,0 +1,732 @@
+{
+ "schema": 1,
+ "purpose": "Record native source state that a commit alone cannot reproduce, for PLAN Update 6 Job C. Read-only.",
+ "branch_base": "b653776",
+ "roots": {
+  "live": {
+   "path": "/data/imoroz/vslam-benchmark",
+   "head": "8ac599f4fdb1d0124c9195dd68ed661b41e64d43",
+   "trees": [
+    {
+     "tree": "ORB_SLAM3",
+     "recorded": "26f02eff96f159c6c58347a1d10804365739070c",
+     "head": "26f02eff96f159c6c58347a1d10804365739070c",
+     "at_recorded": true,
+     "status": [],
+     "worktree_diff": null,
+     "untracked": [],
+     "submodules": []
+    },
+    {
+     "tree": "okvis2",
+     "recorded": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+     "head": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+     "at_recorded": true,
+     "status": [
+      "M external/DBoW2",
+      " M external/opengv"
+     ],
+     "worktree_diff": {
+      "path": "docs/campaigns/imu-timing-search-20261031/native-sources/live/okvis2.worktree.diff",
+      "sha256": "e51db6128259801f54a9da0b896588afadc1d904943ed4f8a5fc3b8f4a71f00e",
+      "bytes": 454
+     },
+     "untracked": [],
+     "submodules": [
+      {
+       "tree": "okvis2/external/DBoW2",
+       "recorded": "3924753db6145f12618e7de09b7e6b258db93c6e",
+       "head": "3924753db6145f12618e7de09b7e6b258db93c6e",
+       "at_recorded": true,
+       "status": [
+        "M CMakeLists.txt"
+       ],
+       "worktree_diff": {
+        "path": "docs/campaigns/imu-timing-search-20261031/native-sources/live/okvis2__external__DBoW2.worktree.diff",
+        "sha256": "78ce6651a39c2033cd7afca5057b08e1f8c6f7798b3eeb1634b707664d3cf455",
+        "bytes": 4253
+       },
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "okvis2/external/brisk",
+       "recorded": "1ef8b42a5c2fdd0e0c976f3ab7b179806381f570",
+       "head": "1ef8b42a5c2fdd0e0c976f3ab7b179806381f570",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "okvis2/external/ceres-solver",
+       "recorded": "85331393dc0dff09f6fb9903ab0c4bfa3e134b01",
+       "head": "85331393dc0dff09f6fb9903ab0c4bfa3e134b01",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "okvis2/external/googletest",
+       "recorded": "58d77fa8070e8cec2dc1ed015d66b454c8d78850",
+       "head": "58d77fa8070e8cec2dc1ed015d66b454c8d78850",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "okvis2/external/opengv",
+       "recorded": "91f4b19c73450833a40e463ad3648aae80b3a7f3",
+       "head": "91f4b19c73450833a40e463ad3648aae80b3a7f3",
+       "at_recorded": true,
+       "status": [
+        "M CMakeLists.txt"
+       ],
+       "worktree_diff": {
+        "path": "docs/campaigns/imu-timing-search-20261031/native-sources/live/okvis2__external__opengv.worktree.diff",
+        "sha256": "05ac2dca0be07228b59906677af13761a165006f59017848549a7b351d518650",
+        "bytes": 10186
+       },
+       "untracked": [],
+       "submodules": [
+        {
+         "tree": "okvis2/external/opengv/python/pybind11",
+         "recorded": "9a19306fbf30642ca331d0ec88e7da54a96860f9",
+         "head": "9a19306fbf30642ca331d0ec88e7da54a96860f9",
+         "at_recorded": true,
+         "status": [],
+         "worktree_diff": null,
+         "untracked": [],
+         "submodules": [
+          {
+           "tree": "okvis2/external/opengv/python/pybind11/tools/clang",
+           "recorded": "6a00cbc4a9b8e68b71caf7f774b3f9c753ae84d5",
+           "head": "6a00cbc4a9b8e68b71caf7f774b3f9c753ae84d5",
+           "at_recorded": true,
+           "status": [],
+           "worktree_diff": null,
+           "untracked": [],
+           "submodules": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "tree": "okvis2x",
+     "recorded": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+     "head": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+     "at_recorded": true,
+     "status": [
+      "M external/DBoW2",
+      " M external/opengv"
+     ],
+     "worktree_diff": {
+      "path": "docs/campaigns/imu-timing-search-20261031/native-sources/live/okvis2x.worktree.diff",
+      "sha256": "e51db6128259801f54a9da0b896588afadc1d904943ed4f8a5fc3b8f4a71f00e",
+      "bytes": 454
+     },
+     "untracked": [],
+     "submodules": [
+      {
+       "tree": "okvis2x/external/DBoW2",
+       "recorded": "3924753db6145f12618e7de09b7e6b258db93c6e",
+       "head": "3924753db6145f12618e7de09b7e6b258db93c6e",
+       "at_recorded": true,
+       "status": [
+        "M CMakeLists.txt"
+       ],
+       "worktree_diff": {
+        "path": "docs/campaigns/imu-timing-search-20261031/native-sources/live/okvis2x__external__DBoW2.worktree.diff",
+        "sha256": "78ce6651a39c2033cd7afca5057b08e1f8c6f7798b3eeb1634b707664d3cf455",
+        "bytes": 4253
+       },
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "okvis2x/external/brisk",
+       "recorded": "1ef8b42a5c2fdd0e0c976f3ab7b179806381f570",
+       "head": "1ef8b42a5c2fdd0e0c976f3ab7b179806381f570",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "okvis2x/external/ceres-solver",
+       "recorded": "85331393dc0dff09f6fb9903ab0c4bfa3e134b01",
+       "head": "85331393dc0dff09f6fb9903ab0c4bfa3e134b01",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "okvis2x/external/googletest",
+       "recorded": "58d77fa8070e8cec2dc1ed015d66b454c8d78850",
+       "head": "58d77fa8070e8cec2dc1ed015d66b454c8d78850",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "okvis2x/external/opengv",
+       "recorded": "91f4b19c73450833a40e463ad3648aae80b3a7f3",
+       "head": "91f4b19c73450833a40e463ad3648aae80b3a7f3",
+       "at_recorded": true,
+       "status": [
+        "M CMakeLists.txt"
+       ],
+       "worktree_diff": {
+        "path": "docs/campaigns/imu-timing-search-20261031/native-sources/live/okvis2x__external__opengv.worktree.diff",
+        "sha256": "05ac2dca0be07228b59906677af13761a165006f59017848549a7b351d518650",
+        "bytes": 10186
+       },
+       "untracked": [],
+       "submodules": [
+        {
+         "tree": "okvis2x/external/opengv/python/pybind11",
+         "recorded": "9a19306fbf30642ca331d0ec88e7da54a96860f9",
+         "head": "9a19306fbf30642ca331d0ec88e7da54a96860f9",
+         "at_recorded": true,
+         "status": [],
+         "worktree_diff": null,
+         "untracked": [],
+         "submodules": [
+          {
+           "tree": "okvis2x/external/opengv/python/pybind11/tools/clang",
+           "recorded": "6a00cbc4a9b8e68b71caf7f774b3f9c753ae84d5",
+           "head": "6a00cbc4a9b8e68b71caf7f774b3f9c753ae84d5",
+           "at_recorded": true,
+           "status": [],
+           "worktree_diff": null,
+           "untracked": [],
+           "submodules": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "tree": "okvis2x/supereight2",
+       "recorded": "f98c56405e83605334da691f22a88dae84ffe6f1",
+       "head": "f98c56405e83605334da691f22a88dae84ffe6f1",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": [
+        {
+         "tree": "okvis2x/supereight2/third_party/googletest",
+         "recorded": "e2239ee6043f73722e7aa812a459f54a28552929",
+         "head": "e2239ee6043f73722e7aa812a459f54a28552929",
+         "at_recorded": true,
+         "status": [],
+         "worktree_diff": null,
+         "untracked": [],
+         "submodules": []
+        },
+        {
+         "tree": "okvis2x/supereight2/third_party/srl_projection",
+         "recorded": "2f1de25fff2a5f4351344a60cd5ee8fc42f971c7",
+         "head": "2f1de25fff2a5f4351344a60cd5ee8fc42f971c7",
+         "at_recorded": true,
+         "status": [],
+         "worktree_diff": null,
+         "untracked": [],
+         "submodules": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "tree": "open_vins",
+     "recorded": "7a496c53d9eed17adbb0f76f1333168ac4b999d0",
+     "head": "7a496c53d9eed17adbb0f76f1333168ac4b999d0",
+     "at_recorded": true,
+     "status": [],
+     "worktree_diff": null,
+     "untracked": [],
+     "submodules": []
+    },
+    {
+     "tree": "voxel_svio",
+     "recorded": "eac6b87d0f925b96ddd5c5c6b0dcda3d36c7ab5f",
+     "head": "eac6b87d0f925b96ddd5c5c6b0dcda3d36c7ab5f",
+     "at_recorded": true,
+     "status": [
+      "?? output/pose.txt"
+     ],
+     "worktree_diff": null,
+     "untracked": [
+      {
+       "path": "output/pose.txt",
+       "bytes": 3877213,
+       "sha256": "e6d790977b3edf010606f09adfbad0ef2f0a77ff899f1177765ca537f722b106"
+      }
+     ],
+     "submodules": []
+    },
+    {
+     "tree": "svo_pro",
+     "recorded": "ca371f304637e7fb355cf4624d0a02da4e3da220",
+     "head": "ca371f304637e7fb355cf4624d0a02da4e3da220",
+     "at_recorded": true,
+     "status": [],
+     "worktree_diff": null,
+     "untracked": [],
+     "submodules": []
+    },
+    {
+     "tree": "cuvslam",
+     "recorded": "57f42cc92d93eef47577d726789852a350b2a369",
+     "head": "57f42cc92d93eef47577d726789852a350b2a369",
+     "at_recorded": true,
+     "status": [],
+     "worktree_diff": null,
+     "untracked": [],
+     "submodules": []
+    },
+    {
+     "tree": "airslam",
+     "recorded": "1e0ad79c28d4d58d6a40d160df9b05c8361c7774",
+     "head": "1e0ad79c28d4d58d6a40d160df9b05c8361c7774",
+     "at_recorded": true,
+     "status": [],
+     "worktree_diff": null,
+     "untracked": [],
+     "submodules": []
+    },
+    {
+     "tree": "mast3r_fusion",
+     "recorded": "f4469ea8e05a9b556611033871b94c3da3cb5164",
+     "head": "f4469ea8e05a9b556611033871b94c3da3cb5164",
+     "at_recorded": true,
+     "status": [
+      "?? mast3r_fusion_backends.cpython-311-x86_64-linux-gnu.so"
+     ],
+     "worktree_diff": null,
+     "untracked": [
+      {
+       "path": "mast3r_fusion_backends.cpython-311-x86_64-linux-gnu.so",
+       "bytes": 1388752,
+       "sha256": "1921adeb7610ccafc1c30dc9f09ac14ff9b2bcc9487f9cd7c17d0bd86b551a16"
+      }
+     ],
+     "submodules": [
+      {
+       "tree": "mast3r_fusion/thirdparty/eigen",
+       "recorded": "bddaa99e151244402c6e804e01b970288650da6b",
+       "head": "bddaa99e151244402c6e804e01b970288650da6b",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "mast3r_fusion/thirdparty/in3d/thirdparty/pyimgui",
+       "recorded": "c79137d6c47040e6ce226f8109868a3018d5354b",
+       "head": "c79137d6c47040e6ce226f8109868a3018d5354b",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": [
+        {
+         "tree": "mast3r_fusion/thirdparty/in3d/thirdparty/pyimgui/imgui-cpp",
+         "recorded": "35b1148efb839381b84de9290d9caf0b66ad7d03",
+         "head": "35b1148efb839381b84de9290d9caf0b66ad7d03",
+         "at_recorded": true,
+         "status": [],
+         "worktree_diff": null,
+         "untracked": [],
+         "submodules": []
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "first-search": {
+   "path": "/data/imoroz/vslam-noise-reliable-20261009",
+   "head": "afb446b1c892537a91b16fa69a56885997240ae7",
+   "trees": [
+    {
+     "tree": "ORB_SLAM3",
+     "recorded": "26f02eff96f159c6c58347a1d10804365739070c",
+     "head": "26f02eff96f159c6c58347a1d10804365739070c",
+     "at_recorded": true,
+     "status": [],
+     "worktree_diff": null,
+     "untracked": [],
+     "submodules": []
+    },
+    {
+     "tree": "okvis2",
+     "recorded": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+     "head": "a2ea00688cd10988aae7bd52ab7935ce9a657ec0",
+     "at_recorded": true,
+     "status": [
+      "M external/DBoW2",
+      " M external/opengv"
+     ],
+     "worktree_diff": {
+      "path": "docs/campaigns/imu-timing-search-20261031/native-sources/first-search/okvis2.worktree.diff",
+      "sha256": "e51db6128259801f54a9da0b896588afadc1d904943ed4f8a5fc3b8f4a71f00e",
+      "bytes": 454
+     },
+     "untracked": [],
+     "submodules": [
+      {
+       "tree": "okvis2/external/DBoW2",
+       "recorded": "3924753db6145f12618e7de09b7e6b258db93c6e",
+       "head": "3924753db6145f12618e7de09b7e6b258db93c6e",
+       "at_recorded": true,
+       "status": [
+        "M CMakeLists.txt"
+       ],
+       "worktree_diff": {
+        "path": "docs/campaigns/imu-timing-search-20261031/native-sources/first-search/okvis2__external__DBoW2.worktree.diff",
+        "sha256": "78ce6651a39c2033cd7afca5057b08e1f8c6f7798b3eeb1634b707664d3cf455",
+        "bytes": 4253
+       },
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "okvis2/external/brisk",
+       "recorded": "1ef8b42a5c2fdd0e0c976f3ab7b179806381f570",
+       "head": "1ef8b42a5c2fdd0e0c976f3ab7b179806381f570",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "okvis2/external/ceres-solver",
+       "recorded": "85331393dc0dff09f6fb9903ab0c4bfa3e134b01",
+       "head": "85331393dc0dff09f6fb9903ab0c4bfa3e134b01",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "okvis2/external/googletest",
+       "recorded": "58d77fa8070e8cec2dc1ed015d66b454c8d78850",
+       "head": "58d77fa8070e8cec2dc1ed015d66b454c8d78850",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "okvis2/external/opengv",
+       "recorded": "91f4b19c73450833a40e463ad3648aae80b3a7f3",
+       "head": "91f4b19c73450833a40e463ad3648aae80b3a7f3",
+       "at_recorded": true,
+       "status": [
+        "M CMakeLists.txt"
+       ],
+       "worktree_diff": {
+        "path": "docs/campaigns/imu-timing-search-20261031/native-sources/first-search/okvis2__external__opengv.worktree.diff",
+        "sha256": "05ac2dca0be07228b59906677af13761a165006f59017848549a7b351d518650",
+        "bytes": 10186
+       },
+       "untracked": [],
+       "submodules": [
+        {
+         "tree": "okvis2/external/opengv/python/pybind11",
+         "recorded": "9a19306fbf30642ca331d0ec88e7da54a96860f9",
+         "head": "9a19306fbf30642ca331d0ec88e7da54a96860f9",
+         "at_recorded": true,
+         "status": [],
+         "worktree_diff": null,
+         "untracked": [],
+         "submodules": [
+          {
+           "tree": "okvis2/external/opengv/python/pybind11/tools/clang",
+           "recorded": "6a00cbc4a9b8e68b71caf7f774b3f9c753ae84d5",
+           "head": "6a00cbc4a9b8e68b71caf7f774b3f9c753ae84d5",
+           "at_recorded": true,
+           "status": [],
+           "worktree_diff": null,
+           "untracked": [],
+           "submodules": []
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "tree": "okvis2x",
+     "recorded": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+     "head": "38043e4afe56d9b32a98434cc74e723737dd2bce",
+     "at_recorded": true,
+     "status": [
+      "M external/DBoW2",
+      " M external/opengv"
+     ],
+     "worktree_diff": {
+      "path": "docs/campaigns/imu-timing-search-20261031/native-sources/first-search/okvis2x.worktree.diff",
+      "sha256": "e51db6128259801f54a9da0b896588afadc1d904943ed4f8a5fc3b8f4a71f00e",
+      "bytes": 454
+     },
+     "untracked": [],
+     "submodules": [
+      {
+       "tree": "okvis2x/external/DBoW2",
+       "recorded": "3924753db6145f12618e7de09b7e6b258db93c6e",
+       "head": "3924753db6145f12618e7de09b7e6b258db93c6e",
+       "at_recorded": true,
+       "status": [
+        "M CMakeLists.txt"
+       ],
+       "worktree_diff": {
+        "path": "docs/campaigns/imu-timing-search-20261031/native-sources/first-search/okvis2x__external__DBoW2.worktree.diff",
+        "sha256": "78ce6651a39c2033cd7afca5057b08e1f8c6f7798b3eeb1634b707664d3cf455",
+        "bytes": 4253
+       },
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "okvis2x/external/brisk",
+       "recorded": "1ef8b42a5c2fdd0e0c976f3ab7b179806381f570",
+       "head": "1ef8b42a5c2fdd0e0c976f3ab7b179806381f570",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "okvis2x/external/ceres-solver",
+       "recorded": "85331393dc0dff09f6fb9903ab0c4bfa3e134b01",
+       "head": "85331393dc0dff09f6fb9903ab0c4bfa3e134b01",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "okvis2x/external/googletest",
+       "recorded": "58d77fa8070e8cec2dc1ed015d66b454c8d78850",
+       "head": "58d77fa8070e8cec2dc1ed015d66b454c8d78850",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "okvis2x/external/opengv",
+       "recorded": "91f4b19c73450833a40e463ad3648aae80b3a7f3",
+       "head": "91f4b19c73450833a40e463ad3648aae80b3a7f3",
+       "at_recorded": true,
+       "status": [
+        "M CMakeLists.txt"
+       ],
+       "worktree_diff": {
+        "path": "docs/campaigns/imu-timing-search-20261031/native-sources/first-search/okvis2x__external__opengv.worktree.diff",
+        "sha256": "05ac2dca0be07228b59906677af13761a165006f59017848549a7b351d518650",
+        "bytes": 10186
+       },
+       "untracked": [],
+       "submodules": [
+        {
+         "tree": "okvis2x/external/opengv/python/pybind11",
+         "recorded": "9a19306fbf30642ca331d0ec88e7da54a96860f9",
+         "head": "9a19306fbf30642ca331d0ec88e7da54a96860f9",
+         "at_recorded": true,
+         "status": [],
+         "worktree_diff": null,
+         "untracked": [],
+         "submodules": [
+          {
+           "tree": "okvis2x/external/opengv/python/pybind11/tools/clang",
+           "recorded": "6a00cbc4a9b8e68b71caf7f774b3f9c753ae84d5",
+           "head": "6a00cbc4a9b8e68b71caf7f774b3f9c753ae84d5",
+           "at_recorded": true,
+           "status": [],
+           "worktree_diff": null,
+           "untracked": [],
+           "submodules": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "tree": "okvis2x/supereight2",
+       "recorded": "f98c56405e83605334da691f22a88dae84ffe6f1",
+       "head": "f98c56405e83605334da691f22a88dae84ffe6f1",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": [
+        {
+         "tree": "okvis2x/supereight2/third_party/googletest",
+         "recorded": "e2239ee6043f73722e7aa812a459f54a28552929",
+         "head": "e2239ee6043f73722e7aa812a459f54a28552929",
+         "at_recorded": true,
+         "status": [],
+         "worktree_diff": null,
+         "untracked": [],
+         "submodules": []
+        },
+        {
+         "tree": "okvis2x/supereight2/third_party/srl_projection",
+         "recorded": "2f1de25fff2a5f4351344a60cd5ee8fc42f971c7",
+         "head": "2f1de25fff2a5f4351344a60cd5ee8fc42f971c7",
+         "at_recorded": true,
+         "status": [],
+         "worktree_diff": null,
+         "untracked": [],
+         "submodules": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "tree": "open_vins",
+     "recorded": "7a496c53d9eed17adbb0f76f1333168ac4b999d0",
+     "head": "7a496c53d9eed17adbb0f76f1333168ac4b999d0",
+     "at_recorded": true,
+     "status": [
+      "M ov_msckf/src/ros/ROS2Visualizer.cpp",
+      " M ov_msckf/src/ros/ROS2Visualizer.h"
+     ],
+     "worktree_diff": {
+      "path": "docs/campaigns/imu-timing-search-20261031/native-sources/first-search/open_vins.worktree.diff",
+      "sha256": "500026018056f754663fed8daed92814debc939d28ba21d42ec14b8852c97291",
+      "bytes": 18639
+     },
+     "untracked": [],
+     "submodules": []
+    },
+    {
+     "tree": "voxel_svio",
+     "recorded": "eac6b87d0f925b96ddd5c5c6b0dcda3d36c7ab5f",
+     "head": "eac6b87d0f925b96ddd5c5c6b0dcda3d36c7ab5f",
+     "at_recorded": true,
+     "status": [
+      "?? output/pose.txt"
+     ],
+     "worktree_diff": null,
+     "untracked": [
+      {
+       "path": "output/pose.txt",
+       "bytes": 3877213,
+       "sha256": "e6d790977b3edf010606f09adfbad0ef2f0a77ff899f1177765ca537f722b106"
+      }
+     ],
+     "submodules": []
+    },
+    {
+     "tree": "svo_pro",
+     "recorded": "ca371f304637e7fb355cf4624d0a02da4e3da220",
+     "head": "ca371f304637e7fb355cf4624d0a02da4e3da220",
+     "at_recorded": true,
+     "status": [],
+     "worktree_diff": null,
+     "untracked": [],
+     "submodules": []
+    },
+    {
+     "tree": "cuvslam",
+     "recorded": "57f42cc92d93eef47577d726789852a350b2a369",
+     "head": "57f42cc92d93eef47577d726789852a350b2a369",
+     "at_recorded": true,
+     "status": [],
+     "worktree_diff": null,
+     "untracked": [],
+     "submodules": []
+    },
+    {
+     "tree": "airslam",
+     "recorded": "1e0ad79c28d4d58d6a40d160df9b05c8361c7774",
+     "head": "1e0ad79c28d4d58d6a40d160df9b05c8361c7774",
+     "at_recorded": true,
+     "status": [],
+     "worktree_diff": null,
+     "untracked": [],
+     "submodules": []
+    },
+    {
+     "tree": "mast3r_fusion",
+     "recorded": "f4469ea8e05a9b556611033871b94c3da3cb5164",
+     "head": "f4469ea8e05a9b556611033871b94c3da3cb5164",
+     "at_recorded": true,
+     "status": [
+      "?? mast3r_fusion_backends.cpython-311-x86_64-linux-gnu.so"
+     ],
+     "worktree_diff": null,
+     "untracked": [
+      {
+       "path": "mast3r_fusion_backends.cpython-311-x86_64-linux-gnu.so",
+       "bytes": 1388752,
+       "sha256": "1921adeb7610ccafc1c30dc9f09ac14ff9b2bcc9487f9cd7c17d0bd86b551a16"
+      }
+     ],
+     "submodules": [
+      {
+       "tree": "mast3r_fusion/thirdparty/eigen",
+       "recorded": "bddaa99e151244402c6e804e01b970288650da6b",
+       "head": "bddaa99e151244402c6e804e01b970288650da6b",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": []
+      },
+      {
+       "tree": "mast3r_fusion/thirdparty/in3d/thirdparty/pyimgui",
+       "recorded": "c79137d6c47040e6ce226f8109868a3018d5354b",
+       "head": "c79137d6c47040e6ce226f8109868a3018d5354b",
+       "at_recorded": true,
+       "status": [],
+       "worktree_diff": null,
+       "untracked": [],
+       "submodules": [
+        {
+         "tree": "mast3r_fusion/thirdparty/in3d/thirdparty/pyimgui/imgui-cpp",
+         "recorded": "35b1148efb839381b84de9290d9caf0b66ad7d03",
+         "head": "35b1148efb839381b84de9290d9caf0b66ad7d03",
+         "at_recorded": true,
+         "status": [],
+         "worktree_diff": null,
+         "untracked": [],
+         "submodules": []
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ }
+}
