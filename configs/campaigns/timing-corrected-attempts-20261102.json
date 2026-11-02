@@ -1,0 +1,183 @@
+{
+ "schema": 1,
+ "decided": "User, 2 Nov 2026, PLAN Update 6 Job A",
+ "input_variant": "corrected",
+ "cohorts": [
+  "timing-corrected-20261031",
+  "timing-corrected-orbslam3-4core-20261101"
+ ],
+ "source_commit": "b653776",
+ "note": "Replaced attempts stay on disk. Results of these cells use the IMU files in datasets/.timing-imu; no dataset file changed in place.",
+ "cells": {
+  "vio-lc/citrusfarm/seq04/airslam": [
+   50201,
+   50002,
+   50203
+  ],
+  "vio-lc/citrusfarm/seq04/cuvslam": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio-lc/citrusfarm/seq04/mast3r_fusion": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio-lc/citrusfarm/seq04/okvis2": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio-lc/citrusfarm/seq04/okvis2x": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio-lc/citrusfarm/seq04/orbslam3": [
+   51001,
+   51002,
+   51003
+  ],
+  "vio-lc/citrusfarm/seq04/svo_pro": [
+   50201,
+   50002,
+   50003
+  ],
+  "vio-lc/citrusfarm/seq07/airslam": [
+   50201,
+   50202,
+   50203
+  ],
+  "vio-lc/citrusfarm/seq07/cuvslam": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio-lc/citrusfarm/seq07/mast3r_fusion": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio-lc/citrusfarm/seq07/okvis2": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio-lc/citrusfarm/seq07/okvis2x": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio-lc/citrusfarm/seq07/orbslam3": [
+   51001,
+   51002,
+   51003
+  ],
+  "vio-lc/citrusfarm/seq07/svo_pro": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq04/airslam": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq04/basalt": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq04/cuvslam": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq04/mast3r_fusion": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq04/okvis2": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq04/okvis2x": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq04/openvins": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq04/orbslam3": [
+   51001,
+   51002,
+   51003
+  ],
+  "vio/citrusfarm/seq04/svo_pro": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq04/voxel_svio": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq07/airslam": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq07/basalt": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq07/cuvslam": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq07/mast3r_fusion": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq07/okvis2": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq07/okvis2x": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq07/openvins": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq07/orbslam3": [
+   51001,
+   51002,
+   51003
+  ],
+  "vio/citrusfarm/seq07/svo_pro": [
+   50001,
+   50002,
+   50003
+  ],
+  "vio/citrusfarm/seq07/voxel_svio": [
+   50001,
+   50002,
+   50003
+  ]
+ }
+}
