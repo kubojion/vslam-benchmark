@@ -22,6 +22,8 @@ WORKER_PY = '/data/imoroz/conda/envs/cuvslam/bin/python'; EVAL_PY = '/data/imoro
 CONTAINERS = ('vslam_corrected_voxel_20261031', 'vslam_corrected_air_20261031')
 Z = 'field1_110426_full_10fps_q90'
 COHORT, ZCOHORT = 'timing-corrected-20261031', 'sielinko-timing-test-20261101'
+ORBCOHORT, Z2COHORT = 'timing-corrected-orbslam3-4core-20261101', 'sielinko-corrected-rule-c-20261101'
+FOUR_CORE = {'cpu1': '0-3', 'cpu2': '4-7'}   # Update 4, from group 3 on
 REFERENCE = Path('/data/imoroz/PAPER/vslam-paper/notes/timing-test-20261030/results.csv')
 REGRESSION = {'openvins', 'basalt', 'mast3r_fusion'}
 
@@ -42,7 +44,11 @@ def plan():
     z = 'airslam okvis2 okvis2x openvins orbslam3 voxel_svio svo_pro'.split()
     main += [job('SIELINKO', 'zed2i', Z, a, 'vio', 60001+i, 1, 'drift', ZCOHORT) for i, a in enumerate(z)]
     main += [job('SIELINKO', 'zed2i', Z, 'okvis2', 'vio', 60008, 1, 'unchanged', ZCOHORT)]
-    return [checks, basalt, main]
+    # Update 4: Job 1 on 4-core lanes, then Job 2. AirSLAM stays out: it reaches the 50 GiB cap on Sielinko, and the cap must not be relaxed.
+    orb = [job('ORB4', 'citrusfarm', s, 'orbslam3', m, 51000+r, r, 'corrected', ORBCOHORT) for r in (1, 2, 3) for m in ('vio', 'vio-lc') for s in seqs]
+    job2 = [job('SIELINKO2', 'zed2i', Z, a, 'vio', 61000+r, r, 'drift', Z2COHORT) for r in (1, 2, 3)
+            for a in 'basalt okvis2 okvis2x orbslam3 openvins voxel_svio svo_pro cuvslam mast3r_fusion'.split()]
+    return [checks, basalt, main, orb, job2]
 
 
 def link_variant(j):
@@ -81,7 +87,8 @@ def worker(path):
     out['duration_s'] = time.time()-t0
     meta = run/'run_meta.json'; out['run_meta'] = meta.is_file()
     if meta.is_file():
-        out['process_exit_code'] = json.loads(meta.read_text()).get('process', {}).get('exit_code')
+        process = json.loads(meta.read_text()).get('process', {})
+        out['process_exit_code'] = process.get('exit_code'); out['failure_reason'] = process.get('failure_reason')
     if (run/'run_eval.json').is_file():
         doc = json.loads((run/'run_eval.json').read_text()); out['run_status'] = doc.get('run_status')
         out['ate_m'] = (doc.get('ate' if doc.get('primary_alignment') == 'sim3' else 'ate_se3') or {}).get('rmse')
@@ -92,7 +99,10 @@ def worker(path):
         out['oom_kill'] = None
     if before != os.readlink(imu) or not before.endswith('/'+j['variant']): out['infra'] = 'imu variant changed under the run'
     elif not out.get('infra') and not out['run_meta']: out['infra'] = 'no run_meta: failed before the estimator could record a result'
-    if not out.get('infra') and not out.get('timed_out') and (out.get('process_exit_code') or out.get('estimator_exit_code')):
+    # Voxel-SVIO after a full recording: the runner stops the node, and a diverged node answers 143. A result, not a crash.
+    stopped = out.get('process_exit_code') == 143 and str(out.get('failure_reason', '')).startswith('player_exit=0') and out.get('run_status')
+    if stopped: out['stopped_at_end'] = True
+    if not stopped and not out.get('infra') and not out.get('timed_out') and (out.get('process_exit_code') or out.get('estimator_exit_code')):
         out['crash'] = f"estimator exit {out.get('estimator_exit_code')}, recorded {out.get('process_exit_code')}"
     tmp = JOBS/(j['id']+'.done.tmp'); tmp.write_text(json.dumps(out, indent=1)); os.replace(tmp, JOBS/(j['id']+'.done'))
 
@@ -176,6 +186,7 @@ def main():
             del s['running'][lane]; changed = True
             d['counted'] = True
             if d.get('oom_kill'): fault(f"safety: oom_kill in {d['id']}")
+            if d.get('process_exit_code') == 137: fault(f"safety: exit 137, memory kill likely, in {d['id']}")
             if str(d.get('infra', '')).startswith('safety'): fault(d['infra'])
             kind = 'infra' if d.get('infra') else 'crash' if d.get('crash') else None
             replaceable = kind and not r.get('replacement') and r['block'] != 'CHECK'
@@ -208,6 +219,8 @@ def main():
         if not pending and not s['running'] and not stopping:
             if s['group'] == 0 and not GO.exists():
                 status(s, 'HOLD: gates under review', total); time.sleep(20); continue
+            if s['group'] == 3 and not (RUN/'GO2').exists():
+                status(s, 'HOLD: Job 2 conditions under review', total); time.sleep(20); continue
             s['group'] += 1; save(s); continue
         note = 'stopping' if stopping else ''
         if pending and not stopping:
@@ -224,11 +237,14 @@ def main():
                         if s['running']: continue
                         lane, cpus = 'cpu1', '0-7'
                     else:
-                        if j['alg'] in busy: continue   # shared container and native output names
-                        lanes = ['gpu'] if j['alg'] in GPU else ['cpu3'] if j['alg'] in SMALL else ['cpu1', 'cpu2']
+                        if j['alg'] in busy and j['alg'] != 'orbslam3': continue   # shared container and native output names; ORB-SLAM3 works in its run folder
+                        if s['group'] >= 3:
+                            lanes = ['gpu'] if j['alg'] in GPU else ['cpu2'] if j['alg'] == 'voxel_svio' else ['cpu1', 'cpu2']
+                        else:
+                            lanes = ['gpu'] if j['alg'] in GPU else ['cpu3'] if j['alg'] in SMALL else ['cpu1', 'cpu2']
                         free = [l for l in lanes if l not in s['running']]
                         if not free: continue
-                        lane, cpus = free[0], LANES[free[0]]
+                        lane, cpus = free[0], (FOUR_CORE if s['group'] >= 3 else LANES).get(free[0], LANES[free[0]])
                         if lane == 'gpu' and not s['running'].get('gpu') and not gpu_free():
                             note = 'GPU in use by another process; lane held'; continue
                     if any(r['seq'] == j['seq'] and r['variant'] != j['variant'] for r in s['running'].values()): continue
