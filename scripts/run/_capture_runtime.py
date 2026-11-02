@@ -20,7 +20,7 @@ import tarfile
 from _capture_implementation import SOURCES, digest_file
 from _capture_inputs import digest
 
-CONTAINERS={'airslam':'vslam_corrected_air_20261031','ov2slam':'ov2slam','voxel_svio':'vslam_corrected_voxel_20261031',
+CONTAINERS={'airslam':'vslam_search_air_20261031','ov2slam':'ov2slam','voxel_svio':'vslam_search_voxel_20261031',
             'cifasis_gnss_si':'cifasis_gnss_si','vins_fusion_gps':'vins_fusion'}
 # run_openvins.sh executes this image and refuses any other ID behind the tag.
 OPENVINS_DELIVERY_IMAGE='openvins:noise-delivery-audit-20261010-v6'

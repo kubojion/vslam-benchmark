@@ -123,7 +123,7 @@ def interpreted_measurements(meta):
     return values
 
 
-def evaluate_saved_run(ws, run_dir, *, gt_override=None):
+def evaluate_saved_run(ws, run_dir, *, gt_override=None, sparse_export=None):
     ws, run_dir = Path(ws).resolve(), Path(run_dir).resolve()
     mode, dataset, seq, algo, run_name = run_dir.relative_to(ws/'results').parts
     rt = resolve(mode, ws)
@@ -138,6 +138,31 @@ def evaluate_saved_run(ws, run_dir, *, gt_override=None):
     inputs = [file_evidence(p, ws) for p in (gt_path, times_path, trajectory)]
     inputs.extend(file_evidence(p, ws) for p in (meta_path,) if p.exists())
     physical_sequence=selected.get('physical_sequence',seq) if selected else seq
+    # Experimental clips retain the independently reviewed parent's pose frame.
+    # Check an exact parent window and both file hashes; never silently reinterpret an
+    # arbitrary sequence alias as a calibrated recording.
+    prefix_path = ds/'experiment-prefix.json'
+    if prefix_path.is_file():
+        prefix = json.loads(prefix_path.read_text())
+        parent_name = prefix['parent_sequence']
+        if Path(parent_name).name != parent_name or parent_name in ('.', '..'):
+            raise ValueError('unsafe experimental parent')
+        offset = prefix.get('parent_offset', 0)
+        if type(offset) is not int or offset < 0:
+            raise ValueError('invalid experimental parent offset')
+        parent_times = ws/'datasets'/dataset/parent_name/'times.txt'
+        parent_evidence = file_evidence(parent_times, ws)
+        subset_evidence = file_evidence(times_path, ws)
+        subset_rows = times_path.read_text().splitlines()
+        if (prefix.get('diagnostic_only') is not True or not subset_rows
+            or parent_evidence['sha256'] != prefix['parent_times_sha256']
+            or subset_evidence['sha256'] != prefix['subset_times_sha256']
+            or subset_rows != parent_times.read_text().splitlines()[offset:offset+len(subset_rows)]):
+            raise ValueError('experimental window identity mismatch')
+        if selected and physical_sequence != parent_name:
+            raise ValueError('experimental/reference parents disagree')
+        physical_sequence = parent_name
+        inputs.extend([file_evidence(prefix_path, ws), parent_evidence])
     policy = frame_policy(ws, run_dir, meta, dataset, physical_sequence, algo, rt.use_imu)
     if physical_sequence!=seq:
         policy['diagnostic_parent_sequence']=physical_sequence
@@ -161,7 +186,7 @@ def evaluate_saved_run(ws, run_dir, *, gt_override=None):
     try:
         numerical, paired = evaluate_arrays(reference, estimate, times, policy,
                          monocular=algo in ('dpvo', 'droidslam', 'mast3r_slam', 'megasam'),
-                         sparse_export=algo == 'airslam', gnss=rt.use_gnss)
+                         sparse_export=(algo == 'airslam' if sparse_export is None else sparse_export), gnss=rt.use_gnss)
     except ValueError as exc:
         numerical = dict(eval_schema=3, run_status='eval_failed', failure_reason=str(exc), n_pairs_ate=0,
                          ate=statistics([]), ate_se3=statistics([]), ate_origin={},

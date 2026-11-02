@@ -98,3 +98,9 @@ third_party/mast3r-fusion-checkpoints
 third_party/mast3r-fusion-checkpoints.sha256
 third_party/wheels
 timing-campaign/run/
+
+# --- private state of the noise search worktree (timing-search/setup_private.sh) ---
+/datasets/*/*_tsearch_c[12]/
+/configs/experiments/generated/
+timing-search/run/
+timing-search/*-budget.json

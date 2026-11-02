@@ -72,6 +72,8 @@ TRACKED_ENV = (
     "OPENVINS_END_OF_STREAM_DRAIN",
     "OPENVINS_FLOW_CONTROL",
     "OPENVINS_TRANSPORT_PROFILE",
+    # Derived clips of a recording (noise search).
+    "SVO_PRO_IMU_FILE",
 )
 MEASUREMENT_MODES = ("max_throughput", "paced", "transport")
 

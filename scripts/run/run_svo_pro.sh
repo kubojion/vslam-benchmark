@@ -54,7 +54,15 @@ PREP_ENV="${SVO_PRO_PREP_CONDA_ENV:-cuvslam}"   # host python with numpy, yaml, 
 if [[ "$DATASET" == "euroc_mav" ]]; then
     IMU_FILE="$REPO/svo_ros/param/calib/euroc_stereo.yaml"; IMU_SRC="upstream:$IMU_FILE"
 else
-    IMU_FILE="$WS/configs/okvis2/${DATASET}_${SEQ}_vio.yaml"; IMU_SRC="okvis2:$IMU_FILE"
+    # A derived clip of a recording reads its parent's OKVIS2 IMU calibration.
+    IMU_FILE="${SVO_PRO_IMU_FILE:-$WS/configs/okvis2/${DATASET}_${SEQ}_vio.yaml}"; IMU_SRC="okvis2:$IMU_FILE"
+fi
+
+if [[ -n "${SVO_PRO_IMU_FILE:-}" ]]; then
+    IMU_FILE=$(realpath -e "$SVO_PRO_IMU_FILE")
+    [[ "$IMU_FILE" == "$WS/configs/"* ]] \
+        || { echo "[svo_pro] ERROR: SVO_PRO_IMU_FILE must be a file under $WS/configs" >&2; exit 2; }
+    IMU_SRC="okvis2:$IMU_FILE"
 fi
 
 [[ -e "$REPO/.git" ]] || { echo "[svo_pro] ERROR: source checkout missing at $REPO (run scripts/build/build_svo_pro.sh)" >&2; exit 2; }

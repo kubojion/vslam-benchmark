@@ -77,7 +77,7 @@ CONT_RESULTS_DIR="/results/$RUN_TYPE"
 SAVING_DIR="${CONT_RESULTS_DIR}/$DATASET/$SEQ/airslam/run${RUN_ID}"
 MODEL_DIR="/root/catkin_ws/src/air_slam/output"
 
-CONTAINER="vslam_corrected_air_20261031"
+CONTAINER="vslam_search_air_20261031"
 CORRECTED_NATIVE=false
 NATIVE_PREFIX=/root/catkin_ws_rectified_20261001/devel
 if [[ ( "$DATASET" == "euroc_mav" || "$DATASET" == "zed2i" || "$DATASET" == "citrusfarm" ) && "$USE_IMU" == "true" ]]; then
