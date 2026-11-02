@@ -3,7 +3,7 @@
   "inputs": [
     {
       "path": "results/repair-20261001/inventory.json",
-      "sha256": "8f5c71fa5a5b268f641faaff58dba96e7213d9b8c288114bafc78695e46ff500"
+      "sha256": "b833c02e436c0ff84c1cb986931a4178592e1d7a770a523114234c66ab7a1c2b"
     },
     {
       "path": "benchmark-vo.csv",
@@ -15,11 +15,11 @@
     },
     {
       "path": "benchmark-vio.csv",
-      "sha256": "7ee347b003f688dcfe4490272b1d9367c7fb07296328042d585e6e2669053c85"
+      "sha256": "6ef45498216ae8307e86640608cee5d2cbc93b21b334d8d97079cfd8ef25b30e"
     },
     {
       "path": "benchmark-vio-lc.csv",
-      "sha256": "ea821383a7526e1d1b8d72b9b7c0426c04b0d048af9fe35205434d35d53310a8"
+      "sha256": "14b45f7ac6b35007284387f506388e8eabf82f65368d773203f6693fabeb887c"
     },
     {
       "path": "benchmark-gnss-vio.csv",
@@ -20639,8 +20639,8 @@
         "orbslam3",
         "default"
       ],
-      "value": 0.6674355151450867,
-      "annotation": "0.667\nA3/E3/S3/F0\nB",
+      "value": null,
+      "annotation": "no score\nA3/E3/S3/F0\ncohorts,B",
       "summary": {
         "identity": [
           "vio",
@@ -20659,15 +20659,22 @@
           "blocked": 3
         },
         "paper_usable": 0,
-        "claim_limits": [],
+        "claim_limits": [
+          "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
+          "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+          "no_measured_processing_rate_or_realtime_deadline_claim"
+        ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "b1233739bdf55446b80923b1f7dfdb039ebf5202d0bb4f017d85935e311b92d8",
-            "planned_members": 3,
-            "evaluated": 3,
+            "cohort": "03a1da7310c661453108d98d1cd9e4e8eb0f7c83db58b65961fbea516d116cb3",
+            "planned_members": 2,
+            "evaluated": 2,
             "outcomes": {
-              "ok": 3
+              "ok": 2
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -20682,15 +20689,15 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 3,
-              "mean": 0.6714634062874102,
-              "median": 0.6674355151450867,
-              "min": 0.6535371829773242,
-              "max": 0.6934175207398197,
-              "sample_std": 0.020242980642768152
+              "n": 2,
+              "mean": 1.42675707986501,
+              "median": 1.42675707986501,
+              "min": 1.3966356358887362,
+              "max": 1.4568785238412836,
+              "sample_std": 0.04259815458950763
             },
             "dense_coverage_pct": {
-              "n": 3,
+              "n": 2,
               "mean": 99.51893196813106,
               "median": 99.51893196813106,
               "min": 99.51893196813106,
@@ -20698,14 +20705,54 @@
               "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq04/orbslam3/run10002",
-              "results/vio/citrusfarm/seq04/orbslam3/run10003",
-              "results/vio/citrusfarm/seq04/orbslam3/run10004"
+              "results/vio/citrusfarm/seq04/orbslam3/run51002",
+              "results/vio/citrusfarm/seq04/orbslam3/run51003"
+            ]
+          },
+          {
+            "cohort": "6e1e80373e08b4c956f0afc13cd5160ef1f47c588cf1539f68bca14e4a3307e3",
+            "planned_members": 1,
+            "evaluated": 1,
+            "outcomes": {
+              "ok": 1
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 1,
+              "mean": 1.5087319856744388,
+              "median": 1.5087319856744388,
+              "min": 1.5087319856744388,
+              "max": 1.5087319856744388,
+              "sample_std": null
+            },
+            "dense_coverage_pct": {
+              "n": 1,
+              "mean": 99.51893196813106,
+              "median": 99.51893196813106,
+              "min": 99.51893196813106,
+              "max": 99.51893196813106,
+              "sample_std": null
+            },
+            "run_paths": [
+              "results/vio/citrusfarm/seq04/orbslam3/run51001"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+          "within_cell_source_binary_parameter_or_hardware_mismatch"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
@@ -20725,19 +20772,28 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "b1233739bdf55446b80923b1f7dfdb039ebf5202d0bb4f017d85935e311b92d8",
-            "attempts": 3,
+            "cohort": "03a1da7310c661453108d98d1cd9e4e8eb0f7c83db58b65961fbea516d116cb3",
+            "attempts": 2,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq04/orbslam3/run10002",
-              "results/vio/citrusfarm/seq04/orbslam3/run10003",
-              "results/vio/citrusfarm/seq04/orbslam3/run10004"
+              "results/vio/citrusfarm/seq04/orbslam3/run51002",
+              "results/vio/citrusfarm/seq04/orbslam3/run51003"
+            ]
+          },
+          {
+            "cohort": "6e1e80373e08b4c956f0afc13cd5160ef1f47c588cf1539f68bca14e4a3307e3",
+            "attempts": 1,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio/citrusfarm/seq04/orbslam3/run51001"
             ]
           }
         ]
       },
       "flags": [
+        "cohorts",
         "B"
       ]
     },
@@ -20749,8 +20805,8 @@
         "orbslam3",
         "default"
       ],
-      "value": 1.2003519210608642,
-      "annotation": "1.2\nA3/E3/S3/F0\nB",
+      "value": null,
+      "annotation": "no score\nA3/E3/S3/F0\ncohorts,B",
       "summary": {
         "identity": [
           "vio",
@@ -20769,15 +20825,22 @@
           "blocked": 3
         },
         "paper_usable": 0,
-        "claim_limits": [],
+        "claim_limits": [
+          "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
+          "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+          "no_measured_processing_rate_or_realtime_deadline_claim"
+        ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "b1233739bdf55446b80923b1f7dfdb039ebf5202d0bb4f017d85935e311b92d8",
-            "planned_members": 3,
-            "evaluated": 3,
+            "cohort": "03a1da7310c661453108d98d1cd9e4e8eb0f7c83db58b65961fbea516d116cb3",
+            "planned_members": 2,
+            "evaluated": 2,
             "outcomes": {
-              "ok": 3
+              "ok": 2
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -20792,15 +20855,15 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 3,
-              "mean": 11.460376256302478,
-              "median": 1.2003519210608642,
-              "min": 1.1137492117982382,
-              "max": 32.06702763604833,
-              "sample_std": 17.845936115040285
+              "n": 2,
+              "mean": 1.1842108781093448,
+              "median": 1.1842108781093448,
+              "min": 1.1379500845308026,
+              "max": 1.230471671687887,
+              "sample_std": 0.06542264168491654
             },
             "dense_coverage_pct": {
-              "n": 3,
+              "n": 2,
               "mean": 99.75334057298109,
               "median": 99.75334057298109,
               "min": 99.75334057298109,
@@ -20808,14 +20871,54 @@
               "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq07/orbslam3/run10002",
-              "results/vio/citrusfarm/seq07/orbslam3/run10003",
-              "results/vio/citrusfarm/seq07/orbslam3/run10004"
+              "results/vio/citrusfarm/seq07/orbslam3/run51002",
+              "results/vio/citrusfarm/seq07/orbslam3/run51003"
+            ]
+          },
+          {
+            "cohort": "6e1e80373e08b4c956f0afc13cd5160ef1f47c588cf1539f68bca14e4a3307e3",
+            "planned_members": 1,
+            "evaluated": 1,
+            "outcomes": {
+              "ok": 1
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 1,
+              "mean": 1.9522625221552103,
+              "median": 1.9522625221552103,
+              "min": 1.9522625221552103,
+              "max": 1.9522625221552103,
+              "sample_std": null
+            },
+            "dense_coverage_pct": {
+              "n": 1,
+              "mean": 99.75334057298109,
+              "median": 99.75334057298109,
+              "min": 99.75334057298109,
+              "max": 99.75334057298109,
+              "sample_std": null
+            },
+            "run_paths": [
+              "results/vio/citrusfarm/seq07/orbslam3/run51001"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+          "within_cell_source_binary_parameter_or_hardware_mismatch"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
@@ -20835,19 +20938,28 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "b1233739bdf55446b80923b1f7dfdb039ebf5202d0bb4f017d85935e311b92d8",
-            "attempts": 3,
+            "cohort": "03a1da7310c661453108d98d1cd9e4e8eb0f7c83db58b65961fbea516d116cb3",
+            "attempts": 2,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq07/orbslam3/run10002",
-              "results/vio/citrusfarm/seq07/orbslam3/run10003",
-              "results/vio/citrusfarm/seq07/orbslam3/run10004"
+              "results/vio/citrusfarm/seq07/orbslam3/run51002",
+              "results/vio/citrusfarm/seq07/orbslam3/run51003"
+            ]
+          },
+          {
+            "cohort": "6e1e80373e08b4c956f0afc13cd5160ef1f47c588cf1539f68bca14e4a3307e3",
+            "attempts": 1,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio/citrusfarm/seq07/orbslam3/run51001"
             ]
           }
         ]
       },
       "flags": [
+        "cohorts",
         "B"
       ]
     },
@@ -21760,8 +21872,8 @@
         "basalt",
         "default"
       ],
-      "value": 0.7183867121824845,
-      "annotation": "0.718\nA1/E1/S1/F0\nB,M",
+      "value": 0.6877964073759723,
+      "annotation": "0.688\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -21771,30 +21883,30 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "ok": 1
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "b97bfdad8f461c66aeefa35ef4ee9c7e4963c4f9506d96de1fbd099b603b1441",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "f64fd3dcc035d4ccc12b3ab9ddacffc8449c1390c415c3e527f2bc5453194778",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -21809,61 +21921,65 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.7183867121824845,
-              "median": 0.7183867121824845,
-              "min": 0.7183867121824845,
-              "max": 0.7183867121824845,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.687439384457806,
+              "median": 0.6877964073759723,
+              "min": 0.6860363461468362,
+              "max": 0.6884853998506093,
+              "sample_std": 0.0012629588410012535
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 100.0,
               "median": 100.0,
               "min": 100.0,
               "max": 100.0,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq04/basalt/run10001"
+              "results/vio/citrusfarm/seq04/basalt/run50001",
+              "results/vio/citrusfarm/seq04/basalt/run50002",
+              "results/vio/citrusfarm/seq04/basalt/run50003"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "installed_basalt_binary_to_source_revision_not_established",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 1,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "b97bfdad8f461c66aeefa35ef4ee9c7e4963c4f9506d96de1fbd099b603b1441",
-            "attempts": 1,
+            "cohort": "f64fd3dcc035d4ccc12b3ab9ddacffc8449c1390c415c3e527f2bc5453194778",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq04/basalt/run10001"
+              "results/vio/citrusfarm/seq04/basalt/run50001",
+              "results/vio/citrusfarm/seq04/basalt/run50002",
+              "results/vio/citrusfarm/seq04/basalt/run50003"
             ]
           }
         ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -21874,8 +21990,8 @@
         "basalt",
         "default"
       ],
-      "value": 1.7463782199554456,
-      "annotation": "1.75\nA1/E1/S1/F0\nB,M",
+      "value": 0.8270838342419774,
+      "annotation": "0.827\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -21885,30 +22001,30 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "ok": 1
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "111f7551ce149281c7f3f19cffe19363fd5eb59be016795aa3866bdd47d60aa1",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "7672b82b4e29f598fd89596014301d894070c3722c90a9694fa16e2de167c453",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -21923,61 +22039,65 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.7463782199554456,
-              "median": 1.7463782199554456,
-              "min": 1.7463782199554456,
-              "max": 1.7463782199554456,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.8269117371917891,
+              "median": 0.8270838342419774,
+              "min": 0.8265080723313171,
+              "max": 0.8271433050020729,
+              "sample_std": 0.0003508463802172188
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 99.99999997647646,
               "median": 99.99999997647646,
               "min": 99.99999997647646,
               "max": 99.99999997647646,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq07/basalt/run10001"
+              "results/vio/citrusfarm/seq07/basalt/run50001",
+              "results/vio/citrusfarm/seq07/basalt/run50002",
+              "results/vio/citrusfarm/seq07/basalt/run50003"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "installed_basalt_binary_to_source_revision_not_established",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 1,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "111f7551ce149281c7f3f19cffe19363fd5eb59be016795aa3866bdd47d60aa1",
-            "attempts": 1,
+            "cohort": "7672b82b4e29f598fd89596014301d894070c3722c90a9694fa16e2de167c453",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq07/basalt/run10001"
+              "results/vio/citrusfarm/seq07/basalt/run50001",
+              "results/vio/citrusfarm/seq07/basalt/run50002",
+              "results/vio/citrusfarm/seq07/basalt/run50003"
             ]
           }
         ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -22908,8 +23028,8 @@
         "airslam",
         "default"
       ],
-      "value": 7.135584013388839,
-      "annotation": "7.14\nA1/E1/S1/F0\nK,B,M",
+      "value": null,
+      "annotation": "no score\nA3/E3/S0/F3\nK,B",
       "summary": {
         "identity": [
           "vio",
@@ -22919,30 +23039,32 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "ok": 1
+          "scale_collapse": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "retain_observed_scale_collapse_in_attempt_denominator"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "7642d23c5342cea7229c17b4d299677a581d9b97acc6301e79d6751ee15e1981",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "a78a6573b55dea73aab43427dc797ddfcace0a83f899ced9636ffe2f479914bb",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "scale_collapse": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -22957,11 +23079,11 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 7.135584013388839,
-              "median": 7.135584013388839,
-              "min": 7.135584013388839,
-              "max": 7.135584013388839,
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -22973,46 +23095,50 @@
               "sample_std": null
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq04/airslam/run10001"
+              "results/vio/citrusfarm/seq04/airslam/run50001",
+              "results/vio/citrusfarm/seq04/airslam/run50002",
+              "results/vio/citrusfarm/seq04/airslam/run50003"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "keyframe_only_accuracy_not_dense_frame_comparison",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 1,
-        "observed_failure_count": 0,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 0,
+        "observed_failure_count": 3,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "7642d23c5342cea7229c17b4d299677a581d9b97acc6301e79d6751ee15e1981",
-            "attempts": 1,
+            "cohort": "a78a6573b55dea73aab43427dc797ddfcace0a83f899ced9636ffe2f479914bb",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq04/airslam/run10001"
+              "results/vio/citrusfarm/seq04/airslam/run50001",
+              "results/vio/citrusfarm/seq04/airslam/run50002",
+              "results/vio/citrusfarm/seq04/airslam/run50003"
             ]
           }
         ]
       },
       "flags": [
         "K",
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -23023,8 +23149,8 @@
         "airslam",
         "default"
       ],
-      "value": 6.440979717308815,
-      "annotation": "6.44\nA1/E1/S1/F0\nK,B,M",
+      "value": null,
+      "annotation": "no score\nA3/E3/S0/F3\nK,B",
       "summary": {
         "identity": [
           "vio",
@@ -23034,30 +23160,32 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "ok": 1
+          "scale_collapse": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "retain_observed_scale_collapse_in_attempt_denominator"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "7642d23c5342cea7229c17b4d299677a581d9b97acc6301e79d6751ee15e1981",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "a78a6573b55dea73aab43427dc797ddfcace0a83f899ced9636ffe2f479914bb",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "scale_collapse": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -23072,11 +23200,11 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 6.440979717308815,
-              "median": 6.440979717308815,
-              "min": 6.440979717308815,
-              "max": 6.440979717308815,
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -23088,46 +23216,50 @@
               "sample_std": null
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq07/airslam/run10001"
+              "results/vio/citrusfarm/seq07/airslam/run50001",
+              "results/vio/citrusfarm/seq07/airslam/run50002",
+              "results/vio/citrusfarm/seq07/airslam/run50003"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "keyframe_only_accuracy_not_dense_frame_comparison",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 1,
-        "observed_failure_count": 0,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 0,
+        "observed_failure_count": 3,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "7642d23c5342cea7229c17b4d299677a581d9b97acc6301e79d6751ee15e1981",
-            "attempts": 1,
+            "cohort": "a78a6573b55dea73aab43427dc797ddfcace0a83f899ced9636ffe2f479914bb",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq07/airslam/run10001"
+              "results/vio/citrusfarm/seq07/airslam/run50001",
+              "results/vio/citrusfarm/seq07/airslam/run50002",
+              "results/vio/citrusfarm/seq07/airslam/run50003"
             ]
           }
         ]
       },
       "flags": [
         "K",
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -24039,8 +24171,8 @@
         "okvis2",
         "default"
       ],
-      "value": 1.0483205340411779,
-      "annotation": "1.05\nA1/E1/S1/F0\nB,M",
+      "value": 2.537886219604681,
+      "annotation": "2.54\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -24050,30 +24182,30 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "ok": 1
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "d7f927a2462128981daea68e23c7a81be73228c72c2ae4784ef088c5257b4d15",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "4227f7b73e55ef6cb966930b8328474eb44f2437ec32fc07f0a8c8802efe8d44",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -24088,61 +24220,64 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.0483205340411779,
-              "median": 1.0483205340411779,
-              "min": 1.0483205340411779,
-              "max": 1.0483205340411779,
-              "sample_std": null
+              "n": 3,
+              "mean": 2.5002676018725785,
+              "median": 2.537886219604681,
+              "min": 2.367295840116301,
+              "max": 2.595620745896754,
+              "sample_std": 0.11871998968147161
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 100.0,
               "median": 100.0,
               "min": 100.0,
               "max": 100.0,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq04/okvis2/run10001"
+              "results/vio/citrusfarm/seq04/okvis2/run50001",
+              "results/vio/citrusfarm/seq04/okvis2/run50002",
+              "results/vio/citrusfarm/seq04/okvis2/run50003"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 1,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "d7f927a2462128981daea68e23c7a81be73228c72c2ae4784ef088c5257b4d15",
-            "attempts": 1,
+            "cohort": "4227f7b73e55ef6cb966930b8328474eb44f2437ec32fc07f0a8c8802efe8d44",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq04/okvis2/run10001"
+              "results/vio/citrusfarm/seq04/okvis2/run50001",
+              "results/vio/citrusfarm/seq04/okvis2/run50002",
+              "results/vio/citrusfarm/seq04/okvis2/run50003"
             ]
           }
         ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -24153,8 +24288,8 @@
         "okvis2",
         "default"
       ],
-      "value": 1.5265725888561714,
-      "annotation": "1.53\nA1/E1/S1/F0\nB,M",
+      "value": 3.234651663319587,
+      "annotation": "3.23\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -24164,30 +24299,30 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "ok": 1
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "0b7a1c03da4a61226178da67c2a16765840c27bf0b9fcaf40fc08d9f6c05f035",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "e50454a1bfc5b3e0e1a713f99237627468ead58b10abec1d3939ff3bfa0a7f76",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -24202,61 +24337,64 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.5265725888561714,
-              "median": 1.5265725888561714,
-              "min": 1.5265725888561714,
-              "max": 1.5265725888561714,
-              "sample_std": null
+              "n": 3,
+              "mean": 3.2298578869501706,
+              "median": 3.234651663319587,
+              "min": 3.1720142677256704,
+              "max": 3.282907729805254,
+              "sample_std": 0.0556019352352864
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 100.0,
               "median": 100.0,
               "min": 100.0,
               "max": 100.0,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq07/okvis2/run10001"
+              "results/vio/citrusfarm/seq07/okvis2/run50001",
+              "results/vio/citrusfarm/seq07/okvis2/run50002",
+              "results/vio/citrusfarm/seq07/okvis2/run50003"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 1,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "0b7a1c03da4a61226178da67c2a16765840c27bf0b9fcaf40fc08d9f6c05f035",
-            "attempts": 1,
+            "cohort": "e50454a1bfc5b3e0e1a713f99237627468ead58b10abec1d3939ff3bfa0a7f76",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq07/okvis2/run10001"
+              "results/vio/citrusfarm/seq07/okvis2/run50001",
+              "results/vio/citrusfarm/seq07/okvis2/run50002",
+              "results/vio/citrusfarm/seq07/okvis2/run50003"
             ]
           }
         ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -25168,8 +25306,8 @@
         "okvis2x",
         "default"
       ],
-      "value": 1.1386701100512255,
-      "annotation": "1.14\nA1/E1/S1/F0\nB,M",
+      "value": 2.1871212325810023,
+      "annotation": "2.19\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -25179,30 +25317,30 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "ok": 1
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "76a1321c798ab0178138781a0baa655bc9f8ef24aad6cfcc32158cae6f7f65e0",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "b1b4ccb134192a2fbc27e4d39e67050fa44d1ceba336da6c6fe84ac1bb11ae3b",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -25217,61 +25355,64 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.1386701100512255,
-              "median": 1.1386701100512255,
-              "min": 1.1386701100512255,
-              "max": 1.1386701100512255,
-              "sample_std": null
+              "n": 3,
+              "mean": 2.1159272220887795,
+              "median": 2.1871212325810023,
+              "min": 1.9468870534860485,
+              "max": 2.213773380199287,
+              "sample_std": 0.14699836119527468
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 100.0,
               "median": 100.0,
               "min": 100.0,
               "max": 100.0,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq04/okvis2x/run10001"
+              "results/vio/citrusfarm/seq04/okvis2x/run50001",
+              "results/vio/citrusfarm/seq04/okvis2x/run50002",
+              "results/vio/citrusfarm/seq04/okvis2x/run50003"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 1,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "76a1321c798ab0178138781a0baa655bc9f8ef24aad6cfcc32158cae6f7f65e0",
-            "attempts": 1,
+            "cohort": "b1b4ccb134192a2fbc27e4d39e67050fa44d1ceba336da6c6fe84ac1bb11ae3b",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq04/okvis2x/run10001"
+              "results/vio/citrusfarm/seq04/okvis2x/run50001",
+              "results/vio/citrusfarm/seq04/okvis2x/run50002",
+              "results/vio/citrusfarm/seq04/okvis2x/run50003"
             ]
           }
         ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -25282,8 +25423,8 @@
         "okvis2x",
         "default"
       ],
-      "value": 1.7928898444848125,
-      "annotation": "1.79\nA1/E1/S1/F0\nB,M",
+      "value": 2.0611195320195708,
+      "annotation": "2.06\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -25293,30 +25434,30 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "ok": 1
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "c5eb9ea7077e67dd6f8cd4a5018d6d39fd9fa4ce43fb935b747ce2931648bef6",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "e86ae6559b9a1d76e5042fe8e3c03e99ef42b6682737de6a577b8b57fa0bab73",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -25331,61 +25472,64 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.7928898444848125,
-              "median": 1.7928898444848125,
-              "min": 1.7928898444848125,
-              "max": 1.7928898444848125,
-              "sample_std": null
+              "n": 3,
+              "mean": 2.1696785626310007,
+              "median": 2.0611195320195708,
+              "min": 2.0200661648461655,
+              "max": 2.4278499910272657,
+              "sample_std": 0.2245232940458394
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 100.0,
               "median": 100.0,
               "min": 100.0,
               "max": 100.0,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq07/okvis2x/run10001"
+              "results/vio/citrusfarm/seq07/okvis2x/run50001",
+              "results/vio/citrusfarm/seq07/okvis2x/run50002",
+              "results/vio/citrusfarm/seq07/okvis2x/run50003"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 1,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "c5eb9ea7077e67dd6f8cd4a5018d6d39fd9fa4ce43fb935b747ce2931648bef6",
-            "attempts": 1,
+            "cohort": "e86ae6559b9a1d76e5042fe8e3c03e99ef42b6682737de6a577b8b57fa0bab73",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq07/okvis2x/run10001"
+              "results/vio/citrusfarm/seq07/okvis2x/run50001",
+              "results/vio/citrusfarm/seq07/okvis2x/run50002",
+              "results/vio/citrusfarm/seq07/okvis2x/run50003"
             ]
           }
         ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -26313,8 +26457,8 @@
         "openvins",
         "default"
       ],
-      "value": 9.690414754282713,
-      "annotation": "9.69\nA1/E1/S1/F0\nB,M",
+      "value": null,
+      "annotation": "no score\nA3/E3/S3/F0\ncohorts,B",
       "summary": {
         "identity": [
           "vio",
@@ -26324,26 +26468,27 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "ok": 1
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "559dc32bb9f38bede002fb5a2a127af079393c63271183d84c66fef318280f64",
+            "cohort": "15ff6e39fdbb3d766b4a0a9093fac721cb04974075f6cc0964528dec2f519a3c",
             "planned_members": 1,
             "evaluated": 1,
             "outcomes": {
@@ -26363,105 +26508,30 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 9.690414754282713,
-              "median": 9.690414754282713,
-              "min": 9.690414754282713,
-              "max": 9.690414754282713,
+              "mean": 0.8008678157909523,
+              "median": 0.8008678157909523,
+              "min": 0.8008678157909523,
+              "max": 0.8008678157909523,
               "sample_std": null
             },
             "dense_coverage_pct": {
               "n": 1,
-              "mean": 99.14229303924127,
-              "median": 99.14229303924127,
-              "min": 99.14229303924127,
-              "max": 99.14229303924127,
+              "mean": 99.16700595526072,
+              "median": 99.16700595526072,
+              "min": 99.16700595526072,
+              "max": 99.16700595526072,
               "sample_std": null
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq04/openvins/run10001"
+              "results/vio/citrusfarm/seq04/openvins/run50002"
             ]
-          }
-        ],
-        "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
-        ],
-        "protocol_state": "blocked",
-        "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 1,
-        "observed_failure_count": 0,
-        "completed_export_shutdown_error_count": 0,
-        "shutdown_error_count": 0,
-        "unknown_outcome_count": 0,
-        "protocol_verified_attempts": 0,
-        "verified_failure_count": 0,
-        "missing_attempt_count": 2,
-        "protocol_status_counts": {
-          "blocked": 3
-        },
-        "protocol_cohorts": [
+          },
           {
-            "cohort": "559dc32bb9f38bede002fb5a2a127af079393c63271183d84c66fef318280f64",
-            "attempts": 1,
-            "verified_completed": 0,
-            "missing_to_n3": null,
-            "run_paths": [
-              "results/vio/citrusfarm/seq04/openvins/run10001"
-            ]
-          }
-        ]
-      },
-      "flags": [
-        "B",
-        "M"
-      ]
-    },
-    {
-      "identity": [
-        "vio",
-        "citrusfarm",
-        "seq07",
-        "openvins",
-        "default"
-      ],
-      "value": null,
-      "annotation": "no score\nA1/E1/S0/F1\nB,M",
-      "summary": {
-        "identity": [
-          "vio",
-          "citrusfarm",
-          "seq07",
-          "openvins",
-          "default"
-        ],
-        "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
-        "outcomes": {
-          "missing": 2,
-          "scale_collapse": 1
-        },
-        "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
-        },
-        "paper_usable": 0,
-        "claim_limits": [
-          "accuracy_conditional_on_observed_exports_and_reference_support",
-          "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
-        ],
-        "clean_qualified_n3": false,
-        "cohorts": [
-          {
-            "cohort": "559dc32bb9f38bede002fb5a2a127af079393c63271183d84c66fef318280f64",
+            "cohort": "3c57a2b903cb5990ab3192d2ffdc547d2553ffcea79252a0326d2c8f38e6139d",
             "planned_members": 1,
             "evaluated": 1,
             "outcomes": {
-              "scale_collapse": 1
+              "ok": 1
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -26476,6 +26546,35 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
+              "n": 1,
+              "mean": 0.8008691933591898,
+              "median": 0.8008691933591898,
+              "min": 0.8008691933591898,
+              "max": 0.8008691933591898,
+              "sample_std": null
+            },
+            "dense_coverage_pct": {
+              "n": 1,
+              "mean": 99.16700595526072,
+              "median": 99.16700595526072,
+              "min": 99.16700595526072,
+              "max": 99.16700595526072,
+              "sample_std": null
+            },
+            "run_paths": [
+              "results/vio/citrusfarm/seq04/openvins/run50003"
+            ]
+          },
+          {
+            "cohort": "d5c7fa06553b333712cf7f75d67942911981a370e1c81c643aad10a49e543535",
+            "planned_members": 1,
+            "evaluated": 1,
+            "outcomes": {
+              "ok": 1
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
               "n": 0,
               "mean": null,
               "median": null,
@@ -26483,54 +26582,297 @@
               "max": null,
               "sample_std": null
             },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 1,
+              "mean": 0.8008554371354024,
+              "median": 0.8008554371354024,
+              "min": 0.8008554371354024,
+              "max": 0.8008554371354024,
+              "sample_std": null
+            },
             "dense_coverage_pct": {
               "n": 1,
-              "mean": 99.48676883938546,
-              "median": 99.48676883938546,
-              "min": 99.48676883938546,
-              "max": 99.48676883938546,
+              "mean": 99.16700595526072,
+              "median": 99.16700595526072,
+              "min": 99.16700595526072,
+              "max": 99.16700595526072,
               "sample_std": null
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq07/openvins/run10001"
+              "results/vio/citrusfarm/seq04/openvins/run50001"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+          "within_cell_configuration_mismatch",
+          "within_cell_source_binary_parameter_or_hardware_mismatch"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 0,
-        "observed_failure_count": 1,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
+        "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "559dc32bb9f38bede002fb5a2a127af079393c63271183d84c66fef318280f64",
+            "cohort": "15ff6e39fdbb3d766b4a0a9093fac721cb04974075f6cc0964528dec2f519a3c",
             "attempts": 1,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq07/openvins/run10001"
+              "results/vio/citrusfarm/seq04/openvins/run50002"
+            ]
+          },
+          {
+            "cohort": "3c57a2b903cb5990ab3192d2ffdc547d2553ffcea79252a0326d2c8f38e6139d",
+            "attempts": 1,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio/citrusfarm/seq04/openvins/run50003"
+            ]
+          },
+          {
+            "cohort": "d5c7fa06553b333712cf7f75d67942911981a370e1c81c643aad10a49e543535",
+            "attempts": 1,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio/citrusfarm/seq04/openvins/run50001"
             ]
           }
         ]
       },
       "flags": [
-        "B",
-        "M"
+        "cohorts",
+        "B"
+      ]
+    },
+    {
+      "identity": [
+        "vio",
+        "citrusfarm",
+        "seq07",
+        "openvins",
+        "default"
+      ],
+      "value": null,
+      "annotation": "no score\nA3/E3/S3/F0\ncohorts,B",
+      "summary": {
+        "identity": [
+          "vio",
+          "citrusfarm",
+          "seq07",
+          "openvins",
+          "default"
+        ],
+        "planned_slots": 3,
+        "attempted": 3,
+        "evaluated": 3,
+        "outcomes": {
+          "ok": 3
+        },
+        "acceptance": {
+          "blocked": 3
+        },
+        "paper_usable": 0,
+        "claim_limits": [
+          "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
+          "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+          "no_measured_processing_rate_or_realtime_deadline_claim"
+        ],
+        "clean_qualified_n3": false,
+        "cohorts": [
+          {
+            "cohort": "23f2b72c9aaff4ae3c07b837093d508b0e4bdd3d1898b79fde83460726ad884d",
+            "planned_members": 1,
+            "evaluated": 1,
+            "outcomes": {
+              "ok": 1
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 1,
+              "mean": 1.2886401475715494,
+              "median": 1.2886401475715494,
+              "min": 1.2886401475715494,
+              "max": 1.2886401475715494,
+              "sample_std": null
+            },
+            "dense_coverage_pct": {
+              "n": 1,
+              "mean": 99.52632053234085,
+              "median": 99.52632053234085,
+              "min": 99.52632053234085,
+              "max": 99.52632053234085,
+              "sample_std": null
+            },
+            "run_paths": [
+              "results/vio/citrusfarm/seq07/openvins/run50002"
+            ]
+          },
+          {
+            "cohort": "a3ae325aeda51959c9701120d2c284ae8b360d00771e27f767ff2b69ff9da1e3",
+            "planned_members": 1,
+            "evaluated": 1,
+            "outcomes": {
+              "ok": 1
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 1,
+              "mean": 1.288625488580342,
+              "median": 1.288625488580342,
+              "min": 1.288625488580342,
+              "max": 1.288625488580342,
+              "sample_std": null
+            },
+            "dense_coverage_pct": {
+              "n": 1,
+              "mean": 99.52632053234085,
+              "median": 99.52632053234085,
+              "min": 99.52632053234085,
+              "max": 99.52632053234085,
+              "sample_std": null
+            },
+            "run_paths": [
+              "results/vio/citrusfarm/seq07/openvins/run50003"
+            ]
+          },
+          {
+            "cohort": "c83f20523dcdda7f904a4172e6df33b88c9f6d64dc4b1b4cacd20d8163ddc34c",
+            "planned_members": 1,
+            "evaluated": 1,
+            "outcomes": {
+              "ok": 1
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 1,
+              "mean": 1.288627506489698,
+              "median": 1.288627506489698,
+              "min": 1.288627506489698,
+              "max": 1.288627506489698,
+              "sample_std": null
+            },
+            "dense_coverage_pct": {
+              "n": 1,
+              "mean": 99.52632053234085,
+              "median": 99.52632053234085,
+              "min": 99.52632053234085,
+              "max": 99.52632053234085,
+              "sample_std": null
+            },
+            "run_paths": [
+              "results/vio/citrusfarm/seq07/openvins/run50001"
+            ]
+          }
+        ],
+        "scientific_blockers": [
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+          "within_cell_configuration_mismatch",
+          "within_cell_source_binary_parameter_or_hardware_mismatch"
+        ],
+        "protocol_state": "blocked",
+        "protocol_verified_n3": false,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
+        "observed_failure_count": 0,
+        "completed_export_shutdown_error_count": 0,
+        "shutdown_error_count": 0,
+        "unknown_outcome_count": 0,
+        "protocol_verified_attempts": 0,
+        "verified_failure_count": 0,
+        "missing_attempt_count": 0,
+        "protocol_status_counts": {
+          "blocked": 3
+        },
+        "protocol_cohorts": [
+          {
+            "cohort": "23f2b72c9aaff4ae3c07b837093d508b0e4bdd3d1898b79fde83460726ad884d",
+            "attempts": 1,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio/citrusfarm/seq07/openvins/run50002"
+            ]
+          },
+          {
+            "cohort": "a3ae325aeda51959c9701120d2c284ae8b360d00771e27f767ff2b69ff9da1e3",
+            "attempts": 1,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio/citrusfarm/seq07/openvins/run50003"
+            ]
+          },
+          {
+            "cohort": "c83f20523dcdda7f904a4172e6df33b88c9f6d64dc4b1b4cacd20d8163ddc34c",
+            "attempts": 1,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio/citrusfarm/seq07/openvins/run50001"
+            ]
+          }
+        ]
+      },
+      "flags": [
+        "cohorts",
+        "B"
       ]
     },
     {
@@ -27450,8 +27792,8 @@
         "voxel_svio",
         "default"
       ],
-      "value": 1.4279126592627527,
-      "annotation": "1.43\nA1/E1/S1/F0\nB,M",
+      "value": 0.888741295416627,
+      "annotation": "0.889\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -27461,30 +27803,30 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "ok": 1
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "d53e12c09f9d7d8c149d8ec4934db3e1918c03ce5524d47056a060f515024688",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "535807c0500effa720309d8ac0ce0f09c7c05e92099563784b03913d69861f6d",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -27499,61 +27841,64 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.4279126592627527,
-              "median": 1.4279126592627527,
-              "min": 1.4279126592627527,
-              "max": 1.4279126592627527,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.8887411901550322,
+              "median": 0.888741295416627,
+              "min": 0.8887407339536009,
+              "max": 0.8887415410948686,
+              "sample_std": 4.1373815273544347e-07
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 99.23288275053096,
               "median": 99.23288275053096,
               "min": 99.23288275053096,
               "max": 99.23288275053096,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq04/voxel_svio/run10001"
+              "results/vio/citrusfarm/seq04/voxel_svio/run50001",
+              "results/vio/citrusfarm/seq04/voxel_svio/run50002",
+              "results/vio/citrusfarm/seq04/voxel_svio/run50003"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 1,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "d53e12c09f9d7d8c149d8ec4934db3e1918c03ce5524d47056a060f515024688",
-            "attempts": 1,
+            "cohort": "535807c0500effa720309d8ac0ce0f09c7c05e92099563784b03913d69861f6d",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq04/voxel_svio/run10001"
+              "results/vio/citrusfarm/seq04/voxel_svio/run50001",
+              "results/vio/citrusfarm/seq04/voxel_svio/run50002",
+              "results/vio/citrusfarm/seq04/voxel_svio/run50003"
             ]
           }
         ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -27564,8 +27909,8 @@
         "voxel_svio",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA1/E1/S0/F1\nB,M",
+      "value": 1.2335445651090438,
+      "annotation": "1.23\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -27575,30 +27920,30 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "scale_collapse": 1
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "d53e12c09f9d7d8c149d8ec4934db3e1918c03ce5524d47056a060f515024688",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "535807c0500effa720309d8ac0ce0f09c7c05e92099563784b03913d69861f6d",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "scale_collapse": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -27613,61 +27958,64 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 1.233500508882709,
+              "median": 1.2335445651090438,
+              "min": 1.1961942547590965,
+              "max": 1.2707627067799865,
+              "sample_std": 0.037284245532278826
             },
             "dense_coverage_pct": {
-              "n": 1,
-              "mean": 99.54615845746038,
-              "median": 99.54615845746038,
-              "min": 99.54615845746038,
-              "max": 99.54615845746038,
-              "sample_std": null
+              "n": 3,
+              "mean": 99.56589400810122,
+              "median": 99.56589400810122,
+              "min": 99.56589400810122,
+              "max": 99.56589400810122,
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq07/voxel_svio/run10001"
+              "results/vio/citrusfarm/seq07/voxel_svio/run50001",
+              "results/vio/citrusfarm/seq07/voxel_svio/run50002",
+              "results/vio/citrusfarm/seq07/voxel_svio/run50003"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 0,
-        "observed_failure_count": 1,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
+        "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "d53e12c09f9d7d8c149d8ec4934db3e1918c03ce5524d47056a060f515024688",
-            "attempts": 1,
+            "cohort": "535807c0500effa720309d8ac0ce0f09c7c05e92099563784b03913d69861f6d",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq07/voxel_svio/run10001"
+              "results/vio/citrusfarm/seq07/voxel_svio/run50001",
+              "results/vio/citrusfarm/seq07/voxel_svio/run50002",
+              "results/vio/citrusfarm/seq07/voxel_svio/run50003"
             ]
           }
         ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -28590,8 +28938,8 @@
         "cuvslam",
         "default"
       ],
-      "value": 1.5843540154853426,
-      "annotation": "1.58\nA1/E1/S1/F0\nB,M",
+      "value": 4.150745852108556,
+      "annotation": "4.15\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -28601,30 +28949,30 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "ok": 1
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "b13f31ae01c7f00992dad0943052b429918e03774c3445e9cc10bb0e7f02bd56",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "a74a6208af58ad5e3738d69b7846e78739ba514f196f4b8c448d4c75efe0019e",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -28639,61 +28987,64 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.5843540154853426,
-              "median": 1.5843540154853426,
-              "min": 1.5843540154853426,
-              "max": 1.5843540154853426,
-              "sample_std": null
+              "n": 3,
+              "mean": 4.082106536236758,
+              "median": 4.150745852108556,
+              "min": 3.9448279044931627,
+              "max": 4.150745852108556,
+              "sample_std": 0.1188867824867225
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 100.0,
               "median": 100.0,
               "min": 100.0,
               "max": 100.0,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq04/cuvslam/run10001"
+              "results/vio/citrusfarm/seq04/cuvslam/run50001",
+              "results/vio/citrusfarm/seq04/cuvslam/run50002",
+              "results/vio/citrusfarm/seq04/cuvslam/run50003"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 1,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "b13f31ae01c7f00992dad0943052b429918e03774c3445e9cc10bb0e7f02bd56",
-            "attempts": 1,
+            "cohort": "a74a6208af58ad5e3738d69b7846e78739ba514f196f4b8c448d4c75efe0019e",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq04/cuvslam/run10001"
+              "results/vio/citrusfarm/seq04/cuvslam/run50001",
+              "results/vio/citrusfarm/seq04/cuvslam/run50002",
+              "results/vio/citrusfarm/seq04/cuvslam/run50003"
             ]
           }
         ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -28704,8 +29055,8 @@
         "cuvslam",
         "default"
       ],
-      "value": 6.314223890246283,
-      "annotation": "6.31\nA1/E1/S1/F0\nB,M",
+      "value": 9.029213820712092,
+      "annotation": "9.03\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -28715,30 +29066,30 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "ok": 1
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "ed05a78ea376ea0769db90b9f9f297c67ac0dd07f605441dff273841433138fc",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "4c129ea84e0867c5843eeb36f8493acc951d3284f48b465abe55ef4d595d5433",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -28753,61 +29104,64 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 6.314223890246283,
-              "median": 6.314223890246283,
-              "min": 6.314223890246283,
-              "max": 6.314223890246283,
-              "sample_std": null
+              "n": 3,
+              "mean": 9.106081246933309,
+              "median": 9.029213820712092,
+              "min": 9.029213820712092,
+              "max": 9.259816099375742,
+              "sample_std": 0.13313828766219923
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 100.0,
               "median": 100.0,
               "min": 100.0,
               "max": 100.0,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq07/cuvslam/run10001"
+              "results/vio/citrusfarm/seq07/cuvslam/run50001",
+              "results/vio/citrusfarm/seq07/cuvslam/run50002",
+              "results/vio/citrusfarm/seq07/cuvslam/run50003"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 1,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "ed05a78ea376ea0769db90b9f9f297c67ac0dd07f605441dff273841433138fc",
-            "attempts": 1,
+            "cohort": "4c129ea84e0867c5843eeb36f8493acc951d3284f48b465abe55ef4d595d5433",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq07/cuvslam/run10001"
+              "results/vio/citrusfarm/seq07/cuvslam/run50001",
+              "results/vio/citrusfarm/seq07/cuvslam/run50002",
+              "results/vio/citrusfarm/seq07/cuvslam/run50003"
             ]
           }
         ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -29742,8 +30096,8 @@
         "svo_pro",
         "default"
       ],
-      "value": 0.6860912990392807,
-      "annotation": "0.686\nA1/E1/S1/F0\nB,M",
+      "value": 0.6281284529521137,
+      "annotation": "0.628\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -29753,30 +30107,31 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "ok": 1
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "authors_export_starts_after_keyframe_window_fills",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "4718830fad1fb0e39b8f6a3df4f5bb65e1131cea4c5835509c462f1078b290f7",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "059fcc8108c51b1ab4fb7de33cb751a1553ec702682deae8572638225ff68d68",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -29791,61 +30146,64 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.6860912990392807,
-              "median": 0.6860912990392807,
-              "min": 0.6860912990392807,
-              "max": 0.6860912990392807,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.6446384995201575,
+              "median": 0.6281284529521137,
+              "min": 0.6208947386454682,
+              "max": 0.6848923069628905,
+              "sample_std": 0.035047944531669956
             },
             "dense_coverage_pct": {
-              "n": 1,
-              "mean": 98.99883708481573,
-              "median": 98.99883708481573,
-              "min": 98.99883708481573,
-              "max": 98.99883708481573,
-              "sample_std": null
+              "n": 3,
+              "mean": 98.98583825057608,
+              "median": 98.98583825057608,
+              "min": 98.98583825057608,
+              "max": 98.98583825057608,
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq04/svo_pro/run10001"
+              "results/vio/citrusfarm/seq04/svo_pro/run50001",
+              "results/vio/citrusfarm/seq04/svo_pro/run50002",
+              "results/vio/citrusfarm/seq04/svo_pro/run50003"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 1,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "4718830fad1fb0e39b8f6a3df4f5bb65e1131cea4c5835509c462f1078b290f7",
-            "attempts": 1,
+            "cohort": "059fcc8108c51b1ab4fb7de33cb751a1553ec702682deae8572638225ff68d68",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq04/svo_pro/run10001"
+              "results/vio/citrusfarm/seq04/svo_pro/run50001",
+              "results/vio/citrusfarm/seq04/svo_pro/run50002",
+              "results/vio/citrusfarm/seq04/svo_pro/run50003"
             ]
           }
         ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -29856,8 +30214,8 @@
         "svo_pro",
         "default"
       ],
-      "value": 5.316909380332401,
-      "annotation": "5.32\nA1/E1/S1/F0\nB,M",
+      "value": 1.4401931324808646,
+      "annotation": "1.44\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -29867,30 +30225,31 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "ok": 1
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "authors_export_starts_after_keyframe_window_fills",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "2a230d7a906bbe8424028e24c33cfd21383299a6b2d6f99d15947740879a32cd",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "ea73a87461c54a27d3459845e27ccdc5d0a1ec836c797c5904214cf610ff86c5",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -29905,61 +30264,64 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 5.316909380332401,
-              "median": 5.316909380332401,
-              "min": 5.316909380332401,
-              "max": 5.316909380332401,
-              "sample_std": null
+              "n": 3,
+              "mean": 1.4092559207352424,
+              "median": 1.4401931324808646,
+              "min": 1.2979433777881044,
+              "max": 1.4896312519367583,
+              "sample_std": 0.0995183077471308
             },
             "dense_coverage_pct": {
-              "n": 1,
-              "mean": 99.4672277343882,
-              "median": 99.4672277343882,
-              "min": 99.4672277343882,
-              "max": 99.4672277343882,
-              "sample_std": null
+              "n": 3,
+              "mean": 99.23044379841329,
+              "median": 99.23044379841329,
+              "min": 99.23044379841329,
+              "max": 99.23044379841329,
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq07/svo_pro/run10001"
+              "results/vio/citrusfarm/seq07/svo_pro/run50001",
+              "results/vio/citrusfarm/seq07/svo_pro/run50002",
+              "results/vio/citrusfarm/seq07/svo_pro/run50003"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 1,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "2a230d7a906bbe8424028e24c33cfd21383299a6b2d6f99d15947740879a32cd",
-            "attempts": 1,
+            "cohort": "ea73a87461c54a27d3459845e27ccdc5d0a1ec836c797c5904214cf610ff86c5",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq07/svo_pro/run10001"
+              "results/vio/citrusfarm/seq07/svo_pro/run50001",
+              "results/vio/citrusfarm/seq07/svo_pro/run50002",
+              "results/vio/citrusfarm/seq07/svo_pro/run50003"
             ]
           }
         ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -30890,8 +31252,8 @@
         "mast3r_fusion",
         "default"
       ],
-      "value": 21.764935386351972,
-      "annotation": "21.8\nA1/E1/S1/F0\nB,M",
+      "value": 9.810647336040057,
+      "annotation": "9.81\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -30901,30 +31263,31 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "ok": 1
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "single_camera_with_imu_scale_from_imu_and_learned_depth"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "142ea1bb52b3c7afba89a45d8821eea07f9714de3cd86a590f066afd7e8dca2e",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "7f361867c8eeeb66a959998c3c7aa41c55538839b6d04d7ecc81f6ad752089a5",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -30939,61 +31302,64 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 21.764935386351972,
-              "median": 21.764935386351972,
-              "min": 21.764935386351972,
-              "max": 21.764935386351972,
-              "sample_std": null
+              "n": 3,
+              "mean": 9.810647336040057,
+              "median": 9.810647336040057,
+              "min": 9.810647336040057,
+              "max": 9.810647336040057,
+              "sample_std": 0.0
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 99.98698997486086,
               "median": 99.98698997486086,
               "min": 99.98698997486086,
               "max": 99.98698997486086,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq04/mast3r_fusion/run10001"
+              "results/vio/citrusfarm/seq04/mast3r_fusion/run50001",
+              "results/vio/citrusfarm/seq04/mast3r_fusion/run50002",
+              "results/vio/citrusfarm/seq04/mast3r_fusion/run50003"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 1,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "142ea1bb52b3c7afba89a45d8821eea07f9714de3cd86a590f066afd7e8dca2e",
-            "attempts": 1,
+            "cohort": "7f361867c8eeeb66a959998c3c7aa41c55538839b6d04d7ecc81f6ad752089a5",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq04/mast3r_fusion/run10001"
+              "results/vio/citrusfarm/seq04/mast3r_fusion/run50001",
+              "results/vio/citrusfarm/seq04/mast3r_fusion/run50002",
+              "results/vio/citrusfarm/seq04/mast3r_fusion/run50003"
             ]
           }
         ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -31004,8 +31370,8 @@
         "mast3r_fusion",
         "default"
       ],
-      "value": 28.668467542992797,
-      "annotation": "28.7\nA1/E1/S1/F0\nB,M",
+      "value": 13.733710998622819,
+      "annotation": "13.7\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -31015,30 +31381,31 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
-        "evaluated": 1,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 2,
-          "ok": 1
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "single_camera_with_imu_scale_from_imu_and_learned_depth"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "142ea1bb52b3c7afba89a45d8821eea07f9714de3cd86a590f066afd7e8dca2e",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "7f361867c8eeeb66a959998c3c7aa41c55538839b6d04d7ecc81f6ad752089a5",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -31053,61 +31420,64 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 28.668467542992797,
-              "median": 28.668467542992797,
-              "min": 28.668467542992797,
-              "max": 28.668467542992797,
-              "sample_std": null
+              "n": 3,
+              "mean": 13.733710998622819,
+              "median": 13.733710998622819,
+              "min": 13.733710998622819,
+              "max": 13.733710998622819,
+              "sample_std": 0.0
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 99.99013281276827,
               "median": 99.99013281276827,
               "min": 99.99013281276827,
               "max": 99.99013281276827,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/citrusfarm/seq07/mast3r_fusion/run10001"
+              "results/vio/citrusfarm/seq07/mast3r_fusion/run50001",
+              "results/vio/citrusfarm/seq07/mast3r_fusion/run50002",
+              "results/vio/citrusfarm/seq07/mast3r_fusion/run50003"
             ]
           }
         ],
         "scientific_blockers": [
-          "confirmed_estimator_defect_prevents_acceptance",
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
-        "completed_attempt_count": 1,
-        "evaluated_trajectory_count": 1,
-        "successful_run_count": 1,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "142ea1bb52b3c7afba89a45d8821eea07f9714de3cd86a590f066afd7e8dca2e",
-            "attempts": 1,
+            "cohort": "7f361867c8eeeb66a959998c3c7aa41c55538839b6d04d7ecc81f6ad752089a5",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/citrusfarm/seq07/mast3r_fusion/run10001"
+              "results/vio/citrusfarm/seq07/mast3r_fusion/run50001",
+              "results/vio/citrusfarm/seq07/mast3r_fusion/run50002",
+              "results/vio/citrusfarm/seq07/mast3r_fusion/run50003"
             ]
           }
         ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -32056,7 +32426,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA0/E0/S0/F0\nB,M",
+      "annotation": "no score\nA3/E3/S3/F0\ncohorts,B",
       "summary": {
         "identity": [
           "vio-lc",
@@ -32066,46 +32436,151 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 0,
-        "evaluated": 0,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 3
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 3
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
-        "cohorts": [],
+        "cohorts": [
+          {
+            "cohort": "7d740008213ddc5d773436192ad71f4c7156164fac2afd7e7b7296e40f70e768",
+            "planned_members": 1,
+            "evaluated": 1,
+            "outcomes": {
+              "ok": 1
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 1,
+              "mean": 0.4516851321618623,
+              "median": 0.4516851321618623,
+              "min": 0.4516851321618623,
+              "max": 0.4516851321618623,
+              "sample_std": null
+            },
+            "dense_coverage_pct": {
+              "n": 1,
+              "mean": 99.51893196813106,
+              "median": 99.51893196813106,
+              "min": 99.51893196813106,
+              "max": 99.51893196813106,
+              "sample_std": null
+            },
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq04/orbslam3/run51001"
+            ]
+          },
+          {
+            "cohort": "86def1e8df9c0989c0eaabfef5c5cbece4c132237816a17333459389e461a786",
+            "planned_members": 2,
+            "evaluated": 2,
+            "outcomes": {
+              "ok": 2
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 2,
+              "mean": 0.5573412425403043,
+              "median": 0.5573412425403043,
+              "min": 0.4454061840324909,
+              "max": 0.6692763010481176,
+              "sample_std": 0.15830007784677558
+            },
+            "dense_coverage_pct": {
+              "n": 2,
+              "mean": 99.51893196813106,
+              "median": 99.51893196813106,
+              "min": 99.51893196813106,
+              "max": 99.51893196813106,
+              "sample_std": 0.0
+            },
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq04/orbslam3/run51002",
+              "results/vio-lc/citrusfarm/seq04/orbslam3/run51003"
+            ]
+          }
+        ],
         "scientific_blockers": [
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+          "within_cell_source_binary_parameter_or_hardware_mismatch"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 0,
-        "completed_attempt_count": 0,
-        "evaluated_trajectory_count": 0,
-        "successful_run_count": 0,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 3,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
-        "protocol_cohorts": []
+        "protocol_cohorts": [
+          {
+            "cohort": "7d740008213ddc5d773436192ad71f4c7156164fac2afd7e7b7296e40f70e768",
+            "attempts": 1,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq04/orbslam3/run51001"
+            ]
+          },
+          {
+            "cohort": "86def1e8df9c0989c0eaabfef5c5cbece4c132237816a17333459389e461a786",
+            "attempts": 2,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq04/orbslam3/run51002",
+              "results/vio-lc/citrusfarm/seq04/orbslam3/run51003"
+            ]
+          }
+        ]
       },
       "flags": [
-        "B",
-        "M"
+        "cohorts",
+        "B"
       ]
     },
     {
@@ -32117,7 +32592,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA0/E0/S0/F0\nB,M",
+      "annotation": "no score\nA3/E3/S3/F0\ncohorts,B",
       "summary": {
         "identity": [
           "vio-lc",
@@ -32127,46 +32602,151 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 0,
-        "evaluated": 0,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 3
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 3
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
-        "cohorts": [],
+        "cohorts": [
+          {
+            "cohort": "7d740008213ddc5d773436192ad71f4c7156164fac2afd7e7b7296e40f70e768",
+            "planned_members": 1,
+            "evaluated": 1,
+            "outcomes": {
+              "ok": 1
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 1,
+              "mean": 0.9030968087351606,
+              "median": 0.9030968087351606,
+              "min": 0.9030968087351606,
+              "max": 0.9030968087351606,
+              "sample_std": null
+            },
+            "dense_coverage_pct": {
+              "n": 1,
+              "mean": 99.75334057298109,
+              "median": 99.75334057298109,
+              "min": 99.75334057298109,
+              "max": 99.75334057298109,
+              "sample_std": null
+            },
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq07/orbslam3/run51001"
+            ]
+          },
+          {
+            "cohort": "86def1e8df9c0989c0eaabfef5c5cbece4c132237816a17333459389e461a786",
+            "planned_members": 2,
+            "evaluated": 2,
+            "outcomes": {
+              "ok": 2
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 2,
+              "mean": 0.8572280433597574,
+              "median": 0.8572280433597574,
+              "min": 0.8474748925335066,
+              "max": 0.8669811941860083,
+              "sample_std": 0.013793038174354287
+            },
+            "dense_coverage_pct": {
+              "n": 2,
+              "mean": 99.75334057298109,
+              "median": 99.75334057298109,
+              "min": 99.75334057298109,
+              "max": 99.75334057298109,
+              "sample_std": 0.0
+            },
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq07/orbslam3/run51002",
+              "results/vio-lc/citrusfarm/seq07/orbslam3/run51003"
+            ]
+          }
+        ],
         "scientific_blockers": [
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+          "within_cell_source_binary_parameter_or_hardware_mismatch"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 0,
-        "completed_attempt_count": 0,
-        "evaluated_trajectory_count": 0,
-        "successful_run_count": 0,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 3,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
-        "protocol_cohorts": []
+        "protocol_cohorts": [
+          {
+            "cohort": "7d740008213ddc5d773436192ad71f4c7156164fac2afd7e7b7296e40f70e768",
+            "attempts": 1,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq07/orbslam3/run51001"
+            ]
+          },
+          {
+            "cohort": "86def1e8df9c0989c0eaabfef5c5cbece4c132237816a17333459389e461a786",
+            "attempts": 2,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq07/orbslam3/run51002",
+              "results/vio-lc/citrusfarm/seq07/orbslam3/run51003"
+            ]
+          }
+        ]
       },
       "flags": [
-        "B",
-        "M"
+        "cohorts",
+        "B"
       ]
     },
     {
@@ -33121,7 +33701,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA0/E0/S0/F0\nB,M",
+      "annotation": "no score\nA3/E3/S0/F3\nK,B",
       "summary": {
         "identity": [
           "vio-lc",
@@ -33131,46 +33711,106 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 0,
-        "evaluated": 0,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 3
+          "scale_collapse": 3
         },
         "acceptance": {
-          "not_executed": 3
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "retain_observed_scale_collapse_in_attempt_denominator"
         ],
         "clean_qualified_n3": false,
-        "cohorts": [],
+        "cohorts": [
+          {
+            "cohort": "4714786d229711df31a1ed17a3b65214ec144445ba7134458911a39b820c70ab",
+            "planned_members": 3,
+            "evaluated": 3,
+            "outcomes": {
+              "scale_collapse": 3
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "dense_coverage_pct": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq04/airslam/run50002",
+              "results/vio-lc/citrusfarm/seq04/airslam/run50201",
+              "results/vio-lc/citrusfarm/seq04/airslam/run50203"
+            ]
+          }
+        ],
         "scientific_blockers": [
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "keyframe_only_accuracy_not_dense_frame_comparison",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 0,
-        "completed_attempt_count": 0,
-        "evaluated_trajectory_count": 0,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
         "successful_run_count": 0,
-        "observed_failure_count": 0,
+        "observed_failure_count": 3,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 3,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
-        "protocol_cohorts": []
+        "protocol_cohorts": [
+          {
+            "cohort": "4714786d229711df31a1ed17a3b65214ec144445ba7134458911a39b820c70ab",
+            "attempts": 3,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq04/airslam/run50002",
+              "results/vio-lc/citrusfarm/seq04/airslam/run50201",
+              "results/vio-lc/citrusfarm/seq04/airslam/run50203"
+            ]
+          }
+        ]
       },
       "flags": [
-        "B",
-        "M"
+        "K",
+        "B"
       ]
     },
     {
@@ -33182,7 +33822,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA0/E0/S0/F0\nB,M",
+      "annotation": "no score\nA3/E0/S0/F3\nX,B",
       "summary": {
         "identity": [
           "vio-lc",
@@ -33192,46 +33832,105 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 0,
+        "attempted": 3,
         "evaluated": 0,
         "outcomes": {
-          "missing": 3
+          "failed_without_trajectory": 3
         },
         "acceptance": {
-          "not_executed": 3
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
-        "cohorts": [],
+        "cohorts": [
+          {
+            "cohort": "4714786d229711df31a1ed17a3b65214ec144445ba7134458911a39b820c70ab",
+            "planned_members": 3,
+            "evaluated": 0,
+            "outcomes": {
+              "failed_without_trajectory": 3
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 3,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "dense_coverage_pct": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq07/airslam/run50201",
+              "results/vio-lc/citrusfarm/seq07/airslam/run50202",
+              "results/vio-lc/citrusfarm/seq07/airslam/run50203"
+            ]
+          }
+        ],
         "scientific_blockers": [
-          "missing_repetition"
+          "keyframe_only_accuracy_not_dense_frame_comparison",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+          "no_evaluated_saved_trajectory_retain_execution_evidence"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 0,
-        "completed_attempt_count": 0,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
         "evaluated_trajectory_count": 0,
         "successful_run_count": 0,
-        "observed_failure_count": 0,
+        "observed_failure_count": 3,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 3,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
-        "protocol_cohorts": []
+        "protocol_cohorts": [
+          {
+            "cohort": "4714786d229711df31a1ed17a3b65214ec144445ba7134458911a39b820c70ab",
+            "attempts": 3,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq07/airslam/run50201",
+              "results/vio-lc/citrusfarm/seq07/airslam/run50202",
+              "results/vio-lc/citrusfarm/seq07/airslam/run50203"
+            ]
+          }
+        ]
       },
       "flags": [
-        "B",
-        "M"
+        "X",
+        "B"
       ]
     },
     {
@@ -34147,8 +34846,8 @@
         "okvis2",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA0/E0/S0/F0\nB,M",
+      "value": 0.18259415435807277,
+      "annotation": "0.183\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio-lc",
@@ -34158,46 +34857,103 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 0,
-        "evaluated": 0,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 3
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 3
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "final_ba_disabled",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
-        "cohorts": [],
+        "cohorts": [
+          {
+            "cohort": "1b7069e0bd520dff12c4e82c8beaadf46cad658eadf19821e98b2fa64dd56ebf",
+            "planned_members": 3,
+            "evaluated": 3,
+            "outcomes": {
+              "ok": 3
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 3,
+              "mean": 0.2046167588147018,
+              "median": 0.18259415435807277,
+              "min": 0.17509572042316532,
+              "max": 0.25616040166286724,
+              "sample_std": 0.04479527839419543
+            },
+            "dense_coverage_pct": {
+              "n": 3,
+              "mean": 99.97400763247306,
+              "median": 99.97400763247306,
+              "min": 99.97400763247306,
+              "max": 99.97400763247306,
+              "sample_std": 0.0
+            },
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq04/okvis2/run50001",
+              "results/vio-lc/citrusfarm/seq04/okvis2/run50002",
+              "results/vio-lc/citrusfarm/seq04/okvis2/run50003"
+            ]
+          }
+        ],
         "scientific_blockers": [
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 0,
-        "completed_attempt_count": 0,
-        "evaluated_trajectory_count": 0,
-        "successful_run_count": 0,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 3,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
-        "protocol_cohorts": []
+        "protocol_cohorts": [
+          {
+            "cohort": "1b7069e0bd520dff12c4e82c8beaadf46cad658eadf19821e98b2fa64dd56ebf",
+            "attempts": 3,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq04/okvis2/run50001",
+              "results/vio-lc/citrusfarm/seq04/okvis2/run50002",
+              "results/vio-lc/citrusfarm/seq04/okvis2/run50003"
+            ]
+          }
+        ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -34208,8 +34964,8 @@
         "okvis2",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA0/E0/S0/F0\nB,M",
+      "value": 1.9830757892875528,
+      "annotation": "1.98\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio-lc",
@@ -34219,46 +34975,103 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 0,
-        "evaluated": 0,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 3
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 3
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "final_ba_disabled",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
-        "cohorts": [],
+        "cohorts": [
+          {
+            "cohort": "91c4a43e6f654fde0fc4441f42325332e80da3d79b3e102ea158ed7585569281",
+            "planned_members": 3,
+            "evaluated": 3,
+            "outcomes": {
+              "ok": 3
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 3,
+              "mean": 2.35473433747095,
+              "median": 1.9830757892875528,
+              "min": 1.9255935589153481,
+              "max": 3.1555336642099494,
+              "sample_std": 0.694107861201245
+            },
+            "dense_coverage_pct": {
+              "n": 3,
+              "mean": 99.98023189276942,
+              "median": 99.98023189276942,
+              "min": 99.98023189276942,
+              "max": 99.98023189276942,
+              "sample_std": 0.0
+            },
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq07/okvis2/run50001",
+              "results/vio-lc/citrusfarm/seq07/okvis2/run50002",
+              "results/vio-lc/citrusfarm/seq07/okvis2/run50003"
+            ]
+          }
+        ],
         "scientific_blockers": [
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 0,
-        "completed_attempt_count": 0,
-        "evaluated_trajectory_count": 0,
-        "successful_run_count": 0,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 3,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
-        "protocol_cohorts": []
+        "protocol_cohorts": [
+          {
+            "cohort": "91c4a43e6f654fde0fc4441f42325332e80da3d79b3e102ea158ed7585569281",
+            "attempts": 3,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq07/okvis2/run50001",
+              "results/vio-lc/citrusfarm/seq07/okvis2/run50002",
+              "results/vio-lc/citrusfarm/seq07/okvis2/run50003"
+            ]
+          }
+        ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -35174,8 +35987,8 @@
         "okvis2x",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA0/E0/S0/F0\nB,M",
+      "value": 0.2539295930622703,
+      "annotation": "0.254\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio-lc",
@@ -35185,46 +35998,103 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 0,
-        "evaluated": 0,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 3
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 3
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "final_ba_enabled_with_extrinsic_optimization",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
-        "cohorts": [],
+        "cohorts": [
+          {
+            "cohort": "b1aaaa723bab94d24295cdd03b2c93e5d91d78697ddfe429dda5123f070f0361",
+            "planned_members": 3,
+            "evaluated": 3,
+            "outcomes": {
+              "ok": 3
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 3,
+              "mean": 0.2522186129184459,
+              "median": 0.2539295930622703,
+              "min": 0.23694500490298648,
+              "max": 0.2657812407900809,
+              "sample_std": 0.014494057914313001
+            },
+            "dense_coverage_pct": {
+              "n": 3,
+              "mean": 100.0,
+              "median": 100.0,
+              "min": 100.0,
+              "max": 100.0,
+              "sample_std": 0.0
+            },
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq04/okvis2x/run50001",
+              "results/vio-lc/citrusfarm/seq04/okvis2x/run50002",
+              "results/vio-lc/citrusfarm/seq04/okvis2x/run50003"
+            ]
+          }
+        ],
         "scientific_blockers": [
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 0,
-        "completed_attempt_count": 0,
-        "evaluated_trajectory_count": 0,
-        "successful_run_count": 0,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 3,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
-        "protocol_cohorts": []
+        "protocol_cohorts": [
+          {
+            "cohort": "b1aaaa723bab94d24295cdd03b2c93e5d91d78697ddfe429dda5123f070f0361",
+            "attempts": 3,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq04/okvis2x/run50001",
+              "results/vio-lc/citrusfarm/seq04/okvis2x/run50002",
+              "results/vio-lc/citrusfarm/seq04/okvis2x/run50003"
+            ]
+          }
+        ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -35235,8 +36105,8 @@
         "okvis2x",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA0/E0/S0/F0\nB,M",
+      "value": 0.9530607478312831,
+      "annotation": "0.953\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio-lc",
@@ -35246,46 +36116,103 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 0,
-        "evaluated": 0,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 3
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 3
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "final_ba_enabled_with_extrinsic_optimization",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
-        "cohorts": [],
+        "cohorts": [
+          {
+            "cohort": "f490efc495c0dc1311f8e7d279b4bea4a825da704adbeae5667d897d855acfef",
+            "planned_members": 3,
+            "evaluated": 3,
+            "outcomes": {
+              "ok": 3
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 3,
+              "mean": 0.9718081583531424,
+              "median": 0.9530607478312831,
+              "min": 0.8965476523013495,
+              "max": 1.0658160749267944,
+              "sample_std": 0.08617742613633166
+            },
+            "dense_coverage_pct": {
+              "n": 3,
+              "mean": 100.0,
+              "median": 100.0,
+              "min": 100.0,
+              "max": 100.0,
+              "sample_std": 0.0
+            },
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq07/okvis2x/run50001",
+              "results/vio-lc/citrusfarm/seq07/okvis2x/run50002",
+              "results/vio-lc/citrusfarm/seq07/okvis2x/run50003"
+            ]
+          }
+        ],
         "scientific_blockers": [
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 0,
-        "completed_attempt_count": 0,
-        "evaluated_trajectory_count": 0,
-        "successful_run_count": 0,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 3,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
-        "protocol_cohorts": []
+        "protocol_cohorts": [
+          {
+            "cohort": "f490efc495c0dc1311f8e7d279b4bea4a825da704adbeae5667d897d855acfef",
+            "attempts": 3,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq07/okvis2x/run50001",
+              "results/vio-lc/citrusfarm/seq07/okvis2x/run50002",
+              "results/vio-lc/citrusfarm/seq07/okvis2x/run50003"
+            ]
+          }
+        ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -35892,8 +36819,8 @@
         "cuvslam",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA0/E0/S0/F0\nB,M",
+      "value": 0.7299921154285024,
+      "annotation": "0.73\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio-lc",
@@ -35903,46 +36830,102 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 0,
-        "evaluated": 0,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 3
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 3
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
-        "cohorts": [],
+        "cohorts": [
+          {
+            "cohort": "b17c743e83cbef81ed1e24dc746bed67081b56b87d8a65857a6035316686f1a2",
+            "planned_members": 3,
+            "evaluated": 3,
+            "outcomes": {
+              "ok": 3
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 3,
+              "mean": 1.0247482848105218,
+              "median": 0.7299921154285024,
+              "min": 0.7299921154285024,
+              "max": 1.614260623574561,
+              "sample_std": 0.5105326612140356
+            },
+            "dense_coverage_pct": {
+              "n": 3,
+              "mean": 100.0,
+              "median": 100.0,
+              "min": 100.0,
+              "max": 100.0,
+              "sample_std": 0.0
+            },
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq04/cuvslam/run50001",
+              "results/vio-lc/citrusfarm/seq04/cuvslam/run50002",
+              "results/vio-lc/citrusfarm/seq04/cuvslam/run50003"
+            ]
+          }
+        ],
         "scientific_blockers": [
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 0,
-        "completed_attempt_count": 0,
-        "evaluated_trajectory_count": 0,
-        "successful_run_count": 0,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 3,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
-        "protocol_cohorts": []
+        "protocol_cohorts": [
+          {
+            "cohort": "b17c743e83cbef81ed1e24dc746bed67081b56b87d8a65857a6035316686f1a2",
+            "attempts": 3,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq04/cuvslam/run50001",
+              "results/vio-lc/citrusfarm/seq04/cuvslam/run50002",
+              "results/vio-lc/citrusfarm/seq04/cuvslam/run50003"
+            ]
+          }
+        ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -35953,8 +36936,8 @@
         "cuvslam",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA0/E0/S0/F0\nB,M",
+      "value": 9.242868237271919,
+      "annotation": "9.24\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio-lc",
@@ -35964,46 +36947,102 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 0,
-        "evaluated": 0,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 3
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 3
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
-        "cohorts": [],
+        "cohorts": [
+          {
+            "cohort": "af113b3e77a3dffe0db72fe07e7e7772f62cf80477477a407a80dd3cf71b7c09",
+            "planned_members": 3,
+            "evaluated": 3,
+            "outcomes": {
+              "ok": 3
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 3,
+              "mean": 9.208300737253094,
+              "median": 9.242868237271919,
+              "min": 9.139165737215444,
+              "max": 9.242868237271919,
+              "sample_std": 0.05987266632324281
+            },
+            "dense_coverage_pct": {
+              "n": 3,
+              "mean": 100.0,
+              "median": 100.0,
+              "min": 100.0,
+              "max": 100.0,
+              "sample_std": 0.0
+            },
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq07/cuvslam/run50001",
+              "results/vio-lc/citrusfarm/seq07/cuvslam/run50002",
+              "results/vio-lc/citrusfarm/seq07/cuvslam/run50003"
+            ]
+          }
+        ],
         "scientific_blockers": [
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 0,
-        "completed_attempt_count": 0,
-        "evaluated_trajectory_count": 0,
-        "successful_run_count": 0,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 3,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
-        "protocol_cohorts": []
+        "protocol_cohorts": [
+          {
+            "cohort": "af113b3e77a3dffe0db72fe07e7e7772f62cf80477477a407a80dd3cf71b7c09",
+            "attempts": 3,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq07/cuvslam/run50001",
+              "results/vio-lc/citrusfarm/seq07/cuvslam/run50002",
+              "results/vio-lc/citrusfarm/seq07/cuvslam/run50003"
+            ]
+          }
+        ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -36622,8 +37661,8 @@
         "svo_pro",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA0/E0/S0/F0\nB,M",
+      "value": 0.6602500418766891,
+      "annotation": "0.66\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio-lc",
@@ -36633,46 +37672,104 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 0,
-        "evaluated": 0,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 3
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 3
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "authors_export_starts_after_keyframe_window_fills",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "loop_corrections_applied_forward_not_retroactively",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
-        "cohorts": [],
+        "cohorts": [
+          {
+            "cohort": "85797dd29c1905d7156bef5a65639a46d68e5f10bb0b26ab7f90ad1237d2f746",
+            "planned_members": 3,
+            "evaluated": 3,
+            "outcomes": {
+              "ok": 3
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 3,
+              "mean": 0.7128025175583083,
+              "median": 0.6602500418766891,
+              "min": 0.6501808935092235,
+              "max": 0.8279766172890121,
+              "sample_std": 0.09987067574516104
+            },
+            "dense_coverage_pct": {
+              "n": 3,
+              "mean": 98.98583825057608,
+              "median": 98.98583825057608,
+              "min": 98.98583825057608,
+              "max": 98.98583825057608,
+              "sample_std": 0.0
+            },
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq04/svo_pro/run50002",
+              "results/vio-lc/citrusfarm/seq04/svo_pro/run50003",
+              "results/vio-lc/citrusfarm/seq04/svo_pro/run50201"
+            ]
+          }
+        ],
         "scientific_blockers": [
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 0,
-        "completed_attempt_count": 0,
-        "evaluated_trajectory_count": 0,
-        "successful_run_count": 0,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 3,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
-        "protocol_cohorts": []
+        "protocol_cohorts": [
+          {
+            "cohort": "85797dd29c1905d7156bef5a65639a46d68e5f10bb0b26ab7f90ad1237d2f746",
+            "attempts": 3,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq04/svo_pro/run50002",
+              "results/vio-lc/citrusfarm/seq04/svo_pro/run50003",
+              "results/vio-lc/citrusfarm/seq04/svo_pro/run50201"
+            ]
+          }
+        ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -36683,8 +37780,8 @@
         "svo_pro",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA0/E0/S0/F0\nB,M",
+      "value": 1.4307903978451473,
+      "annotation": "1.43\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio-lc",
@@ -36694,46 +37791,104 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 0,
-        "evaluated": 0,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 3
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 3
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "authors_export_starts_after_keyframe_window_fills",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
+          "loop_corrections_applied_forward_not_retroactively",
           "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
-        "cohorts": [],
+        "cohorts": [
+          {
+            "cohort": "a73c27979498a8a6f9801ec709eb067336031e8d7fa051504bb169242f51df78",
+            "planned_members": 3,
+            "evaluated": 3,
+            "outcomes": {
+              "ok": 3
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 3,
+              "mean": 1.393128403775781,
+              "median": 1.4307903978451473,
+              "min": 1.312659834622906,
+              "max": 1.4359349788592897,
+              "sample_std": 0.06973528263788742
+            },
+            "dense_coverage_pct": {
+              "n": 3,
+              "mean": 99.2402278377458,
+              "median": 99.24012519666691,
+              "min": 99.23044379841329,
+              "max": 99.25011451815723,
+              "sample_std": 0.009835761546748116
+            },
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq07/svo_pro/run50001",
+              "results/vio-lc/citrusfarm/seq07/svo_pro/run50002",
+              "results/vio-lc/citrusfarm/seq07/svo_pro/run50003"
+            ]
+          }
+        ],
         "scientific_blockers": [
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 0,
-        "completed_attempt_count": 0,
-        "evaluated_trajectory_count": 0,
-        "successful_run_count": 0,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 3,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
-        "protocol_cohorts": []
+        "protocol_cohorts": [
+          {
+            "cohort": "a73c27979498a8a6f9801ec709eb067336031e8d7fa051504bb169242f51df78",
+            "attempts": 3,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq07/svo_pro/run50001",
+              "results/vio-lc/citrusfarm/seq07/svo_pro/run50002",
+              "results/vio-lc/citrusfarm/seq07/svo_pro/run50003"
+            ]
+          }
+        ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -37352,8 +38507,8 @@
         "mast3r_fusion",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA0/E0/S0/F0\nB,M",
+      "value": 10.067887887748649,
+      "annotation": "10.1\nA3/E3/S3/F0\nP,B",
       "summary": {
         "identity": [
           "vio-lc",
@@ -37363,46 +38518,106 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 0,
-        "evaluated": 0,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 3
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 3
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "export_coverage_below_95_percent_no_clean_success_tick",
+          "keyframe_only_globally_optimised_trajectory",
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "single_camera_with_imu_scale_from_imu_and_learned_depth"
         ],
         "clean_qualified_n3": false,
-        "cohorts": [],
+        "cohorts": [
+          {
+            "cohort": "96c7edb40e1ca885c9587682a20415c03c3125fcf41313a8ba12e923ef209515",
+            "planned_members": 3,
+            "evaluated": 3,
+            "outcomes": {
+              "ok": 3
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 3,
+              "mean": 10.067887887748649,
+              "median": 10.067887887748649,
+              "min": 10.067887887748649,
+              "max": 10.067887887748649,
+              "sample_std": 0.0
+            },
+            "dense_coverage_pct": {
+              "n": 3,
+              "mean": 20.369546552196137,
+              "median": 20.369546552196137,
+              "min": 20.369546552196137,
+              "max": 20.369546552196137,
+              "sample_std": 0.0
+            },
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq04/mast3r_fusion/run50001",
+              "results/vio-lc/citrusfarm/seq04/mast3r_fusion/run50002",
+              "results/vio-lc/citrusfarm/seq04/mast3r_fusion/run50003"
+            ]
+          }
+        ],
         "scientific_blockers": [
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 0,
-        "completed_attempt_count": 0,
-        "evaluated_trajectory_count": 0,
-        "successful_run_count": 0,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 3,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
-        "protocol_cohorts": []
+        "protocol_cohorts": [
+          {
+            "cohort": "96c7edb40e1ca885c9587682a20415c03c3125fcf41313a8ba12e923ef209515",
+            "attempts": 3,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq04/mast3r_fusion/run50001",
+              "results/vio-lc/citrusfarm/seq04/mast3r_fusion/run50002",
+              "results/vio-lc/citrusfarm/seq04/mast3r_fusion/run50003"
+            ]
+          }
+        ]
       },
       "flags": [
-        "B",
-        "M"
+        "P",
+        "B"
       ]
     },
     {
@@ -37413,8 +38628,8 @@
         "mast3r_fusion",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA0/E0/S0/F0\nB,M",
+      "value": 13.375512904629494,
+      "annotation": "13.4\nA3/E3/S3/F0\nP,B",
       "summary": {
         "identity": [
           "vio-lc",
@@ -37424,46 +38639,106 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 0,
-        "evaluated": 0,
+        "attempted": 3,
+        "evaluated": 3,
         "outcomes": {
-          "missing": 3
+          "ok": 3
         },
         "acceptance": {
-          "not_executed": 3
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
+          "citrusfarm_position_only_reference_level_platform_lever_and_path_heading",
+          "citrusfarm_reference_host_arrival_stamps_camera_gnss_clock_unmeasured",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "export_coverage_below_95_percent_no_clean_success_tick",
+          "keyframe_only_globally_optimised_trajectory",
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "single_camera_with_imu_scale_from_imu_and_learned_depth"
         ],
         "clean_qualified_n3": false,
-        "cohorts": [],
+        "cohorts": [
+          {
+            "cohort": "96c7edb40e1ca885c9587682a20415c03c3125fcf41313a8ba12e923ef209515",
+            "planned_members": 3,
+            "evaluated": 3,
+            "outcomes": {
+              "ok": 3
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 3,
+              "mean": 13.375512904629494,
+              "median": 13.375512904629494,
+              "min": 13.375512904629494,
+              "max": 13.375512904629494,
+              "sample_std": 0.0
+            },
+            "dense_coverage_pct": {
+              "n": 3,
+              "mean": 16.546105231670413,
+              "median": 16.546105231670413,
+              "min": 16.546105231670413,
+              "max": 16.546105231670413,
+              "sample_std": 0.0
+            },
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq07/mast3r_fusion/run50001",
+              "results/vio-lc/citrusfarm/seq07/mast3r_fusion/run50002",
+              "results/vio-lc/citrusfarm/seq07/mast3r_fusion/run50003"
+            ]
+          }
+        ],
         "scientific_blockers": [
-          "missing_repetition"
+          "citrusfarm_reference_orientation_unavailable",
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 0,
-        "completed_attempt_count": 0,
-        "evaluated_trajectory_count": 0,
-        "successful_run_count": 0,
+        "attempt_count": 3,
+        "completed_attempt_count": 3,
+        "evaluated_trajectory_count": 3,
+        "successful_run_count": 3,
         "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 3,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
           "blocked": 3
         },
-        "protocol_cohorts": []
+        "protocol_cohorts": [
+          {
+            "cohort": "96c7edb40e1ca885c9587682a20415c03c3125fcf41313a8ba12e923ef209515",
+            "attempts": 3,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio-lc/citrusfarm/seq07/mast3r_fusion/run50001",
+              "results/vio-lc/citrusfarm/seq07/mast3r_fusion/run50002",
+              "results/vio-lc/citrusfarm/seq07/mast3r_fusion/run50003"
+            ]
+          }
+        ]
       },
       "flags": [
-        "B",
-        "M"
+        "P",
+        "B"
       ]
     },
     {
@@ -40521,11 +41796,11 @@
   "figures": [
     {
       "path": "fig_campaign_outcomes.png",
-      "sha256": "dc1a4c2519f3181f0ed218cbe1b761eec1038cf80065faed3c419d89fbea5c5f"
+      "sha256": "dec9666c48523e4615b753e6c5aead71eec4ac0d286e6fe3d5ab3d8d2b844b1b"
     },
     {
       "path": "fig_campaign_outcomes.pdf",
-      "sha256": "24bdb4cfc32257e3078e0e64bc440b16fa5090f20c6a37a65323a78234466749"
+      "sha256": "dfbb95102fa10982c3908c2c20d44fb18ee72cbe596c9149d246021e51f9b951"
     },
     {
       "path": "fig_accuracy_vo_default.png",
@@ -40545,19 +41820,19 @@
     },
     {
       "path": "fig_accuracy_vio_default.png",
-      "sha256": "fa9187537946087469d7a47030c2fb803a95df64d54354213e2d156e026f376a"
+      "sha256": "a8f005994e7d61b21c82ccc29cb9de03bd0f49ac635f08576905c5c1dfe0675a"
     },
     {
       "path": "fig_accuracy_vio_default.pdf",
-      "sha256": "14827d3c42b3643bcd9a2c1bccea5affc218b69d172333860bc00358344a6560"
+      "sha256": "19cec65225dadf808fcadcef7a41ff0f81c38169c55efd8076c0f76a1ab358ba"
     },
     {
       "path": "fig_accuracy_vio-lc_default.png",
-      "sha256": "f734e30f2243cf6c14dea7cb394fe0889e6d26a67551b7b0a13ac771ebe3ca90"
+      "sha256": "98ddd0865bad12885f62cd79edeaa538d5d60e351bb6eee122b71149e62413d6"
     },
     {
       "path": "fig_accuracy_vio-lc_default.pdf",
-      "sha256": "1d415824a070d4be046d3383d13a7b0089038d0dc90da30fe504f5ba876145ac"
+      "sha256": "a0b0980492e59b8830ec60a3643296c0e4086b0bdc311625c2ef2d5d445b6f54"
     },
     {
       "path": "fig_accuracy_gnss-vio_conventional_gps.png",
