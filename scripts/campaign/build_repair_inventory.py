@@ -423,16 +423,51 @@ def attempt_directories(repo):
     return {p for mode in MODES for p in (repo/'results'/mode).glob('*/*/*/run*') if p.is_dir()}
 
 
+# CitrusFarm with its camera-IMU offset removed: user-accepted attempts that replace every
+# earlier attempt of these cells, without changing any dataset file in place (2 Nov 2026).
+CORRECTED_SELECTION='configs/campaigns/timing-corrected-attempts-20261102.json'
+CORRECTED_LABEL='timing_corrected_20261102'
+CORRECTED_FIRST_ID=50000
+
+
+def corrected_selections(repo):
+    path=repo/CORRECTED_SELECTION
+    if not path.is_file():return {}
+    value=read(path)
+    if value.get('schema')!=1:raise ValueError('unsupported corrected selection schema')
+    result={}
+    for key,ids in value['cells'].items():
+        if len(ids)!=3 or min(ids)<=CORRECTED_FIRST_ID:raise ValueError('corrected selection needs three new attempts: '+key)
+        for repetition,run_id in enumerate(ids,1):
+            state=read(repo/'results/.attempt-state'/key.replace('/','__')/f'run{run_id}.json')
+            identity=state.get('identity',{})
+            if (identity.get('cohort') not in value['cohorts'] or identity.get('repetition')!=repetition
+                    or identity.get('physical_run_id')!=run_id or identity.get('input_variant')!=value['input_variant']):
+                raise ValueError(f'corrected attempt identity differs from the selection: {key}/run{run_id}')
+            if state.get('status') not in TERMINAL:
+                raise ValueError('attempt is not terminal; do not select a live or interrupted capture')
+        result[key]=list(ids)
+    return result
+
+
+def corrected_superseded(repo,key):
+    """Every earlier attempt of a corrected cell, selected before or not, is the uncorrected cohort."""
+    return {f'{key}/{p.name}' for p in (repo/'results'/key).glob('run*')
+            if p.is_dir() and int(p.name[3:])<CORRECTED_FIRST_ID}
+
+
 def build(repo,stage):
     executed,executed_hash=load_manifest(repo/'logs/server-campaign/quality-final-n3-no-gnss/manifest.json')
     future,future_hash=load_manifest(repo/'configs/campaigns/quality-final.json')
     cells=[];members=set();selections=selected_attempts(repo);superseded=set()
     zed_selections=completed_zed_selections(repo);selections.update(zed_selections)
     batch_labels={};batch_selections=completed_batch_selections(repo,zed_selections,batch_labels);selections.update(batch_selections)
+    corrected=corrected_selections(repo);selections.update(corrected);batch_labels.update(dict.fromkeys(corrected,CORRECTED_LABEL))
     for cell in expand_cells(future):
         key=cell_key(cell);attempts=[]
         ids=selections.get(key,[1,2,3])
         if key in selections:superseded.update(f'{key}/run{i}' for i in (1,2,3))
+        if key in corrected:superseded.update(corrected_superseded(repo,key))
         for repetition,physical_id in enumerate(ids,1):
             relative=f'{key}/run{physical_id}';members.add(relative)
             attempt=saved_attempt(repo,relative,stage)

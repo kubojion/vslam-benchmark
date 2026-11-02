@@ -1,0 +1,81 @@
+{
+ "schema": 1,
+ "meaning": "t_corrected = t - (a + b (t - t0)), t0 = first IMU stamp. Listing a sequence does not apply it: runners never read this file; only a private dataset link does.",
+ "measured_by": "VO rotation against gyroscope, scripts/analysis/imu_timing",
+ "sequences": [
+  {
+   "dataset": "citrusfarm",
+   "sequence": "seq07",
+   "variant": "corrected",
+   "a_ms": 36.75,
+   "b_ms_per_s": 0,
+   "source": "notes/patterns-20261030/results/timing2.csv, fed to estimators",
+   "applied": true
+  },
+  {
+   "dataset": "citrusfarm",
+   "sequence": "seq04",
+   "variant": "corrected",
+   "a_ms": 12.0,
+   "b_ms_per_s": 0,
+   "source": "notes/patterns-20261030/results/timing2.csv, fed to estimators",
+   "applied": true
+  },
+  {
+   "dataset": "hortimulti",
+   "sequence": "strawberry02",
+   "variant": "corrected",
+   "a_ms": 12.0,
+   "b_ms_per_s": 0,
+   "source": "notes/patterns-20261030/results/timing2.csv, fed to estimators",
+   "applied": false
+  },
+  {
+   "dataset": "hortimulti",
+   "sequence": "strawberry03",
+   "variant": "corrected",
+   "a_ms": 11.5,
+   "b_ms_per_s": 0,
+   "source": "notes/patterns-20261030/results/timing2.csv, fed to estimators",
+   "applied": false
+  },
+  {
+   "dataset": "rosariov2",
+   "sequence": "sequence1",
+   "variant": "corrected",
+   "a_ms": 4.5,
+   "b_ms_per_s": 0,
+   "source": "notes/patterns-20261030/results/timing2.csv, fed to estimators",
+   "applied": false
+  },
+  {
+   "dataset": "rosariov2",
+   "sequence": "sequence5",
+   "variant": "corrected",
+   "a_ms": 4.25,
+   "b_ms_per_s": 0,
+   "source": "notes/patterns-20261030/results/timing2.csv, fed to estimators",
+   "applied": false
+  },
+  {
+   "dataset": "zed2i",
+   "sequence": "field1_110426_full_10fps_q90",
+   "variant": "drift",
+   "a_ms": 22.189,
+   "b_ms_per_s": 0.0055755,
+   "source": "Theil-Sen, 4 systems x 16 equal-count windows, VO against gyroscope, joint intercept median(y - b x)",
+   "applied": true,
+   "cohort": "sielinko-timing-test-20261101"
+  },
+  {
+   "dataset": "zed2i",
+   "sequence": "field1_110426_full_10fps_q90",
+   "variant": "unchanged",
+   "a_ms": 0,
+   "b_ms_per_s": 0,
+   "source": "identity copy, the same-setup control",
+   "applied": true,
+   "cohort": "sielinko-timing-test-20261101"
+  }
+ ]
+}
