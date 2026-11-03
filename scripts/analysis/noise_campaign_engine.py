@@ -250,6 +250,7 @@ def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
             container, location = noise_cleanup.owned_container(run, ROOT)
             if location != 'persistent':
                 raise RuntimeError('Missing private persistent container')
+            container = execution_policy.move_persistent_to_lane(PROTOCOL, spec['algorithm'], container, LANE)
             execution_policy.verify_persistent_limits(PROTOCOL, spec['algorithm'], container, lane=LANE)
         record = dict(key=key, campaign_id=CAMPAIGN, state='running', started=base.now(),
                       study=spec['id'], phase=phase, label=label, params=parameters,

@@ -34,7 +34,7 @@ import timing_lanes as lanes
 
 BASE = execution.base
 EXCLUSIVE = 'exclusive'
-LANES = ('cpu_a', 'cpu_b', 'small', 'gpu', EXCLUSIVE)
+LANES = ('cpu_a', 'cpu_b', 'small', 'small_b', 'gpu', EXCLUSIVE)
 GATE_HOURS = 6
 GATE_STAGES = ('check', 'gate-repro')
 RUN_STAGES = ('develop', 'test', 'test-later')
@@ -61,7 +61,9 @@ def stage_folds(protocol, stage, dataset):
     """The folds a stage covers. The gates use one fold per system; the run stages all of one dataset."""
     by_id = {s['id']: s for s in protocol['folds']}
     if stage == 'gate-repro':
-        return [by_id[item['fold']] for item in protocol['gates']['repro']['targets']]
+        lane = protocol['gates']['repro'].get('lane')
+        return [dict(by_id[item['fold']], lanes=[lane]) if lane else by_id[item['fold']]
+                for item in protocol['gates']['repro']['targets']]
     if dataset not in protocol['run_order']:
         raise ValueError('A stage needs one dataset of the run order')
     if stage == 'check':
@@ -276,7 +278,7 @@ def coordinator(args, protocol):
     groups = {stage: stage_folds(protocol, stage, args.dataset) for stage in stages}
     gated = stages[0] in RUN_STAGES
     if gated:
-        readiness = campaign.verify_activation(art, protocol)
+        readiness = campaign.verify_activation(art, protocol, args.dataset)
         verify_order(art, protocol, args.dataset)
     with (art / 'controller.lock').open('a') as controller:  # the artifact directory's own file
         fcntl.flock(controller, fcntl.LOCK_EX | fcntl.LOCK_NB)

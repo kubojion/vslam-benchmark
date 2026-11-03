@@ -7,6 +7,7 @@ import importlib.metadata
 import json
 from pathlib import Path
 import re
+import subprocess
 import sys
 import time
 
@@ -151,6 +152,21 @@ def bounded_command(command, protocol, algorithm, runid, environment, lane=None)
     high = ['-p','MemoryHigh='+str(limits['memory_high_gib'])+'G'] if limits.get('memory_high_gib') else []
     return ['systemd-run','--user','--scope','--quiet','--unit='+unit,
         '-p','MemoryMax='+str(limits['memory_gib'])+'G','-p','MemorySwapMax=0',*high,*command]
+
+
+def move_persistent_to_lane(protocol, algorithm, item, lane, run=subprocess.run):
+    """Voxel-SVIO serves two lanes with one private container; it never runs twice at once."""
+    if lane is None or item is None or algorithm != 'voxel_svio':
+        return item
+    wanted = lane_cpus(protocol, lane)
+    if cpu_set(item['HostConfig'].get('CpusetCpus') or '0-1023') == cpu_set(wanted):
+        return item
+    name = item['Name'].lstrip('/')
+    run(['docker', 'update', '--cpuset-cpus', wanted, name], check=True, capture_output=True)
+    after = json.loads(run(['docker', 'inspect', name], check=True, capture_output=True, text=True).stdout)[0]
+    if cpu_set(after['HostConfig'].get('CpusetCpus') or '0-1023') != cpu_set(wanted):
+        raise RuntimeError('Private container CPU set did not move to the attempt lane')
+    return after
 
 
 def verify_persistent_limits(protocol, algorithm, item, lane=None):

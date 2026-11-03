@@ -405,9 +405,9 @@ class Inputs(unittest.TestCase):
 class Lanes(unittest.TestCase):
     def test_lanes_per_system(self):
         self.assertEqual({k: v['cpus'] for k, v in PROTOCOL['lanes'].items()},
-                         dict(cpu_a='0-3', cpu_b='4-7', small='8-11', gpu='16-23', exclusive='0-7'))
+                         dict(cpu_a='0-3', cpu_b='4-7', small='8-11', small_b='12-15', gpu='16-23', exclusive='0-7'))
         expected = dict(orbslam3=['cpu_a', 'cpu_b'], okvis2=['cpu_a', 'cpu_b'], okvis2x=['cpu_a', 'cpu_b'],
-                        openvins=['small'], voxel_svio=['small'], svo_pro=['small'],
+                        openvins=['small', 'small_b'], voxel_svio=['small', 'small_b'], svo_pro=['small', 'small_b'],
                         cuvslam=['gpu'], airslam=['gpu'], mast3r_fusion=['gpu'], basalt=['exclusive'])
         for fold in PROTOCOL['folds']:
             self.assertEqual(fold['lanes'], expected[fold['algorithm']])
@@ -437,7 +437,9 @@ class Lanes(unittest.TestCase):
         self.assertIsNone(self.lane('okvis2x', [('cpu_a', 'orbslam3'), ('cpu_b', 'okvis2')]))
         self.assertIsNone(self.lane('okvis2', [('cpu_a', 'okvis2')]))
         self.assertEqual(self.lane('orbslam3', [('cpu_a', 'orbslam3')]), 'cpu_b')
-        self.assertIsNone(self.lane('svo_pro', [('small', 'openvins')]))
+        self.assertEqual(self.lane('svo_pro', [('small', 'openvins')]), 'small_b')
+        self.assertIsNone(self.lane('svo_pro', [('small', 'openvins'), ('small_b', 'voxel_svio')]))
+        self.assertIsNone(self.lane('voxel_svio', [('small', 'voxel_svio')]))
         self.assertIsNone(self.lane('airslam', [('gpu', 'cuvslam')]))
 
     def test_basalt_runs_alone_and_last(self):
@@ -532,7 +534,7 @@ class Coordinator(unittest.TestCase):
         self.assertEqual(len(check), 10)
         repro = coordinator.stage_folds(PROTOCOL, 'gate-repro', None)
         self.assertEqual({(f['algorithm'], f['tune_sequence']) for f in repro}, {('openvins', 'seq04'), ('voxel_svio', 'seq04')})
-        self.assertEqual({tuple(f['lanes']) for f in repro}, {('small',)})
+        self.assertEqual({tuple(f['lanes']) for f in repro}, {('small_b',)})
         self.assertEqual(len(coordinator.stage_folds(PROTOCOL, 'develop', 'rosariov2')), 20)
         with self.assertRaises(ValueError):
             coordinator.stage_folds(PROTOCOL, 'develop', 'zed2i')

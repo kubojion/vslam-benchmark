@@ -35,7 +35,7 @@ def copy_identity(source, target):
         target.write_bytes(source.read_bytes())
 
 
-def verify_activation(art, protocol):
+def verify_activation(art, protocol, dataset=None):
     readiness = json.loads((art / 'readiness.json').read_text())
     if readiness.get('passed') is not True or readiness.get('pending'):
         raise RuntimeError('Native/input/concurrency readiness is incomplete')
@@ -43,7 +43,7 @@ def verify_activation(art, protocol):
         raise RuntimeError('Readiness belongs to another protocol')
     if readiness['execution_manifest_sha256'] != BASE.sha(art / 'execution-identity.json'):
         raise RuntimeError('Readiness belongs to another native/code identity')
-    wanted = {s['id'] for s in protocol['folds']}
+    wanted = {s['id'] for s in protocol['folds'] if dataset is None or s['dataset'] == dataset}
     if set(readiness['studies']) != wanted or not all(
             v.get('ready') is True for v in readiness['studies'].values()):
         raise RuntimeError('Some requested studies have no native validation')
