@@ -46,16 +46,17 @@ RUN_ORDER = ['citrusfarm', 'hortimulti', 'rosariov2']
 SYSTEMS = ('okvis2', 'okvis2x', 'orbslam3', 'openvins', 'voxel_svio', 'svo_pro',
            'basalt', 'cuvslam', 'airslam', 'mast3r_fusion')
 SYSTEM_LANES = {'orbslam3': ['cpu_a', 'cpu_b'], 'okvis2': ['cpu_a', 'cpu_b'], 'okvis2x': ['cpu_a', 'cpu_b'],
-                'openvins': ['small', 'small_b'], 'voxel_svio': ['small', 'small_b'], 'svo_pro': ['small', 'small_b'],
+                'openvins': ['cpu_a', 'cpu_b'], 'voxel_svio': ['cpu_a', 'cpu_b'], 'svo_pro': ['cpu_a', 'cpu_b'],
                 'cuvslam': ['gpu'], 'airslam': ['gpu'], 'mast3r_fusion': ['gpu'], 'basalt': ['exclusive']}
 GPU_SYSTEMS = ('cuvslam', 'airslam', 'mast3r_fusion')
 CLIP_S = 180
 # IMU kept beyond a window's first and last image (a prefix keeps the parent's head).
 IMU_MARGIN_NS = 20_000_000
 RUN_ID_FIRST, RUN_ID_LAST, FOLD_BLOCK = 70000, 76999, 100
-CHECK_BLOCK_FIRST, GATE_BLOCK_FIRST, SMALL_BLOCK = 76000, 76400, 10
-# Gate and check attempts of the first freeze (protocol 47f45ddb, lane 8-11 only), accepted by the user on 3 Nov 2026.
-SUPERSEDED_FREEZE_IDS = (76000, 76399)
+CHECK_BLOCK_FIRST, GATE_BLOCK_FIRST, SMALL_BLOCK = 76000, 76500, 10
+# Gate and check attempts of the earlier freezes (protocols 47f45ddb and a7f801bd, E-core lanes) and the lane gate
+# under real load of 3 Nov 2026. They stay on disk as evidence; this freeze never reuses their IDs.
+SUPERSEDED_FREEZE_IDS = (76000, 76499)
 TOP_FILES = ('gt_tum.txt', 'gt_interp_tum.txt', 'gps.csv', 'segments_auto.csv')
 CPU_LIMITS = dict(memory_gib=64, swap_gib=0)
 GPU_LIMITS = dict(memory_gib=50, memory_high_gib=40, swap_gib=0)
@@ -384,7 +385,7 @@ def protocol(root, views, level_document):
                'export-support gates retained. Lower is better.'),
         run_ids=run_id_plan([f['id'] for f in folds], [i for d in RUN_ORDER for i in check[d]],
                             [r['fold'] for r in repro]),
-        gates=dict(check_folds=check, repro=dict(targets=repro, relative_tolerance=.10, lane='small_b',
+        gates=dict(check_folds=check, repro=dict(targets=repro, relative_tolerance=.10,
                    source='PROGRESS/IMU-TIMING-TUNE/results.csv, cohort timing-corrected-20261031, median of 3')),
         runtime_environment=dict(cuvslam={'CUVSLAM_CONDA_ENV': '/data/imoroz/conda/envs/cuvslam'},
                                  mast3r_fusion={'MAST3R_FUSION_CONDA_ENV': '/data/imoroz/conda/envs/mast3r_fusion'}),
@@ -399,8 +400,6 @@ def protocol(root, views, level_document):
         wall_estimates_s={d: {a: dict(zip(('clip', 'vio', 'vio-lc'), v)) for a, v in table.items()}
                           for d, table in WALL_ESTIMATES_S.items()},
         lanes=dict(cpu_a=dict(cpus='0-3', memory_gib=64, core_type='P'), cpu_b=dict(cpus='4-7', memory_gib=64, core_type='P'),
-                   small=dict(cpus='8-11', memory_gib=64, core_type='E'),
-                   small_b=dict(cpus='12-15', memory_gib=64, core_type='E'),
                    gpu=dict(cpus='16-23', memory_gib=50, gpu=True, core_type='E'),
                    exclusive=dict(cpus='0-7', memory_gib=64, idle_host=True, core_type='P')),
         launch_policy=dict(min_available_gib=40, no_host_swap_use=True, min_disk_free_gib=100,
@@ -455,12 +454,15 @@ def _decisions():
         dict(topic='Lane handover', choice='Removed: no lane owner exists after Rule C closed. Lane checks stay.',
              why='Sielinko needed a written handover from the Rule C runner, which is gone.'),
         dict(topic='Gate tolerance', choice='10 % against the Rule C median.', why='Update 3 regression limit.'),
-        dict(topic='Second small lane (amendment, 3 Nov 2026)',
-             choice=('Cores 12-15, 64 GiB, for OpenVINS, Voxel-SVIO and SVO Pro, beside 8-11: the search runs 4 CPU + 1 GPU. '
-                     'Voxel-SVIO keeps one private container, whose CPU set is moved to the lane before each of its attempts; '
-                     'it never runs twice at once. The repro gate runs on 12-15 with the other lanes busy.'),
-             why=('User decision of 3 Nov 2026. It replaces the first freeze (protocol 47f45ddb, gates passed on lane 8-11, '
-                  'accepted with its three listed decisions). That freeze\'s gate and check run IDs 76000-76399 stay on disk.')),
+        dict(topic='P-core lanes only (amendment, 3 Nov 2026)',
+             choice=('2 CPU + 1 GPU: lanes 0-3 and 4-7 run every CPU system, including OpenVINS, Voxel-SVIO and SVO Pro. '
+                     'GPU lane 16-23. Basalt alone on 0-7. Voxel-SVIO keeps one private container, whose CPU set is moved to '
+                     'the lane before each of its attempts; it never runs twice at once.'),
+             why=('User decision of 3 Nov 2026. Under real load the E-core lanes mostly reproduced Rule C, but one Voxel-SVIO run on '
+                  '8-11 moved 10.8 %, and E-cores would mix core types in the held-out comparison with Rule C. These are the lanes '
+                  'Rule C and Job B used, so no new lane gate. It replaces the freezes 47f45ddb (lane 8-11) and a7f801bd (8-11 and '
+                  '12-15); their gate and check runs, IDs 76000-76413, stay on disk. During the search a single run that differs '
+                  'from earlier values is a result to report, not a reason to stop.')),
         dict(topic='Activation per dataset', choice='Readiness covers the folds of the dataset being started only.',
              why='Clips ran only on CitrusFarm; HortiMulti and Rosario are not validated and must not be claimed ready.'),
     ]

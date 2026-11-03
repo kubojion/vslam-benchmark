@@ -405,9 +405,9 @@ class Inputs(unittest.TestCase):
 class Lanes(unittest.TestCase):
     def test_lanes_per_system(self):
         self.assertEqual({k: v['cpus'] for k, v in PROTOCOL['lanes'].items()},
-                         dict(cpu_a='0-3', cpu_b='4-7', small='8-11', small_b='12-15', gpu='16-23', exclusive='0-7'))
+                         dict(cpu_a='0-3', cpu_b='4-7', gpu='16-23', exclusive='0-7'))
         expected = dict(orbslam3=['cpu_a', 'cpu_b'], okvis2=['cpu_a', 'cpu_b'], okvis2x=['cpu_a', 'cpu_b'],
-                        openvins=['small', 'small_b'], voxel_svio=['small', 'small_b'], svo_pro=['small', 'small_b'],
+                        openvins=['cpu_a', 'cpu_b'], voxel_svio=['cpu_a', 'cpu_b'], svo_pro=['cpu_a', 'cpu_b'],
                         cuvslam=['gpu'], airslam=['gpu'], mast3r_fusion=['gpu'], basalt=['exclusive'])
         for fold in PROTOCOL['folds']:
             self.assertEqual(fold['lanes'], expected[fold['algorithm']])
@@ -437,9 +437,9 @@ class Lanes(unittest.TestCase):
         self.assertIsNone(self.lane('okvis2x', [('cpu_a', 'orbslam3'), ('cpu_b', 'okvis2')]))
         self.assertIsNone(self.lane('okvis2', [('cpu_a', 'okvis2')]))
         self.assertEqual(self.lane('orbslam3', [('cpu_a', 'orbslam3')]), 'cpu_b')
-        self.assertEqual(self.lane('svo_pro', [('small', 'openvins')]), 'small_b')
-        self.assertIsNone(self.lane('svo_pro', [('small', 'openvins'), ('small_b', 'voxel_svio')]))
-        self.assertIsNone(self.lane('voxel_svio', [('small', 'voxel_svio')]))
+        self.assertEqual(self.lane('svo_pro', [('cpu_a', 'openvins')]), 'cpu_b')
+        self.assertIsNone(self.lane('svo_pro', [('cpu_a', 'openvins'), ('cpu_b', 'voxel_svio')]))
+        self.assertIsNone(self.lane('voxel_svio', [('cpu_a', 'voxel_svio')]))
         self.assertIsNone(self.lane('airslam', [('gpu', 'cuvslam')]))
 
     def test_basalt_runs_alone_and_last(self):
@@ -457,11 +457,11 @@ class Lanes(unittest.TestCase):
         return dict(pid=5, argv=['bash', f'/x/scripts/run/run_{algorithm}.sh'], cpus=cpus, cgroup='0::/x')
 
     def test_launch_needs_memory_free_cores_and_a_free_gpu(self):
-        self.assertEqual(self.blockers('small'), [])
-        self.assertTrue(self.blockers('small', memory={'MemAvailable': 39 * GIB}))
-        self.assertTrue(self.blockers('small', snapshot=[self.wrapper('openvins', [8, 9, 10, 11])]))
-        self.assertEqual(self.blockers('small', snapshot=[self.wrapper('openvins', [0, 1, 2, 3])]), [])
-        self.assertTrue(self.blockers('small', snapshot=[self.wrapper('basalt', [0, 1, 2, 3])]))
+        self.assertEqual(self.blockers('cpu_b'), [])
+        self.assertTrue(self.blockers('cpu_b', memory={'MemAvailable': 39 * GIB}))
+        self.assertTrue(self.blockers('cpu_b', snapshot=[self.wrapper('openvins', [4, 5, 6, 7])]))
+        self.assertEqual(self.blockers('cpu_b', snapshot=[self.wrapper('openvins', [0, 1, 2, 3])]), [])
+        self.assertTrue(self.blockers('cpu_b', snapshot=[self.wrapper('basalt', [4, 5, 6, 7])]))
         self.assertTrue(self.blockers('gpu', gpu=[123]))
         self.assertTrue(self.blockers('gpu', gpu=None))
         self.assertEqual(self.blockers('cpu_a', gpu=[123]), [])
@@ -534,7 +534,7 @@ class Coordinator(unittest.TestCase):
         self.assertEqual(len(check), 10)
         repro = coordinator.stage_folds(PROTOCOL, 'gate-repro', None)
         self.assertEqual({(f['algorithm'], f['tune_sequence']) for f in repro}, {('openvins', 'seq04'), ('voxel_svio', 'seq04')})
-        self.assertEqual({tuple(f['lanes']) for f in repro}, {('small_b',)})
+        self.assertEqual({tuple(f['lanes']) for f in repro}, {('cpu_a', 'cpu_b')})
         self.assertEqual(len(coordinator.stage_folds(PROTOCOL, 'develop', 'rosariov2')), 20)
         with self.assertRaises(ValueError):
             coordinator.stage_folds(PROTOCOL, 'develop', 'zed2i')
@@ -612,8 +612,8 @@ class Launched(unittest.TestCase):
         return fold, seen, record, ledger
 
     def test_each_system_reaches_its_lane_wrapper_with_its_noise_file(self):
-        lanes_by_system = dict(orbslam3='cpu_a', okvis2='cpu_b', okvis2x='cpu_a', openvins='small', voxel_svio='small',
-                               svo_pro='small', basalt='exclusive', cuvslam='gpu', airslam='gpu', mast3r_fusion='gpu')
+        lanes_by_system = dict(orbslam3='cpu_a', okvis2='cpu_b', okvis2x='cpu_a', openvins='cpu_b', voxel_svio='cpu_a',
+                               svo_pro='cpu_b', basalt='exclusive', cuvslam='gpu', airslam='gpu', mast3r_fusion='gpu')
         hooks = dict(orbslam3='ORBSLAM3_CONFIG', okvis2='OKVIS2_CONFIG', okvis2x='OKVIS2X_CONFIG', openvins='OPENVINS_CONFIG_DIR',
                      voxel_svio='VOXEL_SVIO_CONFIG', svo_pro='SVO_PRO_IMU_NOISE', basalt='BASALT_CALIBRATION',
                      cuvslam='CUVSLAM_IMU_NOISE', airslam='AIRSLAM_CAMERA_CONFIG', mast3r_fusion='MAST3R_FUSION_IMU_NOISE')
@@ -639,7 +639,7 @@ class Launched(unittest.TestCase):
                         self.assertEqual(env['TIMING_MEM'], str(64 * GIB))
 
     def test_loop_closure_reaches_the_wrapper_on_a_test_sequence(self):
-        for algorithm, lane in (('okvis2', 'cpu_a'), ('orbslam3', 'cpu_b'), ('airslam', 'gpu'), ('svo_pro', 'small'),
+        for algorithm, lane in (('okvis2', 'cpu_a'), ('orbslam3', 'cpu_b'), ('airslam', 'gpu'), ('svo_pro', 'cpu_a'),
                                 ('cuvslam', 'gpu'), ('mast3r_fusion', 'gpu'), ('okvis2x', 'cpu_b')):
             with self.subTest(algorithm=algorithm):
                 fold = next(f for f in PROTOCOL['folds'] if f['algorithm'] == algorithm and f['dataset'] == 'citrusfarm')

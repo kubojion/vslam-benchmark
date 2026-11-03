@@ -4,7 +4,7 @@
 Default is a dry plan that runs nothing. Stages, each needing its own reviewed go:
 
     check       gate: one sentinel attempt per system on a short clip of one dataset
-    gate-repro  gate: OpenVINS and Voxel-SVIO at Rule C on full seq04, lane 8-11
+    gate-repro  gate: OpenVINS and Voxel-SVIO at Rule C on full seq04, P-core lanes
     develop     tuning of every fold of one dataset (clip screen, full candidates, N=3 selection)
     test        the frozen winners, N=1 VIO and N=1 VIO-LC where supported, on the other sequence
     test-later  two more VIO repetitions per fold, on the same commit and worktree
@@ -34,7 +34,7 @@ import timing_lanes as lanes
 
 BASE = execution.base
 EXCLUSIVE = 'exclusive'
-LANES = ('cpu_a', 'cpu_b', 'small', 'small_b', 'gpu', EXCLUSIVE)
+LANES = ('cpu_a', 'cpu_b', 'gpu', EXCLUSIVE)
 GATE_HOURS = 6
 GATE_STAGES = ('check', 'gate-repro')
 RUN_STAGES = ('develop', 'test', 'test-later')
