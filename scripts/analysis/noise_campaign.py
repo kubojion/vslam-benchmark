@@ -66,9 +66,16 @@ def collect(art, specs):
                 if old == record:
                     continue
                 if old.get('state') == 'finished' or any(
-                        old.get(k) != record.get(k) for k in ('key', 'run', 'params', 'campaign_id')):
+                        old.get(k) != record.get(k) for k in ('key', 'params', 'campaign_id')):
+                    raise RuntimeError('Collected observation identity changed: ' + str(target))
+                if old.get('run') != record.get('run') and (
+                        (record.get('automatic_replacement') or {}).get('superseded', {}).get('run') != old.get('run')
+                        or old.get('state') not in ('running', execution.PRE_ESTIMATION_FAILED)):
                     raise RuntimeError('Collected observation identity changed: ' + str(target))
             BASE.write(target, record)
+        # Attempts that failed before their estimator started and were replaced once: kept, never scored.
+        for path in (directory / 'superseded-attempts').glob('*.json'):
+            immutable(art / 'superseded-attempts' / path.name, json.loads(path.read_text()))
         for path in (directory / 'studies').rglob('*.json'):
             immutable(art / 'studies' / path.relative_to(directory / 'studies'), json.loads(path.read_text()))
 

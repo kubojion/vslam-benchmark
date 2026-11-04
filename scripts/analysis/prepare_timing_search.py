@@ -514,22 +514,45 @@ def used_run_ids(root):
     return [p for p in Path(root).glob('results/*/*/*/*/run7[0-9][0-9][0-9][0-9]')]
 
 
-def freeze(art):
-    """Freeze into the artifact directory; refuses a dirty checkout or a changed earlier freeze."""
+def reused_runs(previous, campaign):
+    """Run directories of an earlier freeze's attempt records (recovery, user 4 Nov 2026): reused, never rerun."""
+    runs = set()
+    for path in sorted((Path(previous) / 'attempts').glob('*.json')):
+        record = json.loads(path.read_text())
+        if record.get('campaign_id') != campaign or Path(record['run']).parents[4] != ROOT / 'results':
+            raise RuntimeError('reused attempt belongs to another campaign or checkout: ' + str(path))
+        runs.add(record['run'])
+    return runs
+
+
+def freeze(art, reuse_from=None, revisions=None, amendment=None):
+    """Freeze into a new artifact directory; refuses a dirty checkout or an existing directory.
+
+    A recovery freeze (reuse_from) admits exactly the run directories of the earlier freeze's attempt records,
+    besides the earlier gate and check IDs, and may add reviewed physical attempt revisions and one amendment.
+    """
     import _capture_inputs
     import _capture_runtime
     import noise_execution_policy
     art = Path(art).resolve()
     if MAIN.resolve() in art.parents or art == MAIN.resolve():
         raise RuntimeError('campaign artifacts must be outside the main checkout')
+    if art.exists():
+        raise FileExistsError('artifact directory exists; freeze only into a new one: ' + str(art))
     if git('status', '--porcelain', '--', 'scripts', 'configs').strip():
         raise RuntimeError('commit every script and config change before freezing')
     verify_input_selection()
+    value = json.loads(PROTOCOL.read_text())
+    reused = set()
+    if reuse_from is not None:
+        reuse_from = Path(reuse_from).resolve()
+        if json.loads((reuse_from / 'protocol.json').read_text())['campaign_id'] != value['campaign_id']:
+            raise RuntimeError('a recovery freeze keeps the campaign identity')
+        reused = reused_runs(reuse_from, value['campaign_id'])
     taken = [p for p in used_run_ids(MAIN) + used_run_ids(ROOT)
-             if not SUPERSEDED_FREEZE_IDS[0] <= int(p.name[3:]) <= SUPERSEDED_FREEZE_IDS[1]]
+             if not SUPERSEDED_FREEZE_IDS[0] <= int(p.name[3:]) <= SUPERSEDED_FREEZE_IDS[1] and str(p) not in reused]
     if taken:
         raise RuntimeError('run IDs in the reserved range already exist: ' + str(taken[:5]))
-    value = json.loads(PROTOCOL.read_text())
     sequences = sorted({(f['dataset'], s) for f in value['folds'] for s in f['sequence_parents']})
     for dataset, parents in value['views'].items():
         for parent, view in parents.items():
@@ -549,11 +572,18 @@ def freeze(art):
             raise RuntimeError(algorithm + ' runtime incomplete: ' + '; '.join(identity['missing']))
         runtime[algorithm] = identity['sha256']
     value['frozen_runtime_sha256'] = runtime
+    if reuse_from is not None:
+        value['reused_from'] = dict(art=str(reuse_from), protocol_sha256=sha(reuse_from / 'protocol.json'),
+                                    run_ids=sorted(int(Path(r).name[3:]) for r in reused))
+    if revisions:
+        value['physical_attempt_revisions'] = revisions
+    if amendment:
+        value.setdefault('amendments', []).append(amendment)
     pins = {path: sha(MAIN / path) for path in value['main_pins']}
     main_before = dict(main_head=subprocess.check_output(['git', '-C', str(MAIN), 'rev-parse', 'HEAD'], text=True).strip(),
                        sha256=pins, enforce_main_head=value['enforce_main_head'],
                        note='Only the main files this search reads are pinned; images are hashed per attempt.')
-    art.mkdir(parents=True, exist_ok=True)
+    art.mkdir(parents=True)
     targets = {'protocol.json': json_text(value), 'main-before.json': json_text(main_before)}
     for name in targets:
         if (art / name).exists():

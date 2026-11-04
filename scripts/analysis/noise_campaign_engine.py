@@ -8,6 +8,12 @@ separate identities from its tuning runs.
 Run IDs come from a block the frozen protocol assigns to each fold, never a hash,
 and each worker keeps a ledger of the IDs it has handed out, so a replay finds the
 same run directory.
+
+An attempt whose wrapper ends before the estimator starts (no run_meta.json, no
+timeout, no owned native process) is replaced once, automatically, under a new run
+ID of the same block (user, 4 Nov 2026). Its record and run directory are kept. A
+second such failure of the same attempt stops the campaign, as does any failure of
+a reviewed replacement. Failures after the estimator started are results, never retried.
 """
 from __future__ import annotations
 
@@ -188,8 +194,48 @@ def verify_transport(run, spec, sequence, returncode):
     return evidence
 
 
+PRE_ESTIMATION_FAILED = 'pre_estimation_failure'
+AUTOMATIC_REPLACEMENT = 'automatic_replacement=1'
+
+
+class PreEstimationFailure(RuntimeError):
+    """The wrapper ended before the estimator started: no run_meta.json and no timeout."""
+
+    def __init__(self, message, record, archive):
+        super().__init__(message)
+        self.record, self.archive = record, archive
+
+
+def automatic_replacement(failed, key, parameters, revision, study, phase):
+    """One replacement, with a new run ID of the same block, of an attempt that failed before its estimator.
+
+    User decision, 4 Nov 2026. A replacement that fails the same way, and a reviewed replacement, are never
+    replaced again: the campaign stops as before. The failed record and its run directory are kept.
+    """
+    if revision is not None or failed.get('physical_attempt_revision') is not None:
+        raise RuntimeError('A reviewed replacement failed before its estimator started; review infrastructure: ' + key)
+    if failed.get('automatic_replacement') is not None:
+        raise RuntimeError('The automatic replacement also failed before its estimator started; review infrastructure: ' + key)
+    if (failed.get('key') != key or failed.get('state') != PRE_ESTIMATION_FAILED or failed.get('campaign_id') != CAMPAIGN
+            or failed.get('params') != parameters or failed.get('estimator_started') is not False):
+        raise RuntimeError('Incomplete attempt requires explicit recovery: ' + key)
+    archive = Path(failed['superseded_record'])
+    if not archive.is_file() or json.loads(archive.read_text()) != failed:
+        raise RuntimeError('Archived pre-estimation failure missing or changed: ' + key)
+    run_id = allocate_run_id(CAMPAIGN + ':' + key + ':' + AUTOMATIC_REPLACEMENT, study, phase)
+    if 'run' + str(run_id) == Path(failed['run']).name:
+        raise RuntimeError('Automatic replacement did not receive a new run ID: ' + key)
+    item = dict(count=1, run_id=run_id, decision='User, 4 Nov 2026: one automatic replacement of an attempt '
+                'that failed before its estimator started',
+                reason='wrapper ended without run_meta.json and without a timeout',
+                superseded=dict(run=failed['run'], record=str(archive), record_sha256=base.sha(archive),
+                                returncode=failed.get('returncode'), wrapper_log=failed.get('wrapper_log'),
+                                wrapper_log_sha256=failed.get('wrapper_log_sha256')))
+    base.event('attempt_automatic_replacement', key=key, superseded_run=failed['run'], run_id=run_id)
+    return item
+
+
 def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
-    global CURRENT
     key, run_id, seed = identities(spec['id'], label, sequence, mode, repetition, phase)
     record_path = ART / 'attempts' / (key + '.json')
     revision = execution_policy.reviewed_attempt_revision(PROTOCOL, key)
@@ -197,15 +243,32 @@ def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
         predecessor = json.loads(Path(revision['record']).read_text())
         if predecessor['params'] != parameters:
             raise RuntimeError('Replacement parameters differ from the reviewed attempt: ' + key)
+    replacing = None
     if record_path.exists():
         old = json.loads(record_path.read_text())
-        if old.get('state') != 'finished':
+        if old.get('state') == PRE_ESTIMATION_FAILED:
+            # Stopped between a pre-estimation failure and its automatic replacement.
+            replacing = automatic_replacement(old, key, parameters, revision, spec['id'], phase)
+        elif old.get('state') != 'finished':
             raise RuntimeError('Incomplete attempt requires explicit recovery: ' + key)
-        if old['params'] != parameters or old.get('campaign_id') != CAMPAIGN:
-            raise RuntimeError('Cached observation identity differs: ' + key)
-        if old.get('physical_attempt_revision') != revision:
-            raise RuntimeError('Cached physical attempt belongs to another revision: ' + key)
-        return old
+        else:
+            if old['params'] != parameters or old.get('campaign_id') != CAMPAIGN:
+                raise RuntimeError('Cached observation identity differs: ' + key)
+            if old.get('physical_attempt_revision') != revision:
+                raise RuntimeError('Cached physical attempt belongs to another revision: ' + key)
+            return old
+    while True:
+        try:
+            return execute_attempt(spec, label, parameters, sequence, mode, repetition, phase,
+                                   key, replacing['run_id'] if replacing else run_id, seed, revision, replacing)
+        except PreEstimationFailure as failure:
+            replacing = automatic_replacement(failure.record, key, parameters, revision, spec['id'], phase)
+
+
+def execute_attempt(spec, label, parameters, sequence, mode, repetition, phase, key, run_id, seed, revision, replacing):
+    """One physical execution of an attempt under one run ID."""
+    global CURRENT
+    record_path = ART / 'attempts' / (key + '.json')
     if (ART / 'STOP_AFTER_CURRENT').exists():
         raise InterruptedError('Stop requested at an attempt boundary')
     parent = spec['sequence_parents'][sequence]
@@ -259,9 +322,13 @@ def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
                       native_seed=seed if spec['algorithm'] == 'mast3r_fusion' else None)
         if revision is not None:
             record['physical_attempt_revision'] = revision
+        if replacing is not None:
+            record['automatic_replacement'] = replacing
         base.write(record_path, record)
         base.event('attempt_started', key=key, run=str(run))
         log_name = key + ('__physical_' + revision['revision'] if revision is not None else '')
+        if replacing is not None:
+            log_name += '__' + AUTOMATIC_REPLACEMENT.replace('=', '')
         log = ART / 'wrapper-logs' / (log_name + '.log')
         log.parent.mkdir(parents=True, exist_ok=True)
         started = time.monotonic()
@@ -282,7 +349,22 @@ def run_attempt(spec, label, parameters, sequence, mode, repetition, phase):
         if (run / 'run_meta.json').is_file():
             native_evidence = adapters.verify_snapshot(run, spec['algorithm'], parameters)
         elif not timed_out:
-            raise RuntimeError('Wrapper did not create metadata; review infrastructure: ' + str(log))
+            message = 'Wrapper did not create metadata; review infrastructure: ' + str(log)
+            # An owned-process record means the wrapper launched a native process: not provably pre-estimation.
+            launched = sorted(p.name for p in (run / 'processes').glob('*')) if (run / 'processes').is_dir() else []
+            replaceable = revision is None and replacing is None and not launched
+            base.event('attempt_pre_estimation_failure', key=key, run=str(run), returncode=returncode,
+                       wrapper_log=str(log), owned_processes=launched, replaced=replaceable)
+            if not replaceable:
+                raise RuntimeError(message)  # a second failure, or a launched process, stops the campaign as before
+            # The estimator never started: no observation. Keep the record and the run directory.
+            archive = ART / 'superseded-attempts' / (key + '__' + run.name + '.json')
+            record.update(state=PRE_ESTIMATION_FAILED, finished=base.now(), returncode=returncode, timeout=False,
+                          wall_s=elapsed, wrapper_log=str(log), wrapper_log_sha256=base.sha(log),
+                          estimator_started=False, superseded_record=str(archive))
+            base.write(archive, record)
+            base.write(record_path, record)
+            raise PreEstimationFailure(message, record, archive)
         if (run / 'trajectory.txt').is_file():
             sparse = spec['algorithm'] == 'airslam' or (spec['algorithm'] == 'mast3r_fusion' and mode == 'vio-lc')
             evaluation, _ = base.evaluate_saved_run(ROOT, run, sparse_export=sparse)
