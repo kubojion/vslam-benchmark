@@ -467,6 +467,27 @@ class Lanes(unittest.TestCase):
         self.assertEqual(self.blockers('cpu_a', gpu=[123]), [])
         self.assertTrue(self.blockers('exclusive', snapshot=[self.wrapper('cuvslam', [16])]))
 
+    def test_swap_guard_counts_only_active_runs(self):
+        """Regression, 4 Nov 2026: Job B's idle controller held swap and blocked every launch."""
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            app = 'user.slice/user-1006.slice/user@1006.service/app.slice/'
+            for name, swapped in (('vslam-corrected-20261031.service', 5 * GIB),
+                                  ('noise-campaign-x-70001.scope', GIB), ('noise-campaign-x-70002.scope', 0)):
+                (root / app / name).mkdir(parents=True)
+                (root / app / name / 'memory.swap.current').write_text(f'{swapped}\n')
+            run = dict(self.wrapper('okvis2', [0, 1, 2, 3]), cgroup='0::/' + app + 'noise-campaign-x-70002.scope\n')
+            idle = dict(pid=6, argv=['python', 'controller.py'], cpus=[0], cgroup='0::/' + app + 'vslam-corrected-20261031.service\n')
+            self.assertEqual(lanes.benchmark_swap_bytes([idle], container_groups=[], root=root), 0)
+            self.assertEqual(lanes.benchmark_swap_bytes([run, idle], container_groups=[], root=root), 0)
+            (root / app / 'noise-campaign-x-70002.scope/memory.swap.current').write_text('4096\n')
+            self.assertEqual(lanes.benchmark_swap_bytes([run, idle], container_groups=[], root=root), 4096)
+            with patch.object(lanes, 'benchmark_container_groups', return_value=[]), \
+                    patch.object(lanes.benchmark_swap_bytes, '__defaults__', (None, root)):
+                self.assertTrue(self.blockers('cpu_b', snapshot=[run, idle], benchmark_swap=None))
+                (root / app / 'noise-campaign-x-70002.scope/memory.swap.current').write_text('0\n')
+                self.assertEqual(self.blockers('cpu_b', snapshot=[run, idle], benchmark_swap=None), [])
+
 
 class WinnerAndTest(unittest.TestCase):
     def setUp(self):

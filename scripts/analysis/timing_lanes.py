@@ -33,10 +33,10 @@ import time
 from noise_execution_policy import cpu_set, lane_cpus
 
 GIB = 1024**3
-# Benchmark cgroups whose swap blocks a launch (user, 24 Oct, as Rule C revision 13p): system services
-# (tomcat9, Overleaf, editors) may swap; benchmark units, scopes and containers may not.
-USER_UNITS = Path(f'/sys/fs/cgroup/user.slice/user-{os.getuid()}.slice/user@{os.getuid()}.service/app.slice')
-BENCH_UNIT_PREFIXES = ('vslam-', 'noise-campaign-')
+# Cgroups whose swap blocks a launch (user, 24 Oct, as Rule C revision 13p; narrowed by the user, 5 Nov 2026):
+# only active estimator runs, that is each run wrapper's cgroup and the benchmark containers. System services
+# (tomcat9, Overleaf, editors), idle controllers and left-over scopes may swap.
+CGROUP_ROOT = Path('/sys/fs/cgroup')
 BENCH_CONTAINERS = ('voxel_svio', 'air_slam', 'ov2slam')
 QUERY = object()  # ask the GPU now; None means it could not be asked
 WRAPPER = re.compile(r'(?:^|/)scripts/run/run_([a-z0-9_]+)\.sh$')
@@ -99,9 +99,23 @@ def benchmark_container_groups():
     return groups
 
 
-def benchmark_swap_bytes(user_units=USER_UNITS, container_groups=None):
-    """Swap held by benchmark cgroups only: vslam-* and noise-campaign-* user units/scopes and benchmark containers."""
-    groups = [g for g in user_units.iterdir() if g.name.startswith(BENCH_UNIT_PREFIXES)] if user_units.is_dir() else []
+def run_cgroups(snapshot, root=CGROUP_ROOT):
+    """cgroup directories of the active run wrappers (their scopes), from a process snapshot."""
+    groups = set()
+    for run in benchmark_runs(snapshot):
+        for line in run['cgroup'].splitlines():
+            if line.startswith('0::'):
+                groups.add(Path(root) / line[3:].strip().lstrip('/'))
+    return sorted(groups)
+
+
+def benchmark_swap_bytes(snapshot, container_groups=None, root=CGROUP_ROOT):
+    """Swap held by active estimator runs only: each run wrapper's cgroup and the benchmark containers.
+
+    An idle controller (Job B's vslam-corrected service held swap while idle and blocked every launch, 4 Nov 2026)
+    or a left-over scope of a finished run does not count.
+    """
+    groups = run_cgroups(snapshot, root)
     groups += benchmark_container_groups() if container_groups is None else container_groups
     total = 0
     for group in groups:
@@ -122,7 +136,7 @@ def launch_blockers(protocol, lane, *, snapshot=None, memory=None, gpu=QUERY, di
     if memory['MemAvailable'] < policy['min_available_gib'] * GIB:
         reasons.append(f"free memory {memory['MemAvailable'] / GIB:.1f} GiB below {policy['min_available_gib']} GiB")
     if policy.get('no_host_swap_use'):
-        swapped = benchmark_swap_bytes() if benchmark_swap is None else benchmark_swap
+        swapped = benchmark_swap_bytes(snapshot) if benchmark_swap is None else benchmark_swap
         if swapped > 0:
             reasons.append(f'benchmark cgroups swap in use ({swapped} bytes)')
     if disk_free < policy.get('min_disk_free_gib', 0) * GIB:
