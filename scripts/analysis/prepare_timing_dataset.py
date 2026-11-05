@@ -30,6 +30,7 @@ DECISION = ('User, 5 Nov 2026 (PLAN Update 7): after CitrusFarm passes its autom
             'each after its clip check and readiness. Nothing else in the protocol changes.')
 # Keys a re-freeze may change; everything else must equal the earlier freeze.
 FREEZE_KEYS = {'frozen_at', 'reused_from', 'amendments'}
+EARLIER_RECORDS = prepare.reused_runs  # freeze() calls admitted_runs in its place
 
 
 def load(path):
@@ -55,7 +56,7 @@ def now():
 def admitted_runs(old):
     """Run directories the earlier freeze admitted: its attempt records, and what it reused itself (run 70445)."""
     protocol = load(old / 'protocol.json')
-    runs = prepare.reused_runs(old, protocol['campaign_id'])
+    runs = EARLIER_RECORDS(old, protocol['campaign_id'])
     earlier = set((protocol.get('reused_from') or {}).get('run_ids', []))
     for path in prepare.used_run_ids(ROOT):
         if int(path.name[3:]) in earlier:
