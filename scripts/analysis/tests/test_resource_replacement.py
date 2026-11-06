@@ -96,3 +96,37 @@ class ReplacementChecks(unittest.TestCase):
 
 
 if __name__=='__main__': unittest.main()
+
+
+class HostResetReplacement(unittest.TestCase):
+    """User, 6 Nov 2026: an attempt interrupted by a host reset is replaced once with a new run ID."""
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+        self.key = 'screen__orbslam3_hortimulti__noise_x__strawberry02_tsearch_c2__vio__rep1'
+        self.record = self.root/'interrupted.json'
+        self.record.write_text(json.dumps(dict(key=self.key, state='running', params=dict(g=1.))))
+        self.review = dict(classification='host_reset_interruption', revision='host-reset-20261105',
+                           infrastructure_failed_attempts=[self.key], scientific_score=None, optimizer_feedback=False,
+                           replacement_count=1, interrupted_boot_id='a', replacement_boot_id='b',
+                           original_record_sha256=hashlib.sha256(self.record.read_bytes()).hexdigest())
+        self.report = self.root/'review.json'
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def check(self, **changes):
+        self.report.write_text(json.dumps(dict(self.review, **changes)))
+        item = dict(revision='host-reset-20261105', record=str(self.record),
+                    record_sha256=hashlib.sha256(self.record.read_bytes()).hexdigest(), review=str(self.report),
+                    review_sha256=hashlib.sha256(self.report.read_bytes()).hexdigest())
+        return policy.reviewed_attempt_revision(dict(physical_attempt_revisions={self.key: item}), self.key)
+
+    def test_reviewed_interruption_is_admitted(self):
+        self.assertEqual(self.check()['revision'], 'host-reset-20261105')
+
+    def test_incomplete_review_is_refused(self):
+        for changes in (dict(interrupted_boot_id='b'), dict(replacement_count=2), dict(optimizer_feedback=True),
+                        dict(scientific_score=1.0), dict(infrastructure_failed_attempts=[]), dict(original_record_sha256='0')):
+            with self.assertRaisesRegex(RuntimeError, 'host-reset replacement'):
+                self.check(**changes)
