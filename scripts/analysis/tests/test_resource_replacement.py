@@ -109,7 +109,8 @@ class HostResetReplacement(unittest.TestCase):
         self.review = dict(classification='host_reset_interruption', revision='host-reset-20261105',
                            infrastructure_failed_attempts=[self.key], scientific_score=None, optimizer_feedback=False,
                            replacement_count=1, interrupted_boot_id='a', replacement_boot_id='b',
-                           original_record_sha256=hashlib.sha256(self.record.read_bytes()).hexdigest())
+                           attempts=[dict(key='other', original_record_sha256='0'),
+                                     dict(key=self.key, original_record_sha256=hashlib.sha256(self.record.read_bytes()).hexdigest())])
         self.report = self.root/'review.json'
 
     def tearDown(self):
@@ -127,6 +128,7 @@ class HostResetReplacement(unittest.TestCase):
 
     def test_incomplete_review_is_refused(self):
         for changes in (dict(interrupted_boot_id='b'), dict(replacement_count=2), dict(optimizer_feedback=True),
-                        dict(scientific_score=1.0), dict(infrastructure_failed_attempts=[]), dict(original_record_sha256='0')):
+                        dict(scientific_score=1.0), dict(infrastructure_failed_attempts=[]),
+                        dict(attempts=[dict(key=self.key, original_record_sha256='0')])):
             with self.assertRaisesRegex(RuntimeError, 'host-reset replacement'):
                 self.check(**changes)
