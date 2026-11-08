@@ -189,12 +189,16 @@ def review(art, dataset):
     # Held-out: the winner on the other sequence, next to C and M measured on that sequence by the other fold.
     for row in rows:
         spec = by_id[row['fold']]
-        final = art / 'studies' / spec['id'] / 'final-n1.json'
-        tests = runs(art, load(final)['records']) if final.is_file() else []
+        # Held-out runs: N=1 now, and the later repetitions once they ran (test-later, test-later-lc).
+        keys = []
+        for name in ('final-n1.json', 'final-later.json', 'final-later-lc.json'):
+            path = art / 'studies' / spec['id'] / name
+            keys += load(path)['records'] if path.is_file() else []
+        tests = runs(art, keys)
         other = next((r for r in rows if r['algorithm'] == row['algorithm'] and r['tune'] == row['test']), None)
         held_out.append(dict(fold=row['fold'], algorithm=row['algorithm'], sequence=row['test'],
-                             vio=next((summary([t]) for t in tests if t['mode'] == 'vio'), None),
-                             vio_lc=next((summary([t]) for t in tests if t['mode'] == 'vio-lc'), None),
+                             vio=summary([t for t in tests if t['mode'] == 'vio']) if any(t['mode'] == 'vio' for t in tests) else None,
+                             vio_lc=summary([t for t in tests if t['mode'] == 'vio-lc']) if any(t['mode'] == 'vio-lc' for t in tests) else None,
                              c=other and other['c'], m=other and other['m'],
                              main=summary(rule_c.get((row['test'], row['algorithm']), []))))
 
@@ -236,7 +240,8 @@ def markdown(value, failures):
         lines.append(f"| {NAMES[r['algorithm']]} | {r['tune']} | {r['winner']} | {cell_text(r['tuned'])} | {cell_text(r['c'])} | "
                      f"{cell_text(r['m'])} | {cell_text(r['main'])} | {r['agreement']['reason']} |")
     lines += ['', '## Held-out test', '',
-              'The winner N=1 on the other sequence. C and M are the other fold\'s N=3 runs on the same sequence.', '',
+              'The winner on the other sequence: N=1, or N=3 once the later repetitions ran (median, range). '
+              'C and M are the other fold\'s N=3 runs on the same sequence.', '',
               '| System | Test sequence | Winner VIO | Winner VIO-LC | C | M | Main Rule C |', '|---|---|---|---|---|---|---|']
     for h in value['held_out']:
         lines.append(f"| {NAMES[h['algorithm']]} | {h['sequence']} | {cell_text(h['vio'])} | {cell_text(h['vio_lc'])} | "
@@ -267,9 +272,13 @@ def main():
     parser.add_argument('--dataset', required=True)
     parser.add_argument('--report', type=Path, required=True)
     parser.add_argument('--dry-run', action='store_true', help='print the verdict, write nothing')
+    parser.add_argument('--report-only', action='store_true',
+                        help='regenerate the Markdown report only; the review file the next dataset needs stays as written')
     args = parser.parse_args()
     value, failures = review(args.art, args.dataset)
-    if not args.dry_run:
+    if args.report_only:
+        args.report.write_text(markdown(value, failures))
+    elif not args.dry_run:
         target = Path(args.art) / 'reviews' / (args.dataset + '.json')
         if target.exists():
             raise FileExistsError('review already written: ' + str(target))

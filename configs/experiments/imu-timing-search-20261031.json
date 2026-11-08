@@ -34,6 +34,13 @@
     ],
     "mode": "vio"
   },
+  "test_later_lc": {
+    "repetitions": [
+      2,
+      3
+    ],
+    "mode": "vio-lc"
+  },
   "studies": [
     {
       "id": "okvis2_citrusfarm",

@@ -191,3 +191,18 @@ class DevelopmentSearch:
         return self.immutable('final-later.json', dict(selected_at=selection['selected_at'],
             parameters=selection['winner']['params'], records=[r['key'] for r in records],
             independent_test=False, note='With the first test repetition these reach N=3 in VIO. VIO-LC stays N=1.'))
+
+    def final_later_lc(self):
+        """Test, later, VIO-LC: repetitions 2 and 3. Amendment of 8 Nov 2026 (user), declared after the N=1 VIO-LC
+        results were seen; it never changes a selection."""
+        selection, sequences = self.test_settings()
+        if 'vio-lc' not in self.spec['final_modes']:
+            return None
+        if not (self.directory / 'final-n1.json').is_file():
+            raise RuntimeError('The first test repetition has not run: ' + self.spec['id'])
+        policy = self.protocol['test_later_lc']
+        records = [self.attempt(selection['winner']['params'], sequence, 'final_n1', repetition, policy['mode'])
+                   for repetition in policy['repetitions'] for sequence in sequences]
+        return self.immutable('final-later-lc.json', dict(selected_at=selection['selected_at'],
+            parameters=selection['winner']['params'], records=[r['key'] for r in records],
+            independent_test=False, note='With the first VIO-LC test run these reach N=3 in VIO-LC. Amendment of 8 Nov 2026.'))

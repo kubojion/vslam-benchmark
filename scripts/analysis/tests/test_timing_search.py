@@ -532,12 +532,27 @@ class WinnerAndTest(unittest.TestCase):
         self.assertEqual({(r['sequence'], r['mode'], r['repetition']) for r in rows},
                          {(fold['test_sequence'], 'vio', 2), (fold['test_sequence'], 'vio', 3)})
 
+    def test_test_later_lc_adds_two_lc_repetitions_only_where_supported(self):
+        fold, search = self.search()
+        search.develop()
+        with self.assertRaisesRegex(RuntimeError, 'first test repetition'):
+            search.final_later_lc()
+        search.final_n1()
+        rows = [self.engine.records[k] for k in search.final_later_lc()['records']]
+        self.assertEqual({(r['sequence'], r['mode'], r['repetition']) for r in rows},
+                         {(fold['test_sequence'], 'vio-lc', 2), (fold['test_sequence'], 'vio-lc', 3)})
+        _, vio_only = self.search('openvins')
+        vio_only.develop()
+        vio_only.final_n1()
+        self.assertIsNone(vio_only.final_later_lc())
+
     def test_a_test_run_never_changes_the_selection(self):
         _, search = self.search()
         search.develop()
         before = (search.directory / 'selection.json').read_bytes()
         search.final_n1()
         search.final_later()
+        search.final_later_lc()
         self.assertEqual(before, (search.directory / 'selection.json').read_bytes())
 
     def test_a_test_sequence_used_in_tuning_is_refused(self):
@@ -595,6 +610,8 @@ class Coordinator(unittest.TestCase):
             coordinator.verify_stage_order(art, 'test', folds)
             with self.assertRaisesRegex(RuntimeError, 'needs test'):
                 coordinator.verify_stage_order(art, 'test-later', folds)
+            with self.assertRaisesRegex(RuntimeError, 'needs test'):
+                coordinator.verify_stage_order(art, 'test-later-lc', folds)
 
 
 class Launched(unittest.TestCase):

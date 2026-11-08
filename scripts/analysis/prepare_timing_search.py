@@ -367,6 +367,7 @@ def protocol(root, views, level_document):
         'PROGRESS/IMU-TIMING-TUNE/PLAN.md, Update 6, Job C', worktree=str(ROOT), main_root=str(MAIN),
         run_order=RUN_ORDER, max_wall_hours=120,
         screen=SCREEN, full=FULL, test_later=dict(repetitions=[2, 3], mode='vio'),
+        test_later_lc=dict(repetitions=[2, 3], mode='vio-lc'),
         studies=studies, folds=folds, views=views,
         input_variants=dict(
             citrusfarm={s: dict(variant='corrected', imu_sha256=CORRECTED_IMU_SHA256[s],

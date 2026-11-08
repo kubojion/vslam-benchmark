@@ -8,6 +8,7 @@ Default is a dry plan that runs nothing. Stages, each needing its own reviewed g
     develop     tuning of every fold of one dataset (clip screen, full candidates, N=3 selection)
     test        the frozen winners, N=1 VIO and N=1 VIO-LC where supported, on the other sequence
     test-later  two more VIO repetitions per fold, on the same commit and worktree
+    test-later-lc  two more VIO-LC repetitions per fold that supports it (amendment of 8 Nov 2026)
 
 A fold keeps to its declared lanes, one fold per lane, serial inside a fold. An exclusive fold (Basalt) starts
 only after every other fold, with the host idle. Datasets run in the protocol's order, each after the review
@@ -37,7 +38,7 @@ EXCLUSIVE = 'exclusive'
 LANES = ('cpu_a', 'cpu_b', 'gpu', EXCLUSIVE)
 GATE_HOURS = 6
 GATE_STAGES = ('check', 'gate-repro')
-RUN_STAGES = ('develop', 'test', 'test-later')
+RUN_STAGES = ('develop', 'test', 'test-later', 'test-later-lc')
 
 
 def stopped(art):
@@ -126,6 +127,8 @@ def run_worker_stage(stage, spec, protocol):
         search.final_n1()
     elif stage == 'test-later':
         search.final_later()
+    elif stage == 'test-later-lc':
+        search.final_later_lc()
     else:
         raise ValueError('Invalid worker stage')
 
@@ -264,7 +267,7 @@ def verify_order(art, protocol, dataset):
 
 
 def verify_stage_order(art, stage, folds):
-    needed = {'test': 'develop', 'test-later': 'test'}.get(stage)
+    needed = {'test': 'develop', 'test-later': 'test', 'test-later-lc': 'test'}.get(stage)
     missing = [s['id'] for s in folds if needed and not complete(art, s, needed)]
     if missing:
         raise RuntimeError(stage + ' needs ' + needed + ' to finish first: ' + ', '.join(missing))
