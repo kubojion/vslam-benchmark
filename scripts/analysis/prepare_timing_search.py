@@ -422,7 +422,8 @@ def protocol(root, views, level_document):
         decisions=_decisions(),
         exclusions=['Sielinko (zed2i): no study of this campaign may use it', 'EuRoC'],
         frozen_input_sha256={}, frozen_runtime_sha256={}, frozen_source_sha256={},
-        shared_budget_file='imu-timing-search-budget.json',
+        # User, 8 Nov 2026 (PLAN Update 8): the later held-out stages get one fresh 120 h budget per dataset.
+        shared_budget_file='imu-timing-search-later-budget.json',
         main_pins=[f'datasets/{d}/{s}/{name}' for d, sequences in DATASETS.items() for s in sequences
                    for name in ('times.txt', 'mav0/cam0/data.csv', 'mav0/cam1/data.csv', 'mav0/imu0/data.csv')],
         enforce_main_head=False,

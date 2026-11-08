@@ -31,9 +31,14 @@ from prepare_timing_dataset import load, now, row, write_new  # noqa: E402
 
 DECISION = ('User, 8 Nov 2026 (PLAN Update 8): after the Rosario review, run the declared test-later stage (two more VIO '
             'repetitions of every frozen winner on its held-out sequence, N=3) on all three datasets, then two more VIO-LC '
-            'repetitions (amendment approved by the user, declared after the N=1 VIO-LC results were seen). No selection changes.')
+            'repetitions (amendment approved by the user, declared after the N=1 VIO-LC results were seen). No selection changes. '
+            'User, 8 Nov 2026: the later stages of each dataset get one fresh 120 h budget (shared_budget_file '
+            'imu-timing-search-later-budget.json), declared before running. They run on commit 009e37d or later, which differs '
+            'from the first test runs only in harness scripts (swap guard, sampler, recovery); estimator source, configs and '
+            'noise are unchanged. They are pooled with the N=1 test runs as one cohort, with that disclosure.')
 # Fields a later-stage freeze may change; everything else must equal the latest freeze.
-FREEZE_KEYS = {'frozen_at', 'reused_from', 'amendments', 'physical_attempt_revisions', 'frozen_source_sha256', 'test_later_lc'}
+FREEZE_KEYS = {'frozen_at', 'reused_from', 'amendments', 'physical_attempt_revisions', 'frozen_source_sha256', 'test_later_lc',
+               'shared_budget_file'}
 
 
 def admitted(arts):
@@ -52,8 +57,8 @@ def freeze(new, dataset, source, arts):
         revision='later-' + dataset + '-20261108', at=now(), decision=DECISION, source_art=str(source),
         admitted_from=[str(a) for a in arts], prior_protocol_sha256=prepare.sha(arts[-1] / 'protocol.json'),
         prior_amendments=latest.get('amendments', []),
-        kind=('re-freeze for the later held-out repetitions: test-later as declared, test-later-lc added by amendment; '
-              'no change to noise values, ranges, selection, score, lanes or attempt policy'))
+        kind=('re-freeze for the later held-out repetitions: test-later as declared, test-later-lc added by amendment, '
+              'a fresh 120 h budget for the later stages; no change to noise values, ranges, selection, score, lanes or attempt policy'))
     original = prepare.reused_runs
     prepare.reused_runs = lambda previous_art, campaign: admitted(arts)
     try:
