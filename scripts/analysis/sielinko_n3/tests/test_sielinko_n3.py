@@ -313,3 +313,8 @@ def test_dry_run_prints_without_executing(built, capsys, monkeypatch):
     dispatch.dry_run(built['cpu'][0], [], True, False)
     text = capsys.readouterr().out
     assert text.count('=== ') == 52 and 'systemd-run --user --scope' in text and not calls
+
+
+def test_verifier_never_activates_gpu_instrumentation():
+    env = dict(GPU6_AUDIT_DIR='/x', GPU6_MEMORY_BYTES='1', GPU6_MEMORY_HIGH_BYTES='1', PYTHONPATH='/i', VSLAM_EXPECTED_INPUT_SHA256='a')
+    assert identity.verifier_env(env) == dict(VSLAM_EXPECTED_INPUT_SHA256='a')

@@ -119,8 +119,17 @@ def light_gate(item, *, head=git_head, inspect=docker_inspect, gate=None):
     return gate
 
 
+# The GPU first runs' sitecustomize instrumentation activates on these; a verifier is not an attempt.
+INSTRUMENTATION = ('GPU6_AUDIT_DIR', 'GPU6_MEMORY_BYTES', 'GPU6_MEMORY_HIGH_BYTES', 'PYTHONPATH')
+
+
+def verifier_env(env):
+    return None if env is None else {k: v for k, v in env.items() if k not in INSTRUMENTATION}
+
+
 def run_verifier(root, kind, reference_path, env, python, scripts_root=None):
     """Run one frozen provenance verifier against the live checkout; returns (ok, detail)."""
+    env = verifier_env(env)
     result = subprocess.run([python, '-B', '-c', VERIFY, str(scripts_root or root), kind, str(reference_path)],
                             cwd=str(root), env=env, capture_output=True, text=True, timeout=7200)
     if result.returncode:
