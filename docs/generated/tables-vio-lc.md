@@ -27,25 +27,25 @@ remains unknown. Aligned shape ATE does not establish GNSS global accuracy.
 
 | Algorithm (primary alignment) | seq1 | seq5 | str02 | str03 | cf04 | cf07 | zed2i |
 |---|---|---|---|---|---|---|---|
-| ORB-SLAM3 — SE(3) | 0.8317 (0.8154–0.8922) [score N=3]; A3/E3/S3/F0; coverage ≥99.4%; protocol blocked; blocked: 3 | 2.122 (2.07–2.41) [score N=3]; A3/E3/S3/F0; coverage ≥98.5%; protocol blocked; blocked: 3 | 2.232 (2.19–2.274) [score N=2]; A3/E2/S2/F1; 1 failed_without_trajectory; 1 nonzero exit; coverage ≥99.7%; ✅ Protocol N=3; accepted_with_limitation: 2, valid_observed_failure: 1; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.6683 (0.665–0.6892) [score N=3]; A3/E3/S3/F0; coverage ≥99.9%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | cohort 7d74000821: 0.4517 [score N=1]; cohort 86def1e8df: 0.5573 (0.4454–0.6693) [score N=2]; A3/E3/S3/F0; coverage ≥99.5%; protocol blocked; blocked: 3; recorded historical implementation | cohort 7d74000821: 0.9031 [score N=1]; cohort 86def1e8df: 0.8572 (0.8475–0.867) [score N=2]; A3/E3/S3/F0; coverage ≥99.8%; protocol blocked; blocked: 3; recorded historical implementation | no valid score; A1/E0/S0/F1; 1 failed_without_trajectory, 2 missing; 1 nonzero exit; rerun required; protocol invalid_setup; not_executed: 2, rerun_required: 1; preserved historical configuration cohort |
-| AirSLAM — SE(3) | 17.48 (17.32–38.23) [score N=3]; A3/E3/S3/F0; rerun required; keyframes; dense coverage unknown; protocol invalid_setup; rerun_required: 3; recorded historical implementation | 31.92 (31.92–31.92) [score N=3]; A3/E3/S3/F0; rerun required; keyframes; dense coverage unknown; protocol invalid_setup; rerun_required: 3; recorded historical implementation | 9.046 (6.081–9.417) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 1.09 (1.021–1.203) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | no valid score; A3/E3/S0/F3; 3 scale_collapse; keyframes; dense coverage unknown; protocol blocked; blocked: 3; recorded historical implementation | no valid score; A3/E0/S0/F3; 3 failed_without_trajectory; 3 nonzero exit; protocol blocked; blocked: 3; recorded historical implementation | 3.322 [score N=1]; A1/E1/S1/F0; 2 missing; rerun required; keyframes; dense coverage unknown; protocol invalid_setup; not_executed: 2, rerun_required: 1; preserved historical configuration cohort |
-| OKVIS2 — SE(3) | 0.8372 (0.8352–0.8412) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 9.244 (9.076–9.442) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 1.996 (1.653–2.328) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.6288 (0.6279–0.6369) [score N=3]; A3/E3/S3/F0; coverage ≥99.9%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.1826 (0.1751–0.2562) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 1.983 (1.926–3.156) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 0.3373 [score N=1]; A1/E1/S1/F0; 2 missing; rerun required; coverage ≥100.0%; protocol invalid_setup; not_executed: 2, rerun_required: 1; preserved historical configuration cohort |
-| OKVIS2-X — SE(3) | 5.349 (1.958–5.782) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 8.568 (8.437–9.267) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 1.105 (0.8799–1.2) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.1834 (0.1499–0.2017) [score N=3]; A3/E3/S3/F0; coverage ≥99.9%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.2539 (0.2369–0.2658) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 0.9531 (0.8965–1.066) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 0.3306 [score N=1]; A1/E1/S1/F0; 2 missing; rerun required; coverage ≥100.0%; protocol invalid_setup; not_executed: 2, rerun_required: 1; preserved historical configuration cohort |
-| cuVSLAM — SE(3) | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | 8.993 (8.908–9.1) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.7055 (0.7055–0.7055) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.73 (0.73–1.614) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 9.243 (9.139–9.243) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation |
-| SVO Pro — SE(3) | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no valid score; A3/E0/S0/F3; 3 failed_without_trajectory; 3 nonzero exit; ✅ Protocol N=3; valid_observed_failure: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.6178 [score N=1]; A3/E1/S1/F2; 2 failed_without_trajectory; 2 nonzero exit; coverage ≥97.8%; ✅ Protocol N=3; accepted_with_limitation: 1, valid_observed_failure: 2; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.6603 (0.6502–0.828) [score N=3]; A3/E3/S3/F0; coverage ≥99.0%; protocol blocked; blocked: 3; recorded historical implementation | 1.431 (1.313–1.436) [score N=3]; A3/E3/S3/F0; coverage ≥99.2%; protocol blocked; blocked: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation |
-| MASt3R-Fusion — SE(3) | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | 37 (37–37) [score N=3]; A3/E3/S3/F0; coverage ≥6.1%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | no valid score; A3/E3/S0/F3; 3 scale_collapse; coverage ≥11.8%; ✅ Protocol N=3; valid_observed_failure: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 10.07 (10.07–10.07) [score N=3]; A3/E3/S3/F0; coverage ≥20.4%; protocol blocked; blocked: 3; recorded historical implementation | 13.38 (13.38–13.38) [score N=3]; A3/E3/S3/F0; coverage ≥16.5%; protocol blocked; blocked: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation |
+| ORB-SLAM3 — SE(3) | cohort 645fcdbe5f: 0.5702 [score N=1]; cohort bedd2f3aca: no valid score; cohort f80c96e291: 0.4894 [score N=1]; A3/E2/S2/F1; 1 failed_without_trajectory; 1 nonzero exit; coverage ≥99.4%; protocol blocked; blocked: 3; recorded historical implementation | cohort 3607706b1a: 1.567 [score N=1]; cohort 6593df1570: 1.324 [score N=1]; cohort c993ad2901: 1.599 [score N=1]; A3/E3/S3/F0; coverage ≥98.5%; protocol blocked; blocked: 3; recorded historical implementation | 2.232 (2.19–2.274) [score N=2]; A3/E2/S2/F1; 1 failed_without_trajectory; 1 nonzero exit; coverage ≥99.7%; ✅ Protocol N=3; accepted_with_limitation: 2, valid_observed_failure: 1; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.6683 (0.665–0.6892) [score N=3]; A3/E3/S3/F0; coverage ≥99.9%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | cohort 7d74000821: 0.4517 [score N=1]; cohort 86def1e8df: 0.5573 (0.4454–0.6693) [score N=2]; A3/E3/S3/F0; coverage ≥99.5%; protocol blocked; blocked: 3; recorded historical implementation | cohort 7d74000821: 0.9031 [score N=1]; cohort 86def1e8df: 0.8572 (0.8475–0.867) [score N=2]; A3/E3/S3/F0; coverage ≥99.8%; protocol blocked; blocked: 3; recorded historical implementation | no valid score; A3/E3/S0/F3; 3 scale_collapse; coverage ≥79.6%; protocol blocked; blocked: 3; recorded historical implementation |
+| AirSLAM — SE(3) | 11.17 (10.08–12.12) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; protocol blocked; blocked: 3; recorded historical implementation | 31.85 (31.85–31.85) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; protocol blocked; blocked: 3; recorded historical implementation | 9.046 (6.081–9.417) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 1.09 (1.021–1.203) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | no valid score; A3/E3/S0/F3; 3 scale_collapse; keyframes; dense coverage unknown; protocol blocked; blocked: 3; recorded historical implementation | no valid score; A3/E0/S0/F3; 3 failed_without_trajectory; 3 nonzero exit; protocol blocked; blocked: 3; recorded historical implementation | 39.56 [score N=1]; A3/E3/S1/F2; 2 scale_collapse; keyframes; dense coverage unknown; protocol blocked; blocked: 3; recorded historical implementation |
+| OKVIS2 — SE(3) | cohort 5ec83bf002: 0.1516 [score N=1]; cohort b83cc5759e: 0.127 [score N=1]; cohort c5e1cec45e: 0.1337 [score N=1]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | cohort 27f2438be8: 52.8 [score N=1]; cohort 3250afae21: 13.42 [score N=1]; cohort 9c44fd2959: 1.847 [score N=1]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 1.996 (1.653–2.328) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.6288 (0.6279–0.6369) [score N=3]; A3/E3/S3/F0; coverage ≥99.9%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.1826 (0.1751–0.2562) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 1.983 (1.926–3.156) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | no valid score; A3/E3/S0/F3; 3 scale_collapse; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation |
+| OKVIS2-X — SE(3) | cohort 49fb8cd8c7: 0.2962 [score N=1]; cohort 4ff359082d: 0.3515 [score N=1]; cohort 81eba1ab29: 0.3384 [score N=1]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | cohort 0c521b9713: 2.145 [score N=1]; cohort c8d0e52a74: 1.683 [score N=1]; cohort fcd0a8ac57: 0.8275 [score N=1]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 1.105 (0.8799–1.2) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.1834 (0.1499–0.2017) [score N=3]; A3/E3/S3/F0; coverage ≥99.9%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.2539 (0.2369–0.2658) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 0.9531 (0.8965–1.066) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 0.3306 [score N=1]; A1/E1/S1/F0; 2 missing; rerun required; coverage ≥100.0%; protocol invalid_setup; not_executed: 2, rerun_required: 1; preserved historical configuration cohort |
+| cuVSLAM — SE(3) | 8.155 (7.435–8.159) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 7.468 (6.311–7.782) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 8.993 (8.908–9.1) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.7055 (0.7055–0.7055) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.73 (0.73–1.614) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 9.243 (9.139–9.243) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 12.29 (5.656–26.19) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation |
+| SVO Pro — SE(3) | 1.855 (1.798–1.856) [score N=3]; A3/E3/S3/F0; coverage ≥98.6%; protocol blocked; blocked: 3; recorded historical implementation | 1.51 (1.311–1.518) [score N=3]; A3/E3/S3/F0; coverage ≥98.1%; protocol blocked; blocked: 3; recorded historical implementation | no valid score; A3/E0/S0/F3; 3 failed_without_trajectory; 3 nonzero exit; ✅ Protocol N=3; valid_observed_failure: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.6178 [score N=1]; A3/E1/S1/F2; 2 failed_without_trajectory; 2 nonzero exit; coverage ≥97.8%; ✅ Protocol N=3; accepted_with_limitation: 1, valid_observed_failure: 2; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.6603 (0.6502–0.828) [score N=3]; A3/E3/S3/F0; coverage ≥99.0%; protocol blocked; blocked: 3; recorded historical implementation | 1.431 (1.313–1.436) [score N=3]; A3/E3/S3/F0; coverage ≥99.2%; protocol blocked; blocked: 3; recorded historical implementation | no valid score; A3/E0/S0/F3; 3 failed_without_trajectory; 3 nonzero exit; protocol blocked; blocked: 3; recorded historical implementation |
+| MASt3R-Fusion — SE(3) | 69.48 (69.48–69.48) [score N=3]; A3/E3/S3/F0; coverage ≥5.7%; protocol blocked; blocked: 3; recorded historical implementation | 14.81 (14.81–14.81) [score N=3]; A3/E3/S3/F0; coverage ≥4.0%; protocol blocked; blocked: 3; recorded historical implementation | 37 (37–37) [score N=3]; A3/E3/S3/F0; coverage ≥6.1%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | no valid score; A3/E3/S0/F3; 3 scale_collapse; coverage ≥11.8%; ✅ Protocol N=3; valid_observed_failure: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 10.07 (10.07–10.07) [score N=3]; A3/E3/S3/F0; coverage ≥20.4%; protocol blocked; blocked: 3; recorded historical implementation | 13.38 (13.38–13.38) [score N=3]; A3/E3/S3/F0; coverage ≥16.5%; protocol blocked; blocked: 3; recorded historical implementation | 20.28 (20.28–20.28) [score N=3]; A3/E3/S3/F0; coverage ≥0.0%; protocol blocked; blocked: 3; recorded historical implementation |
 
 ## EuRoC reference control — primary ATE RMSE [m]
 
 | Algorithm (primary alignment) | MH01 | MH03 | MH05 |
 |---|---|---|---|
-| ORB-SLAM3 — SE(3) | 0.04191 (0.03823–0.04621) [score N=3]; A3/E3/S3/F0; coverage ≥99.9%; protocol blocked; blocked: 3 | 0.03323 (0.02605–0.03332) [score N=3]; A3/E3/S3/F0; coverage ≥86.3%; protocol blocked; blocked: 3 | 0.058 (0.05214–0.06224) [score N=3]; A3/E3/S3/F0; coverage ≥96.5%; protocol blocked; blocked: 3 |
+| ORB-SLAM3 — SE(3) | 0.04097 (0.03837–0.04231) [score N=3]; A3/E3/S3/F0; coverage ≥99.9%; protocol blocked; blocked: 3; recorded historical implementation | 0.03159 (0.02871–0.03606) [score N=3]; A3/E3/S3/F0; coverage ≥99.9%; protocol blocked; blocked: 3; recorded historical implementation | 0.05117 (0.05083–0.05308) [score N=3]; A3/E3/S3/F0; coverage ≥81.8%; protocol blocked; blocked: 3; recorded historical implementation |
 | AirSLAM — SE(3) | 0.03876 (0.03876–0.03876) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 3; AirSLAM rectification patch 1e0ad79c28d4 (native build verified) | 0.02445 (0.02432–0.02445) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 3; AirSLAM rectification patch 1e0ad79c28d4 (native build verified) | 0.05311 (0.05301–0.0532) [score N=2]; A3/E2/S2/F1; 1 failed_without_trajectory; 1 nonzero exit; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 2, valid_observed_failure: 1; AirSLAM rectification patch 1e0ad79c28d4 (native build verified) |
 | OKVIS2 — SE(3) | 0.02498 (0.02371–0.02603) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 | 0.03051 (0.02994–0.03104) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 | 0.07319 (0.06125–0.07428) [score N=3]; A3/E3/S3/F0; coverage ≥99.9%; ✅ Protocol N=3; accepted: 3 |
 | OKVIS2-X — SE(3) | 0.01616 (0.01503–0.01873) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 | 0.02454 (0.02435–0.02679) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 | 0.04977 (0.04673–0.0686) [score N=3]; A3/E3/S3/F0; coverage ≥99.9%; ✅ Protocol N=3; accepted: 3 |
-| cuVSLAM — SE(3) | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation |
-| SVO Pro — SE(3) | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation |
-| MASt3R-Fusion — SE(3) | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation |
+| cuVSLAM — SE(3) | 0.0287 (0.0287–0.0287) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 0.03502 (0.03349–0.03502) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 0.06775 (0.0671–0.06775) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation |
+| SVO Pro — SE(3) | 0.08268 (0.07353–0.09341) [score N=3]; A3/E3/S3/F0; coverage ≥94.6%; protocol blocked; blocked: 3; recorded historical implementation | 0.09295 (0.08034–0.09888) [score N=3]; A3/E3/S3/F0; coverage ≥84.1%; protocol blocked; blocked: 3; recorded historical implementation | 0.2619 (0.2352–0.2645) [score N=3]; A3/E3/S3/F0; coverage ≥93.9%; protocol blocked; blocked: 3; recorded historical implementation |
+| MASt3R-Fusion — SE(3) | 0.222 (0.222–0.222) [score N=3]; A3/E3/S3/F0; coverage ≥5.3%; protocol blocked; blocked: 3; recorded historical implementation | 0.08565 (0.08565–0.08565) [score N=3]; A3/E3/S3/F0; coverage ≥11.1%; protocol blocked; blocked: 3; recorded historical implementation | 0.1514 (0.1514–0.1514) [score N=3]; A3/E3/S3/F0; coverage ≥5.0%; protocol blocked; blocked: 3; recorded historical implementation |
 
 ## Log observations (not verified accepted loops)
 
@@ -96,39 +96,66 @@ remains unknown. Aligned shape ATE does not establish GNSS global accuracy.
 | AirSLAM | MH01 | default | 4 | 0 |
 | AirSLAM | MH01 | default | 5 | 0 |
 | AirSLAM | MH01 | default | 6 | 0 |
+| cuVSLAM | MH01 | default | 10001 | 48 |
+| cuVSLAM | MH01 | default | 10002 | 48 |
+| cuVSLAM | MH01 | default | 10003 | 48 |
+| MASt3R-Fusion | MH01 | default | 10001 | unknown |
+| MASt3R-Fusion | MH01 | default | 10002 | unknown |
+| MASt3R-Fusion | MH01 | default | 10003 | unknown |
 | OKVIS2 | MH01 | default | 1 | 30 |
 | OKVIS2 | MH01 | default | 2 | 29 |
 | OKVIS2 | MH01 | default | 3 | 34 |
 | OKVIS2-X | MH01 | default | 1 | 32 |
 | OKVIS2-X | MH01 | default | 2 | 30 |
 | OKVIS2-X | MH01 | default | 3 | 33 |
-| ORB-SLAM3 | MH01 | default | 1 | 0 |
-| ORB-SLAM3 | MH01 | default | 2 | 0 |
-| ORB-SLAM3 | MH01 | default | 3 | 0 |
+| ORB-SLAM3 | MH01 | default | 10001 | 0 |
+| ORB-SLAM3 | MH01 | default | 10002 | 0 |
+| ORB-SLAM3 | MH01 | default | 10003 | 0 |
+| SVO Pro | MH01 | default | 10001 | unknown |
+| SVO Pro | MH01 | default | 10002 | unknown |
+| SVO Pro | MH01 | default | 10003 | unknown |
 | AirSLAM | MH03 | default | 4 | 0 |
 | AirSLAM | MH03 | default | 5 | 0 |
 | AirSLAM | MH03 | default | 6 | 0 |
+| cuVSLAM | MH03 | default | 10001 | 92 |
+| cuVSLAM | MH03 | default | 10002 | 92 |
+| cuVSLAM | MH03 | default | 10003 | 95 |
+| MASt3R-Fusion | MH03 | default | 10001 | unknown |
+| MASt3R-Fusion | MH03 | default | 10002 | unknown |
+| MASt3R-Fusion | MH03 | default | 10003 | unknown |
 | OKVIS2 | MH03 | default | 1 | 41 |
 | OKVIS2 | MH03 | default | 2 | 40 |
 | OKVIS2 | MH03 | default | 3 | 45 |
 | OKVIS2-X | MH03 | default | 1 | 40 |
 | OKVIS2-X | MH03 | default | 2 | 39 |
 | OKVIS2-X | MH03 | default | 3 | 41 |
-| ORB-SLAM3 | MH03 | default | 1 | 0 |
-| ORB-SLAM3 | MH03 | default | 2 | 0 |
-| ORB-SLAM3 | MH03 | default | 3 | 0 |
+| ORB-SLAM3 | MH03 | default | 10001 | 0 |
+| ORB-SLAM3 | MH03 | default | 10002 | 0 |
+| ORB-SLAM3 | MH03 | default | 10003 | 0 |
+| SVO Pro | MH03 | default | 10001 | unknown |
+| SVO Pro | MH03 | default | 10002 | unknown |
+| SVO Pro | MH03 | default | 10003 | unknown |
 | AirSLAM | MH05 | default | 4 | unknown |
 | AirSLAM | MH05 | default | 5 | 0 |
 | AirSLAM | MH05 | default | 6 | 0 |
+| cuVSLAM | MH05 | default | 10001 | 27 |
+| cuVSLAM | MH05 | default | 10002 | 26 |
+| cuVSLAM | MH05 | default | 10003 | 27 |
+| MASt3R-Fusion | MH05 | default | 10001 | unknown |
+| MASt3R-Fusion | MH05 | default | 10002 | unknown |
+| MASt3R-Fusion | MH05 | default | 10003 | unknown |
 | OKVIS2 | MH05 | default | 1 | 22 |
 | OKVIS2 | MH05 | default | 2 | 20 |
 | OKVIS2 | MH05 | default | 3 | 17 |
 | OKVIS2-X | MH05 | default | 1 | 17 |
 | OKVIS2-X | MH05 | default | 2 | 12 |
 | OKVIS2-X | MH05 | default | 3 | 19 |
-| ORB-SLAM3 | MH05 | default | 1 | 0 |
-| ORB-SLAM3 | MH05 | default | 2 | 0 |
-| ORB-SLAM3 | MH05 | default | 3 | 0 |
+| ORB-SLAM3 | MH05 | default | 10001 | 0 |
+| ORB-SLAM3 | MH05 | default | 10002 | 0 |
+| ORB-SLAM3 | MH05 | default | 10003 | 0 |
+| SVO Pro | MH05 | default | 10001 | unknown |
+| SVO Pro | MH05 | default | 10002 | unknown |
+| SVO Pro | MH05 | default | 10003 | unknown |
 | AirSLAM | str02 | default | 10001 | 0 |
 | AirSLAM | str02 | default | 10002 | 0 |
 | AirSLAM | str02 | default | 10003 | 0 |
@@ -171,31 +198,64 @@ remains unknown. Aligned shape ATE does not establish GNSS global accuracy.
 | SVO Pro | str03 | default | 10001 | unknown |
 | SVO Pro | str03 | default | 10002 | unknown |
 | SVO Pro | str03 | default | 10003 | unknown |
-| AirSLAM | seq1 | default | 1 | 0 |
-| AirSLAM | seq1 | default | 2 | 0 |
-| AirSLAM | seq1 | default | 3 | 0 |
-| OKVIS2 | seq1 | default | 1 | 202 |
-| OKVIS2 | seq1 | default | 2 | 221 |
-| OKVIS2 | seq1 | default | 3 | 239 |
-| OKVIS2-X | seq1 | default | 1 | 140 |
-| OKVIS2-X | seq1 | default | 2 | 27 |
-| OKVIS2-X | seq1 | default | 3 | 33 |
-| ORB-SLAM3 | seq1 | default | 1 | 111 |
-| ORB-SLAM3 | seq1 | default | 2 | 22 |
-| ORB-SLAM3 | seq1 | default | 3 | 4 |
-| AirSLAM | seq5 | default | 1 | 0 |
-| AirSLAM | seq5 | default | 2 | 0 |
-| AirSLAM | seq5 | default | 3 | 0 |
-| OKVIS2 | seq5 | default | 1 | 1 |
-| OKVIS2 | seq5 | default | 2 | 2 |
-| OKVIS2 | seq5 | default | 3 | 1 |
-| OKVIS2-X | seq5 | default | 1 | 1 |
-| OKVIS2-X | seq5 | default | 2 | 2 |
-| OKVIS2-X | seq5 | default | 3 | 2 |
-| ORB-SLAM3 | seq5 | default | 1 | 0 |
-| ORB-SLAM3 | seq5 | default | 2 | 0 |
-| ORB-SLAM3 | seq5 | default | 3 | 0 |
-| AirSLAM | zed2i | default | 1 | 0 |
-| OKVIS2 | zed2i | default | 1 | 1133 |
+| AirSLAM | seq1 | default | 40010 | 0 |
+| AirSLAM | seq1 | default | 40011 | 0 |
+| AirSLAM | seq1 | default | 40101 | 0 |
+| cuVSLAM | seq1 | default | 10001 | 148 |
+| cuVSLAM | seq1 | default | 10002 | 143 |
+| cuVSLAM | seq1 | default | 10003 | 145 |
+| MASt3R-Fusion | seq1 | default | 10001 | unknown |
+| MASt3R-Fusion | seq1 | default | 10002 | unknown |
+| MASt3R-Fusion | seq1 | default | 10003 | unknown |
+| OKVIS2 | seq1 | default | 10001 | 245 |
+| OKVIS2 | seq1 | default | 10002 | 208 |
+| OKVIS2 | seq1 | default | 10003 | 195 |
+| OKVIS2-X | seq1 | default | 10001 | 156 |
+| OKVIS2-X | seq1 | default | 10002 | 155 |
+| OKVIS2-X | seq1 | default | 10003 | 159 |
+| ORB-SLAM3 | seq1 | default | 10001 | 107 |
+| ORB-SLAM3 | seq1 | default | 10002 | 88 |
+| ORB-SLAM3 | seq1 | default | 10003 | unknown |
+| SVO Pro | seq1 | default | 10001 | unknown |
+| SVO Pro | seq1 | default | 10002 | unknown |
+| SVO Pro | seq1 | default | 10003 | unknown |
+| AirSLAM | seq5 | default | 40012 | 0 |
+| AirSLAM | seq5 | default | 40013 | 0 |
+| AirSLAM | seq5 | default | 40014 | 0 |
+| cuVSLAM | seq5 | default | 10001 | 7 |
+| cuVSLAM | seq5 | default | 10002 | 6 |
+| cuVSLAM | seq5 | default | 10003 | 8 |
+| MASt3R-Fusion | seq5 | default | 10001 | unknown |
+| MASt3R-Fusion | seq5 | default | 10002 | unknown |
+| MASt3R-Fusion | seq5 | default | 10003 | unknown |
+| OKVIS2 | seq5 | default | 10001 | 14 |
+| OKVIS2 | seq5 | default | 10002 | 1 |
+| OKVIS2 | seq5 | default | 10003 | 0 |
+| OKVIS2-X | seq5 | default | 10001 | 21 |
+| OKVIS2-X | seq5 | default | 10002 | 20 |
+| OKVIS2-X | seq5 | default | 10003 | 3 |
+| ORB-SLAM3 | seq5 | default | 10001 | 0 |
+| ORB-SLAM3 | seq5 | default | 10002 | 0 |
+| ORB-SLAM3 | seq5 | default | 10003 | 0 |
+| SVO Pro | seq5 | default | 10001 | unknown |
+| SVO Pro | seq5 | default | 10002 | unknown |
+| SVO Pro | seq5 | default | 10003 | unknown |
+| AirSLAM | zed2i | default | 40021 | 0 |
+| AirSLAM | zed2i | default | 40022 | 0 |
+| AirSLAM | zed2i | default | 40023 | 0 |
+| cuVSLAM | zed2i | default | 20001 | 0 |
+| cuVSLAM | zed2i | default | 20002 | 0 |
+| cuVSLAM | zed2i | default | 20003 | 0 |
+| MASt3R-Fusion | zed2i | default | 20001 | unknown |
+| MASt3R-Fusion | zed2i | default | 20002 | unknown |
+| MASt3R-Fusion | zed2i | default | 20003 | unknown |
+| OKVIS2 | zed2i | default | 20001 | 839 |
+| OKVIS2 | zed2i | default | 20002 | 810 |
+| OKVIS2 | zed2i | default | 20003 | 786 |
 | OKVIS2-X | zed2i | default | 1 | 403 |
-| ORB-SLAM3 | zed2i | default | 1 | 0 |
+| ORB-SLAM3 | zed2i | default | 20001 | 0 |
+| ORB-SLAM3 | zed2i | default | 20002 | 0 |
+| ORB-SLAM3 | zed2i | default | 20003 | 0 |
+| SVO Pro | zed2i | default | 20001 | unknown |
+| SVO Pro | zed2i | default | 20002 | unknown |
+| SVO Pro | zed2i | default | 20003 | unknown |

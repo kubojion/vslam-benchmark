@@ -27,33 +27,78 @@ remains unknown. Aligned shape ATE does not establish GNSS global accuracy.
 
 | Algorithm (primary alignment) | seq1 | seq5 | str02 | str03 | cf04 | cf07 | zed2i |
 |---|---|---|---|---|---|---|---|
-| ORB-SLAM3 — SE(3) | no valid score; A1/E0/S0/F1; 1 failed_without_trajectory, 2 missing; 1 nonzero exit; protocol blocked; blocked: 1, not_executed: 2 | 11.48 (9.673–16.14) [score N=3]; A3/E3/S3/F0; coverage ≥72.9%; protocol blocked; blocked: 3 | 2.216 (1.99–21.01) [score N=3]; A3/E3/S3/F0; coverage ≥31.8%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.7883 (0.7806–0.7952) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | cohort 75da64421b: 0.2921 [score N=1]; cohort 8e716fa6fa: 0.2392 (0.2361–0.2423) [score N=2]; A3/E3/S2/F1; 1 nonzero exit; rerun required; coverage ≥100.0%; protocol invalid_setup; rerun_required: 3; preserved historical configuration cohort |
-| OV2SLAM — SE(3) | 4.046 (3.96–4.132) [score N=2]; A3/E3/S2/F1; 1 scale_collapse; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 5.126 (4.863–5.942) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 5.348 (4.586–5.455) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.5769 (0.5735–0.5941) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | 0.7955 (0.7507–6.871) [score N=3]; A3/E3/S0/F3; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3 |
-| AirSLAM — SE(3) | 42.66 (41.31–48.6) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; protocol blocked; blocked: 3; recorded historical implementation | 19.78 (18.25–19.85) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; protocol blocked; blocked: 3; recorded historical implementation | 16.94 (16.59–17.6) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 3 | 5.861 (5.81–7.221) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 3 | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | cohort 166d9d1eb7: 6.71 [score N=1]; cohort 231be16dff: 5.276 (4.227–6.324) [score N=2]; A3/E3/S3/F0; keyframes; dense coverage unknown; protocol blocked; blocked: 3; recorded historical implementation |
-| OKVIS2 — SE(3) | 19.45 (18.83–19.79) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 16.5 (15.79–18.25) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 1.879 (1.8–1.94) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3 | 0.6862 (0.6821–0.733) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3 | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | cohort 0adc87005c: 0.7295 [score N=1]; cohort unverified: no valid score; A2/E1/S1/F1; 1 incomplete, 1 missing; coverage ≥100.0%; protocol blocked; accepted_with_limitation: 1, blocked: 1, not_executed: 1 |
-| OKVIS2-X — SE(3) | cohort 14b263872f: 18.43 (17.39–19.47) [score N=2]; cohort a48281653d: 17.65 [score N=1]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3 | 14.57 (13.71–15.02) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 2.028 (1.813–4.007) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3 | 1.696 (0.6687–1.879) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3 | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | 0.0435 [score N=1]; A1/E1/S0/F1; 2 missing; 1 nonzero exit; coverage ≥0.8%; protocol blocked; blocked: 1, not_executed: 2 |
-| DPVO (mono) — Sim(3) | 8.153 (7.54–8.515) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 5.736 (5.177–9.375) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 20.99 (14.85–23.37) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3 | 8.822 (8.779–9.255) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3 | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | 1.976 (1.714–2.486) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3 |
-| cuVSLAM — SE(3) | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | 4.24 (4.156–4.347) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.7393 (0.7393–0.7393) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation |
+| ORB-SLAM3 — SE(3) | cohort 3671f86c50: 0.3802 (0.3153–0.4451) [score N=2]; cohort d205d0f0fd: 0.4412 [score N=1]; A3/E3/S3/F0; coverage ≥99.7%; protocol blocked; blocked: 3; recorded historical implementation | cohort 2a5ee2c368: 9.216 [score N=1]; cohort b86b51d7bd: 10.2 (9.342–11.07) [score N=2]; A3/E3/S3/F0; coverage ≥72.0%; protocol blocked; blocked: 3; recorded historical implementation | 2.216 (1.99–21.01) [score N=3]; A3/E3/S3/F0; coverage ≥31.8%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.7883 (0.7806–0.7952) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | cohort 141e6db024: 0.2365 [score N=1]; cohort 8b70f77eef: 0.6692 [score N=1]; cohort b2f9f29f93: 0.169 [score N=1]; A3/E3/S3/F0; coverage ≥23.7%; protocol blocked; blocked: 3; recorded historical implementation | cohort 39a7391540: 0.07635 [score N=1]; cohort 5d575cca05: 0.2498 [score N=1]; cohort b2f9f29f93: 0.2341 [score N=1]; A3/E3/S3/F0; coverage ≥9.0%; protocol blocked; blocked: 3; recorded historical implementation | 0.2581 (0.2011–0.2837) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation |
+| OV2SLAM — SE(3) | cohort 5adc0c81f1: 2.07 [score N=1]; cohort 86f89a589e: 1.915 [score N=1]; cohort unverified: no valid score; A3/E2/S2/F0; U1; 1 incomplete; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | cohort 6eb9911b67: 4.075 [score N=1]; cohort 73ad09dd5a: 2.659 (1.792–3.526) [score N=2]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 5.348 (4.586–5.455) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.5769 (0.5735–0.5941) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | cohort 2f75b3a155: 4.543 [score N=1]; cohort 411c8012cb: 6.414 [score N=1]; cohort ad96c8b603: 4.977 [score N=1]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | cohort 411c8012cb: no valid score; cohort 6d1065a382: 87.29 [score N=1]; cohort d8c014bb83: no valid score; A3/E3/S1/F2; 2 scale_collapse; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 0.7955 (0.7507–6.871) [score N=3]; A3/E3/S0/F3; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3 |
+| AirSLAM — SE(3) | cohort 7bd9642082: 1.02 [score N=1]; cohort f525da116a: 1.179 (1.049–1.308) [score N=2]; A3/E3/S3/F0; keyframes; dense coverage unknown; protocol blocked; blocked: 3; recorded historical implementation | cohort 0848a0c774: 5.478 [score N=1]; cohort 6bcc9fdc7e: 6.478 (4.577–8.378) [score N=2]; A3/E3/S3/F0; keyframes; dense coverage unknown; protocol blocked; blocked: 3; recorded historical implementation | 16.94 (16.59–17.6) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 3 | 5.861 (5.81–7.221) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 3 | cohort 3e00d6e030: 1.289 [score N=1]; cohort e1d8db8337: 1.525 (0.992–2.057) [score N=2]; A3/E3/S3/F0; keyframes; dense coverage unknown; protocol blocked; blocked: 3; recorded historical implementation | cohort 3e00d6e030: 7.13 [score N=1]; cohort e1d8db8337: 8.212 (4.929–11.5) [score N=2]; A3/E3/S3/F0; keyframes; dense coverage unknown; protocol blocked; blocked: 3; recorded historical implementation | 4.775 (3.833–6.662) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; protocol blocked; blocked: 3; recorded historical implementation |
+| OKVIS2 — SE(3) | cohort 002975320b: 9.815 [score N=1]; cohort c7b37034ad: 8.992 (8.707–9.278) [score N=2]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | cohort 372f6349bf: 10.79 (9.806–11.78) [score N=2]; cohort fce7e67947: 9.069 [score N=1]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 1.879 (1.8–1.94) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3 | 0.6862 (0.6821–0.733) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3 | cohort 3b3674977a: 0.1956 [score N=1]; cohort 4e051c827c: 0.2541 [score N=1]; cohort ca6ac711b9: 0.1874 [score N=1]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | cohort 067e21f403: 1.546 [score N=1]; cohort 52ceddf921: 1.774 [score N=1]; cohort 9d065e2d65: 2.41 [score N=1]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 0.4522 (0.361–1.59) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation |
+| OKVIS2-X — SE(3) | cohort 28a65e09f0: 9.44 (9.225–9.654) [score N=2]; cohort 54e5147895: 8.664 [score N=1]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | cohort a9c04ca631: 11.75 (9.746–13.75) [score N=2]; cohort fe648d82d7: 12.5 [score N=1]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 2.028 (1.813–4.007) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3 | 1.696 (0.6687–1.879) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3 | cohort 3823d800c8: 0.2429 [score N=1]; cohort 89afefbd90: 0.272 [score N=1]; cohort d99c0b0c03: 0.3456 [score N=1]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | cohort 86a39cc3b9: 2.97 [score N=1]; cohort e0e8a3710c: 2.89 [score N=1]; cohort f93c535453: 3.073 [score N=1]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | no valid score; A1/E0/S0/F0; U1; 1 incomplete, 2 missing; protocol blocked; blocked: 1, not_executed: 2; recorded historical implementation |
+| DPVO (mono) — Sim(3) | 16.79 (12.56–17.16) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 8.183 (1.387–12.52) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 20.99 (14.85–23.37) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3 | 8.822 (8.779–9.255) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3 | 4.1 (4.094–4.354) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 12.05 (11.46–12.64) [score N=2]; A3/E3/S2/F1; 1 eval_failed; dense coverage unknown; protocol blocked; blocked: 3; recorded historical implementation | 1.976 (1.714–2.486) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3 |
+| cuVSLAM — SE(3) | 0.1736 (0.1499–1.407) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 1.189 (0.9103–1.326) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 4.24 (4.156–4.347) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.7393 (0.7393–0.7393) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; 2026-10-05/06 rule-C batch (batch-c), plan future-n3-five-modes (workspace 1c1b4e8) | 0.9884 (0.4078–10.38) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 3.513 (3.509–3.576) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | cohort 0ce04ff71b: 0.2482 (0.2478–0.2485) [score N=2]; cohort 1646ca3229: 0.2368 [score N=1]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation |
 
 ## EuRoC reference control — primary ATE RMSE [m]
 
 | Algorithm (primary alignment) | MH01 | MH03 | MH05 |
 |---|---|---|---|
-| ORB-SLAM3 — SE(3) | 0.04459 (0.03643–0.04605) [score N=3]; A3/E3/S2/F1; 1 nonzero exit; coverage ≥100.0%; protocol blocked; blocked: 3 | 0.02959 (0.02821–0.03611) [score N=3]; A3/E3/S2/F1; 1 nonzero exit; coverage ≥100.0%; protocol blocked; blocked: 3 | 0.05373 (0.05046–0.06119) [score N=3]; A3/E3/S2/F1; 1 nonzero exit; coverage ≥100.0%; protocol blocked; blocked: 3 |
+| ORB-SLAM3 — SE(3) | 0.04192 (0.038–0.04514) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 0.03476 (0.0306–0.04366) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 0.05484 (0.04572–0.06982) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation |
 | OV2SLAM — SE(3) | 0.04391 (0.04138–0.05804) [score N=3]; A3/E3/S0/F3; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; native shutdown error | 0.04273 (0.03422–0.04462) [score N=3]; A3/E3/S0/F3; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; native shutdown error | 0.1016 (0.09389–0.1339) [score N=3]; A3/E3/S0/F3; coverage ≥100.0%; ✅ Protocol N=3; accepted_with_limitation: 3; native shutdown error |
 | AirSLAM — SE(3) | 0.04001 (0.03965–0.04015) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 3 | 0.02393 (0.02391–0.02395) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 3 | 0.05614 (0.0561–0.05618) [score N=3]; A3/E3/S3/F0; keyframes; dense coverage unknown; ✅ Protocol N=3; accepted_with_limitation: 3 |
 | OKVIS2 — SE(3) | 0.02265 (0.02172–0.02336) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 | 0.03778 (0.02899–0.04196) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 | 0.09319 (0.07579–0.1039) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 |
 | OKVIS2-X — SE(3) | 0.06499 (0.05924–0.1053) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 | 0.1247 (0.04082–0.2158) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 | 0.393 (0.2048–0.423) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 |
 | DPVO (mono) — Sim(3) | 0.04569 (0.04051–0.05029) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 | 0.02212 (0.02162–0.02242) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 | 0.04585 (0.04379–0.04893) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; ✅ Protocol N=3; accepted: 3 |
-| cuVSLAM — SE(3) | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation | no attempt; A0/E0/S0/F0; 3 missing; protocol blocked; not_executed: 3; recorded historical implementation |
+| cuVSLAM — SE(3) | 0.02514 (0.02514–0.02629) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 0.03089 (0.03057–0.03251) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation | 0.05076 (0.05076–0.05076) [score N=3]; A3/E3/S3/F0; coverage ≥100.0%; protocol blocked; blocked: 3; recorded historical implementation |
 
 ## Log observations (not verified accepted loops)
 
 | Algorithm | Sequence | Variant | Run | Log-reported events |
 |---|---|---|---|---|
+| AirSLAM | cf04 | default | 10001 | 0 |
+| AirSLAM | cf04 | default | 40002 | 0 |
+| AirSLAM | cf04 | default | 40031 | 0 |
+| cuVSLAM | cf04 | default | 10001 | 223 |
+| cuVSLAM | cf04 | default | 10002 | 224 |
+| cuVSLAM | cf04 | default | 10003 | 228 |
+| DPVO (mono) | cf04 | default | 10001 | unknown |
+| DPVO (mono) | cf04 | default | 10002 | unknown |
+| DPVO (mono) | cf04 | default | 10003 | unknown |
+| OKVIS2 | cf04 | default | 10001 | 198 |
+| OKVIS2 | cf04 | default | 10002 | 172 |
+| OKVIS2 | cf04 | default | 10003 | 209 |
+| OKVIS2-X | cf04 | default | 10001 | 137 |
+| OKVIS2-X | cf04 | default | 10002 | 146 |
+| OKVIS2-X | cf04 | default | 10003 | 135 |
+| ORB-SLAM3 | cf04 | default | 10001 | 0 |
+| ORB-SLAM3 | cf04 | default | 10002 | 0 |
+| ORB-SLAM3 | cf04 | default | 10003 | 0 |
+| OV2SLAM | cf04 | default | 10001 | 12 |
+| OV2SLAM | cf04 | default | 10002 | 9 |
+| OV2SLAM | cf04 | default | 10003 | 9 |
+| AirSLAM | cf07 | default | 10001 | 0 |
+| AirSLAM | cf07 | default | 40003 | 0 |
+| AirSLAM | cf07 | default | 40004 | 0 |
+| cuVSLAM | cf07 | default | 10001 | 0 |
+| cuVSLAM | cf07 | default | 10002 | 0 |
+| cuVSLAM | cf07 | default | 10003 | 0 |
+| DPVO (mono) | cf07 | default | 10001 | unknown |
+| DPVO (mono) | cf07 | default | 10002 | unknown |
+| DPVO (mono) | cf07 | default | 10003 | unknown |
+| OKVIS2 | cf07 | default | 10001 | 32 |
+| OKVIS2 | cf07 | default | 10002 | 29 |
+| OKVIS2 | cf07 | default | 10003 | 34 |
+| OKVIS2-X | cf07 | default | 10001 | 2 |
+| OKVIS2-X | cf07 | default | 10002 | 3 |
+| OKVIS2-X | cf07 | default | 10003 | 3 |
+| ORB-SLAM3 | cf07 | default | 10001 | 0 |
+| ORB-SLAM3 | cf07 | default | 10002 | 0 |
+| ORB-SLAM3 | cf07 | default | 10003 | 0 |
+| OV2SLAM | cf07 | default | 10001 | 1 |
+| OV2SLAM | cf07 | default | 10002 | 1 |
+| OV2SLAM | cf07 | default | 10003 | 2 |
 | AirSLAM | MH01 | default | 1 | 0 |
 | AirSLAM | MH01 | default | 2 | 0 |
 | AirSLAM | MH01 | default | 3 | 0 |
+| cuVSLAM | MH01 | default | 10001 | 48 |
+| cuVSLAM | MH01 | default | 10002 | 55 |
+| cuVSLAM | MH01 | default | 10003 | 48 |
 | DPVO (mono) | MH01 | default | 1 | unknown |
 | DPVO (mono) | MH01 | default | 2 | unknown |
 | DPVO (mono) | MH01 | default | 3 | unknown |
@@ -63,15 +108,18 @@ remains unknown. Aligned shape ATE does not establish GNSS global accuracy.
 | OKVIS2-X | MH01 | default | 1 | 37 |
 | OKVIS2-X | MH01 | default | 2 | 34 |
 | OKVIS2-X | MH01 | default | 3 | 34 |
-| ORB-SLAM3 | MH01 | default | 1 | 0 |
-| ORB-SLAM3 | MH01 | default | 2 | 0 |
-| ORB-SLAM3 | MH01 | default | 3 | 0 |
+| ORB-SLAM3 | MH01 | default | 10001 | 0 |
+| ORB-SLAM3 | MH01 | default | 10002 | 0 |
+| ORB-SLAM3 | MH01 | default | 10003 | 0 |
 | OV2SLAM | MH01 | default | 1 | 15 |
 | OV2SLAM | MH01 | default | 2 | 14 |
 | OV2SLAM | MH01 | default | 3 | 7 |
 | AirSLAM | MH03 | default | 1 | 0 |
 | AirSLAM | MH03 | default | 2 | 0 |
 | AirSLAM | MH03 | default | 3 | 0 |
+| cuVSLAM | MH03 | default | 10001 | 96 |
+| cuVSLAM | MH03 | default | 10002 | 98 |
+| cuVSLAM | MH03 | default | 10003 | 102 |
 | DPVO (mono) | MH03 | default | 1 | unknown |
 | DPVO (mono) | MH03 | default | 2 | unknown |
 | DPVO (mono) | MH03 | default | 3 | unknown |
@@ -81,15 +129,18 @@ remains unknown. Aligned shape ATE does not establish GNSS global accuracy.
 | OKVIS2-X | MH03 | default | 1 | 41 |
 | OKVIS2-X | MH03 | default | 2 | 38 |
 | OKVIS2-X | MH03 | default | 3 | 46 |
-| ORB-SLAM3 | MH03 | default | 1 | 0 |
-| ORB-SLAM3 | MH03 | default | 2 | 0 |
-| ORB-SLAM3 | MH03 | default | 3 | 0 |
+| ORB-SLAM3 | MH03 | default | 10001 | 0 |
+| ORB-SLAM3 | MH03 | default | 10002 | 0 |
+| ORB-SLAM3 | MH03 | default | 10003 | 0 |
 | OV2SLAM | MH03 | default | 1 | 19 |
 | OV2SLAM | MH03 | default | 2 | 12 |
 | OV2SLAM | MH03 | default | 3 | 14 |
 | AirSLAM | MH05 | default | 1 | 0 |
 | AirSLAM | MH05 | default | 2 | 0 |
 | AirSLAM | MH05 | default | 3 | 0 |
+| cuVSLAM | MH05 | default | 10001 | 26 |
+| cuVSLAM | MH05 | default | 10002 | 26 |
+| cuVSLAM | MH05 | default | 10003 | 26 |
 | DPVO (mono) | MH05 | default | 1 | unknown |
 | DPVO (mono) | MH05 | default | 2 | unknown |
 | DPVO (mono) | MH05 | default | 3 | unknown |
@@ -99,9 +150,9 @@ remains unknown. Aligned shape ATE does not establish GNSS global accuracy.
 | OKVIS2-X | MH05 | default | 1 | 20 |
 | OKVIS2-X | MH05 | default | 2 | 19 |
 | OKVIS2-X | MH05 | default | 3 | 18 |
-| ORB-SLAM3 | MH05 | default | 1 | 1 |
-| ORB-SLAM3 | MH05 | default | 2 | 0 |
-| ORB-SLAM3 | MH05 | default | 3 | 1 |
+| ORB-SLAM3 | MH05 | default | 10001 | 2 |
+| ORB-SLAM3 | MH05 | default | 10002 | 0 |
+| ORB-SLAM3 | MH05 | default | 10003 | 1 |
 | OV2SLAM | MH05 | default | 1 | 6 |
 | OV2SLAM | MH05 | default | 2 | 5 |
 | OV2SLAM | MH05 | default | 3 | 6 |
@@ -147,52 +198,64 @@ remains unknown. Aligned shape ATE does not establish GNSS global accuracy.
 | OV2SLAM | str03 | default | 10001 | 27 |
 | OV2SLAM | str03 | default | 10002 | 28 |
 | OV2SLAM | str03 | default | 10003 | 27 |
-| AirSLAM | seq1 | default | 1 | 0 |
-| AirSLAM | seq1 | default | 2 | 0 |
-| AirSLAM | seq1 | default | 3 | 0 |
-| DPVO (mono) | seq1 | default | 1 | unknown |
-| DPVO (mono) | seq1 | default | 2 | unknown |
-| DPVO (mono) | seq1 | default | 3 | unknown |
-| OKVIS2 | seq1 | default | 1 | 48 |
-| OKVIS2 | seq1 | default | 2 | 93 |
-| OKVIS2 | seq1 | default | 3 | 75 |
-| OKVIS2-X | seq1 | default | 1 | 25 |
-| OKVIS2-X | seq1 | default | 2 | 25 |
-| OKVIS2-X | seq1 | default | 3 | 22 |
-| ORB-SLAM3 | seq1 | default | 1 | 0 |
-| OV2SLAM | seq1 | default | 1 | 32 |
-| OV2SLAM | seq1 | default | 2 | 17 |
-| OV2SLAM | seq1 | default | 3 | 33 |
-| AirSLAM | seq5 | default | 1 | 0 |
-| AirSLAM | seq5 | default | 2 | 0 |
-| AirSLAM | seq5 | default | 3 | 0 |
-| DPVO (mono) | seq5 | default | 1 | unknown |
-| DPVO (mono) | seq5 | default | 2 | unknown |
-| DPVO (mono) | seq5 | default | 3 | unknown |
-| OKVIS2 | seq5 | default | 1 | 0 |
-| OKVIS2 | seq5 | default | 2 | 0 |
-| OKVIS2 | seq5 | default | 3 | 0 |
-| OKVIS2-X | seq5 | default | 1 | 0 |
-| OKVIS2-X | seq5 | default | 2 | 0 |
-| OKVIS2-X | seq5 | default | 3 | 1 |
-| ORB-SLAM3 | seq5 | default | 1 | 0 |
-| ORB-SLAM3 | seq5 | default | 2 | 0 |
-| ORB-SLAM3 | seq5 | default | 3 | 0 |
-| OV2SLAM | seq5 | default | 1 | 5 |
-| OV2SLAM | seq5 | default | 2 | 6 |
-| OV2SLAM | seq5 | default | 3 | 5 |
-| AirSLAM | zed2i | default | 1 | 0 |
-| AirSLAM | zed2i | default | 2 | 0 |
-| AirSLAM | zed2i | default | 3 | 0 |
+| AirSLAM | seq1 | default | 10001 | 0 |
+| AirSLAM | seq1 | default | 40005 | 0 |
+| AirSLAM | seq1 | default | 40006 | 0 |
+| cuVSLAM | seq1 | default | 10001 | 184 |
+| cuVSLAM | seq1 | default | 10003 | 661 |
+| cuVSLAM | seq1 | default | 10004 | 711 |
+| DPVO (mono) | seq1 | default | 10001 | unknown |
+| DPVO (mono) | seq1 | default | 10002 | unknown |
+| DPVO (mono) | seq1 | default | 10003 | unknown |
+| OKVIS2 | seq1 | default | 10001 | 76 |
+| OKVIS2 | seq1 | default | 10002 | 90 |
+| OKVIS2 | seq1 | default | 10003 | 89 |
+| OKVIS2-X | seq1 | default | 10001 | 22 |
+| OKVIS2-X | seq1 | default | 10002 | 31 |
+| OKVIS2-X | seq1 | default | 10003 | 22 |
+| ORB-SLAM3 | seq1 | default | 10001 | 4 |
+| ORB-SLAM3 | seq1 | default | 10002 | 4 |
+| ORB-SLAM3 | seq1 | default | 10003 | 4 |
+| OV2SLAM | seq1 | default | 10001 | unknown |
+| OV2SLAM | seq1 | default | 10002 | 41 |
+| OV2SLAM | seq1 | default | 10003 | 58 |
+| AirSLAM | seq5 | default | 10001 | 0 |
+| AirSLAM | seq5 | default | 40007 | 0 |
+| AirSLAM | seq5 | default | 40008 | 0 |
+| cuVSLAM | seq5 | default | 10001 | 311 |
+| cuVSLAM | seq5 | default | 10002 | 295 |
+| cuVSLAM | seq5 | default | 10003 | 308 |
+| DPVO (mono) | seq5 | default | 10001 | unknown |
+| DPVO (mono) | seq5 | default | 10002 | unknown |
+| DPVO (mono) | seq5 | default | 10003 | unknown |
+| OKVIS2 | seq5 | default | 10001 | 0 |
+| OKVIS2 | seq5 | default | 10002 | 0 |
+| OKVIS2 | seq5 | default | 10003 | 0 |
+| OKVIS2-X | seq5 | default | 10001 | 0 |
+| OKVIS2-X | seq5 | default | 10002 | 1 |
+| OKVIS2-X | seq5 | default | 10003 | 0 |
+| ORB-SLAM3 | seq5 | default | 10001 | 0 |
+| ORB-SLAM3 | seq5 | default | 10002 | 0 |
+| ORB-SLAM3 | seq5 | default | 10003 | 0 |
+| OV2SLAM | seq5 | default | 10001 | 4 |
+| OV2SLAM | seq5 | default | 10002 | 4 |
+| OV2SLAM | seq5 | default | 10003 | 4 |
+| AirSLAM | zed2i | default | 40024 | 0 |
+| AirSLAM | zed2i | default | 40025 | 0 |
+| AirSLAM | zed2i | default | 40026 | 0 |
+| cuVSLAM | zed2i | default | 10001 | 13 |
+| cuVSLAM | zed2i | default | 10002 | 12 |
+| cuVSLAM | zed2i | default | 10003 | 15 |
 | DPVO (mono) | zed2i | default | 1 | unknown |
 | DPVO (mono) | zed2i | default | 2 | unknown |
 | DPVO (mono) | zed2i | default | 3 | unknown |
-| OKVIS2 | zed2i | default | 1 | 1743 |
-| OKVIS2 | zed2i | default | 2 | unknown |
-| OKVIS2-X | zed2i | default | 1 | 0 |
-| ORB-SLAM3 | zed2i | default | 1 | 0 |
-| ORB-SLAM3 | zed2i | default | 2 | 0 |
-| ORB-SLAM3 | zed2i | default | 3 | 0 |
+| OKVIS2 | zed2i | default | 10001 | 1939 |
+| OKVIS2 | zed2i | default | 10003 | 1016 |
+| OKVIS2 | zed2i | default | 10004 | 987 |
+| OKVIS2-X | zed2i | default | 10001 | unknown |
+| ORB-SLAM3 | zed2i | default | 10001 | 0 |
+| ORB-SLAM3 | zed2i | default | 10002 | 0 |
+| ORB-SLAM3 | zed2i | default | 10005 | 0 |
 | OV2SLAM | zed2i | default | 1 | 23 |
 | OV2SLAM | zed2i | default | 2 | 17 |
 | OV2SLAM | zed2i | default | 3 | 18 |

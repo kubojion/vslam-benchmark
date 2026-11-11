@@ -4,15 +4,15 @@ Generated from hash-checked schema-3 evaluations and matching CSVs. These are in
 
 | Mode | Planned defaults | Evaluated | Numerical ok | Scale collapse | Invalid trajectory | Nonzero exits | Protocol-verified N=3 cells |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vo | 330 | 281 | 278 | 3 | 0 | 4 | 64 |
-| vo-lc | 210 | 143 | 142 | 1 | 0 | 6 | 31 |
-| vio | 300 | 294 | 280 | 14 | 0 | 3 | 56 |
-| vio-lc | 210 | 137 | 131 | 6 | 0 | 11 | 23 |
+| vo | 330 | 323 | 317 | 6 | 0 | 7 | 64 |
+| vo-lc | 210 | 206 | 203 | 2 | 1 | 0 | 31 |
+| vio | 300 | 299 | 272 | 27 | 0 | 6 | 50 |
+| vio-lc | 210 | 194 | 180 | 14 | 0 | 14 | 23 |
 | gnss-vio | 60 | 20 | 19 | 0 | 1 | 0 | 0 |
 
 Legacy GNSS variants: 6 separate rows; not included in default repetition counts.
 
-Scientific statuses among existing headline attempts: accepted=117, accepted_with_limitation=408, blocked=335, rerun_required=21, valid_observed_failure=15.
+Scientific statuses among existing headline attempts: accepted=117, accepted_with_limitation=386, blocked=548, rerun_required=6, valid_observed_failure=15.
 
 ## Retained adverse outcomes
 
@@ -38,12 +38,25 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 | `results/vio/hortimulti/strawberry03/mast3r_fusion/run10001` | scale_collapse | 0 | valid_observed_failure |
 | `results/vio/hortimulti/strawberry03/mast3r_fusion/run10002` | scale_collapse | 0 | valid_observed_failure |
 | `results/vio/hortimulti/strawberry03/mast3r_fusion/run10003` | scale_collapse | 0 | valid_observed_failure |
-| `results/vio/rosariov2/sequence1/openvins/run10002` | scale_collapse | 0 | blocked |
-| `results/vio/rosariov2/sequence5/openvins/run10001` | scale_collapse | 0 | blocked |
-| `results/vio/rosariov2/sequence5/openvins/run10003` | scale_collapse | 0 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10001` | scale_collapse | 139 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10002` | scale_collapse | 139 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run10003` | ok | 139 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run20002` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run20003` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run20004` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run20001` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run20002` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run20003` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run20001` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run20002` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run20003` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20001` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20002` | scale_collapse | 1 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20003` | scale_collapse | 1 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run20001` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run20002` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run20003` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run20002` | failed_without_trajectory | 134 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run20002` | scale_collapse | 143 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run20003` | scale_collapse | 143 | blocked |
+| `results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run20004` | scale_collapse | 143 | blocked |
 | `results/vio-lc/citrusfarm/seq04/airslam/run50002` | scale_collapse | 0 | blocked |
 | `results/vio-lc/citrusfarm/seq04/airslam/run50201` | scale_collapse | 0 | blocked |
 | `results/vio-lc/citrusfarm/seq04/airslam/run50203` | scale_collapse | 0 | blocked |
@@ -60,10 +73,28 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 | `results/vio-lc/hortimulti/strawberry03/mast3r_fusion/run10003` | scale_collapse | 0 | valid_observed_failure |
 | `results/vio-lc/hortimulti/strawberry03/svo_pro/run10001` | failed_without_trajectory | 134 | valid_observed_failure |
 | `results/vio-lc/hortimulti/strawberry03/svo_pro/run10003` | failed_without_trajectory | 134 | valid_observed_failure |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | failed_without_trajectory | 139 | rerun_required |
-| `results/vo/citrusfarm/seq04/dsol/run10001` | failed_without_trajectory | 134 | blocked |
-| `results/vo/citrusfarm/seq04/svo_pro/run10001` | scale_collapse | 0 | blocked |
-| `results/vo/citrusfarm/seq07/dsol/run10001` | failed_without_trajectory | 134 | blocked |
+| `results/vio-lc/rosariov2/sequence1/orbslam3/run10003` | failed_without_trajectory | 139 | blocked |
+| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/airslam/run40022` | scale_collapse | 0 | blocked |
+| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/airslam/run40023` | scale_collapse | 0 | blocked |
+| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run20001` | scale_collapse | 0 | blocked |
+| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run20002` | scale_collapse | 0 | blocked |
+| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run20003` | scale_collapse | 0 | blocked |
+| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run20001` | scale_collapse | 0 | blocked |
+| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run20002` | scale_collapse | 0 | blocked |
+| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run20003` | scale_collapse | 0 | blocked |
+| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run20001` | failed_without_trajectory | 134 | blocked |
+| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run20002` | failed_without_trajectory | 134 | blocked |
+| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run20003` | failed_without_trajectory | 134 | blocked |
+| `results/vo/citrusfarm/seq04/dsol/run10002` | failed_without_trajectory | 134 | blocked |
+| `results/vo/citrusfarm/seq04/dsol/run10003` | failed_without_trajectory | 134 | blocked |
+| `results/vo/citrusfarm/seq04/dsol/run10004` | failed_without_trajectory | 134 | blocked |
+| `results/vo/citrusfarm/seq04/svo_pro/run10002` | scale_collapse | 0 | blocked |
+| `results/vo/citrusfarm/seq04/svo_pro/run10003` | scale_collapse | 0 | blocked |
+| `results/vo/citrusfarm/seq04/svo_pro/run10004` | scale_collapse | 0 | blocked |
+| `results/vo/citrusfarm/seq07/dsol/run10002` | failed_without_trajectory | 134 | blocked |
+| `results/vo/citrusfarm/seq07/dsol/run10003` | failed_without_trajectory | 134 | blocked |
+| `results/vo/citrusfarm/seq07/dsol/run10004` | failed_without_trajectory | 134 | blocked |
+| `results/vo/citrusfarm/seq07/ov2slam/run10003` | scale_collapse | 0 | blocked |
 | `results/vo/euroc_mav/MH_01_easy/ov2slam/run1` | ok | 0 | accepted_with_limitation |
 | `results/vo/euroc_mav/MH_01_easy/ov2slam/run2` | ok | 0 | accepted_with_limitation |
 | `results/vo/euroc_mav/MH_01_easy/ov2slam/run3` | ok | 0 | accepted_with_limitation |
@@ -74,29 +105,25 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 | `results/vo/euroc_mav/MH_05_difficult/ov2slam/run1` | ok | 0 | accepted_with_limitation |
 | `results/vo/euroc_mav/MH_05_difficult/ov2slam/run2` | ok | 0 | accepted_with_limitation |
 | `results/vo/euroc_mav/MH_05_difficult/ov2slam/run3` | ok | 0 | accepted_with_limitation |
+| `results/vo/rosariov2/sequence5/macvo/run10002` | failed_without_trajectory | 139 | blocked |
 | `results/vo/zed2i/field1_110426_full_10fps_q90/okvis2/run2` | scale_collapse | 0 | valid_observed_failure |
-| `results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | ok | 139 | rerun_required |
-| `results/vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run2` | ok | 139 | rerun_required |
 | `results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run1` | ok | 0 | accepted_with_limitation |
 | `results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run2` | ok | 0 | accepted_with_limitation |
 | `results/vo/zed2i/field1_110426_full_10fps_q90/ov2slam/run3` | ok | 0 | accepted_with_limitation |
-| `results/vo-lc/euroc_mav/MH_01_easy/orbslam3/run3` | ok | 139 | blocked |
+| `results/vo-lc/citrusfarm/seq07/dpvo/run10001` | eval_failed | 0 | blocked |
+| `results/vo-lc/citrusfarm/seq07/ov2slam/run10001` | scale_collapse | 0 | blocked |
+| `results/vo-lc/citrusfarm/seq07/ov2slam/run10002` | scale_collapse | 0 | blocked |
 | `results/vo-lc/euroc_mav/MH_01_easy/ov2slam/run1` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/euroc_mav/MH_01_easy/ov2slam/run2` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/euroc_mav/MH_01_easy/ov2slam/run3` | ok | 0 | accepted_with_limitation |
-| `results/vo-lc/euroc_mav/MH_03_medium/orbslam3/run3` | ok | 139 | blocked |
 | `results/vo-lc/euroc_mav/MH_03_medium/ov2slam/run1` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/euroc_mav/MH_03_medium/ov2slam/run2` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/euroc_mav/MH_03_medium/ov2slam/run3` | ok | 0 | accepted_with_limitation |
-| `results/vo-lc/euroc_mav/MH_05_difficult/orbslam3/run1` | ok | 134 | blocked |
 | `results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run1` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run2` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run3` | ok | 0 | accepted_with_limitation |
-| `results/vo-lc/rosariov2/sequence1/orbslam3/run1` | failed_without_trajectory | 134 | blocked |
-| `results/vo-lc/rosariov2/sequence1/ov2slam/run2` | scale_collapse | 0 | blocked |
-| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run2` | incomplete | unknown | blocked |
-| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run1` | ok | 141 | blocked |
-| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run1` | ok | 139 | rerun_required |
+| `results/vo-lc/rosariov2/sequence1/ov2slam/run10001` | incomplete | unknown | blocked |
+| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001` | incomplete | unknown | blocked |
 | `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run1` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run2` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run3` | ok | 0 | accepted_with_limitation |
@@ -114,9 +141,9 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 
 | Source | SHA-256 |
 |---|---|
-| `inventory.json` | `b833c02e436c0ff84c1cb986931a4178592e1d7a770a523114234c66ab7a1c2b` |
-| `benchmark-vo.csv` | `61a59fabe406665858a00b63b5a415b3dea7527bcb0a87f0081ecfbf17a6033b` |
-| `benchmark-vo-lc.csv` | `8a6c206fa244c65a48dba4ef63023776c971e4c65116866f633b2aeec56a8bef` |
-| `benchmark-vio.csv` | `6ef45498216ae8307e86640608cee5d2cbc93b21b334d8d97079cfd8ef25b30e` |
-| `benchmark-vio-lc.csv` | `14b45f7ac6b35007284387f506388e8eabf82f65368d773203f6693fabeb887c` |
+| `inventory.json` | `16fce9ef83da720c5cf39f2a70d9a90b4be4b4ce2f2a4cb2691162d278f2678e` |
+| `benchmark-vo.csv` | `0994f1488cbbe11433a1811d4342652748298cd291ad3d7e1cc80bc6f7a8a246` |
+| `benchmark-vo-lc.csv` | `8ce88f87350ffb2b3f0f480815b061938b04b0fef2d15c51d77155e871699940` |
+| `benchmark-vio.csv` | `13603d7a14d7be1c980ad2a58d8a28d9011315527f1875e784dc893ea900f87d` |
+| `benchmark-vio-lc.csv` | `70535af9ef44b979a1b8aeb5ecec87ee6f392026d515955019735fa5fe5bee42` |
 | `benchmark-gnss-vio.csv` | `7eccab1f3b593feedcf877b31ca5618f33a3b6dffcd196c60dc45848acd88494` |
