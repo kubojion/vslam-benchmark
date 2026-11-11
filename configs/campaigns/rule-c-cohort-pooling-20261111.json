@@ -1,0 +1,2555 @@
+{
+ "schema": 1,
+ "decided": "User, 11 Nov 2026 (agents/preparations/results-organisation-20261111.md section 1); PLAN Update 10 A and D (10 Nov); the 6 Nov scoring decisions; OKVIS2-X VO-LC Sielinko closed as did-not-finish (11 Nov, option a)",
+ "decided_by": "user (paper completion, 11 Nov 2026; Update 10 A pooling approved 10 Nov), generated",
+ "policy": "Pool a listed cell across workspace commits only if every algorithm-relevant receipt is byte-identical (effective configuration, binaries, runtime assets, algorithm source tree, parameters, environment, container, machine). Only the workspace commit and the scripts/configs tree may differ; a listed diagnostic parameter may be absent in older runs at its default. Checked automatically by scripts/campaign/build_repair_inventory.py (pooled_cohort); a mismatch keeps separate groups.",
+ "cells": {
+  "vio-lc/euroc_mav/MH_01_easy/cuvslam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/euroc_mav/MH_01_easy/mast3r_fusion": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/euroc_mav/MH_01_easy/orbslam3": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/euroc_mav/MH_01_easy/svo_pro": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/euroc_mav/MH_03_medium/cuvslam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/euroc_mav/MH_03_medium/mast3r_fusion": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/euroc_mav/MH_03_medium/orbslam3": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/euroc_mav/MH_03_medium/svo_pro": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/euroc_mav/MH_05_difficult/cuvslam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/euroc_mav/MH_05_difficult/mast3r_fusion": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/euroc_mav/MH_05_difficult/orbslam3": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/euroc_mav/MH_05_difficult/svo_pro": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/rosariov2/sequence1/airslam": {
+   "runs": [
+    40101,
+    40010,
+    40011
+   ],
+   "workspace_commits": [
+    "0dbc8b16a1e8dbfb2f28a0d61157ef7755f90257",
+    "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "0dbc8b16a1e8dbfb2f28a0d61157ef7755f90257..86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+    ],
+    "scripts_configs_paths_changed": 3,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-time-offsets-20261031.json"
+    ]
+   },
+   "unreached_harness_limits": {
+    "stage_timeout_s": "stage watchdog limit of the harness; 43200 for run40101, 7200 for run40010/40011; never reached (search-gates.md, Update 10 item A: overall limit 10800 s declared before running)"
+   }
+  },
+  "vio-lc/rosariov2/sequence1/cuvslam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..ad1470c34284e172c2582539bff4bdbb3fd1065d"
+    ],
+    "scripts_configs_paths_changed": 34,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vio-lc/rosariov2/sequence1/mast3r_fusion": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..ad1470c34284e172c2582539bff4bdbb3fd1065d"
+    ],
+    "scripts_configs_paths_changed": 34,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vio-lc/rosariov2/sequence1/okvis2": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/rosariov2/sequence1/okvis2x": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/rosariov2/sequence1/orbslam3": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/rosariov2/sequence1/svo_pro": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/rosariov2/sequence5/cuvslam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..ad1470c34284e172c2582539bff4bdbb3fd1065d"
+    ],
+    "scripts_configs_paths_changed": 34,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vio-lc/rosariov2/sequence5/mast3r_fusion": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..ad1470c34284e172c2582539bff4bdbb3fd1065d"
+    ],
+    "scripts_configs_paths_changed": 34,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vio-lc/rosariov2/sequence5/okvis2": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/rosariov2/sequence5/okvis2x": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/rosariov2/sequence5/orbslam3": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio-lc/rosariov2/sequence5/svo_pro": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio/rosariov2/sequence1/airslam": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..ad1470c34284e172c2582539bff4bdbb3fd1065d"
+    ],
+    "scripts_configs_paths_changed": 34,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vio/rosariov2/sequence1/basalt": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio/rosariov2/sequence1/cuvslam": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..ad1470c34284e172c2582539bff4bdbb3fd1065d"
+    ],
+    "scripts_configs_paths_changed": 34,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vio/rosariov2/sequence1/mast3r_fusion": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..ad1470c34284e172c2582539bff4bdbb3fd1065d"
+    ],
+    "scripts_configs_paths_changed": 34,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vio/rosariov2/sequence1/okvis2": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio/rosariov2/sequence1/okvis2x": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio/rosariov2/sequence1/openvins": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio/rosariov2/sequence1/orbslam3": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio/rosariov2/sequence1/svo_pro": {
+   "runs": [
+    10004,
+    10005,
+    10007
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio/rosariov2/sequence1/voxel_svio": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio/rosariov2/sequence5/airslam": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..ad1470c34284e172c2582539bff4bdbb3fd1065d"
+    ],
+    "scripts_configs_paths_changed": 34,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vio/rosariov2/sequence5/basalt": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio/rosariov2/sequence5/cuvslam": {
+   "runs": [
+    10004,
+    10007,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..ad1470c34284e172c2582539bff4bdbb3fd1065d"
+    ],
+    "scripts_configs_paths_changed": 34,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vio/rosariov2/sequence5/mast3r_fusion": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..ad1470c34284e172c2582539bff4bdbb3fd1065d"
+    ],
+    "scripts_configs_paths_changed": 34,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vio/rosariov2/sequence5/okvis2": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio/rosariov2/sequence5/okvis2x": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio/rosariov2/sequence5/openvins": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio/rosariov2/sequence5/orbslam3": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio/rosariov2/sequence5/svo_pro": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio/rosariov2/sequence5/voxel_svio": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/openvins": {
+   "runs": [
+    20001,
+    20002,
+    20003
+   ],
+   "workspace_commits": [
+    "57332d5fab2f964949ef51c8401910f243542de0"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/citrusfarm/seq04/airslam": {
+   "runs": [
+    10001,
+    40031,
+    40002
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+    ],
+    "scripts_configs_paths_changed": 43,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_cuvslam_track.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_openvins_native_outcome.py",
+     "scripts/run/_svo_pro_stage.py",
+     "scripts/run/run_airslam.sh"
+    ]
+   }
+  },
+  "vo-lc/citrusfarm/seq04/cuvslam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/citrusfarm/seq04/dpvo": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/citrusfarm/seq04/okvis2": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/citrusfarm/seq04/okvis2x": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/citrusfarm/seq04/orbslam3": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/citrusfarm/seq04/ov2slam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/citrusfarm/seq07/airslam": {
+   "runs": [
+    10001,
+    40003,
+    40004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+    ],
+    "scripts_configs_paths_changed": 43,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_cuvslam_track.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_openvins_native_outcome.py",
+     "scripts/run/_svo_pro_stage.py",
+     "scripts/run/run_airslam.sh"
+    ]
+   }
+  },
+  "vo-lc/citrusfarm/seq07/cuvslam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/citrusfarm/seq07/dpvo": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/citrusfarm/seq07/okvis2": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/citrusfarm/seq07/okvis2x": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/citrusfarm/seq07/orbslam3": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/citrusfarm/seq07/ov2slam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/euroc_mav/MH_01_easy/cuvslam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/euroc_mav/MH_01_easy/orbslam3": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/euroc_mav/MH_03_medium/cuvslam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/euroc_mav/MH_03_medium/orbslam3": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/euroc_mav/MH_05_difficult/cuvslam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/euroc_mav/MH_05_difficult/orbslam3": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/rosariov2/sequence1/airslam": {
+   "runs": [
+    10001,
+    40005,
+    40006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+    ],
+    "scripts_configs_paths_changed": 43,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_cuvslam_track.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_openvins_native_outcome.py",
+     "scripts/run/_svo_pro_stage.py",
+     "scripts/run/run_airslam.sh"
+    ]
+   }
+  },
+  "vo-lc/rosariov2/sequence1/cuvslam": {
+   "runs": [
+    10001,
+    10004,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/rosariov2/sequence1/dpvo": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/rosariov2/sequence1/okvis2": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/rosariov2/sequence1/okvis2x": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/rosariov2/sequence1/orbslam3": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/rosariov2/sequence1/ov2slam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "none"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/rosariov2/sequence5/airslam": {
+   "runs": [
+    10001,
+    40007,
+    40008
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+    ],
+    "scripts_configs_paths_changed": 43,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_cuvslam_track.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_openvins_native_outcome.py",
+     "scripts/run/_svo_pro_stage.py",
+     "scripts/run/run_airslam.sh"
+    ]
+   }
+  },
+  "vo-lc/rosariov2/sequence5/cuvslam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/rosariov2/sequence5/dpvo": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/rosariov2/sequence5/okvis2": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/rosariov2/sequence5/okvis2x": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/rosariov2/sequence5/orbslam3": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/rosariov2/sequence5/ov2slam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/cuvslam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..ad1470c34284e172c2582539bff4bdbb3fd1065d"
+    ],
+    "scripts_configs_paths_changed": 34,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "configs/sensors/zed2i.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2": {
+   "runs": [
+    10001,
+    10004,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..ad1470c34284e172c2582539bff4bdbb3fd1065d"
+    ],
+    "scripts_configs_paths_changed": 34,
+    "relevant_paths_changed": [
+     "configs/okvis2/zed2i_field1_110426_full_10fps_q90_vio.yaml",
+     "configs/okvis2x/zed2i_field1_110426_full_10fps_q90_vio.yaml",
+     "configs/okvis2x/zed2i_field1_110426_full_10fps_q90_vio_lc.yaml",
+     "configs/sensitivity/zed2i-engine-on-20261021/okvis2/zed2i_field1_110426_full_10fps_q90_vio.yaml",
+     "configs/sensitivity/zed2i-engine-on-20261021/okvis2x/zed2i_field1_110426_full_10fps_q90_vio.yaml",
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "configs/sensors/zed2i.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3": {
+   "runs": [
+    10001,
+    10002,
+    10005
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..ad1470c34284e172c2582539bff4bdbb3fd1065d"
+    ],
+    "scripts_configs_paths_changed": 34,
+    "relevant_paths_changed": [
+     "configs/orbslam3/zed2i_field1_110426_full_10fps_q90_stereo_inertial.yaml",
+     "configs/sensitivity/zed2i-engine-on-20261021/orbslam3/zed2i_field1_110426_full_10fps_q90_stereo_inertial.yaml",
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "configs/sensors/zed2i.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo/citrusfarm/seq04/airslam": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d",
+    "d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "ad1470c34284e172c2582539bff4bdbb3fd1065d..d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+    ],
+    "scripts_configs_paths_changed": 134,
+    "relevant_paths_changed": [
+     "configs/airslam/citrusfarm_camera_vio.yaml",
+     "configs/sensors/citrusfarm.json",
+     "configs/sensors/imu-noise-rule-20261006.json",
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "configs/sensors/imu-noise-rule.json",
+     "scripts/run/_capture_inputs.py",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_dsol_stage.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo/citrusfarm/seq04/basalt": {
+   "runs": [
+    10002,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/citrusfarm/seq04/cuvslam": {
+   "runs": [
+    10002,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/citrusfarm/seq04/dpvo": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+    ],
+    "scripts_configs_paths_changed": 107,
+    "relevant_paths_changed": [
+     "configs/sensors/citrusfarm.json",
+     "configs/sensors/imu-noise-rule-20261006.json",
+     "configs/sensors/imu-noise-rule.json",
+     "scripts/run/_capture_inputs.py",
+     "scripts/run/_dsol_stage.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_svo_pro_stage.py",
+     "scripts/run/run_dpvo.sh"
+    ]
+   }
+  },
+  "vo/citrusfarm/seq04/dsol": {
+   "runs": [
+    10002,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/citrusfarm/seq04/macvo": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+    ],
+    "scripts_configs_paths_changed": 107,
+    "relevant_paths_changed": [
+     "configs/sensors/citrusfarm.json",
+     "configs/sensors/imu-noise-rule-20261006.json",
+     "configs/sensors/imu-noise-rule.json",
+     "scripts/run/_capture_inputs.py",
+     "scripts/run/_dsol_stage.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo/citrusfarm/seq04/okvis2": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+    ],
+    "scripts_configs_paths_changed": 107,
+    "relevant_paths_changed": [
+     "configs/okvis2/citrusfarm_seq04_vio.yaml",
+     "configs/okvis2/citrusfarm_seq07_vio.yaml",
+     "configs/okvis2x/citrusfarm_seq04_vio.yaml",
+     "configs/okvis2x/citrusfarm_seq04_vio_lc.yaml",
+     "configs/okvis2x/citrusfarm_seq07_vio.yaml",
+     "configs/okvis2x/citrusfarm_seq07_vio_lc.yaml",
+     "configs/sensors/citrusfarm.json",
+     "configs/sensors/imu-noise-rule-20261006.json",
+     "configs/sensors/imu-noise-rule.json",
+     "scripts/run/_capture_inputs.py",
+     "scripts/run/_dsol_stage.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo/citrusfarm/seq04/okvis2x": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+    ],
+    "scripts_configs_paths_changed": 107,
+    "relevant_paths_changed": [
+     "configs/okvis2x/citrusfarm_seq04_vio.yaml",
+     "configs/okvis2x/citrusfarm_seq04_vio_lc.yaml",
+     "configs/okvis2x/citrusfarm_seq07_vio.yaml",
+     "configs/okvis2x/citrusfarm_seq07_vio_lc.yaml",
+     "configs/sensors/citrusfarm.json",
+     "configs/sensors/imu-noise-rule-20261006.json",
+     "configs/sensors/imu-noise-rule.json",
+     "scripts/run/_capture_inputs.py",
+     "scripts/run/_dsol_stage.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo/citrusfarm/seq04/ov2slam": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+    ],
+    "scripts_configs_paths_changed": 107,
+    "relevant_paths_changed": [
+     "configs/sensors/citrusfarm.json",
+     "configs/sensors/imu-noise-rule-20261006.json",
+     "configs/sensors/imu-noise-rule.json",
+     "scripts/run/_capture_inputs.py",
+     "scripts/run/_dsol_stage.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo/citrusfarm/seq04/svo_pro": {
+   "runs": [
+    10002,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/citrusfarm/seq07/airslam": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d",
+    "d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "ad1470c34284e172c2582539bff4bdbb3fd1065d..d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+    ],
+    "scripts_configs_paths_changed": 134,
+    "relevant_paths_changed": [
+     "configs/airslam/citrusfarm_camera_vio.yaml",
+     "configs/sensors/citrusfarm.json",
+     "configs/sensors/imu-noise-rule-20261006.json",
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "configs/sensors/imu-noise-rule.json",
+     "scripts/run/_capture_inputs.py",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_dsol_stage.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo/citrusfarm/seq07/basalt": {
+   "runs": [
+    10002,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/citrusfarm/seq07/cuvslam": {
+   "runs": [
+    10002,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/citrusfarm/seq07/dpvo": {
+   "runs": [
+    10002,
+    10004,
+    10005
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "58519dd5f948bd907294ee40246e202a86f1f630"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..58519dd5f948bd907294ee40246e202a86f1f630"
+    ],
+    "scripts_configs_paths_changed": 106,
+    "relevant_paths_changed": [
+     "configs/sensors/citrusfarm.json",
+     "configs/sensors/imu-noise-rule-20261006.json",
+     "configs/sensors/imu-noise-rule.json",
+     "scripts/run/_capture_inputs.py",
+     "scripts/run/_dsol_stage.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo/citrusfarm/seq07/dsol": {
+   "runs": [
+    10002,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/citrusfarm/seq07/macvo": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+    ],
+    "scripts_configs_paths_changed": 107,
+    "relevant_paths_changed": [
+     "configs/sensors/citrusfarm.json",
+     "configs/sensors/imu-noise-rule-20261006.json",
+     "configs/sensors/imu-noise-rule.json",
+     "scripts/run/_capture_inputs.py",
+     "scripts/run/_dsol_stage.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo/citrusfarm/seq07/okvis2": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+    ],
+    "scripts_configs_paths_changed": 107,
+    "relevant_paths_changed": [
+     "configs/okvis2/citrusfarm_seq04_vio.yaml",
+     "configs/okvis2/citrusfarm_seq07_vio.yaml",
+     "configs/okvis2x/citrusfarm_seq04_vio.yaml",
+     "configs/okvis2x/citrusfarm_seq04_vio_lc.yaml",
+     "configs/okvis2x/citrusfarm_seq07_vio.yaml",
+     "configs/okvis2x/citrusfarm_seq07_vio_lc.yaml",
+     "configs/sensors/citrusfarm.json",
+     "configs/sensors/imu-noise-rule-20261006.json",
+     "configs/sensors/imu-noise-rule.json",
+     "scripts/run/_capture_inputs.py",
+     "scripts/run/_dsol_stage.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo/citrusfarm/seq07/okvis2x": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+    ],
+    "scripts_configs_paths_changed": 107,
+    "relevant_paths_changed": [
+     "configs/okvis2x/citrusfarm_seq04_vio.yaml",
+     "configs/okvis2x/citrusfarm_seq04_vio_lc.yaml",
+     "configs/okvis2x/citrusfarm_seq07_vio.yaml",
+     "configs/okvis2x/citrusfarm_seq07_vio_lc.yaml",
+     "configs/sensors/citrusfarm.json",
+     "configs/sensors/imu-noise-rule-20261006.json",
+     "configs/sensors/imu-noise-rule.json",
+     "scripts/run/_capture_inputs.py",
+     "scripts/run/_dsol_stage.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo/citrusfarm/seq07/ov2slam": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+    ],
+    "scripts_configs_paths_changed": 107,
+    "relevant_paths_changed": [
+     "configs/sensors/citrusfarm.json",
+     "configs/sensors/imu-noise-rule-20261006.json",
+     "configs/sensors/imu-noise-rule.json",
+     "scripts/run/_capture_inputs.py",
+     "scripts/run/_dsol_stage.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo/citrusfarm/seq07/svo_pro": {
+   "runs": [
+    10002,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence1/airslam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..ad1470c34284e172c2582539bff4bdbb3fd1065d"
+    ],
+    "scripts_configs_paths_changed": 34,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo/rosariov2/sequence1/basalt": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence1/cuvslam": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence1/dpvo": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence1/dsol": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence1/macvo": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence1/okvis2": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence1/okvis2x": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence1/orbslam3": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence1/ov2slam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence1/svo_pro": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence5/airslam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..ad1470c34284e172c2582539bff4bdbb3fd1065d"
+    ],
+    "scripts_configs_paths_changed": 34,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo/rosariov2/sequence5/basalt": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence5/cuvslam": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence5/dpvo": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence5/dsol": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence5/macvo": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence5/okvis2": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence5/okvis2x": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence5/orbslam3": {
+   "runs": [
+    10005,
+    10006,
+    10007
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence5/ov2slam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/rosariov2/sequence5/svo_pro": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/zed2i/field1_110426_full_10fps_q90/cuvslam": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "ad1470c34284e172c2582539bff4bdbb3fd1065d",
+    "d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "ad1470c34284e172c2582539bff4bdbb3fd1065d..d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+    ],
+    "scripts_configs_paths_changed": 134,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261006.json",
+     "configs/sensors/imu-noise-rule-20261021.json",
+     "configs/sensors/imu-noise-rule.json",
+     "configs/sensors/zed2i.json",
+     "scripts/run/_capture_inputs.py",
+     "scripts/run/_capture_runtime.py",
+     "scripts/run/_dsol_stage.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_override.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_openvins_delivery.py",
+     "scripts/run/_openvins_image_mounts.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  },
+  "vo/zed2i/field1_110426_full_10fps_q90/dsol": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "none"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/zed2i/field1_110426_full_10fps_q90/orbslam3": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+   ],
+   "basis": "same workspace commit; recorded cohorts differ",
+   "reviewed_differences": {
+    "commit_pairs": [],
+    "scripts_configs_paths_changed": 0,
+    "relevant_paths_changed": []
+   }
+  },
+  "vo/zed2i/field1_110426_full_10fps_q90/svo_pro": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ],
+   "workspace_commits": [
+    "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+    "d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+   ],
+   "basis": "workspace commits differ",
+   "reviewed_differences": {
+    "commit_pairs": [
+     "1210c6662810c0b63500db2c363c68fcb64c8b1e..d3824d178d5f85625c66b79d7b5d41d3a42cdd0e"
+    ],
+    "scripts_configs_paths_changed": 107,
+    "relevant_paths_changed": [
+     "configs/sensors/imu-noise-rule-20261006.json",
+     "configs/sensors/imu-noise-rule.json",
+     "scripts/run/_capture_inputs.py",
+     "scripts/run/_dsol_stage.py",
+     "scripts/run/_enrich_run_meta.py",
+     "scripts/run/_imu_noise_rule.py",
+     "scripts/run/_mast3r_fusion_stage.py",
+     "scripts/run/_svo_pro_stage.py"
+    ]
+   }
+  }
+ }
+}

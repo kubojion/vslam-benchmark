@@ -297,9 +297,12 @@ def cohort_identity(meta, algorithm, *, run_dir=None):
 
 
 POOLING='configs/campaigns/zed-vio-cohort-pooling-20261003.json'
+# Rule C cells whose counted repetitions span workspace commits (11 Nov 2026). Same policy and check.
+RULEC_POOLING='configs/campaigns/rule-c-cohort-pooling-20261111.json'
+POOLING_RECORDS=(POOLING,RULEC_POOLING)
 
 
-def pooled_cohort(repo, key, attempts):
+def pooled_cohort(repo, key, attempts, records=POOLING_RECORDS):
     """Pool one listed cell across workspace commits only when its receipts allow it.
 
     The reviewed record names the cell, its physical runs and any diagnostic parameter
@@ -308,13 +311,22 @@ def pooled_cohort(repo, key, attempts):
     assets, algorithm source tree, parameters, environment, container and machine. Only
     the workspace commit and the scripts/configs tree may differ. A mismatch refuses
     pooling (separate groups stay separate) and records why.
+
+    A cell may be listed by more than one record (an earlier selection and a later one);
+    the record whose runs equal the selected attempts applies. A cell listed only with
+    other runs is refused, as before.
     """
-    path=repo/POOLING
-    if not path.is_file():return None
-    record=read(path)
-    if record.get('schema')!=1:raise ValueError('unsupported cohort pooling schema')
-    spec=record['cells'].get(key)
-    if not spec:return None
+    listed=[]
+    for name in records:
+        path=repo/name
+        if not path.is_file():continue
+        record=read(path)
+        if record.get('schema')!=1:raise ValueError('unsupported cohort pooling schema')
+        spec=record['cells'].get(key)
+        if spec:listed.append((path,spec))
+    if not listed:return None
+    selected=[a['path'] for a in attempts]
+    path,spec=next(((p,s) for p,s in listed if [f'results/{key}/run{i}' for i in s['runs']]==selected),listed[-1])
     expected=[f'results/{key}/run{i}' for i in spec['runs']]
     def refused(reason):
         return dict(status='refused',reason=reason,record=evidence(path,repo),runs=expected)
@@ -330,6 +342,12 @@ def pooled_cohort(repo, key, attempts):
         for name,default in spec.get('ignored_parameters',{}).items():
             if parameters.pop(name,default)!=default:
                 return refused(f'{name} differs from its default in {a["path"]}')
+        # A listed harness limit (a stage watchdog) may differ only if no listed run stopped at a
+        # limit or failed: every one exited 0, so the limit never acted on the estimate.
+        for name in spec.get('unreached_harness_limits',{}):
+            if name in parameters and (a.get('process') or {}).get('exit_code')!=0:
+                return refused(f'{name} differs and {a["path"]} did not exit 0')
+            parameters.pop(name,None)
         payload['parameters']=parameters
         meta=read(repo/a['path']/'run_meta.json')
         capture=meta.get('provenance',{}).get('implementation_capture') or {}
@@ -345,7 +363,8 @@ def pooled_cohort(repo, key, attempts):
     return dict(status='pooled',cohort=cohort,record=evidence(path,repo),runs=expected,
                 workspace_commits=sorted(c for c in commits if c),
                 recorded_cohorts=[a['cohort_fingerprint'] for a in attempts],
-                ignored_parameters=spec.get('ignored_parameters',{}))
+                ignored_parameters=spec.get('ignored_parameters',{}),
+                unreached_harness_limits=spec.get('unreached_harness_limits',{}))
 
 
 def saved_attempt(repo,relative,stage):
@@ -456,6 +475,75 @@ def corrected_superseded(repo,key):
             if p.is_dir() and int(p.name[3:])<CORRECTED_FIRST_ID}
 
 
+# Every counted Rule C attempt that the progress publisher and the paper use, plus the user's
+# later decisions (PLAN Update 10 A and D, 11 Nov 2026 Sielinko VO-LC closure). It is the top
+# layer: it may replace an attempt any earlier layer selected, but only the one that layer
+# selected at the time (recorded as `previous`), and never a corrected CitrusFarm cell.
+PAPER_COMPLETION_SELECTION='configs/campaigns/paper-completion-attempts-20261111.json'
+PAPER_COMPLETION_LABEL='rule_c_paper_completion_20261111'
+CLOSED_DISPOSITIONS=('did_not_finish',)
+
+
+def attempt_state_path(repo,key,run_id):
+    return repo/'results/.attempt-state'/key.replace('/','__')/f'run{run_id}.json'
+
+
+def paper_completion_selections(repo,lower,corrected=()):
+    """Return (cells, superseded attempts, closed-cell dispositions) of the paper completion record.
+
+    `lower` is the selection every earlier layer produced. For each listed cell the record states
+    that earlier selection as `previous`; a difference refuses the record (it was made against
+    another main). A repetition keeps its previous attempt, or names a new attempt whose saved
+    attempt state is terminal and whose identity (repetition, physical id, cohort) equals the
+    record, unless the record lists that exact differing identity as a reviewed exception.
+    A closed cell (did not finish) may keep one non-terminal attempt, pinned by the hash of
+    its attempt state, and default slots that were never run. Previously selected attempts the
+    record replaces are returned as superseded (historical cohort), never deleted.
+    """
+    path=repo/PAPER_COMPLETION_SELECTION
+    if not path.is_file():return {},set(),{}
+    value=read(path)
+    if value.get('schema')!=1:raise ValueError('unsupported paper completion selection schema')
+    attempts=value.get('attempts',{});exceptions=value.get('identity_exceptions',{});closed=value.get('closed_cells',{})
+    cells={};superseded=set()
+    for key,ids in value['cells'].items():
+        if len(ids)!=3 or len(set(ids))!=3:raise ValueError('paper completion selection needs three distinct attempts: '+key)
+        if key in corrected:raise ValueError('paper completion selection may not change a corrected CitrusFarm cell: '+key)
+        previous=[int(i) for i in lower.get(key,[1,2,3])]
+        if value['previous'].get(key)!=previous:
+            raise ValueError(f'{key}: earlier selection differs from the one this record replaces')
+        disposition=closed.get(key)
+        if disposition is not None and disposition.get('disposition') not in CLOSED_DISPOSITIONS:
+            raise ValueError('unknown closed-cell disposition: '+key)
+        for repetition,run_id in enumerate(ids,1):
+            relative=f'{key}/run{run_id}'
+            state_path=attempt_state_path(repo,key,run_id)
+            if disposition is not None and run_id==repetition:
+                # A default slot of a closed cell: never run, so it must not exist.
+                if (repo/'results'/relative).exists() or state_path.exists():
+                    raise ValueError('closed cell lists a default slot that was run: '+relative)
+                continue
+            if run_id==previous[repetition-1]:continue
+            record=attempts.get(relative)
+            if record is None or record.get('repetition')!=repetition:
+                raise ValueError('selected attempt is not recorded for its repetition: '+relative)
+            state=read(state_path);identity=state.get('identity',{})
+            expected=dict(cohort=record['cohort'],repetition=repetition,physical_run_id=run_id)
+            if identity!=expected:
+                allowed=exceptions.get(relative)
+                if not allowed or allowed.get('recorded_identity')!=identity or identity.get('physical_run_id')!=run_id:
+                    raise ValueError('selected attempt identity differs from the record: '+relative)
+            if state.get('status') not in TERMINAL:
+                pinned=(disposition or {}).get('open_attempts',{}).get(relative)
+                if (not pinned or state.get('status')!=pinned.get('status') or not state_path.is_file()
+                        or hashlib.sha256(state_path.read_bytes()).hexdigest()!=pinned.get('attempt_state_sha256')):
+                    raise ValueError('attempt is not terminal; do not select a live or interrupted capture: '+relative)
+        cells[key]=list(ids)
+        superseded.update(f'{key}/run{i}' for i in previous if i not in ids)
+    if set(closed)-set(cells):raise ValueError('closed cell without a selection: '+', '.join(sorted(set(closed)-set(cells))))
+    return cells,superseded,{key:closed[key] for key in closed}
+
+
 def build(repo,stage):
     executed,executed_hash=load_manifest(repo/'logs/server-campaign/quality-final-n3-no-gnss/manifest.json')
     future,future_hash=load_manifest(repo/'configs/campaigns/quality-final.json')
@@ -463,6 +551,9 @@ def build(repo,stage):
     zed_selections=completed_zed_selections(repo);selections.update(zed_selections)
     batch_labels={};batch_selections=completed_batch_selections(repo,zed_selections,batch_labels);selections.update(batch_selections)
     corrected=corrected_selections(repo);selections.update(corrected);batch_labels.update(dict.fromkeys(corrected,CORRECTED_LABEL))
+    completion,completion_superseded,dispositions=paper_completion_selections(repo,selections,corrected)
+    selections.update(completion);batch_labels.update(dict.fromkeys(completion,PAPER_COMPLETION_LABEL))
+    superseded.update(completion_superseded)
     for cell in expand_cells(future):
         key=cell_key(cell);attempts=[]
         ids=selections.get(key,[1,2,3])
@@ -473,7 +564,8 @@ def build(repo,stage):
             attempt=saved_attempt(repo,relative,stage)
             attempt['logical_repetition']=repetition
             attempts.append(attempt)
-        pooling=pooled_cohort(repo,key,attempts)
+        # A reselected cell is pooled only by the record made for its new attempts.
+        pooling=pooled_cohort(repo,key,attempts,(RULEC_POOLING,) if key in completion else POOLING_RECORDS)
         if pooling and pooling['status']=='pooled':
             for attempt in attempts:
                 attempt['recorded_cohort_fingerprint']=attempt['cohort_fingerprint']
@@ -509,7 +601,9 @@ def build(repo,stage):
     return dict(schema_version=1,audit_status='in_progress',qualification_review=review_identity(repo),
         attempt_selection=evidence(repo/SELECTION,repo) if (repo/SELECTION).is_file() else None,
         additional_attempt_selections=([evidence(repo/ZED_SELECTION,repo)] if zed_selections else [])
-            +[evidence(repo/name,repo) for name in BATCH_SELECTIONS if batch_selections and (repo/name).is_file()],
+            +[evidence(repo/name,repo) for name in BATCH_SELECTIONS if batch_selections and (repo/name).is_file()]
+            +[evidence(repo/name,repo) for name in (PAPER_COMPLETION_SELECTION,RULEC_POOLING) if completion and (repo/name).is_file()],
+        cell_dispositions=dispositions,
         original_manifest=dict(path='logs/server-campaign/quality-final-n3-no-gnss/manifest.json',sha256=executed_hash),
         scope_source=dict(path='configs/campaigns/quality-final.json',sha256=future_hash,
                           note='algorithm/dataset membership retained; future repeat target is 3, not the historical proposal of 5'),
