@@ -65,7 +65,7 @@ CONTAINERS = {
                     record=SUPP / 'container-recovery/sielinko_gpu_airslam_20261026-after.json',
                     cross=GPU_ART / 'air-private-container-identity.json'),
 }
-REPEATABLE = {'basalt', 'mast3r_fusion', 'cuvslam'}   # 1 % reproduction check (engineer, 10 Nov)
+REPEATABLE = {'basalt', 'mast3r_fusion'}   # 1 % reproduction check (engineer, 10 Nov); cuVSLAM record-only (engineer, 11 Nov: not reproducible)
 D_TIMEOUT_S, D_MEMORY_GIB = 28800, 64
 BUDGET_HOURS = 120
 DISCLOSURE = (

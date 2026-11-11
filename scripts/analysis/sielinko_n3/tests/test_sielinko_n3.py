@@ -334,3 +334,13 @@ def test_evaluator_is_the_unresolved_worktree_venv_and_matches_the_recorded_vers
             'print(json.dumps(dict(python=sys.version,package_versions={n:m.version(n) for n in ("numpy","scipy","optuna","PyYAML")})))'],
             capture_output=True, text=True, check=True).stdout)
         assert live['python'] == want['python'] and live['package_versions'] == want['package_versions']
+
+
+def test_only_basalt_and_mast3r_enforce_the_1pct_rule():
+    """Engineer, 11 Nov 2026: cuVSLAM is not reproducible (Rule C spread 10.34-10.51 m), so record-only."""
+    assert build_manifest.REPEATABLE == {'basalt', 'mast3r_fusion'}
+    for kind in ('cpu', 'gpu'):
+        manifest = json.loads((build_manifest.OUT / kind / 'manifest.json').read_text())
+        for item in manifest['items']:
+            if item['algorithm'] not in build_manifest.REPEATABLE:
+                assert item['repeat_check'] == 'record_only', item['id']
