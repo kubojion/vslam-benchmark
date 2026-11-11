@@ -262,12 +262,16 @@ def test_benchmark_runs_parses_wrapper_and_mode():
 
 # ------------------------------------------------------------------ manifests and counts
 
+FINISHED_RUNS = {json.loads(p.read_text())['run'] for p in build_manifest.OUT.glob('*/attempts/*.json')
+                 if json.loads(p.read_text()).get('state') == 'finished'}
+
+
 @pytest.fixture(scope='module')
 def built(tmp_path_factory):
     if not HAVE_CAMPAIGNS:
         pytest.skip('campaign artifacts not on this host')
     out = tmp_path_factory.mktemp('n3')
-    return {kind: build_manifest.build(kind, out) for kind in ('cpu', 'gpu')}
+    return {kind: build_manifest.build(kind, out, allow_runs=FINISHED_RUNS) for kind in ('cpu', 'gpu')}
 
 
 def test_counts_60_13_3(built):
@@ -299,7 +303,8 @@ def test_manifest_items_are_bound_and_fresh(built):
         for item in manifest['items']:
             assert item['run_id'] == run_id(manifest['campaign_id'], item['key'])
             assert item['key'].startswith('paper_n3__')
-            assert not Path(item['run_dir']).exists()
+            # fresh unless it is a finished N=3 attempt (the pilot of 11 Nov 2026)
+            assert not Path(item['run_dir']).exists() or item['run_dir'] in FINISHED_RUNS
             assert item['command'][4] == '--unit=' + item['unit']
             assert item['inner_command'] == item['command'][-6:]
             assert all(Path(e['path']).is_file() and sha(e['path']) == e['sha256'] for e in item['pinned_evidence'])

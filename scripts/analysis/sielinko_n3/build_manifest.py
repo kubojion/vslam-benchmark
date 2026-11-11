@@ -348,7 +348,8 @@ def build_items(kind, out_dir):
     return items
 
 
-def build(kind, out=OUT):
+def build(kind, out=OUT, allow_runs=()):
+    """allow_runs: run directories of finished N=3 attempts (tests rebuild from live state after the pilot)."""
     out_dir = Path(out) / kind
     out_dir.mkdir(parents=True, exist_ok=True)
     manifest_path = out_dir / 'manifest.json'
@@ -360,6 +361,8 @@ def build(kind, out=OUT):
     if len(set(ids)) != len(ids) or len(set(rids)) != len(rids):
         raise RuntimeError('Duplicate item or run IDs')
     for item in items:
+        if item['run_dir'] in allow_runs:
+            continue
         if Path(item['run_dir']).exists() or list(Path(item['worktree']['path']).glob('results/*/*/*/*/run' + str(item['run_id']))):
             raise RuntimeError('Run ID already used: ' + item['run_dir'])
     eng = Path(__file__).resolve().parents[3]
