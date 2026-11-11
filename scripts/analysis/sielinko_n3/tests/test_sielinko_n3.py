@@ -318,3 +318,19 @@ def test_dry_run_prints_without_executing(built, capsys, monkeypatch):
 def test_verifier_never_activates_gpu_instrumentation():
     env = dict(GPU6_AUDIT_DIR='/x', GPU6_MEMORY_BYTES='1', GPU6_MEMORY_HIGH_BYTES='1', PYTHONPATH='/i', VSLAM_EXPECTED_INPUT_SHA256='a')
     assert identity.verifier_env(env) == dict(VSLAM_EXPECTED_INPUT_SHA256='a')
+
+
+def test_evaluator_is_the_unresolved_worktree_venv_and_matches_the_recorded_versions():
+    """Pilot refusal of 11 Nov 2026: the evaluator must be the venv the first runs' engine used."""
+    for kind, root in (('cpu', build_manifest.CPU_ROOT), ('gpu', build_manifest.GPU_ROOT)):
+        manifest = json.loads((build_manifest.OUT / kind / 'manifest.json').read_text())
+        venv = str(Path(root) / '.venv/bin/python')
+        for item in manifest['items']:
+            assert item['evaluator']['python'] == venv
+            assert venv in json.dumps(item['environment'])
+            assert 'macvo/bin/python3.10' not in json.dumps(item['environment'])
+        want = manifest['items'][0]['evaluator']['controller_environment']
+        live = json.loads(subprocess.run([venv, '-B', '-c', 'import sys,json,importlib.metadata as m;'
+            'print(json.dumps(dict(python=sys.version,package_versions={n:m.version(n) for n in ("numpy","scipy","optuna","PyYAML")})))'],
+            capture_output=True, text=True, check=True).stdout)
+        assert live['python'] == want['python'] and live['package_versions'] == want['package_versions']

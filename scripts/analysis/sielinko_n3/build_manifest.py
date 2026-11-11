@@ -171,6 +171,19 @@ def frozen_digest(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
 
 
+def evaluator_python(root, ident):
+    """The interpreter the first run's engine evaluated with: the worktree's own venv, unresolved.
+
+    The engine set BENCHMARK_EVAL_PYTHON=sys.executable inside that venv (it has optuna and its own
+    site-packages); controller_environment() records the resolved binary, which is bare macvo and lacks
+    them (pilot refusal of 11 Nov 2026, engineer decision 18:20 UTC).
+    """
+    venv = Path(root) / '.venv/bin/python'
+    if Path(venv).resolve() != Path(ident['controller_environment']['executable']).resolve():
+        raise RuntimeError('worktree venv does not resolve to the recorded interpreter: ' + str(venv))
+    return str(venv)
+
+
 def build_items(kind, out_dir):
     meta = CAMPAIGNS[kind]
     root, campaign_id = meta['root'], meta['campaign_id']
@@ -222,7 +235,7 @@ def build_items(kind, out_dir):
             else:
                 config = materialized_config(root, campaign_id, study, algorithm, label, parameters, mode, out_dir)
             ident = load(ref_dir / 'execution-identity.json')
-            eval_python = ident['controller_environment']['executable']
+            eval_python = evaluator_python(root, ident)
             here = None
             if kind == 'gpu':
                 here = GPU_HERE['final'] if ref['phase'] == 'final_n1' else (GPU_HERE['air_lc'] if algorithm == 'airslam' else GPU_HERE['supp'])
