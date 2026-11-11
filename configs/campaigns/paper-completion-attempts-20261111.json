@@ -1,0 +1,4635 @@
+{
+ "schema": 1,
+ "decided": "User, 11 Nov 2026 (agents/preparations/results-organisation-20261111.md section 1); PLAN Update 10 A and D (10 Nov); the 6 Nov scoring decisions; OKVIS2-X VO-LC Sielinko closed as did-not-finish (11 Nov, option a)",
+ "policy": "Select every counted attempt of the Rule C campaign as the progress publisher and the paper count it, with the later user decisions applied. An attempt an earlier selection chose and this record replaces moves to the historical cohort file; none is deleted. Not-counted attempts stay on disk. Corrected CitrusFarm VIO/VIO-LC (timing-corrected-attempts-20261102.json) is unchanged.",
+ "generated_by": "scripts/campaign/make_paper_completion_selection.py",
+ "sources": [
+  {
+   "role": "counted runs per planned repetition (paper snapshot rulec-actions.csv)",
+   "path": "/data/imoroz/PAPER/vslam-paper/data/snapshot-20261109/progress-report-1102b/rulec-actions.csv",
+   "sha256": "3be4c311545b0076dd20d5b58485e114851f050bc89a05df03f6304a419816c3"
+  },
+  {
+   "role": "publisher planned runs and cohorts",
+   "path": "/data/imoroz/PAPER/vslam-paper/data/snapshot-20261109/progress-1102b/rule-c-planned-runs.json",
+   "sha256": "cdd44496143e6cbfba34480f0aa8c90f280f7927ff9272980c5540e675b0bd48"
+  },
+  {
+   "role": "Rule C batch executed plan",
+   "path": "/data/imoroz/rule-c-batch-20261018/execution-plan.json",
+   "sha256": "f27b83476327d760fa3e033d2a4e46c06348bfa0f7c005bed040c33be4e665bc"
+  },
+  {
+   "role": "Rule C batch status",
+   "path": "/data/imoroz/rule-c-batch-20261018/status.json",
+   "sha256": "942783019d79a134a51675476c9af83c26ed069fe88a4d6c56cca351b6c8bc02"
+  },
+  {
+   "role": "AirSLAM LC completion terminal-review contract",
+   "path": "/data/imoroz/airslam-lc-completion-20261029/rule-c-terminal-review-contract-v2.json",
+   "sha256": "6bb7c8d1548ae51a46f22f02e53c492e5f126a49f7dff157eb09296d1228becd"
+  }
+ ],
+ "decision_sources": {
+  "vio-lc/rosariov2/sequence1/airslam": [
+   {
+    "role": "decision evidence",
+    "path": "/data/imoroz/PROGRESS/IMU-TIMING-TUNE/PLAN.md",
+    "sha256": "21f42d9faa054248bb6fb6958edffc1de78dbe3ffc07767b48ee578ec0faed17"
+   },
+   {
+    "role": "decision evidence",
+    "path": "/data/imoroz/airslam-lc-completion-20261029/queue.json",
+    "sha256": "b560b07173a2ad2aa2adbbc6d4c29194165f54fe8bf66b1bc5acdc487c5844e5"
+   }
+  ],
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x": [
+   {
+    "role": "decision evidence",
+    "path": "/data/imoroz/rule-c-batch-20261018/reviews/379-superseded-20261111.json",
+    "sha256": "d1777fdf04414b8c33fe951f09011c62d81023146034fc793cf627e00d89b4be"
+   },
+   {
+    "role": "decision evidence",
+    "path": "/data/imoroz/PROGRESS/IMU-TIMING-TUNE/PLAN.md",
+    "sha256": "21f42d9faa054248bb6fb6958edffc1de78dbe3ffc07767b48ee578ec0faed17"
+   }
+  ]
+ },
+ "user_decisions": {
+  "vio-lc/rosariov2/sequence1/airslam": {
+   "runs": {
+    "1": 40101
+   },
+   "decided": "User, 10 Nov 2026, PLAN Update 10 item A; run 11 Nov (search-gates.md, Update 10 item A)",
+   "not_counted": [
+    "results/vio-lc/rosariov2/sequence1/airslam/run10001",
+    "results/vio-lc/rosariov2/sequence1/airslam/run40009"
+   ]
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x": {
+   "runs": {
+    "1": 20101,
+    "2": 20102,
+    "3": 20103
+   },
+   "decided": "User, 10 Nov 2026, PLAN Update 10 item D (3 new runs, 8 h timeout, r1 run20001 not counted)",
+   "not_counted": [
+    "results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run20001"
+   ]
+  }
+ },
+ "six_november_decisions": {
+  "note": "Counted as normal scored repetitions with no disclosure (paper side). They are the counted runs of their slots and are selected like any other.",
+  "runs": [
+   "results/vio/rosariov2/sequence1/svo_pro/run10007",
+   "results/vio/rosariov2/sequence5/svo_pro/run10005",
+   "results/vio-lc/rosariov2/sequence1/svo_pro/run10003",
+   "results/vio-lc/rosariov2/sequence5/svo_pro/run10003",
+   "results/vio-lc/euroc_mav/MH_05_difficult/svo_pro/run10002",
+   "results/vo/zed2i/field1_110426_full_10fps_q90/svo_pro/run10001",
+   "results/vo/zed2i/field1_110426_full_10fps_q90/dsol/run10001",
+   "results/vo/zed2i/field1_110426_full_10fps_q90/dsol/run10002"
+  ]
+ },
+ "previous": {
+  "vio-lc/euroc_mav/MH_01_easy/cuvslam": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/euroc_mav/MH_01_easy/mast3r_fusion": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/euroc_mav/MH_01_easy/orbslam3": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/euroc_mav/MH_01_easy/svo_pro": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/euroc_mav/MH_03_medium/cuvslam": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/euroc_mav/MH_03_medium/mast3r_fusion": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/euroc_mav/MH_03_medium/orbslam3": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/euroc_mav/MH_03_medium/svo_pro": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/euroc_mav/MH_05_difficult/cuvslam": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/euroc_mav/MH_05_difficult/mast3r_fusion": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/euroc_mav/MH_05_difficult/orbslam3": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/euroc_mav/MH_05_difficult/svo_pro": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/rosariov2/sequence1/airslam": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/rosariov2/sequence1/cuvslam": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/rosariov2/sequence1/mast3r_fusion": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/rosariov2/sequence1/okvis2": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/rosariov2/sequence1/okvis2x": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/rosariov2/sequence1/orbslam3": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/rosariov2/sequence1/svo_pro": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/rosariov2/sequence5/airslam": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/rosariov2/sequence5/cuvslam": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/rosariov2/sequence5/mast3r_fusion": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/rosariov2/sequence5/okvis2": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/rosariov2/sequence5/okvis2x": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/rosariov2/sequence5/orbslam3": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/rosariov2/sequence5/svo_pro": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/airslam": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3": [
+   1,
+   2,
+   3
+  ],
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro": [
+   1,
+   2,
+   3
+  ],
+  "vio/rosariov2/sequence1/airslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/basalt": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/mast3r_fusion": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/okvis2": [
+   1,
+   2,
+   3
+  ],
+  "vio/rosariov2/sequence1/okvis2x": [
+   1,
+   2,
+   3
+  ],
+  "vio/rosariov2/sequence1/openvins": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/voxel_svio": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/airslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/basalt": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/mast3r_fusion": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/okvis2": [
+   1,
+   2,
+   3
+  ],
+  "vio/rosariov2/sequence5/okvis2x": [
+   1,
+   2,
+   3
+  ],
+  "vio/rosariov2/sequence5/openvins": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/voxel_svio": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/airslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/basalt": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/cuvslam": [
+   10001,
+   2,
+   3
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion": [
+   10002,
+   2,
+   3
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/okvis2": [
+   10001,
+   10003,
+   10004
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/okvis2x": [
+   10001,
+   10003,
+   10004
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/openvins": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/orbslam3": [
+   10001,
+   10003,
+   10004
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/svo_pro": [
+   10001,
+   2,
+   3
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/citrusfarm/seq04/airslam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/citrusfarm/seq04/cuvslam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/citrusfarm/seq04/dpvo": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/citrusfarm/seq04/okvis2": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/citrusfarm/seq04/okvis2x": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/citrusfarm/seq04/orbslam3": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/citrusfarm/seq04/ov2slam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/citrusfarm/seq07/airslam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/citrusfarm/seq07/cuvslam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/citrusfarm/seq07/dpvo": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/citrusfarm/seq07/okvis2": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/citrusfarm/seq07/okvis2x": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/citrusfarm/seq07/orbslam3": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/citrusfarm/seq07/ov2slam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/euroc_mav/MH_01_easy/cuvslam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/euroc_mav/MH_01_easy/orbslam3": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/euroc_mav/MH_03_medium/cuvslam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/euroc_mav/MH_03_medium/orbslam3": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/euroc_mav/MH_05_difficult/cuvslam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/euroc_mav/MH_05_difficult/orbslam3": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/rosariov2/sequence1/airslam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/rosariov2/sequence1/cuvslam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/rosariov2/sequence1/dpvo": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/rosariov2/sequence1/okvis2": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/rosariov2/sequence1/okvis2x": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/rosariov2/sequence1/orbslam3": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/rosariov2/sequence1/ov2slam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/rosariov2/sequence5/airslam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/rosariov2/sequence5/cuvslam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/rosariov2/sequence5/dpvo": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/rosariov2/sequence5/okvis2": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/rosariov2/sequence5/okvis2x": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/rosariov2/sequence5/orbslam3": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/rosariov2/sequence5/ov2slam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/airslam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/cuvslam": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x": [
+   1,
+   2,
+   3
+  ],
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3": [
+   1,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/airslam": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/basalt": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/cuvslam": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/dpvo": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/dsol": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/macvo": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/okvis2": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/okvis2x": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/ov2slam": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq04/svo_pro": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/airslam": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/basalt": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/cuvslam": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/dpvo": [
+   10002,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/dsol": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/macvo": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/okvis2": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/okvis2x": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/ov2slam": [
+   10001,
+   2,
+   3
+  ],
+  "vo/citrusfarm/seq07/svo_pro": [
+   10001,
+   2,
+   3
+  ],
+  "vo/rosariov2/sequence1/airslam": [
+   1,
+   2,
+   3
+  ],
+  "vo/rosariov2/sequence1/basalt": [
+   1,
+   2,
+   3
+  ],
+  "vo/rosariov2/sequence1/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence1/dpvo": [
+   1,
+   2,
+   3
+  ],
+  "vo/rosariov2/sequence1/dsol": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence1/macvo": [
+   1,
+   2,
+   3
+  ],
+  "vo/rosariov2/sequence1/okvis2": [
+   1,
+   2,
+   3
+  ],
+  "vo/rosariov2/sequence1/okvis2x": [
+   1,
+   2,
+   3
+  ],
+  "vo/rosariov2/sequence1/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence1/ov2slam": [
+   1,
+   2,
+   3
+  ],
+  "vo/rosariov2/sequence1/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence5/airslam": [
+   1,
+   2,
+   3
+  ],
+  "vo/rosariov2/sequence5/basalt": [
+   1,
+   2,
+   3
+  ],
+  "vo/rosariov2/sequence5/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence5/dpvo": [
+   1,
+   2,
+   3
+  ],
+  "vo/rosariov2/sequence5/dsol": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence5/macvo": [
+   1,
+   2,
+   3
+  ],
+  "vo/rosariov2/sequence5/okvis2": [
+   1,
+   2,
+   3
+  ],
+  "vo/rosariov2/sequence5/okvis2x": [
+   1,
+   2,
+   3
+  ],
+  "vo/rosariov2/sequence5/orbslam3": [
+   10004,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence5/ov2slam": [
+   1,
+   2,
+   3
+  ],
+  "vo/rosariov2/sequence5/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/zed2i/field1_110426_full_10fps_q90/cuvslam": [
+   10001,
+   2,
+   3
+  ],
+  "vo/zed2i/field1_110426_full_10fps_q90/dsol": [
+   1,
+   2,
+   3
+  ],
+  "vo/zed2i/field1_110426_full_10fps_q90/orbslam3": [
+   1,
+   2,
+   3
+  ],
+  "vo/zed2i/field1_110426_full_10fps_q90/svo_pro": [
+   10001,
+   2,
+   3
+  ]
+ },
+ "cells": {
+  "vio-lc/euroc_mav/MH_01_easy/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/euroc_mav/MH_01_easy/mast3r_fusion": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/euroc_mav/MH_01_easy/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/euroc_mav/MH_01_easy/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/euroc_mav/MH_03_medium/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/euroc_mav/MH_03_medium/mast3r_fusion": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/euroc_mav/MH_03_medium/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/euroc_mav/MH_03_medium/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/euroc_mav/MH_05_difficult/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/euroc_mav/MH_05_difficult/mast3r_fusion": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/euroc_mav/MH_05_difficult/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/euroc_mav/MH_05_difficult/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/rosariov2/sequence1/airslam": [
+   40101,
+   40010,
+   40011
+  ],
+  "vio-lc/rosariov2/sequence1/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/rosariov2/sequence1/mast3r_fusion": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/rosariov2/sequence1/okvis2": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/rosariov2/sequence1/okvis2x": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/rosariov2/sequence1/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/rosariov2/sequence1/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/rosariov2/sequence5/airslam": [
+   40012,
+   40013,
+   40014
+  ],
+  "vio-lc/rosariov2/sequence5/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/rosariov2/sequence5/mast3r_fusion": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/rosariov2/sequence5/okvis2": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/rosariov2/sequence5/okvis2x": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/rosariov2/sequence5/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/rosariov2/sequence5/svo_pro": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/airslam": [
+   40021,
+   40022,
+   40023
+  ],
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam": [
+   20001,
+   20002,
+   20003
+  ],
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion": [
+   20001,
+   20002,
+   20003
+  ],
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2": [
+   20001,
+   20002,
+   20003
+  ],
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x": [
+   20101,
+   20102,
+   20103
+  ],
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3": [
+   20001,
+   20002,
+   20003
+  ],
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro": [
+   20001,
+   20002,
+   20003
+  ],
+  "vio/rosariov2/sequence1/airslam": [
+   10004,
+   10005,
+   10006
+  ],
+  "vio/rosariov2/sequence1/basalt": [
+   10004,
+   10005,
+   10006
+  ],
+  "vio/rosariov2/sequence1/cuvslam": [
+   10004,
+   10005,
+   10006
+  ],
+  "vio/rosariov2/sequence1/mast3r_fusion": [
+   10004,
+   10005,
+   10006
+  ],
+  "vio/rosariov2/sequence1/okvis2": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/okvis2x": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence1/openvins": [
+   10004,
+   10005,
+   10006
+  ],
+  "vio/rosariov2/sequence1/orbslam3": [
+   10004,
+   10005,
+   10006
+  ],
+  "vio/rosariov2/sequence1/svo_pro": [
+   10004,
+   10005,
+   10007
+  ],
+  "vio/rosariov2/sequence1/voxel_svio": [
+   10004,
+   10005,
+   10006
+  ],
+  "vio/rosariov2/sequence5/airslam": [
+   10004,
+   10005,
+   10006
+  ],
+  "vio/rosariov2/sequence5/basalt": [
+   10004,
+   10005,
+   10006
+  ],
+  "vio/rosariov2/sequence5/cuvslam": [
+   10004,
+   10007,
+   10006
+  ],
+  "vio/rosariov2/sequence5/mast3r_fusion": [
+   10004,
+   10005,
+   10006
+  ],
+  "vio/rosariov2/sequence5/okvis2": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/okvis2x": [
+   10001,
+   10002,
+   10003
+  ],
+  "vio/rosariov2/sequence5/openvins": [
+   10004,
+   10005,
+   10006
+  ],
+  "vio/rosariov2/sequence5/orbslam3": [
+   10004,
+   10005,
+   10006
+  ],
+  "vio/rosariov2/sequence5/svo_pro": [
+   10004,
+   10005,
+   10006
+  ],
+  "vio/rosariov2/sequence5/voxel_svio": [
+   10004,
+   10005,
+   10006
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/airslam": [
+   20004,
+   20002,
+   20003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/basalt": [
+   20001,
+   20002,
+   20003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/cuvslam": [
+   20001,
+   20002,
+   20003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion": [
+   20004,
+   20002,
+   20003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/okvis2": [
+   20001,
+   20002,
+   20003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/okvis2x": [
+   20001,
+   20002,
+   20003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/openvins": [
+   20001,
+   20002,
+   20003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/orbslam3": [
+   20001,
+   20002,
+   20003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/svo_pro": [
+   20004,
+   20002,
+   20003
+  ],
+  "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio": [
+   20004,
+   20002,
+   20003
+  ],
+  "vo-lc/citrusfarm/seq04/airslam": [
+   10001,
+   40031,
+   40002
+  ],
+  "vo-lc/citrusfarm/seq04/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/citrusfarm/seq04/dpvo": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/citrusfarm/seq04/okvis2": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/citrusfarm/seq04/okvis2x": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/citrusfarm/seq04/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/citrusfarm/seq04/ov2slam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/citrusfarm/seq07/airslam": [
+   10001,
+   40003,
+   40004
+  ],
+  "vo-lc/citrusfarm/seq07/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/citrusfarm/seq07/dpvo": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/citrusfarm/seq07/okvis2": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/citrusfarm/seq07/okvis2x": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/citrusfarm/seq07/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/citrusfarm/seq07/ov2slam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/euroc_mav/MH_01_easy/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/euroc_mav/MH_01_easy/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/euroc_mav/MH_03_medium/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/euroc_mav/MH_03_medium/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/euroc_mav/MH_05_difficult/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/euroc_mav/MH_05_difficult/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/rosariov2/sequence1/airslam": [
+   10001,
+   40005,
+   40006
+  ],
+  "vo-lc/rosariov2/sequence1/cuvslam": [
+   10001,
+   10004,
+   10003
+  ],
+  "vo-lc/rosariov2/sequence1/dpvo": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/rosariov2/sequence1/okvis2": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/rosariov2/sequence1/okvis2x": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/rosariov2/sequence1/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/rosariov2/sequence1/ov2slam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/rosariov2/sequence5/airslam": [
+   10001,
+   40007,
+   40008
+  ],
+  "vo-lc/rosariov2/sequence5/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/rosariov2/sequence5/dpvo": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/rosariov2/sequence5/okvis2": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/rosariov2/sequence5/okvis2x": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/rosariov2/sequence5/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/rosariov2/sequence5/ov2slam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/airslam": [
+   40024,
+   40025,
+   40026
+  ],
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/cuvslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2": [
+   10001,
+   10004,
+   10003
+  ],
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x": [
+   10001,
+   2,
+   3
+  ],
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3": [
+   10001,
+   10002,
+   10005
+  ],
+  "vo/citrusfarm/seq04/airslam": [
+   10001,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq04/basalt": [
+   10002,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq04/cuvslam": [
+   10002,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq04/dpvo": [
+   10001,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq04/dsol": [
+   10002,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq04/macvo": [
+   10001,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq04/okvis2": [
+   10001,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq04/okvis2x": [
+   10001,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq04/ov2slam": [
+   10001,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq04/svo_pro": [
+   10002,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq07/airslam": [
+   10001,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq07/basalt": [
+   10002,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq07/cuvslam": [
+   10002,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq07/dpvo": [
+   10002,
+   10004,
+   10005
+  ],
+  "vo/citrusfarm/seq07/dsol": [
+   10002,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq07/macvo": [
+   10001,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq07/okvis2": [
+   10001,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq07/okvis2x": [
+   10001,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq07/ov2slam": [
+   10001,
+   10003,
+   10004
+  ],
+  "vo/citrusfarm/seq07/svo_pro": [
+   10002,
+   10003,
+   10004
+  ],
+  "vo/rosariov2/sequence1/airslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence1/basalt": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence1/cuvslam": [
+   10004,
+   10005,
+   10006
+  ],
+  "vo/rosariov2/sequence1/dpvo": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence1/dsol": [
+   10004,
+   10005,
+   10006
+  ],
+  "vo/rosariov2/sequence1/macvo": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence1/okvis2": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence1/okvis2x": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence1/orbslam3": [
+   10004,
+   10005,
+   10006
+  ],
+  "vo/rosariov2/sequence1/ov2slam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence1/svo_pro": [
+   10004,
+   10005,
+   10006
+  ],
+  "vo/rosariov2/sequence5/airslam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence5/basalt": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence5/cuvslam": [
+   10004,
+   10005,
+   10006
+  ],
+  "vo/rosariov2/sequence5/dpvo": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence5/dsol": [
+   10004,
+   10005,
+   10006
+  ],
+  "vo/rosariov2/sequence5/macvo": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence5/okvis2": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence5/okvis2x": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence5/orbslam3": [
+   10005,
+   10006,
+   10007
+  ],
+  "vo/rosariov2/sequence5/ov2slam": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/rosariov2/sequence5/svo_pro": [
+   10004,
+   10005,
+   10006
+  ],
+  "vo/zed2i/field1_110426_full_10fps_q90/cuvslam": [
+   10001,
+   10003,
+   10004
+  ],
+  "vo/zed2i/field1_110426_full_10fps_q90/dsol": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/zed2i/field1_110426_full_10fps_q90/orbslam3": [
+   10001,
+   10002,
+   10003
+  ],
+  "vo/zed2i/field1_110426_full_10fps_q90/svo_pro": [
+   10001,
+   10003,
+   10004
+  ]
+ },
+ "attempts": {
+  "vio-lc/euroc_mav/MH_01_easy/cuvslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-4f55bedec8db",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 117",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_01_easy/cuvslam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-4f55bedec8db",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 129",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_01_easy/cuvslam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-4f55bedec8db",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 141",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_01_easy/mast3r_fusion/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-eb6d09655b03",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 118",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_01_easy/mast3r_fusion/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-eb6d09655b03",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 130",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_01_easy/mast3r_fusion/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-eb6d09655b03",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 142",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_01_easy/orbslam3/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-3c5dc869477a",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 119",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_01_easy/orbslam3/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-3c5dc869477a",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 131",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_01_easy/orbslam3/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-3c5dc869477a",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 143",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_01_easy/svo_pro/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-94b6bf7692ad",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 120",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_01_easy/svo_pro/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-94b6bf7692ad",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 132",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_01_easy/svo_pro/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-94b6bf7692ad",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 144",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_03_medium/cuvslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-97b307a2b644",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 121",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_03_medium/cuvslam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-97b307a2b644",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 133",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_03_medium/cuvslam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-97b307a2b644",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 145",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_03_medium/mast3r_fusion/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-cce9c864887f",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 122",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_03_medium/mast3r_fusion/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-cce9c864887f",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 134",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_03_medium/mast3r_fusion/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-cce9c864887f",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 146",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_03_medium/orbslam3/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-dd0870ad792e",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 123",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_03_medium/orbslam3/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-dd0870ad792e",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 135",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_03_medium/orbslam3/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-dd0870ad792e",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 147",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_03_medium/svo_pro/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-66c246113794",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 124",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_03_medium/svo_pro/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-66c246113794",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 136",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_03_medium/svo_pro/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-66c246113794",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 148",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_05_difficult/cuvslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-5b461f8eb276",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 125",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_05_difficult/cuvslam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-5b461f8eb276",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 137",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_05_difficult/cuvslam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-5b461f8eb276",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 149",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_05_difficult/mast3r_fusion/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-a270752f0deb",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 126",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_05_difficult/mast3r_fusion/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-a270752f0deb",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 138",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_05_difficult/mast3r_fusion/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-a270752f0deb",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 150",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_05_difficult/orbslam3/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-200655e70f7d",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 127",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_05_difficult/orbslam3/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-200655e70f7d",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 139",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_05_difficult/orbslam3/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-200655e70f7d",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 151",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_05_difficult/svo_pro/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-ea50272e5e23",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 128",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_05_difficult/svo_pro/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-ea50272e5e23",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 140",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/euroc_mav/MH_05_difficult/svo_pro/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-ea50272e5e23",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 152",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence1/airslam/run40101": {
+   "repetition": 1,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "user decision: User, 10 Nov 2026, PLAN Update 10 item A; run 11 Nov (search-gates.md, Update 10 item A)",
+   "workspace_commit": "0dbc8b16a1e8dbfb2f28a0d61157ef7755f90257"
+  },
+  "vio-lc/rosariov2/sequence1/airslam/run40010": {
+   "repetition": 2,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-rosariov2-sequence1-vio-lc-r2",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vio-lc/rosariov2/sequence1/airslam/run40011": {
+   "repetition": 3,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-rosariov2-sequence1-vio-lc-r3",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vio-lc/rosariov2/sequence1/cuvslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-fd738b3476cd",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence1/cuvslam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-fd738b3476cd",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 317",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/rosariov2/sequence1/cuvslam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-fd738b3476cd",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 321",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/rosariov2/sequence1/mast3r_fusion/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-6280988535b6",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence1/mast3r_fusion/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-6280988535b6",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 318",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/rosariov2/sequence1/mast3r_fusion/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-6280988535b6",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 322",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/rosariov2/sequence1/okvis2/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-e003697a1955",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence1/okvis2/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-e003697a1955",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 208",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence1/okvis2/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-e003697a1955",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 220",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence1/okvis2x/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-d53a9a365d31",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence1/okvis2x/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-d53a9a365d31",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 209",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence1/okvis2x/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-d53a9a365d31",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 221",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence1/orbslam3/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-a032deabdf1a",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence1/orbslam3/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-a032deabdf1a",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 210",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence1/orbslam3/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-a032deabdf1a",
+   "status": "no_trajectory",
+   "source": "rule-c-batch-20261018 queue index 222",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence1/svo_pro/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-fa6f8c484031",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence1/svo_pro/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-fa6f8c484031",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 211",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence1/svo_pro/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-fa6f8c484031",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 223",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence5/airslam/run40012": {
+   "repetition": 1,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-rosariov2-sequence5-vio-lc-r1",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vio-lc/rosariov2/sequence5/airslam/run40013": {
+   "repetition": 2,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-rosariov2-sequence5-vio-lc-r2",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vio-lc/rosariov2/sequence5/airslam/run40014": {
+   "repetition": 3,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-rosariov2-sequence5-vio-lc-r3",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vio-lc/rosariov2/sequence5/cuvslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-db053828748e",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence5/cuvslam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-db053828748e",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 319",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/rosariov2/sequence5/cuvslam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-db053828748e",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 323",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/rosariov2/sequence5/mast3r_fusion/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-741a987d0616",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence5/mast3r_fusion/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-741a987d0616",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 320",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/rosariov2/sequence5/mast3r_fusion/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-741a987d0616",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 324",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/rosariov2/sequence5/okvis2/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-12aeb820a9c0",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence5/okvis2/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-12aeb820a9c0",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 214",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence5/okvis2/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-12aeb820a9c0",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 226",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence5/okvis2x/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-fc7e5c53784e",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence5/okvis2x/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-fc7e5c53784e",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 215",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence5/okvis2x/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-fc7e5c53784e",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 227",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence5/orbslam3/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-67b1ec66d22d",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence5/orbslam3/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-67b1ec66d22d",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 216",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence5/orbslam3/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-67b1ec66d22d",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 228",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence5/svo_pro/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-77480533a8d2",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence5/svo_pro/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-77480533a8d2",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 217",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/rosariov2/sequence5/svo_pro/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-77480533a8d2",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 229",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/airslam/run40021": {
+   "repetition": 1,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-zed2i-field1_110426_full_10fps_q90-vio-lc-r1",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/airslam/run40022": {
+   "repetition": 2,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated_failure_or_review",
+   "source": "AirSLAM LC completion contract item rule-c-air-zed2i-field1_110426_full_10fps_q90-vio-lc-r2",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/airslam/run40023": {
+   "repetition": 3,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated_failure_or_review",
+   "source": "AirSLAM LC completion contract item rule-c-air-zed2i-field1_110426_full_10fps_q90-vio-lc-r3",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run20001": {
+   "repetition": 1,
+   "cohort": "zed-rulec-20261021-n3-cd90612575ae",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 371",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run20002": {
+   "repetition": 2,
+   "cohort": "zed-rulec-20261021-n3-cd90612575ae",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 373",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run20003": {
+   "repetition": 3,
+   "cohort": "zed-rulec-20261021-n3-cd90612575ae",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 375",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20001": {
+   "repetition": 1,
+   "cohort": "zed-rulec-20261021-n3-0583f3f7d4a0",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 372",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20002": {
+   "repetition": 2,
+   "cohort": "zed-rulec-20261021-n3-0583f3f7d4a0",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 374",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20003": {
+   "repetition": 3,
+   "cohort": "zed-rulec-20261021-n3-0583f3f7d4a0",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 376",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run20001": {
+   "repetition": 1,
+   "cohort": "zed-rulec-20261021-n3-af9f4a4899cf",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 378",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run20002": {
+   "repetition": 2,
+   "cohort": "zed-rulec-20261021-n3-af9f4a4899cf",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 382",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run20003": {
+   "repetition": 3,
+   "cohort": "zed-rulec-20261021-n3-af9f4a4899cf",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 386",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run20101": {
+   "repetition": 1,
+   "cohort": "okvis2x-vio-lc-sielinko-20261110",
+   "status": "evaluated",
+   "source": "user decision: User, 10 Nov 2026, PLAN Update 10 item D (3 new runs, 8 h timeout, r1 run20001 not counted)",
+   "workspace_commit": "0dbc8b16a1e8dbfb2f28a0d61157ef7755f90257"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run20102": {
+   "repetition": 2,
+   "cohort": "okvis2x-vio-lc-sielinko-20261110",
+   "status": "evaluated_failure_or_review",
+   "source": "user decision: User, 10 Nov 2026, PLAN Update 10 item D (3 new runs, 8 h timeout, r1 run20001 not counted)",
+   "workspace_commit": "0dbc8b16a1e8dbfb2f28a0d61157ef7755f90257"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run20103": {
+   "repetition": 3,
+   "cohort": "okvis2x-vio-lc-sielinko-20261110",
+   "status": "evaluated_failure_or_review",
+   "source": "user decision: User, 10 Nov 2026, PLAN Update 10 item D (3 new runs, 8 h timeout, r1 run20001 not counted)",
+   "workspace_commit": "0dbc8b16a1e8dbfb2f28a0d61157ef7755f90257"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run20001": {
+   "repetition": 1,
+   "cohort": "zed-rulec-20261021-n3-70f3e7648208",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 377",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run20002": {
+   "repetition": 2,
+   "cohort": "zed-rulec-20261021-n3-70f3e7648208",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 381",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run20003": {
+   "repetition": 3,
+   "cohort": "zed-rulec-20261021-n3-70f3e7648208",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 385",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run20001": {
+   "repetition": 1,
+   "cohort": "zed-rulec-20261021-n3-09935329c6f7",
+   "status": "no_trajectory",
+   "source": "rule-c-batch-20261018 queue index 380",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run20002": {
+   "repetition": 2,
+   "cohort": "zed-rulec-20261021-n3-09935329c6f7",
+   "status": "no_trajectory",
+   "source": "rule-c-batch-20261018 queue index 384",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run20003": {
+   "repetition": 3,
+   "cohort": "zed-rulec-20261021-n3-09935329c6f7",
+   "status": "no_trajectory",
+   "source": "rule-c-batch-20261018 queue index 388",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence1/airslam/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-550fb9ac7b08",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/airslam/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-550fb9ac7b08",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 341",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence1/airslam/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-550fb9ac7b08",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 342",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence1/basalt/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-6f471c2f83c0",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/basalt/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-6f471c2f83c0",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/basalt/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-6f471c2f83c0",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 158",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/cuvslam/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-43d4144231bd",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/cuvslam/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-43d4144231bd",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/cuvslam/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-43d4144231bd",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 305",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence1/mast3r_fusion/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-43df68324dda",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/mast3r_fusion/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-43df68324dda",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/mast3r_fusion/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-43df68324dda",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 306",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence1/okvis2/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-2790ed728fb0",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/okvis2/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-2790ed728fb0",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/okvis2/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-2790ed728fb0",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 161",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/okvis2x/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-8e8dd3ae5134",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/okvis2x/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-8e8dd3ae5134",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/okvis2x/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-8e8dd3ae5134",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 162",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/openvins/run10004": {
+   "repetition": 1,
+   "cohort": "openvins-delivery-v6-n3-fa5b6f1fcfc2",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 266",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence1/openvins/run10005": {
+   "repetition": 2,
+   "cohort": "openvins-delivery-v6-n3-fa5b6f1fcfc2",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 270",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence1/openvins/run10006": {
+   "repetition": 3,
+   "cohort": "openvins-delivery-v6-n3-fa5b6f1fcfc2",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 275",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence1/orbslam3/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-9956e383330e",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/orbslam3/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-9956e383330e",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/orbslam3/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-9956e383330e",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 163",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/svo_pro/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-2c266182688f",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/svo_pro/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-2c266182688f",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/svo_pro/run10007": {
+   "repetition": 3,
+   "cohort": "repair-n3-2c266182688f",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 256",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/voxel_svio/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-b716d5e86ba3",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/voxel_svio/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-b716d5e86ba3",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence1/voxel_svio/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-b716d5e86ba3",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 165",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/airslam/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-1a488d7c4d99",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/airslam/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-1a488d7c4d99",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 343",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence5/airslam/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-1a488d7c4d99",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 344",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence5/basalt/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-41429947a0bc",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/basalt/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-41429947a0bc",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 153",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/basalt/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-41429947a0bc",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 166",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/cuvslam/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-7a7ead194abe",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/cuvslam/run10007": {
+   "repetition": 2,
+   "cohort": "repair-n3-7a7ead194abe",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 360",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence5/cuvslam/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-7a7ead194abe",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 307",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence5/mast3r_fusion/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-6f31fdddc5ac",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/mast3r_fusion/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-6f31fdddc5ac",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 304",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence5/mast3r_fusion/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-6f31fdddc5ac",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 308",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence5/okvis2/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-5e74534a7adb",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/okvis2/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-5e74534a7adb",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/okvis2/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-5e74534a7adb",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 169",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/okvis2x/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-a78f7e848185",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/okvis2x/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-a78f7e848185",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/okvis2x/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-a78f7e848185",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 170",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/openvins/run10004": {
+   "repetition": 1,
+   "cohort": "openvins-delivery-v6-n3-744b35c3c640",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 267",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence5/openvins/run10005": {
+   "repetition": 2,
+   "cohort": "openvins-delivery-v6-n3-744b35c3c640",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 271",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence5/openvins/run10006": {
+   "repetition": 3,
+   "cohort": "openvins-delivery-v6-n3-744b35c3c640",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 276",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/rosariov2/sequence5/orbslam3/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-d084d33be220",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/orbslam3/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-d084d33be220",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/orbslam3/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-d084d33be220",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 171",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/svo_pro/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-92d8c64f197a",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/svo_pro/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-92d8c64f197a",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 156",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/svo_pro/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-92d8c64f197a",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 172",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/voxel_svio/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-6610169958ca",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/voxel_svio/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-6610169958ca",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 157",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/rosariov2/sequence5/voxel_svio/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-6610169958ca",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 173",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/airslam/run20004": {
+   "repetition": 1,
+   "cohort": "zed-rulec-20261021-n3-b8dae5594969",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 364",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/airslam/run20002": {
+   "repetition": 2,
+   "cohort": "zed-rulec-20261021-n3-b8dae5594969",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 365",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/airslam/run20003": {
+   "repetition": 3,
+   "cohort": "zed-rulec-20261021-n3-b8dae5594969",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 389",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/basalt/run20001": {
+   "repetition": 1,
+   "cohort": "zed-rulec-20261021-n3-d0c3e60a0049",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 284",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/basalt/run20002": {
+   "repetition": 2,
+   "cohort": "zed-rulec-20261021-n3-d0c3e60a0049",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 291",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/basalt/run20003": {
+   "repetition": 3,
+   "cohort": "zed-rulec-20261021-n3-d0c3e60a0049",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 292",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/cuvslam/run20001": {
+   "repetition": 1,
+   "cohort": "zed-rulec-20261021-n3-f4bf71d7b15f",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 350",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/cuvslam/run20002": {
+   "repetition": 2,
+   "cohort": "zed-rulec-20261021-n3-f4bf71d7b15f",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 353",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/cuvslam/run20003": {
+   "repetition": 3,
+   "cohort": "zed-rulec-20261021-n3-f4bf71d7b15f",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 356",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20004": {
+   "repetition": 1,
+   "cohort": "zed-rulec-20261021-n3-34e5c9b891a1",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 362",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20002": {
+   "repetition": 2,
+   "cohort": "zed-rulec-20261021-n3-34e5c9b891a1",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 352",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20003": {
+   "repetition": 3,
+   "cohort": "zed-rulec-20261021-n3-34e5c9b891a1",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 355",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/okvis2/run20001": {
+   "repetition": 1,
+   "cohort": "zed-rulec-20261021-n3-51cab4f3333a",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 280",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/okvis2/run20002": {
+   "repetition": 2,
+   "cohort": "zed-rulec-20261021-n3-51cab4f3333a",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 294",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/okvis2/run20003": {
+   "repetition": 3,
+   "cohort": "zed-rulec-20261021-n3-51cab4f3333a",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 299",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run20001": {
+   "repetition": 1,
+   "cohort": "zed-rulec-20261021-n3-63baef9491f6",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 281",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run20002": {
+   "repetition": 2,
+   "cohort": "zed-rulec-20261021-n3-63baef9491f6",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 295",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run20003": {
+   "repetition": 3,
+   "cohort": "zed-rulec-20261021-n3-63baef9491f6",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 300",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/openvins/run20001": {
+   "repetition": 1,
+   "cohort": "zed-rulec-20261021-n3-d4faaac223e2",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 390",
+   "workspace_commit": "57332d5fab2f964949ef51c8401910f243542de0"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/openvins/run20002": {
+   "repetition": 2,
+   "cohort": "zed-rulec-20261021-n3-d4faaac223e2",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 392",
+   "workspace_commit": "57332d5fab2f964949ef51c8401910f243542de0"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/openvins/run20003": {
+   "repetition": 3,
+   "cohort": "zed-rulec-20261021-n3-d4faaac223e2",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 393",
+   "workspace_commit": "57332d5fab2f964949ef51c8401910f243542de0"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run20001": {
+   "repetition": 1,
+   "cohort": "zed-rulec-20261021-n3-4da2d3aff4a8",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 279",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run20002": {
+   "repetition": 2,
+   "cohort": "zed-rulec-20261021-n3-4da2d3aff4a8",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 293",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run20003": {
+   "repetition": 3,
+   "cohort": "zed-rulec-20261021-n3-4da2d3aff4a8",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 298",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run20004": {
+   "repetition": 1,
+   "cohort": "zed-rulec-20261021-n3-f635a499dfa9",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 363",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run20002": {
+   "repetition": 2,
+   "cohort": "zed-rulec-20261021-n3-f635a499dfa9",
+   "status": "no_trajectory",
+   "source": "rule-c-batch-20261018 queue index 297",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run20003": {
+   "repetition": 3,
+   "cohort": "zed-rulec-20261021-n3-f635a499dfa9",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 302",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run20004": {
+   "repetition": 1,
+   "cohort": "zed-rulec-20261021-n3-ef41d164f9ff",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 361",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run20002": {
+   "repetition": 2,
+   "cohort": "zed-rulec-20261021-n3-ef41d164f9ff",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 296",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run20003": {
+   "repetition": 3,
+   "cohort": "zed-rulec-20261021-n3-ef41d164f9ff",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 301",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vo-lc/citrusfarm/seq04/airslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-37c1835cd885",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/airslam/run40031": {
+   "repetition": 2,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-citrusfarm-seq04-vo-lc-r2",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vo-lc/citrusfarm/seq04/airslam/run40002": {
+   "repetition": 3,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-citrusfarm-seq04-vo-lc-r3",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vo-lc/citrusfarm/seq04/cuvslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-455ea62849d3",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/cuvslam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-455ea62849d3",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 69",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/cuvslam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-455ea62849d3",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 81",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/dpvo/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-8c4c30d647c4",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/dpvo/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-8c4c30d647c4",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 70",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/dpvo/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-8c4c30d647c4",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 82",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/okvis2/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-18dd94b6c834",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/okvis2/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-18dd94b6c834",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 71",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/okvis2/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-18dd94b6c834",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 83",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/okvis2x/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-26a0518e2a94",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/okvis2x/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-26a0518e2a94",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 72",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/okvis2x/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-26a0518e2a94",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 84",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/orbslam3/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-12f7d16eff36",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/orbslam3/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-12f7d16eff36",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 73",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/orbslam3/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-12f7d16eff36",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 85",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/ov2slam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-d883cc9241f1",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/ov2slam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-d883cc9241f1",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 74",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq04/ov2slam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-d883cc9241f1",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 86",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/airslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-addbb5db1e86",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/airslam/run40003": {
+   "repetition": 2,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-citrusfarm-seq07-vo-lc-r2",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vo-lc/citrusfarm/seq07/airslam/run40004": {
+   "repetition": 3,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-citrusfarm-seq07-vo-lc-r3",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vo-lc/citrusfarm/seq07/cuvslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-3848141e2ccd",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/cuvslam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-3848141e2ccd",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 75",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/cuvslam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-3848141e2ccd",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 87",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/dpvo/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-693e19c2d7da",
+   "status": "evaluation_failed",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/dpvo/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-693e19c2d7da",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 76",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/dpvo/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-693e19c2d7da",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 88",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/okvis2/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-21800228981e",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/okvis2/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-21800228981e",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 77",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/okvis2/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-21800228981e",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 89",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/okvis2x/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-0393ca6abafc",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/okvis2x/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-0393ca6abafc",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 78",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/okvis2x/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-0393ca6abafc",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 90",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/orbslam3/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-02d34b7ccdd8",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/orbslam3/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-02d34b7ccdd8",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 79",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/orbslam3/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-02d34b7ccdd8",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 91",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/ov2slam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-539a6790b021",
+   "status": "evaluated_failure_or_review",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/ov2slam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-539a6790b021",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 80",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/citrusfarm/seq07/ov2slam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-539a6790b021",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 92",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_01_easy/cuvslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-313ae8022a3f",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 99",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_01_easy/cuvslam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-313ae8022a3f",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 105",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_01_easy/cuvslam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-313ae8022a3f",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 111",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_01_easy/orbslam3/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-9ad6f1ea865c",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 100",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_01_easy/orbslam3/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-9ad6f1ea865c",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 106",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_01_easy/orbslam3/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-9ad6f1ea865c",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 112",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_03_medium/cuvslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-aa3ce5832ac7",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 101",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_03_medium/cuvslam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-aa3ce5832ac7",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 107",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_03_medium/cuvslam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-aa3ce5832ac7",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 113",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_03_medium/orbslam3/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-a3f110139258",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 102",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_03_medium/orbslam3/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-a3f110139258",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 108",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_03_medium/orbslam3/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-a3f110139258",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 114",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_05_difficult/cuvslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-57e7f6a313fb",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 103",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_05_difficult/cuvslam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-57e7f6a313fb",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 109",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_05_difficult/cuvslam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-57e7f6a313fb",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 115",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_05_difficult/orbslam3/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-91f3e7311bcd",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 104",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_05_difficult/orbslam3/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-91f3e7311bcd",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 110",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/euroc_mav/MH_05_difficult/orbslam3/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-91f3e7311bcd",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 116",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/airslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-d0d7e9ce37af",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/airslam/run40005": {
+   "repetition": 2,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-rosariov2-sequence1-vo-lc-r2",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vo-lc/rosariov2/sequence1/airslam/run40006": {
+   "repetition": 3,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-rosariov2-sequence1-vo-lc-r3",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vo-lc/rosariov2/sequence1/cuvslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-99c6703076ad",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/cuvslam/run10004": {
+   "repetition": 2,
+   "cohort": "repair-n3-99c6703076ad",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 56",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/cuvslam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-99c6703076ad",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 57",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/dpvo/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-06d6457048b6",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/dpvo/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-06d6457048b6",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/dpvo/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-06d6457048b6",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 58",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/okvis2/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-d703d6423136",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/okvis2/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-d703d6423136",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/okvis2/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-d703d6423136",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 59",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/okvis2x/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-d4cf8f5fa678",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/okvis2x/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-d4cf8f5fa678",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/okvis2x/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-d4cf8f5fa678",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 60",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/orbslam3/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-89ca04dee229",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/orbslam3/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-89ca04dee229",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/orbslam3/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-89ca04dee229",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 61",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/ov2slam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-acd21bedcde9",
+   "status": "no_trajectory",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": null
+  },
+  "vo-lc/rosariov2/sequence1/ov2slam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-acd21bedcde9",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence1/ov2slam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-acd21bedcde9",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 62",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/airslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-5658c3755923",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/airslam/run40007": {
+   "repetition": 2,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-rosariov2-sequence5-vo-lc-r2",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vo-lc/rosariov2/sequence5/airslam/run40008": {
+   "repetition": 3,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-rosariov2-sequence5-vo-lc-r3",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vo-lc/rosariov2/sequence5/cuvslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-46074a8150cc",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/cuvslam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-46074a8150cc",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/cuvslam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-46074a8150cc",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 63",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/dpvo/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-32fcedb4a720",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/dpvo/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-32fcedb4a720",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/dpvo/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-32fcedb4a720",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 64",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/okvis2/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-bec0e18afa84",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/okvis2/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-bec0e18afa84",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/okvis2/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-bec0e18afa84",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 65",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/okvis2x/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-acaba8630598",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/okvis2x/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-acaba8630598",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/okvis2x/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-acaba8630598",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 66",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/orbslam3/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-43c7142478d5",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/orbslam3/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-43c7142478d5",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/orbslam3/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-43c7142478d5",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 67",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/ov2slam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-7bda3e57caba",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/ov2slam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-7bda3e57caba",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/rosariov2/sequence5/ov2slam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-7bda3e57caba",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 68",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run40024": {
+   "repetition": 1,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-zed2i-field1_110426_full_10fps_q90-vo-lc-r1",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run40025": {
+   "repetition": 2,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-zed2i-field1_110426_full_10fps_q90-vo-lc-r2",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/airslam/run40026": {
+   "repetition": 3,
+   "cohort": "air-lc-rule-c-completion-20261029",
+   "status": "evaluated",
+   "source": "AirSLAM LC completion contract item rule-c-air-zed2i-field1_110426_full_10fps_q90-vo-lc-r3",
+   "workspace_commit": "86cab2c4c8034ba255f3f35ccfdf262a703cae92"
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run10001": {
+   "repetition": 1,
+   "cohort": "zed-current-n3-5dbbe718a0d7",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 95",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run10002": {
+   "repetition": 2,
+   "cohort": "zed-current-n3-5dbbe718a0d7",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 369",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run10003": {
+   "repetition": 3,
+   "cohort": "zed-current-n3-5dbbe718a0d7",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 370",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run10001": {
+   "repetition": 1,
+   "cohort": "zed-current-n3-3212637895cd",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 96",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run10004": {
+   "repetition": 2,
+   "cohort": "zed-current-n3-3212637895cd",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 359",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run10003": {
+   "repetition": 3,
+   "cohort": "zed-current-n3-3212637895cd",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 272",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001": {
+   "repetition": 1,
+   "cohort": "zed-current-n3-1d871cfd3420",
+   "status": "estimator_starting",
+   "source": "rule-c-batch-20261018 queue index 97",
+   "workspace_commit": null
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001": {
+   "repetition": 1,
+   "cohort": "zed-current-n3-2b8b0fafa3dc",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 98",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run10002": {
+   "repetition": 2,
+   "cohort": "zed-current-n3-2b8b0fafa3dc",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 260",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run10005": {
+   "repetition": 3,
+   "cohort": "zed-current-n3-2b8b0fafa3dc",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 358",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vo/citrusfarm/seq04/airslam/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-0fd6916b3cf5",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 337",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vo/citrusfarm/seq04/airslam/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-0fd6916b3cf5",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 338",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vo/citrusfarm/seq04/basalt/run10002": {
+   "repetition": 1,
+   "cohort": "repair-n3-6fdfc9569a47",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/basalt/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-6fdfc9569a47",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 20",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/basalt/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-6fdfc9569a47",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 38",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/cuvslam/run10002": {
+   "repetition": 1,
+   "cohort": "repair-n3-57c042a75953",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/cuvslam/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-57c042a75953",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 21",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/cuvslam/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-57c042a75953",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 39",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/dpvo/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-23662fd171eb",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 22",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/dpvo/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-23662fd171eb",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 40",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/dsol/run10002": {
+   "repetition": 1,
+   "cohort": "repair-n3-0c5735340859",
+   "status": "no_trajectory",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/dsol/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-0c5735340859",
+   "status": "no_trajectory",
+   "source": "rule-c-batch-20261018 queue index 23",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/dsol/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-0c5735340859",
+   "status": "no_trajectory",
+   "source": "rule-c-batch-20261018 queue index 41",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/macvo/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-d54474cc468a",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 24",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/macvo/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-d54474cc468a",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 42",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/okvis2/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-2cffadb80692",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 25",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/okvis2/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-2cffadb80692",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 43",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/okvis2x/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-a118652b9b45",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 26",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/okvis2x/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-a118652b9b45",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 44",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/ov2slam/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-e06ed8a5edad",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 27",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/ov2slam/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-e06ed8a5edad",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 45",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/svo_pro/run10002": {
+   "repetition": 1,
+   "cohort": "repair-n3-5c840d653450",
+   "status": "evaluated_failure_or_review",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/svo_pro/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-5c840d653450",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 28",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq04/svo_pro/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-5c840d653450",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 46",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/airslam/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-15376c9f3b2a",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 339",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vo/citrusfarm/seq07/airslam/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-15376c9f3b2a",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 340",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vo/citrusfarm/seq07/basalt/run10002": {
+   "repetition": 1,
+   "cohort": "repair-n3-e755366657d1",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/basalt/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-e755366657d1",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 29",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/basalt/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-e755366657d1",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 47",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/cuvslam/run10002": {
+   "repetition": 1,
+   "cohort": "repair-n3-bb98089de0a7",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/cuvslam/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-bb98089de0a7",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 30",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/cuvslam/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-bb98089de0a7",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 48",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/dpvo/run10004": {
+   "repetition": 2,
+   "cohort": "repair-n3-851238700c3b",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 31",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/dpvo/run10005": {
+   "repetition": 3,
+   "cohort": "repair-n3-851238700c3b",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 49",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/dsol/run10002": {
+   "repetition": 1,
+   "cohort": "repair-n3-3326938eef47",
+   "status": "no_trajectory",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/dsol/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-3326938eef47",
+   "status": "no_trajectory",
+   "source": "rule-c-batch-20261018 queue index 32",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/dsol/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-3326938eef47",
+   "status": "no_trajectory",
+   "source": "rule-c-batch-20261018 queue index 50",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/macvo/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-59e42da2b742",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 33",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/macvo/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-59e42da2b742",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 51",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/okvis2/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-8d08cd46b191",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 34",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/okvis2/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-8d08cd46b191",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 52",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/okvis2x/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-e886fb371bce",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 35",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/okvis2x/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-e886fb371bce",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 53",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/ov2slam/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-8cb4fd719d9c",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 36",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/ov2slam/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-8cb4fd719d9c",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 54",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/svo_pro/run10002": {
+   "repetition": 1,
+   "cohort": "repair-n3-1ba2ff6a3bf6",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/svo_pro/run10003": {
+   "repetition": 2,
+   "cohort": "repair-n3-1ba2ff6a3bf6",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 37",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/citrusfarm/seq07/svo_pro/run10004": {
+   "repetition": 3,
+   "cohort": "repair-n3-1ba2ff6a3bf6",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 55",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/airslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-d14f3242bb8d",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/airslam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-d14f3242bb8d",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 333",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vo/rosariov2/sequence1/airslam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-d14f3242bb8d",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 334",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vo/rosariov2/sequence1/basalt/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-8e58b0758c6e",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/basalt/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-8e58b0758c6e",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/basalt/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-8e58b0758c6e",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 0",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/cuvslam/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-15cc2b15a9d8",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/cuvslam/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-15cc2b15a9d8",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/cuvslam/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-15cc2b15a9d8",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 1",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/dpvo/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-fad0d43fb5e7",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/dpvo/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-fad0d43fb5e7",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/dpvo/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-fad0d43fb5e7",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 2",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/dsol/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-cd66f108e933",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/dsol/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-cd66f108e933",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/dsol/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-cd66f108e933",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 3",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/macvo/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-8fa12f5757cf",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/macvo/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-8fa12f5757cf",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/macvo/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-8fa12f5757cf",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 4",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/okvis2/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-e758474e1150",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/okvis2/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-e758474e1150",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/okvis2/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-e758474e1150",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 5",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/okvis2x/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-b05c4c0f40a6",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/okvis2x/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-b05c4c0f40a6",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/okvis2x/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-b05c4c0f40a6",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 6",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/orbslam3/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-b50363058e50",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/orbslam3/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-b50363058e50",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/orbslam3/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-b50363058e50",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 7",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/ov2slam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-52437a2fe07e",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/ov2slam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-52437a2fe07e",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/ov2slam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-52437a2fe07e",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 8",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/svo_pro/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-dd962968d324",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/svo_pro/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-dd962968d324",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence1/svo_pro/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-dd962968d324",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 9",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/airslam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-c3d2a9da71ec",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/airslam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-c3d2a9da71ec",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 335",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vo/rosariov2/sequence5/airslam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-c3d2a9da71ec",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 336",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vo/rosariov2/sequence5/basalt/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-8adfd0e83fa5",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/basalt/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-8adfd0e83fa5",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/basalt/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-8adfd0e83fa5",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 10",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/cuvslam/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-9fc94a641821",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/cuvslam/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-9fc94a641821",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/cuvslam/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-9fc94a641821",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 11",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/dpvo/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-991b484006cf",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/dpvo/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-991b484006cf",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/dpvo/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-991b484006cf",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 12",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/dsol/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-60bc57986857",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/dsol/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-60bc57986857",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/dsol/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-60bc57986857",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 13",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/macvo/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-3f70a0024254",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/macvo/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-3f70a0024254",
+   "status": "no_trajectory",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/macvo/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-3f70a0024254",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 14",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/okvis2/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-ca8ae58590e0",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/okvis2/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-ca8ae58590e0",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/okvis2/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-ca8ae58590e0",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 15",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/okvis2x/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-e883cea4e3ec",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/okvis2x/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-e883cea4e3ec",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/okvis2x/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-e883cea4e3ec",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 16",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/orbslam3/run10005": {
+   "repetition": 1,
+   "cohort": "repair-n3-c150b89c986d",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/orbslam3/run10006": {
+   "repetition": 2,
+   "cohort": "repair-n3-c150b89c986d",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/orbslam3/run10007": {
+   "repetition": 3,
+   "cohort": "repair-n3-c150b89c986d",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 17",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/ov2slam/run10001": {
+   "repetition": 1,
+   "cohort": "repair-n3-77e72e26e430",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/ov2slam/run10002": {
+   "repetition": 2,
+   "cohort": "repair-n3-77e72e26e430",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/ov2slam/run10003": {
+   "repetition": 3,
+   "cohort": "repair-n3-77e72e26e430",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 18",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/svo_pro/run10004": {
+   "repetition": 1,
+   "cohort": "repair-n3-be4beab68b9a",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/svo_pro/run10005": {
+   "repetition": 2,
+   "cohort": "repair-n3-be4beab68b9a",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/rosariov2/sequence5/svo_pro/run10006": {
+   "repetition": 3,
+   "cohort": "repair-n3-be4beab68b9a",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 19",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/zed2i/field1_110426_full_10fps_q90/cuvslam/run10003": {
+   "repetition": 2,
+   "cohort": "zed-current-n3-d78c7b838264",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 367",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vo/zed2i/field1_110426_full_10fps_q90/cuvslam/run10004": {
+   "repetition": 3,
+   "cohort": "zed-current-n3-d78c7b838264",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 368",
+   "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d"
+  },
+  "vo/zed2i/field1_110426_full_10fps_q90/dsol/run10001": {
+   "repetition": 1,
+   "cohort": "zed-current-n3-e3fe13bc02fe",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 93",
+   "workspace_commit": null
+  },
+  "vo/zed2i/field1_110426_full_10fps_q90/dsol/run10002": {
+   "repetition": 2,
+   "cohort": "zed-current-n3-e3fe13bc02fe",
+   "status": "evaluated_failure_or_review",
+   "source": "rule-c-batch-20261018 queue index 258",
+   "workspace_commit": null
+  },
+  "vo/zed2i/field1_110426_full_10fps_q90/dsol/run10003": {
+   "repetition": 3,
+   "cohort": "zed-current-n3-e3fe13bc02fe",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 259",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run10001": {
+   "repetition": 1,
+   "cohort": "zed-current-n3-7554c6032af6",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 94",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run10002": {
+   "repetition": 2,
+   "cohort": "zed-current-n3-7554c6032af6-memory64-comparison-20261019",
+   "status": "evaluated",
+   "source": "publisher planned target (earlier Rule C stage of the frozen N=3 plan)",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run10003": {
+   "repetition": 3,
+   "cohort": "zed-current-n3-7554c6032af6",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 257",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/zed2i/field1_110426_full_10fps_q90/svo_pro/run10003": {
+   "repetition": 2,
+   "cohort": "zed-current-n3-d9f7f6d4c32c",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 254",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  },
+  "vo/zed2i/field1_110426_full_10fps_q90/svo_pro/run10004": {
+   "repetition": 3,
+   "cohort": "zed-current-n3-d9f7f6d4c32c",
+   "status": "evaluated",
+   "source": "rule-c-batch-20261018 queue index 255",
+   "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e"
+  }
+ },
+ "identity_exceptions": {
+  "vo/zed2i/field1_110426_full_10fps_q90/orbslam3/run10002": {
+   "reason": "64 GiB memory-comparison run explicitly reused once as logical r2 in revision 11 (user, 21 Oct 2026); its original comparison identity is kept unchanged",
+   "evidence": {
+    "role": "reviewed exception",
+    "path": "/data/imoroz/rule-c-batch-20261018/coordinated/revision11-20261021/orb-r2-reuse-review.json",
+    "sha256": "548ebdc9e8370490a8fc2353d295816dfa8a040d40eade0a93433143a9be7cff"
+   },
+   "recorded_identity": {
+    "cohort": "zed-current-n3-7554c6032af6-memory64-comparison-20261019",
+    "repetition": 1,
+    "physical_run_id": 10002
+   }
+  }
+ },
+ "closed_cells": {
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x": {
+   "disposition": "did_not_finish",
+   "decided": "User, 11 Nov 2026: no more runs; final bundle adjustment beyond 48 h in the one attempt; not completed in completion statistics, left out of accuracy comparisons",
+   "evidence": [
+    {
+     "role": "closure evidence",
+     "path": "/data/imoroz/rule-c-batch-20261018/reviews/097.json",
+     "sha256": "342c554ca1c8b72f5b9c30330612fb1c199ae7bc991f038820aaab33d6e9316e"
+    },
+    {
+     "role": "closure evidence",
+     "path": "/data/imoroz/rule-c-batch-20261018/handoff-097.json",
+     "sha256": "8d2db73e1bd1a23056f62e3cd97a48b92cbbd433620af520d3894666c43483ba"
+    },
+    {
+     "role": "closure evidence",
+     "path": "/data/imoroz/PROGRESS/.scripts/paper-readiness-decisions.json",
+     "sha256": "d630084b2a965589cc1f34f3aa6e51624ebb9f136339e687d6238a4aeb19a63a"
+    },
+    {
+     "role": "closure evidence",
+     "path": "/data/imoroz/agents/preparations/results-organisation-20261111.md",
+     "sha256": "1decbd2fc9392391dcfc9821b114feba44ba7e35c31cd5158c6b360da93cdbfc"
+    }
+   ],
+   "open_attempts": {
+    "vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001": {
+     "status": "estimator_starting",
+     "attempt_state_sha256": "25a60cad8e3c7db9d112d66bb7181e0b66c5788bfd26c91be7745f06aafd2e11"
+    }
+   },
+   "never_run_repetitions": [
+    2,
+    3
+   ]
+  }
+ },
+ "not_counted": {
+  "results/vio-lc/rosariov2/sequence1/airslam/run40009": "held: unknown native odometry exit, unscored (LC completion queue item rule-c-air-rosariov2-sequence1-vio-lc-r1); kept on disk",
+  "results/vio-lc/rosariov2/sequence1/airslam/run10001": "interrupted 7 Oct before any estimator exit; never terminal; kept on disk",
+  "results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run20001": "stopped at the earlier 2-h final-BA rule; superseding review reviews/379-superseded-20261111.json; kept on disk"
+ }
+}
