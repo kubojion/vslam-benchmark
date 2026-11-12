@@ -3,19 +3,19 @@
   "inputs": [
     {
       "path": "results/repair-20261001/inventory.json",
-      "sha256": "3fa24641d8a9d00cff0c84c703b9888b2fbf5fe3c80255487e9413d431070d4f"
+      "sha256": "7033d9ca88cbf191e7610c81df5f56172dc6f5f0e7b393c8a69a7e5fe9065418"
     },
     {
       "path": "benchmark-vo.csv",
-      "sha256": "555520ea56657d1848ec03ca2bd9b2449932ab6b0f2c1aa5b226adeb0f7f9857"
+      "sha256": "15f24cead099f3bbf6a2f7f0f03ad86d192b68a6ebaa7055318c910fa2e11442"
     },
     {
       "path": "benchmark-vo-lc.csv",
-      "sha256": "2ae3ccab0d8eb11b666dd4e8d32428dcf656728aabed5044c7a9bd6e39ddf8cd"
+      "sha256": "7f4bbd2ffeb46ff01cd2cc2031155daf3ddfbeaf8e2b2df114d669edbfe96740"
     },
     {
       "path": "benchmark-vio.csv",
-      "sha256": "d099d9f9c28f2aaaae71a23972a4be9eec28b5b597c345235a193096833cccd4"
+      "sha256": "bcef2a8f90b79751c83b37e0c24476ed9e1223fea3066b94f882c0daef3ab749"
     },
     {
       "path": "benchmark-vio-lc.csv",
@@ -8899,8 +8899,8 @@
         "cuvslam",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,B,L",
+      "value": 0.36390441596236767,
+      "annotation": "0.364\nA3/E3/S3/F0\nB,L",
       "summary": {
         "identity": [
           "vo",
@@ -8933,11 +8933,11 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "a1999cda6287779e0479d93b4e172ca4f40f896fe6dd8b71cb3543f339a6ceb5",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "pooled-fab1a34d2435a70b545102396a6c37d5918d171f2c6bcd5de5f8a3b5c532364b",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 1,
@@ -8952,54 +8952,15 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.3729457111413271,
-              "median": 0.3729457111413271,
-              "min": 0.3729457111413271,
-              "max": 0.3729457111413271,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 100.0,
-              "median": 100.0,
-              "min": 100.0,
-              "max": 100.0,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vo/zed2i/field1_110426_full_10fps_q90/cuvslam/run10001"
-            ]
-          },
-          {
-            "cohort": "e506ab0b312523304015bff179ab914b0dc88ace61ece4d5d73bfef7cc5369e5",
-            "planned_members": 2,
-            "evaluated": 2,
-            "outcomes": {
-              "ok": 2
-            },
-            "qualified": 0,
-            "paper_usable": 0,
-            "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 2,
-              "mean": 0.352490995332874,
-              "median": 0.352490995332874,
+              "n": 3,
+              "mean": 0.35930923393569164,
+              "median": 0.36390441596236767,
               "min": 0.34107757470338024,
-              "max": 0.36390441596236767,
-              "sample_std": 0.016141014247298878
+              "max": 0.3729457111413271,
+              "sample_std": 0.016423498512820385
             },
             "dense_coverage_pct": {
-              "n": 2,
+              "n": 3,
               "mean": 100.0,
               "median": 100.0,
               "min": 100.0,
@@ -9007,6 +8968,7 @@
               "sample_std": 0.0
             },
             "run_paths": [
+              "results/vo/zed2i/field1_110426_full_10fps_q90/cuvslam/run10001",
               "results/vo/zed2i/field1_110426_full_10fps_q90/cuvslam/run10003",
               "results/vo/zed2i/field1_110426_full_10fps_q90/cuvslam/run10004"
             ]
@@ -9014,8 +8976,6 @@
         ],
         "scientific_blockers": [
           "native_build_source_linkage_and_loaded_dependency_closure_unverified",
-          "within_cell_configuration_mismatch",
-          "within_cell_source_binary_parameter_or_hardware_mismatch",
           "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
           "zed_reference_orientation_unavailable"
         ],
@@ -9038,20 +8998,12 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "a1999cda6287779e0479d93b4e172ca4f40f896fe6dd8b71cb3543f339a6ceb5",
-            "attempts": 1,
+            "cohort": "pooled-fab1a34d2435a70b545102396a6c37d5918d171f2c6bcd5de5f8a3b5c532364b",
+            "attempts": 3,
             "verified_completed": 1,
             "missing_to_n3": 2,
             "run_paths": [
-              "results/vo/zed2i/field1_110426_full_10fps_q90/cuvslam/run10001"
-            ]
-          },
-          {
-            "cohort": "e506ab0b312523304015bff179ab914b0dc88ace61ece4d5d73bfef7cc5369e5",
-            "attempts": 2,
-            "verified_completed": 0,
-            "missing_to_n3": null,
-            "run_paths": [
+              "results/vo/zed2i/field1_110426_full_10fps_q90/cuvslam/run10001",
               "results/vo/zed2i/field1_110426_full_10fps_q90/cuvslam/run10003",
               "results/vo/zed2i/field1_110426_full_10fps_q90/cuvslam/run10004"
             ]
@@ -9059,7 +9011,6 @@
         ]
       },
       "flags": [
-        "cohorts",
         "B",
         "L"
       ]
@@ -12992,8 +12943,8 @@
         "dpvo",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,B,L",
+      "value": 4.859907496682511,
+      "annotation": "4.86\nA3/E3/S3/F0\nB,L",
       "summary": {
         "identity": [
           "vo",
@@ -13026,89 +12977,11 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "5306a04215d8ebf50caad9a5444964ebbe28121086e104b1f4e9bce53add3120",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "pooled-ce2d5a09e15b207e8208d183e833c65a5bbe550d364482726eca1d49066a91fd",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 0,
-            "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "sim3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 4.923025676997504,
-              "median": 4.923025676997504,
-              "min": 4.923025676997504,
-              "max": 4.923025676997504,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 100.0,
-              "median": 100.0,
-              "min": 100.0,
-              "max": 100.0,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vo/citrusfarm/seq04/dpvo/run10004"
-            ]
-          },
-          {
-            "cohort": "9191392ee62bd72912c0d9ef593dcc0967e671773bdb0155b15d1bcf00505dbb",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 0,
-            "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "sim3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 4.859907496682511,
-              "median": 4.859907496682511,
-              "min": 4.859907496682511,
-              "max": 4.859907496682511,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 100.0,
-              "median": 100.0,
-              "min": 100.0,
-              "max": 100.0,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vo/citrusfarm/seq04/dpvo/run10003"
-            ]
-          },
-          {
-            "cohort": "cff54306824f5c0b6cec024cf23c0439f3b7beb12a96bf6c31d91f6c61bb43e3",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 1,
@@ -13123,30 +12996,31 @@
             "nonzero_exits": 0,
             "alignment": "sim3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 4.610492340642638,
-              "median": 4.610492340642638,
+              "n": 3,
+              "mean": 4.797808504774218,
+              "median": 4.859907496682511,
               "min": 4.610492340642638,
-              "max": 4.610492340642638,
-              "sample_std": null
+              "max": 4.923025676997504,
+              "sample_std": 0.16526186850055768
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 100.0,
               "median": 100.0,
               "min": 100.0,
               "max": 100.0,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vo/citrusfarm/seq04/dpvo/run10001"
+              "results/vo/citrusfarm/seq04/dpvo/run10001",
+              "results/vo/citrusfarm/seq04/dpvo/run10003",
+              "results/vo/citrusfarm/seq04/dpvo/run10004"
             ]
           }
         ],
         "scientific_blockers": [
           "citrusfarm_reference_orientation_unavailable",
-          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
@@ -13167,36 +13041,19 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "5306a04215d8ebf50caad9a5444964ebbe28121086e104b1f4e9bce53add3120",
-            "attempts": 1,
-            "verified_completed": 0,
-            "missing_to_n3": null,
-            "run_paths": [
-              "results/vo/citrusfarm/seq04/dpvo/run10004"
-            ]
-          },
-          {
-            "cohort": "9191392ee62bd72912c0d9ef593dcc0967e671773bdb0155b15d1bcf00505dbb",
-            "attempts": 1,
-            "verified_completed": 0,
-            "missing_to_n3": null,
-            "run_paths": [
-              "results/vo/citrusfarm/seq04/dpvo/run10003"
-            ]
-          },
-          {
-            "cohort": "cff54306824f5c0b6cec024cf23c0439f3b7beb12a96bf6c31d91f6c61bb43e3",
-            "attempts": 1,
+            "cohort": "pooled-ce2d5a09e15b207e8208d183e833c65a5bbe550d364482726eca1d49066a91fd",
+            "attempts": 3,
             "verified_completed": 1,
             "missing_to_n3": 2,
             "run_paths": [
-              "results/vo/citrusfarm/seq04/dpvo/run10001"
+              "results/vo/citrusfarm/seq04/dpvo/run10001",
+              "results/vo/citrusfarm/seq04/dpvo/run10003",
+              "results/vo/citrusfarm/seq04/dpvo/run10004"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
         "B",
         "L"
       ]
@@ -19664,8 +19521,8 @@
         "cuvslam",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,B",
+      "value": 0.24777131257976964,
+      "annotation": "0.248\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vo-lc",
@@ -19692,11 +19549,11 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "0ce04ff71b77fc371fba67f9598e92e1779118da35a1f9338a8c72d55887261a",
-            "planned_members": 2,
-            "evaluated": 2,
+            "cohort": "pooled-e60e68846ed8f262b54c949aae5c29cbf692736219b405368a3ada72407e5f55",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 2
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -19711,15 +19568,15 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 2,
-              "mean": 0.2481546115087932,
-              "median": 0.2481546115087932,
-              "min": 0.24777131257976964,
+              "n": 3,
+              "mean": 0.2443853652525907,
+              "median": 0.24777131257976964,
+              "min": 0.2368468727401857,
               "max": 0.24853791043781673,
-              "sample_std": 0.0005420665438681765
+              "sample_std": 0.006539768351301148
             },
             "dense_coverage_pct": {
-              "n": 2,
+              "n": 3,
               "mean": 100.0,
               "median": 100.0,
               "min": 100.0,
@@ -19727,54 +19584,14 @@
               "sample_std": 0.0
             },
             "run_paths": [
+              "results/vo-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run10001",
               "results/vo-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run10002",
               "results/vo-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run10003"
-            ]
-          },
-          {
-            "cohort": "1646ca32296a04c8e6aac0b81da07763aff2353c909b741f23d436594e1a09b1",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 0,
-            "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.2368468727401857,
-              "median": 0.2368468727401857,
-              "min": 0.2368468727401857,
-              "max": 0.2368468727401857,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 100.0,
-              "median": 100.0,
-              "min": 100.0,
-              "max": 100.0,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vo-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run10001"
             ]
           }
         ],
         "scientific_blockers": [
           "native_build_source_linkage_and_loaded_dependency_closure_unverified",
-          "within_cell_configuration_mismatch",
-          "within_cell_source_binary_parameter_or_hardware_mismatch",
           "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
           "zed_reference_orientation_unavailable"
         ],
@@ -19796,28 +19613,19 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "0ce04ff71b77fc371fba67f9598e92e1779118da35a1f9338a8c72d55887261a",
-            "attempts": 2,
+            "cohort": "pooled-e60e68846ed8f262b54c949aae5c29cbf692736219b405368a3ada72407e5f55",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
+              "results/vo-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run10001",
               "results/vo-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run10002",
               "results/vo-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run10003"
-            ]
-          },
-          {
-            "cohort": "1646ca32296a04c8e6aac0b81da07763aff2353c909b741f23d436594e1a09b1",
-            "attempts": 1,
-            "verified_completed": 0,
-            "missing_to_n3": null,
-            "run_paths": [
-              "results/vo-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run10001"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
         "B"
       ]
     },
@@ -27566,8 +27374,8 @@
         "openvins",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,B",
+      "value": 1.3998791119356346,
+      "annotation": "1.4\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -27595,11 +27403,11 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "42425f56f54aaa711aa7d4f6c77540c7af68fda0391bfba095101905f92c9555",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "pooled-e1a50e969f7081fe9ec2e38dffc4f240a3a46f37081f786fc67078a0cd96affa",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -27614,108 +27422,30 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.3998838802925264,
-              "median": 1.3998838802925264,
-              "min": 1.3998838802925264,
-              "max": 1.3998838802925264,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 99.33318453103588,
-              "median": 99.33318453103588,
-              "min": 99.33318453103588,
-              "max": 99.33318453103588,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/rosariov2/sequence1/openvins/run10004"
-            ]
-          },
-          {
-            "cohort": "9aa5e6f9a55dc1ec34a807f4b1e7264346cc62bb99fd6bc1a2eade35eb77c80e",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 0,
-            "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.399754299519217,
-              "median": 1.399754299519217,
-              "min": 1.399754299519217,
-              "max": 1.399754299519217,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 99.33318453103588,
-              "median": 99.33318453103588,
-              "min": 99.33318453103588,
-              "max": 99.33318453103588,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/rosariov2/sequence1/openvins/run10006"
-            ]
-          },
-          {
-            "cohort": "d592492e62fa3a690f70d53f06e156124680d173302152b3df9f16e77837d9af",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 0,
-            "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.3998791119356346,
+              "n": 3,
+              "mean": 1.399839097249126,
               "median": 1.3998791119356346,
-              "min": 1.3998791119356346,
-              "max": 1.3998791119356346,
-              "sample_std": null
+              "min": 1.399754299519217,
+              "max": 1.3998838802925264,
+              "sample_std": 7.347568002516224e-05
             },
             "dense_coverage_pct": {
-              "n": 1,
+              "n": 3,
               "mean": 99.33318453103588,
               "median": 99.33318453103588,
               "min": 99.33318453103588,
               "max": 99.33318453103588,
-              "sample_std": null
+              "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/rosariov2/sequence1/openvins/run10005"
+              "results/vio/rosariov2/sequence1/openvins/run10004",
+              "results/vio/rosariov2/sequence1/openvins/run10005",
+              "results/vio/rosariov2/sequence1/openvins/run10006"
             ]
           }
         ],
         "scientific_blockers": [
-          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
-          "within_cell_configuration_mismatch",
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
@@ -27735,36 +27465,19 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "42425f56f54aaa711aa7d4f6c77540c7af68fda0391bfba095101905f92c9555",
-            "attempts": 1,
+            "cohort": "pooled-e1a50e969f7081fe9ec2e38dffc4f240a3a46f37081f786fc67078a0cd96affa",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/rosariov2/sequence1/openvins/run10004"
-            ]
-          },
-          {
-            "cohort": "9aa5e6f9a55dc1ec34a807f4b1e7264346cc62bb99fd6bc1a2eade35eb77c80e",
-            "attempts": 1,
-            "verified_completed": 0,
-            "missing_to_n3": null,
-            "run_paths": [
+              "results/vio/rosariov2/sequence1/openvins/run10004",
+              "results/vio/rosariov2/sequence1/openvins/run10005",
               "results/vio/rosariov2/sequence1/openvins/run10006"
-            ]
-          },
-          {
-            "cohort": "d592492e62fa3a690f70d53f06e156124680d173302152b3df9f16e77837d9af",
-            "attempts": 1,
-            "verified_completed": 0,
-            "missing_to_n3": null,
-            "run_paths": [
-              "results/vio/rosariov2/sequence1/openvins/run10005"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
         "B"
       ]
     },
@@ -27776,8 +27489,8 @@
         "openvins",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S3/F0\ncohorts,B",
+      "value": 1.5001429105452726,
+      "annotation": "1.5\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -27805,11 +27518,11 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "490b1f822845fafeccf359dccfe9161a003784419e305244d38cc68b751c0019",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "pooled-0a6200e58dd75cc31c0da372d04516368b0511d93523862086c77e61617d60d3",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "ok": 1
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -27824,108 +27537,30 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.437459017309134,
-              "median": 1.437459017309134,
-              "min": 1.437459017309134,
-              "max": 1.437459017309134,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 98.38247689661536,
-              "median": 98.38247689661536,
-              "min": 98.38247689661536,
-              "max": 98.38247689661536,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/rosariov2/sequence5/openvins/run10004"
-            ]
-          },
-          {
-            "cohort": "748638058aff2349ee1ec012baf5f5a608438167feef865e536f2449f591cfaa",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 0,
-            "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.5001429105452726,
+              "n": 3,
+              "mean": 1.4792509389527202,
               "median": 1.5001429105452726,
-              "min": 1.5001429105452726,
-              "max": 1.5001429105452726,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 98.37432686849414,
-              "median": 98.37432686849414,
-              "min": 98.37432686849414,
-              "max": 98.37432686849414,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/rosariov2/sequence5/openvins/run10006"
-            ]
-          },
-          {
-            "cohort": "f192a9f05848d347a14550673b375336d84a40e0ab7ef76239182bacc6d944f8",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "ok": 1
-            },
-            "qualified": 0,
-            "paper_usable": 0,
-            "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
-            },
-            "nonzero_exits": 0,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 1,
-              "mean": 1.500150889003754,
-              "median": 1.500150889003754,
-              "min": 1.500150889003754,
+              "min": 1.437459017309134,
               "max": 1.500150889003754,
-              "sample_std": null
+              "sample_std": 0.036192866036163666
             },
             "dense_coverage_pct": {
-              "n": 1,
-              "mean": 98.37432686849414,
+              "n": 3,
+              "mean": 98.37704354453454,
               "median": 98.37432686849414,
               "min": 98.37432686849414,
-              "max": 98.37432686849414,
-              "sample_std": null
+              "max": 98.38247689661536,
+              "sample_std": 0.004705420929690226
             },
             "run_paths": [
-              "results/vio/rosariov2/sequence5/openvins/run10005"
+              "results/vio/rosariov2/sequence5/openvins/run10004",
+              "results/vio/rosariov2/sequence5/openvins/run10005",
+              "results/vio/rosariov2/sequence5/openvins/run10006"
             ]
           }
         ],
         "scientific_blockers": [
-          "native_build_source_linkage_and_loaded_dependency_closure_unverified",
-          "within_cell_configuration_mismatch",
-          "within_cell_source_binary_parameter_or_hardware_mismatch"
+          "native_build_source_linkage_and_loaded_dependency_closure_unverified"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
@@ -27945,36 +27580,19 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "490b1f822845fafeccf359dccfe9161a003784419e305244d38cc68b751c0019",
-            "attempts": 1,
+            "cohort": "pooled-0a6200e58dd75cc31c0da372d04516368b0511d93523862086c77e61617d60d3",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/rosariov2/sequence5/openvins/run10004"
-            ]
-          },
-          {
-            "cohort": "748638058aff2349ee1ec012baf5f5a608438167feef865e536f2449f591cfaa",
-            "attempts": 1,
-            "verified_completed": 0,
-            "missing_to_n3": null,
-            "run_paths": [
+              "results/vio/rosariov2/sequence5/openvins/run10004",
+              "results/vio/rosariov2/sequence5/openvins/run10005",
               "results/vio/rosariov2/sequence5/openvins/run10006"
-            ]
-          },
-          {
-            "cohort": "f192a9f05848d347a14550673b375336d84a40e0ab7ef76239182bacc6d944f8",
-            "attempts": 1,
-            "verified_completed": 0,
-            "missing_to_n3": null,
-            "run_paths": [
-              "results/vio/rosariov2/sequence5/openvins/run10005"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
         "B"
       ]
     },
@@ -28219,7 +27837,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA3/E3/S0/F3\ncohorts,X,P,B",
+      "annotation": "no score\nA3/E3/S0/F3\nX,P,B",
       "summary": {
         "identity": [
           "vio",
@@ -28249,11 +27867,11 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "0331aae40fba958887474abfd4c588f297bb3e41026ba221df46d6278f202311",
-            "planned_members": 1,
-            "evaluated": 1,
+            "cohort": "pooled-7a62d8a6c5dc689de037e1b263240cbbaf901baf4305c75f22d7390c56d90e4d",
+            "planned_members": 3,
+            "evaluated": 3,
             "outcomes": {
-              "scale_collapse": 1
+              "scale_collapse": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -28265,7 +27883,7 @@
               "max": null,
               "sample_std": null
             },
-            "nonzero_exits": 0,
+            "nonzero_exits": 2,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 0,
@@ -28276,101 +27894,23 @@
               "sample_std": null
             },
             "dense_coverage_pct": {
-              "n": 1,
-              "mean": 99.67727035019163,
-              "median": 99.67727035019163,
-              "min": 99.67727035019163,
+              "n": 3,
+              "mean": 33.41580319459373,
+              "median": 0.28506961679477805,
+              "min": 0.28506961679477805,
               "max": 99.67727035019163,
-              "sample_std": null
+              "sample_std": 57.384113848775996
             },
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20001"
-            ]
-          },
-          {
-            "cohort": "8434fb8e3681415e3e7c85cdcd59f9b5ca7e722fa1c600d18e8903d6d79061e6",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "scale_collapse": 1
-            },
-            "qualified": 0,
-            "paper_usable": 0,
-            "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
-            },
-            "nonzero_exits": 1,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 0.28506961679477805,
-              "median": 0.28506961679477805,
-              "min": 0.28506961679477805,
-              "max": 0.28506961679477805,
-              "sample_std": null
-            },
-            "run_paths": [
+              "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20001",
+              "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20002",
               "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20003"
-            ]
-          },
-          {
-            "cohort": "843f444cd9ddfe070647ac5fe39b3417b1550b49868d04f44feb596b6fcbf51b",
-            "planned_members": 1,
-            "evaluated": 1,
-            "outcomes": {
-              "scale_collapse": 1
-            },
-            "qualified": 0,
-            "paper_usable": 0,
-            "accepted_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
-            },
-            "nonzero_exits": 1,
-            "alignment": "se3",
-            "conditional_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
-            },
-            "dense_coverage_pct": {
-              "n": 1,
-              "mean": 0.28506961679477805,
-              "median": 0.28506961679477805,
-              "min": 0.28506961679477805,
-              "max": 0.28506961679477805,
-              "sample_std": null
-            },
-            "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20002"
             ]
           }
         ],
         "scientific_blockers": [
           "execution_exit_nonzero_or_unverified",
           "native_build_source_linkage_and_loaded_dependency_closure_unverified",
-          "within_cell_configuration_mismatch",
-          "within_cell_source_binary_parameter_or_hardware_mismatch",
           "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
           "zed_reference_orientation_unavailable",
           "zed_serial_specific_imu_rotation_and_time_offset_unverified"
@@ -28393,36 +27933,19 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "0331aae40fba958887474abfd4c588f297bb3e41026ba221df46d6278f202311",
-            "attempts": 1,
+            "cohort": "pooled-7a62d8a6c5dc689de037e1b263240cbbaf901baf4305c75f22d7390c56d90e4d",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20001"
-            ]
-          },
-          {
-            "cohort": "8434fb8e3681415e3e7c85cdcd59f9b5ca7e722fa1c600d18e8903d6d79061e6",
-            "attempts": 1,
-            "verified_completed": 0,
-            "missing_to_n3": null,
-            "run_paths": [
+              "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20001",
+              "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20002",
               "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20003"
-            ]
-          },
-          {
-            "cohort": "843f444cd9ddfe070647ac5fe39b3417b1550b49868d04f44feb596b6fcbf51b",
-            "attempts": 1,
-            "verified_completed": 0,
-            "missing_to_n3": null,
-            "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20002"
             ]
           }
         ]
       },
       "flags": [
-        "cohorts",
         "X",
         "P",
         "B"
@@ -45198,27 +44721,27 @@
     },
     {
       "path": "fig_accuracy_vo_default.png",
-      "sha256": "b4cf7f5607301d8a355b66a16ad0941964ed1564b39fa9f27d521ebcfd3a738a"
+      "sha256": "754dfcfabf1dbc8112b15212c9030a806d81f49d5c36b27b2638bf26c7835efa"
     },
     {
       "path": "fig_accuracy_vo_default.pdf",
-      "sha256": "3c9f7bce83ce3561618daf3056b063376282407b1cbd55abb640cd8d4bb4ba9e"
+      "sha256": "ebd73bf40d78325c3862801f1b891129827ccf769bf81bce6694ca5479e8429e"
     },
     {
       "path": "fig_accuracy_vo-lc_default.png",
-      "sha256": "a487f5243cd3253a9175e69b536fdb4155856f42199c2f213d136bda06e646c3"
+      "sha256": "ad60282d5388f5b692f0c9d553bee155102c6aa1a52372b2561217385dd73b3f"
     },
     {
       "path": "fig_accuracy_vo-lc_default.pdf",
-      "sha256": "bf6cf1dd417052c09429f52182a6054e346f6f9b6eeee05bded6908734a39d29"
+      "sha256": "85be08afa370b52b8318e9d29af29bb23e52d7af1cb4b7794324b93f2971ef19"
     },
     {
       "path": "fig_accuracy_vio_default.png",
-      "sha256": "76223c2d916a52d1e7f5f2ed37bf5c76f15c16d7dee4ff8d298c7a41ca8891c3"
+      "sha256": "a3c82bbd72fc1f8813a7ac7825dc370a9b4d84bb88e09b4e7d51d7a93ef1a0f8"
     },
     {
       "path": "fig_accuracy_vio_default.pdf",
-      "sha256": "139bc0db70dd3d141f0bbe293a3f4f89f905cc6d9a17dab6f3591f1287d1e4e1"
+      "sha256": "67f30bb3b92c028238c1640b630aa55f159a9b7c3554ebde2fdabe8c8be9046f"
     },
     {
       "path": "fig_accuracy_vio-lc_default.png",

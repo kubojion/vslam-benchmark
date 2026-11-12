@@ -143,9 +143,9 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 
 | Source | SHA-256 |
 |---|---|
-| `inventory.json` | `3fa24641d8a9d00cff0c84c703b9888b2fbf5fe3c80255487e9413d431070d4f` |
-| `benchmark-vo.csv` | `555520ea56657d1848ec03ca2bd9b2449932ab6b0f2c1aa5b226adeb0f7f9857` |
-| `benchmark-vo-lc.csv` | `2ae3ccab0d8eb11b666dd4e8d32428dcf656728aabed5044c7a9bd6e39ddf8cd` |
-| `benchmark-vio.csv` | `d099d9f9c28f2aaaae71a23972a4be9eec28b5b597c345235a193096833cccd4` |
+| `inventory.json` | `7033d9ca88cbf191e7610c81df5f56172dc6f5f0e7b393c8a69a7e5fe9065418` |
+| `benchmark-vo.csv` | `15f24cead099f3bbf6a2f7f0f03ad86d192b68a6ebaa7055318c910fa2e11442` |
+| `benchmark-vo-lc.csv` | `7f4bbd2ffeb46ff01cd2cc2031155daf3ddfbeaf8e2b2df114d669edbfe96740` |
+| `benchmark-vio.csv` | `bcef2a8f90b79751c83b37e0c24476ed9e1223fea3066b94f882c0daef3ab749` |
 | `benchmark-vio-lc.csv` | `16c3e58685a0f25ca057e42d909e99372581b5a420fc34bbdb3b7704730b2be8` |
 | `benchmark-gnss-vio.csv` | `7eccab1f3b593feedcf877b31ca5618f33a3b6dffcd196c60dc45848acd88494` |
