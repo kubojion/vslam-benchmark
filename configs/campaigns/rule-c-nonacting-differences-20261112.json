@@ -1,0 +1,352 @@
+{
+ "schema": 1,
+ "decided": "User, 12 Nov 2026 (option b): these receipt differences cannot act on the estimate; each cell is one setup. Relayed by the engineer session.",
+ "note": "Decision with reasons, not a paper disclosure. Applies only to the listed cells with exactly these runs and per-run values (build_repair_inventory.pooled_cohort).",
+ "generated_by": "scripts/campaign/make_nonacting_record.py",
+ "source": "PROGRESS/IMU-TIMING-TUNE/PROMOTION-RULEC.md section 6",
+ "cells": {
+  "vo/zed2i/field1_110426_full_10fps_q90/cuvslam": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ],
+   "differences": [
+    {
+     "kind": "artifact",
+     "role": "camera_calibration",
+     "path": "configs/sensors/zed2i.json",
+     "changed_by_commit": "cc897ec",
+     "reason": "Only the four IMU noise values of the shared Sielinko sensor file changed (commit cc897ec, 21 Oct 2026, Rule C for Sielinko). These runs are VO / VO-LC with use_imu=false; the recorded effective cuVSLAM configuration is byte-identical across the three runs, so the values never reach the estimator.",
+     "per_run": {
+      "10001": "a950ac71148d9bbd13efda978c53e100fb5fd520fb0eb5b992ed819f12c31e82",
+      "10003": "634fccd3605b887c7c86d99c900dbd8e8d8d839e2078cd22411214cd80c266a3",
+      "10004": "634fccd3605b887c7c86d99c900dbd8e8d8d839e2078cd22411214cd80c266a3"
+     },
+     "values": {
+      "10001": {
+       "gyroscope_noise_density": 0.0195,
+       "accelerometer_noise_density": 0.18,
+       "gyroscope_random_walk": 0.0007400196,
+       "accelerometer_random_walk": 0.0202
+      },
+      "10003": {
+       "gyroscope_noise_density": 0.00015,
+       "accelerometer_noise_density": 0.0011,
+       "gyroscope_random_walk": 2.1e-06,
+       "accelerometer_random_walk": 3.5e-05
+      },
+      "10004": {
+       "gyroscope_noise_density": 0.00015,
+       "accelerometer_noise_density": 0.0011,
+       "gyroscope_random_walk": 2.1e-06,
+       "accelerometer_random_walk": 3.5e-05
+      }
+     }
+    }
+   ],
+   "run_evidence": {
+    "10001": {
+     "workspace_commit": "d3824d178d5f85625c66b79d7b5d41d3a42cdd0e",
+     "other_artifacts": {
+      "algorithm_config": "f190836e9c106690a41932fd02400afd2e41e76fdbf02dfd2f82785910676bcc",
+      "effective_config": "58899fae456e75fc898c179780219c1f646a4ea39f7863b835126e317267e5fa"
+     }
+    },
+    "10003": {
+     "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d",
+     "other_artifacts": {
+      "algorithm_config": "f190836e9c106690a41932fd02400afd2e41e76fdbf02dfd2f82785910676bcc",
+      "effective_config": "58899fae456e75fc898c179780219c1f646a4ea39f7863b835126e317267e5fa"
+     }
+    },
+    "10004": {
+     "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d",
+     "other_artifacts": {
+      "algorithm_config": "f190836e9c106690a41932fd02400afd2e41e76fdbf02dfd2f82785910676bcc",
+      "effective_config": "58899fae456e75fc898c179780219c1f646a4ea39f7863b835126e317267e5fa"
+     }
+    }
+   }
+  },
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/cuvslam": {
+   "runs": [
+    10001,
+    10002,
+    10003
+   ],
+   "differences": [
+    {
+     "kind": "artifact",
+     "role": "camera_calibration",
+     "path": "configs/sensors/zed2i.json",
+     "changed_by_commit": "cc897ec",
+     "reason": "Only the four IMU noise values of the shared Sielinko sensor file changed (commit cc897ec, 21 Oct 2026, Rule C for Sielinko). These runs are VO / VO-LC with use_imu=false; the recorded effective cuVSLAM configuration is byte-identical across the three runs, so the values never reach the estimator.",
+     "per_run": {
+      "10001": "a950ac71148d9bbd13efda978c53e100fb5fd520fb0eb5b992ed819f12c31e82",
+      "10002": "634fccd3605b887c7c86d99c900dbd8e8d8d839e2078cd22411214cd80c266a3",
+      "10003": "634fccd3605b887c7c86d99c900dbd8e8d8d839e2078cd22411214cd80c266a3"
+     },
+     "values": {
+      "10001": {
+       "gyroscope_noise_density": 0.0195,
+       "accelerometer_noise_density": 0.18,
+       "gyroscope_random_walk": 0.0007400196,
+       "accelerometer_random_walk": 0.0202
+      },
+      "10002": {
+       "gyroscope_noise_density": 0.00015,
+       "accelerometer_noise_density": 0.0011,
+       "gyroscope_random_walk": 2.1e-06,
+       "accelerometer_random_walk": 3.5e-05
+      },
+      "10003": {
+       "gyroscope_noise_density": 0.00015,
+       "accelerometer_noise_density": 0.0011,
+       "gyroscope_random_walk": 2.1e-06,
+       "accelerometer_random_walk": 3.5e-05
+      }
+     }
+    }
+   ],
+   "run_evidence": {
+    "10001": {
+     "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+     "other_artifacts": {
+      "algorithm_config": "f190836e9c106690a41932fd02400afd2e41e76fdbf02dfd2f82785910676bcc",
+      "effective_config": "b91e97e67987fe9c531c7899ca0d7e3b59d77ca31b0f64c7f4649c88cf903c8d"
+     }
+    },
+    "10002": {
+     "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d",
+     "other_artifacts": {
+      "algorithm_config": "f190836e9c106690a41932fd02400afd2e41e76fdbf02dfd2f82785910676bcc",
+      "effective_config": "b91e97e67987fe9c531c7899ca0d7e3b59d77ca31b0f64c7f4649c88cf903c8d"
+     }
+    },
+    "10003": {
+     "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d",
+     "other_artifacts": {
+      "algorithm_config": "f190836e9c106690a41932fd02400afd2e41e76fdbf02dfd2f82785910676bcc",
+      "effective_config": "b91e97e67987fe9c531c7899ca0d7e3b59d77ca31b0f64c7f4649c88cf903c8d"
+     }
+    }
+   }
+  },
+  "vio/rosariov2/sequence1/openvins": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "differences": [
+    {
+     "kind": "artifact",
+     "role": "delivery_audit",
+     "reason": "A receipt written after the run by the delivery check (scripts/run/run_openvins.sh: openvins_delivery_audit.json, or openvins_native_outcome.json after a native exit). It records observed delivery counts, the estimated final camera-IMU offset, output message counts and the log hash: outcomes, not settings. Estimator configuration, calibrations, transport profile, image mounts and the commit are identical across the runs.",
+     "per_run": {
+      "10004": "3fea1ae66dfb2355253f29aa00de3cb04883b0d3f66af8768c17f67052dc7fcf",
+      "10005": "0c265edd42bfb611ebaa35d04eb45973c28368057ffb53f2ed093165a56a708e",
+      "10006": "1546aea89d5956fae5b9537bb1f182c5dec4df3fb40aa22f71f51f3fc0bd064e"
+     }
+    }
+   ],
+   "run_evidence": {
+    "10004": {
+     "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d",
+     "other_artifacts": {
+      "camera_imu_calibration": "49b9be09583b5ba6167e6a8cd9a8afbb006d01268879a127b1044d3ed93da327",
+      "dds_transport_profile": "66e6f9b03b22837d7512a870e723f03153c0f2965a831547a425e0252c5f2426",
+      "estimator_config": "63ac1c1bb699308b37cda3887fc5eca5fb37a0a7d75bf7d38d1836f740f07a21",
+      "image_bind_mounts": "366480044428192d73369ae00ad4c3b8e244a11c18c3559effc70d6073545bf5",
+      "imu_calibration": "f7432d037834ccf1c93bfc6bf228ff54846ab3827d1a16fa9fc62c23a04a5dea",
+      "rosario_input_profile": "de681f5ba21a0d31236e218e1c483698215c74e8c8cac205c2c19b4ef0768dcc"
+     }
+    },
+    "10005": {
+     "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d",
+     "other_artifacts": {
+      "camera_imu_calibration": "49b9be09583b5ba6167e6a8cd9a8afbb006d01268879a127b1044d3ed93da327",
+      "dds_transport_profile": "66e6f9b03b22837d7512a870e723f03153c0f2965a831547a425e0252c5f2426",
+      "estimator_config": "63ac1c1bb699308b37cda3887fc5eca5fb37a0a7d75bf7d38d1836f740f07a21",
+      "image_bind_mounts": "366480044428192d73369ae00ad4c3b8e244a11c18c3559effc70d6073545bf5",
+      "imu_calibration": "f7432d037834ccf1c93bfc6bf228ff54846ab3827d1a16fa9fc62c23a04a5dea",
+      "rosario_input_profile": "de681f5ba21a0d31236e218e1c483698215c74e8c8cac205c2c19b4ef0768dcc"
+     }
+    },
+    "10006": {
+     "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d",
+     "other_artifacts": {
+      "camera_imu_calibration": "49b9be09583b5ba6167e6a8cd9a8afbb006d01268879a127b1044d3ed93da327",
+      "dds_transport_profile": "66e6f9b03b22837d7512a870e723f03153c0f2965a831547a425e0252c5f2426",
+      "estimator_config": "63ac1c1bb699308b37cda3887fc5eca5fb37a0a7d75bf7d38d1836f740f07a21",
+      "image_bind_mounts": "366480044428192d73369ae00ad4c3b8e244a11c18c3559effc70d6073545bf5",
+      "imu_calibration": "f7432d037834ccf1c93bfc6bf228ff54846ab3827d1a16fa9fc62c23a04a5dea",
+      "rosario_input_profile": "de681f5ba21a0d31236e218e1c483698215c74e8c8cac205c2c19b4ef0768dcc"
+     }
+    }
+   }
+  },
+  "vio/rosariov2/sequence5/openvins": {
+   "runs": [
+    10004,
+    10005,
+    10006
+   ],
+   "differences": [
+    {
+     "kind": "artifact",
+     "role": "delivery_audit",
+     "reason": "A receipt written after the run by the delivery check (scripts/run/run_openvins.sh: openvins_delivery_audit.json, or openvins_native_outcome.json after a native exit). It records observed delivery counts, the estimated final camera-IMU offset, output message counts and the log hash: outcomes, not settings. Estimator configuration, calibrations, transport profile, image mounts and the commit are identical across the runs.",
+     "per_run": {
+      "10004": "59d4572f6cc866cf318e001bc1f5a3a8c47bd6ed7e07c50cdd4a65c016c145da",
+      "10005": "20c876035b25646cd70e6a794ebeca1850de6a49ad61a58a1a623da3fb0ec1fd",
+      "10006": "98bc942b16ef47fceb15cbe53dc19fbd6c097a609eb4f560898441924f8d9891"
+     }
+    }
+   ],
+   "run_evidence": {
+    "10004": {
+     "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d",
+     "other_artifacts": {
+      "camera_imu_calibration": "49b9be09583b5ba6167e6a8cd9a8afbb006d01268879a127b1044d3ed93da327",
+      "dds_transport_profile": "66e6f9b03b22837d7512a870e723f03153c0f2965a831547a425e0252c5f2426",
+      "estimator_config": "63ac1c1bb699308b37cda3887fc5eca5fb37a0a7d75bf7d38d1836f740f07a21",
+      "image_bind_mounts": "58060f94dc44cbb0e9643eba1bd4eed28c53e128892ac53e00480a132cd6d902",
+      "imu_calibration": "f7432d037834ccf1c93bfc6bf228ff54846ab3827d1a16fa9fc62c23a04a5dea",
+      "rosario_input_profile": "4e3cca6700f91d0002597387fd6d63262a65688e5597ffd2c11e527e2d4f92d4"
+     }
+    },
+    "10005": {
+     "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d",
+     "other_artifacts": {
+      "camera_imu_calibration": "49b9be09583b5ba6167e6a8cd9a8afbb006d01268879a127b1044d3ed93da327",
+      "dds_transport_profile": "66e6f9b03b22837d7512a870e723f03153c0f2965a831547a425e0252c5f2426",
+      "estimator_config": "63ac1c1bb699308b37cda3887fc5eca5fb37a0a7d75bf7d38d1836f740f07a21",
+      "image_bind_mounts": "58060f94dc44cbb0e9643eba1bd4eed28c53e128892ac53e00480a132cd6d902",
+      "imu_calibration": "f7432d037834ccf1c93bfc6bf228ff54846ab3827d1a16fa9fc62c23a04a5dea",
+      "rosario_input_profile": "4e3cca6700f91d0002597387fd6d63262a65688e5597ffd2c11e527e2d4f92d4"
+     }
+    },
+    "10006": {
+     "workspace_commit": "ad1470c34284e172c2582539bff4bdbb3fd1065d",
+     "other_artifacts": {
+      "camera_imu_calibration": "49b9be09583b5ba6167e6a8cd9a8afbb006d01268879a127b1044d3ed93da327",
+      "dds_transport_profile": "66e6f9b03b22837d7512a870e723f03153c0f2965a831547a425e0252c5f2426",
+      "estimator_config": "63ac1c1bb699308b37cda3887fc5eca5fb37a0a7d75bf7d38d1836f740f07a21",
+      "image_bind_mounts": "58060f94dc44cbb0e9643eba1bd4eed28c53e128892ac53e00480a132cd6d902",
+      "imu_calibration": "f7432d037834ccf1c93bfc6bf228ff54846ab3827d1a16fa9fc62c23a04a5dea",
+      "rosario_input_profile": "4e3cca6700f91d0002597387fd6d63262a65688e5597ffd2c11e527e2d4f92d4"
+     }
+    }
+   }
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/openvins": {
+   "runs": [
+    20001,
+    20002,
+    20003
+   ],
+   "differences": [
+    {
+     "kind": "artifact",
+     "role": "delivery_audit",
+     "reason": "A receipt written after the run by the delivery check (scripts/run/run_openvins.sh: openvins_delivery_audit.json, or openvins_native_outcome.json after a native exit). It records observed delivery counts, the estimated final camera-IMU offset, output message counts and the log hash: outcomes, not settings. Estimator configuration, calibrations, transport profile, image mounts and the commit are identical across the runs.",
+     "per_run": {
+      "20001": "6c4bdb764ac974704408546bd7e8c2728101bb6f4ccb5165b013fe369911404d",
+      "20002": null,
+      "20003": null
+     }
+    },
+    {
+     "kind": "artifact",
+     "role": "native_outcome",
+     "reason": "A receipt written after the run by the delivery check (scripts/run/run_openvins.sh: openvins_delivery_audit.json, or openvins_native_outcome.json after a native exit). It records observed delivery counts, the estimated final camera-IMU offset, output message counts and the log hash: outcomes, not settings. Estimator configuration, calibrations, transport profile, image mounts and the commit are identical across the runs.",
+     "per_run": {
+      "20001": null,
+      "20002": "6a7ad6294f431e005b106437676636a4a16d533e2d8cd08476b81c2607c4dbe1",
+      "20003": "089a4e6840d448b122817ae2faedaa30f2184e373a448e859b838230be7930c1"
+     }
+    }
+   ],
+   "run_evidence": {
+    "20001": {
+     "workspace_commit": "57332d5fab2f964949ef51c8401910f243542de0",
+     "other_artifacts": {
+      "camera_imu_calibration": "a0252615b6ea461087bd94ee606278970f24472b67c3f39af2712cbc3624e1ba",
+      "dds_transport_profile": "66e6f9b03b22837d7512a870e723f03153c0f2965a831547a425e0252c5f2426",
+      "estimator_config": "8b02730c5c03074001c5f2d8db6a762123f00bd68bf49aa173bffa41b2c90392",
+      "image_bind_mounts": "469a1a63b3e5437786ed5eef945650f4320bfff036072e17f0d4b6c572ab9863",
+      "imu_calibration": "0eb7fbf3381653d8f5b2193221cf2750da8b073353d52e588512155f4ba4346e"
+     }
+    },
+    "20002": {
+     "workspace_commit": "57332d5fab2f964949ef51c8401910f243542de0",
+     "other_artifacts": {
+      "camera_imu_calibration": "a0252615b6ea461087bd94ee606278970f24472b67c3f39af2712cbc3624e1ba",
+      "dds_transport_profile": "66e6f9b03b22837d7512a870e723f03153c0f2965a831547a425e0252c5f2426",
+      "estimator_config": "8b02730c5c03074001c5f2d8db6a762123f00bd68bf49aa173bffa41b2c90392",
+      "image_bind_mounts": "469a1a63b3e5437786ed5eef945650f4320bfff036072e17f0d4b6c572ab9863",
+      "imu_calibration": "0eb7fbf3381653d8f5b2193221cf2750da8b073353d52e588512155f4ba4346e"
+     }
+    },
+    "20003": {
+     "workspace_commit": "57332d5fab2f964949ef51c8401910f243542de0",
+     "other_artifacts": {
+      "camera_imu_calibration": "a0252615b6ea461087bd94ee606278970f24472b67c3f39af2712cbc3624e1ba",
+      "dds_transport_profile": "66e6f9b03b22837d7512a870e723f03153c0f2965a831547a425e0252c5f2426",
+      "estimator_config": "8b02730c5c03074001c5f2d8db6a762123f00bd68bf49aa173bffa41b2c90392",
+      "image_bind_mounts": "469a1a63b3e5437786ed5eef945650f4320bfff036072e17f0d4b6c572ab9863",
+      "imu_calibration": "0eb7fbf3381653d8f5b2193221cf2750da8b073353d52e588512155f4ba4346e"
+     }
+    }
+   }
+  },
+  "vo/citrusfarm/seq04/dpvo": {
+   "runs": [
+    10001,
+    10003,
+    10004
+   ],
+   "differences": [
+    {
+     "kind": "parameter",
+     "name": "buffer_size",
+     "changed_by_commit": "50ee4ed",
+     "reason": "DPVO keyframe buffer capacity, raised from 8192 to 16384 for CitrusFarm (scripts/run/run_dpvo.sh, commit 50ee4ed, 5 Oct 2026). It only sizes the keyframe arrays and raises an exception on overflow (src/DPVO/dpvo/dpvo.py: \"The buffer size is too small\"); the 8192 run finished with 100 % span, so the limit was never reached.",
+     "per_run": {
+      "10001": 8192,
+      "10003": 16384,
+      "10004": 16384
+     }
+    }
+   ],
+   "run_evidence": {
+    "10001": {
+     "workspace_commit": "d3824d178d5f85625c66b79d7b5d41d3a42cdd0e",
+     "other_artifacts": {
+      "algorithm_config": "0351abfbc60d9ec93bf402857130497b2f063f8ce0e8fd6e87cc55c73273594a",
+      "camera_calibration": "75e15adec42a73ad7a67a2bc3ec837eb4dbb87f75ef48acd66ace8f097530c0d",
+      "model": "30d02dc2b88a321cf99aad8e4ea1152a44d791b5b65bf95ad036922819c0ff12"
+     }
+    },
+    "10003": {
+     "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+     "other_artifacts": {
+      "algorithm_config": "0351abfbc60d9ec93bf402857130497b2f063f8ce0e8fd6e87cc55c73273594a",
+      "camera_calibration": "75e15adec42a73ad7a67a2bc3ec837eb4dbb87f75ef48acd66ace8f097530c0d",
+      "model": "30d02dc2b88a321cf99aad8e4ea1152a44d791b5b65bf95ad036922819c0ff12"
+     }
+    },
+    "10004": {
+     "workspace_commit": "1210c6662810c0b63500db2c363c68fcb64c8b1e",
+     "other_artifacts": {
+      "algorithm_config": "0351abfbc60d9ec93bf402857130497b2f063f8ce0e8fd6e87cc55c73273594a",
+      "camera_calibration": "75e15adec42a73ad7a67a2bc3ec837eb4dbb87f75ef48acd66ace8f097530c0d",
+      "model": "30d02dc2b88a321cf99aad8e4ea1152a44d791b5b65bf95ad036922819c0ff12"
+     }
+    }
+   }
+  }
+ }
+}
