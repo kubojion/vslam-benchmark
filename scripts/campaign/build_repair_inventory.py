@@ -300,6 +300,41 @@ POOLING='configs/campaigns/zed-vio-cohort-pooling-20261003.json'
 # Rule C cells whose counted repetitions span workspace commits (11 Nov 2026). Same policy and check.
 RULEC_POOLING='configs/campaigns/rule-c-cohort-pooling-20261111.json'
 POOLING_RECORDS=(POOLING,RULEC_POOLING)
+# User decision of 12 Nov 2026 (option b): receipt differences in six named Rule C cells that cannot act on the
+# estimate, each recorded with its exact per-run value and the reason. A decision with reasons, not a disclosure.
+NONACTING='configs/campaigns/rule-c-nonacting-differences-20261112.json'
+NONACTING_KINDS=('artifact','parameter')
+
+
+def nonacting_record(repo):
+    path=repo/NONACTING
+    if not path.is_file():return None,{}
+    record=read(path)
+    if record.get('schema')!=1:raise ValueError('unsupported non-acting difference schema')
+    for key,spec in record['cells'].items():
+        if not spec.get('differences') or any(d.get('kind') not in NONACTING_KINDS or not d.get('reason')
+                                              or set(d['per_run'])!={str(i) for i in spec['runs']} for d in spec['differences']):
+            raise ValueError('non-acting difference needs a kind, a reason and a value for every listed run: '+key)
+    return path,record['cells']
+
+
+def config_consistent(attempts,pooling):
+    """One configuration per cell. A cell the user's non-acting record pooled counts as one configuration: its
+    configuration receipts differ only in the declared fields with their recorded values (pooled_cohort checked
+    every other receipt byte for byte). Every other cell keeps the plain fingerprint comparison."""
+    if len({a['config_fingerprint'] for a in attempts if a['config_fingerprint']})<=1:return True
+    return bool(pooling and pooling.get('status')=='pooled' and pooling.get('nonacting_user_decision'))
+
+
+def check_nonacting_scope(repo,completion,corrected):
+    """The record may name only reselected Rule C cells listed with the same runs in the Rule C pooling record."""
+    path,cells=nonacting_record(repo)
+    if not cells:return
+    pooling=read(repo/RULEC_POOLING).get('cells',{})
+    for key,spec in cells.items():
+        if key in corrected:raise ValueError('non-acting record may not name a corrected CitrusFarm cell: '+key)
+        if completion.get(key)!=spec['runs'] or (pooling.get(key) or {}).get('runs')!=spec['runs']:
+            raise ValueError('non-acting record names a cell or runs outside the Rule C pooling: '+key)
 
 
 def accepted_options(record, spec):
@@ -352,6 +387,10 @@ def pooled_cohort(repo, key, attempts, records=POOLING_RECORDS):
         return dict(status='refused',reason=reason,record=evidence(path,repo),runs=expected)
     if [a['path'] for a in attempts]!=expected:
         return refused('selected attempts differ from the pooling record')
+    nonacting_path,nonacting_cells=nonacting_record(repo) if path==repo/RULEC_POOLING else (None,{})
+    nonacting=nonacting_cells.get(key)
+    if nonacting is not None and nonacting['runs']!=spec['runs']:
+        return refused('non-acting record was made for other runs')
     reduced=[];commits=set()
     for a in attempts:
         payload=dict(a.get('cohort_evidence') or {})
@@ -368,6 +407,20 @@ def pooled_cohort(repo, key, attempts, records=POOLING_RECORDS):
             if name in parameters and (a.get('process') or {}).get('exit_code')!=0:
                 return refused(f'{name} differs and {a["path"]} did not exit 0')
             parameters.pop(name,None)
+        if nonacting is not None:
+            # Only the recorded field, only with exactly the recorded value of this run.
+            run_id=a['path'].rsplit('/run',1)[1]
+            for d in nonacting['differences']:
+                recorded=d['per_run'][run_id]
+                if d['kind']=='artifact':
+                    found=[x['sha256'] for x in payload.get('artifacts',[]) if x['role']==d['role']]
+                    if (found[0] if len(found)==1 else None if not found else 'several')!=recorded:
+                        return refused(f"{d['role']} of {a['path']} differs from the non-acting record")
+                    payload['artifacts']=[x for x in payload.get('artifacts',[]) if x['role']!=d['role']]
+                else:
+                    if parameters.get(d['name'])!=recorded:
+                        return refused(f"{d['name']} of {a['path']} differs from the non-acting record")
+                    parameters.pop(d['name'],None)
         payload['parameters']=parameters
         if spec.get('ignored_runtime_fields'):
             # Harness runtime facts (e.g. the wrapper's Python version), listed after a user decision.
@@ -390,7 +443,9 @@ def pooled_cohort(repo, key, attempts, records=POOLING_RECORDS):
                 unreached_harness_limits=spec.get('unreached_harness_limits',{}),
                 ignored_runtime_fields=spec.get('ignored_runtime_fields',[]),
                 accepted_decisions=spec.get('accepted_decisions',[]),
-                disclosures=spec.get('disclosures',[]))
+                disclosures=spec.get('disclosures',[]),
+                **(dict(nonacting_user_decision=dict(record=evidence(nonacting_path,repo),
+                    fields=[d.get('role') or d.get('name') for d in nonacting['differences']])) if nonacting is not None else {}))
 
 
 def saved_attempt(repo,relative,stage):
@@ -580,6 +635,7 @@ def build(repo,stage):
     completion,completion_superseded,dispositions=paper_completion_selections(repo,selections,corrected)
     selections.update(completion);batch_labels.update(dict.fromkeys(completion,PAPER_COMPLETION_LABEL))
     superseded.update(completion_superseded)
+    check_nonacting_scope(repo,completion,corrected)
     for cell in expand_cells(future):
         key=cell_key(cell);attempts=[]
         ids=selections.get(key,[1,2,3])
@@ -603,7 +659,7 @@ def build(repo,stage):
             original_campaign_member=cell['algorithm'] in executed['tables'][cell['run_type']],
             attempts=attempts,evaluated=sum(a['evaluated'] for a in attempts),
             outcomes=dict(Counter(a['numerical_status'] for a in attempts if a['evaluated'])),
-            within_cell_config_consistent=len({a['config_fingerprint'] for a in attempts if a['config_fingerprint']})<=1,
+            within_cell_config_consistent=config_consistent(attempts,pooling),
             within_cell_cohort_consistent=len({a['cohort_fingerprint'] for a in attempts if a['cohort_fingerprint']})<=1,
             runtime_estimate=runtime_estimate(attempts),
             acceptance=cell_acceptance(attempts, len({a['cohort_fingerprint'] for a in attempts if a['cohort_fingerprint']})<=1)))
@@ -628,7 +684,7 @@ def build(repo,stage):
         attempt_selection=evidence(repo/SELECTION,repo) if (repo/SELECTION).is_file() else None,
         additional_attempt_selections=([evidence(repo/ZED_SELECTION,repo)] if zed_selections else [])
             +[evidence(repo/name,repo) for name in BATCH_SELECTIONS if batch_selections and (repo/name).is_file()]
-            +[evidence(repo/name,repo) for name in (PAPER_COMPLETION_SELECTION,RULEC_POOLING) if completion and (repo/name).is_file()],
+            +[evidence(repo/name,repo) for name in (PAPER_COMPLETION_SELECTION,RULEC_POOLING,NONACTING) if completion and (repo/name).is_file()],
         cell_dispositions=dispositions,
         original_manifest=dict(path='logs/server-campaign/quality-final-n3-no-gnss/manifest.json',sha256=executed_hash),
         scope_source=dict(path='configs/campaigns/quality-final.json',sha256=future_hash,
