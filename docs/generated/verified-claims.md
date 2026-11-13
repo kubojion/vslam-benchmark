@@ -12,7 +12,7 @@ Generated from hash-checked schema-3 evaluations and matching CSVs. These are in
 
 Legacy GNSS variants: 6 separate rows; not included in default repetition counts.
 
-Scientific statuses among existing headline attempts: accepted=117, accepted_with_limitation=386, blocked=551, rerun_required=5, valid_observed_failure=15.
+Scientific statuses among existing headline attempts: accepted=117, accepted_with_limitation=386, blocked=553, rerun_required=5, valid_observed_failure=15.
 
 ## Retained adverse outcomes
 
@@ -125,7 +125,9 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 | `results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run2` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/euroc_mav/MH_05_difficult/ov2slam/run3` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/rosariov2/sequence1/ov2slam/run10001` | incomplete | unknown | blocked |
-| `results/vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001` | incomplete | unknown | blocked |
+| `` | failed_without_trajectory | unknown | blocked |
+| `` | failed_without_trajectory | unknown | blocked |
+| `` | failed_without_trajectory | unknown | blocked |
 | `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run1` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run2` | ok | 0 | accepted_with_limitation |
 | `results/vo-lc/zed2i/field1_110426_full_10fps_q90/ov2slam/run3` | ok | 0 | accepted_with_limitation |
@@ -143,9 +145,9 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 
 | Source | SHA-256 |
 |---|---|
-| `inventory.json` | `7033d9ca88cbf191e7610c81df5f56172dc6f5f0e7b393c8a69a7e5fe9065418` |
+| `inventory.json` | `4cb61869d00b082d783a1c094560e376931713ce305ab8e55889a5d59670813e` |
 | `benchmark-vo.csv` | `15f24cead099f3bbf6a2f7f0f03ad86d192b68a6ebaa7055318c910fa2e11442` |
-| `benchmark-vo-lc.csv` | `7f4bbd2ffeb46ff01cd2cc2031155daf3ddfbeaf8e2b2df114d669edbfe96740` |
+| `benchmark-vo-lc.csv` | `6ee44492478ce698deda9cbf695b83b42b8732752f9617d70e9dc8bb7bb1afdf` |
 | `benchmark-vio.csv` | `bcef2a8f90b79751c83b37e0c24476ed9e1223fea3066b94f882c0daef3ab749` |
 | `benchmark-vio-lc.csv` | `16c3e58685a0f25ca057e42d909e99372581b5a420fc34bbdb3b7704730b2be8` |
 | `benchmark-gnss-vio.csv` | `7eccab1f3b593feedcf877b31ca5618f33a3b6dffcd196c60dc45848acd88494` |

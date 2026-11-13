@@ -3,7 +3,7 @@
   "inputs": [
     {
       "path": "results/repair-20261001/inventory.json",
-      "sha256": "7033d9ca88cbf191e7610c81df5f56172dc6f5f0e7b393c8a69a7e5fe9065418"
+      "sha256": "4cb61869d00b082d783a1c094560e376931713ce305ab8e55889a5d59670813e"
     },
     {
       "path": "benchmark-vo.csv",
@@ -11,7 +11,7 @@
     },
     {
       "path": "benchmark-vo-lc.csv",
-      "sha256": "7f4bbd2ffeb46ff01cd2cc2031155daf3ddfbeaf8e2b2df114d669edbfe96740"
+      "sha256": "6ee44492478ce698deda9cbf695b83b42b8732752f9617d70e9dc8bb7bb1afdf"
     },
     {
       "path": "benchmark-vio.csv",
@@ -18377,7 +18377,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA1/E0/S0/F0\nB,M",
+      "annotation": "no score\nA3/E0/S0/F3\nB",
       "summary": {
         "identity": [
           "vo-lc",
@@ -18387,31 +18387,28 @@
           "default"
         ],
         "planned_slots": 3,
-        "attempted": 1,
+        "attempted": 3,
         "evaluated": 0,
         "outcomes": {
-          "missing": 2,
-          "incomplete": 1
+          "failed_without_trajectory": 3
         },
         "acceptance": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "paper_usable": 0,
         "claim_limits": [
-          "accuracy_conditional_on_observed_exports_and_reference_support",
-          "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "final_ba_enabled_with_extrinsic_optimization",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "author_reported_did_not_finish",
+          "no_machine_receipt",
+          "runtime_not_comparable"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "unverified:results/vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001",
-            "planned_members": 1,
+            "cohort": "author_report",
+            "planned_members": 3,
             "evaluated": 0,
             "outcomes": {
-              "incomplete": 1
+              "failed_without_trajectory": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -18442,48 +18439,49 @@
               "sample_std": null
             },
             "run_paths": [
-              "results/vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001"
+              "",
+              "",
+              ""
             ]
           }
         ],
         "scientific_blockers": [
-          "historical_effective_configuration_and_implementation_evidence_missing",
-          "missing_repetition",
-          "no_evaluated_saved_trajectory_retain_execution_evidence",
-          "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified"
+          "author_reported_did_not_finish",
+          "no_machine_receipt",
+          "runtime_not_comparable"
         ],
         "protocol_state": "blocked",
         "protocol_verified_n3": false,
-        "attempt_count": 1,
+        "attempt_count": 3,
         "completed_attempt_count": 0,
         "evaluated_trajectory_count": 0,
         "successful_run_count": 0,
-        "observed_failure_count": 0,
+        "observed_failure_count": 3,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
-        "unknown_outcome_count": 1,
+        "unknown_outcome_count": 0,
         "protocol_verified_attempts": 0,
         "verified_failure_count": 0,
-        "missing_attempt_count": 2,
+        "missing_attempt_count": 0,
         "protocol_status_counts": {
-          "not_executed": 2,
-          "blocked": 1
+          "blocked": 3
         },
         "protocol_cohorts": [
           {
-            "cohort": "unverified:results/vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001",
-            "attempts": 1,
+            "cohort": "author_report",
+            "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001"
+              "",
+              "",
+              ""
             ]
           }
         ]
       },
       "flags": [
-        "B",
-        "M"
+        "B"
       ]
     },
     {
@@ -44713,11 +44711,11 @@
   "figures": [
     {
       "path": "fig_campaign_outcomes.png",
-      "sha256": "56249239dad3063313a88c50b4872425e8126ec2f37d9dbd85c5400aa9659504"
+      "sha256": "150998d1a55f83a1e9d55a8ab13bcd9164e716b608b2a81493333007b2e6679b"
     },
     {
       "path": "fig_campaign_outcomes.pdf",
-      "sha256": "4a9af44fe1cc76ad90f69133814b729d82e4561e26709be9d58f7fbc4af244b1"
+      "sha256": "ba869f6dc7b8be8b2f496a5645111cd802d1391e29205bb2439663c56728f94f"
     },
     {
       "path": "fig_accuracy_vo_default.png",
@@ -44729,11 +44727,11 @@
     },
     {
       "path": "fig_accuracy_vo-lc_default.png",
-      "sha256": "ad60282d5388f5b692f0c9d553bee155102c6aa1a52372b2561217385dd73b3f"
+      "sha256": "28fffa68dc39b7345f2aded66561705340273e1819e075d4b44599caf29fc4b3"
     },
     {
       "path": "fig_accuracy_vo-lc_default.pdf",
-      "sha256": "85be08afa370b52b8318e9d29af29bb23e52d7af1cb4b7794324b93f2971ef19"
+      "sha256": "8ab3a85935f7a33bd801716e18e4d4ecd13a36ab843d37aa3c7c1c49d659fc58"
     },
     {
       "path": "fig_accuracy_vio_default.png",
