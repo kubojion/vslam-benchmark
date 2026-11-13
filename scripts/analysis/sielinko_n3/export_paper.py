@@ -103,6 +103,31 @@ def amendment_blocks(text):
     return [b.rstrip() for b in blocks]
 
 
+def reported_deviations(reproduction, items):
+    """Repetitions of a reproducible system outside 1 % of their test's first run that the agreed rule does not gate
+    (it gates each system's first new run only; engineer, 11 Nov and 13 Nov 2026): a reported observation per test,
+    with the spread of the new runs among themselves."""
+    rows = {r['item']: r for r in reproduction['all_items']}
+    by_test = {}
+    for item in items:
+        if item['id'] in reproduction['reported_not_gating_outside_1pct']:
+            by_test.setdefault(test_id(item), []).append(item)
+    out = []
+    for test, its in sorted(by_test.items()):
+        new = [i for i in items if test_id(i) == test and rows.get(i['id'], {}).get('ate_m') is not None]
+        ates = [rows[i['id']]['ate_m'] for i in new]
+        out.append(dict(
+            test=test, system=its[0]['system'], gating=False, items=[i['id'] for i in its],
+            reference_ate_m=its[0]['reference']['ate_se3_rmse_m'],
+            ate_m={i['id']: rows[i['id']]['ate_m'] for i in its},
+            relative_difference={i['id']: rows[i['id']]['relative_difference'] for i in its},
+            new_runs_of_test=[i['id'] for i in new],
+            new_runs_spread_relative=(max(ates) - min(ates)) / min(ates) if len(ates) > 1 and min(ates) > 0 else None,
+            rule='not gating: the 1 % rule gates each reproducible system\'s first new run only (engineer decision, '
+                 '11 Nov 2026, confirmed 13 Nov 2026); recorded as an observation'))
+    return out
+
+
 class Campaign:
     def __init__(self, name, out=OUT, first=None):
         self.name = name
@@ -329,6 +354,7 @@ class Campaign:
         check('paper_export', not export_problems and not selection_problems, files=len(exported),
               problems=export_problems + selection_problems)
 
+        deviations = reported_deviations(checks['reproduction_within_1pct'], self.items)
         first_reviews = [dict(file=str(p), sha256=sha(p), passed=load(p).get('passed'))
                          for p in sorted(self.first.glob('final-completion-review*.json'))]
         gating = ('manifest_integrity', 'all_items_terminal', 'no_unresolved_fault_or_stop', 'identity_gates_passed',
@@ -341,7 +367,8 @@ class Campaign:
                         exported_files=len(exported),
                         exported_new_runs=sum(v['origin'] == 'paper_n3_new_run' for v in exported.values()),
                         exported_first_runs=sum(v['origin'] != 'paper_n3_new_run' for v in exported.values())),
-            checks=checks, per_test=tests, selections=selections, first_runs_reviews=first_reviews,
+            checks=checks, reported_deviations=deviations, per_test=tests, selections=selections,
+            first_runs_reviews=first_reviews,
             first_campaign=str(self.first), independent_test=False,
             qualification='The second half shares recording, site and day with the development half, and the full '
                           'recording contains it (first campaigns\' qualification, unchanged).',

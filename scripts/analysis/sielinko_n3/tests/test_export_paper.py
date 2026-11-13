@@ -104,6 +104,7 @@ def world(tmp_path):
 def test_complete_campaign_exports_loader_records_and_passes(world):
     value, digest = world.campaign().run()
     assert value['passed'], {k: v for k, v in value['checks'].items() if not v['passed']}
+    assert value['reported_deviations'] == []
     names = sorted(p.name for p in (world.dir / 'attempts-paper').iterdir())
     assert names == sorted([
         f'final_n1__basalt_zed2i__noise_b__{H2}__vio__rep2.json', f'final_n1__basalt_zed2i__noise_b__{H2}__vio__rep3.json',
@@ -177,6 +178,11 @@ def test_reproduction_rule(world):
     value, _ = world.campaign().run(dry_run=True)
     check = value['checks']['reproduction_within_1pct']
     assert check['passed'] and check['reported_not_gating_outside_1pct'] == ['B-basalt-h2_sel-r3']
+    dev = value['reported_deviations']
+    assert len(dev) == 1 and dev[0]['items'] == ['B-basalt-h2_sel-r3'] and dev[0]['gating'] is False
+    assert dev[0]['ate_m'] == {'B-basalt-h2_sel-r3': 0.55} and dev[0]['reference_ate_m'] == 0.50
+    assert dev[0]['new_runs_of_test'] == ['B-basalt-h2_sel-r2', 'B-basalt-h2_sel-r3']
+    assert dev[0]['new_runs_spread_relative'] == pytest.approx(0.55 / 0.501 - 1)
     # the enforced first new run outside 1 % fails the review
     world.finish('B-basalt-h2_sel-r2', 0.52, repeat=dict(enforced=True, passed=False, relative_difference=0.04))
     value, _ = world.campaign().run(dry_run=True)
