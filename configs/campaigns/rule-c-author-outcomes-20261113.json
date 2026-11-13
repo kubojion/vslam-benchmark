@@ -1,0 +1,54 @@
+{
+ "schema": 1,
+ "decided": "User, 13 Nov 2026 (engineer session): \"I ran OKVIS2-X VO-LC on Sielinko three times on my own computer, each over 60 hours in final bundle adjustment without finishing. Count those three as the cell's repetitions, replacing the 11 Nov one-attempt decision.\"",
+ "policy": "The three author-reported attempts are the repetitions r1-r3 of the cell, outcome did not finish, provenance author_report. No run directory, runtime, exit code, hardware or receipt exists for them and none is recorded or derived. The server attempt kept by the 11 Nov closure stays on disk as a historical attempt, not selected and not a fourth attempt; the never-run server slots are not observations.",
+ "source": {
+  "kind": "author_report",
+  "path": "/data/imoroz/PAPER/vslam-paper/data/metadata/author-outcomes-20261113.json",
+  "sha256": "d31a0b977f9a4376aed77d52865279c74f225cc8adef62b4b8cf83d5219447a6",
+  "statement": "All three OKVIS2-X VO-LC attempts on Sielinko failed to complete final bundle adjustment after more than 60 hours each."
+ },
+ "supersedes": {
+  "path": "configs/campaigns/paper-completion-attempts-20261111.json",
+  "sha256": "f4e8d9498aab518dad025ee5273ad4cc861219a0d7bbac47c6f134830e1e4910",
+  "entry": "closed_cells[\"vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x\"]",
+  "disposition": "did_not_finish",
+  "decided": "User, 11 Nov 2026: no more runs; final bundle adjustment beyond 48 h in the one attempt; not completed in completion statistics, left out of accuracy comparisons"
+ },
+ "generated_by": "scripts/campaign/make_author_outcome_record.py",
+ "cells": {
+  "vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x": {
+   "attempts": [
+    {
+     "repetition": 1,
+     "id": "author-report-20261113-okvis2x-sielinko-volc-r1",
+     "outcome": "dnf",
+     "provenance": "author_report"
+    },
+    {
+     "repetition": 2,
+     "id": "author-report-20261113-okvis2x-sielinko-volc-r2",
+     "outcome": "dnf",
+     "provenance": "author_report"
+    },
+    {
+     "repetition": 3,
+     "id": "author-report-20261113-okvis2x-sielinko-volc-r3",
+     "outcome": "dnf",
+     "provenance": "author_report"
+    }
+   ],
+   "historical_not_selected": [
+    {
+     "attempt": "results/vo-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run10001",
+     "reason": "Separate 47.9-hour host-reset attempt; not one of the three author-reported local attempts",
+     "review": "/data/imoroz/rule-c-batch-20261018/reviews/097.json"
+    }
+   ],
+   "never_run_server_slots": [
+    2,
+    3
+   ]
+  }
+ }
+}

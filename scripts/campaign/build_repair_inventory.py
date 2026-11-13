@@ -326,6 +326,57 @@ def config_consistent(attempts,pooling):
     return bool(pooling and pooling.get('status')=='pooled' and pooling.get('nonacting_user_decision'))
 
 
+# User decision of 13 Nov 2026: three author-reported attempts (no machine record) are the repetitions of a closed
+# cell, superseding its 11 Nov did-not-finish disposition. Source: a paper-owned record, pinned by path and sha256.
+AUTHOR_OUTCOMES='configs/campaigns/rule-c-author-outcomes-20261113.json'
+AUTHOR_ATTEMPT_KEYS={'repetition','id','outcome','provenance'}
+AUTHOR_LABEL='author_report_20261113'
+# Label columns only: an author-reported attempt has no run folder, runtime, exit, hardware or receipt.
+AUTHOR_LIMITS=['author_reported_did_not_finish','no_machine_receipt','runtime_not_comparable']
+AUTHOR_STATUS='failed_without_trajectory'
+
+
+def author_attempt(repo,key,a):
+    """An attempt the record lists, with no path: every machine field stays empty, never derived."""
+    record=read(repo/AUTHOR_OUTCOMES)
+    qualification=dict(status='blocked',blockers=list(AUTHOR_LIMITS),claim_limits=list(AUTHOR_LIMITS),
+                       paper_usable=False,accuracy_eligible=False,
+                       protocol=dict(status='blocked',basis='author_report',blockers=list(AUTHOR_LIMITS)))
+    return dict(path=None,author_report=dict(id=a['id'],repetition=a['repetition'],outcome=a['outcome'],
+                    provenance=a['provenance'],record=evidence(repo/AUTHOR_OUTCOMES,repo),
+                    source=dict(path=record['source']['path'],sha256=record['source']['sha256'])),
+        exists=True,files=[],trajectory_saved=False,historical_complete=False,evaluated=False,evaluation_path=None,
+        staged_evaluation_path=None,numerical_status=AUTHOR_STATUS,process={},qualification=qualification,
+        confirmed_protocol_findings=[],pose_frame_blockers=[],snapshots=[],source_records=[],parameters={},
+        cohort_fingerprint=None,cohort_evidence=None,config_fingerprint=None,machine_id=None,runtime={},coverage={},
+        failure_reason='author_reported_did_not_finish',logical_repetition=a['repetition'])
+
+
+def author_outcome_record(repo):
+    """Validate the author-outcome record; it may name only a cell the paper-completion record closed."""
+    path=repo/AUTHOR_OUTCOMES
+    if not path.is_file():return {}
+    record=read(path)
+    if record.get('schema')!=1 or record.get('source',{}).get('kind')!='author_report':
+        raise ValueError('unsupported author-outcome record')
+    source=Path(record['source']['path'])
+    if source.is_file() and hashlib.sha256(source.read_bytes()).hexdigest()!=record['source']['sha256']:
+        raise ValueError('author-outcome source changed: '+str(source))
+    superseded=repo/record['supersedes']['path']
+    if not superseded.is_file() or hashlib.sha256(superseded.read_bytes()).hexdigest()!=record['supersedes']['sha256']:
+        raise ValueError('the record it supersedes changed: '+record['supersedes']['path'])
+    closed=read(superseded).get('closed_cells',{})
+    for key,cell in record['cells'].items():
+        if key not in closed:raise ValueError('author outcomes may supersede only a closed cell: '+key)
+        attempts=cell['attempts']
+        if ([a.get('repetition') for a in attempts]!=[1,2,3] or len({a.get('id') for a in attempts})!=3
+                or any(set(a)!=AUTHOR_ATTEMPT_KEYS or a['outcome']!='dnf' or a['provenance']!='author_report' for a in attempts)):
+            raise ValueError('author outcomes need three distinct dnf attempts and no machine fields: '+key)
+        if {h['attempt'].removeprefix('results/') for h in cell['historical_not_selected']}!=set(closed[key]['open_attempts']):
+            raise ValueError('the superseded server attempt must stay historical: '+key)
+    return record['cells']
+
+
 def check_nonacting_scope(repo,completion,corrected):
     """The record may name only reselected Rule C cells listed with the same runs in the Rule C pooling record."""
     path,cells=nonacting_record(repo)
@@ -636,24 +687,30 @@ def build(repo,stage):
     selections.update(completion);batch_labels.update(dict.fromkeys(completion,PAPER_COMPLETION_LABEL))
     superseded.update(completion_superseded)
     check_nonacting_scope(repo,completion,corrected)
+    authored=author_outcome_record(repo)
     for cell in expand_cells(future):
         key=cell_key(cell);attempts=[]
         ids=selections.get(key,[1,2,3])
         if key in selections:superseded.update(f'{key}/run{i}' for i in (1,2,3))
         if key in corrected:superseded.update(corrected_superseded(repo,key))
-        for repetition,physical_id in enumerate(ids,1):
+        if key in authored:
+            # The user's author-reported attempts replace the cell's selection; the server attempt it kept is historical.
+            superseded.update(h['attempt'].removeprefix('results/') for h in authored[key]['historical_not_selected'])
+            attempts=[author_attempt(repo,key,a) for a in authored[key]['attempts']]
+        for repetition,physical_id in (enumerate(ids,1) if key not in authored else ()):
             relative=f'{key}/run{physical_id}';members.add(relative)
             attempt=saved_attempt(repo,relative,stage)
             attempt['logical_repetition']=repetition
             attempts.append(attempt)
         # A reselected cell is pooled only by the record made for its new attempts.
-        pooling=pooled_cohort(repo,key,attempts,(RULEC_POOLING,) if key in completion else POOLING_RECORDS)
+        pooling=(None if key in authored else
+                 pooled_cohort(repo,key,attempts,(RULEC_POOLING,) if key in completion else POOLING_RECORDS))
         if pooling and pooling['status']=='pooled':
             for attempt in attempts:
                 attempt['recorded_cohort_fingerprint']=attempt['cohort_fingerprint']
                 attempt['cohort_fingerprint']=pooling['cohort']
         cells.append(dict(**cell,variant='default',key=key,target_repetitions=3,cohort_pooling=pooling,
-            comparison_membership=(batch_labels[key] if key in batch_labels else
+            comparison_membership=(AUTHOR_LABEL if key in authored else batch_labels[key] if key in batch_labels else
                 'corrected_zed_first_20261002' if key in zed_selections
                 else 'corrected_euroc_20261001' if key in selections else None),
             original_campaign_member=cell['algorithm'] in executed['tables'][cell['run_type']],
@@ -684,7 +741,7 @@ def build(repo,stage):
         attempt_selection=evidence(repo/SELECTION,repo) if (repo/SELECTION).is_file() else None,
         additional_attempt_selections=([evidence(repo/ZED_SELECTION,repo)] if zed_selections else [])
             +[evidence(repo/name,repo) for name in BATCH_SELECTIONS if batch_selections and (repo/name).is_file()]
-            +[evidence(repo/name,repo) for name in (PAPER_COMPLETION_SELECTION,RULEC_POOLING,NONACTING) if completion and (repo/name).is_file()],
+            +[evidence(repo/name,repo) for name in (PAPER_COMPLETION_SELECTION,RULEC_POOLING,NONACTING,AUTHOR_OUTCOMES) if completion and (repo/name).is_file()],
         cell_dispositions=dispositions,
         original_manifest=dict(path='logs/server-campaign/quality-final-n3-no-gnss/manifest.json',sha256=executed_hash),
         scope_source=dict(path='configs/campaigns/quality-final.json',sha256=future_hash,
