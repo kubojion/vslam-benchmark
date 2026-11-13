@@ -22,6 +22,10 @@ def observed_outcome(exists, evaluated, numerical_status, exit_code, native_erro
         return 'failure_with_saved_trajectory' if trajectory_saved else 'failure_without_final_trajectory'
     if exit_code == 0 and evaluated and numerical_status == 'ok':
         return 'success'
+    if numerical_status == 'failed_without_trajectory':
+        # Reached only without a recorded exit: an author-reported attempt that did not finish (13 Nov 2026).
+        # A machine-recorded failed_without_trajectory always has a nonzero exit and is classified above.
+        return 'failure_without_final_trajectory'
     return 'unknown'
 
 

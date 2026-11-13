@@ -17,7 +17,7 @@ RESULTS = REPO / "results"
 RUN_TYPES = ("vo", "vo-lc", "vio", "vio-lc", "gnss-vio")
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(REPO / 'scripts/eval'))
-from build_benchmark_csv import build_rows, load_inventory, preserved_write, row_from_attempt
+from build_benchmark_csv import build_rows, listed_author_attempt, load_inventory, preserved_write, row_from_attempt
 from validate_run import (  # noqa: E402
     validate, validate_location, validate_measurements, validate_provenance,
     validate_implementation_capture, validate_input_capture, validate_runtime_capture,
@@ -224,7 +224,12 @@ def main() -> int:
     rows={r['run_path']:r for r in build_rows(inventory)}
     attempts=[a for c in inventory['cells'] for a in c['attempts']]+inventory['other_artifacts']
     runs=[]
+    cells={a['author_report']['id']:c for c in inventory['cells'] for a in c['attempts'] if a.get('path') is None}
     for attempt in attempts:
+        if attempt.get('path') is None:
+            # An author-reported attempt has no run folder to browse; it must be one the author-outcome record lists.
+            listed_author_attempt(attempt,cells.get((attempt.get('author_report') or {}).get('id')))
+            continue
         row=rows.get(attempt['path'])
         if row is None:
             evaluation=read_json(REPO/attempt['evaluation_path']) if attempt.get('evaluation_path') else {}

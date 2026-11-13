@@ -111,7 +111,46 @@ def sequence_meta(repo,dataset,sequence):
     return result
 
 
+AUTHOR_OUTCOMES='configs/campaigns/rule-c-author-outcomes-20261113.json'
+
+
+def listed_author_attempt(attempt,cell,repo=REPO):
+    """An attempt without a path is allowed only as one the author-outcome record lists for this cell."""
+    report=attempt.get('author_report')
+    record=json.loads((Path(repo)/AUTHOR_OUTCOMES).read_text()) if (Path(repo)/AUTHOR_OUTCOMES).is_file() else {}
+    listed=(record.get('cells',{}).get((cell or {}).get('key'),{}) or {}).get('attempts',[])
+    if (attempt.get('path') is not None or not report or not cell
+            or not any(a['id']==report['id'] and a['repetition']==report['repetition'] for a in listed)):
+        raise ValueError('attempt without a run path is not an author-reported attempt of this cell: '+str(report or attempt.get('path')))
+    return report
+
+
+def author_row(attempt,cell,repo=REPO):
+    """A row for an author-reported attempt: labels only, every number empty (no run folder exists)."""
+    report=listed_author_attempt(attempt,cell,repo)
+    mode,ds,seq,algo=cell['key'].split('/')
+    qualification=attempt['qualification'];limits=qualification['claim_limits']
+    row=dict.fromkeys(COLUMNS)
+    protocol=attempt_protocol(dict(attempt,evaluated=False,numerical_status=attempt['numerical_status']))
+    protocol['protocol_blockers']=json.dumps(protocol['protocol_blockers'],separators=(',',':'))
+    row.update(protocol)
+    row.update(dataset=ds,seq=seq,algo=algo,run_type=mode,run=report['id'],gnss_variant='default',
+        environment_type='indoor_reference' if ds=='euroc_mav' else 'agricultural',use_imu=mode in ('vio','vio-lc','gnss-vio'),
+        run_status=attempt['numerical_status'],run_path='',cohort='author_report',campaign_membership=cell['comparison_membership'],
+        attempt_exists=True,trajectory_saved=False,execution_status='author_reported',
+        scientific_status=qualification['status'],scientific_blockers=json.dumps(qualification['blockers'],separators=(',',':')),
+        paper_ready=False,paper_usable=False,accuracy_eligible=False,native_error_observation_count=0,
+        claim_limits=json.dumps(limits,separators=(',',':')),reproducibility_disclosures='[]',
+        cell_acceptance=cell.get('acceptance',{}).get('status'),clean_qualified_n3=False,
+        protocol_verified_n3=cell.get('acceptance',{}).get('protocol_verified_n3',False),
+        protocol_state=cell.get('acceptance',{}).get('protocol_state','unreviewed'),
+        implementation_label='author_report',primary_alignment='se3',window_protocol=None)
+    return row
+
+
 def row_from_attempt(attempt,evaluation,cell,*,repo=REPO,membership='original_n3_campaign'):
+    if attempt.get('path') is None:
+        return author_row(attempt,cell,repo)
     path=Path(attempt['path']);name=path.name.removeprefix('run');run,_,variant=name.partition('_')
     variant=variant or 'default';ev=evaluation;cov=ev.get('coverage',{});runtime=ev.get('runtime',{})
     if ev and ev.get('eval_schema')!=3:raise ValueError('only schema-3 evaluations may enter repaired CSVs')
@@ -225,6 +264,8 @@ def load_inventory(path,repo=REPO):
 
 
 def checked_evaluation(attempt, inventory, repo):
+    if attempt.get('path') is None:
+        return {}  # an author-reported attempt: nothing to evaluate (row_from_attempt checks the record)
     ev=json.loads((repo/attempt['evaluation_path']).read_text()) if attempt['evaluation_path'] else {}
     if inventory.get('qualification_review'):
         # A later evidence review must not rewrite the historical evaluation.
@@ -266,7 +307,9 @@ def build_rows(inventory,repo=REPO):
         if attempt['category']!='gnss_variant':continue
         ev=checked_evaluation(attempt,inventory,repo)
         rows.append(row_from_attempt(attempt,ev,None,repo=repo,membership='legacy_gnss_variant'))
-    return sorted(rows,key=lambda r:(r['run_type'],r['dataset'],r['seq'],r['algo'],r['gnss_variant'],int(r['run'])))
+    # Author-reported attempts (no run folder) sort after the cell's numbered runs, by repetition.
+    return sorted(rows,key=lambda r:(r['run_type'],r['dataset'],r['seq'],r['algo'],r['gnss_variant'],
+                                     (0,int(r['run']),'') if str(r['run']).isdigit() else (1,0,str(r['run']))))
 
 
 def build_historical_rows(inventory,repo=REPO):
