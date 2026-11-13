@@ -326,6 +326,37 @@ def config_consistent(attempts,pooling):
     return bool(pooling and pooling.get('status')=='pooled' and pooling.get('nonacting_user_decision'))
 
 
+# User decision of 13 Nov 2026: three author-reported attempts (no machine record) are the repetitions of a closed
+# cell, superseding its 11 Nov did-not-finish disposition. Source: a paper-owned record, pinned by path and sha256.
+AUTHOR_OUTCOMES='configs/campaigns/rule-c-author-outcomes-20261113.json'
+AUTHOR_ATTEMPT_KEYS={'repetition','id','outcome','provenance'}
+
+
+def author_outcome_record(repo):
+    """Validate the author-outcome record; it may name only a cell the paper-completion record closed."""
+    path=repo/AUTHOR_OUTCOMES
+    if not path.is_file():return {}
+    record=read(path)
+    if record.get('schema')!=1 or record.get('source',{}).get('kind')!='author_report':
+        raise ValueError('unsupported author-outcome record')
+    source=Path(record['source']['path'])
+    if source.is_file() and hashlib.sha256(source.read_bytes()).hexdigest()!=record['source']['sha256']:
+        raise ValueError('author-outcome source changed: '+str(source))
+    superseded=repo/record['supersedes']['path']
+    if not superseded.is_file() or hashlib.sha256(superseded.read_bytes()).hexdigest()!=record['supersedes']['sha256']:
+        raise ValueError('the record it supersedes changed: '+record['supersedes']['path'])
+    closed=read(superseded).get('closed_cells',{})
+    for key,cell in record['cells'].items():
+        if key not in closed:raise ValueError('author outcomes may supersede only a closed cell: '+key)
+        attempts=cell['attempts']
+        if ([a.get('repetition') for a in attempts]!=[1,2,3] or len({a.get('id') for a in attempts})!=3
+                or any(set(a)!=AUTHOR_ATTEMPT_KEYS or a['outcome']!='dnf' or a['provenance']!='author_report' for a in attempts)):
+            raise ValueError('author outcomes need three distinct dnf attempts and no machine fields: '+key)
+        if {h['attempt'].removeprefix('results/') for h in cell['historical_not_selected']}!=set(closed[key]['open_attempts']):
+            raise ValueError('the superseded server attempt must stay historical: '+key)
+    return record['cells']
+
+
 def check_nonacting_scope(repo,completion,corrected):
     """The record may name only reselected Rule C cells listed with the same runs in the Rule C pooling record."""
     path,cells=nonacting_record(repo)
@@ -636,6 +667,7 @@ def build(repo,stage):
     selections.update(completion);batch_labels.update(dict.fromkeys(completion,PAPER_COMPLETION_LABEL))
     superseded.update(completion_superseded)
     check_nonacting_scope(repo,completion,corrected)
+    author_outcome_record(repo)  # validated here; its CSV representation awaits a schema decision
     for cell in expand_cells(future):
         key=cell_key(cell);attempts=[]
         ids=selections.get(key,[1,2,3])
