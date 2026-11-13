@@ -111,10 +111,12 @@ def section3(root):
         rep = v['checks']['reproduction_within_1pct']
         for g in rep['gating']:
             lines.append(f"- 1 % rule (gating): {g['item']} {g['relative_difference']:.2%} against the first run.")
-        for item in rep['reported_not_gating_outside_1pct']:
-            row = next(r for r in rep['all_items'] if r['item'] == item)
-            lines.append(f"- Outside 1 %, reported, not gating: {item} {row['relative_difference']:.2%} "
-                         f"({row['ate_m']:.4f} m against {row['reference_ate_m']:.4f} m).")
+        for d in v.get('reported_deviations', []):
+            each = ', '.join(f"{i} {d['ate_m'][i]:.4f} m ({d['ate_m'][i] / d['reference_ate_m'] - 1:+.2%})" for i in d['items'])
+            spread = d['new_runs_spread_relative']
+            lines.append(f"- Reported deviation (`reported_deviations`, not gating): {d['test'].split('|')[0]} "
+                         f"{d['test'].split('|')[1]}: {each} against the first run's {d['reference_ate_m']:.4f} m"
+                         + (f"; the new runs agree within {spread:.2%} of each other." if spread is not None else '.'))
         lines.append(f"- Record-only systems: {', '.join(rep['record_only_systems'])}.")
         lines += ['', '| Test | Mode | N | Failed | Median (primary reference) |', '|---|---|---|---|---|']
         for t in v['per_test']:
