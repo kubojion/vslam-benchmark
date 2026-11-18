@@ -6,8 +6,8 @@ Generated from hash-checked schema-3 evaluations and matching CSVs. These are in
 |---|---:|---:|---:|---:|---:|---:|---:|
 | vo | 330 | 323 | 317 | 6 | 0 | 7 | 64 |
 | vo-lc | 210 | 206 | 203 | 2 | 1 | 0 | 31 |
-| vio | 300 | 299 | 272 | 27 | 0 | 6 | 50 |
-| vio-lc | 210 | 196 | 180 | 16 | 0 | 14 | 23 |
+| vio | 300 | 299 | 278 | 21 | 0 | 1 | 50 |
+| vio-lc | 210 | 196 | 182 | 14 | 0 | 14 | 23 |
 | gnss-vio | 60 | 20 | 19 | 0 | 1 | 0 | 0 |
 
 Legacy GNSS variants: 6 separate rows; not included in default repetition counts.
@@ -38,25 +38,19 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 | `results/vio/hortimulti/strawberry03/mast3r_fusion/run10001` | scale_collapse | 0 | valid_observed_failure |
 | `results/vio/hortimulti/strawberry03/mast3r_fusion/run10002` | scale_collapse | 0 | valid_observed_failure |
 | `results/vio/hortimulti/strawberry03/mast3r_fusion/run10003` | scale_collapse | 0 | valid_observed_failure |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run20002` | scale_collapse | 0 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run20003` | scale_collapse | 0 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run20004` | scale_collapse | 0 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run20001` | scale_collapse | 0 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run20002` | scale_collapse | 0 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run20003` | scale_collapse | 0 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run20001` | scale_collapse | 0 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run20002` | scale_collapse | 0 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run20003` | scale_collapse | 0 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20001` | scale_collapse | 0 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20002` | scale_collapse | 1 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20003` | scale_collapse | 1 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run20001` | scale_collapse | 0 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run20002` | scale_collapse | 0 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run20003` | scale_collapse | 0 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run20002` | failed_without_trajectory | 134 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run20002` | scale_collapse | 143 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run20003` | scale_collapse | 143 | blocked |
-| `results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run20004` | scale_collapse | 143 | blocked |
+| `results/vio/zed2i/sielinko_imupilot_full_a33/airslam/run63002` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/sielinko_imupilot_full_a33/airslam/run64002` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/sielinko_imupilot_full_a33/airslam/run64012` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/sielinko_imupilot_full_a33/openvins/run63008` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/sielinko_imupilot_full_a33/openvins/run64008` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/sielinko_imupilot_full_a33/openvins/run64018` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/sielinko_imupilot_full_a33/orbslam3/run63001` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/sielinko_imupilot_full_a33/orbslam3/run64001` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/sielinko_imupilot_full_a33/orbslam3/run64011` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/sielinko_imupilot_full_a33/svo_pro/run63006` | failed_without_trajectory | 134 | blocked |
+| `results/vio/zed2i/sielinko_imupilot_full_a33/voxel_svio/run63009` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/sielinko_imupilot_full_a33/voxel_svio/run64009` | scale_collapse | 0 | blocked |
+| `results/vio/zed2i/sielinko_imupilot_full_a33/voxel_svio/run64019` | scale_collapse | 0 | blocked |
 | `results/vio-lc/citrusfarm/seq04/airslam/run50002` | scale_collapse | 0 | blocked |
 | `results/vio-lc/citrusfarm/seq04/airslam/run50201` | scale_collapse | 0 | blocked |
 | `results/vio-lc/citrusfarm/seq04/airslam/run50203` | scale_collapse | 0 | blocked |
@@ -74,19 +68,17 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 | `results/vio-lc/hortimulti/strawberry03/svo_pro/run10001` | failed_without_trajectory | 134 | valid_observed_failure |
 | `results/vio-lc/hortimulti/strawberry03/svo_pro/run10003` | failed_without_trajectory | 134 | valid_observed_failure |
 | `results/vio-lc/rosariov2/sequence1/orbslam3/run10003` | failed_without_trajectory | 139 | blocked |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/airslam/run40022` | scale_collapse | 0 | blocked |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/airslam/run40023` | scale_collapse | 0 | blocked |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run20001` | scale_collapse | 0 | blocked |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run20002` | scale_collapse | 0 | blocked |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run20003` | scale_collapse | 0 | blocked |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run20102` | scale_collapse | 0 | blocked |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run20103` | scale_collapse | 0 | blocked |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run20001` | scale_collapse | 0 | blocked |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run20002` | scale_collapse | 0 | blocked |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run20003` | scale_collapse | 0 | blocked |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run20001` | failed_without_trajectory | 134 | blocked |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run20002` | failed_without_trajectory | 134 | blocked |
-| `results/vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run20003` | failed_without_trajectory | 134 | blocked |
+| `results/vio-lc/zed2i/sielinko_imupilot_full_a33/airslam/run65002` | scale_collapse | 0 | blocked |
+| `results/vio-lc/zed2i/sielinko_imupilot_full_a33/airslam/run65009` | scale_collapse | 0 | blocked |
+| `results/vio-lc/zed2i/sielinko_imupilot_full_a33/airslam/run65016` | scale_collapse | 0 | blocked |
+| `results/vio-lc/zed2i/sielinko_imupilot_full_a33/cuvslam/run65012` | scale_collapse | 0 | blocked |
+| `results/vio-lc/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run65007` | scale_collapse | 0 | blocked |
+| `results/vio-lc/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run65014` | scale_collapse | 0 | blocked |
+| `results/vio-lc/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run65021` | scale_collapse | 0 | blocked |
+| `results/vio-lc/zed2i/sielinko_imupilot_full_a33/orbslam3/run65008` | scale_collapse | 0 | blocked |
+| `results/vio-lc/zed2i/sielinko_imupilot_full_a33/svo_pro/run65006` | failed_without_trajectory | 134 | blocked |
+| `results/vio-lc/zed2i/sielinko_imupilot_full_a33/svo_pro/run65013` | failed_without_trajectory | 134 | blocked |
+| `results/vio-lc/zed2i/sielinko_imupilot_full_a33/svo_pro/run65020` | failed_without_trajectory | 134 | blocked |
 | `results/vo/citrusfarm/seq04/dsol/run10002` | failed_without_trajectory | 134 | blocked |
 | `results/vo/citrusfarm/seq04/dsol/run10003` | failed_without_trajectory | 134 | blocked |
 | `results/vo/citrusfarm/seq04/dsol/run10004` | failed_without_trajectory | 134 | blocked |
@@ -145,9 +137,9 @@ Scientific statuses among existing headline attempts: accepted=117, accepted_wit
 
 | Source | SHA-256 |
 |---|---|
-| `inventory.json` | `4cb61869d00b082d783a1c094560e376931713ce305ab8e55889a5d59670813e` |
-| `benchmark-vo.csv` | `15f24cead099f3bbf6a2f7f0f03ad86d192b68a6ebaa7055318c910fa2e11442` |
-| `benchmark-vo-lc.csv` | `6ee44492478ce698deda9cbf695b83b42b8732752f9617d70e9dc8bb7bb1afdf` |
-| `benchmark-vio.csv` | `bcef2a8f90b79751c83b37e0c24476ed9e1223fea3066b94f882c0daef3ab749` |
-| `benchmark-vio-lc.csv` | `16c3e58685a0f25ca057e42d909e99372581b5a420fc34bbdb3b7704730b2be8` |
+| `inventory.json` | `17264f0176930235662277c0c4feab274164f1832f2d3c842760a7dca4da0f02` |
+| `benchmark-vo.csv` | `f4f640e1f587f6947f191c9d88c59d11ba5b2309a628de86ed3eca50d3520ccb` |
+| `benchmark-vo-lc.csv` | `8fdf6848c187aea5369a2e5e2ab65a0c64605304f10cc1cdd861aa3ac734f438` |
+| `benchmark-vio.csv` | `ef9dfaeb32b6733573088ed3d97dded9b892cc6a711f90c4a7f50cb6ec3cbaa8` |
+| `benchmark-vio-lc.csv` | `b98aba51171dae8572b401237d370fa6470da048009c1eeab35999374c648a0f` |
 | `benchmark-gnss-vio.csv` | `7eccab1f3b593feedcf877b31ca5618f33a3b6dffcd196c60dc45848acd88494` |

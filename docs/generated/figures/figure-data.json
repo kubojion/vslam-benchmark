@@ -3,23 +3,23 @@
   "inputs": [
     {
       "path": "results/repair-20261001/inventory.json",
-      "sha256": "4cb61869d00b082d783a1c094560e376931713ce305ab8e55889a5d59670813e"
+      "sha256": "17264f0176930235662277c0c4feab274164f1832f2d3c842760a7dca4da0f02"
     },
     {
       "path": "benchmark-vo.csv",
-      "sha256": "15f24cead099f3bbf6a2f7f0f03ad86d192b68a6ebaa7055318c910fa2e11442"
+      "sha256": "f4f640e1f587f6947f191c9d88c59d11ba5b2309a628de86ed3eca50d3520ccb"
     },
     {
       "path": "benchmark-vo-lc.csv",
-      "sha256": "6ee44492478ce698deda9cbf695b83b42b8732752f9617d70e9dc8bb7bb1afdf"
+      "sha256": "8fdf6848c187aea5369a2e5e2ab65a0c64605304f10cc1cdd861aa3ac734f438"
     },
     {
       "path": "benchmark-vio.csv",
-      "sha256": "bcef2a8f90b79751c83b37e0c24476ed9e1223fea3066b94f882c0daef3ab749"
+      "sha256": "ef9dfaeb32b6733573088ed3d97dded9b892cc6a711f90c4a7f50cb6ec3cbaa8"
     },
     {
       "path": "benchmark-vio-lc.csv",
-      "sha256": "16c3e58685a0f25ca057e42d909e99372581b5a420fc34bbdb3b7704730b2be8"
+      "sha256": "b98aba51171dae8572b401237d370fa6470da048009c1eeab35999374c648a0f"
     },
     {
       "path": "benchmark-gnss-vio.csv",
@@ -504,8 +504,8 @@
         "orbslam3",
         "default"
       ],
-      "value": 0.21811413463032694,
-      "annotation": "0.218\nA3/E3/S3/F0\nB",
+      "value": 0.2107710757498728,
+      "annotation": "0.211\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vo",
@@ -553,11 +553,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.21771844901323648,
-              "median": 0.21811413463032694,
-              "min": 0.21282888657157364,
-              "max": 0.2222123258378088,
-              "sample_std": 0.004704217091765663
+              "mean": 0.20994924976679624,
+              "median": 0.2107710757498728,
+              "min": 0.20408731628765475,
+              "max": 0.2149893572628612,
+              "sample_std": 0.005497287769083485
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -1668,8 +1668,8 @@
         "ov2slam",
         "default"
       ],
-      "value": 0.4140450473782035,
-      "annotation": "0.414\nA3/E3/S0/F3\nV3,L",
+      "value": 0.4107672534044193,
+      "annotation": "0.411\nA3/E3/S0/F3\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -1712,21 +1712,21 @@
             "paper_usable": 3,
             "accepted_primary_ate": {
               "n": 3,
-              "mean": 0.4074791605141721,
-              "median": 0.4140450473782035,
-              "min": 0.39104981255673665,
-              "max": 0.4173426216075762,
-              "sample_std": 0.014323445977816315
+              "mean": 0.40419777277049457,
+              "median": 0.4107672534044193,
+              "min": 0.38758709249579315,
+              "max": 0.4142389724112713,
+              "sample_std": 0.014489624998836251
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.4074791605141721,
-              "median": 0.4140450473782035,
-              "min": 0.39104981255673665,
-              "max": 0.4173426216075762,
-              "sample_std": 0.014323445977816315
+              "mean": 0.40419777277049457,
+              "median": 0.4107672534044193,
+              "min": 0.38758709249579315,
+              "max": 0.4142389724112713,
+              "sample_std": 0.014489624998836251
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -2835,8 +2835,8 @@
         "macvo",
         "default"
       ],
-      "value": 6.777374958056287,
-      "annotation": "6.78\nA3/E3/S3/F0\nV3,L",
+      "value": 6.773331545285073,
+      "annotation": "6.77\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -2879,21 +2879,21 @@
             "paper_usable": 3,
             "accepted_primary_ate": {
               "n": 3,
-              "mean": 6.7832229116847325,
-              "median": 6.777374958056287,
-              "min": 6.6968041609138185,
-              "max": 6.875489616084092,
-              "sample_std": 0.08948615475917103
+              "mean": 6.779182434624642,
+              "median": 6.773331545285073,
+              "min": 6.6929482314688595,
+              "max": 6.871267527119992,
+              "sample_std": 0.08930351325634885
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 6.7832229116847325,
-              "median": 6.777374958056287,
-              "min": 6.6968041609138185,
-              "max": 6.875489616084092,
-              "sample_std": 0.08948615475917103
+              "mean": 6.779182434624642,
+              "median": 6.773331545285073,
+              "min": 6.6929482314688595,
+              "max": 6.871267527119992,
+              "sample_std": 0.08930351325634885
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -4085,8 +4085,8 @@
         "basalt",
         "default"
       ],
-      "value": 0.4897633302027059,
-      "annotation": "0.49\nA3/E3/S3/F0\nV3,L",
+      "value": 0.4944034383077545,
+      "annotation": "0.494\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
           "vo",
@@ -4128,21 +4128,21 @@
             "paper_usable": 3,
             "accepted_primary_ate": {
               "n": 3,
-              "mean": 0.4907499240227314,
-              "median": 0.4897633302027059,
-              "min": 0.48573720407579984,
-              "max": 0.4967492377896884,
-              "sample_std": 0.005571915931996711
+              "mean": 0.4951257651460942,
+              "median": 0.4944034383077545,
+              "min": 0.4902742642145955,
+              "max": 0.5006995929159326,
+              "sample_std": 0.005250065397570768
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.4907499240227314,
-              "median": 0.4897633302027059,
-              "min": 0.48573720407579984,
-              "max": 0.4967492377896884,
-              "sample_std": 0.005571915931996711
+              "mean": 0.4951257651460942,
+              "median": 0.4944034383077545,
+              "min": 0.4902742642145955,
+              "max": 0.5006995929159326,
+              "sample_std": 0.005250065397570768
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -5424,7 +5424,7 @@
         "airslam",
         "default"
       ],
-      "value": 3.642115197575609,
+      "value": 3.6445772669292142,
       "annotation": "3.64\nA3/E3/S3/F0\nV3,K,L",
       "summary": {
         "identity": [
@@ -5468,21 +5468,21 @@
             "paper_usable": 3,
             "accepted_primary_ate": {
               "n": 3,
-              "mean": 3.6436680203248546,
-              "median": 3.642115197575609,
-              "min": 3.6248073815254767,
-              "max": 3.6640814818734784,
-              "sample_std": 0.019683043042277738
+              "mean": 3.6463471225178745,
+              "median": 3.6445772669292142,
+              "min": 3.627280143498175,
+              "max": 3.667183957126235,
+              "sample_std": 0.020010694068903954
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 3.6436680203248546,
-              "median": 3.642115197575609,
-              "min": 3.6248073815254767,
-              "max": 3.6640814818734784,
-              "sample_std": 0.019683043042277738
+              "mean": 3.6463471225178745,
+              "median": 3.6445772669292142,
+              "min": 3.627280143498175,
+              "max": 3.667183957126235,
+              "sample_std": 0.020010694068903954
             },
             "dense_coverage_pct": {
               "n": 0,
@@ -6592,7 +6592,7 @@
         "okvis2",
         "default"
       ],
-      "value": 3.7345551570225783,
+      "value": 3.7319219814105447,
       "annotation": "3.73\nA3/E3/S2/F1\nV3,L,F",
       "summary": {
         "identity": [
@@ -6639,21 +6639,21 @@
             "paper_usable": 3,
             "accepted_primary_ate": {
               "n": 2,
-              "mean": 3.7345551570225783,
-              "median": 3.7345551570225783,
-              "min": 3.700494349852372,
-              "max": 3.7686159641927843,
-              "sample_std": 0.04816925544548038
+              "mean": 3.7319219814105447,
+              "median": 3.7319219814105447,
+              "min": 3.6980148574004366,
+              "max": 3.7658291054206527,
+              "sample_std": 0.04795191463616127
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 2,
-              "mean": 3.7345551570225783,
-              "median": 3.7345551570225783,
-              "min": 3.700494349852372,
-              "max": 3.7686159641927843,
-              "sample_std": 0.04816925544548038
+              "mean": 3.7319219814105447,
+              "median": 3.7319219814105447,
+              "min": 3.6980148574004366,
+              "max": 3.7658291054206527,
+              "sample_std": 0.04795191463616127
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -7746,7 +7746,7 @@
         "okvis2x",
         "default"
       ],
-      "value": 1.788893424174221,
+      "value": 1.7874090212937346,
       "annotation": "1.79\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
@@ -7789,21 +7789,21 @@
             "paper_usable": 3,
             "accepted_primary_ate": {
               "n": 3,
-              "mean": 1.7525640020412812,
-              "median": 1.788893424174221,
-              "min": 1.6363772372911585,
-              "max": 1.8324213446584638,
-              "sample_std": 0.10294752640421184
+              "mean": 1.7507231247264978,
+              "median": 1.7874090212937346,
+              "min": 1.6344653288195148,
+              "max": 1.830295024066244,
+              "sample_std": 0.10294031591321837
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 1.7525640020412812,
-              "median": 1.788893424174221,
-              "min": 1.6363772372911585,
-              "max": 1.8324213446584638,
-              "sample_std": 0.10294752640421184
+              "mean": 1.7507231247264978,
+              "median": 1.7874090212937346,
+              "min": 1.6344653288195148,
+              "max": 1.830295024066244,
+              "sample_std": 0.10294031591321837
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -8899,8 +8899,8 @@
         "cuvslam",
         "default"
       ],
-      "value": 0.36390441596236767,
-      "annotation": "0.364\nA3/E3/S3/F0\nB,L",
+      "value": 0.36909672797019194,
+      "annotation": "0.369\nA3/E3/S3/F0\nB,L",
       "summary": {
         "identity": [
           "vo",
@@ -8943,21 +8943,21 @@
             "paper_usable": 1,
             "accepted_primary_ate": {
               "n": 1,
-              "mean": 0.3729457111413271,
-              "median": 0.3729457111413271,
-              "min": 0.3729457111413271,
-              "max": 0.3729457111413271,
+              "mean": 0.37769851467593624,
+              "median": 0.37769851467593624,
+              "min": 0.37769851467593624,
+              "max": 0.37769851467593624,
               "sample_std": null
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.35930923393569164,
-              "median": 0.36390441596236767,
-              "min": 0.34107757470338024,
-              "max": 0.3729457111413271,
-              "sample_std": 0.016423498512820385
+              "mean": 0.36444267536090735,
+              "median": 0.36909672797019194,
+              "min": 0.34653278343659394,
+              "max": 0.37769851467593624,
+              "sample_std": 0.016095678152479954
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -10061,7 +10061,7 @@
         "svo_pro",
         "default"
       ],
-      "value": 2.839214444612825,
+      "value": 2.841940670024045,
       "annotation": "2.84\nA3/E3/S3/F0\nB,L",
       "summary": {
         "identity": [
@@ -10106,21 +10106,21 @@
             "paper_usable": 1,
             "accepted_primary_ate": {
               "n": 1,
-              "mean": 3.932585306039852,
-              "median": 3.932585306039852,
-              "min": 3.932585306039852,
-              "max": 3.932585306039852,
+              "mean": 3.918701589889589,
+              "median": 3.918701589889589,
+              "min": 3.918701589889589,
+              "max": 3.918701589889589,
               "sample_std": null
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 2.8323926702165996,
-              "median": 2.839214444612825,
-              "min": 1.7253782599971215,
-              "max": 3.932585306039852,
-              "sample_std": 1.1036193358579778
+              "mean": 2.8299921489747892,
+              "median": 2.841940670024045,
+              "min": 1.7293341870107333,
+              "max": 3.918701589889589,
+              "sample_std": 1.0947326073354968
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -11283,10 +11283,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 2.526250147359369,
-              "median": 2.526250147359369,
-              "min": 2.526250147359369,
-              "max": 2.526250147359369,
+              "mean": 2.5237778423511172,
+              "median": 2.5237778423511172,
+              "min": 2.5237778423511172,
+              "max": 2.5237778423511172,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -11322,10 +11322,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 1.5995940435157963,
-              "median": 1.5995940435157963,
-              "min": 1.5995940435157963,
-              "max": 1.5995940435157963,
+              "mean": 1.5984057979997057,
+              "median": 1.5984057979997057,
+              "min": 1.5984057979997057,
+              "max": 1.5984057979997057,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -11361,10 +11361,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 1,
-              "mean": 1.8884691593486413,
-              "median": 1.8884691593486413,
-              "min": 1.8884691593486413,
-              "max": 1.8884691593486413,
+              "mean": 1.887199238898095,
+              "median": 1.887199238898095,
+              "min": 1.887199238898095,
+              "max": 1.887199238898095,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -12492,7 +12492,7 @@
         "dpvo",
         "default"
       ],
-      "value": 1.3922478513052485,
+      "value": 1.3937956557029452,
       "annotation": "1.39\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
@@ -12535,21 +12535,21 @@
             "paper_usable": 3,
             "accepted_primary_ate": {
               "n": 3,
-              "mean": 1.417447600695321,
-              "median": 1.3922478513052485,
-              "min": 1.305098151313395,
-              "max": 1.554996799467319,
-              "sample_std": 0.12684086137472228
+              "mean": 1.4189109306161103,
+              "median": 1.3937956557029452,
+              "min": 1.305857962938153,
+              "max": 1.5570791732072324,
+              "sample_std": 0.12747982937601599
             },
             "nonzero_exits": 0,
             "alignment": "sim3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 1.417447600695321,
-              "median": 1.3922478513052485,
-              "min": 1.305098151313395,
-              "max": 1.554996799467319,
-              "sample_std": 0.12684086137472228
+              "mean": 1.4189109306161103,
+              "median": 1.3937956557029452,
+              "min": 1.305857962938153,
+              "max": 1.5570791732072324,
+              "sample_std": 0.12747982937601599
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -13655,8 +13655,8 @@
         "orbslam3",
         "default"
       ],
-      "value": 0.2580643519642612,
-      "annotation": "0.258\nA3/E3/S3/F0\nB",
+      "value": 0.24992191287781032,
+      "annotation": "0.25\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vo-lc",
@@ -13704,11 +13704,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.24763982283394992,
-              "median": 0.2580643519642612,
-              "min": 0.2011206857358508,
-              "max": 0.28373443080173777,
-              "sample_std": 0.04228192077170067
+              "mean": 0.24013130427192617,
+              "median": 0.24992191287781032,
+              "min": 0.192669220997271,
+              "max": 0.27780277894069716,
+              "sample_std": 0.043403026215713174
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -14916,8 +14916,8 @@
         "ov2slam",
         "default"
       ],
-      "value": 0.7954674240671596,
-      "annotation": "0.795\nA3/E3/S0/F3\nV3,L",
+      "value": 0.7868759316931644,
+      "annotation": "0.787\nA3/E3/S0/F3\nV3,L",
       "summary": {
         "identity": [
           "vo-lc",
@@ -14960,21 +14960,21 @@
             "paper_usable": 3,
             "accepted_primary_ate": {
               "n": 3,
-              "mean": 2.8056697330352165,
-              "median": 0.7954674240671596,
-              "min": 0.750701125629883,
-              "max": 6.870840649408606,
-              "sample_std": 3.520612438179612
+              "mean": 2.8018055778707067,
+              "median": 0.7868759316931644,
+              "min": 0.7494334712354437,
+              "max": 6.869107330683512,
+              "sample_std": 3.522436393433794
             },
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 2.8056697330352165,
-              "median": 0.7954674240671596,
-              "min": 0.750701125629883,
-              "max": 6.870840649408606,
-              "sample_std": 3.520612438179612
+              "mean": 2.8018055778707067,
+              "median": 0.7868759316931644,
+              "min": 0.7494334712354437,
+              "max": 6.869107330683512,
+              "sample_std": 3.522436393433794
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -16077,7 +16077,7 @@
         "airslam",
         "default"
       ],
-      "value": 4.774576207951083,
+      "value": 4.767013010210018,
       "annotation": "4.77\nA3/E3/S3/F0\nK,B",
       "summary": {
         "identity": [
@@ -16126,11 +16126,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 5.089605121557542,
-              "median": 4.774576207951083,
-              "min": 3.8326719861329703,
-              "max": 6.661567170588575,
-              "sample_std": 1.4405187966371966
+              "mean": 5.083102002635217,
+              "median": 4.767013010210018,
+              "min": 3.8279299215058953,
+              "max": 6.654363076189735,
+              "sample_std": 1.4394843808889675
             },
             "dense_coverage_pct": {
               "n": 0,
@@ -17234,8 +17234,8 @@
         "okvis2",
         "default"
       ],
-      "value": 0.45224591074473136,
-      "annotation": "0.452\nA3/E3/S3/F0\nB",
+      "value": 0.4539910467625821,
+      "annotation": "0.454\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vo-lc",
@@ -17283,11 +17283,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.801191602263361,
-              "median": 0.45224591074473136,
-              "min": 0.36101437002744063,
-              "max": 1.5903145260179108,
-              "sample_std": 0.6849211926211727
+              "mean": 0.8029431219401211,
+              "median": 0.4539910467625821,
+              "min": 0.3649715764656264,
+              "max": 1.5898667425921549,
+              "sample_std": 0.6829478055298714
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -19519,8 +19519,8 @@
         "cuvslam",
         "default"
       ],
-      "value": 0.24777131257976964,
-      "annotation": "0.248\nA3/E3/S3/F0\nB",
+      "value": 0.2502629673545873,
+      "annotation": "0.25\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vo-lc",
@@ -19567,11 +19567,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 0.2443853652525907,
-              "median": 0.24777131257976964,
-              "min": 0.2368468727401857,
-              "max": 0.24853791043781673,
-              "sample_std": 0.006539768351301148
+              "mean": 0.2458304753290768,
+              "median": 0.2502629673545873,
+              "min": 0.23685537784013716,
+              "max": 0.25037308079250586,
+              "sample_std": 0.0077728574182394615
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -20667,7 +20667,7 @@
         "dpvo",
         "default"
       ],
-      "value": 1.9757460353735339,
+      "value": 1.9759240886121536,
       "annotation": "1.98\nA3/E3/S3/F0\nV3,L",
       "summary": {
         "identity": [
@@ -20710,21 +20710,21 @@
             "paper_usable": 3,
             "accepted_primary_ate": {
               "n": 3,
-              "mean": 2.0587191165986494,
-              "median": 1.9757460353735339,
-              "min": 1.7144581180140035,
-              "max": 2.4859531964084107,
-              "sample_std": 0.3923831840850094
+              "mean": 2.059450199753159,
+              "median": 1.9759240886121536,
+              "min": 1.7149735278848621,
+              "max": 2.4874529827624614,
+              "sample_std": 0.39295494078043214
             },
             "nonzero_exits": 0,
             "alignment": "sim3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 2.0587191165986494,
-              "median": 1.9757460353735339,
-              "min": 1.7144581180140035,
-              "max": 2.4859531964084107,
-              "sample_std": 0.3923831840850094
+              "mean": 2.059450199753159,
+              "median": 1.9759240886121536,
+              "min": 1.7149735278848621,
+              "max": 2.4874529827624614,
+              "sample_std": 0.39295494078043214
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -21851,7 +21851,7 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "9a79be863bb0490a7b6e909793c4d61a3ba9d48fe4d38c6dad96e20bb2f7a4ab",
+            "cohort": "pooled-70d62860857ec49692f35e3098ef851c4114835f1c25d1f222081070c2deb8a0",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
@@ -21879,16 +21879,16 @@
             },
             "dense_coverage_pct": {
               "n": 3,
-              "mean": 92.14004185944187,
-              "median": 97.47197202742359,
-              "min": 79.79325159613202,
-              "max": 99.15490195476997,
-              "sample_std": 10.72569278134105
+              "mean": 87.08747548627578,
+              "median": 98.30114395855891,
+              "min": 63.81072515581824,
+              "max": 99.15055734445019,
+              "sample_std": 20.16273059967013
             },
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run20001",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run20003"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/orbslam3/run63001",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/orbslam3/run64001",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/orbslam3/run64011"
             ]
           }
         ],
@@ -21916,14 +21916,14 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "9a79be863bb0490a7b6e909793c4d61a3ba9d48fe4d38c6dad96e20bb2f7a4ab",
+            "cohort": "pooled-70d62860857ec49692f35e3098ef851c4114835f1c25d1f222081070c2deb8a0",
             "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run20001",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/orbslam3/run20003"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/orbslam3/run63001",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/orbslam3/run64001",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/orbslam3/run64011"
             ]
           }
         ]
@@ -23224,8 +23224,8 @@
         "basalt",
         "default"
       ],
-      "value": 0.4623111577680311,
-      "annotation": "0.462\nA3/E3/S3/F0\nB",
+      "value": null,
+      "annotation": "no score\nA3/E3/S3/F0\ncohorts,B",
       "summary": {
         "identity": [
           "vio",
@@ -23252,11 +23252,11 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "45ecaf2018361e4e2667fc87bf177395f265f643d3bbfd166f70ee8d4ad02894",
-            "planned_members": 3,
-            "evaluated": 3,
+            "cohort": "87591a5c28bafa30c04b6237ee62b03dbf30ef091db5fa30e92050ef23f86e72",
+            "planned_members": 2,
+            "evaluated": 2,
             "outcomes": {
-              "ok": 3
+              "ok": 2
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -23271,31 +23271,70 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 3,
-              "mean": 0.46229339194273633,
-              "median": 0.4623111577680311,
-              "min": 0.4620231500469873,
-              "max": 0.46254586801319064,
-              "sample_std": 0.00026181145211629577
+              "n": 2,
+              "mean": 0.531621497331748,
+              "median": 0.531621497331748,
+              "min": 0.4405058565040199,
+              "max": 0.6227371381594762,
+              "sample_std": 0.12885697500288884
             },
             "dense_coverage_pct": {
-              "n": 3,
-              "mean": 99.99710511591839,
-              "median": 99.99710511591839,
-              "min": 99.99710511591839,
-              "max": 99.99710511591839,
+              "n": 2,
+              "mean": 99.99999999484962,
+              "median": 99.99999999484962,
+              "min": 99.99999999484962,
+              "max": 99.99999999484962,
               "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run20001",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run20003"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/basalt/run64007",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/basalt/run64017"
+            ]
+          },
+          {
+            "cohort": "c447584453803756881931f9f053358d9e37659409595b337370617a03e1421d",
+            "planned_members": 1,
+            "evaluated": 1,
+            "outcomes": {
+              "ok": 1
+            },
+            "qualified": 0,
+            "paper_usable": 0,
+            "accepted_primary_ate": {
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
+            },
+            "nonzero_exits": 0,
+            "alignment": "se3",
+            "conditional_primary_ate": {
+              "n": 1,
+              "mean": 0.6227085202273653,
+              "median": 0.6227085202273653,
+              "min": 0.6227085202273653,
+              "max": 0.6227085202273653,
+              "sample_std": null
+            },
+            "dense_coverage_pct": {
+              "n": 1,
+              "mean": 99.99999999484962,
+              "median": 99.99999999484962,
+              "min": 99.99999999484962,
+              "max": 99.99999999484962,
+              "sample_std": null
+            },
+            "run_paths": [
+              "results/vio/zed2i/sielinko_imupilot_full_a33/basalt/run63007"
             ]
           }
         ],
         "scientific_blockers": [
           "installed_basalt_binary_to_source_revision_not_established",
           "native_build_source_linkage_and_loaded_dependency_closure_unverified",
+          "within_cell_source_binary_parameter_or_hardware_mismatch",
           "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
           "zed_reference_orientation_unavailable",
           "zed_serial_specific_imu_rotation_and_time_offset_unverified"
@@ -23318,19 +23357,28 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "45ecaf2018361e4e2667fc87bf177395f265f643d3bbfd166f70ee8d4ad02894",
-            "attempts": 3,
+            "cohort": "87591a5c28bafa30c04b6237ee62b03dbf30ef091db5fa30e92050ef23f86e72",
+            "attempts": 2,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run20001",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/basalt/run20003"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/basalt/run64007",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/basalt/run64017"
+            ]
+          },
+          {
+            "cohort": "c447584453803756881931f9f053358d9e37659409595b337370617a03e1421d",
+            "attempts": 1,
+            "verified_completed": 0,
+            "missing_to_n3": null,
+            "run_paths": [
+              "results/vio/zed2i/sielinko_imupilot_full_a33/basalt/run63007"
             ]
           }
         ]
       },
       "flags": [
+        "cohorts",
         "B"
       ]
     },
@@ -24411,7 +24459,7 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "ea4b5384e4bd66db5ff2bc90fc3a3fda9ee79ef8521f563decdeca150f1b983e",
+            "cohort": "pooled-80b7815bd8eb926de1c5f2f185b323e89f37106beb3075c4e92cf17b31afe710",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
@@ -24446,9 +24494,9 @@
               "sample_std": null
             },
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run20003",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run20004"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/airslam/run63002",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/airslam/run64002",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/airslam/run64012"
             ]
           }
         ],
@@ -24477,14 +24525,14 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "ea4b5384e4bd66db5ff2bc90fc3a3fda9ee79ef8521f563decdeca150f1b983e",
+            "cohort": "pooled-80b7815bd8eb926de1c5f2f185b323e89f37106beb3075c4e92cf17b31afe710",
             "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run20003",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/airslam/run20004"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/airslam/run63002",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/airslam/run64002",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/airslam/run64012"
             ]
           }
         ]
@@ -25544,8 +25592,8 @@
         "okvis2",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S0/F3\nB",
+      "value": 1.6678839103185858,
+      "annotation": "1.67\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -25558,7 +25606,7 @@
         "attempted": 3,
         "evaluated": 3,
         "outcomes": {
-          "scale_collapse": 3
+          "ok": 3
         },
         "acceptance": {
           "blocked": 3
@@ -25567,17 +25615,16 @@
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "no_measured_processing_rate_or_realtime_deadline_claim",
-          "retain_observed_scale_collapse_in_attempt_denominator"
+          "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "97b52ed280975b5178c6be1b03079fc7b8e844bcdeaf814d6c18d76017fe06d1",
+            "cohort": "pooled-63a957511ddfb8900ddc125cb3397eeb12cd74ed306499e953ed30372c4c202d",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
-              "scale_collapse": 3
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -25592,25 +25639,25 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 1.8520174747488842,
+              "median": 1.6678839103185858,
+              "min": 1.429693666237422,
+              "max": 2.4584748476906446,
+              "sample_std": 0.5385411376955592
             },
             "dense_coverage_pct": {
               "n": 3,
-              "mean": 99.99276457440561,
-              "median": 99.99276457440561,
-              "min": 99.99276457440561,
-              "max": 99.99276457440561,
+              "mean": 99.99565945333684,
+              "median": 99.99565945333684,
+              "min": 99.99565945333684,
+              "max": 99.99565945333684,
               "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run20001",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run20003"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2/run63003",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2/run64003",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2/run64013"
             ]
           }
         ],
@@ -25625,8 +25672,8 @@
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
-        "successful_run_count": 0,
-        "observed_failure_count": 3,
+        "successful_run_count": 3,
+        "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
@@ -25638,14 +25685,14 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "97b52ed280975b5178c6be1b03079fc7b8e844bcdeaf814d6c18d76017fe06d1",
+            "cohort": "pooled-63a957511ddfb8900ddc125cb3397eeb12cd74ed306499e953ed30372c4c202d",
             "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run20001",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2/run20003"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2/run63003",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2/run64003",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2/run64013"
             ]
           }
         ]
@@ -26687,8 +26734,8 @@
         "okvis2x",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S0/F3\nB",
+      "value": 1.9648661838535282,
+      "annotation": "1.96\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -26701,7 +26748,7 @@
         "attempted": 3,
         "evaluated": 3,
         "outcomes": {
-          "scale_collapse": 3
+          "ok": 3
         },
         "acceptance": {
           "blocked": 3
@@ -26710,17 +26757,16 @@
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "no_measured_processing_rate_or_realtime_deadline_claim",
-          "retain_observed_scale_collapse_in_attempt_denominator"
+          "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "69c23bfda93c44311127657c4b144d0ffc1108d98400b4d64c660176adf0a4fd",
+            "cohort": "pooled-4c3b7a767aa840999bcee9dc0202599695a23ec0953ea593ed9944ed3d2a36ec",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
-              "scale_collapse": 3
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -26735,25 +26781,25 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 1.9061673070843415,
+              "median": 1.9648661838535282,
+              "min": 1.4303467523014708,
+              "max": 2.323288985098025,
+              "sample_std": 0.4493557904137846
             },
             "dense_coverage_pct": {
               "n": 3,
-              "mean": 99.99276457440561,
-              "median": 99.99276457440561,
-              "min": 99.99276457440561,
-              "max": 99.99276457440561,
+              "mean": 99.99565945333684,
+              "median": 99.99565945333684,
+              "min": 99.99565945333684,
+              "max": 99.99565945333684,
               "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run20001",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run20003"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2x/run63004",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2x/run64004",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2x/run64014"
             ]
           }
         ],
@@ -26768,8 +26814,8 @@
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
-        "successful_run_count": 0,
-        "observed_failure_count": 3,
+        "successful_run_count": 3,
+        "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
@@ -26781,14 +26827,14 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "69c23bfda93c44311127657c4b144d0ffc1108d98400b4d64c660176adf0a4fd",
+            "cohort": "pooled-4c3b7a767aa840999bcee9dc0202599695a23ec0953ea593ed9944ed3d2a36ec",
             "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run20001",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/okvis2x/run20003"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2x/run63004",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2x/run64004",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2x/run64014"
             ]
           }
         ]
@@ -27835,7 +27881,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA3/E3/S0/F3\nX,P,B",
+      "annotation": "no score\nA3/E3/S0/F3\nB",
       "summary": {
         "identity": [
           "vio",
@@ -27858,14 +27904,13 @@
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "disclose_rig_specific_algorithm_parameters_in_saved_parameter_review",
-          "export_coverage_below_95_percent_no_clean_success_tick",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "retain_observed_scale_collapse_in_attempt_denominator"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "pooled-7a62d8a6c5dc689de037e1b263240cbbaf901baf4305c75f22d7390c56d90e4d",
+            "cohort": "pooled-76b6591005acfbdbd1e43441ce11db851f90fb66e77e05421aea5a0e63fe4e17",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
@@ -27881,7 +27926,7 @@
               "max": null,
               "sample_std": null
             },
-            "nonzero_exits": 2,
+            "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 0,
@@ -27893,21 +27938,20 @@
             },
             "dense_coverage_pct": {
               "n": 3,
-              "mean": 33.41580319459373,
-              "median": 0.28506961679477805,
-              "min": 0.28506961679477805,
-              "max": 99.67727035019163,
-              "sample_std": 57.384113848775996
+              "mean": 99.67915677101364,
+              "median": 99.68009661049528,
+              "min": 99.67727709205033,
+              "max": 99.68009661049528,
+              "sample_std": 0.0016278497331778871
             },
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20001",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20003"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/openvins/run63008",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/openvins/run64008",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/openvins/run64018"
             ]
           }
         ],
         "scientific_blockers": [
-          "execution_exit_nonzero_or_unverified",
           "native_build_source_linkage_and_loaded_dependency_closure_unverified",
           "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
           "zed_reference_orientation_unavailable",
@@ -27931,21 +27975,19 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "pooled-7a62d8a6c5dc689de037e1b263240cbbaf901baf4305c75f22d7390c56d90e4d",
+            "cohort": "pooled-76b6591005acfbdbd1e43441ce11db851f90fb66e77e05421aea5a0e63fe4e17",
             "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20001",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/openvins/run20003"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/openvins/run63008",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/openvins/run64008",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/openvins/run64018"
             ]
           }
         ]
       },
       "flags": [
-        "X",
-        "P",
         "B"
       ]
     },
@@ -29189,7 +29231,7 @@
         "default"
       ],
       "value": null,
-      "annotation": "no score\nA3/E3/S0/F3\nX,P,B",
+      "annotation": "no score\nA3/E3/S0/F3\nB",
       "summary": {
         "identity": [
           "vio",
@@ -29211,14 +29253,13 @@
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "export_coverage_below_95_percent_no_clean_success_tick",
           "no_measured_processing_rate_or_realtime_deadline_claim",
           "retain_observed_scale_collapse_in_attempt_denominator"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "0e70ec0685fb689f861ce579e1b7a3fc5850f88f4b963ee99087551916f1248f",
+            "cohort": "pooled-2d8bbdd9fbc1514240f48f58f652e0581c95f57673f5e037996c9b559c5260a5",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
@@ -29234,7 +29275,7 @@
               "max": null,
               "sample_std": null
             },
-            "nonzero_exits": 3,
+            "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 0,
@@ -29246,21 +29287,20 @@
             },
             "dense_coverage_pct": {
               "n": 3,
-              "mean": 64.85404861306937,
-              "median": 64.85404861306937,
-              "min": 64.85404861306937,
-              "max": 64.85404861306937,
-              "sample_std": 0.0
+              "mean": 98.68845735625915,
+              "median": 98.4588522882396,
+              "min": 98.4588522882396,
+              "max": 99.14766749229825,
+              "sample_std": 0.39768764348517216
             },
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run20003",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run20004"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/voxel_svio/run63009",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/voxel_svio/run64009",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/voxel_svio/run64019"
             ]
           }
         ],
         "scientific_blockers": [
-          "execution_exit_nonzero_or_unverified",
           "native_build_source_linkage_and_loaded_dependency_closure_unverified",
           "zed_reference_camera_lever_arm_heading_and_altitude_assumptions_unverified",
           "zed_reference_orientation_unavailable",
@@ -29284,21 +29324,19 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "0e70ec0685fb689f861ce579e1b7a3fc5850f88f4b963ee99087551916f1248f",
+            "cohort": "pooled-2d8bbdd9fbc1514240f48f58f652e0581c95f57673f5e037996c9b559c5260a5",
             "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run20003",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/voxel_svio/run20004"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/voxel_svio/run63009",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/voxel_svio/run64009",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/voxel_svio/run64019"
             ]
           }
         ]
       },
       "flags": [
-        "X",
-        "P",
         "B"
       ]
     },
@@ -30343,8 +30381,8 @@
         "cuvslam",
         "default"
       ],
-      "value": 12.245658047913118,
-      "annotation": "12.2\nA3/E3/S3/F0\nB",
+      "value": 6.075161634268076,
+      "annotation": "6.08\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -30371,7 +30409,7 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "06b2ed497526b5f3296e28d51fbc596109b7c2712eb5ed92363a4b4cb40c8aff",
+            "cohort": "pooled-a8c66b979b2de09d5009e2f745152bc5dbd8c13f7a640c156f2b6c658e9cb54e",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
@@ -30391,11 +30429,11 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 14.028446924828835,
-              "median": 12.245658047913118,
-              "min": 12.099584645748392,
-              "max": 17.740098080824993,
-              "sample_std": 3.2152138478739962
+              "mean": 11.123115646737682,
+              "median": 6.075161634268076,
+              "min": 5.691374128579033,
+              "max": 21.602811177365936,
+              "sample_std": 9.077711001314324
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -30406,9 +30444,9 @@
               "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/cuvslam/run20001",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/cuvslam/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/cuvslam/run20003"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/cuvslam/run63005",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/cuvslam/run64005",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/cuvslam/run64015"
             ]
           }
         ],
@@ -30436,14 +30474,14 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "06b2ed497526b5f3296e28d51fbc596109b7c2712eb5ed92363a4b4cb40c8aff",
+            "cohort": "pooled-a8c66b979b2de09d5009e2f745152bc5dbd8c13f7a640c156f2b6c658e9cb54e",
             "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/cuvslam/run20001",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/cuvslam/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/cuvslam/run20003"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/cuvslam/run63005",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/cuvslam/run64005",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/cuvslam/run64015"
             ]
           }
         ]
@@ -31498,8 +31536,8 @@
         "svo_pro",
         "default"
       ],
-      "value": 0.6937318316414431,
-      "annotation": "0.694\nA3/E2/S2/F1\nX,B",
+      "value": 1.4408395245759023,
+      "annotation": "1.44\nA3/E2/S2/F1\nX,B",
       "summary": {
         "identity": [
           "vio",
@@ -31528,7 +31566,7 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "48c3c8c970cf253094ff671243ed205470678a41ccd3023137639127d78fa9c6",
+            "cohort": "pooled-bcbeec37cb0fc3f7a8cced359b30a2c33e03f4efc5ad45e844fa60bdbe8c6a17",
             "planned_members": 3,
             "evaluated": 2,
             "outcomes": {
@@ -31549,24 +31587,24 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 2,
-              "mean": 0.6937318316414431,
-              "median": 0.6937318316414431,
-              "min": 0.5068938403575289,
-              "max": 0.8805698229253573,
-              "sample_std": 0.2642288212402576
+              "mean": 1.4408395245759023,
+              "median": 1.4408395245759023,
+              "min": 1.0321601828014497,
+              "max": 1.8495188663503546,
+              "sample_std": 0.57795986779914
             },
             "dense_coverage_pct": {
               "n": 2,
-              "mean": 99.63099118817719,
-              "median": 99.63099118817719,
-              "min": 99.63099118817719,
-              "max": 99.63099118817719,
+              "mean": 99.62086258327982,
+              "median": 99.62086258327982,
+              "min": 99.62086258327982,
+              "max": 99.62086258327982,
               "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run20003",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run20004"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/svo_pro/run63006",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/svo_pro/run64006",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/svo_pro/run64016"
             ]
           }
         ],
@@ -31595,14 +31633,14 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "48c3c8c970cf253094ff671243ed205470678a41ccd3023137639127d78fa9c6",
+            "cohort": "pooled-bcbeec37cb0fc3f7a8cced359b30a2c33e03f4efc5ad45e844fa60bdbe8c6a17",
             "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run20003",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/svo_pro/run20004"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/svo_pro/run63006",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/svo_pro/run64006",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/svo_pro/run64016"
             ]
           }
         ]
@@ -32671,8 +32709,8 @@
         "mast3r_fusion",
         "default"
       ],
-      "value": 19.618553463382586,
-      "annotation": "19.6\nA3/E3/S3/F0\nB",
+      "value": 20.130016839300836,
+      "annotation": "20.1\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio",
@@ -32700,7 +32738,7 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "a1db0ff98b285a8577084a672fd4bb8cf1ef3fe0fb8794027c7dffe4c1928cf6",
+            "cohort": "pooled-bd3f07feef84bae8ad404f336f84ec996a108e7139af680bb80f05509a16838d",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
@@ -32720,10 +32758,10 @@
             "alignment": "se3",
             "conditional_primary_ate": {
               "n": 3,
-              "mean": 19.618553463382586,
-              "median": 19.618553463382586,
-              "min": 19.618553463382586,
-              "max": 19.618553463382586,
+              "mean": 20.130016839300836,
+              "median": 20.130016839300836,
+              "min": 20.130016839300836,
+              "max": 20.130016839300836,
               "sample_std": 0.0
             },
             "dense_coverage_pct": {
@@ -32735,9 +32773,9 @@
               "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20003",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20004"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run63010",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run64010",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run64020"
             ]
           }
         ],
@@ -32765,14 +32803,14 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "a1db0ff98b285a8577084a672fd4bb8cf1ef3fe0fb8794027c7dffe4c1928cf6",
+            "cohort": "pooled-bd3f07feef84bae8ad404f336f84ec996a108e7139af680bb80f05509a16838d",
             "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20002",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20003",
-              "results/vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20004"
+              "results/vio/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run63010",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run64010",
+              "results/vio/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run64020"
             ]
           }
         ]
@@ -33842,8 +33880,8 @@
         "orbslam3",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S0/F3\nP,B",
+      "value": 1.4772148727626657,
+      "annotation": "1.48\nA3/E3/S2/F1\nP,B",
       "summary": {
         "identity": [
           "vio-lc",
@@ -33856,7 +33894,8 @@
         "attempted": 3,
         "evaluated": 3,
         "outcomes": {
-          "scale_collapse": 3
+          "ok": 2,
+          "scale_collapse": 1
         },
         "acceptance": {
           "blocked": 3
@@ -33873,11 +33912,12 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "5801df7424d607941441454d7448ad8834504df128adc4d889bc1577787e5bb3",
+            "cohort": "43dbe5de5bd77636669fb37796b35380a7d80d27440b89585a91411dc6d17e94",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
-              "scale_collapse": 3
+              "ok": 2,
+              "scale_collapse": 1
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -33892,25 +33932,25 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 2,
+              "mean": 1.4772148727626657,
+              "median": 1.4772148727626657,
+              "min": 1.1343056112882393,
+              "max": 1.8201241342370924,
+              "sample_std": 0.4849469282404759
             },
             "dense_coverage_pct": {
               "n": 3,
-              "mean": 86.40389919914956,
-              "median": 81.52249604291072,
-              "min": 79.59355094284754,
-              "max": 98.09565061169044,
-              "sample_std": 10.17118457305997
+              "mean": 87.73286988584553,
+              "median": 99.9261966204134,
+              "min": 63.34621641670978,
+              "max": 99.9261966204134,
+              "sample_std": 21.11946141755947
             },
             "run_paths": [
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run20001",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run20002",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run20003"
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/orbslam3/run65001",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/orbslam3/run65008",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/orbslam3/run65015"
             ]
           }
         ],
@@ -33925,8 +33965,8 @@
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
-        "successful_run_count": 0,
-        "observed_failure_count": 3,
+        "successful_run_count": 2,
+        "observed_failure_count": 1,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
@@ -33938,14 +33978,14 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "5801df7424d607941441454d7448ad8834504df128adc4d889bc1577787e5bb3",
+            "cohort": "43dbe5de5bd77636669fb37796b35380a7d80d27440b89585a91411dc6d17e94",
             "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run20001",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run20002",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3/run20003"
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/orbslam3/run65001",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/orbslam3/run65008",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/orbslam3/run65015"
             ]
           }
         ]
@@ -35112,8 +35152,8 @@
         "airslam",
         "default"
       ],
-      "value": 39.56055710377735,
-      "annotation": "39.6\nA3/E3/S1/F2\nK,B",
+      "value": null,
+      "annotation": "no score\nA3/E3/S0/F3\nK,B",
       "summary": {
         "identity": [
           "vio-lc",
@@ -35126,8 +35166,7 @@
         "attempted": 3,
         "evaluated": 3,
         "outcomes": {
-          "ok": 1,
-          "scale_collapse": 2
+          "scale_collapse": 3
         },
         "acceptance": {
           "blocked": 3
@@ -35143,12 +35182,11 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "c349602d0e842e9f8b02571126e3a7ff4dd5f6218d5124c6e49ef94562c27254",
+            "cohort": "2e341c61c5a3be1a3eddf1ade93511ace6ea28cf5635a923c7f936b58358921d",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
-              "ok": 1,
-              "scale_collapse": 2
+              "scale_collapse": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -35163,11 +35201,11 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 39.56055710377735,
-              "median": 39.56055710377735,
-              "min": 39.56055710377735,
-              "max": 39.56055710377735,
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
               "sample_std": null
             },
             "dense_coverage_pct": {
@@ -35179,9 +35217,9 @@
               "sample_std": null
             },
             "run_paths": [
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/airslam/run40021",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/airslam/run40022",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/airslam/run40023"
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/airslam/run65002",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/airslam/run65009",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/airslam/run65016"
             ]
           }
         ],
@@ -35197,8 +35235,8 @@
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
-        "successful_run_count": 1,
-        "observed_failure_count": 2,
+        "successful_run_count": 0,
+        "observed_failure_count": 3,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
@@ -35210,14 +35248,14 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "c349602d0e842e9f8b02571126e3a7ff4dd5f6218d5124c6e49ef94562c27254",
+            "cohort": "2e341c61c5a3be1a3eddf1ade93511ace6ea28cf5635a923c7f936b58358921d",
             "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/airslam/run40021",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/airslam/run40022",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/airslam/run40023"
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/airslam/run65002",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/airslam/run65009",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/airslam/run65016"
             ]
           }
         ]
@@ -36292,8 +36330,8 @@
         "okvis2",
         "default"
       ],
-      "value": null,
-      "annotation": "no score\nA3/E3/S0/F3\nB",
+      "value": 0.24650400068021816,
+      "annotation": "0.247\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio-lc",
@@ -36306,7 +36344,7 @@
         "attempted": 3,
         "evaluated": 3,
         "outcomes": {
-          "scale_collapse": 3
+          "ok": 3
         },
         "acceptance": {
           "blocked": 3
@@ -36316,17 +36354,16 @@
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "final_ba_disabled",
-          "no_measured_processing_rate_or_realtime_deadline_claim",
-          "retain_observed_scale_collapse_in_attempt_denominator"
+          "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "de1515f1f8b821c80f3d93ead371e967342e384b5d5647f28cd6a8d8d55392e4",
+            "cohort": "25061e196d5fc77cfbe8da9f2ebbda967ddacf6d931919ce0cbc365a3f0b5dcd",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
-              "scale_collapse": 3
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -36341,25 +36378,25 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 0,
-              "mean": null,
-              "median": null,
-              "min": null,
-              "max": null,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.34370324310945805,
+              "median": 0.24650400068021816,
+              "min": 0.2446922601198597,
+              "max": 0.5399134685282962,
+              "sample_std": 0.1699254543031973
             },
             "dense_coverage_pct": {
               "n": 3,
-              "mean": 99.99276457440561,
-              "median": 99.99276457440561,
-              "min": 99.99276457440561,
-              "max": 99.99276457440561,
+              "mean": 99.99565945333684,
+              "median": 99.99565945333684,
+              "min": 99.99565945333684,
+              "max": 99.99565945333684,
               "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run20001",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run20002",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run20003"
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2/run65003",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2/run65010",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2/run65017"
             ]
           }
         ],
@@ -36374,8 +36411,8 @@
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
-        "successful_run_count": 0,
-        "observed_failure_count": 3,
+        "successful_run_count": 3,
+        "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
@@ -36387,14 +36424,14 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "de1515f1f8b821c80f3d93ead371e967342e384b5d5647f28cd6a8d8d55392e4",
+            "cohort": "25061e196d5fc77cfbe8da9f2ebbda967ddacf6d931919ce0cbc365a3f0b5dcd",
             "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run20001",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run20002",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2/run20003"
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2/run65003",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2/run65010",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2/run65017"
             ]
           }
         ]
@@ -37442,8 +37479,8 @@
         "okvis2x",
         "default"
       ],
-      "value": 0.3426784699609959,
-      "annotation": "0.343\nA3/E3/S1/F2\nB",
+      "value": 0.32412365652531494,
+      "annotation": "0.324\nA3/E3/S3/F0\nB",
       "summary": {
         "identity": [
           "vio-lc",
@@ -37456,8 +37493,7 @@
         "attempted": 3,
         "evaluated": 3,
         "outcomes": {
-          "ok": 1,
-          "scale_collapse": 2
+          "ok": 3
         },
         "acceptance": {
           "blocked": 3
@@ -37467,18 +37503,16 @@
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
           "final_ba_enabled_with_extrinsic_optimization",
-          "no_measured_processing_rate_or_realtime_deadline_claim",
-          "retain_observed_scale_collapse_in_attempt_denominator"
+          "no_measured_processing_rate_or_realtime_deadline_claim"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "a2574e75bea508c6bc645dff602341a888441cca3bc990b2c0929bf685c24bb4",
+            "cohort": "a692e545875476df70f223a09205c2fa54907def638055d7de531153d4d9d738",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
-              "ok": 1,
-              "scale_collapse": 2
+              "ok": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -37493,25 +37527,25 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 1,
-              "mean": 0.3426784699609959,
-              "median": 0.3426784699609959,
-              "min": 0.3426784699609959,
-              "max": 0.3426784699609959,
-              "sample_std": null
+              "n": 3,
+              "mean": 0.31902525868334514,
+              "median": 0.32412365652531494,
+              "min": 0.3000616391004177,
+              "max": 0.33289048042430275,
+              "sample_std": 0.01699789548983806
             },
             "dense_coverage_pct": {
               "n": 3,
-              "mean": 99.99276457440561,
-              "median": 99.99276457440561,
-              "min": 99.99276457440561,
-              "max": 99.99276457440561,
+              "mean": 99.99565945333684,
+              "median": 99.99565945333684,
+              "min": 99.99565945333684,
+              "max": 99.99565945333684,
               "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run20101",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run20102",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run20103"
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2x/run65004",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2x/run65011",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2x/run65018"
             ]
           }
         ],
@@ -37526,8 +37560,8 @@
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
-        "successful_run_count": 1,
-        "observed_failure_count": 2,
+        "successful_run_count": 3,
+        "observed_failure_count": 0,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
@@ -37539,14 +37573,14 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "a2574e75bea508c6bc645dff602341a888441cca3bc990b2c0929bf685c24bb4",
+            "cohort": "a692e545875476df70f223a09205c2fa54907def638055d7de531153d4d9d738",
             "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run20101",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run20102",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x/run20103"
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2x/run65004",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2x/run65011",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2x/run65018"
             ]
           }
         ]
@@ -38590,8 +38624,8 @@
         "cuvslam",
         "default"
       ],
-      "value": 12.291034700558908,
-      "annotation": "12.3\nA3/E3/S3/F0\nB",
+      "value": 17.70906936717804,
+      "annotation": "17.7\nA3/E3/S2/F1\nB",
       "summary": {
         "identity": [
           "vio-lc",
@@ -38604,7 +38638,8 @@
         "attempted": 3,
         "evaluated": 3,
         "outcomes": {
-          "ok": 3
+          "ok": 2,
+          "scale_collapse": 1
         },
         "acceptance": {
           "blocked": 3
@@ -38613,16 +38648,18 @@
         "claim_limits": [
           "accuracy_conditional_on_observed_exports_and_reference_support",
           "configuration_choices_are_not_evidence_of_algorithm_optimality",
-          "no_measured_processing_rate_or_realtime_deadline_claim"
+          "no_measured_processing_rate_or_realtime_deadline_claim",
+          "retain_observed_scale_collapse_in_attempt_denominator"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "a46d912b78858caa296d463b09d2b33c30b507e5f8e4ba57293cf6c5789e7dc5",
+            "cohort": "e4ab48989b837283f91c0a7fe554118f5173d130d65c14f75840b50e523a02da",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
-              "ok": 3
+              "ok": 2,
+              "scale_collapse": 1
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -38637,12 +38674,12 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 3,
-              "mean": 14.713748213610799,
-              "median": 12.291034700558908,
-              "min": 5.655715307440958,
-              "max": 26.19449463283253,
-              "sample_std": 10.481532312549833
+              "n": 2,
+              "mean": 17.70906936717804,
+              "median": 17.70906936717804,
+              "min": 13.780666867436805,
+              "max": 21.63747186691927,
+              "sample_std": 5.55560009359442
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -38653,9 +38690,9 @@
               "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run20001",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run20002",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run20003"
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/cuvslam/run65005",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/cuvslam/run65012",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/cuvslam/run65019"
             ]
           }
         ],
@@ -38670,8 +38707,8 @@
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
-        "successful_run_count": 3,
-        "observed_failure_count": 0,
+        "successful_run_count": 2,
+        "observed_failure_count": 1,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
@@ -38683,14 +38720,14 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "a46d912b78858caa296d463b09d2b33c30b507e5f8e4ba57293cf6c5789e7dc5",
+            "cohort": "e4ab48989b837283f91c0a7fe554118f5173d130d65c14f75840b50e523a02da",
             "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run20001",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run20002",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam/run20003"
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/cuvslam/run65005",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/cuvslam/run65012",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/cuvslam/run65019"
             ]
           }
         ]
@@ -39787,7 +39824,7 @@
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "49c82e0fa420acec684eb0b7ffb8e59064c6ba185391d4207d161a069b1f162e",
+            "cohort": "fb9abcd73de17e3734ae7b2a3bf187c3445fab2dc9e7f9b505a0eea7eb2d39e2",
             "planned_members": 3,
             "evaluated": 0,
             "outcomes": {
@@ -39822,9 +39859,9 @@
               "sample_std": null
             },
             "run_paths": [
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run20001",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run20002",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run20003"
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/svo_pro/run65006",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/svo_pro/run65013",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/svo_pro/run65020"
             ]
           }
         ],
@@ -39852,14 +39889,14 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "49c82e0fa420acec684eb0b7ffb8e59064c6ba185391d4207d161a069b1f162e",
+            "cohort": "fb9abcd73de17e3734ae7b2a3bf187c3445fab2dc9e7f9b505a0eea7eb2d39e2",
             "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run20001",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run20002",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro/run20003"
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/svo_pro/run65006",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/svo_pro/run65013",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/svo_pro/run65020"
             ]
           }
         ]
@@ -40947,8 +40984,8 @@
         "mast3r_fusion",
         "default"
       ],
-      "value": 20.284678314567806,
-      "annotation": "20.3\nA3/E3/S3/F0\nP,B",
+      "value": null,
+      "annotation": "no score\nA3/E3/S0/F3\nP,B",
       "summary": {
         "identity": [
           "vio-lc",
@@ -40961,7 +40998,7 @@
         "attempted": 3,
         "evaluated": 3,
         "outcomes": {
-          "ok": 3
+          "scale_collapse": 3
         },
         "acceptance": {
           "blocked": 3
@@ -40973,16 +41010,17 @@
           "export_coverage_below_95_percent_no_clean_success_tick",
           "keyframe_only_globally_optimised_trajectory",
           "no_measured_processing_rate_or_realtime_deadline_claim",
+          "retain_observed_scale_collapse_in_attempt_denominator",
           "single_camera_with_imu_scale_from_imu_and_learned_depth"
         ],
         "clean_qualified_n3": false,
         "cohorts": [
           {
-            "cohort": "156150f06065f02f7a7dceebd776c36c35a477feada1a34891088ab9f0c5bc91",
+            "cohort": "98e7d001f48adb0e47ce060e9e3a4b24bf8d61da7976476e8ed81613858146a8",
             "planned_members": 3,
             "evaluated": 3,
             "outcomes": {
-              "ok": 3
+              "scale_collapse": 3
             },
             "qualified": 0,
             "paper_usable": 0,
@@ -40997,12 +41035,12 @@
             "nonzero_exits": 0,
             "alignment": "se3",
             "conditional_primary_ate": {
-              "n": 3,
-              "mean": 20.284678314567806,
-              "median": 20.284678314567806,
-              "min": 20.284678314567806,
-              "max": 20.284678314567806,
-              "sample_std": 0.0
+              "n": 0,
+              "mean": null,
+              "median": null,
+              "min": null,
+              "max": null,
+              "sample_std": null
             },
             "dense_coverage_pct": {
               "n": 3,
@@ -41013,9 +41051,9 @@
               "sample_std": 0.0
             },
             "run_paths": [
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20001",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20002",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20003"
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run65007",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run65014",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run65021"
             ]
           }
         ],
@@ -41030,8 +41068,8 @@
         "attempt_count": 3,
         "completed_attempt_count": 3,
         "evaluated_trajectory_count": 3,
-        "successful_run_count": 3,
-        "observed_failure_count": 0,
+        "successful_run_count": 0,
+        "observed_failure_count": 3,
         "completed_export_shutdown_error_count": 0,
         "shutdown_error_count": 0,
         "unknown_outcome_count": 0,
@@ -41043,14 +41081,14 @@
         },
         "protocol_cohorts": [
           {
-            "cohort": "156150f06065f02f7a7dceebd776c36c35a477feada1a34891088ab9f0c5bc91",
+            "cohort": "98e7d001f48adb0e47ce060e9e3a4b24bf8d61da7976476e8ed81613858146a8",
             "attempts": 3,
             "verified_completed": 0,
             "missing_to_n3": null,
             "run_paths": [
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20001",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20002",
-              "results/vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion/run20003"
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run65007",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run65014",
+              "results/vio-lc/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run65021"
             ]
           }
         ]
@@ -44711,43 +44749,43 @@
   "figures": [
     {
       "path": "fig_campaign_outcomes.png",
-      "sha256": "150998d1a55f83a1e9d55a8ab13bcd9164e716b608b2a81493333007b2e6679b"
+      "sha256": "3f96117b114516f9efa4f02cba617cb3186f517e1260779711321b9f3934902f"
     },
     {
       "path": "fig_campaign_outcomes.pdf",
-      "sha256": "ba869f6dc7b8be8b2f496a5645111cd802d1391e29205bb2439663c56728f94f"
+      "sha256": "0359f1f742dd14e40575aa6fda5f570dd22b69d6f728f616469f7fd1ed11a0ba"
     },
     {
       "path": "fig_accuracy_vo_default.png",
-      "sha256": "754dfcfabf1dbc8112b15212c9030a806d81f49d5c36b27b2638bf26c7835efa"
+      "sha256": "ee49d9946c4cb241ba8f930e1005a2d538be1d8630e6dba6088b1332f8c68da0"
     },
     {
       "path": "fig_accuracy_vo_default.pdf",
-      "sha256": "ebd73bf40d78325c3862801f1b891129827ccf769bf81bce6694ca5479e8429e"
+      "sha256": "8e125ece258fc24dd30f568fd10831c215ab624ff7434cdeb0708a9f9e8f5282"
     },
     {
       "path": "fig_accuracy_vo-lc_default.png",
-      "sha256": "28fffa68dc39b7345f2aded66561705340273e1819e075d4b44599caf29fc4b3"
+      "sha256": "0028bff8725e07cde3059e9ebc94786082bf29e96661aa9bf9109186c2af83ca"
     },
     {
       "path": "fig_accuracy_vo-lc_default.pdf",
-      "sha256": "8ab3a85935f7a33bd801716e18e4d4ecd13a36ab843d37aa3c7c1c49d659fc58"
+      "sha256": "bd25d51ac8c3cb78fa043af1d491436d2f65295b6c7fb4c6b4f9fe3652cbf287"
     },
     {
       "path": "fig_accuracy_vio_default.png",
-      "sha256": "a3c82bbd72fc1f8813a7ac7825dc370a9b4d84bb88e09b4e7d51d7a93ef1a0f8"
+      "sha256": "001e1326b46b906338dea2f844f051c94ef1c3510976dc030c3a5103bbd14215"
     },
     {
       "path": "fig_accuracy_vio_default.pdf",
-      "sha256": "67f30bb3b92c028238c1640b630aa55f159a9b7c3554ebde2fdabe8c8be9046f"
+      "sha256": "46dba3c5ba022ec2e929f30be62e61d3de9ae3b0a81979be85f8b6698518434a"
     },
     {
       "path": "fig_accuracy_vio-lc_default.png",
-      "sha256": "9a8fd546c6fd52b299f9c09be87185822cb57cf0f78fe61ce66777a3691bf9a9"
+      "sha256": "b15a2d92db263d7ec3d153b27616b38c3aeb69bd791895c286080a1598ec6c08"
     },
     {
       "path": "fig_accuracy_vio-lc_default.pdf",
-      "sha256": "070d674d08cc0f0312da39c220ca8d36a533aefbd43d744793fea26ac716c49b"
+      "sha256": "41846f7833b0ffe738fbfcc5166e8e18afa9d07b86e91d8036507fe7757e9a94"
     },
     {
       "path": "fig_accuracy_gnss-vio_conventional_gps.png",
