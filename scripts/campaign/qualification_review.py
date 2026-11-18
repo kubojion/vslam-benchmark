@@ -9,6 +9,7 @@ import json
 from pathlib import Path
 from functools import lru_cache
 from acceptance_ledger import reviewed_decision, LEDGER, DOCUMENT
+from reference_carryover import RECORD as CARRYOVER
 
 REVIEW_DOCUMENT = 'docs/publication-qualification-20261001.md'
 
@@ -28,7 +29,7 @@ def review_identity(repo):
                           'docs/campaigns/rerun-findings-20261003.json',
                           'docs/campaigns/reference-sources-20261001.json',
                           'docs/reference-review-20261001.md') if (repo/p).is_file()]
-    paths += [p for p in (LEDGER, DOCUMENT) if (repo/p).is_file()]
+    paths += [p for p in (LEDGER, DOCUMENT, 'scripts/campaign/reference_carryover.py', CARRYOVER) if (repo/p).is_file()]
     if (repo/LEDGER).is_file():
         paths += [r['path'] for r in json.loads((repo/LEDGER).read_text()).get('supporting_evidence', [])]
     evidence = []

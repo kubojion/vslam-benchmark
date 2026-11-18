@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "dataset": "zed2i",
+  "sequence": "sielinko_imupilot_full_a33",
+  "variant": "primary",
+  "reference": {
+    "path": "datasets/zed2i/field1_110426_full_10fps_q90/references/gnss-epoch-v4-20261117/reference.json",
+    "sha256": "39604c1d9c6331fd7e2194860ac46453cde56aa573530d2ab334589f1941d18b"
+  },
+  "diagnostic_parent_sequence": "field1_110426_full_10fps_q90",
+  "diagnostic_only": true,
+  "purpose": "sequence alias: the a33 camera-IMU timing-corrected view of the full Sielinko recording (same images and times, corrected IMU); configs/campaigns/sielinko-a33-attempts-20261118.json",
+  "subset_times": {
+    "path": "datasets/zed2i/sielinko_imupilot_full_a33/times.txt",
+    "sha256": "7dda00e487f4c8ced3d08ca6fd3df2c1037eb8f572feca24158f168c5ed1d288"
+  },
+  "parent_times": {
+    "path": "datasets/zed2i/field1_110426_full_10fps_q90/times.txt",
+    "sha256": "7dda00e487f4c8ced3d08ca6fd3df2c1037eb8f572feca24158f168c5ed1d288"
+  }
+}

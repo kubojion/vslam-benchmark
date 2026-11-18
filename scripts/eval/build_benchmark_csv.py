@@ -155,6 +155,13 @@ def row_from_attempt(attempt,evaluation,cell,*,repo=REPO,membership='original_n3
     variant=variant or 'default';ev=evaluation;cov=ev.get('coverage',{});runtime=ev.get('runtime',{})
     if ev and ev.get('eval_schema')!=3:raise ValueError('only schema-3 evaluations may enter repaired CSVs')
     mode,ds,seq,algo=path.parts[1:5]
+    alias=attempt.get('sequence_alias')
+    if alias:
+        # A declared alias view (the a33 timing-corrected Sielinko input): the row belongs to the canonical cell;
+        # run_path keeps the attempt's own folder.
+        if not cell or alias['view']!=seq or cell['key']!='/'.join((mode,ds,alias['canonical'],algo)):
+            raise ValueError('sequence alias does not match its cell: '+attempt['path'])
+        seq=alias['canonical']
     mono=algo=='dpvo';alignment=ev.get('primary_alignment') or ('sim3' if mono else 'se3')
     status=ev.get('run_status') or ('missing' if not attempt['exists'] else
         'saved_not_evaluated' if attempt['trajectory_saved'] else

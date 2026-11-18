@@ -1,0 +1,2629 @@
+{
+ "schema": 1,
+ "decided": "User, 18 Nov 2026 (relayed verbatim by the lead): \"d1 pool yes apply mid search\"",
+ "decided_by": "user, generated",
+ "generated_by": "scripts/campaign/make_a33_pooling_record.py",
+ "policy": "Pool a listed a33 VIO cell across checkouts 80ecf61 (rep 1) and bb2e1e7 (reps 2-3) only if every algorithm-relevant receipt is byte-identical (pooled_cohort); only the workspace commit and the scripts/configs tree may differ, and for OpenVINS the listed post-run receipts. A mismatch keeps separate groups.",
+ "statement": {
+  "path": "/data/imoroz/sielinko-imu-pilot-20261116/readiness/n3-identical-execution.json",
+  "sha256": "023c3721785845266eb0977a3de989f7bfa93a6efa859c534a98575882197287",
+  "rule": "Identical-execution condition for VIO repetition 1 (the full N=1, run63001-63010) of the Rule C N=3 at the recorded correction.",
+  "verdict": "HOLDS: rep 1 = the full N=1 attempt of each system",
+  "code_diff_files": 20
+ },
+ "selection": {
+  "path": "configs/campaigns/sielinko-a33-attempts-20261118.json",
+  "sha256": "b8e751e63148756c5ae9a4ce8d6485a1316738367420db1968a34d66685a5a14"
+ },
+ "pending_user_decisions": {},
+ "cells": {
+  "vio/zed2i/field1_110426_full_10fps_q90/orbslam3": {
+   "runs": [
+    63001,
+    64001,
+    64011
+   ],
+   "workspace_commits": [
+    "80ecf6115d6a218b6a096a322adca841efae03c7",
+    "bb2e1e784fecc3d803464c0884c200ef8c721879"
+   ],
+   "basis": "identical-execution statement (camera-IMU lead, 16 Nov 2026): rep 1 = the full N=1 attempt; 17 must-equal fields equal for reps 2 and 3",
+   "identical_execution": [
+    {
+     "repetition": 2,
+     "run": 64001,
+     "compared_with": 63001,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "ddb372ccb57f7dc318f26612498ba415eaa55999af18d8f4f3f558a3afcf4437"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/ORB_SLAM3",
+        "3933e44c6923d21cfaec91a1582d8ce6d6db6210d7bef6e167990677166d1f84"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "5f058149181a9db1eeede0c8c33190b88875385268aeee16555a58404639d1ff"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "8595d240e1df5d5090b90aa2ee09b1423f37be7e4aedb1186983f2eff87a079c"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "525879cbfa2a8fd7126da38111075d53eaa41c009430ee8844f4b6b6fd739828"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "791adc0336b6171add573fcef9316019cc1cabafb3acbb6da3d0b5c4145b2c11"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "4001e673d2264fb741a57e398524fde0d8947cc38bc849678084f24910f88b57"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 22916
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "69ef1b64a62404bab1882a1e69928c39b607e8c98c68d29d96c87abf88000595"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "704f1b0a16c72c33b3ee1f5e2efac0d7574503d31e71aad3727f4627b26dd209"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "b123e281f1761a3056517a1295bf7f50e5b4cf026c9ca8427bdfdfec60de5f9a"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    },
+    {
+     "repetition": 3,
+     "run": 64011,
+     "compared_with": 63001,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "ddb372ccb57f7dc318f26612498ba415eaa55999af18d8f4f3f558a3afcf4437"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/ORB_SLAM3",
+        "3933e44c6923d21cfaec91a1582d8ce6d6db6210d7bef6e167990677166d1f84"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "5f058149181a9db1eeede0c8c33190b88875385268aeee16555a58404639d1ff"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "8595d240e1df5d5090b90aa2ee09b1423f37be7e4aedb1186983f2eff87a079c"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "525879cbfa2a8fd7126da38111075d53eaa41c009430ee8844f4b6b6fd739828"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "791adc0336b6171add573fcef9316019cc1cabafb3acbb6da3d0b5c4145b2c11"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "4001e673d2264fb741a57e398524fde0d8947cc38bc849678084f24910f88b57"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 22916
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "69ef1b64a62404bab1882a1e69928c39b607e8c98c68d29d96c87abf88000595"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "704f1b0a16c72c33b3ee1f5e2efac0d7574503d31e71aad3727f4627b26dd209"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "b123e281f1761a3056517a1295bf7f50e5b4cf026c9ca8427bdfdfec60de5f9a"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    }
+   ],
+   "lane": {
+    "name": "cpu1",
+    "cpus": "0-3",
+    "memory_bytes": 53687091200
+   }
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/airslam": {
+   "runs": [
+    63002,
+    64002,
+    64012
+   ],
+   "workspace_commits": [
+    "80ecf6115d6a218b6a096a322adca841efae03c7",
+    "bb2e1e784fecc3d803464c0884c200ef8c721879"
+   ],
+   "basis": "identical-execution statement (camera-IMU lead, 16 Nov 2026): rep 1 = the full N=1 attempt; 17 must-equal fields equal for reps 2 and 3",
+   "identical_execution": [
+    {
+     "repetition": 2,
+     "run": 64002,
+     "compared_with": 63002,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "0f5e9a37795cf646f4b0f8f27e97d9e1d12add49aedc6458ecea84e1facb44a5"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/airslam",
+        "d1de8ad9b116b7bb5b511c0e03c11d4622d6e1831868997c517a3d0ab135a3cd"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "d3b82700fce6aa2517b6f8c98617ba534d65defbb74bc77ff232c54e4f533063"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "81be5033aa8e461585d68512526dfe7ef1e71456842b201069ca7c127b1243fe"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "e6c006c5ae8b166990df8dd6a262eb74449979a75fe099b8589b7a77ec08b76b"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "acfda21d206034c1f282f1387be3af1403dc4225e9a25064a1f4aefc6b356337"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "0de5faaffa888fad1a3cccc8bd6e38caa8b9846c5345cfd350973cbcab38f5f3"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "f26d6085b60286e6d359a623488cfc26b44ace1105c00845916b7219d5110210"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 10800
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "42862a0b9e06ba1001b5daf4be84ccf08221ebdee3fba9a132b175a1db0822c0"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "4c3a62fc30bd1293217f7b0516aa817fbba9bc232e721af0215469c41ae5738e"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "9f90c03fdec9adc69c05daca16d0c16e22e3839e7d0dfe0d54b16f6773c03350"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    },
+    {
+     "repetition": 3,
+     "run": 64012,
+     "compared_with": 63002,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "0f5e9a37795cf646f4b0f8f27e97d9e1d12add49aedc6458ecea84e1facb44a5"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/airslam",
+        "d1de8ad9b116b7bb5b511c0e03c11d4622d6e1831868997c517a3d0ab135a3cd"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "d3b82700fce6aa2517b6f8c98617ba534d65defbb74bc77ff232c54e4f533063"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "81be5033aa8e461585d68512526dfe7ef1e71456842b201069ca7c127b1243fe"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "e6c006c5ae8b166990df8dd6a262eb74449979a75fe099b8589b7a77ec08b76b"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "acfda21d206034c1f282f1387be3af1403dc4225e9a25064a1f4aefc6b356337"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "0de5faaffa888fad1a3cccc8bd6e38caa8b9846c5345cfd350973cbcab38f5f3"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "f26d6085b60286e6d359a623488cfc26b44ace1105c00845916b7219d5110210"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 10800
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "42862a0b9e06ba1001b5daf4be84ccf08221ebdee3fba9a132b175a1db0822c0"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "4c3a62fc30bd1293217f7b0516aa817fbba9bc232e721af0215469c41ae5738e"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "9f90c03fdec9adc69c05daca16d0c16e22e3839e7d0dfe0d54b16f6773c03350"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    }
+   ],
+   "lane": {
+    "name": "exclusive_gpu",
+    "cpus": "16-23",
+    "memory_bytes": 53687091200
+   }
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/okvis2": {
+   "runs": [
+    63003,
+    64003,
+    64013
+   ],
+   "workspace_commits": [
+    "80ecf6115d6a218b6a096a322adca841efae03c7",
+    "bb2e1e784fecc3d803464c0884c200ef8c721879"
+   ],
+   "basis": "identical-execution statement (camera-IMU lead, 16 Nov 2026): rep 1 = the full N=1 attempt; 17 must-equal fields equal for reps 2 and 3",
+   "identical_execution": [
+    {
+     "repetition": 2,
+     "run": 64003,
+     "compared_with": 63003,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "21d38d7795246bbf2ecb65edd6daf64f03ef330b04ce67336290c561e09bce51"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/okvis2",
+        "0ac84b61a0210cbdc2df9fa1d8b97ddf65fb88694239d239f0fd6362d933c3cb"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "189895c3034886518b691193c960d28fd3db801ea8e59d168a7f1113b41806dc"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "49da6dbc58df1916d76fb3af37a0548daf8697c793ce290780a875020969117e"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "c4a37461eaf7a7494f8053ec97a8a9c9f5514b50319cd765880d5af572175e9d"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "020f51cae1781fb1c01c040358edbf1c014686250fd17a2a71a4ec1df5fc0af4"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "310a2ff6bfc7a298025ced500d9d8560a13512ec00eac46597dcbefae6eb3cd0"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 20080
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "fd5463ba3aa17ace2cdc7e61960e78421e4ca5a900d340e0a392301aaae00a1b"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "741e1eb2100387e1c61b0e12624b717f717be445b415c9fc9fedfcb003229582"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "64e4f352fb3c625b54320eb002acc80cb30233aabf69a4fce73ba4d7b618778a"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    },
+    {
+     "repetition": 3,
+     "run": 64013,
+     "compared_with": 63003,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "21d38d7795246bbf2ecb65edd6daf64f03ef330b04ce67336290c561e09bce51"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/okvis2",
+        "0ac84b61a0210cbdc2df9fa1d8b97ddf65fb88694239d239f0fd6362d933c3cb"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "189895c3034886518b691193c960d28fd3db801ea8e59d168a7f1113b41806dc"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "49da6dbc58df1916d76fb3af37a0548daf8697c793ce290780a875020969117e"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "c4a37461eaf7a7494f8053ec97a8a9c9f5514b50319cd765880d5af572175e9d"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "020f51cae1781fb1c01c040358edbf1c014686250fd17a2a71a4ec1df5fc0af4"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "310a2ff6bfc7a298025ced500d9d8560a13512ec00eac46597dcbefae6eb3cd0"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 20080
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "fd5463ba3aa17ace2cdc7e61960e78421e4ca5a900d340e0a392301aaae00a1b"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "741e1eb2100387e1c61b0e12624b717f717be445b415c9fc9fedfcb003229582"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "64e4f352fb3c625b54320eb002acc80cb30233aabf69a4fce73ba4d7b618778a"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    }
+   ],
+   "lane": {
+    "name": "cpu2",
+    "cpus": "4-7",
+    "memory_bytes": 53687091200
+   }
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/okvis2x": {
+   "runs": [
+    63004,
+    64004,
+    64014
+   ],
+   "workspace_commits": [
+    "80ecf6115d6a218b6a096a322adca841efae03c7",
+    "bb2e1e784fecc3d803464c0884c200ef8c721879"
+   ],
+   "basis": "identical-execution statement (camera-IMU lead, 16 Nov 2026): rep 1 = the full N=1 attempt; 17 must-equal fields equal for reps 2 and 3",
+   "identical_execution": [
+    {
+     "repetition": 2,
+     "run": 64004,
+     "compared_with": 63004,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "bfc6ffe35ccaf9733603bece7193422ccb8e009c238d76cbbf2cd800d521eaa2"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/okvis2x",
+        "5c846e46873ec7771ae7b4eb85aa9220dfc753e7bdf221bf8c587246a67a9202"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "991601b301ae5ed3f4418e55cb9c45c5923d220e4d472b1a5f8f13e164a09cb6"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "3dec6409e5f0279c08d6e0c9e970caf6e6ef29214693c3656f8948ed81cad161"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "75ac4e7f27eea788c6c8741187e2445c76a39d3bb10ef24c99ebdce8275e1f07"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "020f51cae1781fb1c01c040358edbf1c014686250fd17a2a71a4ec1df5fc0af4"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "310a2ff6bfc7a298025ced500d9d8560a13512ec00eac46597dcbefae6eb3cd0"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 17236
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "1a4f76cf6b8106c6fbe7fcab3cbd5b219ec78feb693b2d574cb8f840e98e1a65"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "41ec3d0b183a141b9dcfed81609e183da6a8163eb7fe0fdf304be3bb36b4a359"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "078547d31f95a188e5db606a6ce909e3480364871957f15118fce067cc5fca6a"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    },
+    {
+     "repetition": 3,
+     "run": 64014,
+     "compared_with": 63004,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "bfc6ffe35ccaf9733603bece7193422ccb8e009c238d76cbbf2cd800d521eaa2"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/okvis2x",
+        "5c846e46873ec7771ae7b4eb85aa9220dfc753e7bdf221bf8c587246a67a9202"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "991601b301ae5ed3f4418e55cb9c45c5923d220e4d472b1a5f8f13e164a09cb6"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "3dec6409e5f0279c08d6e0c9e970caf6e6ef29214693c3656f8948ed81cad161"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "75ac4e7f27eea788c6c8741187e2445c76a39d3bb10ef24c99ebdce8275e1f07"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "020f51cae1781fb1c01c040358edbf1c014686250fd17a2a71a4ec1df5fc0af4"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "310a2ff6bfc7a298025ced500d9d8560a13512ec00eac46597dcbefae6eb3cd0"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 17236
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "1a4f76cf6b8106c6fbe7fcab3cbd5b219ec78feb693b2d574cb8f840e98e1a65"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "41ec3d0b183a141b9dcfed81609e183da6a8163eb7fe0fdf304be3bb36b4a359"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "078547d31f95a188e5db606a6ce909e3480364871957f15118fce067cc5fca6a"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    }
+   ],
+   "lane": {
+    "name": "cpu2",
+    "cpus": "4-7",
+    "memory_bytes": 53687091200
+   }
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/cuvslam": {
+   "runs": [
+    63005,
+    64005,
+    64015
+   ],
+   "workspace_commits": [
+    "80ecf6115d6a218b6a096a322adca841efae03c7",
+    "bb2e1e784fecc3d803464c0884c200ef8c721879"
+   ],
+   "basis": "identical-execution statement (camera-IMU lead, 16 Nov 2026): rep 1 = the full N=1 attempt; 17 must-equal fields equal for reps 2 and 3",
+   "identical_execution": [
+    {
+     "repetition": 2,
+     "run": 64005,
+     "compared_with": 63005,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "228f6d6d4f9df2dc2443ec6afd17c5c274b1da5b3f2de794b019333ba095ffe7"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/cuvslam",
+        "0488c223c8e7cfc11538a5be9e53cdff80c78369fa65ca71df5a1f6023fca506"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "e7ed54faa0acfae74d87162d46aea755e05466d7453c2905374ee4bd10f5f5c6"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "10313b29d63374a5e178ddbce0c0611c3c56fa316cb4198b9ae2fee9a3a37e00"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "db98001e58c1e96e8e476f09d4690ac69c3be5ffb2a575f054cb715ebc776847"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "3454a224935b8e951aad7f7377c149d245b763b44a6b93535f2aaf0593a830f2"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "a1f4ad533e63a06b5f169aac7ed840771e5f553fcc5074e5d4c12031457a391e"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 1800
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "58ecf7f2b93745bdadbae4b990793187e4cfb2bf69d791bd0f0de63d2c4886bb"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "a4d17440650ff1c45a8047769ab42f1820a1ae795c26caef4c942e5505d370ee"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "cd8334c0407e2d0a0c442c7581f71e38a65028f0772ca4f5eaa84e7985f64509"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    },
+    {
+     "repetition": 3,
+     "run": 64015,
+     "compared_with": 63005,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "228f6d6d4f9df2dc2443ec6afd17c5c274b1da5b3f2de794b019333ba095ffe7"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/cuvslam",
+        "0488c223c8e7cfc11538a5be9e53cdff80c78369fa65ca71df5a1f6023fca506"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "e7ed54faa0acfae74d87162d46aea755e05466d7453c2905374ee4bd10f5f5c6"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "10313b29d63374a5e178ddbce0c0611c3c56fa316cb4198b9ae2fee9a3a37e00"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "db98001e58c1e96e8e476f09d4690ac69c3be5ffb2a575f054cb715ebc776847"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "3454a224935b8e951aad7f7377c149d245b763b44a6b93535f2aaf0593a830f2"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "a1f4ad533e63a06b5f169aac7ed840771e5f553fcc5074e5d4c12031457a391e"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 1800
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "58ecf7f2b93745bdadbae4b990793187e4cfb2bf69d791bd0f0de63d2c4886bb"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "a4d17440650ff1c45a8047769ab42f1820a1ae795c26caef4c942e5505d370ee"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "cd8334c0407e2d0a0c442c7581f71e38a65028f0772ca4f5eaa84e7985f64509"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    }
+   ],
+   "lane": {
+    "name": "gpu",
+    "cpus": "16-23",
+    "memory_bytes": 34359738368
+   }
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/svo_pro": {
+   "runs": [
+    63006,
+    64006,
+    64016
+   ],
+   "workspace_commits": [
+    "80ecf6115d6a218b6a096a322adca841efae03c7",
+    "bb2e1e784fecc3d803464c0884c200ef8c721879"
+   ],
+   "basis": "identical-execution statement (camera-IMU lead, 16 Nov 2026): rep 1 = the full N=1 attempt; 17 must-equal fields equal for reps 2 and 3",
+   "identical_execution": [
+    {
+     "repetition": 2,
+     "run": 64006,
+     "compared_with": 63006,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "b613d86c7860bcb1eafd0f6a88a2abbde77f27bd27664f6599ec446e8137c9e4"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/svo_pro",
+        "58136d13cc49bfcfcd3711ba7a369cfa4bc7a2ea89875b18a251373a3f8a74e6"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "6c44c8ee5b73c6dc9716e0d48bffae0003de0113f1d4b1ee370529a599bea079"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "24cd8aefbbf24b0e46a51da99ed2b6db7510d0a4093a94a078170f67c58bbfbc"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "5a5a52d3969a5eb75c9dbffeb2b5b1c3789520ac2b6643841ff11c64c6495475"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "791adc0336b6171add573fcef9316019cc1cabafb3acbb6da3d0b5c4145b2c11"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "4001e673d2264fb741a57e398524fde0d8947cc38bc849678084f24910f88b57"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 6056
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "152a29c4494201e6295585b4c03e7ddf7adb75c2bf8a74760530a6c75745a604"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "92702ed1f8f860694bb80e1566a7ca5a25355e7e0e38dbece8c49a376f7aab96"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "5ae4b8d0d16b3b789786ea4a56e95f0d9e0c32d1a9975d3ab36f99c730798d66"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    },
+    {
+     "repetition": 3,
+     "run": 64016,
+     "compared_with": 63006,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "b613d86c7860bcb1eafd0f6a88a2abbde77f27bd27664f6599ec446e8137c9e4"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/svo_pro",
+        "58136d13cc49bfcfcd3711ba7a369cfa4bc7a2ea89875b18a251373a3f8a74e6"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "6c44c8ee5b73c6dc9716e0d48bffae0003de0113f1d4b1ee370529a599bea079"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "24cd8aefbbf24b0e46a51da99ed2b6db7510d0a4093a94a078170f67c58bbfbc"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "5a5a52d3969a5eb75c9dbffeb2b5b1c3789520ac2b6643841ff11c64c6495475"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "791adc0336b6171add573fcef9316019cc1cabafb3acbb6da3d0b5c4145b2c11"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "4001e673d2264fb741a57e398524fde0d8947cc38bc849678084f24910f88b57"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 6056
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "152a29c4494201e6295585b4c03e7ddf7adb75c2bf8a74760530a6c75745a604"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "92702ed1f8f860694bb80e1566a7ca5a25355e7e0e38dbece8c49a376f7aab96"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "5ae4b8d0d16b3b789786ea4a56e95f0d9e0c32d1a9975d3ab36f99c730798d66"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    }
+   ],
+   "lane": {
+    "name": "cpu1",
+    "cpus": "0-3",
+    "memory_bytes": 53687091200
+   }
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/basalt": {
+   "runs": [
+    63007,
+    64007,
+    64017
+   ],
+   "workspace_commits": [
+    "80ecf6115d6a218b6a096a322adca841efae03c7",
+    "bb2e1e784fecc3d803464c0884c200ef8c721879"
+   ],
+   "basis": "identical-execution statement (camera-IMU lead, 16 Nov 2026): rep 1 = the full N=1 attempt; 17 must-equal fields equal for reps 2 and 3",
+   "identical_execution": [
+    {
+     "repetition": 2,
+     "run": 64007,
+     "compared_with": 63007,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "65ddbdb73d1312d2a3fe2e843d0c0ffb2c0f91aeda2ed40c2f7d776eb34f3e15"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        null,
+        "2486dc6c1adf545838898abcca1b0ebc5180e7fe68777e61754214588c5cfe14"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "9c246e5f36c50eb102735952a4430e10f927545363f492737a540017045b6c6f"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "05fd5c708ab298206ebf0e5de4088e2254c86d2b9d86cb7313b3482753809340"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "99741e31ad2cce188d13ab0ff0896342940dcbe9adaeeb5d23309fa385a8830e"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "aacdef391b88e7bf99f15fbed32011913787c219a269998c09b6c434bf041cf5"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 4128
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "39b49ac794b19edc5a935c97f2d7511613a02037e1e38c82526de5e9513097e5"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "6aaeeabaed1afb799fe3014b1227e412d0ab2136e28274e1a6bb93bf3912ab5a"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "1457556d7a234cfbf093f415f5ea8e8c991529dbe8cd8591b72fb56a2381a811"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    },
+    {
+     "repetition": 3,
+     "run": 64017,
+     "compared_with": 63007,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "65ddbdb73d1312d2a3fe2e843d0c0ffb2c0f91aeda2ed40c2f7d776eb34f3e15"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        null,
+        "2486dc6c1adf545838898abcca1b0ebc5180e7fe68777e61754214588c5cfe14"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "9c246e5f36c50eb102735952a4430e10f927545363f492737a540017045b6c6f"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "05fd5c708ab298206ebf0e5de4088e2254c86d2b9d86cb7313b3482753809340"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "99741e31ad2cce188d13ab0ff0896342940dcbe9adaeeb5d23309fa385a8830e"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "aacdef391b88e7bf99f15fbed32011913787c219a269998c09b6c434bf041cf5"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 4128
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "39b49ac794b19edc5a935c97f2d7511613a02037e1e38c82526de5e9513097e5"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "6aaeeabaed1afb799fe3014b1227e412d0ab2136e28274e1a6bb93bf3912ab5a"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "1457556d7a234cfbf093f415f5ea8e8c991529dbe8cd8591b72fb56a2381a811"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    }
+   ],
+   "lane": {
+    "name": "basalt",
+    "cpus": "0-7",
+    "memory_bytes": 53687091200
+   }
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/openvins": {
+   "runs": [
+    63008,
+    64008,
+    64018
+   ],
+   "workspace_commits": [
+    "80ecf6115d6a218b6a096a322adca841efae03c7",
+    "bb2e1e784fecc3d803464c0884c200ef8c721879"
+   ],
+   "basis": "identical-execution statement (camera-IMU lead, 16 Nov 2026): rep 1 = the full N=1 attempt; 17 must-equal fields equal for reps 2 and 3",
+   "identical_execution": [
+    {
+     "repetition": 2,
+     "run": 64008,
+     "compared_with": 63008,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "58243b8bb3333f5c7d8d00ec72ed0eddb7e87a85506c276636c395d1889a5b1d"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/open_vins",
+        "dcd0b02eaa4cb6fee6a21c4ae1b84dedde113405195176c5b38989466416bca4"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "fc46ce3fc9b1f71a84527f7a5f7550ca14584f2e94c0bddcda9afbfb72148d31"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "3ab640fe039c78abf7b83f105f47be3b40a2c09dcd56a5d872ed987799cb7ea6"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "020f51cae1781fb1c01c040358edbf1c014686250fd17a2a71a4ec1df5fc0af4"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "310a2ff6bfc7a298025ced500d9d8560a13512ec00eac46597dcbefae6eb3cd0"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 19172
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "ca006e53398a47412045bbf58160eb8e5d852aaa615a291279e05beddc93b6aa"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "fa8fa25206895eaba694ec6395b201ebe3fd0d1aa3a4e856fc4fa2d3623f3dc9"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "09d96c5d2e5c97f4079e935545e4cfc3b180902a8dfd791b0f7e531ffa47784c"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    },
+    {
+     "repetition": 3,
+     "run": 64018,
+     "compared_with": 63008,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "58243b8bb3333f5c7d8d00ec72ed0eddb7e87a85506c276636c395d1889a5b1d"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/open_vins",
+        "dcd0b02eaa4cb6fee6a21c4ae1b84dedde113405195176c5b38989466416bca4"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "fc46ce3fc9b1f71a84527f7a5f7550ca14584f2e94c0bddcda9afbfb72148d31"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "3ab640fe039c78abf7b83f105f47be3b40a2c09dcd56a5d872ed987799cb7ea6"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "020f51cae1781fb1c01c040358edbf1c014686250fd17a2a71a4ec1df5fc0af4"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "310a2ff6bfc7a298025ced500d9d8560a13512ec00eac46597dcbefae6eb3cd0"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 19172
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "ca006e53398a47412045bbf58160eb8e5d852aaa615a291279e05beddc93b6aa"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "fa8fa25206895eaba694ec6395b201ebe3fd0d1aa3a4e856fc4fa2d3623f3dc9"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "09d96c5d2e5c97f4079e935545e4cfc3b180902a8dfd791b0f7e531ffa47784c"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    }
+   ],
+   "lane": {
+    "name": "cpu2",
+    "cpus": "4-7",
+    "memory_bytes": 53687091200
+   },
+   "ignored_artifact_roles": {
+    "delivery_audit": {
+     "reason": "A receipt written after the run by the delivery check (scripts/run/run_openvins.sh: openvins_delivery_audit.json, or openvins_native_outcome.json after a native exit). It records observed delivery counts, the estimated final camera-IMU offset, output message counts and the log hash: outcomes, not settings. Estimator configuration, calibrations, transport profile, image mounts and the commit are identical across the runs.",
+     "decision": "User, 12 Nov 2026 (option b): these receipt differences cannot act on the estimate; each cell is one setup. Relayed by the engineer session.",
+     "record": {
+      "path": "configs/campaigns/rule-c-nonacting-differences-20261112.json",
+      "sha256": "c12763f5a286335ff6b833001ff73d1e3ee5d0884b93a2305f3d73de8df10e24"
+     }
+    },
+    "native_outcome": {
+     "reason": "A receipt written after the run by the delivery check (scripts/run/run_openvins.sh: openvins_delivery_audit.json, or openvins_native_outcome.json after a native exit). It records observed delivery counts, the estimated final camera-IMU offset, output message counts and the log hash: outcomes, not settings. Estimator configuration, calibrations, transport profile, image mounts and the commit are identical across the runs.",
+     "decision": "User, 12 Nov 2026 (option b): these receipt differences cannot act on the estimate; each cell is one setup. Relayed by the engineer session.",
+     "record": {
+      "path": "configs/campaigns/rule-c-nonacting-differences-20261112.json",
+      "sha256": "c12763f5a286335ff6b833001ff73d1e3ee5d0884b93a2305f3d73de8df10e24"
+     }
+    }
+   }
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio": {
+   "runs": [
+    63009,
+    64009,
+    64019
+   ],
+   "workspace_commits": [
+    "80ecf6115d6a218b6a096a322adca841efae03c7",
+    "bb2e1e784fecc3d803464c0884c200ef8c721879"
+   ],
+   "basis": "identical-execution statement (camera-IMU lead, 16 Nov 2026): rep 1 = the full N=1 attempt; 17 must-equal fields equal for reps 2 and 3",
+   "identical_execution": [
+    {
+     "repetition": 2,
+     "run": 64009,
+     "compared_with": 63009,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "246323504f5d6c1aa4430467b89d587bcbb7ba6a6359b126588034beccf260ec"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/voxel_svio",
+        "31d8193f1b39d4b703e04d1676a6a76fe87be30c576d0faa3d6990d78eb5de5f"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "28eb8159987f7d9308d6d5b7f935f099a64197f4ca6ac4bf7cd4f1939474278f"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "874f6302bb8803691840f45053ea2480a1e265b32e579d0ddf083f73aaf3ebc6"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "7fda8c2b3cb877161d7ebf81e545d6f747a8feaf275b02f1d05b9e29c168bdb8"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "24697d08b368005607098e3ad92bf9ba26e880d9d41095511f1f260f4c88dc66"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "791adc0336b6171add573fcef9316019cc1cabafb3acbb6da3d0b5c4145b2c11"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "4001e673d2264fb741a57e398524fde0d8947cc38bc849678084f24910f88b57"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 19164
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "58cbc7f85960ef0e5963bcfbf68b9ae87cc3458a130d8db275358d69723d7d9f"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "667b7040aeb9ff22bef16a6a6415578987c6c333772cca1416795f23ee2fea90"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "b17bf3190829fabc7f875c9cd70991873deaca145300d7fad8e19ded7128a1fe"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    },
+    {
+     "repetition": 3,
+     "run": 64019,
+     "compared_with": 63009,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "246323504f5d6c1aa4430467b89d587bcbb7ba6a6359b126588034beccf260ec"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/voxel_svio",
+        "31d8193f1b39d4b703e04d1676a6a76fe87be30c576d0faa3d6990d78eb5de5f"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "28eb8159987f7d9308d6d5b7f935f099a64197f4ca6ac4bf7cd4f1939474278f"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "874f6302bb8803691840f45053ea2480a1e265b32e579d0ddf083f73aaf3ebc6"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "7fda8c2b3cb877161d7ebf81e545d6f747a8feaf275b02f1d05b9e29c168bdb8"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "24697d08b368005607098e3ad92bf9ba26e880d9d41095511f1f260f4c88dc66"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "791adc0336b6171add573fcef9316019cc1cabafb3acbb6da3d0b5c4145b2c11"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "4001e673d2264fb741a57e398524fde0d8947cc38bc849678084f24910f88b57"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 19164
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "58cbc7f85960ef0e5963bcfbf68b9ae87cc3458a130d8db275358d69723d7d9f"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "667b7040aeb9ff22bef16a6a6415578987c6c333772cca1416795f23ee2fea90"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "b17bf3190829fabc7f875c9cd70991873deaca145300d7fad8e19ded7128a1fe"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": true
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    }
+   ],
+   "lane": {
+    "name": "cpu1",
+    "cpus": "0-3",
+    "memory_bytes": 53687091200
+   }
+  },
+  "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion": {
+   "runs": [
+    63010,
+    64010,
+    64020
+   ],
+   "workspace_commits": [
+    "80ecf6115d6a218b6a096a322adca841efae03c7",
+    "bb2e1e784fecc3d803464c0884c200ef8c721879"
+   ],
+   "basis": "identical-execution statement (camera-IMU lead, 16 Nov 2026): rep 1 = the full N=1 attempt; 17 must-equal fields equal for reps 2 and 3",
+   "identical_execution": [
+    {
+     "repetition": 2,
+     "run": 64010,
+     "compared_with": 63010,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "cda13f6b3161416f24431935f533db4d5c9107de04f938e18dd6d368a996f3dc"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/mast3r_fusion",
+        "8ede8a4d44879d617cc99b55b4acae56f9aa7b4d5c052e4b1dab6cb2f86789b1"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "90169497963ac4ad81ddbc3b8eac1e3974f439cbb62e26938878976a757d733f"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "1caee73a4e95ffe4cfe2da9172164f29afb059b0749061de1743df24a0d55fe2"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "aa550062aecdd155eba3432e107e943073b53adecf8e7735489b19b911741329"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "3454a224935b8e951aad7f7377c149d245b763b44a6b93535f2aaf0593a830f2"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "a1f4ad533e63a06b5f169aac7ed840771e5f553fcc5074e5d4c12031457a391e"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 15924
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "300d63a3f7e9bbd5c98f399d681de08fa663076f4e78e37e30693e144994fa39"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "b93a93911bc51b48aace7a5a54b9beb81b3d32a1286e6f1213dcddd861b364e8"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "b832d3f31217ed77ca972fdf2eaeefb317342151633de0dfbfa969fe9a141504"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    },
+    {
+     "repetition": 3,
+     "run": 64020,
+     "compared_with": 63010,
+     "must_equal": [
+      {
+       "field": "runtime_pin (binaries, libraries, container image: VSLAM_EXPECTED_RUNTIME_SHA256)",
+       "equal": true,
+       "value": "cda13f6b3161416f24431935f533db4d5c9107de04f938e18dd6d368a996f3dc"
+      },
+      {
+       "field": "native source tree (algorithm tree vs r1, identity gate)",
+       "equal": true,
+       "value": [
+        "src/mast3r_fusion",
+        "8ede8a4d44879d617cc99b55b4acae56f9aa7b4d5c052e4b1dab6cb2f86789b1"
+       ]
+      },
+      {
+       "field": "r1 reference provenance (implementation, runtime, inputs)",
+       "equal": true,
+       "value": "90169497963ac4ad81ddbc3b8eac1e3974f439cbb62e26938878976a757d733f"
+      },
+      {
+       "field": "configs (static pins, derived pins, recorded roles)",
+       "equal": true,
+       "value": "1caee73a4e95ffe4cfe2da9172164f29afb059b0749061de1743df24a0d55fe2"
+      },
+      {
+       "field": "config environment",
+       "equal": true,
+       "value": "aa550062aecdd155eba3432e107e943073b53adecf8e7735489b19b911741329"
+      },
+      {
+       "field": "container identity",
+       "equal": true,
+       "value": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      },
+      {
+       "field": "lane (name, cores, memory cap, MemoryHigh)",
+       "equal": true,
+       "value": "3454a224935b8e951aad7f7377c149d245b763b44a6b93535f2aaf0593a830f2"
+      },
+      {
+       "field": "scope limits (MemoryMax, MemorySwapMax=0, taskset)",
+       "equal": true,
+       "value": "a1f4ad533e63a06b5f169aac7ed840771e5f553fcc5074e5d4c12031457a391e"
+      },
+      {
+       "field": "timeout",
+       "equal": true,
+       "value": 15924
+      },
+      {
+       "field": "evaluator (interpreter, packages)",
+       "equal": true,
+       "value": "cd83599f23f4838d44547a7b65e76585b2a7ef11397fcfc4cf909b7f51843d19"
+      },
+      {
+       "field": "evaluator command (except run ID)",
+       "equal": true,
+       "value": "300d63a3f7e9bbd5c98f399d681de08fa663076f4e78e37e30693e144994fa39"
+      },
+      {
+       "field": "view (name, IMU, imu.csv, times, input identity)",
+       "equal": true,
+       "value": "267d717641e5ce0ae6536fc8992b2105a70c739b8653a521cf8f23286a2f8c0f"
+      },
+      {
+       "field": "mode and dataset",
+       "equal": true,
+       "value": [
+        "vio",
+        "zed2i"
+       ]
+      },
+      {
+       "field": "runner script and worker (inner command except run ID)",
+       "equal": true,
+       "value": "b93a93911bc51b48aace7a5a54b9beb81b3d32a1286e6f1213dcddd861b364e8"
+      },
+      {
+       "field": "wrapper environment (except per-run paths and the source pin)",
+       "equal": true,
+       "value": "b832d3f31217ed77ca972fdf2eaeefb317342151633de0dfbfa969fe9a141504"
+      },
+      {
+       "field": "docker shim",
+       "equal": true,
+       "value": "eed2afb4a36567832bc2c6f4397c7df993eac64616223cba15fb1bfd7df1ac20"
+      },
+      {
+       "field": "evaluation inputs (input views, evaluation.json pins)",
+       "equal": true,
+       "value": "0557d5e9200b44e20fd52ea7e8eb19ed209dad44106287d55ceb7b19384076d6"
+      }
+     ],
+     "other": [
+      {
+       "field": "run ID, unit, run dir, receipts, record, log",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "seed policy (MASt3R-Fusion 1000 + run ID, Rule C default)",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "job id and spec job file",
+       "category": "differs by construction",
+       "equal": false
+      },
+      {
+       "field": "source pin (workspace scripts/configs + algorithm tree)",
+       "category": "see code diff",
+       "equal": false
+      }
+     ]
+    }
+   ],
+   "lane": {
+    "name": "gpu",
+    "cpus": "16-23",
+    "memory_bytes": 34359738368
+   }
+  }
+ }
+}

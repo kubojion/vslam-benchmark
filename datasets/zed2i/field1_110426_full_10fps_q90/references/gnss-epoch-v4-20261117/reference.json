@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "version": "gnss-epoch-v4-20261117",
+  "scenario": "nominal",
+  "dataset": "zed2i",
+  "sequence": "field1_110426_full_10fps_q90",
+  "orientation_valid": false,
+  "nominal_geometry": false,
+  "origin_lat_lon_alt": [
+    52.291369976,
+    16.39219627,
+    120.94820000000001
+  ],
+  "antenna_above_left_camera_m": 1.643,
+  "lever_lens_from_rear_antenna_body_m": [
+    2.8556489451018434,
+    0.05999026149377179,
+    -1.643
+  ],
+  "attitude": {
+    "yaw": "dual-antenna baseline (as v3)",
+    "pitch": "antenna baseline elevation, 1-s centred box within support, median removed",
+    "roll": "ZED accelerometer, 1-s centred box, centripetal v_long*w_z removed",
+    "imu_stamps": "a33"
+  },
+  "timing": {
+    "convention": "t_epoch = t_camera + a(t_camera); a_p for positions, a_h for heading; seconds; Unix UTC; t relative to origin 1783069468179227815 ns",
+    "scenario": "nominal",
+    "definition": {
+      "kind": "shape",
+      "C_p": 0.15818027987493666,
+      "C_h": 0.12131862532863028,
+      "role": "working baseline (v4: measured-height C_p, v3 C_h)",
+      "S": "raw"
+    },
+    "decision_record": {
+      "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/decision-record.json",
+      "bytes": 19341,
+      "sha256": "4374957f6a546180eab56ab2c284da61d41c51aa8f28cb61b40b6bc687a66ba8"
+    }
+  },
+  "convention": "t_epoch = t_camera + a(t_camera); a_p for positions, a_h for heading; seconds; Unix UTC; t relative to origin 1783069468179227815 ns",
+  "time_origin_ns": 1783069468179227815,
+  "support_policy": "retained_intervals(reference_time, keep, maximum_gap_s=0.5) on the corrected timeline; a raw-index jump or >0.5 s gap splits an interval",
+  "approved_rejected_raw_samples": 448,
+  "approved_excursions": 15,
+  "screening_sha256": "e0a658c7af37e3db1dce068c56bd6d5f00ec9e0e37da0847bfa9369399e85f98",
+  "limitations": [
+    "PROVISIONAL camera-GNSS model",
+    "roll uses the camera IMU (low-passed accelerometer tilt only)",
+    "position-only reference; identity quaternions are placeholders",
+    "RTK float retained in primary; fixed-only sensitivity is mandatory"
+  ],
+  "frozen_source": {
+    "manifest": {
+      "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/reference-manifest.json",
+      "sha256": "12fb6627565988f43a40b43d63aa4e8f122147e854bc7b881a1d7de52a0b0f91"
+    },
+    "pinned_copy": "datasets/zed2i/field1_110426_full_10fps_q90/references/gnss-epoch-v4-20261117/reference-manifest.json",
+    "nominal_reference": {
+      "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal/reference.json",
+      "sha256": "a9cc6ad8e7856af03a16ee7692167b3607371fc2e6558421427a76ec8663f39f"
+    },
+    "decision_record": {
+      "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/decision-record.json",
+      "bytes": 19341,
+      "sha256": "4374957f6a546180eab56ab2c284da61d41c51aa8f28cb61b40b6bc687a66ba8"
+    },
+    "status": "frozen; PROVISIONAL timing model; not installed in any live selector"
+  },
+  "supersedes": {
+    "path": "datasets/zed2i/field1_110426_full_10fps_q90/references/gnss-position-v2-20261002/reference.json",
+    "sha256": "e965f3701dc9ba706c98cf26f481a4e374f6b7b5e54a63a1ca196b0b846f0301",
+    "note": "kept in place, byte-identical"
+  },
+  "variants": {
+    "primary": {
+      "trajectory": {
+        "path": "datasets/zed2i/field1_110426_full_10fps_q90/references/gnss-epoch-v4-20261117/primary.tum",
+        "sha256": "6ed64536d4579d5f145b77919f4c376d8814ec2d394a7048a85bb5494298f8f2"
+      },
+      "support": {
+        "path": "datasets/zed2i/field1_110426_full_10fps_q90/references/gnss-epoch-v4-20261117/primary-support.json",
+        "sha256": "5a0f0b13a3d2cc568ed48fc345f0a0898880e47c019ddfe8be7da18da01d46a4"
+      },
+      "retained_samples": 22659,
+      "support_intervals": 16,
+      "policy": "RTK fixed + float, approved screening removed (search/historical route)"
+    },
+    "fixed_only": {
+      "trajectory": {
+        "path": "datasets/zed2i/field1_110426_full_10fps_q90/references/gnss-epoch-v4-20261117/fixed_only.tum",
+        "sha256": "a667f30fc2a8c20ab49ec87ca779ec2a8434a0aff4ea98d14cf4ecfec6c18648"
+      },
+      "support": {
+        "path": "datasets/zed2i/field1_110426_full_10fps_q90/references/gnss-epoch-v4-20261117/fixed_only-support.json",
+        "sha256": "d6ec8fc3b1115c0dcbc1069c786ac5c94aae2d15efc6eff4301a085ef4d28b87"
+      },
+      "retained_samples": 21696,
+      "support_intervals": 152,
+      "policy": "RTK fixed only, approved screening removed, float gaps kept (paper positional ATE route)"
+    }
+  },
+  "generated_by": "scripts/data/install_zed_reference_v4.py"
+}
