@@ -20,6 +20,7 @@ from run_repetitions import atomic_json
 from protocol_findings import historical_findings, USER_RERUN_DECISIONS
 from qualification_review import review_saved, review_identity
 from acceptance_ledger import cell_acceptance
+from reference_carryover import carried_selection_pin
 
 REPO=Path(__file__).resolve().parents[2]
 MODES=('vo','vo-lc','vio','vio-lc','gnss-vio')
@@ -40,7 +41,9 @@ def completed_zed_selections(repo):
             raise ValueError('unsafe completed-selection evidence path')
         p=repo/relative
         if not p.is_file() or evidence(p,repo)['sha256']!=item['sha256']:
-            raise ValueError('stale completed-selection evidence: '+str(relative))
+            # User decision D1 (18 Nov 2026): a pinned run_eval.json superseded only by the reference-v4 re-evaluation.
+            if not carried_selection_pin(repo,item):
+                raise ValueError('stale completed-selection evidence: '+str(relative))
         return p
     manifest=read(checked(value['source_manifest']))
     checked(value['batch_selection']);checked(value['pause_record'])
@@ -323,7 +326,8 @@ def config_consistent(attempts,pooling):
     configuration receipts differ only in the declared fields with their recorded values (pooled_cohort checked
     every other receipt byte for byte). Every other cell keeps the plain fingerprint comparison."""
     if len({a['config_fingerprint'] for a in attempts if a['config_fingerprint']})<=1:return True
-    return bool(pooling and pooling.get('status')=='pooled' and pooling.get('nonacting_user_decision'))
+    return bool(pooling and pooling.get('status')=='pooled' and
+                (pooling.get('nonacting_user_decision') or pooling.get('ignored_artifact_roles')))
 
 
 # User decision of 13 Nov 2026: three author-reported attempts (no machine record) are the repetitions of a closed
@@ -432,8 +436,10 @@ def pooled_cohort(repo, key, attempts, records=POOLING_RECORDS):
         if spec:listed.append((path,accepted_options(record,spec)))
     if not listed:return None
     selected=[a['path'] for a in attempts]
-    path,spec=next(((p,s) for p,s in listed if [f'results/{key}/run{i}' for i in s['runs']]==selected),listed[-1])
-    expected=[f'results/{key}/run{i}' for i in spec['runs']]
+    # Attempts of a declared alias view (the a33 cells) keep their own folders.
+    base=next((a['path'].rsplit('/run',1)[0] for a in attempts if a.get('sequence_alias')),f'results/{key}')
+    path,spec=next(((p,s) for p,s in listed if [f'{base}/run{i}' for i in s['runs']]==selected),listed[-1])
+    expected=[f'{base}/run{i}' for i in spec['runs']]
     def refused(reason):
         return dict(status='refused',reason=reason,record=evidence(path,repo),runs=expected)
     if [a['path'] for a in attempts]!=expected:
@@ -473,6 +479,9 @@ def pooled_cohort(repo, key, attempts, records=POOLING_RECORDS):
                         return refused(f"{d['name']} of {a['path']} differs from the non-acting record")
                     parameters.pop(d['name'],None)
         payload['parameters']=parameters
+        if spec.get('ignored_artifact_roles'):
+            # Post-run receipts (observations, not settings) that a recorded user decision sets aside.
+            payload['artifacts']=[x for x in payload.get('artifacts',[]) if x['role'] not in spec['ignored_artifact_roles']]
         if spec.get('ignored_runtime_fields'):
             # Harness runtime facts (e.g. the wrapper's Python version), listed after a user decision.
             payload['runtime']={k:v for k,v in (payload.get('runtime') or {}).items() if k not in spec['ignored_runtime_fields']}
@@ -493,6 +502,7 @@ def pooled_cohort(repo, key, attempts, records=POOLING_RECORDS):
                 ignored_parameters=spec.get('ignored_parameters',{}),
                 unreached_harness_limits=spec.get('unreached_harness_limits',{}),
                 ignored_runtime_fields=spec.get('ignored_runtime_fields',[]),
+                **(dict(ignored_artifact_roles=sorted(spec['ignored_artifact_roles'])) if spec.get('ignored_artifact_roles') else {}),
                 accepted_decisions=spec.get('accepted_decisions',[]),
                 disclosures=spec.get('disclosures',[]),
                 **(dict(nonacting_user_decision=dict(record=evidence(nonacting_path,repo),
@@ -620,6 +630,14 @@ def attempt_state_path(repo,key,run_id):
     return repo/'results/.attempt-state'/key.replace('/','__')/f'run{run_id}.json'
 
 
+# Sielinko Rule C VIO and VIO-LC on the a33 camera-IMU timing-corrected input (user go 16 Nov 2026; N=3 finished
+# 18 Nov). The top layer, above the paper completion and the author outcomes.
+A33_SELECTION='configs/campaigns/sielinko-a33-attempts-20261118.json'
+A33_LABEL='rule_c_sielinko_a33_20261118'
+# The a33 cells are pooled only by the record made for the a33 attempts (user, 18 Nov 2026: "pool yes").
+A33_POOLING_RECORDS=('configs/campaigns/sielinko-a33-cohort-pooling-20261118.json',)
+
+
 def paper_completion_selections(repo,lower,corrected=()):
     """Return (cells, superseded attempts, closed-cell dispositions) of the paper completion record.
 
@@ -676,6 +694,52 @@ def paper_completion_selections(repo,lower,corrected=()):
     return cells,superseded,{key:closed[key] for key in closed}
 
 
+def a33_selections(repo,lower,corrected=(),authored=()):
+    """Return (cell -> attempt paths relative to results/, superseded attempts, record evidence) of the a33 record.
+
+    The top layer. For each listed cell the record states the selection every earlier layer made (`previous`); a
+    difference refuses the record. The attempts keep their run ids and their own run folders under the a33 view;
+    the record declares that view an alias of the canonical recording (same images and times, timing-corrected
+    IMU), and the view's times must equal the canonical times byte for byte. Each attempt's saved state must be
+    the one the record pins (sha256), terminal, with the recorded identity. Every attempt the record replaces is
+    returned as superseded (historical cohort), never deleted.
+    """
+    path=repo/A33_SELECTION
+    if not path.is_file():return {},set(),None
+    value=read(path)
+    if value.get('schema')!=1:raise ValueError('unsupported a33 selection schema')
+    alias=value['alias']
+    times=[repo/'datasets'/alias['dataset']/s/'times.txt' for s in (alias['view'],alias['canonical'])]
+    if not all(t.is_file() for t in times) or times[0].read_bytes()!=times[1].read_bytes():
+        raise ValueError('a33 alias view times differ from the canonical recording')
+    paths={};superseded=set()
+    for key,ids in value['cells'].items():
+        mode,ds,seq,algo=key.split('/')
+        if ds!=alias['dataset'] or seq!=alias['canonical'] or mode not in alias['modes'] or len(ids)!=3 or len(set(ids))!=3:
+            raise ValueError('a33 selection lists a cell outside its alias or not three attempts: '+key)
+        if key in corrected or key in authored:raise ValueError('a33 selection may not change a corrected or author-reported cell: '+key)
+        previous=[int(i) for i in lower.get(key,[1,2,3])]
+        if value['previous'].get(key)!=previous:
+            raise ValueError(f'{key}: earlier selection differs from the one the a33 record replaces')
+        relatives=[]
+        for repetition,run_id in enumerate(ids,1):
+            view_key=f'{mode}/{ds}/{alias["view"]}/{algo}';relative=f'{view_key}/run{run_id}'
+            record=value['attempts'].get('results/'+relative)
+            if not record or (record['cell'],record['repetition'],record['run_id'])!=(key,repetition,run_id):
+                raise ValueError('a33 attempt is not recorded for its cell and repetition: '+relative)
+            state_path=attempt_state_path(repo,view_key,run_id)
+            if not state_path.is_file() or hashlib.sha256(state_path.read_bytes()).hexdigest()!=record['attempt_state']['sha256']:
+                raise ValueError('a33 attempt state differs from the record: '+relative)
+            state=read(state_path)
+            if state.get('status') not in TERMINAL or state.get('identity')!=dict(cohort=record['cohort'],repetition=1,physical_run_id=run_id):
+                raise ValueError('a33 attempt is not terminal or its identity differs from the record: '+relative)
+            if not (repo/'results'/relative/'run_meta.json').is_file():raise ValueError('a33 run folder missing: '+relative)
+            relatives.append(relative)
+        paths[key]=relatives
+        superseded.update(f'{key}/run{i}' for i in previous)
+    return paths,superseded,evidence(path,repo)
+
+
 def build(repo,stage):
     executed,executed_hash=load_manifest(repo/'logs/server-campaign/quality-final-n3-no-gnss/manifest.json')
     future,future_hash=load_manifest(repo/'configs/campaigns/quality-final.json')
@@ -688,6 +752,9 @@ def build(repo,stage):
     superseded.update(completion_superseded)
     check_nonacting_scope(repo,completion,corrected)
     authored=author_outcome_record(repo)
+    a33,a33_superseded,a33_record=a33_selections(repo,selections,corrected,authored)
+    selections.update({k:[int(r.rsplit('/run',1)[1]) for r in v] for k,v in a33.items()})
+    batch_labels.update(dict.fromkeys(a33,A33_LABEL));superseded.update(a33_superseded)
     for cell in expand_cells(future):
         key=cell_key(cell);attempts=[]
         ids=selections.get(key,[1,2,3])
@@ -698,13 +765,16 @@ def build(repo,stage):
             superseded.update(h['attempt'].removeprefix('results/') for h in authored[key]['historical_not_selected'])
             attempts=[author_attempt(repo,key,a) for a in authored[key]['attempts']]
         for repetition,physical_id in (enumerate(ids,1) if key not in authored else ()):
-            relative=f'{key}/run{physical_id}';members.add(relative)
+            relative=a33[key][repetition-1] if key in a33 else f'{key}/run{physical_id}';members.add(relative)
             attempt=saved_attempt(repo,relative,stage)
             attempt['logical_repetition']=repetition
+            if key in a33:
+                attempt['sequence_alias']=dict(view=relative.split('/')[2],canonical=key.split('/')[2],record=a33_record)
             attempts.append(attempt)
         # A reselected cell is pooled only by the record made for its new attempts.
         pooling=(None if key in authored else
-                 pooled_cohort(repo,key,attempts,(RULEC_POOLING,) if key in completion else POOLING_RECORDS))
+                 pooled_cohort(repo,key,attempts,A33_POOLING_RECORDS if key in a33 else
+                               (RULEC_POOLING,) if key in completion else POOLING_RECORDS))
         if pooling and pooling['status']=='pooled':
             for attempt in attempts:
                 attempt['recorded_cohort_fingerprint']=attempt['cohort_fingerprint']
@@ -741,7 +811,9 @@ def build(repo,stage):
         attempt_selection=evidence(repo/SELECTION,repo) if (repo/SELECTION).is_file() else None,
         additional_attempt_selections=([evidence(repo/ZED_SELECTION,repo)] if zed_selections else [])
             +[evidence(repo/name,repo) for name in BATCH_SELECTIONS if batch_selections and (repo/name).is_file()]
-            +[evidence(repo/name,repo) for name in (PAPER_COMPLETION_SELECTION,RULEC_POOLING,NONACTING,AUTHOR_OUTCOMES) if completion and (repo/name).is_file()],
+            +[evidence(repo/name,repo) for name in (PAPER_COMPLETION_SELECTION,RULEC_POOLING,NONACTING,AUTHOR_OUTCOMES) if completion and (repo/name).is_file()]
+            +([a33_record] if a33_record else [])
+            +[evidence(repo/name,repo) for name in A33_POOLING_RECORDS if a33_record and (repo/name).is_file()],
         cell_dispositions=dispositions,
         original_manifest=dict(path='logs/server-campaign/quality-final-n3-no-gnss/manifest.json',sha256=executed_hash),
         scope_source=dict(path='configs/campaigns/quality-final.json',sha256=future_hash,

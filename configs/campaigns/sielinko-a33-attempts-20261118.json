@@ -1,0 +1,1545 @@
+{
+  "schema": 1,
+  "label": "rule_c_sielinko_a33_20261118",
+  "decision": "User go, 16 Nov 2026 (\"yes go for n=3 vio + vio lc\", confirmed to the runner \"please go\"): Sielinko Rule C VIO and VIO-LC at N=3 on the a33 camera-IMU timing-corrected input. Promotion into main: pending the user's OK of PROGRESS/IMU-TIMING-TUNE/PROMOTION-A33.md",
+  "alias": {
+    "dataset": "zed2i",
+    "view": "sielinko_imupilot_full_a33",
+    "canonical": "field1_110426_full_10fps_q90",
+    "modes": [
+      "vio",
+      "vio-lc"
+    ],
+    "meaning": "same images and times as the canonical recording; IMU stamps corrected by a33 (t - 0.033 s - 5.572e-6 t)",
+    "imu0_sha256": "f3d0f8e95015ecc332e2fecfba3aefbbbe7102237050509dcbfc41e931fd87e6",
+    "imu_csv_sha256": "d031b943df8bff070ee47ba4cde84c4eac4e71babce3a496ae018b216e590af6",
+    "spec": {
+      "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/imu-pilot/input-views.json",
+      "sha256": "1526f6ed0651c8d684e900e6647e62f5796af070aeb92676b082c07d7104f78b"
+    }
+  },
+  "sources": {
+    "manifests": {
+      "full": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/manifests/full/manifest.json",
+        "sha256": "d545fa4169f16d258d396a11ff0293b7f4b9c60c4016a8665330e2e8da6c7f8c"
+      },
+      "n3": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/manifests/n3/manifest.json",
+        "sha256": "0450e3f4792364827a9490ec76cfb908b25c9e572ba00c43dc0462049161d042"
+      }
+    },
+    "tables": {
+      "full": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/results/full-n1-results.csv",
+        "sha256": "12e6ffddee0586444dd1c5d30671bf568e3f7c500ee7cf84370dcce8e0cb468b"
+      },
+      "n3": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/results/n3-results.csv",
+        "sha256": "7801eb238dd8e61121c7179332e86c603a12a6f09eb6fad120ba6e153ee67753"
+      }
+    }
+  },
+  "previous": {
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/airslam": [
+      40021,
+      40022,
+      40023
+    ],
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam": [
+      20001,
+      20002,
+      20003
+    ],
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion": [
+      20001,
+      20002,
+      20003
+    ],
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2": [
+      20001,
+      20002,
+      20003
+    ],
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x": [
+      20101,
+      20102,
+      20103
+    ],
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3": [
+      20001,
+      20002,
+      20003
+    ],
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro": [
+      20001,
+      20002,
+      20003
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/airslam": [
+      20004,
+      20002,
+      20003
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/basalt": [
+      20001,
+      20002,
+      20003
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/cuvslam": [
+      20001,
+      20002,
+      20003
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion": [
+      20004,
+      20002,
+      20003
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/okvis2": [
+      20001,
+      20002,
+      20003
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/okvis2x": [
+      20001,
+      20002,
+      20003
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/openvins": [
+      20001,
+      20002,
+      20003
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/orbslam3": [
+      20001,
+      20002,
+      20003
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/svo_pro": [
+      20004,
+      20002,
+      20003
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio": [
+      20004,
+      20002,
+      20003
+    ]
+  },
+  "cells": {
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/airslam": [
+      65002,
+      65009,
+      65016
+    ],
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam": [
+      65005,
+      65012,
+      65019
+    ],
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion": [
+      65007,
+      65014,
+      65021
+    ],
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2": [
+      65003,
+      65010,
+      65017
+    ],
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x": [
+      65004,
+      65011,
+      65018
+    ],
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3": [
+      65001,
+      65008,
+      65015
+    ],
+    "vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro": [
+      65006,
+      65013,
+      65020
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/airslam": [
+      63002,
+      64002,
+      64012
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/basalt": [
+      63007,
+      64007,
+      64017
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/cuvslam": [
+      63005,
+      64005,
+      64015
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion": [
+      63010,
+      64010,
+      64020
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/okvis2": [
+      63003,
+      64003,
+      64013
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/okvis2x": [
+      63004,
+      64004,
+      64014
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/openvins": [
+      63008,
+      64008,
+      64018
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/orbslam3": [
+      63001,
+      64001,
+      64011
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/svo_pro": [
+      63006,
+      64006,
+      64016
+    ],
+    "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio": [
+      63009,
+      64009,
+      64019
+    ]
+  },
+  "attempts": {
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/airslam/run65002": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/airslam",
+      "repetition": 1,
+      "run_id": 65002,
+      "job_id": "n3-a33-violc-r1-airslam",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__airslam/run65002.json",
+        "sha256": "6327db066e24931bc4842c381f58b1bce670315b1ff0af71bef81aec22653750"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65002.json",
+        "sha256": "8c38818dda4e239a7e75c490326954f175f35908dd9577245a676d770a3d8d50"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65002.json",
+        "sha256": "ed71a0be1b8fa98e1561b09cc355f2d1a792dbf863202178d3529a4f0a026e47"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/airslam/run65009": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/airslam",
+      "repetition": 2,
+      "run_id": 65009,
+      "job_id": "n3-a33-violc-r2-airslam",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__airslam/run65009.json",
+        "sha256": "31d5783163fa5d7557fcb4373bb711338aa09ddb0d22d59cfc1ca818b4e5706d"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65009.json",
+        "sha256": "f6b2660c2e461b32ef64bd7b68c682a50c643954d74181cda65152a351672eea"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65009.json",
+        "sha256": "5f0a2987a4dfcf465fc031fce7ac78aeebbdae3a95c1facadc947b2d3d8288df"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/airslam/run65016": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/airslam",
+      "repetition": 3,
+      "run_id": 65016,
+      "job_id": "n3-a33-violc-r3-airslam",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__airslam/run65016.json",
+        "sha256": "50af3917d58103fadddc95c75c34db3e4fc773311eb61d41b09dafc016033a3a"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65016.json",
+        "sha256": "cd05940b58085dfa6aabf174b21b4ea18258950e8a06038cd2f59d7f7fa2ce6a"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65016.json",
+        "sha256": "ff51e3fb2121ca3889e1c693b93db82afe454319be7a7b84df6f0699271b2f70"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/cuvslam/run65005": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam",
+      "repetition": 1,
+      "run_id": 65005,
+      "job_id": "n3-a33-violc-r1-cuvslam",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__cuvslam/run65005.json",
+        "sha256": "b5024766f00b51c45627ae4d905edb59f3fa091d8e4134c876697be7728522aa"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65005.json",
+        "sha256": "4a2df0ec4d919bde956556c66c7f850478fea28edf354384a18cfc10abcc1ba0"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65005.json",
+        "sha256": "022dc235c3ac3ef0507d4fc7f9b68140aba3fc4f865fa6e5af8cdedbab4efc3a"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/cuvslam/run65012": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam",
+      "repetition": 2,
+      "run_id": 65012,
+      "job_id": "n3-a33-violc-r2-cuvslam",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__cuvslam/run65012.json",
+        "sha256": "1ab99f837714347325be46afb7c535165b1cdfa732acfde2d92693d16860c72c"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65012.json",
+        "sha256": "10bd393d4df33ca46b76706d09e1a7e8e09436ee0fc431976b582371871b4a71"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65012.json",
+        "sha256": "9ec7e01b4a4a592585ebc94ab99580394bcc27ddae15757bf208faf049b381d6"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/cuvslam/run65019": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/cuvslam",
+      "repetition": 3,
+      "run_id": 65019,
+      "job_id": "n3-a33-violc-r3-cuvslam",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__cuvslam/run65019.json",
+        "sha256": "ea669a07b6578f0cef7ad491f1bd3bc7e45fd48b5a6a108c00bbe196d338bc99"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65019.json",
+        "sha256": "f0aca09a7e156f6ea2ca45157fa1a0f6ca534e721b9c0571b3dfbe7d0cf7eba0"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65019.json",
+        "sha256": "c97571b303d479bde4687427879acf5040e8cb6a8d65e8e4d90fe98b2011751b"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run65007": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion",
+      "repetition": 1,
+      "run_id": 65007,
+      "job_id": "n3-a33-violc-r1-mast3r_fusion",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__mast3r_fusion/run65007.json",
+        "sha256": "34c9cce53adcff821e90d51f7058a4b9e024a667543c483a2730b7e1a8500fd4"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65007.json",
+        "sha256": "2576ddc851beb351c5488838fc6d796c26ed1e636b812e4e7167d7db7e12d705"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65007.json",
+        "sha256": "93d595b22a5c37be167e35e71d675c7d51d2ce6f7b87b441fade82a7d62c2a62"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run65014": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion",
+      "repetition": 2,
+      "run_id": 65014,
+      "job_id": "n3-a33-violc-r2-mast3r_fusion",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__mast3r_fusion/run65014.json",
+        "sha256": "b7a9bc756bfa6cf7a189f2a75b73c14255f1ed86a0fc841bf8ebb7d461622018"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65014.json",
+        "sha256": "e2945439a912fd64860b1221f9a631c2c9d8c8e917adf90ac2ea7481122fcc0d"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65014.json",
+        "sha256": "efa8ef7c48265ccec471c203d9bf8d3d39d6e83a7f1f992e7738b2cb27869213"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run65021": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/mast3r_fusion",
+      "repetition": 3,
+      "run_id": 65021,
+      "job_id": "n3-a33-violc-r3-mast3r_fusion",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__mast3r_fusion/run65021.json",
+        "sha256": "8e3784b6395addb994950d918e226fb2e5e2715859742528b9b271fd3ca20c97"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65021.json",
+        "sha256": "975dd4a0daf15df25ad2b78b534d1b04fa41263d0b085d82d5b20ff1411dd077"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65021.json",
+        "sha256": "58fdf929d43523fbec9b000a659aadad9155f7f48992fcc0f496d9b6fc7eb9e9"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2/run65003": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2",
+      "repetition": 1,
+      "run_id": 65003,
+      "job_id": "n3-a33-violc-r1-okvis2",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__okvis2/run65003.json",
+        "sha256": "199c6c4d94f8a71a0eaff4df856f3c31fa9529cf61c83d1a475012141a469ab9"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65003.json",
+        "sha256": "aadb20d1cb0c1b482a70eeda3fc161c28855973d91f4b9ee075f82dec0228078"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65003.json",
+        "sha256": "82f63b7821d592689ade523e4afd2c1f74ac5b68780fbb38f19a82110486740c"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2/run65010": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2",
+      "repetition": 2,
+      "run_id": 65010,
+      "job_id": "n3-a33-violc-r2-okvis2",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__okvis2/run65010.json",
+        "sha256": "54d26683a093df79c33529e29644c817219da6493e5cc9a9a94c59388a248a3a"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65010.json",
+        "sha256": "8ec3472f71855214982b88359363de8a6bcf66edd24c2a87f9069fad140e79f8"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65010.json",
+        "sha256": "0d7feb3014ad2db14c87fa416e10d132ea8ecd96a11922d18cf3ed2c7588f7aa"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2/run65017": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2",
+      "repetition": 3,
+      "run_id": 65017,
+      "job_id": "n3-a33-violc-r3-okvis2",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__okvis2/run65017.json",
+        "sha256": "67488ec0240e4cbd11d04ca452dd6eee5dbb994c712ab74c426ba3335f58b993"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65017.json",
+        "sha256": "d237fc9987515d8967db9053ce913489b95946544cd8dc28198c39d746cc7d19"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65017.json",
+        "sha256": "2db2423d6e52221f9741cd9347239bcb43fe8f3a40aa0a7be5138c90b234a529"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2x/run65004": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x",
+      "repetition": 1,
+      "run_id": 65004,
+      "job_id": "n3-a33-violc-r1-okvis2x",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__okvis2x/run65004.json",
+        "sha256": "6340a95d46728cbc699552b67a17f734faa6c816980aae611d2873dc6c762fa0"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65004.json",
+        "sha256": "16c179f7995fc86451459098382526dde3a53b1c269f5cbc4a1ada5236a30e0e"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65004.json",
+        "sha256": "60798c112e67d5b8eaffe794f30eb217fa692534c0cc1a18248d1011888f452b"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2x/run65011": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x",
+      "repetition": 2,
+      "run_id": 65011,
+      "job_id": "n3-a33-violc-r2-okvis2x",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__okvis2x/run65011.json",
+        "sha256": "fc9652261456fb10f864408d98e3cb7c3ff88fae733a32698459902dd6764ca9"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65011.json",
+        "sha256": "237d859ee99d458c90fb31189d0a756f52dd3e04aedab3f58e7af2edba93597f"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65011.json",
+        "sha256": "e6e284ff583cfefb8668cdd2bf09f935949a9ccec63cfd11b6291d93f2d648ad"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/okvis2x/run65018": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/okvis2x",
+      "repetition": 3,
+      "run_id": 65018,
+      "job_id": "n3-a33-violc-r3-okvis2x",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__okvis2x/run65018.json",
+        "sha256": "efe7b9a3f5bbd7c02c1fb5b885e9334a3abe6805bfa2ac8cf017f1b8751ab0b6"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65018.json",
+        "sha256": "2f314dda94b96bd9545bbc8fb6ed8c28eff20292c65cadec5f2cc340da53f6b3"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65018.json",
+        "sha256": "e96770005c9b32251f0a1cfa5ea39a942e32c4d50bce6c25173dfdf51246d28a"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/orbslam3/run65001": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3",
+      "repetition": 1,
+      "run_id": 65001,
+      "job_id": "n3-a33-violc-r1-orbslam3",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__orbslam3/run65001.json",
+        "sha256": "e10d2f366c47ed376a5f5b9b93ccf6a4337529b1ce3029126171123be4c1ce9d"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65001.json",
+        "sha256": "14f2268b1adae7302690ad701e8a7bd6dc8d6794ca6f40fd11cb556ced7593cc"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65001.json",
+        "sha256": "669db8035585e729fc953b71f2c029b2742cfb602a114e544e3b3acc8fa006db"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/orbslam3/run65008": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3",
+      "repetition": 2,
+      "run_id": 65008,
+      "job_id": "n3-a33-violc-r2-orbslam3",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__orbslam3/run65008.json",
+        "sha256": "ef6bf1109574e50051a8d38fca96f749e068f9da583dbc509b783aa35f633591"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65008.json",
+        "sha256": "dd794e77256e139f7714f09ddab382b0e1b198ae51f60740d5b0c71de9b5911a"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65008.json",
+        "sha256": "ccf406d6b75ccfb0d93d9324df9bcb96b00512cc3feff6c3141623fa70742de8"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/orbslam3/run65015": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/orbslam3",
+      "repetition": 3,
+      "run_id": 65015,
+      "job_id": "n3-a33-violc-r3-orbslam3",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__orbslam3/run65015.json",
+        "sha256": "b52f23e22bda6d57ac11c6938f8cd3d557b6d46f1a9e2aa9c4e71601b831d54d"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65015.json",
+        "sha256": "2f68cddec5287a4df3e673745c1c691e1441466757aaebf117bdea22e302ea5a"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65015.json",
+        "sha256": "d575046f8a0aff05b44e329b574031702a89f1104aea110dcba9f07dcf85904f"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/svo_pro/run65006": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro",
+      "repetition": 1,
+      "run_id": 65006,
+      "job_id": "n3-a33-violc-r1-svo_pro",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__svo_pro/run65006.json",
+        "sha256": "8815605f713a47d11f37e496dad3f57ab596c8503a026cf0171dc32ee189c607"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65006.json",
+        "sha256": "1c28ce1cc0f35e49bdb23a62c0afe4bec12e532d11ecf989264e9b12da305d63"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65006.json",
+        "sha256": "c263b0fc280ef2e51cfdda0bfe6000d446bcecb4c3689bcc3c0cb4e5a133fbd5"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "",
+        "native_status": "wrapper_rc=0 native_exit=134",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/svo_pro/run65013": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro",
+      "repetition": 2,
+      "run_id": 65013,
+      "job_id": "n3-a33-violc-r2-svo_pro",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__svo_pro/run65013.json",
+        "sha256": "f62d8a20968cfe56f7e83f4f129f928b1c7d812ccdd5e1e74e8ba94248f74b98"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65013.json",
+        "sha256": "63e08e007208a3a6181af90ec2884ba405c3f2fd1a1b1dc039a01a6293919700"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65013.json",
+        "sha256": "00afd6494c75b09ddfba334c586b97a6d7e65148075d44a1faa76cb39c3c656e"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "",
+        "native_status": "wrapper_rc=0 native_exit=134",
+        "exit_code": "0"
+      }
+    },
+    "results/vio-lc/zed2i/sielinko_imupilot_full_a33/svo_pro/run65020": {
+      "cell": "vio-lc/zed2i/field1_110426_full_10fps_q90/svo_pro",
+      "repetition": 3,
+      "run_id": 65020,
+      "job_id": "n3-a33-violc-r3-svo_pro",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio-lc__zed2i__sielinko_imupilot_full_a33__svo_pro/run65020.json",
+        "sha256": "912c7c79c7a0e5a62ad05dabc943d9b275339612b179b897d7a75e42a24d6f6b"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run65020.json",
+        "sha256": "44bfc14468e74fd0ecc02d09cee5cb7b4d1a3c6e7bc7609d90b308a015644ed9"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run65020.json",
+        "sha256": "4b9fa4cf02910e6d4a5013a57ff39a6f0a3121441ad4100fc21f633b3e8cfc9b"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "",
+        "native_status": "wrapper_rc=0 native_exit=134",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/airslam/run63002": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/airslam",
+      "repetition": 1,
+      "run_id": 63002,
+      "job_id": "full-a33-airslam",
+      "phase": "full",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__airslam/run63002.json",
+        "sha256": "74c7437ad20eb44ab87134a6f07ec3e97580459c09abe15c0454a4bfa3a53e53"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run63002.json",
+        "sha256": "272c0612743ced662ff1d552bc4a4a07355e633dbab2f786c474a1b198bf32b9"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run63002.json",
+        "sha256": "cf2be1cd7d316f38b3eb98d8739f0992f4729c2f87c81f38770f8256202bb5b2"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/airslam/run64002": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/airslam",
+      "repetition": 2,
+      "run_id": 64002,
+      "job_id": "n3-a33-vio-r2-airslam",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__airslam/run64002.json",
+        "sha256": "6f610654dc2ae25ac20604e3e8a40db1f86eefab5c93fd520656878dadb69c63"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64002.json",
+        "sha256": "0b3510b0d5b0f1c7becc5b947a34851c1d005def93fec4c1cee8ddc24b187d4b"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64002.json",
+        "sha256": "abd4e615889bac9f82be51d433a0ad906f390e26b136d1c6243c76fd059792e7"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/airslam/run64012": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/airslam",
+      "repetition": 3,
+      "run_id": 64012,
+      "job_id": "n3-a33-vio-r3-airslam",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__airslam/run64012.json",
+        "sha256": "17d717d4a1f9b01cd10f8c161ff5990030ed6ccae52ac11fa8f3f07c10d12d78"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64012.json",
+        "sha256": "777dd6c1b16a9b2c60ca4500c3ab38bed541c4b7a9e21ca87947278650b5e017"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64012.json",
+        "sha256": "1a872ea476fabe4e15be84fc33ae4597f01db2662cec5c2fb670ad2072da5c32"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/basalt/run63007": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/basalt",
+      "repetition": 1,
+      "run_id": 63007,
+      "job_id": "full-a33-basalt",
+      "phase": "full",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__basalt/run63007.json",
+        "sha256": "4f2f794dd393d70e9ff1e4dcd99474b0eb058ee60714b263fec8193986c99759"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run63007.json",
+        "sha256": "f873fe420685d7b57f6e9e43d6ed686024a3e3507a137c5a0ae1d99bc37f9519"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run63007.json",
+        "sha256": "f3a91ad852ac6a9a50f6d34f588d83493204f00a8ae24e2b22a35629c8c59acc"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/basalt/run64007": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/basalt",
+      "repetition": 2,
+      "run_id": 64007,
+      "job_id": "n3-a33-vio-r2-basalt",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__basalt/run64007.json",
+        "sha256": "26c5934a9aaeb9016afaeb8d26b011c1b44d9a514e780e050feef15d2c1543f4"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64007.json",
+        "sha256": "758ec4769fc710b786c96bbbff1653e636f643fd86130c0636fb7f58f8249203"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64007.json",
+        "sha256": "34ca4b740696a25ecfa511c1dc198f547f78f88656ed338e68ea4f02a5812084"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/basalt/run64017": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/basalt",
+      "repetition": 3,
+      "run_id": 64017,
+      "job_id": "n3-a33-vio-r3-basalt",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__basalt/run64017.json",
+        "sha256": "3cd9f6645b49a3da9513004fb6e871d3652b67c554fbda3a19debd9b7a66c9bf"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64017.json",
+        "sha256": "ad287b5d49b14c20f5a9103b471c42a71c156066534c4f121405ad7ee3152fa5"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64017.json",
+        "sha256": "5335be19bc7d09fa2eceb2858fb34da36c1bb62a8e67f0f90f04b6c2bf6f9851"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/cuvslam/run63005": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/cuvslam",
+      "repetition": 1,
+      "run_id": 63005,
+      "job_id": "full-a33-cuvslam",
+      "phase": "full",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__cuvslam/run63005.json",
+        "sha256": "ed449ce84506c597286a9e235287fcdaff32766fecd4ea32cd9a03a0effbbebe"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run63005.json",
+        "sha256": "4812434dc733f3d862adf75acd12bcae0994d278d49a1f11e6d06e711e52b0ec"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run63005.json",
+        "sha256": "e2d8e013d7257e4b8234468c453db2d78e001abd3b30a53209420a292349861d"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/cuvslam/run64005": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/cuvslam",
+      "repetition": 2,
+      "run_id": 64005,
+      "job_id": "n3-a33-vio-r2-cuvslam",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__cuvslam/run64005.json",
+        "sha256": "e65a0eedf6a59c985c4ce066da9c1e1b2954c0ac62235c4c6e226d9817cba191"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64005.json",
+        "sha256": "67dffbb512b2adb48841d14558f57f2d873ccaee79cbe2c40fc5b17279edf44b"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64005.json",
+        "sha256": "ab6f955dcd7afd2f9f1e3bce77277de0d107cb7f510a2f6322b241437579bf1a"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/cuvslam/run64015": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/cuvslam",
+      "repetition": 3,
+      "run_id": 64015,
+      "job_id": "n3-a33-vio-r3-cuvslam",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__cuvslam/run64015.json",
+        "sha256": "0780c0b859af4739c289daaf89f191f4147d7ad34b65edd22bcca6d51a44c297"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64015.json",
+        "sha256": "4f2792c8493e7c318af92c839d16f19d29d676b100c87a65650f9df2bb4cfc95"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64015.json",
+        "sha256": "845859772728f5cfea23f491d3d1d302ac9f37f493f82208566d3ccf5e3d41e5"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run63010": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion",
+      "repetition": 1,
+      "run_id": 63010,
+      "job_id": "full-a33-mast3r_fusion",
+      "phase": "full",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__mast3r_fusion/run63010.json",
+        "sha256": "753ecf4c481935b01dd0508009adfd8b8a14d59f69cce8914656a32dca4fb6ba"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run63010.json",
+        "sha256": "87a90f585dee63bf1c5f644e9044de48ef72bddbc1a3404ede6fc0c9f77317fd"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run63010.json",
+        "sha256": "0b0f43378809587b6f67dac21486383f7898f6fbfcafd2ba481559e7061e702e"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run64010": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion",
+      "repetition": 2,
+      "run_id": 64010,
+      "job_id": "n3-a33-vio-r2-mast3r_fusion",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__mast3r_fusion/run64010.json",
+        "sha256": "dab206e9c8110c2b677f33bbc3495d74ce57a155e60770a2de0fccc6f9664c6e"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64010.json",
+        "sha256": "e31b41663c319a94e2e673d154afbe2e62e8f2d94c595c5e3a5e40931fe08852"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64010.json",
+        "sha256": "69e6e1a40c6fd3a4e1f6d74853243eb5ae49f3fbc02c43a41c5017344f872ed1"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/mast3r_fusion/run64020": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/mast3r_fusion",
+      "repetition": 3,
+      "run_id": 64020,
+      "job_id": "n3-a33-vio-r3-mast3r_fusion",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__mast3r_fusion/run64020.json",
+        "sha256": "e0baba20779e9e70a91f4639aa2a81099045a8ccda07310702f925e870afddd0"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64020.json",
+        "sha256": "aed12e6e6651d92d5d8377d5eabb8ac838fa8cd8568ef852078d25eda0f644b4"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64020.json",
+        "sha256": "96fefbfbd46080ff9846d378d88aa6acd20e50b1a153a07cd56070c668f2f697"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2/run63003": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/okvis2",
+      "repetition": 1,
+      "run_id": 63003,
+      "job_id": "full-a33-okvis2",
+      "phase": "full",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__okvis2/run63003.json",
+        "sha256": "513fc9786093bc811fce206e3200f1ddf96a9cbdc2e13c9269cb248b24d2cedc"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run63003.json",
+        "sha256": "70f6039d66ba7ec0ac776fa3da965710032d168df3ca641137e95ab6edf471ff"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run63003.json",
+        "sha256": "2d31e114f979794c8929a9eebefc5bd673cede289fc9da76022073c332c89aa9"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2/run64003": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/okvis2",
+      "repetition": 2,
+      "run_id": 64003,
+      "job_id": "n3-a33-vio-r2-okvis2",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__okvis2/run64003.json",
+        "sha256": "27b9b2da45b0a65d8a768ecc5fb416a176da2957a85b812492e8ce83d00685cf"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64003.json",
+        "sha256": "e46ac0e6cee6eea4577bb9de2441fd8b4e6ac9f175533bb05f4c77f952932f47"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64003.json",
+        "sha256": "dc555a8168e5d073d099637cbf4bf66d2a021bcb4bd10aab7832f3486149798b"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2/run64013": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/okvis2",
+      "repetition": 3,
+      "run_id": 64013,
+      "job_id": "n3-a33-vio-r3-okvis2",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__okvis2/run64013.json",
+        "sha256": "cd20d9ec75ec9423d064dbd3efd81ee1ec1adae2992d4099a2b122cd27ac9b40"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64013.json",
+        "sha256": "1f79607efb74a355b527dd547d2928bb1b2242c207d155a49198746fa91a8f5b"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64013.json",
+        "sha256": "426ceea687ac515e38ef8f75860317dab5b03c770d53a4a1762b26d64d5c7e16"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2x/run63004": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/okvis2x",
+      "repetition": 1,
+      "run_id": 63004,
+      "job_id": "full-a33-okvis2x",
+      "phase": "full",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__okvis2x/run63004.json",
+        "sha256": "1ac90d4773930b8a8fe7c14c63e23535045ed0dfa94810ecfbadd1528bf73fe1"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run63004.json",
+        "sha256": "5da657e3cabc2442513025db18c0de1179986cea4d7ebd6509019ea17d02d079"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run63004.json",
+        "sha256": "d2ca765b147c425580469af6b7006e34fdaca84e3dad06f0c090f7ae841928a3"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2x/run64004": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/okvis2x",
+      "repetition": 2,
+      "run_id": 64004,
+      "job_id": "n3-a33-vio-r2-okvis2x",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__okvis2x/run64004.json",
+        "sha256": "a5949fe179463845226744be824a62eb8a25357b5ba3ca7e81a377a4662292dd"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64004.json",
+        "sha256": "e0062def86576666e71530feb1b48f83e03f945bb7631b02873b68fa529c16a4"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64004.json",
+        "sha256": "74ab8cd59cf6a1c69781b0ae9379b17fdde7b51a543a521be1732bc0613efa5c"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/okvis2x/run64014": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/okvis2x",
+      "repetition": 3,
+      "run_id": 64014,
+      "job_id": "n3-a33-vio-r3-okvis2x",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__okvis2x/run64014.json",
+        "sha256": "e0d5b2de5b07efd9c040c5025da47e5c3309d9e9855c4ca8c6d313ec630e5c1f"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64014.json",
+        "sha256": "865419ea84a5c2e67c18f0f408bcaa2f4a8784150052ba4d062ec7642d585256"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64014.json",
+        "sha256": "5c78760af3187c674689830add238537bff5367777fa4455770d96c8446bb7a4"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/openvins/run63008": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/openvins",
+      "repetition": 1,
+      "run_id": 63008,
+      "job_id": "full-a33-openvins",
+      "phase": "full",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__openvins/run63008.json",
+        "sha256": "201aba01a4c083c831b0895449de14bf32d8ffff9c645f14855631fb40c14af3"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run63008.json",
+        "sha256": "912eb674cea8a579431b31a59ff6ffd9f9a31aea06e0273e531188794f974396"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run63008.json",
+        "sha256": "6a83c9ca9f5314328518c90dd5590610718dd7e363d0958955374b4bb0a4d704"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/openvins/run64008": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/openvins",
+      "repetition": 2,
+      "run_id": 64008,
+      "job_id": "n3-a33-vio-r2-openvins",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__openvins/run64008.json",
+        "sha256": "b10ef61f11f125f1a7f2c71e29920468371db598f984c0868cab884108b7c00d"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64008.json",
+        "sha256": "82f49a2c94baf8ace9733a0a69ddf89fe9a4e1e412856422350270a3d6ecbe9d"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64008.json",
+        "sha256": "c1c8df8ba9adde211898739d3c11b8738c5f1ed09cca7f97445a098c836c219a"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/openvins/run64018": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/openvins",
+      "repetition": 3,
+      "run_id": 64018,
+      "job_id": "n3-a33-vio-r3-openvins",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__openvins/run64018.json",
+        "sha256": "5d88b6bd37474ce58ab9cd974d002b3d446f42056620a638dd38980828eb5e13"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64018.json",
+        "sha256": "f36ae5404b29b72f813c41f2d54ffbd98ae3b9189569f9b0edcde5d5b0849b94"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64018.json",
+        "sha256": "c870224126b3f317129ea077c1304f144b04f45a4ace610a099c860f06baf40b"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/orbslam3/run63001": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/orbslam3",
+      "repetition": 1,
+      "run_id": 63001,
+      "job_id": "full-a33-orbslam3",
+      "phase": "full",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__orbslam3/run63001.json",
+        "sha256": "c02ead278fd85b7785089ef2c14220b23ef920b4a23cb552411c29e90bfa4a21"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run63001.json",
+        "sha256": "16183c063d46b91b3478cc24e01659159dbd1323043ea899e6bbea5c0e370fd1"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run63001.json",
+        "sha256": "b4d58a6e76e7a219c9e6eaf39e61836d1f9289d98f9e849cb0cfc69226605006"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/orbslam3/run64001": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/orbslam3",
+      "repetition": 2,
+      "run_id": 64001,
+      "job_id": "n3-a33-vio-r2-orbslam3",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__orbslam3/run64001.json",
+        "sha256": "792baa27a9d0a3b6e02df2d8c67cce992a702ee7231827500002df9a67fa94e9"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64001.json",
+        "sha256": "8039f695739363429ba84f15cf40ea305f25094d4039cccd2dd9f32c7ae65d56"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64001.json",
+        "sha256": "03282f8cdb330c20add7e8f5ad994d7b70c26cba295f6514a6223773d2246a17"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/orbslam3/run64011": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/orbslam3",
+      "repetition": 3,
+      "run_id": 64011,
+      "job_id": "n3-a33-vio-r3-orbslam3",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__orbslam3/run64011.json",
+        "sha256": "8f9f18016dd00a94d8a0cbd0232acca2c7f5add7827f213c3751cbd4f1f06e5c"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64011.json",
+        "sha256": "3ba9d3316c6a77db5c492c81ebb3ad7c42922733621e67a6af6f95993efa0fd1"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64011.json",
+        "sha256": "4ccae5e3c8237c2a95bb8428494ba2eaa27ba7de84b1bd5f701f9f5fd8c7815e"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/svo_pro/run63006": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/svo_pro",
+      "repetition": 1,
+      "run_id": 63006,
+      "job_id": "full-a33-svo_pro",
+      "phase": "full",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__svo_pro/run63006.json",
+        "sha256": "db44e7b7c80a1b9f2333bd2a0e22258570c071d9a13cb127fab3136a5b85af04"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run63006.json",
+        "sha256": "9ac5c71242fddbf5997073a67bd412a7650470841146984514f2714a41659203"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run63006.json",
+        "sha256": "14dec361e74cd113213bc186c96a169e2a0ce03e39e83cc434321ebe669b9e75"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "",
+        "native_status": "wrapper_rc=0 native_exit=134",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/svo_pro/run64006": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/svo_pro",
+      "repetition": 2,
+      "run_id": 64006,
+      "job_id": "n3-a33-vio-r2-svo_pro",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__svo_pro/run64006.json",
+        "sha256": "aa163752951fdfd9a1ffbe23ed932ce8aaacec49513128122641a489c4b8bf94"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64006.json",
+        "sha256": "6b7b4fff6ac6e823792113d1f3bf1a3b0401418e1d709e9110e07320009ac7d3"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64006.json",
+        "sha256": "a84000e57858fe7abda8cb457b3749ac64dd0c384870695b15b64b390000cda7"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/svo_pro/run64016": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/svo_pro",
+      "repetition": 3,
+      "run_id": 64016,
+      "job_id": "n3-a33-vio-r3-svo_pro",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__svo_pro/run64016.json",
+        "sha256": "9106946b9ba7dbf437e9035321f6b48942b8366a7dc86a86f40bf67bfc5595f7"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64016.json",
+        "sha256": "799f889828595bcaaa956429400c5694a01648ae01176c1af40bb6b3a3602a44"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64016.json",
+        "sha256": "9981449b157028409858c8b14a2428bb8f1d5f5bd29517a119fafff07ef0bf19"
+      },
+      "reviewed_outcome": {
+        "valid": "true",
+        "eval_status": "ok",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/voxel_svio/run63009": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio",
+      "repetition": 1,
+      "run_id": 63009,
+      "job_id": "full-a33-voxel_svio",
+      "phase": "full",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__voxel_svio/run63009.json",
+        "sha256": "9796488e5c0467a1d7318deb7036dccd2ab992ad24d7763f297cbf62b1df21aa"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run63009.json",
+        "sha256": "00d7fcbcd2589137fc061989c5a1a1c48f7ef9a3a2c2ed7dc3598fe6b45d96f2"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run63009.json",
+        "sha256": "762e14587a2f90c403de60ff644224e56888c9061000f6f33e421b355a75bc48"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/voxel_svio/run64009": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio",
+      "repetition": 2,
+      "run_id": 64009,
+      "job_id": "n3-a33-vio-r2-voxel_svio",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__voxel_svio/run64009.json",
+        "sha256": "fae90a6e991d6bf2c24cf69569fce7b538c9fe1fcca53123c2d77cddbb075bae"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64009.json",
+        "sha256": "4947a75566d38f7eb7126a489d2d3aead66a3538ac0d043a2463987aa447df3a"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64009.json",
+        "sha256": "7d4ecc80da290c978ba91a020515b0051472aeb0639d404c7c85d2627ff57874"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    },
+    "results/vio/zed2i/sielinko_imupilot_full_a33/voxel_svio/run64019": {
+      "cell": "vio/zed2i/field1_110426_full_10fps_q90/voxel_svio",
+      "repetition": 3,
+      "run_id": 64019,
+      "job_id": "n3-a33-vio-r3-voxel_svio",
+      "phase": "n3",
+      "cohort": "sielinko-imu-pilot-20261116",
+      "attempt_state": {
+        "path": "/data/imoroz/vslam-sielinko-imu-pilot-20261116/results/.attempt-state/vio__zed2i__sielinko_imupilot_full_a33__voxel_svio/run64019.json",
+        "sha256": "df06f7904fe7edc3682d44b573dc3b592487afa01cd9ff23f7c1225020d2306e"
+      },
+      "attempt_record": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/attempts/run64019.json",
+        "sha256": "72b134c782539ee34643369ae3d53afd2132a5591014cc5c842d2464a8857a31"
+      },
+      "review": {
+        "path": "/data/imoroz/sielinko-imu-pilot-20261116/reviews/run64019.json",
+        "sha256": "83d1d48b5e774ddd392d2ef99513ea7fed3eda88f2e4d7b7fb5f0b4f95e1d9b8"
+      },
+      "reviewed_outcome": {
+        "valid": "false",
+        "eval_status": "scale_collapse",
+        "native_status": "clean_exit",
+        "exit_code": "0"
+      }
+    }
+  }
+}

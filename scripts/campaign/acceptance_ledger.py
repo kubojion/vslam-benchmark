@@ -6,6 +6,7 @@ import json
 from functools import lru_cache
 from pathlib import Path
 from protocol_status import summarize_attempts
+from reference_carryover import RECORD, carried_evidence, carried_review
 
 LEDGER = 'docs/campaigns/paper-acceptance-20261001.json'
 DOCUMENT = 'docs/paper-acceptance-20261001.md'
@@ -41,15 +42,21 @@ def reviewed_decision(repo, relative, meta, evaluation, findings, snapshots, exi
     errors = []
     if bool(exists) != record['exists']:
         errors.append('attempt_presence_changed_since_claim_review')
+    # User decision D1 (18 Nov 2026): a review listed in the pinned carry-over record holds for the reference-v4
+    # re-evaluation when nothing but the reference changed (reference_carryover.only_reference_changed).
+    carried, carryover = False, None
     if numerical_digest(evaluation) != record['evaluation_sha256']:
-        errors.append('numerical_evidence_changed_since_claim_review')
+        carried, carryover = carried_review(repo, relative, evaluation, record)
+        if not carried:
+            errors.append('numerical_evidence_changed_since_claim_review')
     # Check original evidence directly as well as the evaluation signature. This
     # catches changed logs/configs even when old evaluation bytes remain in place.
     for item in record['evidence'] + ledger['supporting_evidence']:
         file = repo / item['path']
         stat = file.stat() if file.is_file() else None
         if stat is None or _hash_file(str(file), stat.st_mtime_ns, stat.st_size) != item['sha256']:
-            errors.append('reviewed_evidence_changed:' + item['path'])
+            if not (carried and carried_evidence(repo, item, relative, evaluation)):
+                errors.append('reviewed_evidence_changed:' + item['path'])
     if findings and record['status'] in USABLE:
         errors.append('confirmed_estimator_defect_prevents_acceptance')
     if record['status'] in USABLE and (not snapshots or any(not s['verified'] for s in snapshots)):
@@ -68,6 +75,8 @@ def reviewed_decision(repo, relative, meta, evaluation, findings, snapshots, exi
                 historical_runtime_review=record.get('historical_runtime_review', {}),
                 claim=record['claim'], review='explicit_claim_review',
                 decision_path=LEDGER, review_document=DOCUMENT,
+                **(dict(reference_carryover=dict(record=RECORD, sha256=_hash_file(str(repo/RECORD), (repo/RECORD).stat().st_mtime_ns,
+                                                                   (repo/RECORD).stat().st_size))) if carried else {}),
                 reuse_qualified=record['status'] in USABLE,
                 paper_usable=record['status'] in USABLE,
                 accuracy_eligible=record['status'] in ('accepted', 'accepted_with_limitation'),

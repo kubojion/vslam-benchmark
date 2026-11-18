@@ -1,0 +1,419 @@
+{
+  "schema": 1,
+  "version": "gnss-epoch-v4-20261117",
+  "status": "frozen; PROVISIONAL timing model; not installed in any live selector",
+  "decision_record": {
+    "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/decision-record.json",
+    "bytes": 19341,
+    "sha256": "4374957f6a546180eab56ab2c284da61d41c51aa8f28cb61b40b6bc687a66ba8"
+  },
+  "convention": "t_epoch = t_camera + a(t_camera); a_p for positions, a_h for heading; seconds; Unix UTC; t relative to origin 1783069468179227815 ns",
+  "time_origin_ns": 1783069468179227815,
+  "units": "TUM seconds (Unix UTC); construction integer ns",
+  "support_policy": "retained_intervals(reference_time, keep, maximum_gap_s=0.5) on the corrected timeline; a raw-index jump or >0.5 s gap splits an interval",
+  "policies": {
+    "primary": "RTK fixed + float, approved screening removed (search/historical route)",
+    "fixed_only": "RTK fixed only, approved screening removed, float gaps kept (paper positional ATE route)"
+  },
+  "reproduction": "/data/imoroz/conda/envs/dpvo/bin/python -B -I reference-v4/scripts/v4_02_build.py --imu-stamps a33",
+  "controls": {
+    "primary.trajectory": true,
+    "primary.support": true,
+    "fixed_only.trajectory": true,
+    "fixed_only.support": true,
+    "samples.csv.gz_content_equal": true,
+    "construction.npz_content_equal": true,
+    "primary.max_abs_xyz_m": 0.0,
+    "primary.max_abs_time_s": 0.0,
+    "fixed_only.max_abs_xyz_m": 0.0,
+    "fixed_only.max_abs_time_s": 0.0,
+    "v2_control_rebuild": {
+      "primary": {
+        "rows": 22659,
+        "same_rows": true,
+        "max_abs_time_s": 0.0,
+        "max_abs_xyz_m": 4.999969327457165e-10,
+        "support_equal": true
+      },
+      "fixed_only": {
+        "rows": 21696,
+        "same_rows": true,
+        "max_abs_time_s": 0.0,
+        "max_abs_xyz_m": 4.999969327457165e-10,
+        "support_equal": true
+      }
+    }
+  },
+  "scenarios": {
+    "nominal": {
+      "role": "working baseline (v4: measured-height C_p, v3 C_h)",
+      "definition": {
+        "kind": "shape",
+        "C_p": 0.15818027987493666,
+        "C_h": 0.12131862532863028,
+        "role": "working baseline (v4: measured-height C_p, v3 C_h)",
+        "S": "raw"
+      },
+      "primary": {
+        "trajectory": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal/primary.tum",
+          "bytes": 2434945,
+          "sha256": "6ed64536d4579d5f145b77919f4c376d8814ec2d394a7048a85bb5494298f8f2"
+        },
+        "support": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal/primary-support.json",
+          "bytes": 1048,
+          "sha256": "5a0f0b13a3d2cc568ed48fc345f0a0898880e47c019ddfe8be7da18da01d46a4"
+        },
+        "retained_samples": 22659,
+        "support_intervals": 16
+      },
+      "fixed_only": {
+        "trajectory": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal/fixed_only.tum",
+          "bytes": 2331521,
+          "sha256": "a667f30fc2a8c20ab49ec87ca779ec2a8434a0aff4ea98d14cf4ecfec6c18648"
+        },
+        "support": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal/fixed_only-support.json",
+          "bytes": 9679,
+          "sha256": "d6ec8fc3b1115c0dcbc1069c786ac5c94aae2d15efc6eff4301a085ef4d28b87"
+        },
+        "retained_samples": 21696,
+        "support_intervals": 152
+      },
+      "samples": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal/samples.csv.gz",
+        "bytes": 1580484,
+        "sha256": "e98ea8e71fa3e9c61674528000003bea06a3a3adf1c0a25d1c8ebd59e2f86a8f"
+      },
+      "construction": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal/construction.npz",
+        "bytes": 2681742,
+        "sha256": "7116907b76b2d06e0f5f84f9d5afe893b9df4d55c718ffb0f52b8ec67f2a8c9e"
+      },
+      "reference_json": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal/reference.json",
+        "bytes": 3765,
+        "sha256": "a9cc6ad8e7856af03a16ee7692167b3607371fc2e6558421427a76ec8663f39f"
+      }
+    },
+    "nominal_minus_50ms": {
+      "role": "sensitivity",
+      "definition": {
+        "kind": "shape",
+        "C_p": 0.10818027987493666,
+        "C_h": 0.07131862532863027,
+        "role": "sensitivity",
+        "S": "raw"
+      },
+      "primary": {
+        "trajectory": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal_minus_50ms/primary.tum",
+          "bytes": 2434944,
+          "sha256": "239728461b8f18f526c9a68dbb3623fc54249b4a7a5d8480725f69ad6477b8db"
+        },
+        "support": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal_minus_50ms/primary-support.json",
+          "bytes": 1043,
+          "sha256": "2db4d23c0df224e3cabb4ff567d38110a298f336443cdea61e5f513c6ca85977"
+        },
+        "retained_samples": 22659,
+        "support_intervals": 16
+      },
+      "fixed_only": {
+        "trajectory": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal_minus_50ms/fixed_only.tum",
+          "bytes": 2331520,
+          "sha256": "60ae2963e3e00f5121a3f69443293c7eba0f830f6458f538f84788e6b84bfa47"
+        },
+        "support": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal_minus_50ms/fixed_only-support.json",
+          "bytes": 9675,
+          "sha256": "c45a3c2cdac250abf7ae32e6ddd5874b01eb28f861002c5d85de5fd59926529d"
+        },
+        "retained_samples": 21696,
+        "support_intervals": 152
+      },
+      "samples": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal_minus_50ms/samples.csv.gz",
+        "bytes": 1585173,
+        "sha256": "acb59542847b35ae120133004c56bea6facb74a2085d5fc3cbec68840ad96378"
+      },
+      "construction": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal_minus_50ms/construction.npz",
+        "bytes": 2682302,
+        "sha256": "570f69200a125f6c5d9a87dcc9899cb64c49fe924a3c7e41d6ee8a813c9047f9"
+      },
+      "reference_json": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal_minus_50ms/reference.json",
+        "bytes": 3814,
+        "sha256": "811649bdf1d70bf1c360408a0ed2ceafcb45208f038d79a7f387675976a8d7c9"
+      }
+    },
+    "nominal_plus_50ms": {
+      "role": "sensitivity",
+      "definition": {
+        "kind": "shape",
+        "C_p": 0.20818027987493665,
+        "C_h": 0.1713186253286303,
+        "role": "sensitivity",
+        "S": "raw"
+      },
+      "primary": {
+        "trajectory": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal_plus_50ms/primary.tum",
+          "bytes": 2434839,
+          "sha256": "83c2a1ebb439e03158da6c72eac562ce5d9ed4fea64b5c6448343ce8d6122600"
+        },
+        "support": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal_plus_50ms/primary-support.json",
+          "bytes": 1046,
+          "sha256": "ebddf79622fd9444a6e14fc223097450426f25ba0b3d6961ccec7f242782b8a5"
+        },
+        "retained_samples": 22658,
+        "support_intervals": 16
+      },
+      "fixed_only": {
+        "trajectory": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal_plus_50ms/fixed_only.tum",
+          "bytes": 2331415,
+          "sha256": "7fa3631a1f1396b6ebfb544891c1187e6312372145f3afd671e2d80541302ca4"
+        },
+        "support": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal_plus_50ms/fixed_only-support.json",
+          "bytes": 9690,
+          "sha256": "9d26219e4e4a38a3ab6b76b0a156436a7a964de0336933827090bc82f740897f"
+        },
+        "retained_samples": 21695,
+        "support_intervals": 152
+      },
+      "samples": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal_plus_50ms/samples.csv.gz",
+        "bytes": 1583699,
+        "sha256": "0f6e288e9d3f4f2e923f7c2e65e150fe9e931e8c931fa6ac4eb34202aaf51903"
+      },
+      "construction": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal_plus_50ms/construction.npz",
+        "bytes": 2682952,
+        "sha256": "32fc793924858918d8f369c259cbed08b52ec589186a62598a4b2ae654a97b14"
+      },
+      "reference_json": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/nominal_plus_50ms/reference.json",
+        "bytes": 3805,
+        "sha256": "3b269a47add1d3a55fb3885e2511270225a452028d70cc30ed50010148e49590"
+      }
+    },
+    "common_heading_alignment": {
+      "role": "alternative: one alignment for both channels",
+      "definition": {
+        "kind": "shape",
+        "C_p": 0.12131862532863028,
+        "C_h": 0.12131862532863028,
+        "role": "alternative: one alignment for both channels",
+        "S": "raw"
+      },
+      "primary": {
+        "trajectory": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/common_heading_alignment/primary.tum",
+          "bytes": 2434943,
+          "sha256": "527d0e2cb7f913b34fd12049e5aefab1785461b72829284328916697e2b43a95"
+        },
+        "support": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/common_heading_alignment/primary-support.json",
+          "bytes": 1050,
+          "sha256": "19585eabe9902d9228ecbb005f2f127b521aae2b7c818f294c8f7b5aade1c1c5"
+        },
+        "retained_samples": 22659,
+        "support_intervals": 16
+      },
+      "fixed_only": {
+        "trajectory": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/common_heading_alignment/fixed_only.tum",
+          "bytes": 2331520,
+          "sha256": "f9eaf96e22f3548a57832df74e9afecbfb74d45965fb325afa8968ee86e9b3b2"
+        },
+        "support": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/common_heading_alignment/fixed_only-support.json",
+          "bytes": 9678,
+          "sha256": "908c0728be6275771d1def0a3899585783b2fd82a33b4011ee550745cd133fe5"
+        },
+        "retained_samples": 21696,
+        "support_intervals": 152
+      },
+      "samples": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/common_heading_alignment/samples.csv.gz",
+        "bytes": 1517946,
+        "sha256": "ba58e021628d4cddc787bb01e3cc24fc8924b606d9f33966d9a23c54a40c77c4"
+      },
+      "construction": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/common_heading_alignment/construction.npz",
+        "bytes": 2673301,
+        "sha256": "87696389c5e62c6d6e09b84d29d68de25c3c9e5031f45d118eeffdd6d57f3975"
+      },
+      "reference_json": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/common_heading_alignment/reference.json",
+        "bytes": 3895,
+        "sha256": "36d3c55a8aafee7cc2191d97db2d5dab2996fb3f44b56098920c3b1c9ced7eae"
+      }
+    },
+    "epoch_zero_offset": {
+      "role": "alternative: camera stamps taken as receiver UTC",
+      "definition": {
+        "kind": "constant",
+        "a_p": 0.0,
+        "a_h": 0.0,
+        "role": "alternative: camera stamps taken as receiver UTC"
+      },
+      "primary": {
+        "trajectory": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/epoch_zero_offset/primary.tum",
+          "bytes": 2434943,
+          "sha256": "699329093949fa1c9ed04d6487346a712022344996ee630a6c59dbbc533e9924"
+        },
+        "support": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/epoch_zero_offset/primary-support.json",
+          "bytes": 1039,
+          "sha256": "e99e7fedd5e1c7f7f4ebe2e897bf6539f663612216d95cbbddc0f491274a9e94"
+        },
+        "retained_samples": 22659,
+        "support_intervals": 16
+      },
+      "fixed_only": {
+        "trajectory": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/epoch_zero_offset/fixed_only.tum",
+          "bytes": 2331520,
+          "sha256": "6b811e6a1efc417078ae185cdb85ec2c0609538fefc69ea2a87a2569bc0e61f5"
+        },
+        "support": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/epoch_zero_offset/fixed_only-support.json",
+          "bytes": 9665,
+          "sha256": "0e3a31e35d381a7b45aefae2ff5466c61f0bc435f0e39469fa266b39ca2a7f55"
+        },
+        "retained_samples": 21696,
+        "support_intervals": 152
+      },
+      "samples": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/epoch_zero_offset/samples.csv.gz",
+        "bytes": 1384694,
+        "sha256": "3798111564dd1ef0c2b78aa06d8bc477e65e5ce37305c8d8f8b4fcd88e0b4a90"
+      },
+      "construction": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/epoch_zero_offset/construction.npz",
+        "bytes": 2673391,
+        "sha256": "79345af94af3d795ee796d52732cc406474797a60c6cf48a696084aee99b8c11"
+      },
+      "reference_json": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/epoch_zero_offset/reference.json",
+        "bytes": 3796,
+        "sha256": "1b9883671bab02f69928fc01e1ab662a36de37f73fb9e209c3a54023e55f1b5f"
+      }
+    },
+    "stress_minus_100ms": {
+      "role": "stress test beyond the credible range",
+      "definition": {
+        "kind": "shape",
+        "C_p": 0.05818027987493665,
+        "C_h": 0.02131862532863027,
+        "role": "stress test beyond the credible range",
+        "S": "raw"
+      },
+      "primary": {
+        "trajectory": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/stress_minus_100ms/primary.tum",
+          "bytes": 2434942,
+          "sha256": "338f9261207b4b11c823b6b25004f77e216ea3174c6c7444378497f39a5e4ef9"
+        },
+        "support": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/stress_minus_100ms/primary-support.json",
+          "bytes": 1048,
+          "sha256": "852c997433d5433e33a13dbd0a4544bdecd608ae7bf9268a021609d233d277c1"
+        },
+        "retained_samples": 22659,
+        "support_intervals": 16
+      },
+      "fixed_only": {
+        "trajectory": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/stress_minus_100ms/fixed_only.tum",
+          "bytes": 2331518,
+          "sha256": "0b66794032bc3d1f68c370046d94336d23b08019aeada7602c1209539bf1b60e"
+        },
+        "support": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/stress_minus_100ms/fixed_only-support.json",
+          "bytes": 9666,
+          "sha256": "f552dcd1f9512e0c61a592de9489a7b376551532f01df7f3b17d1035f669817f"
+        },
+        "retained_samples": 21696,
+        "support_intervals": 152
+      },
+      "samples": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/stress_minus_100ms/samples.csv.gz",
+        "bytes": 1586671,
+        "sha256": "28d578086d714917ba0f78795e612481374369731e3ecc1839b2eda120966969"
+      },
+      "construction": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/stress_minus_100ms/construction.npz",
+        "bytes": 2681696,
+        "sha256": "8f5ad89fd159f6a7f137492d8b00a062005d0fd88fcb6e26d929ae852325eb50"
+      },
+      "reference_json": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/stress_minus_100ms/reference.json",
+        "bytes": 3840,
+        "sha256": "fd61ded12e894fd34b1ec2842f506270171e32aa496376f73b01bbf7be2de6de"
+      }
+    },
+    "stress_plus_100ms": {
+      "role": "stress test beyond the credible range",
+      "definition": {
+        "kind": "shape",
+        "C_p": 0.25818027987493664,
+        "C_h": 0.22131862532863028,
+        "role": "stress test beyond the credible range",
+        "S": "raw"
+      },
+      "primary": {
+        "trajectory": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/stress_plus_100ms/primary.tum",
+          "bytes": 2434839,
+          "sha256": "032c32f5e89665e2f5979ae7df41fbcb1e0b3c55babfb2e83c0f9c0a2eb5c140"
+        },
+        "support": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/stress_plus_100ms/primary-support.json",
+          "bytes": 1047,
+          "sha256": "6485fe7cb21c2048a9c837956742071f44ce08335906fb5a2d14dbf53facf9b2"
+        },
+        "retained_samples": 22658,
+        "support_intervals": 16
+      },
+      "fixed_only": {
+        "trajectory": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/stress_plus_100ms/fixed_only.tum",
+          "bytes": 2331415,
+          "sha256": "593ab850f36513d83a4b187af2ec186ab92e2bdded8534ca0c21f7651d6c11ae"
+        },
+        "support": {
+          "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/stress_plus_100ms/fixed_only-support.json",
+          "bytes": 9689,
+          "sha256": "fbdd353acad69d2fbba1df1acc27fac588a3db0a73acd327f3b89bb1074739c4"
+        },
+        "retained_samples": 21695,
+        "support_intervals": 152
+      },
+      "samples": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/stress_plus_100ms/samples.csv.gz",
+        "bytes": 1587307,
+        "sha256": "5912c581f820150260292e7d3a60d3f09005659756992986904823d341dd58d6"
+      },
+      "construction": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/stress_plus_100ms/construction.npz",
+        "bytes": 2682629,
+        "sha256": "66afc36dad9bfe92853ea09a1596b6308bb648bc587199a41f651a7c134e0035"
+      },
+      "reference_json": {
+        "path": "/data/imoroz/CAMERA-IMU-GNSS-TIMING-ISSUE/reference-v4/references/gnss-epoch-v4-20261117/stress_plus_100ms/reference.json",
+        "bytes": 3832,
+        "sha256": "4582ff0d2d56a2d4e960ba467447d51a77f98375700d6a2661c6c1cac0215ad2"
+      }
+    }
+  }
+}

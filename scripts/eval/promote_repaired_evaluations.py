@@ -20,10 +20,23 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else None
 
 
-def plan_promotion(inventory, repo=REPO, *, evaluator=None):
+def staged_runs(manifest, repo=REPO):
+    """Attempt paths a staging manifest (stage_reference_reevaluation.py) staged; the scope of --only."""
+    value = json.loads(Path(manifest).read_text())
+    return {'results/'+r['run'] for r in value['runs'] if r['status'] == 'staged'}
+
+
+def plan_promotion(inventory, repo=REPO, *, evaluator=None, only=None):
+    """Plan every evaluated attempt, or with `only` (a set of attempt paths) exactly those, each of which must be
+    in the inventory with a staged evaluation."""
     evaluator = evaluator or evaluator_identity()['sha256']
     plan = []
-    for attempt in [a for c in inventory['cells'] for a in c['attempts']]+inventory['other_artifacts']:
+    attempts = [a for c in inventory['cells'] for a in c['attempts']]+inventory['other_artifacts']
+    if only is not None:
+        attempts = [a for a in attempts if a.get('path') in only]
+        if {a['path'] for a in attempts} != set(only) or any(not a.get('staged_evaluation_path') for a in attempts):
+            raise ValueError('scoped promotion: every listed attempt needs an inventory entry with a staged evaluation')
+    for attempt in attempts:
         if not attempt.get('evaluation_path'): continue
         relative = Path(attempt['path'])
         if len(relative.parts) != 6 or relative.parts[0] != 'results' or '..' in relative.parts:
@@ -77,10 +90,11 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--inventory', type=Path, default=REPO/'results/repair-20261001/inventory.json')
     ap.add_argument('--apply', action='store_true')
+    ap.add_argument('--only', type=Path, help='staging manifest: promote exactly the attempts it staged')
     args = ap.parse_args()
     inventory = load_inventory(args.inventory)
-    plan = plan_promotion(inventory)
-    output = args.inventory.parent/'promotion-manifest.json'
+    plan = plan_promotion(inventory, only=staged_runs(args.only) if args.only else None)
+    output = args.inventory.parent/('promotion-manifest.json' if not args.only else 'promotion-manifest-'+args.only.stem+'.json')
     if args.apply:
         # Preserve the plan before mutation, including every old hash/location.
         ledger = dict(schema=1, inventory_sha256=digest(args.inventory), records=plan, status='prepared')
